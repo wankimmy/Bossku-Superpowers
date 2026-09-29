@@ -1,6 +1,6 @@
 ---
 name: bosskuai-engineering-delivery
-description: Use this for disciplined software implementation work that should follow planning-first execution, test-guided development, review-before-finalization, and explicit verification.
+description: Use when implementing a software change through planning, tests, review, and observed product verification.
 ---
 
 # BosskuAI Engineering Delivery
@@ -17,7 +17,7 @@ Use this skill when the task is **implementation-heavy** and needs a reliable en
 ## Mindset
 
 - The riskiest moment in delivery is when "it works on my machine" becomes "it is in production."
-- Tests are not optional — they are the only proof that behavior is correct and stays correct.
+- Choose checks that prove the changed behavior. Automated regression tests protect code paths; actual product checks establish what a user can do.
 - The diff review is the last safety net before merge; treat it as a serious gate.
 - Observability and rollback are part of implementation correctness, not afterthoughts.
 - For complex features, consider a 3-agent model: **explorer** (traces execution paths and maps architecture), **architect** (proposes multiple approaches with tradeoffs), **reviewer** (catches bugs and convention violations with confidence-scored findings).
@@ -102,6 +102,13 @@ Run the full DoD checklist before declaring the task complete. **Do not declare 
 - [ ] Anything that could NOT be verified is named explicitly — do not silently omit gaps
 
 **If any item fails: fix it, then re-run the checklist. Never declare done with failing items.**
+
+## Product evidence and recovery
+
+- For a changed user journey, CLI, or integration, use `bosskuai-product-verification` to exercise the real path with safe test data. A unit-test pass does not prove an unrun journey works.
+- Keep a project launch recipe: prerequisites, startup command, readiness signal, inputs, expected behavior, evidence, and cleanup.
+- If repeated attempts invalidate the plan, record the failure evidence and re-plan. Do not keep appending failed experiments indefinitely; preserve a targeted handoff before a context reset.
+
 
 ## Supporting artifacts
 

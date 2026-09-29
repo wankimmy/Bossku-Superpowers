@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased — Claude practices and Hindsight
+
+- Applied the reviewed Claude Code README's skill-design, discovery, startup-context, permissions, and verification guidance to the existing first-party skills; added a traceable coverage review.
+- Added `bosskuai-product-verification` for observed user journeys and CLI smoke checks, with routing regressions.
+- Added `bosskuai-hindsight-memory` and an optional retain/recall/reflect integration playbook with scoped banks, curated-note ingestion, provenance checks, and Markdown fallback. No Hindsight runtime or automatic capture is installed.
+- Fixed `bossku init`, validator, and doctor accepting instruction imports inside code examples; preserve existing text and avoid duplicate imports on repeat initialization.
+- Corrected stale first-party guidance about the existing sync-hook defaults and `scripts/` wrappers.
+
 ## Unreleased
 
 Always-on grounding: Anthropic hallucination-reduction and output-consistency techniques as a default Bossku trait.

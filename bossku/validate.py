@@ -249,22 +249,40 @@ def validate_plugin_manifests(root: Path) -> list[str]:
     return errors
 
 
-def claude_imports_agents_md(text: str) -> bool:
-    """True if CLAUDE.md has a bare @AGENTS.md import line (Claude Code expands these)."""
+def _has_bare_import(text: str, import_line: str) -> bool:
+    """Require a live adapter line rather than a Markdown code example."""
+    fence_char = ""
+    fence_length = 0
     for line in text.splitlines():
-        stripped = line.strip()
-        if stripped == CLAUDE_AGENTS_IMPORT and "`" not in line:
+        fence = re.match(r"^ {0,3}(`{3,}|~{3,})(.*)$", line)
+        if fence_char:
+            if (
+                fence
+                and fence.group(1)[0] == fence_char
+                and len(fence.group(1)) >= fence_length
+                and not fence.group(2).strip()
+            ):
+                fence_char = ""
+            continue
+        if fence:
+            # Backtick fences cannot have backticks in their info string.
+            if fence.group(1)[0] == "~" or "`" not in fence.group(2):
+                fence_char = fence.group(1)[0]
+                fence_length = len(fence.group(1))
+            continue
+        if re.fullmatch(r" {0,3}" + re.escape(import_line) + r"[ \t]*", line):
             return True
     return False
+
+
+def claude_imports_agents_md(text: str) -> bool:
+    """True if CLAUDE.md contains the canonical import outside Markdown code."""
+    return _has_bare_import(text, CLAUDE_AGENTS_IMPORT)
 
 
 def omp_imports_agents_md(text: str) -> bool:
     """True if .omp/AGENTS.md imports the canonical project AGENTS.md."""
-    for line in text.splitlines():
-        stripped = line.strip()
-        if stripped == OMP_AGENTS_IMPORT and "`" not in line:
-            return True
-    return False
+    return _has_bare_import(text, OMP_AGENTS_IMPORT)
 
 
 def validate_repo(root: Path | None = None) -> list[str]:

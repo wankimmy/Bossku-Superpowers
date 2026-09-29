@@ -386,7 +386,16 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
     "bosskuai-skill-stocktake": ["skill audit", "audit skills", "audit existing skills", "audit my skills", "review my skills", "improve existing skills", "enhance existing skills", "skill overlap", "stale skills", "skill health", "stocktake", "which skills are stale"],
     "bosskuai-customize-bosskuai": ["edit agents.md", "skill-index", "bossku config"],
     "bosskuai-claude-md-management": ["claude.md", "rules file", "agent instructions"],
-    "bosskuai-claude-code-setup": ["claude code setup", "mcp servers", "hooks", "slash commands"],
+    "bosskuai-claude-code-setup": ["claude code setup", "mcp servers", "hooks", "slash commands", "skill discovery", "skills not loading"],
+    "bosskuai-product-verification": [
+        "product verification", "verify the signup flow", "verify the checkout flow",
+        "actual user journey", "cli smoke check", "launch and verification recipe",
+        "verify the running app", "test the real user path",
+    ],
+    "bosskuai-hindsight-memory": [
+        "hindsight", "hindsight memory", "hindsight recall", "hindsight retain",
+        "hindsight reflect", "hindsight memory bank", "connect hindsight",
+    ],
     "bosskuai-rules-distill": ["distill rules", "extract principles", "consolidate guidance"],
     "bosskuai-continuous-learning": ["capture this lesson", "learn from this", "save this learning", "save learning", "lesson learned", "what did we learn", "post task learning"],
     "bosskuai-handoff": ["handoff", "hand off", "hand this off", "pass to another agent", "continue in a new session", "next session", "handoff doc", "write a handoff"],

@@ -15,7 +15,7 @@ Make BosskuAI remember useful context across Claude Code, Cursor, Codex, OpenCod
 
 ## The real memory system (BosskuAI 2.x)
 
-There is no vector database, no hook-driven *capture*, and no `ai-assistant/` tree. Memory is plain Markdown under `.bossku/memory/` in the project, written through the CLI so redaction and export run every time. `bossku remember` still writes and exports every entry; an optional hook-driven *sync* safety net (below) can additionally re-run the export at session end, but nothing generates memory content on its own.
+The default memory system requires no vector database, performs no hook-driven *capture*, and has no `ai-assistant/` tree. Memory is plain Markdown under `.bossku/memory/` in the project, written through the CLI so redaction and export run every time. `bossku remember` still writes and exports every entry; an optional hook-driven *sync* safety net (below) can additionally re-run the export at session end, but nothing generates memory content on its own.
 
 | Kind | File | Store here |
 |---|---|---|
@@ -40,9 +40,9 @@ bossku sync --project .        # re-export after manual edits or when the vault 
 - **Never exported**: `handoff.md`, instincts, raw prompts, transcripts, logs.
 - Host workspaces may run their own, separate vault syncs (third-party plugins that mirror other memory folders or session logs). Those are outside BosskuAI; keep writing through `bossku remember` so the curated export stays consistent, and do not duplicate the same note into two systems.
 
-### Session-end sync hooks (opt-in)
+### Session-end sync hooks
 
-`bossku remember` already exports inline, every call — the hooks below are a safety net for content that was written but never re-synced (vault was offline, a file was hand-edited), not a new write path.
+`bossku install` refreshes sync hooks for detected hosts by default. `bossku remember` already exports inline, every call — the hooks below are a safety net for content that was written but never re-synced (vault was offline, a file was hand-edited), not a new write path.
 
 ```bash
 bossku hooks install               # wire a Stop/session-end hook into every installed tool
@@ -69,6 +69,13 @@ Each hook runs `bossku sync-hook`, which re-runs the same `sync_project()` used 
 - Do not store secrets, tokens, `.env` contents, full logs, customer data, one-off chatter, or unverified assumptions presented as facts. `bossku/redact.py` catches common token shapes; it is a backstop, not permission.
 - `handoff.md` is ephemeral: clear it when the work completes.
 
+## Optional Hindsight layer
+
+Use `bosskuai-hindsight-memory` only when the task explicitly concerns Hindsight or an approved project connection is available. Recall supplies candidate evidence; reflect supplies generated synthesis; retain extracts knowledge from submitted notes. These are distinct operations.
+
+Keep `.bossku/memory/` canonical. Verify recalled claims against current files and dates, isolate the project's bank, and mirror only approved redacted notes. Do not treat inferred observations as source facts or enable upstream transcript capture automatically. If Hindsight is absent or offline, read the relevant local kind files and state that semantic retrieval was unavailable.
+
+
 ## Failure handling
 
 - `vault: pending` (vault folder unavailable): local memory is saved; run `bossku sync --project .` later.
@@ -89,3 +96,4 @@ Each hook runs `bossku sync-hook`, which re-runs the same `sync_project()` used 
 - `../../bossku/memory.py`
 - `../../bossku/hooks.py`
 - `../../references/memory-first-handoff-protocol.md`
+- `../../references/playbooks/hindsight-memory-playbook.md`

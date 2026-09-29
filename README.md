@@ -136,3 +136,12 @@ The Docker/Laravel/Nuxt product MVP is preserved on branch `archive/product-mvp-
 ## License
 
 MIT — see [`LICENSE`](LICENSE).
+
+## Claude Code practice review
+
+The [coverage review](docs/claude-practices-review.md) maps the reviewed Claude Code course README to BosskuAI's skill guidance, existing packs, examples, and host-specific features. The [practice playbook](references/playbooks/claude-code-practices-playbook.md) covers skill design, startup context, discovery, invocation, and permissions.
+
+- [`bosskuai-product-verification`](skills/bosskuai-product-verification/SKILL.md) verifies real user paths and CLI behavior with observed evidence.
+- [`bosskuai-hindsight-memory`](skills/bosskuai-hindsight-memory/SKILL.md) integrates an approved, configured Hindsight connection with project-scoped memory. Its optional runtime is separate from the BosskuAI skill installation.
+
+`bossku init` repairs instruction adapters even when an existing file mentions the import only in prose or a fenced example, preserving the original instructions.

@@ -33,6 +33,14 @@ For each skill, check:
 - Keep skill bodies dense with decisions and guardrails; move long procedures to playbooks/checklists when possible.
 - A shorter skill is better only if routing clarity and actionability stay intact.
 
+## Gotchas
+
+- A static audit cannot prove a skill was invoked. Separate available files, host discovery, routing results, and observed usage.
+- Classify each skill by its recurring job: API reference, product verification, analysis, business workflow, scaffolding, review, delivery, runbook, or infrastructure operation. Category overlap is a signal to inspect boundaries, not a reason to add nine new duplicates.
+- Check trigger-oriented descriptions, specific gotchas, supporting resources, invocation controls, and actual verification evidence. Review host-only fork, hook, and dynamic-context settings only where supported.
+- Preserve vendored upstream text; improve routing or add a first-party reference instead of mechanically appending Gotchas to every file.
+
+
 ## Output
 
 Return:
@@ -46,5 +54,6 @@ Return:
 ## References
 
 - `../../references/checklists/skill-health-checklist.md`
+- `../../references/playbooks/claude-code-practices-playbook.md`
 - `../../references/playbooks/skill-stocktake-playbook.md`
 - `../../references/checklists/learning-promotion-checklist.md`

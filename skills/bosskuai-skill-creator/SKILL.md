@@ -1,6 +1,6 @@
 ---
 name: bosskuai-skill-creator
-description: Use this to create, evaluate, improve, or benchmark BosskuAI skills, including skill scope, frontmatter, progressive disclosure, validation prompts, and multi-agent skill review.
+description: Use when creating, improving, evaluating, or benchmarking BosskuAI skills and their triggers, sidecars, or validation prompts.
 ---
 
 # BosskuAI Skill Creator
@@ -32,7 +32,7 @@ Use the local BosskuAI pattern unless an existing nearby skill uses a stronger c
 4. `How this differs from nearby skills`.
 5. `Mindset`.
 6. `Workflow` or named lenses.
-7. `Guardrails`.
+7. `Gotchas` or specific failure-oriented `Guardrails`.
 8. `Output format`.
 9. `References` with relative links to checklists, playbooks, memory, or scripts.
 
@@ -86,6 +86,16 @@ Do nothing when the lesson is a one-off outcome, temporary debug note, or alread
     - **reviewer**: overlap and failure modes
     - **benchmark**: realistic prompt behavior
 
+## Gotchas
+
+- Descriptions should tell the router when to fire, not summarize every section. Put broader phrase coverage in the generated index's curated trigger source.
+- Include verified failure points that change the next action. Do not repeat elementary advice or impose one rigid workflow where a goal and constraints suffice.
+- Sidecars must survive user-level installation. Reuse an existing script or standard tool; verify relative links, prerequisites, and side effects.
+- Claude-only `context: fork`, preloaded subagent skills, invocation controls, scoped hooks, and dynamic `!` shell context are not universal Agent Skills features. Verify the host and Bossku schema before adding them.
+- Dynamic shell context runs on invocation; keep it narrowly read-only and free of credentials or automatic installs. Explicit tool calls are the portable default.
+- Distinguish a routing check from a behavioral evaluation and actual host usage. `bossku skills audit` measures inventory and context cost, not invocation frequency.
+
+
 ## Guardrails
 
 - Do not add a new skill just to preserve a single idea; use memory or a checklist when that is enough.
@@ -118,4 +128,5 @@ Validation:
 ## References
 
 - `../../references/checklists/skill-creator-checklist.md`
+- `../../references/playbooks/claude-code-practices-playbook.md`
 - `../../references/checklists/learning-promotion-checklist.md`

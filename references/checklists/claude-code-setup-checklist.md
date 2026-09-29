@@ -9,3 +9,10 @@
 - Are model names, commands, paths, and setup steps current for this repo?
 - Are tokens and private local paths absent from committed config?
 - Are longer details linked from shared references instead of duplicated in startup files?
+
+- Was file presence distinguished from host discovery and actual skill invocation, including standalone versus plugin names?
+- Are duplicate skills, installed version, launch directory, and permission restrictions accounted for?
+- Are imported startup instructions counted, with task-only detail in scoped rules or skills?
+- Is a live `@AGENTS.md` import present outside Markdown code examples?
+- Is there a runnable product verification recipe with prerequisites, evidence, safe test data, and cleanup?
+- Are forked tasks, subagent preloads, dynamic shell context, and hooks used only on a verified supporting host?

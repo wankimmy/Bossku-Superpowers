@@ -81,7 +81,7 @@ When a request is general, ambiguous, or touches many files, ask 1-3 numbered ye
 - Project memory lives in `.bossku/memory/`.
 - Export to Obsidian is one-way, curated, and vault-local under `BosskuAI/<project>/`.
 - Never store secrets in memory files.
-- `bossku hooks install` optionally wires a session-end sync safety net into Claude Code, Cursor, Codex, and OpenCode — additive only, opt-in, never run automatically by `bossku install`.
+- `bossku install` refreshes curated sync hooks for detected hosts; `bossku hooks install` manages them separately. Hooks only re-export existing Markdown, never capture prompts or transcripts. Hindsight remains a separately configured optional layer.
 
 ## Pack routing
 
@@ -119,6 +119,8 @@ Vendored packs are reviewed on a 180-day window — run `bossku skills stocktake
 | ORM migration files (Prisma, Drizzle, Kysely, Django, golang-migrate) | ecc — `database-migrations` |
 | Python code or pytest | ecc — `python-patterns`, `python-testing` |
 | Vue 3 / Pinia outside Nuxt | ecc — `vue-patterns` (`bosskuai-nuxt-development` for Nuxt) |
+| Verify actual product behavior, signup/checkout journeys, or CLI smoke checks | `bosskuai-product-verification`; delivery remains `bosskuai-engineering-delivery` |
+| Hindsight retain/recall/reflect, bank isolation, or memory integration | `bosskuai-hindsight-memory` (optional runtime); local Markdown remains `bosskuai-permanent-memory-orchestration` |
 | Build an MCP server, Playwright E2E, WCAG 2.2 audit, ADR, error/retry design | ecc — `mcp-server-patterns`, `e2e-testing`, `accessibility`, `architecture-decision-records`, `error-handling` |
 
 ## Verification

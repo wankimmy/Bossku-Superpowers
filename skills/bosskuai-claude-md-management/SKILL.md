@@ -1,6 +1,6 @@
 ---
 name: bosskuai-claude-md-management
-description: Use this to audit, maintain, and improve CLAUDE.md and Claude-specific rule files, including instruction quality, session learning capture, overlap control, and cross-tool consistency with BosskuAI memory.
+description: Use when auditing or maintaining CLAUDE.md and Claude rule files, instruction scope, imports, overlap, or session learning.
 ---
 
 # BosskuAI CLAUDE.md Management
@@ -92,6 +92,15 @@ Use this skill when the task is to **audit or improve Claude instructions**: `CL
 - Do not delete existing rules just because they overlap; confirm whether overlap is intentional first.
 - Do not update model names or tool requirements without checking current project conventions or user intent.
 
+## Gotchas
+
+- Audit loaded context, not just the small `CLAUDE.md` stub: imports and unconditional rules load too. Aim for concise startup instructions, with long task-only procedures in references or skills.
+- Ancestor instructions load at startup; nested instructions load when Claude works in that component. Verify from the actual launch directory rather than assuming sibling instructions apply.
+- An import in a code span or fenced example documents activation without activating it. Preserve the live bare `@AGENTS.md` adapter and check with `bossku doctor --project <project>`.
+- Prose rules guide behavior; host settings, permissions, and scoped hooks enforce it. Do not describe a prompt instruction as a permission boundary.
+- Promote a repeated, verified correction with its reason; do not append every session event to startup instructions.
+
+
 ## Output format
 
 ```text
@@ -116,5 +125,6 @@ Verification:
 ## References
 
 - `../../references/checklists/claude-md-management-checklist.md`
+- `../../references/playbooks/claude-code-practices-playbook.md`
 - `../../references/checklists/learning-promotion-checklist.md`
 - `../../references/memory-first-handoff-protocol.md`

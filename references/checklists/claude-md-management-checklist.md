@@ -9,3 +9,8 @@
 - Are durable session learnings routed through shared memory before Claude-only surfaces?
 - Are secrets, private details, and untrusted-content assumptions excluded?
 - Are links and referenced files still valid after the edit?
+
+- Does startup-context review include imported files and unconditional rules rather than only the entry stub?
+- Are nested and ancestor instructions scoped correctly for the actual working directory?
+- Are real imports distinguished from code examples, and repeated corrections promoted only when verified?
+- Are prose guidance and harness-enforced settings clearly distinguished?

@@ -25,7 +25,7 @@ schemas so you don't invent structure the loader won't read.
 ## Repo layout (authoritative)
 
 BosskuAI is a **Python CLI plus a skill library**. There is no Laravel app, no
-`ai-assistant/` tree, and no `scripts/` directory - older ADRs under `references/`
+`ai-assistant/` tree. The `scripts/` directory holds host sync wrappers; older ADRs under `references/`
 describe a previous layout and are history, not instructions.
 
 ```

@@ -60,3 +60,9 @@ approval. `bossku doctor` reports which tools currently have denser hooks instal
 ## Privacy
 
 Secrets are redacted before write. Do not store API keys, passwords, or `.env` contents in memory files.
+
+## Optional Hindsight integration
+
+[`bosskuai-hindsight-memory`](../skills/bosskuai-hindsight-memory/SKILL.md) provides an explicit workflow for an already configured Hindsight CLI or MCP connection. It separates retain (fact extraction), recall (retrieval), and reflect (generated reasoning), checks project-bank isolation and provenance, and falls back to local Markdown when unavailable.
+
+The skill does not install or start Hindsight, change providers, migrate notes, or enable automatic transcript capture. Canonical notes remain in `.bossku/memory/`; only approved redacted notes may be mirrored to an approved bank. Obsidian export is unchanged. See the [integration playbook](../references/playbooks/hindsight-memory-playbook.md) for setup boundaries and readiness checks.
