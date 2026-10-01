@@ -128,6 +128,27 @@ class GlobalFlagTests(unittest.TestCase):
                 self.assertTrue(json.loads(output)["memory_dir"].startswith(str(vault.resolve())), argv)
 
 
+class OutputEncodingTests(unittest.TestCase):
+    def test_showing_a_skill_with_an_arrow_does_not_crash_on_a_cp1252_pipe(self):
+        import sys
+        arrow, newline = chr(0x2192), chr(10)
+        raw = io.BytesIO()
+        fake = io.TextIOWrapper(raw, encoding="cp1252", errors="strict", write_through=True)
+        previous = sys.stdout
+        sys.stdout = fake
+        try:
+            with tempfile.TemporaryDirectory() as tmp:
+                skill = Path(tmp) / "skills" / "arrow-skill"
+                skill.mkdir(parents=True)
+                text = newline.join(["---", "name: arrow-skill", "description: x", "---", f"Step one {arrow} step two", ""])
+                (skill / "SKILL.md").write_text(text, encoding="utf-8")
+                code = main(["--home", tmp, "--root", str(Path(tmp)), "skills", "show", "arrow-skill"])
+        finally:
+            sys.stdout = previous
+        self.assertEqual(code, 0)
+        self.assertIn(arrow.encode("utf-8"), raw.getvalue())
+
+
 class LeanLifecycleTests(unittest.TestCase):
     def test_a_plain_install_is_lean(self):
         with tempfile.TemporaryDirectory() as tmp:

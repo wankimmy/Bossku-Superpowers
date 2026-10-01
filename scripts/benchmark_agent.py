@@ -69,6 +69,24 @@ class Arm:
     hint: bool = False   # install the UserPromptSubmit skill-hint hook (BosskuAI releases that have it)
     gate: bool = False   # install the Stop verify-gate hook
     brief: bool = False  # install the SessionStart project-notes hook
+    spec: bool = False   # the skill hint also lists the requirements the request states
+    audit: bool = False  # the stop gate also asks for a requirement-by-requirement audit
+    lines: tuple = ()    # extra instruction lines (experiments only), named by VARIANT_LINES
+    inline: tuple = ()   # skills whose text is placed in the instructions from the start (`+skill:ID`, experiments only)
+
+
+# One-line instruction experiments: an arm flag such as `+tdd` appends the line to the project instructions of that
+# arm's template only, so wording can be compared without copying the whole repository.
+VARIANT_LINES = {
+    'tdd': ('Test first: before you implement, write a test for every requirement and each edge case, run them to '
+            'see them fail, then implement until they all pass.'),
+    'batch': ('Work in few turns: make independent tool calls together in one step, do not re-read files you just '
+              'wrote, and put code and its check in one edit-and-run step.'),
+    'review': ('When the checks pass, reread the request once more, line by line, and look for anything it asks for '
+               'that no test or run covered.'),
+    'quiet': ('These instructions are already in your context: do not open CLAUDE.md or AGENTS.md, and ignore the '
+              '.bossku, .omp and .claude folders.'),
+}
 
 
 @dataclass(frozen=True)
@@ -85,11 +103,13 @@ def parse_arm(spec: str) -> Arm:
         return Arm('baseline', None)
     name, _, rest = spec.partition('=')
     if not rest:
-        raise SystemExit(f'bad --arm {spec!r}; use "baseline" or NAME=ROOT[@lean|core|full][+hint][+gate][+brief]')
+        raise SystemExit(f'bad --arm {spec!r}; use "baseline" or NAME=ROOT[@lean|core|full][+hint][+gate][+brief][+spec][+audit]')
     root, _, profile = rest.partition('@')
     profile, *flags = profile.split('+')
     return Arm(name, Path(root).resolve(), profile or 'full', hint='hint' in flags, gate='gate' in flags,
-               brief='brief' in flags)
+               brief='brief' in flags, spec='spec' in flags, audit='audit' in flags,
+               lines=tuple(VARIANT_LINES[f] for f in flags if f in VARIANT_LINES),
+               inline=tuple(f.split(':', 1)[1] for f in flags if f.startswith('skill:')))
 
 
 def find_claude(explicit: str | None) -> str:
@@ -211,6 +231,8 @@ import json, sys
 from pathlib import Path
 root = Path(sys.argv[1]); proj = Path(sys.argv[2]); profile = sys.argv[3]; want_hint = sys.argv[4] == "1"; want_gate = sys.argv[5] == "1"
 want_brief = sys.argv[6] == "1"; notes = json.loads(sys.argv[7])
+want_spec = sys.argv[8] == "1"; want_audit = sys.argv[9] == "1"; extra_lines = json.loads(sys.argv[10])
+inline_skills = json.loads(sys.argv[11])
 sys.path.insert(0, str(root))
 import bossku
 assert Path(bossku.__file__).resolve().parent.parent == root, bossku.__file__
@@ -223,15 +245,26 @@ home.mkdir(parents=True, exist_ok=True)
 # so `bossku skills find/show` behave as they would for a user. Nothing touches the real home.
 install_user(root=root, home=home, profile=profile)
 init_project(proj, root=root, home=home, portable=False, profile=profile)
+for sid in inline_skills:   # a skill the agent starts with, as if it had already been loaded
+    body = (root / "skills" / sid / "SKILL.md").read_text(encoding="utf-8")
+    if body.startswith("---"):
+        body = body.split("---", 2)[2]
+    extra_lines.append("## Skill loaded: " + sid + "\n" + body.strip())
+if extra_lines:
+    from bossku.paths import MARKER_END
+    agents_file = proj / "AGENTS.md"
+    agents_text = agents_file.read_text(encoding="utf-8")
+    assert MARKER_END in agents_text
+    agents_file.write_text(agents_text.replace(MARKER_END, "\n".join(extra_lines) + "\n" + MARKER_END, 1), encoding="utf-8")
 claude = proj / ".claude"
 ids = copy_skills_to(claude / "skills", root, profile)
 copy_skill_support(root, claude)
 if want_hint:
     from bossku.hooks import ensure_skill_hint_hook
-    ensure_skill_hint_hook(proj / ".claude" / "settings.json", command="bossku skill-hint")
+    ensure_skill_hint_hook(proj / ".claude" / "settings.json", command="bossku skill-hint" + (" --spec" if want_spec else ""))
 if want_gate:
     from bossku.hooks import ensure_verify_gate_hook
-    ensure_verify_gate_hook(proj / ".claude" / "settings.json", command="bossku verify-gate")
+    ensure_verify_gate_hook(proj / ".claude" / "settings.json", command="bossku verify-gate" + (" --audit" if want_audit else ""))
 if want_brief:
     from bossku.hooks import ensure_session_brief_hook
     ensure_session_brief_hook(proj / ".claude" / "settings.json", command="bossku session-brief")
@@ -262,7 +295,8 @@ def build_template(arm: Arm, dest: Path) -> dict:
     if arm.root is None:
         return {'skills_installed': 0}
     out = sh([sys.executable, '-c', TEMPLATE_BUILDER, str(arm.root), str(dest), arm.profile, '1' if arm.hint else '0',
-                      '1' if arm.gate else '0', '1' if arm.brief else '0', json.dumps(SEED_NOTES)],
+                      '1' if arm.gate else '0', '1' if arm.brief else '0', json.dumps(SEED_NOTES),
+                      '1' if arm.spec else '0', '1' if arm.audit else '0', json.dumps(list(arm.lines)), json.dumps(list(arm.inline))],
               timeout=300)
     if out.returncode:
         raise SystemExit(f'template build failed for {arm.name}: {out.stderr or out.stdout}')
@@ -703,6 +737,31 @@ class Runner:
               f'in={total_input(row["tokens"])} out={row["tokens"]["output"]} wall={row["wall_s"]}s', flush=True)
         return row
 
+    def _run_setup_sessions(self, cmd: list[str], task: dict | None, workdir: Path, env: dict, transcript: Path) -> dict:
+        """Earlier sessions of a memory task: the same project and home, a fresh conversation each time.
+
+        What the agent learns in them can reach the graded session only through what it saved (BosskuAI notes) or
+        left in the files. Their usage is reported apart from the graded session's.
+        """
+        prompts = list((task or {}).get('setup') or [])
+        if not prompts:
+            return {}
+        tokens = {'input_uncached': 0, 'cache_write': 0, 'cache_read': 0, 'output': 0}
+        turns, saved = [], 0
+        for index, text in enumerate(prompts, 1):
+            side = transcript.with_name(f'{transcript.stem}.setup{index}.jsonl')
+            invoke(cmd, text + NON_INTERACTIVE, workdir, env, side, self.args.timeout)
+            parsed = parse_stream(side)
+            for key in tokens:
+                tokens[key] += parsed['tokens'][key]
+            turns.append(parsed['turns'])
+            saved += sum('remember' in call for call in parsed['bossku_calls'])
+            if self.args.keep_transcripts:
+                safe = re.sub(r'[^A-Za-z0-9._-]', '_', f'{transcript.stem}.setup{index}')
+                with side.open('rb') as src, gzip.open(self.out / 'transcripts' / f'{safe}.jsonl.gz', 'wb') as dst:
+                    shutil.copyfileobj(src, dst)
+        return {'sessions': len(prompts), 'tokens': tokens, 'turns': turns, 'remember_calls': saved}
+
     def _execute(self, arm: Arm, prep: Prepared, task_dir: Path | None, task: dict | None,
                  model: str, prompt: str, run_id: str, stop_when=None) -> dict:
         digest = hashlib.sha1(run_id.encode()).hexdigest()[:10]   # short paths: Windows MAX_PATH is real
@@ -718,6 +777,7 @@ class Runner:
                 rmtree_force(config_dir)
             config_dir.mkdir(parents=True, exist_ok=True)
             env = child_env(prep.shim, provider_env(self.args, model, config_dir), prep.home)
+            setup = self._run_setup_sessions(cmd, task, workdir, env, transcript)
             timed_out, stopped, wall = invoke(cmd, prompt, workdir, env, transcript, self.args.timeout, stop_when)
             parsed = parse_stream(transcript)
             infra = is_infrastructure_failure(parsed) and not (timed_out or stopped)
@@ -740,6 +800,8 @@ class Runner:
         rmtree_force(config_dir)
         row = {'wall_s': round(wall, 1), 'timed_out': timed_out, 'stopped_early': stopped, 'infrastructure_failure': infra,
                'attempts': attempt + 1, 'provider': self.args.provider, **grading, **stats, **parsed}
+        if setup:
+            row['setup'] = setup
         if self.args.provider != 'anthropic':   # Claude Code prices unknown models with a fallback table
             row['cost_usd_reported_unreliable'] = row.pop('cost_usd')
             row['cost_usd'] = None
@@ -1001,8 +1063,10 @@ def summarize_arm(rows: list[dict]) -> dict:
     mean = lambda values: statistics.mean(values) if values else 0.0  # noqa: E731
     edited = [r for r in rows if r.get('edited_code')]
     unchecked = sum(not r.get('ran_after_last_edit') for r in edited)
+    earlier = [r for r in rows if r.get('setup')]   # memory tasks: an earlier session came first
     return {
         'runs': n, 'passed': passed, 'pass_rate': passed / n if n else 0.0, 'pass_ci': [lo, hi],
+        'saved_a_note_rate': (sum(r['setup']['remember_calls'] > 0 for r in earlier) / len(earlier)) if earlier else None,
         'edited_runs': len(edited), 'unchecked_finishes': unchecked,
         'unchecked_rate': unchecked / len(edited) if edited else None,
         'cost_mean': mean(costs) if costs else None, 'cost_total': sum(costs) if costs else None,
@@ -1139,6 +1203,8 @@ def cmd_compact(args) -> int:
                 row = json.loads(line)
                 if args.kind and row.get('kind') not in args.kind:
                     continue
+                if args.arm and row.get('arm') not in args.arm:
+                    continue
                 row['final_text'] = (row.get('final_text') or '')[:240]
                 row['bossku_calls'] = [call[:120] for call in row.get('bossku_calls', [])]
                 out.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + '\n')
@@ -1154,7 +1220,7 @@ def main(argv: list[str] | None = None) -> int:
 
     def common(p):
         p.add_argument('--claude', help='path to the claude CLI (default: PATH, then the desktop app copy)')
-        p.add_argument('--arm', action='append', default=[], help='baseline | NAME=BOSSKU_ROOT[@lean|core|full][+hint][+gate][+brief] (repeatable)')
+        p.add_argument('--arm', action='append', default=[], help='baseline | NAME=BOSSKU_ROOT[@lean|core|full][+hint][+gate][+brief][+spec][+audit] (repeatable)')
         p.add_argument('--model', action='append', default=[], help='model id (repeatable)')
         p.add_argument('--provider', choices=['anthropic', 'ollama'], default='anthropic',
                        help='anthropic = your own Claude login; ollama = Ollama Cloud via its Anthropic-compatible API')
@@ -1217,6 +1283,7 @@ def main(argv: list[str] | None = None) -> int:
     p_comp.add_argument('runs', nargs='+')
     p_comp.add_argument('--out', required=True)
     p_comp.add_argument('--kind', action='append', help='keep only these kinds (task, overhead, routing, ...)')
+    p_comp.add_argument('--arm', action='append', help='keep only these arms (repeatable)')
     p_comp.set_defaults(func=cmd_compact)
 
     p_orep = sub.add_parser('overhead-report', help='summarize overhead runs')

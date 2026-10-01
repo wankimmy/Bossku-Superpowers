@@ -10,8 +10,9 @@ These files are the evidence behind the numbers in the main [README](../../READM
 
 ## Where the numbers come from
 
-- **BosskuAI after:** commit `b167823` (`b16782342726fb7d68ba60846107a2fbef1af613`). The test runs started after it was committed.
-- **BosskuAI before:** commit `8adea49`, run from a `git archive` copy.
+- **With BosskuAI:** commit `b167823` (`b16782342726fb7d68ba60846107a2fbef1af613`). The test runs started after it was committed.
+- **Previous release (internal check, not published in the README):** commit `8adea49`, run from a `git archive` copy. Its rows are the ones tagged `before` in `raw/`.
+- **Without BosskuAI:** the rows tagged `baseline`; the BosskuAI rows are tagged `after`.
 - **Agent:** Claude Code 2.1.284, headless, one run per row. Session overhead used Claude Haiku 4.5 and Claude Sonnet 5.5 with the author's own login; every other run used Ollama Cloud through its Anthropic-compatible API.
 - **Date:** 1 October 2026.
 

@@ -38,7 +38,7 @@ Merge this field with existing configuration. Namespace names use the existing v
 
 Agents read relevant notes first, then automatically save verified decisions, plans, facts, and lessons with bossku remember before their final response, without waiting for the user to ask. Skip routine work, duplicates, trivial chatter, secrets, raw prompts, transcripts, and logs. A small fix usually has nothing a future session needs, so it saves nothing.
 `bossku remember` answers with `"saved": true` and a sentence saying where the note went. Agents that only saw a vault status of `skipped` (no vault configured) took a saved note for a failure and retried, so the saved flag comes first.
-`bossku memory-brief --project .` prints the newest notes (at most 1,400 characters, newest first). The `session-brief` hook below runs it for Claude Code at session start, so the agent does not have to look for the files.
+`bossku memory-brief --project .` prints the newest notes (at most 1,000 characters, newest first). The `session-brief` hook below runs it for Claude Code at session start, so the agent does not have to look for the files.
 `bossku install` maintains separate marked memory-policy blocks in detected Codex ~/.codex/AGENTS.md, Claude Code ~/.claude/CLAUDE.md, and OpenCode ~/.config/opencode/AGENTS.md, preserving unrelated user instructions. New project adapters carry the policy for other hosts.
 This is agent-driven curation, not a background transcript summarizer. Hosts must load the instructions and permit vault access. Blocked writes are reported and never redirected into repos.
 

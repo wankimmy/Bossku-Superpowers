@@ -80,14 +80,14 @@ def tools_coverage_map(agents_dest: Path, claude_dest: Path) -> dict:
 AUTO_MEMORY_BLOCK = """<!-- bosskuai:memory:start -->
 ## Automatic BosskuAI memory
 
-For meaningful project work get the notes with `bossku memory-brief --project <project-root>` unless they are
-already in your context; `bossku memory-path` names the folder (handoff.md lives there). Automatically save a new,
-verified decision (with its reason), plan, fact or lesson that a future session would need, before the final reply,
-with `bossku remember --project <project-root> --kind decision|plan|learning|project "<note>"`. One call is
-enough: its output says whether the note was saved. Skip routine work, trivia, duplicates, secrets, raw prompts
-and transcripts, and use the commands rather than opening the memory files. Storage follows
-~/.bosskuai/config.json: with Obsidian storage never write .bossku/memory or repo sync files, and if the vault
-is unavailable report that the note was not saved instead of falling back to the repo.
+Get the project notes with `bossku memory-brief --project <project-root>` unless they are already in your
+context (`bossku memory-path` names the folder; handoff.md lives there). Automatically save a decision or rule
+(with its reason; a rule the user states counts), plan, fact or lesson that a future session needs, before the
+final reply, with
+`bossku remember --project <project-root> --kind decision|plan|learning|project "<note>"`; one call is enough.
+Skip routine work, duplicates, secrets, raw prompts and transcripts. With Obsidian storage
+(~/.bosskuai/config.json) never write .bossku/memory or repo sync files; if the vault is unavailable, report
+that the note was not saved.
 <!-- bosskuai:memory:end -->"""
 
 

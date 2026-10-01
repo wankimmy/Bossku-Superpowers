@@ -15,25 +15,23 @@ from bossku.validate import claude_imports_agents_md, omp_imports_agents_md
 # Always loaded, so every word is paid for in every session: concrete steps beat general advice.
 PROJECT_BLOCK = (
     "BosskuAI is active.\n"
-    "Code changes: turn every requirement in the request into a checklist. Make the change it asks for, "
-    "no more, and leave unrelated behavior alone. Before you finish, run the project's tests; where none "
-    "cover a requirement, write a quick check for it and for the edge cases, run it, and fix what fails "
-    "(fix the code, not the test). Say what you ran and what you could not verify.\n"
-    "Skills: if a skill in the list fits the job, load it first (Skill tool, or `bossku skills show <id>`); "
-    "Superpowers skills cover process (plans, debugging, TDD) and Anti-Slop covers UI, copy and comment quality. "
-    "Add complementary skills only for distinct parts of the request, and never two that do the same job. "
-    'If none fits a non-trivial job, run `bossku skills find "<task>"` once and follow its pick; '
-    "look again when the task changes. Skip skills for one-line tasks.\n"
-    "Memory: project notes are in your context at session start when they exist; otherwise run "
-    "`bossku memory-brief --project <project-root>` once before meaningful work. "
-    "Automatically save a new, verified decision (with its reason), plan, fact or lesson that a future session "
-    "would need, with "
-    '`bossku remember --project <project-root> --kind decision|plan|learning|project "<note>"` '
-    "before the final reply. One call is enough: its output says whether the note was saved, and most small "
-    "fixes have nothing to save. Use the commands, not the files: never open or edit .bossku/ or ~/.bosskuai/ "
-    "by hand, never save secrets, and never write .bossku/memory when memory_storage is obsidian.\n"
-    "Grounding is always on: say when evidence is insufficient instead of guessing, and support claims with "
-    "file:line or command output."
+    "Code changes: list every requirement in the request, make exactly that change, and leave other behavior "
+    "alone. Before you finish, run the project's tests; where none cover a requirement, write and run a quick "
+    "check for it and its edge cases, and fix the code (not the test) until it passes. Say what you ran and "
+    "what you could not verify. Work in few turns: make independent tool calls together in one step, do not "
+    "re-read files you just wrote, and put code and its check in one edit-and-run step.\n"
+    "Skills: load a skill from the list first when one fits the job (Skill tool, or `bossku skills show <id>`). "
+    "Superpowers skills cover process (plans, debugging, TDD); Anti-Slop covers UI, copy and comment quality. "
+    "Add complementary skills only for distinct parts of the request, never two that do the same job. "
+    'If none fits a non-trivial job, run `bossku skills find "<task>"` once. Skip skills for one-line tasks.\n'
+    "Memory: project notes are in your context at session start (or run `bossku memory-brief --project "
+    "<project-root>` once). Automatically save a decision or rule (with its reason; a rule the user states counts), "
+    "plan, fact or lesson that a future session needs, before the final reply, with "
+    '`bossku remember --project <project-root> --kind decision|plan|learning|project "<note>"`; one call is '
+    "enough and small fixes save nothing. Use the commands, not the files: never open or edit .bossku/ or "
+    "~/.bosskuai/ by hand, never save secrets, and never write .bossku/memory when memory_storage is obsidian.\n"
+    "Grounding is always on: say when evidence is insufficient instead of guessing, and cite file:line or "
+    "command output."
     # antislop runs an install wizard and a blocking "during or after?" question unless the
     # entry file carries its pointer block; Bossku already installs all six skills.
     "\n<!-- antislop:start -->\n"

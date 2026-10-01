@@ -3,112 +3,19 @@ name: bosskuai-api-design
 description: Use this for API contract design across REST, GraphQL, and event-driven interfaces, including resource modeling, versioning, errors, pagination, idempotency, and integration-facing correctness.
 ---
 
-# BosskuAI API Design
+# API design
 
-Use this skill when the main question is **the shape of the contract** between systems, not only the code that implements it.
+Use when the open question is the shape of the contract between systems, not just the code behind it.
 
-## How this differs from nearby skills
+1. **Read the current contract surface** before proposing anything: docs, OpenAPI/GraphQL schema, event schemas, handlers, and their tests.
+2. **Model the domain**: name resources and operations after business concepts, not database tables, and make side effects explicit in the operation name.
+3. **Pick the contract style on purpose** — REST, GraphQL, events, or mixed — matched to who actually consumes it, and say why.
+4. **Design the unhappy paths as part of the contract, not an afterthought**: auth failure, validation errors, conflicts, timeouts, async completion, rate limits. Make errors structured and machine-readable, never a freeform string.
+5. **Make the safe path the easy path**: idempotency keys for retry-safe operations, stable pagination, predictable filtering and sorting.
+6. **State what's additive vs breaking for every change**, and the versioning or deprecation path for the breaking ones.
+7. **For events and webhooks**, settle ordering, replay, deduplication, and signature verification before calling the design done.
+8. **When a requirement is ambiguous and nobody can confirm it**, default to the additive, backward-compatible reading and say so in one line rather than guessing at the breaking one.
 
-- **`bosskuai-software-architecture`**: decides the broader system boundaries; this skill designs the API contract that lives at those boundaries.
-- **`bosskuai-engineering-delivery`**: implements an API once the contract is clear; this skill decides what the contract should be.
-- **`bosskuai-coding-best-practices`**: improves handler or client code quality; this skill focuses on external behavior and compatibility.
+Check before you finish: no internal DB shape leaks into the public contract without a reason, no versioning was added without a named compatibility problem it solves, and every webhook/event flow has replay, idempotency, and authenticity.
 
-## Mindset
-
-- API design is product design for developers and integrators.
-- Backward compatibility is cheaper than partner breakage.
-- Ambiguous error handling becomes operational pain later.
-- Make the safe path the easy path: idempotency, pagination, versioning, and explicit contracts should be first-class.
-
-## Design lenses
-
-Apply whichever are relevant:
-
-**Resource and domain modeling**
-- Are resources named after business concepts rather than database tables?
-- Do operations reflect domain actions clearly?
-- Are side effects explicit?
-
-**Contract shape**
-- Is the contract consistent across endpoints, fields, filters, and mutations?
-- Are required vs optional fields explicit?
-- Are null semantics clear?
-
-**Versioning and evolution**
-- What changes are additive and safe?
-- What would break existing clients?
-- Is versioning path-based, header-based, schema-based, or event-versioned, and why?
-
-**Errors and reliability**
-- Are errors machine-readable and human-readable?
-- Are retry-safe operations idempotent?
-- Are timeouts, async completion, and partial failure states represented explicitly?
-
-**Pagination, filtering, and performance**
-- Is pagination stable and scalable?
-- Are filtering and sorting contracts predictable?
-- Does the contract encourage efficient usage patterns?
-
-**Security and abuse**
-- Are auth scopes or permissions explicit at the contract level?
-- Are dangerous fields or expansions exposed unnecessarily?
-- Could the API be abused for scraping, enumeration, or replay?
-
-**Events and webhooks**
-- Are events named after facts that happened, not commands?
-- Are ordering, replay, and deduplication expectations explicit?
-- Is signature verification or authenticity part of the contract?
-
-## MCP integrations
-
-| Tool | Role | Degradation |
-|------|------|-------------|
-| Postman MCP Server | Collection sync, client code generation, API discovery, mock servers, test execution, docs publishing, security audit | Without Postman MCP, work from OpenAPI specs and manual HTTP clients |
-
-## Workflow
-
-1. **Read the current contract surface** — docs, OpenAPI, GraphQL schema, event schemas, handlers, and tests. If Postman MCP is available, sync collections to get the live contract state.
-2. **Model the domain objects and operations** — name the resources, actions, and key invariants.
-3. **Choose the contract style intentionally** — REST, GraphQL, command/event, or mixed. Match it to client needs and operational realities.
-4. **Design for evolution** — identify additive changes, breaking changes, deprecation path, and versioning strategy.
-5. **Design the unhappy paths** — auth failures, validation failures, conflicts, retries, timeouts, async completion, and rate limiting.
-6. **Check integrator ergonomics** — consistency, discoverability, pagination, filtering, webhook replays, examples, and field naming.
-7. **State the compatibility risks** — name what breaks existing consumers and what is safe to ship incrementally.
-8. **Validate with tooling** — If Postman MCP is available: sync the designed contract to a collection, generate mock servers for consumer testing, and run API test suites against the mock to verify contract correctness before implementation.
-
-## Guardrails
-
-- Do not expose internal database shape as the public contract without a reason.
-- Do not add versioning complexity unless you can name the compatibility problem it solves.
-- Do not design errors as freeform strings only.
-- Do not design webhook or event flows without replay, idempotency, and authenticity in mind.
-
-## Output format
-
-```text
-API summary:
-  Style: [REST / GraphQL / events / mixed]
-  Primary consumers: [who integrates with it]
-  Core resources or operations: [list]
-
-Contract recommendations:
-  Resource model: [shape]
-  Request/response patterns: [shape]
-  Errors: [shape]
-  Pagination/filtering: [shape]
-  Versioning/evolution: [strategy]
-  Auth/permissions: [model]
-
-Compatibility risks:
-  [change] — [who breaks] — [safe rollout]
-
-Integrator concerns:
-  [issue] — [impact] — [improvement]
-
-Smallest safe next step:
-  [what to change first]
-```
-
-## References
-
-- `../../references/checklists/api-design-checklist.md`
+Full design-lens checklist and output template: `reference.md`.

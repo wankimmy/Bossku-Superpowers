@@ -15,11 +15,11 @@
   "nodes": [
     { "id": "task", "lane": "setup", "col": 0, "type": "external", "label": "Coding task", "sublabel": "hidden tests", "width": 150 },
     { "id": "project", "lane": "setup", "col": 1, "type": "database", "label": "Fresh project", "sublabel": "own git repo + home", "width": 164 },
-    { "id": "canary", "lane": "run", "col": 1, "type": "security", "label": "Isolation check", "sublabel": "baseline sees no BosskuAI", "width": 188 },
+    { "id": "canary", "lane": "run", "col": 1, "type": "security", "label": "Isolation check", "sublabel": "plain run sees no BosskuAI", "width": 188 },
     { "id": "agent", "lane": "run", "col": 2, "type": "backend", "label": "Agent run", "sublabel": "same model + harness", "width": 164 },
     { "id": "meter", "lane": "run", "col": 3, "type": "database", "label": "Usage meter", "sublabel": "tokens, turns, time", "width": 164 },
     { "id": "tests", "lane": "judge", "col": 3, "type": "security", "label": "Hidden tests", "sublabel": "pass or fail", "width": 150 },
-    { "id": "table", "lane": "judge", "col": 4, "type": "backend", "label": "Compare arms", "sublabel": "95% intervals", "width": 150 },
+    { "id": "table", "lane": "judge", "col": 4, "type": "backend", "label": "Compare setups", "sublabel": "with vs without, 95% intervals", "width": 190 },
     { "id": "charts", "lane": "judge", "col": 5, "type": "frontend", "label": "Charts", "sublabel": "drawn from saved data", "width": 164 }
   ],
   "edges": [
@@ -33,7 +33,7 @@
     { "id": "draw", "from": "table", "to": "charts", "role": "main" }
   ],
   "cards": [
-    { "dot": "cyan", "title": "Same task, three versions", "items": ["Without BosskuAI, BosskuAI before, and BosskuAI after each get a fresh copy of the project.", "Order is shuffled and the model never changes inside a comparison."] },
+    { "dot": "cyan", "title": "Same task, two setups", "items": ["With BosskuAI and without it each get a fresh copy of the project.", "Order is shuffled and the model never changes inside a comparison."] },
     { "dot": "emerald", "title": "Nothing is hand-typed", "items": ["Tokens and turns come from Claude Code's own report.", "Every chart is generated from the saved result files."] }
   ]
 }

@@ -560,8 +560,8 @@ rect.c-bg-rect { fill: var(--bg); }
           <text x="486" y="255" class="t-muted" font-size="8" text-anchor="middle">prompt hook + finder</text>
         </g>
 
-        <g id="node-gate" data-node-id="gate" data-node-label="Verify gate" tabindex="0" role="button" aria-label="Focus Verify gate, never ran it? go back once, BosskuAI" aria-pressed="false" data-node-kind="security" data-node-sublabel="never ran it? go back once" data-node-context="BosskuAI">
-          <title>Verify gate · never ran it? go back once · BosskuAI</title>
+        <g id="node-gate" data-node-id="gate" data-node-label="Verify gate" tabindex="0" role="button" aria-label="Focus Verify gate, never ran it? sent back, BosskuAI" aria-pressed="false" data-node-kind="security" data-node-sublabel="never ran it? sent back" data-node-context="BosskuAI">
+          <title>Verify gate · never ran it? sent back · BosskuAI</title>
           <rect x="763" y="217" width="172" height="52" rx="6" class="c-mask"/>
           <rect x="763" y="217" width="172" height="52" rx="6" class="c-security" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(769 223) scale(0.6875)">
@@ -569,7 +569,7 @@ rect.c-bg-rect { fill: var(--bg); }
             <path d="m5.8 8 1.5 1.5 3-3"/>
           </g>
           <text data-node-label="" x="849" y="238" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Verify gate</text>
-          <text x="849" y="255" class="t-muted" font-size="8" text-anchor="middle">never ran it? go back once</text>
+          <text x="849" y="255" class="t-muted" font-size="8" text-anchor="middle">never ran it? sent back</text>
         </g>
 
         <g id="node-notes" data-node-id="notes" data-node-label="Save a note" tabindex="0" role="button" aria-label="Focus Save a note, only what lasts, BosskuAI" aria-pressed="false" data-node-kind="database" data-node-sublabel="only what lasts" data-node-context="BosskuAI">

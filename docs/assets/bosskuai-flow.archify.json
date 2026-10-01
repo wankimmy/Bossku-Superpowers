@@ -20,7 +20,7 @@
     { "id": "reply", "lane": "task", "col": 5, "type": "frontend", "label": "Deliver result", "sublabel": "say what was verified", "width": 150 },
     { "id": "brief", "lane": "care", "col": 1, "type": "database", "label": "Show notes", "sublabel": "session hook", "width": 150 },
     { "id": "hint", "lane": "care", "col": 2, "type": "backend", "label": "Name skills", "sublabel": "prompt hook + finder", "width": 164 },
-    { "id": "gate", "lane": "care", "col": 4, "type": "security", "label": "Verify gate", "sublabel": "never ran it? go back once", "width": 172 },
+    { "id": "gate", "lane": "care", "col": 4, "type": "security", "label": "Verify gate", "sublabel": "never ran it? sent back", "width": 172 },
     { "id": "notes", "lane": "care", "col": 5, "type": "database", "label": "Save a note", "sublabel": "only what lasts", "width": 150 }
   ],
   "edges": [
@@ -35,7 +35,7 @@
     { "id": "keep-note", "from": "reply", "to": "notes", "role": "branch", "variant": "dashed" }
   ],
   "cards": [
-    { "dot": "cyan", "title": "Three small hooks", "items": ["Saved project notes appear when a session starts.", "Your prompt gets one or two skill names to load first.", "If code changed and never ran, the agent goes back once."] },
-    { "dot": "emerald", "title": "Light on purpose", "items": ["About 40 skills are listed; the rest are one command away.", "git pull + bossku update refreshes the library."] }
+    { "dot": "cyan", "title": "Three small hooks", "items": ["Saved project notes appear when a session starts.", "Your prompt gets one or two skill names to load first.", "If code changed and never ran, the agent is sent back to run it."] },
+    { "dot": "emerald", "title": "Light on purpose", "items": ["About 25 skills are listed; the rest are one command away.", "git pull + bossku update refreshes the library."] }
   ]
 }

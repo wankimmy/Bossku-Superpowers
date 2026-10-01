@@ -28,9 +28,8 @@ DARK = {'surface': '#1a1a19', 'ink': '#ffffff', 'ink2': '#c3c2b7', 'muted': '#89
 # Categorical slots 1-3 in their fixed order: one colour per entity, never re-ranked. (light, dark)
 SERIES = {
     'baseline': ('Without BosskuAI', '#2a78d6', '#3987e5'),
-    'keyword': ('Keyword search only', '#2a78d6', '#3987e5'),
-    'before': ('BosskuAI before', '#eb6834', '#d95926'),
-    'after': ('BosskuAI after', '#1baf7a', '#199e70'),
+    'keyword': ('Without BosskuAI (keyword search)', '#2a78d6', '#3987e5'),
+    'after': ('With BosskuAI', '#1baf7a', '#199e70'),
 }
 FONT = 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif'
 MODELS = {
@@ -189,69 +188,75 @@ class Figure:
         out.append('</svg>')
         return '\n'.join(out)
 
-
 # ----------------------------------------------------------------------------------------------- charts
+# The README shows two setups only: without BosskuAI and with it. Other versions stay in the raw data for
+# maintainers and are never drawn.
+
+ARMS = ('baseline', 'after')
+
 
 def load(results: Path, name: str) -> dict:
     path = results / name
     return json.loads(path.read_text(encoding='utf-8')) if path.is_file() else {}
 
 
+def table(head: list[str], rows: list[list[str]]) -> str:
+    lines = ['| ' + ' | '.join(head) + ' |', '|' + '---|' + '---:|' * (len(head) - 1)]
+    lines += ['| ' + ' | '.join(row) + ' |' for row in rows]
+    return '\n'.join(lines)
+
+
+def complete_models(data: dict) -> list[tuple[str, dict]]:
+    """(model, arms) for every model that has both setups."""
+    return [(model, block['arms']) for model, block in (data.get('models') or {}).items()
+            if all(a in block['arms'] for a in ARMS)]
+
+
+def window_label(window: int | None) -> str:
+    if not window:
+        return ''
+    return f'{window // 1_000_000}M-token window' if window >= 1_000_000 else f'{window // 1000}k-token window'
+
+
 def chart_session_overhead(data: dict) -> str | None:
-    """What BosskuAI adds to the first call of every session, per Claude model."""
-    if not data:
+    """The first call of a Claude Code session, with and without BosskuAI, per Claude model."""
+    models = [(m, arms) for m, arms in (data or {}).items() if all(a in arms for a in ARMS)]
+    if not models:
         return None
     tokens, dollars = [], []
-    for model, arms in data.items():
-        base = arms['baseline']
-        window = base.get('context_window')
-        sub = (f'{window // 1_000_000}M-token window' if window >= 1_000_000 else f'{window // 1000}k-token window') if window else ''
-        extra_t = [arms[a]['input_tokens_median'] - base['input_tokens_median'] for a in ('before', 'after')]
-        extra_c = [arms[a]['cost_median'] - base['cost_median'] for a in ('before', 'after')]
-        tokens.append(Group(model_name(model), extra_t, sub,
-                            tips=[f'+{extra_t[0]:,.0f}', f'+{extra_t[1]:,.0f}  ({extra_t[0] / max(extra_t[1], 1):.1f}x less)']))
-        dollars.append(Group(model_name(model), extra_c, sub,
-                             tips=[f'+${extra_c[0]:.4f}', f'+${extra_c[1]:.4f}  ({extra_c[0] / max(extra_c[1], 1e-9):.1f}x less)']))
-    figure = Figure('What BosskuAI adds to every session',
-                    'First call of a Claude Code session, compared with no BosskuAI (median of 3 runs)',
-                    ['before', 'after'],
-                    [Panel('Extra input tokens', tokens, fmt=lambda v: f'{v:,.0f}'),
-                     Panel('Extra cost of that first call', dollars, fmt=lambda v: f'${v:.3f}')],
-                    footnote='A one-word prompt after a cache warm-up. Cost is Claude Code\'s own list-price figure.')
-    return figure.render()
+    for model, arms in models:
+        sub = window_label(arms['baseline'].get('context_window'))
+        t = [arms[a]['input_tokens_median'] for a in ARMS]
+        c = [arms[a]['cost_median'] for a in ARMS]
+        tokens.append(Group(model_name(model), t, sub, tips=[f'{t[0]:,.0f}', f'{t[1]:,.0f}  (+{t[1] - t[0]:,.0f})']))
+        dollars.append(Group(model_name(model), c, sub, tips=[f'${c[0]:.4f}', f'${c[1]:.4f}  (+${c[1] - c[0]:.4f})']))
+    return Figure('What BosskuAI adds to every session',
+                  'First call of a Claude Code session, with and without BosskuAI (median of 3 runs)',
+                  list(ARMS),
+                  [Panel('Input tokens of the first call', tokens, fmt=lambda v: f'{v:,.0f}'),
+                   Panel('Cost of the first call', dollars, fmt=lambda v: f'${v:.3f}')],
+                  footnote="A one-word prompt after a cache warm-up. Cost is Claude Code's own list-price figure.").render()
 
 
 def chart_routing(data: dict) -> str | None:
     """Held-out skill search: prompts the router was never tuned on."""
     split = (data.get('splits') or {}).get('test')
-    names = ('description-only', 'before', 'after')
-    if not split or not all(name in split for name in names):
+    if not split or 'description-only' not in split or 'after' not in split:
         return None
-    rows = [('Right skill ranked first', 'top1'), ('Right skill in the top three', 'top3')]
     groups = []
-    for label, key in rows:
-        groups.append(Group(label, [split[a][key]['rate'] * 100 for a in names],
-                            ci=[tuple(100 * c for c in split[a][key]['ci']) for a in names]))
-    coverage = [Group('Parts of a request covered', [None, split['before']['concern_coverage'] * 100, split['after']['concern_coverage'] * 100]),
-                Group('Whole request covered', [None, split['before']['all_concerns_covered']['rate'] * 100,
-                                                split['after']['all_concerns_covered']['rate'] * 100])]
-    n = split['after']['prompts']
-    figure = Figure('Finding the right skill on new prompts',
-                    f'{n} held-out requests written without seeing the router (never used for tuning)',
-                    ['keyword', 'before', 'after'],
-                    [Panel('Ranking', groups, fmt=lambda v: f'{v:.0f}', unit='%', axis_max=100, ticks=[0, 25, 50, 75, 100]),
-                     Panel('Requests with several jobs', coverage, fmt=lambda v: f'{v:.0f}', unit='%', axis_max=100, ticks=[0, 25, 50, 75, 100])],
-                    footnote='Whiskers show a 95% interval. The keyword baseline only ranks, so it has no coverage bars.')
-    return figure.render()
-
-
-ARMS = ('baseline', 'before', 'after')
-
-
-def complete_models(data: dict) -> list[tuple[str, dict]]:
-    """(model, arms) for every model that has all three versions."""
-    return [(model, block['arms']) for model, block in (data.get('models') or {}).items()
-            if all(a in block['arms'] for a in ARMS)]
+    for label, key in (('Right skill ranked first', 'top1'), ('Right skill in the top three', 'top3')):
+        groups.append(Group(label, [split[a][key]['rate'] * 100 for a in ('description-only', 'after')],
+                            ci=[tuple(100 * c for c in split[a][key]['ci']) for a in ('description-only', 'after')]))
+    after = split['after']
+    coverage = [Group('Parts of a request covered', [None, after['concern_coverage'] * 100]),
+                Group('Whole request covered', [None, after['all_concerns_covered']['rate'] * 100])]
+    return Figure('Finding the right skill on new prompts',
+                  f'{after["prompts"]} held-out requests written without seeing the router (never used for tuning)',
+                  ['keyword', 'after'],
+                  [Panel('Ranking', groups, fmt=lambda v: f'{v:.0f}', unit='%', axis_max=100, ticks=[0, 25, 50, 75, 100]),
+                   Panel('Requests with several jobs', coverage, fmt=lambda v: f'{v:.0f}', unit='%', axis_max=100,
+                         ticks=[0, 25, 50, 75, 100])],
+                  footnote='Whiskers show a 95% interval. Plain keyword search only ranks, so it has no coverage bars.').render()
 
 
 def chart_pass_rates(coding: dict, humaneval: dict) -> str | None:
@@ -259,9 +264,8 @@ def chart_pass_rates(coding: dict, humaneval: dict) -> str | None:
     for title, data in (('Hidden-test coding tasks', coding), ('HumanEval problems', humaneval)):
         groups = []
         for model, arms in complete_models(data):
-            n = arms['baseline']['runs']
             groups.append(Group(model_name(model), [arms[a]['pass_rate'] * 100 for a in ARMS],
-                                f'{n} runs per version',
+                                f'{arms["baseline"]["runs"]} runs per setup',
                                 ci=[tuple(100 * c for c in arms[a]['pass_ci']) for a in ARMS]))
         if groups:
             panels.append(Panel(title, groups, fmt=lambda v: f'{v:.0f}', unit='%', axis_max=100, ticks=[0, 25, 50, 75, 100]))
@@ -287,50 +291,185 @@ def chart_checking(coding: dict) -> str | None:
     return Figure('Did the agent run its code before finishing?',
                   'Runs that changed code and then ended without running anything (lower is better)',
                   list(ARMS), [Panel('', groups, fmt=lambda v: f'{v:.0f}', unit='%', axis_max=100, ticks=[0, 25, 50, 75, 100])],
-                  footnote='Read from the tool calls alone, the same way for every version.').render()
+                  footnote='Read from the tool calls alone, the same way for both setups.').render()
+
+
+def tokens_per_run(summary: dict) -> float:
+    return summary['input_tokens_mean'] + summary['output_tokens_mean']
 
 
 def chart_effort(coding: dict) -> str | None:
     tokens, solved = [], []
     for model, arms in complete_models(coding):
-        per_run = [(arms[a]['input_tokens_mean'] + arms[a]['output_tokens_mean']) / 1000 for a in ('baseline', 'before', 'after')]
+        per_run = [tokens_per_run(arms[a]) / 1000 for a in ARMS]
         tokens.append(Group(model_name(model), per_run, tips=[f'{v:,.0f}k' for v in per_run]))
-        per_solved = []
-        for a in ('baseline', 'before', 'after'):
-            rate = arms[a]['pass_rate']
-            per_solved.append((arms[a]['input_tokens_mean'] + arms[a]['output_tokens_mean']) / 1000 / rate if rate else None)
+        per_solved = [tokens_per_run(arms[a]) / 1000 / arms[a]['pass_rate'] if arms[a]['pass_rate'] else None for a in ARMS]
         solved.append(Group(model_name(model), per_solved, tips=[f'{v:,.0f}k' if v else 'none solved' for v in per_solved]))
     if not tokens:
         return None
     return Figure('What a task costs in tokens', 'Input plus output tokens the model processed, all turns (lower is better)',
-                  ['baseline', 'before', 'after'],
+                  list(ARMS),
                   [Panel('Tokens per run (thousands)', tokens, fmt=lambda v: f'{v:,.0f}', unit='k'),
                    Panel('Tokens per solved task (thousands)', solved, fmt=lambda v: f'{v:,.0f}', unit='k')],
                   footnote='Input counts every turn, cached or not. Ollama Cloud bills by subscription, so tokens are the honest unit.').render()
 
 
-def chart_live_routing(data: dict) -> str | None:
+def chart_memory(memory: dict) -> str | None:
+    """Tasks where a rule is stated in one session and matters in the next."""
     groups = []
-    for model, arms in (data or {}).items():
-        if 'before' in arms and 'after' in arms:
-            groups.append(Group(model_name(model), [arms['before']['rate'] * 100, arms['after']['rate'] * 100],
-                                f'{arms["after"]["prompts"]} requests',
-                                ci=[tuple(100 * c for c in arms[a]['ci']) for a in ('before', 'after')]))
+    for model, arms in complete_models(memory):
+        groups.append(Group(model_name(model), [arms[a]['pass_rate'] * 100 for a in ARMS],
+                            f'{arms["baseline"]["runs"]} runs per setup',
+                            ci=[tuple(100 * c for c in arms[a]['pass_ci']) for a in ARMS]))
     if not groups:
         return None
-    return Figure('Does the agent open a fitting skill?', 'A real agent, one request at a time, stopped a few steps after its first skill',
-                  ['before', 'after'],
-                  [Panel('', groups, fmt=lambda v: f'{v:.0f}', unit='%', axis_max=100, ticks=[0, 25, 50, 75, 100])],
-                  footnote='Counted when the agent loads a skill an independent reader accepted for that request.').render()
+    return Figure('Remembering a rule from an earlier session',
+                  'Session 1 states a project rule. Session 2 asks for something that breaks it unless the agent remembers.',
+                  list(ARMS), [Panel('', groups, fmt=lambda v: f'{v:.0f}', unit='%', axis_max=100, ticks=[0, 25, 50, 75, 100])],
+                  footnote='A fresh conversation each time: the agent only has the files and whatever notes were saved.').render()
 
 
-README_START, README_END = '<!-- results:start -->', '<!-- results:end -->'
+# ---------------------------------------------------------------------------------------- the words
+# Every sentence below is built from the saved result files, so the explanation under a chart can never
+# disagree with the chart.
+
+def pct(value: float) -> str:
+    return f'{100 * value:.0f}%'
 
 
-def table(head: list[str], rows: list[list[str]]) -> str:
-    lines = ['| ' + ' | '.join(head) + ' |', '|' + '---|' + '---:|' * (len(head) - 1)]
-    lines += ['| ' + ' | '.join(row) + ' |' for row in rows]
-    return '\n'.join(lines)
+def points(value: float) -> str:
+    rounded = round(100 * value)
+    return '0' if rounded == 0 else f'{rounded:+d}'
+
+
+def times(value: float) -> str:
+    return f'{value:.1f}×' if value < 10 else f'{value:.0f}×'
+
+
+def pass_bullet(model: str, block: dict, unit: str) -> str:
+    arms = block['arms']
+    without, with_ = arms['baseline'], arms['after']
+    diff = (block.get('paired') or {}).get('after', {}).get('passed') or {}
+    name = model_name(model)
+    head = f'{pct(with_["pass_rate"])} with BosskuAI against {pct(without["pass_rate"])} without ({without["runs"]} runs each)'
+    slow = ''
+    if with_.get('timeouts') or without.get('timeouts'):
+        slow = (f' {with_.get("timeouts", 0)} of the {with_["runs"]} runs with BosskuAI ({without.get("timeouts", 0)} without) '
+                f'ran out of time and count as failures.')
+    if not diff.get('tasks'):
+        return f'- **{name}:** {head}.{slow}'
+    lo, hi = diff['ci']
+    interval = f'{points(diff["mean_diff"])} points over the same {unit}, 95% interval {points(lo)} to {points(hi)}'
+    if lo > 0:
+        return f'- **{name} finished more {unit}.** {head}: {interval}.{slow}'
+    if hi < 0:
+        return f'- **{name} finished fewer {unit}.** {head}: {interval}.{slow}'
+    ceiling = (' Both setups were already near the ceiling, so there was little room to improve.'
+               if min(without['pass_rate'], with_['pass_rate']) >= 0.9 else '')
+    return f'- **{name}: no clear difference.** {head}: {interval}.{ceiling}{slow}'
+
+
+def summary_overhead(results: Path) -> str:
+    data = load(results, 'overhead.json')
+    sentences = []
+    for model, arms in data.items():
+        if not all(a in arms for a in ARMS):
+            continue
+        base, new = arms['baseline'], arms['after']
+        extra = new['input_tokens_median'] - base['input_tokens_median']
+        sentences.append(f'{model_name(model)} +{extra:,.0f} tokens ({extra / base["input_tokens_median"]:.0%} more), '
+                         f'+${new["cost_median"] - base["cost_median"]:.4f}')
+    if not sentences:
+        return ''
+    return ('**What this shows:** BosskuAI adds a small, fixed amount to the first call of a session: ' + '; '.join(sentences) +
+            '. That is the skill list and the short instructions. The same text is reused on every later call, so it does '
+            'not grow with the length of the session.')
+
+
+def summary_routing(results: Path) -> str:
+    split = (load(results, 'routing-heldout.json').get('splits') or {}).get('test') or {}
+    if 'after' not in split or 'description-only' not in split:
+        return ''
+    after, keyword = split['after'], split['description-only']
+    text = (f'**What this shows:** on {after["prompts"]} requests it was never tuned on, BosskuAI ranked an acceptable skill first '
+            f'{pct(after["top1"]["rate"])} of the time, against {pct(keyword["top1"]["rate"])} for plain keyword search. '
+            f'For requests with several jobs it found a fitting skill for every part {pct(after["all_concerns_covered"]["rate"])} '
+            f'of the time.')
+    for model, arms in load(results, 'routing-live.json').items():
+        if 'after' in arms:
+            text += (f' With a real agent ({model_name(model)}) on the same requests, an acceptable skill was actually opened '
+                     f'for {pct(arms["after"]["rate"])} of them.')
+            break
+    return text
+
+
+def summary_pass(results: Path) -> str:
+    blocks = []
+    for title, name, unit in (('Hidden-test coding tasks', 'coding-test.json', 'tasks'), ('HumanEval problems', 'humaneval.json', 'problems')):
+        data = load(results, name)
+        bullets = [pass_bullet(model, data['models'][model], unit) for model, _ in complete_models(data)]
+        if bullets:
+            blocks.append(f'**{title}**\n' + '\n'.join(bullets))
+    return '\n\n'.join(blocks)
+
+
+def summary_checking(results: Path) -> str:
+    data = load(results, 'coding-test.json')
+    bullets = []
+    for model, arms in complete_models(data):
+        without, with_ = arms['baseline'], arms['after']
+        if without.get('unchecked_rate') is None or with_.get('unchecked_rate') is None:
+            continue
+        bullets.append(f'- **{model_name(model)}** ended without running its code in {pct(without["unchecked_rate"])} of the runs '
+                       f'that changed code on its own, and in {pct(with_["unchecked_rate"])} with BosskuAI.')
+    if not bullets:
+        return ''
+    return ('**What this shows:** the habit that BosskuAI\'s stop check is built to change. A model that never runs what it wrote '
+            'cannot find its own mistakes.\n' + '\n'.join(bullets))
+
+
+def summary_effort(results: Path) -> str:
+    data = load(results, 'coding-test.json')
+    bullets = []
+    for model, arms in complete_models(data):
+        without, with_ = arms['baseline'], arms['after']
+        line = (f'- **{model_name(model)}** used {times(tokens_per_run(with_) / tokens_per_run(without))} the tokens per run '
+                f'({tokens_per_run(without) / 1000:,.0f}k without, {tokens_per_run(with_) / 1000:,.0f}k with)')
+        if without['pass_rate'] and with_['pass_rate']:
+            per_solved = (tokens_per_run(with_) / with_['pass_rate']) / (tokens_per_run(without) / without['pass_rate'])
+            line += f' and {times(per_solved)} the tokens per task it actually solved'
+        bullets.append(line + '.')
+    if not bullets:
+        return ''
+    return ('**What this shows:** BosskuAI makes the agent do more work, and work costs tokens. The extra work is running, '
+            'checking and fixing. Where that turns failures into passes it is worth it; where the model already passes, it is not.\n'
+            + '\n'.join(bullets))
+
+
+def summary_overall(results: Path) -> str:
+    coding = load(results, 'coding-test.json')
+    bullets = []
+    for model, arms in complete_models(coding):
+        diff = (coding['models'][model].get('paired') or {}).get('after', {}).get('passed') or {}
+        without, with_ = arms['baseline'], arms['after']
+        if diff.get('tasks') and diff['ci'][0] > 0:
+            bullets.append(f'- **{model_name(model)} finished more tasks with BosskuAI:** {pct(without["pass_rate"])} without, '
+                           f'{pct(with_["pass_rate"])} with.')
+        elif diff.get('tasks'):
+            bullets.append(f'- **{model_name(model)} gained nothing it could measure:** {pct(without["pass_rate"])} without, '
+                           f'{pct(with_["pass_rate"])} with.')
+    split = (load(results, 'routing-heldout.json').get('splits') or {}).get('test') or {}
+    if 'after' in split and 'description-only' in split:
+        bullets.append(f'- **It finds the right skill more often:** {pct(split["after"]["top1"]["rate"])} first-pick accuracy on new '
+                       f'requests, against {pct(split["description-only"]["top1"]["rate"])} for keyword search.')
+    extras = []
+    for model, arms in load(results, 'overhead.json').items():
+        if all(a in arms for a in ARMS):
+            extra = arms['after']['input_tokens_median'] - arms['baseline']['input_tokens_median']
+            extras.append(f'{extra:,.0f} on {model_name(model)}')
+    if extras:
+        bullets.append('- **Its fixed cost is small:** extra tokens on the first call of a session: ' + ', '.join(extras) + '.')
+    return '\n'.join(bullets)
 
 
 def results_markdown(results: Path) -> str:
@@ -346,38 +485,79 @@ def results_markdown(results: Path) -> str:
             rows.append([f'{model_name(model)}: input tokens'] + [f'{arms[a]["input_tokens_median"]:,.0f}' for a in ARMS])
             rows.append([f'{model_name(model)}: cost'] + [f'${arms[a]["cost_median"]:.4f}' for a in ARMS])
         if rows:
-            parts.append(table(['First call of a session', 'Without BosskuAI', 'Before', 'After'], rows))
+            parts.append(table(['First call of a session', 'Without BosskuAI', 'With BosskuAI'], rows))
     split = (data('routing-heldout.json').get('splits') or {}).get('test') or {}
-    names = ('description-only', 'before', 'after')
-    if all(name in split for name in names):
-        pct = lambda value: f'{100 * value:.0f}%'  # noqa: E731
-        rows = [['Right skill ranked first'] + [pct(split[n]['top1']['rate']) for n in names],
-                ['Right skill in the top three'] + [pct(split[n]['top3']['rate']) for n in names],
-                ['Every part of a multi-part request covered', '-'] + [pct(split[n]['all_concerns_covered']['rate']) for n in names[1:]]]
-        parts.append(table([f'Finding a skill ({split["after"]["prompts"]} new requests)', 'Keyword search', 'Before', 'After'], rows))
-    for title, name in (('Hidden-test coding tasks', 'coding-test.json'), ('HumanEval problems', 'humaneval.json')):
+    if 'description-only' in split and 'after' in split:
+        rows = [['Right skill ranked first'] + [pct(split[n]['top1']['rate']) for n in ('description-only', 'after')],
+                ['Right skill in the top three'] + [pct(split[n]['top3']['rate']) for n in ('description-only', 'after')],
+                ['Every part of a multi-part request covered', '-', pct(split['after']['all_concerns_covered']['rate'])]]
+        for model, arms in data('routing-live.json').items():
+            if 'after' in arms:
+                rows.append([f'A real agent ({model_name(model)}) opens an acceptable skill', '-', pct(arms['after']['rate'])])
+                break
+        parts.append(table([f'Finding a skill ({split["after"]["prompts"]} new requests)', 'Keyword search only', 'With BosskuAI'], rows))
+    for title, name in (('Hidden-test coding tasks', 'coding-test.json'), ('HumanEval problems', 'humaneval.json'),
+                        ('Remembering a rule from an earlier session', 'memory.json')):
         rows = []
         for model, arms in complete_models(data(name)):
             runs = arms['baseline']['runs']
             rows.append([f'{model_name(model)}: tasks passed ({runs} runs each)'] + [
-                f'{100 * arms[a]["pass_rate"]:.0f}% ({arms[a]["passed"]}/{arms[a]["runs"]})' for a in ARMS])
-            rows.append([f'{model_name(model)}: tokens per run'] + [
-                f'{(arms[a]["input_tokens_mean"] + arms[a]["output_tokens_mean"]) / 1000:,.0f}k' for a in ARMS])
+                f'{pct(arms[a]["pass_rate"])} ({arms[a]["passed"]}/{arms[a]["runs"]})' for a in ARMS])
+            rows.append([f'{model_name(model)}: tokens per run'] + [f'{tokens_per_run(arms[a]) / 1000:,.0f}k' for a in ARMS])
             if all(arms[a].get('unchecked_rate') is not None for a in ARMS) and name == 'coding-test.json':
-                rows.append([f'{model_name(model)}: ended without running its code'] + [
-                    f'{100 * arms[a]["unchecked_rate"]:.0f}%' for a in ARMS])
+                rows.append([f'{model_name(model)}: ended without running its code'] + [pct(arms[a]['unchecked_rate']) for a in ARMS])
         if rows:
-            parts.append(table([title, 'Without BosskuAI', 'Before', 'After'], rows))
+            parts.append(table([title, 'Without BosskuAI', 'With BosskuAI'], rows))
     return '\n\n'.join(parts)
 
 
-def inject_results(readme: Path, block: str) -> bool:
-    text = readme.read_text(encoding='utf-8')
-    if README_START not in text or README_END not in text:
-        raise SystemExit(f'{readme} has no {README_START} ... {README_END} block')
-    head, rest = text.split(README_START, 1)
-    tail = rest.split(README_END, 1)[1]
-    new = f'{head}{README_START}\n{block}\n{README_END}{tail}'
+# --------------------------------------------------------------------------------------- the README
+# Blocks in the README that are rewritten from the data: <!-- NAME:start --> ... <!-- NAME:end -->
+
+def summary_memory(results: Path) -> str:
+    data = load(results, 'memory.json')
+    bullets = []
+    for model, _ in complete_models(data):
+        block = data['models'][model]
+        bullets.append(pass_bullet(model, block, 'tasks'))
+        saved = block['arms']['after'].get('saved_a_note_rate')
+        if saved is not None:
+            bullets[-1] += f' In the first session, the agent with BosskuAI saved the rule as a note {pct(saved)} of the time.'
+    if not bullets:
+        return ''
+    return ('**What this shows:** each task states a project rule in a first session (for example "this must run on Python 3.8" '
+            'or "never use eval") and asks for related work in a second one that would break the rule if forgotten. The agent '
+            'starts the second session fresh: without BosskuAI it has only the files; with BosskuAI it also sees the notes it saved.\n'
+            + '\n'.join(bullets))
+
+
+def block_text(results: Path) -> dict[str, str]:
+    return {'results': results_markdown(results), 'summary-overall': summary_overall(results),
+            'summary-overhead': summary_overhead(results), 'summary-routing': summary_routing(results),
+            'summary-pass': summary_pass(results), 'summary-checking': summary_checking(results),
+            'summary-effort': summary_effort(results), 'summary-memory': summary_memory(results)}
+
+
+def marker(name: str, edge: str) -> str:
+    return f'<!-- {name}:{edge} -->'
+
+
+def inject_block(text: str, name: str, block: str) -> str:
+    start, end = marker(name, 'start'), marker(name, 'end')
+    if start not in text or end not in text:
+        return text
+    head, rest = text.split(start, 1)
+    tail = rest.split(end, 1)[1]
+    return f'{head}{start}\n{block}\n{end}{tail}' if block else f'{head}{start}\n{end}{tail}'
+
+
+def inject_all(readme: Path, blocks: dict[str, str]) -> bool:
+    text = readme.read_text(encoding='utf-8').replace('\r\n', '\n')
+    new = text
+    for name, block in blocks.items():
+        new = inject_block(new, name, block)
+    if marker('results', 'start') not in new:
+        raise SystemExit(f'{readme} has no {marker("results", "start")} block')
     if new == text:
         return False
     readme.write_text(new, encoding='utf-8', newline='\n')
@@ -388,17 +568,17 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('--results', type=Path, default=RESULTS)
     parser.add_argument('--out', type=Path, default=ASSETS)
-    parser.add_argument('--readme', type=Path, help=f'rewrite the block between {README_START} and {README_END}')
+    parser.add_argument('--readme', type=Path, help='rewrite the tables and summaries marked with <!-- name:start --> ... <!-- name:end -->')
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     data = lambda name: load(args.results, name)  # noqa: E731
     jobs = {
         'benchmark-session-overhead.svg': chart_session_overhead(data('overhead.json')),
         'benchmark-routing.svg': chart_routing(data('routing-heldout.json')),
-        'benchmark-live-routing.svg': chart_live_routing(data('routing-live.json')),
         'benchmark-pass-rates.svg': chart_pass_rates(data('coding-test.json'), data('humaneval.json')),
         'benchmark-checking.svg': chart_checking(data('coding-test.json')),
         'benchmark-effort.svg': chart_effort(data('coding-test.json')),
+        'benchmark-memory.svg': chart_memory(data('memory.json')),
     }
     for name, svg in jobs.items():
         if svg:
@@ -407,7 +587,7 @@ def main() -> int:
         else:
             print('skipped', name, '(no data)')
     if args.readme:
-        print('README results block', 'updated' if inject_results(args.readme, results_markdown(args.results)) else 'unchanged')
+        print('README tables and summaries', 'updated' if inject_all(args.readme, block_text(args.results)) else 'unchanged')
     return 0
 
 

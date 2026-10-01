@@ -13,10 +13,10 @@ Everything in the main README comes from the checks below. The raw rows are in [
 
 ## What was run
 
-- **Versions.** *Without BosskuAI* has no skills, no hooks, and no instructions. *Before* is the previous release (commit `8adea49`, the `full` profile with 234 skills listed, no helper hooks). *After* is this release (commit `b167823`, the `lean` profile with the skill hint, verify gate, and project-notes hooks).
+- **Setups.** *Without BosskuAI* has no skills, no hooks, and no instructions. *With BosskuAI* is this release (commit `b167823`, the `lean` profile with the skill hint, verify gate, and project-notes hooks). The previous release (commit `8adea49`, the `full` profile with 234 skills listed, no helper hooks) was run next to them in every test as an internal regression check. Its rows are kept in `benchmarks/results/raw/` but it is not part of the published comparison.
 - **Agent.** Claude Code 2.1.284 in headless mode. Claude models use your own login; the other models are reached through Ollama Cloud's Anthropic-compatible API.
 - **Models.** Session overhead: Claude Haiku 4.5 and Claude Sonnet 5.5. Coding and live skill use: Nemotron 3 Nano 30B (a small model that often forgets to run its code) and DeepSeek V4.1 Flash (a strong one that already does). HumanEval: the same two.
-- **Samples.** 17 test tasks, each run 4 times per version for Nemotron and 2 times per version for DeepSeek. 40 HumanEval problems, one run per version. 73 held-out skill-search requests for the live check.
+- **Samples.** 17 test tasks, each run 4 times per setup for Nemotron and 2 times per setup for DeepSeek. 40 HumanEval problems, one run per setup. 73 held-out skill-search requests for the live check.
 - **Date.** 1 October 2026.
 
 ## How a coding run works
@@ -24,7 +24,7 @@ Everything in the main README comes from the checks below. The raw rows are in [
 1. A task is a small Python project plus tests the agent never sees. 26 tasks were written for this repository (bug fixes, features, refactors, security, data and CLI work, performance, concurrency, test-writing graded by mutation). Each was validated: its hidden tests fail on the starting files and pass on a reference solution (`benchmark_agent.py validate`). HumanEval adds 164 public problems, sampled with a fixed seed.
 2. The tasks are split before any comparison. Nine **dev** tasks were used while the changes were built; 17 **test** tasks were run once the changes were frozen and are what the README reports. The split is recorded in [`benchmarks/tasks/split.json`](../../benchmarks/tasks/split.json).
 3. Every run gets a fresh git repository and a throwaway home folder.
-4. The three versions run on identical tasks, shuffled so no version always runs first.
+4. The setups run on identical tasks, shuffled so no setup always runs first.
 5. When the agent stops, the hidden tests are copied in and run. Pass means every test passes. Tokens, turns, and time come from Claude Code's own result report.
 
 ## Rules that keep it honest
@@ -39,10 +39,10 @@ Everything in the main README comes from the checks below. The raw rows are in [
 ## Numbers
 
 - **Pass rate** is runs where every hidden test passed. The interval is a 95% Wilson interval.
-- **Paired differences** compare the same task and model across versions, with a bootstrap interval over tasks.
+- **Paired differences** compare the same task and model across setups, with a bootstrap interval over tasks.
 - **Tokens** are every input token the model processed across all turns (cached or not) plus output tokens. Ollama Cloud bills by subscription, so tokens are reported instead of dollars; Claude Code's own cost figure is used where the model is a Claude model.
 - **Session overhead** is the first call of a session with a one-word prompt, taken after a cache warm-up, median of three.
-- **Ended without running its code** counts runs that changed a code file and then never ran anything afterwards. It is read from the tool calls alone, the same way for every version, so it does not depend on BosskuAI's own hook.
+- **Ended without running its code** counts runs that changed a code file and then never ran anything afterwards. It is read from the tool calls alone, the same way for both setups, so it does not depend on BosskuAI's own hook.
 
 ## Check the saved numbers (no model needed)
 
@@ -84,7 +84,6 @@ An interrupted run resumes where it stopped when you start it again with the sam
 - Samples are small. Read overlapping intervals as "no clear difference", not as proof of equality.
 - Skills built for a specific stack (Laravel, Nuxt, Docker, marketing, legal) are not exercised by generic coding tasks. Their value is not measured here.
 - The held-out skill-search prompts and their acceptable skills are one author's judgment, not ground truth.
-- *Before* is this project's own previous release, not another product.
 - The agent in these runs is Claude Code. The helper hooks only exist for Claude Code, so Cursor, Codex, OpenCode, and OMP got the skills and instructions but not the hooks, and were not benchmarked.
 
 ## Tuned routing regression (82 prompts)

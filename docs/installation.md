@@ -90,7 +90,7 @@ Pick how much of the library your agent lists in every session:
 
 | Profile | Lists in the agent | Reach the rest | Best for |
 |---|---|---|---|
-| `lean` (default) | About 40 everyday engineering and process skills with short descriptions | `bossku skills find` / `bossku skills show`, installed whole in `~/.bosskuai/library` | Most people; the smallest per-session cost |
+| `lean` (default) | About 25 everyday engineering and process skills with short descriptions | `bossku skills find` / `bossku skills show`, installed whole in `~/.bosskuai/library` | Most people; the smallest per-session cost |
 | `core` | Co-founder essentials plus the **loop-engineering** pack | Not installed | A minimal set |
 | `full` | All ~235 skills | Already listed | Hosts with a very large skill budget |
 

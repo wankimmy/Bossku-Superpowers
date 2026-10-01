@@ -80,7 +80,6 @@ class SavedResultsTests(unittest.TestCase):
         drawn = {
             "benchmark-session-overhead.svg": charts.chart_session_overhead(data("overhead.json")),
             "benchmark-routing.svg": charts.chart_routing(data("routing-heldout.json")),
-            "benchmark-live-routing.svg": charts.chart_live_routing(data("routing-live.json")),
             "benchmark-pass-rates.svg": charts.chart_pass_rates(data("coding-test.json"), data("humaneval.json")),
             "benchmark-checking.svg": charts.chart_checking(data("coding-test.json")),
             "benchmark-effort.svg": charts.chart_effort(data("coding-test.json")),
@@ -94,12 +93,28 @@ class SavedResultsTests(unittest.TestCase):
                     self.assertTrue(path.exists(), f"{name} should be committed")
                     self.assertEqual(path.read_text(encoding="utf-8").replace("\r\n", "\n"), svg)
 
-    def test_the_readme_quotes_the_saved_summaries(self):
+    def test_the_readme_tables_and_summaries_are_rebuilt_from_the_saved_results(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8").replace("\r\n", "\n")
-        if charts.README_START not in readme or not (RESULTS / "overhead.json").exists():
+        if charts.marker("results", "start") not in readme or not (RESULTS / "overhead.json").exists():
             self.skipTest("README has no results block yet")
-        block = readme.split(charts.README_START, 1)[1].split(charts.README_END, 1)[0].strip("\n")
-        self.assertEqual(block, charts.results_markdown(RESULTS))
+        for name, expected in charts.block_text(RESULTS).items():
+            with self.subTest(block=name):
+                start, end = charts.marker(name, "start"), charts.marker(name, "end")
+                if not expected and start not in readme:
+                    continue   # nothing was measured for this block, so the README need not have it
+                self.assertIn(start, readme, f"README is missing the {name} block")
+                shown = readme.split(start, 1)[1].split(end, 1)[0].strip("\n")
+                self.assertEqual(shown, expected)
+
+    def test_the_readme_shows_two_setups_only(self):
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        if charts.marker("results", "start") not in readme:
+            self.skipTest("README has no results block yet")
+        block = readme.split(charts.marker("results", "start"), 1)[1].split(charts.marker("results", "end"), 1)[0]
+        self.assertIn("Without BosskuAI", block)
+        self.assertIn("With BosskuAI", block)
+        self.assertNotIn("Before", block)
+        self.assertNotIn("After", block)
 
 
 if __name__ == "__main__":

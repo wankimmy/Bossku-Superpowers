@@ -26,7 +26,17 @@ from bossku.skills import (
 )
 from bossku.validate import validate_repo
 
+def _utf8_output() -> None:
+    """Skills contain arrows, dashes and quotes; a Windows pipe defaults to cp1252 and `skills show` would crash."""
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except (AttributeError, ValueError, OSError):
+            pass   # not a real text stream (a test capture, a closed pipe): leave it alone
+
+
 def main(argv: list[str] | None = None) -> int:
+    _utf8_output()
     parent = argparse.ArgumentParser(add_help=False)
     parent.add_argument("--root", type=Path, default=None, help="BosskuAI repo root")
     parent.add_argument("--home", type=Path, default=None, help="Override home for tests")
@@ -41,7 +51,7 @@ def main(argv: list[str] | None = None) -> int:
 
     p_install = sub.add_parser("install", help="Install skills to user-level agent dirs", parents=[child])
     p_install.add_argument("--profile", choices=["lean", "core", "full"], default="lean",
-                           help="lean (default) lists ~40 skills with short descriptions and keeps the rest "
+                           help="lean (default) lists ~25 skills with short descriptions and keeps the rest "
                                 "reachable through bossku skills show; core is the minimal set; full lists everything")
     p_install.add_argument("--vault", type=str, default=None, help="Obsidian vault path")
     p_install.add_argument("--memory-storage", choices=["repo", "obsidian"], default=None,
@@ -71,7 +81,7 @@ def main(argv: list[str] | None = None) -> int:
 
     p_brief = sub.add_parser("memory-brief", help="Print the newest project notes in one short block", parents=[child])
     p_brief.add_argument("--project", type=Path, default=Path("."))
-    p_brief.add_argument("--limit", type=int, default=1400, help="character budget for the brief")
+    p_brief.add_argument("--limit", type=int, default=1000, help="character budget for the brief")
     sub.add_parser("session-brief", help="Internal: SessionStart hook that puts the project notes in context",
                    parents=[child])
     p_sync = sub.add_parser("sync", help="Export project memory to Obsidian", parents=[child])
@@ -118,10 +128,13 @@ def main(argv: list[str] | None = None) -> int:
     )
     p_audit.add_argument("--json", action="store_true", dest="as_json")
 
-    sub.add_parser("verify-gate", help="Internal: Stop hook that sends the agent back to run its code once",
-                   parents=[child])
-    sub.add_parser("skill-hint", help="Internal: UserPromptSubmit hook that suggests skills for the prompt on stdin",
-                   parents=[child])
+    p_gate = sub.add_parser("verify-gate", help="Internal: Stop hook that sends the agent back to run its code",
+                            parents=[child])
+    p_gate.add_argument("--audit", action="store_true",
+                        help="also ask for a requirement-by-requirement audit before the agent finishes")
+    p_hint = sub.add_parser("skill-hint", help="Internal: UserPromptSubmit hook that suggests skills for the prompt on stdin",
+                            parents=[child])
+    p_hint.add_argument("--spec", action="store_true", help="also list the requirements the request states")
     sub.add_parser("validate", help="Validate repository layout", parents=[child])
     p_uninstall = sub.add_parser("uninstall", help="Remove user-level BosskuAI skills", parents=[child])
     p_uninstall.add_argument("--purge", action="store_true")
@@ -256,12 +269,12 @@ def main(argv: list[str] | None = None) -> int:
                 return _skill_audit(root, as_json=args.as_json)
             return 0
         if args.command == "verify-gate":
-            decision = gate_output("" if sys.stdin.isatty() else sys.stdin.read())
+            decision = gate_output("" if sys.stdin.isatty() else sys.stdin.read(), audit=args.audit)
             if decision:
                 print(json.dumps(decision))
             return 0
         if args.command == "skill-hint":
-            payload = hook_output("" if sys.stdin.isatty() else sys.stdin.read(), root=root, home=home)
+            payload = hook_output("" if sys.stdin.isatty() else sys.stdin.read(), root=root, home=home, spec=args.spec)
             if payload:
                 print(json.dumps(payload))
             return 0

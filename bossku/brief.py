@@ -42,7 +42,7 @@ def _clip(text: str, limit: int) -> str:
     return text if len(text) <= limit else text[:limit].rsplit(" ", 1)[0].rstrip(",;:") + "..."
 
 
-def memory_brief(project: Path, *, home: Path | None = None, limit: int = 1400, per_entry: int = 260) -> str:
+def memory_brief(project: Path, *, home: Path | None = None, limit: int = 1000, per_entry: int = 220) -> str:
     """Newest entries first, at most `limit` characters; empty when there is nothing worth saying."""
     try:
         folder = memory_directory(project, home=home)
@@ -66,8 +66,7 @@ def memory_brief(project: Path, *, home: Path | None = None, limit: int = 1400, 
                 break   # the project summary is one paragraph; older stamps are history
     if not lines:
         return ""
-    return ("BosskuAI project notes (newest first, trimmed; these are already in your context, "
-            "so do not read the memory files again):\n" + "\n".join(lines))
+    return "BosskuAI project notes, newest first (do not read the memory files again):\n" + "\n".join(lines)
 
 
 def session_output(payload_text: str, *, home: Path | None = None) -> dict:

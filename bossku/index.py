@@ -45,10 +45,13 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
         "bug", "broken", "failing", "crash", "throws", "exception", "stack trace", "returns 500",
         "error", "intermittent", "flaky", "regression", "not working", "why is this", "reproduce",
         "is broken", "stopped working", "debug this", "test is failing", "tests are failing",
+        "only happens sometimes", "happens intermittently", "comes and goes", "cant figure out why",
+        "can't figure out why", "hard to reproduce", "works sometimes", "happens randomly",
     ],
     "bosskuai-performance-profiling": [
         "slow", "faster", "speed up", "latency", "sluggish", "takes too long",
         "profiling", "bottleneck", "memory leak", "high cpu",
+        "profile", "profile this", "profile the", "slow under load", "where the time is going",
     ],
     "bosskuai-cost-optimization": [
         "bill", "aws bill", "cloud bill", "spend", "too expensive", "burn",
@@ -83,14 +86,21 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
     "bosskuai-rigorous-code-review": [
         "review this code", "code review", "review my changes", "review the diff",
         "review this pull request", "critique this implementation", "pr review", "review this pr",
+        "rigorous review", "review my pr", "look over my pr", "look over my pull request",
+        "look over this pr", "review before i merge", "review before merging",
+        "actually sound", "is this sound", "is the logic sound",
     ],
     "bosskuai-tdd-loop": [
         "write tests first", "test first", "tdd", "red green refactor", "write tests before",
         "use tdd", "with tdd", "using tdd", "write a failing test",
+        "tests before touching", "before touching the implementation", "before touching any implementation",
+        "tests before any implementation", "write the tests before", "before writing any implementation",
     ],
     "bosskuai-database-engineering": [
         "database schema", "sql", "index", "query plan", "migration", "postgres",
         "mysql", "mariadb", "slow query", "normalize",
+        "table", "tables", "design a table", "design this table", "design the table",
+        "database table", "table design", "primary key", "foreign key",
     ],
     "bosskuai-api-design": [
         "rest api", "graphql", "endpoint design", "api contract", "versioning",
@@ -155,11 +165,12 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
     "bosskuai-laravel-security": [
         "secure laravel", "laravel security", "mass assignment", "csrf", "policy gate",
         "harden laravel", "laravel hardening", "laravel production config",
+        "security pass", "a security pass", "proper security pass",
     ],
     "bosskuai-context-limit-continuation": [
         "running out of context", "context limit", "token limit", "compact", "out of tokens",
     ],
-    "ci-triage": ["ci failing", "ci pipeline", "build failing", "github actions failing", "red build", "ci is red", "ci is failing", "ci failed", "red on main", "build is red", "failing check", "failed run", "workflow failed", "why did ci fail", "tests failing in ci", "red pipeline"],
+    "ci-triage": ["ci failing", "ci pipeline", "build failing", "github actions failing", "red build", "ci is red", "ci is failing", "ci failed", "red on main", "build is red", "failing check", "failed run", "workflow failed", "why did ci fail", "tests failing in ci", "red pipeline", "pipeline is failing", "pipeline failing", "flaky or a regression", "regression or flaky", "regression or just flaky", "is this a regression or flaky", "intermittent ci failure", "ci job is flaky", "fails intermittently", "times out intermittently", "flaky run", "flaky job", "fails some of the time", "with a timeout", "a real regression"],
     "pr-review-triage": ["pull requests", "open prs", "review queue", "pr babysitter", "stale prs"],
     "issue-triage": ["triage issues", "backlog of issues", "label issues"],
     "dependency-triage": ["dependabot", "bump dependencies", "outdated packages", "cve in dependency"],
@@ -167,12 +178,30 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
         "brainstorm", "brainstorm ideas", "explore options", "design this feature", "before we build",
     ],
     "systematic-debugging": ["debug", "root cause", "narrow down the cause"],
-    "writing-plans": ["write a plan", "implementation plan", "spec into a plan"],
-    "executing-plans": ["execute the plan", "work through the plan"],
+    "writing-plans": [
+        "write a plan", "implementation plan", "spec into a plan",
+        "written plan", "plan we can review", "review the plan together", "plan before we start",
+    ],
+    "executing-plans": [
+        "execute the plan", "work through the plan",
+        "already approved", "plan is already approved", "work through it step by step",
+        "review checkpoints",
+    ],
     "taste-skill": [
         "landing page", "does not look ai", "doesn't look ai generated", "make it look good",
         "design taste", "beautiful ui", "marketing site", "premium landing", "design dials",
         "portfolio site", "avoid inter",
+        "nampak generic", "nampak premium", "tolong buat nampak",
+    ],
+    "brutalist-skill": [
+        "brutalist design", "brutalist style", "brutalist portfolio", "neo-brutalist",
+        "raw brutalist", "brutalist web design",
+    ],
+    "soft-skill": [
+        "soft ui design", "soft design style", "gentle aesthetic", "soft aesthetic",
+    ],
+    "minimalist-skill": [
+        "minimalist design", "minimal design style", "minimalist style",
     ],
     "marketing-plan": [
         "gtm plan", "growth plan", "marketing roadmap", "aarrr", "12 month plan", "90 day plan",
@@ -188,6 +217,10 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
     "pricing": [
         "pricing tiers", "how much should i charge", "packaging", "freemium", "usage-based pricing",
         "usage based pricing", "ai pricing", "credits pricing",
+    ],
+    "paywalls": [
+        "paywall", "upgrade screen", "free trial converts", "trial conversion", "paywall design",
+        "upgrade flow", "trial converts at",
     ],
     "churn-prevention": [
         "churn", "churning", "cancellations", "win back", "retention", "downgrade",
@@ -320,7 +353,10 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
     "bosskuai-customer-discovery": [
         "user interviews", "customer interviews", "interview script", "discovery interviews",
     ],
-    "bosskuai-product-strategy": ["roadmap", "what should we build", "prioritize", "product direction"],
+    "bosskuai-product-strategy": [
+        "roadmap", "what should we build", "prioritize", "product direction",
+        "tighten the scope", "trim the roadmap", "cut the roadmap down", "prioritize the roadmap",
+    ],
     "bosskuai-planning-execution": ["milestones", "sequencing", "delivery plan", "who owns what"],
     "bosskuai-growth-experiment": ["growth experiment", "test this channel", "activation experiment"],
     "bosskuai-marketing-growth": [
@@ -431,7 +467,7 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
     ],
     "antislop-layoutmobile": [
         "mobile overflow", "mobile reflow", "responsive layout", "tap targets",
-        "small screen", "horizontal scroll", "mobile audit",
+        "small screen", "horizontal scroll", "mobile audit", "reflow on mobile", "mobile breakpoint",
     ],
     "antislop-code": [
         "ai comments", "remove ai comments", "comment cleanup", "clean up comments",
@@ -446,12 +482,16 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
     "bosskuai-pr-check": [
         "check this pr", "is my pr ready", "pr ready to merge", "pr status",
         "unresolved review threads", "failing checks on my pr",
+        "merge conflicts", "failing checks", "meets the required checks", "required checks pass",
+        "every comment resolved", "ready to merge",
     ],
     "bosskuai-greptile-review-loop": ["greptile"],
     "bosskuai-go-development": [
         "golang", "go service", "go microservice", "goroutine", "goroutines", "channels",
         "context.context", "errgroup", "pgx", "sqlc", "go test", "race detector", "pprof",
         "net/http", "echo framework", "chi router", "gin", "go module", "go.mod",
+        "goroutine leak", "goroutine leaks", "leaking goroutines", "leak goroutines",
+        "go background worker", "worker in go", "job panics",
     ],
     "bosskuai-react-development": ["react", "react 19", "react 18", "jsx", "tsx", "hooks", "useeffect", "usestate", "react component", "next.js", "nextjs", "app router", "react router", "tanstack query", "react query", "zustand", "redux", "react-hook-form", "testing library", "vite react", "runs twice", "renders twice", "re-render", "rerender", "re-renders", "refetch", "infinite render loop", "stale closure", "strict mode double"],
     "bosskuai-expo-react-native": [
@@ -482,6 +522,8 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
         "gitlab ci", "pipeline", "pipeline is slow", "speed up ci", "required checks",
         "branch protection", "merge queue", "oidc", "deploy workflow", "release workflow",
         "actions cache", "matrix build", "flaky ci", "actionlint",
+        "nothing is cached", "pipeline takes too long", "runs in sequence", "cache dependencies",
+        "not cached", "parallelize the pipeline", "speed up the pipeline",
     ],
     "bosskuai-web-performance": [
         "core web vitals", "web vitals", "lcp", "inp", "cls", "lighthouse", "pagespeed", "page speed",
@@ -553,7 +595,10 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
     "ads": ["google ads", "meta ads", "facebook ads", "linkedin ads", "ppc", "performance max"],
     "launch": ["product hunt", "launch plan", "launch day", "feature announcement", "beta launch"],
     "copywriting": ["landing page copy", "homepage copy", "hero copy", "write copy", "value proposition"],
-    "competitor-profiling": ["competitive analysis", "competitor analysis", "competitor profile"],
+    "competitor-profiling": [
+        "competitive analysis", "competitor analysis", "competitor profile",
+        "deep profile", "profile on", "company profile", "profile on each",
+    ],
     "receiving-code-review": [
         "address feedback", "address the review comments", "review comments", "pr comments",
         "unresolved comments", "reviewer feedback", "respond to review",
@@ -573,6 +618,10 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
 # High-confidence task boundaries. These live in the generated index so agents can
 # avoid a superficially related skill without adding text to every loaded prompt.
 CURATED_EXCLUSIONS: dict[str, list[str]] = {
+    "ci-triage": [
+        "nothing is cached", "pipeline is slow", "runs in sequence", "cache dependencies",
+        "speed up the pipeline", "parallelize the pipeline",
+    ],
     "odl-pdf": [
         "merge", "split", "rotate", "form filling", "fill a pdf form",
         "office conversion", "word to pdf", "docx to pdf", "docx or pdf",
@@ -601,13 +650,26 @@ CURATED_EXCLUSIONS: dict[str, list[str]] = {
     "bosskuai-taste": [
         "admin dashboard", "admin panel", "this dashboard", "build a dashboard", "dashboard ui",
         "data table",
+        "database outage", "connection pool", "on-call engineer", "paged at",
+        "incident response", "postmortem",
     ],
     "taste-skill": [
         "admin dashboard", "admin panel", "this dashboard", "build a dashboard", "dashboard ui",
         "data table",
+        "database outage", "connection pool", "on-call engineer", "paged at",
+        "incident response", "postmortem",
     ],
     # --- 2026-09-26 skill review: routing for requests that had no owner ---
-    "pricing": ["a/b test", "ab test", "split test"],
+    "pricing": [
+        "a/b test", "ab test", "split test",
+        "not the pricing", "not about pricing", "isn't the pricing", "pricing isn't the issue",
+        "pricing is not the problem",
+    ],
+    "bosskuai-web-performance": ["api response", "api responses", "backend performance", "server-side performance"],
+    "error-handling": [
+        "look over my pr", "look over my pull request", "review my pr", "review this pr", "pr review",
+        "rigorous review",
+    ],
 }
 
 # Explicit role assignments; the rest fall back to keyword heuristics.

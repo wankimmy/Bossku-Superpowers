@@ -15,7 +15,7 @@ Canonical skills live in [`skills/`](../skills/). Each folder contains `SKILL.md
 
 ## Profiles
 
-`bossku install --profile lean` (the default) lists about 40 everyday skills with short descriptions and installs the other ~195 whole in `~/.bosskuai/library`. The agent reaches them through [`bosskuai-skill-finder`](../skills/bosskuai-skill-finder/SKILL.md): `bossku skills find "<task>"` names the skills and `bossku skills show <id>` prints one. The list lives in [`skills/lean.json`](../skills/lean.json); `bossku validate` keeps it small and complete.
+`bossku install --profile lean` (the default) lists about 25 everyday skills with short descriptions and installs the other ~210 whole in `~/.bosskuai/library`. The agent reaches them through [`bosskuai-skill-finder`](../skills/bosskuai-skill-finder/SKILL.md): `bossku skills find "<task>"` names the skills and `bossku skills show <id>` prints one. The list lives in [`skills/lean.json`](../skills/lean.json); `bossku validate` keeps it small and complete.
 
 `bossku install --profile core` installs Bossku co-founder essentials plus the **loop-engineering** pack (12 loop/triage/CI/PR skills) and `bosskuai-grounding`. Always-on loop discipline is in [`AGENTS.md`](../AGENTS.md#loop-engineering-always-on); always-on grounding is in [`AGENTS.md`](../AGENTS.md#grounding-always-on).
 

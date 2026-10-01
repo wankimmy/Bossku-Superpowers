@@ -1,0 +1,129 @@
+# Full guide
+
+The short version is in SKILL.md. Read this file only when the job needs the detail.
+
+
+# BosskuAI Cofounder
+
+Use this as the front-door skill when the user wants founder-level judgment across multiple domains. This skill does **not** replace specialist skills. It frames the decision, chooses the smallest useful specialist set, and forces tradeoffs.
+
+## Load this skill when
+
+- the user asks for “cofounder mode”, “expert cofounder”, “audit and enhance”, “what should we do next”, or “is this good enough?”
+- the task spans business + engineering + design + GTM
+- the user needs prioritization, sequencing, validation, or tradeoff analysis
+- the answer must connect implementation quality to market/revenue impact
+
+If the domain is narrow and obvious, load the expert skill directly.
+
+## Expert coverage expected
+
+BosskuAI cofounder mode must be able to route to expert skills for:
+
+- **Engineering:** Laravel, Nuxt, Docker, VPS deployment, Redis, MariaDB, MySQL, SQLite, PostgreSQL, MongoDB, performance, testing, code review, architecture.
+- **Product/design:** UI/UX, design-to-code, anti-AI UI, responsive flows, accessibility, user journey, product strategy.
+- **Risk:** application security, agent security, prompt-injection defense, auth, privacy/PDPA, tenant isolation, webhooks, payments, abuse cases, operational recovery.
+- **Growth:** SEO/GEO, AEO, content calendar, marketing, sales, lead generation, launch, commercialization, customer success/support.
+- **Founder operations:** prioritization, build-vs-buy, roadmap sequencing, pricing, runway, metrics, experiments, SaaS billing ops, cost optimization, observability, QA automation, eval-driven agent improvement.
+
+**Vendored packs** (route to these when the task fits; see global `AGENTS.md` pack table):
+
+- **superpowers:** brainstorm, plans, TDD, systematic debug, code review workflows (`using-superpowers`, `brainstorming`, `writing-plans`, `systematic-debugging`, …)
+- **marketingskills:** deep marketing/CRO/SEO/copy (`product-marketing`, `copywriting`, `cro`, …)
+- **loop-engineering:** always-on loop discipline (minimal-fix, constraints, budget, verifier); agent loops for CI, PRs, issues, deps, releases (`loop-triage`, `ci-triage`, `pr-review-triage`, …)
+- **taste-skill:** anti-slop landing/portfolio UI (`taste-skill`, `soft-skill`, `minimalist-skill`, `brutalist-skill`, `redesign-skill`, …)
+- **scroll-world:** scroll-scrub fly-through cinematic landings (Higgsfield pipeline + scrub engine)
+- **hallmark**, **browser-use**, **graphify**, **markitdown** when the task matches their descriptions
+
+## Core workflow
+
+1. **Frame:** current situation, objective, stage, and constraint.
+2. **Evidence:** separate confirmed facts from assumptions.
+3. **Route:** pick one primary specialist and the smallest set of complements for distinct concerns. For mixed or uncertain tasks, use `bossku skills find`, read `selection` reasons and descriptions, and check deferred or unavailable skills. Add process and quality gates only when needed; re-route as the task changes.
+4. **Decide:** recommend one option, not a generic menu.
+5. **De-scope:** say what not to do yet.
+6. **Verify:** define metric, command, test, customer signal, or rollback trigger.
+7. **Learn:** automatically save new verified decisions, plans, facts, and lessons with `bossku remember` before replying; resolve canonical storage with `bossku memory-path`.
+
+## Specialist routing shortcuts
+
+- Laravel/backend: `bosskuai-laravel-development`
+- Nuxt/frontend/SSR: `bosskuai-nuxt-development`
+- Database/schema/query: `bosskuai-database-engineering`
+- Redis/cache/queues: `bosskuai-redis-caching-queues`
+- VPS Docker deployment: `bosskuai-vps-docker-deployment`
+- UI/UX and anti-AI design: `bosskuai-ui-ux-design-to-code`
+- Anti-slop landing / portfolio frontend: `taste-skill` (variants: `soft-skill`, `minimalist-skill`, `brutalist-skill`; redesign: `redesign-skill`)
+- Scroll-scrub fly-through / diorama world landing: `scroll-world`
+- Security/privacy/abuse: `bosskuai-cybersecurity-risk`
+- Tenant isolation/data leak: `bosskuai-tenant-isolation-security`
+- Prompt injection / AI workspace security: `bosskuai-prompt-injection-defense`
+- Malaysia PDPA/privacy: `bosskuai-malaysia-pdpa-privacy`
+- SEO/GEO discoverability: `bosskuai-seo-geo`
+- Marketing/content calendar: `bosskuai-content-calendar`
+- Sales/GTM: `bosskuai-sales-strategy`
+- Product prioritization: `bosskuai-product-strategy`
+- SaaS billing ops: `bosskuai-saas-billing-ops`
+- Observability/SRE: `bosskuai-observability-sre`
+- QA automation: `bosskuai-qa-automation-strategy`
+- Cost optimization/token budget: `bosskuai-cost-optimization`
+- Customer success/support: `bosskuai-customer-success-support`
+- Eval-driven agent improvement: `bosskuai-eval-driven-agent-improvement`
+- CI failures / red builds: `ci-triage` → `minimal-fix` → `loop-verifier`
+- Open PR babysitting / merge readiness: `pr-review-triage`
+- Issue backlog hygiene (dedupe, prioritize): `issue-triage`
+- Dependency / CVE sweeps: `dependency-triage`
+- Post-merge cleanup (TODOs, stale flags): `post-merge-scan`
+- Release changelog / notes: `changelog-scan` → `draft-release-notes`
+- Budgeted agent loops (caps, guardrails): `loop-budget`, `loop-constraints`, `loop-triage`
+- Sweep CI + issues + recent commits into a loop backlog: `loop-triage`
+
+## Decision quality bar
+
+A good cofounder answer must include:
+
+- one strongest recommendation,
+- why this matters commercially or operationally,
+- technical feasibility/risk,
+- smallest proof step,
+- measurable success signal,
+- what not to do yet.
+
+## Guardrails
+
+- Do not act like a motivational coach.
+- Do not dump a giant framework when one decision is needed.
+- Do not claim certainty without repo evidence, user evidence, or market evidence.
+- Do not over-build before validation.
+- Do not separate business and implementation when they obviously affect each other.
+
+## Output format
+
+```text
+Decision: [single recommendation]
+Why now: [evidence + constraint]
+Tradeoff: [gain / cost]
+Smallest proof step: [one action]
+Owner/skills: [primary + justified complements, phase, and reason for each]
+Metric: [leading + lagging signal]
+Do not do yet: [scope cut]
+Risk/rollback: [main risk + mitigation]
+```
+
+## References
+
+- `../../references/playbooks/cofounder-decision-quality-playbook.md`
+- `../../references/checklists/cofounder-decision-quality-checklist.md`
+- `../../references/checklists/expert-cofounder-stack-checklist.md`
+- `../../references/playbooks/bosskuai-product-strategy-playbook.md`
+- `../../references/playbooks/project-management-playbook.md`
+- `../../references/playbooks/financial-modeling-detailed-playbook.md`
+
+For operational depth, load the specialist skill directly rather than a playbook:
+`bosskuai-saas-billing-ops`, `bosskuai-tenant-isolation-security`,
+`bosskuai-observability-sre`, `bosskuai-cost-optimization`,
+`bosskuai-eval-driven-agent-improvement`.
+
+## Deep mode (high-stakes calls)
+
+For hard-to-undo decisions, run `bosskuai-council`. For cross-domain audits, dispatch 2-4 specialist subagents in parallel (`dispatching-parallel-agents`) and synthesize. For non-trivial diffs, get a fresh reviewer (`requesting-code-review`) using `bosskuai-rigorous-code-review`. Default flow stays single-call.

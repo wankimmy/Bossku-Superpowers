@@ -15,7 +15,7 @@ Every response must begin with:
 - Say `bossku` or ask for cofounder mode.
 - Before non-trivial work, match the request to an installed skill using each skill's `description` (especially **Use when…**) and the pack routing table below.
 - Choose one primary skill plus the smallest complementary set justified by distinct prompt concerns. Multiple skills are valid; overlapping skills are not. Put the primary skill id in the mandatory indicator.
-- For mixed concerns or uncertain routing, run `bossku skills find "<task>"`. Use `selection.primary` and `selection.selected`, read their descriptions and reasons, and inspect `deferred` and `unavailable_requested` before loading. The installed profile is the default; `--profile core|full` overrides it. `matches` are search candidates, not a load list. Weak confidence requires targeted evidence; re-route when the task changes. Fall back to `cofounder` if nothing fits.
+- For mixed concerns or uncertain routing, run `bossku skills find "<task>"`. Use `selection.primary` and `selection.selected`, read their descriptions and reasons, and inspect `deferred` and `unavailable_requested` before loading. The installed profile is the default; `--profile lean|core|full` overrides it. `matches` are search candidates, not a load list. Weak confidence requires targeted evidence; re-route when the task changes. Fall back to `cofounder` if nothing fits.
 - Trivial tasks: answer directly (still show the indicator).
 
 ## Co-founder workflow
