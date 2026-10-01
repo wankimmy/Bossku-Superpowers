@@ -10,21 +10,17 @@ from bossku.doctor import format_doctor_success, gather_doctor_issues
 from bossku.hooks import install_hooks, run_sync_hook, uninstall_hooks
 from bossku.init_project import init_project
 from bossku.install import install_user, uninstall_user, update_user
-from bossku.memory import remember, sync_project
+from bossku.memory import load_user_config, memory_directory, memory_project_root, remember, sync_project
 from bossku.index import load_index, write_index
 from bossku.skills import (
     audit_skills,
-    find_skill,
     overdue_packs,
     pack_stocktake,
     rank_skills,
-    recommend_skill_stack,
+    select_skill_stack,
+    _profile_skills,
 )
 from bossku.validate import validate_repo
-
-CONFIDENT_SCORE = 6.0
-CONFIDENT_MARGIN = 1.25
-
 
 def main(argv: list[str] | None = None) -> int:
     parent = argparse.ArgumentParser(add_help=False)
@@ -37,6 +33,8 @@ def main(argv: list[str] | None = None) -> int:
     p_install = sub.add_parser("install", help="Install skills to user-level agent dirs", parents=[parent])
     p_install.add_argument("--profile", choices=["core", "full"], default="full")
     p_install.add_argument("--vault", type=str, default=None, help="Obsidian vault path")
+    p_install.add_argument("--memory-storage", choices=["repo", "obsidian"], default=None,
+                           help="primary memory storage (obsidian keeps memory outside repos)")
 
     p_init = sub.add_parser("init", help="Initialize project adapter", parents=[parent])
     p_init.add_argument("project", type=Path)
@@ -56,6 +54,9 @@ def main(argv: list[str] | None = None) -> int:
     p_remember.add_argument("--kind", required=True, choices=["decision", "plan", "learning", "project"])
     p_remember.add_argument("--project", type=Path, default=Path("."), help="project root (default: current directory)")
     p_remember.add_argument("note")
+
+    p_memory_path = sub.add_parser("memory-path", help="Resolve canonical project memory directory", parents=[parent])
+    p_memory_path.add_argument("--project", type=Path, default=Path("."))
 
     p_sync = sub.add_parser("sync", help="Export project memory to Obsidian", parents=[parent])
     p_sync.add_argument("--project", type=Path, default=Path("."), help="project root (default: current directory)")
@@ -83,6 +84,8 @@ def main(argv: list[str] | None = None) -> int:
     p_find_cmd = p_find_sub.add_parser("find", parents=[parent])
     p_find_cmd.add_argument("task")
     p_find_cmd.add_argument("--limit", type=int, default=5, help="shortlist size")
+    p_find_cmd.add_argument("--profile", choices=["core", "full"], default=None,
+                            help="limit automatic selection to an installed skill profile")
     p_find_sub.add_parser("index", help="Rebuild skills/skill-index.json", parents=[parent])
     p_stock = p_find_sub.add_parser(
         "stocktake", help="Age vendored packs against the review window", parents=[parent]
@@ -104,11 +107,12 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         if args.command == "install":
-            result = install_user(root=root, home=home, profile=args.profile, vault=args.vault)
+            result = install_user(root=root, home=home, profile=args.profile, vault=args.vault,
+                                  memory_storage=args.memory_storage)
             print(json.dumps(result, indent=2))
             return 0
         if args.command == "init":
-            result = init_project(args.project, root=root, portable=args.portable, profile=args.profile)
+            result = init_project(args.project, root=root, home=home, portable=args.portable, profile=args.profile)
             print(json.dumps(result, indent=2))
             return 0
         if args.command == "update":
@@ -120,6 +124,10 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "remember":
             result = remember(args.project, args.kind, args.note, home=home)
             print(json.dumps(result, indent=2))
+            return 0
+        if args.command == "memory-path":
+            print(json.dumps({"memory_dir": str(memory_directory(args.project, home=home)),
+                              "project_root": str(memory_project_root(args.project, home=home))}, indent=2))
             return 0
         if args.command == "sync":
             result = sync_project(args.project, home=home)
@@ -139,13 +147,16 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         if args.command == "skills":
             if args.skills_cmd == "find":
-                sid, score = find_skill(args.task, root)
+                profile = args.profile or load_user_config(home).get("profile", "full")
                 matches = rank_skills(args.task, root, limit=max(args.limit, 1))
-                stack = recommend_skill_stack(args.task, root, limit=max(args.limit, 1))
-                runner_up = matches[1][1] if len(matches) > 1 else 0.0
-                indexed = (load_index(root) or {}).get("skills", {})
+                selection = select_skill_stack(args.task, root, limit=max(args.limit, 1),
+                                               available=set(_profile_skills(profile, root)))
+                stack = [(row["skill_id"], row["score"]) for row in selection["selected"]]
+                sid = selection["primary"]
+                score = stack[0][1] if stack else 0.0
                 user_only = sorted(
-                    {s for s, _ in [*matches, *stack] if indexed.get(s, {}).get("user_invoked")}
+                    {row["skill_id"] for row in selection["deferred"]
+                     if row["reason"].startswith("requires user invocation")}
                 )
                 extra = (
                     {
@@ -164,17 +175,18 @@ def main(argv: list[str] | None = None) -> int:
                             # Lexical matching is a fallback, not an oracle: say so when the
                             # top hit is weak or barely beats the next one, and read the
                             # shortlist instead of trusting skill_id.
-                            "confident": score >= CONFIDENT_SCORE
-                            and score >= runner_up * CONFIDENT_MARGIN,
+                            "confident": selection["confident"],
                             "matches": [
                                 {"skill_id": s, "score": round(v, 3)} for s, v in matches
                             ],
                             "recommended_stack": [
                                 {"skill_id": s, "score": round(v, 3)} for s, v in stack
                             ],
+                            "selection": selection,
+                            "profile": profile,
                             "stack_note": (
-                                "Primary plus prompt-explicit complements; read descriptions and "
-                                "remove overlapping skills before loading."
+                                "Selected primary and complements, with overlap and inventory checks. "
+                                "Read selection reasons and descriptions; matches are search candidates."
                             ),
                             **extra,
                         },

@@ -1,6 +1,6 @@
 ---
 name: bosskuai-subagent-delegation
-description: "Delegate heavy, parallelizable, or risky work to subagents — auto-trigger logic plus patterns for Claude Code (Agent tool + worktrees), Cursor (parallel tabs), and Codex (parallel runs)."
+description: Use when independent workstreams, context-heavy research, or a separate review benefit from subagents; select supported host tools, bounded tasks, and safe write scopes.
 ---
 
 # BosskuAI Subagent Delegation
@@ -9,79 +9,47 @@ Use this skill when a task is large enough, parallel enough, or risky enough tha
 
 ## How this differs from nearby skills
 
-- **`bosskuai-context-limit-continuation`**: stops and hands off to a *new serial session* when context is nearly exhausted. **This skill** delegates work to *parallel subagents before* context runs out — it is proactive, not reactive.
+- **`bosskuai-context-limit-continuation`**: stops and hands off to a new serial session when context is nearly exhausted. This skill delegates parallel work before context runs out.
 - **`cofounder`**: orchestrates skill selection within one session. **This skill** extends that orchestration to multi-agent execution.
 - **`bosskuai-cross-model-escalation`**: brings in another model when the current workstream is blocked or brittle. **This skill** is for parallelizable workstreams, not a single stuck one.
 
-## Auto-trigger logic (apply without being asked)
+## Delegation signals
 
-Delegate to subagents automatically when **any** of the following are true:
+Delegate when the benefit exceeds coordination cost and the host supports it:
 
 | Signal | Threshold | Action |
 |--------|-----------|--------|
-| Independent files | ≥ 5 files that can be changed without shared state | Delegate to parallel subagents |
-| Parallel workstreams | ≥ 2 fully independent tasks | One subagent per workstream |
-| Risky or destructive scope | Irreversible side effects (push, deploy, DB write, external API call) | Do not delegate; pause and ask (AGENTS.md Risk pauses). A worktree isolates file edits only |
+| Parallel workstreams | Two or more independent tasks | Assign one bounded task per agent, within the host's concurrency limit |
+| Context-heavy research | Only the conclusion and evidence need to return | Delegate a read-only investigation |
+| Risky scope | A separate review can test assumptions | Delegate investigation or review; keep consequential actions with the coordinator and honor existing user authorization |
 | Batch operations | Same small edit across N targets | One subagent with the full list, or inline; one subagent per target only when each needs its own judgment or tests |
 
-**Pre-delegation check:** Before delegating, verify subtasks are truly independent — shared state, ordering dependencies, or write conflicts between parallel subagents will cause failures or corruption.
+## Workflow
+
+1. Inspect exposed tools, agent definitions, permissions, context inheritance, and concurrency limits. Use the configured or inherited model unless the task or user justifies an available override.
+2. Assign a concrete goal, exact paths, read-only or write scope, constraints, inputs, success check, and an evidence-bearing output. Give each task a bounded turn/time/retry budget using supported controls or explicit stopping instructions.
+3. Name the relevant skills and references. Inspect what context the child receives; supply missing evidence explicitly. Preload only needed skill bodies when supported, otherwise tell the agent which files to read. Do not assume the parent's skill selection transfers.
+4. Give each writer exclusive file ownership or supported worktree isolation. Serialize shared files, generated outputs, and operations with ordering dependencies. A worktree does not isolate credentials, databases, or remote services.
+5. Run independent tasks in the background when supported; await dependent results before continuing. If delegation is unavailable, execute the same scoped tasks sequentially and report that fallback.
+6. Review returned diffs and source evidence, run the relevant integration check, and reconcile disagreements. The coordinator performs consequential actions within the user's authorized scope; request approval only for an unresolved boundary.
 
 ## Tool-specific patterns
 
-### Claude Code — Agent tool
+### Claude Code - Agent tool
 
-Use the built-in `Agent` tool to spawn subagents. Each runs autonomously with its own tool access.
-
-**Key parameters:**
-
-| Parameter | Value | When to use |
-|-----------|-------|-------------|
-| `subagent_type` | `"general-purpose"`, `"Explore"`, `"Plan"` | Match to subtask type |
-| `run_in_background` | `true` | Independent subtasks that don't block the next step |
-| `isolation` | `"worktree"` | Any subagent that writes to disk — gives an isolated git branch; auto-cleaned if no changes; returns branch path if changes made |
-| `model` | `"opus"` / `"sonnet"` | Opus for planning/analysis subagents; Sonnet for execution |
-
-**Common patterns:**
-
-```
-# Parallel read-only research (background)
-→ Launch Explore agents for each domain area with run_in_background: true
-→ Continue with other work while they run
-→ Synthesize findings in the main session when all complete
-
-# Parallel write tasks (worktree isolation)
-→ Launch general-purpose agents with isolation: "worktree" for each independent file group
-→ After all complete, review each worktree branch before merging
-
-# Sequential with dependency
-→ Launch first subagent foreground (no run_in_background), wait for result
-→ Use result to inform the next subagent's prompt
-```
-
-**Subagent prompt quality rules:**
-- Include the **full task description** — subagents have no main session context
-- Specify **exact file paths**, expected outputs, and success criteria
-- Tell the subagent explicitly whether to **write code or only research**
-- Include relevant constraints (`"do not modify X"`, `"use the existing Y pattern"`)
-- State the **model to use** if it matters for the subtask
+Inspect the installed `Agent` tool and available agent definitions before choosing a type. Use tool allow/deny lists, `maxTurns`, `skills`, background execution, and `isolation: worktree` only in the supporting tool or agent configuration; their fields are not interchangeable. Claude's agent `skills` list injects full bodies at startup, so keep it narrow. Prefer model inheritance over fixed role-to-model names.
 
 ### Cursor - subagents and parallel agents
 
-Use Cursor subagents (own context, prompt, tools, model) for delegated subtasks, or run parallel agents, each in its own worktree. Review each branch before merging; if two agents touch the same file, run them sequentially.
+Use exposed subagent or parallel-agent tools and inspect their context and isolation contracts. When running separate tabs or worktrees, track the owning agent and paths for each task, then review results before integrating.
 
-**When to use parallel Composer tabs:**
-- Same transformation across N files (migration, rename, lint pass)
-- Independent feature areas (e.g., auth module + dashboard + API layer)
-- Parallel research (one tab reads docs, another reads code, another reads tests)
+### Codex - parallel runs
 
-### Codex — Parallel runs
+Use the available collaboration/subagent tools and their actual schemas. Inspect whether agents share the checkout and whether history is forked; assign disjoint write scopes when they share files. Use only exposed or configured roles, then collect results and verify the integrated diff.
 
-Codex supports multiple simultaneous runs. Use the agent role system:
+### OpenCode and OMP
 
-1. **Launch parallel runs** for independent subtasks — one run per workstream
-2. **Scope each run tightly** — minimum context, one goal per run
-3. **Use subagents**: built-in `explorer` (read-heavy) and `worker` (implementation); define other roles in `.codex/agents/<role>.toml`.
-4. **Collect outputs** — after all runs complete, synthesize in a final aggregator run if needed
+Discover the installed host's agent tools, configuration, and limitations before delegating. Apply the same task, evidence, budget, and write-ownership contract with supported controls; use the sequential fallback when no suitable tool exists. Do not copy another host's frontmatter or role names into these adapters.
 
 ## Delegation output format
 
@@ -90,14 +58,16 @@ When delegating, state the plan before launching:
 ```
 Delegating to subagents:
 
-Subagent 1 — [description] ([tool pattern: Agent | Composer tab | Codex run])
+Subagent 1 - [description] ([verified host tool])
   Goal: [what it will do]
   Scope: [files or domains it touches]
   Type: [read-only | writes to disk | risky/destructive]
   Background: [yes | no]
-  Isolation: [worktree | none]
+  Write ownership / isolation: [exclusive paths | worktree | read-only]
+  Skills / context: [needed files and what must be supplied]
+  Budget / pass signal: [supported limit and check]
 
-Subagent 2 — ...
+Subagent 2 - ...
 
 Synthesis plan: [how results will be combined after all agents complete]
 Dependency check: [shared state, write conflicts, or ordering dependencies to watch]
@@ -105,11 +75,11 @@ Dependency check: [shared state, write conflicts, or ordering dependencies to wa
 
 ## Guardrails
 
-- Do not delegate tasks with shared mutable state or ordering dependencies — parallel subagents on shared state cause conflicts.
-- Do not launch background subagents for tasks whose output is needed before the next step — use foreground (await result) for sequential dependencies.
-- Do not skip worktree isolation for subagents that write to disk — without isolation, parallel writes corrupt the working tree.
-- Do not write vague subagent prompts — each prompt must be self-contained with full context, file paths, goals, and constraints.
-- Do not use subagent delegation as a substitute for context-limit-continuation — if context is already exhausted, use context-limit-continuation first.
+- Do not run overlapping writers or dependent tasks concurrently.
+- Await a task whose output is needed before the next step.
+- Do not assume a worktree provides permission, secret, or external-service isolation.
+- Each task must contain enough context, file paths, goals, and constraints to execute independently.
+- If context is already exhausted, use context-limit-continuation first.
 
 ## References
 
@@ -117,3 +87,4 @@ Dependency check: [shared state, write conflicts, or ordering dependencies to wa
 - Pair with **`cofounder`** for orchestration and skill routing decisions
 - Pair with **`bosskuai-ai-model-selection`** to choose the right model per subagent role
 - Pair with **`bosskuai-cross-model-escalation`** when the main workstream is blocked and needs a helper model before or instead of full parallelization
+- `../../references/playbooks/claude-code-practices-playbook.md` for host-specific invocation and preloading limits

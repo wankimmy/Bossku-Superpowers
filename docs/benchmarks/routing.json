@@ -1,0 +1,5920 @@
+{
+  "schema_version": 1,
+  "source": {
+    "git_revision": "7a01f90294df8470486076a625100d68c2c92e56",
+    "working_tree_modified": true,
+    "routing_inputs_sha256": "732e6d815e524ea88ef518f0483e0f485577d64846aa48c4c6f95f8e4d062753",
+    "input_files_sha256": {
+      "scripts/benchmark_routing.py": "178cf9011baaea17cbed4860e60bb90b5ca9048b8d3f53ea262c366da2422b36",
+      "bossku/index.py": "3f0b9efb430ef5510edf1d179ce87c9396615304a147449d72009db22079bcf5",
+      "bossku/skills.py": "78cd486bbcf55ca29942124b07e502739023bf204ea27120db9e348299b4c9cd",
+      "bossku/paths.py": "e5bd7936bc2f2882e84d5010dc8a3b36096df5c19054a420c1e1215afa16a426",
+      "tests/test_routing.py": "2c8c641deb39a594e7dd4aac137822b22029ff9ad009f9d794beb3565497a597",
+      "skills/aliases.json": "ac46edb5ee5ae2945efa27d1ba9df6f2e5ce22cc1d7ca96bb0d5fcd51d82cd19",
+      "skills/vendored.json": "6f2fd1ef64080fa8accf1521d247ada69c82a942dfce777cc97d99bb4986bafb"
+    },
+    "fresh_index_sha256": "98262bbc3e7d1a38df645bed50b1cfc7321ff60c1da54e36a51ff6c2bd0aebfd"
+  },
+  "python_version": "3.12.10",
+  "corpus": {
+    "kind": "curated regression corpus, not held-out",
+    "source": "tests/test_routing.py",
+    "groups": [
+      "ROUTING_CASES",
+      "REVIEW_ROUTING_CASES"
+    ],
+    "cases": 82,
+    "sha256": "4f8a89282e9d961ec5917075c09c2001f5726422ff82432b78bb124eef4a119f",
+    "grading": "top1 is a defensible ID; top3 contains at least one defensible ID",
+    "duplicate_policy": "one case per identical prompt, union defensible IDs and source groups"
+  },
+  "inventory": {
+    "eligible_count": 234,
+    "excluded": [
+      "x402"
+    ],
+    "skill_ids": [
+      "ab-testing",
+      "accessibility",
+      "ad-creative",
+      "ads",
+      "ai-seo",
+      "analytics",
+      "animate",
+      "animate-expo",
+      "animation-vocabulary",
+      "antislop",
+      "antislop-code",
+      "antislop-copywriting",
+      "antislop-human",
+      "antislop-layoutmobile",
+      "antislop-ui",
+      "apple-design",
+      "architecture-decision-records",
+      "ask-sonner",
+      "aso",
+      "bosskuai-3d-web-development",
+      "bosskuai-agent-architecture-audit",
+      "bosskuai-agent-introspection",
+      "bosskuai-ai-model-selection",
+      "bosskuai-analytics-metrics",
+      "bosskuai-api-design",
+      "bosskuai-architecture-deepening",
+      "bosskuai-autonomous-loops",
+      "bosskuai-aws-deployment",
+      "bosskuai-browser-automation",
+      "bosskuai-business-logic-review",
+      "bosskuai-ci-cd-pipelines",
+      "bosskuai-claude-code-setup",
+      "bosskuai-claude-md-management",
+      "bosskuai-code-revamp",
+      "bosskuai-codebase-analysis",
+      "bosskuai-coding-best-practices",
+      "bosskuai-competitor-intelligence",
+      "bosskuai-content-calendar",
+      "bosskuai-context-budget",
+      "bosskuai-context-limit-continuation",
+      "bosskuai-continuous-learning",
+      "bosskuai-cost-optimization",
+      "bosskuai-council",
+      "bosskuai-cross-model-escalation",
+      "bosskuai-cto-strategy",
+      "bosskuai-customer-discovery",
+      "bosskuai-customer-success-support",
+      "bosskuai-customize-bosskuai",
+      "bosskuai-cybersecurity-risk",
+      "bosskuai-data-architecture",
+      "bosskuai-database-engineering",
+      "bosskuai-deep-research",
+      "bosskuai-design-systems",
+      "bosskuai-devops-iac",
+      "bosskuai-diagnose-loop",
+      "bosskuai-docker",
+      "bosskuai-documentation-lookup",
+      "bosskuai-engineering-delivery",
+      "bosskuai-eval-driven-agent-improvement",
+      "bosskuai-expo-react-native",
+      "bosskuai-financial-modeling",
+      "bosskuai-github-workflow",
+      "bosskuai-go-development",
+      "bosskuai-greptile-review-loop",
+      "bosskuai-grill-with-docs",
+      "bosskuai-grounding",
+      "bosskuai-growth-experiment",
+      "bosskuai-gsap-animation",
+      "bosskuai-handoff",
+      "bosskuai-headroom",
+      "bosskuai-hindsight-memory",
+      "bosskuai-hostinger-hosting",
+      "bosskuai-hyperframes",
+      "bosskuai-i18n-l10n",
+      "bosskuai-incident-response",
+      "bosskuai-integration-testing",
+      "bosskuai-investor-prep",
+      "bosskuai-laravel-development",
+      "bosskuai-laravel-security",
+      "bosskuai-laravel-tdd",
+      "bosskuai-laravel-verification",
+      "bosskuai-launch-commercialization",
+      "bosskuai-lead-intelligence",
+      "bosskuai-legal-compliance",
+      "bosskuai-lenis-smooth-scroll",
+      "bosskuai-malaysia-pdpa-privacy",
+      "bosskuai-market-analysis",
+      "bosskuai-marketing-growth",
+      "bosskuai-mobile-app-release",
+      "bosskuai-mongodb",
+      "bosskuai-nuxt-development",
+      "bosskuai-observability-sre",
+      "bosskuai-operations",
+      "bosskuai-paid-acquisition-monetization",
+      "bosskuai-performance-profiling",
+      "bosskuai-permanent-memory-orchestration",
+      "bosskuai-planning-execution",
+      "bosskuai-polyglot-engineering",
+      "bosskuai-ponytail",
+      "bosskuai-pr-check",
+      "bosskuai-product-strategy",
+      "bosskuai-product-verification",
+      "bosskuai-project-understanding",
+      "bosskuai-prompt-injection-defense",
+      "bosskuai-prompt-optimizer",
+      "bosskuai-qa-automation-strategy",
+      "bosskuai-rapid-prototype",
+      "bosskuai-ratchet-loop",
+      "bosskuai-react-development",
+      "bosskuai-redis-caching-queues",
+      "bosskuai-rigorous-code-review",
+      "bosskuai-rules-distill",
+      "bosskuai-saas-billing-ops",
+      "bosskuai-sales-strategy",
+      "bosskuai-search-first",
+      "bosskuai-seo-geo",
+      "bosskuai-skill-creator",
+      "bosskuai-skill-stocktake",
+      "bosskuai-software-architecture",
+      "bosskuai-subagent-delegation",
+      "bosskuai-taste",
+      "bosskuai-tdd-loop",
+      "bosskuai-tech-lead",
+      "bosskuai-tenant-isolation-security",
+      "bosskuai-throwaway-prototype",
+      "bosskuai-token-saver",
+      "bosskuai-ui-ux-design-to-code",
+      "bosskuai-vps-docker-deployment",
+      "bosskuai-web-performance",
+      "brainstorming",
+      "brandkit",
+      "browser-use",
+      "brutalist-skill",
+      "changelog-scan",
+      "churn-prevention",
+      "ci-triage",
+      "cloud",
+      "co-marketing",
+      "cofounder",
+      "cold-email",
+      "community-marketing",
+      "competitor-profiling",
+      "competitors",
+      "content-strategy",
+      "copy-editing",
+      "copywriting",
+      "cro",
+      "customer-research",
+      "database-migrations",
+      "dcg",
+      "dependency-triage",
+      "directory-submissions",
+      "dispatching-parallel-agents",
+      "draft-release-notes",
+      "e2e-testing",
+      "emails",
+      "emil-design-eng",
+      "error-handling",
+      "executing-plans",
+      "find-animation-opportunities",
+      "finishing-a-development-branch",
+      "free-tools",
+      "graft",
+      "graphify",
+      "hallmark",
+      "i-have-adhd",
+      "image",
+      "image-to-code-skill",
+      "imagegen-frontend-mobile",
+      "imagegen-frontend-web",
+      "improve-animations",
+      "issue-triage",
+      "launch",
+      "lead-magnets",
+      "loop-budget",
+      "loop-constraints",
+      "loop-triage",
+      "loop-verifier",
+      "marketing-council",
+      "marketing-ideas",
+      "marketing-loops",
+      "marketing-plan",
+      "marketing-psychology",
+      "markitdown",
+      "mcp-server-patterns",
+      "minimal-fix",
+      "minimalist-skill",
+      "mysql-patterns",
+      "odl-pdf",
+      "offers",
+      "onboarding",
+      "open-source",
+      "output-skill",
+      "paywalls",
+      "pick-ui-library",
+      "popups",
+      "post-merge-scan",
+      "pr-review-triage",
+      "pricing",
+      "product-marketing",
+      "programmatic-seo",
+      "prospecting",
+      "prototype",
+      "public-relations",
+      "python-patterns",
+      "python-testing",
+      "receiving-code-review",
+      "redesign-skill",
+      "referrals",
+      "remote-browser",
+      "requesting-code-review",
+      "review-animations",
+      "revops",
+      "sales-enablement",
+      "schema",
+      "scroll-world",
+      "seo-audit",
+      "signup",
+      "site-architecture",
+      "sms",
+      "social",
+      "soft-skill",
+      "subagent-driven-development",
+      "systematic-debugging",
+      "taste-skill",
+      "test-driven-development",
+      "using-git-worktrees",
+      "using-superpowers",
+      "verification-before-completion",
+      "video",
+      "vue-patterns",
+      "write-swift",
+      "writing-plans",
+      "writing-skills"
+    ]
+  },
+  "methods": {
+    "bossku": "find_skill top1 and rank_skills top3, using a fresh in-memory build_index",
+    "description_only": "IDF-weighted query coverage over skill ID and description token sets. Shared tokenize normalization; ID prefix removed and hyphens spaced. w(t)=log(1+N/(1+df(t))); score=sum matched query weights/sum query weights. Unseen query terms use maximum IDF. No curated triggers, exclusions, aliases, body headings, phrase bonuses or query-side variants. Ties sort by skill ID.",
+    "automatic_selection": "select_skill_stack with the full eligible inventory. A model-invoked expected set requires an accepted primary ID. A user-only expected set requires an expected ID deferred for user invocation. Automatically loading any user-only skill fails the outcome."
+  },
+  "results": {
+    "bossku": {
+      "cases": 82,
+      "top1_hits": 82,
+      "top3_hits": 82,
+      "top1_percent": 100.0,
+      "top3_percent": 100.0
+    },
+    "description_only": {
+      "cases": 82,
+      "top1_hits": 46,
+      "top3_hits": 61,
+      "top1_percent": 56.1,
+      "top3_percent": 74.39
+    },
+    "automatic_selection": {
+      "actionable_route": {
+        "cases": 82,
+        "hits": 82,
+        "percent": 100.0
+      },
+      "model_primary": {
+        "cases": 79,
+        "hits": 79,
+        "percent": 100.0
+      },
+      "user_invocation_deferral": {
+        "cases": 3,
+        "hits": 3,
+        "percent": 100.0
+      },
+      "misses": []
+    }
+  },
+  "cases": [
+    {
+      "case_id": "routing-001",
+      "prompt": "the login endpoint returns 500 intermittently",
+      "expected": [
+        "bosskuai-diagnose-loop",
+        "systematic-debugging"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-diagnose-loop",
+          "score": 11.387
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-diagnose-loop",
+            "score": 11.3874
+          },
+          {
+            "skill_id": "bosskuai-api-design",
+            "score": 2.470867
+          },
+          {
+            "skill_id": "bosskuai-agent-introspection",
+            "score": 1.058267
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-agent-introspection",
+          "score": 0.186313
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-agent-introspection",
+            "score": 0.186313
+          },
+          {
+            "skill_id": "bosskuai-prompt-optimizer",
+            "score": 0.186313
+          },
+          {
+            "skill_id": "ab-testing",
+            "score": 0.0
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": false
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-diagnose-loop",
+          "systematic-debugging"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-diagnose-loop",
+        "selected": [
+          "bosskuai-diagnose-loop"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-002",
+      "prompt": "write tests before implementing the payment flow",
+      "expected": [
+        "bosskuai-tdd-loop",
+        "test-driven-development"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-tdd-loop",
+          "score": 11.462
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-tdd-loop",
+            "score": 11.461919
+          },
+          {
+            "skill_id": "test-driven-development",
+            "score": 5.224539
+          },
+          {
+            "skill_id": "bosskuai-saas-billing-ops",
+            "score": 4.119041
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-saas-billing-ops",
+          "score": 0.427135
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-saas-billing-ops",
+            "score": 0.427135
+          },
+          {
+            "skill_id": "churn-prevention",
+            "score": 0.427135
+          },
+          {
+            "skill_id": "bosskuai-engineering-delivery",
+            "score": 0.389358
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": false
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-tdd-loop",
+          "test-driven-development"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-tdd-loop",
+        "selected": [
+          "bosskuai-tdd-loop"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-003",
+      "prompt": "design the database schema for multi-tenant orders",
+      "expected": [
+        "bosskuai-database-engineering"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-database-engineering",
+          "score": 15.555
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-database-engineering",
+            "score": 15.554505
+          },
+          {
+            "skill_id": "database-migrations",
+            "score": 6.437745
+          },
+          {
+            "skill_id": "bosskuai-mongodb",
+            "score": 4.392028
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-database-engineering",
+          "score": 0.756754
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-database-engineering",
+            "score": 0.756754
+          },
+          {
+            "skill_id": "bosskuai-mongodb",
+            "score": 0.513507
+          },
+          {
+            "skill_id": "database-migrations",
+            "score": 0.395612
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-database-engineering"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-database-engineering",
+        "selected": [
+          "bosskuai-database-engineering"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-004",
+      "prompt": "our AWS bill doubled last month",
+      "expected": [
+        "bosskuai-cost-optimization"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-cost-optimization",
+          "score": 11.43
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-cost-optimization",
+            "score": 11.430088
+          },
+          {
+            "skill_id": "bosskuai-aws-deployment",
+            "score": 3.472566
+          },
+          {
+            "skill_id": "bosskuai-integration-testing",
+            "score": 2.527434
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-aws-deployment",
+          "score": 0.2
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-aws-deployment",
+            "score": 0.2
+          },
+          {
+            "skill_id": "bosskuai-competitor-intelligence",
+            "score": 0.2
+          },
+          {
+            "skill_id": "ab-testing",
+            "score": 0.0
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": false
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-cost-optimization"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-cost-optimization",
+        "selected": [
+          "bosskuai-cost-optimization"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-005",
+      "prompt": "set up docker compose for this project",
+      "expected": [
+        "bosskuai-docker"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-docker",
+          "score": 16.779
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-docker",
+            "score": 16.778585
+          },
+          {
+            "skill_id": "bosskuai-vps-docker-deployment",
+            "score": 6.782868
+          },
+          {
+            "skill_id": "bosskuai-project-understanding",
+            "score": 3.580006
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-docker",
+          "score": 0.532902
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-docker",
+            "score": 0.532902
+          },
+          {
+            "skill_id": "bosskuai-vps-docker-deployment",
+            "score": 0.532902
+          },
+          {
+            "skill_id": "product-marketing",
+            "score": 0.467098
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-docker"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-docker",
+        "selected": [
+          "bosskuai-docker"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-006",
+      "prompt": "add scroll animations with GSAP",
+      "expected": [
+        "bosskuai-gsap-animation"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-gsap-animation",
+          "score": 11.756
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-gsap-animation",
+            "score": 11.755976
+          },
+          {
+            "skill_id": "animate",
+            "score": 6.993158
+          },
+          {
+            "skill_id": "bosskuai-lenis-smooth-scroll",
+            "score": 6.080017
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-lenis-smooth-scroll",
+          "score": 0.518351
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-lenis-smooth-scroll",
+            "score": 0.518351
+          },
+          {
+            "skill_id": "animate",
+            "score": 0.481649
+          },
+          {
+            "skill_id": "bosskuai-gsap-animation",
+            "score": 0.463173
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-gsap-animation"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-gsap-animation",
+        "selected": [
+          "bosskuai-gsap-animation",
+          "animate"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-007",
+      "prompt": "the CI pipeline is failing on main",
+      "expected": [
+        "ci-triage"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "ci-triage",
+          "score": 20.223
+        },
+        "top3": [
+          {
+            "skill_id": "ci-triage",
+            "score": 20.22255
+          },
+          {
+            "skill_id": "bosskuai-ci-cd-pipelines",
+            "score": 8.107985
+          },
+          {
+            "skill_id": "minimal-fix",
+            "score": 4.573939
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "ci-triage",
+          "score": 0.509147
+        },
+        "top3": [
+          {
+            "skill_id": "ci-triage",
+            "score": 0.509147
+          },
+          {
+            "skill_id": "bosskuai-ci-cd-pipelines",
+            "score": 0.419541
+          },
+          {
+            "skill_id": "bosskuai-diagnose-loop",
+            "score": 0.290229
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "ci-triage"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "ci-triage",
+        "selected": [
+          "ci-triage"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-008",
+      "prompt": "check for prompt injection in our agent tools",
+      "expected": [
+        "bosskuai-prompt-injection-defense"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-prompt-injection-defense",
+          "score": 20.996
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-prompt-injection-defense",
+            "score": 20.99555
+          },
+          {
+            "skill_id": "bosskuai-prompt-optimizer",
+            "score": 5.195768
+          },
+          {
+            "skill_id": "dispatching-parallel-agents",
+            "score": 4.385798
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-prompt-injection-defense",
+          "score": 0.823737
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-prompt-injection-defense",
+            "score": 0.823737
+          },
+          {
+            "skill_id": "bosskuai-context-budget",
+            "score": 0.441557
+          },
+          {
+            "skill_id": "mcp-server-patterns",
+            "score": 0.382181
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-prompt-injection-defense"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-prompt-injection-defense",
+        "selected": [
+          "bosskuai-prompt-injection-defense"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-009",
+      "prompt": "what model should I use for this task",
+      "expected": [
+        "bosskuai-ai-model-selection"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-ai-model-selection",
+          "score": 18.583
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-ai-model-selection",
+            "score": 18.583282
+          },
+          {
+            "skill_id": "bosskuai-cross-model-escalation",
+            "score": 11.783282
+          },
+          {
+            "skill_id": "bosskuai-continuous-learning",
+            "score": 6.216718
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-ai-model-selection",
+          "score": 1.0
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-ai-model-selection",
+            "score": 1.0
+          },
+          {
+            "skill_id": "bosskuai-cross-model-escalation",
+            "score": 1.0
+          },
+          {
+            "skill_id": "bosskuai-3d-web-development",
+            "score": 0.519589
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-ai-model-selection"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-ai-model-selection",
+        "selected": [
+          "bosskuai-ai-model-selection"
+        ],
+        "deferred": [
+          {
+            "skill_id": "bosskuai-cross-model-escalation",
+            "reason": "does not cover another prompt concern"
+          }
+        ],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-010",
+      "prompt": "deploy to a VPS with docker",
+      "expected": [
+        "bosskuai-vps-docker-deployment"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-vps-docker-deployment",
+          "score": 16.177
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-vps-docker-deployment",
+            "score": 16.177308
+          },
+          {
+            "skill_id": "bosskuai-docker",
+            "score": 7.556088
+          },
+          {
+            "skill_id": "bosskuai-hostinger-hosting",
+            "score": 6.335919
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-vps-docker-deployment",
+          "score": 1.0
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-vps-docker-deployment",
+            "score": 1.0
+          },
+          {
+            "skill_id": "bosskuai-hostinger-hosting",
+            "score": 0.659299
+          },
+          {
+            "skill_id": "bosskuai-aws-deployment",
+            "score": 0.340701
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-vps-docker-deployment"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-vps-docker-deployment",
+        "selected": [
+          "bosskuai-vps-docker-deployment"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-011",
+      "prompt": "run an A/B test on the pricing page",
+      "expected": [
+        "ab-testing"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "ab-testing",
+          "score": 11.267
+        },
+        "top3": [
+          {
+            "skill_id": "ab-testing",
+            "score": 11.266805
+          },
+          {
+            "skill_id": "ci-triage",
+            "score": 6.066955
+          },
+          {
+            "skill_id": "e2e-testing",
+            "score": 5.48135
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "offers",
+          "score": 0.755615
+        },
+        "top3": [
+          {
+            "skill_id": "offers",
+            "score": 0.755615
+          },
+          {
+            "skill_id": "ab-testing",
+            "score": 0.53481
+          },
+          {
+            "skill_id": "bosskuai-laravel-verification",
+            "score": 0.53481
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "ab-testing"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "ab-testing",
+        "selected": [
+          "ab-testing"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-012",
+      "prompt": "design a REST API for the orders service",
+      "expected": [
+        "bosskuai-api-design"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-api-design",
+          "score": 15.554
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-api-design",
+            "score": 15.553589
+          },
+          {
+            "skill_id": "bosskuai-software-architecture",
+            "score": 4.022993
+          },
+          {
+            "skill_id": "cloud",
+            "score": 3.750816
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-api-design",
+          "score": 0.545915
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-api-design",
+            "score": 0.545915
+          },
+          {
+            "skill_id": "cloud",
+            "score": 0.424316
+          },
+          {
+            "skill_id": "bosskuai-integration-testing",
+            "score": 0.324797
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-api-design"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-api-design",
+        "selected": [
+          "bosskuai-api-design"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-013",
+      "prompt": "we had an outage last night, write the postmortem",
+      "expected": [
+        "bosskuai-incident-response"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-incident-response",
+          "score": 5.289
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-incident-response",
+            "score": 5.289421
+          },
+          {
+            "skill_id": "bosskuai-tech-lead",
+            "score": 2.528714
+          },
+          {
+            "skill_id": "write-swift",
+            "score": 2.131738
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-competitor-intelligence",
+          "score": 0.215837
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-competitor-intelligence",
+            "score": 0.215837
+          },
+          {
+            "skill_id": "bosskuai-incident-response",
+            "score": 0.215837
+          },
+          {
+            "skill_id": "ad-creative",
+            "score": 0.136651
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-incident-response"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-incident-response",
+        "selected": [
+          "bosskuai-incident-response"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-014",
+      "prompt": "make the app faster, it's slow on load",
+      "expected": [
+        "bosskuai-performance-profiling"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-performance-profiling",
+          "score": 7.092
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-performance-profiling",
+            "score": 7.091962
+          },
+          {
+            "skill_id": "bosskuai-web-performance",
+            "score": 5.695439
+          },
+          {
+            "skill_id": "bosskuai-mobile-app-release",
+            "score": 3.458312
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "antislop",
+          "score": 0.225846
+        },
+        "top3": [
+          {
+            "skill_id": "antislop",
+            "score": 0.225846
+          },
+          {
+            "skill_id": "antislop-copywriting",
+            "score": 0.225846
+          },
+          {
+            "skill_id": "antislop-layoutmobile",
+            "score": 0.225846
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": false
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-performance-profiling"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-performance-profiling",
+        "selected": [
+          "bosskuai-performance-profiling",
+          "bosskuai-web-performance"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-015",
+      "prompt": "secure our Laravel app",
+      "expected": [
+        "bosskuai-laravel-security"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-laravel-security",
+          "score": 10.896
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-laravel-security",
+            "score": 10.896279
+          },
+          {
+            "skill_id": "bosskuai-laravel-development",
+            "score": 5.977243
+          },
+          {
+            "skill_id": "bosskuai-laravel-tdd",
+            "score": 5.977243
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-laravel-development",
+          "score": 0.319026
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-laravel-development",
+            "score": 0.319026
+          },
+          {
+            "skill_id": "bosskuai-laravel-security",
+            "score": 0.319026
+          },
+          {
+            "skill_id": "bosskuai-laravel-tdd",
+            "score": 0.319026
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-laravel-security"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-laravel-security",
+        "selected": [
+          "bosskuai-laravel-security"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-016",
+      "prompt": "brainstorm ideas for a new feature",
+      "expected": [
+        "brainstorming"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "brainstorming",
+          "score": 16.095
+        },
+        "top3": [
+          {
+            "skill_id": "brainstorming",
+            "score": 16.094987
+          },
+          {
+            "skill_id": "marketing-ideas",
+            "score": 6.573649
+          },
+          {
+            "skill_id": "co-marketing",
+            "score": 3.472481
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "co-marketing",
+          "score": 0.566821
+        },
+        "top3": [
+          {
+            "skill_id": "co-marketing",
+            "score": 0.566821
+          },
+          {
+            "skill_id": "marketing-ideas",
+            "score": 0.566821
+          },
+          {
+            "skill_id": "content-strategy",
+            "score": 0.259475
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": false
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "brainstorming"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "brainstorming",
+        "selected": [
+          "brainstorming"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-017",
+      "prompt": "translate the app into Malay and Chinese",
+      "expected": [
+        "bosskuai-i18n-l10n"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-i18n-l10n",
+          "score": 10.066
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-i18n-l10n",
+            "score": 10.065632
+          },
+          {
+            "skill_id": "bosskuai-mobile-app-release",
+            "score": 2.901552
+          },
+          {
+            "skill_id": "bosskuai-aws-deployment",
+            "score": 1.934368
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "animate-expo",
+          "score": 0.178196
+        },
+        "top3": [
+          {
+            "skill_id": "animate-expo",
+            "score": 0.178196
+          },
+          {
+            "skill_id": "aso",
+            "score": 0.178196
+          },
+          {
+            "skill_id": "bosskuai-aws-deployment",
+            "score": 0.178196
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": false
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-i18n-l10n"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-i18n-l10n",
+        "selected": [
+          "bosskuai-i18n-l10n"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-018",
+      "prompt": "is this PDPA compliant",
+      "expected": [
+        "bosskuai-malaysia-pdpa-privacy"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-malaysia-pdpa-privacy",
+          "score": 9.0
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-malaysia-pdpa-privacy",
+            "score": 9.0
+          },
+          {
+            "skill_id": "ab-testing",
+            "score": 0.0
+          },
+          {
+            "skill_id": "accessibility",
+            "score": 0.0
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-malaysia-pdpa-privacy",
+          "score": 0.5
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-malaysia-pdpa-privacy",
+            "score": 0.5
+          },
+          {
+            "skill_id": "ab-testing",
+            "score": 0.0
+          },
+          {
+            "skill_id": "accessibility",
+            "score": 0.0
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-malaysia-pdpa-privacy"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-malaysia-pdpa-privacy",
+        "selected": [
+          "bosskuai-malaysia-pdpa-privacy"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-019",
+      "prompt": "convert this pdf into markdown",
+      "expected": [
+        "markitdown"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "markitdown",
+          "score": 12.0
+        },
+        "top3": [
+          {
+            "skill_id": "markitdown",
+            "score": 12.0
+          },
+          {
+            "skill_id": "odl-pdf",
+            "score": 10.133789
+          },
+          {
+            "skill_id": "competitor-profiling",
+            "score": 2.066894
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "markitdown",
+          "score": 1.0
+        },
+        "top3": [
+          {
+            "skill_id": "markitdown",
+            "score": 1.0
+          },
+          {
+            "skill_id": "odl-pdf",
+            "score": 1.0
+          },
+          {
+            "skill_id": "lead-magnets",
+            "score": 0.350972
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "markitdown"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "markitdown",
+        "selected": [
+          "markitdown"
+        ],
+        "deferred": [
+          {
+            "skill_id": "odl-pdf",
+            "reason": "does not cover another prompt concern"
+          }
+        ],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-020",
+      "prompt": "forecast our runway and burn rate",
+      "expected": [
+        "bosskuai-financial-modeling"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-financial-modeling",
+          "score": 18.8
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-financial-modeling",
+            "score": 18.8
+          },
+          {
+            "skill_id": "bosskuai-sales-strategy",
+            "score": 3.272847
+          },
+          {
+            "skill_id": "bosskuai-cost-optimization",
+            "score": 3.06071
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-financial-modeling",
+          "score": 0.508121
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-financial-modeling",
+            "score": 0.508121
+          },
+          {
+            "skill_id": "bosskuai-agent-introspection",
+            "score": 0.25406
+          },
+          {
+            "skill_id": "video",
+            "score": 0.25406
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-financial-modeling"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-financial-modeling",
+        "selected": [
+          "bosskuai-financial-modeling"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-021",
+      "prompt": "stop the agent from running rm -rf",
+      "expected": [
+        "dcg"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "dcg",
+          "score": 13.531
+        },
+        "top3": [
+          {
+            "skill_id": "dcg",
+            "score": 13.530871
+          },
+          {
+            "skill_id": "bosskuai-agent-introspection",
+            "score": 3.259567
+          },
+          {
+            "skill_id": "bosskuai-context-limit-continuation",
+            "score": 2.333115
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "dcg",
+          "score": 0.576915
+        },
+        "top3": [
+          {
+            "skill_id": "dcg",
+            "score": 0.576915
+          },
+          {
+            "skill_id": "antislop",
+            "score": 0.326521
+          },
+          {
+            "skill_id": "remote-browser",
+            "score": 0.326521
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "dcg"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "dcg",
+        "selected": [
+          "dcg"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-022",
+      "prompt": "our users are churning, what do we do",
+      "expected": [
+        "churn-prevention"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "churn-prevention",
+          "score": 18.0
+        },
+        "top3": [
+          {
+            "skill_id": "churn-prevention",
+            "score": 18.0
+          },
+          {
+            "skill_id": "bosskuai-analytics-metrics",
+            "score": 6.0
+          },
+          {
+            "skill_id": "bosskuai-code-revamp",
+            "score": 6.0
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "ab-testing",
+          "score": 0.0
+        },
+        "top3": [
+          {
+            "skill_id": "ab-testing",
+            "score": 0.0
+          },
+          {
+            "skill_id": "accessibility",
+            "score": 0.0
+          },
+          {
+            "skill_id": "ad-creative",
+            "score": 0.0
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": false
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "churn-prevention"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "churn-prevention",
+        "selected": [
+          "churn-prevention"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-023",
+      "prompt": "build a three.js hero with a rotating model",
+      "expected": [
+        "bosskuai-3d-web-development"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-3d-web-development",
+          "score": 6.365
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-3d-web-development",
+            "score": 6.365023
+          },
+          {
+            "skill_id": "bosskuai-gsap-animation",
+            "score": 2.203745
+          },
+          {
+            "skill_id": "prototype",
+            "score": 2.146804
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-3d-web-development",
+          "score": 0.604194
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-3d-web-development",
+            "score": 0.604194
+          },
+          {
+            "skill_id": "imagegen-frontend-web",
+            "score": 0.233477
+          },
+          {
+            "skill_id": "scroll-world",
+            "score": 0.222788
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-3d-web-development"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-3d-web-development",
+        "selected": [
+          "bosskuai-3d-web-development"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-024",
+      "prompt": "git worktree for this feature branch",
+      "expected": [
+        "using-git-worktrees"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "using-git-worktrees",
+          "score": 18.511
+        },
+        "top3": [
+          {
+            "skill_id": "using-git-worktrees",
+            "score": 18.511323
+          },
+          {
+            "skill_id": "finishing-a-development-branch",
+            "score": 4.332781
+          },
+          {
+            "skill_id": "bosskuai-ci-cd-pipelines",
+            "score": 2.888521
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "using-git-worktrees",
+          "score": 0.713639
+        },
+        "top3": [
+          {
+            "skill_id": "using-git-worktrees",
+            "score": 0.713639
+          },
+          {
+            "skill_id": "finishing-a-development-branch",
+            "score": 0.286361
+          },
+          {
+            "skill_id": "dcg",
+            "score": 0.262277
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "using-git-worktrees"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "using-git-worktrees",
+        "selected": [
+          "using-git-worktrees"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-025",
+      "prompt": "write release notes for v2",
+      "expected": [
+        "draft-release-notes"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "draft-release-notes",
+          "score": 15.125
+        },
+        "top3": [
+          {
+            "skill_id": "draft-release-notes",
+            "score": 15.124609
+          },
+          {
+            "skill_id": "changelog-scan",
+            "score": 5.54974
+          },
+          {
+            "skill_id": "bosskuai-mobile-app-release",
+            "score": 4.045798
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "ad-creative",
+          "score": 0.477019
+        },
+        "top3": [
+          {
+            "skill_id": "ad-creative",
+            "score": 0.477019
+          },
+          {
+            "skill_id": "changelog-scan",
+            "score": 0.477019
+          },
+          {
+            "skill_id": "draft-release-notes",
+            "score": 0.477019
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "draft-release-notes"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "draft-release-notes",
+        "selected": [
+          "draft-release-notes"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-026",
+      "prompt": "review this animation for craft issues",
+      "expected": [
+        "review-animations"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "review-animations",
+          "score": 16.81
+        },
+        "top3": [
+          {
+            "skill_id": "review-animations",
+            "score": 16.81039
+          },
+          {
+            "skill_id": "improve-animations",
+            "score": 5.064793
+          },
+          {
+            "skill_id": "issue-triage",
+            "score": 4.39122
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "review-animations",
+          "score": 0.744
+        },
+        "top3": [
+          {
+            "skill_id": "review-animations",
+            "score": 0.744
+          },
+          {
+            "skill_id": "schema",
+            "score": 0.41501
+          },
+          {
+            "skill_id": "seo-audit",
+            "score": 0.41501
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "user_invocation_deferral",
+        "expected_model_ids": [],
+        "expected_user_only_ids": [
+          "review-animations"
+        ],
+        "primary": "cofounder",
+        "selected": [
+          "cofounder"
+        ],
+        "deferred": [
+          {
+            "skill_id": "review-animations",
+            "reason": "requires user invocation as /review-animations"
+          }
+        ],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-027",
+      "prompt": "what should I use for toasts",
+      "expected": [
+        "pick-ui-library"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "pick-ui-library",
+          "score": 22.4
+        },
+        "top3": [
+          {
+            "skill_id": "pick-ui-library",
+            "score": 22.4
+          },
+          {
+            "skill_id": "ask-sonner",
+            "score": 12.0
+          },
+          {
+            "skill_id": "ab-testing",
+            "score": 0.0
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "ask-sonner",
+          "score": 1.0
+        },
+        "top3": [
+          {
+            "skill_id": "ask-sonner",
+            "score": 1.0
+          },
+          {
+            "skill_id": "pick-ui-library",
+            "score": 1.0
+          },
+          {
+            "skill_id": "ab-testing",
+            "score": 0.0
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "user_invocation_deferral",
+        "expected_model_ids": [],
+        "expected_user_only_ids": [
+          "pick-ui-library"
+        ],
+        "primary": "cofounder",
+        "selected": [
+          "cofounder"
+        ],
+        "deferred": [
+          {
+            "skill_id": "pick-ui-library",
+            "reason": "requires user invocation as /pick-ui-library"
+          }
+        ],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-028",
+      "prompt": "scrolltrigger pinned section with gsap",
+      "expected": [
+        "bosskuai-gsap-animation"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-gsap-animation",
+          "score": 20.205
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-gsap-animation",
+            "score": 20.205285
+          },
+          {
+            "skill_id": "bosskuai-3d-web-development",
+            "score": 1.405285
+          },
+          {
+            "skill_id": "bosskuai-hyperframes",
+            "score": 1.405285
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-gsap-animation",
+          "score": 0.506258
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-gsap-animation",
+            "score": 0.506258
+          },
+          {
+            "skill_id": "bosskuai-hyperframes",
+            "score": 0.233559
+          },
+          {
+            "skill_id": "bosskuai-lenis-smooth-scroll",
+            "score": 0.233559
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-gsap-animation"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-gsap-animation",
+        "selected": [
+          "bosskuai-gsap-animation"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-029",
+      "prompt": "i have adhd, give me the answer action first",
+      "expected": [
+        "i-have-adhd"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "i-have-adhd",
+          "score": 9.711
+        },
+        "top3": [
+          {
+            "skill_id": "i-have-adhd",
+            "score": 9.711206
+          },
+          {
+            "skill_id": "ai-seo",
+            "score": 2.523106
+          },
+          {
+            "skill_id": "bosskuai-grounding",
+            "score": 2.523106
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "i-have-adhd",
+          "score": 0.619147
+        },
+        "top3": [
+          {
+            "skill_id": "i-have-adhd",
+            "score": 0.619147
+          },
+          {
+            "skill_id": "ai-seo",
+            "score": 0.22269
+          },
+          {
+            "skill_id": "bosskuai-throwaway-prototype",
+            "score": 0.22269
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "user_invocation_deferral",
+        "expected_model_ids": [],
+        "expected_user_only_ids": [
+          "i-have-adhd"
+        ],
+        "primary": "cofounder",
+        "selected": [
+          "cofounder"
+        ],
+        "deferred": [
+          {
+            "skill_id": "i-have-adhd",
+            "reason": "requires user invocation as /i-have-adhd"
+          }
+        ],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-030",
+      "prompt": "write pytest fixtures for the parser module",
+      "expected": [
+        "python-testing"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "python-testing",
+          "score": 5.452
+        },
+        "top3": [
+          {
+            "skill_id": "python-testing",
+            "score": 5.452178
+          },
+          {
+            "skill_id": "bosskuai-integration-testing",
+            "score": 3.565242
+          },
+          {
+            "skill_id": "write-swift",
+            "score": 2.2676
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "python-testing",
+          "score": 0.438738
+        },
+        "top3": [
+          {
+            "skill_id": "python-testing",
+            "score": 0.438738
+          },
+          {
+            "skill_id": "bosskuai-integration-testing",
+            "score": 0.377718
+          },
+          {
+            "skill_id": "bosskuai-qa-automation-strategy",
+            "score": 0.20241
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "python-testing"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "python-testing",
+        "selected": [
+          "python-testing"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-031",
+      "prompt": "our mariadb replica lag keeps growing",
+      "expected": [
+        "bosskuai-database-engineering",
+        "mysql-patterns"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "mysql-patterns",
+          "score": 14.43
+        },
+        "top3": [
+          {
+            "skill_id": "mysql-patterns",
+            "score": 14.430327
+          },
+          {
+            "skill_id": "bosskuai-database-engineering",
+            "score": 2.396846
+          },
+          {
+            "skill_id": "community-marketing",
+            "score": 1.30837
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "mysql-patterns",
+          "score": 0.405354
+        },
+        "top3": [
+          {
+            "skill_id": "mysql-patterns",
+            "score": 0.405354
+          },
+          {
+            "skill_id": "bosskuai-database-engineering",
+            "score": 0.19378
+          },
+          {
+            "skill_id": "antislop-code",
+            "score": 0.171498
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-database-engineering",
+          "mysql-patterns"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "mysql-patterns",
+        "selected": [
+          "mysql-patterns"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-032",
+      "prompt": "plan a zero downtime column rename migration",
+      "expected": [
+        "bosskuai-database-engineering",
+        "database-migrations"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "database-migrations",
+          "score": 12.865
+        },
+        "top3": [
+          {
+            "skill_id": "database-migrations",
+            "score": 12.865495
+          },
+          {
+            "skill_id": "bosskuai-database-engineering",
+            "score": 2.894216
+          },
+          {
+            "skill_id": "bosskuai-incident-response",
+            "score": 2.213431
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-database-engineering",
+          "score": 0.235454
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-database-engineering",
+            "score": 0.235454
+          },
+          {
+            "skill_id": "bosskuai-data-architecture",
+            "score": 0.141785
+          },
+          {
+            "skill_id": "bosskuai-laravel-development",
+            "score": 0.141785
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-database-engineering",
+          "database-migrations"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "database-migrations",
+        "selected": [
+          "database-migrations"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-033",
+      "prompt": "build an mcp server that exposes our api as tools",
+      "expected": [
+        "mcp-server-patterns"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "mcp-server-patterns",
+          "score": 28.471
+        },
+        "top3": [
+          {
+            "skill_id": "mcp-server-patterns",
+            "score": 28.471227
+          },
+          {
+            "skill_id": "bosskuai-claude-code-setup",
+            "score": 3.979936
+          },
+          {
+            "skill_id": "open-source",
+            "score": 3.751581
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "mcp-server-patterns",
+          "score": 0.75871
+        },
+        "top3": [
+          {
+            "skill_id": "mcp-server-patterns",
+            "score": 0.75871
+          },
+          {
+            "skill_id": "open-source",
+            "score": 0.634585
+          },
+          {
+            "skill_id": "remote-browser",
+            "score": 0.427865
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "mcp-server-patterns"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "mcp-server-patterns",
+        "selected": [
+          "mcp-server-patterns"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-034",
+      "prompt": "audit this form for wcag 2.2 keyboard and contrast",
+      "expected": [
+        "accessibility",
+        "bosskuai-ui-ux-design-to-code"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "accessibility",
+          "score": 18.161
+        },
+        "top3": [
+          {
+            "skill_id": "accessibility",
+            "score": 18.160528
+          },
+          {
+            "skill_id": "antislop-human",
+            "score": 4.049711
+          },
+          {
+            "skill_id": "brutalist-skill",
+            "score": 2.216417
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "accessibility",
+          "score": 0.858313
+        },
+        "top3": [
+          {
+            "skill_id": "accessibility",
+            "score": 0.858313
+          },
+          {
+            "skill_id": "antislop-human",
+            "score": 0.354083
+          },
+          {
+            "skill_id": "bosskuai-ui-ux-design-to-code",
+            "score": 0.187841
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "accessibility",
+          "bosskuai-ui-ux-design-to-code"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "accessibility",
+        "selected": [
+          "accessibility"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-035",
+      "prompt": "write an adr for choosing postgres over mongo",
+      "expected": [
+        "architecture-decision-records",
+        "bosskuai-tech-lead"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "architecture-decision-records",
+          "score": 14.283
+        },
+        "top3": [
+          {
+            "skill_id": "architecture-decision-records",
+            "score": 14.283306
+          },
+          {
+            "skill_id": "bosskuai-mongodb",
+            "score": 3.40545
+          },
+          {
+            "skill_id": "bosskuai-database-engineering",
+            "score": 2.708347
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "architecture-decision-records",
+          "score": 0.215837
+        },
+        "top3": [
+          {
+            "skill_id": "architecture-decision-records",
+            "score": 0.215837
+          },
+          {
+            "skill_id": "ad-creative",
+            "score": 0.136651
+          },
+          {
+            "skill_id": "animate",
+            "score": 0.136651
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "architecture-decision-records",
+          "bosskuai-tech-lead"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "architecture-decision-records",
+        "selected": [
+          "architecture-decision-records"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-036",
+      "prompt": "the sonner toast appears behind the modal",
+      "expected": [
+        "ask-sonner"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "ask-sonner",
+          "score": 20.177
+        },
+        "top3": [
+          {
+            "skill_id": "ask-sonner",
+            "score": 20.177181
+          },
+          {
+            "skill_id": "pick-ui-library",
+            "score": 2.522903
+          },
+          {
+            "skill_id": "prototype",
+            "score": 2.233065
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "ask-sonner",
+          "score": 1.0
+        },
+        "top3": [
+          {
+            "skill_id": "ask-sonner",
+            "score": 1.0
+          },
+          {
+            "skill_id": "ai-seo",
+            "score": 0.207422
+          },
+          {
+            "skill_id": "pick-ui-library",
+            "score": 0.207422
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "ask-sonner"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "ask-sonner",
+        "selected": [
+          "ask-sonner"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-037",
+      "prompt": "swift 6 data race inside my actor",
+      "expected": [
+        "write-swift"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "write-swift",
+          "score": 24.69
+        },
+        "top3": [
+          {
+            "skill_id": "write-swift",
+            "score": 24.690284
+          },
+          {
+            "skill_id": "bosskuai-go-development",
+            "score": 2.681586
+          },
+          {
+            "skill_id": "bosskuai-prompt-injection-defense",
+            "score": 2.373518
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "write-swift",
+          "score": 0.786523
+        },
+        "top3": [
+          {
+            "skill_id": "write-swift",
+            "score": 0.786523
+          },
+          {
+            "skill_id": "open-source",
+            "score": 0.339965
+          },
+          {
+            "skill_id": "bosskuai-autonomous-loops",
+            "score": 0.213477
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "write-swift"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "write-swift",
+        "selected": [
+          "write-swift"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-038",
+      "prompt": "animate the bottom sheet in expo with reanimated",
+      "expected": [
+        "animate-expo",
+        "bosskuai-expo-react-native"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "animate-expo",
+          "score": 11.49
+        },
+        "top3": [
+          {
+            "skill_id": "animate-expo",
+            "score": 11.490471
+          },
+          {
+            "skill_id": "bosskuai-expo-react-native",
+            "score": 6.061966
+          },
+          {
+            "skill_id": "apple-design",
+            "score": 2.233065
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "animate-expo",
+          "score": 0.778934
+        },
+        "top3": [
+          {
+            "skill_id": "animate-expo",
+            "score": 0.778934
+          },
+          {
+            "skill_id": "apple-design",
+            "score": 0.189338
+          },
+          {
+            "skill_id": "bosskuai-expo-react-native",
+            "score": 0.189338
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "animate-expo",
+          "bosskuai-expo-react-native"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "animate-expo",
+        "selected": [
+          "animate-expo"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-039",
+      "prompt": "pinia store and vue router setup for a vue 3 app",
+      "expected": [
+        "bosskuai-nuxt-development",
+        "vue-patterns"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "vue-patterns",
+          "score": 24.113
+        },
+        "top3": [
+          {
+            "skill_id": "vue-patterns",
+            "score": 24.112667
+          },
+          {
+            "skill_id": "bosskuai-mobile-app-release",
+            "score": 4.501587
+          },
+          {
+            "skill_id": "bosskuai-expo-react-native",
+            "score": 3.542468
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "vue-patterns",
+          "score": 0.528087
+        },
+        "top3": [
+          {
+            "skill_id": "vue-patterns",
+            "score": 0.528087
+          },
+          {
+            "skill_id": "bosskuai-nuxt-development",
+            "score": 0.495359
+          },
+          {
+            "skill_id": "bosskuai-lenis-smooth-scroll",
+            "score": 0.326768
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-nuxt-development",
+          "vue-patterns"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "vue-patterns",
+        "selected": [
+          "vue-patterns"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-040",
+      "prompt": "add retries with a circuit breaker to the payment client",
+      "expected": [
+        "error-handling"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "error-handling",
+          "score": 13.417
+        },
+        "top3": [
+          {
+            "skill_id": "error-handling",
+            "score": 13.416725
+          },
+          {
+            "skill_id": "bosskuai-saas-billing-ops",
+            "score": 1.788142
+          },
+          {
+            "skill_id": "animate",
+            "score": 1.705847
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "error-handling",
+          "score": 0.532969
+        },
+        "top3": [
+          {
+            "skill_id": "error-handling",
+            "score": 0.532969
+          },
+          {
+            "skill_id": "animate",
+            "score": 0.162715
+          },
+          {
+            "skill_id": "schema",
+            "score": 0.162715
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "error-handling"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "error-handling",
+        "selected": [
+          "error-handling"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-041",
+      "prompt": "de-flake our playwright e2e suite in ci",
+      "expected": [
+        "bosskuai-browser-automation",
+        "bosskuai-qa-automation-strategy",
+        "e2e-testing"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "e2e-testing",
+          "score": 17.417
+        },
+        "top3": [
+          {
+            "skill_id": "e2e-testing",
+            "score": 17.416627
+          },
+          {
+            "skill_id": "bosskuai-qa-automation-strategy",
+            "score": 5.344955
+          },
+          {
+            "skill_id": "bosskuai-ci-cd-pipelines",
+            "score": 2.780129
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "e2e-testing",
+          "score": 0.566277
+        },
+        "top3": [
+          {
+            "skill_id": "e2e-testing",
+            "score": 0.566277
+          },
+          {
+            "skill_id": "bosskuai-qa-automation-strategy",
+            "score": 0.547238
+          },
+          {
+            "skill_id": "bosskuai-tdd-loop",
+            "score": 0.207341
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-browser-automation",
+          "bosskuai-qa-automation-strategy",
+          "e2e-testing"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "e2e-testing",
+        "selected": [
+          "e2e-testing"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-042",
+      "prompt": "remove generic AI slop from this responsive landing page",
+      "expected": [
+        "antislop",
+        "antislop-ui",
+        "bosskuai-taste",
+        "hallmark",
+        "taste-skill"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "antislop",
+          "score": 13.958
+        },
+        "top3": [
+          {
+            "skill_id": "antislop",
+            "score": 13.958135
+          },
+          {
+            "skill_id": "taste-skill",
+            "score": 10.717472
+          },
+          {
+            "skill_id": "antislop-ui",
+            "score": 7.674898
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-taste",
+          "score": 0.440032
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-taste",
+            "score": 0.440032
+          },
+          {
+            "skill_id": "antislop",
+            "score": 0.424559
+          },
+          {
+            "skill_id": "antislop-code",
+            "score": 0.424559
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "antislop",
+          "antislop-ui",
+          "bosskuai-taste",
+          "hallmark",
+          "taste-skill"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "antislop",
+        "selected": [
+          "antislop",
+          "taste-skill"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-043",
+      "prompt": "rewrite this copy without em dashes fake claims or chatbot filler",
+      "expected": [
+        "antislop-copywriting",
+        "copy-editing",
+        "copywriting"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "antislop-copywriting",
+          "score": 31.457
+        },
+        "top3": [
+          {
+            "skill_id": "antislop-copywriting",
+            "score": 31.456883
+          },
+          {
+            "skill_id": "bosskuai-prompt-optimizer",
+            "score": 1.739972
+          },
+          {
+            "skill_id": "copywriting",
+            "score": 1.556031
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "ad-creative",
+          "score": 0.194643
+        },
+        "top3": [
+          {
+            "skill_id": "ad-creative",
+            "score": 0.194643
+          },
+          {
+            "skill_id": "copywriting",
+            "score": 0.194643
+          },
+          {
+            "skill_id": "prospecting",
+            "score": 0.159987
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "antislop-copywriting",
+          "copy-editing",
+          "copywriting"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "antislop-copywriting",
+        "selected": [
+          "antislop-copywriting"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-044",
+      "prompt": "clean obvious AI comments without changing the code",
+      "expected": [
+        "antislop-code"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "antislop-code",
+          "score": 14.461
+        },
+        "top3": [
+          {
+            "skill_id": "antislop-code",
+            "score": 14.460564
+          },
+          {
+            "skill_id": "bosskuai-rigorous-code-review",
+            "score": 3.621742
+          },
+          {
+            "skill_id": "receiving-code-review",
+            "score": 3.466591
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "antislop-code",
+          "score": 0.330051
+        },
+        "top3": [
+          {
+            "skill_id": "antislop-code",
+            "score": 0.330051
+          },
+          {
+            "skill_id": "image-to-code-skill",
+            "score": 0.241877
+          },
+          {
+            "skill_id": "imagegen-frontend-mobile",
+            "score": 0.241877
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "antislop-code"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "antislop-code",
+        "selected": [
+          "antislop-code"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-045",
+      "prompt": "audit keyboard focus contrast and missing UI states",
+      "expected": [
+        "accessibility",
+        "bosskuai-ui-ux-design-to-code"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "accessibility",
+          "score": 14.158
+        },
+        "top3": [
+          {
+            "skill_id": "accessibility",
+            "score": 14.157619
+          },
+          {
+            "skill_id": "antislop-human",
+            "score": 7.38792
+          },
+          {
+            "skill_id": "pick-ui-library",
+            "score": 2.520278
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "antislop-human",
+          "score": 0.609805
+        },
+        "top3": [
+          {
+            "skill_id": "antislop-human",
+            "score": 0.609805
+          },
+          {
+            "skill_id": "accessibility",
+            "score": 0.52473
+          },
+          {
+            "skill_id": "bosskuai-throwaway-prototype",
+            "score": 0.224974
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "accessibility",
+          "bosskuai-ui-ux-design-to-code"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "accessibility",
+        "selected": [
+          "accessibility"
+        ],
+        "deferred": [
+          {
+            "skill_id": "pick-ui-library",
+            "reason": "requires user invocation as /pick-ui-library"
+          }
+        ],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-046",
+      "prompt": "fix mobile overflow responsive reflow and small tap targets",
+      "expected": [
+        "accessibility",
+        "antislop-layoutmobile",
+        "bosskuai-ui-ux-design-to-code"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "antislop-layoutmobile",
+          "score": 24.535
+        },
+        "top3": [
+          {
+            "skill_id": "antislop-layoutmobile",
+            "score": 24.535383
+          },
+          {
+            "skill_id": "minimal-fix",
+            "score": 2.202127
+          },
+          {
+            "skill_id": "bosskuai-mobile-app-release",
+            "score": 1.937611
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "antislop-layoutmobile",
+          "score": 0.636638
+        },
+        "top3": [
+          {
+            "skill_id": "antislop-layoutmobile",
+            "score": 0.636638
+          },
+          {
+            "skill_id": "prospecting",
+            "score": 0.223514
+          },
+          {
+            "skill_id": "bosskuai-greptile-review-loop",
+            "score": 0.207477
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "accessibility",
+          "antislop-layoutmobile",
+          "bosskuai-ui-ux-design-to-code"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "antislop-layoutmobile",
+        "selected": [
+          "antislop-layoutmobile"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-047",
+      "prompt": "use Headroom to compress this huge tool output and retrieve the original",
+      "expected": [
+        "bosskuai-headroom"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-headroom",
+          "score": 12.416
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-headroom",
+            "score": 12.416426
+          },
+          {
+            "skill_id": "free-tools",
+            "score": 1.61945
+          },
+          {
+            "skill_id": "bosskuai-deep-research",
+            "score": 1.327027
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-headroom",
+          "score": 0.352868
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-headroom",
+            "score": 0.352868
+          },
+          {
+            "skill_id": "imagegen-frontend-web",
+            "score": 0.250928
+          },
+          {
+            "skill_id": "image",
+            "score": 0.151359
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-headroom"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-headroom",
+        "selected": [
+          "bosskuai-headroom"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-048",
+      "prompt": "extract tables from this PDF to JSON with opendataloader-pdf",
+      "expected": [
+        "odl-pdf"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "odl-pdf",
+          "score": 20.958
+        },
+        "top3": [
+          {
+            "skill_id": "odl-pdf",
+            "score": 20.957561
+          },
+          {
+            "skill_id": "markitdown",
+            "score": 4.693797
+          },
+          {
+            "skill_id": "bosskuai-expo-react-native",
+            "score": 2.270919
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "odl-pdf",
+          "score": 1.0
+        },
+        "top3": [
+          {
+            "skill_id": "odl-pdf",
+            "score": 1.0
+          },
+          {
+            "skill_id": "bosskuai-customize-bosskuai",
+            "score": 0.201529
+          },
+          {
+            "skill_id": "bosskuai-go-development",
+            "score": 0.201529
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "odl-pdf"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "odl-pdf",
+        "selected": [
+          "odl-pdf"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-049",
+      "prompt": "OCR this scanned PDF with ODL and verify the extracted text",
+      "expected": [
+        "odl-pdf"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "odl-pdf",
+          "score": 12.705
+        },
+        "top3": [
+          {
+            "skill_id": "odl-pdf",
+            "score": 12.705151
+          },
+          {
+            "skill_id": "markitdown",
+            "score": 4.942252
+          },
+          {
+            "skill_id": "changelog-scan",
+            "score": 2.996407
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "odl-pdf",
+          "score": 0.686606
+        },
+        "top3": [
+          {
+            "skill_id": "odl-pdf",
+            "score": 0.686606
+          },
+          {
+            "skill_id": "lead-magnets",
+            "score": 0.134207
+          },
+          {
+            "skill_id": "markitdown",
+            "score": 0.134207
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "odl-pdf"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "odl-pdf",
+        "selected": [
+          "odl-pdf",
+          "markitdown"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-050",
+      "prompt": "build a PDF RAG pipeline with page and bounding box citations",
+      "expected": [
+        "odl-pdf"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "odl-pdf",
+          "score": 9.022
+        },
+        "top3": [
+          {
+            "skill_id": "odl-pdf",
+            "score": 9.021633
+          },
+          {
+            "skill_id": "bosskuai-ci-cd-pipelines",
+            "score": 2.602426
+          },
+          {
+            "skill_id": "ci-triage",
+            "score": 2.006923
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "odl-pdf",
+          "score": 0.639173
+        },
+        "top3": [
+          {
+            "skill_id": "odl-pdf",
+            "score": 0.639173
+          },
+          {
+            "skill_id": "directory-submissions",
+            "score": 0.201194
+          },
+          {
+            "skill_id": "customer-research",
+            "score": 0.153917
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "odl-pdf"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "odl-pdf",
+        "selected": [
+          "odl-pdf"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-051",
+      "prompt": "don't hallucinate, cite a source for every claim in this report",
+      "expected": [
+        "bosskuai-deep-research",
+        "bosskuai-grounding"
+      ],
+      "sources": [
+        "ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-grounding",
+          "score": 8.491
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-grounding",
+            "score": 8.490932
+          },
+          {
+            "skill_id": "open-source",
+            "score": 2.324895
+          },
+          {
+            "skill_id": "antislop-copywriting",
+            "score": 1.81824
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-grounding",
+          "score": 0.275335
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-grounding",
+            "score": 0.275335
+          },
+          {
+            "skill_id": "verification-before-completion",
+            "score": 0.152126
+          },
+          {
+            "skill_id": "bosskuai-agent-introspection",
+            "score": 0.134633
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-deep-research",
+          "bosskuai-grounding"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-grounding",
+        "selected": [
+          "bosskuai-grounding"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-052",
+      "prompt": "add a frame animation to the loading spinner",
+      "expected": [
+        "animate"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "animate",
+          "score": 4.83
+        },
+        "top3": [
+          {
+            "skill_id": "animate",
+            "score": 4.82991
+          },
+          {
+            "skill_id": "animate-expo",
+            "score": 2.632082
+          },
+          {
+            "skill_id": "animation-vocabulary",
+            "score": 2.632082
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "animate",
+          "score": 0.340517
+        },
+        "top3": [
+          {
+            "skill_id": "animate",
+            "score": 0.340517
+          },
+          {
+            "skill_id": "ask-sonner",
+            "score": 0.219828
+          },
+          {
+            "skill_id": "imagegen-frontend-mobile",
+            "score": 0.219828
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "animate"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "animate",
+        "selected": [
+          "animate"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-053",
+      "prompt": "micro-interactions for the settings page",
+      "expected": [
+        "animate"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "animate",
+          "score": 14.454
+        },
+        "top3": [
+          {
+            "skill_id": "animate",
+            "score": 14.454075
+          },
+          {
+            "skill_id": "bosskuai-ui-ux-design-to-code",
+            "score": 13.439541
+          },
+          {
+            "skill_id": "bosskuai-eval-driven-agent-improvement",
+            "score": 4.345925
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-claude-code-setup",
+          "score": 0.387161
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-claude-code-setup",
+            "score": 0.387161
+          },
+          {
+            "skill_id": "bosskuai-github-workflow",
+            "score": 0.387161
+          },
+          {
+            "skill_id": "ad-creative",
+            "score": 0.190126
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": false
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "animate"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "animate",
+        "selected": [
+          "animate",
+          "bosskuai-ui-ux-design-to-code"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-054",
+      "prompt": "hover animation on cards",
+      "expected": [
+        "animate"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "animate",
+          "score": 16.454
+        },
+        "top3": [
+          {
+            "skill_id": "animate",
+            "score": 16.45392
+          },
+          {
+            "skill_id": "animation-vocabulary",
+            "score": 5.015522
+          },
+          {
+            "skill_id": "bosskuai-gsap-animation",
+            "score": 5.015522
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "soft-skill",
+          "score": 0.584435
+        },
+        "top3": [
+          {
+            "skill_id": "soft-skill",
+            "score": 0.584435
+          },
+          {
+            "skill_id": "bosskuai-customer-discovery",
+            "score": 0.321331
+          },
+          {
+            "skill_id": "competitor-profiling",
+            "score": 0.321331
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": false
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "animate"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "animate",
+        "selected": [
+          "animate"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-055",
+      "prompt": "improve INP on my next.js app",
+      "expected": [
+        "bosskuai-web-performance"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-web-performance",
+          "score": 12.851
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-web-performance",
+            "score": 12.85086
+          },
+          {
+            "skill_id": "bosskuai-react-development",
+            "score": 7.73266
+          },
+          {
+            "skill_id": "improve-animations",
+            "score": 3.174881
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "aso",
+          "score": 0.259231
+        },
+        "top3": [
+          {
+            "skill_id": "aso",
+            "score": 0.259231
+          },
+          {
+            "skill_id": "improve-animations",
+            "score": 0.259231
+          },
+          {
+            "skill_id": "bosskuai-3d-web-development",
+            "score": 0.179852
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": false
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-web-performance"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-web-performance",
+        "selected": [
+          "bosskuai-web-performance",
+          "bosskuai-react-development"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-056",
+      "prompt": "toast notifications in react",
+      "expected": [
+        "ask-sonner"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "ask-sonner",
+          "score": 18.8
+        },
+        "top3": [
+          {
+            "skill_id": "ask-sonner",
+            "score": 18.8
+          },
+          {
+            "skill_id": "bosskuai-expo-react-native",
+            "score": 9.25503
+          },
+          {
+            "skill_id": "bosskuai-react-development",
+            "score": 5.270426
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "ask-sonner",
+          "score": 0.644118
+        },
+        "top3": [
+          {
+            "skill_id": "ask-sonner",
+            "score": 0.644118
+          },
+          {
+            "skill_id": "bosskuai-expo-react-native",
+            "score": 0.644118
+          },
+          {
+            "skill_id": "pick-ui-library",
+            "score": 0.355882
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "ask-sonner"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "ask-sonner",
+        "selected": [
+          "ask-sonner"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-057",
+      "prompt": "write a discovery call script for my B2B SaaS",
+      "expected": [
+        "sales-enablement"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "sales-enablement",
+          "score": 20.889
+        },
+        "top3": [
+          {
+            "skill_id": "sales-enablement",
+            "score": 20.88866
+          },
+          {
+            "skill_id": "bosskuai-customer-discovery",
+            "score": 5.377032
+          },
+          {
+            "skill_id": "prospecting",
+            "score": 3.139878
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-customer-discovery",
+          "score": 0.364396
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-customer-discovery",
+            "score": 0.364396
+          },
+          {
+            "skill_id": "directory-submissions",
+            "score": 0.338225
+          },
+          {
+            "skill_id": "offers",
+            "score": 0.32003
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": false
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "sales-enablement"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "sales-enablement",
+        "selected": [
+          "sales-enablement"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-058",
+      "prompt": "weekly pipeline review of my deals",
+      "expected": [
+        "bosskuai-sales-strategy"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-sales-strategy",
+          "score": 14.602
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-sales-strategy",
+            "score": 14.602369
+          },
+          {
+            "skill_id": "bosskuai-ci-cd-pipelines",
+            "score": 3.795601
+          },
+          {
+            "skill_id": "bosskuai-mongodb",
+            "score": 3.368549
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "revops",
+          "score": 0.517559
+        },
+        "top3": [
+          {
+            "skill_id": "revops",
+            "score": 0.517559
+          },
+          {
+            "skill_id": "marketing-loops",
+            "score": 0.482441
+          },
+          {
+            "skill_id": "sales-enablement",
+            "score": 0.30602
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": false
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-sales-strategy"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-sales-strategy",
+        "selected": [
+          "bosskuai-sales-strategy"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-059",
+      "prompt": "follow-up cadence after a demo",
+      "expected": [
+        "bosskuai-sales-strategy"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-sales-strategy",
+          "score": 26.5
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-sales-strategy",
+            "score": 26.5
+          },
+          {
+            "skill_id": "post-merge-scan",
+            "score": 4.231646
+          },
+          {
+            "skill_id": "bosskuai-rapid-prototype",
+            "score": 4.036894
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "cold-email",
+          "score": 0.354592
+        },
+        "top3": [
+          {
+            "skill_id": "cold-email",
+            "score": 0.354592
+          },
+          {
+            "skill_id": "post-merge-scan",
+            "score": 0.354592
+          },
+          {
+            "skill_id": "bosskuai-rapid-prototype",
+            "score": 0.331588
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": false
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-sales-strategy"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-sales-strategy",
+        "selected": [
+          "bosskuai-sales-strategy"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-060",
+      "prompt": "set up cold email deliverability SPF DKIM DMARC",
+      "expected": [
+        "bosskuai-lead-intelligence"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-lead-intelligence",
+          "score": 25.081
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-lead-intelligence",
+            "score": 25.081093
+          },
+          {
+            "skill_id": "cold-email",
+            "score": 13.763181
+          },
+          {
+            "skill_id": "emails",
+            "score": 2.490484
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "churn-prevention",
+          "score": 0.227051
+        },
+        "top3": [
+          {
+            "skill_id": "churn-prevention",
+            "score": 0.227051
+          },
+          {
+            "skill_id": "cold-email",
+            "score": 0.227051
+          },
+          {
+            "skill_id": "emails",
+            "score": 0.227051
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": false
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-lead-intelligence"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-lead-intelligence",
+        "selected": [
+          "bosskuai-lead-intelligence"
+        ],
+        "deferred": [
+          {
+            "skill_id": "cold-email",
+            "reason": "does not cover another prompt concern"
+          }
+        ],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-061",
+      "prompt": "SAFE vs priced round and cap table dilution",
+      "expected": [
+        "bosskuai-investor-prep"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-investor-prep",
+          "score": 24.447
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-investor-prep",
+            "score": 24.447269
+          },
+          {
+            "skill_id": "loop-budget",
+            "score": 1.748697
+          },
+          {
+            "skill_id": "pricing",
+            "score": 1.597091
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-go-development",
+          "score": 0.14242
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-go-development",
+            "score": 0.14242
+          },
+          {
+            "skill_id": "odl-pdf",
+            "score": 0.14242
+          },
+          {
+            "skill_id": "bosskuai-code-revamp",
+            "score": 0.120237
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": false
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-investor-prep"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-investor-prep",
+        "selected": [
+          "bosskuai-investor-prep"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-062",
+      "prompt": "build a lead list of dental clinics in Kuala Lumpur",
+      "expected": [
+        "prospecting"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "prospecting",
+          "score": 9.871
+        },
+        "top3": [
+          {
+            "skill_id": "prospecting",
+            "score": 9.87055
+          },
+          {
+            "skill_id": "bosskuai-lead-intelligence",
+            "score": 3.257609
+          },
+          {
+            "skill_id": "animate",
+            "score": 2.258113
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "prospecting",
+          "score": 0.315805
+        },
+        "top3": [
+          {
+            "skill_id": "prospecting",
+            "score": 0.315805
+          },
+          {
+            "skill_id": "bosskuai-lead-intelligence",
+            "score": 0.227815
+          },
+          {
+            "skill_id": "free-tools",
+            "score": 0.193561
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "prospecting"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "prospecting",
+        "selected": [
+          "prospecting"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-063",
+      "prompt": "check for sql injection in this code",
+      "expected": [
+        "bosskuai-cybersecurity-risk"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-cybersecurity-risk",
+          "score": 15.724
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-cybersecurity-risk",
+            "score": 15.723945
+          },
+          {
+            "skill_id": "bosskuai-laravel-development",
+            "score": 6.0
+          },
+          {
+            "skill_id": "bosskuai-claude-code-setup",
+            "score": 4.064316
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-laravel-development",
+          "score": 0.35913
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-laravel-development",
+            "score": 0.35913
+          },
+          {
+            "skill_id": "bosskuai-context-budget",
+            "score": 0.320435
+          },
+          {
+            "skill_id": "bosskuai-database-engineering",
+            "score": 0.320435
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": false
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-cybersecurity-risk"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-cybersecurity-risk",
+        "selected": [
+          "bosskuai-cybersecurity-risk"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-064",
+      "prompt": "dockerize my node app",
+      "expected": [
+        "bosskuai-docker"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-docker",
+          "score": 6.476
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-docker",
+            "score": 6.475681
+          },
+          {
+            "skill_id": "bosskuai-aws-deployment",
+            "score": 4.935668
+          },
+          {
+            "skill_id": "bosskuai-mobile-app-release",
+            "score": 4.347017
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "graphify",
+          "score": 0.356879
+        },
+        "top3": [
+          {
+            "skill_id": "graphify",
+            "score": 0.356879
+          },
+          {
+            "skill_id": "mcp-server-patterns",
+            "score": 0.356879
+          },
+          {
+            "skill_id": "animate-expo",
+            "score": 0.25347
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": false
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-docker"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-docker",
+        "selected": [
+          "bosskuai-docker",
+          "bosskuai-aws-deployment"
+        ],
+        "deferred": [
+          {
+            "skill_id": "bosskuai-mobile-app-release",
+            "reason": "does not cover another prompt concern"
+          }
+        ],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-065",
+      "prompt": "nuxt 4 data fetching",
+      "expected": [
+        "bosskuai-nuxt-development"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-nuxt-development",
+          "score": 13.237
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-nuxt-development",
+            "score": 13.237311
+          },
+          {
+            "skill_id": "bosskuai-react-development",
+            "score": 7.45423
+          },
+          {
+            "skill_id": "bosskuai-data-architecture",
+            "score": 3.62262
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-react-development",
+          "score": 0.643009
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-react-development",
+            "score": 0.643009
+          },
+          {
+            "skill_id": "bosskuai-lenis-smooth-scroll",
+            "score": 0.356991
+          },
+          {
+            "skill_id": "bosskuai-nuxt-development",
+            "score": 0.356991
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-nuxt-development"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-nuxt-development",
+        "selected": [
+          "bosskuai-nuxt-development"
+        ],
+        "deferred": [
+          {
+            "skill_id": "bosskuai-react-development",
+            "reason": "does not cover another prompt concern"
+          }
+        ],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-066",
+      "prompt": "dependency injection in laravel",
+      "expected": [
+        "bosskuai-laravel-development"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-laravel-development",
+          "score": 20.714
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-laravel-development",
+            "score": 20.713897
+          },
+          {
+            "skill_id": "bosskuai-laravel-verification",
+            "score": 7.832864
+          },
+          {
+            "skill_id": "bosskuai-laravel-security",
+            "score": 7.736622
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "dependency-triage",
+          "score": 0.371867
+        },
+        "top3": [
+          {
+            "skill_id": "dependency-triage",
+            "score": 0.371867
+          },
+          {
+            "skill_id": "bosskuai-context-budget",
+            "score": 0.340591
+          },
+          {
+            "skill_id": "bosskuai-prompt-injection-defense",
+            "score": 0.340591
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": false
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-laravel-development"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-laravel-development",
+        "selected": [
+          "bosskuai-laravel-development"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-067",
+      "prompt": "expo sdk upgrade",
+      "expected": [
+        "bosskuai-expo-react-native"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-expo-react-native",
+          "score": 20.992
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-expo-react-native",
+            "score": 20.991783
+          },
+          {
+            "skill_id": "animate-expo",
+            "score": 6.575349
+          },
+          {
+            "skill_id": "cloud",
+            "score": 3.957947
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "animate-expo",
+          "score": 0.344493
+        },
+        "top3": [
+          {
+            "skill_id": "animate-expo",
+            "score": 0.344493
+          },
+          {
+            "skill_id": "bosskuai-expo-react-native",
+            "score": 0.344493
+          },
+          {
+            "skill_id": "bosskuai-react-development",
+            "score": 0.344493
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-expo-react-native"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-expo-react-native",
+        "selected": [
+          "bosskuai-expo-react-native"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-068",
+      "prompt": "improve our SEO",
+      "expected": [
+        "seo-audit"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "seo-audit",
+          "score": 22.7
+        },
+        "top3": [
+          {
+            "skill_id": "seo-audit",
+            "score": 22.7
+          },
+          {
+            "skill_id": "ai-seo",
+            "score": 9.0
+          },
+          {
+            "skill_id": "bosskuai-seo-geo",
+            "score": 9.0
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "analytics",
+          "score": 0.520373
+        },
+        "top3": [
+          {
+            "skill_id": "analytics",
+            "score": 0.520373
+          },
+          {
+            "skill_id": "aso",
+            "score": 0.520373
+          },
+          {
+            "skill_id": "bosskuai-prompt-optimizer",
+            "score": 0.520373
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": false
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "seo-audit"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "seo-audit",
+        "selected": [
+          "seo-audit"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-069",
+      "prompt": "run Google Ads for our app",
+      "expected": [
+        "ads"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "ads",
+          "score": 18.035
+        },
+        "top3": [
+          {
+            "skill_id": "ads",
+            "score": 18.034534
+          },
+          {
+            "skill_id": "bosskuai-mobile-app-release",
+            "score": 7.262087
+          },
+          {
+            "skill_id": "ad-creative",
+            "score": 3.333471
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "ads",
+          "score": 0.760515
+        },
+        "top3": [
+          {
+            "skill_id": "ads",
+            "score": 0.760515
+          },
+          {
+            "skill_id": "ad-creative",
+            "score": 0.527431
+          },
+          {
+            "skill_id": "bosskuai-paid-acquisition-monetization",
+            "score": 0.527431
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "ads"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "ads",
+        "selected": [
+          "ads"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-070",
+      "prompt": "answer engine optimization for our docs",
+      "expected": [
+        "ai-seo"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "ai-seo",
+          "score": 19.208
+        },
+        "top3": [
+          {
+            "skill_id": "ai-seo",
+            "score": 19.208003
+          },
+          {
+            "skill_id": "bosskuai-grill-with-docs",
+            "score": 4.429549
+          },
+          {
+            "skill_id": "bosskuai-cost-optimization",
+            "score": 3.416894
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "ai-seo",
+          "score": 0.763602
+        },
+        "top3": [
+          {
+            "skill_id": "ai-seo",
+            "score": 0.763602
+          },
+          {
+            "skill_id": "bosskuai-throwaway-prototype",
+            "score": 0.29188
+          },
+          {
+            "skill_id": "scroll-world",
+            "score": 0.29188
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "ai-seo"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "ai-seo",
+        "selected": [
+          "ai-seo"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-071",
+      "prompt": "product hunt launch plan",
+      "expected": [
+        "launch"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "launch",
+          "score": 28.721
+        },
+        "top3": [
+          {
+            "skill_id": "launch",
+            "score": 28.721409
+          },
+          {
+            "skill_id": "bosskuai-product-verification",
+            "score": 6.343415
+          },
+          {
+            "skill_id": "bosskuai-launch-commercialization",
+            "score": 5.897759
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "launch",
+          "score": 1.0
+        },
+        "top3": [
+          {
+            "skill_id": "launch",
+            "score": 1.0
+          },
+          {
+            "skill_id": "directory-submissions",
+            "score": 0.805424
+          },
+          {
+            "skill_id": "offers",
+            "score": 0.636353
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "launch"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "launch",
+        "selected": [
+          "launch"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-072",
+      "prompt": "write landing page copy for our SaaS",
+      "expected": [
+        "copywriting"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "copywriting",
+          "score": 16.927
+        },
+        "top3": [
+          {
+            "skill_id": "copywriting",
+            "score": 16.926831
+          },
+          {
+            "skill_id": "taste-skill",
+            "score": 11.322437
+          },
+          {
+            "skill_id": "hallmark",
+            "score": 5.861219
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "ad-creative",
+          "score": 0.770434
+        },
+        "top3": [
+          {
+            "skill_id": "ad-creative",
+            "score": 0.770434
+          },
+          {
+            "skill_id": "copywriting",
+            "score": 0.770434
+          },
+          {
+            "skill_id": "prospecting",
+            "score": 0.429776
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "copywriting"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "copywriting",
+        "selected": [
+          "copywriting"
+        ],
+        "deferred": [
+          {
+            "skill_id": "taste-skill",
+            "reason": "does not cover another prompt concern"
+          }
+        ],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-073",
+      "prompt": "do a competitive analysis of our top 3 competitors",
+      "expected": [
+        "competitor-profiling"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "competitor-profiling",
+          "score": 16.6
+        },
+        "top3": [
+          {
+            "skill_id": "competitor-profiling",
+            "score": 16.599737
+          },
+          {
+            "skill_id": "competitors",
+            "score": 7.303152
+          },
+          {
+            "skill_id": "bosskuai-market-analysis",
+            "score": 5.060356
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "competitor-profiling",
+          "score": 0.689147
+        },
+        "top3": [
+          {
+            "skill_id": "competitor-profiling",
+            "score": 0.689147
+          },
+          {
+            "skill_id": "social",
+            "score": 0.525606
+          },
+          {
+            "skill_id": "competitors",
+            "score": 0.480991
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "competitor-profiling"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "competitor-profiling",
+        "selected": [
+          "competitor-profiling"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-074",
+      "prompt": "do a pr review of #123",
+      "expected": [
+        "bosskuai-rigorous-code-review"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-rigorous-code-review",
+          "score": 14.075
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-rigorous-code-review",
+            "score": 14.075404
+          },
+          {
+            "skill_id": "pr-review-triage",
+            "score": 9.145018
+          },
+          {
+            "skill_id": "bosskuai-pr-check",
+            "score": 7.966293
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-greptile-review-loop",
+          "score": 0.542483
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-greptile-review-loop",
+            "score": 0.542483
+          },
+          {
+            "skill_id": "bosskuai-pr-check",
+            "score": 0.542483
+          },
+          {
+            "skill_id": "bosskuai-rigorous-code-review",
+            "score": 0.542483
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-rigorous-code-review"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-rigorous-code-review",
+        "selected": [
+          "bosskuai-rigorous-code-review"
+        ],
+        "deferred": [
+          {
+            "skill_id": "pr-review-triage",
+            "reason": "does not cover another prompt concern"
+          },
+          {
+            "skill_id": "bosskuai-pr-check",
+            "reason": "does not cover another prompt concern"
+          }
+        ],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-075",
+      "prompt": "address the review comments on my PR",
+      "expected": [
+        "receiving-code-review"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "receiving-code-review",
+          "score": 28.3
+        },
+        "top3": [
+          {
+            "skill_id": "receiving-code-review",
+            "score": 28.299547
+          },
+          {
+            "skill_id": "minimal-fix",
+            "score": 9.146399
+          },
+          {
+            "skill_id": "pr-review-triage",
+            "score": 8.589421
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-greptile-review-loop",
+          "score": 0.658413
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-greptile-review-loop",
+            "score": 0.658413
+          },
+          {
+            "skill_id": "bosskuai-pr-check",
+            "score": 0.658413
+          },
+          {
+            "skill_id": "pr-review-triage",
+            "score": 0.658413
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": false
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "receiving-code-review"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "receiving-code-review",
+        "selected": [
+          "receiving-code-review"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-076",
+      "prompt": "the checkout page is broken",
+      "expected": [
+        "bosskuai-diagnose-loop"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-diagnose-loop",
+          "score": 11.146
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-diagnose-loop",
+            "score": 11.145925
+          },
+          {
+            "skill_id": "bosskuai-product-verification",
+            "score": 5.360459
+          },
+          {
+            "skill_id": "bosskuai-agent-architecture-audit",
+            "score": 4.345925
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-product-verification",
+          "score": 0.422713
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-product-verification",
+            "score": 0.422713
+          },
+          {
+            "skill_id": "bosskuai-diagnose-loop",
+            "score": 0.387161
+          },
+          {
+            "skill_id": "post-merge-scan",
+            "score": 0.387161
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-diagnose-loop"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-diagnose-loop",
+        "selected": [
+          "bosskuai-diagnose-loop"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-077",
+      "prompt": "use tdd to add a discount feature",
+      "expected": [
+        "bosskuai-tdd-loop"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-tdd-loop",
+          "score": 12.507
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-tdd-loop",
+            "score": 12.506648
+          },
+          {
+            "skill_id": "bosskuai-laravel-tdd",
+            "score": 5.706648
+          },
+          {
+            "skill_id": "animate",
+            "score": 2.986323
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-laravel-tdd",
+          "score": 0.427847
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-laravel-tdd",
+            "score": 0.427847
+          },
+          {
+            "skill_id": "bosskuai-tdd-loop",
+            "score": 0.427847
+          },
+          {
+            "skill_id": "animate",
+            "score": 0.273518
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-tdd-loop"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-tdd-loop",
+        "selected": [
+          "bosskuai-tdd-loop"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-078",
+      "prompt": "shorter answers please",
+      "expected": [
+        "bosskuai-token-saver"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-token-saver",
+          "score": 14.473
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-token-saver",
+            "score": 14.47322
+          },
+          {
+            "skill_id": "ai-seo",
+            "score": 3.34644
+          },
+          {
+            "skill_id": "bosskuai-grounding",
+            "score": 3.34644
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "bosskuai-token-saver",
+          "score": 0.342948
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-token-saver",
+            "score": 0.342948
+          },
+          {
+            "skill_id": "ai-seo",
+            "score": 0.314104
+          },
+          {
+            "skill_id": "bosskuai-throwaway-prototype",
+            "score": 0.314104
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-token-saver"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-token-saver",
+        "selected": [
+          "bosskuai-token-saver"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-079",
+      "prompt": "audit this UI for AI slop before we ship",
+      "expected": [
+        "antislop"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "antislop",
+          "score": 13.691
+        },
+        "top3": [
+          {
+            "skill_id": "antislop",
+            "score": 13.690672
+          },
+          {
+            "skill_id": "antislop-ui",
+            "score": 8.069627
+          },
+          {
+            "skill_id": "taste-skill",
+            "score": 5.514963
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "antislop",
+          "score": 0.438401
+        },
+        "top3": [
+          {
+            "skill_id": "antislop",
+            "score": 0.438401
+          },
+          {
+            "skill_id": "accessibility",
+            "score": 0.316628
+          },
+          {
+            "skill_id": "bosskuai-taste",
+            "score": 0.31379
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "antislop"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "antislop",
+        "selected": [
+          "antislop",
+          "antislop-ui"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-080",
+      "prompt": "build an admin dashboard for our product",
+      "expected": [
+        "bosskuai-ui-ux-design-to-code"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-ui-ux-design-to-code",
+          "score": 16.914
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-ui-ux-design-to-code",
+            "score": 16.913914
+          },
+          {
+            "skill_id": "bosskuai-product-strategy",
+            "score": 4.652095
+          },
+          {
+            "skill_id": "antislop-ui",
+            "score": 3.702759
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "community-marketing",
+          "score": 0.33763
+        },
+        "top3": [
+          {
+            "skill_id": "community-marketing",
+            "score": 0.33763
+          },
+          {
+            "skill_id": "offers",
+            "score": 0.33763
+          },
+          {
+            "skill_id": "bosskuai-observability-sre",
+            "score": 0.316647
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": false
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-ui-ux-design-to-code"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-ui-ux-design-to-code",
+        "selected": [
+          "bosskuai-ui-ux-design-to-code"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-081",
+      "prompt": "turn this Figma screenshot into React code",
+      "expected": [
+        "bosskuai-ui-ux-design-to-code"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "bosskuai-ui-ux-design-to-code",
+          "score": 7.661
+        },
+        "top3": [
+          {
+            "skill_id": "bosskuai-ui-ux-design-to-code",
+            "score": 7.660824
+          },
+          {
+            "skill_id": "bosskuai-expo-react-native",
+            "score": 3.694777
+          },
+          {
+            "skill_id": "bosskuai-react-development",
+            "score": 3.694777
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "image",
+          "score": 0.476805
+        },
+        "top3": [
+          {
+            "skill_id": "image",
+            "score": 0.476805
+          },
+          {
+            "skill_id": "bosskuai-ui-ux-design-to-code",
+            "score": 0.332188
+          },
+          {
+            "skill_id": "graphify",
+            "score": 0.323734
+          }
+        ],
+        "top1_hit": false,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "bosskuai-ui-ux-design-to-code"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "bosskuai-ui-ux-design-to-code",
+        "selected": [
+          "bosskuai-ui-ux-design-to-code"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    },
+    {
+      "case_id": "routing-082",
+      "prompt": "generate a brand kit and logo system",
+      "expected": [
+        "brandkit"
+      ],
+      "sources": [
+        "REVIEW_ROUTING_CASES"
+      ],
+      "bossku": {
+        "top1": {
+          "skill_id": "brandkit",
+          "score": 23.526
+        },
+        "top3": [
+          {
+            "skill_id": "brandkit",
+            "score": 23.526116
+          },
+          {
+            "skill_id": "bosskuai-design-systems",
+            "score": 3.990392
+          },
+          {
+            "skill_id": "scroll-world",
+            "score": 3.535917
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "description_only": {
+        "top1": {
+          "skill_id": "brandkit",
+          "score": 0.600607
+        },
+        "top3": [
+          {
+            "skill_id": "brandkit",
+            "score": 0.600607
+          },
+          {
+            "skill_id": "scroll-world",
+            "score": 0.579421
+          },
+          {
+            "skill_id": "bosskuai-design-systems",
+            "score": 0.348706
+          }
+        ],
+        "top1_hit": true,
+        "top3_hit": true
+      },
+      "automatic_selection": {
+        "expected_mode": "model_primary",
+        "expected_model_ids": [
+          "brandkit"
+        ],
+        "expected_user_only_ids": [],
+        "primary": "brandkit",
+        "selected": [
+          "brandkit"
+        ],
+        "deferred": [],
+        "hit": true
+      }
+    }
+  ],
+  "limitations": [
+    "Routing has been tuned against this curated corpus; this is not generalization evidence.",
+    "Measures candidate ranking and primary/defer policy outcomes, not full complement coverage, host loading or task quality.",
+    "No model coding runs, token consumption, cost, latency or live optional runtime measurements."
+  ]
+}

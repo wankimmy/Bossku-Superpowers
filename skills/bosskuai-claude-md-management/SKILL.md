@@ -5,6 +5,10 @@ description: Use when auditing or maintaining CLAUDE.md and Claude rule files, i
 
 # BosskuAI CLAUDE.md Management
 
+## Configured memory location
+
+Run `bossku memory-path --project <project-root>` to resolve `<memory-dir>` before reading or writing memory. Automatically save verified durable notes with `bossku remember` without waiting for the user to ask. When memory_storage is obsidian, all memory including handoffs lives directly in the vault; never create .bossku/memory in a code repo. The configured storage overrides legacy export wording below.
+
 Use this skill when the task is to **audit or improve Claude instructions**: `CLAUDE.md`, `.claude/rules/`, Claude commands, session learnings, or Claude-specific entry-point drift.
 
 ## How this differs from nearby skills
@@ -38,7 +42,7 @@ Use this skill when the task is to **audit or improve Claude instructions**: `CL
 
 **Shared BosskuAI files**
 - `AGENTS.md` remains the tool-neutral contract.
-- `.bossku/memory/` remains the durable cross-tool coordination layer (written via `bossku remember`).
+- `<memory-dir>/` remains the durable cross-tool coordination layer (written via `bossku remember`).
 - BosskuAI `references/` (checklists, playbooks, pitfalls) holds longer guidance that skills link to.
 
 ## Quality checks
@@ -70,7 +74,7 @@ Use this skill when the task is to **audit or improve Claude instructions**: `CL
 
 9. Extract only durable lessons from chat history, diffs, failures, or repeated friction.
 10. Decide the right destination:
-    - `.bossku/memory/learnings.md` for a durable note
+    - `<memory-dir>/learnings.md` for a durable note
     - `CLAUDE.md` for Claude startup behavior
     - `.claude/rules/*.md` for persistent Claude rule surfaces
     - a BosskuAI `references/` checklist or playbook for longer guidance

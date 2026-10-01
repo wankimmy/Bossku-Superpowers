@@ -9,6 +9,6 @@
 - If the lesson stays in memory or the learning log, did you record source, confidence, and promotion status?
 - If the lesson is repeated, did you escalate it to a checklist, pitfall, playbook, skill, or rule?
 - Did you check for stale or contradictory memory that should be updated now?
-- If `.bossku/memory/handoff.md` is still populated, is that state still genuinely active?
+- Resolve canonical storage with `bossku memory-path --project <project-root>`. If `<memory-dir>/handoff.md` is populated, is that state still active?
 - Did you avoid silent broad rewrites and keep the promotion to the smallest safe change?
 - If no promotion was made, did you state what future evidence would justify one?

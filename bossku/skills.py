@@ -260,11 +260,9 @@ def resolve_skill_id(skill_id: str, root: Path | None = None) -> str:
 
 def rank_skills(task: str, root: Path | None = None, limit: int = 5) -> list[tuple[str, float]]:
     """Rank skills for a task, best first. Uses skills/skill-index.json when present."""
-    from bossku.index import build_index, compute_idf, load_index, tokenize, variants
+    from bossku.index import compute_idf, tokenize, variants
 
-    data = load_index(root)
-    if data is None:
-        data = build_index(root)
+    data = _routing_index(root)
     entries: dict[str, dict] = data.get("skills", {})
     if not entries:
         return []
@@ -282,17 +280,17 @@ def rank_skills(task: str, root: Path | None = None, limit: int = 5) -> list[tup
 
     scored: list[tuple[str, float]] = []
     for sid, entry in entries.items():
+        if sid in NOT_INSTALLED:
+            continue
         scored.append((sid, _score_entry(sid, entry, task_l, q_terms, q_mass)))
     scored.sort(key=lambda pair: (-pair[1], pair[0]))
     return scored[:limit]
 
 
 def find_skill(task: str, root: Path | None = None) -> tuple[str, float]:
-    from bossku.index import load_index
-
     aliases = load_aliases(root)
     task_l = task.lower()
-    data = load_index(root)
+    data = _routing_index(root)
     known = set((data or {}).get("skills", {})) or set(list_skill_ids(root))
 
     for alias, target in aliases.items():
@@ -311,52 +309,162 @@ def recommend_skill_stack(
     root: Path | None = None,
     limit: int = 5,
 ) -> list[tuple[str, float]]:
-    """Return the primary match plus strong, prompt-explicit complements.
-
-    This is deliberately a shortlist, not an instruction to load every result. The
-    agent removes overlaps after reading the matched skill descriptions.
-    """
-    from bossku.index import build_index, load_index
-
-    if limit <= 0:
-        return []
-    data = load_index(root) or build_index(root)
-    entries: dict[str, dict] = data.get("skills", {})
-    ranked = rank_skills(task, root, limit=max(limit * 4, 20))
-    if not ranked or ranked[0][1] <= 0:
-        return []
-
-    task_l = " " + " ".join(re.findall(r"[a-z0-9]+", task.lower())) + " "
-    top_score = ranked[0][1]
-    selected: list[tuple[str, float]] = []
-    for position, (sid, score) in enumerate(ranked):
-        triggers = entries.get(sid, {}).get("triggers", [])
-        explicit = any(
-            len(str(trigger).split()) >= 2
-            and _contains(
-                task_l,
-                " ".join(re.findall(r"[a-z0-9]+", str(trigger).lower())),
-            )
-            for trigger in triggers
-        )
-        strong = score >= 4.0 and score >= top_score * 0.55
-        # Design-direction skills conflict when stacked (dials, fake-data and logo rules): one per stack.
-        if sid in DIRECTION_SKILLS and any(s in DIRECTION_SKILLS for s, _ in selected):
-            continue
-        if position == 0 or explicit or strong:
-            selected.append((resolve_skill_id(sid, root), round(score, 3)))
-        if len(selected) >= limit:
-            break
-    return selected
+    """Return a bounded stack; detailed reasons are available from select_skill_stack."""
+    result = select_skill_stack(task, root, limit)
+    return [(row["skill_id"], row["score"]) for row in result["selected"]]
 
 
 DIRECTION_SKILLS = frozenset(
     {"bosskuai-taste", "taste-skill", "hallmark", "soft-skill", "minimalist-skill", "brutalist-skill"}
 )
 
+# Alternatives for the same job. Domain specialists and process skills can coexist.
+ALTERNATIVE_SKILLS = (
+    DIRECTION_SKILLS,
+    frozenset({"bosskuai-diagnose-loop", "systematic-debugging"}),
+    frozenset({"bosskuai-tdd-loop", "test-driven-development"}),
+    frozenset({"animate", "emil-design-eng"}),
+)
+
+
+def select_skill_stack(
+    task: str,
+    root: Path | None = None,
+    limit: int = 5,
+    available: set[str] | None = None,
+) -> dict:
+    """Compose skills from prompt evidence, without executing or installing them.
+
+    Scores are lexical evidence, not probabilities. Availability is an explicit
+    host/profile inventory; None means the full installable repository inventory.
+    """
+    from bossku.index import tokenize, variants
+
+    entries = _routing_index(root).get("skills", {})
+    allowed = (set(entries) if available is None else set(available)) - NOT_INSTALLED
+    ranked = rank_skills(task, root, limit=len(entries))
+    scores = dict(ranked)
+    # Score separate asks independently so a strong first domain cannot drown out
+    # a second one. These are candidate hints; novelty and alternatives still gate loading.
+    concern_winners: set[str] = set()
+    concerns = re.split(r"[;,\n]|\b(?:and|then|also)\b", task.lower())
+    if len(concerns) > 1:
+        for concern in concerns:
+            matches = rank_skills(concern, root, limit=1)
+            if matches and matches[0][1] >= 6.0:
+                concern_winners.add(matches[0][0])
+    aliases = load_aliases(root)
+    task_l = task.lower()
+    requested: list[str] = []
+    mentions = []
+    for name in [*entries, *aliases]:
+        for match in re.finditer(r"(?<![\w-])" + re.escape(name) + r"(?![\w-])", task_l):
+            before = task_l[:match.start()]
+            named = ("-" in name or "_" in name or task_l.strip() == name
+                     or before.endswith(("/", "$"))
+                     or re.search(r"\b(?:use|load|invoke|run|apply|select|skill)\s+"
+                                  r"(?:[\w$/-]+\s*(?:,|and)\s*)*$", before))
+            if not named:
+                continue
+            mentions.append((match.start(), resolve_skill_id(name, root)))
+    for _, sid in sorted(mentions):
+        if sid not in requested:
+            requested.append(sid)
+
+    selected: list[dict] = []
+    deferred: list[dict] = []
+    unavailable = []
+    excluded: set[str] = set()
+    covered: set[str] = set()
+    query = {token: variants(token) for token in tokenize(task)}
+    order = requested + [sid for sid, _ in ranked if sid not in requested]
+    top = max((score for sid, score in ranked if sid in allowed), default=0.0)
+
+    for sid in order:
+        entry = entries[sid]
+        score = scores.get(sid, 0.0)
+        explicit = sid in requested
+        words = set(tokenize(" ".join([sid.replace("bosskuai-", "").replace("-", " "),
+                                       *entry.get("triggers", [])])))
+        terms = {term for term, forms in query.items() if forms & words}
+        matched_triggers = [phrase for phrase in entry.get("triggers", [])
+                            if _contains(" " + task_l.replace("-", " ") + " ",
+                                         phrase.replace("-", " "))]
+        phrase_match = any(len(phrase.split()) >= 2 for phrase in matched_triggers)
+        if not explicit and sid not in concern_winners and (
+            score < 4.0 or (score < top * 0.55 and not phrase_match)
+        ):
+            continue
+
+        reason = None
+        names = [sid, sid.removeprefix("bosskuai-").replace("-", " "),
+                 *(alias for alias, target in aliases.items() if resolve_skill_id(target, root) == sid)]
+        if sid == "bosskuai-hindsight-memory":
+            names.append("hindsight")
+        negated = any(re.search(r"\b(?:do not|don't|without|avoid|no|not)\s+"
+                                r"(?:(?:use|using|load|loading|invoke|invoking|run|running|apply|applying|select|selecting)\s+)?[$/]?"
+                                + re.escape(name) + r"(?![\w-])", task_l) for name in names)
+        if negated:
+            reason = "excluded by the user"
+            excluded.add(sid)
+        elif sid not in allowed:
+            reason = "not installed in the selected inventory"
+            if explicit:
+                unavailable.append(sid)
+        elif entry.get("user_invoked"):
+            reason = "requires user invocation as /" + sid
+        elif sid == "bosskuai-hindsight-memory" and not (
+            re.search(r"\bhindsight\b", task_l)
+            or (re.search(r"\b(?:retain|recall|reflect)\b", task_l)
+                and re.search(r"\b(?:memory bank|bank_id|bank id|mcp)\b", task_l))
+        ):
+            reason = "optional Hindsight integration was not requested"
+        elif any(sid in group and any(row["skill_id"] in group for row in selected)
+                 for group in ALTERNATIVE_SKILLS):
+            reason = "alternative to an already selected skill"
+        elif len(selected) >= max(limit, 0):
+            reason = "stack limit reached; use this skill in a later phase"
+        elif selected and not explicit and not (terms - covered):
+            reason = "does not cover another prompt concern"
+
+        if reason:
+            deferred.append({"skill_id": sid, "reason": reason, "score": round(score, 3)})
+            continue
+        selected.append({"skill_id": sid, "score": round(score, 3),
+                         "description": entry.get("description", ""),
+                         "reason": "explicit skill request" if explicit else
+                                   ("primary prompt match" if not selected else "additional prompt concern"),
+                         "matched_terms": sorted(terms), "matched_triggers": matched_triggers})
+        covered.update(terms)
+
+    if not selected and limit > 0 and COFOUNDER_SKILL in allowed and COFOUNDER_SKILL not in excluded:
+        selected.append({"skill_id": COFOUNDER_SKILL, "score": 0.0,
+                         "description": entries[COFOUNDER_SKILL].get("description", ""),
+                         "reason": "insufficient eligible evidence; inspect the task before loading specialists",
+                         "matched_terms": [], "matched_triggers": []})
+    primary = selected[0]["skill_id"] if selected else None
+    primary_score = selected[0]["score"] if selected else 0.0
+    runner_up = max((score for sid, score in ranked if sid in allowed and sid != primary), default=0.0)
+    confident = bool(selected) and (primary in requested or
+                                  (primary_score >= 6.0 and primary_score >= runner_up * 1.25))
+    unknown = sorted(set(re.findall(r"\bbosskuai-[a-z0-9]+(?:-[a-z0-9]+)*\b", task_l))
+                     - set(entries) - set(aliases))
+    unavailable.extend(unknown)
+    deferred.extend({"skill_id": sid, "reason": "unknown requested skill", "score": 0.0} for sid in unknown)
+    return {"primary": primary, "selected": selected, "deferred": deferred,
+            "confident": confident, "unavailable_requested": unavailable,
+            "note": "Read selected descriptions and verify host capabilities. Scores are lexical evidence; "
+                    "re-route when the task changes. Selection does not invoke tools or authorize side effects."}
+
 
 def _contains(haystack: str, phrase: str) -> bool:
     return f" {phrase} " in haystack
+
+
+def _routing_index(root: Path | None = None) -> dict:
+    from bossku.index import build_index, index_is_stale, load_index
+
+    return build_index(root) if index_is_stale(root) else load_index(root)
 
 
 def _score_entry(
@@ -414,12 +522,11 @@ def _score_entry(
     return score
 
 
-def write_routing_cache(dest: Path, root: Path | None = None) -> None:
+def write_routing_cache(dest: Path, root: Path | None = None, available: set[str] | None = None) -> None:
     """Mirror the routing index next to the install so hosts get triggers, not just names."""
-    from bossku.index import build_index, load_index
-
-    data = load_index(root) or build_index(root)
+    data = _routing_index(root)
     entries: dict[str, dict] = data.get("skills", {})
+    allowed = (set(entries) if available is None else set(available)) - NOT_INSTALLED
     payload = {
         "version": data.get("version", "2.1.0"),
         "fingerprint": data.get("fingerprint", ""),
@@ -433,11 +540,18 @@ def write_routing_cache(dest: Path, root: Path | None = None) -> None:
                 "keywords": entry.get("keywords", []),
                 "model_role": entry.get("model_role", "coder"),
                 "pack": entry.get("pack", "bossku"),
+                "user_invoked": bool(entry.get("user_invoked")),
             }
-            for sid, entry in sorted(entries.items())
+            for sid, entry in sorted(entries.items()) if sid in allowed
         ],
-        "aliases": load_aliases(root),
+        "aliases": {alias: target for alias, target in load_aliases(root).items()
+                    if resolve_skill_id(target, root) in allowed},
         "default_skill_id": COFOUNDER_SKILL,
+        "selection_policy": {
+            "alternative_groups": [sorted(group) for group in ALTERNATIVE_SKILLS],
+            "note": "Choose one primary and complements for distinct concerns. Respect exclusions, "
+                    "user-only invocation and runtime availability; read descriptions before loading.",
+        },
     }
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(json.dumps(payload, indent=2), encoding="utf-8")
@@ -507,6 +621,8 @@ def prune_stale_skills(dests: tuple[Path, ...], keep: set[str], root: Path | Non
 
 
 def _profile_skills(profile: str, root: Path | None) -> list[str]:
+    if profile not in {"core", "full"}:
+        raise ValueError("profile must be core or full")
     core = [
         COFOUNDER_SKILL,
         "bosskuai-project-understanding",

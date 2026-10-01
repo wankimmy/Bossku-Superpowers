@@ -5,7 +5,7 @@ description: "Trace execution paths, call chains, module boundaries, and side ef
 
 # BosskuAI Codebase Analysis
 
-Use this skill when the first task is understanding the codebase correctly before making any claims or changes.
+Use this skill to explain how existing code runs, trace behavior, or locate module ownership before making changes.
 
 ## How this differs from nearby skills
 
@@ -21,11 +21,18 @@ Use this skill when the first task is understanding the codebase correctly befor
 - Generated code, compiled output, and support files are not the source of truth — find the originating source.
 - The goal is a mental model of the system that is accurate enough to make correct predictions about behavior.
 
+## Scope and evidence
+
+- Resolve the actual project root and the behavior being investigated. Record the analyzed revision or working-tree state when available; distinguish uncommitted source from a pinned commit. Non-Git workspaces need source paths and a stated scope, not an origin remote.
+- Start with the relevant entry point and expand only when a dependency, side effect, or uncertainty requires it. State what was sampled and what remains unread.
+- Support each important runtime relationship with `file:line` evidence for the call, registration, dispatch, query, or transport. File proximity, names, or an import alone do not establish execution order or runtime causality.
+- Keep source inspection, test results, and observed runtime behavior separate. A valid source location or rendered diagram proves neither that the relationship executes nor that the behavior is correct. Re-check cited locations after edits before reusing an earlier map.
+
 ## Workflow
 
 ### Phase 1 — Orient
 
-With a `graft/` index, use `graft callers` or `map` first (see the `graft` skill).
+With an available `graft/` index and CLI, use `graft callers` or `map` first (see the `graft` skill). Otherwise use narrow source searches; analysis does not require installing a graph runtime.
 
 1. Identify the **entry points**: HTTP server, CLI entrypoint, main function, event listener, cron schedule.
 2. Read the top-level structure: directory organization, major modules/packages, config files, test structure.
@@ -38,6 +45,7 @@ With a `graft/` index, use `graft callers` or `map` first (see the `graft` skill
    - Entry → Authentication/Authorization middleware → Routing → Handler → Business logic → Data access → Response/Side effects
 6. At each step: what data flows in? what transforms happen? what can go wrong?
 7. Identify **side effects** that are not immediately obvious: cache writes, event emissions, external calls, background jobs triggered.
+   Label the relevant direction, action/protocol, synchronous or asynchronous transport, and failure/retry path when the source establishes them.
 
 ### Phase 3 — Map the architecture
 
@@ -79,10 +87,13 @@ With a `graft/` index, use `graft callers` or `map` first (see the `graft` skill
 - Do not make claims about code behavior without reading the actual source — README and docs are aspirational.
 - Do not treat generated, compiled, or vendor files as the source of truth.
 - Distinguish confirmed facts (directly seen in code) from inferences (pattern-based) in every output.
+- Treat quality markers and missing internal callers as candidates, not proven defects or dead code; check public APIs, plugins, registration, and dynamic callers before recommending removal.
 
 ## Output format
 
 ```
+Analysis scope: [project root, behavior, revision / working-tree state, sampled and unread areas]
+
 Stack and entry points:
   Language / runtime: [stack]
   Frameworks: [list]
@@ -110,8 +121,9 @@ Extension points:
   High-risk areas (change carefully): [list]
 
 Confirmed vs inferred:
-  Confirmed: [facts seen directly in code]
+  Confirmed: [facts seen directly in code with source locations]
   Inferred: [reasonable assumptions from patterns]
+  Exercised: [behavior actually checked, command and result, or not run]
 
 Open uncertainties:
   [question — what would resolve it]

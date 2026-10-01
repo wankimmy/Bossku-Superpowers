@@ -40,6 +40,24 @@ def copy_support_files(source_dir: Path, dest_dir: Path) -> list[str]:
     return copied
 
 
+def copy_skill_support(root: Path, destination: Path) -> dict[str, list[str]]:
+    """Install shared sidecars at the relative paths used by installed skills."""
+    references = copy_support_files(root / "references", destination / "references")
+    copy_support_files(root / "site", destination / "site")
+    docs = []
+    for name in ("memory.md",):
+        source = root / "docs" / name
+        if source.is_file():
+            target = destination / "docs" / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            if target.exists():
+                make_path_writable(target)
+            shutil.copyfile(source, target)
+            make_path_writable(target)
+            docs.append(name)
+    return {"references": references, "docs": docs}
+
+
 def tools_coverage_map(agents_dest: Path, claude_dest: Path) -> dict:
     agents_s = str(agents_dest)
     claude_s = str(claude_dest)
@@ -57,12 +75,54 @@ def tools_coverage_map(agents_dest: Path, claude_dest: Path) -> dict:
     }
 
 
+AUTO_MEMORY_BLOCK = """<!-- bosskuai:memory:start -->
+## Automatic BosskuAI memory
+
+For meaningful project work, resolve the actual project root and run
+`bossku memory-path --project <project-root>` to locate canonical memory.
+Read relevant notes there before making decisions or continuing work.
+Automatically save new, verified decisions, plans, project facts, and lessons
+with `bossku remember --project <project-root> --kind decision|plan|learning|project "<concise note>"`
+before the final response. Do not wait for the user to request remembering.
+Skip trivial chatter, duplicate notes, secrets, raw prompts, and transcripts.
+The CLI chooses storage from ~/.bosskuai/config.json. When memory_storage is
+obsidian, all memory (including handoffs) lives in the Obsidian vault. Never
+create or write .bossku/memory or repo sync-state files. Resolve handoff.md
+inside the directory returned by memory-path. Do not fall back to the repo
+if the vault is unavailable; report that the note was not saved.
+<!-- bosskuai:memory:end -->"""
+
+
+def install_auto_memory_instructions(home: Path) -> list[str]:
+    paths = (home / ".codex" / "AGENTS.md", home / ".claude" / "CLAUDE.md",
+             home / ".config" / "opencode" / "AGENTS.md")
+    installed = []
+    start_marker, end_marker = "<!-- bosskuai:memory:start -->", "<!-- bosskuai:memory:end -->"
+    for path in paths:
+        if not path.parent.is_dir():
+            continue
+        existing = path.read_text(encoding="utf-8") if path.is_file() else ""
+        if start_marker in existing and end_marker in existing:
+            start = existing.index(start_marker)
+            end = existing.index(end_marker, start) + len(end_marker)
+            text = existing[:start] + AUTO_MEMORY_BLOCK + existing[end:]
+        else:
+            text = existing.rstrip() + ("\n\n" if existing.strip() else "") + AUTO_MEMORY_BLOCK + "\n"
+        if text != existing:
+            if path.exists():
+                make_path_writable(path)
+            path.write_text(text, encoding="utf-8")
+        installed.append(str(path))
+    return installed
+
+
 def install_user(
     *,
     root: Path | None = None,
     home: Path | None = None,
     profile: str = "full",
     vault: str | None = None,
+    memory_storage: str | None = None,
 ) -> dict:
     r = repo_root(root)
     h = home if home is not None else Path.home()
@@ -71,11 +131,10 @@ def install_user(
     installed_agents = copy_skills_to(agents_dest, r, profile)
     installed_claude = copy_skills_to(claude_dest, r, profile)
     pruned = prune_stale_skills((agents_dest, claude_dest), set(installed_agents), r)
-    installed_agents_references = copy_support_files(r / "references", agents_dest.parent / "references")
-    installed_claude_references = copy_support_files(r / "references", claude_dest.parent / "references")
-    # hallmark links resolve ../../site/css/tokens.css from its skill folder.
-    for dest in (agents_dest, claude_dest):
-        copy_support_files(r / "site", dest.parent / "site")
+    agents_support = copy_skill_support(r, agents_dest.parent)
+    claude_support = copy_skill_support(r, claude_dest.parent)
+    installed_agents_references = agents_support["references"]
+    installed_claude_references = claude_support["references"]
     agents_n = len(installed_agents)
     claude_n = len(installed_claude)
     if agents_n == 0 or claude_n == 0:
@@ -85,7 +144,7 @@ def install_user(
             f"skill mirror mismatch: agents={agents_n} claude={claude_n}; re-run `bossku install`"
         )
     cache_path = user_config_dir(h) / "routing-cache.json"
-    write_routing_cache(cache_path, r)
+    write_routing_cache(cache_path, r, available=set(installed_agents))
     cfg_path = user_config_dir(h) / "config.json"
     cfg: dict = {}
     if cfg_path.is_file():
@@ -94,10 +153,17 @@ def install_user(
     cfg["profile"] = profile
     if vault:
         cfg["obsidian_vault"] = vault
+    if memory_storage is not None:
+        if memory_storage not in {"repo", "obsidian"}:
+            raise ValueError("memory_storage must be repo or obsidian")
+        if memory_storage == "obsidian" and not cfg.get("obsidian_vault"):
+            raise ValueError("obsidian memory requires --vault or a configured obsidian_vault")
+        cfg["memory_storage"] = memory_storage
     cfg_path.parent.mkdir(parents=True, exist_ok=True)
     cfg_path.write_text(json.dumps(cfg, indent=2), encoding="utf-8")
     # Default denser Obsidian auto-sync hooks (clone → pip install -e . → bossku install).
     hooks_result = install_hooks(home=h)
+    memory_instructions = install_auto_memory_instructions(h)
     return {
         "agents_skills": str(agents_dest),
         "claude_skills": str(claude_dest),
@@ -107,9 +173,12 @@ def install_user(
         "pruned_skills": pruned,
         "agents_reference_count": len(installed_agents_references),
         "claude_reference_count": len(installed_claude_references),
+        "agents_doc_count": len(agents_support["docs"]),
+        "claude_doc_count": len(claude_support["docs"]),
         "tools": tools_coverage_map(agents_dest, claude_dest),
         "routing_cache": str(cache_path),
         "hooks": hooks_result,
+        "auto_memory_instructions": memory_instructions,
     }
 
 
@@ -117,11 +186,14 @@ def update_user(*, root: Path | None = None, home: Path | None = None) -> dict:
     cfg_path = user_config_dir(home) / "config.json"
     profile = "full"
     vault = None
+    effective_root = root
     if cfg_path.is_file():
         cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
         profile = cfg.get("profile", "full")
         vault = cfg.get("obsidian_vault")
-    return install_user(root=root, home=home, profile=profile, vault=vault)
+        if effective_root is None and cfg.get("installed_from"):
+            effective_root = Path(cfg["installed_from"])
+    return install_user(root=effective_root, home=home, profile=profile, vault=vault)
 
 
 def uninstall_user(*, root: Path | None = None, home: Path | None = None, purge: bool = False) -> dict:

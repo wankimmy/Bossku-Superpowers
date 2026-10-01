@@ -595,7 +595,8 @@ CURATED_EXCLUSIONS: dict[str, list[str]] = {
     ],
     "schema": [
         "database schema", "db schema", "schema migration", "sql schema", "prisma schema",
-        "graphql schema", "table schema", "schema design", "json schema", "postgres", "mysql",
+        "graphql schema", "table schema", "schema design", "json schema", "api schema", "openapi",
+        "postgres", "mysql",
     ],
     "bosskuai-taste": [
         "admin dashboard", "admin panel", "this dashboard", "build a dashboard", "dashboard ui",
@@ -816,16 +817,18 @@ def _headings(text: str) -> list[str]:
 
 
 def skills_fingerprint(root: Path | None = None) -> str:
-    """Hash of every skill's id + frontmatter, so staleness is detectable."""
+    """Hash all inputs that affect routing, including headings and policy tables."""
     base = skills_dir(root)
     h = hashlib.sha256()
+    policy = {"version": INDEX_VERSION, "triggers": CURATED_TRIGGERS,
+              "exclusions": CURATED_EXCLUSIONS, "roles": CURATED_ROLES,
+              "aliases": load_aliases(root), "vendored": load_vendored(root)}
+    h.update(json.dumps(policy, sort_keys=True).encode("utf-8"))
     for sid in list_skill_ids(root):
-        meta = parse_skill_md(base / sid / "SKILL.md")
         h.update(sid.encode())
         h.update(b"\0")
-        h.update(meta.name.encode())
-        h.update(b"\0")
-        h.update(meta.description.encode())
+        # Normalize line endings so Windows and Unix builds produce the same index.
+        h.update((base / sid / "SKILL.md").read_text(encoding="utf-8").encode("utf-8"))
         h.update(b"\n")
     return h.hexdigest()[:16]
 

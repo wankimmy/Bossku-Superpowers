@@ -6,7 +6,8 @@ from pathlib import Path
 
 from bossku import __version__
 from bossku.memory import init_memory_templates
-from bossku.paths import MARKER_END, MARKER_START, project_meta_dir
+from bossku.install import copy_skill_support
+from bossku.paths import MARKER_END, MARKER_START, project_meta_dir, repo_root
 from bossku.skills import copy_skills_to, skills_dir
 from bossku.validate import claude_imports_agents_md, omp_imports_agents_md
 
@@ -30,6 +31,7 @@ def init_project(
     project: Path,
     *,
     root: Path | None = None,
+    home: Path | None = None,
     portable: bool = False,
     profile: str = "core",
 ) -> dict:
@@ -42,7 +44,7 @@ def init_project(
     metadata["bossku_version"] = __version__
     metadata.setdefault("profile", profile)
     meta_file.write_text(json.dumps(metadata, indent=2), encoding="utf-8")
-    init_memory_templates(project)
+    memory_dir = init_memory_templates(project, home=home)
     agents_path = project / "AGENTS.md"
     claude_path = project / "CLAUDE.md"
     omp_dir = project / ".omp"
@@ -52,8 +54,15 @@ def init_project(
         "BosskuAI is active. Before multi-step work, match the task to an installed skill "
         "(use `bossku skills find` when unclear). Select one primary skill and the smallest "
         "complementary set justified by distinct prompt concerns; multiple skills are valid. "
+        "For mixed or uncertain work, inspect `bossku skills find` selection reasons, "
+        "deferred candidates, and unavailable requested skills; matches are search candidates. "
+        "Verify host capabilities and re-route when the task changes. "
         "Use Superpowers for process, Anti-Slop for output quality, and verify before completion. "
-        "Save durable decisions with `bossku remember`. "
+        "Automatically save verified decisions, plans, project facts, and lessons with "
+        "`bossku remember --project <project-root> --kind decision|plan|learning|project` "
+        "before the final response; do not wait for the user to ask. "
+        "Resolve memory using `bossku memory-path --project <project-root>`; "
+        "never write .bossku/memory when memory_storage is obsidian. "
         "Grounding is always on: say when evidence is insufficient instead of guessing, "
         "and ground factual claims in quotes, file:line, or command output."
         # antislop runs an install wizard and a blocking "during or after?" question unless the
@@ -97,11 +106,12 @@ def init_project(
     if portable:
         dest = project / ".bossku" / "skills"
         copy_skills_to(dest, root, profile)
+        copy_skill_support(repo_root(root), dest.parent)
         portable_info = str(dest)
     return {
         "project": str(project),
         "meta": str(meta_file),
-        "memory": str(meta / "memory"),
+        "memory": str(memory_dir),
         "omp": str(omp_dir),
         "portable_skills": portable_info,
     }

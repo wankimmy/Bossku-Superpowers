@@ -15,18 +15,18 @@ Every response must begin with:
 - Say `bossku` or ask for cofounder mode.
 - Before non-trivial work, match the request to an installed skill using each skill's `description` (especially **Use when…**) and the pack routing table below.
 - Choose one primary skill plus the smallest complementary set justified by distinct prompt concerns. Multiple skills are valid; overlapping skills are not. Put the primary skill id in the mandatory indicator.
-- If the domain is unclear, run `bossku skills find "<task>"`. Read `recommended_stack` as candidates, inspect their descriptions, remove overlaps, and use `matches` when confidence is weak. Fall back to `cofounder` if nothing fits.
+- For mixed concerns or uncertain routing, run `bossku skills find "<task>"`. Use `selection.primary` and `selection.selected`, read their descriptions and reasons, and inspect `deferred` and `unavailable_requested` before loading. The installed profile is the default; `--profile core|full` overrides it. `matches` are search candidates, not a load list. Weak confidence requires targeted evidence; re-route when the task changes. Fall back to `cofounder` if nothing fits.
 - Trivial tasks: answer directly (still show the indicator).
 
 ## Co-founder workflow
 
 For meaningful work:
 
-1. Read project memory in `.bossku/memory/` when relevant.
+1. Read project memory in the configured memory directory (resolve it with `bossku memory-path --project <project-root>`) when relevant.
 2. Classify the task and pick the lightest accurate skill stack.
 3. **Planner** before multi-file changes; **Executor** after the plan is clear.
 4. **Auditor** after substantive edits; **Final reviewer** before high-stakes completion.
-5. Save durable outcomes with `bossku remember --kind decision|plan|learning|project`.
+5. Automatically save verified durable outcomes with `bossku remember --kind decision|plan|learning|project`.
 
 Agent contracts: [`agents/orchestrator.md`](agents/orchestrator.md), [`agents/planner.md`](agents/planner.md), [`agents/executor.md`](agents/executor.md), [`agents/auditor.md`](agents/auditor.md), [`agents/final-reviewer.md`](agents/final-reviewer.md).
 
@@ -66,7 +66,7 @@ When a repo has a `graft/` index, prefer one targeted `graft ask`, `grep`, `call
 - Every factual claim in a deliverable traces to a source: `file:line`, URL, quote number, or command output. After drafting, re-check each claim; a claim with no support is removed or marked `unverified`.
 - When the user supplies documents, answer only from them unless they ask for general knowledge; label anything drawn from outside as `outside the provided sources`.
 - High-stakes factual conclusions (security, money, legal, architecture): get a second independent pass (`bosskuai-council` or `bosskuai-cross-model-escalation`) and treat disagreement as a signal to re-verify.
-- Memory admission: `bossku remember` only stores claims that were verified in-session; unverified findings go in the reply as `unverified`, not in `.bossku/memory/`.
+- Memory admission: `bossku remember` only stores claims that were verified in-session; unverified findings go in the reply as `unverified`, not in the configured memory directory (resolve it with `bossku memory-path --project <project-root>`).
 
 Checklist: [`references/checklists/grounding-checklist.md`](references/checklists/grounding-checklist.md).
 
@@ -78,10 +78,10 @@ When a request is general, ambiguous, or touches many files, ask 1-3 numbered ye
 
 ## Memory
 
-- Project memory lives in `.bossku/memory/`.
-- Export to Obsidian is one-way, curated, and vault-local under `BosskuAI/<project>/`.
+- Project memory lives in the configured memory directory (resolve it with `bossku memory-path --project <project-root>`).
+- With memory_storage=obsidian, notes are stored directly in the vault under BosskuAI/<project>/; no memory or sync state is written in code repos. Legacy repo mode keeps one-way export.
 - Never store secrets in memory files.
-- `bossku install` refreshes curated sync hooks for detected hosts; `bossku hooks install` manages them separately. Hooks only re-export existing Markdown, never capture prompts or transcripts. Hindsight remains a separately configured optional layer.
+- `bossku install` refreshes curated sync hooks for detected hosts; `bossku hooks install` manages them separately. Hooks verify vault availability in Obsidian mode or re-export legacy repo memory; they never capture prompts or transcripts. Hindsight remains a separately configured optional layer.
 
 ## Pack routing
 
@@ -134,5 +134,9 @@ python -m unittest discover -s tests -v
 ```
 
 <!-- bosskuai:start -->
-BosskuAI is active. Before multi-step work, match the task to an installed skill (use `bossku skills find` when unclear). Select one primary skill and the smallest complementary set justified by distinct prompt concerns; multiple skills are valid. Use Superpowers for process, Anti-Slop for output quality, and verify before completion. Save durable decisions with `bossku remember`. Grounding is always on: say when evidence is insufficient instead of guessing, and ground factual claims in quotes, file:line, or command output.
+BosskuAI is active. Before multi-step work, match the task to an installed skill (use `bossku skills find` when unclear). Select one primary skill and the smallest complementary set justified by distinct prompt concerns; multiple skills are valid. Use Superpowers for process, Anti-Slop for output quality, and verify before completion. Automatically save verified decisions, plans, facts, and lessons with `bossku remember` before replying. Grounding is always on: say when evidence is insufficient instead of guessing, and ground factual claims in quotes, file:line, or command output.
 <!-- bosskuai:end -->
+
+## Automatic vault memory
+
+Resolve storage with `bossku memory-path --project <project-root>`. Automatically save useful verified decisions, plans, facts, and lessons with `bossku remember` before replying, without waiting for a request. With memory_storage=obsidian, the vault is canonical and handoffs belong there too. Session hooks check availability; they do not capture transcripts or recreate repo memory. Configured memory_project_roots can group subrepos into one workspace folder.

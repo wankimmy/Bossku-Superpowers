@@ -5,7 +5,10 @@ Canonical skills live in [`skills/`](../skills/). Each folder contains `SKILL.md
 ## Routing
 
 - Say `bossku` or use cofounder mode for cross-domain work.
-- `bossku skills find "<task>"` returns a primary skill and `recommended_stack` of prompt-explicit complements. Read descriptions and remove overlapping candidates before loading.
+- `bossku skills find "<task>"` chooses a primary skill and useful complements. `selection` explains selected and deferred skills, weak confidence, and missing named skills. Read descriptions and check host capabilities before loading. `matches` remains a ranked search list.
+- Mixed asks are scored by concern as well as the whole prompt. Explicit skill ids and aliases take priority; negated requests, incompatible alternatives, user-only slash commands, and unavailable skills are deferred. Ordinary words such as “schema” do not count as named requests without invocation context.
+- The CLI uses the installed profile by default. Use `--profile core|full` to override it, or pass an actual host inventory to the Python `select_skill_stack(..., available=...)` API. A profile check cannot prove that a running host exposes every installed skill; inspect its live inventory. Optional runtimes remain capability checks in the selected skill.
+- Selection is a lexical heuristic, not a probability or a runtime command. Re-route when the task changes. Tests and the [routing benchmark](benchmarks/README.md) cover a recorded regression corpus; they do not guarantee every future prompt or prove coding quality.
 - `bossku skills audit` measures always-loaded description size, long skill bodies, provenance grouping, and broken relative references.
 - Deprecated Bossku names resolve via [`skills/aliases.json`](../skills/aliases.json).
 - Vendored third-party skills are listed in [`skills/vendored.json`](../skills/vendored.json).

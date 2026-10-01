@@ -102,7 +102,7 @@ class InstallTests(unittest.TestCase):
         # subagents cannot answer.
         with tempfile.TemporaryDirectory() as tmp:
             project = Path(tmp) / "proj"
-            init_project(project, root=ROOT)
+            init_project(project, root=ROOT, home=Path(tmp))
             agents = (project / "AGENTS.md").read_text(encoding="utf-8")
             self.assertIn("<!-- antislop:start -->", agents)
             self.assertIn("<!-- antislop:end -->", agents)
@@ -177,6 +177,10 @@ class InstallTests(unittest.TestCase):
             self.assertTrue((home / ".claude" / "references" / relative).is_file())
             self.assertGreater(result["agents_reference_count"], 0)
             self.assertEqual(result["agents_reference_count"], result["claude_reference_count"])
+            for host_dir in (".agents", ".claude"):
+                self.assertEqual((home / host_dir / "docs" / "memory.md").read_bytes(),
+                                 (ROOT / "docs" / "memory.md").read_bytes())
+            self.assertEqual(result["agents_doc_count"], result["claude_doc_count"])
 
 
 class VendoredTests(unittest.TestCase):
@@ -203,7 +207,7 @@ class InitTests(unittest.TestCase):
             project.mkdir()
             agents = project / "AGENTS.md"
             agents.write_text("# Custom\n\nKeep this line.\n", encoding="utf-8")
-            init_project(project, root=ROOT)
+            init_project(project, root=ROOT, home=Path(tmp))
             text = agents.read_text(encoding="utf-8")
             self.assertIn("Keep this line.", text)
             self.assertIn("bosskuai:start", text)
@@ -233,7 +237,7 @@ class InitTests(unittest.TestCase):
     def test_init_writes_claude_import_on_empty_project(self):
         with tempfile.TemporaryDirectory() as tmp:
             project = Path(tmp) / "fresh"
-            init_project(project, root=ROOT)
+            init_project(project, root=ROOT, home=Path(tmp))
             claude = (project / "CLAUDE.md").read_text(encoding="utf-8")
             self.assertTrue(claude_imports_agents_md(claude))
             self.assertTrue((project / "AGENTS.md").is_file())
@@ -249,7 +253,7 @@ class InitTests(unittest.TestCase):
                 json.dumps({"bossku_version": "2.0.0", "profile": "full", "keep": True}),
                 encoding="utf-8",
             )
-            init_project(project, root=ROOT)
+            init_project(project, root=ROOT, home=Path(tmp))
             payload = json.loads((meta / "project.json").read_text(encoding="utf-8"))
             self.assertEqual(payload["bossku_version"], bossku.__version__)
             self.assertEqual(payload["profile"], "full")
@@ -262,7 +266,7 @@ class MemoryTests(unittest.TestCase):
             home = Path(tmp)
             project = home / "proj"
             project.mkdir()
-            init_project(project, root=ROOT)
+            init_project(project, root=ROOT, home=Path(tmp))
             result = remember(project, "decision", "Ship toolkit-only main.", home=home)
             self.assertEqual(result["kind"], "decision")
             sync = sync_project(project, home=home)
@@ -361,7 +365,7 @@ class HooksTests(unittest.TestCase):
             home = Path(tmp)
             project = home / "proj"
             project.mkdir()
-            init_project(project, root=ROOT)
+            init_project(project, root=ROOT, home=Path(tmp))
 
             fake_stdin = io.StringIO(json.dumps({"cwd": str(project)}))
             with mock.patch("sys.stdin", fake_stdin):
@@ -373,7 +377,7 @@ class HooksTests(unittest.TestCase):
             home = Path(tmp)
             project = home / "proj"
             project.mkdir()
-            init_project(project, root=ROOT)
+            init_project(project, root=ROOT, home=Path(tmp))
             result = run_sync_hook(project=project, home=home)
             self.assertEqual(result["status"], "skipped")
 
@@ -617,7 +621,7 @@ class DoctorTests(unittest.TestCase):
             home = Path(tmp)
             project = Path(tmp) / "ready"
             install_user(root=ROOT, home=home, profile="core")
-            init_project(project, root=ROOT)
+            init_project(project, root=ROOT, home=Path(tmp))
             issues = gather_doctor_issues(ROOT, home, project=project)
             self.assertEqual(issues, [], msg="\n".join(issues))
             stdout = io.StringIO()

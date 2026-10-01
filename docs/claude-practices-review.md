@@ -17,6 +17,8 @@ The source collection is large. These short extracts anchor the analysis:
 4. Course `README.md:323`: “invest in product verification”.
 5. Hindsight `skills/hindsight-docs/references/best-practices.md`, Memory Banks: “All operations (retain, recall, reflect) target a single bank.”
 6. The same file, Taxonomy: reflect “searches memory, synthesizes an answer”.
+7. Course `best-practice/claude-subagents.md:27`: “Maximum number of agentic turns before the subagent stops”.
+8. Course `best-practice/claude-subagents.md:25`: “default: `inherit`”.
 
 Quotes 1–4 justify improving the existing skills and adding observed product verification rather than installing a course wholesale. Quotes 5–6 justify explicit bank isolation and distinguishing generated synthesis from verified evidence.
 
@@ -112,7 +114,7 @@ Hindsight is a memory service with model-driven extraction and synthesis, not ju
 | Local/cloud/self-hosted skills that set up providers | One guarded first-party workflow checks an existing CLI/MCP connection; no automatic installation or credential prompts |
 | Documentation/architect skills | Narrow reference playbook with pinned sources; no huge generated documentation bundle added to every host |
 | Async retain / derived mental models | Separate accepted versus searchable state; audit support and freshness before relying on synthesis |
-| Service unavailable | Local Markdown remains usable; report the runtime gap explicitly |
+| Service unavailable | Configured Markdown memory remains usable when its storage is available; report the Hindsight runtime gap explicitly |
 
 This applies the reusable memory workflow and provides integration instructions for configured Hindsight. It does **not** deploy the service, install the upstream automatic-capture plugin, or claim live Hindsight behavior was tested.
 
@@ -122,7 +124,17 @@ At the baseline, `claude_imports_agents_md("```markdown\n@AGENTS.md\n```\n")` re
 
 The shared bare-import predicate now ignores fenced/inline/indented examples. `init`, repository validation, and doctor agree on whether the adapter is present. Regression tests exercise repair, preservation, idempotency, fence characters/lengths, and a live import after a closed example.
 
-## Verification and limits
+## Portable guidance follow-up, 2026-10-01
+
+The supplied course checkout still matches the pinned revision above (`git rev-parse HEAD`; clean `git status --short`). This follow-up closes inconsistencies in BosskuAI's existing adaptation:
+
+- The practice playbook now resolves canonical memory through `bossku memory-path`, preserving the configured Obsidian vault and reporting an unavailable vault without repository fallback.
+- Delegation now uses bounded tasks and inherited models (quotes 7 and 8), explicitly checks context and skill preloading, and assigns exclusive file ownership or supported isolation. OpenCode/OMP use the same contract with capability discovery and a sequential fallback; host-specific schemas remain conditional.
+- Skill evaluations include named skills, paraphrases, negated requests, mixed concerns, installed-profile limits, complementary coverage, and excluded overlaps. Selection evidence remains separate from artifact quality and actual host execution.
+
+These are portable guidance changes. Live host discovery, fork execution, and real prompt-to-artifact behavior require separate checks; coverage of a source practice is not a universal compatibility or quality guarantee.
+
+## Verification and limits, 2026-09-29
 
 - Generated `skills/skill-index.json` from the actual skills and curated triggers; repository validation passed.
 - Full unittest suite passed: 85 tests, including routing, context-budget, and activation regressions.

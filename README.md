@@ -1,147 +1,136 @@
 # BosskuAI
 
-Open-source AI co-founder toolkit for **Cursor**, **Claude Code**, **Codex**, **OpenCode**, and **OMP**.
+Give your coding agent the skills it needs for the job.
 
-One canonical skill library, plan → execute → audit agents, project memory, and the `bossku` CLI — optional one-way Obsidian export for durable memory.
+BosskuAI is an open-source skill library and CLI for **Cursor, Claude Code, Codex, OpenCode, and OMP**. Ask in plain words. The shared instructions guide your agent to choose a main skill, add useful skills for other parts of the request, check its work, and save verified project knowledge.
 
-## Quick start
+![BosskuAI workflow: your prompt, selected skills, build and check, then verified project memory.](docs/assets/bosskuai-overview.svg)
+
+## How it works
+
+1. Describe what you want. Say `bossku` or ask for cofounder mode in a project set up with BosskuAI.
+2. Choose the skills for the task. Use one main skill and add others for needs such as mobile layout, keyboard access, or a separate marketing task. Avoid skills that do the same job, and check that your tools support them.
+3. Make the change and check it. Plan when needed, run the relevant checks, and review the result before claiming success.
+4. Save what is useful. Read project memory first; keep verified facts, decisions, plans, and lessons for the next session.
+
+For example:
+
+```text
+bossku, build a signup page that works on phones and with a keyboard.
+```
+
+The [skill guide](docs/skills.md) explains selection. The [agent contracts](agents/) define planning, execution, review, and completion checks.
+
+## Install and start
+
+Requires **Python 3.11+** and **Git**. Replace the vault path below with an existing Obsidian vault.
 
 ```bash
 git clone https://github.com/wankimmy/Bossku-AI bosskuAI
 cd bosskuAI
 pip install -e .
-bossku install --vault "C:/path/to/your/Obsidian/Vault"
+bossku install --profile full --vault "/path/to/your/Obsidian/Vault" --memory-storage obsidian
 cd /path/to/your/project
 bossku init .
+bossku doctor --project .
 ```
 
-`bossku install` refreshes denser Obsidian auto-sync hooks by default (curated one-way
-export only). Codex needs a one-time in-session `/hooks` trust approval. Details:
-[docs/memory.md](docs/memory.md).
+Open that project in your coding agent, then say `bossku`.
 
-Open the project in any supported coding agent. Say `bossku` or ask for cofounder mode.
+Use `--profile core` for the smaller cofounder and loop-engineering set. Use `--profile full` for the full library. For shared or cloud workspaces, see [portable mode](docs/installation.md#portable-mode-cloudshared-repos).
 
-## Plugin / marketplace install
+Prefer a plugin? Follow the [Claude Code](docs/installation.md#claude-code), [Cursor](docs/installation.md#cursor), or [Codex](docs/installation.md#codex) instructions. [OpenCode](docs/installation.md#opencode) and [OMP](docs/installation.md#omp) use skills and project adapters.
 
-Install BosskuAI as a native plugin on Claude Code, Cursor, and Codex. OpenCode uses skill discovery plus the `.opencode` harness (no marketplace plugin).
+Installation refreshes supported session hooks. Codex requires its normal one-time hook trust approval; direct memory writes do not depend on hooks. See the [memory guide](docs/memory.md).
 
-### Claude Code
-
-Run inside Claude Code:
-
-```text
-/plugin marketplace add wankimmy/Bossku-AI
-/plugin install bossku-ai@bosskuai-marketplace
-```
-
-Manifests: [`.claude-plugin/`](.claude-plugin/).
-
-### Cursor
-
-**Windows (PowerShell):**
-
-```powershell
-git clone https://github.com/wankimmy/Bossku-AI $env:USERPROFILE\.cursor\plugins\local\bossku-ai
-```
-
-Or link an existing clone:
-
-```powershell
-$pluginDir = "$env:USERPROFILE\.cursor\plugins\local\bossku-ai"
-New-Item -ItemType Directory -Force -Path (Split-Path $pluginDir) | Out-Null
-if (Test-Path $pluginDir) { Remove-Item $pluginDir -Recurse -Force }
-New-Item -ItemType Junction -Path $pluginDir -Target "C:\path\to\Bossku-AI"
-```
-
-**macOS / Linux:**
+## See why skills were selected
 
 ```bash
-git clone https://github.com/wankimmy/Bossku-AI ~/.cursor/plugins/local/bossku-ai
+bossku skills find "Build a signup page with mobile layout and keyboard access"
+bossku skills find "Review this code" --profile core
 ```
 
-Restart Cursor after install. Manifests: [`.cursor-plugin/`](.cursor-plugin/).
+The result explains the main skill and any extra skills. It flags weak matches and shows what was left out and why. Some skills can only be started by the user. Read the selected descriptions before loading them; the ranked matches are suggestions to review.
 
-### Codex
+## Keep project memory in one place
+
+With `--memory-storage obsidian`, the vault is the source of truth for project notes and handoffs. Agents save useful, verified notes with `bossku remember` before replying. They skip secrets, raw prompts, transcripts, and duplicate notes.
 
 ```bash
-codex plugin marketplace add wankimmy/Bossku-AI
+bossku memory-path --project .
+bossku remember --project . --kind decision "Use the existing test runner for this project."
 ```
 
-Then restart the ChatGPT desktop app, open **Plugins**, choose the **BosskuAI** marketplace, and install **bossku-ai**. Manifests: [`.codex-plugin/`](.codex-plugin/) and [`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json).
+If the vault is unavailable, BosskuAI reports the unsaved note and does not create repository memory as a fallback. Hooks check vault availability. Existing repository storage remains available for compatibility; changing the setting does not migrate or delete old notes. See [memory and Obsidian](docs/memory.md) for details.
 
-### OpenCode
+## Update local skills
 
-No marketplace plugin. Install skills once per machine, then open this repo (or any `bossku init` project) as the workspace:
+After pulling changes in your BosskuAI clone:
 
 ```bash
-pip install -e /path/to/Bossku-AI
-bossku install --profile full
+git pull
+bossku update
+bossku doctor
 ```
 
-OpenCode reads [`.opencode/opencode.jsonc`](.opencode/opencode.jsonc) for `AGENTS.md` and agent references.
+`bossku update` refreshes the installed skills and shared references from your local BosskuAI source. It preserves your selected install profile and unrelated skills.
 
-### OMP
+## Checks you can run
 
-Install the native Windows binary, then open this repository from OMP:
-
-```powershell
-irm https://omp.sh/install.ps1 | iex
-omp --cwd C:\path\to\Bossku-AI
+```bash
+python -m bossku validate --root .
+python -m unittest discover -s tests -v
 ```
 
-OMP reads the canonical contract through [`.omp/AGENTS.md`](.omp/AGENTS.md) and discovers the same user-level skills installed for the other tools. The project config uses `tools.approvalMode: write`, so workspace writes can proceed while actions outside the workspace still require approval.
+When skill descriptions or routing inputs change, rebuild the generated index first:
 
-See [`docs/installation.md`](docs/installation.md) for the CLI path and per-project setup.
+```bash
+python -m bossku skills index --root .
+```
 
-## Commands
+## Measured routing checks
 
-| Command | Purpose |
+The [offline benchmark](docs/benchmarks/README.md) uses **82 existing regression prompts**. It checks the main skill chosen by the selector and whether user-only skills stay held for the user:
+
+| Selection check | Recorded result |
+|---|---:|
+| Main skill chosen where automatic loading is allowed | 79/79 acceptable |
+| User-only skill held for user invocation | 3/3 correctly deferred |
+
+A separate search-ranking comparison uses the same prompts:
+
+| Search method | Acceptable first match | Acceptable match in the first three |
+|---|---:|---:|
+| BosskuAI ranked search | 82/82 (100%) | 82/82 (100%) |
+| Baseline using only skill names and descriptions | 46/82 (56.10%) | 61/82 (74.39%) |
+
+These are prompts the router was tuned against, not an unseen test set. The results check the main skill and user-only deferral; they do not establish the quality of every extra skill or live host loading. Coding quality and token savings remain unmeasured. See the [saved results and inputs](docs/benchmarks/routing.json) for every case and the baseline method.
+
+Reproduce the comparison:
+
+```bash
+python scripts/benchmark_routing.py
+python scripts/benchmark_routing.py --check
+```
+
+## More commands
+
+| Command | What it does |
 |---|---|
-| `bossku install` | Copy skills to `~/.agents/skills` and `~/.claude/skills` |
-| `bossku init <project>` | Add cross-tool adapters + `.bossku/memory/` |
-| `bossku init <project> --portable` | Vendor skills into the project |
-| `bossku update` | Refresh user-level skills from this repo |
-| `bossku remember --project . --kind decision "..."` | Save curated memory |
-| `bossku sync --project .` | Export memory to Obsidian |
-| `bossku skills find "laravel security"` | Suggest a primary + complementary skill stack |
-| `bossku skills audit` | Measure description context cost and skill integrity |
-| `bossku doctor` | Install health check |
-| `bossku validate --root .` | Repository validation |
+| `bossku init <project>` | Add project instructions and initialize configured memory |
+| `bossku init <project> --portable` | Include skills in the project |
+| `bossku skills audit` | Check skill size, descriptions, and references |
+| `bossku sync --project .` | Check vault storage or export legacy repository notes |
+| `bossku doctor --project .` | Check installed skills and project adapters |
 
-## Layout
+## Explore the library
 
-- [`AGENTS.md`](AGENTS.md) — cross-tool contract
-- [`skills/`](skills/) — canonical skill library (~240 skills, including vendored packs)
-- [`skills/vendored.json`](skills/vendored.json) — third-party skill provenance
-- [`agents/`](agents/) — orchestrator, planner, executor, auditor, final reviewer
-- [`.claude-plugin/`](.claude-plugin/) — Claude Code plugin + marketplace manifests
-- [`.cursor-plugin/`](.cursor-plugin/) — Cursor plugin + marketplace manifests
-- [`.codex-plugin/`](.codex-plugin/) — Codex plugin manifest
-- [`.agents/plugins/`](.agents/plugins/) — Codex marketplace catalog
-- [`.opencode/`](.opencode/) — OpenCode references harness
-- [`.omp/`](.omp/) - OMP project instructions and safe approval defaults
-- [`bossku/`](bossku/) — CLI package (stdlib only)
-- [`docs/third-party.md`](docs/third-party.md) — MIT attribution for vendored packs
-
-## Vendored skill packs
-
-BosskuAI ships skills from **marketingskills**, **superpowers**, **hallmark**, **taste-skill**, **loop-engineering**, **scroll-world**, **emil-skills**, **i-have-adhd**, a curated **ECC** subset, **browser-use**, **graft**, **graphify**, and a thin **markitdown** wrapper. Use `bossku install --profile full` to install all of them.
-
-Optional CLIs for some packs: see [`requirements-optional.txt`](requirements-optional.txt).
-
-## Archive
-
-The Docker/Laravel/Nuxt product MVP is preserved on branch `archive/product-mvp-2026-07`.
+- [Skills](skills/) cover engineering, product, design, security, marketing, and founder work.
+- [Shared instructions](AGENTS.md) keep the workflow consistent across coding tools.
+- [Third-party packs and credits](docs/third-party.md) list the vendored sources; [optional requirements](requirements-optional.txt) cover separate runtimes.
+- [Claude Code practice review](docs/claude-practices-review.md) and [Archify practice review](docs/archify-practices-review.md) explain how their guidance was applied.
+- [Product verification](skills/bosskuai-product-verification/SKILL.md) checks real user paths with observed evidence. [Hindsight memory](skills/bosskuai-hindsight-memory/SKILL.md) supports an approved, configured connection; its service remains optional and separate.
 
 ## License
 
-MIT — see [`LICENSE`](LICENSE).
-
-## Claude Code practice review
-
-The [coverage review](docs/claude-practices-review.md) maps the reviewed Claude Code course README to BosskuAI's skill guidance, existing packs, examples, and host-specific features. The [practice playbook](references/playbooks/claude-code-practices-playbook.md) covers skill design, startup context, discovery, invocation, and permissions.
-
-- [`bosskuai-product-verification`](skills/bosskuai-product-verification/SKILL.md) verifies real user paths and CLI behavior with observed evidence.
-- [`bosskuai-hindsight-memory`](skills/bosskuai-hindsight-memory/SKILL.md) integrates an approved, configured Hindsight connection with project-scoped memory. Its optional runtime is separate from the BosskuAI skill installation.
-
-`bossku init` repairs instruction adapters even when an existing file mentions the import only in prose or a fenced example, preserving the original instructions.
+[MIT](LICENSE).

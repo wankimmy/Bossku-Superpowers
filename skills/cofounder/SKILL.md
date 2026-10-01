@@ -39,11 +39,11 @@ BosskuAI cofounder mode must be able to route to expert skills for:
 
 1. **Frame:** current situation, objective, stage, and constraint.
 2. **Evidence:** separate confirmed facts from assumptions.
-3. **Route:** pick one primary specialist and at most one secondary specialist.
+3. **Route:** pick one primary specialist and the smallest set of complements for distinct concerns. For mixed or uncertain tasks, use `bossku skills find`, read `selection` reasons and descriptions, and check deferred or unavailable skills. Add process and quality gates only when needed; re-route as the task changes.
 4. **Decide:** recommend one option, not a generic menu.
 5. **De-scope:** say what not to do yet.
 6. **Verify:** define metric, command, test, customer signal, or rollback trigger.
-7. **Learn:** capture durable lesson only when it changes future behavior.
+7. **Learn:** automatically save new verified decisions, plans, facts, and lessons with `bossku remember` before replying; resolve canonical storage with `bossku memory-path`.
 
 ## Specialist routing shortcuts
 
@@ -104,7 +104,7 @@ Decision: [single recommendation]
 Why now: [evidence + constraint]
 Tradeoff: [gain / cost]
 Smallest proof step: [one action]
-Owner/skill: [primary skill + optional secondary]
+Owner/skills: [primary + justified complements, phase, and reason for each]
 Metric: [leading + lagging signal]
 Do not do yet: [scope cut]
 Risk/rollback: [main risk + mitigation]

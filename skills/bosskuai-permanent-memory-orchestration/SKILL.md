@@ -1,99 +1,54 @@
 ---
 name: bosskuai-permanent-memory-orchestration
-description: "Use when the task touches BosskuAI project memory (.bossku/memory), bossku remember or bossku sync, Obsidian export, cross-tool recall between Claude Code, Cursor and Codex, memory hygiene, durable decisions or plans, or the agent forgetting past decisions."
+description: "Use when the task touches BosskuAI memory, automatic remembering, bossku remember, Obsidian storage, cross-tool recall, memory hygiene, or durable decisions and plans."
 ---
 
 # BosskuAI Permanent Memory Orchestration
 
-Make BosskuAI remember useful context across Claude Code, Cursor, Codex, OpenCode, and OMP by writing curated Markdown memory that every tool can read, and letting the CLI export it to Obsidian.
+Automatically save useful verified decisions, plans, project facts, and lessons as meaningful work proceeds and before the final response. Do not wait for the user to request remembering.
 
-## How this differs from nearby skills
+## Resolve storage first
 
-- **`bosskuai-continuous-learning`**: decides *whether* a lesson is durable and *which* artifact should hold it; this skill owns the memory mechanics once the answer is "memory".
-- **`bosskuai-handoff`** / **`bosskuai-context-limit-continuation`**: write the ephemeral `handoff.md` bridge; this skill covers the durable files.
-- **`bosskuai-claude-md-management`** / **`bosskuai-rules-distill`**: instruction and rule files; memory is facts and decisions, not behavior rules.
+Run `bossku memory-path --project <actual-project-root>` and read relevant kind files from the returned `memory_dir`. Start with a non-empty handoff.md when continuing unfinished work.
+Storage comes from ~/.bosskuai/config.json:
+- `memory_storage: "obsidian"`: canonical notes live directly under `<obsidian_vault>/BosskuAI/<project-name>/`. No memory or sync state is written inside the repo. Obsidian edits are authoritative.
+- `memory_storage: "repo"` (legacy default when unset): repo Markdown is exported one way to the vault.
+Configure vault storage with `bossku install --vault <existing-vault-path> --memory-storage obsidian`.
+The vault must exist outside the code repo. If unavailable, report the failed save; never fall back to repo storage.
 
-## The real memory system (BosskuAI 2.x)
+## Automatic workflow
 
-The default memory system requires no vector database, performs no hook-driven *capture*, and has no `ai-assistant/` tree. Memory is plain Markdown under `.bossku/memory/` in the project, written through the CLI so redaction and export run every time. `bossku remember` still writes and exports every entry; an optional hook-driven *sync* safety net (below) can additionally re-run the export at session end, but nothing generates memory content on its own.
+1. Retrieve relevant notes before decisions, debugging, or continuation.
+2. Save an actionable multi-phase plan with --kind plan when useful to future sessions.
+3. Do the requested work and verify outcomes.
+4. Automatically call `bossku remember --project <project-root> --kind decision|plan|learning|project "<concise verified note>"` before replying.
+5. Inspect the returned file and vault.status; never claim a save that failed.
 
-| Kind | File | Store here |
+| Kind | File | Content |
 |---|---|---|
-| `project` | `.bossku/memory/project.md` | what the repo is, stack, constraints, source-of-truth files |
-| `decision` | `.bossku/memory/decisions.md` | choices worth defending later, with the reason |
-| `plan` | `.bossku/memory/plans.md` | compact plans another session may continue |
-| `learning` | `.bossku/memory/learnings.md` | verified outcomes, recurring bugs, verification results |
-| (manual) | `.bossku/memory/handoff.md` | unfinished work only; clear when done; never exported |
+| project | project.md | Stack, constraints, source-of-truth files |
+| decision | decisions.md | Verified choices and reasons |
+| plan | plans.md | Compact actionable plans |
+| learning | learnings.md | Verified lessons and outcomes |
+| manual | handoff.md | Current unfinished work; clear when completed |
 
-```bash
-bossku remember --project . --kind decision "Use toolkit-only main; runtime moved to the CLI."
-bossku remember --project . --kind learning "Pest needs 2G memory on the fixed-tenant schema; see docs/testing.md."
-bossku sync --project .        # re-export after manual edits or when the vault was offline
-```
+Resolve handoffs in the same canonical directory. User storage preferences override older skills naming .bossku/memory. Redact manual handoffs; durable notes use remember.
 
-`bossku remember` appends a UTC-stamped section, redacts secrets, and immediately runs the Obsidian export when a vault is configured. `bossku init <project>` seeds the five template files.
+## Hooks and limits
 
-## Obsidian export (auto-sync)
+Installation adds standing automatic-memory instructions for detected Codex, Claude Code, and OpenCode hosts. New project adapters instruct other agents to remember automatically. Agents curate and call the CLI; sync hooks do not generate notes or read transcripts. In Obsidian mode, hooks only check vault availability and never recreate repo memory.
+Codex hooks still require the host's normal one-time interactive trust approval. Direct remember calls do not depend on hooks.
 
-- **One-way**: repo → `<vault>/BosskuAI/<project-name>/`. Never write into the vault directly and never treat vault edits as the source; if a vault file was edited by hand, the next export writes a `*.conflict.md` copy beside it instead of overwriting.
-- **Vault path** lives only in `~/.bosskuai/config.json` (`obsidian_vault`, set by `bossku install --vault <path>`). If it is missing, `remember` reports `vault: skipped` and memory still saves locally.
-- **Never exported**: `handoff.md`, instincts, raw prompts, transcripts, logs.
-- Host workspaces may run their own, separate vault syncs (third-party plugins that mirror other memory folders or session logs). Those are outside BosskuAI; keep writing through `bossku remember` so the curated export stays consistent, and do not duplicate the same note into two systems.
+## Hygiene
 
-### Session-end sync hooks
-
-`bossku install` refreshes sync hooks for detected hosts by default. `bossku remember` already exports inline, every call — the hooks below are a safety net for content that was written but never re-synced (vault was offline, a file was hand-edited), not a new write path.
-
-```bash
-bossku hooks install               # wire a Stop/session-end hook into every installed tool
-bossku hooks install --tools codex # just one: claude_code, cursor, codex, opencode
-bossku hooks uninstall             # remove only BosskuAI's own hook entries
-```
-
-Each hook runs `bossku sync-hook`, which re-runs the same `sync_project()` used by `remember`. Installation is additive-only: it appends to whatever hook config already exists (`~/.claude/settings.json`, `~/.cursor/hooks.json`, `~/.codex/hooks.json`, or a dedicated `~/.config/opencode/plugins/bossku-sync.js`) and never touches other entries — a tool whose config directory doesn't exist yet is skipped, not created. `bossku doctor` reports which tools currently have the hook installed.
-
-**Codex caveat**: Codex requires interactively approving new hooks once before it will run them (a hook-trust gate) — `bossku hooks install` writes the hook, but it only starts firing after the user does one normal interactive Codex turn and approves it. There is no way to grant this non-interactively without bypassing the trust check, which BosskuAI's installer deliberately does not do.
-
-## Default flow
-
-1. **Retrieve first.** Read `.bossku/memory/handoff.md` if it is non-empty, then only the kind files the task needs (`project.md` for orientation, `decisions.md` before proposing a change of direction, `plans.md` when continuing work, `learnings.md` before debugging a known area). Do not dump the whole directory.
-2. **Plan, then store the plan** when it spans multiple files or phases or another session may pick it up: `bossku remember --kind plan`.
-3. **Execute.**
-4. **Record outcomes** a future session would otherwise relearn: `--kind decision` for choices, `--kind learning` for verified lessons, `--kind project` when durable facts about the repo changed.
-5. **Confirm the export** from the command's `vault` result (`ok`, `skipped`, or `pending`) and state it in the reply when the user cares about Obsidian.
-
-## Memory hygiene
-
-- Fix stale or contradictory entries when you find them; append a dated correction rather than silently rewriting history.
-- Keep entries to a few lines. Link to files, PRs, or docs instead of pasting them.
-- Do not store secrets, tokens, `.env` contents, full logs, customer data, one-off chatter, or unverified assumptions presented as facts. `bossku/redact.py` catches common token shapes; it is a backstop, not permission.
-- `handoff.md` is ephemeral: clear it when the work completes.
-
-## Optional Hindsight layer
-
-Use `bosskuai-hindsight-memory` only when the task explicitly concerns Hindsight or an approved project connection is available. Recall supplies candidate evidence; reflect supplies generated synthesis; retain extracts knowledge from submitted notes. These are distinct operations.
-
-Keep `.bossku/memory/` canonical. Verify recalled claims against current files and dates, isolate the project's bank, and mirror only approved redacted notes. Do not treat inferred observations as source facts or enable upstream transcript capture automatically. If Hindsight is absent or offline, read the relevant local kind files and state that semantic retrieval was unavailable.
-
-
-## Failure handling
-
-- `vault: pending` (vault folder unavailable): local memory is saved; run `bossku sync --project .` later.
-- `vault: skipped` (no vault configured): tell the user how to set it (`bossku install --vault <path>`); do not invent an export.
-- Missing `.bossku/memory/`: run `bossku init <project>` or let `remember` create it.
-- If a write fails, say so and put the continuation state in the reply.
-
-## Output
-
-- memory files read
-- entries written (kind + one-line summary)
-- export status (`ok` / `skipped` / `pending`, plus conflict files if any)
-- stale memory corrected or flagged
+- Save only verified facts and explicit user decisions; skip trivial chatter and duplicates.
+- Never store secrets, customer data, raw prompts, transcripts, logs, or speculation as fact.
+- Link source files instead of copying them. Append dated corrections to stale notes.
+- Preserve existing vault content. Legacy notes require an explicit lossless migration; ordinary sync must not overwrite vault notes with repo copies.
+- Optional Hindsight integrations must respect the configured canonical directory.
+- Report actual save status when the task concerns memory; avoid memory-status noise on other tasks.
 
 ## References
 
 - `../../docs/memory.md`
-- `../../bossku/memory.py`
-- `../../bossku/hooks.py`
 - `../../references/memory-first-handoff-protocol.md`
-- `../../references/playbooks/hindsight-memory-playbook.md`

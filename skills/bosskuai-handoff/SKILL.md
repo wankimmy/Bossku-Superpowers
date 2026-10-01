@@ -1,16 +1,20 @@
 ---
 name: bosskuai-handoff
-description: "Use when the user asks to hand off, wrap up for another agent or session, or write a continuation document — compacts the conversation into .bossku/memory/handoff.md so a fresh agent in any tool can continue. Context-pressure handoffs belong to bosskuai-context-limit-continuation."
+description: "Use when the user asks to hand off, wrap up for another agent or session, or write a continuation document — compacts the conversation into <memory-dir>/handoff.md so a fresh agent in any tool can continue. Context-pressure handoffs belong to bosskuai-context-limit-continuation."
 argument-hint: "What will the next session be used for?"
 ---
 
 # BosskuAI Handoff
 
+## Configured memory location
+
+Run `bossku memory-path --project <project-root>` to resolve `<memory-dir>` before reading or writing memory. Automatically save verified durable notes with `bossku remember` without waiting for the user to ask. When memory_storage is obsidian, all memory including handoffs lives directly in the vault; never create .bossku/memory in a code repo. The configured storage overrides legacy export wording below.
+
 Write a handoff document summarising the current conversation so a fresh agent (any tool, any model) can continue the work without the chat history.
 
 ## Where it goes
 
-- Save to `.bossku/memory/handoff.md` in the project (create `.bossku/memory/` if missing). It is the file every BosskuAI session reads first and it is never exported to Obsidian; add `.bossku/` to `.gitignore` if the project does not already ignore it (`bossku init` does not).
+- Save to `<memory-dir>/handoff.md` in the project (create `<memory-dir>/` if missing). It is the file every BosskuAI session reads first and it is never exported to Obsidian; add `.bossku/` to `.gitignore` if the project does not already ignore it (`bossku init` does not).
 - Overwrite rather than append; the file holds only the *current* unfinished work. Tell the user to clear it when the work is done.
 - If the project has no `.bossku/` and the user does not want one, write to the OS temp directory and print the path.
 

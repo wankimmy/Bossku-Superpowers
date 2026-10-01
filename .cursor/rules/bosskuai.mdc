@@ -11,10 +11,14 @@ Begin every reply with:
 [BOSSKUAI] | Skill: <name|general> | Agent: <orchestrator|planner|executor|auditor|final-reviewer> | Model Role: <planner|coder|reviewer|researcher> | Memory Used: <yes|no>
 ```
 
-Say `bossku` or ask for cofounder mode. Before non-trivial work, match the request to installed skills using each skill's `description` and [`AGENTS.md`](../../AGENTS.md). Choose one primary skill plus the smallest complementary set justified by distinct prompt concerns; multiple skills are valid, overlapping skills are not. When unclear, run `bossku skills find`, inspect `recommended_stack`, and remove overlaps.
+Say `bossku` or ask for cofounder mode. Before non-trivial work, match the request to installed skills using each skill's `description` and [`AGENTS.md`](../../AGENTS.md). Choose one primary skill plus complements justified by distinct prompt concerns. For mixed or uncertain tasks, run `bossku skills find`; read `selection.selected`, reasons, deferred candidates, and missing requested skills. `matches` are search candidates. Verify host capabilities and re-route when the task changes.
 
-For meaningful work: read `.bossku/memory/` when relevant; **Planner** before multi-file changes; **Executor** after the plan is clear; **Auditor** after substantive edits; save durable outcomes with `bossku remember`.
+For meaningful work: read the configured memory directory (resolve it with `bossku memory-path --project <project-root>`) when relevant; **Planner** before multi-file changes; **Executor** after the plan is clear; **Auditor** after substantive edits; automatically save verified durable outcomes with `bossku remember` before replying.
 
 **Ponytail:** simplest thing that works; never skip validation, security, accessibility, or data-loss checks. **Superpowers:** use the phase skill for planning, TDD, debugging, and verification. **Anti-Slop:** add the relevant UI, mobile, copy, comment, or code specialist and use `antislop` as the final gate. **Context:** use Headroom only when installed and bulky output merits reversible compression. **Grounding (always on, not switched off by "normal mode"):** load `bosskuai-grounding`; say "not enough information" instead of guessing; quote first for long documents; every claim traces to a source or is marked unverified. Disable always-on modes with "normal mode".
 
 Pause before payments, auth, secrets, privacy, data loss, or migrations.
+
+## Automatic vault memory
+
+Resolve storage with `bossku memory-path --project <project-root>`. Automatically save useful verified decisions, plans, facts, and lessons with `bossku remember` before replying, without waiting for a request. With memory_storage=obsidian, the vault is canonical and handoffs belong there too. Session hooks check availability; they do not capture transcripts or recreate repo memory. Configured memory_project_roots can group subrepos into one workspace folder.

@@ -5,6 +5,10 @@ description: "Use when the current model is stuck, low-confidence, or repeating 
 
 # BosskuAI Cross-Model Escalation
 
+## Configured memory location
+
+Run `bossku memory-path --project <project-root>` to resolve `<memory-dir>` before reading or writing memory. Automatically save verified durable notes with `bossku remember` without waiting for the user to ask. When memory_storage is obsidian, all memory including handoffs lives directly in the vault; never create .bossku/memory in a code repo. The configured storage overrides legacy export wording below.
+
 Use this skill when the active model should **stop thrashing and get help** from another model. The goal is not to abandon ownership of the task, but to bring in the right second opinion or helper path before time and context are wasted.
 
 ## How this differs from nearby skills
@@ -43,7 +47,7 @@ Escalate when **any** of the following are true:
    - what must not change
    - expected output format
 6. **Integrate skeptically** — do not trust the helper blindly. Re-check against local code, tests, and requirements.
-7. **If switching sessions or tools**, update `.bossku/memory/handoff.md` first so Claude, Codex, and Cursor can continue without chat history.
+7. **If switching sessions or tools**, update `<memory-dir>/handoff.md` first so Claude, Codex, and Cursor can continue without chat history.
 
 ## Tool-specific patterns
 
@@ -92,5 +96,5 @@ Expected output:
 - Pair with **`bosskuai-ai-model-selection`** to choose the helper model
 - Pair with **`bosskuai-subagent-delegation`** when the helper work can run in parallel
 - Pair with **`bosskuai-context-limit-continuation`** when the escalation requires a fresh session or tool switch
-- `.bossku/memory/handoff.md`
+- `<memory-dir>/handoff.md`
 - `../../references/memory-first-handoff-protocol.md`

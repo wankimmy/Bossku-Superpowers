@@ -5,6 +5,10 @@ description: Ground every factual claim in quotes, file:line, or command output;
 
 # BosskuAI Grounding
 
+## Configured memory location
+
+Run `bossku memory-path --project <project-root>` to resolve `<memory-dir>` before reading or writing memory. Automatically save verified durable notes with `bossku remember` without waiting for the user to ask. When memory_storage is obsidian, all memory including handoffs lives directly in the vault; never create .bossku/memory in a code repo. The configured storage overrides legacy export wording below.
+
 Default trait for every BosskuAI agent. Factual output is sourced, or it is marked. Guessing is not a fallback.
 
 ## Persistence
@@ -24,7 +28,7 @@ On high-stakes questions (security, money, legal, architecture): reason before t
 
 ## Memory
 
-`bossku remember` only stores claims verified in-session. Unverified findings stay in the reply as `unverified`; they do not go into `.bossku/memory/`.
+`bossku remember` only stores claims verified in-session. Unverified findings stay in the reply as `unverified`; they do not go into `<memory-dir>/`.
 
 ## Interaction with BosskuAI agents
 

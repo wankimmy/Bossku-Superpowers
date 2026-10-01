@@ -5,11 +5,15 @@ description: Use this after meaningful tasks, reviews, incidents, or repeated ob
 
 # BosskuAI Continuous Learning
 
+## Configured memory location
+
+Run `bossku memory-path --project <project-root>` to resolve `<memory-dir>` before reading or writing memory. Automatically save verified durable notes with `bossku remember` without waiting for the user to ask. When memory_storage is obsidian, all memory including handoffs lives directly in the vault; never create .bossku/memory in a code repo. The configured storage overrides legacy export wording below.
+
 Use this skill when recent work produced a lesson worth keeping beyond the current chat.
 
 ## How this differs from nearby skills
 
-- **`bosskuai-permanent-memory-orchestration`**: the mechanics of `.bossku/memory/`, `bossku remember`, and the Obsidian export; this skill decides what deserves to go there.
+- **`bosskuai-permanent-memory-orchestration`**: the mechanics of `<memory-dir>/`, `bossku remember`, and the Obsidian export; this skill decides what deserves to go there.
 - **`bosskuai-rules-distill`**: promotes principles seen in 3+ places into rules; this skill handles a single fresh lesson.
 - **`bosskuai-skill-creator`**: builds or revises a skill once this skill decides a skill is the right artifact.
 
@@ -22,10 +26,10 @@ Use this skill when recent work produced a lesson worth keeping beyond the curre
 
 | Lesson looks like | Artifact |
 |---|---|
-| a plan another session may continue | `bossku remember --kind plan` → `.bossku/memory/plans.md` |
-| a verified outcome, recurring bug, or verification result | `bossku remember --kind learning` → `.bossku/memory/learnings.md` |
-| a choice worth defending later | `bossku remember --kind decision` → `.bossku/memory/decisions.md` |
-| a durable fact about the repo, stack, or users | `bossku remember --kind project` → `.bossku/memory/project.md` |
+| a plan another session may continue | `bossku remember --kind plan` → `<memory-dir>/plans.md` |
+| a verified outcome, recurring bug, or verification result | `bossku remember --kind learning` → `<memory-dir>/learnings.md` |
+| a choice worth defending later | `bossku remember --kind decision` → `<memory-dir>/decisions.md` |
+| a durable fact about the repo, stack, or users | `bossku remember --kind project` → `<memory-dir>/project.md` |
 | a small repeatable behavior (trigger -> action) | `bossku remember --project . --kind learning "When <trigger>: <action>. Evidence: <date, what happened>"` |
 | a repeatable verification step, recurring trap, or reusable procedure | checklist, pitfall, or playbook under BosskuAI `references/` |
 | a change to how the assistant works across many tasks | skill (`bosskuai-skill-creator`) or rule (`bosskuai-rules-distill`) |

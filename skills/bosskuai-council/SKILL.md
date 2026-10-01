@@ -9,6 +9,10 @@ metadata:
 
 # Council
 
+## Configured memory location
+
+Run `bossku memory-path --project <project-root>` to resolve `<memory-dir>` before reading or writing memory. Automatically save verified durable notes with `bossku remember` without waiting for the user to ask. When memory_storage is obsidian, all memory including handoffs lives directly in the vault; never create .bossku/memory in a code repo. The configured storage overrides legacy export wording below.
+
 Convene four advisors for ambiguous decisions:
 - the in-context Claude voice
 - a Skeptic subagent
@@ -159,7 +163,7 @@ Keep it scannable on a phone screen.
 Do **not** write ad-hoc notes to shadow paths from this skill.
 
 If the council materially changes the recommendation:
-- use `bosskuai-continuous-learning` to store the lesson in `.bossku/memory/` via `bossku remember` (the shared durable memory)
+- use `bosskuai-continuous-learning` to store the lesson in `<memory-dir>/` via `bossku remember` (the shared durable memory)
 - or use `bosskuai-handoff` if the outcome belongs in a session pickup doc
 - or update the relevant GitHub / Linear issue directly if the decision changes active execution truth
 

@@ -9,6 +9,10 @@ metadata:
 
 # Prompt Optimizer
 
+## Configured memory location
+
+Run `bossku memory-path --project <project-root>` to resolve `<memory-dir>` before reading or writing memory. Automatically save verified durable notes with `bossku remember` without waiting for the user to ask. When memory_storage is obsidian, all memory including handoffs lives directly in the vault; never create .bossku/memory in a code repo. The configured storage overrides legacy export wording below.
+
 Analyze a draft prompt, critique it, match it to BosskuAI workspace components
 (skills, agent contracts, loops, memory), and output a complete optimized
 prompt the user can paste and run.
@@ -184,7 +188,7 @@ payments, privacy, tenant isolation, migrations, production, or secrets.
   verification gate (the stack's verification gate)
 - Final prompt: integration test + `bosskuai-rigorous-code-review` across phases
 - Between sessions: `bosskuai-handoff` writes the pickup doc;
-  `bosskuai-context-limit-continuation` + `.bossku/memory/handoff.md`
+  `bosskuai-context-limit-continuation` + `<memory-dir>/handoff.md`
   preserve state for the next tool/session
 
 ## Output Format

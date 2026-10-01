@@ -2,7 +2,7 @@
 
 **Applies to:** Claude Code, Cursor, Codex, OpenCode, OMP, and any surface using BosskuAI rules.
 
-**Purpose:** Chat history is not shared between tools or sessions; **files are.** `.bossku/memory/` is the coordination layer. Full contract: root `AGENTS.md` § Memory and `docs/memory.md`.
+**Purpose:** Chat history is not shared between tools or sessions; **files are.** the configured memory directory (resolve it with `bossku memory-path --project <project-root>`) is the coordination layer. Full contract: root `AGENTS.md` § Memory and `docs/memory.md`.
 
 ## Files
 
@@ -14,7 +14,7 @@
 | `learnings.md` | `bossku remember --kind learning` | verified outcomes, recurring bugs, verification results |
 | `project.md` | `bossku remember --kind project` | durable repo facts |
 
-`bossku remember` redacts secrets and exports the four kind files to `<vault>/BosskuAI/<project>/` when an Obsidian vault is configured. `bossku sync --project .` re-exports after manual edits.
+`bossku remember` redacts secrets and writes to the configured canonical directory. In Obsidian mode it writes directly to the vault; `bossku sync` checks vault availability. Legacy repo mode retains one-way export.
 
 ## Read order (before substantive edits or repo-specific claims)
 
@@ -60,3 +60,7 @@ Next (ordered):
 - Session narrative: [`session-handoff-template.md`](session-handoff-template.md) — optional richer structure for the same file.
 - Promotion triage: [`checklists/learning-promotion-checklist.md`](checklists/learning-promotion-checklist.md) after logging.
 - Behavior rules, not memory: `bosskuai-rules-distill`; skills: `bosskuai-skill-creator`.
+
+## Automatic vault memory
+
+Resolve storage with `bossku memory-path --project <project-root>`. Automatically save useful verified decisions, plans, facts, and lessons with `bossku remember` before replying, without waiting for a request. With memory_storage=obsidian, the vault is canonical and handoffs belong there too. Session hooks check availability; they do not capture transcripts or recreate repo memory. Configured memory_project_roots can group subrepos into one workspace folder.

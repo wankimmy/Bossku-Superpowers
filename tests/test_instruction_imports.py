@@ -64,11 +64,11 @@ class InstructionImportTests(unittest.TestCase):
                 omp_original = original.replace("@AGENTS.md", "@../AGENTS.md")
                 omp.write_text(omp_original, encoding="utf-8")
 
-                init_project(project, root=ROOT)
+                init_project(project, root=ROOT, home=Path(tmp))
                 self.assertEqual(claude.read_text(encoding="utf-8"), "@AGENTS.md\n\n" + original)
                 self.assertEqual(omp.read_text(encoding="utf-8"), "@../AGENTS.md\n\n" + omp_original)
                 before = claude.read_bytes(), omp.read_bytes()
-                init_project(project, root=ROOT)
+                init_project(project, root=ROOT, home=Path(tmp))
                 self.assertEqual((claude.read_bytes(), omp.read_bytes()), before)
                 issues = gather_doctor_issues(ROOT, project, project=project)
                 self.assertFalse(any("must include bare" in issue for issue in issues))
@@ -79,7 +79,7 @@ class InstructionImportTests(unittest.TestCase):
             claude = project / "CLAUDE.md"
             original = "# Project\n\n@AGENTS.md\n\nKeep this rule.\n"
             claude.write_text(original, encoding="utf-8")
-            init_project(project, root=ROOT)
+            init_project(project, root=ROOT, home=Path(tmp))
             self.assertEqual(claude.read_text(encoding="utf-8"), original)
 
 

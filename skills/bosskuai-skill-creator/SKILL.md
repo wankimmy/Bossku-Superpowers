@@ -79,8 +79,9 @@ Do nothing when the lesson is a one-off outcome, temporary debug note, or alread
 
 13. Run a format pass: frontmatter parses, headings are clear, links are relative, and line count is below the limit.
 14. Run an overlap pass against nearby skills.
-15. Test with 2-4 realistic prompts: one ideal trigger, one adjacent non-trigger, one ambiguous request, and one high-risk task.
-16. If the environment supports subagents and the user wants evaluation, use four perspectives:
+15. Define expected primary skill, useful complements, exclusions, and approval boundaries for ideal, adjacent non-trigger, ambiguous, and high-risk prompts. Add paraphrases, negated requests, named skills, and mixed concerns where they change selection; include unavailable skills or an installed-profile limit when relevant.
+16. Evaluate selection separately from execution. A selected stack must cover distinct concerns without duplicate workflows or bypassing invocation restrictions; verify the resulting artifact or observed behavior against the task's pass signal.
+17. If the environment supports subagents and the user wants evaluation, use four perspectives:
     - **designer**: clarity and trigger quality
     - **operator**: whether the workflow is executable
     - **reviewer**: overlap and failure modes
@@ -122,6 +123,7 @@ Validation:
   Format: [pass / gap]
   Overlap: [pass / risk]
   Prompt checks: [pass / not run]
+  Composition checks: [covered concerns, excluded overlaps, unavailable skills]
   Line count: [count / ceiling]
 ```
 

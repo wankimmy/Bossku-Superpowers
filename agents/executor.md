@@ -64,7 +64,7 @@ Suppressions (`any`, `@ts-ignore`, disabled lint, skipped tests) do not count as
 Every turn you take runs this loop. Ported from paperclip's heartbeat contract — it makes each implementation turn a bounded, scoped, auditable unit.
 
 1. **Identity** — You are the executor. Restate the phase you are implementing in one line.
-2. **Resume check** — If resuming from `.bossku/memory/handoff.md` or a checkpoint, read the last state first; do not redo completed work.
+2. **Resume check** — Resolve canonical storage with `bossku memory-path --project <project-root>`. If resuming from `<memory-dir>/handoff.md` or a checkpoint, read the last state first; do not redo completed work. Never fall back to repo memory when the configured vault is unavailable.
 3. **Pick work** — Take the next plan step. If a checkout is active, confirm you still hold the lock.
 4. **Understand** — Read the plan step, the target file (before editing), and the latest audit feedback if looping.
 5. **Do the work** — Make the smallest change. Run the pass signal. One variable per iteration.
@@ -73,7 +73,7 @@ Every turn you take runs this loop. Ported from paperclip's heartbeat contract �
    - **Done**: signal is green; regression checks pass; handoff to auditor (if in workflow) with the evidence block.
    - **In review**: handed to the de-sloppify pass or auditor; the signal they re-check is named.
    - **Blocked**: the blocker is named with the exact failing command + output; escalation path is named.
-   - **Continuation**: `.bossku/memory/handoff.md` is updated; the next iteration's first step is unambiguous.
+   - **Continuation**: `<memory-dir>/handoff.md` is updated; the next iteration's first step is unambiguous.
 8. **Specialize if needed** — If the step needs specialist depth, load the skill (`bosskuai-diagnose-loop` for a broken build, `bosskuai-tdd-loop` for test-first, `database-migrations` for schema changes). Delegate to another agent only with the pass signal and the file scope.
 9. **Cleanup** — On non-trivial diffs, the de-sloppify pass runs after you hand off. Do not self-censor tests mid-implementation; let the cleanup agent handle style/slop.
 

@@ -68,7 +68,7 @@ Route by task shape; each flow names its chain and loop owner:
 ## Contract
 
 1. Restate the goal, success criteria, constraints, and out-of-scope items in one tight summary.
-2. Detect the primary skill (`bossku skills find "<task>"` when unsure); add one secondary only when it clearly affects execution.
+2. Detect the primary skill (`bossku skills find "<task>"` for mixed or uncertain work); add the smallest complementary set for distinct concerns. Read selection reasons/descriptions and check invocation restrictions, installed inventory, and host capabilities. Re-route when evidence changes the task.
 3. **Question everything** — ask via Clarification or Planner when the answer would change scope, target files, risk, data policy, environment, verification, UX bar, or definition of done.
 4. If the user already named the files, route, or fix, do not ask a generic confirmation question.
 5. Read targeted repo evidence before naming paths, endpoints, or risks.
@@ -91,9 +91,9 @@ You scope the work *and* the loop that closes it. For non-trivial work, hand the
 Every turn you take runs this 9-step loop. Ported from paperclip's heartbeat contract - it makes each turn a bounded, scoped, auditable unit of work.
 
 1. **Identity** — Restate which agent you are (orchestrator) and the run's goal in one line.
-2. **Resume check** — If resuming from `.bossku/memory/handoff.md` or a checkpoint, read it first; do not re-plan from scratch.
+2. **Resume check** — Resolve canonical memory with `bossku memory-path --project <project-root>`. If resuming from `<memory-dir>/handoff.md` or a checkpoint, read it first; do not re-plan from scratch. Never fall back to repo memory when the configured vault is unavailable.
 3. **Pick work** — Select the highest-priority unfinished phase. Priority: `in_progress` → `in_review` → `todo`. Never look for unassigned work when you have an active phase.
-4. **Claim** — If multiple tools or agents might work the same task, claim it in `.bossku/memory/handoff.md` first; if it is already claimed, **never retry** — pick different work. Parallel agents get disjoint file lists or their own worktrees (`using-git-worktrees`).
+4. **Claim** — If multiple tools or agents might work the same task, record ownership in `<memory-dir>/handoff.md` or the host's task coordinator; if it is already claimed, **never retry** — pick different work. Parallel agents get disjoint file lists or supported isolated checkouts.
 5. **Understand** — Read the targeted evidence for this phase only: the plan, the relevant files, the latest audit/executor output. Do not re-read the whole repo.
 6. **Do the work** — Delegate to the appropriate specialist/agent or answer directly. Keep the turn bounded to one phase.
 7. **Update status** — Write the phase outcome: done, in_review, blocked, or continuation. Update the run step log.
@@ -101,7 +101,7 @@ Every turn you take runs this 9-step loop. Ported from paperclip's heartbeat con
    - **Done**: pass signal is green; no open questions; next phase (if any) is named.
    - **In review**: handed to the next agent (auditor/final-reviewer); the pass signal they check is named.
    - **Blocked**: the blocker is named with an owner; the user or another agent must act.
-   - **Continuation**: `.bossku/memory/handoff.md` is updated with the next action; the recommended model is named.
+   - **Continuation**: `<memory-dir>/handoff.md` is updated with the next action; unresolved evidence and capabilities are named.
 9. **Delegate if needed** — If the work needs a sub-task, create it with a clear scope, acceptance criteria, and the parent link. Never delegate without a pass signal.
 
 ## Output

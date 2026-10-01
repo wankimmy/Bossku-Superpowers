@@ -12,8 +12,10 @@ Use this reference from the setup, instruction-management, skill-creator, and ve
 | Repeated user-triggered workflow | A skill; `.claude/commands/` remains a legacy supported surface |
 | Isolated research or validation | A focused subagent when authorized, with a bounded task and evidence output |
 | Deterministic enforcement | Host permissions or a narrowly scoped hook, not prose alone |
-| Durable facts and decisions | Curated `.bossku/memory/` |
+| Durable facts and decisions | Configured memory resolved with `bossku memory-path --project <project-root>` and written through `bossku remember` |
 | Distribution | Either standalone skills or a plugin bundle; verify the selected install path |
+
+With Obsidian storage, the vault is canonical, including handoffs. If it is unavailable, report the unsaved note; do not create repository memory or sync-state files as a fallback.
 
 ## Keep startup context useful
 
@@ -42,12 +44,14 @@ Claude's `disable-model-invocation: true` means user-only invocation; `user-invo
 
 `allowed-tools` can pre-approve tools in Claude; it does not turn a skill into a sandbox. Use explicit permissions, tool denials, or a restricted subagent where enforcement matters. A subagent's `skills` field preloads the full bodies and does not inherit the parent skill selection automatically. Preload only what the task needs, and verify a skill is allowed to run through that path.
 
+Inspect actual tool and agent schemas before using fields such as `maxTurns`, background execution, or worktree isolation. Keep the configured/inherited model, bounded tasks, and exclusive writer ownership as portable defaults. Follow `bosskuai-subagent-delegation` for the common contract and sequential fallback; host controls do not confer permission for consequential actions.
+
 ## Verify discoverability and behavior
 
 1. Inspect the installed host/version, personal/project skill roots, plugin state, duplicate names, YAML validity, and skill permission restrictions.
 2. Confirm file presence, then separately confirm the host discovers the skill, then test an actual invocation when available. Report each level independently.
 3. Use the name exposed by the host: standalone `/skill-name` versus plugin `/plugin-name:skill-name` may differ. Re-open a session if its cached inventory is stale.
-4. Check the ideal trigger, an adjacent non-trigger, ambiguous wording, and a risky request. Rebuild the index and test routing if descriptions or curated triggers change.
+4. Check the ideal trigger, an adjacent non-trigger, ambiguous wording, and a risky request. Add explicit names, paraphrases, negated requests, mixed concerns, and unavailable or profile-limited skills when relevant. Evaluate primary choice, complementary coverage, excluded overlaps, and invocation restrictions; rebuild the index and test routing when its inputs change.
 5. Run `bossku skills audit` for prompt cost and sidecar integrity. This reports static inventory, not actual invocation frequency. Host usage measurements or hooks are separate opt-in tooling.
 6. For product checks, define prerequisites, a launch command, readiness signal, inputs, expected results, observed evidence, and cleanup. Do not substitute a test-suite pass for a user path that was never run.
 

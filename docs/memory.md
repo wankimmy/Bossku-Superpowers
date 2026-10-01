@@ -1,68 +1,59 @@
 # Memory and Obsidian
 
-## Project memory
+## Vault storage
 
-Curated Markdown only, under `.bossku/memory/`:
+Run `bossku install --vault <existing-vault-path> --memory-storage obsidian`.
+The setting lives only in ~/.bosskuai/config.json. Run `bossku memory-path --project <project-root>` to resolve canonical memory.
+`remember` appends redacted, UTC-stamped notes directly to `<vault>/BosskuAI/<project-name>/`, preserving Obsidian edits. No .bossku/memory or repo sync-state file is created. If the vault is unavailable, the write fails without a repo fallback.
 
 | File | Purpose |
 |---|---|
-| `project.md` | Durable project summary |
-| `decisions.md` | Decisions worth keeping |
-| `plans.md` | Plans and milestones |
-| `learnings.md` | Verified lessons |
-| `handoff.md` | Ephemeral continuation (clear when done) |
+| project.md | Durable project facts |
+| decisions.md | Decisions and reasons |
+| plans.md | Actionable plans |
+| learnings.md | Verified lessons |
+| handoff.md | Current unfinished work; clear after completion |
 
-```bash
-bossku remember --project . --kind decision "Use toolkit-only main."
-bossku sync --project .
+`bossku init` uses the canonical directory for templates. Project adapters and .bossku/project.json remain repo configuration, not memory.
+
+## Project isolation
+
+In Obsidian mode, the first `remember` or memory-template initialization claims the resolved vault directory for its canonical project root. Ownership records live under `~/.bosskuai/memory-project-registry/`, alongside user configuration; they contain project paths, not notes. Exclusive claim creation prevents two different roots from both claiming the same target. `memory-path` and Obsidian sync checks only resolve and inspect ownership; they create no folders or claims.
+
+An unrelated project with the same name, or a name that sanitizes to the same vault folder, fails before reading through the resolver or appending notes. Configured `memory_project_roots` still groups its subrepos intentionally. Different vaults have separate ownership records. Existing folder names and notes are preserved; no migration, deletion, or automatic backfill occurs.
+
+For duplicate names, set an explicit `memory_project_namespaces` mapping in `~/.bosskuai/config.json`, keyed by the resolved grouping root path:
+
+```json
+{
+  "memory_project_namespaces": {
+    "C:/dev/another-workspace/repo": "another-workspace-repo"
+  }
+}
 ```
 
-## Obsidian export
+Merge this field with existing configuration. Namespace names use the existing vault-folder sanitization, and ownership checks still reject collisions. A new namespace selects a separate folder; it does not move old notes. An unclaimed pre-existing folder cannot reveal its historical project owner from its name alone: the first authorized write records ownership for future checks. Across different machines or user homes, the local ownership registry is separate; coordinate names explicitly for a shared vault. Malformed ownership records block resolution and writes until their ownership is checked and repaired.
 
-- **One-way** — repo → vault only
-- **Dedicated folder** — `<vault>/BosskuAI/<project>/`
-- **No raw prompts or transcripts**
-- Vault path stored in `~/.bosskuai/config.json` only
+## Automatic remembering
 
-If the vault is offline, local memory still saves; run `bossku sync` later.
+Agents read relevant notes first, then automatically save verified decisions, plans, facts, and lessons with bossku remember before their final response, without waiting for the user to ask. Skip duplicates, trivial chatter, secrets, raw prompts, transcripts, and logs.
+`bossku install` maintains separate marked memory-policy blocks in detected Codex ~/.codex/AGENTS.md, Claude Code ~/.claude/CLAUDE.md, and OpenCode ~/.config/opencode/AGENTS.md, preserving unrelated user instructions. New project adapters carry the policy for other hosts.
+This is agent-driven curation, not a background transcript summarizer. Hosts must load the instructions and permit vault access. Blocked writes are reported and never redirected into repos.
 
-If a vault file was edited manually after export, BosskuAI writes a `*.conflict.md` copy instead of overwriting.
+## Session hooks
 
-## Denser Obsidian auto-sync hooks (default)
-
-`bossku remember` already exports on every call (curated Markdown only — never raw
-prompts or transcripts). `bossku install` (and `bossku hooks install`) wires **denser**
-auto-sync hooks so `bossku sync-hook` also reruns after agent turns / session ends:
-
-| Tool | Events |
+Existing sync hooks remain safety nets. In Obsidian mode they verify vault availability without overwriting vault notes from legacy copies or recreating local memory.
+| Host | Events |
 |---|---|
-| Cursor | `stop`, `sessionEnd`, `afterAgentResponse` |
-| Claude Code | `Stop`, `SessionEnd` |
-| Codex | `Stop`, `SessionEnd` via a continue-safe wrapper (`~/.bosskuai/codex-sync-hook.sh or .ps1`) |
-| OpenCode | `session.idle` plugin (unchanged) |
+| Cursor | stop, sessionEnd, afterAgentResponse |
+| Claude Code | Stop, SessionEnd |
+| Codex | Stop, SessionEnd via a continue-safe wrapper |
+| OpenCode | session.idle |
 
-This is still a safety net on the same curated one-way export path (repo → vault), not a
-new write model. Install is additive and idempotent (`HOOK_MARKER = sync-hook`): only
-BosskuAI entries are added or removed; unrelated hooks are preserved. Codex also gets
-`[features] hooks = true` in `~/.codex/config.toml` without wiping other config.
+`bossku hooks install` manages hooks separately. Codex's normal one-time hook trust approval still applies. Direct remember calls do not depend on hooks.
 
-```bash
-bossku install --vault "/path/to/Obsidian/Vault"   # refreshes denser hooks by default
-bossku hooks install                               # all detected tools
-bossku hooks install --tools codex                 # one tool: claude_code, cursor, codex, opencode
-bossku hooks uninstall                             # remove only BosskuAI-marked entries
-```
+## Legacy repository storage
 
-**Codex trust step:** after install, run Codex once and approve hooks when prompted
-(`/hooks` trust gate). Hooks are written immediately but only fire after that one-time
-approval. `bossku doctor` reports which tools currently have denser hooks installed.
-
-## Privacy
-
-Secrets are redacted before write. Do not store API keys, passwords, or `.env` contents in memory files.
-
-## Optional Hindsight integration
-
-[`bosskuai-hindsight-memory`](../skills/bosskuai-hindsight-memory/SKILL.md) provides an explicit workflow for an already configured Hindsight CLI or MCP connection. It separates retain (fact extraction), recall (retrieval), and reflect (generated reasoning), checks project-bank isolation and provenance, and falls back to local Markdown when unavailable.
-
-The skill does not install or start Hindsight, change providers, migrate notes, or enable automatic transcript capture. Canonical notes remain in `.bossku/memory/`; only approved redacted notes may be mirrored to an approved bank. Obsidian export is unchanged. See the [integration playbook](../references/playbooks/hindsight-memory-playbook.md) for setup boundaries and readiness checks.
+`memory_storage: "repo"`, or an unset storage field, retains repository-primary storage for compatibility. Notes are exported one way to Obsidian. Unavailable vault exports are pending; missing vault configuration skips exports. Changed vault copies are backed up to .conflict.md before legacy exports replace them.
+Switching storage alone does not migrate or delete existing files. Preserve complete legacy files in the vault, verify their content, then remove repo copies. Preserve unrelated vault notes and conflict copies.
+Optional Hindsight integrations must respect the configured canonical directory and must not introduce repo storage or transcript capture without the user's request.

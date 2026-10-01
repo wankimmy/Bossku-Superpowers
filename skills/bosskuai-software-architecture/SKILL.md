@@ -134,9 +134,9 @@ Use this section when a team is considering event sourcing, CQRS, or horizontal 
 
 ## Workflow
 
-1. **Read the current architecture** — Identify structure from code, not docs. Map: modules, layers, entry points, key data flows, external dependencies.
+1. **Read the current architecture** — Resolve the project root and analysis scope; identify structure from code, not docs. Map modules, layers, entry points, key data flows, and external dependencies with source locations. Distinguish a pinned revision from working-tree edits and state unread areas.
 
-2. **Draw the C4 Level 2 (Container) or Level 3 (Component) view** — Name components, their responsibilities, and the connections between them. Distinguish synchronous vs asynchronous.
+2. **Choose a view that answers the question** — Use C4 Level 2 (Container) or Level 3 (Component) for boundaries; sequence for call order, dataflow for movement/ownership, workflow for process, and lifecycle for state transitions. A concise text map or Mermaid is the portable default; no diagram runtime is required. Name responsibilities and support relationships with call, registration, transport, or configuration evidence. Preserve direction, action/protocol, synchronous/asynchronous behavior, and failure paths where verified. Do not infer runtime causality from names or file proximity.
 
 3. **Apply the architectural lenses** above — Work through each relevant lens and note concerns.
 
@@ -156,6 +156,7 @@ Use this section when a team is considering event sourcing, CQRS, or horizontal 
 - Do not propose a rewrite when a smaller boundary adjustment solves the problem.
 - Do not conflate "best in theory" with "best for this team now."
 - If recommending event sourcing, CQRS, or a distributed pattern, require a concrete reason why a simpler approach fails.
+- Keep source inspection, automated checks, observed runtime behavior, and visual review separate. A diagram rendering or a valid file/line reference does not prove architectural correctness. Re-check source evidence after a change before reusing a map.
 
 ## Output format
 
