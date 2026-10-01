@@ -259,13 +259,20 @@ def chart_routing(data: dict) -> str | None:
                   footnote='Whiskers show a 95% interval. Plain keyword search only ranks, so it has no coverage bars.').render()
 
 
+def runs_each(without: dict, with_: dict, tail: str = 'each') -> str:
+    """'34 runs each', or both counts when runs left out (a usage limit cut them short) make the two setups differ."""
+    if without['runs'] == with_['runs']:
+        return f'{without["runs"]} runs {tail}'
+    return f'{without["runs"]} runs without, {with_["runs"]} with'
+
+
 def chart_pass_rates(coding: dict, humaneval: dict, hard: dict | None = None) -> str | None:
     panels = []
     for title, data in (('Hidden-test coding tasks', coding), ('Harder tasks', hard or {}), ('HumanEval problems', humaneval)):
         groups = []
         for model, arms in complete_models(data):
             groups.append(Group(model_name(model), [arms[a]['pass_rate'] * 100 for a in ARMS],
-                                f'{arms["baseline"]["runs"]} runs per setup',
+                                runs_each(arms['baseline'], arms['after'], 'per setup'),
                                 ci=[tuple(100 * c for c in arms[a]['pass_ci']) for a in ARMS]))
         if groups:
             panels.append(Panel(title, groups, fmt=lambda v: f'{v:.0f}', unit='%', axis_max=100, ticks=[0, 25, 50, 75, 100]))
@@ -321,7 +328,7 @@ def chart_memory(memory: dict) -> str | None:
     groups = []
     for model, arms in complete_models(memory):
         groups.append(Group(model_name(model), [arms[a]['pass_rate'] * 100 for a in ARMS],
-                            f'{arms["baseline"]["runs"]} runs per setup',
+                            runs_each(arms['baseline'], arms['after'], 'per setup'),
                             ci=[tuple(100 * c for c in arms[a]['pass_ci']) for a in ARMS]))
     if not groups:
         return None
@@ -353,7 +360,7 @@ def pass_bullet(model: str, block: dict, unit: str) -> str:
     without, with_ = arms['baseline'], arms['after']
     diff = (block.get('paired') or {}).get('after', {}).get('passed') or {}
     name = model_name(model)
-    head = f'{pct(with_["pass_rate"])} with BosskuAI against {pct(without["pass_rate"])} without ({without["runs"]} runs each)'
+    head = f'{pct(with_["pass_rate"])} with BosskuAI against {pct(without["pass_rate"])} without ({runs_each(without, with_)})'
     slow = ''
     if with_.get('timeouts') or without.get('timeouts'):
         slow = (f' {with_.get("timeouts", 0)} of the {with_["runs"]} runs with BosskuAI ({without.get("timeouts", 0)} without) '
@@ -414,8 +421,8 @@ def left_out_note(data: dict) -> str:
     without = sum(n for key, n in counts.items() if key.startswith('baseline'))
     if not with_ + without:
         return ''
-    return (f'{with_ + without} runs ({with_} with BosskuAI, {without} without) were cut short by a usage limit on the '
-            f'model account, so they count as neither passes nor failures and are left out.')
+    return (f'{with_ + without} attempts ({with_} with BosskuAI, {without} without) were cut short by a usage limit on the '
+            f'model account. They count as neither passes nor failures; the run counts above are the completed runs.')
 
 
 def summary_pass(results: Path) -> str:
@@ -541,8 +548,7 @@ def results_markdown(results: Path) -> str:
                         ('Remembering a rule from an earlier session', 'memory.json')):
         rows = []
         for model, arms in complete_models(data(name)):
-            runs = arms['baseline']['runs']
-            rows.append([f'{model_name(model)}: tasks passed ({runs} runs each)'] + [
+            rows.append([f'{model_name(model)}: tasks passed ({runs_each(arms["baseline"], arms["after"])})'] + [
                 f'{pct(arms[a]["pass_rate"])} ({arms[a]["passed"]}/{arms[a]["runs"]})' for a in ARMS])
             rows.append([f'{model_name(model)}: tokens per run'] + [f'{tokens_per_run(arms[a]) / 1000:,.0f}k' for a in ARMS])
             if all(arms[a].get('unchecked_rate') is not None for a in ARMS) and name == 'coding-test.json':

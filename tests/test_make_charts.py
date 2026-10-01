@@ -126,6 +126,13 @@ class SummaryTests(unittest.TestCase):
         loss = charts.pass_bullet("m", coding("m", gain=(-0.3, -0.05))["models"]["m"], "tasks")
         self.assertIn("finished fewer tasks", loss)
 
+    def test_unequal_run_counts_are_both_shown_instead_of_runs_each(self):
+        block = coding("m")["models"]["m"]
+        self.assertIn("(34 runs each)", charts.pass_bullet("m", block, "tasks"))
+        block["arms"]["after"]["runs"] = 31
+        self.assertIn("(34 runs without, 31 with)", charts.pass_bullet("m", block, "tasks"))
+        self.assertIn("34 runs without, 31 with", charts.chart_pass_rates({"models": {"m": block}}, {}))
+
     def test_a_perfect_tie_is_called_a_tie_not_an_interval_of_zero(self):
         block = coding("m", gain=(0.0, 0.0))["models"]["m"]
         text = charts.pass_bullet("m", block, "tasks")
@@ -190,8 +197,8 @@ class SummaryTests(unittest.TestCase):
         mem["excluded_runs"] = {"baseline: infrastructure failure": 1}
         save(self.results, **{"coding-test.json": coding(), "hard.json": hard, "memory.json": mem})
         blocks = charts.block_text(self.results)
-        self.assertIn("5 runs (2 with BosskuAI, 3 without) were cut short by a usage limit", blocks["summary-pass"])
-        self.assertIn("1 runs (0 with BosskuAI, 1 without) were cut short", blocks["summary-memory"])
+        self.assertIn("5 attempts (2 with BosskuAI, 3 without) were cut short by a usage limit", blocks["summary-pass"])
+        self.assertIn("1 attempts (0 with BosskuAI, 1 without) were cut short", blocks["summary-memory"])
         self.assertEqual(blocks["summary-pass"].count("cut short"), 1)
 
     def test_a_loss_is_reported_as_a_loss_in_the_overall_summary(self):

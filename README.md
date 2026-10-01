@@ -32,9 +32,9 @@ In plain words: BosskuAI helps a model that skips checking its own work. A model
 <!-- summary-overall:start -->
 - **DeepSeek V4.1 Flash gained nothing it could measure on coding tasks:** 97% without, 97% with.
 - **Nemotron 3 Nano 30B finished more coding tasks with BosskuAI:** 18% without, 40% with.
-- **DeepSeek V4.1 Flash gained nothing it could measure on harder tasks:** 97% without, 92% with.
-- **Gemma 4 31B gained nothing it could measure on harder tasks:** 59% without, 52% with.
-- **DeepSeek V4.1 Flash gained nothing it could measure on tasks that need a rule from an earlier session:** 86% without, 100% with.
+- **DeepSeek V4.1 Flash gained nothing it could measure on harder tasks:** 95% without, 93% with.
+- **Gemma 4 31B gained nothing it could measure on harder tasks:** 57% without, 52% with.
+- **DeepSeek V4.1 Flash gained nothing it could measure on tasks that need a rule from an earlier session:** 87% without, 100% with.
 - **The extra checking costs tokens:** tokens per run with BosskuAI compared with without: DeepSeek V4.1 Flash 1.1× on coding tasks, Nemotron 3 Nano 30B 5.3× on coding tasks, DeepSeek V4.1 Flash 1.1× on harder tasks, Gemma 4 31B 1.6× on harder tasks, DeepSeek V4.1 Flash 1.2× on two-session tasks.
 - **It finds the right skill more often:** 75% first-pick accuracy on new requests, against 60% for keyword search.
 - **Its fixed cost is small:** extra tokens on the first call of a session: 1,241 on Claude Haiku 4.5, 2,155 on Claude Sonnet 5.5.
@@ -66,14 +66,14 @@ In plain words: BosskuAI helps a model that skips checking its own work. A model
 - **Nemotron 3 Nano 30B finished more tasks.** 40% with BosskuAI against 18% without (68 runs each): +22 points over the same tasks, 95% interval +12 to +34.
 
 **Harder tasks**
-- **DeepSeek V4.1 Flash: no clear difference.** 92% with BosskuAI against 97% without (36 runs each): -4 points over the same tasks, 95% interval -11 to 0. Both setups were already near the ceiling, so there was little room to improve.
-- **Gemma 4 31B: no clear difference.** 52% with BosskuAI against 59% without (39 runs each): -6 points over the same tasks, 95% interval -15 to +5.
-- 16 runs (7 with BosskuAI, 9 without) were cut short by a usage limit on the model account, so they count as neither passes nor failures and are left out.
+- **DeepSeek V4.1 Flash: no clear difference.** 93% with BosskuAI against 95% without (42 runs each): -2 points over the same tasks, 95% interval -7 to 0. Both setups were already near the ceiling, so there was little room to improve.
+- **Gemma 4 31B: no clear difference.** 52% with BosskuAI against 57% without (42 runs each): -5 points over the same tasks, 95% interval -14 to +7.
+- 16 attempts (7 with BosskuAI, 9 without) were cut short by a usage limit on the model account. They count as neither passes nor failures; the run counts above are the completed runs.
 
 **HumanEval problems**
-- **DeepSeek V4.1 Flash: no clear difference.** 100% with BosskuAI against 100% without (38 runs each): the same result on every one of the 38 problems. Both setups were already near the ceiling, so there was little room to improve.
-- **Nemotron 3 Nano 30B finished more problems.** 87% with BosskuAI against 60% without (35 runs each): +35 points over the same problems, 95% interval +12 to +54.
-- 15 runs (9 with BosskuAI, 6 without) were cut short by a usage limit on the model account, so they count as neither passes nor failures and are left out.
+- **DeepSeek V4.1 Flash: no clear difference.** 100% with BosskuAI against 100% without (40 runs each): the same result on every one of the 40 problems. Both setups were already near the ceiling, so there was little room to improve.
+- **Nemotron 3 Nano 30B finished more problems.** 82% with BosskuAI against 62% without (40 runs each): +20 points over the same problems, 95% interval +2 to +38.
+- 15 attempts (9 with BosskuAI, 6 without) were cut short by a usage limit on the model account. They count as neither passes nor failures; the run counts above are the completed runs.
 <!-- summary-pass:end -->
 
 ### Running the code
@@ -92,8 +92,8 @@ In plain words: BosskuAI helps a model that skips checking its own work. A model
 
 <!-- summary-memory:start -->
 **What this shows:** each task states a project rule in a first session (for example "this must run on Python 3.8" or "never use eval") and asks for related work in a second one that would break the rule if forgotten. The agent starts the second session fresh: without BosskuAI it has only the files; with BosskuAI it also sees the notes it saved.
-- **DeepSeek V4.1 Flash: no clear difference.** 100% with BosskuAI against 86% without (22 runs each): +13 points over the same tasks, 95% interval 0 to +33. In the first session, the agent with BosskuAI saved the rule as a note 100% of the time.
-- 11 runs (5 with BosskuAI, 6 without) were cut short by a usage limit on the model account, so they count as neither passes nor failures and are left out.
+- **DeepSeek V4.1 Flash: no clear difference.** 100% with BosskuAI against 87% without (30 runs each): +13 points over the same tasks, 95% interval 0 to +33. In the first session, the agent with BosskuAI saved the rule as a note 100% of the time.
+- 11 attempts (5 with BosskuAI, 6 without) were cut short by a usage limit on the model account. They count as neither passes nor failures; the run counts above are the completed runs.
 <!-- summary-memory:end -->
 
 ### What it costs in tokens
@@ -104,9 +104,9 @@ In plain words: BosskuAI helps a model that skips checking its own work. A model
 **What this shows:** BosskuAI makes the agent do more work, and work costs tokens. The extra work is running, checking and fixing. Where that turns failures into passes it is worth it; where the model already passes, it is not.
 - **DeepSeek V4.1 Flash, coding tasks:** 1.1× the tokens per run (107k without, 113k with) and 1.1× the tokens per task it actually solved. It ran shell commands 3.0 times per run instead of 2.4.
 - **Nemotron 3 Nano 30B, coding tasks:** 5.3× the tokens per run (52k without, 276k with) and 2.4× the tokens per task it actually solved. It ran shell commands 3.6 times per run instead of 0.1.
-- **DeepSeek V4.1 Flash, harder tasks:** 1.1× the tokens per run (276k without, 291k with) and 1.1× the tokens per task it actually solved. It ran shell commands 5.1 times per run instead of 5.4.
-- **Gemma 4 31B, harder tasks:** 1.6× the tokens per run (190k without, 310k with) and 1.8× the tokens per task it actually solved. It ran shell commands 6.2 times per run instead of 2.8.
-- **DeepSeek V4.1 Flash, two-session tasks:** 1.2× the tokens per run (98k without, 123k with) and 1.1× the tokens per task it actually solved. It ran shell commands 2.1 times per run instead of 1.6.
+- **DeepSeek V4.1 Flash, harder tasks:** 1.1× the tokens per run (294k without, 329k with) and 1.1× the tokens per task it actually solved. It ran shell commands 5.3 times per run instead of 5.3.
+- **Gemma 4 31B, harder tasks:** 1.6× the tokens per run (195k without, 313k with) and 1.7× the tokens per task it actually solved. It ran shell commands 6.2 times per run instead of 3.0.
+- **DeepSeek V4.1 Flash, two-session tasks:** 1.2× the tokens per run (97k without, 115k with) and about the same tokens per task it actually solved. It ran shell commands 1.9 times per run instead of 1.6.
 <!-- summary-effort:end -->
 
 ### All the numbers
@@ -137,22 +137,22 @@ In plain words: BosskuAI helps a model that skips checking its own work. A model
 
 | Harder tasks | Without BosskuAI | With BosskuAI |
 |---|---:|---:|
-| DeepSeek V4.1 Flash: tasks passed (36 runs each) | 97% (35/36) | 92% (34/37) |
-| DeepSeek V4.1 Flash: tokens per run | 276k | 291k |
-| Gemma 4 31B: tasks passed (39 runs each) | 59% (23/39) | 52% (21/40) |
-| Gemma 4 31B: tokens per run | 190k | 310k |
+| DeepSeek V4.1 Flash: tasks passed (42 runs each) | 95% (40/42) | 93% (39/42) |
+| DeepSeek V4.1 Flash: tokens per run | 294k | 329k |
+| Gemma 4 31B: tasks passed (42 runs each) | 57% (24/42) | 52% (22/42) |
+| Gemma 4 31B: tokens per run | 195k | 313k |
 
 | HumanEval problems | Without BosskuAI | With BosskuAI |
 |---|---:|---:|
-| DeepSeek V4.1 Flash: tasks passed (38 runs each) | 100% (38/38) | 100% (40/40) |
+| DeepSeek V4.1 Flash: tasks passed (40 runs each) | 100% (40/40) | 100% (40/40) |
 | DeepSeek V4.1 Flash: tokens per run | 63k | 90k |
-| Nemotron 3 Nano 30B: tasks passed (35 runs each) | 60% (21/35) | 87% (27/31) |
-| Nemotron 3 Nano 30B: tokens per run | 87k | 212k |
+| Nemotron 3 Nano 30B: tasks passed (40 runs each) | 62% (25/40) | 82% (33/40) |
+| Nemotron 3 Nano 30B: tokens per run | 89k | 219k |
 
 | Remembering a rule from an earlier session | Without BosskuAI | With BosskuAI |
 |---|---:|---:|
-| DeepSeek V4.1 Flash: tasks passed (22 runs each) | 86% (19/22) | 100% (19/19) |
-| DeepSeek V4.1 Flash: tokens per run | 98k | 123k |
+| DeepSeek V4.1 Flash: tasks passed (30 runs each) | 87% (26/30) | 100% (30/30) |
+| DeepSeek V4.1 Flash: tokens per run | 97k | 115k |
 <!-- results:end -->
 
 ### What these results do not show
