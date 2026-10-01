@@ -1,0 +1,15 @@
+{
+  "id": "sec-02",
+  "category": "security",
+  "prompt": "Our storefront keeps its product catalog in SQLite. Shoppers filter it from a search box and price range boxes, and whoever lists a product gets to type in its own name and category \u2014 so none of that text should be trusted to be well-behaved. Add a `ProductCatalog` class to `catalog.py`:\n\n- `ProductCatalog()` takes no arguments and opens its own private SQLite database with a `products` table.\n- `add_product(name, category, price)` stores a product and returns its new integer id. Raise `ValueError` if `price` is negative.\n- `search(name_contains=None, category=None, min_price=None, max_price=None)` returns a list of dicts, each with keys `id`, `name`, `category`, `price`, for every stored product that matches *all* of the filters that were actually given (a filter left as `None` is simply not applied).\n  - `name_contains` matches case-insensitively, anywhere in the product's name.\n  - `category` must match exactly.\n  - `min_price` / `max_price` bound the price inclusively on each side.\n  - Results are ordered by `name`, then by `id` to break ties.\n- A search is only ever a search: whatever punctuation, quotes, or SQL-looking keywords show up inside `name_contains` or `category`, they must only ever be matched as literal text, never change what the query does or expose rows that shouldn't match.\n- A name or category containing an apostrophe (e.g. `\"O'Brien's\"`) must still be stored and found correctly, exactly as typed.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_sec_02_hidden"
+    ],
+    "timeout": 120
+  }
+}

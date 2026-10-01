@@ -1,0 +1,15 @@
+{
+  "id": "tst-02",
+  "category": "test-writing",
+  "prompt": "This repo has a small `ledger.py` module (a simple in-memory account ledger) but no tests for it. Add a unittest test file at `test_ledger.py` that thoroughly covers the `Ledger` class:\n\n- `Ledger()` starts with `balance == 0` and an empty `history()`.\n- `deposit(amount)` adds `amount` to the balance and records (\"deposit\", amount) in history; `withdraw(amount)` subtracts `amount` and records (\"withdraw\", amount). Both raise `ValueError` if `amount` is not positive (zero or negative); `withdraw` also raises `ValueError` if `amount` is more than the current balance (withdrawing exactly the full balance is allowed and leaves balance at 0).\n- `history()` returns the list of (kind, amount) tuples in the order they happened; mutating the returned list must not affect the ledger.\n- `transaction_count()` returns how many transactions are currently in `history()`.\n- `void_last()` reverses the most recently recorded transaction and removes it from `history()` - undoing a deposit of X decreases the balance by X, undoing a withdrawal of X increases it by X. It raises `ValueError` if history is empty. Only successfully recorded transactions can be undone (a call that raised `ValueError` was never recorded, so there is nothing to undo for it).\n- `total_deposited()` and `total_withdrawn()` return the sum of the amounts of the deposit/withdraw entries currently in `history()` (so a voided entry is excluded from both).\n- `largest_transaction()` returns the amount of the single largest transaction (deposit or withdraw) currently in `history()`, or `None` if history is empty.\n- `apply_interest(rate)` adds `rate` percent of the current balance as a new deposit (e.g. `rate=10` on a balance of 200 deposits 20) and returns the interest amount added, rounded to 2 decimal places. It raises `ValueError` if `rate` is negative. If the computed interest is 0 (such as on a zero balance), no transaction is recorded.\n- `transfer_to(other, amount)` withdraws `amount` from this ledger and deposits it into the `other` ledger; if the withdrawal fails, `other` is left completely unaffected and the exception propagates to the caller.\n\nWrite at least 5-6 test methods (more as needed) in `test_ledger.py` covering normal use, the edge cases above, and the error cases for every method.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_tst_02_hidden"
+    ],
+    "timeout": 120
+  }
+}

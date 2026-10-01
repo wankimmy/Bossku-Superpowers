@@ -1,0 +1,15 @@
+{
+  "id": "ref-01",
+  "category": "refactor",
+  "prompt": "`report.py` works correctly but the statistics math (count/total/average/min/max) is written out longhand three times: once for the overall totals, once per category, and once inside `top_category`. Please extract that into a reusable `Stats` class in a new module `stats.py`, and have `report.py` use it instead of repeating the loops.\n\n`Stats(values)` takes a non-empty iterable of numbers and raises `ValueError` if it's empty. It must expose:\n- `.count` — the number of values.\n- `.total` — their sum, rounded to 2 decimals.\n- `.average` — their mean, rounded to 2 decimals.\n- `.minimum` and `.maximum` — rounded to 2 decimals.\n- `.as_dict()` — `{\"count\": ..., \"total\": ..., \"average\": ..., \"min\": ..., \"max\": ...}` built from those same (rounded) values.\n\n`report.py`'s public behavior must not change:\n- `generate_report(entries)` takes a list of `(category, amount)` pairs, ignores entries with `amount <= 0`, and raises `ValueError` if nothing is left. It returns `{\"overall\": <stats dict>, \"by_category\": {<category>: <stats dict>, ...}}`, where each `<stats dict>` has the same shape as `Stats(...).as_dict()` — the overall one computed across all surviving entries, and each category one computed across just that category's amounts.\n- `top_category(entries)` applies the same `amount <= 0` filter, raises `ValueError` if nothing is left, and returns the category name with the highest total amount (ties broken alphabetically).\n\nKeep `report.py`'s two public functions and their signatures the same; `report.py` should import `Stats` from `stats` rather than reimplementing the arithmetic.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_ref_01_hidden"
+    ],
+    "timeout": 120
+  }
+}

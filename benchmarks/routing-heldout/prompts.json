@@ -1,0 +1,2020 @@
+[
+  {
+    "id": "h-001",
+    "prompt": "My app shows a flash of wrong user data for a split second right after login before the correct profile loads, and I can't figure out why it only happens sometimes.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-diagnose-loop",
+        "systematic-debugging"
+      ]
+    ]
+  },
+  {
+    "id": "h-002",
+    "prompt": "I need to build the new 'export to CSV' feature and I want to write the tests before touching any implementation code.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-tdd-loop",
+        "test-driven-development"
+      ]
+    ]
+  },
+  {
+    "id": "h-003",
+    "prompt": "Can you look over my pull request before I merge it and tell me if the error handling in the payment retry logic is actually sound?",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-rigorous-code-review"
+      ]
+    ]
+  },
+  {
+    "id": "h-004",
+    "prompt": "Before we touch twelve files to move the billing logic out of the controllers, I want a written plan we can review together first.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "writing-plans"
+      ]
+    ]
+  },
+  {
+    "id": "h-005",
+    "prompt": "The implementation plan for the notifications rewrite is already approved, now I just need someone to work through it step by step with review checkpoints.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "executing-plans"
+      ]
+    ]
+  },
+  {
+    "id": "h-006",
+    "prompt": "One of our GitHub Actions jobs fails about 1 in 5 runs with a timeout and I can't tell if it's a real regression or just flaky.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "ci-triage"
+      ]
+    ]
+  },
+  {
+    "id": "h-007",
+    "prompt": "We're starting a new multi-tenant SaaS and need to design the Postgres schema and indexes for orgs, users, and billing from scratch.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-database-engineering"
+      ]
+    ]
+  },
+  {
+    "id": "h-008",
+    "prompt": "I have to add a NOT NULL column with a default to a users table that has eight million rows in production and I really don't want downtime.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "database-migrations",
+        "bosskuai-database-engineering"
+      ]
+    ]
+  },
+  {
+    "id": "h-009",
+    "prompt": "Our checkout flow is hammering Redis with the same cache key from a dozen requests at once and I think we need locking or request coalescing.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-redis-caching-queues"
+      ]
+    ]
+  },
+  {
+    "id": "h-010",
+    "prompt": "I'm modeling an activity feed in MongoDB and need an aggregation pipeline that can paginate efficiently without blowing up memory.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-mongodb"
+      ]
+    ]
+  },
+  {
+    "id": "h-011",
+    "prompt": "What's the right way to version a public REST API so that mobile clients on the old version don't break when we ship v2?",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-api-design"
+      ]
+    ]
+  },
+  {
+    "id": "h-012",
+    "prompt": "I want to expose our internal search index to Claude Code as an MCP server with a couple of tools and a resource for recent queries.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "mcp-server-patterns"
+      ]
+    ]
+  },
+  {
+    "id": "h-013",
+    "prompt": "Writing a background worker in Go that pulls jobs off a queue, and I keep leaking goroutines whenever a job panics.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-go-development"
+      ]
+    ]
+  },
+  {
+    "id": "h-014",
+    "prompt": "My pytest suite has almost no fixtures and every test copy-pastes the same setup, how should I restructure it?",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "python-testing"
+      ]
+    ]
+  },
+  {
+    "id": "h-015",
+    "prompt": "Reviewing an old Python service and a lot of it reads like Java, loops everywhere instead of comprehensions, no type hints at all.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "python-patterns"
+      ]
+    ]
+  },
+  {
+    "id": "h-016",
+    "prompt": "Our Pinia store for the shopping cart re-renders the whole page on every quantity change and I'm not sure if that's a reactivity mistake.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "vue-patterns"
+      ]
+    ]
+  },
+  {
+    "id": "h-017",
+    "prompt": "Pages in our Nuxt 4 app are hydrating twice and the SEO meta tags are missing on first load, need to figure out the rendering mode.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-nuxt-development"
+      ]
+    ]
+  },
+  {
+    "id": "h-018",
+    "prompt": "Need to add a 'soft delete with restore' feature to our Laravel Eloquent models along with the policies that should guard it.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-laravel-development"
+      ]
+    ]
+  },
+  {
+    "id": "h-019",
+    "prompt": "Before we ship this Laravel app that handles customer PII, I want a proper security pass on auth and the API endpoints.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-laravel-security"
+      ]
+    ]
+  },
+  {
+    "id": "h-020",
+    "prompt": "Writing Pest feature tests for a new Sanctum-protected API and want to make sure I'm mocking the right things.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-laravel-tdd"
+      ]
+    ]
+  },
+  {
+    "id": "h-021",
+    "prompt": "Running through our checklist before deploying the Laravel app tonight, env vars, static analysis, the works.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-laravel-verification"
+      ]
+    ]
+  },
+  {
+    "id": "h-022",
+    "prompt": "Push notifications work fine on Android but silently fail on iOS in our Expo app, and I don't know if it's a permissions or a config plugin issue.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-expo-react-native"
+      ]
+    ]
+  },
+  {
+    "id": "h-023",
+    "prompt": "Need to get our React Native app through TestFlight review, last submission got rejected over the privacy nutrition label.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-mobile-app-release"
+      ]
+    ]
+  },
+  {
+    "id": "h-024",
+    "prompt": "Our CI pipeline takes eighteen minutes for a one-line change because nothing is cached and everything runs in sequence.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-ci-cd-pipelines"
+      ]
+    ]
+  },
+  {
+    "id": "h-025",
+    "prompt": "Want a docker-compose setup for local dev that brings up the app, Postgres, and Redis with one command and doesn't hardcode any passwords.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-docker"
+      ]
+    ]
+  },
+  {
+    "id": "h-026",
+    "prompt": "Planning to move our monolith off a single EC2 box onto something that can actually autoscale, thinking ECS Fargate but not sure about the networking.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-aws-deployment"
+      ]
+    ]
+  },
+  {
+    "id": "h-027",
+    "prompt": "I need to add a new /invoices endpoint, write it test-first, and make sure the error responses are consistent with the rest of the API.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-api-design"
+      ],
+      [
+        "bosskuai-tdd-loop",
+        "test-driven-development"
+      ]
+    ]
+  },
+  {
+    "id": "h-028",
+    "prompt": "Before merging, run a rigorous review on the auth changes, check whether the PR meets the required checks with every comment resolved, and make sure the retry logic actually has test coverage.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-rigorous-code-review"
+      ],
+      [
+        "bosskuai-pr-check"
+      ],
+      [
+        "bosskuai-tdd-loop",
+        "test-driven-development"
+      ]
+    ]
+  },
+  {
+    "id": "h-029",
+    "prompt": "We finished the feature, all tests are green locally, now I need to verify it actually works in the running app and decide how to land the branch.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-product-verification"
+      ],
+      [
+        "finishing-a-development-branch"
+      ]
+    ]
+  },
+  {
+    "id": "h-030",
+    "prompt": "I want to debug this intermittent 500 error on checkout, and once it's fixed I need Playwright coverage so it never regresses silently.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-diagnose-loop",
+        "systematic-debugging"
+      ],
+      [
+        "e2e-testing",
+        "bosskuai-qa-automation-strategy"
+      ]
+    ]
+  },
+  {
+    "id": "h-031",
+    "prompt": "Our dependency list hasn't been touched in a year, can you tell me which upgrades are risky, open GitHub issues to track the major ones, and check whether the CI pipeline's cache will even survive a major bump?",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "dependency-triage"
+      ],
+      [
+        "bosskuai-github-workflow"
+      ],
+      [
+        "bosskuai-ci-cd-pipelines"
+      ]
+    ]
+  },
+  {
+    "id": "h-032",
+    "prompt": "The Laravel app needs both a schema migration for a new subscriptions table and the Eloquent models and policies that sit on top of it.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "database-migrations"
+      ],
+      [
+        "bosskuai-laravel-development"
+      ]
+    ]
+  },
+  {
+    "id": "h-033",
+    "prompt": "Deploying the worker service on our own VPS with Docker and Caddy, but the actual queue code behind it needs a profiling pass because jobs are backing up.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-vps-docker-deployment"
+      ],
+      [
+        "bosskuai-redis-caching-queues",
+        "bosskuai-performance-profiling"
+      ]
+    ]
+  },
+  {
+    "id": "h-034",
+    "prompt": "Our API responses have gotten slow under load, I want to profile where the time is going and also put together basic dashboards so we see it happen next time.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-performance-profiling"
+      ],
+      [
+        "bosskuai-observability-sre"
+      ]
+    ]
+  },
+  {
+    "id": "h-035",
+    "prompt": "Need an ADR for why we're switching from REST to an event-driven design between the order and shipping services, and want the API contract documented too.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "architecture-decision-records"
+      ],
+      [
+        "bosskuai-api-design"
+      ]
+    ]
+  },
+  {
+    "id": "h-036",
+    "prompt": "This Go service needs table-driven tests for the new retry logic, and separately the whole module layout feels wrong for how big the project has gotten.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-go-development"
+      ],
+      [
+        "bosskuai-software-architecture"
+      ]
+    ]
+  },
+  {
+    "id": "h-037",
+    "prompt": "I want to trace how an incoming webhook actually flows through our codebase before I touch anything, then write a plan for adding retries.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-codebase-analysis"
+      ],
+      [
+        "writing-plans"
+      ]
+    ]
+  },
+  {
+    "id": "h-038",
+    "prompt": "Two different workstreams this sprint, the search reindexing job and the admin CSV export screen. Can we parallelize the backend one across subagents, and separately get a quick design pass on the export's results table?",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "dispatching-parallel-agents",
+        "bosskuai-subagent-delegation"
+      ],
+      [
+        "bosskuai-ui-ux-design-to-code"
+      ]
+    ]
+  },
+  {
+    "id": "h-039",
+    "prompt": "Our on-call engineer paged at 3am for a database outage, and once it's resolved I want the connection pool settings looked at so it doesn't happen again.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-incident-response"
+      ],
+      [
+        "bosskuai-database-engineering",
+        "mysql-patterns"
+      ]
+    ]
+  },
+  {
+    "id": "h-040",
+    "prompt": "The release branch is finally ready, tests pass, but I also need release notes drafted from the merged PRs, and an actual verification pass confirming everything still works before we tag it.",
+    "domain": "engineering",
+    "style": "detailed",
+    "concerns": [
+      [
+        "finishing-a-development-branch"
+      ],
+      [
+        "changelog-scan",
+        "draft-release-notes"
+      ],
+      [
+        "verification-before-completion"
+      ]
+    ]
+  },
+  {
+    "id": "h-041",
+    "prompt": "fix this flaky test",
+    "domain": "engineering",
+    "style": "terse",
+    "concerns": [
+      [
+        "ci-triage",
+        "bosskuai-diagnose-loop"
+      ]
+    ]
+  },
+  {
+    "id": "h-042",
+    "prompt": "review my PR please",
+    "domain": "engineering",
+    "style": "terse",
+    "concerns": [
+      [
+        "bosskuai-rigorous-code-review"
+      ]
+    ]
+  },
+  {
+    "id": "h-043",
+    "prompt": "design the orders table",
+    "domain": "engineering",
+    "style": "terse",
+    "concerns": [
+      [
+        "bosskuai-database-engineering"
+      ]
+    ]
+  },
+  {
+    "id": "h-044",
+    "prompt": "speed up our CI",
+    "domain": "engineering",
+    "style": "terse",
+    "concerns": [
+      [
+        "bosskuai-ci-cd-pipelines"
+      ]
+    ]
+  },
+  {
+    "id": "h-045",
+    "prompt": "dockerize the backend",
+    "domain": "engineering",
+    "style": "terse",
+    "concerns": [
+      [
+        "bosskuai-docker"
+      ]
+    ]
+  },
+  {
+    "id": "h-046",
+    "prompt": "debug then add tests",
+    "domain": "engineering",
+    "style": "terse",
+    "concerns": [
+      [
+        "bosskuai-diagnose-loop",
+        "systematic-debugging"
+      ],
+      [
+        "test-driven-development",
+        "bosskuai-tdd-loop"
+      ]
+    ]
+  },
+  {
+    "id": "h-047",
+    "prompt": "plan it, then build it",
+    "domain": "engineering",
+    "style": "terse",
+    "concerns": [
+      [
+        "writing-plans"
+      ],
+      [
+        "executing-plans"
+      ]
+    ]
+  },
+  {
+    "id": "h-048",
+    "prompt": "triage CI, fix, verify",
+    "domain": "engineering",
+    "style": "terse",
+    "concerns": [
+      [
+        "ci-triage"
+      ],
+      [
+        "minimal-fix"
+      ],
+      [
+        "verification-before-completion"
+      ]
+    ]
+  },
+  {
+    "id": "h-049",
+    "prompt": "my react app keeps re rendering the whole list when i type one character in the search box no idea whats causing it",
+    "domain": "engineering",
+    "style": "messy",
+    "concerns": [
+      [
+        "bosskuai-react-development"
+      ]
+    ]
+  },
+  {
+    "id": "h-050",
+    "prompt": "need a mysql schema for a multi tenant app but dont want data leaking between tenants",
+    "domain": "engineering",
+    "style": "messy",
+    "concerns": [
+      [
+        "bosskuai-database-engineering",
+        "mysql-patterns",
+        "bosskuai-tenant-isolation-security"
+      ]
+    ]
+  },
+  {
+    "id": "h-051",
+    "prompt": "nuxt page not getting indexed by google even tho ssr is on wat am i missing",
+    "domain": "engineering",
+    "style": "messy",
+    "concerns": [
+      [
+        "bosskuai-nuxt-development",
+        "bosskuai-seo-geo"
+      ]
+    ]
+  },
+  {
+    "id": "h-052",
+    "prompt": "laravel queue workers keep dying under load and horizon dashboard shows nothing useful",
+    "domain": "engineering",
+    "style": "messy",
+    "concerns": [
+      [
+        "bosskuai-redis-caching-queues"
+      ]
+    ]
+  },
+  {
+    "id": "h-053",
+    "prompt": "app store rejected us again because of the privacy stuff ugh",
+    "domain": "engineering",
+    "style": "messy",
+    "concerns": [
+      [
+        "bosskuai-mobile-app-release"
+      ]
+    ]
+  },
+  {
+    "id": "h-054",
+    "prompt": "ci is red half the time and also nobody writes tests before coding anymore smh",
+    "domain": "engineering",
+    "style": "messy",
+    "concerns": [
+      [
+        "ci-triage"
+      ],
+      [
+        "bosskuai-tdd-loop",
+        "test-driven-development"
+      ]
+    ]
+  },
+  {
+    "id": "h-055",
+    "prompt": "need the vps hardened and also figure out why mongo queries are so slow lately",
+    "domain": "engineering",
+    "style": "messy",
+    "concerns": [
+      [
+        "bosskuai-vps-docker-deployment"
+      ],
+      [
+        "bosskuai-mongodb"
+      ]
+    ]
+  },
+  {
+    "id": "h-056",
+    "prompt": "pr has merge conflicts failing checks and three unresolved comments can u sort it before standup",
+    "domain": "engineering",
+    "style": "messy",
+    "concerns": [
+      [
+        "bosskuai-pr-check"
+      ],
+      [
+        "ci-triage"
+      ]
+    ]
+  },
+  {
+    "id": "h-057",
+    "prompt": "boss suruh optimize API kita sebab response lambat sangat bila banyak concurrent users, macam mana nak approach ni?",
+    "domain": "engineering",
+    "style": "mixed-language",
+    "concerns": [
+      [
+        "bosskuai-performance-profiling",
+        "bosskuai-api-design"
+      ]
+    ]
+  },
+  {
+    "id": "h-058",
+    "prompt": "kita punya docker setup kat VPS tu rasa tak secure, boleh tolong harden sikit tak?",
+    "domain": "engineering",
+    "style": "mixed-language",
+    "concerns": [
+      [
+        "bosskuai-vps-docker-deployment"
+      ]
+    ]
+  },
+  {
+    "id": "h-059",
+    "prompt": "client minta tambah fasa migration untuk database baru, lepas tu kena setup CI supaya auto run tests bila push",
+    "domain": "engineering",
+    "style": "mixed-language",
+    "concerns": [
+      [
+        "database-migrations"
+      ],
+      [
+        "bosskuai-ci-cd-pipelines"
+      ]
+    ]
+  },
+  {
+    "id": "h-060",
+    "prompt": "code ni messy gila lepas 2 tahun orang tambah random, boleh tolong refactor dan lepas tu buat proper ADR supaya next time faham kenapa decision macam tu",
+    "domain": "engineering",
+    "style": "mixed-language",
+    "concerns": [
+      [
+        "bosskuai-code-revamp"
+      ],
+      [
+        "architecture-decision-records"
+      ]
+    ]
+  },
+  {
+    "id": "h-061",
+    "prompt": "use the tdd loop skill to build out the refund calculation feature, red then green then refactor",
+    "domain": "engineering",
+    "style": "named-skill",
+    "concerns": [
+      [
+        "bosskuai-tdd-loop"
+      ]
+    ]
+  },
+  {
+    "id": "h-062",
+    "prompt": "run the diagnose loop skill on this: orders randomly double-charge customers about once a week and we can't reproduce it on demand",
+    "domain": "engineering",
+    "style": "named-skill",
+    "concerns": [
+      [
+        "bosskuai-diagnose-loop"
+      ]
+    ]
+  },
+  {
+    "id": "h-063",
+    "prompt": "use the minimal-fix skill to patch the null pointer in the invoice exporter, then hand it to the loop-verifier skill before I merge",
+    "domain": "engineering",
+    "style": "named-skill",
+    "concerns": [
+      [
+        "minimal-fix"
+      ],
+      [
+        "loop-verifier"
+      ]
+    ]
+  },
+  {
+    "id": "h-064",
+    "prompt": "kick off the writing-plans skill for the search re-architecture, then use using-git-worktrees so I can build it without touching my main checkout",
+    "domain": "engineering",
+    "style": "named-skill",
+    "concerns": [
+      [
+        "writing-plans"
+      ],
+      [
+        "using-git-worktrees"
+      ]
+    ]
+  },
+  {
+    "id": "h-065",
+    "prompt": "I need to tighten the scope of our Q3 roadmap, we have way more feature ideas than engineering capacity and I want to cut this down to what actually matters.",
+    "domain": "product",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-product-strategy",
+        "bosskuai-planning-execution"
+      ]
+    ]
+  },
+  {
+    "id": "h-066",
+    "prompt": "Want to run five customer discovery interviews for the new expense-tracking feature before we commit engineering time to it.",
+    "domain": "product",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-customer-discovery"
+      ]
+    ]
+  },
+  {
+    "id": "h-067",
+    "prompt": "We have eighteen months of support tickets and churn survey responses sitting in a spreadsheet, nobody has actually synthesized what customers keep complaining about.",
+    "domain": "product",
+    "style": "detailed",
+    "concerns": [
+      [
+        "customer-research"
+      ]
+    ]
+  },
+  {
+    "id": "h-068",
+    "prompt": "Trying to figure out if our competitors are actually winning on price or just on brand before we touch our own pricing page.",
+    "domain": "founder",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-market-analysis",
+        "competitor-profiling"
+      ]
+    ]
+  },
+  {
+    "id": "h-069",
+    "prompt": "We're a bootstrapped SaaS with three competitors who all raised money, I want a deep profile on each of them from their public sites.",
+    "domain": "founder",
+    "style": "detailed",
+    "concerns": [
+      [
+        "competitor-profiling"
+      ]
+    ]
+  },
+  {
+    "id": "h-070",
+    "prompt": "Need to decide between a flat monthly fee and usage-based pricing for the new API product before we tell sales anything.",
+    "domain": "product",
+    "style": "detailed",
+    "concerns": [
+      [
+        "pricing"
+      ]
+    ]
+  },
+  {
+    "id": "h-071",
+    "prompt": "Building a 24-month financial model for the seed round, need runway, burn, and a couple of pricing scenarios to stress-test.",
+    "domain": "founder",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-financial-modeling"
+      ]
+    ]
+  },
+  {
+    "id": "h-072",
+    "prompt": "Due diligence call with a VC is in two weeks and our deck, one-pager, and monthly update numbers all need to match up.",
+    "domain": "founder",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-investor-prep"
+      ]
+    ]
+  },
+  {
+    "id": "h-073",
+    "prompt": "A customer is threatening to cancel over a discount we have no consistent policy for, and now I'm wondering if our pricing tiers are just wrong to begin with.",
+    "domain": "product",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-business-logic-review"
+      ],
+      [
+        "pricing"
+      ]
+    ]
+  },
+  {
+    "id": "h-074",
+    "prompt": "Before we raise, I want a realistic financial model and also a structured debate on whether we should raise now or wait six more months of runway.",
+    "domain": "founder",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-financial-modeling"
+      ],
+      [
+        "bosskuai-council"
+      ]
+    ]
+  },
+  {
+    "id": "h-075",
+    "prompt": "We want to launch in Malaysia next quarter, need the go-to-market plan and someone to check the PDPA angle on the user data we'll be collecting.",
+    "domain": "founder",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-launch-commercialization",
+        "bosskuai-planning-execution"
+      ],
+      [
+        "bosskuai-malaysia-pdpa-privacy"
+      ]
+    ]
+  },
+  {
+    "id": "h-076",
+    "prompt": "Our board wants a technology strategy update, an honest read on how much technical debt is slowing us down, and a sense of whether our cloud spend is even sane given our stage.",
+    "domain": "founder",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-cto-strategy"
+      ],
+      [
+        "bosskuai-tech-lead"
+      ],
+      [
+        "bosskuai-cost-optimization"
+      ]
+    ]
+  },
+  {
+    "id": "h-077",
+    "prompt": "I need the sales pitch angle for our new enterprise tier and also actual one-pagers my reps can leave behind after a demo.",
+    "domain": "founder",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-sales-strategy"
+      ],
+      [
+        "sales-enablement"
+      ]
+    ]
+  },
+  {
+    "id": "h-078",
+    "prompt": "We're deciding whether to build our own queueing system or just use an existing one, and either way I want the roadmap slice for next sprint.",
+    "domain": "product",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-search-first"
+      ],
+      [
+        "bosskuai-planning-execution"
+      ]
+    ]
+  },
+  {
+    "id": "h-079",
+    "prompt": "cut our roadmap down",
+    "domain": "product",
+    "style": "terse",
+    "concerns": [
+      [
+        "bosskuai-product-strategy",
+        "bosskuai-planning-execution"
+      ]
+    ]
+  },
+  {
+    "id": "h-080",
+    "prompt": "model our runway",
+    "domain": "founder",
+    "style": "terse",
+    "concerns": [
+      [
+        "bosskuai-financial-modeling"
+      ]
+    ]
+  },
+  {
+    "id": "h-081",
+    "prompt": "profile competitors then fix pricing",
+    "domain": "founder",
+    "style": "terse",
+    "concerns": [
+      [
+        "competitor-profiling"
+      ],
+      [
+        "pricing"
+      ]
+    ]
+  },
+  {
+    "id": "h-082",
+    "prompt": "investors keep asking for numbers that dont match across our deck and update doc pls help fix",
+    "domain": "founder",
+    "style": "messy",
+    "concerns": [
+      [
+        "bosskuai-investor-prep"
+      ]
+    ]
+  },
+  {
+    "id": "h-083",
+    "prompt": "we got way too many feature requests and no idea whats actually worth building next",
+    "domain": "product",
+    "style": "messy",
+    "concerns": [
+      [
+        "bosskuai-product-strategy"
+      ]
+    ]
+  },
+  {
+    "id": "h-084",
+    "prompt": "churn is up and i think its a pricing problem but also our onboarding might be trash need both looked at",
+    "domain": "product",
+    "style": "messy",
+    "concerns": [
+      [
+        "pricing"
+      ],
+      [
+        "onboarding"
+      ]
+    ]
+  },
+  {
+    "id": "h-085",
+    "prompt": "kita nak raise seed round tapi financial model masih messy, boleh tolong buat projection yang make sense?",
+    "domain": "founder",
+    "style": "mixed-language",
+    "concerns": [
+      [
+        "bosskuai-financial-modeling"
+      ]
+    ]
+  },
+  {
+    "id": "h-086",
+    "prompt": "macam mana nak tahu competitor kita punya pricing strategy sebenarnya apa, boleh research tak?",
+    "domain": "founder",
+    "style": "mixed-language",
+    "concerns": [
+      [
+        "bosskuai-market-analysis",
+        "competitor-profiling"
+      ]
+    ]
+  },
+  {
+    "id": "h-087",
+    "prompt": "roadmap kita berterabur, boleh tolong prioritize, lepas tu kena check legal compliance sebab kita nak handle data customer kat Malaysia",
+    "domain": "founder",
+    "style": "mixed-language",
+    "concerns": [
+      [
+        "bosskuai-planning-execution",
+        "bosskuai-product-strategy"
+      ],
+      [
+        "bosskuai-malaysia-pdpa-privacy",
+        "bosskuai-legal-compliance"
+      ]
+    ]
+  },
+  {
+    "id": "h-088",
+    "prompt": "use the four-voice council skill to settle whether we should pivot to enterprise or stay self-serve, I want the disagreement laid out, not just one answer",
+    "domain": "founder",
+    "style": "named-skill",
+    "concerns": [
+      [
+        "bosskuai-council"
+      ]
+    ]
+  },
+  {
+    "id": "h-089",
+    "prompt": "Our organic traffic dropped about 30% after the last Google core update and I have no idea which pages got hit or why.",
+    "domain": "marketing",
+    "style": "detailed",
+    "concerns": [
+      [
+        "seo-audit"
+      ]
+    ]
+  },
+  {
+    "id": "h-090",
+    "prompt": "Want to add FAQ and product review structured data to our pricing page so we might get star ratings in search results.",
+    "domain": "marketing",
+    "style": "detailed",
+    "concerns": [
+      [
+        "schema"
+      ]
+    ]
+  },
+  {
+    "id": "h-091",
+    "prompt": "We publish one blog post a month with no real plan behind it, I want an actual content calendar with pillars that make sense for a dev-tools audience.",
+    "domain": "marketing",
+    "style": "detailed",
+    "concerns": [
+      [
+        "content-strategy",
+        "bosskuai-content-calendar"
+      ]
+    ]
+  },
+  {
+    "id": "h-092",
+    "prompt": "Rewrite the homepage hero and the three feature sections, current copy is vague and doesn't say what the product actually does.",
+    "domain": "marketing",
+    "style": "detailed",
+    "concerns": [
+      [
+        "copywriting"
+      ]
+    ]
+  },
+  {
+    "id": "h-093",
+    "prompt": "Set up conversion tracking in GA4 for our signup funnel, right now we genuinely cannot tell which channel brings paying customers.",
+    "domain": "marketing",
+    "style": "detailed",
+    "concerns": [
+      [
+        "analytics"
+      ]
+    ]
+  },
+  {
+    "id": "h-094",
+    "prompt": "Want to test two completely different headlines on the pricing page and need to know how long to run it before trusting the result.",
+    "domain": "marketing",
+    "style": "detailed",
+    "concerns": [
+      [
+        "ab-testing"
+      ]
+    ]
+  },
+  {
+    "id": "h-095",
+    "prompt": "Planning a LinkedIn and Twitter posting cadence for the next month around our upcoming feature launch.",
+    "domain": "marketing",
+    "style": "detailed",
+    "concerns": [
+      [
+        "social"
+      ]
+    ]
+  },
+  {
+    "id": "h-096",
+    "prompt": "Write a five-email welcome sequence for new trial signups that actually gets them to their first real result.",
+    "domain": "marketing",
+    "style": "detailed",
+    "concerns": [
+      [
+        "emails"
+      ]
+    ]
+  },
+  {
+    "id": "h-097",
+    "prompt": "Our free trial converts at 2% and I think the upgrade screen itself is the problem, not the pricing.",
+    "domain": "marketing",
+    "style": "detailed",
+    "concerns": [
+      [
+        "paywalls"
+      ]
+    ]
+  },
+  {
+    "id": "h-098",
+    "prompt": "We want press coverage for the launch, need a list of relevant journalists and an actual pitch angle, not just a generic press release blast.",
+    "domain": "marketing",
+    "style": "detailed",
+    "concerns": [
+      [
+        "public-relations"
+      ]
+    ]
+  },
+  {
+    "id": "h-099",
+    "prompt": "Traffic is fine but nobody converts on the pricing page, we want structured data added so the product shows up better in search results, and maybe an exit popup to catch the people who still bounce.",
+    "domain": "marketing",
+    "style": "detailed",
+    "concerns": [
+      [
+        "cro"
+      ],
+      [
+        "schema"
+      ],
+      [
+        "popups"
+      ]
+    ]
+  },
+  {
+    "id": "h-100",
+    "prompt": "Need ad copy variations for our Meta campaign and also want the actual targeting and budget strategy sanity-checked before we spend more.",
+    "domain": "marketing",
+    "style": "detailed",
+    "concerns": [
+      [
+        "ad-creative"
+      ],
+      [
+        "ads"
+      ]
+    ]
+  },
+  {
+    "id": "h-101",
+    "prompt": "Planning the Product Hunt launch day itself, want a referral program ready so early users start bringing friends right after, and need a batch of ad creative ready for a paid push that same day.",
+    "domain": "marketing",
+    "style": "detailed",
+    "concerns": [
+      [
+        "launch"
+      ],
+      [
+        "referrals"
+      ],
+      [
+        "ad-creative"
+      ]
+    ]
+  },
+  {
+    "id": "h-102",
+    "prompt": "Want a full 12-month go-to-market plan, and inside it I need the email lifecycle flows mapped out for each funnel stage.",
+    "domain": "marketing",
+    "style": "detailed",
+    "concerns": [
+      [
+        "marketing-plan"
+      ],
+      [
+        "emails"
+      ]
+    ]
+  },
+  {
+    "id": "h-103",
+    "prompt": "Our onboarding has a 60% drop-off before the first real action, and I suspect the signup form itself is also too long.",
+    "domain": "marketing",
+    "style": "detailed",
+    "concerns": [
+      [
+        "onboarding"
+      ],
+      [
+        "signup"
+      ]
+    ]
+  },
+  {
+    "id": "h-104",
+    "prompt": "Want an exit-intent popup to capture emails on the blog, and then an actual lead magnet worth offering in exchange.",
+    "domain": "marketing",
+    "style": "detailed",
+    "concerns": [
+      [
+        "popups"
+      ],
+      [
+        "lead-magnets"
+      ]
+    ]
+  },
+  {
+    "id": "h-105",
+    "prompt": "We need vs-competitor landing pages for SEO, and I also want our sales team to have matching battle cards for the same comparisons.",
+    "domain": "marketing",
+    "style": "detailed",
+    "concerns": [
+      [
+        "competitors"
+      ],
+      [
+        "sales-enablement"
+      ]
+    ]
+  },
+  {
+    "id": "h-106",
+    "prompt": "audit our SEO",
+    "domain": "marketing",
+    "style": "terse",
+    "concerns": [
+      [
+        "seo-audit"
+      ]
+    ]
+  },
+  {
+    "id": "h-107",
+    "prompt": "write homepage copy",
+    "domain": "marketing",
+    "style": "terse",
+    "concerns": [
+      [
+        "copywriting"
+      ]
+    ]
+  },
+  {
+    "id": "h-108",
+    "prompt": "fix our pricing page",
+    "domain": "marketing",
+    "style": "terse",
+    "concerns": [
+      [
+        "cro",
+        "pricing"
+      ]
+    ]
+  },
+  {
+    "id": "h-109",
+    "prompt": "write ad copy, launch campaign",
+    "domain": "marketing",
+    "style": "terse",
+    "concerns": [
+      [
+        "ad-creative"
+      ],
+      [
+        "ads"
+      ]
+    ]
+  },
+  {
+    "id": "h-110",
+    "prompt": "nobody clicks our popup and i think the copy on it is just bad not the design",
+    "domain": "marketing",
+    "style": "messy",
+    "concerns": [
+      [
+        "popups",
+        "copywriting"
+      ]
+    ]
+  },
+  {
+    "id": "h-111",
+    "prompt": "we keep losing trial users after week one and i dont even know whats breaking",
+    "domain": "marketing",
+    "style": "messy",
+    "concerns": [
+      [
+        "onboarding"
+      ]
+    ]
+  },
+  {
+    "id": "h-112",
+    "prompt": "competitor just dropped a comparison page bashing us need our own version up fast",
+    "domain": "marketing",
+    "style": "messy",
+    "concerns": [
+      [
+        "competitors"
+      ]
+    ]
+  },
+  {
+    "id": "h-113",
+    "prompt": "email open rates tanking and also think our subject lines sound like every other saas out there",
+    "domain": "marketing",
+    "style": "messy",
+    "concerns": [
+      [
+        "emails"
+      ],
+      [
+        "copy-editing",
+        "antislop-copywriting"
+      ]
+    ]
+  },
+  {
+    "id": "h-114",
+    "prompt": "sms campaign got flagged for compliance stuff and on top of that our referral program is basically dead nobody shares anymore",
+    "domain": "marketing",
+    "style": "messy",
+    "concerns": [
+      [
+        "sms"
+      ],
+      [
+        "referrals"
+      ]
+    ]
+  },
+  {
+    "id": "h-115",
+    "prompt": "content kita takde strategy langsung, every week tulis apa yang rasa je, boleh tolong buat proper content plan?",
+    "domain": "marketing",
+    "style": "mixed-language",
+    "concerns": [
+      [
+        "content-strategy",
+        "bosskuai-content-calendar"
+      ]
+    ]
+  },
+  {
+    "id": "h-116",
+    "prompt": "landing page kita punya conversion rate rendah gila, boleh audit kenapa orang tak sign up?",
+    "domain": "marketing",
+    "style": "mixed-language",
+    "concerns": [
+      [
+        "cro"
+      ]
+    ]
+  },
+  {
+    "id": "h-117",
+    "prompt": "nak buat email sequence untuk user baru lepas signup supaya tak terus hilang minat",
+    "domain": "marketing",
+    "style": "mixed-language",
+    "concerns": [
+      [
+        "emails",
+        "onboarding"
+      ]
+    ]
+  },
+  {
+    "id": "h-118",
+    "prompt": "nak run ads kat facebook tapi takde creative lagi, boleh tolong buat ad copy sekali dengan targeting strategy?",
+    "domain": "marketing",
+    "style": "mixed-language",
+    "concerns": [
+      [
+        "ad-creative"
+      ],
+      [
+        "ads"
+      ]
+    ]
+  },
+  {
+    "id": "h-119",
+    "prompt": "seo kita dropped lepas google update baru-baru ni, lepas settle tu kena fikir pricing page sebab conversion pun teruk",
+    "domain": "marketing",
+    "style": "mixed-language",
+    "concerns": [
+      [
+        "seo-audit"
+      ],
+      [
+        "cro",
+        "pricing"
+      ]
+    ]
+  },
+  {
+    "id": "h-120",
+    "prompt": "use the programmatic seo skill to spin up location pages for every city we service, something like '[service] in [city]'",
+    "domain": "marketing",
+    "style": "named-skill",
+    "concerns": [
+      [
+        "programmatic-seo"
+      ]
+    ]
+  },
+  {
+    "id": "h-121",
+    "prompt": "Redesign our dashboard, it currently looks like a generic admin template and I want it to feel like a product people actually paid for.",
+    "domain": "design",
+    "style": "detailed",
+    "concerns": [
+      [
+        "redesign-skill",
+        "bosskuai-ui-ux-design-to-code"
+      ]
+    ]
+  },
+  {
+    "id": "h-122",
+    "prompt": "Want a proper design system documented, right now every page uses slightly different spacing and nobody can tell you why.",
+    "domain": "design",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-design-systems"
+      ]
+    ]
+  },
+  {
+    "id": "h-123",
+    "prompt": "The settings page has contrast so low I can barely read it myself, and I know screen reader users have it worse, need a real audit.",
+    "domain": "design",
+    "style": "detailed",
+    "concerns": [
+      [
+        "accessibility"
+      ]
+    ]
+  },
+  {
+    "id": "h-124",
+    "prompt": "Add a drag-to-reorder interaction on the kanban board that actually feels physical, not just instant snapping.",
+    "domain": "design",
+    "style": "detailed",
+    "concerns": [
+      [
+        "apple-design",
+        "animate"
+      ]
+    ]
+  },
+  {
+    "id": "h-125",
+    "prompt": "Need hero images and section visuals for a new marketing site, nothing generic-stock-photo looking.",
+    "domain": "design",
+    "style": "detailed",
+    "concerns": [
+      [
+        "imagegen-frontend-web",
+        "image"
+      ]
+    ]
+  },
+  {
+    "id": "h-126",
+    "prompt": "Turning this Figma screenshot into actual working React components that match it closely, not just loosely inspired by it.",
+    "domain": "design",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-ui-ux-design-to-code",
+        "image-to-code-skill"
+      ]
+    ]
+  },
+  {
+    "id": "h-127",
+    "prompt": "Want a scroll-scrubbed hero where the camera flies through a 3D version of our office, and the rest of the page needs the same design system applied consistently.",
+    "domain": "design",
+    "style": "detailed",
+    "concerns": [
+      [
+        "scroll-world"
+      ],
+      [
+        "bosskuai-design-systems"
+      ]
+    ]
+  },
+  {
+    "id": "h-128",
+    "prompt": "Redesigning the onboarding screens to feel less generic, and whatever we ship needs to actually pass a real accessibility check before launch.",
+    "domain": "design",
+    "style": "detailed",
+    "concerns": [
+      [
+        "redesign-skill",
+        "taste-skill"
+      ],
+      [
+        "accessibility"
+      ]
+    ]
+  },
+  {
+    "id": "h-129",
+    "prompt": "Building the animations for a new modal and card-hover state, and then I want someone to tell me honestly if they're actually good or just busy.",
+    "domain": "design",
+    "style": "detailed",
+    "concerns": [
+      [
+        "animate"
+      ],
+      [
+        "review-animations"
+      ]
+    ]
+  },
+  {
+    "id": "h-130",
+    "prompt": "This brutalist-style portfolio site needs to actually reflow on mobile instead of breaking below tablet width, it should be properly keyboard-navigable too, and the copy needs a refresh since we're using it for next week's launch.",
+    "domain": "design",
+    "style": "detailed",
+    "concerns": [
+      [
+        "brutalist-skill",
+        "antislop-layoutmobile"
+      ],
+      [
+        "accessibility",
+        "antislop-human"
+      ],
+      [
+        "copywriting",
+        "launch"
+      ]
+    ]
+  },
+  {
+    "id": "h-131",
+    "prompt": "make this UI less generic",
+    "domain": "design",
+    "style": "terse",
+    "concerns": [
+      [
+        "taste-skill",
+        "hallmark"
+      ]
+    ]
+  },
+  {
+    "id": "h-132",
+    "prompt": "redesign this, check contrast",
+    "domain": "design",
+    "style": "terse",
+    "concerns": [
+      [
+        "redesign-skill"
+      ],
+      [
+        "accessibility",
+        "antislop-human"
+      ]
+    ]
+  },
+  {
+    "id": "h-133",
+    "prompt": "our landing page looks like every other ai generated saas site pls fix",
+    "domain": "design",
+    "style": "messy",
+    "concerns": [
+      [
+        "taste-skill",
+        "hallmark"
+      ]
+    ]
+  },
+  {
+    "id": "h-134",
+    "prompt": "card hover animation feels cheap and also buttons are way too small to tap on mobile",
+    "domain": "design",
+    "style": "messy",
+    "concerns": [
+      [
+        "emil-design-eng",
+        "animate"
+      ],
+      [
+        "antislop-layoutmobile"
+      ]
+    ]
+  },
+  {
+    "id": "h-135",
+    "prompt": "design kita ni nampak generic sangat macam template free, boleh tolong buat nampak lebih premium?",
+    "domain": "design",
+    "style": "mixed-language",
+    "concerns": [
+      [
+        "soft-skill",
+        "taste-skill"
+      ]
+    ]
+  },
+  {
+    "id": "h-136",
+    "prompt": "use the apple design skill to make this bottom sheet drag feel like an actual iOS sheet, not just a css transition",
+    "domain": "design",
+    "style": "named-skill",
+    "concerns": [
+      [
+        "apple-design"
+      ]
+    ]
+  },
+  {
+    "id": "h-137",
+    "prompt": "Need a security review of our auth flow before we let a security-sensitive feature touch production, worried about privilege escalation.",
+    "domain": "security-ops",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-cybersecurity-risk"
+      ]
+    ]
+  },
+  {
+    "id": "h-138",
+    "prompt": "We're multi-tenant and I just found a query that doesn't filter by organization id, need to check the rest of the codebase for the same mistake.",
+    "domain": "security-ops",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-tenant-isolation-security"
+      ]
+    ]
+  },
+  {
+    "id": "h-139",
+    "prompt": "Want to add alerting and dashboards so we actually know when the API error rate spikes instead of finding out from a customer.",
+    "domain": "security-ops",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-observability-sre"
+      ]
+    ]
+  },
+  {
+    "id": "h-140",
+    "prompt": "Our MySQL replica keeps falling behind primary during the nightly batch job and I don't know if it's locks or just IO.",
+    "domain": "data",
+    "style": "detailed",
+    "concerns": [
+      [
+        "mysql-patterns"
+      ]
+    ]
+  },
+  {
+    "id": "h-141",
+    "prompt": "Need to design the warehouse tables for our analytics pipeline, right now every team queries production directly and it's getting risky.",
+    "domain": "data",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-data-architecture"
+      ]
+    ]
+  },
+  {
+    "id": "h-142",
+    "prompt": "AWS bill jumped 40% this month with no obvious new traffic, need to find what's actually burning the spend.",
+    "domain": "security-ops",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-cost-optimization"
+      ]
+    ]
+  },
+  {
+    "id": "h-143",
+    "prompt": "Setting up Terraform for the staging environment and want a real rollback plan before we touch anything in prod the same way.",
+    "domain": "security-ops",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-devops-iac"
+      ]
+    ]
+  },
+  {
+    "id": "h-144",
+    "prompt": "Our Laravel app needs a security pass on the auth endpoints, and separately the MySQL queries behind the reporting page are timing out under load.",
+    "domain": "security-ops",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-laravel-security"
+      ],
+      [
+        "mysql-patterns",
+        "bosskuai-performance-profiling"
+      ]
+    ]
+  },
+  {
+    "id": "h-145",
+    "prompt": "Want tenant isolation checked across the whole API, and then proper observability so a future leak gets caught by an alert instead of a customer email.",
+    "domain": "security-ops",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-tenant-isolation-security"
+      ],
+      [
+        "bosskuai-observability-sre"
+      ]
+    ]
+  },
+  {
+    "id": "h-146",
+    "prompt": "Need the VPS hardened and backups tested, want to know if we're even PDPA-compliant on how long we keep user logs, and separately some basic alerting so we're not the last to know when something breaks again.",
+    "domain": "security-ops",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-vps-docker-deployment",
+        "bosskuai-hostinger-hosting"
+      ],
+      [
+        "bosskuai-malaysia-pdpa-privacy"
+      ],
+      [
+        "bosskuai-observability-sre"
+      ]
+    ]
+  },
+  {
+    "id": "h-147",
+    "prompt": "Our incident last week was a cross-tenant data leak, need the postmortem done properly and then an actual fix to the authorization boundary that caused it.",
+    "domain": "security-ops",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-incident-response"
+      ],
+      [
+        "bosskuai-tenant-isolation-security"
+      ]
+    ]
+  },
+  {
+    "id": "h-148",
+    "prompt": "harden our vps",
+    "domain": "security-ops",
+    "style": "terse",
+    "concerns": [
+      [
+        "bosskuai-vps-docker-deployment"
+      ]
+    ]
+  },
+  {
+    "id": "h-149",
+    "prompt": "check tenant isolation, add alerts",
+    "domain": "security-ops",
+    "style": "terse",
+    "concerns": [
+      [
+        "bosskuai-tenant-isolation-security"
+      ],
+      [
+        "bosskuai-observability-sre"
+      ]
+    ]
+  },
+  {
+    "id": "h-150",
+    "prompt": "mysql replica lag is insane during backups and nobody knows why",
+    "domain": "data",
+    "style": "messy",
+    "concerns": [
+      [
+        "mysql-patterns"
+      ]
+    ]
+  },
+  {
+    "id": "h-151",
+    "prompt": "server kita kena scan ada malware minggu lepas, lepas clean kena pastikan pdpa compliance pulak sebab simpan data customer",
+    "domain": "security-ops",
+    "style": "mixed-language",
+    "concerns": [
+      [
+        "bosskuai-hostinger-hosting"
+      ],
+      [
+        "bosskuai-malaysia-pdpa-privacy"
+      ]
+    ]
+  },
+  {
+    "id": "h-152",
+    "prompt": "use the mysql patterns skill to figure out why our replica keeps lagging during the nightly ETL job",
+    "domain": "data",
+    "style": "named-skill",
+    "concerns": [
+      [
+        "mysql-patterns"
+      ]
+    ]
+  },
+  {
+    "id": "h-153",
+    "prompt": "Need to convert a stack of vendor PDFs and old Word docs into Markdown so our agent can actually search through them.",
+    "domain": "other",
+    "style": "detailed",
+    "concerns": [
+      [
+        "markitdown"
+      ]
+    ]
+  },
+  {
+    "id": "h-154",
+    "prompt": "We have a graft/ index already built for this repo and I want to know what actually calls the billing webhook handler before I touch it.",
+    "domain": "other",
+    "style": "detailed",
+    "concerns": [
+      [
+        "graft"
+      ]
+    ]
+  },
+  {
+    "id": "h-155",
+    "prompt": "Not sure which model to point our document-summarization feature at, need something that balances quality against cost at our volume.",
+    "domain": "other",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-ai-model-selection"
+      ]
+    ]
+  },
+  {
+    "id": "h-156",
+    "prompt": "Want to set up Hindsight so the agent actually remembers decisions across sessions instead of starting from zero every time.",
+    "domain": "other",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-hindsight-memory"
+      ]
+    ]
+  },
+  {
+    "id": "h-157",
+    "prompt": "Context's about to run out mid-task on this big migration, I want a BosskuAI skill written for our internal deploy checklist so it's not tribal knowledge anymore, and then a proper handoff doc so the next session can pick this up cleanly.",
+    "domain": "other",
+    "style": "detailed",
+    "concerns": [
+      [
+        "bosskuai-context-limit-continuation"
+      ],
+      [
+        "bosskuai-skill-creator"
+      ],
+      [
+        "bosskuai-handoff"
+      ]
+    ]
+  },
+  {
+    "id": "h-158",
+    "prompt": "compress these logs, then hand off",
+    "domain": "other",
+    "style": "terse",
+    "concerns": [
+      [
+        "bosskuai-headroom"
+      ],
+      [
+        "bosskuai-handoff"
+      ]
+    ]
+  },
+  {
+    "id": "h-159",
+    "prompt": "need these scanned pdfs turned into actual tables we can query not just raw text dump",
+    "domain": "other",
+    "style": "messy",
+    "concerns": [
+      [
+        "odl-pdf"
+      ]
+    ]
+  },
+  {
+    "id": "h-160",
+    "prompt": "boleh tolong automate scraping data dari portal supplier guna browser, tapi ini jalan dalam sandbox server takde GUI pun, lepas tu nak simpan report dia dalam cloud session boleh reuse",
+    "domain": "other",
+    "style": "mixed-language",
+    "concerns": [
+      [
+        "remote-browser"
+      ],
+      [
+        "cloud"
+      ]
+    ]
+  }
+]

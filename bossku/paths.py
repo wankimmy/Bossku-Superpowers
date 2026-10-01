@@ -31,6 +31,11 @@ def user_config_path(home: Path | None = None) -> Path:
     return user_config_dir(home) / "config.json"
 
 
+def library_dir(home: Path | None = None) -> Path:
+    """Where the `lean` profile keeps skills a host should not list; read on demand via `bossku skills show`."""
+    return user_config_dir(home) / "library"
+
+
 def agents_skills_dir(home: Path | None = None) -> Path:
     base = home if home is not None else Path.home()
     return base / ".agents" / "skills"

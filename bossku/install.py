@@ -7,11 +7,13 @@ from pathlib import Path
 from bossku.paths import (
     agents_skills_dir,
     claude_skills_dir,
+    library_dir,
     repo_root,
     user_config_dir,
 )
-from bossku.hooks import install_hooks
+from bossku.hooks import install_hooks, uninstall_hooks
 from bossku.skills import (
+    copy_library_to,
     copy_skills_to,
     is_managed_skill_name,
     make_path_writable,
@@ -78,18 +80,14 @@ def tools_coverage_map(agents_dest: Path, claude_dest: Path) -> dict:
 AUTO_MEMORY_BLOCK = """<!-- bosskuai:memory:start -->
 ## Automatic BosskuAI memory
 
-For meaningful project work, resolve the actual project root and run
-`bossku memory-path --project <project-root>` to locate canonical memory.
-Read relevant notes there before making decisions or continuing work.
-Automatically save new, verified decisions, plans, project facts, and lessons
-with `bossku remember --project <project-root> --kind decision|plan|learning|project "<concise note>"`
-before the final response. Do not wait for the user to request remembering.
-Skip trivial chatter, duplicate notes, secrets, raw prompts, and transcripts.
-The CLI chooses storage from ~/.bosskuai/config.json. When memory_storage is
-obsidian, all memory (including handoffs) lives in the Obsidian vault. Never
-create or write .bossku/memory or repo sync-state files. Resolve handoff.md
-inside the directory returned by memory-path. Do not fall back to the repo
-if the vault is unavailable; report that the note was not saved.
+For meaningful project work get the notes with `bossku memory-brief --project <project-root>` unless they are
+already in your context; `bossku memory-path` names the folder (handoff.md lives there). Automatically save a new,
+verified decision (with its reason), plan, fact or lesson that a future session would need, before the final reply,
+with `bossku remember --project <project-root> --kind decision|plan|learning|project "<note>"`. One call is
+enough: its output says whether the note was saved. Skip routine work, trivia, duplicates, secrets, raw prompts
+and transcripts, and use the commands rather than opening the memory files. Storage follows
+~/.bosskuai/config.json: with Obsidian storage never write .bossku/memory or repo sync files, and if the vault
+is unavailable report that the note was not saved instead of falling back to the repo.
 <!-- bosskuai:memory:end -->"""
 
 
@@ -143,8 +141,17 @@ def install_user(
         raise RuntimeError(
             f"skill mirror mismatch: agents={agents_n} claude={claude_n}; re-run `bossku install`"
         )
+    library = library_dir(h)
+    if profile == "lean":
+        # Skills the hosts do not list stay installed whole, one `bossku skills show <id>` away.
+        library_ids = copy_library_to(library, r, set(installed_agents))
+        copy_skill_support(r, library.parent)
+    else:
+        library_ids = []
+        remove_tree(library)
+    # The router can pick anything it can reach: listed skills plus the library.
     cache_path = user_config_dir(h) / "routing-cache.json"
-    write_routing_cache(cache_path, r, available=set(installed_agents))
+    write_routing_cache(cache_path, r, available=set(installed_agents) | set(library_ids))
     cfg_path = user_config_dir(h) / "config.json"
     cfg: dict = {}
     if cfg_path.is_file():
@@ -170,6 +177,8 @@ def install_user(
         "agents_count": agents_n,
         "claude_count": claude_n,
         "installed_count": agents_n,
+        "library_dir": str(library) if library_ids else None,
+        "library_count": len(library_ids),
         "pruned_skills": pruned,
         "agents_reference_count": len(installed_agents_references),
         "claude_reference_count": len(installed_claude_references),
@@ -213,9 +222,13 @@ def uninstall_user(*, root: Path | None = None, home: Path | None = None, purge:
             if child.is_dir() and is_managed_skill_name(child.name, effective_root):
                 remove_tree(child)
                 removed.append(child.name)
+    remove_tree(library_dir(h))
+    for name in ("references", "site", "docs"):   # shared files the lean library links to
+        remove_tree(user_config_dir(h) / name)
+    hooks_removed = uninstall_hooks(home=h) if purge else None
     if purge and cfg_path.is_file():
         cfg_path.unlink()
     cache = user_config_dir(h) / "routing-cache.json"
     if purge and cache.is_file():
         cache.unlink()
-    return {"removed_skills": removed, "purged_config": purge}
+    return {"removed_skills": removed, "purged_config": purge, "hooks_removed": hooks_removed}

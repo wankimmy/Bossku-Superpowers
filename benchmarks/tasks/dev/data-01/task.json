@@ -1,0 +1,15 @@
+{
+  "id": "data-01",
+  "category": "data",
+  "prompt": "We get a daily sales export as CSV text and need a quick per-category summary. Add `generate_report(csv_text)` to `sales_report.py`. The input is CSV text with a header row `order_id,category,amount`, standard CSV quoting (so a category like `\"Electronics, Used\"` with an embedded comma is one field, and `\"\"` inside a quoted field is a literal quote), and each record on its own line (no embedded newlines inside a field). Lines that are empty or contain only whitespace are skipped.\n\n- If the same `order_id` appears on more than one data row, only the *last* such row counts \u2014 treat it as a correction that fully replaces the earlier one (category and amount included).\n- Group the remaining rows by `category`, computing the order count and the sum of `amount` (rounded to 2 decimals) for each.\n- Build the report as fixed-width lines: a `CATEGORY` column left-justified in 20 characters, a `COUNT` column right-justified in 8 characters, and a `TOTAL` column right-justified in 12 characters formatted with exactly 2 decimals. The header row uses the same widths with the literal labels `CATEGORY`, `COUNT`, `TOTAL`. Categories are listed in alphabetical order, followed by a final `TOTAL` row summing the count and amount across every (deduplicated) order. Lines are joined with `\\n`, with no trailing newline.\n\nFor example, this input:\n\n```\norder_id,category,amount\n1001,Books,12.50\n1002,\"Electronics, Used\",99.99\n1003,Books,33.00\n1001,Books,15.00\n\n1004,\"Electronics, Used\",99.99\n```\n\nproduces exactly:\n\n```\nCATEGORY               COUNT       TOTAL\nBooks                      2       48.00\nElectronics, Used          2      199.98\nTOTAL                      4      247.98\n```\n\n(order `1001` appears twice; only its second row, 15.00, counts, so Books totals 33.00 + 15.00 = 48.00.)",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_data_01_hidden"
+    ],
+    "timeout": 120
+  }
+}

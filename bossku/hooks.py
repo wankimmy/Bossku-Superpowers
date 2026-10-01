@@ -18,6 +18,12 @@ ALL_TOOLS = ("claude_code", "cursor", "codex", "opencode")
 # Denser defaults (additive). Marker-checked per event so upgrades fill gaps.
 CURSOR_EVENTS = ("stop", "sessionEnd", "afterAgentResponse")
 CLAUDE_EVENTS = ("Stop", "SessionEnd")
+HINT_MARKER = "skill-hint"
+HINT_EVENT = "UserPromptSubmit"
+GATE_MARKER = "verify-gate"
+GATE_EVENT = "Stop"
+BRIEF_MARKER = "session-brief"
+BRIEF_EVENT = "SessionStart"
 CODEX_EVENTS = ("Stop", "SessionEnd")
 
 
@@ -101,6 +107,78 @@ def _claude_sync_cmd() -> str:
     if exe:
         return f'"{Path(exe).as_posix()}" sync-hook'
     return f'"{Path(sys.executable).as_posix()}" -m bossku sync-hook'
+
+
+def _claude_cmd(subcommand: str) -> str:
+    exe = shutil.which("bossku")
+    if exe:
+        return f'"{Path(exe).as_posix()}" {subcommand}'
+    return f'"{Path(sys.executable).as_posix()}" -m bossku {subcommand}'
+
+
+def apply_marked_hook(hooks: dict, event: str, marker: str, command: str, timeout: int = 10) -> bool:
+    """Add one marked command hook to a hooks dict in memory. Returns True when it changed."""
+    bucket = hooks.get(event)
+    if isinstance(bucket, list) and _has_marker(bucket, marker):
+        if _has_command(bucket, command):
+            return False
+        hooks[event] = _strip_marker(bucket, marker)   # an older command this shell cannot run
+    hooks.setdefault(event, []).append({"hooks": [{"type": "command", "command": command, "timeout": timeout}]})
+    return True
+
+
+def ensure_marked_hook(settings: Path, event: str, marker: str, command: str, timeout: int = 10) -> bool:
+    """Add one marked command hook to a Claude Code settings.json. Returns True when the file changed."""
+    data = _read_json(settings)
+    hooks = data.setdefault("hooks", {})
+    if not isinstance(hooks, dict):
+        hooks = data["hooks"] = {}
+    if not apply_marked_hook(hooks, event, marker, command, timeout):
+        return False
+    if settings.is_file():
+        _backup(settings)
+    _write_json(settings, data)
+    return True
+
+
+def remove_marked_hook(settings: Path, event: str, marker: str) -> bool:
+    data = _read_json(settings)
+    hooks = data.get("hooks", {})
+    bucket = hooks.get(event) if isinstance(hooks, dict) else None
+    if not isinstance(bucket, list) or not _has_marker(bucket, marker):
+        return False
+    remaining = _strip_marker(bucket, marker)
+    if remaining:
+        hooks[event] = remaining
+    else:
+        del hooks[event]
+    _backup(settings)
+    _write_json(settings, data)
+    return True
+
+
+def ensure_skill_hint_hook(settings: Path, command: str | None = None) -> bool:
+    return ensure_marked_hook(settings, HINT_EVENT, HINT_MARKER, command or _claude_cmd("skill-hint"))
+
+
+def ensure_verify_gate_hook(settings: Path, command: str | None = None) -> bool:
+    return ensure_marked_hook(settings, GATE_EVENT, GATE_MARKER, command or _claude_cmd("verify-gate"), timeout=15)
+
+
+def ensure_session_brief_hook(settings: Path, command: str | None = None) -> bool:
+    return ensure_marked_hook(settings, BRIEF_EVENT, BRIEF_MARKER, command or _claude_cmd("session-brief"))
+
+
+def remove_session_brief_hook(settings: Path) -> bool:
+    return remove_marked_hook(settings, BRIEF_EVENT, BRIEF_MARKER)
+
+
+def remove_skill_hint_hook(settings: Path) -> bool:
+    return remove_marked_hook(settings, HINT_EVENT, HINT_MARKER)
+
+
+def remove_verify_gate_hook(settings: Path) -> bool:
+    return remove_marked_hook(settings, GATE_EVENT, GATE_MARKER)
 
 
 def _has_command(entries: list, command: str) -> bool:
@@ -241,11 +319,18 @@ def install_claude_code_hook(home: Path) -> dict:
         if isinstance(bucket, list) and _has_marker(bucket, HOOK_MARKER) and not _has_command(bucket, command):
             hooks[ev] = _strip_marker(bucket, HOOK_MARKER)
     added = [ev for ev in CLAUDE_EVENTS if _ensure_event(hooks, ev, json.loads(json.dumps(entry)))]
+    if apply_marked_hook(hooks, HINT_EVENT, HINT_MARKER, _claude_cmd("skill-hint")):
+        added.append("skill-hint")
+    if apply_marked_hook(hooks, GATE_EVENT, GATE_MARKER, _claude_cmd("verify-gate"), timeout=15):
+        added.append("verify-gate")
+    if apply_marked_hook(hooks, BRIEF_EVENT, BRIEF_MARKER, _claude_cmd("session-brief")):
+        added.append("session-brief")
+    events = [*CLAUDE_EVENTS, HINT_EVENT, BRIEF_EVENT]
     if not added:
-        return {"status": "already_installed", "path": str(path), "events": list(CLAUDE_EVENTS)}
+        return {"status": "already_installed", "path": str(path), "events": events}
     _backup(path)
     _write_json(path, data)
-    return {"status": "installed", "path": str(path), "events": list(CLAUDE_EVENTS), "added": added}
+    return {"status": "installed", "path": str(path), "events": events, "added": added}
 
 
 def install_cursor_hook(home: Path) -> dict:
@@ -377,10 +462,11 @@ def uninstall_claude_code_hook(home: Path) -> dict:
     path = home / ".claude" / "settings.json"
     if not path.is_file():
         return {"status": "skipped_not_found", "path": str(path)}
+    hint_removed = remove_skill_hint_hook(path) | remove_verify_gate_hook(path) | remove_session_brief_hook(path)
     data = _read_json(path)
     hooks = data.get("hooks", {})
     if not isinstance(hooks, dict) or not _strip_events(hooks, CLAUDE_EVENTS):
-        return {"status": "not_installed", "path": str(path)}
+        return {"status": "removed" if hint_removed else "not_installed", "path": str(path)}
     _backup(path)
     data["hooks"] = hooks
     _write_json(path, data)

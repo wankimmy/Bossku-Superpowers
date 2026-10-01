@@ -1,0 +1,15 @@
+{
+  "id": "sec-04",
+  "category": "security",
+  "prompt": "Our app hands out short-lived session tokens after login, and we want to be able to rotate the signing secret without logging everyone out. Add `tokens.py` with:\n\n- `TokenService(secret_key, *, previous_keys=(), ttl, clock=time.time)` \u2014 `secret_key` is the current signing key; `previous_keys` is an iterable of older keys that should still be accepted when verifying (but are never used to sign new tokens); `ttl` is how many seconds a freshly issued token stays valid; `clock` is a zero-argument callable returning the current time, injectable for tests.\n- `ttl` must be positive, otherwise raise `ValueError`.\n- `issue(subject)` returns a new opaque `str` token for `subject` (e.g. a user id or username), always signed with the current `secret_key`, timestamped using `clock()` at the moment of issuing.\n- `verify(token)` returns the original `subject` string when the token's signature matches the current key or any of the `previous_keys`, and the token has not expired. A token is valid while `clock() < issued_at + ttl` (using the clock reading captured when it was issued); once that much time has passed, it must be rejected.\n- If the signature is good but the token has expired, raise `ExpiredTokenError`.\n- If the token is malformed, empty, or its signature doesn't match the current key or any previous key \u2014 including a token that has been truncated or had a character changed \u2014 raise `InvalidTokenError`.\n- Both `ExpiredTokenError` and `InvalidTokenError` are subclasses of a common `TokenError`.\n- These tokens are handed to users as session credentials, so a corrupted or tampered token must never be treated as valid, and rotating in a new `secret_key` (moving the old one into `previous_keys`) must not invalidate tokens that are already out there.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_sec_04_hidden"
+    ],
+    "timeout": 120
+  }
+}

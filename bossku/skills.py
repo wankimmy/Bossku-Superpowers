@@ -11,7 +11,14 @@ from datetime import date
 from pathlib import Path
 from urllib.parse import unquote
 
-from bossku.paths import COFOUNDER_SKILL, MANAGED_SKILL_PREFIX, repo_root
+from bossku.paths import (
+    COFOUNDER_SKILL,
+    MANAGED_SKILL_PREFIX,
+    agents_skills_dir,
+    claude_skills_dir,
+    library_dir,
+    repo_root,
+)
 
 
 @dataclass
@@ -327,6 +334,15 @@ ALTERNATIVE_SKILLS = (
 )
 
 
+# Selection policy. Scores are lexical evidence on a scale that shrinks as a prompt gets longer, so the
+# floors are low and the shortlist is judged relative to the best match instead of against a fixed bar.
+MIN_EVIDENCE = 1.5          # below this the router has nothing to go on and falls back to the cofounder skill
+RELATIVE_FLOOR = 0.4        # a follow-up skill needs at least this share of the best score (or a phrase match)
+CONCERN_WINNER_MIN = 6.0    # a clause of a multi-part request nominates its best skill above this score
+CONFIDENT_MIN = 6.0         # a confident pick needs this much evidence and a lead over the runner-up
+CONFIDENT_LEAD = 1.25
+
+
 def select_skill_stack(
     task: str,
     root: Path | None = None,
@@ -351,7 +367,7 @@ def select_skill_stack(
     if len(concerns) > 1:
         for concern in concerns:
             matches = rank_skills(concern, root, limit=1)
-            if matches and matches[0][1] >= 6.0:
+            if matches and matches[0][1] >= CONCERN_WINNER_MIN:
                 concern_winners.add(matches[0][0])
     aliases = load_aliases(root)
     task_l = task.lower()
@@ -392,7 +408,7 @@ def select_skill_stack(
                                          phrase.replace("-", " "))]
         phrase_match = any(len(phrase.split()) >= 2 for phrase in matched_triggers)
         if not explicit and sid not in concern_winners and (
-            score < 4.0 or (score < top * 0.55 and not phrase_match)
+            score < MIN_EVIDENCE or (score < top * RELATIVE_FLOOR and not phrase_match)
         ):
             continue
 
@@ -446,7 +462,7 @@ def select_skill_stack(
     primary_score = selected[0]["score"] if selected else 0.0
     runner_up = max((score for sid, score in ranked if sid in allowed and sid != primary), default=0.0)
     confident = bool(selected) and (primary in requested or
-                                  (primary_score >= 6.0 and primary_score >= runner_up * 1.25))
+                                  (primary_score >= CONFIDENT_MIN and primary_score >= runner_up * CONFIDENT_LEAD))
     unknown = sorted(set(re.findall(r"\bbosskuai-[a-z0-9]+(?:-[a-z0-9]+)*\b", task_l))
                      - set(entries) - set(aliases))
     unavailable.extend(unknown)
@@ -589,6 +605,7 @@ def copy_skills_to(dest_dir: Path, root: Path | None = None, profile: str = "ful
     base = skills_dir(root)
     dest_dir.mkdir(parents=True, exist_ok=True)
     selected = _profile_skills(profile, root)
+    short = load_lean(root)["descriptions"] if profile == "lean" else {}
     installed: list[str] = []
     for sid in selected:
         src = base / sid
@@ -599,8 +616,138 @@ def copy_skills_to(dest_dir: Path, root: Path | None = None, profile: str = "ful
             remove_tree(target)
         shutil.copytree(src, target)
         make_tree_writable(target)
+        if sid in short:
+            set_description(target / "SKILL.md", short[sid])
         installed.append(sid)
     return installed
+
+
+LEAN_FILE = "lean.json"
+
+
+def lean_path(root: Path | None = None) -> Path:
+    return skills_dir(root) / LEAN_FILE
+
+
+def load_lean(root: Path | None = None) -> dict:
+    """The skills a host lists in every session, with short descriptions.
+
+    Hosts spend a fixed share of the context window on skill descriptions and cut the rest down to
+    bare names, so the long tail is kept out of the list and reached through `bosskuai-skill-finder`.
+    """
+    path = lean_path(root)
+    if not path.is_file():
+        return {"listed": [], "descriptions": {}}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    return {
+        "listed": [str(sid) for sid in data.get("listed", [])],
+        "descriptions": {str(k): str(v) for k, v in data.get("descriptions", {}).items()},
+    }
+
+
+def set_description(skill_md: Path, description: str) -> None:
+    """Replace the frontmatter description of an installed copy; repository sources are never edited."""
+    text = skill_md.read_text(encoding="utf-8")
+    if not text.startswith("---"):
+        return
+    close = re.search(r"^---[ \t]*$", text[3:], re.MULTILINE)
+    if close is None:
+        return
+    head_end = 3 + close.start()
+    lines = text[3:head_end].split("\n")
+    out: list[str] = []
+    done = False
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        if not done and line.startswith("description:"):
+            out.append("description: " + json.dumps(description, ensure_ascii=False))
+            i += 1
+            while i < len(lines):
+                if lines[i][:1] in (" ", "\t"):          # continuation of a folded or block scalar
+                    i += 1
+                    continue
+                if not lines[i].strip():                 # blank line: only a continuation if an indented line follows
+                    j = i
+                    while j < len(lines) and not lines[j].strip():
+                        j += 1
+                    if j < len(lines) and lines[j][:1] in (" ", "\t"):
+                        i = j
+                        continue
+                break
+            done = True
+            continue
+        out.append(line)
+        i += 1
+    if done:
+        skill_md.write_text("---" + "\n".join(out) + text[head_end:], encoding="utf-8", newline="\n")
+
+
+def copy_library_to(dest_dir: Path, root: Path | None = None, exclude: set[str] | frozenset[str] = frozenset()) -> list[str]:
+    """Install whole skills the host does not list, so `bossku skills show` can read them on demand."""
+    base = skills_dir(root)
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    ids = [sid for sid in list_skill_ids(root) if sid not in exclude and sid not in NOT_INSTALLED]
+    for sid in ids:
+        target = dest_dir / sid
+        if target.exists():
+            remove_tree(target)
+        shutil.copytree(base / sid, target)
+        make_tree_writable(target)
+    for child in dest_dir.iterdir():
+        if child.is_dir() and child.name not in set(ids):
+            remove_tree(child)
+    return ids
+
+
+def locate_skill(sid: str, root: Path | None = None, home: Path | None = None) -> tuple[str, Path | None]:
+    """Where a skill can be read: ("listed" | "library" | "repo", SKILL.md) or ("missing", None)."""
+    sid = resolve_skill_id(sid, root)
+    for kind, folder in (("listed", claude_skills_dir(home)), ("listed", agents_skills_dir(home)),
+                         ("library", library_dir(home))):
+        path = folder / sid / "SKILL.md"
+        if path.is_file():
+            return kind, path
+    try:
+        path = skills_dir(root) / sid / "SKILL.md"
+    except FileNotFoundError:
+        return "missing", None
+    return ("repo", path) if path.is_file() else ("missing", None)
+
+
+MAX_LEAN_SKILLS = 48
+MAX_LEAN_DESCRIPTION_CHARS = 150
+
+
+def validate_lean(root: Path | None = None) -> list[str]:
+    """The lean list must stay small, short and complete, or its context saving quietly erodes."""
+    path = lean_path(root)
+    if not path.is_file():
+        return [f"missing skills/{LEAN_FILE}"]
+    errors: list[str] = []
+    lean = load_lean(root)
+    ids = set(list_skill_ids(root))
+    listed = lean["listed"]
+    if len(set(listed)) != len(listed):
+        errors.append(f"{LEAN_FILE}: duplicate ids in listed")
+    if len(listed) > MAX_LEAN_SKILLS:
+        errors.append(f"{LEAN_FILE}: {len(listed)} listed skills; keep at most {MAX_LEAN_SKILLS}")
+    if "bosskuai-skill-finder" not in listed:
+        errors.append(f"{LEAN_FILE}: bosskuai-skill-finder must be listed or the long tail is unreachable")
+    for sid in listed:
+        if sid not in ids:
+            errors.append(f"{LEAN_FILE}: listed skill has no folder: {sid}")
+        elif sid in NOT_INSTALLED:
+            errors.append(f"{LEAN_FILE}: {sid} is never installed")
+        shown = lean["descriptions"].get(sid) or (
+            parse_skill_md(skills_dir(root) / sid / "SKILL.md").description if sid in ids else "")
+        if not MIN_DESCRIPTION_CHARS <= len(shown) <= MAX_LEAN_DESCRIPTION_CHARS:
+            errors.append(f"{LEAN_FILE}: {sid} description is {len(shown)} chars; "
+                          f"use {MIN_DESCRIPTION_CHARS}-{MAX_LEAN_DESCRIPTION_CHARS}")
+    for sid in lean["descriptions"]:
+        if sid not in listed:
+            errors.append(f"{LEAN_FILE}: description for a skill that is not listed: {sid}")
+    return errors
 
 
 def prune_stale_skills(dests: tuple[Path, ...], keep: set[str], root: Path | None = None) -> list[str]:
@@ -621,8 +768,11 @@ def prune_stale_skills(dests: tuple[Path, ...], keep: set[str], root: Path | Non
 
 
 def _profile_skills(profile: str, root: Path | None) -> list[str]:
-    if profile not in {"core", "full"}:
-        raise ValueError("profile must be core or full")
+    if profile not in {"lean", "core", "full"}:
+        raise ValueError("profile must be lean, core or full")
+    if profile == "lean":
+        base_dir = skills_dir(root)
+        return [sid for sid in load_lean(root)["listed"] if (base_dir / sid).is_dir()]
     core = [
         COFOUNDER_SKILL,
         "bosskuai-project-understanding",

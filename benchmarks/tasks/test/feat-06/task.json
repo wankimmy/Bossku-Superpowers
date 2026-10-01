@@ -1,0 +1,15 @@
+{
+  "id": "feat-06",
+  "category": "feature",
+  "prompt": "Flaky calls to a couple of internal services keep failing scripts outright. Create `retry.py` with a class `RetryPolicy(max_attempts, base_delay, max_delay=None, multiplier=2.0, retry_on=(Exception,), clock=time.monotonic, sleep=time.sleep)`.\n\n- At construction, raise `ValueError` if: `max_attempts` isn't an `int >= 1`; `base_delay < 0`; `multiplier < 1`; or `max_delay` is given and is less than `base_delay`.\n- `.delay_for(attempt)` (`attempt` is the 1-based attempt number that just failed) returns `base_delay * (multiplier ** (attempt - 1))`, reduced down to `max_delay` if that's set and smaller than the computed value.\n- `.call(fn, *args, **kwargs)` calls `fn(*args, **kwargs)`, forwarding the same `args`/`kwargs` on every attempt. On success it returns the value right away, with no sleeping and no further calls to `fn`.\n- If `fn` raises something that is NOT an instance of `retry_on`, `.call` re-raises it immediately - no sleep, no retry - even on the very first attempt.\n- If `fn` raises an instance of `retry_on` and fewer than `max_attempts` attempts have been made so far, `.call` calls `self.sleep(self.delay_for(attempt))` (using the attempt number that just failed) and then tries `fn` again.\n- If the attempt that just failed with a `retry_on` exception was already the `max_attempts`-th attempt, that same exception is re-raised as-is instead, with no further sleep.\n- `self.attempts_used` is updated before each call to `fn`, so after `.call` returns or raises it reflects exactly how many times `fn` was invoked during that call. It is overwritten at the start of every new `.call` (never accumulated across separate calls).\n- `self.clock()` is read once at the very start of `.call` and once right before `.call` returns or raises, whether that is by success or by a final failure; `self.elapsed` is set to the difference between those two readings.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_feat_06_hidden"
+    ],
+    "timeout": 120
+  }
+}

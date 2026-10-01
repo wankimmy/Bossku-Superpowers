@@ -1,7 +1,7 @@
 {
   "version": "2.1.0",
-  "fingerprint": "83cc8e2fcfd447ce",
-  "count": 235,
+  "fingerprint": "dc6e3e416e4214e8",
+  "count": 236,
   "aliases": {
     "bosskuai-caveman": "bosskuai-token-saver",
     "bosskuai-root-cause-investigation": "bosskuai-diagnose-loop",
@@ -7976,6 +7976,37 @@
         "reference"
       ],
       "model_role": "coder",
+      "pack": "bossku"
+    },
+    "bosskuai-skill-finder": {
+      "path": "skills/bosskuai-skill-finder/SKILL.md",
+      "name": "bosskuai-skill-finder",
+      "description": "Use when no listed skill fits (marketing, SEO, ads, legal, finance, design, mobile, DevOps) or the right skill is unclear.",
+      "triggers": [
+        "skill finder"
+      ],
+      "exclusions": [],
+      "phrases": [
+        "no listed skill fits",
+        "the right skill is unclear"
+      ],
+      "keywords": [
+        "skill",
+        "finder",
+        "listed",
+        "fits",
+        "marketing",
+        "seo",
+        "ads",
+        "legal",
+        "finance",
+        "design",
+        "mobile",
+        "devop",
+        "right",
+        "unclear"
+      ],
+      "model_role": "researcher",
       "pack": "bossku"
     },
     "bosskuai-skill-stocktake": {

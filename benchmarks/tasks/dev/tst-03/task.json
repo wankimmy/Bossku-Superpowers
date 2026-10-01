@@ -1,0 +1,15 @@
+{
+  "id": "tst-03",
+  "category": "test-writing",
+  "prompt": "This repo has a small `calc.py` module (a basic arithmetic expression evaluator) but no tests for it. Add a unittest test file at `test_calc.py` that thoroughly covers `evaluate(expr)`:\n\n- Supports `+`, `-`, `*`, `/`, parentheses, integer and decimal literals, and a unary minus before a number or parenthesis (e.g. \"-3 + 5\" == 2.0, \"4 * -2\" == -8.0, \"-(2+3)\" == -5.0).\n- Standard precedence: `*` and `/` bind tighter than `+` and `-` (e.g. \"2 + 3 * 4\" == 14.0), and parentheses override precedence (e.g. \"(2 + 3) * 4\" == 20.0). Operators of the same precedence evaluate left to right (e.g. \"10 - 3 - 2\" == 5.0, not 9.0).\n- `/` is true division and always returns a float (e.g. \"7 / 2\" == 3.5). Dividing by zero raises `ValueError` (not a `ZeroDivisionError`).\n- Whitespace anywhere in the expression is ignored.\n- The function's return value is always a `float`.\n- Raises `ValueError` for: an empty or blank string, a non-string input, unbalanced parentheses, invalid characters, a trailing operator with no operand after it, and two operands with no operator between them.\n\nWrite at least 5-6 test methods (more as needed) in `test_calc.py` covering normal arithmetic, precedence, parentheses, unary minus, decimals, division and division-by-zero, and malformed input.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_tst_03_hidden"
+    ],
+    "timeout": 120
+  }
+}

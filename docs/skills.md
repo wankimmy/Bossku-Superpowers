@@ -7,7 +7,7 @@ Canonical skills live in [`skills/`](../skills/). Each folder contains `SKILL.md
 - Say `bossku` or use cofounder mode for cross-domain work.
 - `bossku skills find "<task>"` chooses a primary skill and useful complements. `selection` explains selected and deferred skills, weak confidence, and missing named skills. Read descriptions and check host capabilities before loading. `matches` remains a ranked search list.
 - Mixed asks are scored by concern as well as the whole prompt. Explicit skill ids and aliases take priority; negated requests, incompatible alternatives, user-only slash commands, and unavailable skills are deferred. Ordinary words such as “schema” do not count as named requests without invocation context.
-- The CLI uses the installed profile by default. Use `--profile core|full` to override it, or pass an actual host inventory to the Python `select_skill_stack(..., available=...)` API. A profile check cannot prove that a running host exposes every installed skill; inspect its live inventory. Optional runtimes remain capability checks in the selected skill.
+- The CLI uses the installed profile by default. Use `--profile lean|core|full` to override it, or pass an actual host inventory to the Python `select_skill_stack(..., available=...)` API. A profile check cannot prove that a running host exposes every installed skill; inspect its live inventory. Optional runtimes remain capability checks in the selected skill.
 - Selection is a lexical heuristic, not a probability or a runtime command. Re-route when the task changes. Tests and the [routing benchmark](benchmarks/README.md) cover a recorded regression corpus; they do not guarantee every future prompt or prove coding quality.
 - `bossku skills audit` measures always-loaded description size, long skill bodies, provenance grouping, and broken relative references.
 - Deprecated Bossku names resolve via [`skills/aliases.json`](../skills/aliases.json).
@@ -15,9 +15,11 @@ Canonical skills live in [`skills/`](../skills/). Each folder contains `SKILL.md
 
 ## Profiles
 
+`bossku install --profile lean` (the default) lists about 40 everyday skills with short descriptions and installs the other ~195 whole in `~/.bosskuai/library`. The agent reaches them through [`bosskuai-skill-finder`](../skills/bosskuai-skill-finder/SKILL.md): `bossku skills find "<task>"` names the skills and `bossku skills show <id>` prints one. The list lives in [`skills/lean.json`](../skills/lean.json); `bossku validate` keeps it small and complete.
+
 `bossku install --profile core` installs Bossku co-founder essentials plus the **loop-engineering** pack (12 loop/triage/CI/PR skills) and `bosskuai-grounding`. Always-on loop discipline is in [`AGENTS.md`](../AGENTS.md#loop-engineering-always-on); always-on grounding is in [`AGENTS.md`](../AGENTS.md#grounding-always-on).
 
-`bossku install --profile full` installs the entire library (~240 skills), including all other vendored packs.
+`bossku install --profile full` installs and lists the entire library (~240 skills), including all other vendored packs.
 
 ## Vendored packs
 

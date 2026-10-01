@@ -40,6 +40,8 @@ class VaultMemoryTests(unittest.TestCase):
         result = remember(self.project, 'decision', 'Keep this choice.', home=self.home)
         self.assertEqual(Path(result['file']), target)
         self.assertEqual(result['vault']['status'], 'ok')
+        self.assertIs(result['saved'], True)
+        self.assertIn('in the vault', result['message'])
         self.assertIn('Edited in Obsidian.', target.read_text(encoding='utf-8'))
         self.assertIn('Keep this choice.', target.read_text(encoding='utf-8'))
         self.assertFalse((self.project / '.bossku').exists())
@@ -261,6 +263,21 @@ class VaultMemoryTests(unittest.TestCase):
         result = remember(self.project, 'decision', 'Legacy workflow.', home=self.home)
         self.assertEqual(Path(result['file']), self.project / '.bossku' / 'memory' / 'decisions.md')
         self.assertEqual(result['vault']['status'], 'skipped')
+
+    def test_a_saved_note_says_so_before_anything_else(self):
+        # "vault: skipped" read like a failure to agents, who then retried and hand-edited the memory files.
+        save_user_config({}, self.home)
+        result = remember(self.project, 'learning', 'Retries need jitter.', home=self.home)
+        self.assertEqual(list(result)[:2], ['saved', 'message'])
+        self.assertIs(result['saved'], True)
+        self.assertIn('no vault is configured', result['message'])
+        self.assertTrue(result['message'].endswith('Nothing more to do.'))
+        out = io.StringIO()
+        with redirect_stdout(out):
+            main(['--home', str(self.home), 'remember', '--project', str(self.project), '--kind', 'plan', 'Ship it.'])
+        printed = json.loads(out.getvalue())
+        self.assertIs(printed['saved'], True)
+        self.assertIn('Saved the plan note', printed['message'])
 
     def test_unknown_storage_cannot_fall_back_during_sync(self):
         save_user_config({'memory_storage': 'invalid', 'obsidian_vault': str(self.vault)}, self.home)

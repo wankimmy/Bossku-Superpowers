@@ -1,0 +1,15 @@
+{
+  "id": "fix-02",
+  "category": "bugfix",
+  "prompt": "Our single-room booking calendar (`daterange.py` + `booking.py`) is mishandling adjacent dates:\n- If one guest checks out on the same day another guest checks in, `Calendar.add_booking` rejects the new booking as a conflict, even though the room is free that day.\n- `Calendar.bookings_on(day)` still lists a guest as present on the exact day they check out, even though checkout morning means they're already gone.\n\nHere's the intended behavior:\n- `DateRange(start, end)` represents the nights from `start` (inclusive) up to `end` (exclusive — the day the guest leaves, not a night they stay). It raises `ValueError` if `end` is not strictly after `start`.\n- `DateRange.nights` is the number of nights, `(end - start).days`.\n- `DateRange.contains_day(day)` is true exactly when `start <= day < end`.\n- `DateRange.overlaps(other)` is true when the two ranges share at least one night; two ranges that merely touch (one's `end` equals the other's `start`) do NOT overlap.\n- `Booking(guest, check_in, check_out)` wraps a `DateRange`; `Booking.nights` and `Booking.overlaps(other_booking)` delegate to it.\n- `Calendar.add_booking(booking)` raises `ValueError` if the booking overlaps any booking already on the calendar; otherwise it's added.\n- `Calendar.bookings_on(day)` returns the sorted list of guest names whose stay contains `day`.\n- `Calendar.total_nights(guest)` returns the sum of `nights` across all of that guest's bookings.\n\nPlease make the smallest change that fixes the two boundary bugs above; everything else already works.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_fix_02_hidden"
+    ],
+    "timeout": 120
+  }
+}

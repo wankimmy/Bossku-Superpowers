@@ -1,0 +1,15 @@
+{
+  "id": "perf-02",
+  "category": "performance",
+  "prompt": "Implement `resolve_order(dependencies)` in `deps.py`. `dependencies` is a dict mapping each node name (a string) to a list of node names it depends on (nodes that must come before it). A node that only ever appears inside another node's dependency list, and never as a key of its own, is still part of the graph and simply has no dependencies.\n\n- Returns a list containing every node exactly once, ordered so every node comes after all of its dependencies.\n- When more than one valid order is possible at a given step, always pick the lexicographically smallest node name among those whose dependencies are all already placed.\n- Raises `ValueError` if the graph has a cycle (a node that (directly or indirectly) depends on itself counts as a cycle).\n- Raises `TypeError` if `dependencies` is not a `dict`.\n- This runs on large dependency graphs, so it must stay fast: it needs to handle graphs with up to 50,000 nodes quickly. Repeatedly scanning the whole node set to find the next ready node (an O(n²) approach) will be too slow.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_perf_02_hidden"
+    ],
+    "timeout": 90
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "feat-05",
+  "category": "feature",
+  "prompt": "We have a handful of ad-hoc order/ticket status flows and keep reinventing the state-tracking by hand. Create `workflow.py` with a class `StateMachine`, and two exception classes `TransitionError` and `GuardRejected` (both subclasses of `Exception`, and neither a subclass of the other).\n\n- `StateMachine(initial)` starts with `.current == initial` and `.history == []`.\n- `.add_transition(name, source, dest, guard=None)` registers one named transition rule from state `source` to state `dest`. `guard`, if given, is a callable that takes a single `context` argument and returns something truthy/falsy. You can call `add_transition` as many times as you like, including more than once with the same `name` and `source` - registration order matters, see below.\n- `.fire(name, context=None)` (`context` defaults to `{}` when omitted) looks at every transition rule registered with this exact `name` whose `source` equals `.current`, in the order they were added, and moves to the `dest` of the FIRST one whose `guard` is `None` or returns truthy when called with `context`.\n- On a successful `.fire`, `.current` becomes that rule's `dest`, and the dict `{\"transition\": name, \"source\": <state before firing>, \"dest\": <new state>}` is appended to `.history`.\n- If there is at least one rule for `(name, current_state)` but every one of them has a guard that returns falsy for this `context`, raise `GuardRejected`. If there is no rule at all for `(name, current_state)` (wrong name, or the right name but the wrong current state), raise `TransitionError` instead.\n- Neither exception ever changes `.current` or appends to `.history` - a rejected or invalid `.fire()` call leaves the machine exactly as it was before the call.\n- `.can_fire(name, context=None)` reports whether `.fire(name, context)` would currently succeed, as `True`/`False`, without ever changing `.current` or `.history`, no matter how many times it is called.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_feat_05_hidden"
+    ],
+    "timeout": 120
+  }
+}

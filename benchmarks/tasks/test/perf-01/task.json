@@ -1,0 +1,15 @@
+{
+  "id": "perf-01",
+  "category": "performance",
+  "prompt": "Implement `count_inversions(nums)` in `inversions.py`. An inversion is a pair of positions i < j where `nums[i] > nums[j]`; the function returns how many such pairs exist.\n\n- `nums` is a list of numbers (ints or floats), which may include negatives and duplicates. Equal values are never an inversion.\n- Do not mutate the input list.\n- An empty list or a single-element list has 0 inversions.\n- Raise `TypeError` if `nums` is not a `list`.\n- This is used on large datasets, so it must stay fast: it needs to handle lists with up to 200,000 elements quickly. Comparing every pair of elements (an O(n²) approach) will be too slow - aim for an O(n log n) approach.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_perf_01_hidden"
+    ],
+    "timeout": 90
+  }
+}

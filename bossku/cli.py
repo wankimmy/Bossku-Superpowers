@@ -8,12 +8,16 @@ from pathlib import Path
 from bossku import __version__
 from bossku.doctor import format_doctor_success, gather_doctor_issues
 from bossku.hooks import install_hooks, run_sync_hook, uninstall_hooks
+from bossku.brief import memory_brief, session_output
+from bossku.gate import gate_output
+from bossku.hint import hook_output
 from bossku.init_project import init_project
 from bossku.install import install_user, uninstall_user, update_user
 from bossku.memory import load_user_config, memory_directory, memory_project_root, remember, sync_project
 from bossku.index import load_index, write_index
 from bossku.skills import (
     audit_skills,
+    locate_skill,
     overdue_packs,
     pack_stocktake,
     rank_skills,
@@ -26,23 +30,30 @@ def main(argv: list[str] | None = None) -> int:
     parent = argparse.ArgumentParser(add_help=False)
     parent.add_argument("--root", type=Path, default=None, help="BosskuAI repo root")
     parent.add_argument("--home", type=Path, default=None, help="Override home for tests")
+    # Subcommands accept the same flags, but an unset flag must not overwrite one given before the
+    # subcommand (`bossku --home X remember ...` used to fall back to the real home).
+    child = argparse.ArgumentParser(add_help=False)
+    child.add_argument("--root", type=Path, default=argparse.SUPPRESS, help="BosskuAI repo root")
+    child.add_argument("--home", type=Path, default=argparse.SUPPRESS, help="Override home for tests")
 
     parser = argparse.ArgumentParser(prog="bossku", description="BosskuAI toolkit CLI", parents=[parent])
     sub = parser.add_subparsers(dest="command", required=True)
 
-    p_install = sub.add_parser("install", help="Install skills to user-level agent dirs", parents=[parent])
-    p_install.add_argument("--profile", choices=["core", "full"], default="full")
+    p_install = sub.add_parser("install", help="Install skills to user-level agent dirs", parents=[child])
+    p_install.add_argument("--profile", choices=["lean", "core", "full"], default="lean",
+                           help="lean (default) lists ~40 skills with short descriptions and keeps the rest "
+                                "reachable through bossku skills show; core is the minimal set; full lists everything")
     p_install.add_argument("--vault", type=str, default=None, help="Obsidian vault path")
     p_install.add_argument("--memory-storage", choices=["repo", "obsidian"], default=None,
                            help="primary memory storage (obsidian keeps memory outside repos)")
 
-    p_init = sub.add_parser("init", help="Initialize project adapter", parents=[parent])
+    p_init = sub.add_parser("init", help="Initialize project adapter", parents=[child])
     p_init.add_argument("project", type=Path)
     p_init.add_argument("--portable", action="store_true")
-    p_init.add_argument("--profile", choices=["core", "full"], default="core")
+    p_init.add_argument("--profile", choices=["lean", "core", "full"], default="core")
 
-    sub.add_parser("update", help="Refresh user-level skills from repo", parents=[parent])
-    p_doctor = sub.add_parser("doctor", help="Check install health", parents=[parent])
+    sub.add_parser("update", help="Refresh user-level skills from repo", parents=[child])
+    p_doctor = sub.add_parser("doctor", help="Check install health", parents=[child])
     p_doctor.add_argument(
         "--project",
         type=Path,
@@ -50,55 +61,69 @@ def main(argv: list[str] | None = None) -> int:
         help="Also verify project AGENTS.md + CLAUDE.md adapters",
     )
 
-    p_remember = sub.add_parser("remember", help="Save curated memory", parents=[parent])
+    p_remember = sub.add_parser("remember", help="Save curated memory", parents=[child])
     p_remember.add_argument("--kind", required=True, choices=["decision", "plan", "learning", "project"])
     p_remember.add_argument("--project", type=Path, default=Path("."), help="project root (default: current directory)")
     p_remember.add_argument("note")
 
-    p_memory_path = sub.add_parser("memory-path", help="Resolve canonical project memory directory", parents=[parent])
+    p_memory_path = sub.add_parser("memory-path", help="Resolve canonical project memory directory", parents=[child])
     p_memory_path.add_argument("--project", type=Path, default=Path("."))
 
-    p_sync = sub.add_parser("sync", help="Export project memory to Obsidian", parents=[parent])
+    p_brief = sub.add_parser("memory-brief", help="Print the newest project notes in one short block", parents=[child])
+    p_brief.add_argument("--project", type=Path, default=Path("."))
+    p_brief.add_argument("--limit", type=int, default=1400, help="character budget for the brief")
+    sub.add_parser("session-brief", help="Internal: SessionStart hook that puts the project notes in context",
+                   parents=[child])
+    p_sync = sub.add_parser("sync", help="Export project memory to Obsidian", parents=[child])
     p_sync.add_argument("--project", type=Path, default=Path("."), help="project root (default: current directory)")
 
     p_sync_hook = sub.add_parser(
         "sync-hook",
         help="Internal: run from agent auto-sync hooks; reads project cwd from stdin JSON",
-        parents=[parent],
+        parents=[child],
     )
     p_sync_hook.add_argument("--project", type=Path, default=None)
 
     p_hooks = sub.add_parser(
-        "hooks", help="Manage denser Obsidian auto-sync hooks (Claude Code, Cursor, Codex, OpenCode)", parents=[parent]
+        "hooks", help="Manage denser Obsidian auto-sync hooks (Claude Code, Cursor, Codex, OpenCode)", parents=[child]
     )
     p_hooks_sub = p_hooks.add_subparsers(dest="hooks_cmd", required=True)
-    p_hooks_install = p_hooks_sub.add_parser("install", parents=[parent])
+    p_hooks_install = p_hooks_sub.add_parser("install", parents=[child])
     p_hooks_install.add_argument(
         "--tools", type=str, default=None, help="comma-separated subset: claude_code,cursor,codex,opencode"
     )
-    p_hooks_uninstall = p_hooks_sub.add_parser("uninstall", parents=[parent])
+    p_hooks_uninstall = p_hooks_sub.add_parser("uninstall", parents=[child])
     p_hooks_uninstall.add_argument("--tools", type=str, default=None)
 
-    p_find = sub.add_parser("skills", help="Skill utilities", parents=[parent])
+    p_find = sub.add_parser("skills", help="Skill utilities", parents=[child])
     p_find_sub = p_find.add_subparsers(dest="skills_cmd", required=True)
-    p_find_cmd = p_find_sub.add_parser("find", parents=[parent])
+    p_find_cmd = p_find_sub.add_parser("find", parents=[child])
     p_find_cmd.add_argument("task")
     p_find_cmd.add_argument("--limit", type=int, default=5, help="shortlist size")
-    p_find_cmd.add_argument("--profile", choices=["core", "full"], default=None,
+    p_find_cmd.add_argument("--profile", choices=["lean", "core", "full"], default=None,
                             help="limit automatic selection to an installed skill profile")
-    p_find_sub.add_parser("index", help="Rebuild skills/skill-index.json", parents=[parent])
+    p_show = p_find_sub.add_parser("show", help="Print a skill's SKILL.md (works for library skills the host does not list)",
+                                   parents=[child])
+    p_show.add_argument("skill_id")
+    p_show.add_argument("--max-chars", type=int, default=16000,
+                        help="cap the output; the header names the full file path (0 = no cap)")
+    p_find_sub.add_parser("index", help="Rebuild skills/skill-index.json", parents=[child])
     p_stock = p_find_sub.add_parser(
-        "stocktake", help="Age vendored packs against the review window", parents=[parent]
+        "stocktake", help="Age vendored packs against the review window", parents=[child]
     )
     p_stock.add_argument("--strict", action="store_true", help="exit 1 when a pack is overdue")
     p_stock.add_argument("--json", action="store_true", dest="as_json")
     p_audit = p_find_sub.add_parser(
-        "audit", help="Measure skill context size and integrity", parents=[parent]
+        "audit", help="Measure skill context size and integrity", parents=[child]
     )
     p_audit.add_argument("--json", action="store_true", dest="as_json")
 
-    sub.add_parser("validate", help="Validate repository layout", parents=[parent])
-    p_uninstall = sub.add_parser("uninstall", help="Remove user-level BosskuAI skills", parents=[parent])
+    sub.add_parser("verify-gate", help="Internal: Stop hook that sends the agent back to run its code once",
+                   parents=[child])
+    sub.add_parser("skill-hint", help="Internal: UserPromptSubmit hook that suggests skills for the prompt on stdin",
+                   parents=[child])
+    sub.add_parser("validate", help="Validate repository layout", parents=[child])
+    p_uninstall = sub.add_parser("uninstall", help="Remove user-level BosskuAI skills", parents=[child])
     p_uninstall.add_argument("--purge", action="store_true")
 
     args = parser.parse_args(argv)
@@ -129,6 +154,15 @@ def main(argv: list[str] | None = None) -> int:
             print(json.dumps({"memory_dir": str(memory_directory(args.project, home=home)),
                               "project_root": str(memory_project_root(args.project, home=home))}, indent=2))
             return 0
+        if args.command == "memory-brief":
+            brief = memory_brief(args.project, home=home, limit=args.limit)
+            print(brief if brief else "No project notes yet.")
+            return 0
+        if args.command == "session-brief":
+            payload = session_output("" if sys.stdin.isatty() else sys.stdin.read(), home=home)
+            if payload:
+                print(json.dumps(payload))
+            return 0
         if args.command == "sync":
             result = sync_project(args.project, home=home)
             print(json.dumps(result, indent=2))
@@ -149,8 +183,15 @@ def main(argv: list[str] | None = None) -> int:
             if args.skills_cmd == "find":
                 profile = args.profile or load_user_config(home).get("profile", "full")
                 matches = rank_skills(args.task, root, limit=max(args.limit, 1))
-                selection = select_skill_stack(args.task, root, limit=max(args.limit, 1),
-                                               available=set(_profile_skills(profile, root)))
+                # The lean profile lists a few skills but keeps the whole library one `show` away.
+                available = None if profile == "lean" else set(_profile_skills(profile, root))
+                selection = select_skill_stack(args.task, root, limit=max(args.limit, 1), available=available)
+                for row in selection["selected"]:
+                    kind, path = locate_skill(row["skill_id"], root, home)
+                    row["access"] = kind
+                    row["path"] = str(path) if path else None
+                    row["load_with"] = (f"bossku skills show {row['skill_id']}" if kind in {"library", "repo"}
+                                        else "Skill tool, or read the path")
                 stack = [(row["skill_id"], row["score"]) for row in selection["selected"]]
                 sid = selection["primary"]
                 score = stack[0][1] if stack else 0.0
@@ -193,6 +234,19 @@ def main(argv: list[str] | None = None) -> int:
                         indent=2,
                     )
                 )
+            elif args.skills_cmd == "show":
+                kind, path = locate_skill(args.skill_id, root, home)
+                if path is None:
+                    print(f"error: no skill named {args.skill_id}", file=sys.stderr)
+                    return 2
+                body = path.read_text(encoding="utf-8")
+                cap = args.max_chars
+                clipped = bool(cap) and len(body) > cap
+                print(f"# skill: {args.skill_id} ({kind}) path: {path}")
+                print(body[:cap] if clipped else body)
+                if clipped:
+                    print(f"\n[output cut at {cap} of {len(body)} chars; read {path} for the rest]")
+                return 0
             elif args.skills_cmd == "index":
                 dest = write_index(root)
                 print(json.dumps({"index": str(dest)}, indent=2))
@@ -200,6 +254,16 @@ def main(argv: list[str] | None = None) -> int:
                 return _stocktake(root, strict=args.strict, as_json=args.as_json)
             elif args.skills_cmd == "audit":
                 return _skill_audit(root, as_json=args.as_json)
+            return 0
+        if args.command == "verify-gate":
+            decision = gate_output("" if sys.stdin.isatty() else sys.stdin.read())
+            if decision:
+                print(json.dumps(decision))
+            return 0
+        if args.command == "skill-hint":
+            payload = hook_output("" if sys.stdin.isatty() else sys.stdin.read(), root=root, home=home)
+            if payload:
+                print(json.dumps(payload))
             return 0
         if args.command == "validate":
             errors = validate_repo(root)

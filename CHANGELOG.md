@@ -1,5 +1,19 @@
 # Changelog
 
+## Unreleased — Lean profile, session hooks, and real benchmarks
+
+BosskuAI used to put 234 skill names in front of the model in every session and trusted routing numbers measured on the prompts it was tuned against. This release makes the per-session cost small, helps the agent open the right skill, and measures all of it on a real agent with the results kept in the repository.
+
+- **`lean` install profile.** About 40 skills are listed with one short sentence each; the other ~195 move to `~/.bosskuai/library` and are one `bossku skills show <id>` away. New `bosskuai-skill-finder` skill (the agent runs `bossku skills find`, then opens the pick), `skills/lean.json` (the listed set and the short sentences) and `bossku skills show <id>`. `validate` checks the list: at most 48 skills, 150 characters each. `core` and `full` are unchanged.
+- **Skill hint hook** (`bossku skill-hint`, `UserPromptSubmit`). Names the one or two skills that fit the prompt and tells the agent to load them first. Silent for short prompts and weak matches.
+- **Verify gate** (`bossku verify-gate`, `Stop`). If the agent edited code and never ran anything afterwards, it is sent back once to run it. A second rule catches a request for a change that was answered by pasting code into the reply without editing any file. Silent when the agent already did its job. `BOSSKU_VERIFY_GATE=0` turns it off. It never blocks twice, and any error lets the agent finish.
+- **Project notes at session start** (`bossku session-brief`, `SessionStart`, and `bossku memory-brief`). The newest notes, at most 1,400 characters, so the agent no longer runs `memory-path` and reads files.
+- **Router.** Evidence floors for the automatic stack (a skill needs a minimum score and 40% of the top score) and an `unsure` flag instead of a confident wrong answer. On 73 held-out requests written without seeing the router: first pick right 59% → 74%, every part of a multi-part request covered 40% → 56%.
+- **`bossku remember` says when it saved.** The output now starts with `"saved": true` and a sentence. Before, `"vault": {"status": "skipped"}` (no vault configured) read like a failure; in tests a model retried three times, wrote a junk note and hand-edited the memory files, costing six turns.
+- **Shorter, concrete always-on text.** The project block and the global memory block say what to do (checklist, smallest change, run the tests, save only what a future session needs) in fewer words.
+- **Benchmark harness** (`scripts/benchmark_agent.py`): runs real Claude Code headless against hidden-test coding tasks, with and without BosskuAI, on Claude models or Ollama Cloud. Baseline isolation is checked by a canary; real notes are never touched; failures are counted, not dropped. 26 tasks (9 dev, 17 test), HumanEval sampling, 160 blind skill-search prompts (`scripts/benchmark_routing_heldout.py`). Results live in `benchmarks/results/`; the README charts are drawn from them by `scripts/make_charts.py`. See [docs/benchmarks](docs/benchmarks/README.md).
+- **Fixes.** The global `--home`/`--root` options were ignored after a subcommand (a run could write to the real home); `set_description` glued the closing `---` onto the description; `bossku uninstall --purge` now also removes hooks and the library.
+
 ## Unreleased — Claude practices and Hindsight
 
 - Applied the reviewed Claude Code README's skill-design, discovery, startup-context, permissions, and verification guidance to the existing first-party skills; added a traceable coverage review.

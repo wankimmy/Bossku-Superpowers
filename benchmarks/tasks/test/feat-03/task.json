@@ -1,0 +1,15 @@
+{
+  "id": "feat-03",
+  "category": "feature",
+  "prompt": "We keep writing little message templates by hand and the escaping always trips someone up. Create `template.py` with a function `render(template, context)`, an exception class `TemplateError`, and a separate function `wrap(text, width)`.\n\n`render(template, context)`:\n- A placeholder looks like `{{ name }}` (any whitespace right after `{{` and right before `}}` is allowed and ignored). `name` is one or more dot-separated identifiers, e.g. `user.city`.\n- Each dotted segment is looked up as a dict key: the first segment in `context`, each later segment in the previous segment's value. The substituted text is `str(...)` of whatever value is found.\n- If a segment is missing, or a non-final segment's value isn't a `dict`, raise `TemplateError`; its message must contain the full dotted name that failed (e.g. `user.city`).\n- A `{{` that is never closed by a later `}}` raises `TemplateError`.\n- Escaping: the exact 3-character sequence `\\{{` outputs a literal `{{` and is NOT treated as the start of a placeholder; scanning then resumes as plain text right after it (so `\\{{x}}` renders as the literal text `{{x}}`, because once escaped, nothing after it is treated specially until the next `{{` or `\\\\`). The 2-character sequence `\\\\` outputs a single literal backslash and also resumes plain scanning right after it (so `\\\\{{x}}` renders as a literal backslash followed by the *substituted* value of `x`, because the `\\\\` and the `{{x}}` are two separate, independently-handled pieces, unlike `\\{{x}}`). Every other character is copied through unchanged.\n\n`wrap(text, width)`:\n- Collapses every run of whitespace (including newlines) in `text` into single spaces when splitting it into words, then greedily packs words onto lines of at most `width` characters each (a word is added to the current line only if it still fits together with one separating space), joining the resulting lines with `\\n` into one returned string.\n- A single word longer than `width` is placed alone on its own line, left whole, even though that line then exceeds `width`.\n- `width` must be a positive integer; otherwise raise `ValueError`.\n- Empty or all-whitespace `text` returns `\"\"`.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_feat_03_hidden"
+    ],
+    "timeout": 120
+  }
+}

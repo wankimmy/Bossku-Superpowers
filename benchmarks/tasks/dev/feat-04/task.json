@@ -1,0 +1,15 @@
+{
+  "id": "feat-04",
+  "category": "feature",
+  "prompt": "We tag releases as `MAJOR.MINOR.PATCH` with optional pre-release/build suffixes and keep getting the ordering wrong by hand. Create `semver.py` with a function `parse(s)` returning a `Version`, and a function `sort_versions(strings)`.\n\n- Accepted format: `MAJOR.MINOR.PATCH` optionally followed by `-PRERELEASE` optionally followed by `+BUILD` (e.g. `1.2.3`, `2.0.0-rc.1`, `2.0.0-rc.1+build.5`).\n- `MAJOR`, `MINOR`, `PATCH` are each a non-negative integer with no leading zeros (`0` itself is fine, `01` is not).\n- `PRERELEASE`, if present, is one or more dot-separated identifiers; each identifier is non-empty and made only of ASCII letters, digits, and `-`. An identifier made entirely of digits follows the same no-leading-zeros rule as MAJOR/MINOR/PATCH.\n- `BUILD`, if present, is one or more dot-separated identifiers with the same character rules as PRERELEASE identifiers, but it is only ever stored, never used in comparisons (see below).\n- Anything that doesn't match this grammar (a missing part, a non-digit where a number is required, a leading zero, an empty identifier, a disallowed character, etc.) makes `parse` raise `ValueError`.\n- The returned `Version` exposes `.major`, `.minor`, `.patch` (`int`), `.prerelease` (a `tuple`; each element is an `int` for an all-digit identifier, otherwise the original `str`; an empty tuple when there's no pre-release section), and `.build` (`str`, `\"\"` when absent).\n- `Version` instances support `==`, `<`, `<=`, `>`, `>=`, ordered as follows: compare `major`, then `minor`, then `patch` numerically, first difference wins; if those are all equal, a `Version` with an empty `.prerelease` is greater than one with a non-empty `.prerelease`; if both have a non-empty `.prerelease`, compare identifiers pairwise left to right - two numeric identifiers compare as numbers, two string identifiers compare as strings, and a numeric identifier is always less than a string identifier at the same position - the first differing pair decides; if every shared position is equal but one `.prerelease` has fewer identifiers, that `Version` is the lesser one. `.build` never affects comparison or equality.\n- `sort_versions(strings)` returns the original strings, reordered ascending by the rules above, using a stable sort (strings that compare equal, such as two versions differing only in `.build`, keep their original relative order).",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_feat_04_hidden"
+    ],
+    "timeout": 120
+  }
+}

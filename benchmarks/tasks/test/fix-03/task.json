@@ -1,0 +1,15 @@
+{
+  "id": "fix-03",
+  "category": "bugfix",
+  "prompt": "`format_report` (in `formatter.py`, backed by `resolve_settings` in `settings.py`) is supposed to let callers override any report setting, but 'empty-looking' overrides keep getting ignored. For example, passing `indent=0`, `prefix=''`, `show_header=False`, or `tags=[]` to compact a report all silently fall back to the defaults instead of doing what was asked.\n\nThe intended rule: a setting falls back to its default only when it is left out of `overrides` entirely, or explicitly set to `None`. Any other value the caller provides \u2014 including `0`, `''`, `False`, or `[]` \u2014 must be used exactly as given.\n\nThe four settings and their defaults are: `indent` (`4`), `prefix` (`'>> '`), `show_header` (`True`), `tags` (`('general',)`).\n\n`format_report(lines, overrides=None)` builds the report as follows:\n- If `show_header` is true, the first line is `\"REPORT\"`.\n- Then, for each string in `lines`, a line `prefix + \" \" * indent + line`.\n- Then, if `tags` is non-empty, a final line `\"tags: \" + \", \".join(tags)`.\n- All of those lines are joined with `\"\\n\"`. `lines` may be empty, and it's fine for the whole result to be the empty string if there's no header, no lines, and no tags.\n\nPlease fix `resolve_settings` so empty/zero/False overrides are respected; keep the rest of the settings/formatting structure the same.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_fix_03_hidden"
+    ],
+    "timeout": 120
+  }
+}

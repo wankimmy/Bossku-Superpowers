@@ -1,0 +1,15 @@
+{
+  "id": "data-02",
+  "category": "data",
+  "prompt": "Add a small command-line text utility: `main(argv, stdin, stdout)` in `textkit.py`. `argv` is a list of string arguments (no program name in it), `stdin` and `stdout` are file-like text streams \u2014 use exactly those objects, never the real `sys.stdin`/`sys.stdout`. `main` returns an integer exit code.\n\n- No arguments, or `argv[0]` being `-h` or `--help`: write `\"usage: textkit <wordcount|filter|sort> [options]\\n\"` to `stdout` and return `0`.\n- An `argv[0]` that isn't `wordcount`, `filter`, or `sort`: write `f\"unknown command: {argv[0]}\\n\"` to `stdout` and return `2`.\n- `wordcount` takes no further arguments (any extra argument is a usage error: write `\"wordcount takes no arguments\\n\"`, return `2`). It reads all of `stdin` and writes `f\"{lines} lines, {words} words, {chars} chars\\n\"`, where `lines = len(text.splitlines())`, `words = len(text.split())`, and `chars = len(text)` (the raw character count, newlines included). Return `0`.\n- `filter SUBSTRING` takes exactly one further argument; zero or more than one is a usage error (write `\"filter requires a substring argument\\n\"`, return `2`). Otherwise, read `stdin` line by line (via `.splitlines()`) and write to `stdout` every line that contains `SUBSTRING` (plain, case-sensitive `in`), each followed by `\"\\n\"`, in their original order. No matches means no output, which is not an error. Return `0`.\n- `sort` takes zero or one further argument. With none, read `stdin`'s lines and write them back sorted ascending (Python's default string ordering), each followed by `\"\\n\"`. With `-r`, sort descending instead. Any other single argument, or more than one argument, is a usage error naming the first extra argument (write `f\"sort: unknown option: {argv[1]}\\n\"`, return `2`). Return `0` on success.\n\nExit codes are always `0` for success/help and `2` for a usage error; nothing is ever written anywhere except the given `stdout`.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_data_02_hidden"
+    ],
+    "timeout": 120
+  }
+}

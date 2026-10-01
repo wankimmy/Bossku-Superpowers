@@ -1,0 +1,15 @@
+{
+  "id": "ref-02",
+  "category": "refactor",
+  "prompt": "`textutils.py` mixes two different concerns in one file: normalizing/cleaning text, and computing statistics about it. Please split it into two new modules, keeping `textutils.py` working as a thin compatibility layer:\n- `cleaning.py` should contain `clean_text`, `strip_punctuation`, `normalize`, and `title_case`.\n- `analysis.py` should contain `word_count`, `sentence_count`, `average_word_length`, and `longest_word` (importing whatever cleaning helpers it needs from `cleaning.py`).\n- `textutils.py` should re-export all eight names from the two new modules (e.g. `from cleaning import clean_text, ...`) so existing code that does `from textutils import word_count` keeps working, and `textutils.word_count` is the exact same function object as `analysis.word_count` (not a reimplementation) — likewise for the other seven names.\n\nThe behavior of all eight functions must stay exactly as it is today:\n- `clean_text(text)`: lowercase the text, collapse any run of whitespace into a single space, and strip leading/trailing whitespace. Punctuation is left untouched.\n- `strip_punctuation(text)`: remove every occurrence of the characters `.,!?;:\"'()[]`, leaving everything else (including whitespace and case) untouched.\n- `normalize(text)`: strip punctuation first, then clean the result with `clean_text` (in that order — it matters, since removing punctuation can leave extra whitespace that still needs collapsing).\n- `title_case(text)`: `normalize` the text, split it into words, and capitalize each word (first letter upper, rest lower), joined by single spaces.\n- `word_count(text)`: the number of whitespace-separated words in `normalize(text)` (`0` for empty or whitespace/punctuation-only text).\n- `sentence_count(text)`: the number of `.`, `!`, and `?` characters in `clean_text(text)` (punctuation is still present at that stage; only whitespace/case are normalized).\n- `average_word_length(text)`: the mean number of characters across the words of `normalize(text)`, rounded to 2 decimals (`0.0` if there are no words).\n- `longest_word(text)`: the longest word in `normalize(text)` (the first one reaching that length, if several tie); `\"\"` if there are no words.\n\nKeep the logic of all eight functions as-is — this is a file split, not a rewrite.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_ref_02_hidden"
+    ],
+    "timeout": 120
+  }
+}

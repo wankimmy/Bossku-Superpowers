@@ -83,18 +83,26 @@ pip install -e /path/to/Bossku-AI
 ## User-level skills (once per machine)
 
 ```bash
-bossku install --profile full --memory-storage obsidian --vault "/path/to/Obsidian/Vault"
+bossku install --profile lean --memory-storage obsidian --vault "/path/to/Obsidian/Vault"
 ```
 
-`--profile core` installs co-founder essentials plus the **loop-engineering** pack (12 skills). Loop discipline is always on in [`AGENTS.md`](../AGENTS.md#loop-engineering-always-on). After pulling Bossku-AI changes, run `bossku update` so installed skills match the repo.
+Pick how much of the library your agent lists in every session:
 
-`bossku install` also refreshes memory hooks by default (Cursor
-`stop`/`sessionEnd`/`afterAgentResponse`, Claude Code `Stop`/`SessionEnd`, Codex
-`Stop`/`SessionEnd` via a continue-safe wrapper, OpenCode `session.idle`). In Obsidian
-mode, hooks check vault availability; canonical notes are written directly to the vault.
-Legacy repo mode retains curated one-way export. See [memory.md](memory.md).
-Re-run `bossku hooks install` anytime; uninstall with `bossku hooks uninstall`. Codex
-needs a one-time `/hooks` trust approval in-session before hooks fire.
+| Profile | Lists in the agent | Reach the rest | Best for |
+|---|---|---|---|
+| `lean` (default) | About 40 everyday engineering and process skills with short descriptions | `bossku skills find` / `bossku skills show`, installed whole in `~/.bosskuai/library` | Most people; the smallest per-session cost |
+| `core` | Co-founder essentials plus the **loop-engineering** pack | Not installed | A minimal set |
+| `full` | All ~235 skills | Already listed | Hosts with a very large skill budget |
+
+Agents spend a fixed share of their context window on the skill list and cut the rest to bare names, so listing everything makes every session pay for skills it never uses. Measured costs are in the [benchmark](benchmarks/README.md). Switch any time by running `bossku install --profile <name>`; `bossku update` keeps your profile. After pulling Bossku-AI changes, run `bossku update` so installed skills match the repo.
+
+`bossku install` also refreshes the Claude Code, Cursor, Codex, and OpenCode hooks by default:
+
+- **Memory sync** (all four tools): Cursor `stop`/`sessionEnd`/`afterAgentResponse`, Claude Code `Stop`/`SessionEnd`, Codex `Stop`/`SessionEnd` via a continue-safe wrapper, OpenCode `session.idle`. In Obsidian mode, hooks check vault availability; canonical notes are written directly to the vault. Legacy repo mode retains curated one-way export. See [memory.md](memory.md).
+- **Skill hint** (Claude Code `UserPromptSubmit`): matches your prompt against the whole library and adds one short line naming the best one or two skills and how to load them.
+- **Verify gate** (Claude Code `Stop`): if the agent edited source files and ran nothing afterwards, it is sent back once to run the tests or a quick check. It does the same when you asked for a change and the agent edited no file but only pasted code into the reply. It stays silent for questions, reviews, and documentation edits. Switch it off with `BOSSKU_VERIFY_GATE=0`.
+
+Re-run `bossku hooks install` anytime; uninstall with `bossku hooks uninstall`. Codex needs a one-time `/hooks` trust approval in-session before hooks fire.
 
 Skills and their shared `references/` sidecars are copied to:
 
@@ -107,7 +115,7 @@ No symlinks. Unrelated skills in those folders are left untouched.
 
 After `bossku install` or `bossku update`, the JSON includes `tools` (per-tool skill paths) and `agents_count` / `claude_count` (must match). Run `bossku doctor` for a human-readable coverage summary; use `bossku doctor --project .` to verify instruction adapters in a repo.
 
-Coding agents pick skills using each skill's `description` and your project `AGENTS.md`. After pulling changes, run `bossku update`. `bossku skills find "<task>"` returns `selection` with a primary, complements, reasons, deferred candidates, and missing named skills. It defaults to the installed profile; `--profile core|full` overrides it. Read descriptions and check host capabilities before loading. `matches` are search candidates. Use `bossku skills audit` to measure context size and reference integrity.
+Coding agents pick skills using each skill's `description` and your project `AGENTS.md`. After pulling changes, run `bossku update`. `bossku skills find "<task>"` returns `selection` with a primary, complements, reasons, deferred candidates, and missing named skills. It defaults to the installed profile; `--profile lean|core|full` overrides it. Each selected skill says how to load it: the Skill tool when the agent lists it, or `bossku skills show <id>` when it lives in the library. Read descriptions and check host capabilities before loading. `matches` are search candidates. Use `bossku skills audit` to measure context size and reference integrity.
 
 ## Tool compatibility
 
@@ -149,7 +157,7 @@ bossku update
 bossku doctor
 bossku doctor --project /path/to/project
 bossku uninstall          # removes managed skills only
-bossku uninstall --purge  # also removes ~/.bosskuai/config.json
+bossku uninstall --purge  # also removes ~/.bosskuai/config.json and the BosskuAI hooks
 ```
 
 Uninstall keeps project memory in its configured location.

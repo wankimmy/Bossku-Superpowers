@@ -1,0 +1,15 @@
+{
+  "id": "fix-04",
+  "category": "bugfix",
+  "prompt": "`checkout_summary` in `checkout.py` (its receipt-formatting helpers live in `receipts.py`) is overcharging tax on bulk orders — when an order is big enough to earn the bulk discount, the tax looks like it was calculated before that discount was taken off, so the customer pays tax on money they didn't end up spending.\n\nExpected behavior of `checkout_summary(items, tax_rate, bulk_threshold=100.0, bulk_discount=0.1)`:\n- `items` is a list of `(name, unit_price, qty, discount_percent)` tuples.\n- For each item, its net price is `unit_price * qty * (1 - discount_percent / 100)`, rounded to the nearest cent. (This part is already correct.)\n- `subtotal` is the running sum of the item nets, rounded to the nearest cent after each addition. (Already correct.)\n- If `subtotal` is strictly greater than `bulk_threshold`, a bulk discount of `subtotal * bulk_discount` (rounded to the nearest cent) is subtracted from `subtotal` (the result rounded to the nearest cent too). Otherwise there is no bulk discount. (Already correct.)\n- `tax` must be `subtotal * tax_rate` rounded to the nearest cent, computed on the subtotal **after** any bulk discount — that's the part to fix (right now it's computed before the bulk discount is applied).\n- `total` is `subtotal + tax`, rounded to the nearest cent.\n- The function returns `(total, receipt_lines)`. `receipt_lines` is, in order: one line per item from `render_line(name, unit_price, qty, discount_percent, net)`, then (only when a bulk discount applied) the line from `render_bulk_discount(bulk_off)`, then the two lines from `render_totals(tax, total)`. (Already correct — don't change `receipts.py` or this order.)\n\nPlease make the smallest change that fixes the tax timing; the per-item math, the bulk-discount threshold check, and the receipt formatting are all correct as they are.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_fix_04_hidden"
+    ],
+    "timeout": 120
+  }
+}

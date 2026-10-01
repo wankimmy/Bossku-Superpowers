@@ -1,0 +1,15 @@
+{
+  "id": "inventory-bug",
+  "category": "bugfix",
+  "prompt": "Two bugs were reported in the inventory module:\n1. After `remove_item`, `total_value()` keeps returning the old number.\n2. `low_stock(5)` does not list items that have exactly 5 in stock; it should.\n\nPlease fix both. Keep the change as small as you reasonably can; the rest of the module behaves as intended.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_inventory_hidden"
+    ],
+    "timeout": 120
+  }
+}

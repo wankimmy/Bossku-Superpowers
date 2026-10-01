@@ -1,0 +1,15 @@
+{
+  "id": "fix-01",
+  "category": "bugfix",
+  "prompt": "Our game's `Leaderboard` (in `leaderboard.py`) is misbehaving during live matches: right after I call `record_score` to award a player points, or after `remove_player` drops someone, `rankings()` and `top()` keep showing the old order — they only catch up once something unrelated happens, like adding a new player. `reset_player` and `score_of` seem fine.\n\nPlease fix `rankings()`/`top()` so they always reflect the latest scores. For reference, here's the full behavior `Leaderboard` is expected to have:\n- `add_player(name, score=0)` adds a new player with the given starting score; raises `ValueError` if `name` is already on the board.\n- `remove_player(name)` removes a player; raises `KeyError` if `name` isn't on the board.\n- `record_score(name, points)` adds `points` (which may be negative) to a player's score; raises `KeyError` if `name` isn't on the board.\n- `reset_player(name)` sets a player's score back to `0`; raises `KeyError` if `name` isn't on the board.\n- `score_of(name)` returns a player's current score; raises `KeyError` if `name` isn't on the board.\n- `rankings()` returns a list of all player names ordered by score, highest first; players with equal scores are ordered alphabetically by name.\n- `top(n)` returns the first `n` names from `rankings()` (fewer if there aren't `n` players).\n\nKeep the fix small and targeted.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_fix_01_hidden"
+    ],
+    "timeout": 120
+  }
+}

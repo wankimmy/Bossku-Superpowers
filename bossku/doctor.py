@@ -4,7 +4,7 @@ from pathlib import Path
 
 from bossku.hooks import hooks_status
 from bossku.memory import load_user_config
-from bossku.paths import MARKER_START, agents_skills_dir, claude_skills_dir, repo_root
+from bossku.paths import MARKER_START, agents_skills_dir, claude_skills_dir, library_dir, repo_root
 from bossku.skills import count_managed_skills, validate_skills
 from bossku.validate import claude_imports_agents_md, omp_imports_agents_md
 
@@ -48,6 +48,10 @@ def gather_doctor_issues(
                 issues.append(
                     f"skill mirror mismatch: agents={agents_n} claude={claude_n}; run `bossku update`"
                 )
+        if cfg.get("profile") == "lean":
+            library = library_dir(h)
+            if not library.is_dir() or not any((c / "SKILL.md").is_file() for c in library.iterdir() if c.is_dir()):
+                issues.append("lean profile has no skill library; run `bossku update`")
 
     if project is not None:
         proj = project.resolve()

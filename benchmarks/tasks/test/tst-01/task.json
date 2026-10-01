@@ -1,0 +1,15 @@
+{
+  "id": "tst-01",
+  "category": "test-writing",
+  "prompt": "This repo has a small `roman.py` module (converts between integers and Roman numerals) but no tests for it. Add a unittest test file at `test_roman.py` that thoroughly covers its behavior:\n\n- `to_roman(n)` converts an integer `n` in the range 1..3999 (inclusive) to its canonical uppercase Roman numeral string (e.g. 4 -> \"IV\", 9 -> \"IX\", 40 -> \"XL\", 90 -> \"XC\", 400 -> \"CD\", 900 -> \"CM\", 1994 -> \"MCMXCIV\"). It raises `ValueError` if `n` is not an `int` or is outside 1..3999.\n- `from_roman(s)` parses a Roman numeral string back to an int, and `from_roman(to_roman(n)) == n` for every valid `n`. It only accepts strings that are exactly the canonical output `to_roman` would produce for some integer in range; anything else - lowercase letters, any other invalid character anywhere in the string, non-canonical repetition (like \"IIII\"), or wrong ordering (like \"IC\" or \"VX\") - raises `ValueError`, as does an empty string or a non-string input.\n- `is_valid(s)` returns `True` if `s` is a string that `from_roman` would accept, and `False` otherwise (including for non-strings and empty strings) - it never raises.\n- `add(a, b)` takes two Roman numeral strings, adds the integers they represent, and returns the Roman numeral string of the sum. It raises `ValueError` if either input is not a valid Roman numeral, or if the sum exceeds 3999.\n\nWrite at least 5-6 test methods (more as needed) in `test_roman.py` covering the normal cases, the edge cases above, and invalid input for every function.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_tst_01_hidden"
+    ],
+    "timeout": 120
+  }
+}

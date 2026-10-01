@@ -1,0 +1,15 @@
+{
+  "id": "sec-03",
+  "category": "security",
+  "prompt": "We show visitor comments on an internal dashboard. Each comment has an `author` name, the `text` of the comment, and an optional `link` the author provided (their site or email) \u2014 all of it typed by site visitors, so treat every field as untrusted. Add `render_comment(author, text, link=None)` to `comments.py` that returns one line of HTML:\n\n- Without a usable link: `<div class=\"comment\"><span class=\"author\">AUTHOR</span><p>TEXT</p></div>`\n- With a usable link: `<div class=\"comment\"><a class=\"author\" href=\"LINK\">AUTHOR</a><p>TEXT</p></div>`\n\nwhere AUTHOR and TEXT are the escaped `author` and `text` values, and LINK is the escaped `link` value. Requirements:\n\n1. In AUTHOR and TEXT, escape `&`, `<`, and `>` (to `&amp;`, `&lt;`, `&gt;`) so a name or comment can never inject markup into the page.\n2. `link` only produces the `<a>` form when it starts with an `http://`, `https://`, or `mailto:` scheme (matched case-insensitively). Anything else \u2014 a bare domain, a `//host` link, a `javascript:` URL, an empty string, or `None` \u2014 must fall back to the plain `<span>` form, exactly as shown above.\n3. When `link` is used, also escape `\"` in it (in addition to `&`, `<`, `>`) before placing it in the `href` attribute, so it can never break out of the attribute or add a new one.\n4. The whole return value is exactly one line: no added whitespace or newlines between the tags shown above.\n\nMatch this markup character for character — exact tag names, attribute names, and attribute order.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_sec_03_hidden"
+    ],
+    "timeout": 120
+  }
+}

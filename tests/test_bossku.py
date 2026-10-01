@@ -301,10 +301,12 @@ class HooksTests(unittest.TestCase):
 
             data = json.loads((claude_dir / "settings.json").read_text(encoding="utf-8"))
             stop = data["hooks"]["Stop"]
-            self.assertEqual(len(stop), 2)
+            self.assertEqual(len(stop), 3)   # the unrelated hook, the memory sync, the verify gate
             dumped = json.dumps(stop)
             self.assertIn("echo unrelated-hook", dumped)
             self.assertIn(HOOK_MARKER, dumped)
+            self.assertIn("verify-gate", dumped)
+            self.assertIn("skill-hint", json.dumps(data["hooks"]["UserPromptSubmit"]))
 
             backups = list(claude_dir.glob("settings.json.bak-*"))
             self.assertEqual(len(backups), 1)

@@ -1,0 +1,15 @@
+{
+  "id": "feat-02",
+  "category": "feature",
+  "prompt": "I need a helper that merges overlapping numeric ranges (they happen to be time ranges, but any numbers work) before we display them. Create `intervals.py` with a function `merge(ranges, inclusive=True)`.\n\n- Each element of `ranges` is a 3-tuple `(start, end, label)`: `start`/`end` are numbers (`int` or `float`), `label` can be any value.\n- `start > end` raises `ValueError`.\n- A range where `start == end` is a single point. When `inclusive=True` it is kept, and can still touch/merge with a neighbor at that exact point. When `inclusive=False` it is treated as empty: it is dropped before merging and never bridges two other ranges together.\n- Two ranges (after dropping empties) are merged into one whenever:\n  - `inclusive=True`: `a.start <= b.end and b.start <= a.end` (touching end-to-end counts as overlapping).\n  - `inclusive=False`: `a.start < b.end and b.start < a.end` (touching end-to-end does NOT count as overlapping).\n  Merging is transitive: if range A merges with B and B merges with C, all three end up folded into one combined range, even if A and C alone would not touch.\n- A merged range's `start`/`end` are the smallest start and the largest end among everything folded into it.\n- A merged range's `label` is the label of whichever constituent range sorts first by: smallest `start`; then (if tied) largest `end`; then (if still tied) earliest position in the original `ranges` list.\n- The return value is a list of `(start, end, label)` tuples, sorted by `start` ascending, containing no two ranges that should have merged under the rule above.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_feat_02_hidden"
+    ],
+    "timeout": 120
+  }
+}

@@ -42,6 +42,10 @@ Deliberately not vendored (recorded under `excluded` in `skills/vendored.json` s
 
 `opendataloader-pdf` vendors the complete upstream `skills/odl-pdf/` bundle unchanged. Its maintenance-only sibling is intentionally excluded, and the optional OpenDataLoader runtime is not installed automatically.
 
+## Benchmark data
+
+The coding benchmark uses the public [HumanEval](https://github.com/openai/human-eval) problem set (MIT, Copyright (c) OpenAI) from `benchmarks/datasets/HumanEval.jsonl.gz` (sha256 `b796127e635a67f93fb35c04f4cb03cf06f38c8072ee7cee8833d7bee06979ef`, 164 problems). The hidden-test tasks in `benchmarks/tasks/` were written for this repository.
+
 ## Review cadence
 
 Models improve faster than vendored prompt text does, so packs are reviewed on a

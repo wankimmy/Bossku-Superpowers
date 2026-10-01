@@ -12,6 +12,37 @@ from bossku.skills import copy_skills_to, skills_dir
 from bossku.validate import claude_imports_agents_md, omp_imports_agents_md
 
 
+# Always loaded, so every word is paid for in every session: concrete steps beat general advice.
+PROJECT_BLOCK = (
+    "BosskuAI is active.\n"
+    "Code changes: turn every requirement in the request into a checklist. Make the change it asks for, "
+    "no more, and leave unrelated behavior alone. Before you finish, run the project's tests; where none "
+    "cover a requirement, write a quick check for it and for the edge cases, run it, and fix what fails "
+    "(fix the code, not the test). Say what you ran and what you could not verify.\n"
+    "Skills: if a skill in the list fits the job, load it first (Skill tool, or `bossku skills show <id>`); "
+    "Superpowers skills cover process (plans, debugging, TDD) and Anti-Slop covers UI, copy and comment quality. "
+    "Add complementary skills only for distinct parts of the request, and never two that do the same job. "
+    'If none fits a non-trivial job, run `bossku skills find "<task>"` once and follow its pick; '
+    "look again when the task changes. Skip skills for one-line tasks.\n"
+    "Memory: project notes are in your context at session start when they exist; otherwise run "
+    "`bossku memory-brief --project <project-root>` once before meaningful work. "
+    "Automatically save a new, verified decision (with its reason), plan, fact or lesson that a future session "
+    "would need, with "
+    '`bossku remember --project <project-root> --kind decision|plan|learning|project "<note>"` '
+    "before the final reply. One call is enough: its output says whether the note was saved, and most small "
+    "fixes have nothing to save. Use the commands, not the files: never open or edit .bossku/ or ~/.bosskuai/ "
+    "by hand, never save secrets, and never write .bossku/memory when memory_storage is obsidian.\n"
+    "Grounding is always on: say when evidence is insufficient instead of guessing, and support claims with "
+    "file:line or command output."
+    # antislop runs an install wizard and a blocking "during or after?" question unless the
+    # entry file carries its pointer block; Bossku already installs all six skills.
+    "\n<!-- antislop:start -->\n"
+    "antislop: Bossku installs all six antislop skills; skip the install wizard. "
+    "Mode: during the work for new UI, after it for audits of existing UI, unless the user says otherwise.\n"
+    "<!-- antislop:end -->"
+)
+
+
 def _managed_block(content: str) -> str:
     return f"{MARKER_START}\n{content.strip()}\n{MARKER_END}"
 
@@ -50,28 +81,7 @@ def init_project(
     omp_dir = project / ".omp"
     omp_agents_path = omp_dir / "AGENTS.md"
     omp_config_path = omp_dir / "config.yml"
-    block = (
-        "BosskuAI is active. Before multi-step work, match the task to an installed skill "
-        "(use `bossku skills find` when unclear). Select one primary skill and the smallest "
-        "complementary set justified by distinct prompt concerns; multiple skills are valid. "
-        "For mixed or uncertain work, inspect `bossku skills find` selection reasons, "
-        "deferred candidates, and unavailable requested skills; matches are search candidates. "
-        "Verify host capabilities and re-route when the task changes. "
-        "Use Superpowers for process, Anti-Slop for output quality, and verify before completion. "
-        "Automatically save verified decisions, plans, project facts, and lessons with "
-        "`bossku remember --project <project-root> --kind decision|plan|learning|project` "
-        "before the final response; do not wait for the user to ask. "
-        "Resolve memory using `bossku memory-path --project <project-root>`; "
-        "never write .bossku/memory when memory_storage is obsidian. "
-        "Grounding is always on: say when evidence is insufficient instead of guessing, "
-        "and ground factual claims in quotes, file:line, or command output."
-        # antislop runs an install wizard and a blocking "during or after?" question unless the
-        # entry file carries its pointer block; Bossku already installs all six skills.
-        "\n<!-- antislop:start -->\n"
-        "antislop: Bossku installs all six antislop skills; skip the install wizard. "
-        "Mode: during the work for new UI, after it for audits of existing UI, unless the user says otherwise.\n"
-        "<!-- antislop:end -->"
-    )
+    block = PROJECT_BLOCK
     if agents_path.exists():
         agents_path.write_text(
             upsert_managed_block(agents_path.read_text(encoding="utf-8"), block),

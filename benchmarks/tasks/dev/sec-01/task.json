@@ -1,0 +1,15 @@
+{
+  "id": "sec-01",
+  "category": "security",
+  "prompt": "Teammates upload files into a shared folder on disk, and our internal tool lets anyone fetch one back by typing in a path relative to that folder \u2014 so treat whatever path someone types as untrusted input. Add a `FileVault` class to `filevault.py`:\n\n- `FileVault(base_dir)` wraps the folder at `base_dir`, which already exists.\n- `.read(relative_path)` returns the file's contents as a `str` (UTF-8) for a file that lives inside `base_dir`, including nested subdirectories (e.g. `\"reports/q1.txt\"`). Paths are always given with forward slashes, even on Windows.\n- A `relative_path` may contain `..` segments as long as the final location still ends up inside `base_dir` (e.g. `\"sub/../reports/q1.txt\"` is fine) \u2014 only reject it when it would resolve to somewhere outside `base_dir`.\n- Any path that resolves outside `base_dir` \u2014 through `..`, by being an absolute path, or through a symlink inside the vault that points outside it \u2014 must raise `PermissionError` instead of returning that file's contents.\n- An empty string is also not a valid path inside the vault, and must raise `PermissionError` too.\n- A path that stays inside `base_dir` but doesn't exist raises `FileNotFoundError`.\n- A path that stays inside `base_dir` but names a directory raises `IsADirectoryError`.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_sec_01_hidden"
+    ],
+    "timeout": 120
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "feat-01",
+  "category": "feature",
+  "prompt": "Our scripts all read tiny `.conf` files and I keep hand-rolling the parsing. Create `tinyconfig.py` with a function `parse(text)` that returns a `dict`, and an exception class `ConfigError` (instances must expose a `.line` attribute: the 1-based line number that failed).\n\n- Each meaningful line looks like `key = value` (exactly one `=`; whitespace around the key and around the value is stripped). Blank lines, and lines whose first non-whitespace character is `#`, are ignored completely.\n- A line with no `=`, an empty key, or an empty value raises `ConfigError` with `.line` set to that line's 1-based number.\n- Convert each value by trying these rules in order:\n  1. A double-quoted string, like `\"like this\"`: drop the surrounding quotes, and unescape `\\\"` to `\"` and `\\\\` to `\\`. A quoted string that is never closed raises `ConfigError`.\n  2. The exact word `true` or `false`, in any mix of case, becomes the bool `True`/`False`.\n  3. A number directly followed, with no space, by a duration unit `ms`, `s`, `m`, `h`, or `d` becomes a `float` number of seconds (`ms`=0.001, `s`=1, `m`=60, `h`=3600, `d`=86400). Example: `2.5s` -> `2.5`. These unit letters are case-sensitive, exactly as listed.\n  4. A whole number (no decimal point) directly followed, with no space, by a size unit `B`, `KB`, `MB`, `GB`, `KiB`, `MiB`, or `GiB` becomes an `int` number of bytes (`KB`/`MB`/`GB` are powers of 1000, `KiB`/`MiB`/`GiB` are powers of 1024, `B` is 1). Example: `2KiB` -> `2048`. These unit letters are also case-sensitive, exactly as listed.\n  5. A plain integer or decimal, with an optional leading `-`, becomes `int`/`float`.\n  6. Anything else is kept as a plain string, UNLESS it contains whitespace, which raises `ConfigError` (an unquoted value can't contain spaces).\n- Parsing scans top to bottom and raises on the first invalid line it reaches. This matters when a key is defined twice: if the first definition of a key is invalid, parsing raises because of that line even though a later, valid definition of the same key would have been fine on its own.\n- If a key is defined more than once (and every one of its lines is individually valid), the last occurrence's converted value is the one left in the returned dict.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_feat_01_hidden"
+    ],
+    "timeout": 120
+  }
+}

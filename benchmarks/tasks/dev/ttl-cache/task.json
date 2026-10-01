@@ -1,0 +1,15 @@
+{
+  "id": "ttl-cache",
+  "category": "feature",
+  "prompt": "I need a small in-memory cache for the helpers in this repo. Create `ttlcache.py` with a class `TTLCache(maxsize, ttl, clock=time.monotonic)`.\n\n- `set(key, value)` stores a value. It expires `ttl` seconds after it was set; reading it does not extend that.\n- `get(key, default=None)` returns the value, or `default` if the key is missing or expired.\n- `key in cache` and `len(cache)` must only count entries that have not expired.\n- When the cache is full, evict the least recently used entry (a successful `get` or a `set` counts as a use). Expired entries must never push out live ones.\n- `purge()` removes expired entries and returns how many it removed.\n- `maxsize` and `ttl` must be positive, otherwise raise `ValueError`.\n- `clock` is injectable so tests can control time.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_ttlcache_hidden"
+    ],
+    "timeout": 120
+  }
+}

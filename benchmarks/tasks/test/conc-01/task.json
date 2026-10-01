@@ -1,0 +1,15 @@
+{
+  "id": "conc-01",
+  "category": "concurrency",
+  "prompt": "Implement a thread-safe `BoundedQueue` in `workqueue.py`, for sharing work between producer and consumer threads. Also define two plain exception classes in the same file: `Full` and `Empty`.\n\n- `BoundedQueue(maxsize)` raises `ValueError` if `maxsize` is not a positive `int`.\n- `put(item)` adds `item` to the back of the queue. If the queue already holds `maxsize` items, it blocks (waits) until another thread removes one, then adds it.\n- `get()` removes and returns the item at the front of the queue (FIFO order). If the queue is empty, it blocks until another thread adds an item.\n- `put_nowait(item)` behaves like `put`, but never blocks: if the queue is already full, it raises `Full` immediately instead of waiting.\n- `get_nowait()` behaves like `get`, but never blocks: if the queue is empty, it raises `Empty` immediately instead of waiting.\n- `qsize()` returns the current number of items in the queue.\n- All of the above must be safe to call from many threads at once: items must never be lost, duplicated, or handed out of FIFO order, and the queue must never hold more than `maxsize` items at a time, no matter how many threads are calling `put`/`get` concurrently.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_conc_01_hidden"
+    ],
+    "timeout": 90
+  }
+}

@@ -152,14 +152,28 @@ def remember(
             stream.write(f"# {kind.title()}s\n")
         stream.write(entry)
     if storage == "obsidian":
-        return {"kind": kind, "file": str(target), "vault": {
-            "status": "ok", "storage": "obsidian", "vault_dir": str(mem_dir),
-        }}
+        vault_result = {"status": "ok", "storage": "obsidian", "vault_dir": str(mem_dir)}
+        return _saved(kind, target, vault_result)
     sync_state = _load_sync_state(project)
     sync_state.setdefault("pending", []).append(kind)
     _save_sync_state(project, sync_state)
-    vault_result = sync_project(project, home=home)
-    return {"kind": kind, "file": str(target), "vault": vault_result}
+    return _saved(kind, target, sync_project(project, home=home))
+
+
+def _saved(kind: str, target: Path, vault: dict) -> dict:
+    """The result of a successful save. The first two keys say so plainly: agents that only saw a vault status of
+    "skipped" took a saved note for a failure and retried, wrote test notes, and edited the memory files by hand."""
+    status = vault.get("status")
+    if status == "ok" and vault.get("storage") == "obsidian":
+        where = f"in the vault: {target}"
+    elif status == "ok":
+        where = f"to {target} and copied it to the vault"
+    elif status == "pending":
+        where = f"to {target}; the vault is unavailable, so the copy waits for the next sync"
+    else:
+        where = f"to {target}; no vault is configured, so there is no second copy"
+    message = f"Saved the {kind} note {where}. Nothing more to do."
+    return {"saved": True, "message": message, "kind": kind, "file": str(target), "vault": vault}
 
 
 def sync_project(project: Path, *, home: Path | None = None) -> dict:
