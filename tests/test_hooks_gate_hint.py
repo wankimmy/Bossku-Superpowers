@@ -154,7 +154,7 @@ class PastedCodeGateTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "t.jsonl"
             path.write_text("\n".join([user("Fix the bug."), call("Edit", file_path="a.py"), say(PASTED)]), encoding="utf-8")
-            self.assertIn("ran nothing", gate_output(json.dumps({"transcript_path": str(path)}))["reason"])
+            self.assertIn("have not run anything", gate_output(json.dumps({"transcript_path": str(path)}))["reason"])
 
 
 def feedback(reason):
@@ -172,7 +172,7 @@ class RepeatedReminderTests(unittest.TestCase):
         base = [user("Fix the parser."), call("Edit", file_path="p.py")]
         first = decide(base)
         self.assertEqual(first[0], "verify")
-        self.assertIn("ran nothing", first[1])
+        self.assertIn("have not run anything", first[1])
         self.assertIsNone(decide(base + [feedback(first[1])]))
 
     def test_running_the_code_after_a_reminder_ends_the_reminders(self):
@@ -184,7 +184,7 @@ class RepeatedReminderTests(unittest.TestCase):
         lines = [user("Fix a."), call("Edit", file_path="a.py"), feedback(VERIFY_REASON),
                  user("Now fix b."), call("Edit", file_path="b.py")]
         self.assertEqual(decide(lines)[0], "verify")
-        self.assertIn("ran nothing", decide(lines)[1])
+        self.assertIn("have not run anything", decide(lines)[1])
 
     def test_a_reminder_the_transcript_does_not_show_never_loops(self):
         with tempfile.TemporaryDirectory() as tmp:

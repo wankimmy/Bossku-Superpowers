@@ -48,15 +48,15 @@ LIMITS = {"verify": 1, "paste": 1}
 MARKERS = {"verify": "BosskuAI verify gate: you ", "paste": "BosskuAI verify gate: the request"}
 
 VERIFY_REASON = (
-    "BosskuAI verify gate: you changed code but ran nothing afterwards. Before you finish, run the project's "
-    "tests, or write and run a quick check that covers each requirement in the request and its edge cases "
-    "(run only what is safe to run locally). Fix whatever fails, then finish by saying what you ran and what "
-    "you could not verify."
+    "BosskuAI verify gate: you changed code but have not run anything yet. Do not describe a test or its result: "
+    "call the Bash tool now and run the project's tests, or one short script that checks each requirement in the "
+    "request and its edge cases (only what is safe to run locally). Read the real output, fix what fails, then "
+    "say what you ran and what you could not verify."
 )
 PASTE_REASON = (
     "BosskuAI verify gate: the request asks for a change, but you edited no file and your reply only shows code. "
-    "Write the change into the project files with your edit tools, run it (or the project's tests), fix what "
-    "fails, then say what you ran. If the request was only a question, say so and finish."
+    "Do not paste code: call your edit tool now to write the change into the project files, then run it (or the "
+    "project's tests), fix what fails, and say what you ran. If the request was only a question, say so and finish."
 )
 
 

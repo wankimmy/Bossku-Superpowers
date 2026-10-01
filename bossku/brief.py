@@ -66,7 +66,8 @@ def memory_brief(project: Path, *, home: Path | None = None, limit: int = 1000, 
                 break   # the project summary is one paragraph; older stamps are history
     if not lines:
         return ""
-    return "BosskuAI project notes, newest first (do not read the memory files again):\n" + "\n".join(lines)
+    return ("BosskuAI project notes, newest first. Follow the rules and decisions below unless the request says "
+            "otherwise (do not read the memory files again):\n" + "\n".join(lines))
 
 
 def session_output(payload_text: str, *, home: Path | None = None) -> dict:
