@@ -1,0 +1,12 @@
+{
+  "id": "mem-b-2",
+  "category": "memory",
+  "setup": [
+    "We're prototyping a booking system for the coworking space's desks. Can you add a `DeskBooking` class in a new `desks.py`? It needs `book(desk_id, user, day)`, which reserves a desk for a user on a given day (day is just a plain string like \"2026-10-01\"), and `cancel(desk_id, user, day)`, which frees a booking that `user` holds on that desk/day. `book` should refuse to double-book a desk that's already taken by anyone that day, and `cancel` should refuse if that exact desk/user/day booking doesn't exist.\n\nOne project rule while you're building this: every failure anywhere in this codebase has to raise one of our own exceptions, a subclass of `AppError` -- please put that hierarchy in a new `errors.py` (something like `NotFoundError` and `ConflictError` under `AppError` would cover these two cases). Never raise a bare `ValueError`/`KeyError`/etc. We got burned a few months back when a plain `KeyError` escaped through the API layer and leaked a raw traceback to a customer; the API wrapper only catches `AppError` and turns it into a clean error response, so anything else slips right through it."
+  ],
+  "prompt": "Two more things for the desk booking prototype: first, add `list_bookings_for_user(user)` to `DeskBooking` that returns all `(desk_id, day)` pairs currently booked by that user, sorted. Second, add `move_booking(desk_id, user, old_day, new_day)` that moves an existing booking from `old_day` to `new_day` for the same desk and user -- if that user doesn't actually have the desk booked on `old_day`, or if the desk is already taken by someone else on `new_day`, the move obviously shouldn't go through, and the original booking on `old_day` should stay intact.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_mem_b_2_hidden"],
+    "timeout": 120
+  }
+}

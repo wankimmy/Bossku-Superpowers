@@ -1,0 +1,15 @@
+{
+  "id": "hard-b-1",
+  "category": "bugfix",
+  "prompt": "Customers have been complaining about checkout totals in our `pricing/` package. This week's reports:\n\n- \"My cart was exactly $50 and I still got charged shipping.\"\n- \"I entered two 10%-off codes and got way more than 10% off.\"\n- \"I pasted my coupon code with a trailing space from an email and it just silently didn't apply - no error, nothing.\"\n- One of our engineers noticed something weirder: right after a one-off script applied a coupon to a test cart, a brand-new `Cart()` created afterwards in the same process already showed that coupon in `applied_codes` before anything was called on it.\n\n`pricing/README.md` is the source of truth for exactly how discounts, coupon stacking, rounding, and shipping are supposed to work - please make the code match it. Don't change the public class/function names (`Cart`, `build_receipt`, etc.) or the shape of the receipt dict, since other code imports and depends on them as-is.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_hard_b_1_hidden"
+    ],
+    "timeout": 120
+  }
+}

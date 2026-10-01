@@ -1,0 +1,41 @@
+{
+  "method": "Stratified by family, ordered by sha1 of the id, dev first. Chosen before any run with BosskuAI. hard-a-4 was left out because its prompt did not state a requirement its hidden tests check.",
+  "dev": [
+    "hard-a-2",
+    "hard-a-3",
+    "hard-b-2",
+    "hard-b-3",
+    "hard-b-4",
+    "hard-c-1",
+    "hard-c-2",
+    "hard-c-3",
+    "hard-d-1",
+    "hard-d-3",
+    "hard-d-4",
+    "hard-e-2",
+    "hard-e-3",
+    "hard-f-2",
+    "hard-f-3",
+    "hard-g-2",
+    "hard-g-4"
+  ],
+  "test": [
+    "hard-a-1",
+    "hard-a-5",
+    "hard-b-1",
+    "hard-b-5",
+    "hard-c-4",
+    "hard-c-5",
+    "hard-d-2",
+    "hard-d-5",
+    "hard-e-1",
+    "hard-e-4",
+    "hard-f-1",
+    "hard-f-4",
+    "hard-g-1",
+    "hard-g-3"
+  ],
+  "dropped": [
+    "hard-a-4"
+  ]
+}

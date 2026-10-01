@@ -8,32 +8,43 @@ Everything in the main README comes from the checks below. The raw rows are in [
 | Skill search on new prompts | Does the router find the right skill for requests it was never tuned on? | No | `routing-heldout.json` |
 | Live skill use | Does a real agent open a fitting skill? | Yes (Ollama Cloud) | `routing-live.json` |
 | Coding tasks | Does the agent finish more tasks, and at what token cost? | Yes (Ollama Cloud) | `coding-test.json` |
+| Harder tasks | The same on longer projects with many rules to follow | Yes (Ollama Cloud) | `hard.json` |
+| Remembering a rule | Does a rule stated in one session survive into the next? | Yes (Ollama Cloud) | `memory.json` |
 | HumanEval | Does anything get worse on a well-known public test? | Yes (Ollama Cloud) | `humaneval.json` |
 | Tuned routing regression | Did a router change break the 82 prompts it was tuned on? | No | [`routing.json`](routing.json) |
 
 ## What was run
 
-- **Setups.** *Without BosskuAI* has no skills, no hooks, and no instructions. *With BosskuAI* is this release (commit `b167823`, the `lean` profile with the skill hint, verify gate, and project-notes hooks). The previous release (commit `8adea49`, the `full` profile with 234 skills listed, no helper hooks) was run next to them in every test as an internal regression check. Its rows are kept in `benchmarks/results/raw/` but it is not part of the published comparison.
+- **Setups.** *Without BosskuAI* has no skills, no hooks, and no instructions. *With BosskuAI* is this release (commit `02ee2f2`: the `lean` profile with the skill hint, run-your-code check, and project-notes hooks). Both ran on the same tasks at the same time, in shuffled order. The previous release (commit `8adea49`, the `full` profile with 234 skills listed and no helper hooks) was run next to them for the session-overhead check only; its rows stay in `benchmarks/results/raw/overhead.jsonl` but are not part of the published comparison.
 - **Agent.** Claude Code 2.1.284 in headless mode. Claude models use your own login; the other models are reached through Ollama Cloud's Anthropic-compatible API.
-- **Models.** Session overhead: Claude Haiku 4.5 and Claude Sonnet 5.5. Coding and live skill use: Nemotron 3 Nano 30B (a small model that often forgets to run its code) and DeepSeek V4.1 Flash (a strong one that already does). HumanEval: the same two.
-- **Samples.** 17 test tasks, each run 4 times per setup for Nemotron and 2 times per setup for DeepSeek. 40 HumanEval problems, one run per setup. 73 held-out skill-search requests for the live check.
+- **Models.** Session overhead: Claude Haiku 4.5 and Claude Sonnet 5.5. Coding tasks, HumanEval and live skill use: Nemotron 3 Nano 30B (a small model that often forgets to run its code) and DeepSeek V4.1 Flash (a strong one that already does). Harder tasks: Gemma 4 31B (mid-size) and DeepSeek V4.1 Flash. Remembering a rule: DeepSeek V4.1 Flash.
+- **Samples.** 17 coding test tasks, each run 4 times per setup for Nemotron and 2 times for DeepSeek. 14 harder test tasks, 3 times per setup. 10 memory tasks, 3 times per setup. 40 HumanEval problems, once per setup. 73 held-out skill-search requests for the live check.
 - **Date.** 1 October 2026.
 
 ## How a coding run works
 
-1. A task is a small Python project plus tests the agent never sees. 26 tasks were written for this repository (bug fixes, features, refactors, security, data and CLI work, performance, concurrency, test-writing graded by mutation). Each was validated: its hidden tests fail on the starting files and pass on a reference solution (`benchmark_agent.py validate`). HumanEval adds 164 public problems, sampled with a fixed seed.
-2. The tasks are split before any comparison. Nine **dev** tasks were used while the changes were built; 17 **test** tasks were run once the changes were frozen and are what the README reports. The split is recorded in [`benchmarks/tasks/split.json`](../../benchmarks/tasks/split.json).
-3. Every run gets a fresh git repository and a throwaway home folder.
-4. The setups run on identical tasks, shuffled so no setup always runs first.
-5. When the agent stops, the hidden tests are copied in and run. Pass means every test passes. Tokens, turns, and time come from Claude Code's own result report.
+1. A task is a small Python project plus tests the agent never sees. 26 tasks were written for this repository (bug fixes, features, refactors, security, data and CLI work, performance, concurrency, test-writing graded by mutation). 31 harder tasks followed: projects of several hundred lines whose rules sit in a README and in the docstrings of the code around the new feature, so a model has to read before it writes. Every task was validated: its hidden tests fail on the starting files and pass on a reference solution (`benchmark_agent.py validate`). HumanEval adds 164 public problems, sampled with a fixed seed.
+2. The harder tasks and the memory tasks were written by AI assistants that were told not to open BosskuAI's skills, code, or documentation, and that saw only one example task and the prompts of the others.
+3. The tasks are split before any comparison. Nine **dev** coding tasks and 17 **dev** harder tasks were used while the changes were built; 17 coding **test** tasks and 14 harder **test** tasks were run once the changes were frozen and are what the README reports. The splits are recorded in [`benchmarks/tasks/split.json`](../../benchmarks/tasks/split.json) and [`benchmarks/tasks/hard-split.json`](../../benchmarks/tasks/hard-split.json).
+4. Every run gets a fresh git repository and a throwaway home folder.
+5. The setups run on identical tasks, shuffled so no setup always runs first.
+6. When the agent stops, the hidden tests are copied in and run. Pass means every test passes. Tokens, turns, and time come from Claude Code's own result report.
+
+### Remembering a rule from an earlier session
+
+Ten tasks have two sessions. The first asks for a small change and states a project rule ("this must run on Python 3.8", "money is integer cents", "never use eval", "services go in `services/`, one class per file"). The second is a fresh conversation in the same project folder that asks for related work which would break the rule unless it is remembered; nothing in its prompt mentions the rule. Without BosskuAI the agent has only the files the first session left behind. With BosskuAI it also sees the notes the first session saved, which appear when the second session starts. The hidden tests check the work and the rule itself.
 
 ## Rules that keep it honest
 
 - **The baseline is checked, not assumed.** Claude Code reads `~/.claude/CLAUDE.md` through the operating system account, whatever home folder a child process is given. In an early run that file carried BosskuAI's own memory block into the "without BosskuAI" arm, and those agents ran `bossku`. Every run now switches all `CLAUDE.md` files off, hands BosskuAI its instructions as a separate file, and starts with a canary: the baseline agent is asked to quote any instruction it was given and must answer `NONE`, or the run stops. Results from before that fix were thrown away.
 - **Nothing touches your real setup.** Each run uses a throwaway home, so `bossku remember` inside a benchmark cannot write to your notes. The harness also watches the real vault and stops if a benchmark folder appears. (An early pilot did leave one note there before this guard existed.)
-- **Failures are not dropped.** A run that hits a rate limit or an API error is retried and, if it still has no answer, excluded and counted in the report. A run that times out counts as a failure.
+- **Failures are not dropped.** A run that ends with a rate limit or an API error is retried and, if it still cannot finish, excluded and counted in the report. A run that reaches the time limit is run once more with a longer limit, and a second timeout counts as a failure.
 - **No made-up dollar cap.** Claude Code prices models it does not know with a rate it invents. A $1 cap on an early Ollama run therefore ended 8 of 17 runs part-way, and the version that used more tokens lost the most runs. Those results were thrown away. Runs on Ollama models now have no cap, the report prints a warning if any run was ended by one, and a test fails if a saved result contains one. Claude models keep a $1 cap per run to protect your account.
-- **Dev and test are separate.** Router thresholds, the hint wording, the memory wording, the gate rules, and the lean list were chosen on dev data only. The test split of the 160 held-out prompts and the 17 test tasks were not used for any choice. The code was committed before the test runs started, and the commit is named above.
+- **Dev and test are separate, with one caveat.** Router thresholds, the hint wording, the memory wording, the gate rules, the lean list, and the compact skills were chosen on dev data only. The 17 coding test tasks had already been run once on an earlier build of this release; the result (a strong model used far more tokens for no more passes) is why instructions were shortened and skills compacted, but no change was tuned to a test task. The 14 harder test tasks had never been run with BosskuAI before the build was frozen, so they are the cleanest evidence. The 10 memory tasks were run once before the freeze, which is how their over-strict checks were found; no instruction or hook was changed because of that run. The code was committed before the final runs started, and the commit is named above.
+- **Unfair tests were fixed for both setups, not for one.** After a trial run, three checks in two memory tasks were relaxed because they marked correct work as wrong (a hidden test forbade `/` even in exact `Fraction` arithmetic; two expected an error from `value_of` and failed an agent that rejected the bad formula earlier, in `set_formula`). One harder task whose prompt did not state a requirement its tests checked was dropped. Every final run uses the corrected tests, for both setups.
+- **Slow runs get one longer try.** The model service slowed down in the evening, and the runs that take more turns were the ones to reach the 25-minute limit. Four runs did (all with BosskuAI: three Nemotron, one DeepSeek). Each was run again with a 60-minute limit and the rerun is the one counted: one passed, three failed. The first tries are kept in `raw/timeouts-first-attempt.jsonl`.
+- **A usage limit on the model account is not a coding failure.** Late in the final runs the Ollama Cloud account reached its usage limit and refused requests (HTTP 429). The harness first called a run an infrastructure failure only when the model had produced no output at all, so a limit that arrived part-way left a half-finished run that was graded as a failed task. That was a bug: any run that ends with an API error is now an infrastructure failure, excluded from every summary, listed in the report, and run again when the limit allows. Runs that could not be run again are counted under the chart text in the README, because the long runs are the ones a limit is most likely to cut short.
+- **An option was removed rather than shipped untested.** A requirement checklist and a second-pass audit were tried; on a strong model the checklist cost 55% more tokens for no extra passes, and no clean run showed a gain on a small model, so both were deleted.
 - **Held-out prompts are blind.** The 160 skill-search prompts and their acceptable skills were written by an author who saw only the skill catalog (names and descriptions), never the router code or its tests. They are split in two by a hash of the prompt id.
 
 ## Numbers
@@ -42,48 +53,58 @@ Everything in the main README comes from the checks below. The raw rows are in [
 - **Paired differences** compare the same task and model across setups, with a bootstrap interval over tasks.
 - **Tokens** are every input token the model processed across all turns (cached or not) plus output tokens. Ollama Cloud bills by subscription, so tokens are reported instead of dollars; Claude Code's own cost figure is used where the model is a Claude model.
 - **Session overhead** is the first call of a session with a one-word prompt, taken after a cache warm-up, median of three.
+- **Saved a note** (memory tasks) counts runs whose first session called `bossku remember`.
 - **Ended without running its code** counts runs that changed a code file and then never ran anything afterwards. It is read from the tool calls alone, the same way for both setups, so it does not depend on BosskuAI's own hook.
 
 ## Check the saved numbers (no model needed)
 
 ```bash
-python -m unittest tests.test_results_consistent -v                      # summaries, charts and README table match the raw rows
+python -m unittest tests.test_results_consistent -v                      # summaries, charts and README text match the raw rows
 python scripts/benchmark_agent.py report benchmarks/results/raw/coding-*.jsonl           # the coding table, from the raw rows
+python scripts/benchmark_agent.py report benchmarks/results/raw/hard-*.jsonl             # harder tasks
+python scripts/benchmark_agent.py report benchmarks/results/raw/memory-*.jsonl           # remembering a rule
 python scripts/benchmark_agent.py routing-report benchmarks/results/raw/routing.jsonl     # live skill use
 python scripts/benchmark_agent.py overhead-report benchmarks/results/raw/overhead.jsonl   # session overhead
-python scripts/benchmark_routing_heldout.py --arm before=/path/to/old/checkout --arm after=.   # skill search on new prompts
-python scripts/benchmark_agent.py validate --suite benchmarks/tasks/test                  # tasks are fair
-python scripts/make_charts.py --readme README.md                                          # redraw charts and the README table
+python scripts/benchmark_routing_heldout.py --arm after=.                                 # skill search on new prompts
+python scripts/benchmark_agent.py validate --suite benchmarks/tasks/hard-test             # tasks are fair (also: test, memory)
+python scripts/make_charts.py --readme README.md                                          # redraw charts and README text
 ```
 
 ## Repeat the runs (spends model usage)
 
-`before` is a checkout of the commit before this release (`git archive 8adea49 | tar -x -C /path/to/old/checkout`). Claude runs use your own login; Ollama runs use your own key, read from a file and never printed or saved.
+Claude runs use your own login; Ollama runs use your own key, read from a file and never printed or saved. To compare with an older build, check it out in another folder and add `--arm old=/path/to/old/checkout@full`.
 
 ```bash
-python scripts/benchmark_agent.py overhead --arm baseline --arm before=/path/to/old/checkout@full \
-    --arm after=.@lean+hint+gate+brief --model claude-sonnet-5-5 --trials 3 --out /tmp/overhead
+python scripts/benchmark_agent.py overhead --arm baseline --arm after=.@lean+hint+gate+brief \
+    --model claude-sonnet-5-5 --trials 3 --out /tmp/overhead
 python scripts/benchmark_agent.py run --provider ollama --ollama-key-file KEYFILE \
-    --suite benchmarks/tasks/test --arm baseline --arm before=/path/to/old/checkout@full \
-    --arm after=.@lean+hint+gate+brief --model nemotron-3-nano:30b --trials 4 --parallel 6 --out /tmp/coding
+    --suite benchmarks/tasks/test --arm baseline --arm after=.@lean+hint+gate+brief \
+    --model nemotron-3-nano:30b --trials 4 --parallel 6 --out /tmp/coding
+python scripts/benchmark_agent.py run --provider ollama --ollama-key-file KEYFILE \
+    --suite benchmarks/tasks/hard-test --arm baseline --arm after=.@lean+hint+gate+brief \
+    --model gemma4:31b --trials 3 --parallel 6 --out /tmp/hard
+python scripts/benchmark_agent.py run --provider ollama --ollama-key-file KEYFILE \
+    --suite benchmarks/tasks/memory --arm baseline --arm after=.@lean+hint+gate+brief \
+    --model deepseek-v4.1-flash --trials 3 --parallel 6 --out /tmp/memory
 python scripts/benchmark_agent.py run --provider ollama --ollama-key-file KEYFILE --suite humaneval:40 \
-    --arm baseline --arm before=/path/to/old/checkout@full --arm after=.@lean+hint+gate+brief \
-    --model deepseek-v4.1-flash --out /tmp/humaneval
+    --arm baseline --arm after=.@lean+hint+gate+brief --model deepseek-v4.1-flash --out /tmp/humaneval
 python scripts/benchmark_agent.py routing --provider ollama --ollama-key-file KEYFILE --split test \
-    --arm before=/path/to/old/checkout@full --arm after=.@lean+hint+gate+brief --model deepseek-v4.1-flash --out /tmp/routing
-python scripts/benchmark_agent.py compact /tmp/coding/runs.jsonl --kind task --kind selftest --out benchmarks/results/raw/coding-MODEL.jsonl
+    --arm after=.@lean+hint+gate+brief --model deepseek-v4.1-flash --out /tmp/routing
+python scripts/benchmark_agent.py compact /tmp/coding/runs.jsonl --kind task --kind selftest \
+    --out benchmarks/results/raw/coding-MODEL.jsonl
 ```
 
-An interrupted run resumes where it stopped when you start it again with the same `--out` folder.
+An interrupted run resumes where it stopped when you start it again with the same `--out` folder. `compact` also replaces account and folder names in the free text with placeholders before anything is committed.
 
 ## Limits
 
-- The tasks are small, spec-driven Python projects with hidden tests. They say nothing about large repositories, other languages, or open-ended design work.
+- The tasks are Python projects with hidden tests, from a few dozen lines to a few hundred. They say nothing about large repositories, other languages, or open-ended design work.
 - Strong agentic models already run their own tests. On those, BosskuAI cannot raise a pass rate that is already near the ceiling; the question there is whether it costs more.
-- Two Ollama Cloud models were run on the coding tasks (one small, one strong). Claude models were measured for session overhead only, to avoid spending Claude usage; their coding behavior was not measured here.
+- Three Ollama Cloud models were run on the coding tasks (small, mid-size, strong), and one on the memory tasks. Claude models were measured for session overhead only, to avoid spending Claude usage; their coding behavior was not measured here.
 - Samples are small. Read overlapping intervals as "no clear difference", not as proof of equality.
 - Skills built for a specific stack (Laravel, Nuxt, Docker, marketing, legal) are not exercised by generic coding tasks. Their value is not measured here.
 - The held-out skill-search prompts and their acceptable skills are one author's judgment, not ground truth.
+- The memory tasks measure whether a stated rule is remembered, not whether notes help with open questions such as "why did we choose this design?".
 - The agent in these runs is Claude Code. The helper hooks only exist for Claude Code, so Cursor, Codex, OpenCode, and OMP got the skills and instructions but not the hooks, and were not benchmarked.
 
 ## Tuned routing regression (82 prompts)

@@ -1,0 +1,9 @@
+{
+  "id": "hard-d-5",
+  "category": "security",
+  "prompt": "`notes_repo.NotesRepository` (see seed/README.md) is a tiny per-owner notes store on top of in-memory SQLite — `add_note`, `get_notes_by_owner`, `search_notes`, `list_notes_sorted`, and `delete_note`. It was thrown together by concatenating SQL strings and needs to be safe before it takes input from outside callers:\n\n- Every value that lands in a WHERE/VALUES clause (owner, title, body, note_id, search text) must be passed through the database driver's own parameter binding — never formatted or concatenated into the SQL text.\n- `search_notes(owner, query_text)` does a substring search over that owner's notes' title and body only. `%` and `_` in `query_text` must be treated as literal characters to search for, not SQL wildcards.\n- `list_notes_sorted(owner, sort_by)` only accepts `sort_by` of exactly `\"id\"`, `\"title\"`, or `\"created_at\"`; anything else — a typo, an unknown column, an attempt to smuggle in extra SQL — must raise `ValueError` *before* any query runs, not bubble up a database error.\n- `delete_note(owner, note_id)` must only delete a note that both exists and belongs to `owner`; otherwise raise `KeyError`. `note_id` must already be an `int` — anything else (including a numeric-looking string) raises `TypeError` instead of being coerced or interpolated.\n- `add_note(owner, title, body, created_at)` rejects (`ValueError`) a `title` over 200 characters or a `body` over 5000 characters, measured in characters, not bytes.\n- None of this should get in the way of ordinary content: titles and bodies may contain quotes, apostrophes, unicode text, or anything else a user might type, and must round-trip exactly.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_hard_d_5_hidden"],
+    "timeout": 120
+  }
+}

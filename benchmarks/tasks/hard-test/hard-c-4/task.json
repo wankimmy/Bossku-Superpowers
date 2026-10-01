@@ -1,0 +1,9 @@
+{
+  "id": "hard-c-4",
+  "category": "refactor",
+  "prompt": "`cookbook.py` has grown into three unrelated jobs - parsing ingredient text, scaling a recipe, and merging recipes into a shopping list - and it needs to be split before we add a fourth. Pull the parsing side (`UNIT_ALIASES`, `Ingredient`, `parse_ingredient`) into a new `parsing.py`, and the planning side (`scale_recipe`, `build_shopping_list`) into a new `planning.py` (which should import `Ingredient` from `parsing.py` rather than redefining it).\n\n`cookbook.py` itself should become a thin compatibility module that re-exports everything from the two new modules, so that nothing else in the project - or outside it - has to change: `import cookbook; cookbook.parse_ingredient(...)` must keep working, and so must `from cookbook import parse_ingredient, scale_recipe, build_shopping_list, Ingredient, UNIT_ALIASES`. In particular, `menu.py` (which does `import cookbook` and calls `cookbook.parse_ingredient`/`cookbook.scale_recipe`/`cookbook.build_shopping_list`) and `scripts/print_shopping_list.py` (which does `from cookbook import build_shopping_list, parse_ingredient`) should keep working completely unchanged, since between them they exercise both import styles. Give `cookbook.py` an explicit `__all__` so that `from cookbook import *` exposes exactly those five public names and nothing else (no helper functions, no the two new module objects themselves).\n\nBehavior everywhere is unchanged - this is purely a file reorganization, including the README's usage example, which should keep running and keep producing the same result.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_hard_c_4_hidden"],
+    "timeout": 120
+  }
+}

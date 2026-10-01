@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 224" width="880" height="224" role="img" aria-labelledby="t d">
+<title id="t">Remembering a rule from an earlier session</title>
+<desc id="d">Remembering a rule from an earlier session. Session 1 states a project rule. Session 2 asks for something that breaks it unless the agent remembers.  DeepSeek V4.1 Flash: Without BosskuAI 86%, With BosskuAI 100%.</desc>
+<style>text{font-family:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif}.card{fill:#fcfcfb}.ink{fill:#0b0b0b}.ink2{fill:#52514e}.muted{fill:#898781}.grid{stroke:#e1e0d9}.base{stroke:#c3c2b7}.whisker{stroke:#52514e}.s0{fill:#2a78d6}.s1{fill:#1baf7a}@media (prefers-color-scheme:dark){.card{fill:#1a1a19}.ink{fill:#ffffff}.ink2{fill:#c3c2b7}.muted{fill:#898781}.grid{stroke:#2c2c2a}.base{stroke:#383835}.whisker{stroke:#c3c2b7}.s0{fill:#3987e5}.s1{fill:#199e70}}</style>
+<rect class="card" width="880" height="224" rx="14"/>
+<text class="ink" x="28" y="42" font-size="22" font-weight="650">Remembering a rule from an earlier session</text>
+<text class="ink2" x="28" y="66" font-size="14">Session 1 states a project rule. Session 2 asks for something that breaks it unless the agent remembers.</text>
+<rect class="s0" x="28" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="46" y="89" font-size="13">Without BosskuAI</text>
+<rect class="s1" x="188" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="206" y="89" font-size="13">With BosskuAI</text>
+<line class="grid" x1="204.0" y1="104" x2="204.0" y2="156" stroke-width="1"/>
+<text class="muted" x="204.0" y="172" font-size="12" text-anchor="middle">0%</text>
+<line class="grid" x1="335.5" y1="104" x2="335.5" y2="156" stroke-width="1"/>
+<text class="muted" x="335.5" y="172" font-size="12" text-anchor="middle">25%</text>
+<line class="grid" x1="467.0" y1="104" x2="467.0" y2="156" stroke-width="1"/>
+<text class="muted" x="467.0" y="172" font-size="12" text-anchor="middle">50%</text>
+<line class="grid" x1="598.5" y1="104" x2="598.5" y2="156" stroke-width="1"/>
+<text class="muted" x="598.5" y="172" font-size="12" text-anchor="middle">75%</text>
+<line class="grid" x1="730.0" y1="104" x2="730.0" y2="156" stroke-width="1"/>
+<text class="muted" x="730.0" y="172" font-size="12" text-anchor="middle">100%</text>
+<line class="base" x1="204" y1="104" x2="204" y2="156" stroke-width="1.5"/>
+<text class="ink" x="28" y="129.0" font-size="14" font-weight="600">DeepSeek V4.1 Flash</text>
+<text class="muted" x="28" y="146.0" font-size="12">22 runs per setup</text>
+<path class="s0" d="M204,112 H654.3 Q658.3,112 658.3,116.0 V126.0 Q658.3,130 654.3,130 H204 Z"/>
+<line class="whisker" x1="554.7" y1="121.0" x2="705.0" y2="121.0" stroke-width="1.5"/>
+<line class="whisker" x1="554.7" y1="117.0" x2="554.7" y2="125.0" stroke-width="1.5"/>
+<line class="whisker" x1="705.0" y1="117.0" x2="705.0" y2="125.0" stroke-width="1.5"/>
+<text class="ink" x="713.0" y="125.5" font-size="13" font-weight="600">86%</text>
+<path class="s1" d="M204,132 H726.0 Q730.0,132 730.0,136.0 V146.0 Q730.0,150 726.0,150 H204 Z"/>
+<line class="whisker" x1="641.5" y1="141.0" x2="730.0" y2="141.0" stroke-width="1.5"/>
+<line class="whisker" x1="641.5" y1="137.0" x2="641.5" y2="145.0" stroke-width="1.5"/>
+<line class="whisker" x1="730.0" y1="137.0" x2="730.0" y2="145.0" stroke-width="1.5"/>
+<text class="ink" x="738.0" y="145.5" font-size="13" font-weight="600">100%</text>
+<text class="muted" x="28" y="208" font-size="12">A fresh conversation each time: the agent only has the files and whatever notes were saved.</text>
+</svg>

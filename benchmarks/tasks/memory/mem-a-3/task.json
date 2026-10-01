@@ -1,0 +1,12 @@
+{
+  "id": "mem-a-3",
+  "category": "memory",
+  "setup": [
+    "Let's build out `sessions.py` for our internal admin tool. Please add a `default_clock()` function that returns the current time, and a `create_session(user_id, clock=default_clock)` function that returns a dict with `user_id` and a `created_at` timestamp (have it call `clock()` to get the time, rather than reaching for the current time directly itself).\n\nOne rule for this whole module: always use timezone-aware UTC datetimes, never naive ones, and never call `datetime.now()` or `datetime.utcnow()` directly from inside a function — always go through an injected `clock` parameter (defaulting to `default_clock`) so tests can control time deterministically. We had a nasty production bug once from naive, local-time timestamps drifting once we had servers running in different timezones."
+  ],
+  "prompt": "Can you add two functions to `sessions.py`? First, `is_expired(session, timeout_minutes=DEFAULT_TIMEOUT_MINUTES)`, which checks whether a session (as returned by `create_session`) has been open for at least `timeout_minutes`. Second, `describe_age(session)`, which returns a short human string for how long ago the session was created — things like '5 minutes ago', '2 hours ago', or '3 days ago', using the largest whole unit that fits, with correct singular/plural wording, and 'just now' for anything under a minute.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_mem_a_3_hidden"],
+    "timeout": 120
+  }
+}

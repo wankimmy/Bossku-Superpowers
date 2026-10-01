@@ -1,0 +1,12 @@
+{
+  "id": "mem-a-5",
+  "category": "memory",
+  "setup": [
+    "Please build out `catalog.py` for our small product catalog tool. Add a `make_slug(name)` function that turns a product name into a normalized, lowercase, hyphen-separated slug suitable for use as a dict key — trim surrounding whitespace, collapse any run of whitespace/punctuation into a single hyphen, and strip leading/trailing hyphens. Then add `add_product(catalog, name, price_cents)` that inserts `{'name': name, 'price_cents': price_cents}` into the `catalog` dict (a plain dict of slug -> product info) under the key `make_slug(name)`, raising `ValueError` if that slug is already present.\n\nImportant: `make_slug` is the one and only place allowed to turn a product name into a key. Any other code anywhere in this project that needs a product's key must call `make_slug` rather than rolling its own normalization — we had duplicate/mismatched catalog entries before when different code paths normalized names slightly differently. Also, keep this project standard-library only; no third-party packages like `python-slugify`."
+  ],
+  "prompt": "Can you add two things to `catalog.py`? First, `import_products(lines)`, which takes a list of 'name,price_cents' strings (price as a plain integer) and builds a fresh catalog dict from them. Second, `merge_product_lists(list_a, list_b)`, which takes two lists of `(name, price_cents)` pairs — possibly with the same product written slightly differently between the two lists (different case, spacing, or punctuation) — and returns one merged catalog where, if both lists turn out to describe the same product, the price from `list_b` wins.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_mem_a_5_hidden"],
+    "timeout": 120
+  }
+}

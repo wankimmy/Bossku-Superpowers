@@ -1,0 +1,15 @@
+{
+  "id": "hard-b-3",
+  "category": "bugfix",
+  "prompt": "A few complaints about the `library/` checkout system this week:\n\n- \"A member returned their book one day late and still got charged a late fee - but our policy has a one-day grace period after the due date.\"\n- \"A member paid off their entire late-fee balance and we told them they're fine, but the system still says they're blocked from checking out - it only cleared up after we charged them a fee on an unrelated loan.\"\n- \"We registered a member as 'Alice' and now a different part of the app that looked her up as 'alice' says she doesn't exist.\"\n\n`library/README.md` spells out exactly how checkout, returns, grace periods, the late-fee schedule, and blocking are supposed to work - please bring the code in line with it. Keep the existing public classes and function names (`Catalog`, `Members`, `Member`, `LibrarySystem`, `fee_for_billable_days`, etc.) and their signatures as-is, since other code already imports them.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_hard_b_3_hidden"
+    ],
+    "timeout": 120
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "id": "hard-e-4",
+  "category": "feature",
+  "prompt": "We need a fair way to split an indivisible integer total (board seats, budget units, server shards) proportionally across several weighted recipients -- and to optionally guarantee each recipient a minimum before the rest is split proportionally. Please add a new `allocate.py` module at the project root implementing the largest-remainder (Hamilton) apportionment method, with `allocate(total, weights)`, `allocate_with_minimums(total, weights, minimums=None)`, and an `AllocationError` exception, exactly as specified in `README.md`.\n\nThe method itself is standard, but the README nails down the parts that are usually left as an exercise -- especially the exact tie-break rule and how a guaranteed minimum interacts with the proportional split of what's left -- so please implement it from the README rather than from a general sense of how apportionment works. A couple of basic checks are sketched in `tests/test_allocate.py`.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_hard_e_4_hidden"],
+    "timeout": 120
+  }
+}

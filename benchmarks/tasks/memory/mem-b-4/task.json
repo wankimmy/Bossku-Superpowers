@@ -1,0 +1,12 @@
+{
+  "id": "mem-b-4",
+  "category": "memory",
+  "setup": [
+    "We're starting to formalize our backend structure. Please add a class `WelcomeEmailService` with a method `build(user_name, plan)` that returns a dict `{\"subject\": ..., \"body\": ...}` for a new user's welcome email, where `subject` is exactly `f\"Welcome, {user_name}!\"` and `body` is exactly `f\"Hi {user_name}, thanks for joining the {plan} plan!\"`.\n\nStarting now, all new backend logic like this goes under a `services/` package, one class per file, with the filename being the snake_case of the class name -- so `WelcomeEmailService` belongs in `services/welcome_email_service.py`. Each one needs a matching test module at `tests/test_<module>.py`, e.g. `tests/test_welcome_email_service.py`. We're about to split this into separately-deployed microservices and our deploy tooling scans `services/*.py` paired 1:1 with `tests/test_*.py` to build the deploy manifest; anything that doesn't fit that exact pattern gets silently skipped and never ships."
+  ],
+  "prompt": "Add a password-reset email helper too -- same idea as the welcome email: a `PasswordResetEmailService` with a `build(user_name, reset_token)` method returning a dict `{\"subject\": ..., \"body\": ...}` where `subject` is exactly `\"Reset your password\"` and `body` is exactly `f\"Use this link to reset your password: https://app.example.com/reset?token={reset_token}\"`. Can you just drop it in `email_helpers.py` at the top of the project? Trying to keep the root tidy with one file for these small email helpers rather than spreading them out.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_mem_b_4_hidden"],
+    "timeout": 120
+  }
+}

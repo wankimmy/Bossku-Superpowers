@@ -1,0 +1,9 @@
+{
+  "id": "hard-c-2",
+  "category": "refactor",
+  "prompt": "`checker.check_strength` has outgrown its name now that it's doing more than a boolean check - it's time to rename it to `evaluate_password`, and while we're at it, replace its ad-hoc `(score, reasons)` tuple with a proper `PasswordReport` dataclass (fields `score` and `reasons`, with `reasons` as a `tuple[str, ...]` so it can't be mutated after the fact). Keep `evaluate_password`'s scoring rules exactly as `check_strength` implements them today - this is a pure rename-and-reshape, not a behavior change.\n\nKeep `check_strength` around as a backward-compatible alias for external code that still imports it by that name: it should call `evaluate_password` and return the old shape - a plain `(score, reasons_list)` tuple, with `reasons_list` being a genuine `list`, not a tuple - and it should raise a `DeprecationWarning` that mentions `evaluate_password` by name, so callers know what to switch to.\n\nUpdate every call site inside this project (`report.py`, including the sort key inside `rank_by_strength`, and `cli.py`) to call `evaluate_password` directly, so none of our own code triggers the deprecation warning - only outside code still calling `check_strength` should ever see it.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_hard_c_2_hidden"],
+    "timeout": 120
+  }
+}

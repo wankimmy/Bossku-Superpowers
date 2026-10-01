@@ -1,0 +1,9 @@
+{
+  "id": "hard-d-3",
+  "category": "security",
+  "prompt": "`url_fetcher.fetch(url, allowed_hosts, opener=None)` (see seed/README.md) is how our scrapers pull data from a configured allowlist of partner hosts. It calls `opener(url)` (which defaults to a real HTTP GET, but every caller in the test suite passes a fake one) and returns whatever bytes come back. The host check was written for the happy path and is sloppy — we're about to point it at user-suggested URLs, so please harden it:\n\n- Only `http` and `https` URLs may be fetched (the scheme match is case-insensitive); anything else (`file:`, `ftp:`, `javascript:`, a URL with no host at all, …) must raise `url_fetcher.URLSecurityError`.\n- A URL that embeds credentials (`user:pass@host` or `user@host` right before the hostname) must be rejected outright, even if the host after the `@` is itself allowlisted.\n- The host must match an entry in `allowed_hosts` exactly and case-insensitively (treating a single trailing dot as insignificant, since `example.com.` and `example.com` name the same thing) — don't be fooled by a host that merely contains, starts with, or ends with an allowed name. There's no implicit subdomain access either: `sub.example.com` is only fetchable if it is itself listed in `allowed_hosts`. The port, if any, doesn't affect the match.\n- `opener` can raise `url_fetcher.Redirect(location)` to signal a 3xx response. When that happens, validate `location` exactly like any other URL before ever calling `opener` with it — never follow a redirect to a URL that wouldn't itself pass the allowlist. Follow at most 3 redirects; if it's still redirecting after that, raise `URLSecurityError` instead of looping forever.\n- Keep the boring case boring: a plain allowlisted `http`/`https` URL with no redirect should still fetch in exactly one `opener` call.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_hard_d_3_hidden"],
+    "timeout": 120
+  }
+}

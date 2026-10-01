@@ -1,0 +1,9 @@
+{
+  "id": "hard-g-1",
+  "category": "feature",
+  "prompt": "Our parking garage billing code in `sessions.py` already computes the fee for a single session; now we need a monthly statement feature on top of it. Please add a `statements.py` module at the project root with a `build_statement(account_id, sessions, rate_card, is_member=False, clock=None)` function that rolls a corporate account's sessions up into one statement, applying our usual loyalty discount tiers and statement fee. Follow this project's conventions and behaviour notes exactly -- see `README.md` -- and reuse the shared helpers documented in `errors.py`, `validation.py`, `money.py`, `clock.py`, and `sessions.py` rather than re-implementing their logic. `tests/test_sessions.py` shows the style this project uses for the existing code.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_hard_g_1_hidden"],
+    "timeout": 120
+  }
+}

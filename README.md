@@ -10,8 +10,8 @@ Works with **Claude Code, Cursor, Codex, OpenCode, and OMP**. Free and open sour
 
 - **The right skill, found for you.** Say what you want in plain words. BosskuAI points your agent to the best skill, and adds a second one only when your request has two separate jobs.
 - **Code that gets run.** If your agent changes code and never runs it, or pastes code into the chat instead of writing the file, it is sent back once. (Claude Code.)
-- **A project that remembers.** Decisions and lessons are saved as short notes, in Obsidian if you use it. The newest ones appear when the next session starts.
-- **Light on your agent's memory.** About 25 skills are listed each session. About 210 more are one command away.
+- **A project that remembers.** Decisions, rules and lessons are saved as short notes, in Obsidian if you use it. The newest ones appear when the next session starts.
+- **Light on your agent's context.** About 25 skills are listed each session, each with a short checklist. About 210 more are one command away.
 
 For example:
 
@@ -21,17 +21,23 @@ bossku, review this code for security problems.
 
 ## Does it help? We measured it with real agents
 
-We ran a real coding agent (Claude Code) on small coding tasks with hidden tests, once **without BosskuAI** and once **with BosskuAI**, on the same tasks. Every number, chart, and explanation below is rebuilt from result files saved in this repository, and a test fails if they ever disagree. How each check works, and what it cannot show, is in the [benchmark notes](docs/benchmarks/README.md).
+We ran a real coding agent (Claude Code) on coding tasks with hidden tests, once **without BosskuAI** and once **with BosskuAI**, on the same tasks, at the same time. Some tasks have two sessions: the first states a project rule, the second asks for related work that breaks the rule unless it is remembered. Every number, chart, and explanation below is rebuilt from result files saved in this repository, and a test fails if they ever disagree. How each check works, and what it cannot show, is in the [benchmark notes](docs/benchmarks/README.md).
 
 ![How each result was measured: a coding task and a fresh project go to an agent run beside an isolation check; a usage meter and hidden tests feed a comparison of the two setups, which feeds the charts.](docs/assets/benchmark-method.svg)
 
 ### In short
 
+In plain words: BosskuAI helps a model that skips checking its own work. A model that already checks its work passes about as often with or without it, and uses more tokens. Whether notes help a project keep its rules from one session to the next is shown further down.
+
 <!-- summary-overall:start -->
-- **DeepSeek V4.1 Flash gained nothing it could measure:** 91% without, 94% with.
-- **Nemotron 3 Nano 30B finished more tasks with BosskuAI:** 22% without, 38% with.
+- **DeepSeek V4.1 Flash gained nothing it could measure on coding tasks:** 97% without, 97% with.
+- **Nemotron 3 Nano 30B finished more coding tasks with BosskuAI:** 18% without, 40% with.
+- **DeepSeek V4.1 Flash gained nothing it could measure on harder tasks:** 97% without, 92% with.
+- **Gemma 4 31B gained nothing it could measure on harder tasks:** 59% without, 52% with.
+- **DeepSeek V4.1 Flash gained nothing it could measure on tasks that need a rule from an earlier session:** 86% without, 100% with.
+- **The extra checking costs tokens:** tokens per run with BosskuAI compared with without: DeepSeek V4.1 Flash 1.1× on coding tasks, Nemotron 3 Nano 30B 5.3× on coding tasks, DeepSeek V4.1 Flash 1.1× on harder tasks, Gemma 4 31B 1.6× on harder tasks, DeepSeek V4.1 Flash 1.2× on two-session tasks.
 - **It finds the right skill more often:** 75% first-pick accuracy on new requests, against 60% for keyword search.
-- **Its fixed cost is small:** extra tokens on the first call of a session: 1,333 on Claude Haiku 4.5, 2,914 on Claude Sonnet 5.5.
+- **Its fixed cost is small:** extra tokens on the first call of a session: 1,241 on Claude Haiku 4.5, 2,155 on Claude Sonnet 5.5.
 <!-- summary-overall:end -->
 
 ### What it adds to every session
@@ -39,7 +45,7 @@ We ran a real coding agent (Claude Code) on small coding tasks with hidden tests
 ![With and without BosskuAI: the input tokens and the cost of the first call of a Claude Code session](docs/assets/benchmark-session-overhead.svg)
 
 <!-- summary-overhead:start -->
-**What this shows:** BosskuAI adds a small, fixed amount to the first call of a session: Claude Haiku 4.5 +1,333 tokens (4% more), +$0.0012; Claude Sonnet 5.5 +2,914 tokens (9% more), +$0.0078. That is the skill list and the short instructions. The same text is reused on every later call, so it does not grow with the length of the session.
+**What this shows:** BosskuAI adds a small, fixed amount to the first call of a session: Claude Haiku 4.5 +1,241 tokens (4% more), +$0.0011; Claude Sonnet 5.5 +2,155 tokens (6% more), +$0.0049. That is the skill list and the short instructions. The same text is reused on every later call, so it does not grow with the length of the session.
 <!-- summary-overhead:end -->
 
 ### Finding the right skill
@@ -47,7 +53,7 @@ We ran a real coding agent (Claude Code) on small coding tasks with hidden tests
 ![With BosskuAI and with plain keyword search: how often the right skill is ranked first on requests it was never tuned on](docs/assets/benchmark-routing.svg)
 
 <!-- summary-routing:start -->
-**What this shows:** on 73 requests it was never tuned on, BosskuAI ranked an acceptable skill first 75% of the time, against 60% for plain keyword search. For requests with several jobs it found a fitting skill for every part 58% of the time. With a real agent (DeepSeek V4.1 Flash) on the same requests, an acceptable skill was actually opened for 49% of them.
+**What this shows:** on 73 requests it was never tuned on, BosskuAI ranked an acceptable skill first 75% of the time, against 60% for plain keyword search. For requests with several jobs it found a fitting skill for every part 58% of the time. With a real agent (DeepSeek V4.1 Flash) on the same requests, an acceptable skill was actually opened for 55% of them.
 <!-- summary-routing:end -->
 
 ### Finishing tasks
@@ -56,12 +62,18 @@ We ran a real coding agent (Claude Code) on small coding tasks with hidden tests
 
 <!-- summary-pass:start -->
 **Hidden-test coding tasks**
-- **DeepSeek V4.1 Flash: no clear difference.** 94% with BosskuAI against 91% without (34 runs each): +3 points over the same tasks, 95% interval 0 to +9. Both setups were already near the ceiling, so there was little room to improve.
-- **Nemotron 3 Nano 30B finished more tasks.** 38% with BosskuAI against 22% without (68 runs each): +16 points over the same tasks, 95% interval +6 to +26. 6 of the 68 runs with BosskuAI (0 without) ran out of time and count as failures.
+- **DeepSeek V4.1 Flash: no clear difference.** 97% with BosskuAI against 97% without (34 runs each): the same result on every one of the 17 tasks. Both setups were already near the ceiling, so there was little room to improve.
+- **Nemotron 3 Nano 30B finished more tasks.** 40% with BosskuAI against 18% without (68 runs each): +22 points over the same tasks, 95% interval +12 to +34.
+
+**Harder tasks**
+- **DeepSeek V4.1 Flash: no clear difference.** 92% with BosskuAI against 97% without (36 runs each): -4 points over the same tasks, 95% interval -11 to 0. Both setups were already near the ceiling, so there was little room to improve.
+- **Gemma 4 31B: no clear difference.** 52% with BosskuAI against 59% without (39 runs each): -6 points over the same tasks, 95% interval -15 to +5.
+- 16 runs (7 with BosskuAI, 9 without) were cut short by a usage limit on the model account, so they count as neither passes nor failures and are left out.
 
 **HumanEval problems**
-- **DeepSeek V4.1 Flash: no clear difference.** 100% with BosskuAI against 98% without (40 runs each): +2 points over the same problems, 95% interval 0 to +8. Both setups were already near the ceiling, so there was little room to improve. 0 of the 40 runs with BosskuAI (1 without) ran out of time and count as failures.
-- **Nemotron 3 Nano 30B: no clear difference.** 78% with BosskuAI against 80% without (40 runs each): -2 points over the same problems, 95% interval -20 to +15.
+- **DeepSeek V4.1 Flash: no clear difference.** 100% with BosskuAI against 100% without (38 runs each): the same result on every one of the 38 problems. Both setups were already near the ceiling, so there was little room to improve.
+- **Nemotron 3 Nano 30B finished more problems.** 87% with BosskuAI against 60% without (35 runs each): +35 points over the same problems, 95% interval +12 to +54.
+- 15 runs (9 with BosskuAI, 6 without) were cut short by a usage limit on the model account, so they count as neither passes nor failures and are left out.
 <!-- summary-pass:end -->
 
 ### Running the code
@@ -70,9 +82,19 @@ We ran a real coding agent (Claude Code) on small coding tasks with hidden tests
 
 <!-- summary-checking:start -->
 **What this shows:** the habit that BosskuAI's stop check is built to change. A model that never runs what it wrote cannot find its own mistakes.
-- **DeepSeek V4.1 Flash** ended without running its code in 0% of the runs that changed code on its own, and in 3% with BosskuAI.
-- **Nemotron 3 Nano 30B** ended without running its code in 100% of the runs that changed code on its own, and in 48% with BosskuAI.
+- **DeepSeek V4.1 Flash** ended without running its code in 3% of the runs that changed code on its own, and in 0% with BosskuAI.
+- **Nemotron 3 Nano 30B** ended without running its code in 100% of the runs that changed code on its own, and in 33% with BosskuAI.
 <!-- summary-checking:end -->
+
+### Remembering a rule from an earlier session
+
+![With and without BosskuAI: the share of two-session tasks passed, where the second session breaks a project rule unless it is remembered](docs/assets/benchmark-memory.svg)
+
+<!-- summary-memory:start -->
+**What this shows:** each task states a project rule in a first session (for example "this must run on Python 3.8" or "never use eval") and asks for related work in a second one that would break the rule if forgotten. The agent starts the second session fresh: without BosskuAI it has only the files; with BosskuAI it also sees the notes it saved.
+- **DeepSeek V4.1 Flash: no clear difference.** 100% with BosskuAI against 86% without (22 runs each): +13 points over the same tasks, 95% interval 0 to +33. In the first session, the agent with BosskuAI saved the rule as a note 100% of the time.
+- 11 runs (5 with BosskuAI, 6 without) were cut short by a usage limit on the model account, so they count as neither passes nor failures and are left out.
+<!-- summary-memory:end -->
 
 ### What it costs in tokens
 
@@ -80,8 +102,11 @@ We ran a real coding agent (Claude Code) on small coding tasks with hidden tests
 
 <!-- summary-effort:start -->
 **What this shows:** BosskuAI makes the agent do more work, and work costs tokens. The extra work is running, checking and fixing. Where that turns failures into passes it is worth it; where the model already passes, it is not.
-- **DeepSeek V4.1 Flash** used 1.6× the tokens per run (106k without, 171k with) and 1.6× the tokens per task it actually solved.
-- **Nemotron 3 Nano 30B** used 3.9× the tokens per run (57k without, 221k with) and 2.2× the tokens per task it actually solved.
+- **DeepSeek V4.1 Flash, coding tasks:** 1.1× the tokens per run (107k without, 113k with) and 1.1× the tokens per task it actually solved. It ran shell commands 3.0 times per run instead of 2.4.
+- **Nemotron 3 Nano 30B, coding tasks:** 5.3× the tokens per run (52k without, 276k with) and 2.4× the tokens per task it actually solved. It ran shell commands 3.6 times per run instead of 0.1.
+- **DeepSeek V4.1 Flash, harder tasks:** 1.1× the tokens per run (276k without, 291k with) and 1.1× the tokens per task it actually solved. It ran shell commands 5.1 times per run instead of 5.4.
+- **Gemma 4 31B, harder tasks:** 1.6× the tokens per run (190k without, 310k with) and 1.8× the tokens per task it actually solved. It ran shell commands 6.2 times per run instead of 2.8.
+- **DeepSeek V4.1 Flash, two-session tasks:** 1.2× the tokens per run (98k without, 123k with) and 1.1× the tokens per task it actually solved. It ran shell commands 2.1 times per run instead of 1.6.
 <!-- summary-effort:end -->
 
 ### All the numbers
@@ -89,39 +114,52 @@ We ran a real coding agent (Claude Code) on small coding tasks with hidden tests
 <!-- results:start -->
 | First call of a session | Without BosskuAI | With BosskuAI |
 |---|---:|---:|
-| Claude Haiku 4.5: input tokens | 32,280 | 33,613 |
-| Claude Haiku 4.5: cost | $0.0108 | $0.0120 |
-| Claude Sonnet 5.5: input tokens | 33,856 | 36,770 |
-| Claude Sonnet 5.5: cost | $0.0245 | $0.0323 |
+| Claude Haiku 4.5: input tokens | 33,413 | 34,654 |
+| Claude Haiku 4.5: cost | $0.0109 | $0.0120 |
+| Claude Sonnet 5.5: input tokens | 35,403 | 37,558 |
+| Claude Sonnet 5.5: cost | $0.0247 | $0.0297 |
 
 | Finding a skill (73 new requests) | Keyword search only | With BosskuAI |
 |---|---:|---:|
 | Right skill ranked first | 60% | 75% |
 | Right skill in the top three | 77% | 92% |
 | Every part of a multi-part request covered | - | 58% |
-| A real agent (DeepSeek V4.1 Flash) opens an acceptable skill | - | 49% |
+| A real agent (DeepSeek V4.1 Flash) opens an acceptable skill | - | 55% |
 
 | Hidden-test coding tasks | Without BosskuAI | With BosskuAI |
 |---|---:|---:|
-| DeepSeek V4.1 Flash: tasks passed (34 runs each) | 91% (31/34) | 94% (32/34) |
-| DeepSeek V4.1 Flash: tokens per run | 106k | 171k |
-| DeepSeek V4.1 Flash: ended without running its code | 0% | 3% |
-| Nemotron 3 Nano 30B: tasks passed (68 runs each) | 22% (15/68) | 38% (26/68) |
-| Nemotron 3 Nano 30B: tokens per run | 57k | 221k |
-| Nemotron 3 Nano 30B: ended without running its code | 100% | 48% |
+| DeepSeek V4.1 Flash: tasks passed (34 runs each) | 97% (33/34) | 97% (33/34) |
+| DeepSeek V4.1 Flash: tokens per run | 107k | 113k |
+| DeepSeek V4.1 Flash: ended without running its code | 3% | 0% |
+| Nemotron 3 Nano 30B: tasks passed (68 runs each) | 18% (12/68) | 40% (27/68) |
+| Nemotron 3 Nano 30B: tokens per run | 52k | 276k |
+| Nemotron 3 Nano 30B: ended without running its code | 100% | 33% |
+
+| Harder tasks | Without BosskuAI | With BosskuAI |
+|---|---:|---:|
+| DeepSeek V4.1 Flash: tasks passed (36 runs each) | 97% (35/36) | 92% (34/37) |
+| DeepSeek V4.1 Flash: tokens per run | 276k | 291k |
+| Gemma 4 31B: tasks passed (39 runs each) | 59% (23/39) | 52% (21/40) |
+| Gemma 4 31B: tokens per run | 190k | 310k |
 
 | HumanEval problems | Without BosskuAI | With BosskuAI |
 |---|---:|---:|
-| DeepSeek V4.1 Flash: tasks passed (40 runs each) | 98% (39/40) | 100% (40/40) |
-| DeepSeek V4.1 Flash: tokens per run | 74k | 86k |
-| Nemotron 3 Nano 30B: tasks passed (40 runs each) | 80% (32/40) | 78% (31/40) |
-| Nemotron 3 Nano 30B: tokens per run | 85k | 208k |
+| DeepSeek V4.1 Flash: tasks passed (38 runs each) | 100% (38/38) | 100% (40/40) |
+| DeepSeek V4.1 Flash: tokens per run | 63k | 90k |
+| Nemotron 3 Nano 30B: tasks passed (35 runs each) | 60% (21/35) | 87% (27/31) |
+| Nemotron 3 Nano 30B: tokens per run | 87k | 212k |
+
+| Remembering a rule from an earlier session | Without BosskuAI | With BosskuAI |
+|---|---:|---:|
+| DeepSeek V4.1 Flash: tasks passed (22 runs each) | 86% (19/22) | 100% (19/19) |
+| DeepSeek V4.1 Flash: tokens per run | 98k | 123k |
 <!-- results:end -->
 
 ### What these results do not show
 
-- **Small Python tasks only.** Nothing here covers large repositories, other languages, or open-ended design work.
-- **Two open models, not Claude.** The coding runs used one small and one strong open model through Ollama Cloud, driven by Claude Code. Claude models were measured only for the cost of a session's first call, so no dollar cost per coding task is reported; tokens are the unit.
+- **Python projects of a few dozen to a few hundred lines.** Nothing here covers large repositories, other languages, or open-ended design work.
+- **Three open models, not Claude.** The coding runs used a small, a mid-size and a strong open model through Ollama Cloud, driven by Claude Code. Claude models were measured only for the cost of a session's first call, so no dollar cost per coding task is reported; tokens are the unit.
+- **Tasks written by assistants.** The harder and two-session tasks were written by AI assistants told not to read BosskuAI. Each was checked against a reference solution, and a few over-strict checks were fixed for both setups after a trial run. The [benchmark notes](docs/benchmarks/README.md) list what changed.
 - **Small samples.** Overlapping intervals mean "no clear difference", not "equal".
 - **One author's judgment.** The skill-search requests and the skills accepted for them were written by one person who had not seen the router.
 - **Claude Code only.** The helper hooks exist for Claude Code. Cursor, Codex, OpenCode, and OMP get the skills and instructions but were not benchmarked.

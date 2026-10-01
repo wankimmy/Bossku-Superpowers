@@ -1,0 +1,15 @@
+{
+  "id": "hard-b-5",
+  "category": "bugfix",
+  "prompt": "A couple of access-control bugs have come up in the `acl/` permissions resolver:\n\n- \"We put a user's group into a 'suspended' state by denying it the permission at that group level, but members of a more specific group that still allows the permission can still do it - the suspension doesn't actually stick.\"\n- \"We added someone to the 'editors' group, but `can()` kept saying they couldn't publish - it only started working after we granted or denied some unrelated permission.\"\n\n`acl/README.md` spells out exactly how direct user rules, group rules, group inheritance, and caching are supposed to interact - please bring the code in line with it. Keep the existing public classes and method names (`AccessControl`, `Group`, `can`, `grant_user`, `deny_user`, `grant_group`, `deny_group`, `add_group`, `add_member`, `extend`, etc.) as-is, since other code already depends on them.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_hard_b_5_hidden"
+    ],
+    "timeout": 120
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "id": "hard-g-3",
+  "category": "feature",
+  "prompt": "Our warehouse code in `inventory.py` already knows which lots are in stock and unexpired for a SKU; now we need the actual order-allocation logic on top of it. Please add an `allocation.py` module at the project root with an `allocate_order(order_lines, lots, strategy=\"FIFO\", allow_partial=True, clock=None)` function that decides which lots to draw down for each line of an order. Follow this project's conventions and behaviour notes exactly -- see `README.md` -- and reuse the shared helpers documented in `errors.py`, `validation.py`, `clock.py`, and `inventory.py` rather than re-implementing their logic. `tests/test_inventory.py` shows the style this project uses for the existing code.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_hard_g_3_hidden"],
+    "timeout": 120
+  }
+}

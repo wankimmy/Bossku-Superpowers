@@ -1,0 +1,9 @@
+{
+  "id": "hard-d-4",
+  "category": "security",
+  "prompt": "`webhook_auth.verify_webhook(payload, headers, secret, *, now_fn=time.time)` (see seed/README.md) checks an inbound webhook's `X-Signature` / `X-Timestamp` headers before we trust the payload. It was written to get a demo working and needs to be production-hardened before we point it at the public internet:\n\n- Only accept `X-Signature` values of the exact form `sha256=<hex hmac>`; a different algorithm name (`sha1=`, `md5=`, anything else) must be rejected outright, even if the signature would itself verify correctly under that algorithm — don't let the request choose its own algorithm.\n- Compare the signature using a constant-time comparison, not `==` or any other short-circuiting comparison.\n- Treat `X-Timestamp` as the number of seconds since the epoch and reject the request (whether it's stale or from the future) if it differs from `now_fn()` by more than 300 seconds — this is what stops a captured request from being replayed later. `now_fn` defaults to `time.time` but is overridable for testing.\n- `headers` is a plain `dict` with exactly the keys `\"X-Signature\"` and `\"X-Timestamp\"`. A missing header, a non-numeric timestamp, or a signature that isn't well-formed hex must all raise `webhook_auth.WebhookVerificationError` — never let a raw `ValueError`/`AttributeError`/`binascii.Error` escape.\n- The signed message is `f\"{timestamp_header_value}.\"` followed by the exact raw payload bytes — hash precisely what was received, never a reformatted or re-parsed version of it.\n- On success return `True`; every failure path raises `WebhookVerificationError`, it never returns `False`.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_hard_d_4_hidden"],
+    "timeout": 120
+  }
+}

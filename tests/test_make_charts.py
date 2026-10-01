@@ -87,6 +87,12 @@ class ChartTests(unittest.TestCase):
         self.assertIn('class="s1"', svg)
         self.assertNotIn('class="s2"', svg)   # a third setup would need a third series
 
+    def test_harder_tasks_get_their_own_panel_and_a_plain_model_name(self):
+        svg = charts.chart_pass_rates(coding(), {}, coding("gemma4:31b"))
+        self.assertIn("Harder tasks", svg)
+        self.assertIn("Gemma 4 31B", svg)
+        self.assertNotIn("Harder tasks", charts.chart_pass_rates(coding(), {}))
+
     def test_bars_start_at_one_baseline_and_labels_state_the_value(self):
         svg = charts.chart_routing(routing())
         self.assertIn("74%", svg)
@@ -120,6 +126,12 @@ class SummaryTests(unittest.TestCase):
         loss = charts.pass_bullet("m", coding("m", gain=(-0.3, -0.05))["models"]["m"], "tasks")
         self.assertIn("finished fewer tasks", loss)
 
+    def test_a_perfect_tie_is_called_a_tie_not_an_interval_of_zero(self):
+        block = coding("m", gain=(0.0, 0.0))["models"]["m"]
+        text = charts.pass_bullet("m", block, "tasks")
+        self.assertIn("the same result on every one of the 17 tasks", text)
+        self.assertNotIn("95% interval", text)
+
     def test_a_model_already_at_the_ceiling_is_said_to_have_no_room(self):
         block = coding("strong", gain=(-0.05, 0.1))["models"]["strong"]
         block["arms"]["baseline"] = arm(32, 34, 100_000, 4_000)
@@ -138,8 +150,53 @@ class SummaryTests(unittest.TestCase):
         self.assertIn("59%", blocks["summary-checking"])
         self.assertIn("6%", blocks["summary-checking"])
         self.assertIn("tokens per run", blocks["summary-effort"])
-        self.assertIn("Nemotron 3 Nano 30B finished more tasks", blocks["summary-overall"])
+        self.assertIn("Nemotron 3 Nano 30B finished more coding tasks", blocks["summary-overall"])
         self.assertTrue(all(blocks[name] for name in blocks), blocks)
+
+    def test_the_harder_tasks_have_their_own_lines_in_the_summary_and_the_table(self):
+        save(self.results, **{"coding-test.json": coding(), "hard.json": coding("gemma4:31b"),
+                              "memory.json": memory()})
+        blocks = charts.block_text(self.results)
+        self.assertIn("**Harder tasks**", blocks["summary-pass"])
+        self.assertIn("Gemma 4 31B: tasks passed", charts.results_markdown(self.results))
+        self.assertIn("Gemma 4 31B finished more harder tasks with BosskuAI", blocks["summary-overall"])
+        self.assertIn("finished more tasks that need a rule from an earlier session", blocks["summary-overall"])
+        self.assertIn("Gemma 4 31B 1.7× on harder tasks", blocks["summary-overall"])
+        self.assertIn("Nemotron 3 Nano 30B 1.7× on coding tasks", blocks["summary-overall"])
+
+    def test_the_effort_summary_says_how_much_more_the_agent_ran_its_code(self):
+        data = coding()
+        data["models"]["nemotron-3-nano:30b"]["arms"]["baseline"]["shell_calls_mean"] = 1.25
+        data["models"]["nemotron-3-nano:30b"]["arms"]["after"]["shell_calls_mean"] = 2.62
+        save(self.results, **{"coding-test.json": data})
+        text = charts.block_text(self.results)["summary-effort"]
+        self.assertIn("It ran shell commands 2.6 times per run instead of 1.2.", text)
+        save(self.results, **{"coding-test.json": coding()})
+        self.assertNotIn("shell commands", charts.block_text(self.results)["summary-effort"])
+
+    def test_the_effort_summary_names_each_task_group_and_calls_a_tie_a_tie(self):
+        flat = coding("gemma4:31b")
+        flat["models"]["gemma4:31b"]["arms"]["after"] = dict(flat["models"]["gemma4:31b"]["arms"]["baseline"])
+        save(self.results, **{"coding-test.json": coding(), "hard.json": flat})
+        text = charts.block_text(self.results)["summary-effort"]
+        self.assertIn("**Nemotron 3 Nano 30B, coding tasks:**", text)
+        self.assertIn("**Gemma 4 31B, harder tasks:** about the same tokens per run", text)
+        self.assertIsNotNone(charts.chart_effort(coding(), flat))
+
+    def test_runs_cut_short_by_a_usage_limit_are_named_in_the_summaries(self):
+        hard = coding("gemma4:31b")
+        hard["excluded_runs"] = {"after: infrastructure failure": 2, "baseline: infrastructure failure": 3}
+        mem = memory()
+        mem["excluded_runs"] = {"baseline: infrastructure failure": 1}
+        save(self.results, **{"coding-test.json": coding(), "hard.json": hard, "memory.json": mem})
+        blocks = charts.block_text(self.results)
+        self.assertIn("5 runs (2 with BosskuAI, 3 without) were cut short by a usage limit", blocks["summary-pass"])
+        self.assertIn("1 runs (0 with BosskuAI, 1 without) were cut short", blocks["summary-memory"])
+        self.assertEqual(blocks["summary-pass"].count("cut short"), 1)
+
+    def test_a_loss_is_reported_as_a_loss_in_the_overall_summary(self):
+        save(self.results, **{"coding-test.json": coding("m", gain=(-0.3, -0.05))})
+        self.assertIn("finished fewer coding tasks with BosskuAI", charts.block_text(self.results)["summary-overall"])
 
     def test_a_missing_result_gives_an_empty_summary_not_an_error(self):
         blocks = charts.block_text(self.results)

@@ -40,6 +40,7 @@ Agents read relevant notes first, then automatically save verified decisions, pl
 `bossku remember` answers with `"saved": true` and a sentence saying where the note went. Agents that only saw a vault status of `skipped` (no vault configured) took a saved note for a failure and retried, so the saved flag comes first.
 `bossku memory-brief --project .` prints the newest notes (at most 1,000 characters, newest first). The `session-brief` hook below runs it for Claude Code at session start, so the agent does not have to look for the files.
 `bossku install` maintains separate marked memory-policy blocks in detected Codex ~/.codex/AGENTS.md, Claude Code ~/.claude/CLAUDE.md, and OpenCode ~/.config/opencode/AGENTS.md, preserving unrelated user instructions. New project adapters carry the policy for other hosts.
+A rule the user states ("this must run on Python 3.8") counts as something a future session needs, so it is saved with its reason. How well that works is measured with two-session tasks in the [benchmark notes](benchmarks/README.md#remembering-a-rule-from-an-earlier-session).
 This is agent-driven curation, not a background transcript summarizer. Hosts must load the instructions and permit vault access. Blocked writes are reported and never redirected into repos.
 
 ## Session hooks

@@ -6,11 +6,14 @@ turns and time come from Claude Code's own result report. Nothing here touches y
 config, your BosskuAI install or your Obsidian vault: each run gets a throwaway project
 directory, and the `bossku` command inside it is a shim bound to a throwaway home.
 
-    python scripts/benchmark_agent.py validate --suite benchmarks/tasks/engineering
-    python scripts/benchmark_agent.py run --suite benchmarks/tasks/engineering --model claude-haiku-4-5-20251001 \\
-        --arm baseline --arm v1=/path/to/bossku-snapshot@full --out benchmarks/results/pilot
-    python scripts/benchmark_agent.py overhead --model claude-haiku-4-5-20251001 --arm baseline --arm v1=/path@full
-    python scripts/benchmark_agent.py report benchmarks/results/pilot/runs.jsonl
+    python scripts/benchmark_agent.py validate --suite benchmarks/tasks/test
+    python scripts/benchmark_agent.py run --suite benchmarks/tasks/test --model claude-haiku-4-5-20251001 \\
+        --arm baseline --arm after=.@lean+hint+gate+brief --out /tmp/pilot
+    python scripts/benchmark_agent.py overhead --model claude-haiku-4-5-20251001 --arm baseline --arm after=.@lean+hint+gate+brief
+    python scripts/benchmark_agent.py report /tmp/pilot/runs.jsonl
+
+Suites: `benchmarks/tasks/{dev,test}` (coding), `hard-{dev,test}` (longer projects), `memory` (two sessions each) and
+`humaneval:N`. See docs/benchmarks/README.md.
 """
 
 from __future__ import annotations
@@ -671,9 +674,13 @@ def invoke(cmd: list[str], prompt: str, workdir: Path, env: dict, transcript: Pa
 
 
 def is_infrastructure_failure(parsed: dict) -> bool:
-    """No usable answer and no model work done: an API/auth/rate-limit problem, not a coding failure."""
-    return (not parsed['has_result'] or (parsed['is_error'] and parsed['subtype'] != 'error_max_budget_usd'
-                                         and parsed['tokens']['output'] == 0))
+    """The model service, not the model, ended the run: no answer at all, no model work done, or an API error part-way.
+
+    A rate limit (HTTP 429) that cuts a run short leaves partial work that fails the hidden tests; counting that as a
+    failed task would blame the setup for a limit on the account.
+    """
+    return (not parsed['has_result'] or parsed.get('terminal_reason') == 'api_error'
+            or (parsed['is_error'] and parsed['subtype'] != 'error_max_budget_usd' and parsed['tokens']['output'] == 0))
 
 
 def excluded(row: dict) -> bool:
@@ -1076,6 +1083,7 @@ def summarize_arm(rows: list[dict]) -> dict:
         'wall_s_mean': mean([r['wall_s'] for r in rows]),
         'skills_loaded_per_run': mean([len(r['skills_invoked']) + len(r['skill_files_read']) for r in rows]),
         'bossku_calls_per_run': mean([len(r['bossku_calls']) for r in rows]),
+        'shell_calls_mean': mean([(r.get('bash_calls') or 0) for r in rows]),
         'lines_changed_mean': mean([(r.get('lines_added', 0) + r.get('lines_removed', 0)) for r in rows]),
         'timeouts': sum(bool(r['timed_out']) for r in rows),
         'budget_stops': sum(r.get('subtype') == 'error_max_budget_usd' for r in rows),
@@ -1189,8 +1197,23 @@ def cmd_overhead_report(args) -> int:
     return 0
 
 
+QUOTES_AND_SPACE = '\\s"\''
+HOME_PATHS = (re.compile('[A-Za-z]:[\\\\/]+Users[\\\\/]+[^\\\\/' + QUOTES_AND_SPACE + ']+'),   # C:\Users\name, C:/Users/name
+              re.compile('(?<![\\w.])/(?:[a-z]|home|Users)/(?:Users/)?[^/' + QUOTES_AND_SPACE + ']+'))   # /c/Users/name, /home/name
+VAULT_FOLDER = re.compile('(<home>[\\\\/]+OneDrive[\\\\/]+Documents[\\\\/]+)[^\\\\/' + QUOTES_AND_SPACE + ']+')
+
+
+def scrub(text: str) -> str:
+    """Take the author's account name and folder names out of free text before it is committed."""
+    for pattern in HOME_PATHS:
+        text = pattern.sub('<home>', text)
+    text = VAULT_FOLDER.sub(lambda match: match.group(1) + '<folder>', text)
+    name = Path.home().name
+    return re.sub('(?<![\\w-])' + re.escape(name) + '(?![\\w-])', '<user>', text) if len(name) >= 3 else text
+
+
 def cmd_compact(args) -> int:
-    """Copy run rows into a file small enough to commit: same numbers, shorter free text, no scratch paths."""
+    """Copy run rows into a file small enough to commit: same numbers, shorter free text, no account or folder names."""
     kept = 0
     with Path(args.out).open('w', encoding='utf-8', newline='\n') as out:
         for path in args.runs:
@@ -1204,7 +1227,7 @@ def cmd_compact(args) -> int:
                     continue
                 row['final_text'] = (row.get('final_text') or '')[:240]
                 row['bossku_calls'] = [call[:120] for call in row.get('bossku_calls', [])]
-                out.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + '\n')
+                out.write(scrub(json.dumps(row, ensure_ascii=False, sort_keys=True)) + '\n')   # every field, not just the free text
                 kept += 1
     print(f'wrote {kept} rows to {args.out}')
     return 0

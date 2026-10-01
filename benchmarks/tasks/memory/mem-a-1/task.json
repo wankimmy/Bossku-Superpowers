@@ -1,0 +1,12 @@
+{
+  "id": "mem-a-1",
+  "category": "memory",
+  "setup": [
+    "We're starting to build out `tickets.py` for our internal triage tool. Can you add a `Ticket` class that stores `id`, `subject`, and `status`, a `load_tickets(records)` function that converts a list of plain dicts (each with 'id', 'subject', 'status' keys) into a list of `Ticket` objects, and a `count_by_status(tickets)` function that returns a dict mapping each of the four statuses ('open', 'pending', 'resolved', 'closed') to how many of the given tickets have that status (0 if none do)?\n\nOne heads-up for this module: our on-call runbook server only has Python 3.8 installed and we won't be able to upgrade it this quarter, so please keep everything 3.8-compatible — no `match` statements, no `X | Y` style type hints, no `list[int]`-style builtin generics. Use `typing.Optional`/`Union`/`List` if you need hints."
+  ],
+  "prompt": "Can you add a `classify_priority(ticket, override=None)` function to `tickets.py`? It should look at the ticket's `status` and return `'high'` for status `'open'`, `'medium'` for `'pending'`, and `'low'` for `'resolved'` or `'closed'`. If `override` is given — an int, 1, 2, or 3, where 1 is high and 3 is low — it should take precedence over the status-based mapping. Please raise a `ValueError` for an out-of-range override, and also for a ticket whose status isn't one of the four we support. Structure the status-to-level mapping so it's easy to read at a glance.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_mem_a_1_hidden"],
+    "timeout": 120
+  }
+}

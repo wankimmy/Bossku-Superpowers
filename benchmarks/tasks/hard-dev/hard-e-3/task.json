@@ -1,0 +1,9 @@
+{
+  "id": "hard-e-3",
+  "category": "feature",
+  "prompt": "For a plain-text report generator, we need a proper full-justify (not just word-wrap): every line stretched to fill the exact column width, the way an old word processor's \"justify\" button works, not a ragged-right wrap. Please add a new `justify.py` module at the project root with `justify_paragraph(text, width)`, `justify_text(text, width)`, and a `JustifyError` exception, exactly as specified in `README.md`.\n\nThe README spells out exactly how the greedy line-filling, the space distribution, and -- importantly -- the last line of a paragraph are each supposed to behave; a couple of these are easy to get wrong by analogy with simpler wrapping code, so please follow it precisely rather than reusing a half-remembered word-wrap routine. A couple of basic checks are sketched in `tests/test_justify.py`.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_hard_e_3_hidden"],
+    "timeout": 120
+  }
+}

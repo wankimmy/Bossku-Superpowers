@@ -1,0 +1,9 @@
+{
+  "id": "hard-c-5",
+  "category": "refactor",
+  "prompt": "`cli.py` already assumes `redact` can take either text or raw bytes - it reads `.bin` files in binary mode and feeds the bytes straight into `redact`, same as it does for text files - but `redact` (in `redactor.py`) only actually supports `str` today. Update `redact` so it genuinely accepts both: if `content` is `bytes`, treat it as UTF-8, redact it the same way as the text case, and return the result as `bytes` again (re-encoded); if `content` is `str`, return a `str`, same as now. The return type should always mirror the input type - never convert one to the other for the caller. If `content` is neither `str` nor `bytes`, raise `TypeError(\"content must be str or bytes\")`. Don't catch decoding errors - if the bytes aren't valid UTF-8, let that exception propagate.\n\nApply the redaction rules strictly in the order given, each one's substitution feeding into the next (not independently against the original text) - `counts` must include every rule's name, with `0` for any rule that didn't match anything.\n\n`pipeline.scan_documents` takes a list that can mix `str` and `bytes` documents in the same call; update it so each document round-trips through the fixed `redact` with its own type preserved, and its aggregate `totals` still sums correctly across the whole batch. `DEFAULT_RULES` must stay a tuple of immutable `RedactionRule`s.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_hard_c_5_hidden"],
+    "timeout": 120
+  }
+}

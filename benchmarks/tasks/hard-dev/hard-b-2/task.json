@@ -1,0 +1,15 @@
+{
+  "id": "hard-b-2",
+  "category": "bugfix",
+  "prompt": "A few reports have come in about the `booking/` meeting-room scheduler:\n\n- \"Two meetings that are back-to-back in the same room - one ending at 2pm, the next starting at 2pm - get rejected as a conflict even though they don't actually overlap.\"\n- \"After I cancel a meeting, `free_slots()` for that room still shows it as booked until I book something else in that room - then it suddenly catches up.\"\n- \"We added a room called 'Board Room', but looking it up as 'board room' (lowercase) says the room doesn't exist.\"\n\n`booking/README.md` documents exactly how rooms, bookings, free-slot gaps, and bulk import are supposed to behave - please bring the code in line with it. Keep the public API (`Scheduler`, `Room`, `utilization_percent`, and their existing method signatures) the same, since other code already depends on it.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_hard_b_2_hidden"
+    ],
+    "timeout": 120
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "mem-b-1",
+  "category": "memory",
+  "setup": [
+    "We're building a small order importer for the warehouse system. Add a function `import_rows(rows)` to `importer.py` -- it takes a list of row dicts and returns `(accepted, rejected)`: accepted is the list of row dicts that have both `order_id` and `amount` set to something other than None, rejected is every other row, both lists keeping the original order.\n\nWhile you're in there, one project rule: this service runs under a log shipper that only understands single-line JSON on stdout, so never use `print()` or the `logging` module anywhere in this codebase -- stray prints have broken the parser before and paged someone at 3am. Add a tiny `report(event, **fields)` helper in a new `report.py` that writes one JSON line like `{\"event\": event, ...the fields}` to stdout, and use that from now on whenever the importer needs to surface something, like counts of accepted/rejected rows."
+  ],
+  "prompt": "Add a `dedupe_rows(rows)` function to `importer.py` that takes a list of already-accepted row dicts and removes any row whose `order_id` repeats one seen earlier, keeping only the first occurrence; it should return `(unique_rows, duplicate_rows)`. Then add `summarize_import(all_rows)` that runs the whole pipeline over `all_rows` -- import, then dedupe -- and hands back a summary dict with keys `total`, `accepted`, `duplicates`, and `rejected`. I want a quick summary shown every time someone runs the import by hand so our ops folks can glance at it in the terminal and see those four numbers.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_mem_b_1_hidden"],
+    "timeout": 120
+  }
+}

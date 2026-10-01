@@ -1,0 +1,9 @@
+{
+  "id": "hard-g-2",
+  "category": "feature",
+  "prompt": "Our gradebook's `rubric.py` already scores a single question as a percent; now we need to roll a student's answers up into a report card. Please add a `report_card.py` module at the project root with a `build_report_card(student_id, questions, responses, category_weights, clock=None)` function that computes weighted category averages and an overall grade for one student. Follow this project's conventions and behaviour notes exactly -- see `README.md` -- and reuse the shared helpers documented in `errors.py`, `validation.py`, `formatting.py`, `clock.py`, and `rubric.py` rather than re-implementing their logic. `tests/test_rubric.py` shows the style this project uses for the existing code.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_hard_g_2_hidden"],
+    "timeout": 120
+  }
+}

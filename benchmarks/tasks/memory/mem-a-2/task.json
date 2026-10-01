@@ -1,0 +1,12 @@
+{
+  "id": "mem-a-2",
+  "category": "memory",
+  "setup": [
+    "Let's start building `cart.py` for our store's internal pricing tool. Please add an `Item` class with `name`, `unit_price_cents`, and `quantity` (in that constructor order), plus a `compute_subtotal_cents(items)` function that returns the subtotal for a list of `Item`s.\n\nQuick heads-up: all money in this codebase is an integer number of cents, never a float — we got burned by rounding bugs in the old billing system, so please don't introduce floats for money anywhere, including intermediate/partial results."
+  ],
+  "prompt": "Can you add two functions to `cart.py`? First, `apply_discount_cents(subtotal_cents, percent_off)`, which applies a percentage discount (like 15 for 15% off) to a subtotal and returns the final amount owed, rounding the discount to the nearest cent. Second, `split_evenly_cents(total_cents, num_people)`, which splits a total across a group for a shared order and returns a list with one amount per person, in order — when it doesn't divide evenly, give the extra cents to the first people in the list, one each, so the amounts always add back up exactly to the original total.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_mem_a_2_hidden"],
+    "timeout": 120
+  }
+}

@@ -105,6 +105,11 @@ class TranscriptTests(unittest.TestCase):
             {**base, 'is_error': True, 'subtype': 'error_max_budget_usd', 'tokens': {'output': 0}}))
         self.assertFalse(is_infrastructure_failure({**base, 'is_error': True}))
 
+    def test_a_rate_limit_that_cuts_a_run_short_is_not_a_coding_failure(self):
+        base = {'has_result': True, 'is_error': True, 'subtype': 'success', 'tokens': {'output': 900}}
+        self.assertTrue(is_infrastructure_failure({**base, 'terminal_reason': 'api_error'}))
+        self.assertFalse(is_infrastructure_failure({**base, 'is_error': False, 'terminal_reason': 'completed'}))
+
 
 class CheckedAfterEditTests(unittest.TestCase):
     def test_running_anything_after_the_last_code_edit_counts_as_checking(self):
@@ -240,6 +245,45 @@ class ReportTests(unittest.TestCase):
         self.assertEqual(paired['passed']['tasks'], 2)
         self.assertAlmostEqual(paired['passed']['mean_diff'], 0.5)
         self.assertAlmostEqual(paired['cost']['mean_diff'], 0.0)
+
+
+class ScrubTests(unittest.TestCase):
+    """Saved rows must not carry the account or folder names of whoever ran the benchmark."""
+
+    def test_home_folders_in_windows_and_unix_styles_are_replaced(self):
+        from scripts.benchmark_agent import scrub
+        cases = {
+            'cd "C:\\Users\\jo\\AppData\\Local\\Temp\\bf\\r\\1" && bossku memory-path': 'cd "<home>\\AppData\\Local\\Temp\\bf\\r\\1" && bossku memory-path',
+            'cd "C:/Users/jo/AppData/Local/Temp/bf/r/1"': 'cd "<home>/AppData/Local/Temp/bf/r/1"',
+            'ls /c/Users/jo/work and /home/ann/project': 'ls <home>/work and <home>/project',
+        }
+        for text, expected in cases.items():
+            with self.subTest(text=text):
+                self.assertEqual(scrub(text), expected)
+
+    def test_the_notes_folder_under_documents_and_the_account_name_are_replaced(self):
+        from scripts.benchmark_agent import scrub
+        text = 'C:\\Users\\jo\\OneDrive\\Documents\\some-owner\\BosskuAI\\proj'
+        self.assertEqual(scrub(text), '<home>\\OneDrive\\Documents\\<folder>\\BosskuAI\\proj')
+        with mock.patch('pathlib.Path.home', return_value=Path('/somewhere/jorge')):
+            self.assertEqual(scrub('written by jorge, not jorgeous'), 'written by <user>, not jorgeous')
+
+    def test_compact_scrubs_every_field_of_a_row_not_only_the_free_text(self):
+        from scripts.benchmark_agent import cmd_compact
+        row = {'kind': 'task', 'arm': 'after', 'final_text': 'done', 'bossku_calls': [],
+               'skill_files_read': ['C:/Users/jo/AppData/Local/Temp/x/.claude/skills/s/SKILL.md']}
+        with tempfile.TemporaryDirectory() as tmp:
+            source, target = Path(tmp) / 'runs.jsonl', Path(tmp) / 'out.jsonl'
+            source.write_text(json.dumps(row) + '\n', encoding='utf-8')
+            with mock.patch('pathlib.Path.home', return_value=Path('/somewhere/jo')):
+                cmd_compact(SimpleNamespace(runs=[str(source)], out=str(target), kind=None, arm=None))
+            saved = json.loads(target.read_text(encoding='utf-8'))
+        self.assertEqual(saved['skill_files_read'], ['<home>/AppData/Local/Temp/x/.claude/skills/s/SKILL.md'])
+
+    def test_ordinary_text_is_left_alone(self):
+        from scripts.benchmark_agent import scrub
+        text = 'Ran 3 tests in 0.01s; see src/app/main.py and /tmp/x'
+        self.assertEqual(scrub(text), text)
 
 
 if __name__ == '__main__':

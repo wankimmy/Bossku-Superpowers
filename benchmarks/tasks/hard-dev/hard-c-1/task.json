@@ -1,0 +1,9 @@
+{
+  "id": "hard-c-1",
+  "category": "refactor",
+  "prompt": "We're adding a config object to `render.py` so chat-rendering options stop multiplying as separate parameters, without breaking anyone who already calls the old way.\n\nAdd a frozen `RenderOptions` dataclass to `render.py` with fields `width=72`, `show_timestamp=True`, `timestamp_format=\"%H:%M\"`, `author_width=12` (the same defaults `render_message`/`render_history` already use). Both functions should accept a new `options=` keyword: pass `options=RenderOptions(...)` and it entirely determines the four settings for that call.\n\nThe current calling convention has to keep working unchanged, including `cli.py`'s calls, which pass `width` positionally and shouldn't need to be touched. Whenever a caller explicitly passes any of `width`, `show_timestamp`, `timestamp_format`, or `author_width` to `render_message` or `render_history` - positionally or by keyword, and even if the value given happens to equal the default - the call must still produce the exact same result as before, but now also raise a `DeprecationWarning` recommending `options=`. Detect this by whether the parameter was passed at all, not by whether its value differs from the default. If nothing is passed (no legacy parameter, no `options`), just use the defaults silently - no warning. If a caller passes `options` together with any legacy parameter in the same call, raise `TypeError` rather than picking one.\n\n`render_history` renders a whole list of messages per call, so it must emit at most one `DeprecationWarning` per call to `render_history`, no matter how many messages are in the list - not one per message.\n\nThe actual rendering logic (padding, truncation, timestamp formatting) is unchanged. Make `RenderOptions` immutable.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_hard_c_1_hidden"],
+    "timeout": 120
+  }
+}

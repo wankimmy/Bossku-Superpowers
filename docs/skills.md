@@ -2,6 +2,10 @@
 
 Canonical skills live in [`skills/`](../skills/). Each folder contains `SKILL.md` with YAML frontmatter. Write descriptions so agents can self-select: lead with **Use when…** and concrete user triggers (CI failure, release notes, cofounder mode, etc.).
 
+## Writing a skill
+
+A loaded skill stays in the conversation and is read again on every later turn, so keep `SKILL.md` short: a checklist of what to do, in the order to do it, with the checks that matter. Put the detail (long tables, examples, templates, per-stack variants) in `reference.md` next to it and end `SKILL.md` with one line naming it; the agent opens it only when it needs it. The 20 everyday first-party skills follow this shape (41 KB in total, from 143 KB). Vendored skills are never reworded in place.
+
 ## Routing
 
 - Say `bossku` or use cofounder mode for cross-domain work.

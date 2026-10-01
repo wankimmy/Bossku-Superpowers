@@ -1,0 +1,9 @@
+{
+  "id": "hard-d-2",
+  "category": "security",
+  "prompt": "`static_files.read_file(root_dir, requested_path)` (see seed/README.md) hands back the bytes of a file under a content root; today it's a one-line `os.path.join` + `open`, which trusts `requested_path` completely. We're about to let outside callers pass that path straight from user input, so it needs to be bulletproof:\n\n- The resolved file must always stay inside `root_dir`. Reject any `requested_path` that contains a `..` path segment at all \u2014 even one that would mathematically cancel out and still resolve inside `root_dir` \u2014 and reject a path that starts with a slash or backslash, or a Windows drive letter like `C:\\...`. Treat `\\` and `/` as equivalent separators throughout.\n- Reject a `requested_path` containing a NUL byte or any other control character (a code point below `0x20`) \u2014 raise our own error for these rather than letting a low-level exception leak out.\n- Raise `static_files.PathSecurityError` (add this exception) for every case above, and also for a `requested_path` that resolves to a directory instead of a file, or to a path that doesn't exist \u2014 don't let `IsADirectoryError`/`FileNotFoundError` escape either.\n- Cap how deep a legitimate request can go: more than 6 directories of nesting is also a `PathSecurityError`, even when the path never leaves `root_dir`.\n- Don't over-correct: filenames are free to contain dots that aren't a `..` segment (`archive..old.txt`), unicode text, spaces, and even literal `%2e%2e`-style percent sequences \u2014 none of that is URL-decoded or expanded, so treat it as an ordinary filename and serve it.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_hard_d_2_hidden"],
+    "timeout": 120
+  }
+}

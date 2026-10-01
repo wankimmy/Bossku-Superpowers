@@ -1,0 +1,9 @@
+{
+  "id": "hard-g-4",
+  "category": "feature",
+  "prompt": "Our gateway's `buckets.py` already knows how to refill a single token bucket; now we need to run a queued batch of requests against one. Please add a `limiter.py` module at the project root with a `check_requests(bucket, costs, clock=None)` function that decides, in order, whether each queued request in `costs` can be allowed against the bucket's available tokens. Follow this project's conventions and behaviour notes exactly -- see `README.md` -- and reuse the shared helpers documented in `errors.py`, `validation.py`, `clock.py`, and `buckets.py` rather than re-implementing their logic. `tests/test_buckets.py` shows the style this project uses for the existing code.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_hard_g_4_hidden"],
+    "timeout": 120
+  }
+}

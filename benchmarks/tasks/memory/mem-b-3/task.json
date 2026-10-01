@@ -1,0 +1,12 @@
+{
+  "id": "mem-b-3",
+  "category": "memory",
+  "setup": [
+    "We're prototyping a shared-expense invoice tool for roommates. Add an `Invoice` class to `invoice.py` with `add_line_item(description, unit_price, quantity)` to add a line, and `total()` that returns the sum of `unit_price * quantity` across every line item (unrounded is fine for `total()` itself). Also add a `round_cents(amount)` helper that rounds a single amount to the nearest cent.\n\nMoney rule for this project: every amount is a `decimal.Decimal`, never a `float` and never a plain `int` either, even though integer cents is tempting -- build amounts from strings, like `Decimal(\"19.99\")`, not float literals. And whenever you round to the cent, use `ROUND_HALF_EVEN` (banker's rounding) -- that's what finance's reconciliation already assumes, and we had a nasty multi-day rounding-drift bug once a `float` snuck into a total."
+  ],
+  "prompt": "Add a `split_evenly(invoice, n)` function to invoice.py that splits an invoice's total evenly across `n` roommates and returns a list of `n` amounts that add up exactly to the total. It won't usually divide evenly, so give any leftover cent(s) to the first few people in the list so the whole thing still sums exactly.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_mem_b_3_hidden"],
+    "timeout": 120
+  }
+}

@@ -1,0 +1,682 @@
+{
+  "models": {
+    "deepseek-v4.1-flash": {
+      "arms": {
+        "baseline": {
+          "runs": 36,
+          "passed": 35,
+          "pass_rate": 0.9722222222222222,
+          "pass_ci": [
+            0.8582996626496918,
+            0.9950797197044302
+          ],
+          "saved_a_note_rate": null,
+          "edited_runs": 36,
+          "unchecked_finishes": 0,
+          "unchecked_rate": 0.0,
+          "cost_mean": null,
+          "cost_total": null,
+          "cost_per_solved": null,
+          "input_tokens_mean": 265170.25,
+          "output_tokens_mean": 10846.555555555555,
+          "cache_read_mean": 241596.44444444444,
+          "cache_write_mean": 0,
+          "turns_mean": 14.305555555555555,
+          "wall_s_mean": 304.6,
+          "skills_loaded_per_run": 0,
+          "bossku_calls_per_run": 0,
+          "shell_calls_mean": 5.361111111111111,
+          "lines_changed_mean": 172.41666666666666,
+          "timeouts": 0,
+          "budget_stops": 0
+        },
+        "after": {
+          "runs": 37,
+          "passed": 34,
+          "pass_rate": 0.918918918918919,
+          "pass_ci": [
+            0.7869900750149847,
+            0.9720399336036787
+          ],
+          "saved_a_note_rate": null,
+          "edited_runs": 37,
+          "unchecked_finishes": 0,
+          "unchecked_rate": 0.0,
+          "cost_mean": null,
+          "cost_total": null,
+          "cost_per_solved": null,
+          "input_tokens_mean": 280107.2972972973,
+          "output_tokens_mean": 11110.783783783783,
+          "cache_read_mean": 250973.4054054054,
+          "cache_write_mean": 0,
+          "turns_mean": 14.91891891891892,
+          "wall_s_mean": 343.4,
+          "skills_loaded_per_run": 0,
+          "bossku_calls_per_run": 0.8918918918918919,
+          "shell_calls_mean": 5.135135135135135,
+          "lines_changed_mean": 227.67567567567568,
+          "timeouts": 0,
+          "budget_stops": 0
+        }
+      },
+      "paired": {
+        "after": {
+          "cost": {
+            "tasks": 0
+          },
+          "input_tokens": {
+            "tasks": 14,
+            "mean_diff": 4717.035714285717,
+            "ci": [
+              -39508.85714285713,
+              42073.71428571429
+            ],
+            "mean_ratio": 1.168475023643421
+          },
+          "output_tokens": {
+            "tasks": 14,
+            "mean_diff": 243.05952380952414,
+            "ci": [
+              -1652.7976190476188,
+              2006.1547619047624
+            ],
+            "mean_ratio": 1.1756916622111713
+          },
+          "turns": {
+            "tasks": 14,
+            "mean_diff": 0.7619047619047616,
+            "ci": [
+              -0.21428571428571447,
+              1.8690476190476186
+            ],
+            "mean_ratio": 1.0837003135200227
+          },
+          "passed": {
+            "tasks": 14,
+            "mean_diff": -0.03571428571428571,
+            "ci": [
+              -0.10714285714285714,
+              0.0
+            ],
+            "mean_ratio": 0.9285714285714286
+          }
+        }
+      },
+      "by_category": {
+        "bugfix": {
+          "baseline": {
+            "runs": 5,
+            "passed": 5,
+            "pass_rate": 1.0,
+            "pass_ci": [
+              0.5655085052479191,
+              1.0
+            ],
+            "saved_a_note_rate": null,
+            "edited_runs": 5,
+            "unchecked_finishes": 0,
+            "unchecked_rate": 0.0,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 236349.2,
+            "output_tokens_mean": 11201.6,
+            "cache_read_mean": 214604.8,
+            "cache_write_mean": 0,
+            "turns_mean": 17.6,
+            "wall_s_mean": 349.72,
+            "skills_loaded_per_run": 0,
+            "bossku_calls_per_run": 0,
+            "shell_calls_mean": 5,
+            "lines_changed_mean": 130.8,
+            "timeouts": 0,
+            "budget_stops": 0
+          },
+          "after": {
+            "runs": 4,
+            "passed": 4,
+            "pass_rate": 1.0,
+            "pass_ci": [
+              0.5100999795960008,
+              1.0
+            ],
+            "saved_a_note_rate": null,
+            "edited_runs": 4,
+            "unchecked_finishes": 0,
+            "unchecked_rate": 0.0,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 233831.75,
+            "output_tokens_mean": 11125.25,
+            "cache_read_mean": 203904,
+            "cache_write_mean": 0,
+            "turns_mean": 17.75,
+            "wall_s_mean": 327.6,
+            "skills_loaded_per_run": 0,
+            "bossku_calls_per_run": 1,
+            "shell_calls_mean": 5.25,
+            "lines_changed_mean": 186.75,
+            "timeouts": 0,
+            "budget_stops": 0
+          }
+        },
+        "feature": {
+          "baseline": {
+            "runs": 21,
+            "passed": 20,
+            "pass_rate": 0.9523809523809523,
+            "pass_ci": [
+              0.7733018341376452,
+              0.9915442305280766
+            ],
+            "saved_a_note_rate": null,
+            "edited_runs": 21,
+            "unchecked_finishes": 0,
+            "unchecked_rate": 0.0,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 331405.6666666667,
+            "output_tokens_mean": 13387.380952380952,
+            "cache_read_mean": 306023.61904761905,
+            "cache_write_mean": 0,
+            "turns_mean": 14.761904761904763,
+            "wall_s_mean": 333.81904761904764,
+            "skills_loaded_per_run": 0,
+            "bossku_calls_per_run": 0,
+            "shell_calls_mean": 5.714285714285714,
+            "lines_changed_mean": 214.85714285714286,
+            "timeouts": 0,
+            "budget_stops": 0
+          },
+          "after": {
+            "runs": 21,
+            "passed": 18,
+            "pass_rate": 0.8571428571428571,
+            "pass_ci": [
+              0.6536350585077049,
+              0.950190782017865
+            ],
+            "saved_a_note_rate": null,
+            "edited_runs": 21,
+            "unchecked_finishes": 0,
+            "unchecked_rate": 0.0,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 338566.4285714286,
+            "output_tokens_mean": 13662.285714285714,
+            "cache_read_mean": 305091.04761904763,
+            "cache_write_mean": 0,
+            "turns_mean": 14.80952380952381,
+            "wall_s_mean": 357.57619047619045,
+            "skills_loaded_per_run": 0,
+            "bossku_calls_per_run": 0.6666666666666666,
+            "shell_calls_mean": 5.095238095238095,
+            "lines_changed_mean": 274.3809523809524,
+            "timeouts": 0,
+            "budget_stops": 0
+          }
+        },
+        "refactor": {
+          "baseline": {
+            "runs": 5,
+            "passed": 5,
+            "pass_rate": 1.0,
+            "pass_ci": [
+              0.5655085052479191,
+              1.0
+            ],
+            "saved_a_note_rate": null,
+            "edited_runs": 5,
+            "unchecked_finishes": 0,
+            "unchecked_rate": 0.0,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 154512.8,
+            "output_tokens_mean": 4279.8,
+            "cache_read_mean": 131148.8,
+            "cache_write_mean": 0,
+            "turns_mean": 13.6,
+            "wall_s_mean": 251.34,
+            "skills_loaded_per_run": 0,
+            "bossku_calls_per_run": 0,
+            "shell_calls_mean": 5.6,
+            "lines_changed_mean": 126.4,
+            "timeouts": 0,
+            "budget_stops": 0
+          },
+          "after": {
+            "runs": 6,
+            "passed": 6,
+            "pass_rate": 1.0,
+            "pass_ci": [
+              0.6096569663469354,
+              0.9999999999999999
+            ],
+            "saved_a_note_rate": null,
+            "edited_runs": 6,
+            "unchecked_finishes": 0,
+            "unchecked_rate": 0.0,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 199657.83333333334,
+            "output_tokens_mean": 5498,
+            "cache_read_mean": 178389.33333333334,
+            "cache_write_mean": 0,
+            "turns_mean": 15,
+            "wall_s_mean": 349.18333333333334,
+            "skills_loaded_per_run": 0,
+            "bossku_calls_per_run": 1.3333333333333333,
+            "shell_calls_mean": 5.166666666666667,
+            "lines_changed_mean": 134,
+            "timeouts": 0,
+            "budget_stops": 0
+          }
+        },
+        "security": {
+          "baseline": {
+            "runs": 5,
+            "passed": 5,
+            "pass_rate": 1.0,
+            "pass_ci": [
+              0.5655085052479191,
+              1.0
+            ],
+            "saved_a_note_rate": null,
+            "edited_runs": 5,
+            "unchecked_finishes": 0,
+            "unchecked_rate": 0.0,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 126460,
+            "output_tokens_mean": 6386.8,
+            "cache_read_mean": 108441.6,
+            "cache_write_mean": 0,
+            "turns_mean": 9.8,
+            "wall_s_mean": 190.02,
+            "skills_loaded_per_run": 0,
+            "bossku_calls_per_run": 0,
+            "shell_calls_mean": 4,
+            "lines_changed_mean": 81.8,
+            "timeouts": 0,
+            "budget_stops": 0
+          },
+          "after": {
+            "runs": 6,
+            "passed": 6,
+            "pass_rate": 1.0,
+            "pass_ci": [
+              0.6096569663469354,
+              0.9999999999999999
+            ],
+            "saved_a_note_rate": null,
+            "edited_runs": 6,
+            "unchecked_finishes": 0,
+            "unchecked_rate": 0.0,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 186800.16666666666,
+            "output_tokens_mean": 7783.666666666667,
+            "cache_read_mean": 165525.33333333334,
+            "cache_write_mean": 0,
+            "turns_mean": 13.333333333333334,
+            "wall_s_mean": 298.53333333333336,
+            "skills_loaded_per_run": 0,
+            "bossku_calls_per_run": 1.1666666666666667,
+            "shell_calls_mean": 5.166666666666667,
+            "lines_changed_mean": 185.16666666666666,
+            "timeouts": 0,
+            "budget_stops": 0
+          }
+        }
+      }
+    },
+    "gemma4:31b": {
+      "arms": {
+        "baseline": {
+          "runs": 39,
+          "passed": 23,
+          "pass_rate": 0.5897435897435898,
+          "pass_ci": [
+            0.43418348473344903,
+            0.7292091056459952
+          ],
+          "saved_a_note_rate": null,
+          "edited_runs": 39,
+          "unchecked_finishes": 13,
+          "unchecked_rate": 0.3333333333333333,
+          "cost_mean": null,
+          "cost_total": null,
+          "cost_per_solved": null,
+          "input_tokens_mean": 186276.35897435897,
+          "output_tokens_mean": 3402.74358974359,
+          "cache_read_mean": 162846.35897435897,
+          "cache_write_mean": 0,
+          "turns_mean": 12.076923076923077,
+          "wall_s_mean": 289.37179487179486,
+          "skills_loaded_per_run": 0,
+          "bossku_calls_per_run": 0,
+          "shell_calls_mean": 2.8461538461538463,
+          "lines_changed_mean": 154.3846153846154,
+          "timeouts": 0,
+          "budget_stops": 0
+        },
+        "after": {
+          "runs": 40,
+          "passed": 21,
+          "pass_rate": 0.525,
+          "pass_ci": [
+            0.37497106853929735,
+            0.6706477044981831
+          ],
+          "saved_a_note_rate": null,
+          "edited_runs": 40,
+          "unchecked_finishes": 0,
+          "unchecked_rate": 0.0,
+          "cost_mean": null,
+          "cost_total": null,
+          "cost_per_solved": null,
+          "input_tokens_mean": 305332.725,
+          "output_tokens_mean": 4436.05,
+          "cache_read_mean": 279965.6,
+          "cache_write_mean": 0,
+          "turns_mean": 15.875,
+          "wall_s_mean": 371.3775,
+          "skills_loaded_per_run": 0,
+          "bossku_calls_per_run": 0,
+          "shell_calls_mean": 6.25,
+          "lines_changed_mean": 189.175,
+          "timeouts": 0,
+          "budget_stops": 0
+        }
+      },
+      "paired": {
+        "after": {
+          "cost": {
+            "tasks": 0
+          },
+          "input_tokens": {
+            "tasks": 14,
+            "mean_diff": 130067.35714285714,
+            "ci": [
+              51367.857142857145,
+              238595.40476190476
+            ],
+            "mean_ratio": 2.0147512911663408
+          },
+          "output_tokens": {
+            "tasks": 14,
+            "mean_diff": 1192.297619047619,
+            "ci": [
+              357.04761904761904,
+              2309.154761904762
+            ],
+            "mean_ratio": 1.3694243902757441
+          },
+          "turns": {
+            "tasks": 14,
+            "mean_diff": 4.107142857142858,
+            "ci": [
+              1.7142857142857142,
+              7.000000000000001
+            ],
+            "mean_ratio": 1.372559180585385
+          },
+          "passed": {
+            "tasks": 14,
+            "mean_diff": -0.05952380952380952,
+            "ci": [
+              -0.15476190476190477,
+              0.04761904761904762
+            ],
+            "mean_ratio": 0.8833333333333333
+          }
+        }
+      },
+      "by_category": {
+        "bugfix": {
+          "baseline": {
+            "runs": 6,
+            "passed": 1,
+            "pass_rate": 0.16666666666666666,
+            "pass_ci": [
+              0.03005258587173032,
+              0.563509436563646
+            ],
+            "saved_a_note_rate": null,
+            "edited_runs": 6,
+            "unchecked_finishes": 0,
+            "unchecked_rate": 0.0,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 309480.5,
+            "output_tokens_mean": 3206,
+            "cache_read_mean": 280789.3333333333,
+            "cache_write_mean": 0,
+            "turns_mean": 18.5,
+            "wall_s_mean": 442.73333333333335,
+            "skills_loaded_per_run": 0,
+            "bossku_calls_per_run": 0,
+            "shell_calls_mean": 3.6666666666666665,
+            "lines_changed_mean": 91.5,
+            "timeouts": 0,
+            "budget_stops": 0
+          },
+          "after": {
+            "runs": 5,
+            "passed": 0,
+            "pass_rate": 0.0,
+            "pass_ci": [
+              0.0,
+              0.43449149475208104
+            ],
+            "saved_a_note_rate": null,
+            "edited_runs": 5,
+            "unchecked_finishes": 0,
+            "unchecked_rate": 0.0,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 422801,
+            "output_tokens_mean": 2890,
+            "cache_read_mean": 398988.8,
+            "cache_write_mean": 0,
+            "turns_mean": 23,
+            "wall_s_mean": 455.46,
+            "skills_loaded_per_run": 0,
+            "bossku_calls_per_run": 0,
+            "shell_calls_mean": 9.8,
+            "lines_changed_mean": 92.6,
+            "timeouts": 0,
+            "budget_stops": 0
+          }
+        },
+        "feature": {
+          "baseline": {
+            "runs": 22,
+            "passed": 12,
+            "pass_rate": 0.5454545454545454,
+            "pass_ci": [
+              0.34659473289041554,
+              0.7307998556799515
+            ],
+            "saved_a_note_rate": null,
+            "edited_runs": 22,
+            "unchecked_finishes": 11,
+            "unchecked_rate": 0.5,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 171188.81818181818,
+            "output_tokens_mean": 4102.636363636364,
+            "cache_read_mean": 148081.45454545456,
+            "cache_write_mean": 0,
+            "turns_mean": 11.272727272727273,
+            "wall_s_mean": 255.01363636363635,
+            "skills_loaded_per_run": 0,
+            "bossku_calls_per_run": 0,
+            "shell_calls_mean": 2.3636363636363638,
+            "lines_changed_mean": 190.63636363636363,
+            "timeouts": 0,
+            "budget_stops": 0
+          },
+          "after": {
+            "runs": 23,
+            "passed": 10,
+            "pass_rate": 0.43478260869565216,
+            "pass_ci": [
+              0.25634368332198654,
+              0.6318895069498304
+            ],
+            "saved_a_note_rate": null,
+            "edited_runs": 23,
+            "unchecked_finishes": 0,
+            "unchecked_rate": 0.0,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 348192.17391304346,
+            "output_tokens_mean": 5810.95652173913,
+            "cache_read_mean": 321570.7826086957,
+            "cache_write_mean": 0,
+            "turns_mean": 16.695652173913043,
+            "wall_s_mean": 405.7826086956522,
+            "skills_loaded_per_run": 0,
+            "bossku_calls_per_run": 0,
+            "shell_calls_mean": 6.260869565217392,
+            "lines_changed_mean": 238.91304347826087,
+            "timeouts": 0,
+            "budget_stops": 0
+          }
+        },
+        "refactor": {
+          "baseline": {
+            "runs": 5,
+            "passed": 5,
+            "pass_rate": 1.0,
+            "pass_ci": [
+              0.5655085052479191,
+              1.0
+            ],
+            "saved_a_note_rate": null,
+            "edited_runs": 5,
+            "unchecked_finishes": 1,
+            "unchecked_rate": 0.2,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 142390,
+            "output_tokens_mean": 1563.8,
+            "cache_read_mean": 117606.4,
+            "cache_write_mean": 0,
+            "turns_mean": 10.6,
+            "wall_s_mean": 260.88,
+            "skills_loaded_per_run": 0,
+            "bossku_calls_per_run": 0,
+            "shell_calls_mean": 3.4,
+            "lines_changed_mean": 120.2,
+            "timeouts": 0,
+            "budget_stops": 0
+          },
+          "after": {
+            "runs": 6,
+            "passed": 5,
+            "pass_rate": 0.8333333333333334,
+            "pass_ci": [
+              0.43649056343635395,
+              0.9699474141282697
+            ],
+            "saved_a_note_rate": null,
+            "edited_runs": 6,
+            "unchecked_finishes": 0,
+            "unchecked_rate": 0.0,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 172560.16666666666,
+            "output_tokens_mean": 1870.3333333333333,
+            "cache_read_mean": 151333.33333333334,
+            "cache_write_mean": 0,
+            "turns_mean": 12.333333333333334,
+            "wall_s_mean": 256.56666666666666,
+            "skills_loaded_per_run": 0,
+            "bossku_calls_per_run": 0,
+            "shell_calls_mean": 4.333333333333333,
+            "lines_changed_mean": 134.33333333333334,
+            "timeouts": 0,
+            "budget_stops": 0
+          }
+        },
+        "security": {
+          "baseline": {
+            "runs": 6,
+            "passed": 5,
+            "pass_rate": 0.8333333333333334,
+            "pass_ci": [
+              0.43649056343635395,
+              0.9699474141282697
+            ],
+            "saved_a_note_rate": null,
+            "edited_runs": 6,
+            "unchecked_finishes": 1,
+            "unchecked_rate": 0.16666666666666666,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 154965.16666666666,
+            "output_tokens_mean": 2565.6666666666665,
+            "cache_read_mean": 136741.33333333334,
+            "cache_write_mean": 0,
+            "turns_mean": 9.833333333333334,
+            "wall_s_mean": 285.73333333333335,
+            "skills_loaded_per_run": 0,
+            "bossku_calls_per_run": 0,
+            "shell_calls_mean": 3.3333333333333335,
+            "lines_changed_mean": 112.83333333333333,
+            "timeouts": 0,
+            "budget_stops": 0
+          },
+          "after": {
+            "runs": 6,
+            "passed": 6,
+            "pass_rate": 1.0,
+            "pass_ci": [
+              0.6096569663469354,
+              0.9999999999999999
+            ],
+            "saved_a_note_rate": null,
+            "edited_runs": 6,
+            "unchecked_finishes": 0,
+            "unchecked_rate": 0.0,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 175920.5,
+            "output_tokens_mean": 3019.6666666666665,
+            "cache_read_mean": 149925.33333333334,
+            "cache_write_mean": 0,
+            "turns_mean": 10.333333333333334,
+            "wall_s_mean": 284.23333333333335,
+            "skills_loaded_per_run": 0,
+            "bossku_calls_per_run": 0,
+            "shell_calls_mean": 5.166666666666667,
+            "lines_changed_mean": 133.83333333333334,
+            "timeouts": 0,
+            "budget_stops": 0
+          }
+        }
+      }
+    }
+  },
+  "excluded_runs": {
+    "baseline: infrastructure failure": 9,
+    "after: infrastructure failure": 7
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "hard-b-4",
+  "category": "bugfix",
+  "prompt": "Two complaints about the `textstats/` word-frequency reports:\n\n- \"Our 'top words' report never shows the single most-used word in the document - it's like it always starts from #2. If I ask for the top 5, I get words #2 through #6, still 5 words total.\"\n- \"I built my own stopword set and passed it in to a few reports in a row. By the third report, it had grown a bunch of extra one-letter words I never added to it myself.\"\n\n`textstats/README.md` documents exactly how tokenizing, counting, ranking, and the summary report are supposed to behave - please bring the code in line with it. Keep the existing function names and signatures (`tokenize`, `word_frequencies`, `most_common`, `summarize`) as-is, since other code already imports them.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_hard_b_4_hidden"
+    ],
+    "timeout": 120
+  }
+}

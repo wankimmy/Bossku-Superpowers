@@ -1,0 +1,9 @@
+{
+  "id": "hard-e-2",
+  "category": "feature",
+  "prompt": "We're writing a small internal HTTP proxy and keep needing to parse structured header *values* by hand -- comma-separated lists, `Content-Type`-style `key=value` parameters, and `Accept`-style weighted lists. Please add a new `httpheader.py` module at the project root with `split_list`, `parse_params`, `parse_quality_list`, and a `HeaderParseError` exception, exactly as specified in `README.md`.\n\nThe README is the source of truth -- some of the rules (especially around quoting, which characters need escaping where, and the exact q-value number format) are more precise than you'd guess from general HTTP familiarity, so please implement what's written there rather than from memory. A couple of basic checks are sketched in `tests/test_httpheader.py`.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_hard_e_2_hidden"],
+    "timeout": 120
+  }
+}

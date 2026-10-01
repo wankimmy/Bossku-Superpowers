@@ -1,0 +1,9 @@
+{
+  "id": "hard-d-1",
+  "category": "security",
+  "prompt": "We added `archive_tool.extract_archive(archive_path, dest_dir)` to unpack tar bundles that users upload as project submissions (see seed/README.md). It works fine for well-formed bundles but was never hardened against hostile input — right now it just calls `tarfile.extractall`, which trusts whatever paths and member types are inside the archive. Before we point this at user uploads, lock it down:\n\n- Every extracted file must land strictly inside `dest_dir`; a member must never be able to write outside it, however its path is spelled (`../`, a leading `/`, backslashes, redundant `./` segments, etc.).\n- Only plain files and directories may be extracted. Symlinks, hard links, device nodes, and FIFOs in the archive must cause the whole archive to be rejected rather than silently skipped or followed.\n- Reject the whole archive (raising `archive_tool.ArchiveSecurityError`, extracting nothing — dest_dir must be left with none of the archive's files) if: it has more than 50 members, any single member's declared size exceeds 2 MiB (2 * 1024 * 1024 bytes), the sum of all member sizes exceeds 6 MiB (6 * 1024 * 1024 bytes), or any member's path is nested more than 8 directories deep.\n- Validation must happen before anything is written to disk — a bad member anywhere in the archive must not leave a partial extraction behind from the members that came before it.\n- Don't break legitimate uploads: unicode filenames (accents, CJK, emoji), dotfiles, and filenames that merely contain dots or the substring `..` without actually being a traversal (e.g. `..bashrc_backup`, `version..2.txt`) must extract normally, and a path with a redundant `a/../b.txt`-style segment that still resolves inside dest_dir is not an attack.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_hard_d_1_hidden"],
+    "timeout": 120
+  }
+}

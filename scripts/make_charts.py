@@ -35,7 +35,7 @@ FONT = 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif'
 MODELS = {
     'claude-haiku-4-5-20251001': 'Claude Haiku 4.5', 'claude-sonnet-5-5': 'Claude Sonnet 5.5',
     'nemotron-3-nano:30b': 'Nemotron 3 Nano 30B', 'deepseek-v4.1-flash': 'DeepSeek V4.1 Flash',
-    'glm-5.3-flash': 'GLM 5.3 Flash', 'gpt-oss:20b': 'gpt-oss 20B',
+    'glm-5.3-flash': 'GLM 5.3 Flash', 'gpt-oss:20b': 'gpt-oss 20B', 'gemma4:31b': 'Gemma 4 31B',
 }
 
 
@@ -259,9 +259,9 @@ def chart_routing(data: dict) -> str | None:
                   footnote='Whiskers show a 95% interval. Plain keyword search only ranks, so it has no coverage bars.').render()
 
 
-def chart_pass_rates(coding: dict, humaneval: dict) -> str | None:
+def chart_pass_rates(coding: dict, humaneval: dict, hard: dict | None = None) -> str | None:
     panels = []
-    for title, data in (('Hidden-test coding tasks', coding), ('HumanEval problems', humaneval)):
+    for title, data in (('Hidden-test coding tasks', coding), ('Harder tasks', hard or {}), ('HumanEval problems', humaneval)):
         groups = []
         for model, arms in complete_models(data):
             groups.append(Group(model_name(model), [arms[a]['pass_rate'] * 100 for a in ARMS],
@@ -298,13 +298,15 @@ def tokens_per_run(summary: dict) -> float:
     return summary['input_tokens_mean'] + summary['output_tokens_mean']
 
 
-def chart_effort(coding: dict) -> str | None:
+def chart_effort(coding: dict, hard: dict | None = None, memory: dict | None = None) -> str | None:
     tokens, solved = [], []
-    for model, arms in complete_models(coding):
-        per_run = [tokens_per_run(arms[a]) / 1000 for a in ARMS]
-        tokens.append(Group(model_name(model), per_run, tips=[f'{v:,.0f}k' for v in per_run]))
-        per_solved = [tokens_per_run(arms[a]) / 1000 / arms[a]['pass_rate'] if arms[a]['pass_rate'] else None for a in ARMS]
-        solved.append(Group(model_name(model), per_solved, tips=[f'{v:,.0f}k' if v else 'none solved' for v in per_solved]))
+    for what, data in (('coding tasks', coding), ('harder tasks', hard or {}), ('two-session tasks', memory or {})):
+        for model, arms in complete_models(data):
+            per_run = [tokens_per_run(arms[a]) / 1000 for a in ARMS]
+            tokens.append(Group(model_name(model), per_run, what, tips=[f'{v:,.0f}k' for v in per_run]))
+            per_solved = [tokens_per_run(arms[a]) / 1000 / arms[a]['pass_rate'] if arms[a]['pass_rate'] else None for a in ARMS]
+            solved.append(Group(model_name(model), per_solved, what,
+                                tips=[f'{v:,.0f}k' if v else 'none solved' for v in per_solved]))
     if not tokens:
         return None
     return Figure('What a task costs in tokens', 'Input plus output tokens the model processed, all turns (lower is better)',
@@ -360,6 +362,8 @@ def pass_bullet(model: str, block: dict, unit: str) -> str:
         return f'- **{name}:** {head}.{slow}'
     lo, hi = diff['ci']
     interval = f'{points(diff["mean_diff"])} points over the same {unit}, 95% interval {points(lo)} to {points(hi)}'
+    if lo == hi == 0:
+        interval = f'the same result on every one of the {diff["tasks"]} {unit}'
     if lo > 0:
         return f'- **{name} finished more {unit}.** {head}: {interval}.{slow}'
     if hi < 0:
@@ -403,13 +407,26 @@ def summary_routing(results: Path) -> str:
     return text
 
 
+def left_out_note(data: dict) -> str:
+    """Runs the model service cut short with a usage limit are not counted as passes or failures; say so."""
+    counts = data.get('excluded_runs') or {}
+    with_ = sum(n for key, n in counts.items() if key.startswith('after'))
+    without = sum(n for key, n in counts.items() if key.startswith('baseline'))
+    if not with_ + without:
+        return ''
+    return (f'{with_ + without} runs ({with_} with BosskuAI, {without} without) were cut short by a usage limit on the '
+            f'model account, so they count as neither passes nor failures and are left out.')
+
+
 def summary_pass(results: Path) -> str:
     blocks = []
-    for title, name, unit in (('Hidden-test coding tasks', 'coding-test.json', 'tasks'), ('HumanEval problems', 'humaneval.json', 'problems')):
+    for title, name, unit in (('Hidden-test coding tasks', 'coding-test.json', 'tasks'), ('Harder tasks', 'hard.json', 'tasks'),
+                              ('HumanEval problems', 'humaneval.json', 'problems')):
         data = load(results, name)
         bullets = [pass_bullet(model, data['models'][model], unit) for model, _ in complete_models(data)]
         if bullets:
-            blocks.append(f'**{title}**\n' + '\n'.join(bullets))
+            note = left_out_note(data)
+            blocks.append(f'**{title}**\n' + '\n'.join(bullets) + (f'\n- {note}' if note else ''))
     return '\n\n'.join(blocks)
 
 
@@ -428,17 +445,29 @@ def summary_checking(results: Path) -> str:
             'cannot find its own mistakes.\n' + '\n'.join(bullets))
 
 
+def how_many_times(ratio: float, noun: str) -> str:
+    if 0.95 <= ratio <= 1.05:
+        return f'about the same {noun}'
+    return f'{times(ratio)} the {noun}'
+
+
 def summary_effort(results: Path) -> str:
-    data = load(results, 'coding-test.json')
     bullets = []
-    for model, arms in complete_models(data):
-        without, with_ = arms['baseline'], arms['after']
-        line = (f'- **{model_name(model)}** used {times(tokens_per_run(with_) / tokens_per_run(without))} the tokens per run '
-                f'({tokens_per_run(without) / 1000:,.0f}k without, {tokens_per_run(with_) / 1000:,.0f}k with)')
-        if without['pass_rate'] and with_['pass_rate']:
-            per_solved = (tokens_per_run(with_) / with_['pass_rate']) / (tokens_per_run(without) / without['pass_rate'])
-            line += f' and {times(per_solved)} the tokens per task it actually solved'
-        bullets.append(line + '.')
+    for name, what in (('coding-test.json', 'coding tasks'), ('hard.json', 'harder tasks'), ('memory.json', 'two-session tasks')):
+        data = load(results, name)
+        for model, arms in complete_models(data):
+            without, with_ = arms['baseline'], arms['after']
+            line = (f'- **{model_name(model)}, {what}:** '
+                    f'{how_many_times(tokens_per_run(with_) / tokens_per_run(without), "tokens per run")} '
+                    f'({tokens_per_run(without) / 1000:,.0f}k without, {tokens_per_run(with_) / 1000:,.0f}k with)')
+            if without['pass_rate'] and with_['pass_rate']:
+                per_solved = (tokens_per_run(with_) / with_['pass_rate']) / (tokens_per_run(without) / without['pass_rate'])
+                line += f' and {how_many_times(per_solved, "tokens per task it actually solved")}'
+            line += '.'
+            if without.get('shell_calls_mean') is not None and with_.get('shell_calls_mean') is not None:
+                line += (f' It ran shell commands {with_["shell_calls_mean"]:.1f} times per run instead of '
+                         f'{without["shell_calls_mean"]:.1f}.')
+            bullets.append(line)
     if not bullets:
         return ''
     return ('**What this shows:** BosskuAI makes the agent do more work, and work costs tokens. The extra work is running, '
@@ -447,17 +476,28 @@ def summary_effort(results: Path) -> str:
 
 
 def summary_overall(results: Path) -> str:
-    coding = load(results, 'coding-test.json')
     bullets = []
-    for model, arms in complete_models(coding):
-        diff = (coding['models'][model].get('paired') or {}).get('after', {}).get('passed') or {}
-        without, with_ = arms['baseline'], arms['after']
-        if diff.get('tasks') and diff['ci'][0] > 0:
-            bullets.append(f'- **{model_name(model)} finished more tasks with BosskuAI:** {pct(without["pass_rate"])} without, '
-                           f'{pct(with_["pass_rate"])} with.')
-        elif diff.get('tasks'):
-            bullets.append(f'- **{model_name(model)} gained nothing it could measure:** {pct(without["pass_rate"])} without, '
-                           f'{pct(with_["pass_rate"])} with.')
+    for name, what in (('coding-test.json', 'coding tasks'), ('hard.json', 'harder tasks'), ('memory.json', 'tasks that need a rule from an earlier session')):
+        data = load(results, name)
+        for model, arms in complete_models(data):
+            diff = (data['models'][model].get('paired') or {}).get('after', {}).get('passed') or {}
+            without, with_ = arms['baseline'], arms['after']
+            if not diff.get('tasks'):
+                continue
+            numbers = f'{pct(without["pass_rate"])} without, {pct(with_["pass_rate"])} with.'
+            if diff['ci'][0] > 0:
+                bullets.append(f'- **{model_name(model)} finished more {what} with BosskuAI:** {numbers}')
+            elif diff['ci'][1] < 0:
+                bullets.append(f'- **{model_name(model)} finished fewer {what} with BosskuAI:** {numbers}')
+            else:
+                bullets.append(f'- **{model_name(model)} gained nothing it could measure on {what}:** {numbers}')
+    costs = []
+    for name, short in (('coding-test.json', 'coding tasks'), ('hard.json', 'harder tasks'), ('memory.json', 'two-session tasks')):
+        for model, arms in complete_models(load(results, name)):
+            costs.append(f'{model_name(model)} {tokens_per_run(arms["after"]) / tokens_per_run(arms["baseline"]):.1f}× on {short}')
+    if costs:
+        bullets.append('- **The extra checking costs tokens:** tokens per run with BosskuAI compared with without: '
+                       + ', '.join(costs) + '.')
     split = (load(results, 'routing-heldout.json').get('splits') or {}).get('test') or {}
     if 'after' in split and 'description-only' in split:
         bullets.append(f'- **It finds the right skill more often:** {pct(split["after"]["top1"]["rate"])} first-pick accuracy on new '
@@ -496,7 +536,8 @@ def results_markdown(results: Path) -> str:
                 rows.append([f'A real agent ({model_name(model)}) opens an acceptable skill', '-', pct(arms['after']['rate'])])
                 break
         parts.append(table([f'Finding a skill ({split["after"]["prompts"]} new requests)', 'Keyword search only', 'With BosskuAI'], rows))
-    for title, name in (('Hidden-test coding tasks', 'coding-test.json'), ('HumanEval problems', 'humaneval.json'),
+    for title, name in (('Hidden-test coding tasks', 'coding-test.json'), ('Harder tasks', 'hard.json'),
+                        ('HumanEval problems', 'humaneval.json'),
                         ('Remembering a rule from an earlier session', 'memory.json')):
         rows = []
         for model, arms in complete_models(data(name)):
@@ -525,6 +566,9 @@ def summary_memory(results: Path) -> str:
             bullets[-1] += f' In the first session, the agent with BosskuAI saved the rule as a note {pct(saved)} of the time.'
     if not bullets:
         return ''
+    note = left_out_note(data)
+    if note:
+        bullets.append(f'- {note}')
     return ('**What this shows:** each task states a project rule in a first session (for example "this must run on Python 3.8" '
             'or "never use eval") and asks for related work in a second one that would break the rule if forgotten. The agent '
             'starts the second session fresh: without BosskuAI it has only the files; with BosskuAI it also sees the notes it saved.\n'
@@ -575,9 +619,9 @@ def main() -> int:
     jobs = {
         'benchmark-session-overhead.svg': chart_session_overhead(data('overhead.json')),
         'benchmark-routing.svg': chart_routing(data('routing-heldout.json')),
-        'benchmark-pass-rates.svg': chart_pass_rates(data('coding-test.json'), data('humaneval.json')),
+        'benchmark-pass-rates.svg': chart_pass_rates(data('coding-test.json'), data('humaneval.json'), data('hard.json')),
         'benchmark-checking.svg': chart_checking(data('coding-test.json')),
-        'benchmark-effort.svg': chart_effort(data('coding-test.json')),
+        'benchmark-effort.svg': chart_effort(data('coding-test.json'), data('hard.json'), data('memory.json')),
         'benchmark-memory.svg': chart_memory(data('memory.json')),
     }
     for name, svg in jobs.items():

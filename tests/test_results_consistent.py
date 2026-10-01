@@ -6,6 +6,7 @@ the charts, and the README block. A check is skipped while its result files do n
 
 import json
 import math
+import re
 import sys
 import unittest
 from pathlib import Path
@@ -58,15 +59,26 @@ class SavedResultsTests(unittest.TestCase):
         self.assertEqual(same(routing_summary([str(RAW / "routing.jsonl")]), saved("routing-live.json")), [])
 
     def test_the_coding_summaries_match_their_rows(self):
-        for prefix, name in (("coding-", "coding-test.json"), ("humaneval-", "humaneval.json")):
+        for prefix, name in (("coding-", "coding-test.json"), ("humaneval-", "humaneval.json"),
+                             ("hard-", "hard.json"), ("memory-", "memory.json")):
             with self.subTest(name=name):
                 files = sorted(RAW.glob(f"{prefix}*.jsonl")) if RAW.is_dir() else []
                 if not files or not (RESULTS / name).exists():
                     self.skipTest(f"{name} has not been generated yet")
                 self.assertEqual(same(coding_report([str(f) for f in files]), saved(name)), [])
 
+    def test_saved_rows_carry_no_home_folder_paths(self):
+        files = sorted(RAW.glob("*.jsonl")) if RAW.is_dir() else []
+        if not files:
+            self.skipTest("no raw rows yet")
+        home = re.compile(r"[A-Za-z]:[\\/]+Users[\\/]+\w|(?<![\w.])/(?:home|Users)/\w")
+        for path in files:
+            with self.subTest(file=path.name):
+                for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+                    self.assertIsNone(home.search(line), f"{path.name}:{number} has a home folder path")
+
     def test_no_saved_coding_run_was_cut_short_by_a_dollar_cap(self):
-        for name in ("coding-test.json", "humaneval.json"):
+        for name in ("coding-test.json", "humaneval.json", "hard.json", "memory.json"):
             if not (RESULTS / name).exists():
                 continue
             for model, block in saved(name)["models"].items():
@@ -80,9 +92,11 @@ class SavedResultsTests(unittest.TestCase):
         drawn = {
             "benchmark-session-overhead.svg": charts.chart_session_overhead(data("overhead.json")),
             "benchmark-routing.svg": charts.chart_routing(data("routing-heldout.json")),
-            "benchmark-pass-rates.svg": charts.chart_pass_rates(data("coding-test.json"), data("humaneval.json")),
+            "benchmark-pass-rates.svg": charts.chart_pass_rates(data("coding-test.json"), data("humaneval.json"),
+                                                                data("hard.json")),
             "benchmark-checking.svg": charts.chart_checking(data("coding-test.json")),
-            "benchmark-effort.svg": charts.chart_effort(data("coding-test.json")),
+            "benchmark-effort.svg": charts.chart_effort(data("coding-test.json"), data("hard.json"), data("memory.json")),
+            "benchmark-memory.svg": charts.chart_memory(data("memory.json")),
         }
         for name, svg in drawn.items():
             path = ROOT / "docs" / "assets" / name

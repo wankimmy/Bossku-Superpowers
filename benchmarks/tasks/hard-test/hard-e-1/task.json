@@ -1,0 +1,9 @@
+{
+  "id": "hard-e-1",
+  "category": "feature",
+  "prompt": "Our build tool needs a file-selection matcher for its bundle/watch config (things like \"include every *.py file anywhere under src\" or \"exclude dist/**\"). There's no filesystem access involved -- it's purely a string-matching question: given a pattern and a path, does the path satisfy the pattern? Please add a new `globmatch.py` module at the project root implementing it.\n\nThe full spec -- segment rules, character classes, escaping, and exactly how `**` behaves -- is written up in `README.md`. Please follow it precisely; several of the rules (especially around `**` and dotfiles) are more specific than the usual shell-glob folklore, so read it carefully rather than going from memory of how `fnmatch`/`glob` work elsewhere. A couple of basic checks are sketched in `tests/test_globmatch.py`.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_hard_e_1_hidden"],
+    "timeout": 120
+  }
+}

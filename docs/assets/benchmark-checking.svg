@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 284" width="880" height="284" role="img" aria-labelledby="t d">
 <title id="t">Did the agent run its code before finishing?</title>
-<desc id="d">Did the agent run its code before finishing?. Runs that changed code and then ended without running anything (lower is better)  DeepSeek V4.1 Flash: Without BosskuAI 0%  (0 of 34), With BosskuAI 3%  (1 of 34).  Nemotron 3 Nano 30B: Without BosskuAI 100%  (48 of 48), With BosskuAI 48%  (31 of 64).</desc>
+<desc id="d">Did the agent run its code before finishing?. Runs that changed code and then ended without running anything (lower is better)  DeepSeek V4.1 Flash: Without BosskuAI 3%  (1 of 34), With BosskuAI 0%  (0 of 34).  Nemotron 3 Nano 30B: Without BosskuAI 100%  (47 of 47), With BosskuAI 33%  (22 of 66).</desc>
 <style>text{font-family:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif}.card{fill:#fcfcfb}.ink{fill:#0b0b0b}.ink2{fill:#52514e}.muted{fill:#898781}.grid{stroke:#e1e0d9}.base{stroke:#c3c2b7}.whisker{stroke:#52514e}.s0{fill:#2a78d6}.s1{fill:#1baf7a}@media (prefers-color-scheme:dark){.card{fill:#1a1a19}.ink{fill:#ffffff}.ink2{fill:#c3c2b7}.muted{fill:#898781}.grid{stroke:#2c2c2a}.base{stroke:#383835}.whisker{stroke:#c3c2b7}.s0{fill:#3987e5}.s1{fill:#199e70}}</style>
 <rect class="card" width="880" height="284" rx="14"/>
 <text class="ink" x="28" y="42" font-size="22" font-weight="650">Did the agent run its code before finishing?</text>
@@ -22,15 +22,15 @@
 <line class="base" x1="204" y1="104" x2="204" y2="216" stroke-width="1.5"/>
 <text class="ink" x="28" y="129.0" font-size="14" font-weight="600">DeepSeek V4.1 Flash</text>
 <text class="muted" x="28" y="146.0" font-size="12">of the runs that changed code</text>
-<path class="s0" d="M204,112 H204.5 Q205.0,112 205.0,112.5 V129.5 Q205.0,130 204.5,130 H204 Z"/>
-<text class="ink" x="213.0" y="125.5" font-size="13" font-weight="600">0%  (0 of 34)</text>
-<path class="s1" d="M204,132 H215.5 Q219.5,132 219.5,136.0 V146.0 Q219.5,150 215.5,150 H204 Z"/>
-<text class="ink" x="227.5" y="145.5" font-size="13" font-weight="600">3%  (1 of 34)</text>
+<path class="s0" d="M204,112 H215.5 Q219.5,112 219.5,116.0 V126.0 Q219.5,130 215.5,130 H204 Z"/>
+<text class="ink" x="227.5" y="125.5" font-size="13" font-weight="600">3%  (1 of 34)</text>
+<path class="s1" d="M204,132 H204.5 Q205.0,132 205.0,132.5 V149.5 Q205.0,150 204.5,150 H204 Z"/>
+<text class="ink" x="213.0" y="145.5" font-size="13" font-weight="600">0%  (0 of 34)</text>
 <text class="ink" x="28" y="189.0" font-size="14" font-weight="600">Nemotron 3 Nano 30B</text>
 <text class="muted" x="28" y="206.0" font-size="12">of the runs that changed code</text>
 <path class="s0" d="M204,172 H726.0 Q730.0,172 730.0,176.0 V186.0 Q730.0,190 726.0,190 H204 Z"/>
-<text class="ink" x="738.0" y="185.5" font-size="13" font-weight="600">100%  (48 of 48)</text>
-<path class="s1" d="M204,192 H454.8 Q458.8,192 458.8,196.0 V206.0 Q458.8,210 454.8,210 H204 Z"/>
-<text class="ink" x="466.8" y="205.5" font-size="13" font-weight="600">48%  (31 of 64)</text>
+<text class="ink" x="738.0" y="185.5" font-size="13" font-weight="600">100%  (47 of 47)</text>
+<path class="s1" d="M204,192 H375.3 Q379.3,192 379.3,196.0 V206.0 Q379.3,210 375.3,210 H204 Z"/>
+<text class="ink" x="387.3" y="205.5" font-size="13" font-weight="600">33%  (22 of 66)</text>
 <text class="muted" x="28" y="268" font-size="12">Read from the tool calls alone, the same way for both setups.</text>
 </svg>
