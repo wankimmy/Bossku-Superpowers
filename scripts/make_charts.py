@@ -279,7 +279,7 @@ def chart_checking(coding: dict) -> str | None:
         if any(arms[a].get('unchecked_rate') is None for a in ARMS):
             continue
         rates = [arms[a]['unchecked_rate'] * 100 for a in ARMS]
-        groups.append(Group(model_name(model), rates, f'{arms["baseline"]["edited_runs"]} runs per version that changed code',
+        groups.append(Group(model_name(model), rates, 'of the runs that changed code',
                             tips=[f'{r:.0f}%  ({arms[a]["unchecked_finishes"]} of {arms[a]["edited_runs"]})'
                                   for r, a in zip(rates, ARMS)]))
     if not groups:

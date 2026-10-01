@@ -1,0 +1,41 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "From your prompt to a checked result",
+    "locale": "en",
+    "quality_profile": "showcase"
+  },
+  "lanes": [
+    { "id": "task", "label": "Your coding agent" },
+    { "id": "care", "label": "BosskuAI" }
+  ],
+  "mainPath": ["prompt", "context", "selection", "work", "checks", "reply"],
+  "nodes": [
+    { "id": "prompt", "lane": "task", "col": 0, "type": "external", "label": "Your prompt", "sublabel": "describe the job", "width": 150 },
+    { "id": "context", "lane": "task", "col": 1, "type": "database", "label": "Read context", "sublabel": "repo + saved notes", "width": 150 },
+    { "id": "selection", "lane": "task", "col": 2, "type": "backend", "label": "Choose skills", "sublabel": "one main + useful extras", "width": 164 },
+    { "id": "work", "lane": "task", "col": 3, "type": "backend", "label": "Do the work", "sublabel": "plan when needed", "width": 150 },
+    { "id": "checks", "lane": "task", "col": 4, "type": "security", "label": "Run + review", "sublabel": "use real evidence", "width": 150 },
+    { "id": "reply", "lane": "task", "col": 5, "type": "frontend", "label": "Deliver result", "sublabel": "say what was verified", "width": 150 },
+    { "id": "brief", "lane": "care", "col": 1, "type": "database", "label": "Show notes", "sublabel": "session hook", "width": 150 },
+    { "id": "hint", "lane": "care", "col": 2, "type": "backend", "label": "Name skills", "sublabel": "prompt hook + finder", "width": 164 },
+    { "id": "gate", "lane": "care", "col": 4, "type": "security", "label": "Verify gate", "sublabel": "never ran it? go back once", "width": 172 },
+    { "id": "notes", "lane": "care", "col": 5, "type": "database", "label": "Save a note", "sublabel": "only what lasts", "width": 150 }
+  ],
+  "edges": [
+    { "id": "read-request", "from": "prompt", "to": "context", "role": "main" },
+    { "id": "match-context", "from": "context", "to": "selection", "role": "main" },
+    { "id": "selected-work", "from": "selection", "to": "work", "role": "main", "variant": "emphasis" },
+    { "id": "verify-work", "from": "work", "to": "checks", "role": "main" },
+    { "id": "complete-reply", "from": "checks", "to": "reply", "role": "main", "variant": "emphasis" },
+    { "id": "feed-notes", "from": "brief", "to": "context", "role": "branch" },
+    { "id": "feed-skills", "from": "hint", "to": "selection", "role": "branch" },
+    { "id": "gate-checks", "from": "gate", "to": "checks", "role": "branch", "variant": "security" },
+    { "id": "keep-note", "from": "reply", "to": "notes", "role": "branch", "variant": "dashed" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Three small hooks", "items": ["Saved project notes appear when a session starts.", "Your prompt gets one or two skill names to load first.", "If code changed and never ran, the agent goes back once."] },
+    { "dot": "emerald", "title": "Light on purpose", "items": ["About 40 skills are listed; the rest are one command away.", "git pull + bossku update refreshes the library."] }
+  ]
+}

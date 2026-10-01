@@ -113,6 +113,32 @@ def score(prompts: list[dict], answers: dict, with_stack: bool) -> dict:
     return result
 
 
+def paired(prompts: list[dict], first: dict, second: dict) -> dict:
+    """Prompts one version got right and the other did not, with an exact two-sided sign-test p-value.
+
+    Two intervals that overlap can still hide a real difference when both versions are scored on the same
+    prompts; counting only the prompts where they disagree is the fair comparison.
+    """
+    def top1(answer: dict, row: dict) -> bool:
+        union = set().union(*[set(c) for c in row['concerns']])
+        got = answer[row['id']]
+        return (got.get('primary') or (got['top'][0] if got['top'] else None)) in union
+
+    def whole(answer: dict, row: dict) -> bool:
+        chosen = set(answer[row['id']]['selected'])
+        return all(chosen & set(c) for c in row['concerns'])
+
+    result = {}
+    for name, judge in (('top1', top1), ('whole_request', whole)):
+        only_first = sum(judge(first, r) and not judge(second, r) for r in prompts)
+        only_second = sum(judge(second, r) and not judge(first, r) for r in prompts)
+        n = only_first + only_second
+        tail = sum(math.comb(n, k) for k in range(min(only_first, only_second) + 1))
+        result[name] = {'only_first': only_first, 'only_second': only_second,
+                        'p_two_sided': min(1.0, 2 * tail / 2 ** n) if n else 1.0}
+    return result
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('--arm', action='append', default=[], help='NAME=BOSSKU_ROOT (repeatable)')
@@ -139,6 +165,8 @@ def main() -> int:
         subset = [row for row in rows if split == 'all' or row['split'] == split]
         report['splits'][split] = {
             name: score(subset, answer, with_stack=name != 'description-only') for name, answer in answers.items()}
+        if 'before' in answers and 'after' in answers:
+            report['splits'][split]['_paired_after_vs_before'] = paired(subset, answers['after'], answers['before'])
         if split != 'all':
             report['splits'][split]['_domains'] = {}
             for domain in sorted({row['domain'] for row in subset}):

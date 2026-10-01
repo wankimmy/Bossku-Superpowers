@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 568" width="880" height="568" role="img" aria-labelledby="t d">
+<title id="t">Tasks finished: hidden tests passed</title>
+<desc id="d">Tasks finished: hidden tests passed. Same model, same harness, same tasks; only BosskuAI changes Hidden-test coding tasks DeepSeek V4.1 Flash: Without BosskuAI 91%, BosskuAI before 97%, BosskuAI after 94%. Hidden-test coding tasks Nemotron 3 Nano 30B: Without BosskuAI 22%, BosskuAI before 21%, BosskuAI after 38%. HumanEval problems DeepSeek V4.1 Flash: Without BosskuAI 98%, BosskuAI before 95%, BosskuAI after 100%. HumanEval problems Nemotron 3 Nano 30B: Without BosskuAI 80%, BosskuAI before 75%, BosskuAI after 78%.</desc>
+<style>text{font-family:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif}.card{fill:#fcfcfb}.ink{fill:#0b0b0b}.ink2{fill:#52514e}.muted{fill:#898781}.grid{stroke:#e1e0d9}.base{stroke:#c3c2b7}.whisker{stroke:#52514e}.s0{fill:#2a78d6}.s1{fill:#eb6834}.s2{fill:#1baf7a}@media (prefers-color-scheme:dark){.card{fill:#1a1a19}.ink{fill:#ffffff}.ink2{fill:#c3c2b7}.muted{fill:#898781}.grid{stroke:#2c2c2a}.base{stroke:#383835}.whisker{stroke:#c3c2b7}.s0{fill:#3987e5}.s1{fill:#d95926}.s2{fill:#199e70}}</style>
+<rect class="card" width="880" height="568" rx="14"/>
+<text class="ink" x="28" y="42" font-size="22" font-weight="650">Tasks finished: hidden tests passed</text>
+<text class="ink2" x="28" y="66" font-size="14">Same model, same harness, same tasks; only BosskuAI changes</text>
+<rect class="s0" x="28" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="46" y="89" font-size="13">Without BosskuAI</text>
+<rect class="s1" x="188" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="206" y="89" font-size="13">BosskuAI before</text>
+<rect class="s2" x="341" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="359" y="89" font-size="13">BosskuAI after</text>
+<text class="ink" x="28" y="112" font-size="15" font-weight="650">Hidden-test coding tasks</text>
+<line class="grid" x1="204.0" y1="126" x2="204.0" y2="278" stroke-width="1"/>
+<text class="muted" x="204.0" y="294" font-size="12" text-anchor="middle">0%</text>
+<line class="grid" x1="335.5" y1="126" x2="335.5" y2="278" stroke-width="1"/>
+<text class="muted" x="335.5" y="294" font-size="12" text-anchor="middle">25%</text>
+<line class="grid" x1="467.0" y1="126" x2="467.0" y2="278" stroke-width="1"/>
+<text class="muted" x="467.0" y="294" font-size="12" text-anchor="middle">50%</text>
+<line class="grid" x1="598.5" y1="126" x2="598.5" y2="278" stroke-width="1"/>
+<text class="muted" x="598.5" y="294" font-size="12" text-anchor="middle">75%</text>
+<line class="grid" x1="730.0" y1="126" x2="730.0" y2="278" stroke-width="1"/>
+<text class="muted" x="730.0" y="294" font-size="12" text-anchor="middle">100%</text>
+<line class="base" x1="204" y1="126" x2="204" y2="278" stroke-width="1.5"/>
+<text class="ink" x="28" y="161.0" font-size="14" font-weight="600">DeepSeek V4.1 Flash</text>
+<text class="muted" x="28" y="178.0" font-size="12">34 runs per version</text>
+<path class="s0" d="M204,134 H679.6 Q683.6,134 683.6,138.0 V148.0 Q683.6,152 679.6,152 H204 Z"/>
+<line class="whisker" x1="609.2" y1="143.0" x2="714.0" y2="143.0" stroke-width="1.5"/>
+<line class="whisker" x1="609.2" y1="139.0" x2="609.2" y2="147.0" stroke-width="1.5"/>
+<line class="whisker" x1="714.0" y1="139.0" x2="714.0" y2="147.0" stroke-width="1.5"/>
+<text class="ink" x="722.0" y="147.5" font-size="13" font-weight="600">91%</text>
+<path class="s1" d="M204,154 H710.5 Q714.5,154 714.5,158.0 V168.0 Q714.5,172 710.5,172 H204 Z"/>
+<line class="whisker" x1="651.5" y1="163.0" x2="727.3" y2="163.0" stroke-width="1.5"/>
+<line class="whisker" x1="651.5" y1="159.0" x2="651.5" y2="167.0" stroke-width="1.5"/>
+<line class="whisker" x1="727.3" y1="159.0" x2="727.3" y2="167.0" stroke-width="1.5"/>
+<text class="ink" x="735.3" y="167.5" font-size="13" font-weight="600">97%</text>
+<path class="s2" d="M204,174 H695.1 Q699.1,174 699.1,178.0 V188.0 Q699.1,192 695.1,192 H204 Z"/>
+<line class="whisker" x1="629.6" y1="183.0" x2="721.4" y2="183.0" stroke-width="1.5"/>
+<line class="whisker" x1="629.6" y1="179.0" x2="629.6" y2="187.0" stroke-width="1.5"/>
+<line class="whisker" x1="721.4" y1="179.0" x2="721.4" y2="187.0" stroke-width="1.5"/>
+<text class="ink" x="729.4" y="187.5" font-size="13" font-weight="600">94%</text>
+<text class="ink" x="28" y="241.0" font-size="14" font-weight="600">Nemotron 3 Nano 30B</text>
+<text class="muted" x="28" y="258.0" font-size="12">68 runs per version</text>
+<path class="s0" d="M204,214 H316.0 Q320.0,214 320.0,218.0 V228.0 Q320.0,232 316.0,232 H204 Z"/>
+<line class="whisker" x1="276.8" y1="223.0" x2="378.9" y2="223.0" stroke-width="1.5"/>
+<line class="whisker" x1="276.8" y1="219.0" x2="276.8" y2="227.0" stroke-width="1.5"/>
+<line class="whisker" x1="378.9" y1="219.0" x2="378.9" y2="227.0" stroke-width="1.5"/>
+<text class="ink" x="386.9" y="227.5" font-size="13" font-weight="600">22%</text>
+<path class="s1" d="M204,234 H308.3 Q312.3,234 312.3,238.0 V248.0 Q312.3,252 308.3,252 H204 Z"/>
+<line class="whisker" x1="270.7" y1="243.0" x2="370.4" y2="243.0" stroke-width="1.5"/>
+<line class="whisker" x1="270.7" y1="239.0" x2="270.7" y2="247.0" stroke-width="1.5"/>
+<line class="whisker" x1="370.4" y1="239.0" x2="370.4" y2="247.0" stroke-width="1.5"/>
+<text class="ink" x="378.4" y="247.5" font-size="13" font-weight="600">21%</text>
+<path class="s2" d="M204,254 H401.1 Q405.1,254 405.1,258.0 V268.0 Q405.1,272 401.1,272 H204 Z"/>
+<line class="whisker" x1="349.2" y1="263.0" x2="467.6" y2="263.0" stroke-width="1.5"/>
+<line class="whisker" x1="349.2" y1="259.0" x2="349.2" y2="267.0" stroke-width="1.5"/>
+<line class="whisker" x1="467.6" y1="259.0" x2="467.6" y2="267.0" stroke-width="1.5"/>
+<text class="ink" x="475.6" y="267.5" font-size="13" font-weight="600">38%</text>
+<text class="ink" x="28" y="334" font-size="15" font-weight="650">HumanEval problems</text>
+<line class="grid" x1="204.0" y1="348" x2="204.0" y2="500" stroke-width="1"/>
+<text class="muted" x="204.0" y="516" font-size="12" text-anchor="middle">0%</text>
+<line class="grid" x1="335.5" y1="348" x2="335.5" y2="500" stroke-width="1"/>
+<text class="muted" x="335.5" y="516" font-size="12" text-anchor="middle">25%</text>
+<line class="grid" x1="467.0" y1="348" x2="467.0" y2="500" stroke-width="1"/>
+<text class="muted" x="467.0" y="516" font-size="12" text-anchor="middle">50%</text>
+<line class="grid" x1="598.5" y1="348" x2="598.5" y2="500" stroke-width="1"/>
+<text class="muted" x="598.5" y="516" font-size="12" text-anchor="middle">75%</text>
+<line class="grid" x1="730.0" y1="348" x2="730.0" y2="500" stroke-width="1"/>
+<text class="muted" x="730.0" y="516" font-size="12" text-anchor="middle">100%</text>
+<line class="base" x1="204" y1="348" x2="204" y2="500" stroke-width="1.5"/>
+<text class="ink" x="28" y="383.0" font-size="14" font-weight="600">DeepSeek V4.1 Flash</text>
+<text class="muted" x="28" y="400.0" font-size="12">40 runs per version</text>
+<path class="s0" d="M204,356 H712.9 Q716.9,356 716.9,360.0 V370.0 Q716.9,374 712.9,374 H204 Z"/>
+<line class="whisker" x1="662.2" y1="365.0" x2="727.7" y2="365.0" stroke-width="1.5"/>
+<line class="whisker" x1="662.2" y1="361.0" x2="662.2" y2="369.0" stroke-width="1.5"/>
+<line class="whisker" x1="727.7" y1="361.0" x2="727.7" y2="369.0" stroke-width="1.5"/>
+<text class="ink" x="735.7" y="369.5" font-size="13" font-weight="600">98%</text>
+<path class="s1" d="M204,376 H699.7 Q703.7,376 703.7,380.0 V390.0 Q703.7,394 699.7,394 H204 Z"/>
+<line class="whisker" x1="643.2" y1="385.0" x2="722.7" y2="385.0" stroke-width="1.5"/>
+<line class="whisker" x1="643.2" y1="381.0" x2="643.2" y2="389.0" stroke-width="1.5"/>
+<line class="whisker" x1="722.7" y1="381.0" x2="722.7" y2="389.0" stroke-width="1.5"/>
+<text class="ink" x="730.7" y="389.5" font-size="13" font-weight="600">95%</text>
+<path class="s2" d="M204,396 H726.0 Q730.0,396 730.0,400.0 V410.0 Q730.0,414 726.0,414 H204 Z"/>
+<line class="whisker" x1="683.9" y1="405.0" x2="730.0" y2="405.0" stroke-width="1.5"/>
+<line class="whisker" x1="683.9" y1="401.0" x2="683.9" y2="409.0" stroke-width="1.5"/>
+<line class="whisker" x1="730.0" y1="401.0" x2="730.0" y2="409.0" stroke-width="1.5"/>
+<text class="ink" x="738.0" y="409.5" font-size="13" font-weight="600">100%</text>
+<text class="ink" x="28" y="463.0" font-size="14" font-weight="600">Nemotron 3 Nano 30B</text>
+<text class="muted" x="28" y="480.0" font-size="12">40 runs per version</text>
+<path class="s0" d="M204,436 H620.8 Q624.8,436 624.8,440.0 V450.0 Q624.8,454 620.8,454 H204 Z"/>
+<line class="whisker" x1="547.2" y1="445.0" x2="674.8" y2="445.0" stroke-width="1.5"/>
+<line class="whisker" x1="547.2" y1="441.0" x2="547.2" y2="449.0" stroke-width="1.5"/>
+<line class="whisker" x1="674.8" y1="441.0" x2="674.8" y2="449.0" stroke-width="1.5"/>
+<text class="ink" x="682.8" y="449.5" font-size="13" font-weight="600">80%</text>
+<path class="s1" d="M204,456 H594.5 Q598.5,456 598.5,460.0 V470.0 Q598.5,474 594.5,474 H204 Z"/>
+<line class="whisker" x1="518.6" y1="465.0" x2="655.4" y2="465.0" stroke-width="1.5"/>
+<line class="whisker" x1="518.6" y1="461.0" x2="518.6" y2="469.0" stroke-width="1.5"/>
+<line class="whisker" x1="655.4" y1="461.0" x2="655.4" y2="469.0" stroke-width="1.5"/>
+<text class="ink" x="663.4" y="469.5" font-size="13" font-weight="600">75%</text>
+<path class="s2" d="M204,476 H607.6 Q611.6,476 611.6,480.0 V490.0 Q611.6,494 607.6,494 H204 Z"/>
+<line class="whisker" x1="532.7" y1="485.0" x2="665.2" y2="485.0" stroke-width="1.5"/>
+<line class="whisker" x1="532.7" y1="481.0" x2="532.7" y2="489.0" stroke-width="1.5"/>
+<line class="whisker" x1="665.2" y1="481.0" x2="665.2" y2="489.0" stroke-width="1.5"/>
+<text class="ink" x="673.2" y="489.5" font-size="13" font-weight="600">78%</text>
+<text class="muted" x="28" y="552" font-size="12">Whiskers show a 95% interval. Small samples: read overlaps as &quot;no clear difference&quot;.</text>
+</svg>

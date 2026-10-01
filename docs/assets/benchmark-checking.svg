@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 324" width="880" height="324" role="img" aria-labelledby="t d">
+<title id="t">Did the agent run its code before finishing?</title>
+<desc id="d">Did the agent run its code before finishing?. Runs that changed code and then ended without running anything (lower is better)  DeepSeek V4.1 Flash: Without BosskuAI 0%  (0 of 34), BosskuAI before 0%  (0 of 34), BosskuAI after 3%  (1 of 34).  Nemotron 3 Nano 30B: Without BosskuAI 100%  (48 of 48), BosskuAI before 100%  (44 of 44), BosskuAI after 48%  (31 of 64).</desc>
+<style>text{font-family:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif}.card{fill:#fcfcfb}.ink{fill:#0b0b0b}.ink2{fill:#52514e}.muted{fill:#898781}.grid{stroke:#e1e0d9}.base{stroke:#c3c2b7}.whisker{stroke:#52514e}.s0{fill:#2a78d6}.s1{fill:#eb6834}.s2{fill:#1baf7a}@media (prefers-color-scheme:dark){.card{fill:#1a1a19}.ink{fill:#ffffff}.ink2{fill:#c3c2b7}.muted{fill:#898781}.grid{stroke:#2c2c2a}.base{stroke:#383835}.whisker{stroke:#c3c2b7}.s0{fill:#3987e5}.s1{fill:#d95926}.s2{fill:#199e70}}</style>
+<rect class="card" width="880" height="324" rx="14"/>
+<text class="ink" x="28" y="42" font-size="22" font-weight="650">Did the agent run its code before finishing?</text>
+<text class="ink2" x="28" y="66" font-size="14">Runs that changed code and then ended without running anything (lower is better)</text>
+<rect class="s0" x="28" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="46" y="89" font-size="13">Without BosskuAI</text>
+<rect class="s1" x="188" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="206" y="89" font-size="13">BosskuAI before</text>
+<rect class="s2" x="341" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="359" y="89" font-size="13">BosskuAI after</text>
+<line class="grid" x1="204.0" y1="104" x2="204.0" y2="256" stroke-width="1"/>
+<text class="muted" x="204.0" y="272" font-size="12" text-anchor="middle">0%</text>
+<line class="grid" x1="335.5" y1="104" x2="335.5" y2="256" stroke-width="1"/>
+<text class="muted" x="335.5" y="272" font-size="12" text-anchor="middle">25%</text>
+<line class="grid" x1="467.0" y1="104" x2="467.0" y2="256" stroke-width="1"/>
+<text class="muted" x="467.0" y="272" font-size="12" text-anchor="middle">50%</text>
+<line class="grid" x1="598.5" y1="104" x2="598.5" y2="256" stroke-width="1"/>
+<text class="muted" x="598.5" y="272" font-size="12" text-anchor="middle">75%</text>
+<line class="grid" x1="730.0" y1="104" x2="730.0" y2="256" stroke-width="1"/>
+<text class="muted" x="730.0" y="272" font-size="12" text-anchor="middle">100%</text>
+<line class="base" x1="204" y1="104" x2="204" y2="256" stroke-width="1.5"/>
+<text class="ink" x="28" y="139.0" font-size="14" font-weight="600">DeepSeek V4.1 Flash</text>
+<text class="muted" x="28" y="156.0" font-size="12">of the runs that changed code</text>
+<path class="s0" d="M204,112 H204.5 Q205.0,112 205.0,112.5 V129.5 Q205.0,130 204.5,130 H204 Z"/>
+<text class="ink" x="213.0" y="125.5" font-size="13" font-weight="600">0%  (0 of 34)</text>
+<path class="s1" d="M204,132 H204.5 Q205.0,132 205.0,132.5 V149.5 Q205.0,150 204.5,150 H204 Z"/>
+<text class="ink" x="213.0" y="145.5" font-size="13" font-weight="600">0%  (0 of 34)</text>
+<path class="s2" d="M204,152 H215.5 Q219.5,152 219.5,156.0 V166.0 Q219.5,170 215.5,170 H204 Z"/>
+<text class="ink" x="227.5" y="165.5" font-size="13" font-weight="600">3%  (1 of 34)</text>
+<text class="ink" x="28" y="219.0" font-size="14" font-weight="600">Nemotron 3 Nano 30B</text>
+<text class="muted" x="28" y="236.0" font-size="12">of the runs that changed code</text>
+<path class="s0" d="M204,192 H726.0 Q730.0,192 730.0,196.0 V206.0 Q730.0,210 726.0,210 H204 Z"/>
+<text class="ink" x="738.0" y="205.5" font-size="13" font-weight="600">100%  (48 of 48)</text>
+<path class="s1" d="M204,212 H726.0 Q730.0,212 730.0,216.0 V226.0 Q730.0,230 726.0,230 H204 Z"/>
+<text class="ink" x="738.0" y="225.5" font-size="13" font-weight="600">100%  (44 of 44)</text>
+<path class="s2" d="M204,232 H454.8 Q458.8,232 458.8,236.0 V246.0 Q458.8,250 454.8,250 H204 Z"/>
+<text class="ink" x="466.8" y="245.5" font-size="13" font-weight="600">48%  (31 of 64)</text>
+<text class="muted" x="28" y="308" font-size="12">Read from the tool calls alone, the same way for every version.</text>
+</svg>

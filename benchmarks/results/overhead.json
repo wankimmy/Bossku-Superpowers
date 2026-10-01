@@ -1,0 +1,54 @@
+{
+  "claude-haiku-4-5-20251001": {
+    "after": {
+      "runs": 3,
+      "input_tokens_median": 33613,
+      "cost_median": 0.0120239,
+      "skills_listed": 60,
+      "tools": 37,
+      "context_window": 200000
+    },
+    "baseline": {
+      "runs": 3,
+      "input_tokens_median": 32280,
+      "cost_median": 0.0108301,
+      "skills_listed": 20,
+      "tools": 37,
+      "context_window": 200000
+    },
+    "before": {
+      "runs": 3,
+      "input_tokens_median": 34706,
+      "cost_median": 0.0145063,
+      "skills_listed": 254,
+      "tools": 37,
+      "context_window": 200000
+    }
+  },
+  "claude-sonnet-5-5": {
+    "after": {
+      "runs": 3,
+      "input_tokens_median": 36770,
+      "cost_median": 0.0322648,
+      "skills_listed": 60,
+      "tools": 33,
+      "context_window": 1000000
+    },
+    "baseline": {
+      "runs": 3,
+      "input_tokens_median": 33856,
+      "cost_median": 0.0245,
+      "skills_listed": 20,
+      "tools": 33,
+      "context_window": 1000000
+    },
+    "before": {
+      "runs": 3,
+      "input_tokens_median": 43539,
+      "cost_median": 0.0599982,
+      "skills_listed": 254,
+      "tools": 33,
+      "context_window": 1000000
+    }
+  }
+}

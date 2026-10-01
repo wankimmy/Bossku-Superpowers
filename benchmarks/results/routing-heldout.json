@@ -1,0 +1,351 @@
+{
+  "prompts_file": "benchmarks\\routing-heldout\\prompts.json",
+  "prompts_sha256": "0ad34d546e62ed627b3b86b6e93fb5576295d84a0d77b9201f5ac0637ec20dc6",
+  "splits": {
+    "dev": {
+      "before": {
+        "prompts": 87,
+        "top1": {
+          "hits": 57,
+          "rate": 0.6551724137931034,
+          "ci": [
+            0.550645767576964,
+            0.7465748890385073
+          ]
+        },
+        "top3": {
+          "hits": 82,
+          "rate": 0.9425287356321839,
+          "ci": [
+            0.8724245521342497,
+            0.9752047278432054
+          ]
+        },
+        "concern_coverage": 0.5574712643678161,
+        "all_concerns_covered": {
+          "hits": 39,
+          "rate": 0.4482758620689655
+        },
+        "not_confident": 48,
+        "stack_precision": 0.5862068965517241,
+        "stack_size": 1.3333333333333333
+      },
+      "after": {
+        "prompts": 87,
+        "top1": {
+          "hits": 67,
+          "rate": 0.7701149425287356,
+          "ci": [
+            0.6714152628853797,
+            0.8459688430748852
+          ]
+        },
+        "top3": {
+          "hits": 82,
+          "rate": 0.9425287356321839,
+          "ci": [
+            0.8724245521342497,
+            0.9752047278432054
+          ]
+        },
+        "concern_coverage": 0.7739463601532567,
+        "all_concerns_covered": {
+          "hits": 60,
+          "rate": 0.6896551724137931
+        },
+        "not_confident": 48,
+        "stack_precision": 0.6331417624521073,
+        "stack_size": 1.9540229885057472
+      },
+      "description-only": {
+        "prompts": 87,
+        "top1": {
+          "hits": 51,
+          "rate": 0.5862068965517241,
+          "ci": [
+            0.4812140531159266,
+            0.6839085338926685
+          ]
+        },
+        "top3": {
+          "hits": 69,
+          "rate": 0.7931034482758621,
+          "ci": [
+            0.696489313921971,
+            0.8649274819072528
+          ]
+        }
+      },
+      "_paired_after_vs_before": {
+        "top1": {
+          "only_first": 10,
+          "only_second": 0,
+          "p_two_sided": 0.001953125
+        },
+        "whole_request": {
+          "only_first": 21,
+          "only_second": 0,
+          "p_two_sided": 9.5367431640625e-07
+        }
+      },
+      "_domains": {
+        "data": {
+          "before": 1.0,
+          "after": 1.0,
+          "description-only": 1.0
+        },
+        "design": {
+          "before": 0.5,
+          "after": 0.75,
+          "description-only": 0.125
+        },
+        "engineering": {
+          "before": 0.47619047619047616,
+          "after": 0.6428571428571429,
+          "description-only": 0.5952380952380952
+        },
+        "founder": {
+          "before": 0.875,
+          "after": 0.875,
+          "description-only": 0.875
+        },
+        "marketing": {
+          "before": 0.9375,
+          "after": 0.9375,
+          "description-only": 0.8125
+        },
+        "other": {
+          "before": 0.75,
+          "after": 1.0,
+          "description-only": 0.25
+        },
+        "product": {
+          "before": 0.6666666666666666,
+          "after": 0.6666666666666666,
+          "description-only": 0.0
+        },
+        "security-ops": {
+          "before": 1.0,
+          "after": 1.0,
+          "description-only": 0.6
+        }
+      }
+    },
+    "test": {
+      "before": {
+        "prompts": 73,
+        "top1": {
+          "hits": 43,
+          "rate": 0.589041095890411,
+          "ci": [
+            0.47449015192198346,
+            0.6946890426809401
+          ]
+        },
+        "top3": {
+          "hits": 66,
+          "rate": 0.9041095890410958,
+          "ci": [
+            0.8150416221426188,
+            0.9527716456706489
+          ]
+        },
+        "concern_coverage": 0.5068493150684932,
+        "all_concerns_covered": {
+          "hits": 29,
+          "rate": 0.3972602739726027
+        },
+        "not_confident": 39,
+        "stack_precision": 0.5205479452054794,
+        "stack_size": 1.3424657534246576
+      },
+      "after": {
+        "prompts": 73,
+        "top1": {
+          "hits": 54,
+          "rate": 0.7397260273972602,
+          "ci": [
+            0.6289029493194099,
+            0.8265794976884607
+          ]
+        },
+        "top3": {
+          "hits": 66,
+          "rate": 0.9041095890410958,
+          "ci": [
+            0.8150416221426188,
+            0.9527716456706489
+          ]
+        },
+        "concern_coverage": 0.6963470319634704,
+        "all_concerns_covered": {
+          "hits": 41,
+          "rate": 0.5616438356164384
+        },
+        "not_confident": 39,
+        "stack_precision": 0.5929223744292237,
+        "stack_size": 1.9589041095890412
+      },
+      "description-only": {
+        "prompts": 73,
+        "top1": {
+          "hits": 44,
+          "rate": 0.6027397260273972,
+          "ci": [
+            0.48807204465405685,
+            0.7071347183493163
+          ]
+        },
+        "top3": {
+          "hits": 56,
+          "rate": 0.7671232876712328,
+          "ci": [
+            0.6583251745764003,
+            0.8492124092323698
+          ]
+        }
+      },
+      "_paired_after_vs_before": {
+        "top1": {
+          "only_first": 12,
+          "only_second": 1,
+          "p_two_sided": 0.00341796875
+        },
+        "whole_request": {
+          "only_first": 12,
+          "only_second": 0,
+          "p_two_sided": 0.00048828125
+        }
+      },
+      "_domains": {
+        "data": {
+          "before": 0.6666666666666666,
+          "after": 0.6666666666666666,
+          "description-only": 1.0
+        },
+        "design": {
+          "before": 0.625,
+          "after": 0.75,
+          "description-only": 0.5
+        },
+        "engineering": {
+          "before": 0.7727272727272727,
+          "after": 0.8636363636363636,
+          "description-only": 0.5909090909090909
+        },
+        "founder": {
+          "before": 0.2857142857142857,
+          "after": 0.42857142857142855,
+          "description-only": 0.7142857142857143
+        },
+        "marketing": {
+          "before": 0.5625,
+          "after": 0.625,
+          "description-only": 0.5625
+        },
+        "other": {
+          "before": 0.25,
+          "after": 1.0,
+          "description-only": 0.5
+        },
+        "product": {
+          "before": 0.3333333333333333,
+          "after": 0.5,
+          "description-only": 0.5
+        },
+        "security-ops": {
+          "before": 0.7142857142857143,
+          "after": 1.0,
+          "description-only": 0.7142857142857143
+        }
+      }
+    },
+    "all": {
+      "before": {
+        "prompts": 160,
+        "top1": {
+          "hits": 100,
+          "rate": 0.625,
+          "ci": [
+            0.5478802447703629,
+            0.6962579960671288
+          ]
+        },
+        "top3": {
+          "hits": 148,
+          "rate": 0.925,
+          "ci": [
+            0.8734905849508775,
+            0.9565794338965946
+          ]
+        },
+        "concern_coverage": 0.534375,
+        "all_concerns_covered": {
+          "hits": 68,
+          "rate": 0.425
+        },
+        "not_confident": 87,
+        "stack_precision": 0.55625,
+        "stack_size": 1.3375
+      },
+      "after": {
+        "prompts": 160,
+        "top1": {
+          "hits": 121,
+          "rate": 0.75625,
+          "ci": [
+            0.6842247960744507,
+            0.8162585976424075
+          ]
+        },
+        "top3": {
+          "hits": 148,
+          "rate": 0.925,
+          "ci": [
+            0.8734905849508775,
+            0.9565794338965946
+          ]
+        },
+        "concern_coverage": 0.7385416666666667,
+        "all_concerns_covered": {
+          "hits": 101,
+          "rate": 0.63125
+        },
+        "not_confident": 87,
+        "stack_precision": 0.6147916666666666,
+        "stack_size": 1.95625
+      },
+      "description-only": {
+        "prompts": 160,
+        "top1": {
+          "hits": 95,
+          "rate": 0.59375,
+          "ci": [
+            0.5163154555128467,
+            0.666788225115272
+          ]
+        },
+        "top3": {
+          "hits": 125,
+          "rate": 0.78125,
+          "ci": [
+            0.7110115967895942,
+            0.8382994450947623
+          ]
+        }
+      },
+      "_paired_after_vs_before": {
+        "top1": {
+          "only_first": 22,
+          "only_second": 1,
+          "p_two_sided": 5.7220458984375e-06
+        },
+        "whole_request": {
+          "only_first": 33,
+          "only_second": 0,
+          "p_two_sided": 2.3283064365386963e-10
+        }
+      }
+    }
+  }
+}

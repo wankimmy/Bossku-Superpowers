@@ -1,0 +1,39 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "How each result was measured",
+    "locale": "en",
+    "quality_profile": "showcase"
+  },
+  "lanes": [
+    { "id": "setup", "label": "Setup" },
+    { "id": "run", "label": "Real agent run" },
+    { "id": "judge", "label": "Judging" }
+  ],
+  "mainPath": ["task", "project", "agent", "tests", "table", "charts"],
+  "nodes": [
+    { "id": "task", "lane": "setup", "col": 0, "type": "external", "label": "Coding task", "sublabel": "hidden tests", "width": 150 },
+    { "id": "project", "lane": "setup", "col": 1, "type": "database", "label": "Fresh project", "sublabel": "own git repo + home", "width": 164 },
+    { "id": "canary", "lane": "run", "col": 1, "type": "security", "label": "Isolation check", "sublabel": "baseline sees no BosskuAI", "width": 188 },
+    { "id": "agent", "lane": "run", "col": 2, "type": "backend", "label": "Agent run", "sublabel": "same model + harness", "width": 164 },
+    { "id": "meter", "lane": "run", "col": 3, "type": "database", "label": "Usage meter", "sublabel": "tokens, turns, time", "width": 164 },
+    { "id": "tests", "lane": "judge", "col": 3, "type": "security", "label": "Hidden tests", "sublabel": "pass or fail", "width": 150 },
+    { "id": "table", "lane": "judge", "col": 4, "type": "backend", "label": "Compare arms", "sublabel": "95% intervals", "width": 150 },
+    { "id": "charts", "lane": "judge", "col": 5, "type": "frontend", "label": "Charts", "sublabel": "drawn from saved data", "width": 164 }
+  ],
+  "edges": [
+    { "id": "pick-task", "from": "task", "to": "project", "role": "main" },
+    { "id": "copy-project", "from": "project", "to": "agent", "role": "main", "label": "copy", "route": "drop", "fromSide": "bottom", "toSide": "top" },
+    { "id": "check-clean", "from": "canary", "to": "agent", "role": "branch", "variant": "security" },
+    { "id": "work", "from": "agent", "to": "tests", "role": "main", "variant": "emphasis", "route": "drop", "fromSide": "bottom", "toSide": "top" },
+    { "id": "meter-usage", "from": "agent", "to": "meter", "role": "branch" },
+    { "id": "grade", "from": "tests", "to": "table", "role": "main" },
+    { "id": "usage-to-table", "from": "meter", "to": "table", "role": "branch", "variant": "dashed", "route": "drop", "fromSide": "bottom", "toSide": "top" },
+    { "id": "draw", "from": "table", "to": "charts", "role": "main" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Same task, three versions", "items": ["Without BosskuAI, BosskuAI before, and BosskuAI after each get a fresh copy of the project.", "Order is shuffled and the model never changes inside a comparison."] },
+    { "dot": "emerald", "title": "Nothing is hand-typed", "items": ["Tokens and turns come from Claude Code's own report.", "Every chart is generated from the saved result files."] }
+  ]
+}

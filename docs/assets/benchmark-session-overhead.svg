@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 488" width="880" height="488" role="img" aria-labelledby="t d">
+<title id="t">What BosskuAI adds to every session</title>
+<desc id="d">What BosskuAI adds to every session. First call of a Claude Code session, compared with no BosskuAI (median of 3 runs) Extra input tokens Claude Haiku 4.5: BosskuAI before +2,426, BosskuAI after +1,333  (1.8x less). Extra input tokens Claude Sonnet 5.5: BosskuAI before +9,683, BosskuAI after +2,914  (3.3x less). Extra cost of that first call Claude Haiku 4.5: BosskuAI before +$0.0037, BosskuAI after +$0.0012  (3.1x less). Extra cost of that first call Claude Sonnet 5.5: BosskuAI before +$0.0355, BosskuAI after +$0.0078  (4.6x less).</desc>
+<style>text{font-family:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif}.card{fill:#fcfcfb}.ink{fill:#0b0b0b}.ink2{fill:#52514e}.muted{fill:#898781}.grid{stroke:#e1e0d9}.base{stroke:#c3c2b7}.whisker{stroke:#52514e}.s0{fill:#eb6834}.s1{fill:#1baf7a}@media (prefers-color-scheme:dark){.card{fill:#1a1a19}.ink{fill:#ffffff}.ink2{fill:#c3c2b7}.muted{fill:#898781}.grid{stroke:#2c2c2a}.base{stroke:#383835}.whisker{stroke:#c3c2b7}.s0{fill:#d95926}.s1{fill:#199e70}}</style>
+<rect class="card" width="880" height="488" rx="14"/>
+<text class="ink" x="28" y="42" font-size="22" font-weight="650">What BosskuAI adds to every session</text>
+<text class="ink2" x="28" y="66" font-size="14">First call of a Claude Code session, compared with no BosskuAI (median of 3 runs)</text>
+<rect class="s0" x="28" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="46" y="89" font-size="13">BosskuAI before</text>
+<rect class="s1" x="181" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="199" y="89" font-size="13">BosskuAI after</text>
+<text class="ink" x="28" y="112" font-size="15" font-weight="650">Extra input tokens</text>
+<line class="grid" x1="204.0" y1="126" x2="204.0" y2="238" stroke-width="1"/>
+<text class="muted" x="204.0" y="254" font-size="12" text-anchor="middle">0</text>
+<line class="grid" x1="334.6" y1="126" x2="334.6" y2="238" stroke-width="1"/>
+<text class="muted" x="334.6" y="254" font-size="12" text-anchor="middle">2,500</text>
+<line class="grid" x1="465.2" y1="126" x2="465.2" y2="238" stroke-width="1"/>
+<text class="muted" x="465.2" y="254" font-size="12" text-anchor="middle">5,000</text>
+<line class="grid" x1="595.7" y1="126" x2="595.7" y2="238" stroke-width="1"/>
+<text class="muted" x="595.7" y="254" font-size="12" text-anchor="middle">7,500</text>
+<line class="grid" x1="726.3" y1="126" x2="726.3" y2="238" stroke-width="1"/>
+<text class="muted" x="726.3" y="254" font-size="12" text-anchor="middle">10,000</text>
+<line class="base" x1="204" y1="126" x2="204" y2="238" stroke-width="1.5"/>
+<text class="ink" x="28" y="151.0" font-size="14" font-weight="600">Claude Haiku 4.5</text>
+<text class="muted" x="28" y="168.0" font-size="12">200k-token window</text>
+<path class="s0" d="M204,134 H326.7 Q330.7,134 330.7,138.0 V148.0 Q330.7,152 326.7,152 H204 Z"/>
+<text class="ink" x="338.7" y="147.5" font-size="13" font-weight="600">+2,426</text>
+<path class="s1" d="M204,154 H269.6 Q273.6,154 273.6,158.0 V168.0 Q273.6,172 269.6,172 H204 Z"/>
+<text class="ink" x="281.6" y="167.5" font-size="13" font-weight="600">+1,333  (1.8x less)</text>
+<text class="ink" x="28" y="211.0" font-size="14" font-weight="600">Claude Sonnet 5.5</text>
+<text class="muted" x="28" y="228.0" font-size="12">1M-token window</text>
+<path class="s0" d="M204,194 H705.8 Q709.8,194 709.8,198.0 V208.0 Q709.8,212 705.8,212 H204 Z"/>
+<text class="ink" x="717.8" y="207.5" font-size="13" font-weight="600">+9,683</text>
+<path class="s1" d="M204,214 H352.2 Q356.2,214 356.2,218.0 V228.0 Q356.2,232 352.2,232 H204 Z"/>
+<text class="ink" x="364.2" y="227.5" font-size="13" font-weight="600">+2,914  (3.3x less)</text>
+<text class="ink" x="28" y="294" font-size="15" font-weight="650">Extra cost of that first call</text>
+<line class="grid" x1="204.0" y1="308" x2="204.0" y2="420" stroke-width="1"/>
+<text class="muted" x="204.0" y="436" font-size="12" text-anchor="middle">$0.000</text>
+<line class="grid" x1="346.5" y1="308" x2="346.5" y2="420" stroke-width="1"/>
+<text class="muted" x="346.5" y="436" font-size="12" text-anchor="middle">$0.010</text>
+<line class="grid" x1="489.0" y1="308" x2="489.0" y2="420" stroke-width="1"/>
+<text class="muted" x="489.0" y="436" font-size="12" text-anchor="middle">$0.020</text>
+<line class="grid" x1="631.4" y1="308" x2="631.4" y2="420" stroke-width="1"/>
+<text class="muted" x="631.4" y="436" font-size="12" text-anchor="middle">$0.030</text>
+<line class="base" x1="204" y1="308" x2="204" y2="420" stroke-width="1.5"/>
+<text class="ink" x="28" y="333.0" font-size="14" font-weight="600">Claude Haiku 4.5</text>
+<text class="muted" x="28" y="350.0" font-size="12">200k-token window</text>
+<path class="s0" d="M204,316 H252.4 Q256.4,316 256.4,320.0 V330.0 Q256.4,334 252.4,334 H204 Z"/>
+<text class="ink" x="264.4" y="329.5" font-size="13" font-weight="600">+$0.0037</text>
+<path class="s1" d="M204,336 H217.0 Q221.0,336 221.0,340.0 V350.0 Q221.0,354 217.0,354 H204 Z"/>
+<text class="ink" x="229.0" y="349.5" font-size="13" font-weight="600">+$0.0012  (3.1x less)</text>
+<text class="ink" x="28" y="393.0" font-size="14" font-weight="600">Claude Sonnet 5.5</text>
+<text class="muted" x="28" y="410.0" font-size="12">1M-token window</text>
+<path class="s0" d="M204,376 H705.8 Q709.8,376 709.8,380.0 V390.0 Q709.8,394 705.8,394 H204 Z"/>
+<text class="ink" x="717.8" y="389.5" font-size="13" font-weight="600">+$0.0355</text>
+<path class="s1" d="M204,396 H310.6 Q314.6,396 314.6,400.0 V410.0 Q314.6,414 310.6,414 H204 Z"/>
+<text class="ink" x="322.6" y="409.5" font-size="13" font-weight="600">+$0.0078  (4.6x less)</text>
+<text class="muted" x="28" y="472" font-size="12">A one-word prompt after a cache warm-up. Cost is Claude Code&#x27;s own list-price figure.</text>
+</svg>
