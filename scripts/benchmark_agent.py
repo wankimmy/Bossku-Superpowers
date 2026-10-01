@@ -69,8 +69,6 @@ class Arm:
     hint: bool = False   # install the UserPromptSubmit skill-hint hook (BosskuAI releases that have it)
     gate: bool = False   # install the Stop verify-gate hook
     brief: bool = False  # install the SessionStart project-notes hook
-    spec: bool = False   # the skill hint also lists the requirements the request states
-    audit: bool = False  # the stop gate also asks for a requirement-by-requirement audit
     lines: tuple = ()    # extra instruction lines (experiments only), named by VARIANT_LINES
     inline: tuple = ()   # skills whose text is placed in the instructions from the start (`+skill:ID`, experiments only)
 
@@ -103,11 +101,11 @@ def parse_arm(spec: str) -> Arm:
         return Arm('baseline', None)
     name, _, rest = spec.partition('=')
     if not rest:
-        raise SystemExit(f'bad --arm {spec!r}; use "baseline" or NAME=ROOT[@lean|core|full][+hint][+gate][+brief][+spec][+audit]')
+        raise SystemExit(f'bad --arm {spec!r}; use "baseline" or NAME=ROOT[@lean|core|full][+hint][+gate][+brief]')
     root, _, profile = rest.partition('@')
     profile, *flags = profile.split('+')
     return Arm(name, Path(root).resolve(), profile or 'full', hint='hint' in flags, gate='gate' in flags,
-               brief='brief' in flags, spec='spec' in flags, audit='audit' in flags,
+               brief='brief' in flags,
                lines=tuple(VARIANT_LINES[f] for f in flags if f in VARIANT_LINES),
                inline=tuple(f.split(':', 1)[1] for f in flags if f.startswith('skill:')))
 
@@ -231,8 +229,7 @@ import json, sys
 from pathlib import Path
 root = Path(sys.argv[1]); proj = Path(sys.argv[2]); profile = sys.argv[3]; want_hint = sys.argv[4] == "1"; want_gate = sys.argv[5] == "1"
 want_brief = sys.argv[6] == "1"; notes = json.loads(sys.argv[7])
-want_spec = sys.argv[8] == "1"; want_audit = sys.argv[9] == "1"; extra_lines = json.loads(sys.argv[10])
-inline_skills = json.loads(sys.argv[11])
+extra_lines = json.loads(sys.argv[8]); inline_skills = json.loads(sys.argv[9])
 sys.path.insert(0, str(root))
 import bossku
 assert Path(bossku.__file__).resolve().parent.parent == root, bossku.__file__
@@ -261,10 +258,10 @@ ids = copy_skills_to(claude / "skills", root, profile)
 copy_skill_support(root, claude)
 if want_hint:
     from bossku.hooks import ensure_skill_hint_hook
-    ensure_skill_hint_hook(proj / ".claude" / "settings.json", command="bossku skill-hint" + (" --spec" if want_spec else ""))
+    ensure_skill_hint_hook(proj / ".claude" / "settings.json", command="bossku skill-hint")
 if want_gate:
     from bossku.hooks import ensure_verify_gate_hook
-    ensure_verify_gate_hook(proj / ".claude" / "settings.json", command="bossku verify-gate" + (" --audit" if want_audit else ""))
+    ensure_verify_gate_hook(proj / ".claude" / "settings.json", command="bossku verify-gate")
 if want_brief:
     from bossku.hooks import ensure_session_brief_hook
     ensure_session_brief_hook(proj / ".claude" / "settings.json", command="bossku session-brief")
@@ -296,7 +293,7 @@ def build_template(arm: Arm, dest: Path) -> dict:
         return {'skills_installed': 0}
     out = sh([sys.executable, '-c', TEMPLATE_BUILDER, str(arm.root), str(dest), arm.profile, '1' if arm.hint else '0',
                       '1' if arm.gate else '0', '1' if arm.brief else '0', json.dumps(SEED_NOTES),
-                      '1' if arm.spec else '0', '1' if arm.audit else '0', json.dumps(list(arm.lines)), json.dumps(list(arm.inline))],
+                      json.dumps(list(arm.lines)), json.dumps(list(arm.inline))],
               timeout=300)
     if out.returncode:
         raise SystemExit(f'template build failed for {arm.name}: {out.stderr or out.stdout}')
@@ -1220,7 +1217,7 @@ def main(argv: list[str] | None = None) -> int:
 
     def common(p):
         p.add_argument('--claude', help='path to the claude CLI (default: PATH, then the desktop app copy)')
-        p.add_argument('--arm', action='append', default=[], help='baseline | NAME=BOSSKU_ROOT[@lean|core|full][+hint][+gate][+brief][+spec][+audit] (repeatable)')
+        p.add_argument('--arm', action='append', default=[], help='baseline | NAME=BOSSKU_ROOT[@lean|core|full][+hint][+gate][+brief] (repeatable)')
         p.add_argument('--model', action='append', default=[], help='model id (repeatable)')
         p.add_argument('--provider', choices=['anthropic', 'ollama'], default='anthropic',
                        help='anthropic = your own Claude login; ollama = Ollama Cloud via its Anthropic-compatible API')

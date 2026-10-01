@@ -128,13 +128,10 @@ def main(argv: list[str] | None = None) -> int:
     )
     p_audit.add_argument("--json", action="store_true", dest="as_json")
 
-    p_gate = sub.add_parser("verify-gate", help="Internal: Stop hook that sends the agent back to run its code",
-                            parents=[child])
-    p_gate.add_argument("--audit", action="store_true",
-                        help="also ask for a requirement-by-requirement audit before the agent finishes")
-    p_hint = sub.add_parser("skill-hint", help="Internal: UserPromptSubmit hook that suggests skills for the prompt on stdin",
-                            parents=[child])
-    p_hint.add_argument("--spec", action="store_true", help="also list the requirements the request states")
+    sub.add_parser("verify-gate", help="Internal: Stop hook that sends the agent back to run its code once",
+                   parents=[child])
+    sub.add_parser("skill-hint", help="Internal: UserPromptSubmit hook that suggests skills for the prompt on stdin",
+                   parents=[child])
     sub.add_parser("validate", help="Validate repository layout", parents=[child])
     p_uninstall = sub.add_parser("uninstall", help="Remove user-level BosskuAI skills", parents=[child])
     p_uninstall.add_argument("--purge", action="store_true")
@@ -269,12 +266,12 @@ def main(argv: list[str] | None = None) -> int:
                 return _skill_audit(root, as_json=args.as_json)
             return 0
         if args.command == "verify-gate":
-            decision = gate_output("" if sys.stdin.isatty() else sys.stdin.read(), audit=args.audit)
+            decision = gate_output("" if sys.stdin.isatty() else sys.stdin.read())
             if decision:
                 print(json.dumps(decision))
             return 0
         if args.command == "skill-hint":
-            payload = hook_output("" if sys.stdin.isatty() else sys.stdin.read(), root=root, home=home, spec=args.spec)
+            payload = hook_output("" if sys.stdin.isatty() else sys.stdin.read(), root=root, home=home)
             if payload:
                 print(json.dumps(payload))
             return 0

@@ -14,7 +14,6 @@ from pathlib import Path
 import bossku.skills as skills
 from bossku.index import load_index
 from bossku.skills import NOT_INSTALLED, locate_skill, select_skill_stack
-from bossku.spec import extract_requirements, request_list
 
 MIN_WORDS = 5            # a short ping ("thanks", "run the tests") needs no skill
 MIN_SCORE = 2.0          # below this the lexical evidence is a guess; say nothing
@@ -60,11 +59,8 @@ def build_hint(prompt: str, *, root: Path | None = None, home: Path | None = Non
             + "\nSkip only if the task is trivial or neither fits.")
 
 
-def hook_output(payload_text: str, *, root: Path | None = None, home: Path | None = None, spec: bool = False) -> dict:
-    """The JSON a Claude Code `UserPromptSubmit` hook prints; empty when there is nothing to add.
-
-    `spec` also lists the requirements the request states, so none of them is lost on a long request.
-    """
+def hook_output(payload_text: str, *, root: Path | None = None, home: Path | None = None) -> dict:
+    """The JSON a Claude Code `UserPromptSubmit` hook prints; empty when there is no hint."""
     try:
         payload = json.loads(payload_text) if payload_text.strip() else {}
     except json.JSONDecodeError:
@@ -87,11 +83,6 @@ def hook_output(payload_text: str, *, root: Path | None = None, home: Path | Non
         return {}
     finally:
         skills._routing_index = original
-    parts = [hint] if hint else []
-    if spec:
-        items = extract_requirements(prompt)
-        if items:
-            parts.append(request_list(items))
-    if not parts:
+    if not hint:
         return {}
-    return {"hookSpecificOutput": {"hookEventName": "UserPromptSubmit", "additionalContext": "\n\n".join(parts)}}
+    return {"hookSpecificOutput": {"hookEventName": "UserPromptSubmit", "additionalContext": hint}}

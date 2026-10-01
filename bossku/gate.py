@@ -2,14 +2,12 @@
 
 Instructions that say "verify before you finish" work on strong models and are ignored by small ones, which
 write a file in one shot and stop, or paste the code into the chat and never touch a file. This `Stop` hook
-reads the session transcript and sends the agent back to work when it
-  - edited source files and ran nothing afterwards (once),
-  - was asked to change something, edited no file, and ended with code in its reply (once), or
-  - changed and ran its code but never checked the result against each requirement of a long request (once,
-    only when asked to: `--audit`).
-Each kind of reminder is limited and counted from the transcript itself, so the agent can never be held in a
-loop. The hook only reads; it never runs code, and it stays silent for questions, reviews, documentation edits
-and runs that did their job.
+reads the session transcript and, once per turn for each case, sends the agent back to work when it
+  - edited source files and ran nothing afterwards, or
+  - was asked to change something, edited no file, and ended with code in its reply.
+Each reminder is counted from the transcript itself, so the agent can never be held in a loop. The hook only
+reads; it never runs code, and it stays silent for questions, reviews, documentation edits and runs that did
+their job.
 """
 
 from __future__ import annotations
@@ -19,8 +17,6 @@ import os
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
-
-from bossku.spec import audit_reason, extract_requirements
 
 EDIT_TOOLS = {"Edit", "Write", "MultiEdit", "NotebookEdit", "apply_patch", "str_replace_editor", "create_file"}
 SHELL_TOOLS = {"Bash", "PowerShell", "shell", "run_terminal_cmd"}
@@ -48,10 +44,8 @@ WRITES_FILES = re.compile(r"(?<![<>=!\-])>>?\s*[^\s&|>]|\btee\b|\bsed\s+-\w*i|\b
 # How often each reminder may be sent in one turn, and the text that marks it in the transcript. A second
 # "run it now" reminder was tried on a small model: it answered with invented tool names, looped for 30+ turns and
 # passed no more often, so each kind is sent once.
-LIMITS = {"verify": 1, "paste": 1, "audit": 1}
-MARKERS = {"verify": "BosskuAI verify gate: you ", "paste": "BosskuAI verify gate: the request",
-           "audit": "BosskuAI requirement audit:"}
-AUDIT_MIN_ITEMS = 5
+LIMITS = {"verify": 1, "paste": 1}
+MARKERS = {"verify": "BosskuAI verify gate: you ", "paste": "BosskuAI verify gate: the request"}
 
 VERIFY_REASON = (
     "BosskuAI verify gate: you changed code but ran nothing afterwards. Before you finish, run the project's "
@@ -180,7 +174,7 @@ def shows_code_without_editing(transcript_lines) -> bool:
     return _pasted(turn.request, turn.calls, turn.reply)
 
 
-def decide(transcript_lines, *, audit: bool = False) -> tuple[str, str] | None:
+def decide(transcript_lines) -> tuple[str, str] | None:
     """The reminder to send now as (kind, reason), or None to let the agent finish."""
     turn = _scan(transcript_lines)
     unverified = _unverified(turn.calls)
@@ -188,15 +182,10 @@ def decide(transcript_lines, *, audit: bool = False) -> tuple[str, str] | None:
         return "verify", VERIFY_REASON
     if not unverified and turn.blocks["paste"] < LIMITS["paste"] and _pasted(turn.request, turn.calls, turn.reply):
         return "paste", PASTE_REASON
-    if (audit and os.environ.get("BOSSKU_AUDIT", "1") != "0" and not unverified and turn.blocks["audit"] < LIMITS["audit"]
-            and any(_is_code_edit(name, args) for name, args in turn.calls)):
-        items = extract_requirements(turn.request)
-        if len(items) >= AUDIT_MIN_ITEMS:
-            return "audit", audit_reason(items)
     return None
 
 
-def gate_output(payload_text: str, *, audit: bool = False) -> dict:
+def gate_output(payload_text: str) -> dict:
     """What a Claude Code `Stop` hook prints: nothing to let the agent finish, or a block with the reason."""
     if os.environ.get("BOSSKU_VERIFY_GATE", "1") == "0":
         return {}
@@ -213,5 +202,5 @@ def gate_output(payload_text: str, *, audit: bool = False) -> dict:
         return {}   # no transcript to judge by: fail open
     if payload.get("stop_hook_active") and sum(_scan(lines).blocks.values()) == 0:
         return {}   # a reminder was already sent but the transcript does not show it: never risk a loop
-    decision = decide(lines, audit=audit)
+    decision = decide(lines)
     return {"decision": "block", "reason": decision[1]} if decision else {}

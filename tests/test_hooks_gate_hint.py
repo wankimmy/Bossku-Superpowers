@@ -9,7 +9,6 @@ from unittest import mock
 
 from bossku.cli import main
 from bossku.gate import VERIFY_REASON, decide, gate_output, needs_verification, shows_code_without_editing
-from bossku.spec import extract_requirements
 from bossku.hint import build_hint, hook_output
 from bossku.hooks import (
     ensure_skill_hint_hook, ensure_verify_gate_hook, install_hooks, remove_skill_hint_hook, uninstall_hooks,
@@ -162,17 +161,7 @@ def feedback(reason):
     return user("Stop hook feedback:\n" + reason, meta=True)
 
 
-SPEC_REQUEST = (
-    "Create `fmt.py` with `format_size(n)`.\n"
-    "- It returns `0 B` for zero.\n"
-    "- It uses powers of 1024 and the units B, KiB, MiB, GiB.\n"
-    "- It rounds to one decimal place, half up, and drops a trailing `.0`.\n"
-    "- It raises `ValueError` for a negative number.\n"
-    "- It raises `TypeError` for a bool.\n"
-)
-
-
-class RepeatedAndAuditGateTests(unittest.TestCase):
+class RepeatedReminderTests(unittest.TestCase):
     def write(self, tmp, lines):
         path = Path(tmp) / "t.jsonl"
         path.write_text("\n".join(lines), encoding="utf-8")
@@ -204,86 +193,12 @@ class RepeatedAndAuditGateTests(unittest.TestCase):
             payload["stop_hook_active"] = True
             self.assertEqual(gate_output(json.dumps(payload)), {})
 
-    def test_a_recorded_reminder_with_the_stop_flag_set_lets_the_agent_finish_unless_another_kind_is_due(self):
+    def test_a_recorded_reminder_with_the_stop_flag_set_lets_the_agent_finish(self):
         with tempfile.TemporaryDirectory() as tmp:
             lines = [user("Fix it."), call("Edit", file_path="a.py"), feedback(VERIFY_REASON)]
             payload = json.loads(self.write(tmp, lines))
             payload["stop_hook_active"] = True
             self.assertEqual(gate_output(json.dumps(payload)), {})
-            done = [user(SPEC_REQUEST), call("Write", file_path="fmt.py"), call("Bash", command="python t.py"),
-                    feedback(VERIFY_REASON)]
-            payload = json.loads(self.write(tmp, done))
-            payload["stop_hook_active"] = True
-            self.assertIn("requirement audit", gate_output(json.dumps(payload), audit=True)["reason"])
-
-    def test_the_audit_lists_the_requirements_once_after_the_code_was_run(self):
-        done = [user(SPEC_REQUEST), call("Write", file_path="fmt.py"), call("Bash", command="python -m unittest")]
-        self.assertIsNone(decide(done))
-        kind, reason = decide(done, audit=True)
-        self.assertEqual(kind, "audit")
-        self.assertIn("1. ", reason)
-        self.assertIn("ValueError", reason)
-        self.assertIsNone(decide(done + [feedback(reason)], audit=True))
-
-    def test_the_audit_waits_for_the_code_to_be_run_and_skips_short_requests_and_non_code_work(self):
-        unrun = [user(SPEC_REQUEST), call("Write", file_path="fmt.py")]
-        self.assertEqual(decide(unrun, audit=True)[0], "verify")
-        short = [user("Fix the typo in the header."), call("Edit", file_path="a.py"), call("Bash", command="python a.py")]
-        self.assertIsNone(decide(short, audit=True))
-        docs = [user(SPEC_REQUEST), call("Edit", file_path="README.md")]
-        self.assertIsNone(decide(docs, audit=True))
-        question = [user(SPEC_REQUEST), call("Read", file_path="fmt.py")]
-        self.assertIsNone(decide(question, audit=True))
-
-    def test_the_audit_can_be_switched_off_on_its_own(self):
-        done = [user(SPEC_REQUEST), call("Write", file_path="fmt.py"), call("Bash", command="python t.py")]
-        with mock.patch.dict(os.environ, {"BOSSKU_AUDIT": "0"}):
-            self.assertIsNone(decide(done, audit=True))
-        with mock.patch.dict(os.environ, {"BOSSKU_VERIFY_GATE": "0"}):
-            with tempfile.TemporaryDirectory() as tmp:
-                self.assertEqual(gate_output(self.write(tmp, done), audit=True), {})
-
-    def test_the_audit_flag_reaches_the_hook_output(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            payload = self.write(tmp, [user(SPEC_REQUEST), call("Write", file_path="fmt.py"),
-                                       call("Bash", command="python -m unittest")])
-            self.assertEqual(gate_output(payload), {})
-            self.assertIn("requirement audit", gate_output(payload, audit=True)["reason"])
-
-
-class RequirementListTests(unittest.TestCase):
-    def test_bullets_and_requirement_sentences_become_numbered_items(self):
-        items = extract_requirements(SPEC_REQUEST)
-        self.assertGreaterEqual(len(items), 5)
-        self.assertIn("It raises `ValueError` for a negative number.", items)
-        self.assertTrue(any("half up" in item for item in items))
-
-    def test_short_or_vague_requests_get_no_list(self):
-        self.assertEqual(extract_requirements("Fix the typo in the header."), [])
-        self.assertEqual(extract_requirements("Thanks, that works."), [])
-        self.assertEqual(extract_requirements(""), [])
-
-    def test_code_fences_and_duplicates_do_not_pad_the_list(self):
-        text = SPEC_REQUEST + "\n```python\nassert format_size(0) == '0 B'\n```\n" + SPEC_REQUEST
-        items = extract_requirements(text)
-        self.assertEqual(len(items), len(set(item.lower() for item in items)))
-        self.assertFalse(any("assert" in item for item in items))
-
-    def test_long_items_are_cut_and_the_list_is_capped(self):
-        long_item = "- It must handle " + "very " * 80 + "long input."
-        items = extract_requirements("\n".join([long_item] + [f"- Rule number {n} must hold." for n in range(60)]))
-        self.assertLessEqual(len(items), 24)
-        self.assertLessEqual(len(items[0]), 221)
-        self.assertTrue(items[0].endswith("…"))
-
-    def test_the_hint_hook_adds_the_list_only_when_asked(self):
-        payload = json.dumps({"prompt": SPEC_REQUEST})
-        plain = hook_output(payload)
-        with_list = hook_output(payload, spec=True)
-        self.assertNotIn("requirement list", json.dumps(plain))
-        self.assertIn("requirement list", with_list["hookSpecificOutput"]["additionalContext"])
-        self.assertIn("ValueError", with_list["hookSpecificOutput"]["additionalContext"])
-        self.assertEqual(hook_output(json.dumps({"prompt": "thanks!"}), spec=True), {})
 
 
 class SkillHintTests(unittest.TestCase):
