@@ -14,7 +14,7 @@ Raw files are named after the check and the model: `coding-*` (17 coding test ta
 
 ## Where the numbers come from
 
-- **With BosskuAI:** commit `02ee2f2` (`02ee2f2212b4493970993839d8f41e0e9045394e`). It was committed before the final runs started, and the runs read a copy exported from that commit. The rows are tagged `after`.
+- **With BosskuAI:** commit `52cdc42` (`52cdc429ca8711855047f7fb5ee5ac7dbbb59713`). It was committed before the final runs started, and the runs read a copy exported from it. The commit was later rewritten once to take account and folder names out of saved rows from earlier tests; the build files (`bossku/`, `skills/`, `AGENTS.md`) are byte for byte what was run. The rows are tagged `after`.
 - **Without BosskuAI:** the rows tagged `baseline`, run at the same time on the same tasks.
 - **Previous release (internal check, not published in the README):** commit `8adea49`, run from a `git archive` copy. Only the session-overhead rows are tagged `before` in `raw/overhead.jsonl`.
 - **Agent:** Claude Code 2.1.284, headless, one run per row. Session overhead used Claude Haiku 4.5 and Claude Sonnet 5.5 with the author's own login; every other run used Ollama Cloud through its Anthropic-compatible API.
