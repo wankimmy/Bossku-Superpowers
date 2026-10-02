@@ -280,6 +280,18 @@ class ScrubTests(unittest.TestCase):
             saved = json.loads(target.read_text(encoding='utf-8'))
         self.assertEqual(saved['skill_files_read'], ['<home>/AppData/Local/Temp/x/.claude/skills/s/SKILL.md'])
 
+    def test_compact_keeps_one_row_per_finished_run_and_keeps_the_excluded_tries(self):
+        from scripts.benchmark_agent import cmd_compact
+        done = {'kind': 'task', 'arm': 'after', 'run_id': 'task.after.m.t.t1', 'passed': True}
+        rows = [dict(done, infrastructure_failure=True, passed=False), done, dict(done, passed=False)]
+        with tempfile.TemporaryDirectory() as tmp:
+            source, target = Path(tmp) / 'runs.jsonl', Path(tmp) / 'out.jsonl'
+            source.write_text(''.join(json.dumps(r) + '\n' for r in rows), encoding='utf-8')
+            cmd_compact(SimpleNamespace(runs=[str(source)], out=str(target), kind=None, arm=None))
+            saved = [json.loads(line) for line in target.read_text(encoding='utf-8').splitlines()]
+        self.assertEqual([r.get('infrastructure_failure', False) for r in saved], [True, False])
+        self.assertTrue(saved[1]['passed'])
+
     def test_ordinary_text_is_left_alone(self):
         from scripts.benchmark_agent import scrub
         text = 'Ran 3 tests in 0.01s; see src/app/main.py and /tmp/x'

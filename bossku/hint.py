@@ -13,6 +13,7 @@ from pathlib import Path
 
 import bossku.skills as skills
 from bossku.index import load_index
+from bossku.rules import prompt_reminder, states_rule
 from bossku.skills import NOT_INSTALLED, locate_skill, select_skill_stack
 
 MIN_WORDS = 5            # a short ping ("thanks", "run the tests") needs no skill
@@ -80,9 +81,12 @@ def hook_output(payload_text: str, *, root: Path | None = None, home: Path | Non
     try:
         hint = build_hint(prompt, root=root, home=home)
     except Exception:  # noqa: BLE001 - a hint is a convenience; it must never break the user's prompt
-        return {}
+        hint = None
     finally:
         skills._routing_index = original
-    if not hint:
+    parts = [hint] if hint else []
+    if states_rule(prompt):
+        parts.append(prompt_reminder(str(payload.get("cwd") or "")))
+    if not parts:
         return {}
-    return {"hookSpecificOutput": {"hookEventName": "UserPromptSubmit", "additionalContext": hint}}
+    return {"hookSpecificOutput": {"hookEventName": "UserPromptSubmit", "additionalContext": "\n".join(parts)}}

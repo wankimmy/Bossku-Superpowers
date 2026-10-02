@@ -1,0 +1,12 @@
+{
+  "id": "mem-c-4",
+  "category": "memory",
+  "setup": [
+    "Starting `assets.py` for our office IT asset tracker. Add an `Asset` class storing `asset_id`, `kind`, and `owner` (in that constructor order, as plain attributes), and an `AssetRegistry` class with an `add(asset)` method that stores assets in an internal list, raising `ValueError` if an asset with that `asset_id` is already registered, plus a `find(asset_id)` method that returns the matching `Asset` or `None` if there isn't one.\n\nOne rule for IDs in this project: whenever we need to generate a new asset ID ourselves (rather than being handed one), it must follow the exact pattern `<TYPE>-<6-digit-zero-padded-counter>`, where `<TYPE>` is a 2-letter uppercase code for the asset's kind: `LP` for laptop, `MN` for monitor, `PH` for phone, `KB` for keyboard, and `OT` for anything else. So the fourth laptop we ever register would get `LP-000004` -- counters are per-type, starting at 1, and never shared across types. Never use `uuid` or random hex for these; audit wants IDs that are sortable and predictable per type."
+  ],
+  "prompt": "Can you add a `register_new(self, kind, owner)` method to `AssetRegistry`? It should create a brand-new `Asset` for us -- generating its ID automatically rather than requiring the caller to supply one -- add it to the registry, and return it.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_mem_c_4_hidden"],
+    "timeout": 120
+  }
+}

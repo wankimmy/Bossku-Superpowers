@@ -1,0 +1,12 @@
+{
+  "id": "mem-c-3",
+  "category": "memory",
+  "setup": [
+    "Let's start `settings.py` for our internal admin web app's feature flags. Add a `load_settings(path)` function that reads a simple config text file -- one `key=value` per line, blank lines and lines starting with `#` ignored, leading/trailing whitespace around key and value stripped -- and returns a dict of `{key: value}` with every value kept as a plain string.\n\nOne rule for this project: our frontend is a separate JS codebase whose linter rejects snake_case JSON keys, so any dict we build here that's meant to be serialized as JSON and handed to the frontend (basically, any API response body) must use camelCase keys instead -- e.g. `maxRetries`, not `max_retries`. Keep all our own internal Python variables and dict keys snake_case as usual; only convert to camelCase right at the boundary, in whatever function actually builds the response dict that gets serialized, using one shared helper so we're not hand-converting strings all over the place."
+  ],
+  "prompt": "Can you add a `settings_api_response(settings)` function to settings.py? It should take the dict returned by `load_settings` and return the dict our `/api/settings` endpoint sends back to the frontend as JSON -- it needs to include every key from the settings dict, plus a `source` key set to the fixed string 'file'.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_mem_c_3_hidden"],
+    "timeout": 120
+  }
+}

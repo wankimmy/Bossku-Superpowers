@@ -1,0 +1,12 @@
+{
+  "id": "mem-c-2",
+  "category": "memory",
+  "setup": [
+    "Let's start a small CLI tool, `pantry.py`, for tracking what's in the pantry before it expires. Using `argparse` with subcommands, add an `add` subcommand with `--name` and `--expires` (a date string like `2026-10-15`) that appends `{\"name\": ..., \"expires\": ...}` to a JSON list stored in `pantry.json` in the current directory (creating the file if it doesn't exist yet), then just prints a single confirmation line `Added <name>`.\n\nOne rule for this CLI from now on: any subcommand we add that prints a LIST of multiple items (not just a one-line confirmation like `add`'s) must support a `--json` flag. When `--json` is passed, instead of the normal human-readable output it must print exactly one line to stdout: a JSON array of objects, with each object's keys in alphabetical order. Our nightly CI job snapshot-diffs that JSON line byte-for-byte to catch regressions, so the key order has to be stable."
+  ],
+  "prompt": "Can you add an `expiring` subcommand to pantry.py? Given `--within-days N`, it should read pantry.json and print every item that expires within N days from today (inclusive), soonest first.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_mem_c_2_hidden"],
+    "timeout": 120
+  }
+}

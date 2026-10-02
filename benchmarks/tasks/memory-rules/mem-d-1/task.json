@@ -1,0 +1,12 @@
+{
+  "id": "mem-d-1",
+  "category": "memory",
+  "setup": [
+    "Let's build out `logtool.py` for parsing our app's log lines. Add `parse_line(line)` that parses a well-formed `\"LEVEL TIMESTAMP MESSAGE\"` line (fields separated by single spaces, message can contain spaces) into a dict `{\"level\": ..., \"timestamp\": ..., \"message\": ...}`. Add `filter_by_level(records, level)` that returns the records whose `level` matches exactly, in the same order.\n\nOne rule for this package going forward: any function here that can fail to process something (a line that's missing a piece, uses a level we don't recognize, whatever) must never raise an exception and must never just return `None` for the failure case. Instead it returns a 2-tuple `(record, error)`: on success, `record` is the parsed dict and `error` is `None`; on failure, `record` is `None` and `error` is a short lowercase string describing what went wrong. Exactly one side of the tuple is ever `None` -- never both, never neither. We run this over a big batch of mixed-quality log files and the batch loop just does `record, error = ...` and checks `error` -- no try/except anywhere in that loop -- so anything that raises kills the whole batch instead of just the one bad line."
+  ],
+  "prompt": "Real log files are messier than our test fixtures -- some lines are missing the message, use a level we don't recognize, or are missing a field entirely. Add `parse_lines_safely(lines)` to `logtool.py` that goes through a whole batch of raw lines and gives back a result for every single one of them, in order, even the malformed ones, without the batch blowing up over one bad line. Also add `summarize(lines)` that runs a batch through and returns a dict with `total`, `ok`, and `failed` counts.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_mem_d_1_hidden"],
+    "timeout": 120
+  }
+}

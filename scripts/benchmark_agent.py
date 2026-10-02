@@ -1215,12 +1215,17 @@ def scrub(text: str) -> str:
 def cmd_compact(args) -> int:
     """Copy run rows into a file small enough to commit: same numbers, shorter free text, no account or folder names."""
     kept = 0
+    seen: set[str] = set()   # two processes started on the same folder can write the same run twice: keep the first
     with Path(args.out).open('w', encoding='utf-8', newline='\n') as out:
         for path in args.runs:
             for line in Path(path).read_text(encoding='utf-8').splitlines():
                 if not line.strip():
                     continue
                 row = json.loads(line)
+                if not excluded(row):
+                    if row.get('run_id') in seen:
+                        continue
+                    seen.add(row.get('run_id'))
                 if args.kind and row.get('kind') not in args.kind:
                     continue
                 if args.arm and row.get('arm') not in args.arm:

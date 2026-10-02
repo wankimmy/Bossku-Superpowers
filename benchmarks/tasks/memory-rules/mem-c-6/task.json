@@ -1,0 +1,12 @@
+{
+  "id": "mem-c-6",
+  "category": "memory",
+  "setup": [
+    "Starting `mailmerge.py` for our newsletter tool. Add a `load_template(path)` function that just reads a template text file and returns its raw contents as a string, unchanged -- a plain file read, no substitution logic yet.\n\nOne rule for templates in this project: placeholders always use double curly braces, Mustache-style, like `{{first_name}}` -- never Python's `.format()` single-brace style and never an f-string baked into the template text. Marketing writes and edits these templates by hand in a plain text editor, and their content sometimes contains a literal stray `{` or `}` (like when quoting a JSON example in a newsletter), so whatever renders these templates needs to leave single braces alone and only treat the doubled `{{...}}` form as a real placeholder."
+  ],
+  "prompt": "Can you add a `render_template(template_text, values)` function to mailmerge.py? It should take a template string and a dict of values, and substitute each placeholder in the template with the matching value from the dict. If a placeholder's name isn't in the dict, just leave that placeholder text in place unchanged rather than crashing.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_mem_c_6_hidden"],
+    "timeout": 120
+  }
+}

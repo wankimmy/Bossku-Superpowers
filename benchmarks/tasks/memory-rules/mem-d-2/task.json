@@ -1,0 +1,12 @@
+{
+  "id": "mem-d-2",
+  "category": "memory",
+  "setup": [
+    "Let's build out `pipeline.py`. Add `read_csv_rows(text)` that takes CSV text (first line is the header, comma-separated, no quoted fields needed) and returns a list of dicts, one per data row, mapping header names to that row's string values, in order. Add `rows_to_json(rows)` that returns a compact JSON string for a list of row dicts.\n\nOne rule for this project going forward: any new *row transform* we add -- something that takes a single row dict and hands back a modified row dict -- does not get added as a function inside `pipeline.py` itself. Instead it goes in its own file under a new `transforms/` package: one transform per file, exposing a single function `apply(row)`, and its name gets appended to a `TRANSFORM_ORDER` list that lives in `transforms/__init__.py`. We're about to let ops toggle individual transforms on/off from a config file by name, and the toggler only looks inside `transforms/`, matched against `TRANSFORM_ORDER` -- a transform function living anywhere else just never gets found."
+  ],
+  "prompt": "Add two cleanups to the pipeline: one that strips leading/trailing whitespace from every string value in a row, and one that drops any key whose value is an empty string. Wire both into the pipeline so every row coming out of `read_csv_rows` has both cleanups applied, in that order (strip first, then drop empties), before it's handed back.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_mem_d_2_hidden"],
+    "timeout": 120
+  }
+}

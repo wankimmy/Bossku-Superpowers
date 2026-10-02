@@ -1,0 +1,12 @@
+{
+  "id": "mem-d-4",
+  "category": "memory",
+  "setup": [
+    "Let's build out `templating.py`. Add `render(template, context)` that replaces every `{{ name }}` placeholder in `template` with `str(context[name])` (tolerate extra whitespace around the name inside the braces), raising `KeyError` if a placeholder's name isn't in `context`.\n\nOne rule for this module, and really anything we build from here on: no function in this codebase is allowed to mutate a dict or list that was passed in as an argument -- always copy it before changing anything, and hand back new objects instead of mutating in place. We cache and reuse the exact same context dict object across many render calls for performance, so a renderer (or anything built on top of it) that mutates that dict in place has corrupted shared state before and silently leaked one page's data into another page's render."
+  ],
+  "prompt": "Two things for the template renderer. First, support filters: a placeholder can now look like `{{ name | upper }}` or `{{ name | default:Guest }}` -- support at least `upper`, `lower`, and `default:<fallback>` (use the fallback if the key is missing from context, or if its value is an empty string), applying filters left-to-right when more than one is chained with more `|`. Second, add `render_many(template, contexts)` that renders the same template once for each context dict in the list `contexts`, in order, and before rendering each one, stamp that context with its own position in the list under the key `_index` (0-based) so templates can show numbering -- return the list of rendered strings.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_mem_d_4_hidden"],
+    "timeout": 120
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "mem-c-5",
+  "category": "memory",
+  "setup": [
+    "Starting `snapshot.py` for our data-pipeline's run cache. Add a `RunState` class that just holds a `run_id` and a `results` dict as plain attributes (constructor order `run_id, results`), and a `make_summary(run_state)` function that returns a dict `{\"run_id\": run_state.run_id, \"result_count\": len(run_state.results)}`. No disk I/O yet, just these in-memory pieces.\n\nHeads up for later: whenever this project writes one of these run states to disk as a cache/snapshot file, it has to (a) use the exact filename pattern `<run_id>.snapshot.json`, never just `<run_id>.json`, because ops's cleanup cron deletes anything matching `*.snapshot.json` older than 30 days and nothing else, and (b) write it atomically -- write to a temp file in the same directory first, then `os.replace` it into the final path -- never open the final path directly for writing, since a crash mid-write has corrupted a teammate's cache file before."
+  ],
+  "prompt": "Can you add `save_run_state(run_state, directory)` and `load_run_state(run_id, directory)` functions to snapshot.py? `save_run_state` should persist a run state (its `run_id` and `results`) as JSON into the given directory, and `load_run_state` should read it back by `run_id` from that directory and return a reconstructed `RunState`.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_mem_c_5_hidden"],
+    "timeout": 120
+  }
+}

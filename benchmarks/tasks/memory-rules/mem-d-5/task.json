@@ -1,0 +1,12 @@
+{
+  "id": "mem-d-5",
+  "category": "memory",
+  "setup": [
+    "Let's extend `units.py`. Add `convert_many(values, from_unit, to_unit)` that converts a list of values at once, in order. Add `round_result(value, ndigits=2)` that rounds a converted value for display, using ordinary rounding.\n\nOne rule for this module going forward: whenever we add support for a whole new *category* of units (not just another unit within the existing length set -- something like weight or volume), it does not get merged into the existing `UNIT_FACTORS` table. Instead, it gets its own factor table in `units.py`, named `<CATEGORY>_FACTORS` in SCREAMING_SNAKE_CASE (so a category called `weight` gets exactly `WEIGHT_FACTORS`), and it needs its own dedicated test module at `tests/test_<category>_units.py` (so `tests/test_weight_units.py` for weight) rather than being folded into the existing unit tests. We're about to split unit categories into independently-loadable plugin modules next quarter, and our plugin loader discovers a category purely by finding a `*_FACTORS` table alongside a matching `tests/test_*_units.py` file -- anything merged into the old table or tested in the old file just won't be found."
+  ],
+  "prompt": "Let's add support for weight conversions -- kilograms (`kg`), pounds (`lb`), and ounces (`oz`). People should be able to call the existing `convert` (and `convert_many`) with these new weight units exactly like they do for the length ones already there, converting between any pair of them.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_mem_d_5_hidden"],
+    "timeout": 120
+  }
+}

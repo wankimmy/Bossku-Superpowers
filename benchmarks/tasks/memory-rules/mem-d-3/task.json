@@ -1,0 +1,12 @@
+{
+  "id": "mem-d-3",
+  "category": "memory",
+  "setup": [
+    "Let's build out `scheduler.py` for a tiny in-memory job scheduler. Add a `Job` class storing `job_id`, `name`, and `run_at` (just an opaque integer tick -- bigger means later, no real wall clock involved). Add a `Scheduler` class with: `add_job(job)`; `due_jobs(now)`, returning every job with `run_at <= now`, sorted earliest-first; `cancel_job(job_id)`, removing it (a no-op if it isn't there); and `next_job(now)`, returning the single job with the smallest `run_at` among those strictly after `now`, or `None` if there isn't one.\n\nOne rule for this module going forward: anywhere we add a parameter, attribute, or return value that represents a relative span of time -- a delay, interval, timeout, retry wait, anything that's a *duration* rather than a point in time like `run_at` -- it has to be a plain `int` counted in whole milliseconds, and its name has to end in `_ms` (like `interval_ms`, `retry_delay_ms`), never a bare `delay`/`interval`/`seconds`, and never a float. We had an incident once where a float number of seconds got passed through a couple of layers and silently turned a 3-second retry into a multi-hour one from an accidental unit mix-up; spelling `_ms` into every name makes that particular mistake impossible to introduce by accident."
+  ],
+  "prompt": "Let's add recurring jobs and retry support to the scheduler. Add a method `add_recurring_job(job, ...)` to `Scheduler`: it registers the job like `add_job` does, plus it needs an extra parameter telling it how long to wait before firing the job again each time -- add whatever parameter makes sense for that. After the job fires, it should automatically be rescheduled that far out from when it fired. Add a method `run_due(now)` to `Scheduler` that finds every job (recurring or not) due at or before `now`, fires them in due order (earliest first) -- removing the one-off ones once fired, and rescheduling the recurring ones by their wait-time -- and returns the list of jobs that fired. Finally add a method `mark_failed(job_id, ...)` to `Scheduler` that marks a specific job as having just failed, rescheduling that exact job to fire again after some wait -- again, add whatever extra parameter you need for that -- without otherwise changing anything else about the job.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_mem_d_3_hidden"],
+    "timeout": 120
+  }
+}

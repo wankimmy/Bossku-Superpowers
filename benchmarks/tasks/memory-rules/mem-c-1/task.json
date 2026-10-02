@@ -1,0 +1,12 @@
+{
+  "id": "mem-c-1",
+  "category": "memory",
+  "setup": [
+    "Let's start a small `recipes.py` module for a home-cooking app. Add a `scale_recipe(ingredients, factor)` function: `ingredients` is a list of `(name, amount)` tuples and `factor` is a positive number, and it should return a new list of `(name, amount * factor)` tuples, leaving the input list unchanged.\n\nOne rule for this module going forward: any function we add here that can fail because of bad input -- like an unknown unit or whatever else comes up -- must never raise an exception for that. Instead it should return a 2-tuple `(result, error)`: on success, `error` is `None` and `result` is the real value; on failure, `result` is `None` and `error` is a short string describing what went wrong. Stick to that `(result, error)` convention for every function like that from now on -- the UI layer calls these directly and shows `error` in a toast if it isn't `None`, and an uncaught exception there crashes the whole screen for the home cook using the app."
+  ],
+  "prompt": "Can you add a `convert_unit(amount, from_unit, to_unit)` function to recipes.py that converts common cooking volume amounts between the units 'cup', 'tbsp', 'tsp', and 'ml'? Also add `total_volume_ml(ingredients_with_units)`, which takes a list of `(name, amount, unit)` tuples and returns the combined volume in milliliters.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_mem_c_1_hidden"],
+    "timeout": 120
+  }
+}

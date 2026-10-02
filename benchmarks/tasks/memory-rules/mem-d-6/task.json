@@ -1,0 +1,12 @@
+{
+  "id": "mem-d-6",
+  "category": "memory",
+  "setup": [
+    "Let's add a couple of helpers to `ratelimiter.py` alongside `TokenBucket`. Add `peek(bucket)` -- a read-only helper that returns the bucket's current token count without consuming any. Add `reset(bucket)` -- refills a bucket all the way back to its capacity immediately.\n\nOne rule for this package going forward: whenever something in here needs to signal that it's being used wrong -- bad arguments, invalid config, calling something in a state it doesn't support -- it has to raise a dedicated exception from a new `errors.py`, never a bare built-in like `ValueError`/`TypeError`/`KeyError`. Specifically: define a root `RateLimiterError(Exception)` in `errors.py`, and give every more specific problem its own subclass of it in that same file, named `<Problem>Error` (so a bad capacity would be `InvalidCapacityError`). We're about to reuse this limiter as a library inside three other services, and their shared error-handling middleware only catches `RateLimiterError` to turn it into a clean 429 response -- a stray `ValueError` slips right past that middleware and crashes the request with a raw 500."
+  ],
+  "prompt": "Let's add multi-key support. Add a `KeyedRateLimiter` class to `ratelimiter.py` that keeps one independent `TokenBucket` per string key, using the same `capacity` for every key by default, creating a bucket for a key lazily the first time that key is used. Give it `allow(key, cost=1)`, behaving like the underlying bucket's `allow` but scoped to that key. Also give it `set_capacity(key, capacity)`, letting you register a different capacity for one specific key before that key has ever been used -- if someone calls it for a key that's already got a bucket, or passes a `capacity` that isn't a positive number, that should be rejected instead of quietly doing the wrong thing.",
+  "grader": {
+    "cmd": ["python", "-m", "unittest", "-v", "test_mem_d_6_hidden"],
+    "timeout": 120
+  }
+}

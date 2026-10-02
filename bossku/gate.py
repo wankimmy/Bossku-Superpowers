@@ -18,6 +18,8 @@ import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from bossku.rules import states_rule, stop_reminder
+
 EDIT_TOOLS = {"Edit", "Write", "MultiEdit", "NotebookEdit", "apply_patch", "str_replace_editor", "create_file"}
 SHELL_TOOLS = {"Bash", "PowerShell", "shell", "run_terminal_cmd"}
 # Prose and config are not behavior: editing only these does not call for running anything.
@@ -44,8 +46,9 @@ WRITES_FILES = re.compile(r"(?<![<>=!\-])>>?\s*[^\s&|>]|\btee\b|\bsed\s+-\w*i|\b
 # How often each reminder may be sent in one turn, and the text that marks it in the transcript. A second
 # "run it now" reminder was tried on a small model: it answered with invented tool names, looped for 30+ turns and
 # passed no more often, so each kind is sent once.
-LIMITS = {"verify": 1, "paste": 1}
-MARKERS = {"verify": "BosskuAI verify gate: you ", "paste": "BosskuAI verify gate: the request"}
+LIMITS = {"verify": 1, "paste": 1, "rule": 1}
+MARKERS = {"verify": "BosskuAI verify gate: you ", "paste": "BosskuAI verify gate: the request",
+           "rule": "BosskuAI memory gate: "}
 
 VERIFY_REASON = (
     "BosskuAI verify gate: you changed code but have not run anything yet. Do not describe a test or its result: "
@@ -174,7 +177,11 @@ def shows_code_without_editing(transcript_lines) -> bool:
     return _pasted(turn.request, turn.calls, turn.reply)
 
 
-def decide(transcript_lines) -> tuple[str, str] | None:
+def _saved_a_note(calls) -> bool:
+    return any(name in SHELL_TOOLS and "bossku remember" in str(args.get("command", "")) for name, args in calls)
+
+
+def decide(transcript_lines, project: str = "") -> tuple[str, str] | None:
     """The reminder to send now as (kind, reason), or None to let the agent finish."""
     turn = _scan(transcript_lines)
     unverified = _unverified(turn.calls)
@@ -182,6 +189,9 @@ def decide(transcript_lines) -> tuple[str, str] | None:
         return "verify", VERIFY_REASON
     if not unverified and turn.blocks["paste"] < LIMITS["paste"] and _pasted(turn.request, turn.calls, turn.reply):
         return "paste", PASTE_REASON
+    if (not unverified and turn.blocks["rule"] < LIMITS["rule"] and states_rule(turn.request)
+            and not _saved_a_note(turn.calls)):
+        return "rule", stop_reminder(project)
     return None
 
 
@@ -202,5 +212,5 @@ def gate_output(payload_text: str) -> dict:
         return {}   # no transcript to judge by: fail open
     if payload.get("stop_hook_active") and sum(_scan(lines).blocks.values()) == 0:
         return {}   # a reminder was already sent but the transcript does not show it: never risk a loop
-    decision = decide(lines)
+    decision = decide(lines, str(payload.get("cwd") or ""))
     return {"decision": "block", "reason": decision[1]} if decision else {}
