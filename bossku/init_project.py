@@ -26,9 +26,9 @@ PROJECT_BLOCK = (
     "Add complementary skills only for distinct parts of the request, never two that do the same job. "
     'If none fits a non-trivial job, run `bossku skills find "<task>"` once. Skip skills for one-line tasks.\n'
     "Memory: project notes are in your context at session start (or run `bossku memory-brief --project "
-    "<project-root>` once). Automatically save, before the final reply, only what the code and git history "
-    "cannot tell a future session: a rule or decision someone stated (with its reason), a plan for later, or a "
-    "gotcha that cost you time; never a summary of what you built or changed. Save it with "
+    "<project-root>` once). Automatically save, before the final reply, every rule or decision the user "
+    "states (with its reason), plus a plan for later or a gotcha that cost you time; never a summary of what you "
+    "built or changed, and not what the code already shows. Save it with "
     '`bossku remember --project <project-root> --kind decision|plan|learning|project "<note>"`; one call is '
     "enough and most tasks save nothing. Use the commands, not the files: never open or edit .bossku/ or "
     "~/.bosskuai/ by hand, never save secrets, and never write .bossku/memory when memory_storage is obsidian.\n"

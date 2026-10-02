@@ -82,8 +82,8 @@ AUTO_MEMORY_BLOCK = """<!-- bosskuai:memory:start -->
 
 Get the project notes with `bossku memory-brief --project <project-root>` unless they are already in your
 context (`bossku memory-path` names the folder; handoff.md lives there). Automatically save, before the final
-reply, only what the code and git history cannot tell a future session: a rule or decision someone stated (with
-its reason), a plan for later, or a gotcha that cost you time; never a summary of what you built or changed. Use
+reply, every rule or decision the user states (with its reason), plus a plan for later or a gotcha that cost you
+time; never a summary of what you built or changed, and not what the code already shows. Use
 `bossku remember --project <project-root> --kind decision|plan|learning|project "<note>"`; one call is enough.
 Skip routine work, duplicates, secrets, raw prompts and transcripts. With Obsidian storage
 (~/.bosskuai/config.json) never write .bossku/memory or repo sync files; if the vault is unavailable, report
