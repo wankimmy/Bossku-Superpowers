@@ -8,6 +8,7 @@ choice is made on the request itself instead of on a skill list the agent has al
 from __future__ import annotations
 
 import json
+import os
 import re
 from pathlib import Path
 
@@ -85,8 +86,10 @@ def hook_output(payload_text: str, *, root: Path | None = None, home: Path | Non
     finally:
         skills._routing_index = original
     parts = [hint] if hint else []
+    cwd = payload.get("cwd")
+    project = os.environ.get("CLAUDE_PROJECT_DIR") or (cwd if isinstance(cwd, str) else "")
     if states_rule(prompt):
-        parts.append(prompt_reminder(str(payload.get("cwd") or "")))
+        parts.append(prompt_reminder(project))
     if not parts:
         return {}
     return {"hookSpecificOutput": {"hookEventName": "UserPromptSubmit", "additionalContext": "\n".join(parts)}}

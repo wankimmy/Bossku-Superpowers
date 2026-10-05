@@ -298,6 +298,26 @@ class ScrubTests(unittest.TestCase):
         self.assertEqual(scrub(text), text)
 
 
+class FindClaudeTests(unittest.TestCase):
+    def locate(self, *relative):
+        from scripts.benchmark_agent import find_claude
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp) / 'Claude' / 'claude-code'
+            for rel in relative:
+                (base / rel).parent.mkdir(parents=True)
+                (base / rel).write_text('')
+            with mock.patch.dict('os.environ', {'APPDATA': tmp}), mock.patch('shutil.which', return_value=None):
+                return Path(find_claude(None)).relative_to(base).as_posix()
+
+    def test_the_newest_version_wins_in_both_folder_layouts(self):
+        self.assertEqual(self.locate('2.1.9/claude.exe', '2.1.10/claude.exe'), '2.1.10/claude.exe')
+        self.assertEqual(self.locate('2.1.284/aaa/claude.exe', '2.1.286/bbb/claude.exe'), '2.1.286/bbb/claude.exe')
+
+    def test_an_explicit_path_is_used_as_given(self):
+        from scripts.benchmark_agent import find_claude
+        self.assertEqual(find_claude('C:/tools/claude.exe'), 'C:/tools/claude.exe')
+
+
 if __name__ == '__main__':
     unittest.main()
 

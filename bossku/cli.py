@@ -265,15 +265,16 @@ def main(argv: list[str] | None = None) -> int:
             elif args.skills_cmd == "audit":
                 return _skill_audit(root, as_json=args.as_json)
             return 0
-        if args.command == "verify-gate":
-            decision = gate_output("" if sys.stdin.isatty() else sys.stdin.read())
-            if decision:
-                print(json.dumps(decision))
-            return 0
-        if args.command == "skill-hint":
-            payload = hook_output("" if sys.stdin.isatty() else sys.stdin.read(), root=root, home=home)
-            if payload:
-                print(json.dumps(payload))
+        if args.command in ("verify-gate", "skill-hint"):
+            # Hooks never fail the user's session: exit code 2 would block the prompt or the stop, so any error is silent.
+            try:
+                text = _hook_stdin()
+                result = (gate_output(text) if args.command == "verify-gate"
+                          else hook_output(text, root=root, home=home))
+                if result:
+                    print(json.dumps(result))
+            except Exception:  # noqa: BLE001
+                pass
             return 0
         if args.command == "validate":
             errors = validate_repo(root)
@@ -298,6 +299,14 @@ def main(argv: list[str] | None = None) -> int:
         print(f"error: {exc}", file=sys.stderr)
         return 2
     return 0
+
+
+def _hook_stdin() -> str:
+    """The hook payload as UTF-8 text: a Windows pipe would otherwise decode it with the console code page."""
+    if sys.stdin.isatty():
+        return ""
+    raw = getattr(sys.stdin, "buffer", None)
+    return raw.read().decode("utf-8", errors="replace") if raw is not None else sys.stdin.read()
 
 
 def _stocktake(root: Path | None, *, strict: bool = False, as_json: bool = False) -> int:

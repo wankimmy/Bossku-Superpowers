@@ -83,7 +83,8 @@ def _events(lines):
 
 
 def _text_of(event: dict) -> str:
-    content = (event.get("message") or {}).get("content")
+    message = event.get("message")
+    content = message.get("content") if isinstance(message, dict) else None
     if isinstance(content, str):
         return content
     if isinstance(content, list):
@@ -91,11 +92,34 @@ def _text_of(event: dict) -> str:
     return ""
 
 
+# Lines the app writes as "user" turns that no person typed: they must not replace the request being judged.
+_NOT_TYPED = ("<ci-monitor-event>", "<task-notification>", "<local-command", "<system-reminder>")
+
+
+def _typed_by_a_person(event: dict) -> bool:
+    origin = event.get("origin")
+    if isinstance(origin, dict) and origin.get("kind") not in (None, "human"):
+        return False
+    return not event.get("isCompactSummary")
+
+
 def _prompt_text(event: dict) -> str:
-    """The text of a prompt the user typed; empty for tool results and for context the hooks added."""
-    if event.get("type") != "user" or event.get("isMeta") or event.get("isSidechain"):
+    """The text of a prompt the user typed; empty for tool results, for context the hooks added and for app events."""
+    if event.get("type") != "user" or event.get("isMeta") or event.get("isSidechain") or not _typed_by_a_person(event):
         return ""
-    return _text_of(event)
+    text = _text_of(event)
+    return "" if text.lstrip().startswith(_NOT_TYPED) else text
+
+
+def _typed_while_working(event: dict) -> str:
+    """A message the user sent while the agent was busy is stored as a queued command, not as a user turn."""
+    attachment = event.get("attachment")
+    origin = event.get("origin")
+    if (isinstance(attachment, dict) and attachment.get("type") == "queued_command"
+            and isinstance(origin, dict) and origin.get("kind") == "human"
+            and not event.get("isSidechain") and isinstance(attachment.get("prompt"), str)):
+        return "" if attachment["prompt"].lstrip().startswith(_NOT_TYPED) else attachment["prompt"]
+    return ""
 
 
 def _tool_calls(lines):
@@ -106,7 +130,13 @@ def _tool_calls(lines):
         content = message.get("content")
         for block in content if isinstance(content, list) else []:
             if isinstance(block, dict) and block.get("type") == "tool_use":
-                yield block.get("name", ""), block.get("input") or {}
+                yield _call_of(block)
+
+
+def _call_of(block: dict) -> tuple[str, dict]:
+    """(tool name, arguments) with both forced to the expected types, whatever the transcript holds."""
+    args = block.get("input")
+    return str(block.get("name") or ""), args if isinstance(args, dict) else {}
 
 
 def _is_code_edit(name: str, args: dict) -> bool:
@@ -147,6 +177,10 @@ def _scan(lines) -> Turn:
         if text.strip():
             turn = Turn(request=text)   # a new turn: only what follows it counts
             continue
+        queued = _typed_while_working(event)
+        if queued.strip():
+            turn.request += "\n" + queued   # said mid-turn: it belongs to the turn that is running
+            continue
         if event.get("type") == "user" and event.get("isMeta"):
             feedback = _text_of(event)
             for kind, marker in MARKERS.items():
@@ -160,7 +194,7 @@ def _scan(lines) -> Turn:
             if not isinstance(block, dict):
                 continue
             if block.get("type") == "tool_use":
-                turn.calls.append((block.get("name", ""), block.get("input") or {}))
+                turn.calls.append(_call_of(block))
             elif block.get("type") == "text" and str(block.get("text", "")).strip():
                 turn.reply = str(block["text"])
     return turn
@@ -177,8 +211,19 @@ def shows_code_without_editing(transcript_lines) -> bool:
     return _pasted(turn.request, turn.calls, turn.reply)
 
 
+# A real save: `bossku remember ...` (also bossku.exe or a path to it), not a search for the text and not the placeholder.
+SAVES_A_NOTE = re.compile(r"(?:^|[\s;&|(`'\"/\\])bossku(?:\.exe)?['\"]?\s+remember\b", re.IGNORECASE)
+READS_ONLY = re.compile(r"^\s*(?:grep|egrep|rg|cat|echo|printf|head|tail|less|more|type|findstr|ls|dir)\b", re.IGNORECASE)
+PLACEHOLDER = "<the rule as the user stated it"
+
+
 def _saved_a_note(calls) -> bool:
-    return any(name in SHELL_TOOLS and "bossku remember" in str(args.get("command", "")) for name, args in calls)
+    for name, args in calls:
+        command = str(args.get("command", ""))
+        if (name in SHELL_TOOLS and SAVES_A_NOTE.search(command) and PLACEHOLDER not in command
+                and not READS_ONLY.search(command)):
+            return True
+    return False
 
 
 def decide(transcript_lines, project: str = "") -> tuple[str, str] | None:
@@ -189,7 +234,9 @@ def decide(transcript_lines, project: str = "") -> tuple[str, str] | None:
         return "verify", VERIFY_REASON
     if not unverified and turn.blocks["paste"] < LIMITS["paste"] and _pasted(turn.request, turn.calls, turn.reply):
         return "paste", PASTE_REASON
-    if (not unverified and turn.blocks["rule"] < LIMITS["rule"] and states_rule(turn.request)
+    # A verify reminder that was sent but could not be met (a stylesheet has nothing to run) must not hide the rule one.
+    verify_settled = not unverified or turn.blocks["verify"] >= LIMITS["verify"]
+    if (verify_settled and turn.blocks["rule"] < LIMITS["rule"] and states_rule(turn.request)
             and not _saved_a_note(turn.calls)):
         return "rule", stop_reminder(project)
     return None
@@ -201,16 +248,15 @@ def gate_output(payload_text: str) -> dict:
         return {}
     try:
         payload = json.loads(payload_text) if payload_text.strip() else {}
-    except json.JSONDecodeError:
+        if not isinstance(payload, dict):
+            return {}
+        path = payload.get("transcript_path")
+        lines = Path(path).read_text(encoding="utf-8", errors="replace").splitlines() if isinstance(path, str) and path else []
+        if payload.get("stop_hook_active") and sum(_scan(lines).blocks.values()) == 0:
+            return {}   # a reminder was already sent but the transcript does not show it: never risk a loop
+        cwd = payload.get("cwd")
+        project = os.environ.get("CLAUDE_PROJECT_DIR") or (cwd if isinstance(cwd, str) else "")
+        decision = decide(lines, project)
+    except Exception:  # noqa: BLE001 - a reminder is a convenience: whatever goes wrong, let the agent finish
         return {}
-    if not isinstance(payload, dict):
-        return {}
-    path = payload.get("transcript_path")
-    try:
-        lines = Path(path).read_text(encoding="utf-8", errors="replace").splitlines() if path else []
-    except OSError:
-        return {}   # no transcript to judge by: fail open
-    if payload.get("stop_hook_active") and sum(_scan(lines).blocks.values()) == 0:
-        return {}   # a reminder was already sent but the transcript does not show it: never risk a loop
-    decision = decide(lines, str(payload.get("cwd") or ""))
     return {"decision": "block", "reason": decision[1]} if decision else {}

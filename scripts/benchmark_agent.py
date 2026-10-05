@@ -120,7 +120,9 @@ def find_claude(explicit: str | None) -> str:
     if found:
         return found
     base = Path(os.environ.get('APPDATA', '')) / 'Claude' / 'claude-code'
-    versions = sorted(base.glob('*/claude.exe'), key=lambda p: [int(n) for n in re.findall(r'\d+', p.parent.name)])
+    # The desktop app keeps each version as <version>/claude.exe, or <version>/<hash>/claude.exe in newer builds.
+    versions = sorted({*base.glob('*/claude.exe'), *base.glob('*/*/claude.exe')},
+                      key=lambda p: [int(n) for n in re.findall(r'\d+', p.relative_to(base).parts[0])])
     if versions:
         return str(versions[-1])
     raise SystemExit('claude CLI not found; pass --claude PATH')
