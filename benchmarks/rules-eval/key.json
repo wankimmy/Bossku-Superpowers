@@ -1,0 +1,1202 @@
+[
+ {
+  "src": "pos-a",
+  "i": 6,
+  "label": 1,
+  "text": "lepas ni semua migration kena ada down() sekali, tak boleh up je. team dah sepakat. tolong tambah migration untuk column phone_verified_at kat table users, laravel 11"
+ },
+ {
+  "src": "neg-a",
+  "i": 46,
+  "label": 0,
+  "text": "the leaderboard rule is simple: highest score wins, ties broken by earliest submission time, and nobody can appear twice. i have scores in redis sorted sets, how do i encode the tiebreak into the score?"
+ },
+ {
+  "src": "pos-b",
+  "i": 26,
+  "label": 1,
+  "text": "deploys go through github actions only, nobody has ssh to prod anymore, that was a compliance finding. add a workflow job that runs the db migrations before the rollout"
+ },
+ {
+  "src": "pos-b",
+  "i": 44,
+  "label": 1,
+  "text": "we still ship to windows 7 users, electron 22 is the last version that works there, so no upgrade this year. fix the tray icon not showing up after resume from sleep"
+ },
+ {
+  "src": "neg-a",
+  "i": 20,
+  "label": 0,
+  "text": "my boss said the dashboard should only ever show data from the last 90 days. i already have a date filter component, can you show me how to wire it up with a default of 90 days in vue?"
+ },
+ {
+  "src": "neg-a",
+  "i": 6,
+  "label": 0,
+  "text": "we decided last quarter to move to typescript but that's not what im asking about now. this react hook returns undefined on first render, why?\n\nconst [data,setData]=useState();\nuseEffect(()=>{fetchUser().then(setData)},[]);"
+ },
+ {
+  "src": "pos-b",
+  "i": 17,
+  "label": 1,
+  "text": "prod runs on a single hetzner box with docker compose, no kubernetes, the budget is tiny and the founder said k8s is overkill. add a healthcheck and restart policy to the api service in docker-compose.yml"
+ },
+ {
+  "src": "neg-a",
+  "i": 45,
+  "label": 0,
+  "text": "kita decide guna postgres sebab team lebih familiar, tapi sekarang saya stuck dengan jsonb query. nak cari semua rows yang tags array ada 'urgent'. macam mana nak buat?"
+ },
+ {
+  "src": "pos-a",
+  "i": 20,
+  "label": 1,
+  "text": "for the embedded firmware, no dynamic allocation after init. static buffers only, we had a heap fragmentation crash in the field. refactor sensor_read() in sensors.c to use a static ring buffer instead of malloc"
+ },
+ {
+  "src": "pos-b",
+  "i": 39,
+  "label": 1,
+  "text": "oauth only, we deprecated password logins last month and /login/password is going away for good. remove the dead route and update the auth tests accordingly"
+ },
+ {
+  "src": "pos-a",
+  "i": 28,
+  "label": 1,
+  "text": "docs team insists the readme always starts with a quickstart section of copy-pasteable commands, before any background or architecture. restructure the README of our cli tool that way, current order is history, architecture, install, usage"
+ },
+ {
+  "src": "pos-b",
+  "i": 29,
+  "label": 1,
+  "text": "database production kita mysql 5.7 dan tak boleh upgrade lagi sebab vendor plugin lama. so jangan guna json_table atau cte. tolong optimize query laporan jualan bulanan ni"
+ },
+ {
+  "src": "pos-b",
+  "i": 46,
+  "label": 1,
+  "text": "accessibility is a hard requirement, we're contractually bound to wcag 2.1 aa for the government client. audit the modal component for focus trapping and escape key handling"
+ },
+ {
+  "src": "pos-a",
+  "i": 45,
+  "label": 1,
+  "text": "every kubernetes deployment needs resource requests and limits plus a readiness probe, the cluster evicted pods last week because someone skipped them. add them to deploy/worker.yaml"
+ },
+ {
+  "src": "pos-a",
+  "i": 41,
+  "label": 1,
+  "text": "retry with exponential backoff and jitter on every outbound http call, cap at 5 attempts, thats our standard since the vendor throttling issue. wrap the call in shipping_client.go like that"
+ },
+ {
+  "src": "pos-a",
+  "i": 32,
+  "label": 1,
+  "text": "no console.log in committed code, we use the pino logger with request ids. replace the console.log calls in server/routes/upload.js"
+ },
+ {
+  "src": "neg-a",
+  "i": 5,
+  "label": 0,
+  "text": "every row must be shown in the invoice table, no pagination, the client was very clear. but with 5000 rows the page freezes. can you suggest virtualization that still prints all rows?"
+ },
+ {
+  "src": "neg-b",
+  "i": 35,
+  "label": 0,
+  "text": "macam mana nak buat soft delete dalam laravel? aku nak user boleh restore data dalam 30 hari tapi tak nak tunjuk kat list biasa"
+ },
+ {
+  "src": "pos-a",
+  "i": 44,
+  "label": 1,
+  "text": "we write sql keywords in lowercase and use snake_case for everything, table names plural. create the schema for a blog: posts, comments, tags and the join table"
+ },
+ {
+  "src": "neg-b",
+  "i": 13,
+  "label": 0,
+  "text": "is it safe to store the jwt in localStorage or should i use an httpOnly cookie for this spa?"
+ },
+ {
+  "src": "neg-b",
+  "i": 10,
+  "label": 0,
+  "text": "what's the difference between git merge and git rebase when i pull? my team keeps arguing about it"
+ },
+ {
+  "src": "neg-a",
+  "i": 25,
+  "label": 0,
+  "text": "does anyone know if npm has a policy on deprecating packages after a certain time? i'm seeing a deprecation warning on request and wondering if it will stop working at some point"
+ },
+ {
+  "src": "neg-a",
+  "i": 33,
+  "label": 0,
+  "text": "tic tac toe in c: a move is only valid if the cell is empty and its the players turn. my check_move returns true for occupied cells, why?\n\nint check_move(int r,int c){ return board[r][c]==0 || turn==cur; }"
+ },
+ {
+  "src": "neg-a",
+  "i": 29,
+  "label": 0,
+  "text": "hospital bed allocation: a patient in isolation must never be placed in a shared ward. i have a Bed class with ward_type and a Patient with an isolation flag, can you write the assignment function and a few unit tests for that constraint?"
+ },
+ {
+  "src": "neg-b",
+  "i": 26,
+  "label": 0,
+  "text": "stripe webhook handler returns 400 intermittently in prod:\n\nStripeSignatureVerificationError: No signatures found matching the expected signature for payload. Are you passing the raw request body you received from Stripe?\n\nwe're on express with express.json() mounted globally. could the body parser be the cause? how would you restructure it?"
+ },
+ {
+  "src": "neg-b",
+  "i": 37,
+  "label": 0,
+  "text": "write a readme section on how to run this locally, it's vite + express + postgres via docker compose, and the env vars are in .env.example"
+ },
+ {
+  "src": "pos-b",
+  "i": 41,
+  "label": 1,
+  "text": "frontend is next.js 14 app router and we decided against server actions for mutations, everything goes through the typed trpc client for consistency. add a mutation to update the profile name"
+ },
+ {
+  "src": "pos-b",
+  "i": 19,
+  "label": 1,
+  "text": "the app handles phi so audit logging is mandatory on every read of patient records, retained for 7 years. add an audit log middleware for the GET /patients/:id route"
+ },
+ {
+  "src": "neg-a",
+  "i": 9,
+  "label": 0,
+  "text": "boleh tak awak tolong buat function untuk kira zakat? rule dia, kalau harta lebih daripada nisab dan dah cukup haul baru wajib bayar 2.5%. saya guna python, input dia list of akaun bank"
+ },
+ {
+  "src": "neg-b",
+  "i": 19,
+  "label": 0,
+  "text": "what does this regex do? ^(?=.*[A-Z])(?=.*\\d).{8,}$ found it in an old signup validator and nobody remembers why"
+ },
+ {
+  "src": "pos-b",
+  "i": 18,
+  "label": 1,
+  "text": "all money amounts are stored as integer cents, never floats, and we use bankers rounding for tax per the accountant. write a function that splits an invoice total across n line items without losing a cent"
+ },
+ {
+  "src": "pos-b",
+  "i": 28,
+  "label": 1,
+  "text": "ingat ya, semua api internal kena guna grpc, rest cuma untuk public api. boleh tolong buat proto file untuk service inventory dengan rpc GetStock dan UpdateStock?"
+ },
+ {
+  "src": "neg-a",
+  "i": 49,
+  "label": 0,
+  "text": "dalam game saya, pemain tak boleh jalan melalui dinding dan setiap enemy mesti respawn selepas 30 saat. saya guna unity, collision dah ok tapi respawn timer reset bila scene reload. macam mana nak fix?"
+ },
+ {
+  "src": "pos-b",
+  "i": 43,
+  "label": 1,
+  "text": "the iot gateway runs on a raspberry pi zero with 512mb ram so memory stays low, no pandas, no heavy deps. write a script that batches sensor readings and posts them every 30s over mqtt"
+ },
+ {
+  "src": "pos-a",
+  "i": 46,
+  "label": 1,
+  "text": "we're staying on react 18.3 until the design system supports 19, thats the call from the platform team. fix the peer dependency warning without bumping react"
+ },
+ {
+  "src": "pos-b",
+  "i": 20,
+  "label": 1,
+  "text": "shopify is our storefront and we don't self-host checkout, shopify plus handles pci for us. build a small webhook receiver for orders/paid that pushes the order to our warehouse api"
+ },
+ {
+  "src": "pos-a",
+  "i": 35,
+  "label": 1,
+  "text": "we always feature-flag risky changes and keep the flag around for at least two releases before cleanup. wrap the new recommendation widget behind a launchdarkly flag called rec_widget_v2"
+ },
+ {
+  "src": "neg-b",
+  "i": 28,
+  "label": 0,
+  "text": "swift: how do i make a UITableView cell resize to fit a multiline label? autolayout is fighting me"
+ },
+ {
+  "src": "neg-a",
+  "i": 34,
+  "label": 0,
+  "text": "i read that gdpr says personal data must be deleted on request within 30 days. does that apply to backups too? building the delete-account endpoint now and not sure how far it needs to go"
+ },
+ {
+  "src": "neg-a",
+  "i": 42,
+  "label": 0,
+  "text": "on android the back button must always return to the previous screen except on login where it exits the app. using compose navigation and popBackStack acts weird after logout, the stack still has home in it"
+ },
+ {
+  "src": "pos-b",
+  "i": 35,
+  "label": 1,
+  "text": "company policy: no code or customer data goes to external llm apis, only our self-hosted llama via ollama on the internal network. add a summarisation endpoint to the support tool that calls it"
+ },
+ {
+  "src": "neg-a",
+  "i": 8,
+  "label": 0,
+  "text": "no more guest checkout, product team wants every purchase to require an account from next month. how should i migrate the existing guest orders so customers can claim them by email?"
+ },
+ {
+  "src": "pos-a",
+  "i": 19,
+  "label": 1,
+  "text": "dont ever force push to shared branches, --force-with-lease on your own feature branches only. i messed up develop yesterday. rebase my feature/cart-fix onto develop and push it safely"
+ },
+ {
+  "src": "pos-b",
+  "i": 13,
+  "label": 1,
+  "text": "all our docs live in docusaurus and every public api change needs an entry in CHANGELOG.md in keep a changelog format, it's in the PR checklist. write the entry for the new rate limit headers"
+ },
+ {
+  "src": "neg-a",
+  "i": 0,
+  "label": 0,
+  "text": "refund policy for the shop: items can only be returned within 14 days and never if the seal on the software box is broken. can you write the function that checks if an order is still refundable given the delivery date?"
+ },
+ {
+  "src": "neg-a",
+  "i": 13,
+  "label": 0,
+  "text": "stripe webhooks: every event must be processed exactly once, otherwise we double charge customers. i'm storing event ids in postgres, is a unique constraint enough or do i need an advisory lock too?"
+ },
+ {
+  "src": "pos-b",
+  "i": 42,
+  "label": 1,
+  "text": "kafka is our event bus and every event must be avro with schema registry set to backward compat. define a schema for OrderShipped with tracking number and carrier"
+ },
+ {
+  "src": "pos-b",
+  "i": 1,
+  "label": 1,
+  "text": "fyi we banned moment.js in this repo, bundle size was killing us and we standardised on date-fns. can you refactor utils/formatDate.ts to use date-fns and keep the same output format?"
+ },
+ {
+  "src": "neg-b",
+  "i": 33,
+  "label": 0,
+  "text": "can you review my PR diff for the auth refactor? mostly worried about the token refresh part"
+ },
+ {
+  "src": "pos-a",
+  "i": 30,
+  "label": 1,
+  "text": "mobile: we support ios 16+ and android 8+ only, anything older isnt worth the maintenance. bump minSdk in build.gradle accordingly and drop the compat shim for the old notification channel"
+ },
+ {
+  "src": "neg-a",
+  "i": 26,
+  "label": 0,
+  "text": "kubernetes liveness probe: the pod must respond on /healthz within 2 seconds, otherwise it gets restarted. my java app takes 40s to start so it's in a restart loop. startupProbe or just raise initialDelaySeconds?"
+ },
+ {
+  "src": "pos-a",
+  "i": 8,
+  "label": 1,
+  "text": "tests live next to the source file as foo.test.ts, not in a separate __tests__ folder, thats how we do it in this monorepo. write tests for the parseCsv function in packages/ingest/src/parse.ts"
+ },
+ {
+  "src": "pos-a",
+  "i": 29,
+  "label": 1,
+  "text": "react components are function components with hooks only, no class components, and one component per file. convert OldTable.jsx from a class to a function component"
+ },
+ {
+  "src": "neg-b",
+  "i": 8,
+  "label": 0,
+  "text": "saya nak buat endpoint untuk upload gambar profile, max 2mb, jpg dan png sahaja. guna express + multer. tolong tunjuk contoh code dia"
+ },
+ {
+  "src": "pos-b",
+  "i": 5,
+  "label": 1,
+  "text": "we picked postgres over mongo for this project, nobody on the team knows mongo and the data is relational anyway. write a migration for an orders table with status, total_cents and created_at, plus an index on status"
+ },
+ {
+  "src": "neg-b",
+  "i": 34,
+  "label": 0,
+  "text": "what's a good way to name boolean variables in go? isReady vs ready"
+ },
+ {
+  "src": "neg-b",
+  "i": 47,
+  "label": 0,
+  "text": "does sqlite support window functions? i'm stuck on 3.25 on an embedded linux device"
+ },
+ {
+  "src": "neg-b",
+  "i": 20,
+  "label": 0,
+  "text": "arduino nano keeps resetting when the servo moves. code is basically:\n\nvoid loop() {\n  servo.write(90);\n  delay(500);\n  servo.write(0);\n  delay(500);\n}\n\npowering both from usb. is it a brownout thing? what's the cleanest way to confirm it before i buy a separate supply?"
+ },
+ {
+  "src": "neg-a",
+  "i": 7,
+  "label": 0,
+  "text": "is there a convention in express for where to put validation middleware? i've seen it in routes and in a separate folder and honestly not sure which is more common"
+ },
+ {
+  "src": "neg-b",
+  "i": 21,
+  "label": 0,
+  "text": "write a dockerfile for a fastapi app, python 3.12, uses poetry"
+ },
+ {
+  "src": "pos-b",
+  "i": 16,
+  "label": 1,
+  "text": "lodash is banned here, there's an eslint rule blocking it, use native methods or our own helpers in src/lib. rewrite the groupBy and debounce usage in dashboard/filters.ts without it"
+ },
+ {
+  "src": "neg-b",
+  "i": 30,
+  "label": 0,
+  "text": "how do i squash the last 4 commits into one before opening the PR?"
+ },
+ {
+  "src": "pos-b",
+  "i": 31,
+  "label": 1,
+  "text": "app ni kena support bahasa melayu dan inggeris sahaja, dan semua string pergi ke file i18n, jangan hardcode. tolong tukar teks dalam LoginScreen.tsx guna react-i18next"
+ },
+ {
+  "src": "pos-b",
+  "i": 14,
+  "label": 1,
+  "text": "we use vitest not jest, jest was removed last sprint and ci fails if anything imports it. convert tests/cart.test.js to vitest and mock the pricing client"
+ },
+ {
+  "src": "neg-b",
+  "i": 40,
+  "label": 0,
+  "text": "is there a way to run only the failing tests from the last pytest run?"
+ },
+ {
+  "src": "pos-b",
+  "i": 38,
+  "label": 1,
+  "text": "legacy php 7.4 laravel 6 app, we can't upgrade until the client signs off the budget, so nothing from php 8 syntax. add a console command that purges soft deleted users older than 90 days"
+ },
+ {
+  "src": "pos-a",
+  "i": 37,
+  "label": 1,
+  "text": "our finance service rounds half-even (banker's rounding) everywhere, the auditors required it. write a round_money helper using decimal and use it in the tax calc"
+ },
+ {
+  "src": "neg-a",
+  "i": 11,
+  "label": 0,
+  "text": "the embedded firmware has a hard rule that the watchdog must be kicked every 100ms or the mcu resets. i'm on an stm32 and my uart interrupt takes too long. how do i profile isr time?"
+ },
+ {
+  "src": "neg-a",
+  "i": 36,
+  "label": 0,
+  "text": "payroll app: overtime is always 1.5x after 40 hours/week, never less, and public holidays are 2x. i need to compute weekly pay from a list of daily hours with a holiday flag. typescript please"
+ },
+ {
+  "src": "pos-a",
+  "i": 33,
+  "label": 1,
+  "text": "dalam projek ni kita guna tailwind je, jangan tambah css file baru atau styled-components. tolong style butang 'Hantar' kat form contact guna tailwind classes"
+ },
+ {
+  "src": "pos-b",
+  "i": 6,
+  "label": 1,
+  "text": "reminder that stripe is the only payment processor we're allowed to use, finance signed a contract with them and paypal is dead. fix the checkout webhook handler so it also handles invoice.payment_failed"
+ },
+ {
+  "src": "pos-b",
+  "i": 34,
+  "label": 1,
+  "text": "we adopted hexagonal architecture for the billing module, domain code can't import from infrastructure, there's an import-linter rule enforcing it. add a use case for refunding a partial invoice"
+ },
+ {
+  "src": "pos-a",
+  "i": 18,
+  "label": 1,
+  "text": "in our studio no new assets get committed without a license note in ASSETS.md, we nearly got a takedown last year. im adding the explosion sprite pack now, can you add the entry and the loader in godot gdscript"
+ },
+ {
+  "src": "pos-a",
+  "i": 5,
+  "label": 1,
+  "text": "all money amounts are stored as integer cents in this codebase, no floats anywhere, thats been the deal since day one. invoice.ts is using number with decimals for the totals, please convert it"
+ },
+ {
+  "src": "neg-a",
+  "i": 3,
+  "label": 0,
+  "text": "tax rules for malaysia sst, 6% service tax applies only to certain categories, everything else is exempt. i have a product table with a category column, how should i model the tax rate so accountants can change it later?"
+ },
+ {
+  "src": "neg-a",
+  "i": 40,
+  "label": 0,
+  "text": "ci is red again, 'ENOSPC: no space left on device' on the runner during npm ci. im on github actions ubuntu-latest. is it the cache or the docker layers eating the disk?"
+ },
+ {
+  "src": "neg-a",
+  "i": 16,
+  "label": 0,
+  "text": "quick question: is there a standard for jwt expiry times? i set access tokens to 15 min and refresh to 7 days, is that normal or too short for a banking style app"
+ },
+ {
+  "src": "neg-b",
+  "i": 32,
+  "label": 0,
+  "text": "pandas question. i have a df with columns order_id, customer_id, created_at, amount and want the 30 day rolling revenue per customer. tried:\n\ndf.groupby('customer_id')['amount'].rolling('30D').sum()\n\nbut get ValueError: window must be an integer 0 or greater, and created_at is a regular column not the index. what am i doing wrong?"
+ },
+ {
+  "src": "pos-a",
+  "i": 26,
+  "label": 1,
+  "text": "we dont use ORMs in this service, raw sql with sqlc only, decided back in march. write the query for listing active subscriptions by tenant and the sqlc config to generate the go code"
+ },
+ {
+  "src": "pos-a",
+  "i": 2,
+  "label": 1,
+  "text": "we use pnpm in this repo, never npm or yarn, lockfile drift is killing us. can u install zod and wire up validation for the signup form"
+ },
+ {
+  "src": "pos-a",
+  "i": 38,
+  "label": 1,
+  "text": "docker images must be based on distroless or alpine and run as non-root, the security scan blocks anything else. fix the Dockerfile for the api, its currently ubuntu running as root"
+ },
+ {
+  "src": "neg-b",
+  "i": 29,
+  "label": 0,
+  "text": "our pentest report flagged this endpoint for sql injection:\n\n$stmt = $pdo->query(\"SELECT * FROM users WHERE email = '\" . $_GET['email'] . \"'\");\n\ncan you rewrite it with PDO prepared statements and tell me if anything else in that snippet looks risky?"
+ },
+ {
+  "src": "neg-b",
+  "i": 25,
+  "label": 0,
+  "text": "thanks that did it, the migration ran clean and the app boots. appreciate the help"
+ },
+ {
+  "src": "neg-b",
+  "i": 45,
+  "label": 0,
+  "text": "getting a deadlock in postgres under load:\n\nERROR: deadlock detected\nDETAIL: Process 4127 waits for ShareLock on transaction 88123; blocked by process 4131.\nProcess 4131 waits for ShareLock on transaction 88120; blocked by process 4127.\n\ntwo workers update inventory rows in different order. is sorting by id before updating enough or do i need advisory locks?"
+ },
+ {
+  "src": "neg-b",
+  "i": 18,
+  "label": 0,
+  "text": "can you bump lodash to the latest and tell me if anything in package.json conflicts"
+ },
+ {
+  "src": "neg-a",
+  "i": 47,
+  "label": 0,
+  "text": "whats the policy for token expiry in oauth2 refresh flows, like is rotating refresh tokens required by the spec or just recommended? reading rfc 6749 and the security bcp and getting confused"
+ },
+ {
+  "src": "neg-a",
+  "i": 23,
+  "label": 0,
+  "text": "insurance claims: a claim over $10k must be reviewed by two adjusters and can never be auto approved. here's my state enum: PENDING, APPROVED, REJECTED. should i add a new state for the second review?"
+ },
+ {
+  "src": "pos-a",
+  "i": 14,
+  "label": 1,
+  "text": "our healthcare app can never put patient names in analytics events, only the opaque patient id. hipaa thing. go through the segment tracking calls in the onboarding flow and strip anything identifying"
+ },
+ {
+  "src": "pos-a",
+  "i": 49,
+  "label": 1,
+  "text": "plan limits are not hardcoded in code anymore, they live in the plans table so product can change them without a deploy. move the 'max 5 seats' check in team.service.ts to read from there"
+ },
+ {
+  "src": "pos-b",
+  "i": 32,
+  "label": 1,
+  "text": "kita decide cache semua session dalam redis, jangan simpan dalam memory server sebab kita run 3 instance belakang load balancer. tolong tulis middleware express untuk baca session dari redis"
+ },
+ {
+  "src": "neg-a",
+  "i": 22,
+  "label": 0,
+  "text": "dalam app e-commerce kita, setiap order mesti ada alamat penghantaran sebelum boleh checkout. saya nak tambah validation kat backend laravel, mana satu patut letak, form request ke controller?"
+ },
+ {
+  "src": "neg-b",
+  "i": 24,
+  "label": 0,
+  "text": "any idea why my cron job on the ubuntu box doesn't run? crontab -l shows it, script works when i run it by hand"
+ },
+ {
+  "src": "pos-b",
+  "i": 45,
+  "label": 1,
+  "text": "all timestamps are stored in utc and only converted to local time at the ui layer, the team agreed after getting bitten before. fix the booking page showing the wrong time for users in singapore"
+ },
+ {
+  "src": "neg-a",
+  "i": 44,
+  "label": 0,
+  "text": "dockerfile question: apparently every RUN creates a layer and you should only have one? is that still true? i have 9 RUN lines and the image is 1.2gb, not sure what to look at first"
+ },
+ {
+  "src": "pos-b",
+  "i": 7,
+  "label": 1,
+  "text": "we do trunk-based dev, no long-lived branches, everything unfinished goes behind a feature flag via unleash. can you add a flag around the new search ranking code in search/ranker.py?"
+ },
+ {
+  "src": "neg-b",
+  "i": 36,
+  "label": 0,
+  "text": "my flex layout breaks on iphone safari only. the sidebar overflows and the page scrolls sideways. css:\n\n.layout { display: flex; width: 100vw; }\n.sidebar { flex: 0 0 280px; }\n.main { flex: 1; padding: 0 24px; }\n\nworks in chrome and firefox on desktop. is 100vw the culprit with the scrollbar or the safe area?"
+ },
+ {
+  "src": "neg-a",
+  "i": 48,
+  "label": 0,
+  "text": "readme for our cli: please add a section describing the exit codes. 0 is success, 1 means invalid args, 2 means network failure, and all other codes are reserved. keep it as a table."
+ },
+ {
+  "src": "pos-b",
+  "i": 37,
+  "label": 1,
+  "text": "the monorepo uses nx with pnpm workspaces and every package exposes its public api through index.ts only, deep imports are blocked by lint. create a new shared package called @acme/validators with an email validator"
+ },
+ {
+  "src": "pos-a",
+  "i": 22,
+  "label": 1,
+  "text": "aku suka early return je, jangan nested if dalam apa-apa code yang kau tulis untuk aku. tolong ratakan function validate() dalam forms/validate.js"
+ },
+ {
+  "src": "pos-b",
+  "i": 12,
+  "label": 1,
+  "text": "every secret has to come from aws secrets manager, the security audit says no .env files in prod and no secrets in git ever. update config.py so it loads the db password from secrets manager at startup"
+ },
+ {
+  "src": "neg-b",
+  "i": 4,
+  "label": 0,
+  "text": "pytest fails on ci but passes locally:\n\nFAILED tests/test_orders.py::test_total_with_discount - assert Decimal('89.99') == Decimal('90.00')\n\nthe function is:\n\ndef total(items, pct):\n    s = sum(i.price for i in items)\n    return round(s * (1 - pct/100), 2)\n\nlooks like float math is leaking in somewhere. how do i fix this properly?"
+ },
+ {
+  "src": "neg-a",
+  "i": 39,
+  "label": 0,
+  "text": "rate limiter for the public api: each key gets max 100 requests per minute, anything over returns 429 with a retry-after header. implementing in go with a token bucket, does this struct look right?\n\ntype Bucket struct { tokens float64; last time.Time }"
+ },
+ {
+  "src": "neg-a",
+  "i": 10,
+  "label": 0,
+  "text": "patient records in our clinic app can only be viewed by the assigned doctor or the admin, nobody else. im writing the sql query for the doctor dashboard, how do i join the appointments table so it respects that?"
+ },
+ {
+  "src": "pos-a",
+  "i": 12,
+  "label": 1,
+  "text": "kitorang takkan guna any type dalam typescript, strict mode mesti sentiasa on. tolong betulkan error kat src/api/client.ts tanpa guna any, dan enable noImplicitAny dalam tsconfig"
+ },
+ {
+  "src": "neg-a",
+  "i": 24,
+  "label": 0,
+  "text": "the unity docs say rigidbodies must only be moved in FixedUpdate but my character jitters when i do that. camera follow is in Update, could that be the cause?"
+ },
+ {
+  "src": "pos-a",
+  "i": 31,
+  "label": 1,
+  "text": "always run the linter and tests before you tell me something is done, ive been burned by 'done' that didnt even compile. now fix the failing test in cart.spec.ts"
+ },
+ {
+  "src": "neg-b",
+  "i": 5,
+  "label": 0,
+  "text": "git: how do i undo my last commit but keep the changes staged?"
+ },
+ {
+  "src": "neg-b",
+  "i": 22,
+  "label": 0,
+  "text": "unity: my player falls through the floor sometimes when moving fast. rigidbody + box collider, no mesh collider. ideas?"
+ },
+ {
+  "src": "pos-b",
+  "i": 47,
+  "label": 1,
+  "text": "rate limit is 100 req/min per api key per our contract with the partner, and they cap us at 20 rps upstream so we can't exceed that either. add a token bucket limiter to the partner client"
+ },
+ {
+  "src": "pos-b",
+  "i": 2,
+  "label": 1,
+  "text": "decision made last week: all new services are go, not node. the old express api stays in maintenance mode only. please scaffold a go http server for the notifications service with a /healthz endpoint"
+ },
+ {
+  "src": "neg-b",
+  "i": 23,
+  "label": 0,
+  "text": "tolong tengok error ni, build gagal kat github actions:\n\nError: Process completed with exit code 1.\nnpm ERR! code ERESOLVE\nnpm ERR! Could not resolve dependency: peer react@\"^17.0.0\" from react-datepicker@4.8.0\n\nlocal okay je sebab aku pakai --legacy-peer-deps. macam mana nak betulkan kat CI?"
+ },
+ {
+  "src": "pos-a",
+  "i": 42,
+  "label": 1,
+  "text": "mulai sekarang semua PR mesti kecil, bawah 400 baris, kalau besar kita pecahkan. boleh tolong pecahkan changes dalam branch ni jadi dua PR, satu untuk refactor satu lagi untuk feature"
+ },
+ {
+  "src": "pos-a",
+  "i": 39,
+  "label": 1,
+  "text": "just so you know for later, we do trunk-based dev here, branches live 2 days max and everything merges behind flags. help me split this big feature branch into smaller mergeable chunks"
+ },
+ {
+  "src": "pos-a",
+  "i": 11,
+  "label": 1,
+  "text": "pls keep all user-facing strings in the i18n json files, no hardcoded text in components, we ship in 4 languages. move the strings in CheckoutBanner.tsx into en.json and ms.json"
+ },
+ {
+  "src": "pos-a",
+  "i": 43,
+  "label": 1,
+  "text": "accessibility is a hard requirement here: every interactive element keyboard reachable with a visible focus state, our contract with the gov client says so. check the modal component and fix the focus trap"
+ },
+ {
+  "src": "pos-a",
+  "i": 34,
+  "label": 1,
+  "text": "the data team says all dashboards pull from the warehouse views in analytics_mart, never from the raw tables. update the revenue by region query in the metabase export to read from mart.revenue_daily"
+ },
+ {
+  "src": "pos-b",
+  "i": 36,
+  "label": 1,
+  "text": "we use sqlite in wal mode for the local cache on the desktop app, no embedded postgres, installers must stay under 80mb. write the schema and a small repository class for cached invoices"
+ },
+ {
+  "src": "pos-b",
+  "i": 49,
+  "label": 1,
+  "text": "the shared postgres is on version 12 on rds and the dba won't upgrade it until november, so no generated columns or merge statements. write an upsert for the inventory counts table using on conflict"
+ },
+ {
+  "src": "pos-a",
+  "i": 25,
+  "label": 1,
+  "text": "ecommerce checkout must be idempotent, every payment request carries an idempotency key, double charges cost us 4k last quarter. add idempotency key handling to the POST /payments route"
+ },
+ {
+  "src": "neg-b",
+  "i": 48,
+  "label": 0,
+  "text": "android app crashes on rotate only on samsung devices:\n\njava.lang.IllegalStateException: Fragment MapFragment{3f2a1b} not attached to an activity.\n    at androidx.fragment.app.Fragment.requireContext(Fragment.java:824)\n    at com.shop.app.MapFragment.onLocationResult(MapFragment.kt:61)\n\nthe location callback fires after the view is destroyed. should i cancel the callback in onDestroyView or use lifecycle-aware collection?"
+ },
+ {
+  "src": "pos-b",
+  "i": 22,
+  "label": 1,
+  "text": "ios deployment target is 15.0 and it stays there, 18% of our users are still on 15. swiftui only for new screens, uikit just for the legacy ones. build a settings screen with toggles for notifications"
+ },
+ {
+  "src": "neg-b",
+  "i": 15,
+  "label": 0,
+  "text": "lol i just realised i've been pushing to the wrong branch all morning. how bad is it"
+ },
+ {
+  "src": "neg-a",
+  "i": 28,
+  "label": 0,
+  "text": "last sprint we decided to drop the legacy /v1 endpoints, but today im just trying to figure out why curl returns 301 on the /v2/users route. nginx block: location /v2/ { return 301 https://$host$request_uri; }"
+ },
+ {
+  "src": "neg-b",
+  "i": 6,
+  "label": 0,
+  "text": "can you write unit tests for this? using jest, trying to cover the empty cart and the coupon expired cases too\n\nexport function applyCoupon(cart, coupon, now = new Date()) {\n  if (!coupon || coupon.expiresAt < now) return cart.total;\n  return Math.max(0, cart.total - coupon.amount);\n}"
+ },
+ {
+  "src": "pos-b",
+  "i": 40,
+  "label": 1,
+  "text": "gdpr applies to us: deletion requests must be completed within 30 days and logs can never contain emails. add a scrubber to our winston logger that masks email addresses"
+ },
+ {
+  "src": "neg-b",
+  "i": 14,
+  "label": 0,
+  "text": "review this please, it calculates compound interest for a loan calculator and the numbers are off by a few cents versus the bank's statement:\n\ndef monthly_payment(p, annual_rate, months):\n    r = annual_rate / 12\n    return p * r / (1 - (1 + r) ** -months)\n\nam i missing something, like rate is a percent not a decimal?"
+ },
+ {
+  "src": "pos-b",
+  "i": 10,
+  "label": 1,
+  "text": "the firmware targets an stm32f103 with 64kb flash, so no dynamic allocation and no printf with floats, we blew the budget before. write a ring buffer for uart rx in plain c, fixed size 256 bytes"
+ },
+ {
+  "src": "pos-a",
+  "i": 13,
+  "label": 1,
+  "text": "python 3.11 is our floor and we type-hint everything public, mypy strict in ci. add type hints to the helper functions in etl/transform.py"
+ },
+ {
+  "src": "pos-b",
+  "i": 3,
+  "label": 1,
+  "text": "we can't store any patient identifiers outside eu-west-1 because of our hipaa baa and the hospital contract, so no cross-region replicas ever. help me write the terraform for an rds postgres instance with encryption at rest"
+ },
+ {
+  "src": "pos-b",
+  "i": 4,
+  "label": 1,
+  "text": "pinned django to 4.2 lts, we are not touching 5.x until the celery plugin we depend on supports it. add a model for appointment reminders with a foreign key to the clinic table pls"
+ },
+ {
+  "src": "pos-a",
+  "i": 0,
+  "label": 1,
+  "text": "after the outage last month we only deploy through the pipeline now, nobody pushes to the prod box by hand anymore. can you add a github actions job that builds the docker image and deploys to staging on every merge to main?"
+ },
+ {
+  "src": "pos-a",
+  "i": 4,
+  "label": 1,
+  "text": "never log full card numbers or emails in our app logs, mask everything except the last 4. we got burned in the audit. fix the logger in checkout/service.py so it masks the pan before writing"
+ },
+ {
+  "src": "neg-a",
+  "i": 38,
+  "label": 0,
+  "text": "the cart total must always equal the sum of line items minus discounts, and our test shows 0.01 off sometimes. looks like float rounding. should i switch to integer cents or use decimal.js?"
+ },
+ {
+  "src": "pos-b",
+  "i": 48,
+  "label": 1,
+  "text": "we only pay for the sentry team plan, 50k events a month, so keep sampling low and don't add noisy captures. wire up sentry in the worker and set the trace sample rate sensibly"
+ },
+ {
+  "src": "pos-b",
+  "i": 24,
+  "label": 1,
+  "text": "api responses must stay backwards compatible, we have mobile clients up to 2 years old that never update. add a new optional field 'tier' to the user endpoint without breaking anything"
+ },
+ {
+  "src": "neg-b",
+  "i": 31,
+  "label": 0,
+  "text": "add pagination to the /api/products endpoint, 20 per page, return total count in the response"
+ },
+ {
+  "src": "neg-a",
+  "i": 2,
+  "label": 0,
+  "text": "game rules: a player can never hold more than 7 cards, and if they draw an 8th they must discard immediately. writing the discard logic in godot, here's what i have so far:\n\nfunc draw():\n  hand.append(deck.pop_back())"
+ },
+ {
+  "src": "pos-a",
+  "i": 27,
+  "label": 1,
+  "text": "prod database changes only happen through reviewed migrations, never ad hoc psql sessions, ever since the dropped index incident. write a migration adding an index on orders(customer_id, created_at) concurrently"
+ },
+ {
+  "src": "pos-a",
+  "i": 17,
+  "label": 1,
+  "text": "we're a rust shop for anything performance critical and python for glue only, that was decided in the arch review. rewrite the log parser hot loop in rust with pyo3 and keep the python wrapper thin"
+ },
+ {
+  "src": "neg-b",
+  "i": 39,
+  "label": 0,
+  "text": "pods stuck in CrashLoopBackOff after the deploy. kubectl describe says:\n\nLast State: Terminated\n  Reason: OOMKilled\n  Exit Code: 137\n\nlimits are memory: 256Mi. the java service was fine before we added the cache layer. how do i figure out what the heap should be, and should i just raise the limit?"
+ },
+ {
+  "src": "pos-b",
+  "i": 23,
+  "label": 1,
+  "text": "tailwind v3 only, design tokens live in tailwind.config.ts and the designers don't want arbitrary values in classnames. make a card component using those tokens, with a hover state"
+ },
+ {
+  "src": "neg-b",
+  "i": 41,
+  "label": 0,
+  "text": "tolong explain code ni, aku tak faham kenapa dia guna reduce dengan spread dalam object:\n\nconst grouped = items.reduce((acc, i) => ({ ...acc, [i.cat]: [...(acc[i.cat] || []), i] }), {});"
+ },
+ {
+  "src": "pos-b",
+  "i": 8,
+  "label": 1,
+  "text": "react native app is on expo sdk 50 and we can't bump it, the bluetooth lib we rely on breaks on 51. fix the splash screen flicker on android, it shows white for a sec before the logo"
+ },
+ {
+  "src": "pos-b",
+  "i": 30,
+  "label": 1,
+  "text": "team kita guna pnpm je, bukan npm atau yarn, dan lockfile mesti commit. boleh tolong setup husky pre-commit yang run lint-staged untuk fail ts?"
+ },
+ {
+  "src": "pos-b",
+  "i": 15,
+  "label": 1,
+  "text": "we squash merge only on this repo and commit messages must follow conventional commits, commitlint runs in ci. draft a commit message for the change that adds retry to the s3 uploader"
+ },
+ {
+  "src": "neg-b",
+  "i": 44,
+  "label": 0,
+  "text": "whats the best way to mock the current date in vitest without pulling in another package"
+ },
+ {
+  "src": "neg-a",
+  "i": 41,
+  "label": 0,
+  "text": "bank transfer rules: no transfer over 10000 without 2fa, daily limit 50k, and negative balances not allowed. modelling the Account aggregate in java, how do i keep these invariants inside the class rather than in the service?"
+ },
+ {
+  "src": "neg-a",
+  "i": 4,
+  "label": 0,
+  "text": "our SLA for the export feature says every report must finish within 30 seconds or the user gets an email instead. how do i implement the timeout fallback in celery without losing the job?"
+ },
+ {
+  "src": "pos-b",
+  "i": 21,
+  "label": 1,
+  "text": "godot 4.2 with gdscript only, no c# since the team isn't set up for mono exports on the web build. write a state machine for enemy patrol and chase behaviour"
+ },
+ {
+  "src": "neg-a",
+  "i": 17,
+  "label": 0,
+  "text": "docs page for the api says 'all endpoints require authentication' but the /health one obviously shouldn't. can you rewrite that sentence in the readme so it's accurate?"
+ },
+ {
+  "src": "pos-a",
+  "i": 21,
+  "label": 1,
+  "text": "anything that touches the db goes through the repository layer, controllers never call the ORM directly, thats our architecture. add a findByEmail to UserRepository and use it in AuthController"
+ },
+ {
+  "src": "pos-a",
+  "i": 1,
+  "label": 1,
+  "text": "from now on every new endpoint needs an openapi entry before it gets merged, i dont want to chase docs later. add GET /orders/{id} to the fastify service and put the spec change in the same pr"
+ },
+ {
+  "src": "neg-a",
+  "i": 27,
+  "label": 0,
+  "text": "age verification for the vape shop site: users must be 18+ and we can never store the id image after verification. how do i structure the verification service so the image is deleted right after the third party responds?"
+ },
+ {
+  "src": "pos-b",
+  "i": 25,
+  "label": 1,
+  "text": "our warehouse is bigquery and every dbt model needs a schema.yml with tests, ci blocks merges without them. write a dbt model for daily active users and its schema file"
+ },
+ {
+  "src": "pos-b",
+  "i": 9,
+  "label": 1,
+  "text": "our unity project has to stay on 2021.3 lts, the console cert process locks the engine version till ship. write a c# script for a simple object pool for bullets"
+ },
+ {
+  "src": "neg-a",
+  "i": 32,
+  "label": 0,
+  "text": "the pricing page says annual plans are non-refundable after 30 days. can you update the faq copy to match, keep it short and friendly, and add a line about prorated upgrades?"
+ },
+ {
+  "src": "pos-b",
+  "i": 0,
+  "label": 1,
+  "text": "heads up we're stuck on node 18 until the client's hosting provider upgrades their runtime, probably Q1. so no top-level await or newer apis in the new scripts. can you write a small cli that dumps the users table to csv?"
+ },
+ {
+  "src": "neg-b",
+  "i": 1,
+  "label": 0,
+  "text": "getting this on startup after upgrading to node 20:\n\nError [ERR_REQUIRE_ESM]: require() of ES Module /app/node_modules/chalk/source/index.js from /app/src/logger.js not supported.\nInstead change the require of index.js in /app/src/logger.js to a dynamic import()\n\nwhat's the least painful way to fix this, downgrade chalk or move to esm?"
+ },
+ {
+  "src": "neg-a",
+  "i": 12,
+  "label": 0,
+  "text": "my teammate said we always used rebase for this repo, idk if thats even true. anyway i just need to undo my last commit but keep the changes staged, whats the command?"
+ },
+ {
+  "src": "pos-b",
+  "i": 33,
+  "label": 1,
+  "text": "python 3.9 is the floor because the ubuntu 20.04 boxes in the lab ship it, so no match statements and no x | y unions at runtime. write a parser for the csv exports from the lab instrument"
+ },
+ {
+  "src": "neg-a",
+  "i": 18,
+  "label": 0,
+  "text": "ml pipeline: labels must never leak into the feature set, i keep getting 0.99 auc which smells like leakage. here's my feature list: user_id, signup_date, churn_date, plan_type. which one is leaking?"
+ },
+ {
+  "src": "pos-a",
+  "i": 7,
+  "label": 1,
+  "text": "we decided to drop moment.js, date-fns only from here on. replace the moment usage in utils/dates.js and dont add moment to any new file"
+ },
+ {
+  "src": "neg-b",
+  "i": 3,
+  "label": 0,
+  "text": "boleh tolong tengok kenapa query ni slow? dia ambil 8 saat untuk 200k rows padahal dah ada index kat user_id. EXPLAIN tunjuk Using filesort"
+ },
+ {
+  "src": "pos-b",
+  "i": 11,
+  "label": 1,
+  "text": "we're on pytorch 2.1 with cuda 11.8 because the prod gpu nodes have the old driver and ops won't upgrade this quarter. write a training loop with gradient accumulation for the resnet finetune"
+ },
+ {
+  "src": "neg-b",
+  "i": 43,
+  "label": 0,
+  "text": "can you convert this callback-based function to async/await? it's the one in utils/fs.js that wraps readFile"
+ },
+ {
+  "src": "pos-a",
+  "i": 9,
+  "label": 1,
+  "text": "ml team agreed every training run has to log the git sha and the dataset hash to mlflow, no exceptions, or we cant reproduce anything later. update train.py to log both at the start of the run"
+ },
+ {
+  "src": "pos-a",
+  "i": 15,
+  "label": 1,
+  "text": "secrets go in vault, never in .env files committed to the repo, and they get rotated every 90 days. i found an api key sitting in config/dev.yml. move it to a vault ref and show me how to wire the lookup"
+ },
+ {
+  "src": "pos-a",
+  "i": 16,
+  "label": 1,
+  "text": "i always want docstrings in google style, not numpy style, ok? and keep line length at 100. write docstrings for the Cart class in shop/cart.py"
+ },
+ {
+  "src": "neg-a",
+  "i": 35,
+  "label": 0,
+  "text": "tolong check kenapa query ni lambat. table orders ada 2 juta row, saya dah letak index kat user_id tapi still slow bila filter by status dan created_at. mysql 8, explain output saya paste bawah"
+ },
+ {
+  "src": "pos-a",
+  "i": 3,
+  "label": 1,
+  "text": "i prefer small commits in conventional commit format, feat/fix/chore with a scope, always. please commit the retry logic change in the payments client like that and keep doing it for the rest of our work"
+ },
+ {
+  "src": "neg-b",
+  "i": 9,
+  "label": 0,
+  "text": "my container keeps exiting right after start. logs say:\n\nexec /usr/local/bin/entrypoint.sh: no such file or directory\n\nthe file is definitely there, i copied it in the Dockerfile and ran chmod +x. building on windows, running on an alpine image. could it be line endings or am i missing something else?"
+ },
+ {
+  "src": "pos-a",
+  "i": 40,
+  "label": 1,
+  "text": "no more snapshot tests for ui, they were just noise and everyone approved them blindly. team voted to use testing-library assertions on behavior instead. rewrite the Navbar snapshot test that way"
+ },
+ {
+  "src": "neg-b",
+  "i": 16,
+  "label": 0,
+  "text": "kenapa useEffect aku run dua kali masa dev? dah check takde StrictMode issue ke? dalam React 18 ni"
+ },
+ {
+  "src": "neg-b",
+  "i": 38,
+  "label": 0,
+  "text": "write a bash one-liner to find the 10 biggest files under /var/log"
+ },
+ {
+  "src": "neg-b",
+  "i": 17,
+  "label": 0,
+  "text": "building a patient intake form in react. when the dob field is empty, submit throws:\n\nTypeError: Cannot read properties of undefined (reading 'split')\n    at parseDob (intake.js:42:23)\n    at handleSubmit (IntakeForm.jsx:88:15)\n\nline 42 is const [y, m, d] = dob.split('-'). how should i handle the empty case?"
+ },
+ {
+  "src": "neg-b",
+  "i": 46,
+  "label": 0,
+  "text": "rename the User model's fullName field to displayName across the codebase and update the migration"
+ },
+ {
+  "src": "neg-a",
+  "i": 1,
+  "label": 0,
+  "text": "the signup form must reject any password under 12 chars and every email has to be unique, case-insensitive. right now 'Bob@x.com' and 'bob@x.com' both get through. where should i fix that, the model or the controller?"
+ },
+ {
+  "src": "neg-b",
+  "i": 2,
+  "label": 0,
+  "text": "thanks, that fixed it. the issue was the trailing slash in the base url"
+ },
+ {
+  "src": "pos-a",
+  "i": 10,
+  "label": 1,
+  "text": "heads up, nothing gets merged to main without a passing ci and one approval, even hotfixes. i need a branch protection config in terraform for the github repo that reflects that"
+ },
+ {
+  "src": "neg-b",
+  "i": 12,
+  "label": 0,
+  "text": "refactor the processPayment function in billing.js to use early returns, the nesting is getting out of hand"
+ },
+ {
+  "src": "neg-b",
+  "i": 27,
+  "label": 0,
+  "text": "summarize what this repo does from the readme and the folder layout, i just inherited it"
+ },
+ {
+  "src": "neg-a",
+  "i": 37,
+  "label": 0,
+  "text": "someone on the team told me there was a decision to stop using moment.js. i dont remember seeing it written down anywhere. is there a quick way to count how many files still import it?"
+ },
+ {
+  "src": "pos-a",
+  "i": 23,
+  "label": 1,
+  "text": "boss cakap semua api response kena ikut format { data, error, meta }, tak boleh return raw array. please update the products endpoint in express to follow that format"
+ },
+ {
+  "src": "pos-a",
+  "i": 36,
+  "label": 1,
+  "text": "i'm the only one who approves schema changes in this repo, so tag me on anything that touches prisma/schema.prisma and dont merge those automatically. add a CODEOWNERS entry for it"
+ },
+ {
+  "src": "pos-b",
+  "i": 27,
+  "label": 1,
+  "text": "client kita tak benarkan guna google analytics sebab isu pdpa, jadi kita pakai plausible self-hosted je. tolong tambah event tracking untuk butang 'daftar' kat landing page"
+ },
+ {
+  "src": "neg-a",
+  "i": 14,
+  "label": 0,
+  "text": "whats the rule for when a leap year applies? my date lib gives feb 29 for 1900 and i think thats wrong, but not sure if its the lib or my test"
+ },
+ {
+  "src": "pos-a",
+  "i": 24,
+  "label": 1,
+  "text": "we pin all dependencies to exact versions, no carets, renovate handles the bumps. update package.json so everything is pinned and bump axios to the latest 1.x"
+ },
+ {
+  "src": "neg-b",
+  "i": 42,
+  "label": 0,
+  "text": "godot 4: my enemy ai jitters when it reaches the player. using NavigationAgent2D and this in _physics_process:\n\nvar dir = to_local(nav.get_next_path_position()).normalized()\nvelocity = dir * speed\nmove_and_slide()\n\nit flips between two directions every frame once it's within about 10px. how do i stop the jitter?"
+ },
+ {
+  "src": "neg-b",
+  "i": 7,
+  "label": 0,
+  "text": "add a dark mode toggle to the settings page, there's already a ThemeContext"
+ },
+ {
+  "src": "neg-b",
+  "i": 11,
+  "label": 0,
+  "text": "training loss goes to nan around epoch 3. lr is 1e-3 with adam, batch size 64, pytorch 2.1.\n\nRuntimeError: Function 'LogBackward0' returned nan values in its 0th output.\n\nthe model is a small transformer for text classification. where should i start looking? is it the log in my loss or the data?"
+ },
+ {
+  "src": "neg-a",
+  "i": 21,
+  "label": 0,
+  "text": "we used to have a rule about squashing commits but i think it got dropped. is there a way to check the github branch protection settings from the cli to see what's still enforced?"
+ },
+ {
+  "src": "neg-a",
+  "i": 31,
+  "label": 0,
+  "text": "ada tak rule of thumb berapa banyak index yang okay untuk table yang banyak write? table events kita ada 11 index dan insert jadi lambat sangat bila traffic naik"
+ },
+ {
+  "src": "pos-a",
+  "i": 47,
+  "label": 1,
+  "text": "when our scripts hit an error they should fail loudly: set -euo pipefail at the top of every bash script, no silent continues. add that to deploy.sh and fix the unquoted variables"
+ },
+ {
+  "src": "pos-a",
+  "i": 48,
+  "label": 1,
+  "text": "unity project convention: prefabs in Assets/Prefabs, one script per class, PascalCase filenames, and we never call FindObjectOfType in update loops. refactor EnemySpawner to cache its references"
+ },
+ {
+  "src": "neg-b",
+  "i": 0,
+  "label": 0,
+  "text": "can you explain what useMemo actually does here? i added it to a filter on a 5k row table and it feels slower, not faster"
+ },
+ {
+  "src": "neg-a",
+  "i": 30,
+  "label": 0,
+  "text": "sql: every order must have at least one line item. is it possible to enforce that in postgres directly without a trigger? i tried a check constraint but it can't see other tables"
+ },
+ {
+  "src": "neg-b",
+  "i": 49,
+  "label": 0,
+  "text": "quick question, is 'git switch' the same as 'git checkout' for changing branches now?"
+ },
+ {
+  "src": "neg-a",
+  "i": 19,
+  "label": 0,
+  "text": "in chess960 the king must always start between the two rooks. im generating random start positions in js, how do i make sure the bishops land on opposite colors too?"
+ },
+ {
+  "src": "neg-a",
+  "i": 43,
+  "label": 0,
+  "text": "can you explain what 'required' means in openapi when a field is also nullable? i have required: [name] and nullable: true on it and my generated client throws on null"
+ },
+ {
+  "src": "neg-a",
+  "i": 15,
+  "label": 0,
+  "text": "the loyalty program only gives points on orders above rm50 and never on shipping fees. i wrote:\n\npoints = int(order.total * 0.1)\n\nbut total includes shipping. how do i fix this cleanly?"
+ }
+]

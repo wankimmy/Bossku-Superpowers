@@ -1,16 +1,15 @@
 """Spot a message in which the user states a rule that should outlive the request.
 
-Remembering a project rule only works when somebody saves it. In the two-session tests, Sonnet 5.5 saved the rule
-in 16 of 18 first sessions and passed 83% of the second sessions (41% without BosskuAI); Haiku 4.5 saved it in 9 of
-24, Gemma in 3 of 17 and Nemotron in none, and their pass rates stayed close to the baseline. A stated rule often has
+Remembering a project rule only works when somebody saves it, and in the two-session tests models differ a lot in whether
+they do so on their own (docs/benchmarks/README.md). A stated rule often has
 telltale wording ("from now on", "our team rule", "we decided", "we never ..."), so the prompt hook points it out and
 the stop hook sends the agent back once, with the exact command, if it never saved it.
 
-Wording is only a proxy, and it was measured, not assumed. Other agents wrote and labelled 199 messages blind. The
-first phrase list caught 47% of the stated rules and wrongly flagged 13% of deliberately tricky non-rules ("our
-refund policy is...", "the player can only use the power-up once"). Sentence rules were then added after looking at
-those misses, and a code review found cues that were too broad ("Content Security Policy", "across the repo"), which
-were tightened; the figures for the current rules are in docs/memory.md. A requirement for the one thing being built
+Wording is only a proxy, and it was measured, not assumed. Other agents wrote and labelled messages blind (data and
+scoring script: benchmarks/rules-eval, scripts/benchmark_rules.py). On a set the cues were not tuned on, the current
+rules catch about a third of the stated rules and wrongly flag about 4% of the non-rules; the figures are in
+docs/memory.md. Earlier sets, whose data was lost, showed the same pattern: a phrase list tuned on its own examples
+scores near 100% and falls to 40-60% on new wording. A requirement for the one thing being built
 ("it must never mutate its input") is not a rule for the project, and a wrong reminder costs the agent a turn, so
 both reminders say "if" and let the agent finish when no rule was stated.
 """
