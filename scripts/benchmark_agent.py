@@ -605,7 +605,7 @@ def load_suite(suite: Path, only: set[str] | None = None) -> list[tuple[Path, di
 def agent_command(claude: str, model: str, args, instructions: Path | None) -> list[str]:
     cmd = [claude, '-p', '--model', model, '--output-format', 'stream-json', '--verbose',
            '--setting-sources', 'project', '--permission-mode', 'bypassPermissions',
-           '--strict-mcp-config', '--exclude-dynamic-system-prompt-sections',
+           '--strict-mcp-config', '--exclude-dynamic-system-prompt-sections', '--include-hook-events',
            '--disallowedTools', 'WebFetch', 'WebSearch']
     # A dollar cap protects your own Claude account. Claude Code prices other models with a made-up rate, so a cap
     # there ends runs at an arbitrary token count and punishes whichever version uses more tokens: no cap by default.
@@ -613,15 +613,20 @@ def agent_command(claude: str, model: str, args, instructions: Path | None) -> l
     if budget is not None:
         cmd += ['--max-budget-usd', str(budget)]
     effort = args.effort
-    if args.provider == 'anthropic':
-        # Sessions would be written under your real ~/.claude; the Ollama config dir is thrown away after each run,
-        # and the stop gate needs the session transcript, so only that provider keeps sessions.
-        cmd.append('--no-session-persistence')
+    # Sessions are kept for every provider: the stop gate reads the session transcript, and with
+    # --no-session-persistence the file does not exist, so the gate would silently do nothing for Claude models.
+    # Runs on your own login write them under your real ~/.claude/projects; _execute deletes those folders afterwards.
     if instructions is not None:
         cmd += ['--append-system-prompt-file', str(instructions)]
     if effort:
         cmd += ['--effort', effort]
     return cmd
+
+
+def claude_session_dir(workdir: Path) -> Path:
+    """Where Claude Code keeps the sessions it ran in `workdir`: every non-alphanumeric character becomes '-'."""
+    config = Path(os.environ.get('CLAUDE_CONFIG_DIR') or Path.home() / '.claude')
+    return config / 'projects' / re.sub(r'[^A-Za-z0-9]', '-', str(workdir.resolve()))
 
 
 def invoke(cmd: list[str], prompt: str, workdir: Path, env: dict, transcript: Path, timeout: int,
@@ -801,6 +806,10 @@ class Runner:
             safe_name = re.sub(r'[^A-Za-z0-9._-]', '_', run_id)   # a ':' in a model id would become an NTFS stream
             with transcript.open('rb') as src, gzip.open(self.out / 'transcripts' / f'{safe_name}.jsonl.gz', 'wb') as dst:
                 shutil.copyfileobj(src, dst)
+        if self.args.provider == 'anthropic':   # the sessions of this throwaway folder, left in your real ~/.claude
+            sessions = claude_session_dir(workdir)
+            if sessions.is_dir() and sessions.name.endswith(re.sub(r'[^A-Za-z0-9]', '-', str(Path('r') / digest))):
+                rmtree_force(sessions)
         if not self.args.keep_workdirs:
             rmtree_force(workdir)
         rmtree_force(config_dir)

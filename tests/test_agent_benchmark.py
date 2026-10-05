@@ -318,6 +318,25 @@ class FindClaudeTests(unittest.TestCase):
         self.assertEqual(find_claude('C:/tools/claude.exe'), 'C:/tools/claude.exe')
 
 
+class SessionKeepingTests(unittest.TestCase):
+    """The stop gate reads the session transcript, so a run that does not keep its session has no gate."""
+
+    def test_no_provider_asks_claude_code_to_skip_saving_the_session(self):
+        for provider in ('anthropic', 'ollama'):
+            args = SimpleNamespace(provider=provider, budget=None, effort=None)
+            self.assertNotIn('--no-session-persistence', agent_command('claude', 'm', args, None))
+
+    def test_the_session_folder_is_named_after_the_work_folder(self):
+        from scripts.benchmark_agent import claude_session_dir
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.dict('os.environ', {'CLAUDE_CONFIG_DIR': tmp}):
+            work = Path(tmp) / 'a b' / 'r' / 'abc123'
+            work.mkdir(parents=True)
+            folder = claude_session_dir(work)
+            self.assertEqual(folder.parent, Path(tmp) / 'projects')
+            self.assertTrue(folder.name.endswith('-a-b-r-abc123'), folder.name)
+            self.assertNotRegex(folder.name, r'[^A-Za-z0-9-]')
+
+
 if __name__ == '__main__':
     unittest.main()
 
