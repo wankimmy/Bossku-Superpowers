@@ -1,6 +1,6 @@
 ---
 name: bosskuai-grill-with-docs
-description: "Use when a plan needs stress-testing against the existing domain model. A grilling session that updates CONTEXT.md and ADRs inline as decisions crystallise."
+description: "Use when a plan needs stress-testing against the existing domain model; updates CONTEXT.md and ADRs inline as decisions crystallise."
 ---
 
 <what-to-do>

@@ -1,6 +1,6 @@
 ---
 name: bosskuai-agent-architecture-audit
-description: "Use when auditing an agent or LLM app for wrapper regressions, memory pollution, weak tool discipline or hidden repair loops. A 12-layer diagnostic with severity-ranked, code-first fixes; it covers the BosskuAI pipeline itself."
+description: "Use when auditing an agent or LLM app for wrapper regression, memory pollution, tool discipline or hidden repair loops. 12-layer diagnostic, severity-ranked, code-first fixes; covers the BosskuAI pipeline itself."
 license: MIT
 metadata:
   author: affaan-m/ECC (origin oh-my-agent-check)
