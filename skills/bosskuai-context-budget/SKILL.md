@@ -1,6 +1,6 @@
 ---
 name: bosskuai-context-budget
-description: "Audit context-window cost across agents, skills, MCP, rules, and runtime persona injection; output ranked token-savings actions."
+description: "Use when a session is slow or the context window is crowded: audits context-window cost across agents, skills, MCP, rules and runtime persona injection and outputs ranked token-savings actions."
 license: MIT
 metadata:
   author: affaan-m/ECC

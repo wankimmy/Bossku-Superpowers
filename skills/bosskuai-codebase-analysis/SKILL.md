@@ -1,6 +1,6 @@
 ---
 name: bosskuai-codebase-analysis
-description: "Trace execution paths, call chains, module boundaries, and side effects to explain runtime behavior. Run bosskuai-project-understanding first if the stack is still unknown."
+description: "Use when you need to explain runtime behavior by tracing execution paths, call chains, module boundaries and side effects. Run bosskuai-project-understanding first if the stack is still unknown."
 ---
 
 # Codebase analysis

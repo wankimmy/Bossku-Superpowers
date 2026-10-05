@@ -1,6 +1,6 @@
 {
   "version": "2.1.0",
-  "fingerprint": "96c0d0f949d98c50",
+  "fingerprint": "c4309138de7d8cbc",
   "count": 236,
   "aliases": {
     "bosskuai-caveman": "bosskuai-token-saver",
@@ -1762,7 +1762,7 @@
     "bosskuai-agent-architecture-audit": {
       "path": "skills/bosskuai-agent-architecture-audit/SKILL.md",
       "name": "bosskuai-agent-architecture-audit",
-      "description": "12-layer diagnostic for agent/LLM apps — wrapper regression, memory pollution, tool discipline, hidden repair loops. Severity-ranked findings with code-first fixes; covers the BosskuAI pipeline itself.",
+      "description": "Use when auditing an agent or LLM app for wrapper regressions, memory pollution, weak tool discipline or hidden repair loops. A 12-layer diagnostic with severity-ranked, code-first fixes; it covers the BosskuAI pipeline itself.",
       "triggers": [
         "agent architecture audit",
         "agent audit",
@@ -1772,7 +1772,13 @@
         "why is my agent"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "auditing an agent",
+        "llm app for wrapper regressions",
+        "memory pollution",
+        "weak tool discipline",
+        "hidden repair loops"
+      ],
       "keywords": [
         "agent",
         "architecture",
@@ -1781,19 +1787,20 @@
         "wrapper",
         "regression",
         "quality",
-        "12-layer",
-        "diagnostic",
+        "auditing",
         "llm",
-        "apps",
+        "app",
         "memory",
         "pollution",
+        "weak",
         "tool",
         "discipline",
         "hidden",
         "repair",
         "loop",
+        "12-layer",
+        "diagnostic",
         "severity-ranked",
-        "finding",
         "code-first",
         "fixe",
         "cover",
@@ -2074,7 +2081,7 @@
     "bosskuai-architecture-deepening": {
       "path": "skills/bosskuai-architecture-deepening/SKILL.md",
       "name": "bosskuai-architecture-deepening",
-      "description": "Find module-deepening and refactoring opportunities using CONTEXT.md domain language and ADRs. Use to consolidate coupled modules or make a codebase more testable and AI-navigable.",
+      "description": "Use when coupled modules should be consolidated or a codebase made more testable and AI-navigable. Finds module-deepening and refactoring opportunities using CONTEXT.md domain language and ADRs.",
       "triggers": [
         "architecture deepening",
         "refactor opportunity",
@@ -2083,7 +2090,10 @@
         "consolidate modules"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "coupled modules should be consolidated",
+        "a codebase made more testable"
+      ],
       "keywords": [
         "architecture",
         "deepening",
@@ -2094,6 +2104,11 @@
         "test",
         "consolidate",
         "module",
+        "consolidated",
+        "codebase",
+        "made",
+        "testable",
+        "ai-navigable",
         "find",
         "module-deepening",
         "refactoring",
@@ -2104,9 +2119,6 @@
         "domain",
         "language",
         "adrs",
-        "codebase",
-        "testable",
-        "ai-navigable",
         "glossary",
         "process",
         "explore",
@@ -2124,7 +2136,7 @@
     "bosskuai-autonomous-loops": {
       "path": "skills/bosskuai-autonomous-loops/SKILL.md",
       "name": "bosskuai-autonomous-loops",
-      "description": "Loop ARCHITECTURE patterns — sequential pipelines to RFC-driven DAGs — exit conditions, context bridging, merge coordination. Discipline inside an iteration belongs to the loop-family skills.",
+      "description": "Use when designing how an agent loop is structured, from sequential pipelines to RFC-driven DAGs: exit conditions, context bridging, merge coordination. Discipline inside one iteration belongs to the loop-family skills.",
       "triggers": [
         "autonomous loops",
         "autonomous loop",
@@ -2132,7 +2144,11 @@
         "multi step pipeline"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "designing how an agent loop is structured",
+        "context bridging",
+        "merge coordination"
+      ],
       "keywords": [
         "autonomous",
         "loops",
@@ -2141,7 +2157,9 @@
         "multi",
         "step",
         "pipeline",
-        "pattern",
+        "designing",
+        "agent",
+        "structured",
         "sequential",
         "rfc-driven",
         "dags",
@@ -2153,9 +2171,11 @@
         "coordination",
         "discipline",
         "inside",
+        "one",
         "iteration",
         "belong",
         "loop-family",
+        "pattern",
         "spectrum",
         "claude",
         "core",
@@ -2189,13 +2209,9 @@
         "cross-iteration",
         "shared",
         "task",
-        "notes.md",
-        "note",
-        "md",
-        "progress",
-        "next"
+        "notes.md"
       ],
-      "model_role": "planner",
+      "model_role": "coder",
       "pack": "bossku",
       "qterms": "10:1 20:1 40:1 50:1 af:1 agent:13 ai:1 alway:1 architecture:2 automate:2 automatic:2 automatically:2 automation:1 based:2 batch:1 batche:1 betul:1 big:1 bite-sized:1 branch:1 branche:1 break:2 budget:3 business:1 came:1 cause:1 ci:3 claude:5 clean:1 cleanup:1 commented:1 complex:1 complexity:1 conflict:3 consecutive:1 console:1 console.log:1 continuous:1 coordination:2 dah:1 decompose:2 defensive:1 depend:3 dependencie:3 depth:1 design:2 development:1 direction:1 done:2 edit:1 execution:1 fail:2 failing:1 fight:1 file:5 filter:1 finishing:1 first:2 fixe:2 forever:1 generate:3 generation:1 handle:4 identical:1 impl:1 implement:2 implementation:4 inefficient:1 infinite:1 ini:1 intelligently:1 interdependent:1 iterating:1 iteration:1 jadi:1 kind:1 language:1 large:1 launched:1 leave:1 limit:2 log:1 logic:1 long:1 loop:6 max:1 merge:5 merging:1 modify:1 module:1 monorepo:1 multi-agent:1 multi-step:1 multiple:7 orchestrate:3 orchestration:1 other:2 overlap:1 overly:1 parallel:5 parallelize:1 paralllel:1 pass:2 passe:1 pattern:3 pipeline:1 possible:2 pr:2 prevent:1 prompt:1 rather:1 refactoring:1 restart:1 reviewer:1 rfc:4 rm20:1 roadmap:1 run:6 runs:3 scale:1 scratch:1 separate:2 sequencing:1 sequentially:1 signal:1 simultaneously:1 slightly:1 smart:1 smarter:1 solution:1 sometime:2 span:1 spec:2 split:1 spread:1 step:1 stop:1 stuck:1 subagent:1 task:4 track:1 true:1 typescript:1 ui:1 unique:1 unit:5 variation:4 verify:1 workflow:2 writing:2"
     },
@@ -2687,7 +2703,7 @@
     "bosskuai-codebase-analysis": {
       "path": "skills/bosskuai-codebase-analysis/SKILL.md",
       "name": "bosskuai-codebase-analysis",
-      "description": "Trace execution paths, call chains, module boundaries, and side effects to explain runtime behavior. Run bosskuai-project-understanding first if the stack is still unknown.",
+      "description": "Use when you need to explain runtime behavior by tracing execution paths, call chains, module boundaries and side effects. Run bosskuai-project-understanding first if the stack is still unknown.",
       "triggers": [
         "codebase analysis",
         "trace",
@@ -2697,7 +2713,10 @@
         "where is this called"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "call chains",
+        "module boundaries"
+      ],
       "keywords": [
         "codebase",
         "analysis",
@@ -2709,11 +2728,12 @@
         "side",
         "effect",
         "called",
-        "module",
-        "boundarie",
         "explain",
         "runtime",
         "behavior",
+        "tracing",
+        "module",
+        "boundarie",
         "run",
         "bosskuai-project-understanding",
         "first",
@@ -2893,7 +2913,7 @@
     "bosskuai-context-budget": {
       "path": "skills/bosskuai-context-budget/SKILL.md",
       "name": "bosskuai-context-budget",
-      "description": "Audit context-window cost across agents, skills, MCP, rules, and runtime persona injection; output ranked token-savings actions.",
+      "description": "Use when a session is slow or the context window is crowded: audits context-window cost across agents, skills, MCP, rules and runtime persona injection and outputs ranked token-savings actions.",
       "triggers": [
         "context budget",
         "context window",
@@ -2902,7 +2922,11 @@
         "trim context"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "a session is slow",
+        "runtime persona injection",
+        "outputs ranked token-savings actions"
+      ],
       "keywords": [
         "context",
         "budget",
@@ -2911,6 +2935,9 @@
         "token",
         "bloat",
         "trim",
+        "session",
+        "slow",
+        "crowded",
         "audit",
         "context-window",
         "cost",
@@ -3102,7 +3129,7 @@
     "bosskuai-council": {
       "path": "skills/bosskuai-council/SKILL.md",
       "name": "bosskuai-council",
-      "description": "Four-voice council (Architect, Skeptic, Pragmatist, Critic) for ambiguous tradeoffs and go/no-go calls — product bets, scope cuts, architecture forks — when multiple credible paths need structured disagreement.",
+      "description": "Use for ambiguous tradeoffs and go/no-go calls (product bets, scope cuts, architecture forks) when several credible paths need structured disagreement. A four-voice council: Architect, Skeptic, Pragmatist, Critic.",
       "triggers": [
         "council",
         "debate this",
@@ -3117,11 +3144,6 @@
         "go",
         "multiple",
         "perspective",
-        "four-voice",
-        "architect",
-        "skeptic",
-        "pragmatist",
-        "critic",
         "ambiguous",
         "tradeoff",
         "no-go",
@@ -3132,10 +3154,16 @@
         "cuts",
         "architecture",
         "fork",
+        "several",
         "credible",
         "path",
         "structured",
         "disagreement",
+        "four-voice",
+        "architect",
+        "skeptic",
+        "pragmatist",
+        "critic",
         "configured",
         "memory",
         "location",
@@ -3464,7 +3492,7 @@
     "bosskuai-customize-bosskuai": {
       "path": "skills/bosskuai-customize-bosskuai/SKILL.md",
       "name": "bosskuai-customize-bosskuai",
-      "description": "Activates only when editing BosskuAI's own configuration - AGENTS.md, skills/skill-index.json, skills/*/SKILL.md, agents/*.md, or the host plugin manifests - and injects the real schemas, paths, and verification commands so the model doesn't guess.",
+      "description": "Use only when editing BosskuAI's own configuration (AGENTS.md, skills/skill-index.json, skills/*/SKILL.md, agents/*.md or the host plugin manifests): it injects the real schemas, paths and verification commands so the model does not guess.",
       "triggers": [
         "customize bosskuai",
         "edit agents.md",
@@ -3483,7 +3511,6 @@
         "skill-index",
         "bossku",
         "config",
-        "activate",
         "editing",
         "configuration",
         "skill-index.json",
@@ -3499,7 +3526,6 @@
         "verification",
         "command",
         "model",
-        "doesn",
         "guess",
         "load",
         "repo",
@@ -3971,7 +3997,7 @@
     "bosskuai-docker": {
       "path": "skills/bosskuai-docker/SKILL.md",
       "name": "bosskuai-docker",
-      "description": "Dockerfile and Docker Compose setup or review — one-command 'docker compose up -d', .env config, no hardcoded credentials, bind mounts, explicit networks, health checks, non-root images, dev/prod workflows.",
+      "description": "Use when setting up or reviewing a Dockerfile or Docker Compose file: one-command 'docker compose up -d', .env config, no hardcoded credentials, bind mounts, explicit networks, health checks, non-root images, dev/prod workflows.",
       "triggers": [
         "docker",
         "dockerfile",
@@ -3982,7 +4008,9 @@
       ],
       "exclusions": [],
       "phrases": [
-        "docker compose up -d"
+        "docker compose up -d",
+        "reviewing a dockerfile",
+        "docker compose file: one-command"
       ],
       "keywords": [
         "docker",
@@ -3991,8 +4019,9 @@
         "containerize",
         "dockerize",
         "dockerise",
-        "setup",
-        "review",
+        "setting",
+        "reviewing",
+        "file",
         "one-command",
         "env",
         "config",
@@ -4547,7 +4576,7 @@
     "bosskuai-grill-with-docs": {
       "path": "skills/bosskuai-grill-with-docs/SKILL.md",
       "name": "bosskuai-grill-with-docs",
-      "description": "Grilling session that stress-tests a plan against the existing domain model and updates CONTEXT.md/ADRs inline as decisions crystallise.",
+      "description": "Use when a plan needs stress-testing against the existing domain model. A grilling session that updates CONTEXT.md and ADRs inline as decisions crystallise.",
       "triggers": [
         "grill with docs",
         "grill",
@@ -4563,13 +4592,13 @@
         "verify",
         "check",
         "understanding",
-        "grilling",
-        "session",
-        "stress-tests",
         "plan",
+        "stress-testing",
         "existing",
         "domain",
         "model",
+        "grilling",
+        "session",
         "update",
         "context.md",
         "context",
@@ -5476,7 +5505,7 @@
     "bosskuai-laravel-security": {
       "path": "skills/bosskuai-laravel-security/SKILL.md",
       "name": "bosskuai-laravel-security",
-      "description": "Laravel security review and hardening — auth, authorization, Eloquent safety, CSRF/XSS, API security, production config. Use for any Laravel codebase before a security-sensitive merge or release.",
+      "description": "Use when reviewing or hardening a Laravel codebase before a security-sensitive merge or release: auth, authorization, Eloquent safety, CSRF/XSS, API security, production config.",
       "triggers": [
         "laravel security",
         "secure laravel",
@@ -5491,7 +5520,12 @@
         "proper security pass"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "release: auth",
+        "eloquent safety",
+        "api security",
+        "production config"
+      ],
       "keywords": [
         "laravel",
         "security",
@@ -5507,17 +5541,17 @@
         "config",
         "pass",
         "proper",
-        "review",
+        "reviewing",
+        "codebase",
+        "security-sensitive",
+        "merge",
+        "release",
         "auth",
         "authorization",
         "eloquent",
         "safety",
         "xss",
         "api",
-        "codebase",
-        "security-sensitive",
-        "merge",
-        "release",
         "activate",
         "configuration",
         "essential",
@@ -5619,7 +5653,7 @@
     "bosskuai-laravel-verification": {
       "path": "skills/bosskuai-laravel-verification/SKILL.md",
       "name": "bosskuai-laravel-verification",
-      "description": "Verification loop for Laravel projects: env checks, linting, static analysis, tests with coverage, security scans, and deployment readiness. Run before PRs, after major changes, and pre-deploy.",
+      "description": "Use when verifying a Laravel project before a PR, after major changes or pre-deploy. A verification loop: env checks, linting, static analysis, tests with coverage, security scans, deployment readiness.",
       "triggers": [
         "laravel verification",
         "verify laravel",
@@ -5628,15 +5662,22 @@
         "before a pr"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "verifying a laravel project before a pr",
+        "after major changes"
+      ],
       "keywords": [
         "laravel",
         "verification",
         "verify",
         "check",
         "pr",
-        "loop",
+        "verifying",
         "project",
+        "major",
+        "change",
+        "pre-deploy",
+        "loop",
         "env",
         "linting",
         "static",
@@ -5647,11 +5688,6 @@
         "scan",
         "deployment",
         "readiness",
-        "run",
-        "prs",
-        "major",
-        "change",
-        "pre-deploy",
         "work",
         "phase",
         "environment",
@@ -7019,7 +7055,7 @@
     "bosskuai-project-understanding": {
       "path": "skills/bosskuai-project-understanding/SKILL.md",
       "name": "bosskuai-project-understanding",
-      "description": "Read a repo to learn what the project is, who it serves, what defines behavior, and which skills to load next — oriented reading plus selective sampling over full-tree dumps.",
+      "description": "Use when you must learn what a repo is, who it serves, what defines its behavior and which skills to load next. Oriented reading plus selective sampling over full-tree dumps.",
       "triggers": [
         "project understanding",
         "how does this work",
@@ -7033,7 +7069,11 @@
         "get up to speed"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "you must learn what a repo is",
+        "what defines its behavior",
+        "which skills to load next"
+      ],
       "keywords": [
         "project",
         "understanding",
@@ -7045,7 +7085,7 @@
         "onboard",
         "unfamiliar",
         "speed",
-        "read",
+        "must",
         "learn",
         "serve",
         "define",
@@ -7523,7 +7563,7 @@
     "bosskuai-rigorous-code-review": {
       "path": "skills/bosskuai-rigorous-code-review/SKILL.md",
       "name": "bosskuai-rigorous-code-review",
-      "description": "Skeptical expert review that maps changes to repo structure, applies strict engineering standards, and prefers minimal fixes. Use for PR/pre-merge review, adversarial review, or challenging an implementation.",
+      "description": "Use for PR or pre-merge review, adversarial review, or challenging an implementation. A skeptical expert review that maps changes to repo structure, applies strict engineering standards and prefers minimal fixes.",
       "triggers": [
         "rigorous code review",
         "review this code",
@@ -7564,6 +7604,9 @@
         "actually",
         "sound",
         "logic",
+        "pre-merge",
+        "adversarial",
+        "challenging",
         "skeptical",
         "expert",
         "maps",
@@ -7575,10 +7618,7 @@
         "standard",
         "prefer",
         "minimal",
-        "fixe",
-        "pre-merge",
-        "adversarial",
-        "challenging"
+        "fixe"
       ],
       "model_role": "reviewer",
       "pack": "bossku",

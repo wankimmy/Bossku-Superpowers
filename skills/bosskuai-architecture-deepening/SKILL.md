@@ -1,6 +1,6 @@
 ---
 name: bosskuai-architecture-deepening
-description: "Find module-deepening and refactoring opportunities using CONTEXT.md domain language and ADRs. Use to consolidate coupled modules or make a codebase more testable and AI-navigable."
+description: "Use when coupled modules should be consolidated or a codebase made more testable and AI-navigable. Finds module-deepening and refactoring opportunities using CONTEXT.md domain language and ADRs."
 ---
 
 # Improve Codebase Architecture

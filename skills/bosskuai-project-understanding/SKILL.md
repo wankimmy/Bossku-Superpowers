@@ -1,6 +1,6 @@
 ---
 name: bosskuai-project-understanding
-description: "Read a repo to learn what the project is, who it serves, what defines behavior, and which skills to load next — oriented reading plus selective sampling over full-tree dumps."
+description: "Use when you must learn what a repo is, who it serves, what defines its behavior and which skills to load next. Oriented reading plus selective sampling over full-tree dumps."
 ---
 
 # Project understanding

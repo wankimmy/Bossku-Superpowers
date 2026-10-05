@@ -1,6 +1,6 @@
 ---
 name: bosskuai-rigorous-code-review
-description: "Skeptical expert review that maps changes to repo structure, applies strict engineering standards, and prefers minimal fixes. Use for PR/pre-merge review, adversarial review, or challenging an implementation."
+description: "Use for PR or pre-merge review, adversarial review, or challenging an implementation. A skeptical expert review that maps changes to repo structure, applies strict engineering standards and prefers minimal fixes."
 ---
 
 # Rigorous code review

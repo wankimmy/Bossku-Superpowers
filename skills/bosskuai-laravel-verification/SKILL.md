@@ -1,6 +1,6 @@
 ---
 name: bosskuai-laravel-verification
-description: "Verification loop for Laravel projects: env checks, linting, static analysis, tests with coverage, security scans, and deployment readiness. Run before PRs, after major changes, and pre-deploy."
+description: "Use when verifying a Laravel project before a PR, after major changes or pre-deploy. A verification loop: env checks, linting, static analysis, tests with coverage, security scans, deployment readiness."
 license: MIT
 metadata:
   author: affaan-m/ECC

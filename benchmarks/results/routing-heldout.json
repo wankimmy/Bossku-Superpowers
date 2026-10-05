@@ -182,9 +182,9 @@
           "hits": 121,
           "rate": 0.7658227848101266
         },
-        "not_confident": 60,
-        "stack_precision": 0.6744725738396624,
-        "stack_size": 2.0822784810126582
+        "not_confident": 59,
+        "stack_precision": 0.6739451476793249,
+        "stack_size": 2.088607594936709
       },
       "description-only": {
         "prompts": 158,
@@ -311,9 +311,9 @@
           "hits": 249,
           "rate": 0.7591463414634146
         },
-        "not_confident": 109,
-        "stack_precision": 0.6625508130081301,
-        "stack_size": 2.100609756097561
+        "not_confident": 108,
+        "stack_precision": 0.6622967479674796,
+        "stack_size": 2.1036585365853657
       },
       "description-only": {
         "prompts": 328,

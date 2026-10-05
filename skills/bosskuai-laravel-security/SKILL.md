@@ -1,6 +1,6 @@
 ---
 name: bosskuai-laravel-security
-description: "Laravel security review and hardening — auth, authorization, Eloquent safety, CSRF/XSS, API security, production config. Use for any Laravel codebase before a security-sensitive merge or release."
+description: "Use when reviewing or hardening a Laravel codebase before a security-sensitive merge or release: auth, authorization, Eloquent safety, CSRF/XSS, API security, production config."
 license: MIT
 metadata:
   author: affaan-m/ECC
