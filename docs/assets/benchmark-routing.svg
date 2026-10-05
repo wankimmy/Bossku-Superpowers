@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 488" width="880" height="488" role="img" aria-labelledby="t d">
 <title id="t">Finding the right skill on new prompts</title>
-<desc id="d">Finding the right skill on new prompts. 73 held-out requests written without seeing the router (never used for tuning) Ranking Right skill ranked first: Without BosskuAI (keyword search) 60%, With BosskuAI 75%. Ranking Right skill in the top three: Without BosskuAI (keyword search) 77%, With BosskuAI 92%. Requests with several jobs Parts of a request covered: With BosskuAI 71%. Requests with several jobs Whole request covered: With BosskuAI 58%.</desc>
+<desc id="d">Finding the right skill on new prompts. 158 held-out requests written without seeing the router (never used for tuning) Ranking Right skill ranked first: Without BosskuAI (keyword search) 56%, With BosskuAI 82%. Ranking Right skill in the top three: Without BosskuAI (keyword search) 73%, With BosskuAI 95%. Requests with several jobs Parts of a request covered: With BosskuAI 85%. Requests with several jobs Whole request covered: With BosskuAI 77%.</desc>
 <style>text{font-family:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif}.card{fill:#fcfcfb}.ink{fill:#0b0b0b}.ink2{fill:#52514e}.muted{fill:#898781}.grid{stroke:#e1e0d9}.base{stroke:#c3c2b7}.whisker{stroke:#52514e}.s0{fill:#2a78d6}.s1{fill:#1baf7a}@media (prefers-color-scheme:dark){.card{fill:#1a1a19}.ink{fill:#ffffff}.ink2{fill:#c3c2b7}.muted{fill:#898781}.grid{stroke:#2c2c2a}.base{stroke:#383835}.whisker{stroke:#c3c2b7}.s0{fill:#3987e5}.s1{fill:#199e70}}</style>
 <rect class="card" width="880" height="488" rx="14"/>
 <text class="ink" x="28" y="42" font-size="22" font-weight="650">Finding the right skill on new prompts</text>
-<text class="ink2" x="28" y="66" font-size="14">73 held-out requests written without seeing the router (never used for tuning)</text>
+<text class="ink2" x="28" y="66" font-size="14">158 held-out requests written without seeing the router (never used for tuning)</text>
 <rect class="s0" x="28" y="78" width="12" height="12" rx="3"/>
 <text class="ink2" x="46" y="89" font-size="13">Without BosskuAI (keyword search)</text>
 <rect class="s1" x="312" y="78" width="12" height="12" rx="3"/>
@@ -22,27 +22,27 @@
 <text class="muted" x="730.0" y="254" font-size="12" text-anchor="middle">100%</text>
 <line class="base" x1="204" y1="126" x2="204" y2="238" stroke-width="1.5"/>
 <text class="ink" x="28" y="158.0" font-size="14" font-weight="600">Right skill ranked first</text>
-<path class="s0" d="M204,134 H517.0 Q521.0,134 521.0,138.0 V148.0 Q521.0,152 517.0,152 H204 Z"/>
-<line class="whisker" x1="460.7" y1="143.0" x2="576.0" y2="143.0" stroke-width="1.5"/>
-<line class="whisker" x1="460.7" y1="139.0" x2="460.7" y2="147.0" stroke-width="1.5"/>
-<line class="whisker" x1="576.0" y1="139.0" x2="576.0" y2="147.0" stroke-width="1.5"/>
-<text class="ink" x="584.0" y="147.5" font-size="13" font-weight="600">60%</text>
-<path class="s1" d="M204,154 H596.3 Q600.3,154 600.3,158.0 V168.0 Q600.3,172 596.3,172 H204 Z"/>
-<line class="whisker" x1="542.5" y1="163.0" x2="644.8" y2="163.0" stroke-width="1.5"/>
-<line class="whisker" x1="542.5" y1="159.0" x2="542.5" y2="167.0" stroke-width="1.5"/>
-<line class="whisker" x1="644.8" y1="159.0" x2="644.8" y2="167.0" stroke-width="1.5"/>
-<text class="ink" x="652.8" y="167.5" font-size="13" font-weight="600">75%</text>
+<path class="s0" d="M204,134 H493.0 Q497.0,134 497.0,138.0 V148.0 Q497.0,152 493.0,152 H204 Z"/>
+<line class="whisker" x1="456.0" y1="143.0" x2="536.5" y2="143.0" stroke-width="1.5"/>
+<line class="whisker" x1="456.0" y1="139.0" x2="456.0" y2="147.0" stroke-width="1.5"/>
+<line class="whisker" x1="536.5" y1="139.0" x2="536.5" y2="147.0" stroke-width="1.5"/>
+<text class="ink" x="544.5" y="147.5" font-size="13" font-weight="600">56%</text>
+<path class="s1" d="M204,154 H632.8 Q636.8,154 636.8,158.0 V168.0 Q636.8,172 632.8,172 H204 Z"/>
+<line class="whisker" x1="601.5" y1="163.0" x2="664.0" y2="163.0" stroke-width="1.5"/>
+<line class="whisker" x1="601.5" y1="159.0" x2="601.5" y2="167.0" stroke-width="1.5"/>
+<line class="whisker" x1="664.0" y1="159.0" x2="664.0" y2="167.0" stroke-width="1.5"/>
+<text class="ink" x="672.0" y="167.5" font-size="13" font-weight="600">82%</text>
 <text class="ink" x="28" y="218.0" font-size="14" font-weight="600">Right skill in the top three</text>
-<path class="s0" d="M204,194 H603.5 Q607.5,194 607.5,198.0 V208.0 Q607.5,212 603.5,212 H204 Z"/>
-<line class="whisker" x1="550.3" y1="203.0" x2="650.7" y2="203.0" stroke-width="1.5"/>
-<line class="whisker" x1="550.3" y1="199.0" x2="550.3" y2="207.0" stroke-width="1.5"/>
-<line class="whisker" x1="650.7" y1="199.0" x2="650.7" y2="207.0" stroke-width="1.5"/>
-<text class="ink" x="658.7" y="207.5" font-size="13" font-weight="600">77%</text>
-<path class="s1" d="M204,214 H682.8 Q686.8,214 686.8,218.0 V228.0 Q686.8,232 682.8,232 H204 Z"/>
-<line class="whisker" x1="641.7" y1="223.0" x2="709.9" y2="223.0" stroke-width="1.5"/>
-<line class="whisker" x1="641.7" y1="219.0" x2="641.7" y2="227.0" stroke-width="1.5"/>
-<line class="whisker" x1="709.9" y1="219.0" x2="709.9" y2="227.0" stroke-width="1.5"/>
-<text class="ink" x="717.9" y="227.5" font-size="13" font-weight="600">92%</text>
+<path class="s0" d="M204,194 H582.8 Q586.8,194 586.8,198.0 V208.0 Q586.8,212 582.8,212 H204 Z"/>
+<line class="whisker" x1="547.8" y1="203.0" x2="620.2" y2="203.0" stroke-width="1.5"/>
+<line class="whisker" x1="547.8" y1="199.0" x2="547.8" y2="207.0" stroke-width="1.5"/>
+<line class="whisker" x1="620.2" y1="199.0" x2="620.2" y2="207.0" stroke-width="1.5"/>
+<text class="ink" x="628.2" y="207.5" font-size="13" font-weight="600">73%</text>
+<path class="s1" d="M204,214 H699.4 Q703.4,214 703.4,218.0 V228.0 Q703.4,232 699.4,232 H204 Z"/>
+<line class="whisker" x1="679.1" y1="223.0" x2="716.4" y2="223.0" stroke-width="1.5"/>
+<line class="whisker" x1="679.1" y1="219.0" x2="679.1" y2="227.0" stroke-width="1.5"/>
+<line class="whisker" x1="716.4" y1="219.0" x2="716.4" y2="227.0" stroke-width="1.5"/>
+<text class="ink" x="724.4" y="227.5" font-size="13" font-weight="600">95%</text>
 <text class="ink" x="28" y="294" font-size="15" font-weight="650">Requests with several jobs</text>
 <line class="grid" x1="204.0" y1="308" x2="204.0" y2="420" stroke-width="1"/>
 <text class="muted" x="204.0" y="436" font-size="12" text-anchor="middle">0%</text>
@@ -56,10 +56,10 @@
 <text class="muted" x="730.0" y="436" font-size="12" text-anchor="middle">100%</text>
 <line class="base" x1="204" y1="308" x2="204" y2="420" stroke-width="1.5"/>
 <text class="ink" x="28" y="340.0" font-size="14" font-weight="600">Parts of a request covered</text>
-<path class="s1" d="M204,336 H573.5 Q577.5,336 577.5,340.0 V350.0 Q577.5,354 573.5,354 H204 Z"/>
-<text class="ink" x="585.5" y="349.5" font-size="13" font-weight="600">71%</text>
+<path class="s1" d="M204,336 H646.1 Q650.1,336 650.1,340.0 V350.0 Q650.1,354 646.1,354 H204 Z"/>
+<text class="ink" x="658.1" y="349.5" font-size="13" font-weight="600">85%</text>
 <text class="ink" x="28" y="400.0" font-size="14" font-weight="600">Whole request covered</text>
-<path class="s1" d="M204,396 H502.6 Q506.6,396 506.6,400.0 V410.0 Q506.6,414 502.6,414 H204 Z"/>
-<text class="ink" x="514.6" y="409.5" font-size="13" font-weight="600">58%</text>
+<path class="s1" d="M204,396 H602.8 Q606.8,396 606.8,400.0 V410.0 Q606.8,414 602.8,414 H204 Z"/>
+<text class="ink" x="614.8" y="409.5" font-size="13" font-weight="600">77%</text>
 <text class="muted" x="28" y="472" font-size="12">Whiskers show a 95% interval. Plain keyword search only ranks, so it has no coverage bars.</text>
 </svg>

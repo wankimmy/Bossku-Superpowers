@@ -19,6 +19,10 @@ from bossku.skills import NOT_INSTALLED, locate_skill, select_skill_stack
 
 MIN_WORDS = 5            # a short ping ("thanks", "run the tests") needs no skill
 MIN_SCORE = 2.0          # below this the lexical evidence is a guess; say nothing
+# The hint costs tokens every time it speaks, so it speaks only when the best match is strong: on the tuning halves
+# of two held-out prompt sets a top score of 12 or more picked an acceptable skill 97% of the time (41% of those
+# prompts reached it), while the scores of spec-style coding prompts stay around 1-2.
+MIN_TOP_SCORE = 12.0
 MAX_HINTS = 2
 _BOILERPLATE = re.compile(
     r"^(?:use this (?:skill )?(?:for|when|to)|use when|use for|use to|"
@@ -41,6 +45,8 @@ def build_hint(prompt: str, *, root: Path | None = None, home: Path | None = Non
     if len(prompt.split()) < MIN_WORDS or prompt.startswith(("/", "!")):
         return None
     selection = select_skill_stack(prompt, root, limit=MAX_HINTS + 1)
+    if not selection["selected"] or selection["selected"][0]["score"] < MIN_TOP_SCORE:
+        return None
     picks = []
     for row in selection["selected"]:
         if row["skill_id"] in NOT_INSTALLED or row["score"] < MIN_SCORE:

@@ -7,10 +7,12 @@ always-loaded context: hosts only ever read `name` + `description`.
 
 from __future__ import annotations
 
+import gzip
 import hashlib
 import json
 import math
 import re
+from collections import Counter
 from pathlib import Path
 
 from bossku.paths import repo_root
@@ -878,6 +880,36 @@ def _headings(text: str) -> list[str]:
     return re.findall(r"^#{2,3}\s+(.{3,60})$", text, re.M)[:25]
 
 
+# People rarely use a skill's own words ("jest hanging after the tests finish" is a stuck test run), so the router
+# also learns the vocabulary of requests: a model wrote 30 realistic messages per skill from its SKILL.md alone
+# (benchmarks/routing-queries.json.gz). Here they become, per skill, its 150 most distinctive words as "word:count".
+QUERY_SOURCE = "benchmarks/routing-queries.json.gz"
+QUERY_TERMS_PER_SKILL = 150
+QUERY_STOP_SHARE = 0.35   # a word found in more than this share of the skills says nothing about any of them
+
+
+def query_source(root: Path | None = None) -> Path:
+    return repo_root(root) / QUERY_SOURCE
+
+
+def _query_terms(root: Path | None = None) -> dict[str, str]:
+    try:
+        phrasings = json.loads(gzip.decompress(query_source(root).read_bytes()))
+    except (OSError, ValueError):
+        return {}
+    docs = {sid: Counter(singular(t) for q in queries if isinstance(q, str) for t in tokenize(q))
+            for sid, queries in phrasings.items() if isinstance(queries, list)}
+    n = max(len(docs), 1)
+    df = Counter(t for counts in docs.values() for t in counts)
+    common = {t for t, f in df.items() if f > QUERY_STOP_SHARE * n}
+    out: dict[str, str] = {}
+    for sid, counts in docs.items():
+        kept = {t: c for t, c in counts.items() if t not in common}
+        top = sorted(kept, key=lambda t: (-kept[t] * math.log(1 + n / df[t]), t))[:QUERY_TERMS_PER_SKILL]
+        out[sid] = " ".join(f"{t}:{kept[t]}" for t in sorted(top))
+    return out
+
+
 def skills_fingerprint(root: Path | None = None) -> str:
     """Hash all inputs that affect routing, including headings and policy tables."""
     base = skills_dir(root)
@@ -886,6 +918,8 @@ def skills_fingerprint(root: Path | None = None) -> str:
               "exclusions": CURATED_EXCLUSIONS, "roles": CURATED_ROLES,
               "aliases": load_aliases(root), "vendored": load_vendored(root)}
     h.update(json.dumps(policy, sort_keys=True).encode("utf-8"))
+    source = query_source(root)
+    h.update(hashlib.sha256(source.read_bytes()).digest() if source.is_file() else b"-")
     for sid in list_skill_ids(root):
         h.update(sid.encode())
         h.update(b"\0")
@@ -900,6 +934,7 @@ def build_index(root: Path | None = None) -> dict:
     base = skills_dir(r)
     vendored = load_vendored(r)
     entries: dict[str, dict] = {}
+    query_terms = _query_terms(r)
 
     for sid in list_skill_ids(r):
         path = base / sid / "SKILL.md"
@@ -927,6 +962,8 @@ def build_index(root: Path | None = None) -> dict:
             "model_role": _derive_role(sid, description),
             "pack": vendored.get(sid, "bossku"),
         }
+        if query_terms.get(sid):
+            entries[sid]["qterms"] = query_terms[sid]
         # Claude Code refuses model calls to these; the user runs them as /<id>.
         if str(_parse_frontmatter(text).get("disable-model-invocation", "")).lower() == "true":
             entries[sid]["user_invoked"] = True

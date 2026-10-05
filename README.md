@@ -36,7 +36,7 @@ In plain words: BosskuAI helps a model that skips checking its own work. A model
 - **Gemma 4 31B gained nothing it could measure on harder tasks:** 57% without, 52% with.
 - **DeepSeek V4.1 Flash gained nothing it could measure on tasks that need a rule from an earlier session:** 87% without, 100% with.
 - **The extra checking costs tokens:** tokens per run with BosskuAI compared with without: DeepSeek V4.1 Flash 1.1× on coding tasks, Nemotron 3 Nano 30B 5.3× on coding tasks, DeepSeek V4.1 Flash 1.1× on harder tasks, Gemma 4 31B 1.6× on harder tasks, DeepSeek V4.1 Flash 1.2× on two-session tasks.
-- **It finds the right skill more often:** 75% first-pick accuracy on new requests, against 60% for keyword search.
+- **It finds the right skill more often:** 82% first-pick accuracy on new requests, against 56% for keyword search.
 - **Its fixed cost is small:** extra tokens on the first call of a session: 1,241 on Claude Haiku 4.5, 2,155 on Claude Sonnet 5.5.
 <!-- summary-overall:end -->
 
@@ -53,7 +53,7 @@ In plain words: BosskuAI helps a model that skips checking its own work. A model
 ![With BosskuAI and with plain keyword search: how often the right skill is ranked first on requests it was never tuned on](docs/assets/benchmark-routing.svg)
 
 <!-- summary-routing:start -->
-**What this shows:** on 73 requests it was never tuned on, BosskuAI ranked an acceptable skill first 75% of the time, against 60% for plain keyword search. For requests with several jobs it found a fitting skill for every part 58% of the time. With a real agent (DeepSeek V4.1 Flash) on the same requests, an acceptable skill was actually opened for 55% of them.
+**What this shows:** on 158 requests it was never tuned on, BosskuAI ranked an acceptable skill first 82% of the time, against 56% for plain keyword search. For requests with several jobs it found a fitting skill for every part 77% of the time. With a real agent (DeepSeek V4.1 Flash) on the same requests, an acceptable skill was actually opened for 55% of them.
 <!-- summary-routing:end -->
 
 ### Finishing tasks
@@ -119,11 +119,11 @@ In plain words: BosskuAI helps a model that skips checking its own work. A model
 | Claude Sonnet 5.5: input tokens | 35,403 | 37,558 |
 | Claude Sonnet 5.5: cost | $0.0247 | $0.0297 |
 
-| Finding a skill (73 new requests) | Keyword search only | With BosskuAI |
+| Finding a skill (158 new requests) | Keyword search only | With BosskuAI |
 |---|---:|---:|
-| Right skill ranked first | 60% | 75% |
-| Right skill in the top three | 77% | 92% |
-| Every part of a multi-part request covered | - | 58% |
+| Right skill ranked first | 56% | 82% |
+| Right skill in the top three | 73% | 95% |
+| Every part of a multi-part request covered | - | 77% |
 | A real agent (DeepSeek V4.1 Flash) opens an acceptable skill | - | 55% |
 
 | Hidden-test coding tasks | Without BosskuAI | With BosskuAI |

@@ -5,7 +5,7 @@ Everything in the main README comes from the checks below. The raw rows are in [
 | Check | What it answers | Needs a model? | Saved result |
 |---|---|---|---|
 | Session overhead | What does BosskuAI add to the first call of every session? | Yes (2 Claude models, a few cents) | `overhead.json` |
-| Skill search on new prompts | Does the router find the right skill for requests it was never tuned on? | No | `routing-heldout.json` |
+| Skill search on new prompts | Does the router find the right skill for requests it was never tuned on? 328 requests written by agents that saw only the skill catalog; the router is tuned on one half (by id hash) and reported on the other (158) | No | `routing-heldout.json` |
 | Live skill use | Does a real agent open a fitting skill? | Yes (Ollama Cloud) | `routing-live.json` |
 | Coding tasks | Does the agent finish more tasks, and at what token cost? | Yes (Ollama Cloud) | `coding-test.json` |
 | Harder tasks | The same on longer projects with many rules to follow | Yes (Ollama Cloud) | `hard.json` |
@@ -106,6 +106,14 @@ An interrupted run resumes where it stopped when you start it again with the sam
 - The held-out skill-search prompts and their acceptable skills are one author's judgment, not ground truth.
 - The memory tasks measure whether a stated rule is remembered, not whether notes help with open questions such as "why did we choose this design?".
 - The agent in these runs is Claude Code. The helper hooks only exist for Claude Code, so Cursor, Codex, OpenCode, and OMP got the skills and instructions but not the hooks, and were not benchmarked.
+
+## Skill search on new prompts (328 requests)
+
+Two sets of requests were written by agents that saw only the skill catalog (each skill's id and description), never the router code or its tests, and each request lists the skills a sensible expert would accept for each of its parts (a second agent then added any other skills it judged equally acceptable). The older set has 160 requests, the newer one 168 and was written after the older half had been used for tuning. Each set is split in two by a hash of the request id; the router is tuned on one half and the numbers reported are for the other. The reported result is on 158 requests.
+
+The vocabulary of requests was generated the same way, from each `SKILL.md` alone and without seeing any of these requests: one small model per skill wrote 30 messages "that real users would type when this skill is the right first skill" (12 detailed, 6 short, 6 messy, 4 mixed Malay-English, 2 indirect), described in terms of symptoms, tools, error strings and goals rather than the skill's own words. The weight and the cutoffs were chosen on the tuning halves and 86 curated regression cases (`tests/test_routing.py`) and reported on the test halves. The previous router scored 66% first-pick accuracy on those 158 requests, the current one 82%, plain keyword search 56%.
+
+Two things this does not show. The older half the router had been hand-tuned on went from 100% to 90% first-pick accuracy, so numbers on prompts a router was tuned on are not worth quoting. And better ranking does not by itself change what an agent does: in 1,104 runs with BosskuAI enabled, agents opened a skill in about 3% of them and only 7 different skills were ever opened, so improving what the hint says and when matters more than the ranking.
 
 ## Tuned routing regression (82 prompts)
 

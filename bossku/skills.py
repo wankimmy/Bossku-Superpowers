@@ -285,13 +285,65 @@ def rank_skills(task: str, root: Path | None = None, limit: int = 5) -> list[tup
             q_terms[token] = (idf.get(token, default_idf), variants(token))
     q_mass = sum(w for w, _ in q_terms.values()) or 1.0
 
+    request_fit = _request_fit(task, entries, data.get("fingerprint", ""))
     scored: list[tuple[str, float]] = []
     for sid, entry in entries.items():
         if sid in NOT_INSTALLED:
             continue
-        scored.append((sid, _score_entry(sid, entry, task_l, q_terms, q_mass)))
+        scored.append((sid, _score_entry(sid, entry, task_l, q_terms, q_mass) + REQUEST_FIT_WEIGHT * request_fit.get(sid, 0.0)))
     scored.sort(key=lambda pair: (-pair[1], pair[0]))
     return scored[:limit]
+
+
+# How strongly the vocabulary of real requests counts next to the skill's own words (tuned on the dev halves of two
+# prompt sets, reported on the test halves).
+REQUEST_FIT_WEIGHT = 5.0
+_BM25_K1, _BM25_B = 1.2, 0.75
+_request_models: dict[str, tuple] = {}
+
+
+def _request_model(entries: dict[str, dict], key: str) -> tuple:
+    """(counts per skill, length per skill, average length, idf) from the 'word:count' text in the index."""
+    if key and key in _request_models:
+        return _request_models[key]
+    counts = {sid: {w: int(c) for w, _, c in (item.partition(":") for item in entry["qterms"].split())}
+              for sid, entry in entries.items() if entry.get("qterms")}
+    lengths = {sid: sum(c.values()) for sid, c in counts.items()}
+    average = sum(lengths.values()) / max(len(lengths), 1)
+    n = len(counts)
+    df: dict[str, int] = {}
+    for c in counts.values():
+        for w in c:
+            df[w] = df.get(w, 0) + 1
+    idf = {w: math.log(1 + (n - f + 0.5) / (f + 0.5)) for w, f in df.items()}
+    model = (counts, lengths, average, idf)
+    if key:
+        _request_models[key] = model
+    return model
+
+
+def _request_fit(task: str, entries: dict[str, dict], key: str) -> dict[str, float]:
+    """0..1 per skill: how well the words of the request match the words people use when they need that skill (BM25)."""
+    from bossku.index import singular, tokenize
+
+    counts, lengths, average, idf = _request_model(entries, key)
+    if not counts:
+        return {}
+    words = list(dict.fromkeys(singular(t) for t in tokenize(task)))
+    norm = sum(idf.get(w, 0.0) for w in words) * (_BM25_K1 + 1) or 1.0
+    fit: dict[str, float] = {}
+    for sid, tf in counts.items():
+        total = 0.0
+        for w in words:
+            f = tf.get(w)
+            if f:
+                total += idf[w] * f * (_BM25_K1 + 1) / (f + _BM25_K1 * (1 - _BM25_B + _BM25_B * lengths[sid] / average))
+        if total:
+            fit[sid] = total / norm
+    best = max(fit.values(), default=0.0)
+    # Relative to the best-fitting skill: a request that fits nothing well gets no push, so the curated phrases and
+    # the skill's own words keep deciding short or odd requests.
+    return {sid: value / best for sid, value in fit.items()} if best else fit
 
 
 def find_skill(task: str, root: Path | None = None) -> tuple[str, float]:
@@ -337,7 +389,7 @@ ALTERNATIVE_SKILLS = (
 # Selection policy. Scores are lexical evidence on a scale that shrinks as a prompt gets longer, so the
 # floors are low and the shortlist is judged relative to the best match instead of against a fixed bar.
 MIN_EVIDENCE = 1.5          # below this the router has nothing to go on and falls back to the cofounder skill
-RELATIVE_FLOOR = 0.4        # a follow-up skill needs at least this share of the best score (or a phrase match)
+RELATIVE_FLOOR = 0.65       # a follow-up skill needs at least this share of the best score (or a phrase match)
 CONCERN_WINNER_MIN = 6.0    # a clause of a multi-part request nominates its best skill above this score
 CONFIDENT_MIN = 6.0         # a confident pick needs this much evidence and a lead over the runner-up
 CONFIDENT_LEAD = 1.25
@@ -528,7 +580,7 @@ def _score_entry(
     # Exact multi-word phrases are precise evidence and survive on their own merit.
     for field, weight in (("triggers", 5.0), ("phrases", 1.8)):
         for phrase in entry.get(field, []):
-            words = phrase.split()
+            words = phrase.replace("-", " ").split()   # "micro-interactions" is two words, like "micro interactions"
             if len(words) >= 2 and says(phrase):
                 score += weight + 0.9 * len(words)
 
