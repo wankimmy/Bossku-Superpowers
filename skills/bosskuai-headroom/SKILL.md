@@ -4,7 +4,7 @@ description: "Use when large tool outputs, logs, files, search results, or agent
 license: MIT
 metadata:
   author: bosskuai
-  source: headroomlabs-ai/headroom
+  documents: headroomlabs-ai/headroom (Apache-2.0, not bundled; see docs/third-party.md)
 ---
 
 # Headroom Context Compression

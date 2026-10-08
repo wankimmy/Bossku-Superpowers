@@ -12,3 +12,12 @@ graphifyy>=0.8.0
 
 # browser-use skills — browser automation agent
 browser-use>=0.11.0
+
+# opendataloader-pdf (odl-pdf skill) - structured PDF extraction; needs Java 11+
+opendataloader-pdf
+
+# bosskuai-headroom skill - context compression; sends an anonymous usage beacon unless HEADROOM_BEACON=off
+headroom-ai[mcp]
+
+# Not pip: see `bossku tools list` for e2e (per project, npm), Archify (npx skills add tt-a1i/archify -g),
+# Moli, Hindsight and dcg (binaries you install yourself).

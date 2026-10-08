@@ -1,6 +1,6 @@
 # Third-party skill packs
 
-BosskuAI vendors Agent Skills from these open-source upstream projects. Provenance is tracked in [`skills/vendored.json`](../skills/vendored.json).
+Bossku Superpower vendors Agent Skills from these open-source upstream projects. Provenance is tracked in [`skills/vendored.json`](../skills/vendored.json).
 
 | Pack | Upstream | License | Copyright |
 |---|---|---|---|
@@ -19,12 +19,15 @@ BosskuAI vendors Agent Skills from these open-source upstream projects. Provenan
 | i-have-adhd | [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd) | MIT | Copyright (c) 2026 Ayoub Ghriss |
 | ecc | [affaan-m/ECC](https://github.com/affaan-m/ECC) | MIT | Copyright (c) 2026 Affaan Mustafa |
 | antislop | [miqdadbadjuber/anti-slop](https://github.com/miqdadbadjuber/anti-slop) | MIT | Copyright (c) anti-slop contributors |
-| opendataloader-pdf | [opendataloader-project/opendataloader-pdf](https://github.com/opendataloader-project/opendataloader-pdf) | Apache-2.0 | Copyright OpenDataLoader contributors |
+| opendataloader-pdf | [opendataloader-project/opendataloader-pdf](https://github.com/opendataloader-project/opendataloader-pdf) | Apache-2.0 | Copyright 2025-2026 Hancom, Inc. (upstream NOTICE; [LICENSE](third-party-licenses/opendataloader-pdf-LICENSE.txt) and [NOTICE](third-party-licenses/opendataloader-pdf-NOTICE.txt) kept here) |
+| moli | [lexmount/moli](https://github.com/lexmount/moli) | MIT OR Apache-2.0 (used under MIT) | Copyright (c) 2026 Moli contributors ([MIT text](third-party-licenses/moli-LICENSE-MIT.txt), [Apache text](third-party-licenses/moli-LICENSE-APACHE.txt)) |
 | greptile (adapted, first-party) | [greptileai/skills](https://github.com/greptileai/skills) | MIT | Copyright (c) 2026 Greptile AI |
+
+`moli` vendors the upstream `moli-webfetch` and `moli-cdp-server` skills (the Rust browser itself is not bundled). One local deviation to re-apply on any re-vendor: step 1 of both `SKILL.md` files told the agent to install Moli by piping a remote installer script into a shell; it now says to stop, show the user the install instructions, and continue only after they have installed it or explicitly asked for the installer to be run (the binaries are unsigned and the installer has no checksum check). `moli-websearch` is deliberately not vendored (listed under `excluded`): its references tell the agent to scrape public API keys from third-party frontends and to switch search engines after a CAPTCHA.
 
 `markitdown` is a thin Bossku-authored skill that documents the upstream CLI; the Microsoft package is not bundled.
 
-`graphify` upstream no longer keeps a static `SKILL.md` in its repo: the skill is rendered per host by `graphify install`. BosskuAI vendors the cross-framework Agent-Skills variant (`graphify/graphify/skill-agents.md`) plus its `skills/agents/references/` sidecar. Re-vendor from those two paths, not from a `skills/` folder.
+`graphify` upstream no longer keeps a static `SKILL.md` in its repo: the skill is rendered per host by `graphify install`. Bossku Superpower vendors the cross-framework Agent-Skills variant (`graphify/graphify/skill-agents.md`) plus its `skills/agents/references/` sidecar. Re-vendor from those two paths, not from a `skills/` folder.
 
 `ecc` is a curated subset (10 of ~280 skills) chosen to fill gaps in the Bossku library - MySQL/MariaDB, migrations, error handling, MCP servers, Playwright, WCAG 2.2, ADRs, Vue 3, Python, pytest. Each is a single self-contained `SKILL.md` with no ECC-only tooling references; the many agent-stack ECC skills were already ported earlier as `bosskuai-*` skills.
 
@@ -41,6 +44,20 @@ BosskuAI vendors Agent Skills from these open-source upstream projects. Provenan
 Deliberately not vendored (recorded under `excluded` in `skills/vendored.json` so a re-vendor leaves them out): `taste-skill-v1`, `gpt-tasteskill`, and `stitch-skill` from the taste-skill pack. `x402` stays vendored with browser-use but `bossku install` never copies it: it prints generated wallet keys and auto-tops-up spend.
 
 `opendataloader-pdf` vendors the complete upstream `skills/odl-pdf/` bundle unchanged. Its maintenance-only sibling is intentionally excluded, and the optional OpenDataLoader runtime is not installed automatically.
+
+## Studied tools and optional runtimes (not bundled)
+
+These projects informed Bossku Superpower's own skills or are offered as opt-in tools through `bossku tools`. No upstream source text is copied unless a row says so; the notices are recorded so that the record stays accurate if text is ever adopted.
+
+| Project | Upstream | License | Copyright | How it is used |
+|---|---|---|---|---|
+| e2e | [tester-army/e2e](https://github.com/tester-army/e2e) | Apache-2.0 | Copyright 2026 TesterArmy, Inc. (NOTICE: "includes software developed at TesterArmy, Inc.") | `bosskuai-agentic-e2e` is written from scratch; `npx e2e init` is an opt-in per-project step. Its CLI sends telemetry unless `npx e2e telemetry disable` or `E2E_TELEMETRY_DISABLED=1`. |
+| headroom | [headroomlabs-ai/headroom](https://github.com/headroomlabs-ai/headroom) | Apache-2.0 | Copyright 2025 Headroom Contributors | `headroom-ai` is an opt-in pip install, never run automatically. It sends an anonymous usage beacon unless `HEADROOM_BEACON=off` or `DO_NOT_TRACK=1`. |
+| archify | [tt-a1i/archify](https://github.com/tt-a1i/archify) | MIT | Copyright (c) 2026 tt-a1i (Archify); Copyright (c) 2025 Cocoon AI | `bosskuai-archify-diagrams` documents the upstream CLI; the runtime is not bundled. Its update check contacts a GitHub Pages URL by default. |
+| hindsight | [vectorize-io/hindsight](https://github.com/vectorize-io/hindsight) | MIT | Copyright (c) 2025 Vectorize AI, Inc. | `bosskuai-hindsight-memory` is first-party; the CLI is an opt-in install. |
+| claude-code-best-practice | [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) | MIT | Copyright (c) 2025-2026 Shayan Rais | Reviewed in [claude-practices-review.md](claude-practices-review.md); nothing is copied. |
+
+The MIT and Apache-2.0 texts of the vendored packs above are kept in [`third-party-licenses/`](third-party-licenses/).
 
 ## Benchmark data
 
