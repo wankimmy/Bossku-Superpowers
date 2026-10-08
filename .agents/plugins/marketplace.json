@@ -1,11 +1,11 @@
 {
-  "name": "bosskuai",
+  "name": "bossku-superpower",
   "interface": {
-    "displayName": "BosskuAI"
+    "displayName": "Bossku Superpower"
   },
   "plugins": [
     {
-      "name": "bossku-ai",
+      "name": "bossku-superpower",
       "description": "AI co-founder plugin with reusable skills and memory-first workflows for Codex workspaces.",
       "version": "2.1.0",
       "source": {
@@ -13,7 +13,7 @@
         "path": "./../.."
       },
       "interface": {
-        "displayName": "BosskuAI",
+        "displayName": "Bossku Superpower",
         "shortDescription": "Repo-local memory and routing habits for Codex workspaces.",
         "category": "Productivity"
       },

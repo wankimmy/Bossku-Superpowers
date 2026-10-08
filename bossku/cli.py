@@ -46,7 +46,7 @@ def main(argv: list[str] | None = None) -> int:
     child.add_argument("--root", type=Path, default=argparse.SUPPRESS, help="BosskuAI repo root")
     child.add_argument("--home", type=Path, default=argparse.SUPPRESS, help="Override home for tests")
 
-    parser = argparse.ArgumentParser(prog="bossku", description="BosskuAI toolkit CLI", parents=[parent])
+    parser = argparse.ArgumentParser(prog="bossku", description="Bossku Superpower toolkit CLI (formerly BosskuAI)", parents=[parent])
     sub = parser.add_subparsers(dest="command", required=True)
 
     p_install = sub.add_parser("install", help="Install skills to user-level agent dirs", parents=[child])
@@ -104,6 +104,26 @@ def main(argv: list[str] | None = None) -> int:
     )
     p_hooks_uninstall = p_hooks_sub.add_parser("uninstall", parents=[child])
     p_hooks_uninstall.add_argument("--tools", type=str, default=None)
+
+    p_vault = sub.add_parser("vault", help="Mirror agent memory and rules into the Obsidian vault, and tidy it", parents=[child])
+    p_vault_sub = p_vault.add_subparsers(dest="vault_cmd", required=True)
+    p_vault_sync = p_vault_sub.add_parser("sync", help="Mirror auto-memory, rules and legacy notes now", parents=[child])
+    p_vault_sync.add_argument("--project", type=Path, default=Path("."), help="project folder (default: here)")
+    p_vault_tidy = p_vault_sub.add_parser("tidy", help="Show what a clean-up would do; --apply does it (zip backup first, nothing deleted)",
+                                          parents=[child])
+    p_vault_tidy.add_argument("--apply", action="store_true")
+
+    p_tools = sub.add_parser("tools", help="See which optional tools are installed, and install the safe ones on request",
+                             parents=[child])
+    p_tools_sub = p_tools.add_subparsers(dest="tools_cmd", required=True)
+    p_tools_list = p_tools_sub.add_parser("list", help="Every known tool with its status", parents=[child])
+    p_tools_list.add_argument("--json", dest="as_json", action="store_true")
+    p_tools_list.add_argument("--project", type=Path, default=None, help="project folder for per-project tools (default: here)")
+    p_tools_install = p_tools_sub.add_parser(
+        "install", help="Show the install plan for a tool; run it only with --yes", parents=[child])
+    p_tools_install.add_argument("tool", help="tool id, see `bossku tools list`")
+    p_tools_install.add_argument("--yes", action="store_true", help="run the plan (pip and npm tools only)")
+    p_tools_install.add_argument("--project", type=Path, default=None, help="project folder for per-project tools (default: here)")
 
     p_find = sub.add_parser("skills", help="Skill utilities", parents=[child])
     p_find_sub = p_find.add_subparsers(dest="skills_cmd", required=True)
@@ -189,6 +209,10 @@ def main(argv: list[str] | None = None) -> int:
                 result = uninstall_hooks(home=home, tools=tools)
             print(json.dumps(result, indent=2))
             return 0
+        if args.command == "vault":
+            return _vault(args, home)
+        if args.command == "tools":
+            return _tools(args)
         if args.command == "skills":
             if args.skills_cmd == "find":
                 profile = args.profile or load_user_config(home).get("profile", "full")
@@ -299,6 +323,63 @@ def main(argv: list[str] | None = None) -> int:
         print(f"error: {exc}", file=sys.stderr)
         return 2
     return 0
+
+
+def _vault(args, home) -> int:
+    from collections import Counter
+
+    from bossku import vault
+
+    if args.vault_cmd == "sync":
+        print(json.dumps(vault.sync(args.project, home=home, force=True), indent=2))
+        return 0
+    plan = vault.plan_tidy(home=home)
+    if not plan:
+        print("Nothing to tidy (or no vault is configured).")
+        return 0
+    counts = Counter(step["action"] for step in plan)
+    for step in plan:
+        print(f"{step['action']:20s} {step['source']}" + (f"\n{'':20s} -> {step['target']}" if step["target"] else "") + f"\n{'':20s}    ({step['why']})")
+    print("\n" + ", ".join(f"{n} {a}" for a, n in sorted(counts.items())))
+    if not args.apply:
+        print("Nothing was changed. Run again with --apply: a zip backup is made first and no note is deleted.")
+        return 0
+    result = vault.apply_tidy(plan, home=home)
+    print(json.dumps(result, indent=2))
+    return 0 if result.get("status") == "ok" else 1
+
+
+def _tools(args) -> int:
+    from bossku import tools
+
+    project = getattr(args, "project", None)
+    if args.tools_cmd == "list":
+        rows = tools.status_table(project)
+        if getattr(args, "as_json", False):
+            print(json.dumps(rows, indent=2))
+            return 0
+        print(f"{'tool':20s} {'status':10s} {'how':12s} what it is for")
+        for row in rows:
+            print(f"{row['id']:20s} {'installed' if row['installed'] else 'missing':10s} {row['kind']:12s} {row['purpose']}")
+        print("\nNothing is installed unless you run `bossku tools install <tool> --yes`.")
+        return 0
+    tool = tools.BY_ID.get(args.tool)
+    if tool is None:
+        print(f"unknown tool {args.tool!r}; known: {', '.join(tools.BY_ID)}", file=sys.stderr)
+        return 2
+    info = tools.describe(tool, project)
+    print(f"{tool.title}: {'already installed' if info['installed'] else 'not installed'}. {tool.purpose}.")
+    if tool.note:
+        print(f"Note: {tool.note}")
+    print("Plan:" if info["automatic"] else "Install by hand:")
+    for step in info["install"]:
+        print(f"  {step}")
+    if not args.yes:
+        print("\nNothing was run. Add --yes to run the plan." if info["automatic"] else "")
+        return 0
+    result = tools.run_install(tool, project=project)
+    print(result["message"])
+    return 0 if result["ok"] else 1
 
 
 def _hook_stdin() -> str:

@@ -479,6 +479,26 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
         "headroom", "compress tool output", "context compression", "retrieve original",
         "headroom wrap", "headroom deploy", "headroom savings", "large tool output",
     ],
+    "bosskuai-agentic-e2e": [
+        "e2e test", "end to end test", "end-to-end test", "agentic test", "agent.act", "e2e.config",
+        "bug bash", "ai ui testing", "qa the app", "explore the app",
+    ],
+    "bosskuai-archify-diagrams": [
+        "architecture diagram", "workflow diagram", "sequence diagram", "data flow diagram", "dataflow diagram",
+        "lifecycle diagram", "state diagram", "interactive diagram", "mermaid to html", "diagram as html",
+    ],
+    "bosskuai-tools": [
+        "install headroom", "install moli", "install the tool", "optional tool", "tool is missing",
+        "bossku tools", "set up the tool", "which tools are installed",
+    ],
+    "moli-webfetch": [
+        "moli", "fetch the page", "javascript rendered page", "fetch a website", "page as markdown",
+        "client rendered", "crawl a site", "web research", "fetch live website",
+    ],
+    "moli-cdp-server": [
+        "cdp server", "connectovercdp", "attach playwright", "moli serve", "headless browser endpoint",
+        "chrome devtools protocol",
+    ],
     "bosskuai-autonomous-loops": ["autonomous loop", "loop architecture", "multi step pipeline"],
     "bosskuai-ratchet-loop": ["ratchet", "incremental tightening", "no backsliding"],
     "bosskuai-pr-check": [
@@ -715,6 +735,11 @@ CURATED_ROLES: dict[str, str] = {
     "antislop-code": "reviewer",
     "bosskuai-headroom": "coder",
     "odl-pdf": "coder",
+    "bosskuai-agentic-e2e": "coder",
+    "bosskuai-archify-diagrams": "coder",
+    "bosskuai-tools": "coder",
+    "moli-webfetch": "researcher",
+    "moli-cdp-server": "coder",
     # --- 2026-09-26 skill review: routing for requests that had no owner ---
     "bosskuai-hyperframes": "coder",
 }

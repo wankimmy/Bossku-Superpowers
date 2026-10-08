@@ -39,9 +39,9 @@ REQUIRED_AGENTS = (
 
 CLAUDE_AGENTS_IMPORT = "@AGENTS.md"
 OMP_AGENTS_IMPORT = "@../AGENTS.md"
-PLUGIN_NAME = "bossku-ai"
-MARKETPLACE_NAME = "bosskuai-marketplace"
-CODEX_MARKETPLACE_NAME = "bosskuai"
+PLUGIN_NAME = "bossku-superpower"
+MARKETPLACE_NAME = "bossku-superpower-marketplace"
+CODEX_MARKETPLACE_NAME = "bossku-superpower"
 
 
 def package_version(root: Path) -> str:
@@ -133,15 +133,15 @@ def validate_plugin_manifests(root: Path) -> list[str]:
         return errors
 
     if claude_plugin_data.get("name") != PLUGIN_NAME:
-        errors.append("claude plugin manifest: name must be bossku-ai")
+        errors.append("claude plugin manifest: name must be bossku-superpower")
     if claude_marketplace_data.get("name") != MARKETPLACE_NAME:
-        errors.append("claude marketplace manifest: name must be bosskuai-marketplace")
+        errors.append("claude marketplace manifest: name must be bossku-superpower-marketplace")
     if cursor_plugin_data.get("name") != PLUGIN_NAME:
-        errors.append("cursor plugin manifest: name must be bossku-ai")
+        errors.append("cursor plugin manifest: name must be bossku-superpower")
     if codex_plugin_data.get("name") != PLUGIN_NAME:
-        errors.append("codex plugin manifest: name must be bossku-ai")
+        errors.append("codex plugin manifest: name must be bossku-superpower")
     if codex_marketplace_data.get("name") != CODEX_MARKETPLACE_NAME:
-        errors.append("codex marketplace manifest: name must be bosskuai")
+        errors.append("codex marketplace manifest: name must be bossku-superpower")
 
     _validate_manifest_version(
         errors,
@@ -190,7 +190,7 @@ def validate_plugin_manifests(root: Path) -> list[str]:
         for entry in claude_plugins
     ):
         errors.append(
-            "claude marketplace manifest: must list bossku-ai with source ./"
+            "claude marketplace manifest: must list bossku-superpower with source ./"
         )
 
     cursor_plugins = cursor_marketplace_data.get("plugins", [])
@@ -199,7 +199,7 @@ def validate_plugin_manifests(root: Path) -> list[str]:
         for entry in cursor_plugins
     ):
         errors.append(
-            "cursor marketplace manifest: must list bossku-ai with source ./"
+            "cursor marketplace manifest: must list bossku-superpower with source ./"
         )
 
     codex_plugins = codex_marketplace_data.get("plugins", [])
@@ -208,28 +208,28 @@ def validate_plugin_manifests(root: Path) -> list[str]:
         None,
     )
     if codex_entry is None:
-        errors.append("codex marketplace manifest: missing bossku-ai plugin entry")
+        errors.append("codex marketplace manifest: missing bossku-superpower plugin entry")
     else:
         source = codex_entry.get("source", {})
         rel_path = source.get("path")
         if source.get("source") != "local" or rel_path != "./../..":
             errors.append(
-                "codex marketplace manifest: bossku-ai source must be local ./../.."
+                "codex marketplace manifest: bossku-superpower source must be local ./../.."
             )
         else:
             resolved = (codex_marketplace.parent / rel_path).resolve()
             if resolved != root.resolve():
                 errors.append(
-                    "codex marketplace manifest: bossku-ai source path must resolve to repo root"
+                    "codex marketplace manifest: bossku-superpower source path must resolve to repo root"
                 )
         policy = codex_entry.get("policy", {})
         if policy.get("installation") != "AVAILABLE":
             errors.append(
-                "codex marketplace manifest: bossku-ai policy.installation must be AVAILABLE"
+                "codex marketplace manifest: bossku-superpower policy.installation must be AVAILABLE"
             )
         if policy.get("authentication") != "ON_INSTALL":
             errors.append(
-                "codex marketplace manifest: bossku-ai policy.authentication must be ON_INSTALL"
+                "codex marketplace manifest: bossku-superpower policy.authentication must be ON_INSTALL"
             )
 
     references = opencode_data.get("references", {})

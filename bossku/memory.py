@@ -189,8 +189,13 @@ def sync_project(project: Path, *, home: Path | None = None) -> dict:
         return {"status": "pending", "reason": "vault unavailable"}
     if cfg.get("memory_storage", "repo") == "obsidian":
         mem_dir = memory_directory(project, home=home)
+        try:   # also mirror Claude's auto-memory and the rules files; a hook must never fail because of it
+            from bossku.vault import sync as vault_sync
+            mirrored = vault_sync(project, home=home)
+        except Exception as exc:  # noqa: BLE001
+            mirrored = {"status": "error", "reason": str(exc)[:200]}
         return {"status": "ok", "storage": "obsidian", "exported": [],
-                "conflicts": [], "vault_dir": str(mem_dir)}
+                "conflicts": [], "vault_dir": str(mem_dir), "mirrored": mirrored}
     project_name = project.resolve().name
     export_base = vault_export_dir(vault, project_name)
     ensure_inside(export_base, vault)
