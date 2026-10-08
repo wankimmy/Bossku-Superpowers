@@ -1,36 +1,84 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 224" width="880" height="224" role="img" aria-labelledby="t d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 464" width="880" height="464" role="img" aria-labelledby="t d">
 <title id="t">Remembering a rule from an earlier session</title>
-<desc id="d">Remembering a rule from an earlier session. Session 1 states a project rule. Session 2 asks for something that breaks it unless the agent remembers.  DeepSeek V4.1 Flash: Without Bossku Superpower 87%, With Bossku Superpower 100%.</desc>
+<desc id="d">Remembering a rule from an earlier session. Session 1 states a project rule. Session 2 asks for something that breaks it unless the agent remembers.  Claude Haiku 4.5: Without Bossku Superpower 48%, With Bossku Superpower 68%.  Claude Sonnet 5.5: Without Bossku Superpower 64%, With Bossku Superpower 84%.  DeepSeek V4.1 Flash: Without Bossku Superpower 79%, With Bossku Superpower 74%.  Gemma 4 31B: Without Bossku Superpower 39%, With Bossku Superpower 68%.  Nemotron 3 Nano 30B: Without Bossku Superpower 6%, With Bossku Superpower 9%.</desc>
 <style>text{font-family:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif}.card{fill:#fcfcfb}.ink{fill:#0b0b0b}.ink2{fill:#52514e}.muted{fill:#898781}.grid{stroke:#e1e0d9}.base{stroke:#c3c2b7}.whisker{stroke:#52514e}.s0{fill:#2a78d6}.s1{fill:#1baf7a}@media (prefers-color-scheme:dark){.card{fill:#1a1a19}.ink{fill:#ffffff}.ink2{fill:#c3c2b7}.muted{fill:#898781}.grid{stroke:#2c2c2a}.base{stroke:#383835}.whisker{stroke:#c3c2b7}.s0{fill:#3987e5}.s1{fill:#199e70}}</style>
-<rect class="card" width="880" height="224" rx="14"/>
+<rect class="card" width="880" height="464" rx="14"/>
 <text class="ink" x="28" y="42" font-size="22" font-weight="650">Remembering a rule from an earlier session</text>
 <text class="ink2" x="28" y="66" font-size="14">Session 1 states a project rule. Session 2 asks for something that breaks it unless the agent remembers.</text>
 <rect class="s0" x="28" y="78" width="12" height="12" rx="3"/>
 <text class="ink2" x="46" y="89" font-size="13">Without Bossku Superpower</text>
 <rect class="s1" x="254" y="78" width="12" height="12" rx="3"/>
 <text class="ink2" x="272" y="89" font-size="13">With Bossku Superpower</text>
-<line class="grid" x1="204.0" y1="104" x2="204.0" y2="156" stroke-width="1"/>
-<text class="muted" x="204.0" y="172" font-size="12" text-anchor="middle">0%</text>
-<line class="grid" x1="335.5" y1="104" x2="335.5" y2="156" stroke-width="1"/>
-<text class="muted" x="335.5" y="172" font-size="12" text-anchor="middle">25%</text>
-<line class="grid" x1="467.0" y1="104" x2="467.0" y2="156" stroke-width="1"/>
-<text class="muted" x="467.0" y="172" font-size="12" text-anchor="middle">50%</text>
-<line class="grid" x1="598.5" y1="104" x2="598.5" y2="156" stroke-width="1"/>
-<text class="muted" x="598.5" y="172" font-size="12" text-anchor="middle">75%</text>
-<line class="grid" x1="730.0" y1="104" x2="730.0" y2="156" stroke-width="1"/>
-<text class="muted" x="730.0" y="172" font-size="12" text-anchor="middle">100%</text>
-<line class="base" x1="204" y1="104" x2="204" y2="156" stroke-width="1.5"/>
-<text class="ink" x="28" y="129.0" font-size="14" font-weight="600">DeepSeek V4.1 Flash</text>
-<text class="muted" x="28" y="146.0" font-size="12">30 runs per setup</text>
-<path class="s0" d="M204,112 H655.9 Q659.9,112 659.9,116.0 V126.0 Q659.9,130 655.9,130 H204 Z"/>
-<line class="whisker" x1="573.9" y1="121.0" x2="702.1" y2="121.0" stroke-width="1.5"/>
-<line class="whisker" x1="573.9" y1="117.0" x2="573.9" y2="125.0" stroke-width="1.5"/>
-<line class="whisker" x1="702.1" y1="117.0" x2="702.1" y2="125.0" stroke-width="1.5"/>
-<text class="ink" x="710.1" y="125.5" font-size="13" font-weight="600">87%</text>
-<path class="s1" d="M204,132 H726.0 Q730.0,132 730.0,136.0 V146.0 Q730.0,150 726.0,150 H204 Z"/>
-<line class="whisker" x1="670.3" y1="141.0" x2="730.0" y2="141.0" stroke-width="1.5"/>
-<line class="whisker" x1="670.3" y1="137.0" x2="670.3" y2="145.0" stroke-width="1.5"/>
-<line class="whisker" x1="730.0" y1="137.0" x2="730.0" y2="145.0" stroke-width="1.5"/>
-<text class="ink" x="738.0" y="145.5" font-size="13" font-weight="600">100%</text>
-<text class="muted" x="28" y="208" font-size="12">A fresh conversation each time: the agent only has the files and whatever notes were saved.</text>
+<line class="grid" x1="204.0" y1="104" x2="204.0" y2="396" stroke-width="1"/>
+<text class="muted" x="204.0" y="412" font-size="12" text-anchor="middle">0%</text>
+<line class="grid" x1="335.5" y1="104" x2="335.5" y2="396" stroke-width="1"/>
+<text class="muted" x="335.5" y="412" font-size="12" text-anchor="middle">25%</text>
+<line class="grid" x1="467.0" y1="104" x2="467.0" y2="396" stroke-width="1"/>
+<text class="muted" x="467.0" y="412" font-size="12" text-anchor="middle">50%</text>
+<line class="grid" x1="598.5" y1="104" x2="598.5" y2="396" stroke-width="1"/>
+<text class="muted" x="598.5" y="412" font-size="12" text-anchor="middle">75%</text>
+<line class="grid" x1="730.0" y1="104" x2="730.0" y2="396" stroke-width="1"/>
+<text class="muted" x="730.0" y="412" font-size="12" text-anchor="middle">100%</text>
+<line class="base" x1="204" y1="104" x2="204" y2="396" stroke-width="1.5"/>
+<text class="ink" x="28" y="129.0" font-size="14" font-weight="600">Claude Haiku 4.5</text>
+<text class="muted" x="28" y="146.0" font-size="12">44 runs per setup</text>
+<path class="s0" d="M204,112 H451.0 Q455.0,112 455.0,116.0 V126.0 Q455.0,130 451.0,130 H204 Z"/>
+<line class="whisker" x1="381.6" y1="121.0" x2="530.5" y2="121.0" stroke-width="1.5"/>
+<line class="whisker" x1="381.6" y1="117.0" x2="381.6" y2="125.0" stroke-width="1.5"/>
+<line class="whisker" x1="530.5" y1="117.0" x2="530.5" y2="125.0" stroke-width="1.5"/>
+<text class="ink" x="538.5" y="125.5" font-size="13" font-weight="600">48%</text>
+<path class="s1" d="M204,132 H558.6 Q562.6,132 562.6,136.0 V146.0 Q562.6,150 558.6,150 H204 Z"/>
+<line class="whisker" x1="485.1" y1="141.0" x2="624.8" y2="141.0" stroke-width="1.5"/>
+<line class="whisker" x1="485.1" y1="137.0" x2="485.1" y2="145.0" stroke-width="1.5"/>
+<line class="whisker" x1="624.8" y1="137.0" x2="624.8" y2="145.0" stroke-width="1.5"/>
+<text class="ink" x="632.8" y="145.5" font-size="13" font-weight="600">68%</text>
+<text class="ink" x="28" y="189.0" font-size="14" font-weight="600">Claude Sonnet 5.5</text>
+<text class="muted" x="28" y="206.0" font-size="12">44 runs per setup</text>
+<path class="s0" d="M204,172 H534.7 Q538.7,172 538.7,176.0 V186.0 Q538.7,190 534.7,190 H204 Z"/>
+<line class="whisker" x1="461.0" y1="181.0" x2="604.9" y2="181.0" stroke-width="1.5"/>
+<line class="whisker" x1="461.0" y1="177.0" x2="461.0" y2="185.0" stroke-width="1.5"/>
+<line class="whisker" x1="604.9" y1="177.0" x2="604.9" y2="185.0" stroke-width="1.5"/>
+<text class="ink" x="612.9" y="185.5" font-size="13" font-weight="600">64%</text>
+<path class="s1" d="M204,192 H642.3 Q646.3,192 646.3,196.0 V206.0 Q646.3,210 642.3,210 H204 Z"/>
+<line class="whisker" x1="575.5" y1="201.0" x2="688.3" y2="201.0" stroke-width="1.5"/>
+<line class="whisker" x1="575.5" y1="197.0" x2="575.5" y2="205.0" stroke-width="1.5"/>
+<line class="whisker" x1="688.3" y1="197.0" x2="688.3" y2="205.0" stroke-width="1.5"/>
+<text class="ink" x="696.3" y="205.5" font-size="13" font-weight="600">84%</text>
+<text class="ink" x="28" y="249.0" font-size="14" font-weight="600">DeepSeek V4.1 Flash</text>
+<text class="muted" x="28" y="266.0" font-size="12">66 runs per setup</text>
+<path class="s0" d="M204,232 H614.4 Q618.4,232 618.4,236.0 V246.0 Q618.4,250 614.4,250 H204 Z"/>
+<line class="whisker" x1="559.0" y1="241.0" x2="661.2" y2="241.0" stroke-width="1.5"/>
+<line class="whisker" x1="559.0" y1="237.0" x2="559.0" y2="245.0" stroke-width="1.5"/>
+<line class="whisker" x1="661.2" y1="237.0" x2="661.2" y2="245.0" stroke-width="1.5"/>
+<text class="ink" x="669.2" y="245.5" font-size="13" font-weight="600">79%</text>
+<path class="s1" d="M204,252 H590.5 Q594.5,252 594.5,256.0 V266.0 Q594.5,270 590.5,270 H204 Z"/>
+<line class="whisker" x1="533.1" y1="261.0" x2="641.9" y2="261.0" stroke-width="1.5"/>
+<line class="whisker" x1="533.1" y1="257.0" x2="533.1" y2="265.0" stroke-width="1.5"/>
+<line class="whisker" x1="641.9" y1="257.0" x2="641.9" y2="265.0" stroke-width="1.5"/>
+<text class="ink" x="649.9" y="265.5" font-size="13" font-weight="600">74%</text>
+<text class="ink" x="28" y="309.0" font-size="14" font-weight="600">Gemma 4 31B</text>
+<text class="muted" x="28" y="326.0" font-size="12">44 runs per setup</text>
+<path class="s0" d="M204,292 H403.2 Q407.2,292 407.2,296.0 V306.0 Q407.2,310 403.2,310 H204 Z"/>
+<line class="whisker" x1="339.3" y1="301.0" x2="484.8" y2="301.0" stroke-width="1.5"/>
+<line class="whisker" x1="339.3" y1="297.0" x2="339.3" y2="305.0" stroke-width="1.5"/>
+<line class="whisker" x1="484.8" y1="297.0" x2="484.8" y2="305.0" stroke-width="1.5"/>
+<text class="ink" x="492.8" y="305.5" font-size="13" font-weight="600">39%</text>
+<path class="s1" d="M204,312 H558.6 Q562.6,312 562.6,316.0 V326.0 Q562.6,330 558.6,330 H204 Z"/>
+<line class="whisker" x1="485.1" y1="321.0" x2="624.8" y2="321.0" stroke-width="1.5"/>
+<line class="whisker" x1="485.1" y1="317.0" x2="485.1" y2="325.0" stroke-width="1.5"/>
+<line class="whisker" x1="624.8" y1="317.0" x2="624.8" y2="325.0" stroke-width="1.5"/>
+<text class="ink" x="632.8" y="325.5" font-size="13" font-weight="600">68%</text>
+<text class="ink" x="28" y="369.0" font-size="14" font-weight="600">Nemotron 3 Nano 30B</text>
+<text class="muted" x="28" y="386.0" font-size="12">34 runs per setup</text>
+<path class="s0" d="M204,352 H230.9 Q234.9,352 234.9,356.0 V366.0 Q234.9,370 230.9,370 H204 Z"/>
+<line class="whisker" x1="212.6" y1="361.0" x2="304.4" y2="361.0" stroke-width="1.5"/>
+<line class="whisker" x1="212.6" y1="357.0" x2="212.6" y2="365.0" stroke-width="1.5"/>
+<line class="whisker" x1="304.4" y1="357.0" x2="304.4" y2="365.0" stroke-width="1.5"/>
+<text class="ink" x="312.4" y="365.5" font-size="13" font-weight="600">6%</text>
+<path class="s1" d="M204,372 H246.4 Q250.4,372 250.4,376.0 V386.0 Q250.4,390 246.4,390 H204 Z"/>
+<line class="whisker" x1="220.0" y1="381.0" x2="324.8" y2="381.0" stroke-width="1.5"/>
+<line class="whisker" x1="220.0" y1="377.0" x2="220.0" y2="385.0" stroke-width="1.5"/>
+<line class="whisker" x1="324.8" y1="377.0" x2="324.8" y2="385.0" stroke-width="1.5"/>
+<text class="ink" x="332.8" y="385.5" font-size="13" font-weight="600">9%</text>
+<text class="muted" x="28" y="448" font-size="12">A fresh conversation each time: the agent only has the files and whatever notes were saved.</text>
 </svg>

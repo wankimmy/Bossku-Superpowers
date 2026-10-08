@@ -15,11 +15,12 @@ Everything in the main README comes from the checks below. The raw rows are in [
 
 ## What was run
 
-- **Setups.** *Without Bossku Superpower* has no skills, no hooks, and no instructions. *With Bossku Superpower* is this release (commit `02ee2f2`: the `lean` profile with the skill hint, run-your-code check, and project-notes hooks). Both ran on the same tasks at the same time, in shuffled order. The previous release (commit `8adea49`, the `full` profile with 234 skills listed and no helper hooks) was run next to them for the session-overhead check only; its rows stay in `benchmarks/results/raw/overhead.jsonl` but are not part of the published comparison.
-- **Agent.** Claude Code 2.1.284 in headless mode. Claude models use your own login; the other models are reached through Ollama Cloud's Anthropic-compatible API.
-- **Models.** Session overhead: Claude Haiku 4.5 and Claude Sonnet 5.5. Coding tasks, HumanEval and live skill use: Nemotron 3 Nano 30B (a small model that often forgets to run its code) and DeepSeek V4.1 Flash (a strong one that already does). Harder tasks: Gemma 4 31B (mid-size) and DeepSeek V4.1 Flash. Remembering a rule: DeepSeek V4.1 Flash.
-- **Samples.** 17 coding test tasks, each run 4 times per setup for Nemotron and 2 times for DeepSeek. 14 harder test tasks, 3 times per setup. 10 memory tasks, 3 times per setup. 40 HumanEval problems, once per setup. 73 held-out skill-search requests for the live check.
-- **Date.** 1 October 2026.
+- **Setups.** *Without Bossku Superpower* has no skills, no hooks, and no instructions. *With Bossku Superpower* is commit `b8ccea1` (5 October 2026): the `lean` profile with the skill hint, run-your-code check, project-notes hooks and the stated-rule reminder. The session-cost rows come from the earlier build `02ee2f2`; the previous release (commit `8adea49`, the `full` profile with 234 skills listed and no helper hooks) was run for that check only, and its rows stay in `benchmarks/results/raw/overhead.jsonl` but are not part of the published comparison. Runs were shuffled so no setup always ran first.
+- **Reused baselines.** The *without* setup does not depend on the build, so for seven sets of runs it was not run again: Nemotron and DeepSeek coding, DeepSeek and Gemma harder tasks, Nemotron and DeepSeek HumanEval, and DeepSeek on the ten original two-session tasks use the *without* runs of 1 to 2 October (committed unchanged in the same raw files). Everything else, including every Claude run, ran both setups in the same session of work. The cost is a confound: the reused runs are from other days and from Claude Code 2.1.284, the new ones from 2.1.293 (every row records its version), and the model service may have changed in between. That is why some lanes show more runs *without* than *with*, and why the [earlier run](#the-earlier-run) is reported too.
+- **Agent.** Claude Code 2.1.284 (reused rows) and 2.1.293 (new rows), in headless mode. Claude models use your own login; the other models are reached through Ollama Cloud's Anthropic-compatible API.
+- **Models.** Session overhead: Claude Haiku 4.5 and Claude Sonnet 5.5. Coding tasks, harder tasks and HumanEval: Nemotron 3 Nano 30B (a small model that often forgets to run its code), Gemma 4 31B (mid-size) and DeepSeek V4.1 Flash (a strong one that already does). Remembering a rule: those three plus Claude Haiku 4.5 and Claude Sonnet 5.5. Live skill use: DeepSeek V4.1 Flash. The coding, harder-task and HumanEval runs for the two Claude models were started but did not finish (the Claude login expired), so they are not published.
+- **Samples.** 17 coding test tasks (Nemotron: 4 runs per task for the reused *without*, 2 for *with*; DeepSeek 2 each; Gemma 1 each). 14 harder test tasks (3 runs *without* and 2 *with* for DeepSeek and Gemma, 1 each for Nemotron). 22 two-session tasks (10 original, 12 added), 1 to 3 runs each. HumanEval: 40 problems once per setup for Nemotron and DeepSeek, the first 20 for Gemma. 60 held-out skill-search requests for the live check.
+- **Dates.** 1 to 8 October 2026.
 
 ## How a coding run works
 
@@ -32,7 +33,7 @@ Everything in the main README comes from the checks below. The raw rows are in [
 
 ### Remembering a rule from an earlier session
 
-Ten tasks have two sessions. The first asks for a small change and states a project rule ("this must run on Python 3.8", "money is integer cents", "never use eval", "services go in `services/`, one class per file"). The second is a fresh conversation in the same project folder that asks for related work which would break the rule unless it is remembered; nothing in its prompt mentions the rule. Without Bossku Superpower the agent has only the files the first session left behind. With Bossku Superpower it also sees the notes the first session saved, which appear when the second session starts. The hidden tests check the work and the rule itself.
+Twenty-two tasks have two sessions: ten original ones, and twelve more in `benchmarks/tasks/memory-rules/` of the same kind. The first session asks for a small change and states a project rule ("this must run on Python 3.8", "money is integer cents", "never use eval", "services go in `services/`, one class per file"). The second is a fresh conversation in the same project folder that asks for related work which would break the rule unless it is remembered; nothing in its prompt mentions the rule. Without Bossku Superpower the agent has only the files the first session left behind. With Bossku Superpower it also sees the notes the first session saved, which appear when the second session starts. The hidden tests check the work and the rule itself.
 
 ## Rules that keep it honest
 
@@ -42,10 +43,26 @@ Ten tasks have two sessions. The first asks for a small change and states a proj
 - **No made-up dollar cap.** Claude Code prices models it does not know with a rate it invents. A $1 cap on an early Ollama run therefore ended 8 of 17 runs part-way, and the version that used more tokens lost the most runs. Those results were thrown away. Runs on Ollama models now have no cap, the report prints a warning if any run was ended by one, and a test fails if a saved result contains one. Claude models keep a $1 cap per run to protect your account.
 - **Dev and test are separate, with one caveat.** Router thresholds, the hint wording, the memory wording, the gate rules, the lean list, and the compact skills were chosen on dev data only. The 17 coding test tasks had already been run once on an earlier build of this release; the result (a strong model used far more tokens for no more passes) is why instructions were shortened and skills compacted, but no change was tuned to a test task. The 14 harder test tasks had never been run with Bossku Superpower before the build was frozen, so they are the cleanest evidence. The 10 memory tasks were run once before the freeze, which is how their over-strict checks were found; no instruction or hook was changed because of that run. The code was committed before the final runs started, and the commit is named above.
 - **Unfair tests were fixed for both setups, not for one.** After a trial run, four checks in two memory tasks were relaxed because they marked correct work as wrong (one hidden test forbade `/` even in exact `Fraction` arithmetic; three expected an error from `value_of` and failed an agent that rejected the bad formula earlier, in `set_formula`). One harder task whose prompt did not state a requirement its tests checked was dropped. Every final run uses the corrected tests, for both setups.
-- **Slow runs get one longer try.** The model service slowed down in the evening, and the runs that take more turns were the ones to reach the 25-minute limit. Four runs did (all with BosskuAI: three Nemotron, one DeepSeek). Each was run again with a 60-minute limit and the rerun is the one counted: one passed, three failed. The first tries are kept in `raw/timeouts-first-attempt.jsonl`.
+- **Slow runs get one longer try.** The model service slowed down in the evening, and the runs that take more turns were the ones to reach the 25-minute limit. Four runs did (all with BosskuAI: three Nemotron, one DeepSeek). Each was run again with a 60-minute limit and the rerun is the one counted: one passed, three failed. That was in the earlier run; its first tries are kept in `raw/earlier/timeouts-first-attempt.jsonl`. In the later run no published run ended on the time limit.
 - **A usage limit on the model account is not a coding failure.** Late in the final runs the Ollama Cloud account reached its usage limit and refused requests (HTTP 429). The harness first called a run an infrastructure failure only when the model had produced no output at all, so a limit that arrived part-way left a half-finished run that was graded as a failed task. That was a bug: any run that ends with an API error is now an infrastructure failure, excluded from every summary, listed in the report, and run again when the limit allows. Runs that could not be run again are counted under the chart text in the README, because the long runs are the ones a limit is most likely to cut short.
 - **An option was removed rather than shipped untested.** A requirement checklist and a second-pass audit were tried; on a strong model the checklist cost 55% more tokens for no extra passes, and no clean run showed a gain on a small model, so both were deleted.
 - **Held-out prompts are blind.** The 328 skill-search prompts (160 written first, 168 later) and their acceptable skills were written by agents that saw only the skill catalog (names and descriptions), never the router code or its tests; a second agent then added any other skills it judged equally acceptable. They are split in two by a hash of the prompt id.
+
+## The earlier run
+
+An earlier run of the coding, harder-task, HumanEval and ten-task memory suites measured commit `02ee2f2` (1 to 2 October 2026), with both setups run at the same time. Its raw rows are kept in [`benchmarks/results/raw/earlier/`](../../benchmarks/results/raw/earlier/) (recompute with `python scripts/benchmark_agent.py report benchmarks/results/raw/earlier/coding-*.jsonl`, and the same for `hard-*`, `humaneval-*` and `memory-*`). Next to the later run on `b8ccea1`, with its reused *without* runs:
+
+| Suite and model | Earlier run (`02ee2f2`), without / with | Later run (`b8ccea1`), without / with |
+|---|---|---|
+| Coding, Nemotron 3 Nano 30B | 18% (12/68) / 40% (27/68) | 18% (12/68) / 29% (10/34) |
+| Coding, DeepSeek V4.1 Flash | 97% (33/34) / 97% (33/34) | 97% (33/34) / 94% (32/34) |
+| Harder, DeepSeek V4.1 Flash | 95% (40/42) / 93% (39/42) | 95% (40/42) / 93% (26/28) |
+| Harder, Gemma 4 31B | 57% (24/42) / 52% (22/42) | 57% (24/42) / 64% (18/28) |
+| HumanEval, Nemotron 3 Nano 30B | 62% (25/40) / 82% (33/40) | 62% (25/40) / 92% (37/40) |
+| HumanEval, DeepSeek V4.1 Flash | 100% (40/40) / 100% (40/40) | 100% (40/40) / 100% (40/40) |
+| Ten original two-session tasks, DeepSeek V4.1 Flash | 87% (26/30) / 100% (30/30) | 87% (26/30) / 90% (27/30) |
+
+The direction held for Nemotron on HumanEval and the other suites show no clear difference in either run. Nemotron's coding gain was smaller the second time (+22 points, interval +12 to +34, then +12 points, interval -3 to +28), and DeepSeek's memory gain disappeared (+13 points, then +3; on the twelve added two-session tasks it passed 22 of 36 with and 26 of 36 without). Differences of ten to twenty points between two runs of the same setup are within what these sample sizes produce; they are also what the changes between the two builds (a shorter reminder, the stated-rule reminder) could cause, and these runs cannot tell the two apart.
 
 ## Numbers
 
@@ -66,7 +83,7 @@ python scripts/benchmark_agent.py report benchmarks/results/raw/memory-*.jsonl  
 python scripts/benchmark_agent.py routing-report benchmarks/results/raw/routing.jsonl     # live skill use
 python scripts/benchmark_agent.py overhead-report benchmarks/results/raw/overhead.jsonl   # session overhead
 python scripts/benchmark_routing_heldout.py --arm after=.                                 # skill search on new prompts
-python scripts/benchmark_agent.py validate --suite benchmarks/tasks/hard-test             # tasks are fair (also: test, memory)
+python scripts/benchmark_agent.py validate --suite benchmarks/tasks/hard-test             # tasks are fair (also: test, memory, memory-rules)
 python scripts/make_charts.py --readme README.md                                          # redraw charts and README text
 ```
 
@@ -86,9 +103,12 @@ python scripts/benchmark_agent.py run --provider ollama --ollama-key-file KEYFIL
 python scripts/benchmark_agent.py run --provider ollama --ollama-key-file KEYFILE \
     --suite benchmarks/tasks/memory --arm baseline --arm after=.@lean+hint+gate+brief \
     --model deepseek-v4.1-flash --trials 3 --parallel 6 --out /tmp/memory
+python scripts/benchmark_agent.py run --provider ollama --ollama-key-file KEYFILE \
+    --suite benchmarks/tasks/memory-rules --arm baseline --arm after=.@lean+hint+gate+brief \
+    --model deepseek-v4.1-flash --trials 3 --parallel 6 --out /tmp/memory-rules
 python scripts/benchmark_agent.py run --provider ollama --ollama-key-file KEYFILE --suite humaneval:40 \
     --arm baseline --arm after=.@lean+hint+gate+brief --model deepseek-v4.1-flash --out /tmp/humaneval
-python scripts/benchmark_agent.py routing --provider ollama --ollama-key-file KEYFILE --split test \
+python scripts/benchmark_agent.py routing --provider ollama --ollama-key-file KEYFILE --split test --limit 60 \
     --arm after=.@lean+hint+gate+brief --model deepseek-v4.1-flash --out /tmp/routing
 python scripts/benchmark_agent.py compact /tmp/coding/runs.jsonl --kind task --kind selftest \
     --out benchmarks/results/raw/coding-MODEL.jsonl
@@ -100,8 +120,8 @@ An interrupted run resumes where it stopped when you start it again with the sam
 
 - The tasks are Python projects with hidden tests, from a few dozen lines to a few hundred. They say nothing about large repositories, other languages, or open-ended design work.
 - Strong agentic models already run their own tests. On those, Bossku Superpower cannot raise a pass rate that is already near the ceiling; the question there is whether it costs more.
-- Three Ollama Cloud models were used: a small and a strong one on the coding tasks and HumanEval, a mid-size and the strong one on the harder tasks, and the strong one alone on the memory tasks. Claude models were measured for session overhead only, to avoid spending Claude usage; their coding behavior was not measured here.
-- The agent runs measured commit `02ee2f2`. The router's learned vocabulary and the stated-rule reminder came later and were measured offline (see below and [Remembering a rule](#remembering-a-rule-from-an-earlier-session)), not in an agent run; the live skill-use check also ran on the older router.
+- Three Ollama Cloud models ran the coding, harder-task and HumanEval suites, and those three plus Claude Haiku 4.5 and Claude Sonnet 5.5 ran the two-session memory tasks. Claude coding, harder-task and HumanEval runs did not finish (the login expired), so their cells are empty rather than estimated.
+- The agent runs measured commit `b8ccea1`. The router's learned vocabulary (`7aaa1ff`) came after it and was measured offline, and the live skill-use check ran on the router at `8279f19`; no agent run has measured the finished release as a whole.
 - Samples are small. Read overlapping intervals as "no clear difference", not as proof of equality.
 - Skills built for a specific stack (Laravel, Nuxt, Docker, marketing, legal) are not exercised by generic coding tasks. Their value is not measured here.
 - The held-out skill-search prompts and their acceptable skills are the judgment of AI agents, not ground truth.
@@ -114,7 +134,7 @@ Two sets of requests were written by agents that saw only the skill catalog (eac
 
 The vocabulary of requests was generated the same way, from each `SKILL.md` alone and without seeing any of these requests: one small model per skill wrote about 30 messages (241 skills, 7,240 messages in all) "that real users would type when this skill is the right first skill" (12 detailed, 6 short, 6 messy, 4 mixed Malay-English, 2 indirect), described in terms of symptoms, tools, error strings and goals rather than the skill's own words. The weight and the cutoffs were chosen on the tuning halves and the curated regression cases (`tests/test_routing.py`) and reported on the test halves. The previous router scored 66% first-pick accuracy on those 158 requests, the current one 81%, plain keyword search 56%.
 
-Two things this does not show. First, the 81% is for requests the router was not tuned on; the 84 regression prompts below it score 100% only because it was tuned on them, so that number is not worth quoting as accuracy. Second, better ranking does not by itself change what an agent does. In the live check (DeepSeek V4.1 Flash on 73 of the test requests, with the router as it stood on 2 October) an acceptable skill was opened for 55% of them (40 of 73) and no skill at all for 27% (20 of 73). In the coding, harder-task, HumanEval and memory runs, skills were almost never opened: 3 of 296 completed runs with Bossku Superpower opened one (always `minimal-fix`; count them with `python scripts/skill_use_count.py`). What the hint says, and when, matters more than the ranking.
+Two things this does not show. First, the 81% is for requests the router was not tuned on; the 84 regression prompts below it score 100% only because it was tuned on them, so that number is not worth quoting as accuracy. Second, better ranking does not by itself change what an agent does. In the live check (DeepSeek V4.1 Flash on 60 of the test requests, with the router at commit `8279f19`) an acceptable skill was opened for 45% of them (27 of 60) and no skill at all for 43% (26 of 60); the earlier check on 73 requests with the older router gave 55% and 27%. In the coding, harder-task, HumanEval and memory runs, skills were almost never opened: 4 of 487 completed runs with Bossku Superpower opened one (`minimal-fix`, `bosskuai-tdd-loop` or `bosskuai-qa-automation-strategy`; count them with `python scripts/skill_use_count.py`). What the hint says, and when, matters more than the ranking.
 
 ## Tuned routing regression (84 prompts)
 

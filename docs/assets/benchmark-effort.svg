@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 848" width="880" height="848" role="img" aria-labelledby="t d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1568" width="880" height="1568" role="img" aria-labelledby="t d">
 <title id="t">What a task costs in tokens</title>
-<desc id="d">What a task costs in tokens. Input plus output tokens the model processed, all turns (lower is better) Tokens per run (thousands) DeepSeek V4.1 Flash: Without Bossku Superpower 107k, With Bossku Superpower 113k. Tokens per run (thousands) Nemotron 3 Nano 30B: Without Bossku Superpower 52k, With Bossku Superpower 276k. Tokens per run (thousands) DeepSeek V4.1 Flash: Without Bossku Superpower 294k, With Bossku Superpower 329k. Tokens per run (thousands) Gemma 4 31B: Without Bossku Superpower 195k, With Bossku Superpower 313k. Tokens per run (thousands) DeepSeek V4.1 Flash: Without Bossku Superpower 97k, With Bossku Superpower 115k. Tokens per solved task (thousands) DeepSeek V4.1 Flash: Without Bossku Superpower 110k, With Bossku Superpower 116k. Tokens per solved task (thousands) Nemotron 3 Nano 30B: Without Bossku Superpower 295k, With Bossku Superpower 695k. Tokens per solved task (thousands) DeepSeek V4.1 Flash: Without Bossku Superpower 309k, With Bossku Superpower 355k. Tokens per solved task (thousands) Gemma 4 31B: Without Bossku Superpower 342k, With Bossku Superpower 597k. Tokens per solved task (thousands) DeepSeek V4.1 Flash: Without Bossku Superpower 112k, With Bossku Superpower 115k.</desc>
+<desc id="d">What a task costs in tokens. Input plus output tokens the model processed, all turns (lower is better) Tokens per run (thousands) DeepSeek V4.1 Flash: Without Bossku Superpower 107k, With Bossku Superpower 119k. Tokens per run (thousands) Gemma 4 31B: Without Bossku Superpower 67k, With Bossku Superpower 95k. Tokens per run (thousands) Nemotron 3 Nano 30B: Without Bossku Superpower 52k, With Bossku Superpower 244k. Tokens per run (thousands) DeepSeek V4.1 Flash: Without Bossku Superpower 294k, With Bossku Superpower 310k. Tokens per run (thousands) Gemma 4 31B: Without Bossku Superpower 195k, With Bossku Superpower 235k. Tokens per run (thousands) Nemotron 3 Nano 30B: Without Bossku Superpower 135k, With Bossku Superpower 391k. Tokens per run (thousands) Claude Haiku 4.5: Without Bossku Superpower 252k, With Bossku Superpower 311k. Tokens per run (thousands) Claude Sonnet 5.5: Without Bossku Superpower 139k, With Bossku Superpower 147k. Tokens per run (thousands) DeepSeek V4.1 Flash: Without Bossku Superpower 118k, With Bossku Superpower 118k. Tokens per run (thousands) Gemma 4 31B: Without Bossku Superpower 62k, With Bossku Superpower 98k. Tokens per run (thousands) Nemotron 3 Nano 30B: Without Bossku Superpower 78k, With Bossku Superpower 219k. Tokens per solved task (thousands) DeepSeek V4.1 Flash: Without Bossku Superpower 110k, With Bossku Superpower 127k. Tokens per solved task (thousands) Gemma 4 31B: Without Bossku Superpower 82k, With Bossku Superpower 116k. Tokens per solved task (thousands) Nemotron 3 Nano 30B: Without Bossku Superpower 295k, With Bossku Superpower 829k. Tokens per solved task (thousands) DeepSeek V4.1 Flash: Without Bossku Superpower 309k, With Bossku Superpower 334k. Tokens per solved task (thousands) Gemma 4 31B: Without Bossku Superpower 342k, With Bossku Superpower 365k. Tokens per solved task (thousands) Nemotron 3 Nano 30B: With Bossku Superpower 5,471k. Tokens per solved task (thousands) Claude Haiku 4.5: Without Bossku Superpower 528k, With Bossku Superpower 456k. Tokens per solved task (thousands) Claude Sonnet 5.5: Without Bossku Superpower 219k, With Bossku Superpower 174k. Tokens per solved task (thousands) DeepSeek V4.1 Flash: Without Bossku Superpower 150k, With Bossku Superpower 159k. Tokens per solved task (thousands) Gemma 4 31B: Without Bossku Superpower 160k, With Bossku Superpower 144k. Tokens per solved task (thousands) Nemotron 3 Nano 30B: Without Bossku Superpower 1,330k, With Bossku Superpower 2,480k.</desc>
 <style>text{font-family:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif}.card{fill:#fcfcfb}.ink{fill:#0b0b0b}.ink2{fill:#52514e}.muted{fill:#898781}.grid{stroke:#e1e0d9}.base{stroke:#c3c2b7}.whisker{stroke:#52514e}.s0{fill:#2a78d6}.s1{fill:#1baf7a}@media (prefers-color-scheme:dark){.card{fill:#1a1a19}.ink{fill:#ffffff}.ink2{fill:#c3c2b7}.muted{fill:#898781}.grid{stroke:#2c2c2a}.base{stroke:#383835}.whisker{stroke:#c3c2b7}.s0{fill:#3987e5}.s1{fill:#199e70}}</style>
-<rect class="card" width="880" height="848" rx="14"/>
+<rect class="card" width="880" height="1568" rx="14"/>
 <text class="ink" x="28" y="42" font-size="22" font-weight="650">What a task costs in tokens</text>
 <text class="ink2" x="28" y="66" font-size="14">Input plus output tokens the model processed, all turns (lower is better)</text>
 <rect class="s0" x="28" y="78" width="12" height="12" rx="3"/>
@@ -10,84 +10,154 @@
 <rect class="s1" x="254" y="78" width="12" height="12" rx="3"/>
 <text class="ink2" x="272" y="89" font-size="13">With Bossku Superpower</text>
 <text class="ink" x="28" y="112" font-size="15" font-weight="650">Tokens per run (thousands)</text>
-<line class="grid" x1="204.0" y1="126" x2="204.0" y2="418" stroke-width="1"/>
-<text class="muted" x="204.0" y="434" font-size="12" text-anchor="middle">0k</text>
-<line class="grid" x1="357.6" y1="126" x2="357.6" y2="418" stroke-width="1"/>
-<text class="muted" x="357.6" y="434" font-size="12" text-anchor="middle">100k</text>
-<line class="grid" x1="511.3" y1="126" x2="511.3" y2="418" stroke-width="1"/>
-<text class="muted" x="511.3" y="434" font-size="12" text-anchor="middle">200k</text>
-<line class="grid" x1="664.9" y1="126" x2="664.9" y2="418" stroke-width="1"/>
-<text class="muted" x="664.9" y="434" font-size="12" text-anchor="middle">300k</text>
-<line class="base" x1="204" y1="126" x2="204" y2="418" stroke-width="1.5"/>
+<line class="grid" x1="204.0" y1="126" x2="204.0" y2="778" stroke-width="1"/>
+<text class="muted" x="204.0" y="794" font-size="12" text-anchor="middle">0k</text>
+<line class="grid" x1="333.4" y1="126" x2="333.4" y2="778" stroke-width="1"/>
+<text class="muted" x="333.4" y="794" font-size="12" text-anchor="middle">100k</text>
+<line class="grid" x1="462.8" y1="126" x2="462.8" y2="778" stroke-width="1"/>
+<text class="muted" x="462.8" y="794" font-size="12" text-anchor="middle">200k</text>
+<line class="grid" x1="592.2" y1="126" x2="592.2" y2="778" stroke-width="1"/>
+<text class="muted" x="592.2" y="794" font-size="12" text-anchor="middle">300k</text>
+<line class="grid" x1="721.7" y1="126" x2="721.7" y2="778" stroke-width="1"/>
+<text class="muted" x="721.7" y="794" font-size="12" text-anchor="middle">400k</text>
+<line class="base" x1="204" y1="126" x2="204" y2="778" stroke-width="1.5"/>
 <text class="ink" x="28" y="151.0" font-size="14" font-weight="600">DeepSeek V4.1 Flash</text>
 <text class="muted" x="28" y="168.0" font-size="12">coding tasks</text>
-<path class="s0" d="M204,134 H363.8 Q367.8,134 367.8,138.0 V148.0 Q367.8,152 363.8,152 H204 Z"/>
-<text class="ink" x="375.8" y="147.5" font-size="13" font-weight="600">107k</text>
-<path class="s1" d="M204,154 H373.7 Q377.7,154 377.7,158.0 V168.0 Q377.7,172 373.7,172 H204 Z"/>
-<text class="ink" x="385.7" y="167.5" font-size="13" font-weight="600">113k</text>
-<text class="ink" x="28" y="211.0" font-size="14" font-weight="600">Nemotron 3 Nano 30B</text>
+<path class="s0" d="M204,134 H337.9 Q341.9,134 341.9,138.0 V148.0 Q341.9,152 337.9,152 H204 Z"/>
+<text class="ink" x="349.9" y="147.5" font-size="13" font-weight="600">107k</text>
+<path class="s1" d="M204,154 H354.3 Q358.3,154 358.3,158.0 V168.0 Q358.3,172 354.3,172 H204 Z"/>
+<text class="ink" x="366.3" y="167.5" font-size="13" font-weight="600">119k</text>
+<text class="ink" x="28" y="211.0" font-size="14" font-weight="600">Gemma 4 31B</text>
 <text class="muted" x="28" y="228.0" font-size="12">coding tasks</text>
-<path class="s0" d="M204,194 H279.8 Q283.8,194 283.8,198.0 V208.0 Q283.8,212 279.8,212 H204 Z"/>
-<text class="ink" x="291.8" y="207.5" font-size="13" font-weight="600">52k</text>
-<path class="s1" d="M204,214 H624.3 Q628.3,214 628.3,218.0 V228.0 Q628.3,232 624.3,232 H204 Z"/>
-<text class="ink" x="636.3" y="227.5" font-size="13" font-weight="600">276k</text>
-<text class="ink" x="28" y="271.0" font-size="14" font-weight="600">DeepSeek V4.1 Flash</text>
-<text class="muted" x="28" y="288.0" font-size="12">harder tasks</text>
-<path class="s0" d="M204,254 H652.0 Q656.0,254 656.0,258.0 V268.0 Q656.0,272 652.0,272 H204 Z"/>
-<text class="ink" x="664.0" y="267.5" font-size="13" font-weight="600">294k</text>
-<path class="s1" d="M204,274 H705.8 Q709.8,274 709.8,278.0 V288.0 Q709.8,292 705.8,292 H204 Z"/>
-<text class="ink" x="717.8" y="287.5" font-size="13" font-weight="600">329k</text>
-<text class="ink" x="28" y="331.0" font-size="14" font-weight="600">Gemma 4 31B</text>
+<path class="s0" d="M204,194 H287.2 Q291.2,194 291.2,198.0 V208.0 Q291.2,212 287.2,212 H204 Z"/>
+<text class="ink" x="299.2" y="207.5" font-size="13" font-weight="600">67k</text>
+<path class="s1" d="M204,214 H323.3 Q327.3,214 327.3,218.0 V228.0 Q327.3,232 323.3,232 H204 Z"/>
+<text class="ink" x="335.3" y="227.5" font-size="13" font-weight="600">95k</text>
+<text class="ink" x="28" y="271.0" font-size="14" font-weight="600">Nemotron 3 Nano 30B</text>
+<text class="muted" x="28" y="288.0" font-size="12">coding tasks</text>
+<path class="s0" d="M204,254 H267.3 Q271.3,254 271.3,258.0 V268.0 Q271.3,272 267.3,272 H204 Z"/>
+<text class="ink" x="279.3" y="267.5" font-size="13" font-weight="600">52k</text>
+<path class="s1" d="M204,274 H515.5 Q519.5,274 519.5,278.0 V288.0 Q519.5,292 515.5,292 H204 Z"/>
+<text class="ink" x="527.5" y="287.5" font-size="13" font-weight="600">244k</text>
+<text class="ink" x="28" y="331.0" font-size="14" font-weight="600">DeepSeek V4.1 Flash</text>
 <text class="muted" x="28" y="348.0" font-size="12">harder tasks</text>
-<path class="s0" d="M204,314 H500.3 Q504.3,314 504.3,318.0 V328.0 Q504.3,332 500.3,332 H204 Z"/>
-<text class="ink" x="512.3" y="327.5" font-size="13" font-weight="600">195k</text>
-<path class="s1" d="M204,334 H680.8 Q684.8,334 684.8,338.0 V348.0 Q684.8,352 680.8,352 H204 Z"/>
-<text class="ink" x="692.8" y="347.5" font-size="13" font-weight="600">313k</text>
-<text class="ink" x="28" y="391.0" font-size="14" font-weight="600">DeepSeek V4.1 Flash</text>
-<text class="muted" x="28" y="408.0" font-size="12">two-session tasks</text>
-<path class="s0" d="M204,374 H349.1 Q353.1,374 353.1,378.0 V388.0 Q353.1,392 349.1,392 H204 Z"/>
-<text class="ink" x="361.1" y="387.5" font-size="13" font-weight="600">97k</text>
-<path class="s1" d="M204,394 H376.6 Q380.6,394 380.6,398.0 V408.0 Q380.6,412 376.6,412 H204 Z"/>
-<text class="ink" x="388.6" y="407.5" font-size="13" font-weight="600">115k</text>
-<text class="ink" x="28" y="474" font-size="15" font-weight="650">Tokens per solved task (thousands)</text>
-<line class="grid" x1="204.0" y1="488" x2="204.0" y2="780" stroke-width="1"/>
-<text class="muted" x="204.0" y="796" font-size="12" text-anchor="middle">0k</text>
-<line class="grid" x1="349.4" y1="488" x2="349.4" y2="780" stroke-width="1"/>
-<text class="muted" x="349.4" y="796" font-size="12" text-anchor="middle">200k</text>
-<line class="grid" x1="494.9" y1="488" x2="494.9" y2="780" stroke-width="1"/>
-<text class="muted" x="494.9" y="796" font-size="12" text-anchor="middle">400k</text>
-<line class="grid" x1="640.3" y1="488" x2="640.3" y2="780" stroke-width="1"/>
-<text class="muted" x="640.3" y="796" font-size="12" text-anchor="middle">600k</text>
-<line class="base" x1="204" y1="488" x2="204" y2="780" stroke-width="1.5"/>
-<text class="ink" x="28" y="513.0" font-size="14" font-weight="600">DeepSeek V4.1 Flash</text>
-<text class="muted" x="28" y="530.0" font-size="12">coding tasks</text>
-<path class="s0" d="M204,496 H279.9 Q283.9,496 283.9,500.0 V510.0 Q283.9,514 279.9,514 H204 Z"/>
-<text class="ink" x="291.9" y="509.5" font-size="13" font-weight="600">110k</text>
-<path class="s1" d="M204,516 H284.7 Q288.7,516 288.7,520.0 V530.0 Q288.7,534 284.7,534 H204 Z"/>
-<text class="ink" x="296.7" y="529.5" font-size="13" font-weight="600">116k</text>
-<text class="ink" x="28" y="573.0" font-size="14" font-weight="600">Nemotron 3 Nano 30B</text>
-<text class="muted" x="28" y="590.0" font-size="12">coding tasks</text>
-<path class="s0" d="M204,556 H414.2 Q418.2,556 418.2,560.0 V570.0 Q418.2,574 414.2,574 H204 Z"/>
-<text class="ink" x="426.2" y="569.5" font-size="13" font-weight="600">295k</text>
-<path class="s1" d="M204,576 H705.8 Q709.8,576 709.8,580.0 V590.0 Q709.8,594 705.8,594 H204 Z"/>
-<text class="ink" x="717.8" y="589.5" font-size="13" font-weight="600">695k</text>
-<text class="ink" x="28" y="633.0" font-size="14" font-weight="600">DeepSeek V4.1 Flash</text>
-<text class="muted" x="28" y="650.0" font-size="12">harder tasks</text>
-<path class="s0" d="M204,616 H424.6 Q428.6,616 428.6,620.0 V630.0 Q428.6,634 424.6,634 H204 Z"/>
-<text class="ink" x="436.6" y="629.5" font-size="13" font-weight="600">309k</text>
-<path class="s1" d="M204,636 H457.8 Q461.8,636 461.8,640.0 V650.0 Q461.8,654 457.8,654 H204 Z"/>
-<text class="ink" x="469.8" y="649.5" font-size="13" font-weight="600">355k</text>
-<text class="ink" x="28" y="693.0" font-size="14" font-weight="600">Gemma 4 31B</text>
-<text class="muted" x="28" y="710.0" font-size="12">harder tasks</text>
-<path class="s0" d="M204,676 H448.8 Q452.8,676 452.8,680.0 V690.0 Q452.8,694 448.8,694 H204 Z"/>
-<text class="ink" x="460.8" y="689.5" font-size="13" font-weight="600">342k</text>
-<path class="s1" d="M204,696 H634.5 Q638.5,696 638.5,700.0 V710.0 Q638.5,714 634.5,714 H204 Z"/>
-<text class="ink" x="646.5" y="709.5" font-size="13" font-weight="600">597k</text>
-<text class="ink" x="28" y="753.0" font-size="14" font-weight="600">DeepSeek V4.1 Flash</text>
-<text class="muted" x="28" y="770.0" font-size="12">two-session tasks</text>
-<path class="s0" d="M204,736 H281.4 Q285.4,736 285.4,740.0 V750.0 Q285.4,754 281.4,754 H204 Z"/>
-<text class="ink" x="293.4" y="749.5" font-size="13" font-weight="600">112k</text>
-<path class="s1" d="M204,756 H283.6 Q287.6,756 287.6,760.0 V770.0 Q287.6,774 283.6,774 H204 Z"/>
-<text class="ink" x="295.6" y="769.5" font-size="13" font-weight="600">115k</text>
-<text class="muted" x="28" y="832" font-size="12">Input counts every turn, cached or not. Ollama Cloud bills by subscription, so tokens are the honest unit.</text>
+<path class="s0" d="M204,314 H580.7 Q584.7,314 584.7,318.0 V328.0 Q584.7,332 580.7,332 H204 Z"/>
+<text class="ink" x="592.7" y="327.5" font-size="13" font-weight="600">294k</text>
+<path class="s1" d="M204,334 H601.4 Q605.4,334 605.4,338.0 V348.0 Q605.4,352 601.4,352 H204 Z"/>
+<text class="ink" x="613.4" y="347.5" font-size="13" font-weight="600">310k</text>
+<text class="ink" x="28" y="391.0" font-size="14" font-weight="600">Gemma 4 31B</text>
+<text class="muted" x="28" y="408.0" font-size="12">harder tasks</text>
+<path class="s0" d="M204,374 H453.0 Q457.0,374 457.0,378.0 V388.0 Q457.0,392 453.0,392 H204 Z"/>
+<text class="ink" x="465.0" y="387.5" font-size="13" font-weight="600">195k</text>
+<path class="s1" d="M204,394 H504.0 Q508.0,394 508.0,398.0 V408.0 Q508.0,412 504.0,412 H204 Z"/>
+<text class="ink" x="516.0" y="407.5" font-size="13" font-weight="600">235k</text>
+<text class="ink" x="28" y="451.0" font-size="14" font-weight="600">Nemotron 3 Nano 30B</text>
+<text class="muted" x="28" y="468.0" font-size="12">harder tasks</text>
+<path class="s0" d="M204,434 H374.9 Q378.9,434 378.9,438.0 V448.0 Q378.9,452 374.9,452 H204 Z"/>
+<text class="ink" x="386.9" y="447.5" font-size="13" font-weight="600">135k</text>
+<path class="s1" d="M204,454 H705.8 Q709.8,454 709.8,458.0 V468.0 Q709.8,472 705.8,472 H204 Z"/>
+<text class="ink" x="717.8" y="467.5" font-size="13" font-weight="600">391k</text>
+<text class="ink" x="28" y="511.0" font-size="14" font-weight="600">Claude Haiku 4.5</text>
+<text class="muted" x="28" y="528.0" font-size="12">two-session tasks</text>
+<path class="s0" d="M204,494 H525.8 Q529.8,494 529.8,498.0 V508.0 Q529.8,512 525.8,512 H204 Z"/>
+<text class="ink" x="537.8" y="507.5" font-size="13" font-weight="600">252k</text>
+<path class="s1" d="M204,514 H602.2 Q606.2,514 606.2,518.0 V528.0 Q606.2,532 602.2,532 H204 Z"/>
+<text class="ink" x="614.2" y="527.5" font-size="13" font-weight="600">311k</text>
+<text class="ink" x="28" y="571.0" font-size="14" font-weight="600">Claude Sonnet 5.5</text>
+<text class="muted" x="28" y="588.0" font-size="12">two-session tasks</text>
+<path class="s0" d="M204,554 H380.1 Q384.1,554 384.1,558.0 V568.0 Q384.1,572 380.1,572 H204 Z"/>
+<text class="ink" x="392.1" y="567.5" font-size="13" font-weight="600">139k</text>
+<path class="s1" d="M204,574 H389.7 Q393.7,574 393.7,578.0 V588.0 Q393.7,592 389.7,592 H204 Z"/>
+<text class="ink" x="401.7" y="587.5" font-size="13" font-weight="600">147k</text>
+<text class="ink" x="28" y="631.0" font-size="14" font-weight="600">DeepSeek V4.1 Flash</text>
+<text class="muted" x="28" y="648.0" font-size="12">two-session tasks</text>
+<path class="s0" d="M204,614 H353.0 Q357.0,614 357.0,618.0 V628.0 Q357.0,632 353.0,632 H204 Z"/>
+<text class="ink" x="365.0" y="627.5" font-size="13" font-weight="600">118k</text>
+<path class="s1" d="M204,634 H353.0 Q357.0,634 357.0,638.0 V648.0 Q357.0,652 353.0,652 H204 Z"/>
+<text class="ink" x="365.0" y="647.5" font-size="13" font-weight="600">118k</text>
+<text class="ink" x="28" y="691.0" font-size="14" font-weight="600">Gemma 4 31B</text>
+<text class="muted" x="28" y="708.0" font-size="12">two-session tasks</text>
+<path class="s0" d="M204,674 H279.9 Q283.9,674 283.9,678.0 V688.0 Q283.9,692 279.9,692 H204 Z"/>
+<text class="ink" x="291.9" y="687.5" font-size="13" font-weight="600">62k</text>
+<path class="s1" d="M204,694 H326.9 Q330.9,694 330.9,698.0 V708.0 Q330.9,712 326.9,712 H204 Z"/>
+<text class="ink" x="338.9" y="707.5" font-size="13" font-weight="600">98k</text>
+<text class="ink" x="28" y="751.0" font-size="14" font-weight="600">Nemotron 3 Nano 30B</text>
+<text class="muted" x="28" y="768.0" font-size="12">two-session tasks</text>
+<path class="s0" d="M204,734 H301.2 Q305.2,734 305.2,738.0 V748.0 Q305.2,752 301.2,752 H204 Z"/>
+<text class="ink" x="313.2" y="747.5" font-size="13" font-weight="600">78k</text>
+<path class="s1" d="M204,754 H483.2 Q487.2,754 487.2,758.0 V768.0 Q487.2,772 483.2,772 H204 Z"/>
+<text class="ink" x="495.2" y="767.5" font-size="13" font-weight="600">219k</text>
+<text class="ink" x="28" y="834" font-size="15" font-weight="650">Tokens per solved task (thousands)</text>
+<line class="grid" x1="204.0" y1="848" x2="204.0" y2="1500" stroke-width="1"/>
+<text class="muted" x="204.0" y="1516" font-size="12" text-anchor="middle">0k</text>
+<line class="grid" x1="388.9" y1="848" x2="388.9" y2="1500" stroke-width="1"/>
+<text class="muted" x="388.9" y="1516" font-size="12" text-anchor="middle">2,000k</text>
+<line class="grid" x1="573.8" y1="848" x2="573.8" y2="1500" stroke-width="1"/>
+<text class="muted" x="573.8" y="1516" font-size="12" text-anchor="middle">4,000k</text>
+<line class="base" x1="204" y1="848" x2="204" y2="1500" stroke-width="1.5"/>
+<text class="ink" x="28" y="873.0" font-size="14" font-weight="600">DeepSeek V4.1 Flash</text>
+<text class="muted" x="28" y="890.0" font-size="12">coding tasks</text>
+<path class="s0" d="M204,856 H210.2 Q214.2,856 214.2,860.0 V870.0 Q214.2,874 210.2,874 H204 Z"/>
+<text class="ink" x="222.2" y="869.5" font-size="13" font-weight="600">110k</text>
+<path class="s1" d="M204,876 H211.7 Q215.7,876 215.7,880.0 V890.0 Q215.7,894 211.7,894 H204 Z"/>
+<text class="ink" x="223.7" y="889.5" font-size="13" font-weight="600">127k</text>
+<text class="ink" x="28" y="933.0" font-size="14" font-weight="600">Gemma 4 31B</text>
+<text class="muted" x="28" y="950.0" font-size="12">coding tasks</text>
+<path class="s0" d="M204,916 H207.8 Q211.6,916 211.6,919.8 V930.2 Q211.6,934 207.8,934 H204 Z"/>
+<text class="ink" x="219.6" y="929.5" font-size="13" font-weight="600">82k</text>
+<path class="s1" d="M204,936 H210.7 Q214.7,936 214.7,940.0 V950.0 Q214.7,954 210.7,954 H204 Z"/>
+<text class="ink" x="222.7" y="949.5" font-size="13" font-weight="600">116k</text>
+<text class="ink" x="28" y="993.0" font-size="14" font-weight="600">Nemotron 3 Nano 30B</text>
+<text class="muted" x="28" y="1010.0" font-size="12">coding tasks</text>
+<path class="s0" d="M204,976 H227.2 Q231.2,976 231.2,980.0 V990.0 Q231.2,994 227.2,994 H204 Z"/>
+<text class="ink" x="239.2" y="989.5" font-size="13" font-weight="600">295k</text>
+<path class="s1" d="M204,996 H276.6 Q280.6,996 280.6,1000.0 V1010.0 Q280.6,1014 276.6,1014 H204 Z"/>
+<text class="ink" x="288.6" y="1009.5" font-size="13" font-weight="600">829k</text>
+<text class="ink" x="28" y="1053.0" font-size="14" font-weight="600">DeepSeek V4.1 Flash</text>
+<text class="muted" x="28" y="1070.0" font-size="12">harder tasks</text>
+<path class="s0" d="M204,1036 H228.6 Q232.6,1036 232.6,1040.0 V1050.0 Q232.6,1054 228.6,1054 H204 Z"/>
+<text class="ink" x="240.6" y="1049.5" font-size="13" font-weight="600">309k</text>
+<path class="s1" d="M204,1056 H230.9 Q234.9,1056 234.9,1060.0 V1070.0 Q234.9,1074 230.9,1074 H204 Z"/>
+<text class="ink" x="242.9" y="1069.5" font-size="13" font-weight="600">334k</text>
+<text class="ink" x="28" y="1113.0" font-size="14" font-weight="600">Gemma 4 31B</text>
+<text class="muted" x="28" y="1130.0" font-size="12">harder tasks</text>
+<path class="s0" d="M204,1096 H231.6 Q235.6,1096 235.6,1100.0 V1110.0 Q235.6,1114 231.6,1114 H204 Z"/>
+<text class="ink" x="243.6" y="1109.5" font-size="13" font-weight="600">342k</text>
+<path class="s1" d="M204,1116 H233.8 Q237.8,1116 237.8,1120.0 V1130.0 Q237.8,1134 233.8,1134 H204 Z"/>
+<text class="ink" x="245.8" y="1129.5" font-size="13" font-weight="600">365k</text>
+<text class="ink" x="28" y="1173.0" font-size="14" font-weight="600">Nemotron 3 Nano 30B</text>
+<text class="muted" x="28" y="1190.0" font-size="12">harder tasks</text>
+<path class="s1" d="M204,1176 H705.8 Q709.8,1176 709.8,1180.0 V1190.0 Q709.8,1194 705.8,1194 H204 Z"/>
+<text class="ink" x="717.8" y="1189.5" font-size="13" font-weight="600">5,471k</text>
+<text class="ink" x="28" y="1233.0" font-size="14" font-weight="600">Claude Haiku 4.5</text>
+<text class="muted" x="28" y="1250.0" font-size="12">two-session tasks</text>
+<path class="s0" d="M204,1216 H248.8 Q252.8,1216 252.8,1220.0 V1230.0 Q252.8,1234 248.8,1234 H204 Z"/>
+<text class="ink" x="260.8" y="1229.5" font-size="13" font-weight="600">528k</text>
+<path class="s1" d="M204,1236 H242.1 Q246.1,1236 246.1,1240.0 V1250.0 Q246.1,1254 242.1,1254 H204 Z"/>
+<text class="ink" x="254.1" y="1249.5" font-size="13" font-weight="600">456k</text>
+<text class="ink" x="28" y="1293.0" font-size="14" font-weight="600">Claude Sonnet 5.5</text>
+<text class="muted" x="28" y="1310.0" font-size="12">two-session tasks</text>
+<path class="s0" d="M204,1276 H220.2 Q224.2,1276 224.2,1280.0 V1290.0 Q224.2,1294 220.2,1294 H204 Z"/>
+<text class="ink" x="232.2" y="1289.5" font-size="13" font-weight="600">219k</text>
+<path class="s1" d="M204,1296 H216.1 Q220.1,1296 220.1,1300.0 V1310.0 Q220.1,1314 216.1,1314 H204 Z"/>
+<text class="ink" x="228.1" y="1309.5" font-size="13" font-weight="600">174k</text>
+<text class="ink" x="28" y="1353.0" font-size="14" font-weight="600">DeepSeek V4.1 Flash</text>
+<text class="muted" x="28" y="1370.0" font-size="12">two-session tasks</text>
+<path class="s0" d="M204,1336 H213.9 Q217.9,1336 217.9,1340.0 V1350.0 Q217.9,1354 213.9,1354 H204 Z"/>
+<text class="ink" x="225.9" y="1349.5" font-size="13" font-weight="600">150k</text>
+<path class="s1" d="M204,1356 H214.7 Q218.7,1356 218.7,1360.0 V1370.0 Q218.7,1374 214.7,1374 H204 Z"/>
+<text class="ink" x="226.7" y="1369.5" font-size="13" font-weight="600">159k</text>
+<text class="ink" x="28" y="1413.0" font-size="14" font-weight="600">Gemma 4 31B</text>
+<text class="muted" x="28" y="1430.0" font-size="12">two-session tasks</text>
+<path class="s0" d="M204,1396 H214.8 Q218.8,1396 218.8,1400.0 V1410.0 Q218.8,1414 214.8,1414 H204 Z"/>
+<text class="ink" x="226.8" y="1409.5" font-size="13" font-weight="600">160k</text>
+<path class="s1" d="M204,1416 H213.3 Q217.3,1416 217.3,1420.0 V1430.0 Q217.3,1434 213.3,1434 H204 Z"/>
+<text class="ink" x="225.3" y="1429.5" font-size="13" font-weight="600">144k</text>
+<text class="ink" x="28" y="1473.0" font-size="14" font-weight="600">Nemotron 3 Nano 30B</text>
+<text class="muted" x="28" y="1490.0" font-size="12">two-session tasks</text>
+<path class="s0" d="M204,1456 H322.9 Q326.9,1456 326.9,1460.0 V1470.0 Q326.9,1474 322.9,1474 H204 Z"/>
+<text class="ink" x="334.9" y="1469.5" font-size="13" font-weight="600">1,330k</text>
+<path class="s1" d="M204,1476 H429.3 Q433.3,1476 433.3,1480.0 V1490.0 Q433.3,1494 429.3,1494 H204 Z"/>
+<text class="ink" x="441.3" y="1489.5" font-size="13" font-weight="600">2,480k</text>
+<text class="muted" x="28" y="1552" font-size="12">Input counts every turn, cached or not. Ollama Cloud bills by subscription, so tokens are the honest unit.</text>
 </svg>

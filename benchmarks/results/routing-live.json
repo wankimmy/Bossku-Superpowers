@@ -1,18 +1,18 @@
 {
   "deepseek-v4.1-flash": {
     "after": {
-      "prompts": 73,
-      "acceptable_skill_loaded": 40,
-      "rate": 0.547945205479452,
+      "prompts": 60,
+      "acceptable_skill_loaded": 27,
+      "rate": 0.45,
       "ci": [
-        0.43424118746805285,
-        0.6568553019335212
+        0.33093453853760824,
+        0.575082854510185
       ],
-      "first_skill_acceptable": 37,
-      "no_skill_loaded": 20,
-      "concern_coverage": 0.4337899543378995,
-      "skills_loaded_mean": 0.8493150684931506,
-      "input_tokens_mean": 61410.109589041094
+      "first_skill_acceptable": 25,
+      "no_skill_loaded": 26,
+      "concern_coverage": 0.40555555555555556,
+      "skills_loaded_mean": 0.6666666666666666,
+      "input_tokens_mean": 78809.8
     }
   }
 }
