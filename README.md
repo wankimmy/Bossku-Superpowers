@@ -42,7 +42,7 @@ In plain words: Bossku Superpower helps a model that skips checking its own work
 - **Gemma 4 31B showed no clear difference on harder tasks:** 57% without, 52% with.
 - **DeepSeek V4.1 Flash showed no clear difference on tasks that need a rule from an earlier session:** 87% without, 100% with.
 - **The extra checking costs tokens:** tokens per run with Bossku Superpower compared with without: DeepSeek V4.1 Flash 1.1× on coding tasks, Nemotron 3 Nano 30B 5.3× on coding tasks, DeepSeek V4.1 Flash 1.1× on harder tasks, Gemma 4 31B 1.6× on harder tasks, DeepSeek V4.1 Flash 1.2× on two-session tasks.
-- **It finds the right skill more often:** 82% first-pick accuracy on new requests, against 56% for keyword search.
+- **It finds the right skill more often:** 81% first-pick accuracy on new requests, against 56% for keyword search.
 - **Its fixed cost is small:** extra tokens on the first call of a session: 1,241 on Claude Haiku 4.5, 2,155 on Claude Sonnet 5.5.
 <!-- summary-overall:end -->
 
@@ -59,7 +59,7 @@ In plain words: Bossku Superpower helps a model that skips checking its own work
 ![With Bossku Superpower and with plain keyword search: how often the right skill is ranked first on requests it was never tuned on](docs/assets/benchmark-routing.svg)
 
 <!-- summary-routing:start -->
-**What this shows:** on 158 requests it was never tuned on, Bossku Superpower ranked an acceptable skill first 82% of the time, against 56% for plain keyword search. For requests with several jobs it found a fitting skill for every part 77% of the time. With a real agent (DeepSeek V4.1 Flash) on 73 of those requests, an acceptable skill was actually opened for 55% of them.
+**What this shows:** on 158 requests it was never tuned on, Bossku Superpower ranked an acceptable skill first 81% of the time, against 56% for plain keyword search. For requests with several jobs it found a fitting skill for every part 75% of the time. With a real agent (DeepSeek V4.1 Flash) on 73 of those requests, an acceptable skill was actually opened for 55% of them.
 <!-- summary-routing:end -->
 
 ### Finishing tasks
@@ -127,9 +127,9 @@ In plain words: Bossku Superpower helps a model that skips checking its own work
 
 | Finding a skill (158 new requests) | Keyword search only | With Bossku Superpower |
 |---|---:|---:|
-| Right skill ranked first | 56% | 82% |
-| Right skill in the top three | 73% | 95% |
-| Every part of a multi-part request covered | - | 77% |
+| Right skill ranked first | 56% | 81% |
+| Right skill in the top three | 73% | 94% |
+| Every part of a multi-part request covered | - | 75% |
 | A real agent (DeepSeek V4.1 Flash) opens an acceptable skill | - | 55% |
 
 | Hidden-test coding tasks | Without Bossku Superpower | With Bossku Superpower |

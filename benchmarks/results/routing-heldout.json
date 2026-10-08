@@ -33,11 +33,11 @@
       "after": {
         "prompts": 170,
         "top1": {
-          "hits": 142,
-          "rate": 0.8352941176470589,
+          "hits": 140,
+          "rate": 0.8235294117647058,
           "ci": [
-            0.7722507735560108,
-            0.8835186165094281
+            0.7592605415547623,
+            0.8734993962276786
           ]
         },
         "top3": {
@@ -48,14 +48,14 @@
             0.9799135526456858
           ]
         },
-        "concern_coverage": 0.8372549019607843,
+        "concern_coverage": 0.8343137254901961,
         "all_concerns_covered": {
-          "hits": 128,
-          "rate": 0.7529411764705882
+          "hits": 127,
+          "rate": 0.7470588235294118
         },
-        "not_confident": 49,
-        "stack_precision": 0.6514705882352941,
-        "stack_size": 2.1176470588235294
+        "not_confident": 51,
+        "stack_precision": 0.6506862745098039,
+        "stack_size": 2.1294117647058823
       },
       "description-only": {
         "prompts": 170,
@@ -78,14 +78,14 @@
       },
       "_paired_after_vs_before": {
         "top1": {
-          "only_first": 21,
+          "only_first": 19,
           "only_second": 10,
-          "p_two_sided": 0.07075554598122835
+          "p_two_sided": 0.13604594767093658
         },
         "whole_request": {
-          "only_first": 23,
+          "only_first": 22,
           "only_second": 6,
-          "p_two_sided": 0.002315700054168701
+          "p_two_sided": 0.0037191659212112427
         }
       },
       "_domains": {
@@ -101,7 +101,7 @@
         },
         "engineering": {
           "before": 0.7901234567901234,
-          "after": 0.8395061728395061,
+          "after": 0.8271604938271605,
           "description-only": 0.5308641975308642
         },
         "founder": {
@@ -116,7 +116,7 @@
         },
         "other": {
           "before": 0.5263157894736842,
-          "after": 0.6842105263157895,
+          "after": 0.631578947368421,
           "description-only": 0.3157894736842105
         },
         "product": {
@@ -162,29 +162,29 @@
       "after": {
         "prompts": 158,
         "top1": {
-          "hits": 130,
-          "rate": 0.8227848101265823,
+          "hits": 128,
+          "rate": 0.810126582278481,
           "ci": [
-            0.755795329166298,
-            0.8744505408695891
+            0.7418930200062588,
+            0.8636373257144954
           ]
         },
         "top3": {
-          "hits": 150,
-          "rate": 0.9493670886075949,
+          "hits": 149,
+          "rate": 0.9430379746835443,
           "ci": [
-            0.9032776281911786,
-            0.9741234849960364
+            0.89529708617668,
+            0.9697462648529687
           ]
         },
-        "concern_coverage": 0.8481012658227848,
+        "concern_coverage": 0.8386075949367089,
         "all_concerns_covered": {
-          "hits": 121,
-          "rate": 0.7658227848101266
+          "hits": 119,
+          "rate": 0.7531645569620253
         },
         "not_confident": 59,
-        "stack_precision": 0.6739451476793249,
-        "stack_size": 2.088607594936709
+        "stack_precision": 0.6682489451476793,
+        "stack_size": 2.0632911392405062
       },
       "description-only": {
         "prompts": 158,
@@ -208,13 +208,13 @@
       "_paired_after_vs_before": {
         "top1": {
           "only_first": 28,
-          "only_second": 3,
-          "p_two_sided": 4.649162292480469e-06
+          "only_second": 5,
+          "p_two_sided": 6.618769839406013e-05
         },
         "whole_request": {
-          "only_first": 35,
-          "only_second": 1,
-          "p_two_sided": 1.076841726899147e-09
+          "only_first": 34,
+          "only_second": 2,
+          "p_two_sided": 1.941225491464138e-08
         }
       },
       "_domains": {
@@ -230,7 +230,7 @@
         },
         "engineering": {
           "before": 0.7164179104477612,
-          "after": 0.8507462686567164,
+          "after": 0.835820895522388,
           "description-only": 0.5373134328358209
         },
         "founder": {
@@ -250,7 +250,7 @@
         },
         "product": {
           "before": 0.6666666666666666,
-          "after": 0.8333333333333334,
+          "after": 0.6666666666666666,
           "description-only": 0.5
         },
         "security-ops": {
@@ -291,29 +291,29 @@
       "after": {
         "prompts": 328,
         "top1": {
-          "hits": 272,
-          "rate": 0.8292682926829268,
+          "hits": 268,
+          "rate": 0.8170731707317073,
           "ci": [
-            0.7847923255662324,
-            0.8661206401378867
+            0.771644107350389,
+            0.8551609707350589
           ]
         },
         "top3": {
-          "hits": 313,
-          "rate": 0.9542682926829268,
+          "hits": 312,
+          "rate": 0.9512195121951219,
           "ci": [
-            0.9259255874287858,
-            0.9720932263667118
+            0.9222377324924632,
+            0.9697541093983665
           ]
         },
-        "concern_coverage": 0.8424796747967479,
+        "concern_coverage": 0.8363821138211381,
         "all_concerns_covered": {
-          "hits": 249,
-          "rate": 0.7591463414634146
+          "hits": 246,
+          "rate": 0.75
         },
-        "not_confident": 108,
-        "stack_precision": 0.6622967479674796,
-        "stack_size": 2.1036585365853657
+        "not_confident": 110,
+        "stack_precision": 0.6591463414634146,
+        "stack_size": 2.097560975609756
       },
       "description-only": {
         "prompts": 328,
@@ -336,14 +336,14 @@
       },
       "_paired_after_vs_before": {
         "top1": {
-          "only_first": 49,
-          "only_second": 13,
-          "p_two_sided": 4.8175233992660445e-06
+          "only_first": 47,
+          "only_second": 15,
+          "p_two_sided": 5.778372004920304e-05
         },
         "whole_request": {
-          "only_first": 58,
-          "only_second": 7,
-          "p_two_sided": 4.270521620792361e-11
+          "only_first": 56,
+          "only_second": 8,
+          "p_two_sided": 5.562672242319724e-10
         }
       }
     }
