@@ -18,6 +18,7 @@ import json
 import os
 import re
 import shutil
+import stat
 import time
 import zipfile
 from datetime import datetime, timezone
@@ -370,13 +371,28 @@ def backup(base: Path, home: Path | None = None) -> Path:
     return zip_path
 
 
+def _rmdir(folder: Path) -> None:
+    try:
+        folder.rmdir()
+    except PermissionError:               # a read-only folder (OneDrive makes some): clear the flag and try again
+        os.chmod(folder, stat.S_IWRITE)
+        folder.rmdir()
+
+
+def _remove_empty_folder(folder: Path) -> None:
+    """Remove a folder that has no file anywhere inside it, sub-folders first."""
+    for sub in sorted((p for p in folder.rglob("*") if p.is_dir()), key=lambda p: len(p.parts), reverse=True):
+        _rmdir(sub)
+    _rmdir(folder)
+
+
 def _apply_step(step: dict, base: Path) -> str | None:
     """Carry out one planned step. Returns the action that was performed, or None when there was nothing to do."""
     src, dest = Path(step["source"]), Path(step["target"]) if step["target"] else None
     action = step["action"]
     if action == "remove-empty-folder":
         if src.is_dir() and not _files(src):
-            shutil.rmtree(src)
+            _remove_empty_folder(src)
             return action
         return None
     if not src.is_file() or dest is None:
@@ -414,8 +430,11 @@ def apply_tidy(plan: list[dict], *, home: Path | None = None) -> dict:
             done[action] += 1
     for folder in sorted((p for p in base.iterdir() if p.is_dir() and not p.name.startswith(("_", "."))), key=lambda p: p.name):
         if not _files(folder):
-            shutil.rmtree(folder)
-            done["remove-empty-folder"] += 1
+            try:
+                _remove_empty_folder(folder)
+                done["remove-empty-folder"] += 1
+            except OSError as error:
+                failed.append({"step": "remove-empty-folder", "source": str(folder), "error": str(error)})
     try:
         write_index(base)
     except OSError as error:

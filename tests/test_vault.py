@@ -1,8 +1,11 @@
 import json
+import os
+import stat
 import tempfile
 import unittest
 import zipfile
 from pathlib import Path
+from unittest import mock
 
 from bossku import vault
 from bossku.memory import save_user_config
@@ -282,6 +285,24 @@ class TidyTests(unittest.TestCase):
             self.assertEqual(result["status"], "ok")
             self.assertIn("café note", (w.base / "Shop" / "repos" / "api" / "decisions.md").read_text(encoding="utf-8"))
             self.assertTrue((w.base / "Shop" / "repos" / "web" / "learnings.md").is_file())
+
+    def test_a_read_only_empty_folder_is_removed_and_a_stubborn_one_is_reported(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            w = World(tmp)
+            locked = w.base / "locked"
+            locked.mkdir()
+            os.chmod(locked, stat.S_IREAD)                      # on Windows this is the flag OneDrive sets on some folders
+            write(w.base / "web" / "learnings.md", "# Learnings\n\nsomething\n")
+            result = vault.apply_tidy(vault.plan_tidy(home=w.home), home=w.home)
+            self.assertEqual(result["status"], "ok", result)
+            self.assertTrue((w.base / "Shop" / "repos" / "web" / "learnings.md").is_file())
+            if os.name == "nt":
+                self.assertFalse(locked.exists())
+            with mock.patch("bossku.vault._remove_empty_folder", side_effect=PermissionError("denied")):
+                (w.base / "stuck").mkdir()
+                again = vault.apply_tidy([], home=w.home)
+            self.assertEqual(again["status"], "partial")
+            self.assertEqual(again["failed"][0]["step"], "remove-empty-folder")
 
     def test_two_backups_in_a_row_keep_both(self):
         with tempfile.TemporaryDirectory() as tmp:
