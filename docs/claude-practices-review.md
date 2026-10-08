@@ -6,7 +6,7 @@ Reviewed on 2026-09-29. Scope: apply the practical guidance and relevant gaps, n
 
 - Claude Code course checkout: [`shanraisshan/claude-code-best-practice`](https://github.com/shanraisshan/claude-code-best-practice/tree/7722ef772764ed3b99503305afc6d90918b9fef7).
 - Hindsight checkout: [`vectorize-io/hindsight`](https://github.com/vectorize-io/hindsight/tree/ccfe85b4851957ac2adf88b4a9ddf9668b2882f1).
-- BosskuAI baseline: `141a984`; existing skill names and packs checked against `skills/`, `skills/vendored.json`, and `bossku/index.py`.
+- Bossku Superpower baseline: `141a984`; existing skill names and packs checked against `skills/`, `skills/vendored.json`, and `bossku/index.py`.
 - Version-sensitive Claude behavior was checked against the primary [skills](https://code.claude.com/docs/en/skills), [memory](https://code.claude.com/docs/en/memory), and [subagent](https://code.claude.com/docs/en/sub-agents) docs. Do not treat course version badges or feature counts as compatibility guarantees.
 
 The source collection is large. These short extracts anchor the analysis:
@@ -24,9 +24,9 @@ Quotes 1–4 justify improving the existing skills and adding observed product v
 
 ## All nine README skill tips
 
-Source: course `README.md:280–292`. “Applied” here means actionable guidance exists in the checked-in BosskuAI surfaces; it does not mean every host supports or automatically executes every feature.
+Source: course `README.md:280–292`. “Applied” here means actionable guidance exists in the checked-in Bossku Superpower surfaces; it does not mean every host supports or automatically executes every feature.
 
-| Tip | BosskuAI application | State |
+| Tip | Bossku Superpower application | State |
 |---|---|---|
 | `context: fork` isolation | Practice playbook explains task boundaries, outputs, budget, and Claude-only support | Conditional on host/task |
 | Skills in monorepo subfolders | Setup and instruction-management skills inspect launch directory and discovery; playbook describes scope | Applied |
@@ -44,7 +44,7 @@ The adjacent README hook/measurement tips are also covered: deterministic enforc
 
 Source: `tips/claude-thariq-tips-17-mar-26.md`. These are example jobs, not a requirement to install every illustrative skill name.
 
-| Category / illustrative examples | Existing or added BosskuAI coverage |
+| Category / illustrative examples | Existing or added Bossku Superpower coverage |
 |---|---|
 | Library/API reference (`billing-lib`, `internal-platform-cli`, `frontend-design`) | `bosskuai-documentation-lookup`, framework skills, `mcp-server-patterns`, frontend design skills |
 | Product verification (`signup-flow-driver`, `checkout-verifier`, `tmux-cli-driver`) | New `bosskuai-product-verification`, existing `bosskuai-browser-automation` and `e2e-testing` |
@@ -81,10 +81,10 @@ Checked the course's `.claude/skills/` folders as well as the README.
 | Skill / example | Decision |
 |---|---|
 | `weather-fetcher`, `weather-svg-creator`, `/weather-orchestrator` | Weather demo of command → agent → skill; apply the orchestration pattern to delivery and verification, do not add weather-specific defaults |
-| `time-skill` | Use host-provided time tooling or ordinary date commands; not a missing recurring BosskuAI job |
+| `time-skill` | Use host-provided time tooling or ordinary date commands; not a missing recurring Bossku Superpower job |
 | `agent-browser` | Existing `browser-use`, `remote-browser`, and browser-automation coverage; runtime/tool availability checked per task |
 | `presentation-structure`, `presentation-styling`, `vibe-to-agentic-framework` | Course-specific presentation content; not portable engineering defaults or automatically installed Office tooling |
-| Built-in `/code-review`, `/batch`, `/simplify`, `/run`, `/verify` | Host-provided features; discover availability before using, never claim bundled in BosskuAI |
+| Built-in `/code-review`, `/batch`, `/simplify`, `/run`, `/verify` | Host-provided features; discover availability before using, never claim bundled in Bossku Superpower |
 | `/techdebt`, context-dump/analytics commands, `/careful`, `/freeze`, `/less-permission-prompts` | Illustrative or host-specific workflows; covered by maintenance, data-analysis, permissions, and scoped-hook guidance without globally installing a duplicate command |
 
 ## External workflow and skill catalogs
@@ -99,13 +99,13 @@ README sections Development Workflows, Cross-Model Workflows, Skill Collections,
 | Spec Kit, gstack, OpenSpec, Get Shit Done, BMAD-METHOD, oh-my-claudecode, Compound Engineering, HumanLayer, addyosmani/agent-skills | Alternative methodologies; apply research/plan/implement/verify principles through existing process/delivery skills, no competing stack installed |
 | musistudio/claude-code-router, CLIProxyAPI, codex-plugin-cc, pal-mcp-server | Provider/cross-model integrations, not missing portable skills; existing cross-model guidance checks configured capabilities |
 | anthropics/skills, Understand-Anything, scientific-agent-skills, wshobson/agents, awesome-agent-skills, impeccable, alirezarezvani/claude-skills, draw-json-architecture-skill | Reference collections; relevant generic jobs covered, domain-specific catalogs not imported or claimed installed |
-| agency-agents, awesome-claude-code-subagents | Alternative agent catalogs; preserve BosskuAI's five contracts rather than adding hundreds of overlapping agents |
+| agency-agents, awesome-claude-code-subagents | Alternative agent catalogs; preserve Bossku Superpower's five contracts rather than adding hundreds of overlapping agents |
 
 ## Hindsight analysis and application
 
 Hindsight is a memory service with model-driven extraction and synthesis, not just a directory of Markdown skills. Its README and five `skills/` entries were inventoried: `hindsight-docs`, `hindsight-local`, `hindsight-cloud`, `hindsight-self-hosted`, and `hindsight-architect`.
 
-| Upstream feature | BosskuAI application |
+| Upstream feature | Bossku Superpower application |
 |---|---|
 | Retain / recall / reflect | New `bosskuai-hindsight-memory` distinguishes ingestion, evidence retrieval, and generated reasoning |
 | Isolated memory banks | Explicit project/audience bank; tags cannot substitute for access isolation |
@@ -126,7 +126,7 @@ The shared bare-import predicate now ignores fenced/inline/indented examples. `i
 
 ## Portable guidance follow-up, 2026-10-01
 
-The supplied course checkout still matches the pinned revision above (`git rev-parse HEAD`; clean `git status --short`). This follow-up closes inconsistencies in BosskuAI's existing adaptation:
+The supplied course checkout still matches the pinned revision above (`git rev-parse HEAD`; clean `git status --short`). This follow-up closes inconsistencies in Bossku Superpower's existing adaptation:
 
 - The practice playbook now resolves canonical memory through `bossku memory-path`, preserving the configured Obsidian vault and reporting an unavailable vault without repository fallback.
 - Delegation now uses bounded tasks and inherited models (quotes 7 and 8), explicitly checks context and skill preloading, and assigns exclusive file ownership or supported isolation. OpenCode/OMP use the same contract with capability discovery and a sequential fallback; host-specific schemas remain conditional.

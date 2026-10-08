@@ -7,13 +7,13 @@
 
 ## Plugin / marketplace install
 
-BosskuAI ships native plugin manifests for Claude Code, Cursor, and Codex. OpenCode uses skill discovery plus the `.opencode` harness.
+Bossku Superpower ships native plugin manifests for Claude Code, Cursor, and Codex. OpenCode uses skill discovery plus the `.opencode` harness.
 
 ### Claude Code
 
 ```text
-/plugin marketplace add wankimmy/Bossku-AI
-/plugin install bossku-ai@bosskuai-marketplace
+/plugin marketplace add wankimmy/bossku-superpower
+/plugin install bossku-superpower@bossku-superpower-marketplace
 ```
 
 Skills and agents load from this repository via [`.claude-plugin/plugin.json`](../.claude-plugin/plugin.json). Refresh after updates with `/plugin marketplace update` and reinstall if needed.
@@ -23,13 +23,13 @@ Skills and agents load from this repository via [`.claude-plugin/plugin.json`](.
 **Windows (PowerShell):**
 
 ```powershell
-git clone https://github.com/wankimmy/Bossku-AI $env:USERPROFILE\.cursor\plugins\local\bossku-ai
+git clone https://github.com/wankimmy/bossku-superpower $env:USERPROFILE\.cursor\plugins\local\bossku-superpower
 ```
 
 Or link an existing clone:
 
 ```powershell
-$pluginDir = "$env:USERPROFILE\.cursor\plugins\local\bossku-ai"
+$pluginDir = "$env:USERPROFILE\.cursor\plugins\local\bossku-superpower"
 New-Item -ItemType Directory -Force -Path (Split-Path $pluginDir) | Out-Null
 if (Test-Path $pluginDir) { Remove-Item $pluginDir -Recurse -Force }
 New-Item -ItemType Junction -Path $pluginDir -Target "C:\path\to\Bossku-AI"
@@ -38,7 +38,7 @@ New-Item -ItemType Junction -Path $pluginDir -Target "C:\path\to\Bossku-AI"
 **macOS / Linux:**
 
 ```bash
-git clone https://github.com/wankimmy/Bossku-AI ~/.cursor/plugins/local/bossku-ai
+git clone https://github.com/wankimmy/bossku-superpower ~/.cursor/plugins/local/bossku-superpower
 ```
 
 Restart Cursor after install. Cursor reads [`.cursor-plugin/plugin.json`](../.cursor-plugin/plugin.json) and the thin rule in [`.cursor/rules/bosskuai.mdc`](../.cursor/rules/bosskuai.mdc).
@@ -48,10 +48,10 @@ For team distribution, point a Cursor marketplace at this repository using [`.cu
 ### Codex
 
 ```bash
-codex plugin marketplace add wankimmy/Bossku-AI
+codex plugin marketplace add wankimmy/bossku-superpower
 ```
 
-Restart the ChatGPT desktop app, open the Plugins Directory, choose the **BosskuAI** marketplace, and install **bossku-ai**. Catalog: [`.agents/plugins/marketplace.json`](../.agents/plugins/marketplace.json).
+Restart the ChatGPT desktop app, open the Plugins Directory, choose the **Bossku Superpower** marketplace, and install **bossku-superpower**. Catalog: [`.agents/plugins/marketplace.json`](../.agents/plugins/marketplace.json).
 
 ### OpenCode
 
@@ -72,7 +72,7 @@ On Windows, install OMP with the upstream PowerShell installer:
 irm https://omp.sh/install.ps1 | iex
 ```
 
-OMP discovers BosskuAI's existing `~/.agents/skills/` and `~/.claude/skills/` installs, so `bossku install` does not create a third copy. `bossku init` creates a thin `.omp/AGENTS.md` import and a project-local `.omp/config.yml` with `tools.approvalMode: write`.
+OMP discovers Bossku Superpower's existing `~/.agents/skills/` and `~/.claude/skills/` installs, so `bossku install` does not create a third copy. `bossku init` creates a thin `.omp/AGENTS.md` import and a project-local `.omp/config.yml` with `tools.approvalMode: write`.
 
 ## Install the CLI
 
@@ -92,7 +92,7 @@ Pick how much of the library your agent lists in every session:
 |---|---|---|---|
 | `lean` (default) | About 25 everyday engineering and process skills with short descriptions | `bossku skills find` / `bossku skills show`, installed whole in `~/.bosskuai/library` | Most people; the smallest per-session cost |
 | `core` | Co-founder essentials plus the **loop-engineering** pack | Not installed | A minimal set |
-| `full` | All ~235 skills | Already listed | Hosts with a very large skill budget |
+| `full` | All 240+ skills | Already listed | Hosts with a very large skill budget |
 
 Agents spend a fixed share of their context window on the skill list and cut the rest to bare names, so listing everything makes every session pay for skills it never uses. Measured costs are in the [benchmark](benchmarks/README.md). Switch any time by running `bossku install --profile <name>`; `bossku update` keeps your profile. After pulling Bossku-AI changes, run `bossku update` so installed skills match the repo.
 
@@ -157,7 +157,7 @@ bossku update
 bossku doctor
 bossku doctor --project /path/to/project
 bossku uninstall          # removes managed skills only
-bossku uninstall --purge  # also removes ~/.bosskuai/config.json and the BosskuAI hooks
+bossku uninstall --purge  # also removes ~/.bosskuai/config.json and the Bossku Superpower hooks
 ```
 
 Uninstall keeps project memory in its configured location.

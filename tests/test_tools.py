@@ -1,6 +1,8 @@
 import contextlib
 import io
 import json
+import os
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -40,12 +42,35 @@ class ToolRegistryTests(unittest.TestCase):
 
 class DetectionTests(unittest.TestCase):
     def test_a_command_on_the_path_counts_as_installed(self):
-        with mock.patch("bossku.tools.shutil.which", side_effect=lambda c: "/bin/graft" if c == "graft" else None):
+        with mock.patch("bossku.tools._which", side_effect=lambda c: "/bin/graft" if c == "graft" else None):
             self.assertTrue(tools.installed(tools.BY_ID["graft"]))
             self.assertFalse(tools.installed(tools.BY_ID["moli"]))
 
+    def test_a_program_in_the_current_folder_is_not_found(self):
+        with tempfile.TemporaryDirectory() as tmp, tempfile.TemporaryDirectory() as elsewhere:
+            name = "planted-tool" + (".cmd" if os.name == "nt" else "")
+            for folder in (tmp, elsewhere):
+                path = Path(folder) / name
+                path.write_text("echo hi", encoding="utf-8")
+                path.chmod(0o755)
+            old = os.getcwd()
+            os.chdir(tmp)
+            try:
+                with mock.patch.dict(os.environ, {"PATH": os.pathsep.join([".", tmp, elsewhere])}):
+                    self.assertEqual(Path(tools._which("planted-tool")).parent, Path(elsewhere))
+                with mock.patch.dict(os.environ, {"PATH": os.pathsep.join([".", tmp])}):
+                    self.assertIsNone(tools._which("planted-tool"))
+            finally:
+                os.chdir(old)
+
+    def test_archify_is_found_under_the_given_home(self):
+        with tempfile.TemporaryDirectory() as home, mock.patch("bossku.tools._which", return_value=None):
+            self.assertFalse(tools.installed(tools.BY_ID["archify"], home=Path(home)))
+            (Path(home) / ".claude" / "skills" / "archify").mkdir(parents=True)
+            self.assertTrue(tools.installed(tools.BY_ID["archify"], home=Path(home)))
+
     def test_e2e_is_per_project_and_read_from_package_json(self):
-        with tempfile.TemporaryDirectory() as tmp, mock.patch("bossku.tools.shutil.which", return_value=None):
+        with tempfile.TemporaryDirectory() as tmp, mock.patch("bossku.tools._which", return_value=None):
             project = Path(tmp)
             self.assertFalse(tools.installed(tools.BY_ID["e2e"], project))
             (project / "package.json").write_text(json.dumps({"devDependencies": {"e2e": "^1.0.0"}}), encoding="utf-8")
@@ -58,17 +83,56 @@ class InstallTests(unittest.TestCase):
         runner = lambda argv, **kw: seen.append(argv) or SimpleNamespace(returncode=0)
         result = tools.run_install(tools.BY_ID["markitdown"], runner=runner)
         self.assertTrue(result["ok"])
-        self.assertEqual(seen[0][1:4], ["-m", "pip", "install"])
+        self.assertEqual(seen[0][1:5], ["-P", "-m", "pip", "install"])     # -P: a pip.py in the current folder is not run
         self.assertIn("markitdown[all]>=0.1.0", seen[0])
 
     def test_a_failing_step_stops_the_plan(self):
         seen = []
         runner = lambda argv, **kw: seen.append(argv) or SimpleNamespace(returncode=3)
-        with tempfile.TemporaryDirectory() as tmp:
+        with tempfile.TemporaryDirectory() as tmp, mock.patch("bossku.tools.sys.stdin.isatty", return_value=True):
             (Path(tmp) / "package.json").write_text("{}", encoding="utf-8")
-            result = tools.run_install(tools.BY_ID["e2e"], project=Path(tmp), runner=runner)
+            result = tools.run_install(tools.BY_ID["e2e"], project=Path(tmp), runner=runner, node_problem=lambda: "")
         self.assertFalse(result["ok"])
         self.assertEqual(len(seen), 1)    # `npx e2e init` was not attempted after the failed install
+        self.assertEqual(seen[0][-1], "ai@7")
+
+    def test_e2e_changes_nothing_when_it_cannot_finish(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            project = Path(tmp)
+            (project / "package.json").write_text("{}", encoding="utf-8")
+            fail = lambda *a, **k: self.fail("ran")
+            with mock.patch("bossku.tools.sys.stdin.isatty", return_value=False):          # no terminal for `npx e2e init`
+                result = tools.run_install(tools.BY_ID["e2e"], project=project, runner=fail, node_problem=lambda: "")
+            self.assertFalse(result["ok"])
+            self.assertIn("terminal", result["message"])
+            with mock.patch("bossku.tools.sys.stdin.isatty", return_value=True):
+                result = tools.run_install(tools.BY_ID["e2e"], project=project, runner=fail,
+                                           node_problem=lambda: "Node 20.1.0 is too old")
+            self.assertFalse(result["ok"])
+            self.assertIn("nothing was changed", result["message"])
+            self.assertEqual((project / "package.json").read_text(encoding="utf-8"), "{}")
+
+    def test_e2e_already_in_the_project_is_not_installed_or_initialised_again(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            (Path(tmp) / "package.json").write_text(json.dumps({"devDependencies": {"e2e": "1"}}), encoding="utf-8")
+            result = tools.run_install(tools.BY_ID["e2e"], project=Path(tmp), runner=lambda *a, **k: self.fail("ran"))
+        self.assertTrue(result["ok"])
+        self.assertIn("already", result["message"])
+
+    def test_node_versions(self):
+        for version, ok in (("v24.8.0", True), ("v24.7.9", False), ("v22.22.3", True), ("v22.22.2", False), ("v26.0.0", True), ("v20.0.0", False)):
+            fake = subprocess.CompletedProcess([], 0, stdout=version + "\n")
+            with mock.patch("bossku.tools._which", return_value="node"), mock.patch("bossku.tools.subprocess.run", return_value=fake):
+                self.assertEqual(tools._node_problem() == "", ok, version)
+
+    def test_a_timeout_stops_the_whole_process_tree(self):
+        process = mock.MagicMock(pid=4242)
+        process.wait.side_effect = [subprocess.TimeoutExpired("npm", 1), 0]
+        with mock.patch("bossku.tools.subprocess.Popen", return_value=process), \
+                mock.patch("bossku.tools.subprocess.run") as run, mock.patch("bossku.tools.os.name", "nt"):
+            with self.assertRaises(subprocess.TimeoutExpired):
+                tools._run(["npm", "install"], timeout=1)
+        self.assertEqual(run.call_args.args[0], ["taskkill", "/T", "/F", "/PID", "4242"])
 
     def test_a_project_tool_needs_a_project(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -97,8 +161,9 @@ class CliTests(unittest.TestCase):
         self.assertEqual({r["id"] for r in rows}, {t.id for t in tools.TOOLS})
 
     def test_install_without_yes_only_prints_the_plan(self):
-        with mock.patch("bossku.tools.subprocess.run", side_effect=AssertionError("must not run")):
+        with mock.patch("bossku.tools.run_install", side_effect=AssertionError("must not run")) as run:
             code, out, _ = self.run_cli("tools", "install", "headroom")
+        run.assert_not_called()
         self.assertEqual(code, 0)
         self.assertIn("pip install", out)
         self.assertIn("Nothing was run", out)

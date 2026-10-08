@@ -1,10 +1,10 @@
 # Agentic end-to-end tests: detail
 
-The short checklist is in SKILL.md. This file holds what a job may need beyond it. It was written from a read of the open-source e2e project (tester-army/e2e, Apache-2.0, checked at commit f1a1ac24 on 2026-10-07; see `docs/third-party.md`); no text is copied. The CLI prints its own current guides, so prefer them when they differ.
+The short checklist is in SKILL.md. This file holds what a job may need beyond it. It was written from a read of the open-source e2e project (tester-army/e2e, Apache-2.0, checked at commit f1a1ac24 on 2026-10-07; see `docs/third-party.md`). It is written in our own words and follows the structure of that project's documentation, so it is credited under the Apache-2.0 NOTICE. The CLI prints its own current guides, so prefer them when they differ.
 
 ## What e2e is
 
-A TypeScript test runner. `agent.act` pursues one goal on the screen; `agent.assert`, `agent.waitFor` and `agent.extract` judge the screen; `screen`, `app`, `browser` and `expect` make exact interactions and checks. A replay cache reruns verified actions and compares their recorded end state without a model call, while agent judgments still run live. Engines: `@e2e-dev/web` (Playwright, browsers) and `@e2e-dev/mobile` (iOS simulators, Android emulators, connected phones). A test that takes only `app` can check an API with `fetch` and `expect`.
+A TypeScript test runner with two kinds of step. Goal steps let a model drive the UI (`agent.act`) or judge what is on it (`agent.assert`, `agent.waitFor`, `agent.extract`); exact steps use `screen`, `app`, `browser` and `expect`. Verified actions are cached: a rerun replays them and compares the recorded end state without calling a model, while the judgments always go to the model. Browsers run through `@e2e-dev/web` (Playwright); iOS simulators, Android emulators and connected phones run through `@e2e-dev/mobile`. A test that only needs `app` can also check an API with `fetch` and `expect`.
 
 ## Install and first run (ask the user first)
 
@@ -32,9 +32,9 @@ A TypeScript test runner. `agent.act` pursues one goal on the screen; `agent.ass
 
 ## Writing rules that prevent flaky tests
 
-- Locators resolve when used; actions wait for readiness and `expect` retries. Plain reads such as `textContent()` fail at once on zero matches, and `count()` answers from the current screen, so use a matcher when a value has to settle.
+- Locators are looked up at the moment they are used. Actions wait until the element is ready and `expect` retries until it passes, but a plain read such as `textContent()` throws immediately when nothing matches and `count()` reports only what is on screen right now. To wait for a value to change, assert it with a matcher.
 - A locator matching two nodes fails with `LOCATOR_AMBIGUOUS`; narrow it by role and name.
-- One goal per `act`, worded as the screen words it, with real values passed as params. When a step fails, tighten the goal first, then the context, then the agent.
+- One goal per `act`, worded as the screen words it, with real values passed as params. If a step fails, make the goal more precise before adding context, and add context before changing the agent.
 - Secrets live under `credentials` and `secrets` in the config and are resolved with `credentials.user(name).password` and `secrets.get(name)`. They are separate namespaces. Hand the result only to `fill()` or `act` params.
 
 ## Bug bash loop

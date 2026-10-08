@@ -3,7 +3,7 @@
 
     python scripts/benchmark_routing_heldout.py --arm v1=/path/to/snapshot --arm v2=. --out benchmarks/results/routing-heldout.json
 
-The prompts and their acceptable skills were written by an author who saw only the skill catalog
+The prompts and their acceptable skills were written by AI agents that saw only the skill catalog
 (ids and descriptions), never the router code or its tests. Each prompt has 1-3 concerns; a concern
 lists the skills a sensible expert would accept for that part of the request. Prompts are split in
 two by a hash of their id: tune on `dev`, report on `test`.

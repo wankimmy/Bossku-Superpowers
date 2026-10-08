@@ -1,6 +1,6 @@
 # Contributing
 
-BosskuAI is a toolkit-only repo: skills, agents, CLI, and docs.
+Bossku Superpower is a toolkit-only repo: skills, agents, CLI, and docs.
 
 ## Changes
 
@@ -26,15 +26,15 @@ Use this on **Settings → General → Description** (max 350 characters). It de
 **Description (recommended):**
 
 ```text
-Open-source AI co-founder toolkit for Cursor, Claude Code, Codex & OpenCode. Shared skill library, plan → execute → audit agents, project memory, and bossku CLI — local-first, MIT.
+Skills and tools that make your AI coding agent do better work: it finds the right skill, runs its own code, remembers your project's rules and keeps notes in Obsidian. 240+ skills and optional tools for Claude Code, Cursor, Codex, OpenCode and OMP. MIT.
 ```
 
 **Shorter alternative:**
 
 ```text
-AI co-founder layer for Cursor, Claude Code, Codex & OpenCode. ~200 skills, multi-agent workflow, persistent memory. Install once with bossku. MIT.
+Skills and tools for AI coding agents: right skill, tested code, remembered rules, Obsidian notes. 240+ skills. MIT.
 ```
 
-**Topics:** `ai-agents`, `cursor`, `claude-code`, `codex`, `opencode`, `agent-skills`, `mit-license`
+**Topics:** `ai-agents`, `agent-skills`, `claude-code`, `cursor`, `codex`, `opencode`, `obsidian`, `developer-tools`, `mit-license`
 
 Do not use “approval gates”, “run dashboard”, or “Local-first (Ollama)” on `main` unless the About text targets `archive/product-mvp-2026-07` instead.

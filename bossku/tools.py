@@ -10,15 +10,16 @@ from __future__ import annotations
 
 import importlib.util
 import json
-import shutil
+import os
+import re
 import subprocess
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 
-# How a tool is installed. Only the first three are ever run by `install --yes`.
-PIP, NPM_GLOBAL, NPM_PROJECT, MANUAL = "pip", "npm-global", "npm-project", "manual"
-RUNNABLE = (PIP, NPM_GLOBAL, NPM_PROJECT)
+# How a tool is installed. Only the first four are ever run by `install --yes`.
+PIP, NPM_GLOBAL, NPM_PROJECT, AGENT_SKILL, MANUAL = "pip", "npm-global", "npm-project", "agent-skill", "manual"
+RUNNABLE = (PIP, NPM_GLOBAL, NPM_PROJECT, AGENT_SKILL)
 
 
 @dataclass(frozen=True)
@@ -28,7 +29,7 @@ class Tool:
     kind: str
     skills: tuple[str, ...]
     purpose: str
-    spec: str = ""                       # pip requirement or npm package
+    spec: str = ""                       # pip requirement, npm package or skill source
     commands: tuple[str, ...] = ()       # executables that mean "installed" when found on PATH
     module: str = ""                     # python module that means "installed"
     note: str = ""                       # what the user should know before installing (telemetry, binaries...)
@@ -51,34 +52,53 @@ TOOLS: tuple[Tool, ...] = (
          spec="opendataloader-pdf", commands=("opendataloader-pdf",), module="opendataloader_pdf",
          note="Needs Java 11 or newer. Bind its hybrid server to 127.0.0.1 only."),
     Tool("graft", "Graft", NPM_GLOBAL, ("graft",), "a map of a code base: callers, skeletons, one targeted question",
-         spec="@nanonets/graft", commands=("graft",), note="After installing, run `graft build` once in each repository."),
+         spec="@nanonets/graft", commands=("graft",),
+         note="Builds a native module while installing, which can need a C++ toolchain (it failed on a Windows machine without Visual Studio). "
+              "After installing, run `graft build` once in each repository."),
     Tool("e2e", "e2e", NPM_PROJECT, ("bosskuai-agentic-e2e",), "agentic end-to-end tests for web and mobile apps",
          spec="e2e", note="Per project: it edits that project's package.json and writes e2e.config.ts, an example test and "
-                          ".gitignore lines. Needs Node 24.8+ (or 22.22.3+). Sends usage telemetry unless "
-                          "`npx e2e telemetry disable` or E2E_TELEMETRY_DISABLED=1. Add @e2e-dev/web and ai@^7 as well.",
+                          ".gitignore lines. Needs Node 24.8+ (or 22.22.3+) and a terminal, because `npx e2e init` asks questions. "
+                          "Sends usage telemetry unless `npx e2e telemetry disable` or E2E_TELEMETRY_DISABLED=1. "
+                          "@e2e-dev/web and ai@7 are installed with it.",
          follow_up=(("npx", "e2e", "init"),)),
-    Tool("archify", "Archify", NPM_GLOBAL, ("bosskuai-archify-diagrams",), "interactive architecture and workflow diagrams as HTML",
-         spec="", note="Installed as an agent skill with `npx skills add tt-a1i/archify -g`. Its update check contacts a "
-                       "GitHub Pages URL unless the user declines.",
-         follow_up=()),
+    Tool("archify", "Archify", AGENT_SKILL, ("bosskuai-archify-diagrams",), "interactive architecture and workflow diagrams as HTML",
+         spec="tt-a1i/archify",
+         note="Downloads the skill from github.com/tt-a1i/archify (its latest version, not pinned) with `npx skills add` "
+              "and installs it for your agents globally; the installer may ask which agents. Its update check contacts a "
+              "GitHub Pages URL unless the user declines."),
     Tool("moli", "Moli", MANUAL, ("moli-webfetch", "moli-cdp-server"), "fetch JavaScript-rendered pages as Markdown without Chrome",
          commands=("moli",), manual="https://github.com/lexmount/moli/releases/latest",
          note="An unsigned prebuilt binary; the official installer is a script piped into a shell, so it is never run for you."),
     Tool("hindsight", "Hindsight", MANUAL, ("bosskuai-hindsight-memory",), "an optional agent memory service",
          commands=("hindsight",), manual="https://github.com/vectorize-io/hindsight",
-         note="Build or download the CLI yourself. Its coding-agent plugins keep transcripts by default; do not enable them."),
+         note="Set up by hand: Bossku Superpower has no installer for it. Its coding-agent plugins keep transcripts by "
+              "default; do not enable them."),
     Tool("dcg", "Destructive Command Guard", MANUAL, ("dcg",), "block destructive shell and git commands",
          commands=("dcg",), manual="https://github.com/Dicklesworthstone/destructive_command_guard",
-         note="Read the upstream license rider before use."),
+         note="Its official installer is a script piped into a shell, so it is never run for you. "
+              "Read the upstream license rider before use."),
 )
 BY_ID = {tool.id: tool for tool in TOOLS}
 
-# The archify "package" is really a skills install; it has its own fixed command.
-ARCHIFY_COMMAND = ("npx", "skills", "add", "tt-a1i/archify", "-g")
+
+def _which(name: str) -> str | None:
+    """Find an executable on PATH, never in the current directory (Windows looks there first, so a planted npm.cmd would win)."""
+    here = os.path.normcase(os.path.abspath(os.getcwd()))
+    windows = os.name == "nt"
+    exts = [e.lower() for e in os.environ.get("PATHEXT", ".COM;.EXE;.BAT;.CMD").split(";") if e] if windows else [""]
+    names = [name] if windows and Path(name).suffix.lower() in exts else [name + e for e in exts]
+    for entry in os.environ.get("PATH", "").split(os.pathsep):
+        if not entry or os.path.normcase(os.path.abspath(entry)) == here:
+            continue
+        for candidate in names:
+            path = Path(entry) / candidate
+            if path.is_file() and (windows or os.access(path, os.X_OK)):
+                return str(path)
+    return None
 
 
-def installed(tool: Tool, project: Path | None = None) -> bool:
-    if any(shutil.which(cmd) for cmd in tool.commands):
+def installed(tool: Tool, project: Path | None = None, home: Path | None = None) -> bool:
+    if any(_which(cmd) for cmd in tool.commands):
         return True
     if tool.module and importlib.util.find_spec(tool.module) is not None:
         return True
@@ -91,34 +111,71 @@ def installed(tool: Tool, project: Path | None = None) -> bool:
         return isinstance(data, dict) and any(
             "e2e" in (data.get(section) or {}) for section in ("dependencies", "devDependencies"))
     if tool.id == "archify":
-        home = Path.home()
-        return any((home / base / "skills" / "archify").is_dir() for base in (".claude", ".agents", ".codex", ".cursor"))
+        base = home or Path.home()
+        return any((base / folder / "skills" / "archify").is_dir() for folder in (".claude", ".agents", ".codex", ".cursor"))
     return False
 
 
 def plan(tool: Tool) -> list[list[str]]:
     """The exact commands `install --yes` would run, in order; empty when the tool cannot be installed automatically."""
     if tool.kind == PIP:
-        return [[sys.executable, "-m", "pip", "install", tool.spec]]
-    if tool.kind == NPM_GLOBAL and tool.id == "archify":
-        return [list(ARCHIFY_COMMAND)]
+        # -P keeps the folder bossku runs in off sys.path, so a pip.py lying there is not run instead of pip
+        return [[sys.executable, "-P", "-m", "pip", "install", tool.spec]]
+    if tool.kind == AGENT_SKILL:
+        return [["npx", "skills", "add", tool.spec, "-g"]]
     if tool.kind == NPM_GLOBAL:
         return [["npm", "install", "-g", tool.spec]]
     if tool.kind == NPM_PROJECT:
-        return [["npm", "install", "--save-dev", tool.spec, "@e2e-dev/web", "ai@^7"], *[list(c) for c in tool.follow_up]]
+        return [["npm", "install", "--save-dev", tool.spec, "@e2e-dev/web", "ai@7"], *[list(c) for c in tool.follow_up]]
     return []
 
 
-def describe(tool: Tool, project: Path | None = None) -> dict:
-    return {"id": tool.id, "title": tool.title, "installed": installed(tool, project), "kind": tool.kind,
+def describe(tool: Tool, project: Path | None = None, home: Path | None = None) -> dict:
+    return {"id": tool.id, "title": tool.title, "installed": installed(tool, project, home), "kind": tool.kind,
             "skills": list(tool.skills), "purpose": tool.purpose, "note": tool.note,
             "install": [" ".join(c) for c in plan(tool)] or ([tool.manual] if tool.manual else []),
             "automatic": tool.kind in RUNNABLE}
 
 
-def run_install(tool: Tool, *, project: Path | None = None, runner=subprocess.run) -> dict:
+def _run(argv: list[str], *, cwd: str | None = None, check: bool = False, timeout: int = 900):
+    """subprocess.run, except that a timeout stops the whole process tree (on Windows npm.cmd starts node as a child)."""
+    process = subprocess.Popen(argv, cwd=cwd)
+    try:
+        return subprocess.CompletedProcess(argv, process.wait(timeout=timeout))
+    except subprocess.TimeoutExpired:
+        if os.name == "nt":
+            subprocess.run(["taskkill", "/T", "/F", "/PID", str(process.pid)], capture_output=True, check=False)
+        else:
+            process.kill()
+        process.wait()
+        raise
+    except BaseException:
+        process.kill()
+        raise
+
+
+def _node_problem() -> str:
+    """Why e2e cannot run here, or an empty string. It needs Node 24.8+ or 22.22.3+."""
+    node = _which("node")
+    if not node:
+        return "Node.js was not found on PATH"
+    try:
+        out = subprocess.run([node, "--version"], capture_output=True, text=True, timeout=30, check=False).stdout
+    except (OSError, subprocess.SubprocessError):
+        return "`node --version` did not run"
+    found = re.match(r"v(\d+)\.(\d+)\.(\d+)", out.strip())
+    if not found:
+        return f"could not read the Node version from {out.strip()!r}"
+    version = tuple(int(n) for n in found.groups())
+    if version >= (25, 0, 0) or (version[0] == 24 and version >= (24, 8, 0)) or (version[0] == 22 and version >= (22, 22, 3)):
+        return ""
+    return f"Node {'.'.join(map(str, version))} is too old (needs 24.8+ or 22.22.3+)"
+
+
+def run_install(tool: Tool, *, project: Path | None = None, runner=None, node_problem=None) -> dict:
     """Run the plan for a pip or npm tool. Manual tools are refused: their installers are not ours to run."""
-    if tool.kind not in RUNNABLE and tool.id != "archify":
+    runner = runner or _run
+    if tool.kind not in RUNNABLE:
         return {"id": tool.id, "ok": False, "ran": [],
                 "message": f"{tool.title} is installed by hand: {tool.manual}. {tool.note}".strip()}
     cwd = None
@@ -126,9 +183,19 @@ def run_install(tool: Tool, *, project: Path | None = None, runner=subprocess.ru
         cwd = (project or Path.cwd())
         if not (cwd / "package.json").is_file():
             return {"id": tool.id, "ok": False, "ran": [], "message": f"{cwd} has no package.json; pass --project <folder>."}
+        follow = " && ".join(" ".join(c) for c in tool.follow_up)
+        if installed(tool, cwd):
+            return {"id": tool.id, "ok": True, "ran": [], "message": f"{tool.title} is already in {cwd / 'package.json'}; "
+                    + (f"if it is not set up yet, run `{follow}` in that folder." if follow else "nothing to do.")}
+        if tool.follow_up and not sys.stdin.isatty():
+            return {"id": tool.id, "ok": False, "ran": [], "message": f"nothing was changed: `{follow}` asks questions, so "
+                    f"run `bossku tools install {tool.id} --yes` in a terminal."}
+        problem = (node_problem or _node_problem)()
+        if problem:
+            return {"id": tool.id, "ok": False, "ran": [], "message": f"nothing was changed: {problem}."}
     ran = []
     for command in plan(tool):
-        exe = shutil.which(command[0]) or command[0]
+        exe = _which(command[0]) or command[0]
         argv = [exe, *command[1:]]
         try:
             result = runner(argv, cwd=str(cwd) if cwd else None, check=False, timeout=900)
@@ -140,5 +207,5 @@ def run_install(tool: Tool, *, project: Path | None = None, runner=subprocess.ru
     return {"id": tool.id, "ok": True, "ran": ran, "message": f"{tool.title} installed."}
 
 
-def status_table(project: Path | None = None) -> list[dict]:
-    return [describe(tool, project) for tool in TOOLS]
+def status_table(project: Path | None = None, home: Path | None = None) -> list[dict]:
+    return [describe(tool, project, home) for tool in TOOLS]

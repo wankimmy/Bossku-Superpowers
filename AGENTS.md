@@ -1,4 +1,4 @@
-# BosskuAI
+# Bossku Superpower (formerly BosskuAI)
 
 Portable AI co-founder layer for **Cursor**, **Claude Code**, **Codex**, **OpenCode**, and **OMP**.
 

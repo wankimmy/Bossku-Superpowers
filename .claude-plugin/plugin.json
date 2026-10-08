@@ -1,13 +1,13 @@
 {
-  "name": "bossku-ai",
+  "name": "bossku-superpower",
   "version": "2.1.0",
-  "description": "AI co-founder plugin for Claude Code with product, engineering, growth, research, and memory-first workflows.",
+  "description": "Skills and tools that make AI coding agents do better work: the right skill for each request, code that gets run, and project rules that are remembered.",
   "author": {
-    "name": "BosskuAI",
+    "name": "Bossku Superpower",
     "url": "https://github.com/wankimmy"
   },
-  "homepage": "https://github.com/wankimmy/Bossku-AI",
-  "repository": "https://github.com/wankimmy/Bossku-AI",
+  "homepage": "https://github.com/wankimmy/bossku-superpower",
+  "repository": "https://github.com/wankimmy/bossku-superpower",
   "license": "MIT",
   "keywords": [
     "claude-code",
@@ -15,7 +15,8 @@
     "skills",
     "ai-cofounder",
     "product-strategy",
-    "engineering"
+    "engineering",
+    "tools"
   ],
   "skills": "./skills/",
   "agents": [

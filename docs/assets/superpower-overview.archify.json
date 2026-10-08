@@ -1,0 +1,39 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "What Bossku Superpower adds around your agent",
+    "locale": "en",
+    "quality_profile": "showcase"
+  },
+  "lanes": [
+    { "id": "task", "label": "Your coding agent" },
+    { "id": "care", "label": "Bossku Superpower" }
+  ],
+  "mainPath": ["prompt", "pick", "work", "check", "reply"],
+  "nodes": [
+    { "id": "prompt", "lane": "task", "col": 0, "type": "external", "label": "You ask", "sublabel": "in plain words", "width": 150 },
+    { "id": "pick", "lane": "task", "col": 1, "type": "backend", "label": "Pick a skill", "sublabel": "the best fit for the job", "width": 164 },
+    { "id": "work", "lane": "task", "col": 2, "type": "backend", "label": "Do the work", "sublabel": "edit the real files", "width": 150 },
+    { "id": "check", "lane": "task", "col": 3, "type": "security", "label": "Run it", "sublabel": "tests or a quick check", "width": 150 },
+    { "id": "reply", "lane": "task", "col": 4, "type": "frontend", "label": "A checked result", "sublabel": "says what was verified", "width": 164 },
+    { "id": "skills", "lane": "care", "col": 1, "type": "database", "label": "240+ skills", "sublabel": "found for you", "width": 150 },
+    { "id": "tools", "lane": "care", "col": 2, "type": "backend", "label": "Optional tools", "sublabel": "headroom, moli, e2e...", "width": 164 },
+    { "id": "gate", "lane": "care", "col": 3, "type": "security", "label": "Never ran it?", "sublabel": "sent back once", "width": 150 },
+    { "id": "notes", "lane": "care", "col": 4, "type": "database", "label": "Your notes", "sublabel": "saved in Obsidian", "width": 150 }
+  ],
+  "edges": [
+    { "id": "read-ask", "from": "prompt", "to": "pick", "role": "main" },
+    { "id": "chosen", "from": "pick", "to": "work", "role": "main", "variant": "emphasis" },
+    { "id": "worked", "from": "work", "to": "check", "role": "main" },
+    { "id": "verified", "from": "check", "to": "reply", "role": "main", "variant": "emphasis" },
+    { "id": "offer-skills", "from": "skills", "to": "pick", "role": "branch" },
+    { "id": "offer-tools", "from": "tools", "to": "work", "role": "branch", "variant": "dashed" },
+    { "id": "enforce-run", "from": "gate", "to": "check", "role": "branch", "variant": "security" },
+    { "id": "keep-notes", "from": "reply", "to": "notes", "role": "branch", "variant": "dashed" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Helps in three ways", "items": ["Finds the right skill for your request.", "Sends the agent back if it never ran its code.", "Remembers your project's rules for next time."] },
+    { "dot": "emerald", "title": "Stays out of the way", "items": ["Skills and tools load only when needed.", "Tools install only when you say yes."] }
+  ]
+}

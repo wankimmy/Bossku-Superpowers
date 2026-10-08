@@ -212,7 +212,7 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "vault":
             return _vault(args, home)
         if args.command == "tools":
-            return _tools(args)
+            return _tools(args, home)
         if args.command == "skills":
             if args.skills_cmd == "find":
                 profile = args.profile or load_user_config(home).get("profile", "full")
@@ -349,12 +349,12 @@ def _vault(args, home) -> int:
     return 0 if result.get("status") == "ok" else 1
 
 
-def _tools(args) -> int:
+def _tools(args, home=None) -> int:
     from bossku import tools
 
     project = getattr(args, "project", None)
     if args.tools_cmd == "list":
-        rows = tools.status_table(project)
+        rows = tools.status_table(project, home)
         if getattr(args, "as_json", False):
             print(json.dumps(rows, indent=2))
             return 0
@@ -367,7 +367,7 @@ def _tools(args) -> int:
     if tool is None:
         print(f"unknown tool {args.tool!r}; known: {', '.join(tools.BY_ID)}", file=sys.stderr)
         return 2
-    info = tools.describe(tool, project)
+    info = tools.describe(tool, project, home)
     print(f"{tool.title}: {'already installed' if info['installed'] else 'not installed'}. {tool.purpose}.")
     if tool.note:
         print(f"Note: {tool.note}")

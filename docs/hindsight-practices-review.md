@@ -1,6 +1,6 @@
 # Hindsight practice review
 
-Reviewed on 2026-10-01 against the supplied `C:\dev\Tenant-Management-System\skills\hindsight` checkout at commit `ccfe85b4851957ac2adf88b4a9ddf9668b2882f1`. This review applies source guidance to BosskuAI's optional integration; it does not establish live backend behavior. Source paths below are relative to that checkout.
+Reviewed on 2026-10-01 against the supplied `C:\dev\Tenant-Management-System\skills\hindsight` checkout at commit `ccfe85b4851957ac2adf88b4a9ddf9668b2882f1`. This review applies source guidance to Bossku Superpower's optional integration; it does not establish live backend behavior. Source paths below are relative to that checkout.
 
 ## Evidence extracts
 
@@ -16,15 +16,15 @@ Reviewed on 2026-10-01 against the supplied `C:\dev\Tenant-Management-System\ski
 
 ## Applied guidance
 
-| Finding | BosskuAI change |
+| Finding | Bossku Superpower change |
 |---|---|
 | Bank scope and endpoint access are separate (1–3, 9) | Verify effective endpoint, authentication, audience, and bank; inspect connected schemas and CLI overrides |
 | Filtering and provenance need explicit semantics (4, 6, 8) | Capability checklist distinguishes metadata, strict tags, source facts/chunks, and reflection evidence; check payload/truncation rather than assuming a strict full-response token cap |
 | Replacement can remove previous evidence (5) | Inspect update semantics; separate independent decision IDs and retain complete approved replacements |
 | Derived knowledge needs scope and freshness checks (7) | Authorize mental-model writes, review source/visibility scope, and verify refresh completion |
-| Canonical memory changed in BosskuAI | Resolve `bossku memory-path`; direct vault mode and legacy export have distinct outcomes, with no repo fallback for unavailable canonical vaults |
+| Canonical memory changed in Bossku Superpower | Resolve `bossku memory-path`; direct vault mode and legacy export have distinct outcomes, with no repo fallback for unavailable canonical vaults |
 
-The last row follows BosskuAI `bossku/memory.py` (`memory_directory`, `remember`, `sync_project`) and `docs/memory.md`. Upstream guidance about rich content is adapted by preserving verified entities, dates, rationale, outcomes, and evidence in curated notes (`best-practices.md:178–192`). Runtime installation, provider changes, transcript ingestion, and automatic capture hooks remain outside this change.
+The last row follows Bossku Superpower `bossku/memory.py` (`memory_directory`, `remember`, `sync_project`) and `docs/memory.md`. Upstream guidance about rich content is adapted by preserving verified entities, dates, rationale, outcomes, and evidence in curated notes (`best-practices.md:178–192`). Runtime installation, provider changes, transcript ingestion, and automatic capture hooks remain outside this change.
 
 ## Verification limits
 

@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 488" width="880" height="488" role="img" aria-labelledby="t d">
-<title id="t">What BosskuAI adds to every session</title>
-<desc id="d">What BosskuAI adds to every session. First call of a Claude Code session, with and without BosskuAI (median of 3 runs) Input tokens of the first call Claude Haiku 4.5: Without BosskuAI 33,413, With BosskuAI 34,654  (+1,241). Input tokens of the first call Claude Sonnet 5.5: Without BosskuAI 35,403, With BosskuAI 37,558  (+2,155). Cost of the first call Claude Haiku 4.5: Without BosskuAI $0.0109, With BosskuAI $0.0120  (+$0.0011). Cost of the first call Claude Sonnet 5.5: Without BosskuAI $0.0247, With BosskuAI $0.0297  (+$0.0049).</desc>
+<title id="t">What Bossku Superpower adds to every session</title>
+<desc id="d">What Bossku Superpower adds to every session. First call of a Claude Code session, with and without Bossku Superpower (median of 3 runs) Input tokens of the first call Claude Haiku 4.5: Without Bossku Superpower 33,413, With Bossku Superpower 34,654  (+1,241). Input tokens of the first call Claude Sonnet 5.5: Without Bossku Superpower 35,403, With Bossku Superpower 37,558  (+2,155). Cost of the first call Claude Haiku 4.5: Without Bossku Superpower $0.0109, With Bossku Superpower $0.0120  (+$0.0011). Cost of the first call Claude Sonnet 5.5: Without Bossku Superpower $0.0247, With Bossku Superpower $0.0297  (+$0.0049).</desc>
 <style>text{font-family:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif}.card{fill:#fcfcfb}.ink{fill:#0b0b0b}.ink2{fill:#52514e}.muted{fill:#898781}.grid{stroke:#e1e0d9}.base{stroke:#c3c2b7}.whisker{stroke:#52514e}.s0{fill:#2a78d6}.s1{fill:#1baf7a}@media (prefers-color-scheme:dark){.card{fill:#1a1a19}.ink{fill:#ffffff}.ink2{fill:#c3c2b7}.muted{fill:#898781}.grid{stroke:#2c2c2a}.base{stroke:#383835}.whisker{stroke:#c3c2b7}.s0{fill:#3987e5}.s1{fill:#199e70}}</style>
 <rect class="card" width="880" height="488" rx="14"/>
-<text class="ink" x="28" y="42" font-size="22" font-weight="650">What BosskuAI adds to every session</text>
-<text class="ink2" x="28" y="66" font-size="14">First call of a Claude Code session, with and without BosskuAI (median of 3 runs)</text>
+<text class="ink" x="28" y="42" font-size="22" font-weight="650">What Bossku Superpower adds to every session</text>
+<text class="ink2" x="28" y="66" font-size="14">First call of a Claude Code session, with and without Bossku Superpower (median of 3 runs)</text>
 <rect class="s0" x="28" y="78" width="12" height="12" rx="3"/>
-<text class="ink2" x="46" y="89" font-size="13">Without BosskuAI</text>
-<rect class="s1" x="188" y="78" width="12" height="12" rx="3"/>
-<text class="ink2" x="206" y="89" font-size="13">With BosskuAI</text>
+<text class="ink2" x="46" y="89" font-size="13">Without Bossku Superpower</text>
+<rect class="s1" x="254" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="272" y="89" font-size="13">With Bossku Superpower</text>
 <text class="ink" x="28" y="112" font-size="15" font-weight="650">Input tokens of the first call</text>
 <line class="grid" x1="204.0" y1="126" x2="204.0" y2="238" stroke-width="1"/>
 <text class="muted" x="204.0" y="254" font-size="12" text-anchor="middle">0</text>

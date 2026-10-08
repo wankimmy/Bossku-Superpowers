@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 670" width="880" height="670" role="img" aria-labelledby="t d">
 <title id="t">Tasks finished: hidden tests passed</title>
-<desc id="d">Tasks finished: hidden tests passed. Same model, same harness, same tasks; only BosskuAI changes Hidden-test coding tasks DeepSeek V4.1 Flash: Without BosskuAI 97%, With BosskuAI 97%. Hidden-test coding tasks Nemotron 3 Nano 30B: Without BosskuAI 18%, With BosskuAI 40%. Harder tasks DeepSeek V4.1 Flash: Without BosskuAI 95%, With BosskuAI 93%. Harder tasks Gemma 4 31B: Without BosskuAI 57%, With BosskuAI 52%. HumanEval problems DeepSeek V4.1 Flash: Without BosskuAI 100%, With BosskuAI 100%. HumanEval problems Nemotron 3 Nano 30B: Without BosskuAI 62%, With BosskuAI 82%.</desc>
+<desc id="d">Tasks finished: hidden tests passed. Same model, same harness, same tasks; only Bossku Superpower changes Hidden-test coding tasks DeepSeek V4.1 Flash: Without Bossku Superpower 97%, With Bossku Superpower 97%. Hidden-test coding tasks Nemotron 3 Nano 30B: Without Bossku Superpower 18%, With Bossku Superpower 40%. Harder tasks DeepSeek V4.1 Flash: Without Bossku Superpower 95%, With Bossku Superpower 93%. Harder tasks Gemma 4 31B: Without Bossku Superpower 57%, With Bossku Superpower 52%. HumanEval problems DeepSeek V4.1 Flash: Without Bossku Superpower 100%, With Bossku Superpower 100%. HumanEval problems Nemotron 3 Nano 30B: Without Bossku Superpower 62%, With Bossku Superpower 82%.</desc>
 <style>text{font-family:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif}.card{fill:#fcfcfb}.ink{fill:#0b0b0b}.ink2{fill:#52514e}.muted{fill:#898781}.grid{stroke:#e1e0d9}.base{stroke:#c3c2b7}.whisker{stroke:#52514e}.s0{fill:#2a78d6}.s1{fill:#1baf7a}@media (prefers-color-scheme:dark){.card{fill:#1a1a19}.ink{fill:#ffffff}.ink2{fill:#c3c2b7}.muted{fill:#898781}.grid{stroke:#2c2c2a}.base{stroke:#383835}.whisker{stroke:#c3c2b7}.s0{fill:#3987e5}.s1{fill:#199e70}}</style>
 <rect class="card" width="880" height="670" rx="14"/>
 <text class="ink" x="28" y="42" font-size="22" font-weight="650">Tasks finished: hidden tests passed</text>
-<text class="ink2" x="28" y="66" font-size="14">Same model, same harness, same tasks; only BosskuAI changes</text>
+<text class="ink2" x="28" y="66" font-size="14">Same model, same harness, same tasks; only Bossku Superpower changes</text>
 <rect class="s0" x="28" y="78" width="12" height="12" rx="3"/>
-<text class="ink2" x="46" y="89" font-size="13">Without BosskuAI</text>
-<rect class="s1" x="188" y="78" width="12" height="12" rx="3"/>
-<text class="ink2" x="206" y="89" font-size="13">With BosskuAI</text>
+<text class="ink2" x="46" y="89" font-size="13">Without Bossku Superpower</text>
+<rect class="s1" x="254" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="272" y="89" font-size="13">With Bossku Superpower</text>
 <text class="ink" x="28" y="112" font-size="15" font-weight="650">Hidden-test coding tasks</text>
 <line class="grid" x1="204.0" y1="126" x2="204.0" y2="238" stroke-width="1"/>
 <text class="muted" x="204.0" y="254" font-size="12" text-anchor="middle">0%</text>

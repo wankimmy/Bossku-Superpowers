@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "bossku"
 version = "2.1.0"
-description = "Lightweight AI co-founder toolkit for Cursor, Claude Code, Codex, OpenCode, and OMP"
+description = "Skills and tools that make AI coding agents do better work, for Cursor, Claude Code, Codex, OpenCode, and OMP"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }

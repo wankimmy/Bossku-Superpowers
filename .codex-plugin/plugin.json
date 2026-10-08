@@ -1,36 +1,37 @@
 {
-  "name": "bossku-ai",
+  "name": "bossku-superpower",
   "version": "2.1.0",
-  "description": "Use BosskuAI when a Codex workspace needs repo-local memory, routing, and evaluation habits.",
+  "description": "Use Bossku Superpower when a Codex workspace needs repo-local memory, routing, and evaluation habits.",
   "author": {
-    "name": "BosskuAI",
+    "name": "Bossku Superpower",
     "url": "https://github.com/wankimmy"
   },
-  "homepage": "https://github.com/wankimmy/Bossku-AI",
-  "repository": "https://github.com/wankimmy/Bossku-AI",
+  "homepage": "https://github.com/wankimmy/bossku-superpower",
+  "repository": "https://github.com/wankimmy/bossku-superpower",
   "license": "MIT",
   "keywords": [
     "codex",
     "workspace",
     "skills",
     "memory",
-    "ai-cofounder"
+    "ai-cofounder",
+    "tools"
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "BosskuAI",
+    "displayName": "Bossku Superpower",
     "shortDescription": "Repo-local memory and routing habits for Codex workspaces.",
-    "longDescription": "BosskuAI provides a compact Codex entrypoint for using workspace memory, skill routing, evaluation, and human-quality output checks without loading the full toolkit at once.",
-    "developerName": "BosskuAI",
+    "longDescription": "Bossku Superpower provides a compact Codex entrypoint for using workspace memory, skill routing, evaluation, and human-quality output checks without loading the full toolkit at once.",
+    "developerName": "Bossku Superpower",
     "category": "Productivity",
     "capabilities": [
       "skills",
       "workspace-memory",
       "evaluation"
     ],
-    "websiteURL": "https://github.com/wankimmy/Bossku-AI",
-    "privacyPolicyURL": "https://github.com/wankimmy/Bossku-AI/blob/main/LICENSE",
-    "termsOfServiceURL": "https://github.com/wankimmy/Bossku-AI/blob/main/LICENSE",
+    "websiteURL": "https://github.com/wankimmy/bossku-superpower",
+    "privacyPolicyURL": "https://github.com/wankimmy/bossku-superpower/blob/main/LICENSE",
+    "termsOfServiceURL": "https://github.com/wankimmy/bossku-superpower/blob/main/LICENSE",
     "defaultPrompt": [
       "Use BosskuAI to route this workspace task.",
       "Audit this repo with BosskuAI.",

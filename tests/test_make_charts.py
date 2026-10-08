@@ -81,8 +81,8 @@ class ChartTests(unittest.TestCase):
 
     def test_only_two_setups_are_drawn_and_named_plainly(self):
         svg = charts.chart_pass_rates(coding(), {})
-        self.assertIn("Without BosskuAI", svg)
-        self.assertIn("With BosskuAI", svg)
+        self.assertIn("Without Bossku Superpower", svg)
+        self.assertIn("With Bossku Superpower", svg)
         self.assertNotIn("before", svg.lower())
         self.assertIn('class="s1"', svg)
         self.assertNotIn('class="s2"', svg)   # a third setup would need a third series
@@ -114,13 +114,13 @@ class SummaryTests(unittest.TestCase):
         for expected in ("29% (10/34)", "47% (16/34)", "12,500", "74%", "6%", "49%"):
             self.assertIn(expected, text)
         self.assertNotIn("19,000", text)   # the older version stays out of the README
-        self.assertIn("Without BosskuAI | With BosskuAI", text)
+        self.assertIn("Without Bossku Superpower | With Bossku Superpower", text)
 
     def test_a_clear_gain_a_tie_and_a_loss_are_worded_differently(self):
         gain = charts.pass_bullet("nemotron-3-nano:30b", coding()["models"]["nemotron-3-nano:30b"], "tasks")
         self.assertIn("finished more tasks", gain)
         self.assertIn("+18 points", gain)
-        self.assertIn("3 of the 34 runs with BosskuAI", gain)
+        self.assertIn("3 of the 34 runs with Bossku Superpower", gain)
         tie = charts.pass_bullet("m", coding("m", gain=(-0.05, 0.2))["models"]["m"], "tasks")
         self.assertIn("no clear difference", tie)
         loss = charts.pass_bullet("m", coding("m", gain=(-0.3, -0.05))["models"]["m"], "tasks")
@@ -166,7 +166,7 @@ class SummaryTests(unittest.TestCase):
         blocks = charts.block_text(self.results)
         self.assertIn("**Harder tasks**", blocks["summary-pass"])
         self.assertIn("Gemma 4 31B: tasks passed", charts.results_markdown(self.results))
-        self.assertIn("Gemma 4 31B finished more harder tasks with BosskuAI", blocks["summary-overall"])
+        self.assertIn("Gemma 4 31B finished more harder tasks with Bossku Superpower", blocks["summary-overall"])
         self.assertIn("finished more tasks that need a rule from an earlier session", blocks["summary-overall"])
         self.assertIn("Gemma 4 31B 1.7× on harder tasks", blocks["summary-overall"])
         self.assertIn("Nemotron 3 Nano 30B 1.7× on coding tasks", blocks["summary-overall"])
@@ -197,13 +197,13 @@ class SummaryTests(unittest.TestCase):
         mem["excluded_runs"] = {"baseline: infrastructure failure": 1}
         save(self.results, **{"coding-test.json": coding(), "hard.json": hard, "memory.json": mem})
         blocks = charts.block_text(self.results)
-        self.assertIn("5 attempts (2 with BosskuAI, 3 without) were cut short by a usage limit", blocks["summary-pass"])
-        self.assertIn("1 attempts (0 with BosskuAI, 1 without) were cut short", blocks["summary-memory"])
+        self.assertIn("5 attempts (2 with Bossku Superpower, 3 without) were cut short by a usage limit", blocks["summary-pass"])
+        self.assertIn("1 attempts (0 with Bossku Superpower, 1 without) were cut short", blocks["summary-memory"])
         self.assertEqual(blocks["summary-pass"].count("cut short"), 1)
 
     def test_a_loss_is_reported_as_a_loss_in_the_overall_summary(self):
         save(self.results, **{"coding-test.json": coding("m", gain=(-0.3, -0.05))})
-        self.assertIn("finished fewer coding tasks with BosskuAI", charts.block_text(self.results)["summary-overall"])
+        self.assertIn("finished fewer coding tasks with Bossku Superpower", charts.block_text(self.results)["summary-overall"])
 
     def test_a_missing_result_gives_an_empty_summary_not_an_error(self):
         blocks = charts.block_text(self.results)

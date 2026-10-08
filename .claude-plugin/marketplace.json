@@ -1,24 +1,24 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
-  "name": "bosskuai-marketplace",
+  "name": "bossku-superpower-marketplace",
   "owner": {
-    "name": "BosskuAI"
+    "name": "Bossku Superpower"
   },
   "metadata": {
-    "description": "BosskuAI plugins for Claude Code.",
+    "description": "Bossku Superpower plugins for Claude Code.",
     "version": "2.1.0"
   },
   "plugins": [
     {
-      "name": "bossku-ai",
+      "name": "bossku-superpower",
       "source": "./",
-      "description": "AI co-founder plugin for Claude Code with reusable skills, agents, and memory-first workflows.",
+      "description": "Skills and tools that make AI coding agents do better work: the right skill for each request, code that gets run, and project rules that are remembered.",
       "version": "2.1.0",
       "author": {
-        "name": "BosskuAI"
+        "name": "Bossku Superpower"
       },
-      "homepage": "https://github.com/wankimmy/Bossku-AI",
-      "repository": "https://github.com/wankimmy/Bossku-AI",
+      "homepage": "https://github.com/wankimmy/bossku-superpower",
+      "repository": "https://github.com/wankimmy/bossku-superpower",
       "license": "MIT",
       "keywords": [
         "claude-code",

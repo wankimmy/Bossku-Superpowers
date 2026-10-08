@@ -125,8 +125,8 @@ class SavedResultsTests(unittest.TestCase):
         if charts.marker("results", "start") not in readme:
             self.skipTest("README has no results block yet")
         block = readme.split(charts.marker("results", "start"), 1)[1].split(charts.marker("results", "end"), 1)[0]
-        self.assertIn("Without BosskuAI", block)
-        self.assertIn("With BosskuAI", block)
+        self.assertIn("Without Bossku Superpower", block)
+        self.assertIn("With Bossku Superpower", block)
         self.assertNotIn("Before", block)
         self.assertNotIn("After", block)
 

@@ -1,21 +1,22 @@
 {
-  "name": "bossku-ai",
-  "displayName": "BosskuAI",
-  "description": "AI co-founder plugin with reusable skills, subagents, and memory-first workflows.",
+  "name": "bossku-superpower",
+  "displayName": "Bossku Superpower",
+  "description": "Skills and tools that make AI coding agents do better work: the right skill for each request, code that gets run, and project rules that are remembered.",
   "version": "2.1.0",
   "author": {
-    "name": "BosskuAI",
+    "name": "Bossku Superpower",
     "url": "https://github.com/wankimmy"
   },
-  "homepage": "https://github.com/wankimmy/Bossku-AI",
-  "repository": "https://github.com/wankimmy/Bossku-AI",
+  "homepage": "https://github.com/wankimmy/bossku-superpower",
+  "repository": "https://github.com/wankimmy/bossku-superpower",
   "license": "MIT",
   "keywords": [
     "skills",
     "subagents",
     "memory",
     "workflows",
-    "ai-cofounder"
+    "ai-cofounder",
+    "tools"
   ],
   "skills": "./skills/",
   "agents": "./agents/",

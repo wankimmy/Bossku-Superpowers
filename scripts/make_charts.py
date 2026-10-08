@@ -27,9 +27,9 @@ LIGHT = {'surface': '#fcfcfb', 'ink': '#0b0b0b', 'ink2': '#52514e', 'muted': '#8
 DARK = {'surface': '#1a1a19', 'ink': '#ffffff', 'ink2': '#c3c2b7', 'muted': '#898781', 'grid': '#2c2c2a', 'base': '#383835'}
 # Categorical slots 1-3 in their fixed order: one colour per entity, never re-ranked. (light, dark)
 SERIES = {
-    'baseline': ('Without BosskuAI', '#2a78d6', '#3987e5'),
-    'keyword': ('Without BosskuAI (keyword search)', '#2a78d6', '#3987e5'),
-    'after': ('With BosskuAI', '#1baf7a', '#199e70'),
+    'baseline': ('Without Bossku Superpower', '#2a78d6', '#3987e5'),
+    'keyword': ('Without Bossku Superpower (keyword search)', '#2a78d6', '#3987e5'),
+    'after': ('With Bossku Superpower', '#1baf7a', '#199e70'),
 }
 FONT = 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif'
 MODELS = {
@@ -189,7 +189,7 @@ class Figure:
         return '\n'.join(out)
 
 # ----------------------------------------------------------------------------------------------- charts
-# The README shows two setups only: without BosskuAI and with it. Other versions stay in the raw data for
+# The README shows two setups only: without Bossku Superpower and with it. Other versions stay in the raw data for
 # maintainers and are never drawn.
 
 ARMS = ('baseline', 'after')
@@ -219,7 +219,7 @@ def window_label(window: int | None) -> str:
 
 
 def chart_session_overhead(data: dict) -> str | None:
-    """The first call of a Claude Code session, with and without BosskuAI, per Claude model."""
+    """The first call of a Claude Code session, with and without Bossku Superpower, per Claude model."""
     models = [(m, arms) for m, arms in (data or {}).items() if all(a in arms for a in ARMS)]
     if not models:
         return None
@@ -230,8 +230,8 @@ def chart_session_overhead(data: dict) -> str | None:
         c = [arms[a]['cost_median'] for a in ARMS]
         tokens.append(Group(model_name(model), t, sub, tips=[f'{t[0]:,.0f}', f'{t[1]:,.0f}  (+{t[1] - t[0]:,.0f})']))
         dollars.append(Group(model_name(model), c, sub, tips=[f'${c[0]:.4f}', f'${c[1]:.4f}  (+${c[1] - c[0]:.4f})']))
-    return Figure('What BosskuAI adds to every session',
-                  'First call of a Claude Code session, with and without BosskuAI (median of 3 runs)',
+    return Figure('What Bossku Superpower adds to every session',
+                  'First call of a Claude Code session, with and without Bossku Superpower (median of 3 runs)',
                   list(ARMS),
                   [Panel('Input tokens of the first call', tokens, fmt=lambda v: f'{v:,.0f}'),
                    Panel('Cost of the first call', dollars, fmt=lambda v: f'${v:.3f}')],
@@ -278,7 +278,7 @@ def chart_pass_rates(coding: dict, humaneval: dict, hard: dict | None = None) ->
             panels.append(Panel(title, groups, fmt=lambda v: f'{v:.0f}', unit='%', axis_max=100, ticks=[0, 25, 50, 75, 100]))
     if not panels:
         return None
-    return Figure('Tasks finished: hidden tests passed', 'Same model, same harness, same tasks; only BosskuAI changes',
+    return Figure('Tasks finished: hidden tests passed', 'Same model, same harness, same tasks; only Bossku Superpower changes',
                   list(ARMS), panels,
                   footnote='Whiskers show a 95% interval. Small samples: read overlaps as "no clear difference".').render()
 
@@ -360,10 +360,10 @@ def pass_bullet(model: str, block: dict, unit: str) -> str:
     without, with_ = arms['baseline'], arms['after']
     diff = (block.get('paired') or {}).get('after', {}).get('passed') or {}
     name = model_name(model)
-    head = f'{pct(with_["pass_rate"])} with BosskuAI against {pct(without["pass_rate"])} without ({runs_each(without, with_)})'
+    head = f'{pct(with_["pass_rate"])} with Bossku Superpower against {pct(without["pass_rate"])} without ({runs_each(without, with_)})'
     slow = ''
     if with_.get('timeouts') or without.get('timeouts'):
-        slow = (f' {with_.get("timeouts", 0)} of the {with_["runs"]} runs with BosskuAI ({without.get("timeouts", 0)} without) '
+        slow = (f' {with_.get("timeouts", 0)} of the {with_["runs"]} runs with Bossku Superpower ({without.get("timeouts", 0)} without) '
                 f'ran out of time and count as failures.')
     if not diff.get('tasks'):
         return f'- **{name}:** {head}.{slow}'
@@ -392,7 +392,7 @@ def summary_overhead(results: Path) -> str:
                          f'+${new["cost_median"] - base["cost_median"]:.4f}')
     if not sentences:
         return ''
-    return ('**What this shows:** BosskuAI adds a small, fixed amount to the first call of a session: ' + '; '.join(sentences) +
+    return ('**What this shows:** Bossku Superpower adds a small, fixed amount to the first call of a session: ' + '; '.join(sentences) +
             '. That is the skill list and the short instructions. The same text is reused on every later call, so it does '
             'not grow with the length of the session.')
 
@@ -402,14 +402,14 @@ def summary_routing(results: Path) -> str:
     if 'after' not in split or 'description-only' not in split:
         return ''
     after, keyword = split['after'], split['description-only']
-    text = (f'**What this shows:** on {after["prompts"]} requests it was never tuned on, BosskuAI ranked an acceptable skill first '
+    text = (f'**What this shows:** on {after["prompts"]} requests it was never tuned on, Bossku Superpower ranked an acceptable skill first '
             f'{pct(after["top1"]["rate"])} of the time, against {pct(keyword["top1"]["rate"])} for plain keyword search. '
             f'For requests with several jobs it found a fitting skill for every part {pct(after["all_concerns_covered"]["rate"])} '
             f'of the time.')
     for model, arms in load(results, 'routing-live.json').items():
         if 'after' in arms:
-            text += (f' With a real agent ({model_name(model)}) on the same requests, an acceptable skill was actually opened '
-                     f'for {pct(arms["after"]["rate"])} of them.')
+            text += (f' With a real agent ({model_name(model)}) on {arms["after"]["prompts"]} of those requests, an acceptable skill was '
+                     f'actually opened for {pct(arms["after"]["rate"])} of them.')
             break
     return text
 
@@ -421,7 +421,7 @@ def left_out_note(data: dict) -> str:
     without = sum(n for key, n in counts.items() if key.startswith('baseline'))
     if not with_ + without:
         return ''
-    return (f'{with_ + without} attempts ({with_} with BosskuAI, {without} without) were cut short by a usage limit on the '
+    return (f'{with_ + without} attempts ({with_} with Bossku Superpower, {without} without) were cut short by a usage limit on the '
             f'model account. They count as neither passes nor failures; the run counts above are the completed runs.')
 
 
@@ -445,10 +445,10 @@ def summary_checking(results: Path) -> str:
         if without.get('unchecked_rate') is None or with_.get('unchecked_rate') is None:
             continue
         bullets.append(f'- **{model_name(model)}** ended without running its code in {pct(without["unchecked_rate"])} of the runs '
-                       f'that changed code on its own, and in {pct(with_["unchecked_rate"])} with BosskuAI.')
+                       f'that changed code on its own, and in {pct(with_["unchecked_rate"])} with Bossku Superpower.')
     if not bullets:
         return ''
-    return ('**What this shows:** the habit that BosskuAI\'s stop check is built to change. A model that never runs what it wrote '
+    return ('**What this shows:** the habit that Bossku Superpower\'s stop check is built to change. A model that never runs what it wrote '
             'cannot find its own mistakes.\n' + '\n'.join(bullets))
 
 
@@ -477,7 +477,7 @@ def summary_effort(results: Path) -> str:
             bullets.append(line)
     if not bullets:
         return ''
-    return ('**What this shows:** BosskuAI makes the agent do more work, and work costs tokens. The extra work is running, '
+    return ('**What this shows:** Bossku Superpower makes the agent do more work, and work costs tokens. The extra work is running, '
             'checking and fixing. Where that turns failures into passes it is worth it; where the model already passes, it is not.\n'
             + '\n'.join(bullets))
 
@@ -493,17 +493,17 @@ def summary_overall(results: Path) -> str:
                 continue
             numbers = f'{pct(without["pass_rate"])} without, {pct(with_["pass_rate"])} with.'
             if diff['ci'][0] > 0:
-                bullets.append(f'- **{model_name(model)} finished more {what} with BosskuAI:** {numbers}')
+                bullets.append(f'- **{model_name(model)} finished more {what} with Bossku Superpower:** {numbers}')
             elif diff['ci'][1] < 0:
-                bullets.append(f'- **{model_name(model)} finished fewer {what} with BosskuAI:** {numbers}')
+                bullets.append(f'- **{model_name(model)} finished fewer {what} with Bossku Superpower:** {numbers}')
             else:
-                bullets.append(f'- **{model_name(model)} gained nothing it could measure on {what}:** {numbers}')
+                bullets.append(f'- **{model_name(model)} showed no clear difference on {what}:** {numbers}')
     costs = []
     for name, short in (('coding-test.json', 'coding tasks'), ('hard.json', 'harder tasks'), ('memory.json', 'two-session tasks')):
         for model, arms in complete_models(load(results, name)):
             costs.append(f'{model_name(model)} {tokens_per_run(arms["after"]) / tokens_per_run(arms["baseline"]):.1f}× on {short}')
     if costs:
-        bullets.append('- **The extra checking costs tokens:** tokens per run with BosskuAI compared with without: '
+        bullets.append('- **The extra checking costs tokens:** tokens per run with Bossku Superpower compared with without: '
                        + ', '.join(costs) + '.')
     split = (load(results, 'routing-heldout.json').get('splits') or {}).get('test') or {}
     if 'after' in split and 'description-only' in split:
@@ -532,7 +532,7 @@ def results_markdown(results: Path) -> str:
             rows.append([f'{model_name(model)}: input tokens'] + [f'{arms[a]["input_tokens_median"]:,.0f}' for a in ARMS])
             rows.append([f'{model_name(model)}: cost'] + [f'${arms[a]["cost_median"]:.4f}' for a in ARMS])
         if rows:
-            parts.append(table(['First call of a session', 'Without BosskuAI', 'With BosskuAI'], rows))
+            parts.append(table(['First call of a session', 'Without Bossku Superpower', 'With Bossku Superpower'], rows))
     split = (data('routing-heldout.json').get('splits') or {}).get('test') or {}
     if 'description-only' in split and 'after' in split:
         rows = [['Right skill ranked first'] + [pct(split[n]['top1']['rate']) for n in ('description-only', 'after')],
@@ -542,7 +542,7 @@ def results_markdown(results: Path) -> str:
             if 'after' in arms:
                 rows.append([f'A real agent ({model_name(model)}) opens an acceptable skill', '-', pct(arms['after']['rate'])])
                 break
-        parts.append(table([f'Finding a skill ({split["after"]["prompts"]} new requests)', 'Keyword search only', 'With BosskuAI'], rows))
+        parts.append(table([f'Finding a skill ({split["after"]["prompts"]} new requests)', 'Keyword search only', 'With Bossku Superpower'], rows))
     for title, name in (('Hidden-test coding tasks', 'coding-test.json'), ('Harder tasks', 'hard.json'),
                         ('HumanEval problems', 'humaneval.json'),
                         ('Remembering a rule from an earlier session', 'memory.json')):
@@ -554,7 +554,7 @@ def results_markdown(results: Path) -> str:
             if all(arms[a].get('unchecked_rate') is not None for a in ARMS) and name == 'coding-test.json':
                 rows.append([f'{model_name(model)}: ended without running its code'] + [pct(arms[a]['unchecked_rate']) for a in ARMS])
         if rows:
-            parts.append(table([title, 'Without BosskuAI', 'With BosskuAI'], rows))
+            parts.append(table([title, 'Without Bossku Superpower', 'With Bossku Superpower'], rows))
     return '\n\n'.join(parts)
 
 
@@ -569,7 +569,7 @@ def summary_memory(results: Path) -> str:
         bullets.append(pass_bullet(model, block, 'tasks'))
         saved = block['arms']['after'].get('saved_a_note_rate')
         if saved is not None:
-            bullets[-1] += f' In the first session, the agent with BosskuAI saved the rule as a note {pct(saved)} of the time.'
+            bullets[-1] += f' In the first session, the agent with Bossku Superpower saved the rule as a note {pct(saved)} of the time.'
     if not bullets:
         return ''
     note = left_out_note(data)
@@ -577,7 +577,7 @@ def summary_memory(results: Path) -> str:
         bullets.append(f'- {note}')
     return ('**What this shows:** each task states a project rule in a first session (for example "this must run on Python 3.8" '
             'or "never use eval") and asks for related work in a second one that would break the rule if forgotten. The agent '
-            'starts the second session fresh: without BosskuAI it has only the files; with BosskuAI it also sees the notes it saved.\n'
+            'starts the second session fresh: without Bossku Superpower it has only the files; with Bossku Superpower it also sees the notes it saved.\n'
             + '\n'.join(bullets))
 
 

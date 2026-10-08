@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 488" width="880" height="488" role="img" aria-labelledby="t d">
 <title id="t">Finding the right skill on new prompts</title>
-<desc id="d">Finding the right skill on new prompts. 158 held-out requests written without seeing the router (never used for tuning) Ranking Right skill ranked first: Without BosskuAI (keyword search) 56%, With BosskuAI 82%. Ranking Right skill in the top three: Without BosskuAI (keyword search) 73%, With BosskuAI 95%. Requests with several jobs Parts of a request covered: With BosskuAI 85%. Requests with several jobs Whole request covered: With BosskuAI 77%.</desc>
+<desc id="d">Finding the right skill on new prompts. 158 held-out requests written without seeing the router (never used for tuning) Ranking Right skill ranked first: Without Bossku Superpower (keyword search) 56%, With Bossku Superpower 82%. Ranking Right skill in the top three: Without Bossku Superpower (keyword search) 73%, With Bossku Superpower 95%. Requests with several jobs Parts of a request covered: With Bossku Superpower 85%. Requests with several jobs Whole request covered: With Bossku Superpower 77%.</desc>
 <style>text{font-family:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif}.card{fill:#fcfcfb}.ink{fill:#0b0b0b}.ink2{fill:#52514e}.muted{fill:#898781}.grid{stroke:#e1e0d9}.base{stroke:#c3c2b7}.whisker{stroke:#52514e}.s0{fill:#2a78d6}.s1{fill:#1baf7a}@media (prefers-color-scheme:dark){.card{fill:#1a1a19}.ink{fill:#ffffff}.ink2{fill:#c3c2b7}.muted{fill:#898781}.grid{stroke:#2c2c2a}.base{stroke:#383835}.whisker{stroke:#c3c2b7}.s0{fill:#3987e5}.s1{fill:#199e70}}</style>
 <rect class="card" width="880" height="488" rx="14"/>
 <text class="ink" x="28" y="42" font-size="22" font-weight="650">Finding the right skill on new prompts</text>
 <text class="ink2" x="28" y="66" font-size="14">158 held-out requests written without seeing the router (never used for tuning)</text>
 <rect class="s0" x="28" y="78" width="12" height="12" rx="3"/>
-<text class="ink2" x="46" y="89" font-size="13">Without BosskuAI (keyword search)</text>
-<rect class="s1" x="312" y="78" width="12" height="12" rx="3"/>
-<text class="ink2" x="330" y="89" font-size="13">With BosskuAI</text>
+<text class="ink2" x="46" y="89" font-size="13">Without Bossku Superpower (keyword search)</text>
+<rect class="s1" x="377" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="395" y="89" font-size="13">With Bossku Superpower</text>
 <text class="ink" x="28" y="112" font-size="15" font-weight="650">Ranking</text>
 <line class="grid" x1="204.0" y1="126" x2="204.0" y2="238" stroke-width="1"/>
 <text class="muted" x="204.0" y="254" font-size="12" text-anchor="middle">0%</text>

@@ -2,7 +2,7 @@
 
 ## Goal
 
-Make BosskuAI select a minimal, prompt-aware stack of skills, apply anti-slop and verification defaults across supported coding tools, and install every support file those skills need.
+Make Bossku Superpower select a minimal, prompt-aware stack of skills, apply anti-slop and verification defaults across supported coding tools, and install every support file those skills need.
 
 ## Scope
 

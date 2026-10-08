@@ -2,7 +2,7 @@
 
 > **For agentic workers:** Execute inline with `executing-plans`; the user authorized implementation, commit, and push to main.
 
-**Goal:** Apply the practical README guidance and Hindsight memory lessons to BosskuAI, repair a confirmed activation bug, and publish verified changes.
+**Goal:** Apply the practical README guidance and Hindsight memory lessons to Bossku Superpower, repair a confirmed activation bug, and publish verified changes.
 
 **Architecture:** Keep the portable skill library and curated Markdown memory as the defaults. Add focused product-verification and optional Hindsight skills, supported by reference playbooks. Use the same executable-import predicate in initialization, validation, and doctor.
 

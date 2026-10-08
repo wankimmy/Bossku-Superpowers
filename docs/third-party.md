@@ -51,13 +51,13 @@ These projects informed Bossku Superpower's own skills or are offered as opt-in 
 
 | Project | Upstream | License | Copyright | How it is used |
 |---|---|---|---|---|
-| e2e | [tester-army/e2e](https://github.com/tester-army/e2e) | Apache-2.0 | Copyright 2026 TesterArmy, Inc. (NOTICE: "includes software developed at TesterArmy, Inc.") | `bosskuai-agentic-e2e` is written from scratch; `npx e2e init` is an opt-in per-project step. Its CLI sends telemetry unless `npx e2e telemetry disable` or `E2E_TELEMETRY_DISABLED=1`. |
+| e2e | [tester-army/e2e](https://github.com/tester-army/e2e) | Apache-2.0 | Copyright 2026 TesterArmy, Inc. (NOTICE: "includes software developed at TesterArmy, Inc.") | `bosskuai-agentic-e2e` is written in our own words from a read of the upstream docs (no code is copied); `npx e2e init` is an opt-in per-project step. Its CLI sends telemetry unless `npx e2e telemetry disable` or `E2E_TELEMETRY_DISABLED=1`. |
 | headroom | [headroomlabs-ai/headroom](https://github.com/headroomlabs-ai/headroom) | Apache-2.0 | Copyright 2025 Headroom Contributors | `headroom-ai` is an opt-in pip install, never run automatically. It sends an anonymous usage beacon unless `HEADROOM_BEACON=off` or `DO_NOT_TRACK=1`. |
 | archify | [tt-a1i/archify](https://github.com/tt-a1i/archify) | MIT | Copyright (c) 2026 tt-a1i (Archify); Copyright (c) 2025 Cocoon AI | `bosskuai-archify-diagrams` documents the upstream CLI; the runtime is not bundled. Its update check contacts a GitHub Pages URL by default. |
 | hindsight | [vectorize-io/hindsight](https://github.com/vectorize-io/hindsight) | MIT | Copyright (c) 2025 Vectorize AI, Inc. | `bosskuai-hindsight-memory` is first-party; the CLI is an opt-in install. |
 | claude-code-best-practice | [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) | MIT | Copyright (c) 2025-2026 Shayan Rais | Reviewed in [claude-practices-review.md](claude-practices-review.md); nothing is copied. |
 
-The MIT and Apache-2.0 texts of the vendored packs above are kept in [`third-party-licenses/`](third-party-licenses/).
+License texts are kept in [`third-party-licenses/`](third-party-licenses/): one shared MIT notice that lists the copyright line of every MIT-licensed pack above ([`MIT-packs.txt`](third-party-licenses/MIT-packs.txt)), the MIT and Apache-2.0 texts for moli, and the LICENSE and NOTICE of OpenDataLoader PDF. Packs that were only studied (archify, hindsight, claude-code-best-practice) are not copied, so they have no notice here.
 
 ## Benchmark data
 

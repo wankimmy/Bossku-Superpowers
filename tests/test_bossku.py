@@ -50,6 +50,21 @@ class RedactTests(unittest.TestCase):
         text = "api_key=supersecret123"
         self.assertIn("[REDACTED]", redact(text))
 
+    def test_redacts_bare_credentials_that_have_no_label(self):
+        for secret in ("sk-ant-api03-AbCdEfGhIjKlMnOpQrStUvWx-0123456789abcdef",
+                       "sk-proj-abcdefghijklmnopqrstuvwxyz0123456789",
+                       "github_pat_11ABCDEFG0abcdefghijklmnopqrstuvwxyz",
+                       "ghp_abcdefghijklmnopqrstuvwxyz0123456789",
+                       "AKIAIOSFODNN7EXAMPLE"):
+            with self.subTest(secret=secret):
+                self.assertNotIn(secret[:12], redact(f"the value is {secret} for now"))
+        self.assertNotIn("abcdef1234567890XYZ", redact("Authorization: Bearer abcdef1234567890XYZ"))
+        self.assertNotIn("hunter22", redact('{"apiKey": "hunter22", "name": "x"}'))
+
+    def test_ordinary_words_are_not_redacted(self):
+        text = "Use Bearer authentication; the risk-assessment-framework task-queue stays"
+        self.assertEqual(redact(text), text)
+
 
 class MarkerTests(unittest.TestCase):
     def test_upsert_managed_block_idempotent(self):

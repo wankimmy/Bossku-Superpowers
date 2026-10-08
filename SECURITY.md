@@ -1,6 +1,6 @@
 # Security Policy
 
-BosskuAI is a local workspace layer. It can influence how AI coding tools read, write, and reason about a project, so treat configuration changes as code changes.
+Bossku Superpower is a local workspace layer. It can influence how AI coding tools read, write, and reason about a project, so treat configuration changes as code changes.
 
 ## Report a Vulnerability
 

@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Your notes and rules end up in one place",
+    "locale": "en",
+    "quality_profile": "showcase"
+  },
+  "lanes": [
+    { "id": "agents", "label": "Where your agents write" },
+    { "id": "vault", "label": "Your Obsidian vault" }
+  ],
+  "mainPath": ["remember", "sync", "project", "brief"],
+  "nodes": [
+    { "id": "remember", "lane": "agents", "col": 0, "type": "backend", "label": "Saved notes", "sublabel": "decisions, plans, lessons", "width": 164 },
+    { "id": "automem", "lane": "agents", "col": 1, "type": "database", "label": "Claude's memory", "sublabel": "what it learns", "width": 150 },
+    { "id": "rules", "lane": "agents", "col": 2, "type": "security", "label": "Your rules", "sublabel": "CLAUDE.md, AGENTS.md", "width": 150 },
+    { "id": "sync", "lane": "vault", "col": 1, "type": "backend", "label": "Auto-sync", "sublabel": "after every session", "width": 150 },
+    { "id": "project", "lane": "vault", "col": 2, "type": "database", "label": "One folder per project", "sublabel": "BosskuAI / project", "width": 178 },
+    { "id": "index", "lane": "vault", "col": 3, "type": "frontend", "label": "Index.md", "sublabel": "links to everything", "width": 150 },
+    { "id": "brief", "lane": "vault", "col": 4, "type": "external", "label": "Next session", "sublabel": "newest notes shown first", "width": 164 }
+  ],
+  "edges": [
+    { "id": "save", "from": "remember", "to": "sync", "role": "main" },
+    { "id": "file", "from": "sync", "to": "project", "role": "main", "variant": "emphasis" },
+    { "id": "recall", "from": "project", "to": "brief", "role": "main", "variant": "emphasis" },
+    { "id": "mirror-memory", "from": "automem", "to": "sync", "role": "branch", "variant": "dashed" },
+    { "id": "mirror-rules", "from": "rules", "to": "sync", "role": "branch", "variant": "dashed" },
+    { "id": "link", "from": "project", "to": "index", "role": "branch" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Copies, never moves", "items": ["Your originals stay where they are.", "Secrets are blanked out of the copies."] },
+    { "dot": "emerald", "title": "Tidy by default", "items": ["Sub-repos land in their project's folder.", "`bossku vault tidy` cleans up old clutter, with a backup."] }
+  ]
+}
