@@ -36,7 +36,7 @@
     "bosskuai-diagnose-loop": "Use for hard bugs: reproduce, isolate, fix, add a regression test.",
     "verification-before-completion": "Use before saying work is done: run the checks and show evidence.",
     "minimal-fix": "Use for the smallest change that fixes a scoped bug or CI failure.",
-    "bosskuai-rigorous-code-review": "Use for skeptical review of a diff: correctness, risk, missing tests.",
+    "bosskuai-rigorous-code-review": "Use for skeptical review of a diff or PR: correctness, risk, missing tests, and whether it meets its goal.",
     "bosskuai-code-revamp": "Use for safe refactors and legacy cleanup without needless churn.",
     "bosskuai-search-first": "Use before writing new code: look for an existing package or utility.",
     "bosskuai-project-understanding": "Use to learn an unfamiliar repo: what it is, how it runs, conventions.",

@@ -35,6 +35,17 @@ BEFORE claiming any status or expressing satisfaction:
 Skip any step = lying, not verifying
 ```
 
+## Match Evidence to the Intended Outcome
+
+Before claiming the task's goal is achieved, identify its observable success condition and check whether the evidence actually demonstrates it. Preserve the distinction between a correct artifact, its integration with consumers, and its effectiveness in use.
+
+- A passing build, lint check, or test suite supports the behavior those checks cover. Identify material parts of the intended outcome they do not exercise.
+- For documentation, configuration, and agent instructions, verify the relevant discovery or loading path when the goal depends on another person, agent, or system using the artifact. A valid file alone does not demonstrate that integration.
+- Distinguish checks you ran locally, reported external CI results, inspection, and assumptions. State unresolved limits without treating optional follow-up work as a failure of the authorized scope.
+- If adoption or effectiveness cannot be observed yet, report what was verified and give a concrete way to measure the remaining outcome. Do not promise that instructions will eliminate future mistakes.
+
+Example: a recurring-mistakes backlog can have correct text and valid links while no agent instruction references it. Those checks support "the backlog is documented." A claim that agents use it also needs loading-path evidence; reduced mistakes need observed results or an enforcement check that catches the relevant failure.
+
 ## Common Failures
 
 | Claim | Requires | Not Sufficient |
@@ -46,6 +57,8 @@ Skip any step = lying, not verifying
 | Regression test works | Red-green cycle verified | Test passes once |
 | Agent completed | VCS diff shows changes | Agent reports "success" |
 | Requirements met | Line-by-line checklist | Tests passing |
+| Instructions used by a consumer | Verified loading path or observed invocation, with limits stated | File exists, links resolve, or CI passes |
+| Desired outcome achieved | Evidence for the task's observable success condition | Correct artifact or unrelated green checks |
 
 ## Red Flags - STOP
 

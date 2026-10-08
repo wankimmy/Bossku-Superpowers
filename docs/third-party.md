@@ -25,6 +25,8 @@ Bossku Superpower vendors Agent Skills from these open-source upstream projects.
 
 `moli` vendors the upstream `moli-webfetch` and `moli-cdp-server` skills (the Rust browser itself is not bundled). One local deviation to re-apply on any re-vendor: step 1 of both `SKILL.md` files told the agent to install Moli by piping a remote installer script into a shell; it now says to stop, show the user the install instructions, and continue only after they have installed it or explicitly asked for the installer to be run (the binaries are unsigned and the installer has no checksum check). `moli-websearch` is deliberately not vendored (listed under `excluded`): its references tell the agent to scrape public API keys from third-party frontends and to switch search engines after a CAPTCHA.
 
+`superpowers` has one local addition to re-apply on any re-vendor: `verification-before-completion/SKILL.md` has a section "Match Evidence to the Intended Outcome" (a build or test run supports only the behaviour it covers; for documentation and agent instructions, check how the consumer discovers and loads them; keep local runs, external CI and assumptions apart) and two extra rows in the "Common Failures" table. The upstream text is otherwise unchanged.
+
 `markitdown` is a thin Bossku-authored skill that documents the upstream CLI; the Microsoft package is not bundled.
 
 `graphify` upstream no longer keeps a static `SKILL.md` in its repo: the skill is rendered per host by `graphify install`. Bossku Superpower vendors the cross-framework Agent-Skills variant (`graphify/graphify/skill-agents.md`) plus its `skills/agents/references/` sidecar. Re-vendor from those two paths, not from a `skills/` folder.

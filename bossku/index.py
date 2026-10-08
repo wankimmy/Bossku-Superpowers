@@ -91,6 +91,8 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
         "rigorous review", "review my pr", "look over my pr", "look over my pull request",
         "look over this pr", "review before i merge", "review before merging",
         "actually sound", "is this sound", "is the logic sound",
+        "review this documentation change", "review this docs pr", "review this rules change",
+        "does this achieve its goal", "will this actually work as intended",
     ],
     "bosskuai-tdd-loop": [
         "write tests first", "test first", "tdd", "red green refactor", "write tests before",

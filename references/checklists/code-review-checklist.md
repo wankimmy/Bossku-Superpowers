@@ -12,6 +12,14 @@ Use alongside `bosskuai-rigorous-code-review`. Work through each section; skip o
 - [ ] For high-risk functions or shared modules, query callers, tests, importers, and affected flows.
 - [ ] Confirm every blocking finding by reading the actual source and tests; do not treat graph inference as proof.
 
+## Intended outcome and impact
+
+- [ ] Is the intended outcome stated (request, PR description), with anything deliberately deferred set aside?
+- [ ] Does the change provide the mechanism for that outcome, or only describe it?
+- [ ] Are the consumers checked: callers, existing data and roles, the agent or person who must load or follow a doc or rule?
+- [ ] Could it pass every existing check and still miss its purpose (rule never loaded, grant only on a fresh database, partial deploy)? Only report a path you can support.
+- [ ] Is each finding marked reproduced, traced or inferred, and CI results kept apart from checks you ran yourself?
+
 ## Correctness
 
 - [ ] Does the change do what it claims in the PR description?

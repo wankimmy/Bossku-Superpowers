@@ -11,7 +11,7 @@ Everything in the main README comes from the checks below. The raw rows are in [
 | Harder tasks | The same on longer projects with many rules to follow | Yes (Ollama Cloud) | `hard.json` |
 | Remembering a rule | Does a rule stated in one session survive into the next? | Yes (Ollama Cloud) | `memory.json` |
 | HumanEval | Does anything get worse on a well-known public test? | Yes (Ollama Cloud) | `humaneval.json` |
-| Tuned routing regression | Did a router change break the 82 prompts it was tuned on? | No | [`routing.json`](routing.json) |
+| Tuned routing regression | Did a router change break the 84 prompts it was tuned on? | No | [`routing.json`](routing.json) |
 
 ## What was run
 
@@ -112,20 +112,20 @@ An interrupted run resumes where it stopped when you start it again with the sam
 
 Two sets of requests were written by agents that saw only the skill catalog (each skill's id and description), never the router code or its tests, and each request lists the skills a sensible expert would accept for each of its parts (a second agent then added any other skills it judged equally acceptable). The older set has 160 requests, the newer one 168 and was written after the older half had been used for tuning. Each set is split in two by a hash of the request id; the router is tuned on one half and the numbers reported are for the other. The reported result is on 158 requests.
 
-The vocabulary of requests was generated the same way, from each `SKILL.md` alone and without seeing any of these requests: one small model per skill wrote about 30 messages (241 skills, 7,240 messages in all) "that real users would type when this skill is the right first skill" (12 detailed, 6 short, 6 messy, 4 mixed Malay-English, 2 indirect), described in terms of symptoms, tools, error strings and goals rather than the skill's own words. The weight and the cutoffs were chosen on the tuning halves and 82 curated regression cases (`tests/test_routing.py`) and reported on the test halves. The previous router scored 66% first-pick accuracy on those 158 requests, the current one 82%, plain keyword search 56%.
+The vocabulary of requests was generated the same way, from each `SKILL.md` alone and without seeing any of these requests: one small model per skill wrote about 30 messages (241 skills, 7,240 messages in all) "that real users would type when this skill is the right first skill" (12 detailed, 6 short, 6 messy, 4 mixed Malay-English, 2 indirect), described in terms of symptoms, tools, error strings and goals rather than the skill's own words. The weight and the cutoffs were chosen on the tuning halves and the curated regression cases (`tests/test_routing.py`) and reported on the test halves. The previous router scored 66% first-pick accuracy on those 158 requests, the current one 82%, plain keyword search 56%.
 
-Two things this does not show. First, the 82% is for requests the router was not tuned on; the 82 regression prompts below it score 100% only because it was tuned on them, so that number is not worth quoting as accuracy. Second, better ranking does not by itself change what an agent does. In the live check (DeepSeek V4.1 Flash on 73 of the test requests, with the router as it stood on 2 October) an acceptable skill was opened for 55% of them (40 of 73) and no skill at all for 27% (20 of 73). In the coding, harder-task, HumanEval and memory runs, skills were almost never opened: 3 of 296 completed runs with Bossku Superpower opened one (always `minimal-fix`; count them with `python scripts/skill_use_count.py`). What the hint says, and when, matters more than the ranking.
+Two things this does not show. First, the 82% is for requests the router was not tuned on; the 84 regression prompts below it score 100% only because it was tuned on them, so that number is not worth quoting as accuracy. Second, better ranking does not by itself change what an agent does. In the live check (DeepSeek V4.1 Flash on 73 of the test requests, with the router as it stood on 2 October) an acceptable skill was opened for 55% of them (40 of 73) and no skill at all for 27% (20 of 73). In the coding, harder-task, HumanEval and memory runs, skills were almost never opened: 3 of 296 completed runs with Bossku Superpower opened one (always `minimal-fix`; count them with `python scripts/skill_use_count.py`). What the hint says, and when, matters more than the ranking.
 
-## Tuned routing regression (82 prompts)
+## Tuned routing regression (84 prompts)
 
-The older offline check compares Bossku Superpower's lexical routing with an ID/description-only keyword baseline on the 82 prompts the router was tuned against. It makes no model calls and needs only Python's standard library. Treat it as a regression test, not as evidence of accuracy on new prompts; the held-out check above is for that.
+The older offline check compares Bossku Superpower's lexical routing with an ID/description-only keyword baseline on the 84 prompts the router was tuned against. It makes no model calls and needs only Python's standard library. Treat it as a regression test, not as evidence of accuracy on new prompts; the held-out check above is for that.
 
 The [machine-readable snapshot](routing.json) holds every prompt, defensible answer set, predicted ID, ranked score, and pass/fail outcome.
 
 | Method | Top-one hits | Top-three hits |
 |---|---|---|
-| Bossku Superpower `find_skill` / `rank_skills` | 82/82 (100%) | 82/82 (100%) |
-| ID/description-only keyword baseline | 45/82 (54.88%) | 61/82 (74.39%) |
+| Bossku Superpower `find_skill` / `rank_skills` | 84/84 (100%) | 84/84 (100%) |
+| ID/description-only keyword baseline | 46/84 (54.76%) | 62/84 (73.81%) |
 
 The automatic selector (`select_skill_stack`) is scored separately under `results.automatic_selection`: 79/79 model-invoked primaries and 3/3 user-only commands correctly deferred.
 

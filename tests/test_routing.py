@@ -114,6 +114,8 @@ REVIEW_ROUTING_CASES = [
     ("write landing page copy for our SaaS", {"copywriting"}),
     ("do a competitive analysis of our top 3 competitors", {"competitor-profiling"}),
     ("do a pr review of #123", {"bosskuai-rigorous-code-review"}),
+    ("review this docs pr that adds a mistakes backlog for our agents", {"bosskuai-rigorous-code-review"}),
+    ("does this change achieve its goal or only describe it", {"bosskuai-rigorous-code-review"}),
     ("address the review comments on my PR", {"receiving-code-review"}),
     ("the checkout page is broken", {"bosskuai-diagnose-loop"}),
     ("use tdd to add a discount feature", {"bosskuai-tdd-loop"}),

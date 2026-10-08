@@ -208,8 +208,8 @@ In Obsidian mode (`--memory-storage obsidian`) the sync runs by itself at the en
 Needs **Python 3.11+** and **Git**.
 
 ```bash
-git clone https://github.com/wankimmy/bossku-superpower
-cd bossku-superpower
+git clone https://github.com/wankimmy/Bossku-Superpowers
+cd Bossku-Superpowers
 pip install -e .
 bossku install --vault "/path/to/your/Obsidian/Vault" --memory-storage obsidian
 cd /path/to/your/project

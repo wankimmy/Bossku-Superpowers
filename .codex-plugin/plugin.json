@@ -6,8 +6,8 @@
     "name": "Bossku Superpower",
     "url": "https://github.com/wankimmy"
   },
-  "homepage": "https://github.com/wankimmy/bossku-superpower",
-  "repository": "https://github.com/wankimmy/bossku-superpower",
+  "homepage": "https://github.com/wankimmy/Bossku-Superpowers",
+  "repository": "https://github.com/wankimmy/Bossku-Superpowers",
   "license": "MIT",
   "keywords": [
     "codex",
@@ -29,9 +29,9 @@
       "workspace-memory",
       "evaluation"
     ],
-    "websiteURL": "https://github.com/wankimmy/bossku-superpower",
-    "privacyPolicyURL": "https://github.com/wankimmy/bossku-superpower/blob/main/LICENSE",
-    "termsOfServiceURL": "https://github.com/wankimmy/bossku-superpower/blob/main/LICENSE",
+    "websiteURL": "https://github.com/wankimmy/Bossku-Superpowers",
+    "privacyPolicyURL": "https://github.com/wankimmy/Bossku-Superpowers/blob/main/LICENSE",
+    "termsOfServiceURL": "https://github.com/wankimmy/Bossku-Superpowers/blob/main/LICENSE",
     "defaultPrompt": [
       "Use BosskuAI to route this workspace task.",
       "Audit this repo with BosskuAI.",

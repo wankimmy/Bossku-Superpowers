@@ -12,7 +12,7 @@ Bossku Superpower ships native plugin manifests for Claude Code, Cursor, and Cod
 ### Claude Code
 
 ```text
-/plugin marketplace add wankimmy/bossku-superpower
+/plugin marketplace add wankimmy/Bossku-Superpowers
 /plugin install bossku-superpower@bossku-superpower-marketplace
 ```
 
@@ -23,7 +23,7 @@ Skills and agents load from this repository via [`.claude-plugin/plugin.json`](.
 **Windows (PowerShell):**
 
 ```powershell
-git clone https://github.com/wankimmy/bossku-superpower $env:USERPROFILE\.cursor\plugins\local\bossku-superpower
+git clone https://github.com/wankimmy/Bossku-Superpowers $env:USERPROFILE\.cursor\plugins\local\bossku-superpower
 ```
 
 Or link an existing clone:
@@ -38,7 +38,7 @@ New-Item -ItemType Junction -Path $pluginDir -Target "C:\path\to\Bossku-AI"
 **macOS / Linux:**
 
 ```bash
-git clone https://github.com/wankimmy/bossku-superpower ~/.cursor/plugins/local/bossku-superpower
+git clone https://github.com/wankimmy/Bossku-Superpowers ~/.cursor/plugins/local/bossku-superpower
 ```
 
 Restart Cursor after install. Cursor reads [`.cursor-plugin/plugin.json`](../.cursor-plugin/plugin.json) and the thin rule in [`.cursor/rules/bosskuai.mdc`](../.cursor/rules/bosskuai.mdc).
@@ -48,7 +48,7 @@ For team distribution, point a Cursor marketplace at this repository using [`.cu
 ### Codex
 
 ```bash
-codex plugin marketplace add wankimmy/bossku-superpower
+codex plugin marketplace add wankimmy/Bossku-Superpowers
 ```
 
 Restart the ChatGPT desktop app, open the Plugins Directory, choose the **Bossku Superpower** marketplace, and install **bossku-superpower**. Catalog: [`.agents/plugins/marketplace.json`](../.agents/plugins/marketplace.json).
