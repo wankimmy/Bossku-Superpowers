@@ -1,4 +1,4 @@
-# Bossku Superpower
+# Bossku Superpowers
 
 **Skills and tools that make your AI coding agent do better work.** It helps your agent pick the right skill, run its own code before it says "done", and remember your project's rules from one session to the next. Free and open source ([MIT](LICENSE)).
 
