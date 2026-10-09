@@ -72,6 +72,7 @@ class Arm:
     hint: bool = False   # install the UserPromptSubmit skill-hint hook (BosskuAI releases that have it)
     gate: bool = False   # install the Stop verify-gate hook
     brief: bool = False  # install the SessionStart project-notes hook
+    harness: bool = False  # install the Node gates a 2.2 install ships (guard, post-edit, stop gate, contract) + deny rules
     lines: tuple = ()    # extra instruction lines (experiments only), named by VARIANT_LINES
     inline: tuple = ()   # skills whose text is placed in the instructions from the start (`+skill:ID`, experiments only)
 
@@ -108,13 +109,15 @@ def parse_arm(spec: str) -> Arm:
         return Arm('baseline', None)
     name, _, rest = spec.partition('=')
     if not rest:
-        raise SystemExit(f'bad --arm {spec!r}; use "baseline" or NAME=ROOT[@lean|core|full][+hint][+gate][+brief]')
+        raise SystemExit(f'bad --arm {spec!r}; use "baseline" or NAME=ROOT[@lean|core|full][+hint][+gate|+harness][+brief]')
     if not ARM_NAME.fullmatch(name):
         raise SystemExit(f'bad --arm name {name!r}; use letters, digits, "-" and "_", and "." only between them')
     root, _, profile = rest.partition('@')
     profile, *flags = profile.split('+')
+    if 'gate' in flags and 'harness' in flags:   # both add a Stop gate; a 2.2 install never has the two together
+        raise SystemExit(f'bad --arm {spec!r}: +gate and +harness both add a Stop gate, pick one')
     return Arm(name, Path(root).resolve(), profile or 'full', hint='hint' in flags, gate='gate' in flags,
-               brief='brief' in flags,
+               brief='brief' in flags, harness='harness' in flags,
                lines=tuple(VARIANT_LINES[f] for f in flags if f in VARIANT_LINES),
                inline=tuple(f.split(':', 1)[1] for f in flags if f.startswith('skill:')))
 
@@ -276,6 +279,16 @@ if want_gate:
 if want_brief:
     from bossku.hooks import ensure_session_brief_hook
     ensure_session_brief_hook(proj / ".claude" / "settings.json", command="bossku session-brief")
+if len(sys.argv) > 10 and sys.argv[10] == "1":   # +harness: the Node gates and deny rules, as project settings
+    from bossku.hooks import DENY_RULES, HARNESS_EVENTS, _harness_entry
+    settings_path = proj / ".claude" / "settings.json"
+    settings = json.loads(settings_path.read_text(encoding="utf-8")) if settings_path.is_file() else {}
+    for event, matcher, script, timeout in HARNESS_EVENTS:
+        settings.setdefault("hooks", {}).setdefault(event, []).append(_harness_entry(root, matcher, script, timeout))
+    deny = settings.setdefault("permissions", {}).setdefault("deny", [])
+    deny.extend(rule for rule in DENY_RULES if rule not in deny)
+    settings_path.parent.mkdir(parents=True, exist_ok=True)
+    settings_path.write_text(json.dumps(settings, indent=2), encoding="utf-8")
 from bossku.memory import remember
 for kind, note in notes:
     remember(proj, kind, note, home=home)
@@ -304,7 +317,7 @@ def build_template(arm: Arm, dest: Path) -> dict:
         return {'skills_installed': 0}
     out = sh([sys.executable, '-c', TEMPLATE_BUILDER, str(arm.root), str(dest), arm.profile, '1' if arm.hint else '0',
                       '1' if arm.gate else '0', '1' if arm.brief else '0', json.dumps(SEED_NOTES),
-                      json.dumps(list(arm.lines)), json.dumps(list(arm.inline))],
+                      json.dumps(list(arm.lines)), json.dumps(list(arm.inline)), '1' if arm.harness else '0'],
               timeout=300)
     if out.returncode:
         raise SystemExit(f'template build failed for {arm.name}: {out.stderr or out.stdout}')

@@ -345,5 +345,34 @@ class HeldoutProvenanceTests(unittest.TestCase):
         self.assertNotIn(ROOT.as_posix(), provenance)
 
 
+class HarnessArmTests(unittest.TestCase):
+    """`+harness` builds the setup a 2.2 install ships: the Node gates as project hooks plus the deny rules."""
+
+    def test_flag_is_parsed(self):
+        arm = ba.parse_arm(f"ship={ROOT}@lean+hint+harness+brief")
+        self.assertTrue(arm.harness and arm.hint and arm.brief)
+        self.assertFalse(arm.gate)
+        self.assertFalse(ba.parse_arm(f"old={ROOT}@lean+hint+gate+brief").harness)
+
+    def test_gate_and_harness_together_are_refused(self):
+        with self.assertRaises(SystemExit):
+            ba.parse_arm(f"both={ROOT}@lean+gate+harness")
+
+    def test_template_gets_the_harness_hooks_and_deny_rules(self):
+        from bossku.hooks import DENY_RULES, HARNESS_EVENTS, HARNESS_MARKER
+        with tempfile.TemporaryDirectory() as tmp:
+            dest = Path(tmp) / "tpl"
+            ba.build_template(ba.parse_arm(f"ship={ROOT}@lean+harness"), dest)
+            settings = json.loads((dest / ".claude" / "settings.json").read_text(encoding="utf-8"))
+            for event, matcher, script, _timeout in HARNESS_EVENTS:
+                ours = [e for e in settings["hooks"][event] if HARNESS_MARKER in json.dumps(e)]
+                self.assertEqual(len(ours), 1, event)
+                self.assertIn(script, json.dumps(ours[0]))
+                if matcher:
+                    self.assertEqual(ours[0]["matcher"], matcher)
+            self.assertEqual(sorted(settings["permissions"]["deny"]), sorted(DENY_RULES))
+            self.assertNotIn("verify-gate", json.dumps(settings))
+
+
 if __name__ == "__main__":
     unittest.main()
