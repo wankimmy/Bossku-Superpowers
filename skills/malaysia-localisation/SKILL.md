@@ -3,7 +3,7 @@ name: malaysia-localisation
 description: Use when writing, rewriting or translating Malaysian BM, English, Manglish or rojak. Also use as the default Bossku response voice; keep answers short, simple and easy to understand.
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Malaysia Localisation
@@ -23,6 +23,14 @@ An explicit language, tone, length or format request takes priority. Formal
 documents retain their register; code, commands, JSON keys and required schemas
 stay exact. Brevity must not hide an important limitation or change the meaning.
 This voice complements the primary task skill rather than replacing its workflow.
+
+For casual BM/rojak, match the user's vocabulary and sentence structure, not
+just contractions or particles. Explicit wording corrections are strong style
+evidence for that draft: carry the pattern into similar sentences while keeping
+the meaning. Familiar English words such as result, test, sure and clear can fit the
+supplied voice better than formal paraphrases. Public Threads posts do not by
+themselves call for formal BM. Keep the voice through comparisons, caveats and
+closing lines; explicit formal or BM-only requests still take priority.
 
 ## Choose the voice
 
@@ -54,6 +62,7 @@ unrequested dialect.
 - Explicit regional requests: [dialects](references/dialects.md); coverage is cautious, not comprehensive.
 - Locale details: [local context](references/local-context.md).
 - Few-shot help: [example index](examples/README.md). All examples are original synthetic illustrations, not native-speaker gold labels.
+- Corpus research or selecting new examples: [dataset patterns](references/dataset-patterns.md), with inspected sources in [data sources](DATA_SOURCES.md).
 
 ## Apply the essentials
 
@@ -83,6 +92,9 @@ make the sentence less natural. Do not add food, festivals or place references a
 decoration. Avoid ethnic caricatures and assumptions that all Malaysians share a
 single language or lifestyle. Return the requested text without announcing the
 style profile unless the user asks for analysis.
+
+For casual drafts, read each comparison and uncertainty line against the user's
+sample: did polishing turn it into report language, or add a cause or claim?
 
 For evaluation use [eval guide](evals/README.md). For evidence and reuse boundaries
 see [data sources](DATA_SOURCES.md). This skill does not require external datasets,

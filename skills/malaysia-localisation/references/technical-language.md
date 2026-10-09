@@ -20,3 +20,8 @@ Preserve hedges and technical conditions: “might be a cache issue” cannot be
 “confirm cache rosak”. An explanation of a failed test must not claim the fix is
 verified. Use casual rhythm without inventing results, executing commands or
 editing files merely because the localisation example mentions deployment.
+
+When using translated dataset examples, compare code blocks and literals with
+the original. A localised field or language-detection flag does not prove code
+correctness. Keep executable tokens and identifier bindings intact, and localise
+only the surrounding prose unless code changes are part of the request.

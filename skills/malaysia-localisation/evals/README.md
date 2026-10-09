@@ -41,6 +41,15 @@ Hold back new cases for later releases to reduce overfitting.
 - [invocation](invocation.jsonl): explicit localisation and lightweight default voice.
 - [response style](response-style.jsonl): brevity, clarity and explicit detail/format overrides.
 
+The v1.0.1 additions cover sample-led result/pakai wording, voice consistency
+through Threads caveats, unknown cause versus supplied speculation, and formal
+BM/English-only overrides. Original code-switch cases also check executable
+code and prevent a rewritten question gaining solution hints. These scenarios
+use user feedback and small Mesolitica previews as failure-case evidence;
+they do not import dataset rows or certify a particular Malaysian voice.
+Local Malaya/Malaysian-Dataset follow-up also adds contextual reminder-particle
+handling, plus casual BM-only and explicit tak-clear preference checks.
+
 `reference_output` is one plausible authored answer. A different answer can pass.
 `checks` has `contains` for exact literals and `forbidden_regex` for narrow
 case-specific failures. It is not a general Indonesian classifier, a particle

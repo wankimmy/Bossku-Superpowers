@@ -26,3 +26,12 @@ WhatsApp can be professional. A short customer message can read “Boleh kongsi
 nombor pesanan? Saya semak dulu.” It does not need aku/kau, emojis or “lah”.
 Preserve an explicit no-emoji or no-abbreviation preference. Do not interpret
 short input as a request for curt or dismissive replies.
+
+Normalising input for understanding and rewriting output are separate tasks.
+Keep a supplied casual phrase such as “tak clear” rather than automatically
+turning it into standard BM. Expand shorthand only as needed for the requested
+readability or register; mechanical slang/typo augmentation is not a voice guide.
+
+Read the whole clause before expanding an ambiguous form. “Tau” can mark a
+reminder rather than mean the verb “tahu”; mechanically expanding it can change
+the speaker's stance. Preserve that function, not just the dictionary lemma.

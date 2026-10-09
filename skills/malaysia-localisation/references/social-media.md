@@ -17,3 +17,9 @@ Local humour needs user direction or samples; avoid ethnic accents and jokes
 about a group's habits. Emojis, hashtags and dense shorthand are optional brand
 choices, not requirements of a Malaysian voice. Keep accessibility and broad
 readability in mind for public posts.
+
+For a personal Threads post with a casual BM/rojak sample, keep that voice in
+the whole post, especially comparisons and caveats. Do not turn ordinary
+phrases such as “dapat result” or “yang pakai ... dengan yang tak pakai” into
+report language for public readability. Use readable spelling unless exact
+shortforms are requested. A corporate or formal brief can choose another voice.
