@@ -1,7 +1,7 @@
 {
   "name": "bossku-superpower",
   "version": "2.1.0",
-  "description": "Use Bossku Superpower when a Codex workspace needs repo-local memory, routing, and evaluation habits.",
+  "description": "Make your AI coding agent work properly: pick the right skill, run its own code, and remember your project rules.",
   "author": {
     "name": "Bossku Superpower",
     "url": "https://github.com/wankimmy"

@@ -6,7 +6,7 @@
   "plugins": [
     {
       "name": "bossku-superpower",
-      "description": "AI co-founder plugin with reusable skills and memory-first workflows for Codex workspaces.",
+      "description": "Make your AI coding agent work properly: pick the right skill, run its own code, and remember your project rules.",
       "version": "2.1.0",
       "source": {
         "source": "local",

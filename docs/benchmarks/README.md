@@ -1,6 +1,6 @@
 # Benchmarks
 
-Everything in the main README comes from the checks below. The raw rows are in [`benchmarks/results/raw/`](../../benchmarks/results/raw/), one summary per check is in [`benchmarks/results/`](../../benchmarks/results/), and [`scripts/make_charts.py`](../../scripts/make_charts.py) draws every chart and README table from them, so no number is typed by hand. [`tests/test_results_consistent.py`](../../tests/test_results_consistent.py) recomputes each summary from the raw rows and fails if a summary, a chart, or the README table has drifted from them.
+Everything in the [results page](results.md) and the main README summary comes from the checks below. The raw rows are in [`benchmarks/results/raw/`](../../benchmarks/results/raw/), one summary per check is in [`benchmarks/results/`](../../benchmarks/results/), and [`scripts/make_charts.py`](../../scripts/make_charts.py) draws every chart and results table from them, so no number is typed by hand. [`tests/test_results_consistent.py`](../../tests/test_results_consistent.py) recomputes each summary from the raw rows and fails if a summary, a chart, or the results page has drifted from them.
 
 | Check | What it answers | Needs a model? | Saved result |
 |---|---|---|---|
@@ -44,7 +44,7 @@ Twenty-two tasks have two sessions: ten original ones, and twelve more in `bench
 - **Dev and test are separate, with one caveat.** Router thresholds, the hint wording, the memory wording, the gate rules, the lean list, and the compact skills were chosen on dev data only. The 17 coding test tasks had already been run once on an earlier build of this release; the result (a strong model used far more tokens for no more passes) is why instructions were shortened and skills compacted, but no change was tuned to a test task. The 14 harder test tasks had never been run with Bossku Superpower before the build was frozen, so they are the cleanest evidence. The 10 memory tasks were run once before the freeze, which is how their over-strict checks were found; no instruction or hook was changed because of that run. The code was committed before the final runs started, and the commit is named above.
 - **Unfair tests were fixed for both setups, not for one.** After a trial run, four checks in two memory tasks were relaxed because they marked correct work as wrong (one hidden test forbade `/` even in exact `Fraction` arithmetic; three expected an error from `value_of` and failed an agent that rejected the bad formula earlier, in `set_formula`). One harder task whose prompt did not state a requirement its tests checked was dropped. Every final run uses the corrected tests, for both setups.
 - **Slow runs get one longer try.** The model service slowed down in the evening, and the runs that take more turns were the ones to reach the 25-minute limit. Four runs did (all with BosskuAI: three Nemotron, one DeepSeek). Each was run again with a 60-minute limit and the rerun is the one counted: one passed, three failed. That was in the earlier run; its first tries are kept in `raw/earlier/timeouts-first-attempt.jsonl`. In the later run no published run ended on the time limit.
-- **A usage limit on the model account is not a coding failure.** Late in the final runs the Ollama Cloud account reached its usage limit and refused requests (HTTP 429). The harness first called a run an infrastructure failure only when the model had produced no output at all, so a limit that arrived part-way left a half-finished run that was graded as a failed task. That was a bug: any run that ends with an API error is now an infrastructure failure, excluded from every summary, listed in the report, and run again when the limit allows. Runs that could not be run again are counted under the chart text in the README, because the long runs are the ones a limit is most likely to cut short.
+- **A usage limit on the model account is not a coding failure.** Late in the final runs the Ollama Cloud account reached its usage limit and refused requests (HTTP 429). The harness first called a run an infrastructure failure only when the model had produced no output at all, so a limit that arrived part-way left a half-finished run that was graded as a failed task. That was a bug: any run that ends with an API error is now an infrastructure failure, excluded from every summary, listed in the report, and run again when the limit allows. Runs that could not be run again are counted under the chart text on the results page, because the long runs are the ones a limit is most likely to cut short.
 - **An option was removed rather than shipped untested.** A requirement checklist and a second-pass audit were tried; on a strong model the checklist cost 55% more tokens for no extra passes, and no clean run showed a gain on a small model, so both were deleted.
 - **Held-out prompts are blind.** The 328 skill-search prompts (160 written first, 168 later) and their acceptable skills were written by agents that saw only the skill catalog (names and descriptions), never the router code or its tests; a second agent then added any other skills it judged equally acceptable. They are split in two by a hash of the prompt id.
 
@@ -76,7 +76,7 @@ The direction held for Nemotron on HumanEval and the other suites show no clear 
 ## Check the saved numbers (no model needed)
 
 ```bash
-python -m unittest tests.test_results_consistent -v                      # summaries, charts and README text match the raw rows
+python -m unittest tests.test_results_consistent -v                      # summaries, charts and results page match the raw rows
 python scripts/benchmark_agent.py report benchmarks/results/raw/coding-*.jsonl           # the coding table, from the raw rows
 python scripts/benchmark_agent.py report benchmarks/results/raw/hard-*.jsonl             # harder tasks
 python scripts/benchmark_agent.py report benchmarks/results/raw/memory-*.jsonl           # remembering a rule
@@ -84,7 +84,7 @@ python scripts/benchmark_agent.py routing-report benchmarks/results/raw/routing.
 python scripts/benchmark_agent.py overhead-report benchmarks/results/raw/overhead.jsonl   # session overhead
 python scripts/benchmark_routing_heldout.py --arm after=.                                 # skill search on new prompts
 python scripts/benchmark_agent.py validate --suite benchmarks/tasks/hard-test             # tasks are fair (also: test, memory, memory-rules)
-python scripts/make_charts.py --readme README.md                                          # redraw charts and README text
+python scripts/make_charts.py --readme docs/benchmarks/results.md                         # redraw charts and results page
 ```
 
 ## Repeat the runs (spends model usage)

@@ -1,7 +1,7 @@
-"""The numbers in the README and the charts must be the numbers in the saved run files, nothing typed by hand.
+"""The numbers in the results page and the charts must be the numbers in the saved run files, nothing typed by hand.
 
 Each check recomputes a summary from `benchmarks/results/raw/*.jsonl` and compares it with the committed summary,
-the charts, and the README block. A check is skipped while its result files do not exist yet.
+the charts, and the results page block. A check is skipped while its result files do not exist yet.
 """
 
 import json
@@ -18,6 +18,7 @@ import make_charts as charts  # noqa: E402
 from scripts.benchmark_agent import coding_report, overhead_summary, routing_summary  # noqa: E402
 
 RESULTS = ROOT / "benchmarks" / "results"
+RESULTS_PAGE = ROOT / "docs" / "benchmarks" / "results.md"
 RAW = RESULTS / "raw"
 
 
@@ -108,22 +109,22 @@ class SavedResultsTests(unittest.TestCase):
                     self.assertEqual(path.read_text(encoding="utf-8").replace("\r\n", "\n"), svg)
 
     def test_the_readme_tables_and_summaries_are_rebuilt_from_the_saved_results(self):
-        readme = (ROOT / "README.md").read_text(encoding="utf-8").replace("\r\n", "\n")
+        readme = RESULTS_PAGE.read_text(encoding="utf-8").replace("\r\n", "\n")
         if charts.marker("results", "start") not in readme or not (RESULTS / "overhead.json").exists():
-            self.skipTest("README has no results block yet")
+            self.skipTest("results page has no results block yet")
         for name, expected in charts.block_text(RESULTS).items():
             with self.subTest(block=name):
                 start, end = charts.marker(name, "start"), charts.marker(name, "end")
                 if not expected and start not in readme:
-                    continue   # nothing was measured for this block, so the README need not have it
-                self.assertIn(start, readme, f"README is missing the {name} block")
+                    continue   # nothing was measured for this block, so the results page need not have it
+                self.assertIn(start, readme, f"results page is missing the {name} block")
                 shown = readme.split(start, 1)[1].split(end, 1)[0].strip("\n")
                 self.assertEqual(shown, expected)
 
     def test_the_readme_shows_two_setups_only(self):
-        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        readme = RESULTS_PAGE.read_text(encoding="utf-8")
         if charts.marker("results", "start") not in readme:
-            self.skipTest("README has no results block yet")
+            self.skipTest("results page has no results block yet")
         block = readme.split(charts.marker("results", "start"), 1)[1].split(charts.marker("results", "end"), 1)[0]
         self.assertIn("Without Bossku Superpower", block)
         self.assertIn("With Bossku Superpower", block)

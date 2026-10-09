@@ -1,243 +1,43 @@
 # Bossku Superpowers
 
-**Skills and tools that make your AI coding agent do better work.** It helps your agent pick the right skill, run its own code before it says "done", and remember your project's rules from one session to the next. Free and open source ([MIT](LICENSE)).
+**Make your AI coding agent work properly: pick the right skill, run its own code, and remember your project rules.** Free and open source ([MIT](LICENSE)).
 
-Works with **Claude Code, Cursor, Codex, OpenCode, and OMP**. *(Formerly BosskuAI. The `bossku` command and the `bosskuai-*` skill names stay the same, so your installed skills, hooks and notes keep working; if you installed the plugin from a marketplace, reinstall it once.)*
+Works with **Claude Code, Cursor, Codex, OpenCode and OMP**.
+
+*Formerly BosskuAI. The `bossku` command and `bosskuai-*` skill names are the same, so your skills, hooks and notes still work. If you installed the plugin from a marketplace, reinstall it once.*
 
 ![What Bossku Superpower adds around your agent. You ask; your agent picks a skill, does the work, runs it, and gives you a checked result. Behind it: 240+ skills found for you, optional tools, a check that sends the agent back if it never ran its code, and your notes saved in Obsidian.](docs/assets/superpower-overview.svg)
 
-## What is it, in plain words?
+## Why use it?
 
-Your coding agent is clever, but it forgets your rules and sometimes says "done" without checking. Bossku Superpower is a small layer around it that fixes four everyday problems:
+Your agent is smart, but it forgets your rules and sometimes says "done" without testing anything. Bossku Superpower fixes that.
 
-| The problem | What Bossku Superpower does |
+| Problem | What Bossku Superpower does |
 |---|---|
-| The agent does not know which skill fits your request. | It names the best-fitting skill when the match is strong. There are 240+ skills; about 25 are listed, the rest are one command away, and `bossku skills find` shows a shortlist. |
-| The agent writes code and never runs it. | If code changed and nothing ran afterwards, the agent is sent back once to run it. |
-| You told the agent a rule yesterday and today it forgot. | Rules and decisions are saved as short notes and shown at the start of the next session, and they sync to your Obsidian vault. |
-| Useful tools are scattered and hard to set up. | `bossku tools list` shows what is installed. Nothing installs unless you say yes. |
+| Agent doesn't know which skill to use | Picks the best skill for your request from 240+ skills |
+| Agent writes code but never runs it | Sends the agent back once to run it |
+| You told it a rule yesterday, today it forgot | Saves rules and decisions as notes and shows them next session |
+| Useful tools are hard to set up | `bossku tools list` shows what's available. Nothing installs unless you say yes |
 
-## How it works
+Everything is light and optional. Skills load only when needed. Turn off the run-your-code check with `BOSSKU_VERIFY_GATE=0`, or remove all hooks with `bossku hooks uninstall`.
 
-1. **Install once** (two commands, below).
-2. **Ask for what you want** in plain words. Bossku Superpower points your agent at the right skill, and the agent does the work.
-3. **The agent checks its own work** and **saves what lasts**: your rules, decisions and lessons.
+## Does it really help?
 
-Everything is optional and light: skills load only when needed, tools install only on request, the run-your-code check has an off switch (`BOSSKU_VERIFY_GATE=0`), and `bossku hooks uninstall` removes every helper hook.
-
-## Does it help? We measured it with real agents
-
-We ran a real coding agent (Claude Code) on coding tasks with hidden tests, once **without Bossku Superpower** and once **with Bossku Superpower**, on the same tasks. Some tasks have two sessions: the first states a project rule, the second asks for related work that breaks the rule unless it is remembered. Every number and chart below is rebuilt from result files saved in this repository, and a test fails if they ever disagree; the sentences around them are written by hand. How each check works, and what it cannot show, is in the [benchmark notes](docs/benchmarks/README.md).
-
-![How each result was measured: a coding task and a fresh project go to an agent run beside an isolation check; a usage meter and hidden tests feed a comparison of the two setups, which feeds the charts.](docs/assets/benchmark-method.svg)
-
-### In short
-
-In plain words: the clearest gain is **memory**. When a rule is stated in one session and needed in the next, Claude Haiku 4.5 (48% to 68%), Claude Sonnet 5.5 (64% to 84%) and Gemma 4 31B (39% to 68%) finished 20 to 30 points more tasks with Bossku Superpower. DeepSeek V4.1 Flash and Nemotron 3 Nano showed no clear difference there. On the coding and harder tasks no model passed clearly more; models that tend to skip running their code (Gemma, Nemotron) ran it far more often, and the small Nemotron model passed more HumanEval problems (62% to 92%). The extra checking costs tokens, from about 1.1 times to 4.7 times as many, and most where the model had done the least checking before. The sample sizes are small, so read each result with its interval.
-
-<!-- summary-overall:start -->
-- **DeepSeek V4.1 Flash showed no clear difference on coding tasks:** 97% without, 94% with.
-- **Gemma 4 31B showed no clear difference on coding tasks:** 82% without, 82% with.
-- **Nemotron 3 Nano 30B showed no clear difference on coding tasks:** 18% without, 29% with.
-- **DeepSeek V4.1 Flash showed no clear difference on harder tasks:** 95% without, 93% with.
-- **Gemma 4 31B showed no clear difference on harder tasks:** 57% without, 64% with.
-- **Nemotron 3 Nano 30B showed no clear difference on harder tasks:** 0% without, 7% with.
-- **Claude Haiku 4.5 finished more tasks that need a rule from an earlier session with Bossku Superpower:** 48% without, 68% with.
-- **Claude Sonnet 5.5 finished more tasks that need a rule from an earlier session with Bossku Superpower:** 64% without, 84% with.
-- **DeepSeek V4.1 Flash showed no clear difference on tasks that need a rule from an earlier session:** 79% without, 74% with.
-- **Gemma 4 31B finished more tasks that need a rule from an earlier session with Bossku Superpower:** 39% without, 68% with.
-- **Nemotron 3 Nano 30B showed no clear difference on tasks that need a rule from an earlier session:** 6% without, 9% with.
-- **The extra checking costs tokens:** tokens per run with Bossku Superpower compared with without: DeepSeek V4.1 Flash 1.1× on coding tasks, Gemma 4 31B 1.4× on coding tasks, Nemotron 3 Nano 30B 4.7× on coding tasks, DeepSeek V4.1 Flash 1.1× on harder tasks, Gemma 4 31B 1.2× on harder tasks, Nemotron 3 Nano 30B 2.9× on harder tasks, Claude Haiku 4.5 1.2× on two-session tasks, Claude Sonnet 5.5 1.1× on two-session tasks, DeepSeek V4.1 Flash 1.0× on two-session tasks, Gemma 4 31B 1.6× on two-session tasks, Nemotron 3 Nano 30B 2.8× on two-session tasks.
-- **It finds the right skill more often:** 81% first-pick accuracy on new requests, against 56% for keyword search.
-- **Its fixed cost is small:** extra tokens on the first call of a session: 1,241 on Claude Haiku 4.5, 2,155 on Claude Sonnet 5.5.
-<!-- summary-overall:end -->
-
-### What it adds to every session
-
-![With and without Bossku Superpower: the input tokens and the cost of the first call of a Claude Code session](docs/assets/benchmark-session-overhead.svg)
-
-<!-- summary-overhead:start -->
-**What this shows:** Bossku Superpower adds a small, fixed amount to the first call of a session: Claude Haiku 4.5 +1,241 tokens (4% more), +$0.0011; Claude Sonnet 5.5 +2,155 tokens (6% more), +$0.0049. That is the skill list and the short instructions. The same text is reused on every later call, so it does not grow with the length of the session.
-<!-- summary-overhead:end -->
-
-### Finding the right skill
-
-![With Bossku Superpower and with plain keyword search: how often the right skill is ranked first on requests it was never tuned on](docs/assets/benchmark-routing.svg)
-
-<!-- summary-routing:start -->
-**What this shows:** on 158 requests it was never tuned on, Bossku Superpower ranked an acceptable skill first 81% of the time, against 56% for plain keyword search. For requests with several jobs it found a fitting skill for every part 75% of the time. With a real agent (DeepSeek V4.1 Flash) on 60 of those requests, an acceptable skill was actually opened for 45% of them.
-<!-- summary-routing:end -->
-
-### Finishing tasks
-
-![With and without Bossku Superpower: the share of hidden-test tasks and HumanEval problems passed, per model](docs/assets/benchmark-pass-rates.svg)
-
-<!-- summary-pass:start -->
-**Hidden-test coding tasks**
-- **DeepSeek V4.1 Flash: no clear difference.** 94% with Bossku Superpower against 97% without (34 runs each): -3 points over the same tasks, 95% interval -9 to 0. Both setups were already near the ceiling, so there was little room to improve.
-- **Gemma 4 31B: no clear difference.** 82% with Bossku Superpower against 82% without (17 runs each): 0 points over the same tasks, 95% interval -18 to +18.
-- **Nemotron 3 Nano 30B: no clear difference.** 29% with Bossku Superpower against 18% without (68 runs without, 34 with): +12 points over the same tasks, 95% interval -3 to +28.
-
-**Harder tasks**
-- **DeepSeek V4.1 Flash: no clear difference.** 93% with Bossku Superpower against 95% without (42 runs without, 28 with): -2 points over the same tasks, 95% interval -7 to 0. Both setups were already near the ceiling, so there was little room to improve.
-- **Gemma 4 31B: no clear difference.** 64% with Bossku Superpower against 57% without (42 runs without, 28 with): +7 points over the same tasks, 95% interval -6 to +20.
-- **Nemotron 3 Nano 30B: no clear difference.** 7% with Bossku Superpower against 0% without (14 runs each): +7 points over the same tasks, 95% interval 0 to +21.
-
-**HumanEval problems**
-- **DeepSeek V4.1 Flash: no clear difference.** 100% with Bossku Superpower against 100% without (40 runs each): the same result on every one of the 40 problems. Both setups were already near the ceiling, so there was little room to improve.
-- **Gemma 4 31B: no clear difference.** 100% with Bossku Superpower against 95% without (20 runs each): +5 points over the same problems, 95% interval 0 to +15. Both setups were already near the ceiling, so there was little room to improve.
-- **Nemotron 3 Nano 30B finished more problems.** 92% with Bossku Superpower against 62% without (40 runs each): +30 points over the same problems, 95% interval +15 to +45.
-<!-- summary-pass:end -->
-
-### Running the code
-
-![With and without Bossku Superpower: the share of runs that changed code and then ended without running anything](docs/assets/benchmark-checking.svg)
-
-<!-- summary-checking:start -->
-**What this shows:** the habit that Bossku Superpower's stop check is built to change. A model that never runs what it wrote cannot find its own mistakes.
-- **DeepSeek V4.1 Flash** ended without running its code in 3% of the runs that changed code on its own, and in 0% with Bossku Superpower.
-- **Gemma 4 31B** ended without running its code in 53% of the runs that changed code on its own, and in 0% with Bossku Superpower.
-- **Nemotron 3 Nano 30B** ended without running its code in 100% of the runs that changed code on its own, and in 17% with Bossku Superpower.
-<!-- summary-checking:end -->
-
-### Remembering a rule from an earlier session
+We tested it with real agents on the same tasks, with and without Bossku Superpower.
 
 ![With and without Bossku Superpower: the share of two-session tasks passed, where the second session breaks a project rule unless it is remembered](docs/assets/benchmark-memory.svg)
 
-<!-- summary-memory:start -->
-**What this shows:** each task states a project rule in a first session (for example "this must run on Python 3.8" or "never use eval") and asks for related work in a second one that would break the rule if forgotten. The agent starts the second session fresh: without Bossku Superpower it has only the files; with Bossku Superpower it also sees the notes it saved.
-- **Claude Haiku 4.5 finished more tasks.** 68% with Bossku Superpower against 48% without (44 runs each): +20 points over the same tasks, 95% interval +7 to +34. In the first session, the agent with Bossku Superpower saved the rule as a note 100% of the time.
-- **Claude Sonnet 5.5 finished more tasks.** 84% with Bossku Superpower against 64% without (44 runs each): +20 points over the same tasks, 95% interval +7 to +36. In the first session, the agent with Bossku Superpower saved the rule as a note 100% of the time.
-- **DeepSeek V4.1 Flash: no clear difference.** 74% with Bossku Superpower against 79% without (66 runs each): -5 points over the same tasks, 95% interval -14 to +3. In the first session, the agent with Bossku Superpower saved the rule as a note 100% of the time.
-- **Gemma 4 31B finished more tasks.** 68% with Bossku Superpower against 39% without (44 runs each): +30 points over the same tasks, 95% interval +11 to +48. In the first session, the agent with Bossku Superpower saved the rule as a note 100% of the time.
-- **Nemotron 3 Nano 30B: no clear difference.** 9% with Bossku Superpower against 6% without (34 runs each): +7 points over the same tasks, 95% interval -7 to +23. In the first session, the agent with Bossku Superpower saved the rule as a note 76% of the time.
-<!-- summary-memory:end -->
+- **Memory is the biggest win.** When a rule is set in one session and needed in the next, Claude Haiku 4.5 (48% → 68%), Claude Sonnet 5.5 (64% → 84%) and Gemma 4 31B (39% → 68%) passed 20 to 30 points more tasks.
+- **Models that skip testing run their code more.** Gemma and Nemotron ran their code far more often. Small Nemotron passed more HumanEval problems (62% → 92%).
+- **Better skill picking.** The right skill ranked first 81% of the time, vs 56% for keyword search.
+- **The catch: more tokens.** About 1.1× to 4.7× the tokens per run, highest on models that checked the least before.
+- **No clear change on coding and harder tasks** for any model. Samples are small, so read each result with its interval.
 
-### What it costs in tokens
+Full numbers, charts and limits: [benchmark results](docs/benchmarks/results.md). How it was tested: [benchmark notes](docs/benchmarks/README.md).
 
-![With and without Bossku Superpower: tokens per run and per solved task](docs/assets/benchmark-effort.svg)
+## Install
 
-<!-- summary-effort:start -->
-**What this shows:** Bossku Superpower makes the agent do more work, and work costs tokens. The extra work is running, checking and fixing. Where that turns failures into passes it is worth it; where the model already passes, it is not.
-- **DeepSeek V4.1 Flash, coding tasks:** 1.1× the tokens per run (107k without, 119k with) and 1.2× the tokens per task it actually solved. It ran shell commands 2.7 times per run instead of 2.4.
-- **Gemma 4 31B, coding tasks:** 1.4× the tokens per run (67k without, 95k with) and 1.4× the tokens per task it actually solved. It ran shell commands 2.4 times per run instead of 1.3.
-- **Nemotron 3 Nano 30B, coding tasks:** 4.7× the tokens per run (52k without, 244k with) and 2.8× the tokens per task it actually solved. It ran shell commands 4.1 times per run instead of 0.1.
-- **DeepSeek V4.1 Flash, harder tasks:** 1.1× the tokens per run (294k without, 310k with) and 1.1× the tokens per task it actually solved. It ran shell commands 5.2 times per run instead of 5.3.
-- **Gemma 4 31B, harder tasks:** 1.2× the tokens per run (195k without, 235k with) and 1.1× the tokens per task it actually solved. It ran shell commands 4.6 times per run instead of 3.0.
-- **Nemotron 3 Nano 30B, harder tasks:** 2.9× the tokens per run (135k without, 391k with). It ran shell commands 3.9 times per run instead of 1.1.
-- **Claude Haiku 4.5, two-session tasks:** 1.2× the tokens per run (252k without, 311k with) and 0.9× the tokens per task it actually solved. It ran shell commands 2.3 times per run instead of 1.9.
-- **Claude Sonnet 5.5, two-session tasks:** 1.1× the tokens per run (139k without, 147k with) and 0.8× the tokens per task it actually solved. It ran shell commands 2.0 times per run instead of 1.7.
-- **DeepSeek V4.1 Flash, two-session tasks:** about the same tokens per run (118k without, 118k with) and 1.1× the tokens per task it actually solved. It ran shell commands 2.1 times per run instead of 2.1.
-- **Gemma 4 31B, two-session tasks:** 1.6× the tokens per run (62k without, 98k with) and 0.9× the tokens per task it actually solved. It ran shell commands 1.8 times per run instead of 0.5.
-- **Nemotron 3 Nano 30B, two-session tasks:** 2.8× the tokens per run (78k without, 219k with) and 1.9× the tokens per task it actually solved. It ran shell commands 3.9 times per run instead of 0.2.
-<!-- summary-effort:end -->
-
-### All the numbers
-
-<!-- results:start -->
-| First call of a session | Without Bossku Superpower | With Bossku Superpower |
-|---|---:|---:|
-| Claude Haiku 4.5: input tokens | 33,413 | 34,654 |
-| Claude Haiku 4.5: cost | $0.0109 | $0.0120 |
-| Claude Sonnet 5.5: input tokens | 35,403 | 37,558 |
-| Claude Sonnet 5.5: cost | $0.0247 | $0.0297 |
-
-| Finding a skill (158 new requests) | Keyword search only | With Bossku Superpower |
-|---|---:|---:|
-| Right skill ranked first | 56% | 81% |
-| Right skill in the top three | 73% | 94% |
-| Every part of a multi-part request covered | - | 75% |
-| A real agent (DeepSeek V4.1 Flash) opens an acceptable skill | - | 45% |
-
-| Hidden-test coding tasks | Without Bossku Superpower | With Bossku Superpower |
-|---|---:|---:|
-| DeepSeek V4.1 Flash: tasks passed (34 runs each) | 97% (33/34) | 94% (32/34) |
-| DeepSeek V4.1 Flash: tokens per run | 107k | 119k |
-| DeepSeek V4.1 Flash: ended without running its code | 3% | 0% |
-| Gemma 4 31B: tasks passed (17 runs each) | 82% (14/17) | 82% (14/17) |
-| Gemma 4 31B: tokens per run | 67k | 95k |
-| Gemma 4 31B: ended without running its code | 53% | 0% |
-| Nemotron 3 Nano 30B: tasks passed (68 runs without, 34 with) | 18% (12/68) | 29% (10/34) |
-| Nemotron 3 Nano 30B: tokens per run | 52k | 244k |
-| Nemotron 3 Nano 30B: ended without running its code | 100% | 17% |
-
-| Harder tasks | Without Bossku Superpower | With Bossku Superpower |
-|---|---:|---:|
-| DeepSeek V4.1 Flash: tasks passed (42 runs without, 28 with) | 95% (40/42) | 93% (26/28) |
-| DeepSeek V4.1 Flash: tokens per run | 294k | 310k |
-| Gemma 4 31B: tasks passed (42 runs without, 28 with) | 57% (24/42) | 64% (18/28) |
-| Gemma 4 31B: tokens per run | 195k | 235k |
-| Nemotron 3 Nano 30B: tasks passed (14 runs each) | 0% (0/14) | 7% (1/14) |
-| Nemotron 3 Nano 30B: tokens per run | 135k | 391k |
-
-| HumanEval problems | Without Bossku Superpower | With Bossku Superpower |
-|---|---:|---:|
-| DeepSeek V4.1 Flash: tasks passed (40 runs each) | 100% (40/40) | 100% (40/40) |
-| DeepSeek V4.1 Flash: tokens per run | 63k | 79k |
-| Gemma 4 31B: tasks passed (20 runs each) | 95% (19/20) | 100% (20/20) |
-| Gemma 4 31B: tokens per run | 54k | 74k |
-| Nemotron 3 Nano 30B: tasks passed (40 runs each) | 62% (25/40) | 92% (37/40) |
-| Nemotron 3 Nano 30B: tokens per run | 89k | 282k |
-
-| Remembering a rule from an earlier session | Without Bossku Superpower | With Bossku Superpower |
-|---|---:|---:|
-| Claude Haiku 4.5: tasks passed (44 runs each) | 48% (21/44) | 68% (30/44) |
-| Claude Haiku 4.5: tokens per run | 252k | 311k |
-| Claude Sonnet 5.5: tasks passed (44 runs each) | 64% (28/44) | 84% (37/44) |
-| Claude Sonnet 5.5: tokens per run | 139k | 147k |
-| DeepSeek V4.1 Flash: tasks passed (66 runs each) | 79% (52/66) | 74% (49/66) |
-| DeepSeek V4.1 Flash: tokens per run | 118k | 118k |
-| Gemma 4 31B: tasks passed (44 runs each) | 39% (17/44) | 68% (30/44) |
-| Gemma 4 31B: tokens per run | 62k | 98k |
-| Nemotron 3 Nano 30B: tasks passed (34 runs each) | 6% (2/34) | 9% (3/34) |
-| Nemotron 3 Nano 30B: tokens per run | 78k | 219k |
-<!-- results:end -->
-
-### What these results do not show
-
-- **Python projects of a few dozen to a few hundred lines.** Nothing here covers large repositories, other languages, or open-ended design work.
-- **Mostly open models.** Through Ollama Cloud, driven by Claude Code: Nemotron 3 Nano 30B (small), Gemma 4 31B (mid-size) and DeepSeek V4.1 Flash (strong) on the coding tasks, the harder tasks and HumanEval. Claude Haiku 4.5 and Claude Sonnet 5.5 were run on the two-session memory tasks and for the cost of a session's first call; their coding, harder-task and HumanEval runs did not finish because the Claude login expired, so those cells are empty. No dollar cost per coding task is reported; tokens are the unit.
-- **Which build, and reused baselines.** The agent runs used commit `b8ccea1` (5 October 2026). The session-cost figures come from `02ee2f2` (1 October), the live skill-use figure from the router at `8279f19`, and the router's later vocabulary and the stated-rule detector were measured offline, not with an agent. For seven sets of runs (coding for Nemotron and DeepSeek, harder tasks for DeepSeek and Gemma, HumanEval for Nemotron and DeepSeek, and DeepSeek on the ten original two-session tasks) the *without* runs are from the earlier run of 1 to 2 October, which is why some lanes show more runs without than with; the setup without Bossku Superpower does not depend on the build, but the days and the Claude Code version (2.1.284 against 2.1.293) differ. An earlier run of the same tasks on `02ee2f2`, with both setups at the same time, gave Nemotron coding 18% to 40% (the later run: 18% to 29%) and Nemotron HumanEval 62% to 82% (later: 92%), so a few points either way is noise; see the [benchmark notes](docs/benchmarks/README.md#the-earlier-run).
-- **Tasks written by assistants.** The harder and two-session tasks were written by AI assistants told not to read Bossku Superpower. Each was checked against a reference solution, and a few over-strict checks were fixed for both setups after a trial run. The [benchmark notes](docs/benchmarks/README.md) list what changed.
-- **Small samples.** Overlapping intervals mean "no clear difference", not "equal".
-- **AI judgment.** The 328 skill-search requests and the skills accepted for them were written by AI agents that saw only the skill catalog, never the router (160 first, 168 later), so they are not ground truth.
-- **Claude Code only.** The helper hooks exist for Claude Code. Cursor, Codex, OpenCode, and OMP get the skills and instructions but were not benchmarked.
-
-## What is inside
-
-| Part | What it is |
-|---|---|
-| **240+ skills** | Short checklists for engineering, product, design, security, marketing and founder work. About 25 are always listed; the rest are found for you or opened with `bossku skills show <id>`. |
-| **Helpers** (Claude Code) | Three small hooks: names skills for your prompt when the match is strong, sends the agent back to run its code, and shows your saved notes when a session starts. `BOSSKU_VERIFY_GATE=0` turns the second one off; `bossku hooks uninstall` removes all three. |
-| **Tools** | `bossku tools list` shows optional programs the skills can use, such as Headroom (shrinks bulky tool output), Moli (fetches web pages without Chrome), e2e (AI-driven end-to-end tests), Archify (interactive diagrams), Graft, MarkItDown, and more. They install only when you ask. |
-| **Memory** | Notes, learnings and rules saved in your Obsidian vault, one folder per project, with an index. |
-
-```bash
-bossku tools list                    # what is installed and what is not
-bossku tools install headroom        # shows the exact commands; add --yes to run them
-```
-
-Moli, Hindsight and dcg are installed by hand: Moli and dcg ship installers that are scripts piped into a shell, and Hindsight has none here, so Bossku Superpower never runs them for you; it shows where to get them.
-
-## Your notes live in Obsidian
-
-![Where notes come from and where they go. Saved notes, Claude's own memory and your rules files are copied into one folder per project in your Obsidian vault by an automatic sync after every session; an index links everything, and the newest notes are shown at the start of the next session.](docs/assets/superpower-memory.svg)
-
-The agent saves a note when it learns something a future session needs: a decision and why, a plan, a fact, a lesson. Small fixes usually save nothing. Obvious secrets are blanked out before anything is written, and the agent is told never to save secrets, prompts or transcripts.
-
-```bash
-bossku remember --project . --kind decision "Use the existing test runner for this project."
-bossku memory-brief --project .       # the newest notes
-bossku vault sync --project .         # copy Claude's auto-memory and your rules files into the vault now
-bossku vault tidy                     # show what a clean-up of old clutter would do (nothing changes)
-bossku vault tidy --apply             # do it: a zip backup first, nothing deleted, empty folders removed
-```
-
-In Obsidian mode (`--memory-storage obsidian`) the sync runs by itself at the end of each session, through the same hooks that already check your vault. It **copies**: your originals stay where they are. If the vault is missing, Bossku Superpower tells you the note was not saved; it does not quietly write into your repository. More in [memory and Obsidian](docs/memory.md).
-
-## Install and start
-
-Needs **Python 3.11+** and **Git**.
+Need **Python 3.11+** and **Git**.
 
 ```bash
 git clone https://github.com/wankimmy/Bossku-Superpowers
@@ -249,60 +49,62 @@ bossku init .
 bossku doctor --project .
 ```
 
-Open that project in your coding agent and say `bossku`.
+Then open the project in your coding agent and say `bossku`.
 
-- **No Obsidian?** Leave out `--vault` and `--memory-storage`. Notes then stay in `.bossku/memory` inside the project.
-- **Want every skill listed?** The default is `--profile lean` (about 25 listed, the rest one command away). `--profile core` is a small set, and `--profile full` lists all 240+. See [installation](docs/installation.md#user-level-skills-once-per-machine).
-- **Helper hooks.** Installing also adds small hooks for Claude Code. Turn off the run-your-code check with `BOSSKU_VERIFY_GATE=0`. Remove every hook with `bossku hooks uninstall`. Codex asks you to approve hooks once.
-- **Another tool?** Follow the [Claude Code](docs/installation.md#claude-code), [Cursor](docs/installation.md#cursor), or [Codex](docs/installation.md#codex) steps. [OpenCode](docs/installation.md#opencode) and [OMP](docs/installation.md#omp) use skills and project files. For shared or cloud workspaces, see [portable mode](docs/installation.md#portable-mode-cloudshared-repos).
+- **No Obsidian?** Skip `--vault` and `--memory-storage`. Notes stay in `.bossku/memory` inside the project.
+- **Want all skills listed?** Default is `--profile lean` (about 25 listed, the rest one command away). Use `--profile core` for a small set or `--profile full` for all 240+.
+- **Other tools?** See setup for [Claude Code](docs/installation.md#claude-code), [Cursor](docs/installation.md#cursor), [Codex](docs/installation.md#codex), [OpenCode](docs/installation.md#opencode), [OMP](docs/installation.md#omp) or [portable mode](docs/installation.md#portable-mode-cloudshared-repos).
 
-## See why a skill was chosen
+## What's inside
+
+| Part | What it is |
+|---|---|
+| **240+ skills** | Short checklists for engineering, product, design, security, marketing and founder work |
+| **Helper hooks** (Claude Code) | Suggest a skill for your prompt, send the agent back to run its code, and show your saved notes at session start |
+| **Tools** | Optional programs like Headroom, Moli, e2e, Archify, Graft and MarkItDown. Installed only when you ask |
+| **Memory** | Your rules, decisions and lessons, saved in Obsidian, one folder per project |
+
+## Your notes in Obsidian
+
+![Where notes come from and where they go. Saved notes, Claude's own memory and your rules files are copied into one folder per project in your Obsidian vault by an automatic sync after every session; an index links everything, and the newest notes are shown at the start of the next session.](docs/assets/superpower-memory.svg)
+
+The agent saves a note only when a future session needs it: a decision, a plan, a fact or a lesson. Secrets are blanked out, and prompts or transcripts are never saved. After each session the notes sync to your vault. It only **copies**, your originals stay put. If the vault is missing, it tells you the note was not saved.
 
 ```bash
-bossku skills find "Review this code for security problems"
+bossku remember --project . --kind decision "Use the existing test runner for this project."
+bossku memory-brief --project .       # newest notes
+bossku vault sync --project .         # sync to the vault now
+bossku vault tidy                     # preview a clean-up (nothing changes)
 ```
 
-The answer names the main skill and any extra skills, says when a match is weak, and shows what was left out and why. Some skills can only be started by you (for example `/prototype`); Bossku Superpower says so instead of loading them.
+More in [memory and Obsidian](docs/memory.md).
 
-## Update
+## Common commands
+
+| Command | What it does |
+|---|---|
+| `bossku skills find "<task>"` | Show which skill fits and why |
+| `bossku skills show <id>` | Print one skill |
+| `bossku tools list` | See optional tools and what's installed |
+| `bossku init <project>` | Set up a project (`--portable` puts the skills inside it) |
+| `bossku hooks install` / `uninstall` | Add or remove the helper hooks |
+| `bossku doctor --project .` | Check your setup |
+| `bossku update` | Refresh installed skills (run after `git pull`) |
+
+## For contributors
 
 ```bash
-git pull
-bossku update
-bossku doctor
-```
-
-`bossku update` refreshes the installed skills and keeps your profile and your other skills.
-
-## Check the repository
-
-```bash
+python -m bossku skills index --root .   # only after changing a skill description
 python -m bossku validate --root .
 python -m unittest discover -s tests -v
 ```
 
-After you change a skill description, rebuild the index first: `python -m bossku skills index --root .`
+## Learn more
 
-## More commands
-
-| Command | What it does |
-|---|---|
-| `bossku init <project>` | Add project instructions and set up notes |
-| `bossku init <project> --portable` | Put the skills inside the project |
-| `bossku skills show <id>` | Print one skill (works for skills not in the agent's list) |
-| `bossku skills audit` | Check skill size, descriptions, and links |
-| `bossku tools list` | See optional tools and whether they are installed |
-| `bossku vault sync` / `tidy` | Mirror memory and rules into Obsidian, or tidy old clutter |
-| `bossku hooks install` / `uninstall` | Add or remove the helper hooks |
-| `bossku doctor --project .` | Check installed skills and project files |
-
-## Explore the library
-
-- [Skills](skills/) cover engineering, product, design, security, marketing, and founder work.
-- [Shared instructions](AGENTS.md) keep the workflow the same across coding tools.
-- [Benchmarks](docs/benchmarks/README.md) explain how every number above was measured and how to repeat it.
-- [Third-party packs and credits](docs/third-party.md) list the vendored sources and the tools that inspired this one (moli, e2e, headroom, archify, hindsight and more), with their licenses. [Optional requirements](requirements-optional.txt) cover separate tools.
-- [Claude Code practice review](docs/claude-practices-review.md) and [Archify practice review](docs/archify-practices-review.md) explain how their advice was applied.
+- [Skills](skills/) and [shared instructions](AGENTS.md)
+- [Benchmark results](docs/benchmarks/results.md) and [how they were measured](docs/benchmarks/README.md)
+- [Third-party packs and credits](docs/third-party.md), plus [optional requirements](requirements-optional.txt)
+- [Claude Code practice review](docs/claude-practices-review.md) and [Archify practice review](docs/archify-practices-review.md)
 
 ## License
 

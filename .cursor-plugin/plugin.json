@@ -1,7 +1,7 @@
 {
   "name": "bossku-superpower",
   "displayName": "Bossku Superpower",
-  "description": "Skills and tools that make AI coding agents do better work: the right skill for each request, code that gets run, and project rules that are remembered.",
+  "description": "Make your AI coding agent work properly: pick the right skill, run its own code, and remember your project rules.",
   "version": "2.1.0",
   "author": {
     "name": "Bossku Superpower",
