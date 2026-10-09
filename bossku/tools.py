@@ -14,6 +14,7 @@ import os
 import re
 import subprocess
 import sys
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -35,6 +36,17 @@ class Tool:
     note: str = ""                       # what the user should know before installing (telemetry, binaries...)
     manual: str = ""                     # where to get it when it cannot be installed automatically
     follow_up: tuple[tuple[str, ...], ...] = field(default=())   # commands to run after the install, in order
+    companions: tuple[str, ...] = ()     # more npm packages installed with the tool (npm-project)
+    node_ok: Callable[[tuple[int, int, int]], bool] | None = None   # Node versions the tool supports
+    node_text: str = ""                  # the same range in words, for the message
+
+
+def _e2e_node_ok(v: tuple[int, int, int]) -> bool:
+    return v >= (25, 0, 0) or (v[0] == 24 and v >= (24, 8, 0)) or (v[0] == 22 and v >= (22, 22, 3))
+
+
+def _cypress_node_ok(v: tuple[int, int, int]) -> bool:
+    return v[0] in (22, 24) or v[0] >= 26     # npm engines: ^22.0.0 || ^24.0.0 || >=26.0.0
 
 
 TOOLS: tuple[Tool, ...] = (
@@ -56,11 +68,19 @@ TOOLS: tuple[Tool, ...] = (
          note="Builds a native module while installing, which can need a C++ toolchain (it failed on a Windows machine without Visual Studio). "
               "After installing, run `graft build` once in each repository."),
     Tool("e2e", "e2e", NPM_PROJECT, ("bosskuai-agentic-e2e",), "agentic end-to-end tests for web and mobile apps",
-         spec="e2e", note="Per project: it edits that project's package.json and writes e2e.config.ts, an example test and "
-                          ".gitignore lines. Needs Node 24.8+ (or 22.22.3+) and a terminal, because `npx e2e init` asks questions. "
-                          "Sends usage telemetry unless `npx e2e telemetry disable` or E2E_TELEMETRY_DISABLED=1. "
-                          "@e2e-dev/web and ai@7 are installed with it.",
+         spec="e2e", companions=("@e2e-dev/web", "ai@7"), node_ok=_e2e_node_ok, node_text="24.8+ or 22.22.3+",
+         note="Per project: it edits that project's package.json and writes e2e.config.ts, an example test and "
+              ".gitignore lines. Needs Node 24.8+ (or 22.22.3+) and a terminal, because `npx e2e init` asks questions. "
+              "Sends usage telemetry unless `npx e2e telemetry disable` or E2E_TELEMETRY_DISABLED=1. "
+              "@e2e-dev/web and ai@7 are installed with it.",
          follow_up=(("npx", "e2e", "init"),)),
+    Tool("cypress", "Cypress", NPM_PROJECT, ("bosskuai-cypress",),
+         "write, explain and fix end-to-end and component tests that run in a real browser",
+         spec="cypress", node_ok=_cypress_node_ok, node_text="22.x, 24.x or 26.x and newer",
+         note="Per project: adds `cypress` to devDependencies (npm, MIT). Its install step downloads the Cypress binary "
+              "(size not checked). It sends crash reports (exception data) to api.cypress.io unless CYPRESS_CRASH_REPORTS=0 "
+              "is set; its separate OpenTelemetry telemetry is off by default. It does not log in to Cypress Cloud or set a record key. "
+              "The first time you run `npx cypress open` yourself, it generates cypress.config.js and example files."),
     Tool("archify", "Archify", AGENT_SKILL, ("bosskuai-archify-diagrams",), "interactive architecture and workflow diagrams as HTML",
          spec="tt-a1i/archify",
          note="Downloads the skill from github.com/tt-a1i/archify (its latest version, not pinned) with `npx skills add` "
@@ -102,14 +122,14 @@ def installed(tool: Tool, project: Path | None = None, home: Path | None = None)
         return True
     if tool.module and importlib.util.find_spec(tool.module) is not None:
         return True
-    if tool.id == "e2e":
+    if tool.kind == NPM_PROJECT:
         package = (project or Path.cwd()) / "package.json"
         try:
             data = json.loads(package.read_text(encoding="utf-8"))
         except (OSError, ValueError):
             return False
         return isinstance(data, dict) and any(
-            "e2e" in (data.get(section) or {}) for section in ("dependencies", "devDependencies"))
+            tool.spec in (data.get(section) or {}) for section in ("dependencies", "devDependencies"))
     if tool.id == "archify":
         base = home or Path.home()
         return any((base / folder / "skills" / "archify").is_dir() for folder in (".claude", ".agents", ".codex", ".cursor"))
@@ -126,7 +146,7 @@ def plan(tool: Tool) -> list[list[str]]:
     if tool.kind == NPM_GLOBAL:
         return [["npm", "install", "-g", tool.spec]]
     if tool.kind == NPM_PROJECT:
-        return [["npm", "install", "--save-dev", tool.spec, "@e2e-dev/web", "ai@7"], *[list(c) for c in tool.follow_up]]
+        return [["npm", "install", "--save-dev", tool.spec, *tool.companions], *[list(c) for c in tool.follow_up]]
     return []
 
 
@@ -154,8 +174,9 @@ def _run(argv: list[str], *, cwd: str | None = None, check: bool = False, timeou
         raise
 
 
-def _node_problem() -> str:
-    """Why e2e cannot run here, or an empty string. It needs Node 24.8+ or 22.22.3+."""
+def _node_problem(tool: Tool | None = None) -> str:
+    """Why this tool cannot run on this Node, or an empty string. Defaults to e2e."""
+    tool = tool or BY_ID["e2e"]
     node = _which("node")
     if not node:
         return "Node.js was not found on PATH"
@@ -167,9 +188,9 @@ def _node_problem() -> str:
     if not found:
         return f"could not read the Node version from {out.strip()!r}"
     version = tuple(int(n) for n in found.groups())
-    if version >= (25, 0, 0) or (version[0] == 24 and version >= (24, 8, 0)) or (version[0] == 22 and version >= (22, 22, 3)):
+    if tool.node_ok is None or tool.node_ok(version):
         return ""
-    return f"Node {'.'.join(map(str, version))} is too old (needs 24.8+ or 22.22.3+)"
+    return f"Node {'.'.join(map(str, version))} is not supported by {tool.title} (needs {tool.node_text})"
 
 
 def run_install(tool: Tool, *, project: Path | None = None, runner=None, node_problem=None) -> dict:
@@ -190,7 +211,7 @@ def run_install(tool: Tool, *, project: Path | None = None, runner=None, node_pr
         if tool.follow_up and not sys.stdin.isatty():
             return {"id": tool.id, "ok": False, "ran": [], "message": f"nothing was changed: `{follow}` asks questions, so "
                     f"run `bossku tools install {tool.id} --yes` in a terminal."}
-        problem = (node_problem or _node_problem)()
+        problem = (node_problem or (lambda: _node_problem(tool)))()
         if problem:
             return {"id": tool.id, "ok": False, "ran": [], "message": f"nothing was changed: {problem}."}
     ran = []

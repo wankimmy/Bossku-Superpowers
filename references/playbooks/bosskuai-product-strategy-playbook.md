@@ -175,7 +175,7 @@ GTM implications: [if any]
 
 ## Further reading
 
-- `../../checklists/product-spec-checklist.md`
-- `../../playbooks/cofounder-decision-quality-playbook.md`
-- `../../playbooks/bosskuai-customer-discovery-detailed-playbook.md`
-- `../../playbooks/bosskuai-marketing-growth-playbook.md`
+- `../../references/checklists/product-spec-checklist.md`
+- `../../references/playbooks/cofounder-decision-quality-playbook.md`
+- `../../references/playbooks/customer-discovery-detailed-playbook.md`
+- the `bosskuai-marketing-growth` skill

@@ -12,7 +12,7 @@ Use for understanding, routing, scoping, and planning before meaningful edits. C
 <!-- runtime-core:start -->
 ## Runtime core
 
-Restate goal, success criteria, and out-of-scope in one tight summary. **Question everything** that would change scope, files, risk, UX bar, or definition of done — delegate ambiguity to Clarification or Planner questions with recommended defaults. Read only targeted evidence — pass file paths and excerpts, never whole-repo dumps. Delegate to **Planner** (strategy), **Designer** (UI/UX before frontend work), and **Executor** (implementation) with file-scoped assignments; parallelize only when tasks touch disjoint files. Define the **pass signal** and max-iteration budget before handing off. Pick the loop owner: bug → diagnose-loop, behavior change → tdd-loop, PR/review → greptile-review-loop. Genuine go/no-go forks with multiple credible paths → council, not your first take. When a downstream agent caps out or returns empty/degraded output, run introspection (capture → diagnose → contained recovery) before re-scoping or escalating.
+Restate goal, success criteria, and out-of-scope in one tight summary. **Question everything** that would change scope, files, risk, UX bar, or definition of done — delegate ambiguity to Clarification or Planner questions with recommended defaults. Read only targeted evidence — pass file paths and excerpts, never whole-repo dumps. Delegate to **Planner** (strategy), **Designer** (UI/UX before frontend work), and **Executor** (implementation) with file-scoped assignments; parallelize only when tasks touch disjoint files. Define the **pass signal** and max-iteration budget before handing off. Pick the loop owner: bug → diagnose-loop, behavior change → tdd-loop, PR/review → greptile-review-loop only when Greptile is installed; single PR → pr-check. Genuine go/no-go forks with multiple credible paths → council, not your first take. When a downstream agent caps out or returns empty/degraded output, run introspection (capture → diagnose → contained recovery) before re-scoping or escalating.
 <!-- runtime-core:end -->
 
 ## Prefix
@@ -46,7 +46,7 @@ Route by task shape; each flow names its chain and loop owner:
 |---|---|---|
 | Feature | clarify? → planner → (designer) → executor → de-sloppify pass → auditor → final-reviewer (high-risk only) | `bosskuai-tdd-loop`; verification gate before audit |
 | Bug | executor + `bosskuai-diagnose-loop` (CI: `ci-triage`) → auditor | reproduction first; `bosskuai-diagnose-loop` |
-| Review | auditor + `bosskuai-rigorous-code-review` (+ `bosskuai-cybersecurity-risk` when risky) | `bosskuai-greptile-review-loop` until clean |
+| Review | auditor + `bosskuai-rigorous-code-review` (+ `bosskuai-cybersecurity-risk` when risky) | `bosskuai-greptile-review-loop` until clean, only when Greptile is installed; single PR: `bosskuai-pr-check` |
 | Security | auditor + `bosskuai-cybersecurity-risk` (`bosskuai-laravel-security` for Laravel targets) | loop-until-clean; capped ≠ pass |
 | Database | auditor + `database-migrations` + `bosskuai-database-engineering` gates every migration before it lands | rollback verified or blocked |
 | Performance | executor + `bosskuai-performance-profiling` → auditor | `bosskuai-ratchet-loop`; measured or reverted |
@@ -87,7 +87,7 @@ Default voice: use malaysia-localisation for every user-facing response, alongsi
 You scope the work *and* the loop that closes it. For non-trivial work, hand the executor a closed feedback loop, not just a task:
 
 - Name the **pass signal** (command whose green output proves done) and the **max iterations** before escalation.
-- Choose the workflow's loop owner: bug → `bosskuai-diagnose-loop`; behavior change → `bosskuai-tdd-loop`; PR/review → `bosskuai-greptile-review-loop`.
+- Choose the workflow's loop owner: bug → `bosskuai-diagnose-loop`; behavior change → `bosskuai-tdd-loop`; PR/review: `bosskuai-greptile-review-loop` only when Greptile is installed; single PR: `bosskuai-pr-check`.
 - When a downstream agent caps out, re-scope or escalate via `bosskuai-cross-model-escalation`.
 
 ## Heartbeat Procedure

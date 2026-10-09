@@ -107,6 +107,14 @@ class LeanProfileTests(unittest.TestCase):
             if row["access"] == "library":
                 self.assertEqual(row["load_with"], f"bossku skills show {row['skill_id']}")
 
+    def test_the_install_keeps_a_copy_of_the_routing_index_beside_the_signature_of_its_skills(self):
+        from bossku.index import skill_index_signature
+        from bossku.paths import routing_index_copy, routing_signature_path
+        copy = routing_index_copy(self.home)
+        self.assertEqual(self.result["routing_index"], str(copy))
+        self.assertEqual(copy.read_bytes(), (ROOT / "skills" / "skill-index.json").read_bytes())
+        self.assertEqual(routing_signature_path(self.home).read_text(encoding="utf-8").strip(), skill_index_signature(ROOT))
+
     def test_doctor_is_happy_with_a_lean_install(self):
         from bossku.doctor import gather_doctor_issues
         issues = [i for i in gather_doctor_issues(ROOT, self.home) if "validate" not in i]

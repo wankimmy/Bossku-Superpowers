@@ -5,8 +5,9 @@
     python scripts/benchmark_rules.py score       # key.json + labels-*.json -> recall, false alarms
 
 Writers saw neither the detector nor its tests. Two labellers then classified the shuffled messages without seeing the
-writer's intent; a message counts only where the labeller and the writer agree, so ambiguous ones are dropped. The data
-lives in benchmarks/rules-eval/. A set stops being a fair test the moment the detector is tuned on it.
+writer's intent; a message counts only where the labeller and the writer agree, so ambiguous ones are dropped (the
+detector flags those more often, so `score` also prints the rates with nothing dropped). The data lives in
+benchmarks/rules-eval/. A set stops being a fair test the moment the detector is tuned on it.
 """
 
 from __future__ import annotations
@@ -68,9 +69,20 @@ def score(directory: Path, show: bool = False) -> dict:
     neg = [r for r in agreed if r['label'] == 0]
     caught = sum(states_rule(r['text']) for r in pos)
     flagged = sum(states_rule(r['text']) for r in neg)
+    # The agreed-only headline drops ambiguous messages, and the detector flags those more often than the clear ones, so
+    # it reads low. Count every message by the writer's label as well.
+    key = json.loads((directory / 'key.json').read_text(encoding='utf-8'))
+    all_pos = [r for r in key if r['label'] == 1]
+    all_neg = [r for r in key if r['label'] == 0]
+    all_caught = sum(states_rule(r['text']) for r in all_pos)
+    all_flagged = sum(states_rule(r['text']) for r in all_neg)
     result = {'messages': total, 'kept': len(agreed), 'rules': len(pos), 'caught': caught,
               'recall_ci': wilson(caught, len(pos)), 'non_rules': len(neg), 'flagged': flagged,
-              'false_alarm_ci': wilson(flagged, len(neg))}
+              'false_alarm_ci': wilson(flagged, len(neg)),
+              'all_rules': len(all_pos), 'all_caught': all_caught, 'all_recall_ci': wilson(all_caught, len(all_pos)),
+              'all_non_rules': len(all_neg), 'all_flagged': all_flagged,
+              'all_false_alarm_ci': wilson(all_flagged, len(all_neg)),
+              'dropped_non_rules': len(all_neg) - len(neg), 'dropped_flagged': all_flagged - flagged}
     print(f"{total} messages, {len(agreed)} kept after the labellers agreed with the writers")
     for name, _ in SOURCES:
         sub = [r for r in agreed if r['src'] == name]
@@ -79,6 +91,12 @@ def score(directory: Path, show: bool = False) -> dict:
     print(f"stated rules caught: {caught}/{len(pos)} ({caught / max(1, len(pos)):.0%}, 95% interval {lo:.0%}-{hi:.0%})")
     lo, hi = result['false_alarm_ci']
     print(f"non-rules wrongly flagged: {flagged}/{len(neg)} ({flagged / max(1, len(neg)):.0%}, 95% interval {lo:.0%}-{hi:.0%})")
+    print("with nothing dropped (the writers' labels):")
+    lo, hi = result['all_recall_ci']
+    print(f"  stated rules caught: {all_caught}/{len(all_pos)} ({all_caught / max(1, len(all_pos)):.0%}, 95% interval {lo:.0%}-{hi:.0%})")
+    lo, hi = result['all_false_alarm_ci']
+    print(f"  non-rules wrongly flagged: {all_flagged}/{len(all_neg)} ({all_flagged / max(1, len(all_neg)):.0%}, 95% interval {lo:.0%}-{hi:.0%})")
+    print(f"  non-rules dropped for disagreement: {result['dropped_non_rules']}, of which flagged: {result['dropped_flagged']}")
     if show:
         for r in pos:
             if not states_rule(r['text']):

@@ -171,11 +171,6 @@ Missing protections:
 
 ## References
 
-- `../../references/playbooks/bug-finding-playbook.md`
 - `../../references/checklists/bug-finding-checklist.md`
 - `../../references/checklists/root-cause-investigation-checklist.md`
 - `../../references/playbooks/root-cause-investigation-playbook.md`
-
-## Further reading
-
-- `bug-finding-detailed-playbook.md` — extended step-by-step workflow and detailed templates that complement this playbook.

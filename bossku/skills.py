@@ -6,8 +6,10 @@ import os
 import re
 import shutil
 import stat
+import sys
 from dataclasses import dataclass
 from datetime import date
+from functools import lru_cache
 from pathlib import Path
 from urllib.parse import unquote
 
@@ -253,8 +255,8 @@ def _unquote_scalar(val: str) -> str:
     return val
 
 
-def resolve_skill_id(skill_id: str, root: Path | None = None) -> str:
-    aliases = load_aliases(root)
+def resolve_skill_id(skill_id: str, root: Path | None = None, aliases: dict[str, str] | None = None) -> str:
+    aliases = load_aliases(root) if aliases is None else aliases
     seen: set[str] = set()
     current = skill_id
     while current in aliases:
@@ -265,11 +267,14 @@ def resolve_skill_id(skill_id: str, root: Path | None = None) -> str:
     return current
 
 
-def rank_skills(task: str, root: Path | None = None, limit: int = 5) -> list[tuple[str, float]]:
-    """Rank skills for a task, best first. Uses skills/skill-index.json when present."""
+def rank_skills(task: str, root: Path | None = None, limit: int = 5, data: dict | None = None) -> list[tuple[str, float]]:
+    """Rank skills for a task, best first. Uses skills/skill-index.json when present.
+
+    `data` is a routing index the caller already holds; passing it spares a re-hash of every SKILL.md.
+    """
     from bossku.index import compute_idf, tokenize, variants
 
-    data = _routing_index(root)
+    data = _routing_index(root) if data is None else data
     entries: dict[str, dict] = data.get("skills", {})
     if not entries:
         return []
@@ -300,23 +305,21 @@ def rank_skills(task: str, root: Path | None = None, limit: int = 5) -> list[tup
 REQUEST_FIT_WEIGHT = 5.0
 _BM25_K1, _BM25_B = 1.2, 0.75
 _request_models: dict[str, tuple] = {}
+_COUNT = re.compile(r":(\d+)")
 
 
 def _request_model(entries: dict[str, dict], key: str) -> tuple:
-    """(counts per skill, length per skill, average length, idf) from the 'word:count' text in the index."""
+    """(' word:count ...' text per skill, length per skill, average length, postings per word).
+
+    The text stays as the index stores it; a request only looks up its own few words (see _request_fit),
+    so a hook process, which runs once per prompt, never parses the other ~8,000.
+    """
     if key and key in _request_models:
         return _request_models[key]
-    counts = {sid: {w: int(c) for w, _, c in (item.partition(":") for item in entry["qterms"].split())}
-              for sid, entry in entries.items() if entry.get("qterms")}
-    lengths = {sid: sum(c.values()) for sid, c in counts.items()}
+    texts = {sid: f" {entry['qterms']} " for sid, entry in entries.items() if entry.get("qterms")}
+    lengths = {sid: sum(map(int, _COUNT.findall(text))) for sid, text in texts.items()}
     average = sum(lengths.values()) / max(len(lengths), 1)
-    n = len(counts)
-    df: dict[str, int] = {}
-    for c in counts.values():
-        for w in c:
-            df[w] = df.get(w, 0) + 1
-    idf = {w: math.log(1 + (n - f + 0.5) / (f + 0.5)) for w, f in df.items()}
-    model = (counts, lengths, average, idf)
+    model = (texts, lengths, average, {})
     if key:
         _request_models[key] = model
     return model
@@ -326,41 +329,49 @@ def _request_fit(task: str, entries: dict[str, dict], key: str) -> dict[str, flo
     """0..1 per skill: how well the words of the request match the words people use when they need that skill (BM25)."""
     from bossku.index import singular, tokenize
 
-    counts, lengths, average, idf = _request_model(entries, key)
-    if not counts:
+    texts, lengths, average, postings = _request_model(entries, key)
+    if not texts:
         return {}
     words = list(dict.fromkeys(singular(t) for t in tokenize(task)))
-    norm = sum(idf.get(w, 0.0) for w in words) * (_BM25_K1 + 1) or 1.0
+    for w in words:
+        if w not in postings:
+            needle = f" {w}:"
+            hits: dict[str, int] = {}
+            for sid, text in texts.items():
+                at = text.find(needle)
+                if at >= 0:
+                    start = at + len(needle)
+                    hits[sid] = int(text[start:text.index(" ", start)])
+            idf = math.log(1 + (len(texts) - len(hits) + 0.5) / (len(hits) + 0.5)) if hits else 0.0
+            postings[w] = (hits, idf)
+    norm = sum(postings[w][1] for w in words) * (_BM25_K1 + 1) or 1.0
     fit: dict[str, float] = {}
-    for sid, tf in counts.items():
-        total = 0.0
-        for w in words:
-            f = tf.get(w)
-            if f:
-                total += idf[w] * f * (_BM25_K1 + 1) / (f + _BM25_K1 * (1 - _BM25_B + _BM25_B * lengths[sid] / average))
-        if total:
-            fit[sid] = total / norm
+    for w in words:
+        hits, idf = postings[w]
+        for sid, f in hits.items():
+            fit[sid] = fit.get(sid, 0.0) + idf * f * (_BM25_K1 + 1) / (f + _BM25_K1 * (1 - _BM25_B + _BM25_B * lengths[sid] / average))
+    fit = {sid: total / norm for sid, total in fit.items() if total}
     best = max(fit.values(), default=0.0)
-    # Relative to the best-fitting skill: a request that fits nothing well gets no push, so the curated phrases and
-    # the skill's own words keep deciding short or odd requests.
+    # Scaled to the best-fitting skill, so the top match always gets the full push however weak its overlap. Hints
+    # are gated separately by MIN_TOP_SCORE in hint.py; the ranking is not.
     return {sid: value / best for sid, value in fit.items()} if best else fit
 
 
-def find_skill(task: str, root: Path | None = None) -> tuple[str, float]:
+def find_skill(task: str, root: Path | None = None, data: dict | None = None) -> tuple[str, float]:
     aliases = load_aliases(root)
     task_l = task.lower()
-    data = _routing_index(root)
+    data = _routing_index(root) if data is None else data
     known = set((data or {}).get("skills", {})) or set(list_skill_ids(root))
 
     for alias, target in aliases.items():
         if alias.replace("bosskuai-", "").replace("-", " ") in task_l and target in known:
             return target, 1.5
 
-    ranked = rank_skills(task, root, limit=1)
+    ranked = rank_skills(task, root, limit=1, data=data)
     fallback = COFOUNDER_SKILL
     if not ranked or ranked[0][1] <= 0:
         return fallback, 0.0
-    return resolve_skill_id(ranked[0][0], root), round(ranked[0][1], 3)
+    return resolve_skill_id(ranked[0][0], root, aliases), round(ranked[0][1], 3)
 
 
 def recommend_skill_stack(
@@ -400,17 +411,20 @@ def select_skill_stack(
     root: Path | None = None,
     limit: int = 5,
     available: set[str] | None = None,
+    data: dict | None = None,
 ) -> dict:
     """Compose skills from prompt evidence, without executing or installing them.
 
     Scores are lexical evidence, not probabilities. Availability is an explicit
     host/profile inventory; None means the full installable repository inventory.
+    `data` is a routing index the caller already holds (see rank_skills).
     """
     from bossku.index import tokenize, variants
 
-    entries = _routing_index(root).get("skills", {})
+    data = _routing_index(root) if data is None else data
+    entries = data.get("skills", {})
     allowed = (set(entries) if available is None else set(available)) - NOT_INSTALLED
-    ranked = rank_skills(task, root, limit=len(entries))
+    ranked = rank_skills(task, root, limit=len(entries), data=data)
     scores = dict(ranked)
     # Score separate asks independently so a strong first domain cannot drown out
     # a second one. These are candidate hints; novelty and alternatives still gate loading.
@@ -418,10 +432,11 @@ def select_skill_stack(
     concerns = re.split(r"[;,\n]|\b(?:and|then|also)\b", task.lower())
     if len(concerns) > 1:
         for concern in concerns:
-            matches = rank_skills(concern, root, limit=1)
+            matches = rank_skills(concern, root, limit=1, data=data)
             if matches and matches[0][1] >= CONCERN_WINNER_MIN:
                 concern_winners.add(matches[0][0])
     aliases = load_aliases(root)
+    resolved = {alias: resolve_skill_id(target, root, aliases) for alias, target in aliases.items()}
     task_l = task.lower()
     requested: list[str] = []
     mentions = []
@@ -434,7 +449,7 @@ def select_skill_stack(
                                   r"(?:[\w$/-]+\s*(?:,|and)\s*)*$", before))
             if not named:
                 continue
-            mentions.append((match.start(), resolve_skill_id(name, root)))
+            mentions.append((match.start(), resolve_skill_id(name, root, aliases)))
     for _, sid in sorted(mentions):
         if sid not in requested:
             requested.append(sid)
@@ -452,8 +467,7 @@ def select_skill_stack(
         entry = entries[sid]
         score = scores.get(sid, 0.0)
         explicit = sid in requested
-        words = set(tokenize(" ".join([sid.replace("bosskuai-", "").replace("-", " "),
-                                       *entry.get("triggers", [])])))
+        words = _words(sid.replace("bosskuai-", "").replace("-", " "), *entry.get("triggers", []))
         terms = {term for term, forms in query.items() if forms & words}
         matched_triggers = [phrase for phrase in entry.get("triggers", [])
                             if _contains(" " + task_l.replace("-", " ") + " ",
@@ -466,7 +480,7 @@ def select_skill_stack(
 
         reason = None
         names = [sid, sid.removeprefix("bosskuai-").replace("-", " "),
-                 *(alias for alias, target in aliases.items() if resolve_skill_id(target, root) == sid)]
+                 *(alias for alias, target in resolved.items() if target == sid)]
         if sid == "bosskuai-hindsight-memory":
             names.append("hindsight")
         negated = any(re.search(r"\b(?:do not|don't|without|avoid|no|not)\s+"
@@ -529,10 +543,28 @@ def _contains(haystack: str, phrase: str) -> bool:
     return f" {phrase} " in haystack
 
 
-def _routing_index(root: Path | None = None) -> dict:
-    from bossku.index import build_index, index_is_stale, load_index
+@lru_cache(maxsize=None)   # the default 128 slots never hit: one lookup touches every skill
+def _words(*phrases: str) -> frozenset[str]:
+    from bossku.index import tokenize
 
-    return build_index(root) if index_is_stale(root) else load_index(root)
+    return frozenset(w for phrase in phrases for w in tokenize(phrase))
+
+
+_stale_noted: set[Path] = set()
+
+
+def _routing_index(root: Path | None = None) -> dict:
+    from bossku.index import build_index, load_index, skills_fingerprint
+
+    data = load_index(root)
+    if data is not None and data.get("fingerprint") == skills_fingerprint(root):
+        return data
+    # The prompt hook reads the saved index without hashing the skills, so it cannot notice this; say it here, once.
+    if data is not None and repo_root(root) not in _stale_noted:
+        _stale_noted.add(repo_root(root))
+        print("bossku: skills/skill-index.json is stale; routing from a fresh in-memory build. The prompt hook "
+              "keeps using the saved index until you run `bossku skills index`.", file=sys.stderr)
+    return build_index(root)
 
 
 def _score_entry(
@@ -548,12 +580,12 @@ def _score_entry(
     `token-saver`) explains one term out of several, so it cannot outrank a skill that
     accounts for the whole request.
     """
-    from bossku.index import singular, tokenize
+    from bossku.index import singular
 
     ident = sid.replace("bosskuai-", "").replace("-", " ")
     id_tokens = {singular(t) for t in sid.replace("bosskuai-", "").split("-") if len(t) >= 2}
     triggers = entry.get("triggers", [])
-    trigger_words = {w for t in triggers for w in tokenize(t)}
+    trigger_words = _words(*triggers)
     keywords = set(entry.get("keywords", []))
 
     # Users write "founder-led" where a trigger says "founder led": compare both spellings.
@@ -590,41 +622,6 @@ def _score_entry(
     return score
 
 
-def write_routing_cache(dest: Path, root: Path | None = None, available: set[str] | None = None) -> None:
-    """Mirror the routing index next to the install so hosts get triggers, not just names."""
-    data = _routing_index(root)
-    entries: dict[str, dict] = data.get("skills", {})
-    allowed = (set(entries) if available is None else set(available)) - NOT_INSTALLED
-    payload = {
-        "version": data.get("version", "2.1.0"),
-        "fingerprint": data.get("fingerprint", ""),
-        "skills": [
-            {
-                "id": sid,
-                "name": entry.get("name", sid),
-                "description": entry.get("description", ""),
-                "triggers": entry.get("triggers", []),
-                "exclusions": entry.get("exclusions", []),
-                "keywords": entry.get("keywords", []),
-                "model_role": entry.get("model_role", "coder"),
-                "pack": entry.get("pack", "bossku"),
-                "user_invoked": bool(entry.get("user_invoked")),
-            }
-            for sid, entry in sorted(entries.items()) if sid in allowed
-        ],
-        "aliases": {alias: target for alias, target in load_aliases(root).items()
-                    if resolve_skill_id(target, root) in allowed},
-        "default_skill_id": COFOUNDER_SKILL,
-        "selection_policy": {
-            "alternative_groups": [sorted(group) for group in ALTERNATIVE_SKILLS],
-            "note": "Choose one primary and complements for distinct concerns. Respect exclusions, "
-                    "user-only invocation and runtime availability; read descriptions before loading.",
-        },
-    }
-    dest.parent.mkdir(parents=True, exist_ok=True)
-    dest.write_text(json.dumps(payload, indent=2), encoding="utf-8")
-
-
 def make_path_writable(path: Path) -> None:
     """Add user-write permission without discarding existing mode bits."""
     try:
@@ -656,7 +653,7 @@ def remove_tree(path: Path) -> None:
 def copy_skills_to(dest_dir: Path, root: Path | None = None, profile: str = "full") -> list[str]:
     base = skills_dir(root)
     dest_dir.mkdir(parents=True, exist_ok=True)
-    selected = _profile_skills(profile, root)
+    selected = [sid for sid in _profile_skills(profile, root) if sid not in NOT_INSTALLED]   # whatever the profile lists
     short = load_lean(root)["descriptions"] if profile == "lean" else {}
     installed: list[str] = []
     for sid in selected:
@@ -819,9 +816,12 @@ def prune_stale_skills(dests: tuple[Path, ...], keep: set[str], root: Path | Non
     return sorted(pruned)
 
 
+PROFILES = ("lean", "core", "engineering", "full")
+
+
 def _profile_skills(profile: str, root: Path | None) -> list[str]:
-    if profile not in {"lean", "core", "full"}:
-        raise ValueError("profile must be lean, core or full")
+    if profile not in PROFILES:
+        raise ValueError("profile must be lean, core, engineering or full")
     if profile == "lean":
         base_dir = skills_dir(root)
         return [sid for sid in load_lean(root)["listed"] if (base_dir / sid).is_dir()]
@@ -853,6 +853,9 @@ def _profile_skills(profile: str, root: Path | None) -> list[str]:
             seen.add(sid)
             combined.append(sid)
         return [s for s in combined if (base_dir / s).is_dir()]
+    if profile == "engineering":   # everything except the marketing pack; copy_skills_to still refuses NOT_INSTALLED
+        marketing = set(load_pack_skill_ids("marketingskills", root))
+        return [s for s in list_skill_ids(root) if s not in marketing]
     return [s for s in list_skill_ids(root) if s not in NOT_INSTALLED]
 
 

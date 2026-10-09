@@ -57,7 +57,7 @@ Deprecated alias skills stay for compatibility, but they should route directly t
 - Add one secondary skill only when it materially reduces risk.
 - Avoid loading multiple adjacent skills that mostly restate the same workflow.
 - Prefer a core skill first when the request is broad or ambiguous.
-- Use [`skill-index.json`](../../skill-index.json) as the routing registry.
+- Use [`skill-index.json`](../skills/skill-index.json) as the routing registry.
 
 ## Memory and Retrieval
 

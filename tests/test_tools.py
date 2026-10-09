@@ -180,5 +180,50 @@ class CliTests(unittest.TestCase):
         self.assertIn("unknown tool", err)
 
 
+class CypressToolTests(unittest.TestCase):
+    def test_cypress_is_a_per_project_dev_dependency_never_global(self):
+        plan = tools.plan(tools.BY_ID["cypress"])
+        self.assertEqual(plan, [["npm", "install", "--save-dev", "cypress"]])
+        self.assertNotIn("-g", plan[0])
+
+    def test_cypress_note_names_the_crash_reports_and_how_to_switch_them_off(self):
+        # Cypress sends exception data to api.cypress.io unless CYPRESS_CRASH_REPORTS=0; the OpenTelemetry channel is a separate one.
+        note = tools.BY_ID["cypress"].note
+        self.assertIn("api.cypress.io", note)
+        self.assertIn("CYPRESS_CRASH_REPORTS=0", note)
+        self.assertNotIn("Telemetry is off by default", note)
+        root = Path(__file__).resolve().parents[1]
+        for relative in ("docs/third-party.md", "skills/bosskuai-cypress/SKILL.md"):
+            self.assertIn("CYPRESS_CRASH_REPORTS=0", (root / relative).read_text(encoding="utf-8"), relative)
+
+    def test_e2e_plan_keeps_its_companion_packages(self):
+        self.assertEqual(tools.plan(tools.BY_ID["e2e"])[0], ["npm", "install", "--save-dev", "e2e", "@e2e-dev/web", "ai@7"])
+
+    def test_cypress_is_detected_only_from_the_project_package_json(self):
+        with tempfile.TemporaryDirectory() as tmp, mock.patch("bossku.tools._which", return_value=None):
+            project = Path(tmp)
+            self.assertFalse(tools.installed(tools.BY_ID["cypress"], project))
+            (project / "package.json").write_text(json.dumps({"devDependencies": {"cypress": "^16.1.1"}}), encoding="utf-8")
+            self.assertTrue(tools.installed(tools.BY_ID["cypress"], project))
+
+    def test_cypress_node_range_matches_npm_engines(self):
+        cases = (("v22.0.0", True), ("v22.22.3", True), ("v23.11.0", False), ("v24.0.0", True),
+                 ("v25.1.0", False), ("v26.0.0", True), ("v20.19.0", False))
+        for version, ok in cases:
+            fake = subprocess.CompletedProcess([], 0, stdout=version + "\n")
+            with mock.patch("bossku.tools._which", return_value="node"), mock.patch("bossku.tools.subprocess.run", return_value=fake):
+                self.assertEqual(tools._node_problem(tools.BY_ID["cypress"]) == "", ok, version)
+
+    def test_cypress_install_runs_one_npm_command_after_a_yes(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            (Path(tmp) / "package.json").write_text("{}", encoding="utf-8")
+            seen = []
+            runner = lambda argv, **kw: seen.append(argv) or SimpleNamespace(returncode=0)
+            result = tools.run_install(tools.BY_ID["cypress"], project=Path(tmp), runner=runner, node_problem=lambda: "")
+        self.assertTrue(result["ok"])
+        self.assertEqual(seen[0][1:], ["install", "--save-dev", "cypress"])
+        self.assertEqual(len(seen), 1)
+
+
 if __name__ == "__main__":
     unittest.main()

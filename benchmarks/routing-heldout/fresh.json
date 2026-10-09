@@ -1,0 +1,2814 @@
+[
+  {
+    "id": "f-p1-01",
+    "prompt": "boleh tambah referral code field kat signup page, lepas tu write tests untuk discount logic, and bagi 2 line copy untuk promote dekat landing page",
+    "domain": "engineering",
+    "style": "rojak",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-coding-best-practices",
+        "bosskuai-engineering-delivery",
+        "referrals",
+        "signup"
+      ],
+      [
+        "bosskuai-qa-automation-strategy",
+        "bosskuai-tdd-loop",
+        "test-driven-development"
+      ],
+      [
+        "antislop-copywriting",
+        "copywriting",
+        "referrals"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-02",
+    "prompt": "Our pricing page has 3 tiers but nobody picks the RM49 one. Restructure it to 2 tiers with an annual toggle, then check the page title and meta description for SEO since we're rewriting the headline anyway.",
+    "domain": "marketing",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "cro",
+        "pricing"
+      ],
+      [
+        "bosskuai-seo-geo",
+        "seo-audit"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-03",
+    "prompt": "GA4 events for add to cart and checkout started on the Laravel shop. Purchase must fire once only, even on refresh. Tell me which events go in the weekly report.",
+    "domain": "data",
+    "style": "terse",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "analytics",
+        "bosskuai-analytics-metrics"
+      ],
+      [
+        "bosskuai-laravel-development"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-06",
+    "prompt": "Our Nuxt blog is slow on phones. Hero images are huge and the fonts flash when loading. Fix the images and font loading, then measure Core Web Vitals before and after so I can show the boss the difference.",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-nuxt-development",
+        "bosskuai-web-performance"
+      ],
+      [
+        "bosskuai-nuxt-development",
+        "bosskuai-web-performance"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-07",
+    "prompt": "Buat 30 hari content plan untuk TikTok dan IG untuk skincare line baru kami. Hooks mix BM dan English, and make sure the captions don't sound like typical AI brand copy.",
+    "domain": "marketing",
+    "style": "rojak",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-content-calendar",
+        "content-strategy",
+        "social"
+      ],
+      [
+        "antislop-copywriting",
+        "copywriting",
+        "malaysia-localisation"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-08",
+    "prompt": "WhatsApp order form breaks on iPhone Safari when the address is long. Find out why, fix it, and add a regression test so it stays fixed.",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-diagnose-loop",
+        "systematic-debugging"
+      ],
+      [
+        "bosskuai-browser-automation",
+        "bosskuai-tdd-loop",
+        "e2e-testing",
+        "test-driven-development"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-09",
+    "prompt": "Redesign the pricing section on our SaaS landing page so it looks premium and not like a template. It must work at phone width and the text contrast must pass WCAG AA.",
+    "domain": "design",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-taste",
+        "hallmark",
+        "redesign-skill",
+        "taste-skill"
+      ],
+      [
+        "antislop-layoutmobile",
+        "bosskuai-ui-ux-design-to-code"
+      ],
+      [
+        "accessibility",
+        "antislop-human"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-10",
+    "prompt": "Build a 3-step cold email sequence for F&B owners in Klang Valley. Also prepare a list of 200 outlets with names and business emails, and make sure the outreach follows PDPA consent rules.",
+    "domain": "marketing",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "cold-email",
+        "copywriting",
+        "emails"
+      ],
+      [
+        "bosskuai-lead-intelligence",
+        "prospecting"
+      ],
+      [
+        "bosskuai-lead-intelligence",
+        "bosskuai-legal-compliance",
+        "bosskuai-malaysia-pdpa-privacy",
+        "prospecting"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-11",
+    "prompt": "We want to add RM29 and RM79 monthly subscription tiers. I need the 12-month revenue math, webhook handling for failed card payments, and a dunning email to send when a payment fails.",
+    "domain": "product",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-financial-modeling",
+        "pricing"
+      ],
+      [
+        "bosskuai-api-design",
+        "bosskuai-saas-billing-ops"
+      ],
+      [
+        "bosskuai-api-design",
+        "bosskuai-saas-billing-ops",
+        "churn-prevention",
+        "emails"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-12",
+    "prompt": "Before launch, audit our Laravel admin login and the file upload endpoint for security holes. Then walk through the signup to checkout flow end to end and tell me what breaks.",
+    "domain": "security",
+    "style": "terse",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-cybersecurity-risk",
+        "bosskuai-laravel-security"
+      ],
+      [
+        "bosskuai-agentic-e2e",
+        "bosskuai-browser-automation",
+        "bosskuai-product-verification"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-13",
+    "prompt": "Dockerise our Node API with a compose file, deploy it to our VPS behind Caddy with HTTPS, and set up a daily off-site backup of the Postgres database with a restore test.",
+    "domain": "devops",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-docker",
+        "bosskuai-vps-docker-deployment"
+      ],
+      [
+        "bosskuai-vps-docker-deployment"
+      ],
+      [
+        "bosskuai-database-engineering",
+        "bosskuai-vps-docker-deployment"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-15",
+    "prompt": "Login kat Android terus fail lepas update semalam. Cari punca, pastikan iOS tak kena, then bagi checklist apa nak check sebelum push ke Play Store.",
+    "domain": "devops",
+    "style": "rojak",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-diagnose-loop",
+        "bosskuai-expo-react-native",
+        "systematic-debugging"
+      ],
+      [
+        "bosskuai-diagnose-loop",
+        "bosskuai-expo-react-native",
+        "bosskuai-product-verification",
+        "systematic-debugging"
+      ],
+      [
+        "bosskuai-mobile-app-release"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-16",
+    "prompt": "Review our checkout code",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-business-logic-review",
+        "bosskuai-coding-best-practices",
+        "bosskuai-rigorous-code-review"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-17",
+    "prompt": "Price our new tier",
+    "domain": "product",
+    "style": "casual",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-financial-modeling",
+        "bosskuai-market-analysis",
+        "bosskuai-paid-acquisition-monetization",
+        "pricing"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-18",
+    "prompt": "Write welcome email sequence",
+    "domain": "marketing",
+    "style": "terse",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "copywriting",
+        "emails",
+        "onboarding"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-19",
+    "prompt": "Speed up product page",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-performance-profiling",
+        "bosskuai-web-performance"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-20",
+    "prompt": "Check our PDPA compliance",
+    "domain": "security",
+    "style": "terse",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-legal-compliance",
+        "bosskuai-malaysia-pdpa-privacy"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-21",
+    "prompt": "Harden the admin panel",
+    "domain": "security",
+    "style": "terse",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-cybersecurity-risk",
+        "bosskuai-laravel-security"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-22",
+    "prompt": "Fix mobile menu overlap",
+    "domain": "design",
+    "style": "casual",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "antislop-layoutmobile",
+        "bosskuai-ui-ux-design-to-code"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-23",
+    "prompt": "Debug the cart timeout",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-diagnose-loop",
+        "systematic-debugging"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-24",
+    "prompt": "Add product structured data",
+    "domain": "marketing",
+    "style": "terse",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-seo-geo",
+        "schema"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-25",
+    "prompt": "Plan kempen Raya kami",
+    "domain": "marketing",
+    "style": "rojak",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-marketing-growth",
+        "bosskuai-planning-execution",
+        "marketing-plan"
+      ],
+      [
+        "bosskuai-content-calendar",
+        "malaysia-localisation",
+        "social"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-04",
+    "prompt": "We launch the bundle promo this Friday. Need a launch checklist, a countdown popup on the homepage, and 3 IG captions in Manglish that don't sound like a bot wrote them.",
+    "domain": "marketing",
+    "style": "casual",
+    "kind": "multi",
+    "agreement": "tiebreak",
+    "concerns": [
+      [
+        "bosskuai-launch-commercialization",
+        "bosskuai-planning-execution",
+        "launch"
+      ],
+      [
+        "cro",
+        "popups"
+      ],
+      [
+        "bosskuai-content-calendar",
+        "copywriting",
+        "social"
+      ],
+      [
+        "antislop-copywriting",
+        "malaysia-localisation"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-05",
+    "prompt": "Add a coupon validation endpoint to our Express API with rate limiting so people can't brute force codes. The error response must not reveal which codes exist, and write tests for the lockout.",
+    "domain": "security",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "tiebreak",
+    "concerns": [
+      [
+        "bosskuai-api-design",
+        "bosskuai-coding-best-practices"
+      ],
+      [
+        "bosskuai-api-design",
+        "bosskuai-cybersecurity-risk",
+        "bosskuai-redis-caching-queues",
+        "error-handling"
+      ],
+      [
+        "bosskuai-integration-testing",
+        "bosskuai-tdd-loop",
+        "test-driven-development"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-14",
+    "prompt": "Add a dashboard page showing monthly sales per outlet as a bar chart, plus a CSV export button and unit tests for the totals. Use the existing sales table.",
+    "domain": "data",
+    "style": "casual",
+    "kind": "multi",
+    "agreement": "tiebreak",
+    "concerns": [
+      [
+        "antislop-ui",
+        "bosskuai-laravel-development",
+        "bosskuai-react-development",
+        "bosskuai-ui-ux-design-to-code"
+      ],
+      [
+        "bosskuai-coding-best-practices",
+        "bosskuai-engineering-delivery",
+        "bosskuai-laravel-development",
+        "bosskuai-polyglot-engineering"
+      ],
+      [
+        "bosskuai-tdd-loop",
+        "test-driven-development"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-26",
+    "prompt": "yes go ahead and do it",
+    "domain": "general",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-27",
+    "prompt": "ok, also rename that variable to userTotal",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-28",
+    "prompt": "nice, looks good to me",
+    "domain": "general",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-29",
+    "prompt": "what did you change in the file?",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-30",
+    "prompt": "sambung",
+    "domain": "general",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-31",
+    "prompt": "boleh, proceed",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-32",
+    "prompt": "no, not that button, the one below it",
+    "domain": "design",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-33",
+    "prompt": "try again",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-35",
+    "prompt": "thanks bro, that's all for today",
+    "domain": "general",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-36",
+    "prompt": "ok lah, go on",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-37",
+    "prompt": "use the blue one from before",
+    "domain": "design",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-38",
+    "prompt": "continue from where you stopped",
+    "domain": "general",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-39",
+    "prompt": "skip the tests for now, I'll run them later",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-40",
+    "prompt": "make the reply shorter pls",
+    "domain": "general",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-token-saver",
+        "malaysia-localisation"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-42",
+    "prompt": "yes, but keep the old price for existing users",
+    "domain": "product",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-saas-billing-ops",
+        "pricing"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-43",
+    "prompt": "how long did that take?",
+    "domain": "general",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-44",
+    "prompt": "ok show me the diff",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-45",
+    "prompt": "fine, I'll check it myself later",
+    "domain": "general",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-46",
+    "prompt": "wait, don't push yet",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-47",
+    "prompt": "ok noted, thanks for the explanation",
+    "domain": "general",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-48",
+    "prompt": "yes the second option is better",
+    "domain": "product",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-49",
+    "prompt": "ok done, what's next?",
+    "domain": "general",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-50",
+    "prompt": "understood, carry on",
+    "domain": "general",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-34",
+    "prompt": "revert the last change, the header is broken now",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "tiebreak",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-41",
+    "prompt": "tukar warna button jadi hijau",
+    "domain": "design",
+    "style": "rojak",
+    "kind": "followup",
+    "agreement": "tiebreak",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-02",
+    "prompt": "orders table is slow on the status filter. find out why, add the index in a migration that won't lock prod, and check the query plan after it's in",
+    "domain": "data",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-database-engineering",
+        "bosskuai-diagnose-loop",
+        "bosskuai-performance-profiling",
+        "mysql-patterns"
+      ],
+      [
+        "bosskuai-database-engineering",
+        "bosskuai-performance-profiling",
+        "database-migrations",
+        "mysql-patterns"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-03",
+    "prompt": "dockerize the python worker with a compose file that runs off a .env, then write a deploy script for the VPS that rolls back if the healthcheck fails",
+    "domain": "devops",
+    "style": "terse",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-docker",
+        "bosskuai-vps-docker-deployment"
+      ],
+      [
+        "bosskuai-devops-iac",
+        "bosskuai-docker",
+        "bosskuai-vps-docker-deployment"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-04",
+    "prompt": "audit the invoices controller for tenant leaks, users seeing other orgs' data. and make password reset tokens expire after 30 min",
+    "domain": "security",
+    "style": "casual",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-cybersecurity-risk",
+        "bosskuai-laravel-security",
+        "bosskuai-tenant-isolation-security"
+      ],
+      [
+        "bosskuai-cybersecurity-risk",
+        "bosskuai-laravel-security",
+        "bosskuai-tenant-isolation-security"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-06",
+    "prompt": "move the reminder notifications off cron into a redis queue with retries. add a test for the retry path and update the README on how to start the worker. keep the old cron path working until the queue is proven",
+    "domain": "engineering",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-redis-caching-queues",
+        "error-handling"
+      ],
+      [
+        "bosskuai-integration-testing",
+        "bosskuai-tdd-loop",
+        "python-testing",
+        "test-driven-development"
+      ],
+      [
+        "bosskuai-devops-iac",
+        "bosskuai-engineering-delivery",
+        "bosskuai-software-architecture"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-07",
+    "prompt": "add a playwright test for the checkout flow and wire it into CI so a red run blocks the merge, ok?",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-browser-automation",
+        "bosskuai-product-verification",
+        "bosskuai-qa-automation-strategy",
+        "e2e-testing"
+      ],
+      [
+        "bosskuai-ci-cd-pipelines",
+        "bosskuai-github-workflow",
+        "bosskuai-product-verification",
+        "bosskuai-qa-automation-strategy",
+        "e2e-testing"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-08",
+    "prompt": "I need the seed deck for investors this month. the numbers have to match the financial model we did last week. also a one-pager for the same data, one page only, no fluff",
+    "domain": "product",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-investor-prep",
+        "sales-enablement"
+      ],
+      [
+        "bosskuai-financial-modeling",
+        "bosskuai-investor-prep",
+        "sales-enablement"
+      ],
+      [
+        "antislop-copywriting",
+        "copy-editing"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-09",
+    "prompt": "lighthouse mobile is 38 on the nuxt site. find the big offenders, fix the hero images, and stop the third-party chat widget from loading before first paint",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-web-performance"
+      ],
+      [
+        "bosskuai-nuxt-development",
+        "vue-patterns"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-11",
+    "prompt": "write an ADR for why the reporting service is on postgres and not mysql. then update the API reference for /v2/reports so it matches what the code does now",
+    "domain": "engineering",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "architecture-decision-records",
+        "bosskuai-database-engineering",
+        "bosskuai-software-architecture",
+        "bosskuai-tech-lead"
+      ],
+      [
+        "bosskuai-api-design",
+        "bosskuai-codebase-analysis",
+        "bosskuai-grounding"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-12",
+    "prompt": "payment webhook retries are making duplicate subscriptions. make the handler idempotent, and add a failed renewal notice",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-api-design",
+        "bosskuai-diagnose-loop",
+        "bosskuai-saas-billing-ops"
+      ],
+      [
+        "bosskuai-api-design",
+        "bosskuai-diagnose-loop",
+        "bosskuai-saas-billing-ops",
+        "churn-prevention"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-14",
+    "prompt": "boleh buat copy BM untuk banner promo dan meta tag SEO untuk product page? pastikan page boleh di-index, jangan ada robots block",
+    "domain": "marketing",
+    "style": "rojak",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "antislop-copywriting",
+        "bosskuai-i18n-l10n",
+        "copywriting",
+        "malaysia-localisation"
+      ],
+      [
+        "bosskuai-seo-geo",
+        "seo-audit"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-15",
+    "prompt": "sanctum tokens for the mobile login. pest tests for token revoke, and check the abilities scopes aren't wildcard everywhere",
+    "domain": "security",
+    "style": "terse",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-laravel-development",
+        "bosskuai-laravel-security"
+      ],
+      [
+        "bosskuai-laravel-tdd",
+        "bosskuai-tdd-loop"
+      ],
+      [
+        "bosskuai-cybersecurity-risk",
+        "bosskuai-laravel-development",
+        "bosskuai-laravel-security",
+        "bosskuai-tenant-isolation-security"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-16",
+    "prompt": "fix the login bug",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-diagnose-loop",
+        "systematic-debugging"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-17",
+    "prompt": "why is checkout slow",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-database-engineering",
+        "bosskuai-diagnose-loop",
+        "bosskuai-performance-profiling",
+        "bosskuai-web-performance"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-18",
+    "prompt": "scan repo for secrets",
+    "domain": "security",
+    "style": "terse",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-cybersecurity-risk",
+        "bosskuai-laravel-security"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-19",
+    "prompt": "tighten our homepage copy",
+    "domain": "marketing",
+    "style": "casual",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "antislop-copywriting",
+        "copy-editing",
+        "copywriting"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-20",
+    "prompt": "redo the hero section",
+    "domain": "design",
+    "style": "casual",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "antislop-ui",
+        "bosskuai-taste",
+        "hallmark",
+        "redesign-skill",
+        "taste-skill"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-21",
+    "prompt": "menu mobile rosak fix",
+    "domain": "design",
+    "style": "rojak",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-diagnose-loop",
+        "minimal-fix",
+        "systematic-debugging"
+      ],
+      [
+        "antislop-layoutmobile",
+        "bosskuai-ui-ux-design-to-code"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-22",
+    "prompt": "draft a cancel survey",
+    "domain": "product",
+    "style": "casual",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "churn-prevention",
+        "customer-research"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-23",
+    "prompt": "why cron keeps failing",
+    "domain": "devops",
+    "style": "terse",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-diagnose-loop",
+        "bosskuai-observability-sre",
+        "systematic-debugging"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-24",
+    "prompt": "explain our data model",
+    "domain": "data",
+    "style": "casual",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-codebase-analysis",
+        "bosskuai-data-architecture",
+        "bosskuai-project-understanding",
+        "graft",
+        "graphify"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-25",
+    "prompt": "help me pitch investors",
+    "domain": "product",
+    "style": "casual",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-financial-modeling",
+        "bosskuai-investor-prep",
+        "sales-enablement"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-01",
+    "prompt": "add POST /api/invoices with validation and feature tests, then a github action that runs the suite on every PR",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "multi",
+    "agreement": "tiebreak",
+    "concerns": [
+      [
+        "bosskuai-api-design",
+        "bosskuai-coding-best-practices",
+        "bosskuai-engineering-delivery",
+        "bosskuai-laravel-development"
+      ],
+      [
+        "bosskuai-integration-testing",
+        "bosskuai-laravel-tdd",
+        "bosskuai-tdd-loop",
+        "test-driven-development"
+      ],
+      [
+        "bosskuai-ci-cd-pipelines",
+        "bosskuai-github-workflow",
+        "bosskuai-qa-automation-strategy"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-05",
+    "prompt": "need a new register page for the landing. not the usual gradient blob look, and it has to work on a 390px phone",
+    "domain": "design",
+    "style": "casual",
+    "kind": "multi",
+    "agreement": "tiebreak",
+    "concerns": [
+      [
+        "antislop",
+        "antislop-ui",
+        "bosskuai-taste",
+        "hallmark",
+        "minimalist-skill",
+        "soft-skill",
+        "taste-skill"
+      ],
+      [
+        "antislop-layoutmobile",
+        "bosskuai-ui-ux-design-to-code"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-10",
+    "prompt": "tolong check new intake form, kumpul data apa, consent checkbox ayat macam mana, PDPA ok ke, simpan data berapa lama",
+    "domain": "security",
+    "style": "rojak",
+    "kind": "multi",
+    "agreement": "tiebreak",
+    "concerns": [
+      [
+        "bosskuai-legal-compliance",
+        "bosskuai-malaysia-pdpa-privacy"
+      ],
+      [
+        "bosskuai-data-architecture",
+        "bosskuai-legal-compliance",
+        "bosskuai-malaysia-pdpa-privacy"
+      ],
+      [
+        "copywriting",
+        "malaysia-localisation"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-13",
+    "prompt": "CI for the go service and the python scripts: matrix build, cache modules, and fail the job if the hot path gets slower in the pprof run",
+    "domain": "devops",
+    "style": "terse",
+    "kind": "multi",
+    "agreement": "tiebreak",
+    "concerns": [
+      [
+        "bosskuai-ci-cd-pipelines",
+        "bosskuai-github-workflow"
+      ],
+      [
+        "bosskuai-go-development",
+        "bosskuai-polyglot-engineering"
+      ],
+      [
+        "bosskuai-performance-profiling",
+        "bosskuai-ratchet-loop"
+      ]
+    ]
+  },
+  {
+    "id": "f-p2-26",
+    "prompt": "yes go ahead",
+    "domain": "general",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-27",
+    "prompt": "ok can you also rename that variable to userId",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-28",
+    "prompt": "looks good, thanks",
+    "domain": "general",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-29",
+    "prompt": "what did you change?",
+    "domain": "general",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-30",
+    "prompt": "sambung",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-31",
+    "prompt": "boleh, proceed",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-32",
+    "prompt": "undo that last part",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-33",
+    "prompt": "no, the other file",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-35",
+    "prompt": "commit it",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-36",
+    "prompt": "tukar nama fungsi tu jadi getUser pulak",
+    "domain": "engineering",
+    "style": "rojak",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-37",
+    "prompt": "skip the tests for now",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-38",
+    "prompt": "kenapa tu?",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-39",
+    "prompt": "good, next one",
+    "domain": "general",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-40",
+    "prompt": "can you summarise what's left",
+    "domain": "general",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-41",
+    "prompt": "try again",
+    "domain": "general",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-42",
+    "prompt": "same thing for the other endpoint",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-43",
+    "prompt": "no need to explain, just do it",
+    "domain": "general",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-44",
+    "prompt": "ya, yang kedua",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-45",
+    "prompt": "thanks, that worked",
+    "domain": "general",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-46",
+    "prompt": "hmm, revert the last change",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-47",
+    "prompt": "make it shorter",
+    "domain": "general",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-48",
+    "prompt": "use tabs not spaces in this file",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-49",
+    "prompt": "ok ship it",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-50",
+    "prompt": "apa maksud error tu?",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-34",
+    "prompt": "wait, that's the wrong branch. I meant the release branch, not main. redo it there",
+    "domain": "engineering",
+    "style": "detailed",
+    "kind": "followup",
+    "agreement": "tiebreak",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-01",
+    "prompt": "Add a dark mode toggle to the settings page in our Nuxt app. It should remember the choice in a cookie so there is no flash on reload. Then write Playwright tests that cover toggling and reloading.",
+    "domain": "engineering",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-nuxt-development",
+        "vue-patterns"
+      ],
+      [
+        "bosskuai-qa-automation-strategy",
+        "e2e-testing"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-02",
+    "prompt": "Our pricing page is not converting. Rewrite the hero and the three plan descriptions so they are clearer, suggest changes to the CTA placement, and set up a test between the old and new versions.",
+    "domain": "marketing",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "antislop-copywriting",
+        "copy-editing",
+        "copywriting"
+      ],
+      [
+        "cro"
+      ],
+      [
+        "ab-testing",
+        "bosskuai-growth-experiment"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-03",
+    "prompt": "Rework the onboarding screens in our Expo app so they stop looking like a template. Make the step-to-step transitions spring-based and gesture-friendly, and check that the text on the coloured cards meets WCAG AA contrast.",
+    "domain": "design",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "animate-expo",
+        "apple-design",
+        "bosskuai-expo-react-native"
+      ],
+      [
+        "accessibility",
+        "antislop-human"
+      ],
+      [
+        "antislop-layoutmobile",
+        "antislop-ui",
+        "hallmark",
+        "redesign-skill"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-04",
+    "prompt": "Review our Laravel login controller for auth holes, add a Redis rate limit on failed logins, and write a PHPUnit test for the lockout.",
+    "domain": "security",
+    "style": "terse",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-cybersecurity-risk",
+        "bosskuai-laravel-security"
+      ],
+      [
+        "bosskuai-laravel-development",
+        "bosskuai-redis-caching-queues"
+      ],
+      [
+        "bosskuai-laravel-tdd"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-05",
+    "prompt": "Write a Dockerfile and docker-compose file for our Go API with a health check and a non-root user. Then add a GitHub Actions workflow that builds and pushes the image when we tag a release.",
+    "domain": "devops",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-docker",
+        "bosskuai-go-development"
+      ],
+      [
+        "bosskuai-ci-cd-pipelines",
+        "bosskuai-github-workflow"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-06",
+    "prompt": "I have 12 user interview transcripts in the research folder. Pull out the main pain points, group them into personas, then write a short 3-email onboarding sequence for the group that struggles most.",
+    "domain": "product",
+    "style": "casual",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-customer-discovery",
+        "customer-research"
+      ],
+      [
+        "emails",
+        "onboarding"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-07",
+    "prompt": "Make the product tour modal usable with keyboard only and with screen readers. Also add a small confetti burst when someone finishes the tour, but keep it subtle, not cheesy.",
+    "domain": "design",
+    "style": "casual",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "accessibility",
+        "antislop-human",
+        "bosskuai-ui-ux-design-to-code"
+      ],
+      [
+        "animate",
+        "emil-design-eng"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-08",
+    "prompt": "Tolong review PR checkout refactor ni, check ada tak double-charge risk, lepas tu tambah regression test untuk retry flow.",
+    "domain": "engineering",
+    "style": "rojak",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-pr-check",
+        "bosskuai-rigorous-code-review"
+      ],
+      [
+        "bosskuai-business-logic-review",
+        "bosskuai-saas-billing-ops"
+      ],
+      [
+        "bosskuai-integration-testing",
+        "bosskuai-qa-automation-strategy",
+        "bosskuai-tdd-loop",
+        "test-driven-development"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-09",
+    "prompt": "Write meta titles, descriptions and product JSON-LD for our 40 product landing pages. Also figure out why the blog stopped showing up in Google, since traffic dropped last month.",
+    "domain": "marketing",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-seo-geo",
+        "programmatic-seo",
+        "seo-audit"
+      ],
+      [
+        "schema"
+      ],
+      [
+        "bosskuai-seo-geo",
+        "programmatic-seo",
+        "seo-audit"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-10",
+    "prompt": "Build a Three.js hero scene for the homepage with our rotating product model and soft lighting. Fall back to a static image on low-end phones and keep the extra bundle size small.",
+    "domain": "design",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-3d-web-development"
+      ],
+      [
+        "bosskuai-3d-web-development",
+        "bosskuai-web-performance"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-12",
+    "prompt": "Orders table queries are slow. Find the missing indexes, write a migration that adds them without locking writes, then check the endpoint timing before and after.",
+    "domain": "data",
+    "style": "terse",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-database-engineering",
+        "bosskuai-performance-profiling",
+        "mysql-patterns"
+      ],
+      [
+        "bosskuai-database-engineering",
+        "bosskuai-performance-profiling",
+        "database-migrations",
+        "mysql-patterns"
+      ],
+      [
+        "bosskuai-database-engineering",
+        "bosskuai-performance-profiling",
+        "mysql-patterns"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-13",
+    "prompt": "Plan the launch for our v2 release: a day-by-day checklist, a Product Hunt post, and a short email to existing users about the change.",
+    "domain": "marketing",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-launch-commercialization",
+        "bosskuai-planning-execution",
+        "launch"
+      ],
+      [
+        "bosskuai-launch-commercialization",
+        "bosskuai-planning-execution",
+        "copywriting",
+        "directory-submissions",
+        "launch"
+      ],
+      [
+        "copywriting",
+        "directory-submissions",
+        "emails",
+        "launch"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-14",
+    "prompt": "Our signup form needs PDPA consent for Malaysian users. Add an unticked consent checkbox linked to the privacy notice, and draft the notice text covering retention and user rights.",
+    "domain": "security",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-legal-compliance",
+        "bosskuai-malaysia-pdpa-privacy"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-15",
+    "prompt": "We are moving our REST API to versioned endpoints. Write an ADR on why we picked URL versioning, define the error format and pagination rules for v2, and draft the changelog entry for API consumers.",
+    "domain": "engineering",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "architecture-decision-records",
+        "bosskuai-software-architecture"
+      ],
+      [
+        "bosskuai-api-design",
+        "error-handling"
+      ],
+      [
+        "bosskuai-github-workflow",
+        "draft-release-notes"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-16",
+    "prompt": "fix the sorting bug",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-diagnose-loop",
+        "systematic-debugging"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-17",
+    "prompt": "debug failing checkout test",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-diagnose-loop",
+        "ci-triage",
+        "systematic-debugging"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-18",
+    "prompt": "speed up homepage load",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-performance-profiling",
+        "bosskuai-web-performance"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-19",
+    "prompt": "price our SaaS tiers",
+    "domain": "marketing",
+    "style": "casual",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-financial-modeling",
+        "bosskuai-paid-acquisition-monetization",
+        "pricing"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-20",
+    "prompt": "write cold outreach emails",
+    "domain": "marketing",
+    "style": "terse",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-lead-intelligence",
+        "cold-email"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-21",
+    "prompt": "harden our login endpoint",
+    "domain": "security",
+    "style": "terse",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-cybersecurity-risk",
+        "bosskuai-laravel-security"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-22",
+    "prompt": "make navbar mobile friendly",
+    "domain": "design",
+    "style": "casual",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "antislop-layoutmobile",
+        "bosskuai-ui-ux-design-to-code"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-23",
+    "prompt": "plan the Q3 roadmap",
+    "domain": "product",
+    "style": "terse",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-planning-execution",
+        "bosskuai-product-strategy"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-24",
+    "prompt": "tune slow SQL query",
+    "domain": "data",
+    "style": "terse",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-database-engineering",
+        "bosskuai-performance-profiling",
+        "mysql-patterns"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-25",
+    "prompt": "tolong buat content calendar",
+    "domain": "marketing",
+    "style": "rojak",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-content-calendar",
+        "content-strategy",
+        "social"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-11",
+    "prompt": "Add Sonner toasts to the save and delete buttons in our React dashboard, and make them follow our dark mode colours. The bar charts on that page also look wrong in dark mode, fix those too.",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "multi",
+    "agreement": "tiebreak",
+    "concerns": [
+      [
+        "ask-sonner"
+      ],
+      [
+        "antislop-ui",
+        "bosskuai-design-systems"
+      ]
+    ]
+  },
+  {
+    "id": "f-p3-26",
+    "prompt": "yes, go ahead with that",
+    "domain": "general",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-27",
+    "prompt": "ok can you also rename that helper function",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-28",
+    "prompt": "looks good, thanks a lot",
+    "domain": "general",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-29",
+    "prompt": "what exactly did you change?",
+    "domain": "general",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-30",
+    "prompt": "sambung la",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-31",
+    "prompt": "boleh, jalan terus",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-32",
+    "prompt": "undo the last edit please",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-33",
+    "prompt": "no, keep the old header, just change the logo",
+    "domain": "design",
+    "style": "detailed",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-34",
+    "prompt": "ok do the mobile one too",
+    "domain": "design",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-35",
+    "prompt": "can you explain that again but simpler",
+    "domain": "general",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-36",
+    "prompt": "which file was that in?",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-37",
+    "prompt": "thanks, it worked on my laptop",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-38",
+    "prompt": "ya, pilih option B",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-39",
+    "prompt": "wait, revert that, I changed my mind",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-40",
+    "prompt": "good. now do the same for the footer",
+    "domain": "design",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-41",
+    "prompt": "tak faham, terangkan balik sikit",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-42",
+    "prompt": "use 2 spaces not 4 for the indent",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-43",
+    "prompt": "ok, save it and move on",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-44",
+    "prompt": "make the button text shorter, two words max",
+    "domain": "design",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-45",
+    "prompt": "roughly how long will that take?",
+    "domain": "general",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-46",
+    "prompt": "ok that makes sense, I will think about it over lunch and come back to you",
+    "domain": "general",
+    "style": "detailed",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-47",
+    "prompt": "nice, next one please",
+    "domain": "general",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-48",
+    "prompt": "ya betul, teruskan",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-49",
+    "prompt": "can you put that in a bullet list",
+    "domain": "general",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-50",
+    "prompt": "ok same thing but for the other tab",
+    "domain": "design",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-01",
+    "prompt": "add a forgot password flow to our Laravel app. reset links should expire after 30 min and can't be used twice. write feature tests for the whole thing, I want them green before I push",
+    "domain": "engineering",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-laravel-development"
+      ],
+      [
+        "bosskuai-cybersecurity-risk",
+        "bosskuai-laravel-security"
+      ],
+      [
+        "bosskuai-laravel-tdd",
+        "bosskuai-laravel-verification",
+        "bosskuai-tdd-loop"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-03",
+    "prompt": "docker compose for node api + postgres + redis, healthchecks, secrets from env file not hardcoded. caddy in front with auto https. only 80 and 443 exposed to the internet",
+    "domain": "devops",
+    "style": "terse",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-docker",
+        "bosskuai-vps-docker-deployment"
+      ],
+      [
+        "bosskuai-docker",
+        "bosskuai-vps-docker-deployment"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-04",
+    "prompt": "checkout page lambat gila kat phone. cari sebab, fix yang paling besar, and bagi Lighthouse score before dan after. cart API pun rasa lembab, check query database sekali",
+    "domain": "engineering",
+    "style": "rojak",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-diagnose-loop",
+        "bosskuai-performance-profiling",
+        "bosskuai-ratchet-loop",
+        "bosskuai-web-performance"
+      ],
+      [
+        "bosskuai-database-engineering",
+        "bosskuai-performance-profiling"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-05",
+    "prompt": "Customer boleh tengok invoice syarikat lain kalau tukar id dalam URL. Fix bug tu, then go through every other endpoint for the same problem and list what you find. Add a regression test too.",
+    "domain": "security",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-cybersecurity-risk",
+        "bosskuai-diagnose-loop",
+        "bosskuai-laravel-security",
+        "bosskuai-tenant-isolation-security"
+      ],
+      [
+        "bosskuai-cybersecurity-risk",
+        "bosskuai-diagnose-loop",
+        "bosskuai-laravel-security",
+        "bosskuai-tenant-isolation-security"
+      ],
+      [
+        "bosskuai-integration-testing",
+        "bosskuai-laravel-tdd",
+        "bosskuai-tdd-loop"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-06",
+    "prompt": "write a python script to clean our customer csv export: dedupe emails, normalize phone numbers to +60 format. pytest for it. then design the postgres table to store the cleaned rows",
+    "domain": "data",
+    "style": "terse",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "python-patterns"
+      ],
+      [
+        "python-testing"
+      ],
+      [
+        "bosskuai-data-architecture",
+        "bosskuai-database-engineering"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-07",
+    "prompt": "We're launching on Product Hunt next month. I need a 2-week plan, a launch day checklist, and about 5 LinkedIn posts for the countdown week",
+    "domain": "marketing",
+    "style": "casual",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-launch-commercialization",
+        "bosskuai-planning-execution",
+        "launch"
+      ],
+      [
+        "bosskuai-content-calendar",
+        "social"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-08",
+    "prompt": "contact form kena spam bot teruk sangat. letak honeypot dan rate limit, dan pastikan form tu boleh pakai dengan screen reader juga",
+    "domain": "security",
+    "style": "rojak",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-cybersecurity-risk",
+        "bosskuai-redis-caching-queues"
+      ],
+      [
+        "accessibility",
+        "antislop-human",
+        "bosskuai-ui-ux-design-to-code"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-09",
+    "prompt": "we need to add a tenant_id column to the users table in production without locking it for long. write the migration in safe steps with a rollback, check the indexes after, and make sure we have a verified backup before we run it",
+    "domain": "data",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-database-engineering",
+        "database-migrations"
+      ],
+      [
+        "bosskuai-database-engineering",
+        "bosskuai-vps-docker-deployment",
+        "database-migrations"
+      ],
+      [
+        "bosskuai-database-engineering",
+        "bosskuai-tenant-isolation-security",
+        "database-migrations"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-10",
+    "prompt": "subscriptions churn 9% a month. I want a cancel flow with one save offer and an exit survey, and the copy on those screens should not sound desperate",
+    "domain": "product",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-saas-billing-ops",
+        "churn-prevention"
+      ],
+      [
+        "antislop-copywriting",
+        "copy-editing",
+        "copywriting"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-11",
+    "prompt": "build an internal page that shows daily signups, MRR and churn from our Postgres. charts need to read well in dark mode too. write the SQL for each metric as well",
+    "domain": "data",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "antislop-ui",
+        "bosskuai-ui-ux-design-to-code"
+      ],
+      [
+        "bosskuai-analytics-metrics",
+        "bosskuai-database-engineering"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-12",
+    "prompt": "scaffold a go worker that consumes jobs from redis with retry and backoff, add table tests, then draft a runbook for when the queue backs up at night",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-go-development",
+        "bosskuai-redis-caching-queues"
+      ],
+      [
+        "bosskuai-go-development",
+        "bosskuai-tdd-loop"
+      ],
+      [
+        "bosskuai-incident-response",
+        "bosskuai-observability-sre",
+        "bosskuai-operations"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-13",
+    "prompt": "Nak buat prototype fitur referral untuk app ni hujung minggu. Check dulu ada library yang dah siap ke tak, lepas tu buat MVP kasar yang boleh demo kat customer",
+    "domain": "product",
+    "style": "rojak",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-search-first"
+      ],
+      [
+        "bosskuai-rapid-prototype",
+        "bosskuai-throwaway-prototype"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-14",
+    "prompt": "I want to A/B test the pricing page headline. plan the test with sample size and a stop rule, write two headline variants, and set up the event tracking so we can see conversions per variant",
+    "domain": "marketing",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "ab-testing",
+        "bosskuai-growth-experiment"
+      ],
+      [
+        "antislop-copywriting",
+        "copywriting",
+        "cro"
+      ],
+      [
+        "analytics",
+        "bosskuai-analytics-metrics"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-15",
+    "prompt": "our VPS api keeps crashing at night and I only find out in the morning. figure out what the logs say, set up uptime alerts, and write a deploy script that rolls back if the health check fails",
+    "domain": "devops",
+    "style": "detailed",
+    "kind": "multi",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-diagnose-loop",
+        "bosskuai-incident-response",
+        "bosskuai-observability-sre"
+      ],
+      [
+        "bosskuai-observability-sre"
+      ],
+      [
+        "bosskuai-devops-iac",
+        "bosskuai-hostinger-hosting",
+        "bosskuai-vps-docker-deployment"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-16",
+    "prompt": "fix the login timeout",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-diagnose-loop",
+        "systematic-debugging"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-17",
+    "prompt": "boost signup conversion rate",
+    "domain": "marketing",
+    "style": "casual",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "cro",
+        "signup"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-18",
+    "prompt": "check our API security",
+    "domain": "security",
+    "style": "terse",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-cybersecurity-risk",
+        "bosskuai-laravel-security",
+        "bosskuai-tenant-isolation-security"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-19",
+    "prompt": "review this pull request",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-pr-check",
+        "bosskuai-rigorous-code-review"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-21",
+    "prompt": "tulis copy untuk homepage",
+    "domain": "marketing",
+    "style": "rojak",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "antislop-copywriting",
+        "copywriting"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-22",
+    "prompt": "set up CI pipeline",
+    "domain": "devops",
+    "style": "terse",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-ci-cd-pipelines",
+        "bosskuai-github-workflow"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-23",
+    "prompt": "profile our search endpoint",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-database-engineering",
+        "bosskuai-diagnose-loop",
+        "bosskuai-performance-profiling"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-24",
+    "prompt": "write a cold email",
+    "domain": "marketing",
+    "style": "casual",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "cold-email",
+        "copywriting"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-25",
+    "prompt": "audit keselamatan app kami",
+    "domain": "security",
+    "style": "rojak",
+    "kind": "short",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-cybersecurity-risk",
+        "bosskuai-laravel-security",
+        "bosskuai-tenant-isolation-security"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-02",
+    "prompt": "Landing page waitlist kita nampak macam template AI sangat. redesign ikut gaya yang lagi premium, tulis copy hero dan CTA sekali, lepas tu check mobile 390px tak pecah",
+    "domain": "design",
+    "style": "rojak",
+    "kind": "multi",
+    "agreement": "tiebreak",
+    "concerns": [
+      [
+        "bosskuai-taste",
+        "hallmark",
+        "redesign-skill",
+        "taste-skill"
+      ],
+      [
+        "antislop",
+        "antislop-ui"
+      ],
+      [
+        "antislop-copywriting",
+        "copywriting"
+      ],
+      [
+        "antislop-layoutmobile",
+        "bosskuai-ui-ux-design-to-code"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-20",
+    "prompt": "make dashboard look nicer",
+    "domain": "design",
+    "style": "casual",
+    "kind": "short",
+    "agreement": "tiebreak",
+    "concerns": [
+      [
+        "antislop-ui",
+        "bosskuai-ui-ux-design-to-code",
+        "redesign-skill"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-26",
+    "prompt": "yep go on",
+    "domain": "general",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-27",
+    "prompt": "ok can you also rename that variable to userCount",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-28",
+    "prompt": "looks good thx",
+    "domain": "general",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-29",
+    "prompt": "what exactly did you change?",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-30",
+    "prompt": "sambung lagi",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-31",
+    "prompt": "boleh, gas",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-32",
+    "prompt": "no, revert the last one",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-33",
+    "prompt": "tukar balik ke versi tadi",
+    "domain": "engineering",
+    "style": "rojak",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-34",
+    "prompt": "wait show the diff first",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-36",
+    "prompt": "thanks, that fixed it",
+    "domain": "general",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-37",
+    "prompt": "can u explain line 42 again, simpler this time",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-38",
+    "prompt": "try the other approach instead",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-39",
+    "prompt": "skip the tests for now, we'll add them later",
+    "domain": "engineering",
+    "style": "detailed",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-40",
+    "prompt": "kenapa error tadi tu muncul ya?",
+    "domain": "engineering",
+    "style": "rojak",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-diagnose-loop",
+        "systematic-debugging"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-41",
+    "prompt": "ok now do the same for the admin page",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-42",
+    "prompt": "too long, shorten it to half",
+    "domain": "general",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-43",
+    "prompt": "undo that, I changed my mind",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-44",
+    "prompt": "good. next one please",
+    "domain": "general",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-45",
+    "prompt": "rerun it and paste the output",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-46",
+    "prompt": "sounds right, do it",
+    "domain": "general",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-47",
+    "prompt": "not that file, the one in utils folder",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-48",
+    "prompt": "commit it with a short message",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-49",
+    "prompt": "bagus, teruskan",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "followup",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-35",
+    "prompt": "ok merge it",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "followup",
+    "agreement": "tiebreak",
+    "concerns": [
+      [
+        "bosskuai-github-workflow",
+        "bosskuai-pr-check",
+        "finishing-a-development-branch"
+      ]
+    ]
+  },
+  {
+    "id": "f-p4-50",
+    "prompt": "hmm, what does that function actually return?",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "followup",
+    "agreement": "tiebreak",
+    "concerns": []
+  }
+]

@@ -2,7 +2,7 @@ import io
 import json
 import tempfile
 import unittest
-from contextlib import redirect_stdout
+from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 from unittest import mock
 
@@ -11,7 +11,7 @@ from bossku.index import index_is_stale, write_index
 from bossku.install import update_user
 from bossku.init_project import init_project
 from bossku.memory import save_user_config
-from bossku.skills import _profile_skills, find_skill, select_skill_stack, write_routing_cache
+from bossku.skills import _profile_skills, find_skill, select_skill_stack
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -143,17 +143,6 @@ class RoutingInventoryTests(unittest.TestCase):
                 update_user(root=ROOT, home=home)
                 install.assert_called_once_with(root=ROOT, home=home, profile='core', vault='vault')
 
-    def test_cache_uses_actual_inventory_and_preserves_invocation_flags(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            path = Path(tmp) / 'routing.json'
-            write_routing_cache(path, ROOT, available={'cofounder', 'prototype', 'x402'})
-            data = json.loads(path.read_text(encoding='utf-8'))
-            rows = {row['id']: row for row in data['skills']}
-            self.assertEqual(set(rows), {'cofounder', 'prototype'})
-            self.assertTrue(rows['prototype']['user_invoked'])
-            self.assertIn('alternative_groups', data['selection_policy'])
-            self.assertTrue(all(target in rows for target in data['aliases'].values()))
-
     def test_portable_install_keeps_shared_skill_sidecars(self):
         with tempfile.TemporaryDirectory() as tmp:
             home = Path(tmp)
@@ -174,7 +163,8 @@ class RoutingInventoryTests(unittest.TestCase):
             original = saved.read_bytes()
             skill.write_text('---\nname: bosskuai-sample\ndescription: Use when inspecting bananas.\n---\n', encoding='utf-8')
             self.assertTrue(index_is_stale(root))
-            self.assertEqual(find_skill('inspecting bananas', root)[0], 'bosskuai-sample')
+            with redirect_stderr(io.StringIO()):   # the stale-index notice is expected here
+                self.assertEqual(find_skill('inspecting bananas', root)[0], 'bosskuai-sample')
             self.assertEqual(saved.read_bytes(), original)
 
 

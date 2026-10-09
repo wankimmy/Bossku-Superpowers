@@ -5,8 +5,10 @@ import re
 from pathlib import Path
 
 from bossku.index import index_is_stale, index_path
+from bossku.install import AGENT_FILES, AGENT_SIGNATURE, DEFAULT_VOICE_RULE
 from bossku.paths import repo_root
 from bossku.skills import (
+    _parse_frontmatter,
     is_managed_skill_name,
     list_skill_ids,
     load_provenance,
@@ -37,8 +39,22 @@ REQUIRED_AGENTS = (
     "final-reviewer.md",
 )
 
+# What a Claude Code subagent may list in `tools`, and take as `model` (a full `claude-...` id is also fine).
+KNOWN_AGENT_TOOLS = frozenset({
+    "Agent", "Bash", "Edit", "Glob", "Grep", "LSP", "MultiEdit", "NotebookEdit", "PowerShell", "Read", "Skill", "Task",
+    "TodoWrite", "WebFetch", "WebSearch", "Write",
+})
+KNOWN_AGENT_MODELS = frozenset({"sonnet", "opus", "haiku", "inherit"})
+RUNTIME_CORE_END = "<!-- runtime-core:end -->"
+# These run commands to check work, so a contract without Bash cannot do its job.
+VERIFYING_AGENTS = ("executor.md", "auditor.md", "final-reviewer.md", "designer.md")
+
 CLAUDE_AGENTS_IMPORT = "@AGENTS.md"
 OMP_AGENTS_IMPORT = "@../AGENTS.md"
+# Always loaded in every session, so growth is a cost: raise this on purpose, not by accident.
+AGENTS_MD_MAX_CHARS = 16000
+# Files that repeat the voice rule word for word.
+VOICE_RULE_COPIES = ("AGENTS.md", ".cursor/rules/bosskuai.mdc", *(f"agents/{name}" for name in REQUIRED_AGENTS))
 PLUGIN_NAME = "bossku-superpower"
 MARKETPLACE_NAME = "bossku-superpower-marketplace"
 CODEX_MARKETPLACE_NAME = "bossku-superpower"
@@ -162,6 +178,30 @@ def validate_plugin_manifests(root: Path) -> list[str]:
         expected_version,
     )
 
+    for label, data in (
+        ("claude marketplace manifest", claude_marketplace_data),
+        ("cursor marketplace manifest", cursor_marketplace_data),
+    ):
+        _validate_manifest_version(
+            errors, f"{label} metadata", (data.get("metadata") or {}).get("version"), expected_version
+        )
+    for label, data in (
+        ("claude marketplace manifest", claude_marketplace_data),
+        ("cursor marketplace manifest", cursor_marketplace_data),
+        ("codex marketplace manifest", codex_marketplace_data),
+    ):
+        for entry in data.get("plugins", []):
+            if entry.get("name") == PLUGIN_NAME:
+                _validate_manifest_version(errors, f"{label} plugin", entry.get("version"), expected_version)
+
+    init_file = root / "bossku" / "__init__.py"
+    found = (
+        re.search(r'^__version__\s*=\s*"([^"]+)"', init_file.read_text(encoding="utf-8"), re.MULTILINE)
+        if init_file.is_file()
+        else None
+    )
+    _validate_manifest_version(errors, "bossku/__init__.py", found.group(1) if found else None, expected_version)
+
     _validate_component_paths(
         errors,
         root,
@@ -211,17 +251,11 @@ def validate_plugin_manifests(root: Path) -> list[str]:
         errors.append("codex marketplace manifest: missing bossku-superpower plugin entry")
     else:
         source = codex_entry.get("source", {})
-        rel_path = source.get("path")
-        if source.get("source") != "local" or rel_path != "./../..":
+        # Codex resolves a local source from the marketplace root (the repo), not from .agents/plugins.
+        if source.get("source") != "local" or source.get("path") != "./":
             errors.append(
-                "codex marketplace manifest: bossku-superpower source must be local ./../.."
+                "codex marketplace manifest: bossku-superpower source must be local ./"
             )
-        else:
-            resolved = (codex_marketplace.parent / rel_path).resolve()
-            if resolved != root.resolve():
-                errors.append(
-                    "codex marketplace manifest: bossku-superpower source path must resolve to repo root"
-                )
         policy = codex_entry.get("policy", {})
         if policy.get("installation") != "AVAILABLE":
             errors.append(
@@ -232,21 +266,93 @@ def validate_plugin_manifests(root: Path) -> list[str]:
                 "codex marketplace manifest: bossku-superpower policy.authentication must be ON_INSTALL"
             )
 
-    references = opencode_data.get("references", {})
-    for key, rel in (
-        ("bossku-contract", "AGENTS.md"),
-        ("bossku-skills", "skills"),
-        ("bossku-agents", "agents"),
-    ):
-        ref = references.get(key)
-        if not isinstance(ref, dict):
-            errors.append(f"opencode config: missing references.{key}")
-            continue
-        if ref.get("path") != rel:
-            errors.append(f"opencode config: references.{key}.path must be {rel}")
-        if not _path_exists(root, rel):
-            errors.append(f"opencode config: references.{key} path does not exist: {rel}")
+    # opencode_data is parsed above only to prove the file is valid JSON: OpenCode reads the root AGENTS.md
+    # and ~/.agents/skills on its own, and a `references` block resolved against the wrong folder.
+    return errors
 
+
+def _agent_tools(value: object) -> list[str]:
+    """The tools a contract lists, whether the frontmatter writes `[Read, Bash]` or `Read, Bash`."""
+    items = value if isinstance(value, list) else str(value or "").split(",")
+    return [str(item).strip().strip("\"'") for item in items if str(item).strip()]
+
+
+def validate_agents(root: Path) -> list[str]:
+    """Every subagent contract has the frontmatter Claude Code reads (name, description, tools, model) and its core block."""
+    agents = root / "agents"
+    if not agents.is_dir():
+        return ["missing agents/"]
+    errors: list[str] = []
+    for name in AGENT_FILES:
+        path = agents / name
+        label = f"agents/{name}"
+        if not path.is_file():
+            errors.append(f"missing agent contract: {label}")
+            continue
+        text = path.read_text(encoding="utf-8")
+        front = _parse_frontmatter(text)
+        if not front:
+            errors.append(f"{label}: missing YAML frontmatter (name, description, tools, model)")
+            continue
+        if str(front.get("name", "")).strip() != path.stem:
+            errors.append(f"{label}: frontmatter name must be {path.stem}")
+        if not str(front.get("description", "")).strip():
+            errors.append(f"{label}: missing description")
+        tools = _agent_tools(front.get("tools"))
+        if not tools:
+            errors.append(f"{label}: tools must list the allowed Claude Code tools explicitly")
+        for tool in tools:
+            if tool.split("(")[0] not in KNOWN_AGENT_TOOLS and not tool.startswith("mcp__"):
+                errors.append(f"{label}: unknown tool {tool} (not a Claude Code tool; it would be dropped)")
+        model = str(front.get("model", "")).strip()
+        if model and model not in KNOWN_AGENT_MODELS and not model.startswith("claude-"):
+            errors.append(f"{label}: model {model!r} is not a Claude Code value (sonnet|opus|haiku|inherit|claude-*)")
+        if AGENT_SIGNATURE not in text or RUNTIME_CORE_END not in text:
+            errors.append(f"{label}: missing runtime-core block")
+        if name in VERIFYING_AGENTS and "Bash" not in tools:
+            errors.append(f"{label}: must include Bash, or it cannot run the pass signal it is contracted to check")
+    return errors
+
+
+def validate_hooks(root: Path) -> list[str]:
+    """The optional hook harness: every script hooks.json runs exists, and none prints an unresolved placeholder."""
+    hooks = root / "hooks"
+    if not hooks.is_dir():
+        return []
+    errors: list[str] = []
+    manifest = hooks / "hooks.json"
+    if manifest.is_file():
+        try:
+            text = manifest.read_text(encoding="utf-8")
+            json.loads(text)
+        except ValueError as exc:
+            errors.append(f"hooks/hooks.json is not valid JSON: {exc}")
+        else:
+            for rel in sorted(set(re.findall(r"\$\{CLAUDE_PLUGIN_ROOT\}/([\w./-]+)", text))):
+                if not (root / rel).is_file():
+                    errors.append(f"hooks/hooks.json runs a missing script: {rel}")
+    for script in sorted(hooks.glob("*.mjs")):
+        if "<plugin-root>" in script.read_text(encoding="utf-8"):
+            errors.append(f"hooks/{script.name} prints the unresolved placeholder <plugin-root>")
+    return errors
+
+
+def validate_instructions(root: Path) -> list[str]:
+    """Always-on text stays inside its size budget, and the voice rule matches everywhere it is copied."""
+    errors: list[str] = []
+    agents_md = root / "AGENTS.md"
+    if agents_md.is_file():
+        size = len(agents_md.read_text(encoding="utf-8"))
+        if size > AGENTS_MD_MAX_CHARS:
+            errors.append(
+                f"AGENTS.md is {size} characters, over the {AGENTS_MD_MAX_CHARS} always-on budget "
+                "(trim it, or raise AGENTS_MD_MAX_CHARS in bossku/validate.py on purpose)"
+            )
+    rule = " ".join(DEFAULT_VOICE_RULE.split())
+    for rel in VOICE_RULE_COPIES:
+        path = root / rel
+        if path.is_file() and rule not in " ".join(path.read_text(encoding="utf-8").split()):
+            errors.append(f"{rel}: voice rule differs from DEFAULT_VOICE_RULE in bossku/install.py")
     return errors
 
 
@@ -304,13 +410,7 @@ def validate_repo(root: Path | None = None) -> list[str]:
             errors.append(
                 ".omp/AGENTS.md must include a bare @../AGENTS.md import line for OMP"
             )
-    agents = r / "agents"
-    if not agents.is_dir():
-        errors.append("missing agents/")
-    else:
-        for name in REQUIRED_AGENTS:
-            if not (agents / name).is_file():
-                errors.append(f"missing agent contract: agents/{name}")
+    errors.extend(validate_agents(r))
     try:
         skills_dir(r)
     except FileNotFoundError:
@@ -352,4 +452,6 @@ def validate_repo(root: Path | None = None) -> list[str]:
         if (r / rel).exists():
             errors.append(f"legacy product path still present: {rel}")
     errors.extend(validate_plugin_manifests(r))
+    errors.extend(validate_instructions(r))
+    errors.extend(validate_hooks(r))
     return errors

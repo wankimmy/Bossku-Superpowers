@@ -23,6 +23,8 @@ def count() -> tuple[int, int, set[str]]:
         if any(word in Path(path).name for word in ('overhead', 'routing', 'timeouts')):
             continue
         for line in Path(path).read_text(encoding='utf-8').splitlines():
+            if not line.strip():
+                continue
             row = json.loads(line)
             if row.get('kind') != 'task' or not str(row.get('arm', '')).startswith('after') or row.get('infrastructure_failure'):
                 continue

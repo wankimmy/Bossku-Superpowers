@@ -24,7 +24,7 @@ class RequestFitTests(unittest.TestCase):
         self.assertEqual(max(fit, key=fit.get), "a")
         self.assertNotIn("b", fit)
 
-    def test_a_request_that_fits_nothing_pushes_nothing(self):
+    def test_a_request_sharing_no_words_with_any_skill_pushes_nothing(self):
         self.assertEqual(_request_fit("qwerty zxcvb", entries(a="jest:4 hang:3"), ""), {})
 
     def test_an_index_without_request_words_is_still_usable(self):

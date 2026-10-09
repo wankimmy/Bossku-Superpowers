@@ -68,15 +68,17 @@ class SavedResultsTests(unittest.TestCase):
                     self.skipTest(f"{name} has not been generated yet")
                 self.assertEqual(same(coding_report([str(f) for f in files]), saved(name)), [])
 
-    def test_saved_rows_carry_no_home_folder_paths(self):
-        files = sorted(RAW.glob("*.jsonl")) if RAW.is_dir() else []
+    def test_saved_rows_carry_no_home_folder_paths_or_provider_request_ids(self):
+        files = sorted(RAW.rglob("*.jsonl")) if RAW.is_dir() else []   # raw/earlier/ is committed too
         if not files:
             self.skipTest("no raw rows yet")
         home = re.compile(r"[A-Za-z]:[\\/]+Users[\\/]+\w|(?<![\w.])/(?:home|Users)/\w")
+        request_id = re.compile(r"\(ref: [0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\)")
         for path in files:
-            with self.subTest(file=path.name):
+            with self.subTest(file=path.relative_to(RAW).as_posix()):
                 for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
                     self.assertIsNone(home.search(line), f"{path.name}:{number} has a home folder path")
+                    self.assertIsNone(request_id.search(line), f"{path.name}:{number} has a provider request id")
 
     def test_no_saved_coding_run_was_cut_short_by_a_dollar_cap(self):
         for name in ("coding-test.json", "humaneval.json", "hard.json", "memory.json"):

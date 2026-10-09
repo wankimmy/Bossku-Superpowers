@@ -412,4 +412,4 @@ When auditing, return:
 
 - `bosskuai-database-engineering-playbook.md` — schema/index patterns referenced above.
 - `bosskuai-redis-caching-queues-playbook.md` — queue worker tuning, lock patterns, idempotency keys.
-- `bosskuai-cybersecurity-risk-playbook.md` — webhook/replay/auth threat models.
+- the `bosskuai-cybersecurity-risk` skill — webhook/replay/auth threat models.

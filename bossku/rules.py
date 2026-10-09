@@ -7,9 +7,10 @@ the stop hook sends the agent back once, with the exact command, if it never sav
 
 Wording is only a proxy, and it was measured, not assumed. Other agents wrote and labelled messages blind (data and
 scoring script: benchmarks/rules-eval, scripts/benchmark_rules.py). On a set the cues were not tuned on, the current
-rules catch about a third of the stated rules and wrongly flag about 4% of the non-rules; the figures are in
-docs/memory.md. Earlier sets, whose data was lost, showed the same pattern: a phrase list tuned on its own examples
-scores near 100% and falls to 40-60% on new wording. A requirement for the one thing being built
+rules catch about a third of the stated rules and wrongly flag about 4% of the non-rules (4 of 95 where labeller and
+writer agreed; 9 of 100 over every non-rule the writers wrote, because the 5 dropped ones were all flagged); the
+figures are in docs/memory.md. Earlier sets, whose data was lost, showed the same pattern: a phrase list tuned on its
+own examples scores near 100% and falls to 40-60% on new wording. A requirement for the one thing being built
 ("it must never mutate its input") is not a rule for the project, and a wrong reminder costs the agent a turn, so
 both reminders say "if" and let the agent finish when no rule was stated.
 """

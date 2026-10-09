@@ -16,10 +16,12 @@ Your agent is smart, but it forgets your rules and sometimes says "done" without
 |---|---|
 | Agent doesn't know which skill to use | Picks the best skill for your request from 240+ skills |
 | Agent writes code but never runs it | Sends the agent back once to run it |
+| Agent runs a command that destroys work | Refuses `git reset --hard`, force push, `rm -rf ~` and similar, and tells you how to run it yourself (Claude Code) |
 | You told it a rule yesterday, today it forgot | Saves rules and decisions as notes and shows them next session |
+| Codex stopped on its usage limit | Claude Code can pick the task up in the same folder with `bossku resume` |
 | Useful tools are hard to set up | `bossku tools list` shows what's available. Nothing installs unless you say yes |
 
-Everything is light and optional. Skills load only when needed. Turn off the run-your-code check with `BOSSKU_VERIFY_GATE=0`, or remove all hooks with `bossku hooks uninstall`.
+Skills load only when needed. Hooks are on after `bossku install`: turn off the run-your-code check with `BOSSKU_STOP_GATE=off` (the Node stop gate, the default), or with `BOSSKU_VERIFY_GATE=0` only if you installed with `--no-harness`. Remove all hooks with `bossku hooks uninstall`. The other Node gates in [`hooks/`](hooks/README.md) have their own switches, listed there.
 
 ## Does it really help?
 
@@ -32,6 +34,7 @@ We tested it with real agents on the same tasks, with and without Bossku Superpo
 - **Better skill picking.** The right skill ranked first 81% of the time, vs 56% for keyword search.
 - **The catch: more tokens.** About 1.1× to 4.7× the tokens per run, highest on models that checked the least before.
 - **No clear change on coding and harder tasks** for any model. Samples are small, so read each result with its interval.
+- **Which setup was measured.** Build `b8ccea1`, whose Stop hook was the Python verify gate. It also sent the agent back to save a rule it was told and to edit a file instead of pasting code. A default install now uses the Node stop gate, which only checks that code was run, so those two Stop reminders are not in it (the rule reminder on your prompt is). `bossku install --no-harness` brings the Python gate back. Details: [memory](docs/memory.md#automatic-remembering).
 
 Full numbers, charts and limits: [benchmark results](docs/benchmarks/results.md). How it was tested: [benchmark notes](docs/benchmarks/README.md).
 
@@ -52,7 +55,7 @@ bossku doctor --project .
 Then open the project in your coding agent and say `bossku`.
 
 - **No Obsidian?** Skip `--vault` and `--memory-storage`. Notes stay in `.bossku/memory` inside the project.
-- **Want all skills listed?** Default is `--profile lean` (about 25 listed, the rest one command away). Use `--profile core` for a small set or `--profile full` for all 240+.
+- **Want all skills listed?** A first install starts at `--profile lean` (about 25 listed, the rest one command away); a later `bossku install` keeps your profile. Use `--profile core` for a small set, `--profile engineering` for everything except the marketing skills, or `--profile full` for all 240+.
 - **Other tools?** See setup for [Claude Code](docs/installation.md#claude-code), [Cursor](docs/installation.md#cursor), [Codex](docs/installation.md#codex), [OpenCode](docs/installation.md#opencode), [OMP](docs/installation.md#omp) or [portable mode](docs/installation.md#portable-mode-cloudshared-repos).
 
 ## What's inside
@@ -60,8 +63,11 @@ Then open the project in your coding agent and say `bossku`.
 | Part | What it is |
 |---|---|
 | **240+ skills** | Short checklists for engineering, product, design, security, marketing and founder work |
-| **Helper hooks** (Claude Code) | Suggest a skill for your prompt, send the agent back to run its code, and show your saved notes at session start |
-| **Tools** | Optional programs like Headroom, Moli, e2e, Archify, Graft and MarkItDown. Installed only when you ask |
+| **Helper hooks** (Claude Code; Codex gets the skill hint too) | Suggest a skill for your prompt and show your saved notes at session start. `hint_mode` `v2` in `~/.bosskuai/config.json` suggests up to three skills per prompt: it is opt in, because it missed some bars in its [offline test](docs/benchmarks/README.md#skill-hint-v1-against-v2) |
+| **Safety gates** (Claude Code) | Refuse destructive commands (`git reset --hard`, `rm -rf ~`), check the syntax of files the agent writes, and send the agent back once if it never ran its code. [Details and switches](hooks/README.md). Leave them out with `bossku install --no-harness` |
+| **Subagents** (Claude Code) | Six contracts (orchestrator, planner, designer, executor, auditor, final-reviewer), copied to `~/.claude/agents`. Leave them out with `--no-agents` |
+| **Resume** | When Codex stops on its usage limit, Claude Code shows the task's brief in the same folder after you say "continue". Context only: nothing is saved |
+| **Tools** | Optional programs like Headroom, Moli, e2e, Cypress, Archify, Graft and MarkItDown. Installed only when you ask. Cypress goes into one project, never global |
 | **Memory** | Your rules, decisions and lessons, saved in Obsidian, one folder per project |
 
 ## Your notes in Obsidian
@@ -83,18 +89,21 @@ More in [memory and Obsidian](docs/memory.md).
 
 | Command | What it does |
 |---|---|
-| `bossku skills find "<task>"` | Show which skill fits and why |
+| `bossku skills find "<task>"` | Show which skill fits and why (`--brief`: one line per skill) |
 | `bossku skills show <id>` | Print one skill |
 | `bossku tools list` | See optional tools and what's installed |
+| `bossku tools install <tool>` | Show the plan for a tool. Add `--yes` to run it (pip and npm tools only). `cypress` installs into the current project only |
 | `bossku init <project>` | Set up a project (`--portable` puts the skills inside it) |
 | `bossku hooks install` / `uninstall` | Add or remove the helper hooks |
+| `bossku install --no-harness` | Leave out the safety gates and deny rules. `--no-agents` leaves out the subagents, `--no-claude` the skills in `~/.claude/skills` |
+| `bossku resume` | Show the brief of a Codex task that stopped on its usage limit in this folder (nothing is saved) |
 | `bossku doctor --project .` | Check your setup |
 | `bossku update` | Refresh installed skills (run after `git pull`) |
 
 ## For contributors
 
 ```bash
-python -m bossku skills index --root .   # only after changing a skill description
+python -m bossku skills index --root .   # only if a skill or routing input changed (a SKILL.md, aliases.json, vendored.json, curated triggers)
 python -m bossku validate --root .
 python -m unittest discover -s tests -v
 ```

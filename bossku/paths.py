@@ -36,6 +36,16 @@ def library_dir(home: Path | None = None) -> Path:
     return user_config_dir(home) / "library"
 
 
+def routing_index_copy(home: Path | None = None) -> Path:
+    """The copy of skills/skill-index.json that `bossku install` keeps for the prompt hook."""
+    return user_config_dir(home) / "skill-index.json"
+
+
+def routing_signature_path(home: Path | None = None) -> Path:
+    """Signature (see bossku.index.skill_index_signature) of the skills the copy was made from."""
+    return user_config_dir(home) / "skill-index.sig"
+
+
 def agents_skills_dir(home: Path | None = None) -> Path:
     base = home if home is not None else Path.home()
     return base / ".agents" / "skills"

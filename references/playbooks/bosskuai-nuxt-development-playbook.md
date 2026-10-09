@@ -378,5 +378,5 @@ When auditing, return:
 ## Further reading
 
 - `nuxt-development-detailed-playbook.md` — extended step-by-step workflow and template scaffolds.
-- `bosskuai-ui-ux-design-to-code-playbook.md` — visual hierarchy, accessibility, anti-AI design checks.
-- `bosskuai-seo-geo-playbook.md` — schema, internal linking, answer-engine optimization.
+- the `bosskuai-ui-ux-design-to-code` skill — visual hierarchy, accessibility, anti-AI design checks.
+- the `bosskuai-seo-geo` skill — schema, internal linking, answer-engine optimization.

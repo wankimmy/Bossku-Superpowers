@@ -16,6 +16,7 @@ import argparse
 import html
 import json
 import math
+import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -193,6 +194,9 @@ class Figure:
 # maintainers and are never drawn.
 
 ARMS = ('baseline', 'after')
+# Every file the charts and the results page read. A missing one draws an empty block, so --readme checks for them first.
+INPUTS = ('overhead.json', 'routing-heldout.json', 'routing-live.json', 'coding-test.json', 'hard.json',
+          'humaneval.json', 'memory.json')
 
 
 def load(results: Path, name: str) -> dict:
@@ -619,7 +623,15 @@ def main() -> int:
     parser.add_argument('--results', type=Path, default=RESULTS)
     parser.add_argument('--out', type=Path, default=ASSETS)
     parser.add_argument('--readme', type=Path, help='rewrite the tables and summaries marked with <!-- name:start --> ... <!-- name:end -->')
+    parser.add_argument('--allow-partial', action='store_true', help='with --readme: go on although some result files are missing')
     args = parser.parse_args()
+    if args.readme:   # an absent file would blank its section of the published page and still exit 0
+        missing = [name for name in INPUTS if not (args.results / name).is_file()]
+        for name in missing:
+            print(f'missing result file: {args.results / name}', file=sys.stderr)
+        if missing and not args.allow_partial:
+            print('not rewriting the page from partial data; pass --allow-partial to do it anyway', file=sys.stderr)
+            return 1
     args.out.mkdir(parents=True, exist_ok=True)
     data = lambda name: load(args.results, name)  # noqa: E731
     jobs = {

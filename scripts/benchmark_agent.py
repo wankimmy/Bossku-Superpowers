@@ -99,12 +99,18 @@ class Prepared:
     home: Path   # throwaway home: what `~` means to every process the agent starts
 
 
+# The name becomes a folder under --work that build_template deletes first, so it must stay one plain path component.
+ARM_NAME = re.compile(r'[A-Za-z0-9](?:[A-Za-z0-9_-]|\.(?=[A-Za-z0-9_-]))*')
+
+
 def parse_arm(spec: str) -> Arm:
     if spec == 'baseline':
         return Arm('baseline', None)
     name, _, rest = spec.partition('=')
     if not rest:
         raise SystemExit(f'bad --arm {spec!r}; use "baseline" or NAME=ROOT[@lean|core|full][+hint][+gate][+brief]')
+    if not ARM_NAME.fullmatch(name):
+        raise SystemExit(f'bad --arm name {name!r}; use letters, digits, "-" and "_", and "." only between them')
     root, _, profile = rest.partition('@')
     profile, *flags = profile.split('+')
     return Arm(name, Path(root).resolve(), profile or 'full', hint='hint' in flags, gate='gate' in flags,
@@ -243,7 +249,7 @@ from bossku.install import copy_skill_support, install_user, AUTO_MEMORY_BLOCK
 from bossku.init_project import init_project
 home = proj.parent / (proj.name + "_home")
 home.mkdir(parents=True, exist_ok=True)
-# A real user-level install, but into a throwaway home: config, routing cache and (for lean) the library,
+# A real user-level install, but into a throwaway home: config and (for lean) the library,
 # so `bossku skills find/show` behave as they would for a user. Nothing touches the real home.
 install_user(root=root, home=home, profile=profile)
 init_project(proj, root=root, home=home, portable=False, profile=profile)
@@ -636,47 +642,51 @@ def invoke(cmd: list[str], prompt: str, workdir: Path, env: dict, transcript: Pa
     timed_out = stopped = False
     proc = subprocess.Popen(cmd, cwd=workdir, env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                             stderr=subprocess.DEVNULL)
-    lines: queue.Queue = queue.Queue()
-
-    def pump() -> None:
-        for raw in iter(proc.stdout.readline, b''):
-            lines.put(raw)
-        lines.put(None)
-
-    threading.Thread(target=pump, daemon=True).start()
     try:
-        proc.stdin.write(prompt.encode('utf-8'))
-        proc.stdin.close()
-    except OSError:
-        pass
-    events: list[dict] = []
-    with transcript.open('wb') as stream:
-        while True:
-            remaining = timeout - (time.monotonic() - started)
-            if remaining <= 0:
-                timed_out = True
-                break
-            try:
-                raw = lines.get(timeout=min(remaining, 1.0))
-            except queue.Empty:
-                continue
-            if raw is None:
-                break
-            stream.write(raw)
-            if stop_when is not None:
-                try:
-                    events.append(json.loads(raw.decode('utf-8-sig')))
-                except ValueError:
-                    continue
-                if stop_when(events):
-                    stopped = True
+        lines: queue.Queue = queue.Queue()
+
+        def pump() -> None:
+            for raw in iter(proc.stdout.readline, b''):
+                lines.put(raw)
+            lines.put(None)
+
+        threading.Thread(target=pump, daemon=True).start()
+        try:
+            proc.stdin.write(prompt.encode('utf-8'))
+            proc.stdin.close()
+        except OSError:
+            pass
+        events: list[dict] = []
+        with transcript.open('wb') as stream:
+            while True:
+                remaining = timeout - (time.monotonic() - started)
+                if remaining <= 0:
+                    timed_out = True
                     break
-    if timed_out or stopped:
-        kill_tree(proc.pid)
-    try:
-        proc.wait(timeout=30)
-    except subprocess.TimeoutExpired:
-        kill_tree(proc.pid)
+                try:
+                    raw = lines.get(timeout=min(remaining, 1.0))
+                except queue.Empty:
+                    continue
+                if raw is None:
+                    break
+                stream.write(raw)
+                if stop_when is not None:
+                    try:
+                        events.append(json.loads(raw.decode('utf-8-sig')))
+                    except ValueError:
+                        continue
+                    if stop_when(events):
+                        stopped = True
+                        break
+        if timed_out or stopped:
+            kill_tree(proc.pid)
+        try:
+            proc.wait(timeout=30)
+        except subprocess.TimeoutExpired:
+            kill_tree(proc.pid)
+    finally:
+        if proc.poll() is None:   # any exception above must not leave the agent running over the folders cleaned up next
+            kill_tree(proc.pid)
     return timed_out, stopped, time.monotonic() - started
 
 
@@ -782,37 +792,41 @@ class Runner:
         transcript.parent.mkdir(parents=True, exist_ok=True)
         config_dir = self.work / 'cfg' / digest
         cmd = agent_command(self.claude, model, self.args, prep.instructions)
-        for attempt in range(self.args.retries + 1):
-            seed_commit = prepare_workdir(arm, prep.template, (task_dir / 'seed') if task_dir else None, workdir)
-            if config_dir.exists():
-                rmtree_force(config_dir)
-            config_dir.mkdir(parents=True, exist_ok=True)
-            env = child_env(prep.shim, provider_env(self.args, model, config_dir), prep.home)
-            setup = self._run_setup_sessions(cmd, task, workdir, env, transcript)
-            timed_out, stopped, wall = invoke(cmd, prompt, workdir, env, transcript, self.args.timeout, stop_when)
-            parsed = parse_stream(transcript)
-            infra = is_infrastructure_failure(parsed) and not (timed_out or stopped)
-            if infra and attempt < self.args.retries:
-                time.sleep(20 * (attempt + 1))
-                continue
-            break
-        with self.lock:
-            self.consecutive_infra = self.consecutive_infra + 1 if infra else 0
-            if self.consecutive_infra >= self.args.abort_after:
-                self.abort.set()
-        stats = diff_stats(workdir, seed_commit) if task else {}
-        grading = grade(task_dir, task, workdir) if task else {}
-        if self.args.keep_transcripts and transcript.exists():
-            safe_name = re.sub(r'[^A-Za-z0-9._-]', '_', run_id)   # a ':' in a model id would become an NTFS stream
-            with transcript.open('rb') as src, gzip.open(self.out / 'transcripts' / f'{safe_name}.jsonl.gz', 'wb') as dst:
-                shutil.copyfileobj(src, dst)
-        if self.args.provider == 'anthropic':   # the sessions of this throwaway folder, left in your real ~/.claude
-            sessions = claude_session_dir(workdir)
-            if sessions.is_dir() and sessions.name.endswith(re.sub(r'[^A-Za-z0-9]', '-', str(Path('r') / digest))):
-                rmtree_force(sessions)
+        try:
+            for attempt in range(self.args.retries + 1):
+                seed_commit = prepare_workdir(arm, prep.template, (task_dir / 'seed') if task_dir else None, workdir)
+                if config_dir.exists():
+                    rmtree_force(config_dir)
+                config_dir.mkdir(parents=True, exist_ok=True)
+                env = child_env(prep.shim, provider_env(self.args, model, config_dir), prep.home)
+                setup = self._run_setup_sessions(cmd, task, workdir, env, transcript)
+                timed_out, stopped, wall = invoke(cmd, prompt, workdir, env, transcript, self.args.timeout, stop_when)
+                parsed = parse_stream(transcript)
+                infra = is_infrastructure_failure(parsed) and not (timed_out or stopped)
+                if infra and attempt < self.args.retries:
+                    time.sleep(20 * (attempt + 1))
+                    continue
+                break
+            with self.lock:
+                self.consecutive_infra = self.consecutive_infra + 1 if infra else 0
+                if self.consecutive_infra >= self.args.abort_after:
+                    self.abort.set()
+            stats = diff_stats(workdir, seed_commit) if task else {}
+            grading = grade(task_dir, task, workdir) if task else {}
+            if self.args.keep_transcripts and transcript.exists():
+                safe_name = re.sub(r'[^A-Za-z0-9._-]', '_', run_id)   # a ':' in a model id would become an NTFS stream
+                with transcript.open('rb') as src, gzip.open(self.out / 'transcripts' / f'{safe_name}.jsonl.gz', 'wb') as dst:
+                    shutil.copyfileobj(src, dst)
+        finally:
+            # Sessions of this throwaway folder sit in your real ~/.claude and hold the benchmark prompts: remove them
+            # even when the run crashes. The workdir is only removed after a finished run, so a crashed one can be inspected.
+            if self.args.provider == 'anthropic':
+                sessions = claude_session_dir(workdir)
+                if sessions.is_dir() and sessions.name.endswith(re.sub(r'[^A-Za-z0-9]', '-', str(Path('r') / digest))):
+                    rmtree_force(sessions)
+            rmtree_force(config_dir)
         if not self.args.keep_workdirs:
             rmtree_force(workdir)
-        rmtree_force(config_dir)
         row = {'wall_s': round(wall, 1), 'timed_out': timed_out, 'stopped_early': stopped, 'infrastructure_failure': infra,
                'attempts': attempt + 1, 'provider': self.args.provider, **grading, **stats, **parsed}
         if setup:
@@ -1214,13 +1228,26 @@ HOME_PATHS = (re.compile('[A-Za-z]:[\\\\/]+Users[\\\\/]+[^\\\\/' + QUOTES_AND_SP
 VAULT_FOLDER = re.compile('(<home>[\\\\/]+OneDrive[\\\\/]+Documents[\\\\/]+)[^\\\\/' + QUOTES_AND_SPACE + ']+')
 
 
+# Ollama puts a request id in its error text: "(ref: 76e45cb9-...)". It names one request on the author's account.
+REQUEST_REF = re.compile('(?<=\\(ref: )[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}(?=\\))')
+# The same error names the provider account: "you (putrafyp) have reached your session usage limit". That is not the
+# folder name of the machine, so the Path.home() rule below never catches it.
+PROVIDER_ACCOUNT = re.compile('(?<=you \\()[^)\\s]+(?=\\) have reached)')
+
+
 def scrub(text: str) -> str:
-    """Take the author's account name and folder names out of free text before it is committed."""
+    """Take the author's account name, folder names, provider account name and request ids out of free text before it is committed."""
     for pattern in HOME_PATHS:
         text = pattern.sub('<home>', text)
     text = VAULT_FOLDER.sub(lambda match: match.group(1) + '<folder>', text)
+    text = REQUEST_REF.sub('<request-id>', text)
+    text = PROVIDER_ACCOUNT.sub('<user>', text)
     name = Path.home().name
-    return re.sub('(?<![\\w-])' + re.escape(name) + '(?![\\w-])', '<user>', text) if len(name) >= 3 else text
+    if len(name) < 3:
+        return text
+    # An account folder called "home" or "user" must not rewrite the placeholders inserted above: they match first.
+    return re.sub('<(?:home|user|folder|request-id)>|(?<![\\w-])' + re.escape(name) + '(?![\\w-])',
+                  lambda match: match.group(0) if match.group(0).startswith('<') else '<user>', text)
 
 
 def cmd_compact(args) -> int:

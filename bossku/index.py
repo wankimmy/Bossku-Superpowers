@@ -7,16 +7,17 @@ always-loaded context: hosts only ever read `name` + `description`.
 
 from __future__ import annotations
 
-import gzip
 import hashlib
 import json
 import math
+import os
 import re
 from collections import Counter
 from pathlib import Path
 
 from bossku.paths import repo_root
 from bossku.skills import (
+    LEAN_FILE,
     _parse_frontmatter,
     list_skill_ids,
     load_aliases,
@@ -266,6 +267,10 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
     "bosskuai-browser-automation": [
         "headless browser", "puppeteer", "smoke test", "visual regression", "scrape", "qa report",
         "console errors",
+    ],
+    "bosskuai-cypress": [
+        "cypress test", "cypress tests", "cypress spec", "cypress component", "cypress config",
+        "write cypress", "fix cypress", "update cypress", "flaky cypress", "to cypress", "cy.intercept", "cy.session",
     ],
     "bosskuai-malaysia-pdpa-privacy": ["pdpa", "personal data protection", "malaysia privacy"],
     "bosskuai-legal-compliance": ["gdpr", "terms of service", "privacy policy", "compliance"],
@@ -606,7 +611,7 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
     "database-migrations": ["schema migration", "data migration", "zero downtime migration", "rollback migration", "backfill column", "expand contract", "rename column safely", "prisma migrate", "drizzle migration", "add a column without downtime", "migration plan"],
     "error-handling": ["error handling", "typed errors", "error boundary", "retry logic", "retries", "circuit breaker", "exponential backoff", "user facing error message", "custom exception", "result type", "graceful failure"],
     "mcp-server-patterns": ["mcp server", "build an mcp server", "model context protocol", "mcp tool definition", "mcp resources", "streamable http", "stdio transport", "mcp sdk", "write an mcp server", "expose tools over mcp"],
-    "e2e-testing": ["playwright", "e2e test", "end to end test", "page object model", "flaky e2e", "playwright config", "playwright ci", "test artifacts", "trace viewer", "e2e suite"],
+    "e2e-testing": ["playwright", "playwright tests", "playwright e2e", "to playwright", "e2e test", "end to end test", "page object model", "flaky e2e", "playwright config", "playwright ci", "test artifacts", "trace viewer", "e2e suite"],
     "accessibility": ["accessibility", "a11y", "wcag", "wcag 2.2", "screen reader", "keyboard navigation", "keyboard focus", "focus order", "aria", "contrast ratio", "color contrast", "accessible form", "axe"],
     "architecture-decision-records": ["adr", "architecture decision record", "decision record", "record the architecture decision", "why did we choose", "document this decision", "adr log", "write an adr"],
     "vue-patterns": ["vue", "vue 3", "composition api", "pinia", "vue router", "ref vs reactive", "composable", "vue component", "watcheffect", "defineprops", "vite vue", "script setup"],
@@ -646,6 +651,8 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
 # High-confidence task boundaries. These live in the generated index so agents can
 # avoid a superficially related skill without adding text to every loaded prompt.
 CURATED_EXCLUSIONS: dict[str, list[str]] = {
+    # Migrating away from Cypress is a Playwright task, not a Cypress one.
+    "bosskuai-cypress": ["to playwright"],
     "ci-triage": [
         "nothing is cached", "pipeline is slow", "runs in sequence", "cache dependencies",
         "speed up the pipeline", "parallelize the pipeline",
@@ -924,6 +931,8 @@ def query_source(root: Path | None = None) -> Path:
 
 
 def _query_terms(root: Path | None = None) -> dict[str, str]:
+    import gzip   # only write_index gets here; the prompt hook never does
+
     try:
         phrasings = json.loads(gzip.decompress(query_source(root).read_bytes()))
     except (OSError, ValueError):
@@ -957,6 +966,26 @@ def skills_fingerprint(root: Path | None = None) -> str:
         # Normalize line endings so Windows and Unix builds produce the same index.
         h.update((base / sid / "SKILL.md").read_text(encoding="utf-8").encode("utf-8"))
         h.update(b"\n")
+    return h.hexdigest()[:16]
+
+
+def skill_index_signature(root: Path | None = None) -> str:
+    """Cheap proof that the skills and the saved index are still the ones an install copied.
+
+    Size and mtime of every SKILL.md, lean.json and skill-index.json, with no file read, so the prompt hook and
+    `bossku doctor` can ask it on every call. skills_fingerprint stays the exact check (it hashes the text).
+    A touched file that did not change reads as changed; that only costs a fallback to the repo index.
+    """
+    base = skills_dir(root)
+    h = hashlib.sha256()
+    with os.scandir(base) as entries:
+        names = sorted(entry.name for entry in entries if entry.is_dir())
+    for rel in [*(f"{name}/SKILL.md" for name in names), LEAN_FILE, index_path(root).name]:
+        try:
+            stat = os.stat(base / rel)
+        except OSError:
+            continue
+        h.update(f"{rel}:{stat.st_size}:{stat.st_mtime_ns};".encode())
     return h.hexdigest()[:16]
 
 

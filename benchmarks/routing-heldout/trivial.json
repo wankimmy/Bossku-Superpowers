@@ -1,0 +1,907 @@
+[
+  {
+    "id": "f-p1-51",
+    "prompt": "what's 15% of RM380",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-52",
+    "prompt": "rename tmp to total in this line",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-53",
+    "prompt": "hi, you there?",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-54",
+    "prompt": "what's the time difference between KL and Tokyo",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-55",
+    "prompt": "what does ROAS stand for",
+    "domain": "marketing",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-56",
+    "prompt": "translate 'thank you for your order' into BM",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": [
+      [
+        "bosskuai-i18n-l10n",
+        "malaysia-localisation"
+      ]
+    ]
+  },
+  {
+    "id": "f-p1-57",
+    "prompt": "what's the capital of Sabah",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-58",
+    "prompt": "write a haiku about nasi lemak",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-59",
+    "prompt": "how many days in February 2028",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-60",
+    "prompt": "explain what an API is in one line",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-61",
+    "prompt": "what's the plural of 'data'",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-62",
+    "prompt": "give me a fun fact about durians",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-63",
+    "prompt": "apa maksud 'kopi o kosong'",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-64",
+    "prompt": "what's a good name for my cat",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-65",
+    "prompt": "add a semicolon at the end of this line",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-66",
+    "prompt": "what does a 404 status code mean",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-67",
+    "prompt": "what's the difference between its and it's",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-68",
+    "prompt": "convert 3pm KL to London time",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-69",
+    "prompt": "how do I say good morning in Hokkien",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-70",
+    "prompt": "tell me a joke about kopi o",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-71",
+    "prompt": "is 97 a prime number",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-72",
+    "prompt": "sort these numbers: 5, 2, 9, 1",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-73",
+    "prompt": "how many ml in one cup",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-74",
+    "prompt": "what's 1 kg in pounds",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p1-75",
+    "prompt": "can you recommend a good Malay novel for a beginner",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-51",
+    "prompt": "what's 17 times 23",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-52",
+    "prompt": "change this line's timeout to timeoutMs",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-53",
+    "prompt": "hey, you there?",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-54",
+    "prompt": "which time zone is Sabah on",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-55",
+    "prompt": "what does HTTP 429 mean",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-56",
+    "prompt": "let vs const in one line please",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-57",
+    "prompt": "convert 37 celsius to fahrenheit",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-58",
+    "prompt": "how many days left in this year",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-59",
+    "prompt": "what is the capital of Sarawak",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-60",
+    "prompt": "tell me a joke about databases",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-61",
+    "prompt": "how do you spell accommodation",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-62",
+    "prompt": "one line python to reverse a string",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-63",
+    "prompt": "macam mana nak cakap thanks dalam Hokkien",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-64",
+    "prompt": "suggest a name for my cat",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-65",
+    "prompt": "what does HTML stand for",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-66",
+    "prompt": "is 1 GB 1000 MB or 1024 MB",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-67",
+    "prompt": "sort 5, 2, 9, 1 ascending",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-68",
+    "prompt": "what's git rebase in a sentence",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-69",
+    "prompt": "how many weeks in 100 days",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-70",
+    "prompt": "good morning",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-71",
+    "prompt": "change the button label to Submit",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-72",
+    "prompt": "plural of cactus?",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-73",
+    "prompt": "explain closures in one line",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-74",
+    "prompt": "what's 15% of 260",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p2-75",
+    "prompt": "apa maksud 'jom' tu",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-51",
+    "prompt": "what's 15% of 240",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-52",
+    "prompt": "change the variable x to count in this line",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-53",
+    "prompt": "hi there, you around?",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-54",
+    "prompt": "what's the time difference between KL and London",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-55",
+    "prompt": "what does HTTP 404 mean",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-56",
+    "prompt": "convert 30 celsius to fahrenheit",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-57",
+    "prompt": "how do I say good morning in Japanese",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-58",
+    "prompt": "suggest a name for my orange cat",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-59",
+    "prompt": "write a short haiku about rain on a tin roof",
+    "domain": "general",
+    "style": "detailed",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-60",
+    "prompt": "how many days are in February 2028",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-61",
+    "prompt": "what does idempotent mean",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-62",
+    "prompt": "add a semicolon at the end of this line",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-63",
+    "prompt": "fix the typo, 'recieve' should be 'receive'",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-64",
+    "prompt": "what's 2 to the power of 10",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-65",
+    "prompt": "name three red fruits",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-66",
+    "prompt": "thanks, bye",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-67",
+    "prompt": "change this to uppercase: selamat pagi",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-68",
+    "prompt": "what's the capital of Sabah",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-69",
+    "prompt": "explain photosynthesis in one sentence",
+    "domain": "general",
+    "style": "detailed",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-70",
+    "prompt": "give me a synonym for happy",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-71",
+    "prompt": "one-line joke about coffee please",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-72",
+    "prompt": "what's the plural of cactus",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-73",
+    "prompt": "beza 'their' dan 'there' apa",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-74",
+    "prompt": "pick a random number from 1 to 50",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p3-75",
+    "prompt": "what's the square root of 144",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-51",
+    "prompt": "what's 17 times 4",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-52",
+    "prompt": "hello, you there?",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-53",
+    "prompt": "what time zone is Sabah in",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-54",
+    "prompt": "change colour to color in this sentence: 'The colour is red.'",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-55",
+    "prompt": "what's the capital of Australia",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-56",
+    "prompt": "convert 30 celsius to fahrenheit",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-57",
+    "prompt": "what does HTTP 404 mean",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-58",
+    "prompt": "how do you say thank you in Japanese",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-59",
+    "prompt": "explain a closure in one sentence",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-60",
+    "prompt": "give me a random 6-digit number",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-61",
+    "prompt": "spell 'necessary' backwards",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-62",
+    "prompt": "what's 15% of 240",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-63",
+    "prompt": "write a haiku about rain",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-64",
+    "prompt": "tell me a joke",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-65",
+    "prompt": "affect or effect: the rain will ___ the game",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-66",
+    "prompt": "git merge vs rebase in one line",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-67",
+    "prompt": "apa maksud 'kenyataan' dalam English",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-68",
+    "prompt": "translate 'good morning' to Malay",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-69",
+    "prompt": "how many ml in a cup",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-70",
+    "prompt": "list 3 primary colours",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-71",
+    "prompt": "what's a good name for a grey cat",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-72",
+    "prompt": "what's the plural of 'datum'",
+    "domain": "general",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-73",
+    "prompt": "sort these numbers: 5, 2, 9, 1",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-74",
+    "prompt": "bagi satu fun fact pasal Malaysia",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "f-p4-75",
+    "prompt": "what does 'ASAP' stand for",
+    "domain": "general",
+    "style": "casual",
+    "kind": "trivial",
+    "agreement": "both",
+    "concerns": []
+  }
+]

@@ -1,6 +1,6 @@
 {
   "name": "bossku-superpower",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Make your AI coding agent work properly: pick the right skill, run its own code, and remember your project rules.",
   "author": {
     "name": "Bossku Superpower",
@@ -19,9 +19,11 @@
     "tools"
   ],
   "skills": "./skills/",
+  "hooks": "./hooks/hooks.json",
   "agents": [
     "./agents/orchestrator.md",
     "./agents/planner.md",
+    "./agents/designer.md",
     "./agents/executor.md",
     "./agents/auditor.md",
     "./agents/final-reviewer.md"

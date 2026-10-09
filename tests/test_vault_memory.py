@@ -284,3 +284,43 @@ class VaultMemoryTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'unknown memory_storage'):
             sync_project(self.project, home=self.home)
         self.assertFalse((self.project / '.bossku').exists())
+
+
+class RepoExportTests(unittest.TestCase):
+    """memory_storage unset (repo mode): .bossku/memory is exported to the vault on sync."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.home = Path(self.tmp.name)
+        self.project = self.home / 'repo'
+        self.note = self.project / '.bossku' / 'memory' / 'decisions.md'
+        self.note.parent.mkdir(parents=True)
+        self.note.write_text('# Decisions\n\nKeep it small.\n', encoding='utf-8')
+        vault = self.home / 'vault'
+        vault.mkdir()
+        save_user_config({'obsidian_vault': str(vault)}, self.home)
+        self.copy = vault / 'BosskuAI' / 'repo' / 'decisions.md'
+
+    def conflicts(self):
+        return sorted(self.copy.parent.glob('decisions.md.conflict*.md'))
+
+    def test_crlf_vault_copy_is_not_a_conflict(self):
+        sync_project(self.project, home=self.home)
+        self.copy.write_bytes(self.copy.read_bytes().replace(b'\r\n', b'\n').replace(b'\n', b'\r\n'))  # what Windows text mode writes
+        for _ in range(2):
+            self.assertEqual(sync_project(self.project, home=self.home)['conflicts'], [])
+        self.assertEqual(self.conflicts(), [])
+
+    def test_every_vault_edit_is_kept(self):
+        sync_project(self.project, home=self.home)
+        self.copy.write_text('# Decisions\n\nFIRST EDIT\n', encoding='utf-8')
+        self.note.write_text('# Decisions\n\nSecond rule.\n', encoding='utf-8')
+        sync_project(self.project, home=self.home)
+        self.copy.write_text('# Decisions\n\nSECOND EDIT\n', encoding='utf-8')
+        self.note.write_text('# Decisions\n\nThird rule.\n', encoding='utf-8')
+        sync_project(self.project, home=self.home)
+        kept = [p.read_text(encoding='utf-8') for p in self.conflicts()]
+        self.assertEqual(len(kept), 2)
+        self.assertTrue(any('FIRST EDIT' in k for k in kept) and any('SECOND EDIT' in k for k in kept))
+        self.assertIn('Third rule.', self.copy.read_text(encoding='utf-8'))

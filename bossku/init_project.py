@@ -31,8 +31,9 @@ PROJECT_BLOCK = (
     "states (with its reason), plus a plan for later or a gotcha that cost you time; never a summary of what you "
     "built or changed, and not what the code already shows. Save it with "
     '`bossku remember --project <project-root> --kind decision|plan|learning|project "<note>"`; one call is '
-    "enough and most tasks save nothing. Use the commands, not the files: never open or edit .bossku/ or "
-    "~/.bosskuai/ by hand, never save secrets, and never write .bossku/memory when memory_storage is obsidian.\n"
+    "enough and most tasks save nothing. Use the commands, not the files: never open or edit .bossku/memory, "
+    ".bossku/project.json or ~/.bosskuai/ by hand (.bossku/DESIGN.md and .bossku/shots/ are yours to read and "
+    "write), never save secrets, and never write .bossku/memory when memory_storage is obsidian.\n"
     "Grounding is always on: say when evidence is insufficient instead of guessing, and cite file:line or "
     "command output."
     # antislop runs an install wizard and a blocking "during or after?" question unless the
@@ -50,13 +51,67 @@ def _managed_block(content: str) -> str:
 
 def upsert_managed_block(existing: str, block: str) -> str:
     wrapped = _managed_block(block)
-    if MARKER_START in existing and MARKER_END in existing:
-        start = existing.index(MARKER_START)
-        end = existing.index(MARKER_END) + len(MARKER_END)
-        return existing[:start] + wrapped + existing[end:]
+    start = existing.find(MARKER_START)
+    if start >= 0:
+        end = existing.find(MARKER_END, start)
+        if end < 0:   # appending a second block would later swallow the text between the two; the user must close it
+            raise ValueError(f"the start marker {MARKER_START} has no end marker {MARKER_END} after it: "
+                             "add the end marker where the block ends, or remove the start marker")
+        return existing[:start] + wrapped + existing[end + len(MARKER_END):]
     if existing.strip():
         return existing.rstrip() + "\n\n" + wrapped + "\n"
     return wrapped + "\n"
+
+
+DESIGN_STUB = """# DESIGN.md - design source of truth
+
+Status: STUB. Filled in by the BosskuAI designer contract before the first real UI work
+(`agents/designer.md`, skill `bosskuai-design-systems`). Delete this file if the project has no UI.
+Every UI change reads this file first; every value here is a decision, not a default.
+
+## 1. Visual Theme & Atmosphere
+Design Read (one line: who it is for, the mood, the closest real reference):
+Direction (named theme / real design system / labelled aesthetic) and why:
+
+## 2. Color Palette & Roles
+Primitive palette (5-8 hex) and semantic roles (primary, accent, surface, text, success, warning, error). One accent.
+
+## 3. Typography Rules
+Display / body / mono families (a deliberate choice, not Inter by default) and the hierarchy table (size, weight, line-height, tracking).
+
+## 4. Component Stylings
+Buttons, inputs, cards, navigation, feedback: every state (default, hover, focus, active, disabled, loading, empty, error).
+
+## 5. Layout Principles
+Spacing base unit and scale, grid, content max-width, one radius system.
+
+## 6. Depth & Elevation
+Shadow / surface tokens. Glass and gradients only with a stated reason.
+
+## 7. Do's and Don'ts
+Brand-specific guardrails. Always: no placeholder people or companies, no filler verbs, no fake-perfect numbers, no em-dash decoration, real images and real SVG marks.
+
+## 8. Responsive Behavior
+Breakpoints 390 / 768 / 1440, touch targets 44px, what collapses where. Screenshots at 390 and 1440 before any UI is called done.
+
+## 9. Agent Prompt Guide
+Paste-ready component prompt using the tokens above.
+"""
+
+
+DESIGN_FILES = ("DESIGN.md", "design/DESIGN.md")
+
+
+def init_design_stub(project: Path) -> str | None:
+    """Scaffold .bossku/DESIGN.md unless the project already keeps a design source of truth. Returns its path, or None.
+
+    The places to look are the ones hooks/session-start.mjs reads: .bossku/DESIGN.md, DESIGN.md, design/DESIGN.md."""
+    dest = project_meta_dir(project) / "DESIGN.md"
+    if dest.is_file() or any((project / rel).is_file() for rel in DESIGN_FILES):
+        return None
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_text(DESIGN_STUB, encoding="utf-8")
+    return str(dest)
 
 
 def init_project(
@@ -77,6 +132,7 @@ def init_project(
     metadata.setdefault("profile", profile)
     meta_file.write_text(json.dumps(metadata, indent=2), encoding="utf-8")
     memory_dir = init_memory_templates(project, home=home)
+    design_md = init_design_stub(project)
     agents_path = project / "AGENTS.md"
     claude_path = project / "CLAUDE.md"
     omp_dir = project / ".omp"
@@ -123,6 +179,7 @@ def init_project(
         "project": str(project),
         "meta": str(meta_file),
         "memory": str(memory_dir),
+        "design_md": design_md,
         "omp": str(omp_dir),
         "portable_skills": portable_info,
     }

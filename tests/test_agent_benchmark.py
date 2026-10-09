@@ -250,6 +250,11 @@ class ReportTests(unittest.TestCase):
 class ScrubTests(unittest.TestCase):
     """Saved rows must not carry the account or folder names of whoever ran the benchmark."""
 
+    def setUp(self):   # the real account name must not decide the result (an account called "home" broke these)
+        patcher = mock.patch('pathlib.Path.home', return_value=Path('/somewhere/jo'))
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
     def test_home_folders_in_windows_and_unix_styles_are_replaced(self):
         from scripts.benchmark_agent import scrub
         cases = {

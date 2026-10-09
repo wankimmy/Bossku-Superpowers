@@ -1,7 +1,7 @@
 {
   "version": "2.1.0",
-  "fingerprint": "783e0ebe8a62f2ad",
-  "count": 242,
+  "fingerprint": "56c55a081ce40225",
+  "count": 243,
   "aliases": {
     "bosskuai-caveman": "bosskuai-token-saver",
     "bosskuai-root-cause-investigation": "bosskuai-diagnose-loop",
@@ -3711,6 +3711,66 @@
       "model_role": "reviewer",
       "pack": "bossku",
       "qterms": "100mb:1 accept:4 accepting:1 access:3 authentication:3 bahagian:1 betul:1 beyond:2 bisa:1 bodie:1 bomb:1 bypass:1 character:1 compare:1 comparing:1 compression:1 concatenating:1 console:1 contain:1 couldnt:1 count:1 coworker:1 credential:1 csv:1 dalam:2 deeply:1 directly:1 directory:1 dos:1 else:2 endpoint:4 enough:2 env:1 expire:1 expiry:1 extract-all:1 extracting:1 file:9 filename:1 filter:2 filtering:1 fine:3 flow:2 folder:2 gaps:1 go:2 guy:1 hash:1 header:1 html:1 http:1 injection:3 input:5 javascript:1 json:2 kasih:1 kat:3 keys:2 ldap:1 leave:1 limit:2 localstorage:1 location:1 locked:1 logs:3 malicious:1 mana-mana:1 md5:2 mentioned:2 modify:1 multi-tenant:1 nested:1 normal:1 normalize:1 oauth:1 ok:2 okay:1 operation:1 outside:1 owasp:1 ownership:1 param:1 parameter:2 paranoid:1 password:2 path:3 path.resolve:1 payload:1 penetration:1 prevent:3 print:1 processing:2 properly:2 provide:1 querie:2 random:1 realized:1 redirect:3 relative:1 reset:2 resolve:1 reviewing:1 rn:1 saja:1 salt:1 search:2 secret:1 secure:2 security:6 select:1 sending:1 sensitive:2 server:2 server-side:1 since:3 site:2 sketchy:1 solid:1 someone:2 somethin:1 sometime:2 special:2 sql:5 storage:2 store:3 storing:2 string:1 systematically:1 take:4 tenant:2 tengah:1 terus:1 threat:1 token:7 traversal:1 upload:7 url:4 urls:1 us:2 user-generated:1 valid:1 validate:3 vars:1 vector:1 vulnerabilitie:2 window:1 window.location:1 xss:2 yo:1 zip:3"
+    },
+    "bosskuai-cypress": {
+      "path": "skills/bosskuai-cypress/SKILL.md",
+      "name": "bosskuai-cypress",
+      "description": "Use when writing, fixing, running or explaining Cypress tests in a project that uses Cypress (cypress.config files, cy.* commands, cy.intercept, cy.session, a flaky Cypress spec). Playwright suites belong to e2e-testing; agent-driven UI goals belong to bosskuai-agentic-e2e.",
+      "triggers": [
+        "cypress",
+        "cypress test",
+        "cypress tests",
+        "cypress spec",
+        "cypress component",
+        "cypress config",
+        "write cypress",
+        "fix cypress",
+        "update cypress",
+        "flaky cypress",
+        "to cypress",
+        "cy.intercept",
+        "cy.session"
+      ],
+      "exclusions": [
+        "to playwright"
+      ],
+      "phrases": [],
+      "keywords": [
+        "cypress",
+        "test",
+        "spec",
+        "component",
+        "config",
+        "write",
+        "fix",
+        "update",
+        "flaky",
+        "cy.intercept",
+        "cy",
+        "intercept",
+        "cy.session",
+        "session",
+        "writing",
+        "fixing",
+        "running",
+        "explaining",
+        "project",
+        "cypress.config",
+        "file",
+        "command",
+        "playwright",
+        "suite",
+        "belong",
+        "e2e-testing",
+        "agent-driven",
+        "ui",
+        "goal",
+        "bosskuai-agentic-e2e",
+        "window",
+        "note"
+      ],
+      "model_role": "coder",
+      "pack": "bossku"
     },
     "bosskuai-data-architecture": {
       "path": "skills/bosskuai-data-architecture/SKILL.md",
@@ -8749,7 +8809,7 @@
     "bosskuai-tools": {
       "path": "skills/bosskuai-tools/SKILL.md",
       "name": "bosskuai-tools",
-      "description": "Use when the user asks to set up, check or install an optional tool that a skill relies on (headroom, moli, e2e, archify, graft, markitdown, graphify, browser-use, opendataloader-pdf, hindsight, dcg), or a skill fails because its program is missing.",
+      "description": "Use when the user asks to set up, check or install an optional tool that a skill relies on (headroom, moli, e2e, cypress, archify, graft, markitdown, graphify, browser-use, opendataloader-pdf, hindsight, dcg), or a skill fails because its program is missing.",
       "triggers": [
         "tools",
         "install headroom",
@@ -8780,6 +8840,7 @@
         "check",
         "relie",
         "e2e",
+        "cypress",
         "archify",
         "graft",
         "markitdown",
@@ -10997,6 +11058,9 @@
       "triggers": [
         "e2e testing",
         "playwright",
+        "playwright tests",
+        "playwright e2e",
+        "to playwright",
         "e2e test",
         "end to end test",
         "page object model",

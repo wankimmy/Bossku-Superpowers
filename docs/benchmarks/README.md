@@ -82,7 +82,8 @@ python scripts/benchmark_agent.py report benchmarks/results/raw/hard-*.jsonl    
 python scripts/benchmark_agent.py report benchmarks/results/raw/memory-*.jsonl           # remembering a rule
 python scripts/benchmark_agent.py routing-report benchmarks/results/raw/routing.jsonl     # live skill use
 python scripts/benchmark_agent.py overhead-report benchmarks/results/raw/overhead.jsonl   # session overhead
-python scripts/benchmark_routing_heldout.py --arm after=.                                 # skill search on new prompts
+git archive b8ccea1 --prefix=before/ | tar -x -C /tmp                                         # the previous tree, for the comparison
+python scripts/benchmark_routing_heldout.py --arm before=/tmp/before --arm after=. --out /tmp/routing-heldout.json   # skill search on new prompts (a few minutes)
 python scripts/benchmark_agent.py validate --suite benchmarks/tasks/hard-test             # tasks are fair (also: test, memory, memory-rules)
 python scripts/make_charts.py --readme docs/benchmarks/results.md                         # redraw charts and results page
 ```
@@ -132,9 +133,45 @@ An interrupted run resumes where it stopped when you start it again with the sam
 
 Two sets of requests were written by agents that saw only the skill catalog (each skill's id and description), never the router code or its tests, and each request lists the skills a sensible expert would accept for each of its parts (a second agent then added any other skills it judged equally acceptable). The older set has 160 requests, the newer one 168 and was written after the older half had been used for tuning. Each set is split in two by a hash of the request id; the router is tuned on one half and the numbers reported are for the other. The reported result is on 158 requests.
 
-The vocabulary of requests was generated the same way, from each `SKILL.md` alone and without seeing any of these requests: one small model per skill wrote about 30 messages (241 skills, 7,240 messages in all) "that real users would type when this skill is the right first skill" (12 detailed, 6 short, 6 messy, 4 mixed Malay-English, 2 indirect), described in terms of symptoms, tools, error strings and goals rather than the skill's own words. The weight and the cutoffs were chosen on the tuning halves and the curated regression cases (`tests/test_routing.py`) and reported on the test halves. The previous router scored 66% first-pick accuracy on those 158 requests, the current one 81%, plain keyword search 56%.
+The vocabulary of requests was generated the same way, from each `SKILL.md` alone and without seeing any of these requests: one small model per skill wrote about 30 messages (241 skills, 7,240 messages in all) "that real users would type when this skill is the right first skill" (12 detailed, 6 short, 6 messy, 4 mixed Malay-English, 2 indirect), described in terms of symptoms, tools, error strings and goals rather than the skill's own words. The weight and the cutoffs were chosen on the tuning halves and the curated regression cases (`tests/test_routing.py`) and reported on the test halves. The previous router scored 66% first-pick accuracy on those 158 requests, the current one 81%, plain keyword search 56%. The keyword search reads the skill list of the first `--arm` (or the arm named by `--baseline-arm`), so its score moves with the skill list and not with the router: the saved 56% (88 of 158) comes from the skill list at `b8ccea1`, and the same method on the list at `4d47894` gives 54% (86 of 158). A new run writes which arm and catalog the keyword search used (`baseline`) and each arm's git revision (`arms`) into its output file. The committed `routing-heldout.json` was made before those keys existed; re-running with `b8ccea1` as `before` and `dca2b1a` (the commit that wrote the file) as `after` gives its numbers again. Later router changes move the `after` stack size and stack precision slightly, so a re-run on `4d47894` matches the top-1, top-3 and coverage numbers but not those two.
 
-Two things this does not show. First, the 81% is for requests the router was not tuned on; the 84 regression prompts below it score 100% only because it was tuned on them, so that number is not worth quoting as accuracy. Second, better ranking does not by itself change what an agent does. In the live check (DeepSeek V4.1 Flash on 60 of the test requests, with the router at commit `8279f19`) an acceptable skill was opened for 45% of them (27 of 60) and no skill at all for 43% (26 of 60); the earlier check on 73 requests with the older router gave 55% and 27%. In the coding, harder-task, HumanEval and memory runs, skills were almost never opened: 4 of 487 completed runs with Bossku Superpower opened one (`minimal-fix`, `bosskuai-tdd-loop` or `bosskuai-qa-automation-strategy`; count them with `python scripts/skill_use_count.py`). What the hint says, and when, matters more than the ranking.
+Two things this does not show. First, the 81% is for requests the router was not tuned on; the 84 regression prompts below it score 100% only because it was tuned on them, so that number is not worth quoting as accuracy. Second, better ranking does not by itself change what an agent does. In the live check (DeepSeek V4.1 Flash on 60 of the test requests, with the router at commit `8279f19`) an acceptable skill was opened for 45% of them (27 of 60) and no skill at all for 43% (26 of 60); the earlier check on 73 requests with the older router gave 55% (40 of 73) and 27% (20 of 73). Those 73 rows are not in this tree; they exist only in git history (`git show 9a1eb6d:benchmarks/results/raw/routing.jsonl`, summarised in `benchmarks/results/routing-live.json` at the same commit). In the coding, harder-task, HumanEval and memory runs, skills were almost never opened: 4 of 487 completed runs with Bossku Superpower opened one (`minimal-fix`, `bosskuai-tdd-loop` or `bosskuai-qa-automation-strategy`; count them with `python scripts/skill_use_count.py`). What the hint says, and when, matters more than the ranking.
+
+## Skill hint: v1 against v2
+
+`hint_mode` in `~/.bosskuai/config.json` picks what the prompt hook says. `v1` (the default) names one or two skills; `v2` names up to three, lets a skill you name by id through, and stays under 800 characters. [`benchmarks/results/lean-gate.json`](../../benchmarks/results/lean-gate.json) holds an offline test of the two. It makes no model calls: for each prompt it asks what the hook would show and checks that against the skills the labellers accepted. It used the 158 test requests above, a fresh set of 200 (60 multi-part requests, 40 short ones, 100 follow-ups such as "yes, do that") and 100 prompts that need no skill. The fresh sets were written on 2026-10-10 by agents that saw only the skill catalog and labelled by two other agents ([how](../../benchmarks/routing-heldout/FRESH-README.md)); nothing was tuned on them.
+
+| On the 158 test requests | `v1` | `v2` | Full router (no gate) |
+|---|---|---|---|
+| Hint shown | 32.3% (51) | 33.5% (53) | always |
+| Named skills that were acceptable | 80.0% (64 of 80) | 89.3% (67 of 75) | 59.5% (185 of 311) |
+| First pick acceptable, when shown | 98.0% (50 of 51) | 98.1% (52 of 53) | 81.0% (128 of 158) |
+| Parts of the request that got a skill | 26.7% (60 of 225) | 28.0% (63 of 225) | 80.4% (181 of 225) |
+
+The rule saved with the result: `v2` becomes the default only if the test-accuracy bars, the multi-part bar, the fresh-set bars and the timing bar all pass, and the minimum drops from 5 to 3 words only if the short-request bar passes. Result per bar:
+
+| Bar | Result |
+|---|---|
+| `v2` shown within 3 points of `v1` (test) | Pass: +1.3 points |
+| First pick right at least 95% of the time when shown (test) | Pass: 98.1% |
+| Acceptable picks at least 5 points above `v1` (test) | Pass: +9.3 points |
+| Parts that got a skill not below `v1` (test) | Pass: 28.0% against 26.7% |
+| Every part of a multi-part request covered, at least 25% (61 test requests) | **Missed**: 16.4% (10 of 61); the full router reached 50.8% |
+| Follow-ups answered with silence, at least 90% | Pass: 95 of 100 |
+| Prompts that need no skill that got a hint, at most 2% | Pass: 0 of 100 |
+| Fresh multi-part requests, parts that got a skill at least 70% | **Missed**: 23.9% (37 of 155); the full router reached 69.7%, so no policy in the run could pass it |
+| Fresh short requests with a 3-word minimum, first pick right on at least 60% (silence counts as a miss) | **Missed**: 32.5% (13 of 40), 13 of the 15 that got a hint |
+| Hook time, p95 at most 25 ms over 328 prompts | **Missed**: 42.8 ms (`v1`: 36.8 ms, which misses it too) |
+
+Four bars were missed, so `v1` stays the default, the minimum stays at 5 words, and `v2` is opt in.
+
+Limits: the prompts and their labels are the judgment of AI agents, not of people. The timing is in-process on one machine and came from a scratch script that is not in the repository. The test ran on revision `4d47894` plus uncommitted changes (the result file's `measured_code` field says so). No agent was run with either mode, so whether `v2` changes what an agent does is not measured. To repeat the accuracy rows:
+
+```bash
+python scripts/benchmark_routing_heldout.py --policy v1 v2 full_router listed_only v2_min_words_3 \
+    --prompts benchmarks/routing-heldout/prompts.json --prompts benchmarks/routing-heldout/fresh.json \
+    --prompts benchmarks/routing-heldout/trivial.json --out /tmp/lean-gate.json
+```
 
 ## Tuned routing regression (84 prompts)
 

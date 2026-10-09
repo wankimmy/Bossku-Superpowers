@@ -7,15 +7,17 @@ from pathlib import Path
 
 from bossku import __version__
 from bossku.doctor import format_doctor_success, gather_doctor_issues
-from bossku.hooks import install_hooks, run_sync_hook, uninstall_hooks
+from bossku.hooks import install_hooks, read_hook_stdin, run_sync_hook, uninstall_hooks
 from bossku.brief import memory_brief, session_output
 from bossku.gate import gate_output
-from bossku.hint import hook_output
+from bossku.hint import HOSTS, MAX_HINTS, _short, hook_output
 from bossku.init_project import init_project
 from bossku.install import install_user, uninstall_user, update_user
 from bossku.memory import load_user_config, memory_directory, memory_project_root, remember, sync_project
 from bossku.index import load_index, write_index
+from bossku.paths import repo_root
 from bossku.skills import (
+    PROFILES,
     audit_skills,
     locate_skill,
     overdue_packs,
@@ -23,6 +25,7 @@ from bossku.skills import (
     rank_skills,
     select_skill_stack,
     _profile_skills,
+    _routing_index,
 )
 from bossku.validate import validate_repo
 
@@ -50,19 +53,23 @@ def main(argv: list[str] | None = None) -> int:
     sub = parser.add_subparsers(dest="command", required=True)
 
     p_install = sub.add_parser("install", help="Install skills to user-level agent dirs", parents=[child])
-    p_install.add_argument("--profile", choices=["lean", "core", "full"], default="lean",
-                           help="lean (default) lists ~25 skills with short descriptions and keeps the rest "
-                                "reachable through bossku skills show; core is the minimal set; full lists everything")
+    p_install.add_argument("--profile", choices=list(PROFILES), default=None,
+                           help="lean lists ~25 skills with short descriptions and keeps the rest "
+                                "reachable through bossku skills show; core is the minimal set; engineering is "
+                                "everything except the marketing pack; full lists everything. "
+                                "Default: the profile already installed, else lean")
     p_install.add_argument("--vault", type=str, default=None, help="Obsidian vault path")
     p_install.add_argument("--memory-storage", choices=["repo", "obsidian"], default=None,
                            help="primary memory storage (obsidian keeps memory outside repos)")
+    _install_choices(p_install)
 
     p_init = sub.add_parser("init", help="Initialize project adapter", parents=[child])
     p_init.add_argument("project", type=Path)
     p_init.add_argument("--portable", action="store_true")
-    p_init.add_argument("--profile", choices=["lean", "core", "full"], default="core")
+    p_init.add_argument("--profile", choices=list(PROFILES), default="core")
 
-    sub.add_parser("update", help="Refresh user-level skills from repo", parents=[child])
+    p_update = sub.add_parser("update", help="Refresh user-level skills from repo", parents=[child])
+    _install_choices(p_update)
     p_doctor = sub.add_parser("doctor", help="Check install health", parents=[child])
     p_doctor.add_argument(
         "--project",
@@ -129,8 +136,11 @@ def main(argv: list[str] | None = None) -> int:
     p_find_sub = p_find.add_subparsers(dest="skills_cmd", required=True)
     p_find_cmd = p_find_sub.add_parser("find", parents=[child])
     p_find_cmd.add_argument("task")
-    p_find_cmd.add_argument("--limit", type=int, default=5, help="shortlist size")
-    p_find_cmd.add_argument("--profile", choices=["lean", "core", "full"], default=None,
+    p_find_cmd.add_argument("--limit", type=int, default=None, help="shortlist size (default 5, or 3 with --brief)")
+    p_find_cmd.add_argument("--brief", action="store_true",
+                            help="print one line per selected skill (id, score, absolute SKILL.md path, what it is for) "
+                                 "instead of the JSON")
+    p_find_cmd.add_argument("--profile", choices=list(PROFILES), default=None,
                             help="limit automatic selection to an installed skill profile")
     p_show = p_find_sub.add_parser("show", help="Print a skill's SKILL.md (works for library skills the host does not list)",
                                    parents=[child])
@@ -148,10 +158,19 @@ def main(argv: list[str] | None = None) -> int:
     )
     p_audit.add_argument("--json", action="store_true", dest="as_json")
 
+    p_resume = sub.add_parser(
+        "resume", help="Show a brief of the Codex task that stopped on its usage limit in this folder (nothing is saved)",
+        parents=[child])
+    p_resume.add_argument("--project", type=Path, default=Path("."), help="folder to look in (default: here)")
+    p_resume.add_argument("--debug", action="store_true",
+                          help="print only the structure of the latest Codex records, never any text")
+
     sub.add_parser("verify-gate", help="Internal: Stop hook that sends the agent back to run its code once",
                    parents=[child])
-    sub.add_parser("skill-hint", help="Internal: UserPromptSubmit hook that suggests skills for the prompt on stdin",
-                   parents=[child])
+    p_hint = sub.add_parser("skill-hint", help="Internal: UserPromptSubmit hook that suggests skills for the prompt on stdin",
+                            parents=[child])
+    p_hint.add_argument("--host", choices=HOSTS, default="claude",
+                        help="who reads the hint: Codex has no Skill tool, so every skill is named by its SKILL.md path")
     sub.add_parser("validate", help="Validate repository layout", parents=[child])
     p_uninstall = sub.add_parser("uninstall", help="Remove user-level BosskuAI skills", parents=[child])
     p_uninstall.add_argument("--purge", action="store_true")
@@ -162,18 +181,22 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         if args.command == "install":
-            result = install_user(root=root, home=home, profile=args.profile, vault=args.vault,
-                                  memory_storage=args.memory_storage)
+            # A plain re-install keeps the profile already in config.json; only a new install starts at lean.
+            kept = load_user_config(home).get("profile")
+            profile = args.profile or (kept if kept in PROFILES else "lean")
+            result = install_user(root=root, home=home, profile=profile, vault=args.vault,
+                                  memory_storage=args.memory_storage, **_choices(args))
             print(json.dumps(result, indent=2))
-            return 0
+            return 1 if _hook_failed(result.get("hooks") or {}) else 0
         if args.command == "init":
             result = init_project(args.project, root=root, home=home, portable=args.portable, profile=args.profile)
             print(json.dumps(result, indent=2))
             return 0
         if args.command == "update":
-            result = update_user(root=root, home=home)
+            choices = _choices(args)
+            result = _update_with(root, home, choices) if choices else update_user(root=root, home=home)
             print(json.dumps(result, indent=2))
-            return 0
+            return 1 if _hook_failed(result.get("hooks") or {}) else 0
         if args.command == "doctor":
             return _doctor(root, home, getattr(args, "project", None))
         if args.command == "remember":
@@ -189,7 +212,7 @@ def main(argv: list[str] | None = None) -> int:
             print(brief if brief else "No project notes yet.")
             return 0
         if args.command == "session-brief":
-            payload = session_output("" if sys.stdin.isatty() else sys.stdin.read(), home=home)
+            payload = session_output(read_hook_stdin(), home=home)
             if payload:
                 print(json.dumps(payload))
             return 0
@@ -204,11 +227,18 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "hooks":
             tools = tuple(args.tools.split(",")) if args.tools else None
             if args.hooks_cmd == "install":
-                result = install_hooks(home=home, tools=tools)
+                # Wire the Node gates too, as `install` does: the saved --no-harness choice is kept, and a checkout that
+                # cannot be found wires nothing (install_hooks never adds a second Stop gate next to the Node one).
+                try:
+                    checkout = repo_root(root)
+                except FileNotFoundError:
+                    checkout = None
+                result = install_hooks(home=home, tools=tools, root=checkout,
+                                       harness=load_user_config(home).get("harness", True) is not False)
             else:
                 result = uninstall_hooks(home=home, tools=tools)
             print(json.dumps(result, indent=2))
-            return 0
+            return 1 if _hook_failed(result) else 0
         if args.command == "vault":
             return _vault(args, home)
         if args.command == "tools":
@@ -216,16 +246,23 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "skills":
             if args.skills_cmd == "find":
                 profile = args.profile or load_user_config(home).get("profile", "full")
-                matches = rank_skills(args.task, root, limit=max(args.limit, 1))
+                data = _routing_index(root)   # hashes the skills once; both calls below reuse it
+                limit = max(args.limit if args.limit is not None else (MAX_HINTS if args.brief else 5), 1)
+                matches = rank_skills(args.task, root, limit=limit, data=data)
                 # The lean profile lists a few skills but keeps the whole library one `show` away.
                 available = None if profile == "lean" else set(_profile_skills(profile, root))
-                selection = select_skill_stack(args.task, root, limit=max(args.limit, 1), available=available)
+                selection = select_skill_stack(args.task, root, limit=limit, available=available, data=data)
                 for row in selection["selected"]:
                     kind, path = locate_skill(row["skill_id"], root, home)
                     row["access"] = kind
                     row["path"] = str(path) if path else None
                     row["load_with"] = (f"bossku skills show {row['skill_id']}" if kind in {"library", "repo"}
                                         else "Skill tool, or read the path")
+                if args.brief:
+                    for row in selection["selected"]:
+                        where = Path(row["path"]).as_posix() if row["path"] else "not found"
+                        print(f"{row['skill_id']} (score {row['score']:.1f}): {_short(row['description'], 100)} -> {where}")
+                    return 0
                 stack = [(row["skill_id"], row["score"]) for row in selection["selected"]]
                 sid = selection["primary"]
                 score = stack[0][1] if stack else 0.0
@@ -289,12 +326,23 @@ def main(argv: list[str] | None = None) -> int:
             elif args.skills_cmd == "audit":
                 return _skill_audit(root, as_json=args.as_json)
             return 0
+        if args.command == "resume":
+            from bossku.resume import build_brief, debug_report, find_codex_stop   # the hooks never need them
+
+            folder = str(args.project.absolute())
+            if args.debug:
+                print("\n".join(debug_report(folder, home=home)))
+                return 0
+            stop = find_codex_stop(folder, home, ignore_continued=False)   # looking never marks the stop as handed over
+            brief = build_brief(stop, folder) if stop else ""
+            print(brief or "Nothing to resume.")
+            return 0
         if args.command in ("verify-gate", "skill-hint"):
             # Hooks never fail the user's session: exit code 2 would block the prompt or the stop, so any error is silent.
             try:
-                text = _hook_stdin()
+                text = read_hook_stdin()
                 result = (gate_output(text) if args.command == "verify-gate"
-                          else hook_output(text, root=root, home=home))
+                          else hook_output(text, root=root, home=home, host=getattr(args, "host", "claude")))
                 if result:
                     print(json.dumps(result))
             except Exception:  # noqa: BLE001
@@ -318,11 +366,32 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "uninstall":
             result = uninstall_user(root=root, home=home, purge=args.purge)
             print(json.dumps(result, indent=2))
-            return 0
+            return 1 if _hook_failed(result.get("hooks_removed") or {}) else 0
     except Exception as exc:  # noqa: BLE001 - CLI boundary
         print(f"error: {exc}", file=sys.stderr)
         return 2
     return 0
+
+
+def _install_choices(parser: argparse.ArgumentParser) -> None:
+    """--claude/--agents/--harness (and their --no- forms). Left unset, `install` and `update` keep the saved choice."""
+    for flag, what in (("claude", "the skills in ~/.claude/skills (off when a Claude Code plugin serves them)"),
+                       ("agents", "the subagent contracts in ~/.claude/agents"),
+                       ("harness", "the Node gates and deny rules in ~/.claude/settings.json")):
+        parser.add_argument(f"--{flag}", action=argparse.BooleanOptionalAction, default=None,
+                            help=f"install {what}; default: keep the saved choice (on for a first install)")
+
+
+def _choices(args) -> dict:
+    return {name: getattr(args, name) for name in ("claude", "agents", "harness") if getattr(args, name, None) is not None}
+
+
+def _update_with(root: Path | None, home: Path | None, choices: dict) -> dict:
+    """`bossku update` with a choice: the refresh update_user does (saved profile, vault and checkout), plus the choice."""
+    cfg = load_user_config(home)
+    if root is None and cfg.get("installed_from"):
+        root = Path(cfg["installed_from"])
+    return install_user(root=root, home=home, profile=cfg.get("profile", "full"), vault=cfg.get("obsidian_vault"), **choices)
 
 
 def _vault(args, home) -> int:
@@ -382,12 +451,9 @@ def _tools(args, home=None) -> int:
     return 0 if result["ok"] else 1
 
 
-def _hook_stdin() -> str:
-    """The hook payload as UTF-8 text: a Windows pipe would otherwise decode it with the console code page."""
-    if sys.stdin.isatty():
-        return ""
-    raw = getattr(sys.stdin, "buffer", None)
-    return raw.read().decode("utf-8", errors="replace") if raw is not None else sys.stdin.read()
+def _hook_failed(hooks: dict) -> bool:
+    """True when any hook installer reported an error. The JSON still lists every tool; only the exit code changes."""
+    return any(isinstance(v, dict) and v.get("status") == "error" for v in hooks.values())
 
 
 def _stocktake(root: Path | None, *, strict: bool = False, as_json: bool = False) -> int:
@@ -432,6 +498,7 @@ def _skill_audit(root: Path | None, *, as_json: bool = False) -> int:
         f"(~{report['approx_custom_description_tokens']} tokens)"
     )
     print(f"descriptions over 300 chars: {len(report['descriptions_over_300_chars'])}")
+    print(f"custom descriptions without 'Use when': {len(report['custom_descriptions_without_use_when'])}")
     print(f"skill bodies over 500 words: {len(report['bodies_over_500_words'])}")
     print(f"broken relative links: {len(report['broken_relative_links'])}")
     if report["broken_relative_links_by_pack"]:

@@ -382,5 +382,5 @@ When auditing, return:
 ## Further reading
 
 - `bosskuai-laravel-development-playbook.md` — soft-delete, transactions, migration safety in framework context.
-- `bosskuai-mongodb-playbook.md` — document model decisions for the cases SQL is the wrong tool.
+- the `bosskuai-mongodb` skill — document model decisions for the cases SQL is the wrong tool.
 - `bosskuai-redis-caching-queues-playbook.md` — when to cache vs add an index.

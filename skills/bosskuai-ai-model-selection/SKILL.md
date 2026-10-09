@@ -19,17 +19,26 @@ Model rosters move faster than this file. For anything Claude/Anthropic — mode
 
 ## Claude roster
 
-Current as of 2026-09. Ids are complete as written — never append date suffixes.
+Checked 2026-10-06: ids, context windows and prices match Anthropic's current model table; the "Best for" notes were not re-checked. Newer models may exist. Load `claude-api` for the live roster. Ids are complete as written - never append date suffixes.
 
 | Model | Id | Context | $/1M in | $/1M out | Best for |
 |---|---|---|---|---|---|
-| Claude Fable 5.1 | `claude-fable-5-1` | 1M | 10.00 | 50.00 | The hardest reasoning and longest-horizon agentic runs (succeeds `claude-fable-5`, same price) |
-| Claude Opus 5 | `claude-opus-5` | 1M | 5.00 | 25.00 | **Default.** Agentic coding, architecture, deep analysis |
-| Claude Opus 5.5 | `claude-opus-5-5` | 1M | 4.00 | 20.00 | Launching: use only when the user names it. Effort defaults to `medium`, and thinking cannot be disabled |
+| Claude Fable 5.1 | `claude-fable-5-1` | 1M | 10.00 | 50.00 | The most capable widely released model: the hardest reasoning and longest-horizon agentic runs (succeeds `claude-fable-5`, same price) |
+| Claude Opus 5.5 | `claude-opus-5-5` | 1M | 4.00 | 20.00 | **Default Opus.** Agentic coding, architecture, deep analysis. Effort defaults to `medium`, and thinking cannot be disabled |
+| Claude Sonnet 5.5 | `claude-sonnet-5-5` | 1M | 2.00 | 10.00 | High-volume production work. This repo's benchmarks ran it |
+| Claude Haiku 5.5 | `claude-haiku-5-5` | 1M | 0.10 | 0.50 | Extraction, classification, summarization at volume |
+
+The Haiku 5.5 prices apply to prompts up to 100K tokens; ask `claude-api` for the price above that.
+
+Earlier models, from the 2026-09 check and not re-checked on 2026-10-06, so confirm before quoting them:
+
+| Model | Id | Context | $/1M in | $/1M out | Best for |
+|---|---|---|---|---|---|
+| Claude Opus 5 | `claude-opus-5` | 1M | 5.00 | 25.00 | Agentic coding, architecture, deep analysis |
 | Claude Sonnet 5 | `claude-sonnet-5` | 1M | 2.00 | 10.00 | High-volume production work at near-Opus quality |
 | Claude Haiku 4.5 | `claude-haiku-4-5` | 200K | 1.00 | 5.00 | Extraction, classification, summarization at volume |
 
-Default to `claude-opus-5` unless the user names another model. Never downgrade for cost on the user's behalf — that is their call.
+Default to `claude-opus-5-5` unless the user names another model. Never downgrade for cost on the user's behalf - that is their call.
 
 ## The controls that matter more than the model
 
@@ -60,6 +69,7 @@ Then name the **primary failure mode** if the choice is wrong — low quality, t
 
 - Do not recommend the top tier for mechanical work where a cheaper model plus higher effort suffices.
 - Do not recommend the cheapest model where reasoning quality directly affects correctness — money, auth, data integrity, medical, or legal output.
+- Use the strongest model for execution too, not only planning and audit, when the work touches auth, sessions or secrets (including authorization and tokens); payments, billing, refunds or financial data; privacy, PII, data retention or user safety; destructive migrations, data loss or queue/idempotency; multi-service or deployment changes; security-sensitive integrations and webhooks; repeated failures of the cheaper model; or unclear requirements with a high cost of being wrong.
 - Always give a fallback: availability, rate limits, and refusals all happen. Rate limits are per-model, so a fallback in the same tier may not have headroom.
 - Do not present benchmark scores as decisive for a specific task. Test on the actual workload.
 - Date any claim that depends on current pricing or capability.

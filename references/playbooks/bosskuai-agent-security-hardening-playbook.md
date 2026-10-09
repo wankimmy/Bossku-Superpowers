@@ -111,6 +111,5 @@ Confirmed vs inferred risks:
 ## References
 
 - `../../references/checklists/agent-security-hardening-checklist.md`
-- `../../references/playbooks/agent-security-hardening-playbook.md`
 - `../../references/checklists/security-risk-checklist.md`
 - `../../references/pitfalls/ai-workspace-pitfalls.md`

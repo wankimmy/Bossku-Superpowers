@@ -426,6 +426,6 @@ When auditing, return:
 
 ## Further reading
 
-- `bosskuai-docker-playbook.md` — Compose patterns and image hygiene shared across environments.
+- the `bosskuai-docker` skill — Compose patterns and image hygiene shared across environments.
 - `bosskuai-redis-caching-queues-playbook.md` — eviction policy and persistence settings.
-- `bosskuai-cybersecurity-risk-playbook.md` — STRIDE/OWASP baseline that complements the firewall and image hardening checks.
+- the `bosskuai-cybersecurity-risk` skill — STRIDE/OWASP baseline that complements the firewall and image hardening checks.

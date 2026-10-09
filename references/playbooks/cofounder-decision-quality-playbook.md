@@ -54,9 +54,9 @@ Prefer building when:
 | Database correctness/performance | `bosskuai-database-engineering` | `bosskuai-performance-profiling` |
 | Redis queues/cache | `bosskuai-redis-caching-queues` | `bosskuai-incident-response` |
 | VPS Docker deployment | `bosskuai-vps-docker-deployment` | `bosskuai-devops-iac` |
-| Security/privacy | `bosskuai-cybersecurity-risk` | `bosskuai-agent-security-hardening` |
+| Security/privacy | `bosskuai-cybersecurity-risk` | `bosskuai-prompt-injection-defense` |
 | SEO/GEO | `bosskuai-seo-geo` | `bosskuai-marketing-growth` |
-| Content calendar | `bosskuai-content-calendar` | `bosskuai-social-content-calendar` |
+| Content calendar | `bosskuai-content-calendar` | - |
 | Sales/GTM | `bosskuai-sales-strategy` | `bosskuai-launch-commercialization` |
 | Pricing/runway | `bosskuai-financial-modeling` | `bosskuai-product-strategy` |
 

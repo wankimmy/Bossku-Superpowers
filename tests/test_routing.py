@@ -251,9 +251,8 @@ class RoutingTests(unittest.TestCase):
         self.assertEqual(misses, [])
 
     def test_top1_accuracy_floor(self):
-        hits = [q for q, expected in ROUTING_CASES if find_skill(q, ROOT)[0] in expected]
-        accuracy = len(hits) / len(ROUTING_CASES)
         misses = [q for q, expected in ROUTING_CASES if find_skill(q, ROOT)[0] not in expected]
+        accuracy = 1 - len(misses) / len(ROUTING_CASES)
         self.assertGreaterEqual(accuracy, 0.80, f"top-1 routing regressed; missed: {misses}")
 
     def test_top3_recall_floor(self):
@@ -377,7 +376,7 @@ class SkillAuditTests(unittest.TestCase):
 
     def test_custom_descriptions_have_a_bounded_context_cost(self):
         report = audit_skills(ROOT)
-        self.assertLessEqual(report["custom_description_chars"], 23000)   # 22,000 before the three skills added with the tools layer
+        self.assertLessEqual(report["custom_description_chars"], 23500)   # 23,000 before bosskuai-cypress, 22,000 before the tools layer
         self.assertEqual(report["custom_descriptions_over_300_chars"], [])
 
 
@@ -442,6 +441,42 @@ class ValidatorTests(unittest.TestCase):
             base = self._repo(tmp)
             self._skill(base, "good", "name: good\ndescription: " + "a real description " * 4)
             self.assertEqual(validate_skills(base), [])
+
+
+CYPRESS_ROUTING_CASES = [
+    ("write cypress e2e tests for the checkout flow", {"bosskuai-cypress"}),
+    ("set up cypress component testing for our React app", {"bosskuai-cypress"}),
+    ("fix flaky cypress tests in CI", {"bosskuai-cypress"}),
+    ("migrate our playwright tests to cypress", {"bosskuai-cypress"}),
+    ("explain what this cypress test does", {"bosskuai-cypress"}),
+    ("write playwright e2e tests for the checkout flow", {"e2e-testing"}),
+    ("de-flake our playwright e2e suite in ci", {"e2e-testing"}),
+    ("write jest tests for the parser", {"bosskuai-tdd-loop", "test-driven-development"}),
+    ("write tests for this file", {"bosskuai-tdd-loop", "test-driven-development"}),
+    ("add tests for the login form", {"bosskuai-product-verification", "accessibility"}),
+]
+
+
+class CypressRoutingTests(unittest.TestCase):
+    def test_cypress_requests_reach_the_cypress_skill_and_other_test_requests_do_not(self):
+        misses = []
+        for query, expected in CYPRESS_ROUTING_CASES:
+            ranked = [sid for sid, _ in rank_skills(query, ROOT, limit=3)]
+            if not set(ranked) & expected:
+                misses.append((query, ranked))
+            if "cypress" not in query and ranked and ranked[0] == "bosskuai-cypress":
+                misses.append((query, "cypress skill took a non-Cypress request"))
+        self.assertEqual(misses, [])
+
+    def test_generic_e2e_requests_do_not_reach_the_cypress_skill(self):
+        for query in ("write e2e tests for the login session", "write playwright e2e tests for the checkout flow"):
+            ranked = [sid for sid, _ in rank_skills(query, ROOT, limit=3)]
+            self.assertNotIn("bosskuai-cypress", ranked, query)
+
+    def test_moving_away_from_cypress_goes_to_playwright(self):
+        ranked = [sid for sid, _ in rank_skills("migrate our cypress tests to playwright", ROOT, limit=3)]
+        self.assertEqual(ranked[0], "e2e-testing")
+        self.assertNotIn("bosskuai-cypress", ranked)
 
 
 if __name__ == "__main__":

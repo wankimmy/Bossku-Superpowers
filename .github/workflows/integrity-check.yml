@@ -6,13 +6,20 @@ on:
   pull_request:
     branches: ["main", "master"]
 
+permissions:
+  contents: read
+
 jobs:
   test:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
-        python-version: ["3.11"]
+        include:
+          - {os: ubuntu-latest, python-version: "3.11"}
+          - {os: windows-latest, python-version: "3.11"}
+          - {os: ubuntu-latest, python-version: "3.12"}
+          - {os: ubuntu-latest, python-version: "3.13"}
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
 
     steps:
       - uses: actions/checkout@v4
@@ -30,6 +37,12 @@ jobs:
 
       - name: Unit tests
         run: python -m unittest discover -s tests -v
+
+      # Warning only: a stale docs/benchmarks/routing.json snapshot should be seen, not block a merge.
+      # Regenerate it last with `python scripts/benchmark_routing.py`.
+      - name: Routing snapshot (warning only)
+        run: python scripts/benchmark_routing.py --check
+        continue-on-error: true
 
       - name: Doctor smoke (temp home)
         run: python -c "import tempfile, subprocess, sys; from pathlib import Path; h=Path(tempfile.mkdtemp()); subprocess.check_call([sys.executable,'-m','bossku','install','--root','.','--home',str(h),'--profile','core']); subprocess.check_call([sys.executable,'-m','bossku','doctor','--root','.','--home',str(h)])"

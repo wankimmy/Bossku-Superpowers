@@ -16,6 +16,7 @@ KIND_TO_FILE = {
     "learning": "learnings.md",
     "project": "project.md",
 }
+TEMP_SKIP = "the project is in the OS temp folder, so it is not copied to a vault outside it"
 
 
 def load_user_config(home: Path | None = None) -> dict:
@@ -60,6 +61,10 @@ def _memory_location(project: Path, *, home: Path | None = None) -> tuple[str, P
     if not vault_path:
         raise ValueError("Obsidian memory requires a configured obsidian_vault")
     vault = Path(vault_path).resolve()
+    if _in_os_temp(project) and not _in_os_temp(vault):
+        # Same rule as sync_project: a scratch folder or test run must not leave a junk folder in the real vault, so
+        # its notes stay in the folder, as in repo mode. A vault that is itself in the temp folder is a test sandbox.
+        return "repo", project.resolve(), project_memory_dir(project)
     if not vault.is_dir():
         raise ValueError("Obsidian vault unavailable; memory was not saved")
     project_root = _memory_project_root(project, cfg)
@@ -170,10 +175,20 @@ def _saved(kind: str, target: Path, vault: dict) -> dict:
         where = f"to {target} and copied it to the vault"
     elif status == "pending":
         where = f"to {target}; the vault is unavailable, so the copy waits for the next sync"
+    elif vault.get("reason") == TEMP_SKIP:
+        where = f"to {target}; this project is in the temp folder, so it is not copied to the vault"
     else:
         where = f"to {target}; no vault is configured, so there is no second copy"
     message = f"Saved the {kind} note {where}. Nothing more to do."
     return {"saved": True, "message": message, "kind": kind, "file": str(target), "vault": vault}
+
+
+def _in_os_temp(path: Path) -> bool:
+    """True when `path` is inside the OS temp folder (links resolved; case ignored on Windows)."""
+    import tempfile   # not at module scope: bossku.cli imports this module on every hook run
+    temp = os.path.normcase(os.path.realpath(tempfile.gettempdir()))
+    here = os.path.normcase(os.path.realpath(path))
+    return here == temp or here.startswith(temp.rstrip(os.sep) + os.sep)
 
 
 def sync_project(project: Path, *, home: Path | None = None) -> dict:
@@ -185,6 +200,10 @@ def sync_project(project: Path, *, home: Path | None = None) -> dict:
     if not vault_path:
         return {"status": "skipped", "reason": "no vault configured"}
     vault = Path(vault_path)
+    if _in_os_temp(project) and not _in_os_temp(vault):
+        # Test runs and scratch folders left one junk folder each in the real vault. A vault that is itself in the
+        # temp folder is a test sandbox and still syncs.
+        return {"status": "skipped", "reason": TEMP_SKIP}
     if not vault.is_dir():
         return {"status": "pending", "reason": "vault unavailable"}
     if cfg.get("memory_storage", "repo") == "obsidian":
@@ -196,11 +215,14 @@ def sync_project(project: Path, *, home: Path | None = None) -> dict:
             mirrored = {"status": "error", "reason": str(exc)[:200]}
         return {"status": "ok", "storage": "obsidian", "exported": [],
                 "conflicts": [], "vault_dir": str(mem_dir), "mirrored": mirrored}
+    mem_dir = project_memory_dir(project)
+    if not any((mem_dir / filename).is_file() for filename in KIND_TO_FILE.values()):
+        # The hook runs in whatever folder a session opens in; a folder with no notes gets no vault folder or state file.
+        return {"status": "skipped", "reason": "no memory notes in this project"}
     project_name = project.resolve().name
     export_base = vault_export_dir(vault, project_name)
     ensure_inside(export_base, vault)
     export_base.mkdir(parents=True, exist_ok=True)
-    mem_dir = project_memory_dir(project)
     exported: list[str] = []
     conflicts: list[str] = []
     state = _load_sync_state(project)
@@ -214,11 +236,17 @@ def sync_project(project: Path, *, home: Path | None = None) -> dict:
         dest = export_base / filename
         ensure_inside(dest, vault)
         if dest.is_file():
+            # Text mode reads CRLF as LF, so the Windows line endings write_text produces are not mistaken for an edit.
+            current = dest.read_text(encoding="utf-8", errors="replace")
+            if current == content:
+                file_hashes[filename] = digest
+                exported.append(filename)
+                continue
             prev = file_hashes.get(filename)
-            current_vault = hashlib.sha256(dest.read_bytes()).hexdigest()
-            if prev and current_vault != prev and digest != current_vault:
-                conflict = export_base / f"{filename}.conflict.md"
-                conflict.write_text(dest.read_text(encoding="utf-8"), encoding="utf-8")
+            if prev and hashlib.sha256(current.encode("utf-8")).hexdigest() != prev:
+                from bossku.vault import _free
+                conflict = _free(export_base / f"{filename}.conflict.md")
+                conflict.write_bytes(dest.read_bytes())   # the edit as it was, even when it is not valid UTF-8
                 conflicts.append(str(conflict))
         dest.write_text(content, encoding="utf-8")
         file_hashes[filename] = digest

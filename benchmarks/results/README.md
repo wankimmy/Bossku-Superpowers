@@ -10,7 +10,11 @@ These files are the evidence behind the numbers in the main [README](../../READM
 
 `raw/timeouts-first-attempt.jsonl` holds the first tries of the runs that hit the 25-minute limit while the model service was slow. Each was run again with a 60-minute limit, and the rerun is the one counted in the other files.
 
-Raw files are named after the check and the model: `coding-*` (17 coding test tasks), `hard-*` (14 harder test tasks), `memory-*` (10 two-session tasks), `humaneval-*` (40 problems), `routing.jsonl` (live skill use), `overhead.jsonl` (first call of a session).
+The live skill-use check on 73 requests with the older router, quoted in the benchmark notes (55% and 27%), has no file in this folder. Its rows are in git history: `git show 9a1eb6d:benchmarks/results/raw/routing.jsonl`.
+
+`latest/` is where `scripts/benchmark_agent.py` writes by default. Git ignores it because its rows are not scrubbed; run `compact` to make a copy you can commit.
+
+Raw files are named after the check and the model: `coding-*` (17 coding test tasks), `hard-*` (14 harder test tasks), `memory-*` (22 two-session tasks: the 10 in `benchmarks/tasks/memory` and the 12 in `benchmarks/tasks/memory-rules`), `humaneval-*` (40 problems), `routing.jsonl` (live skill use), `overhead.jsonl` (first call of a session).
 
 ## Where the numbers come from
 
@@ -26,4 +30,6 @@ Raw files are named after the check and the model: `coding-*` (17 coding test ta
 python -m unittest tests.test_results_consistent -v
 ```
 
-The test recomputes every summary from `raw/`, redraws every chart in `docs/assets/`, and rebuilds the README text, then fails on any difference. It also fails if a saved coding run was ended by a dollar cap.
+The test recomputes every summary from `raw/`, redraws every chart in `docs/assets/`, and rebuilds the README text, then fails on any difference. It also fails if a saved coding run was ended by a dollar cap, or if a saved row carries a home folder path or a provider request id (in `raw/` or `raw/earlier/`).
+
+`python scripts/make_charts.py --readme docs/benchmarks/results.md` rewrites the results page from these files. It stops with exit code 1 and changes nothing when one of the summary files is missing; pass `--allow-partial` to rewrite the page anyway.

@@ -1,6 +1,6 @@
 {
   "name": "bossku-superpower",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Make your AI coding agent work properly: pick the right skill, run its own code, and remember your project rules.",
   "author": {
     "name": "Bossku Superpower",
@@ -21,7 +21,7 @@
   "interface": {
     "displayName": "Bossku Superpower",
     "shortDescription": "Repo-local memory and routing habits for Codex workspaces.",
-    "longDescription": "Bossku Superpower provides a compact Codex entrypoint for using workspace memory, skill routing, evaluation, and human-quality output checks without loading the full toolkit at once.",
+    "longDescription": "Bossku Superpower provides a Codex entrypoint for using workspace memory, skill routing, evaluation, and human-quality output checks.",
     "developerName": "Bossku Superpower",
     "category": "Productivity",
     "capabilities": [

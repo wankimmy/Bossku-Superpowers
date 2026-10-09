@@ -4,7 +4,7 @@ Bossku Superpower is a toolkit-only repo: skills, agents, CLI, and docs.
 
 ## Changes
 
-1. Keep `AGENTS.md` tool-neutral and concise.
+1. Keep `AGENTS.md` tool-neutral and concise. It loads in every session, and `validate` fails above 16,000 characters.
 2. Add or edit skills under `skills/<id>/SKILL.md` with YAML frontmatter.
 3. Register deprecated names in `skills/aliases.json` instead of duplicating folders.
 4. Run before opening a PR:

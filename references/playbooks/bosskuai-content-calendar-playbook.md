@@ -21,3 +21,7 @@
 ## Metrics layer
 
 Every calendar row should include metrics: leading signal, lagging signal, platform metric, CTA metric, and review cadence. Example: replies, saves, clicks, vendor signups, customer leads, booked calls, and conversion rate.
+
+## References
+
+- `../../references/checklists/anti-ai-writing-checklist.md` - run before publishing calendar copy.

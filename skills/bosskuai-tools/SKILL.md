@@ -1,6 +1,6 @@
 ---
 name: bosskuai-tools
-description: "Use when the user asks to set up, check or install an optional tool that a skill relies on (headroom, moli, e2e, archify, graft, markitdown, graphify, browser-use, opendataloader-pdf, hindsight, dcg), or a skill fails because its program is missing."
+description: "Use when the user asks to set up, check or install an optional tool that a skill relies on (headroom, moli, e2e, cypress, archify, graft, markitdown, graphify, browser-use, opendataloader-pdf, hindsight, dcg), or a skill fails because its program is missing."
 ---
 
 # Optional tools

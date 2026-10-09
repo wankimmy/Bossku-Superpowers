@@ -71,7 +71,8 @@ def memory_brief(project: Path, *, home: Path | None = None, limit: int = 1000, 
 
 
 def session_output(payload_text: str, *, home: Path | None = None) -> dict:
-    """What a Claude Code `SessionStart` hook prints: the brief for the session's folder, or nothing."""
+    """What a Claude Code `SessionStart` hook prints: the project notes for the session's folder, plus a one-line pointer
+    when Codex stopped on its usage limit here (new sessions only), as one context; nothing when there is neither."""
     try:
         payload = json.loads(payload_text) if payload_text.strip() else {}
     except json.JSONDecodeError:
@@ -79,10 +80,19 @@ def session_output(payload_text: str, *, home: Path | None = None) -> dict:
     cwd = payload.get("cwd") if isinstance(payload, dict) else None
     if not cwd:
         return {}
+    parts = []
     try:
-        brief = memory_brief(Path(cwd), home=home)
+        parts.append(memory_brief(Path(cwd), home=home))
     except Exception:  # noqa: BLE001 - a convenience must never break a session
+        pass
+    if payload.get("source") in ("startup", "clear"):   # not on resume or compact: the pointer was already seen
+        try:
+            from bossku.resume import session_pointer   # only a new session needs it
+
+            parts.append(session_pointer(cwd, home=home))
+        except Exception:  # noqa: BLE001 - and one failing must not hide the other
+            pass
+    context = "\n".join(part for part in parts if part)
+    if not context:
         return {}
-    if not brief:
-        return {}
-    return {"hookSpecificOutput": {"hookEventName": "SessionStart", "additionalContext": brief}}
+    return {"hookSpecificOutput": {"hookEventName": "SessionStart", "additionalContext": context}}
