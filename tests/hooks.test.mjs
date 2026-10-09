@@ -305,6 +305,23 @@ test("stop gate: verification after the last edit clears it", () => {
   assert.equal(analyze(lines).unverifiedAfterEdit, false);
 });
 
+test("stop gate: running the code after the edit counts, like bossku/gate.py RUNS_CODE", () => {
+  const ran = (command) =>
+    analyze([user("fix the bug"), toolUse("Write", { file_path: "C:/proj/sales_report.py" }), toolResult(), toolUse("Bash", { command }), toolResult()])
+      .unverifiedAfterEdit === false;
+  for (const command of [
+    'cat > "$TMPDIR/check.py" <<\'EOF\'\nimport sales_report\nEOF\npython "$TMPDIR/check.py" .',
+    "python - <<'EOF'\nimport sales_report\nassert sales_report.total([]) == 0\nEOF",
+    'python -c "import sales_report; assert sales_report.total([1]) == 1"',
+    "py check.py",
+    "node scripts/check.js",
+    "bash run_tests.sh",
+    "./check.sh",
+  ]) assert.ok(ran(command), command);
+  for (const command of ["python --version", "node -v", "python -m pip install requests", "cat sales_report.py", "grep -n python README.md"])
+    assert.ok(!ran(command), command);
+});
+
 test("stop gate: verification before the last edit does not count", () => {
   const lines = [
     user("fix"),

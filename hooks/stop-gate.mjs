@@ -31,11 +31,20 @@ const VERIFY_PATTERNS = [
   /\bbossku\s+validate\b|\bpython3?(\.exe)?"?\s+-m\s+(bossku\s+validate|unittest|pytest|py_compile)\b/i,
   /\bplaywright\s+(test|screenshot)\b|shot\.mjs|\bcurl\b[^|]*(localhost|127\.0\.0\.1|:\d{4})|\bgit\s+diff\s+--check\b/i,
 ];
+// Running the code is the check the gate asks for, same rule as bossku/gate.py RUNS_CODE: a script, `-c`, or a heredoc
+// fed to an interpreter, or a shell script. Version and help flags and pip installs run nothing of the project's.
+const RUNS_CODE = [
+  /(?:^|[\s(`])(?:python3?|py|node|deno|bun|ruby|php|perl|Rscript)(?:\.exe)?"?\s+(?!--version\b|-V\b|-v\b|-h\b|--help\b|-m\s+(?:pip|venv|ensurepip)\b)\S/i,
+  /(?:^|[\s(`])(?:bash|sh|zsh)\s+[^\s|;&]+\.sh\b|(?:^|[\s(`])\.\/[\w./-]+\.(?:sh|py)\b/i,
+];
+// A segment that starts with one of these only reads (same list as bossku/gate.py READS_ONLY).
+const READS_ONLY = /^\s*(?:grep|egrep|rg|cat|echo|printf|head|tail|less|more|type|findstr|ls|dir)\b/i;
 const UNVERIFIED_RE = /\b(not verified|unverified|could ?n[o']t (run|verify|be run)|did ?n[o']t run|no tests? (ran|were run|exist)|untested|nothing to run|cannot be verified here)\b/i;
 
 function isVerification(command) {
   const c = String(command || "");
-  return VERIFY_PATTERNS.some((re) => re.test(c));
+  if (VERIFY_PATTERNS.some((re) => re.test(c))) return true;
+  return c.split(/&&|\|\||[;|\n]/).some((seg) => !READS_ONLY.test(seg) && RUNS_CODE.some((re) => re.test(seg)));
 }
 
 // User-role lines the app writes that no person typed (same list as bossku/gate.py).
