@@ -47,3 +47,12 @@ not confirmation that the variables differed.
 If the user prefers “tak clear”, keep that choice in matching casual rojak
 sentences. Do not label “belum jelas” inherently Indonesian or ban it from
 standard BM; this is a register preference, not a language-identification rule.
+
+## Corrections are task-scoped
+
+User choices such as check, percentage or AI agents can clarify a particular
+draft. Keep the chosen words in matching passages, including later full rewrites.
+They are not a universal glossary: check and test can describe different actions,
+and peratus remains valid BM. Choose audience address from the brief, not from
+the fact that the post is public. See [rewrite and explain](rewrite-and-explain.md)
+for carrying corrections forward without flattening meaning.

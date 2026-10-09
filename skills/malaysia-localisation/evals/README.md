@@ -40,6 +40,7 @@ Hold back new cases for later releases to reduce overfitting.
 - [customer service](customer-service.jsonl): policies, empathy, invented commitments.
 - [invocation](invocation.jsonl): explicit localisation and lightweight default voice.
 - [response style](response-style.jsonl): brevity, clarity and explicit detail/format overrides.
+- [rewrite](rewrite.jsonl): correction carry-forward, full drafts, metric meaning, evidence limits and register counterexamples.
 
 The v1.0.1 additions cover sample-led result/pakai wording, voice consistency
 through Threads caveats, unknown cause versus supplied speculation, and formal
@@ -60,3 +61,13 @@ In this repository run `python -m bossku validate --root .` and
 `python -m unittest discover -s tests -v` for integration checks. The default
 voice installation regressions are in `tests/test_default_voice.py`. No network,
 LLM API, account access or paid model calls are part of these checks.
+
+The v1.0.2 rewrite cases turn recent editorial feedback into original scenarios
+with changed product names and numbers. They test whether a full rewrite carries
+accepted choices forward, whether readers can identify the subject and metric,
+and whether requested credibility checks remain grounded in supplied methods.
+Counterexamples protect formal BM, other speakers, sales agents and singular
+customer address. These are not measured gains or claims of universal preference.
+Assess the full output against human criteria, not exact reference wording.
+Literal checks alone cannot detect an invented denominator or an unfair causal
+claim. Do not report passing reference fixtures as a model evaluation.

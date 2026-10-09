@@ -1,6 +1,6 @@
 {
   "version": "2.1.0",
-  "fingerprint": "ae740b8204b6314b",
+  "fingerprint": "783e0ebe8a62f2ad",
   "count": 242,
   "aliases": {
     "bosskuai-caveman": "bosskuai-token-saver",
@@ -12795,6 +12795,8 @@
         "easy",
         "understand",
         "style",
+        "rewrite",
+        "reader",
         "choose",
         "load",
         "relevant",

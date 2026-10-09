@@ -3,7 +3,7 @@ name: malaysia-localisation
 description: Use when writing, rewriting or translating Malaysian BM, English, Manglish or rojak. Also use as the default Bossku response voice; keep answers short, simple and easy to understand.
 license: MIT
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # Malaysia Localisation
@@ -31,6 +31,19 @@ the meaning. Familiar English words such as result, test, sure and clear can fit
 supplied voice better than formal paraphrases. Public Threads posts do not by
 themselves call for formal BM. Keep the voice through comparisons, caveats and
 closing lines; explicit formal or BM-only requests still take priority.
+
+## Rewrite for the reader
+
+Natural wording must still explain the idea. If the user says a line is confusing,
+resolve the missing subject, action or meaning of a number before polishing it.
+Use supplied wording corrections throughout comparable passages and subsequent
+full rewrites; keep preferences local to the task, not rules for all Malaysians.
+When asked for the full rewrite, return the complete latest draft with those
+corrections applied. Preserve an explicitly requested format or annotation syntax.
+
+For iterative edits, plain-language technical posts or benchmark claims, read
+[rewrite and explain](references/rewrite-and-explain.md). A rewrite preserves
+claims; a request to check whether a test is credible also needs source evidence.
 
 ## Choose the voice
 
@@ -95,6 +108,8 @@ style profile unless the user asks for analysis.
 
 For casual drafts, read each comparison and uncertainty line against the user's
 sample: did polishing turn it into report language, or add a cause or claim?
+Can the reader tell who did what and what each number measures? Check that the
+latest wording corrections survived across the whole requested deliverable.
 
 For evaluation use [eval guide](evals/README.md). For evidence and reuse boundaries
 see [data sources](DATA_SOURCES.md). This skill does not require external datasets,

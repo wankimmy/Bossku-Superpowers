@@ -25,3 +25,10 @@ When using translated dataset examples, compare code blocks and literals with
 the original. A localised field or language-detection flag does not prove code
 correctness. Keep executable tokens and identifier bindings intact, and localise
 only the surrounding prose unless code changes are part of the request.
+
+For public explanations, use the technical subject explicitly on first mention
+when a shorter term is ambiguous (for example, AI agents rather than agents).
+Explain what a measurement observes without inventing its mechanism or scoring.
+Keep runs, tasks, rules and answers distinct when discussing percentages.
+See [rewrite and explain](rewrite-and-explain.md) for metric clarity and the
+boundary between rewriting a claim and verifying an experiment.

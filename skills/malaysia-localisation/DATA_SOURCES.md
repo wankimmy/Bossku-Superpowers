@@ -132,3 +132,14 @@ The installation guide follows the inspected primary documentation:
 [Cursor skills](https://cursor.com/docs/skills), and
 [Codex skills](https://learn.chatgpt.com/docs/build-skills).
 Client versions can differ; structure validation is not live-client validation.
+
+## Editorial rewrite feedback: 9 October 2026
+
+Feedback on a casual developer Threads draft identified four concrete gaps:
+ambiguous agent references, a compressed rules-between-sessions label, preference
+for check and percentage, and audience-directed caveats carried into full rewrites.
+The resulting guidance is task-scoped, not evidence that all Malaysian speakers
+prefer these words. Original scenarios use fictional products and altered figures;
+no user transcript, personal profile or actual benchmark result is bundled.
+The evidence-boundary cases are editorial safeguards, not an assessment of the
+original experiment. No new dataset or external language research was used.

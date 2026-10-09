@@ -23,3 +23,10 @@ the whole post, especially comparisons and caveats. Do not turn ordinary
 phrases such as “dapat result” or “yang pakai ... dengan yang tak pakai” into
 report language for public readability. Use readable spelling unless exact
 shortforms are requested. A corporate or formal brief can choose another voice.
+
+For technical threads, define an unfamiliar metric before listing results and
+make both comparison groups explicit. Keep explanation, caveats and CTA in the
+same supplied voice. A request for the full rewrite needs the whole latest draft,
+with accepted edits carried forward. A request to assess benchmark credibility
+needs methodology evidence, not more persuasive wording. See
+[rewrite and explain](rewrite-and-explain.md).
