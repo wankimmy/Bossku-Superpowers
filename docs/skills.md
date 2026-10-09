@@ -1,5 +1,8 @@
 # Skills
 
+The default response voice is [`malaysia-localisation`](../skills/malaysia-localisation/SKILL.md): short, simple and easy to understand, matching the user’s English, BM or rojak. It complements the primary task skill and is included in lean, core and full profiles. Explicit language, tone, length and format requests take priority. `bossku install` / `bossku update` refresh the default voice in supported user instruction files; `bossku init` adds it to project instructions. Existing projects can rerun `bossku init` to refresh their managed block.
+
+
 Canonical skills live in [`skills/`](../skills/). Each folder contains `SKILL.md` with YAML frontmatter. Write descriptions so agents can self-select: lead with **Use when…** and concrete user triggers (CI failure, release notes, cofounder mode, etc.).
 
 ## Writing a skill

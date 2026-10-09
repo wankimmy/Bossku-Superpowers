@@ -1,0 +1,4 @@
+{"id": "ex-whatsapp-01", "register": "MY-WHATSAPP", "prompt": "Customer asks “nk tnya brp harga”. Known price RM80; polite casual BM.", "output": "Harga RM80.", "rationale": "Understands input without output shorthand quota."}
+{"id": "ex-whatsapp-02", "register": "MY-WHATSAPP", "prompt": "BM chat: I am on the way. No ETA known.", "output": "Saya tengah dalam perjalanan.", "rationale": "No invented arrival time."}
+{"id": "ex-whatsapp-03", "register": "MY-WHATSAPP", "prompt": "Explain “x jadi esok” in English.", "output": "It means it is not happening tomorrow.", "rationale": "Preserves negation."}
+{"id": "ex-whatsapp-04", "register": "MY-WHATSAPP", "prompt": "Reply to a colleague in BM: Please wait a moment while I check.", "output": "Jap ya, saya semak dulu.", "rationale": "Brief but respectful."}

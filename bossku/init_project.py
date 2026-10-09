@@ -6,7 +6,7 @@ from pathlib import Path
 
 from bossku import __version__
 from bossku.memory import init_memory_templates
-from bossku.install import copy_skill_support
+from bossku.install import DEFAULT_VOICE_RULE, copy_skill_support
 from bossku.paths import MARKER_END, MARKER_START, project_meta_dir, repo_root
 from bossku.skills import copy_skills_to, skills_dir
 from bossku.validate import claude_imports_agents_md, omp_imports_agents_md
@@ -15,7 +15,8 @@ from bossku.validate import claude_imports_agents_md, omp_imports_agents_md
 # Always loaded, so every word is paid for in every session: concrete steps beat general advice.
 PROJECT_BLOCK = (
     "BosskuAI is active.\n"
-    "Code changes: list every requirement in the request, make exactly that change, and leave other behavior "
+    + DEFAULT_VOICE_RULE + "\n"
+    + "Code changes: list every requirement in the request, make exactly that change, and leave other behavior "
     "alone. Before you finish, run the project's tests once (if there are none, write and run one short check "
     "of the requirements) and fix the code, not the test, until it passes; do not repeat a check that already "
     "passed. Say what you ran and what you could not verify. Work in few turns: make independent tool calls "

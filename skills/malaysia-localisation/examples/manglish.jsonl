@@ -1,0 +1,4 @@
+{"id": "ex-manglish-01", "register": "MY-MANGLISH", "prompt": "Make this casual Malaysian English: Have you sent the file?", "output": "You sent the file already?", "rationale": "English-led conversational completion marker."}
+{"id": "ex-manglish-02", "register": "MY-MANGLISH", "prompt": "Casual reply to a peer: Can you send this today? No exact time known.", "output": "Can, I send it today.", "rationale": "Direct peer register; no suffix required."}
+{"id": "ex-manglish-03", "register": "MY-MANGLISH", "prompt": "Rewrite casual Malaysian English: Is there any stock left?", "output": "Still got stock or not?", "rationale": "Colloquial question only when explicitly requested."}
+{"id": "ex-manglish-04", "register": "MY-MANGLISH", "prompt": "Friendly encouragement to a familiar teammate after one failed attempt.", "output": "Try once more lah.", "rationale": "Lah has a potential encouragement function, not decorative use."}

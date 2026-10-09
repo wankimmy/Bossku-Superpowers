@@ -1,0 +1,4 @@
+{"id": "ex-developer-01", "register": "MY-ROJAK", "prompt": "BM rojak: Run npm run build before merging PR #42. Keep the command exact.", "output": "Run `npm run build` dulu sebelum merge PR #42.", "rationale": "Command and PR number preserved."}
+{"id": "ex-developer-02", "register": "MY-ROJAK", "prompt": "Explain user_id to a developer in light BM rojak.", "output": "`user_id` tu identifier untuk user.", "rationale": "Identifier stays exact."}
+{"id": "ex-developer-03", "register": "MY-ROJAK", "prompt": "Tell a teammate: The API might be timing out. Do not claim certainty.", "output": "API tu mungkin timeout.", "rationale": "No false diagnosis."}
+{"id": "ex-developer-04", "register": "MY-STANDARD-BM", "prompt": "Terangkan “permission denied” dalam BM; petikan jangan diubah.", "output": "Ralat “permission denied” bermaksud akses tidak dibenarkan.", "rationale": "Quoted error remains intact."}

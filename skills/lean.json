@@ -3,6 +3,7 @@
   "note": "Skills a host lists in every session, with short descriptions applied to the installed copies only. Everything else is installed whole in the library and reached through bosskuai-skill-finder and the skill-hint hook. Keep this small: every listed skill is paid for in every session, and hosts cut a long list to bare names.",
   "listed": [
     "cofounder",
+    "malaysia-localisation",
     "bosskuai-skill-finder",
     "bosskuai-engineering-delivery",
     "bosskuai-tdd-loop",
@@ -54,6 +55,7 @@
     "accessibility": "Use for WCAG 2.2 AA builds and audits: keyboard, contrast, screen readers.",
     "bosskuai-ui-ux-design-to-code": "Use for UI review, design-to-code, responsive layout, mockups.",
     "bosskuai-github-workflow": "Use for GitHub issues, PRs, Actions, releases and dependency updates.",
-    "bosskuai-handoff": "Use to write a continuation brief for another agent or session."
+    "bosskuai-handoff": "Use to write a continuation brief for another agent or session.",
+    "malaysia-localisation": "Use as Bossku’s default voice: short, simple Malaysian English, BM or rojak; also for localisation tasks."
   }
 }

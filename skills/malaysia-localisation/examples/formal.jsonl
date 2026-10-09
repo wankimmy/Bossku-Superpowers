@@ -1,0 +1,4 @@
+{"id": "ex-formal-01", "register": "MY-STANDARD-BM", "prompt": "Tulis ayat rasmi BM: meeting ditunda ke 14 Oktober.", "output": "Mesyuarat ditunda ke 14 Oktober.", "rationale": "Artifact overrides casual input."}
+{"id": "ex-formal-02", "register": "MY-STANDARD-BM", "prompt": "Terjemah ke BM formal: Please attach a copy of the receipt.", "output": "Sila lampirkan salinan resit.", "rationale": "Concise standard BM."}
+{"id": "ex-formal-03", "register": "MY-STANDARD-EN", "prompt": "Write a professional English request for the invoice by Friday.", "output": "Could you send the invoice by Friday?", "rationale": "No particles or unnecessary business clichés."}
+{"id": "ex-formal-04", "register": "MY-STANDARD-BM", "prompt": "BM sahaja untuk manual: The database stores the records.", "output": "Pangkalan data menyimpan rekod tersebut.", "rationale": "Formal technical BM is legitimate."}

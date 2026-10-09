@@ -1,0 +1,4 @@
+{"id": "ex-workplace-01", "register": "MY-WORKPLACE", "prompt": "Ask a familiar teammate in rojak for the draft before 3 pm so you can review it.", "output": "Boleh send draft sebelum 3 petang? Nak review dulu.", "rationale": "Keeps exact deadline and purpose."}
+{"id": "ex-workplace-02", "register": "MY-WORKPLACE", "prompt": "Professional BM: I will try to complete it tomorrow, not a guarantee.", "output": "Saya akan cuba siapkannya esok.", "rationale": "Tentative commitment preserved."}
+{"id": "ex-workplace-03", "register": "MY-WORKPLACE", "prompt": "Professional English: Ask a partner to reply by Monday.", "output": "Could you reply by Monday?", "rationale": "Professional direct wording."}
+{"id": "ex-workplace-04", "register": "MY-WORKPLACE", "prompt": "Short internal BM update: The invoice is ready; approval is pending.", "output": "Invois dah siap. Kelulusan masih belum diterima.", "rationale": "Separates completed and pending status."}

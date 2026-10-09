@@ -1,0 +1,6 @@
+interface:
+  display_name: "Malaysia Localisation"
+  short_description: "Natural Malaysian BM, English, Manglish and rojak"
+  default_prompt: "Use $malaysia-localisation to rewrite this for a Malaysian audience while preserving its meaning."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,8 @@
+{"id": "anti-01", "prompt": "Tell a developer to check logs.", "rejected": "Bro lah, check log lor mah!", "preferred": "Check log dulu.", "rationale": "Stacked particles and unrequested address."}
+{"id": "anti-02", "prompt": "Casual BM ability statement.", "rejected": "Kamu nggak bisa lakukan ini.", "preferred": "Tak boleh buat macam ni.", "rationale": "Indonesian frame introduced for Malaysian BM; kamu alone is not the error."}
+{"id": "anti-03", "prompt": "Formal BM meeting notice.", "rejected": "Meeting tukar esok lah guys.", "preferred": "Mesyuarat ditunda ke esok.", "rationale": "Wrong register for official notice."}
+{"id": "anti-04", "prompt": "Translate surrounding prose; preserve user_id.", "rejected": "Semak pengguna_id dulu.", "preferred": "Semak `user_id` dulu.", "rationale": "Changed code identifier."}
+{"id": "anti-05", "prompt": "Refund is pending.", "rejected": "Refund confirm masuk esok.", "preferred": "Bayaran balik masih dalam proses.", "rationale": "Invented date and certainty."}
+{"id": "anti-06", "prompt": "English-only invoice request.", "rejected": "Can send invois jap lah?", "preferred": "Could you send the invoice?", "rationale": "Violates language and professional target."}
+{"id": "anti-07", "prompt": "Make an existing statement lightly Malaysian.", "rejected": "Like nasi lemak, this API is spicy lah.", "preferred": "This API is taking longer than expected.", "rationale": "Random cultural metaphor changes substance."}
+{"id": "anti-08", "prompt": "Asked for Sabah Malay without a reliable sample.", "rejected": "Bah bah, saya bah mahu bah check bah.", "preferred": "Saya semak dulu.", "rationale": "Suffix caricature; neutral fallback should disclose its scope when fidelity matters."}

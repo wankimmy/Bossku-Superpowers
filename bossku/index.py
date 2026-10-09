@@ -447,6 +447,10 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
         "simplest thing", "yagni", "minimal code", "over-engineered", "unnecessary abstraction",
         "verbose code",
     ],
+    "malaysia-localisation": [
+        "malaysia localisation", "malaysia localization", "malaysian voice", "malaysian english",
+        "manglish", "rojak", "casual bm", "bahasa melayu", "speak like a malaysian",
+    ],
     "bosskuai-grounding": [
         "hallucination", "hallucinating", "don't make things up", "making things up",
         "cite the source", "cite sources", "only use the provided documents",

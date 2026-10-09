@@ -1,0 +1,4 @@
+{"id": "ex-social-media-01", "register": "MY-SOCIAL", "prompt": "Fictional BM casual caption: New shirts RM39 each until Sunday. No other claims.", "output": "Stok baju baru dah sampai. RM39 sehelai sampai Ahad ni.", "rationale": "Uses supplied offer only."}
+{"id": "ex-social-media-02", "register": "MY-SOCIAL", "prompt": "English-only caption for Malaysians: New collection available today.", "output": "Our new collection is available today.", "rationale": "No unnecessary rojak."}
+{"id": "ex-social-media-03", "register": "MY-SOCIAL", "prompt": "Short BM caption: Registration opens 20 October.", "output": "Pendaftaran dibuka pada 20 Oktober.", "rationale": "Simple public information."}
+{"id": "ex-social-media-04", "register": "MY-SOCIAL", "prompt": "BM casual CTA to read the full guide. No urgency claim.", "output": "Nak tahu lebih lanjut? Baca panduan penuh.", "rationale": "No false scarcity."}

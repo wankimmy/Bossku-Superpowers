@@ -1,0 +1,4 @@
+{"id": "ex-rojak-01", "register": "MY-ROJAK", "prompt": "Rewrite casually mixed: If the stock is ready, we can arrange delivery.", "output": "Kalau stok dah ready, boleh arrange delivery.", "rationale": "Coherent Malay frame with domain phrases."}
+{"id": "ex-rojak-02", "register": "MY-ROJAK", "prompt": "Say I checked, but payment has not arrived. Use aku.", "output": "Aku dah check, tapi payment belum masuk.", "rationale": "Keeps contrast and negation."}
+{"id": "ex-rojak-03", "register": "MY-ROJAK", "prompt": "Explain casually: The total is correct, but the shipping fee is missing.", "output": "Total tu betul, tapi shipping fee belum masuk.", "rationale": "Mixing supports familiar concepts."}
+{"id": "ex-rojak-04", "register": "MY-ROJAK", "prompt": "Rewrite peer advice: Better wait for confirmation before ordering.", "output": "Better tunggu confirmation dulu sebelum order.", "rationale": "Meaningful phrase switches."}

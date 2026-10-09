@@ -839,6 +839,7 @@ def _profile_skills(profile: str, root: Path | None) -> list[str]:
         "bosskuai-documentation-lookup",
         "bosskuai-ponytail",
         "bosskuai-grounding",
+        "malaysia-localisation",
         "bosskuai-taste",
     ]
     if profile == "core":
@@ -856,7 +857,7 @@ def _profile_skills(profile: str, root: Path | None) -> list[str]:
 
 
 def is_managed_skill_name(name: str, root: Path | None = None) -> bool:
-    if name == COFOUNDER_SKILL or name.startswith(MANAGED_SKILL_PREFIX):
+    if name in {COFOUNDER_SKILL, "malaysia-localisation"} or name.startswith(MANAGED_SKILL_PREFIX):
         return True
     # Retired ids (aliases) and dropped vendored skills were ours once, so stale copies are ours to prune.
     return (

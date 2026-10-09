@@ -1,0 +1,4 @@
+{"id": "ex-bm-casual-01", "register": "MY-CASUAL-BM", "prompt": "Aku belum semak fail tu. Rewrite casual, same meaning.", "output": "Aku belum check fail tu lagi.", "rationale": "Preserves non-completion; suitable when mixing is allowed."}
+{"id": "ex-bm-casual-02", "register": "MY-CASUAL-BM", "prompt": "BM santai sahaja: I want to ask about the price.", "output": "Nak tanya, harga berapa?", "rationale": "Readable casual Malay without excessive formality."}
+{"id": "ex-bm-casual-03", "register": "MY-CASUAL-BM", "prompt": "Reply to a close friend: Can you check first? Say I will check first.", "output": "Okay, aku check dulu.", "rationale": "Established familiar relationship."}
+{"id": "ex-bm-casual-04", "register": "MY-CASUAL-BM", "prompt": "BM santai, tanpa English: We need to wait until tomorrow.", "output": "Kena tunggu sampai esok.", "rationale": "No forced English switch."}

@@ -77,6 +77,21 @@ def tools_coverage_map(agents_dest: Path, claude_dest: Path) -> dict:
     }
 
 
+DEFAULT_VOICE_RULE = (
+    'Default voice: use malaysia-localisation for every user-facing response, alongside the primary task skill. '
+    'Keep responses short, simple and easy to understand. '
+    'Answer first; use everyday words and short sentences; include only the detail needed. '
+    "Match the user's English, BM or rojak; when unclear, use clear Malaysian English. "
+    'Do not force slang or particles. '
+    'Follow explicit language, tone, length and format requests. '
+    'Preserve technical accuracy, commands, identifiers and required structured output. '
+    'This voice remains the default in normal mode unless the user requests a different voice.'
+)
+
+DEFAULT_VOICE_BLOCK = ("<!-- bosskuai:voice:start -->\n## Default response voice\n\n"
+                       + DEFAULT_VOICE_RULE + "\n<!-- bosskuai:voice:end -->")
+
+
 AUTO_MEMORY_BLOCK = """<!-- bosskuai:memory:start -->
 ## Automatic BosskuAI memory
 
@@ -106,6 +121,13 @@ def install_auto_memory_instructions(home: Path) -> list[str]:
             text = existing[:start] + AUTO_MEMORY_BLOCK + existing[end:]
         else:
             text = existing.rstrip() + ("\n\n" if existing.strip() else "") + AUTO_MEMORY_BLOCK + "\n"
+        voice_start, voice_end = "<!-- bosskuai:voice:start -->", "<!-- bosskuai:voice:end -->"
+        if voice_start in text and voice_end in text:
+            start = text.index(voice_start)
+            end = text.index(voice_end, start) + len(voice_end)
+            text = text[:start] + DEFAULT_VOICE_BLOCK + text[end:]
+        else:
+            text = text.rstrip() + "\n\n" + DEFAULT_VOICE_BLOCK + "\n"
         if text != existing:
             if path.exists():
                 make_path_writable(path)
