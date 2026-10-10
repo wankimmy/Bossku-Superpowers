@@ -9,6 +9,7 @@ from unittest import mock
 from bossku.brief import memory_brief, session_output
 from bossku.cli import main
 from bossku.hooks import install_hooks, uninstall_hooks
+from bossku.install import AUTO_MEMORY_BLOCK
 from bossku.init_project import init_project
 from bossku.memory import remember
 
@@ -46,6 +47,24 @@ class MemoryBriefTests(unittest.TestCase):
         self.assertLessEqual(len(brief), 700 + 140)
         self.assertIn("...", brief)
 
+    def test_a_long_rule_is_not_cut_before_its_exact_name(self):
+        rule = ("Custom exception classes end in Failure, never Error, because the Error suffix collides with names "
+                "our monitoring tool reserves, and the on-call rota greps for it. Every custom exception derives from one base class "
+                "PaymentFailure.")
+        self.assertGreater(len(rule), 220)
+        remember(self.project, "decision", rule, home=self.home)
+        brief = memory_brief(self.project, home=self.home)
+        self.assertIn("PaymentFailure.", brief)
+        remember(self.project, "learning", "Gotcha " + "word " * 80, home=self.home)
+        self.assertIn("...", memory_brief(self.project, home=self.home))   # other kinds still clip at 220
+
+    def test_the_intro_says_a_request_with_different_wording_does_not_cancel_a_rule(self):
+        remember(self.project, "decision", "Env vars are prefixed OPSX_.", home=self.home)
+        brief = memory_brief(self.project, home=self.home)
+        self.assertIn("apply to this request even when its own wording differs", brief)
+        self.assertIn("explicit instruction to change or drop a rule", brief)
+        self.assertNotIn("unless the request says otherwise", brief)
+
     def test_no_vault_or_missing_folder_stays_quiet(self):
         (self.home / ".bosskuai").mkdir(parents=True, exist_ok=True)
         (self.home / ".bosskuai" / "config.json").write_text(
@@ -81,6 +100,14 @@ class MemoryBriefTests(unittest.TestCase):
         uninstall_hooks(home=self.home, tools=("claude_code",))
         settings = json.loads((self.home / ".claude" / "settings.json").read_text(encoding="utf-8"))
         self.assertNotIn("SessionStart", settings["hooks"])
+
+
+class MemoryBlockTests(unittest.TestCase):
+    def test_block_asks_for_rules_meant_for_later_work_with_exact_values_first(self):
+        flat = " ".join(AUTO_MEMORY_BLOCK.split())
+        self.assertIn("exact names and values first", flat)
+        self.assertIn("also when it only applies to work you have not done yet", flat)
+        self.assertLess(len(AUTO_MEMORY_BLOCK), 1100)   # always-on text: keep it small
 
 
 if __name__ == "__main__":
