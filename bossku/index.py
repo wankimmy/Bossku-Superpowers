@@ -648,6 +648,88 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
     "cro": ["isn't converting", "not converting", "conversion rate", "landing page conversion"],
 }
 
+# --- 2026-10-10 routing round: phrases people use for the second or third clause of a request, where a
+# neighbouring skill had outscored the right one. Appended so the lists above stay as they were. ---
+for _sid, _more in {
+    "ci-triage": ["failing checks", "checks are failing", "ci check is red", "red ci check", "one check is red",
+                  "checks failing", "failing ci checks"],
+    "bosskuai-observability-sre": ["basic dashboards", "put together dashboards", "build dashboards", "so we see it happen",
+                                   "see it next time", "monitoring dashboards", "dashboards and alerts"],
+    "bosskuai-council": ["structured debate", "debate on whether", "disagreement laid out", "four voice council",
+                         "four-voice council", "council skill", "settle whether we should"],
+    "bosskuai-tdd-loop": ["test coverage", "has test coverage", "add tests", "tests first", "write tests first",
+                          "characterization tests", "tests before refactoring"],
+    "test-driven-development": ["test coverage", "has test coverage", "add tests", "tests first",
+                                "characterization tests", "tests before refactoring"],
+    "accessibility": ["keyboard navigable", "keyboard-navigable", "navigate by keyboard", "accessibility check",
+                      "pass an accessibility", "keyboard accessible", "keyboard only"],
+    "review-animations": ["good or just busy", "are the animations good", "review my animations",
+                          "critique the animations", "honest feedback on the animations", "tell me honestly if"],
+    "redesign-skill": ["feel less generic", "less generic", "generic admin template", "looks generic",
+                       "feel like a product people paid for"],
+    "bosskuai-skill-creator": ["skill written", "write a skill", "make a skill", "create a skill",
+                               "turn this into a skill", "tribal knowledge"],
+    "bosskuai-context-limit-continuation": ["context is about to run out", "context's about to run out",
+                                            "context about to run out", "of the context window", "lose the thread",
+                                            "gets cut off", "run out mid task"],
+    "bosskuai-financial-modeling": ["financial model", "revenue projection", "projection that makes sense",
+                                    "messy financial model"],
+    "receiving-code-review": ["review comments from", "comments from senior", "which comments are valid",
+                              "check which comments", "comments i disagree with"],
+    "pr-review-triage": ["which comments are valid", "valid review comments", "check which comments", "triage the comments"],
+    "bosskuai-database-engineering": ["postgres schema", "schema and indexes", "design the schema", "dedupe",
+                                      "deduplicate", "duplicate rows", "keep newest"],
+    "vue-patterns": ["pinia store", "pinia", "reactivity mistake", "vue reactivity"],
+    "bosskuai-mongodb": ["mongo queries", "mongo query", "mongo slow", "slow mongo", "mongo"],
+    "bosskuai-performance-profiling": ["profiling pass", "profile where the time", "where the time is going",
+                                       "jobs are backing up", "backing up"],
+    "bosskuai-diagnose-loop": ["flaky test", "order dependent", "passes locally but fails", "pass one by one",
+                               "fails when the whole suite", "cannot read properties of undefined", "typeerror",
+                               "stack trace"],
+    "bosskuai-ci-cd-pipelines": ["setup ci", "set up ci", "auto run tests", "run tests on push", "tests on push",
+                                 "ci so tests", "long-lived keys", "long lived keys"],
+    "verification-before-completion": ["verification pass", "confirm everything still works", "verify before we tag",
+                                       "before we tag", "triage ci, fix, verify", "fix, verify"],
+    "finishing-a-development-branch": ["release branch is ready", "branch is ready", "ready to tag", "before we tag"],
+    "brainstorming": ["what we should decide first", "edge cases yet", "haven't worked out", "haven't decided yet",
+                      "decide first", "tak tahu nak start"],
+    "writing-plans": ["step by step plan", "step-by-step plan", "turn it into a plan", "plan i can hand to",
+                      "plan dulu"],
+    "bosskuai-incident-response": ["postmortem", "data leak", "cross tenant leak", "committed an access key",
+                                   "committed an aws key", "leaked credentials", "leaked key", "secret was committed"],
+    "bosskuai-tenant-isolation-security": ["data company lain", "another company's data", "other tenants data",
+                                           "other customers data", "authorization boundary", "see other company"],
+    "cro": ["nobody converts", "no one converts", "converts at only", "submit the demo request", "leave before they reach",
+            "visitors don't convert", "converts poorly"],
+    "schema": ["structured data", "star ratings", "rich results", "opening hours markup", "address markup"],
+    "aso": ["downloads on play store", "barely gets downloads", "play store downloads", "app store listing",
+            "play store listing"],
+    "site-architecture": ["page structure", "site structure", "website structure", "page hierarchy"],
+    "copywriting": ["ayat baru", "refresh the copy", "copy needs a refresh", "copy refresh", "boring headline",
+                    "rewrite the headline"],
+    "emails": ["note to our existing users", "email our existing users", "tell existing users what's new",
+               "note to existing users"],
+    "browser-use": ["after you log in", "click through", "renders its tables with javascript", "dropdown for each",
+                    "supplier portal"],
+    "bosskuai-grounding": ["quote the exact lines", "only what is in", "no outside benchmarks", "so i can check you aren't",
+                           "using only what is"],
+    "dispatching-parallel-agents": ["parallelize across subagents", "parallelize the backend", "two different workstreams",
+                                    "independent workstreams", "across subagents"],
+    "bosskuai-go-development": ["goroutines", "go test -race", "data race", "goroutine", "worker never notice the cancel"],
+    "bosskuai-prompt-injection-defense": ["hidden text", "hidden instructions", "instructions hidden in",
+                                          "text telling it to"],
+    "bosskuai-eval-driven-agent-improvement": ["repeatable test set", "edit the system prompt", "tool selection got better",
+                                               "better or worse"],
+    "bosskuai-3d-web-development": ["3d model", "glb", "blender", "spin a 3d"],
+    "bosskuai-web-performance": ["load time", "mid-range android", "stay smooth on", "smooth on mid-range"],
+    "bosskuai-cost-optimization": ["cloud spend", "cloud spend sane", "is our cloud spend"],
+    "bosskuai-tech-lead": ["technical debt", "tech debt slowing", "debt is slowing"],
+    "bosskuai-planning-execution": ["resequence the roadmap", "prioritize the roadmap", "roadmap berterabur",
+                                    "resequence roadmap", "prioritize roadmap"],
+    "bosskuai-product-strategy": ["should we say yes", "decide whether to say yes", "custom module for a customer"],
+}.items():
+    CURATED_TRIGGERS.setdefault(_sid, []).extend(_more)
+
 # High-confidence task boundaries. These live in the generated index so agents can
 # avoid a superficially related skill without adding text to every loaded prompt.
 CURATED_EXCLUSIONS: dict[str, list[str]] = {
@@ -706,6 +788,14 @@ CURATED_EXCLUSIONS: dict[str, list[str]] = {
         "rigorous review",
     ],
 }
+
+# --- 2026-10-10 routing round: cases where another skill outscored the right one on the right one's own clause ---
+for _sid, _more in {
+    "marketing-council": ["four voice", "four-voice"],
+    "bosskuai-react-development": ["pinia"],
+    "cloud": ["cloud spend"],
+}.items():
+    CURATED_EXCLUSIONS.setdefault(_sid, []).extend(_more)
 
 # Explicit role assignments; the rest fall back to keyword heuristics.
 CURATED_ROLES: dict[str, str] = {
