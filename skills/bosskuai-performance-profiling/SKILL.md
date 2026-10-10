@@ -1,6 +1,6 @@
 ---
 name: bosskuai-performance-profiling
-description: Use this for CPU/memory profiling, bottleneck diagnosis, query optimization, caching strategy, flame graph reading, and turning performance intuition into evidence-backed fixes.
+description: "Use when investigating why something is slow or growing: CPU/memory profiling, bottleneck diagnosis, query optimization, caching strategy, flame graph reading, and evidence-backed fixes."
 ---
 
 # Performance profiling

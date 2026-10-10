@@ -1,6 +1,6 @@
 ---
 name: bosskuai-coding-best-practices
-description: Use this for implementation quality, maintainability, readability, testing expectations, error handling, naming, and pragmatic best-practice checks that still fit the current repo conventions.
+description: "Use when writing or reviewing code for quality: maintainability, readability, testing expectations, error handling, naming, and best-practice checks that fit repo conventions."
 ---
 
 # BosskuAI Coding Best Practices

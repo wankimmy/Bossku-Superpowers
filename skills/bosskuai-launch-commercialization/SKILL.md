@@ -1,6 +1,6 @@
 ---
 name: bosskuai-launch-commercialization
-description: Use this when you need a balanced cofounder workflow across engineering readiness, SEO/GEO, marketing, sales, monetization, country strategy, and product-market-fit planning for launching a product.
+description: Use when launching a product and you need a balanced cofounder workflow across engineering readiness, SEO/GEO, marketing, sales, monetization, country strategy, and product-market-fit planning.
 ---
 
 # BosskuAI Launch Commercialization

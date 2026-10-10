@@ -1,6 +1,6 @@
 ---
 name: bosskuai-search-first
-description: Use this when deciding whether to adopt an existing package, service, MCP, internal utility, or pattern before building custom code or workflow logic.
+description: Use when deciding whether to adopt an existing package, service, MCP, internal utility, or pattern before building custom code or workflow logic.
 ---
 
 # Search first

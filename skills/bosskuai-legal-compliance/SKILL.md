@@ -1,6 +1,6 @@
 ---
 name: bosskuai-legal-compliance
-description: Use this for product-facing legal and compliance readiness such as privacy posture, consent, retention, vendor/data obligations, policy alignment, and identifying when qualified human legal review is required.
+description: Use when checking product-facing legal and compliance readiness, such as privacy posture, consent, retention, vendor/data obligations, policy alignment, and when qualified human legal review is required.
 ---
 
 # BosskuAI Legal / Compliance

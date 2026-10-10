@@ -1,6 +1,6 @@
 ---
 name: bosskuai-market-analysis
-description: Use this for market analysis, competitor comparison, trend research, demand validation, positioning, pricing context, and strategy recommendations that require current market awareness.
+description: Use when you need market analysis, competitor comparison, trend research, demand validation, positioning, pricing context, and strategy recommendations that require current market awareness.
 ---
 
 # BosskuAI Market Analysis

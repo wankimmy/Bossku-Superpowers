@@ -1,6 +1,6 @@
 ---
 name: bosskuai-grounding
-description: Ground every factual claim in quotes, file:line, or command output; say not enough information instead of guessing. Use when the user mentions hallucination, citations, accuracy, only use these documents, or asks to verify claims.
+description: Use when the user mentions hallucination, citations, accuracy, only use these documents, or asks to verify claims. Grounds every factual claim in quotes, file:line, or command output; says not enough information instead of guessing.
 ---
 
 # BosskuAI Grounding

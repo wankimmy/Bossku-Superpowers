@@ -1,6 +1,6 @@
 ---
 name: bosskuai-content-calendar
-description: Use this for content calendar planning, platform-specific posts, hooks, CTAs, content pillars, Malaysian mixed Malay-English tone, repurposing, and publishing cadence.
+description: "Use when planning content: calendars, platform-specific posts, hooks, CTAs, content pillars, Malaysian mixed Malay-English tone, repurposing, and publishing cadence."
 ---
 
 # BosskuAI Content Calendar

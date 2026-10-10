@@ -1,6 +1,6 @@
 ---
 name: bosskuai-redis-caching-queues
-description: Use this for Redis caching, Laravel queues, cache invalidation, locks, rate limits, sessions, Horizon-style worker operations, and queue performance debugging.
+description: Use when Redis, queues, or caching affect correctness or performance. Covers Redis caching, Laravel queues, cache invalidation, locks, rate limits, sessions, Horizon-style worker operations, and queue performance debugging.
 ---
 
 # BosskuAI Redis Caching and Queues

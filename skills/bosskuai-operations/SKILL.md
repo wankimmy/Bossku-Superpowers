@@ -1,6 +1,6 @@
 ---
 name: bosskuai-operations
-description: Use this for business operations work including vendor management, process documentation, change management, capacity planning, operational risk, SOPs, RACI, and cross-functional operating cadence.
+description: "Use when doing business operations work: vendor management, process documentation, change management, capacity planning, operational risk, SOPs, RACI, and cross-functional operating cadence."
 ---
 
 # BosskuAI Operations

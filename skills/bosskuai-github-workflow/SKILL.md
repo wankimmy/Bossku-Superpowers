@@ -1,6 +1,6 @@
 ---
 name: bosskuai-github-workflow
-description: Use this for GitHub workflow operations across issues, pull requests, Actions, releases, Dependabot, repository settings, and GitHub MCP-assisted project coordination.
+description: "Use when GitHub is the delivery surface: issues, pull requests, Actions, releases, Dependabot, repository settings, and GitHub MCP-assisted project coordination."
 ---
 
 # GitHub workflow

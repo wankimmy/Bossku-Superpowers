@@ -1,6 +1,6 @@
 ---
 name: bosskuai-customize-bosskuai
-description: "Use only when editing BosskuAI's own configuration (AGENTS.md, skills/skill-index.json, skills/*/SKILL.md, agents/*.md, host plugin manifests): injects the real schemas, paths and verification commands so the model doesn't guess."
+description: "Use when editing only BosskuAI's own configuration (AGENTS.md, skills/skill-index.json, skills/*/SKILL.md, agents/*.md, host plugin manifests): injects the real schemas, paths and verification commands so the model doesn't guess."
 license: MIT
 metadata:
   author: bosskuai

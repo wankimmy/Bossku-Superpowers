@@ -1,6 +1,6 @@
 ---
 name: bosskuai-qa-automation-strategy
-description: Use this for automated testing strategy, Playwright/Cypress, feature tests, integration tests, regression suites, fixtures, CI gates, and release confidence.
+description: "Use when setting automated testing strategy: Playwright/Cypress, feature tests, integration tests, regression suites, fixtures, CI gates, and release confidence."
 ---
 
 # QA automation strategy

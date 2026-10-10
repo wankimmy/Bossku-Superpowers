@@ -1,6 +1,6 @@
 ---
 name: bosskuai-skill-stocktake
-description: Use this to audit local skills, commands, and nearby guidance for overlap, stale content, weak triggers, and prompt-weight bloat.
+description: Use when auditing local skills, commands, and nearby guidance for overlap, stale content, weak triggers, and prompt-weight bloat.
 ---
 
 # BosskuAI Skill Stocktake

@@ -1,6 +1,6 @@
 ---
 name: bosskuai-incident-response
-description: Use this for active incident triage, severity classification, escalation coordination, on-call communication, timeline reconstruction, and blameless postmortem facilitation.
+description: "Use when an incident is active: triage, severity classification, escalation coordination, on-call communication, timeline reconstruction, and blameless postmortems."
 ---
 
 # BosskuAI Incident Response

@@ -1,6 +1,6 @@
 ---
 name: bosskuai-malaysia-pdpa-privacy
-description: Use this for Malaysia PDPA-aware privacy review, data minimization, consent, retention, user rights, vendor processors, and privacy-safe SaaS operations.
+description: "Use when doing a Malaysia PDPA-aware privacy review: data minimization, consent, retention, user rights, vendor processors, and privacy-safe SaaS operations."
 ---
 
 # BosskuAI Malaysia PDPA Privacy

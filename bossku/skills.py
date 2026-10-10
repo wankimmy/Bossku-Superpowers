@@ -432,6 +432,8 @@ def select_skill_stack(
     concerns = re.split(r"[;,\n]|\b(?:and|then|also)\b", task.lower())
     if len(concerns) > 1:
         for concern in concerns:
+            if not concern.strip():    # the gap between two separators never nominates a skill; ranking it only costs time
+                continue
             matches = rank_skills(concern, root, limit=1, data=data)
             if matches and matches[0][1] >= CONCERN_WINNER_MIN:
                 concern_winners.add(matches[0][0])

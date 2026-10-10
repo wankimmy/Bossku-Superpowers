@@ -38,23 +38,20 @@ We tested it with real agents on the same tasks, with and without Bossku Superpo
 
 Full numbers, charts and limits: [benchmark results](docs/benchmarks/results.md). How it was tested: [benchmark notes](docs/benchmarks/README.md).
 
-## Install
+## Quick start
 
-Need **Python 3.11+** and **Git**.
+Need **Python 3.11+** and **Git**. About five minutes:
 
-```bash
-git clone https://github.com/wankimmy/Bossku-Superpowers
-cd Bossku-Superpowers
-pip install -e .
-bossku install --vault "/path/to/your/Obsidian/Vault" --memory-storage obsidian
-cd /path/to/your/project
-bossku init .
-bossku doctor --project .
-```
+1. **Get it.** `git clone https://github.com/wankimmy/Bossku-Superpowers`, then `cd Bossku-Superpowers` and `pip install -e .`
+2. **Set up your machine.** `bossku install`. It copies the skills and the six subagents and turns on the hooks. In a terminal it prints a short summary and the next step (`--json` prints JSON instead; piped, it is always JSON). Want notes in Obsidian? Add `--vault "/path/to/your/Obsidian/Vault" --memory-storage obsidian`.
+3. **Set up a project.** `cd /path/to/your/project`, then `bossku init .`. It adds a short Bossku block to `AGENTS.md` and a `CLAUDE.md` that imports it.
+4. **Check it.** `bossku doctor --project .` prints `doctor: ok`, or `doctor: issues found` and what to fix.
+5. **Use your agent.** Open the project in it and say `bossku`. Mostly you will not notice anything. On Claude Code the agent is told which skill fits each request, reads your saved notes at session start, is refused a destructive command such as `git reset --hard`, and is sent back once to run its code if it edited files and ran nothing.
+6. **Turn things off.** `bossku install --no-harness` leaves out the safety gates. `BOSSKU_STOP_GATE=off` (set in the shell that starts your agent) switches off only the run-your-code check. `BOSSKU_RESUME=off` switches off the hooks that read Codex's session files. `bossku hooks uninstall` removes every hook, and `bossku uninstall --purge` removes the skills, subagents, config and hooks.
 
-Then open the project in your coding agent and say `bossku`.
+More choices:
 
-- **No Obsidian?** Skip `--vault` and `--memory-storage`. Notes stay in `.bossku/memory` inside the project.
+- **Where are my notes?** In `.bossku/memory` inside the project, unless you chose Obsidian storage in step 2.
 - **Want all skills listed?** A first install starts at `--profile lean` (about 25 listed, the rest one command away); a later `bossku install` keeps your profile. Use `--profile core` for a small set, `--profile engineering` for everything except the marketing skills, or `--profile full` for all 240+.
 - **Other tools?** See setup for [Claude Code](docs/installation.md#claude-code), [Cursor](docs/installation.md#cursor), [Codex](docs/installation.md#codex), [OpenCode](docs/installation.md#opencode), [OMP](docs/installation.md#omp) or [portable mode](docs/installation.md#portable-mode-cloudshared-repos).
 

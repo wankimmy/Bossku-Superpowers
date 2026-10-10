@@ -1,19 +1,19 @@
 {
   "schema_version": 1,
   "source": {
-    "git_revision": "4d4789487b9c468549ea8af4ef5905c22b030e90",
+    "git_revision": "afda557cd99e51cb243aa5f336f8654525d54d22",
     "working_tree_modified": true,
-    "routing_inputs_sha256": "fa1aee1b5dfcc08edcb0de0e040c3fefd7d0e39900752d16d92f0792234ba1aa",
+    "routing_inputs_sha256": "2d1fb8ddc3c1105b9a21937024f38f9bab3dc60eb9d0e799c3464a341865cbbe",
     "input_files_sha256": {
       "scripts/benchmark_routing.py": "178cf9011baaea17cbed4860e60bb90b5ca9048b8d3f53ea262c366da2422b36",
       "bossku/index.py": "1b2d35e4ed68c606f3f28b5cc4795b5cd9df8cf0815e1c8d578ecfe92f006213",
-      "bossku/skills.py": "b6409c0e8c32e870b0e2a611bf081eb881c1e01f96f0e11434c5ad8095e66d06",
+      "bossku/skills.py": "efb5aed016dac4884e93352d5a10987a65957f3b59e89f41d0f884c1b12ec41a",
       "bossku/paths.py": "cc5d0534e7049ff1fc7cc856f45afea4b1021a34b631cc1196c1f9fbd8498511",
       "tests/test_routing.py": "52274c4305872be82438b1faebb72e61c0d1f2eca82e76df5b92d4e9d5216754",
       "skills/aliases.json": "ac46edb5ee5ae2945efa27d1ba9df6f2e5ce22cc1d7ca96bb0d5fcd51d82cd19",
       "skills/vendored.json": "2319e91eac2726b00c13206b5b44cc3ff5c96f7a1244314e6951ce1bc222e085"
     },
-    "fresh_index_sha256": "4c97ab9639291e905fe5dc1f56b51ae4641d887f38cfb20a7af3b101021217fb"
+    "fresh_index_sha256": "ca4dd95c58bc476c54feebe218b841253fb3801f69020e66250e2a9907885199"
   },
   "python_version": "3.12.10",
   "corpus": {
@@ -294,9 +294,9 @@
     "description_only": {
       "cases": 84,
       "top1_hits": 46,
-      "top3_hits": 62,
+      "top3_hits": 63,
       "top1_percent": 54.76,
-      "top3_percent": 73.81
+      "top3_percent": 75.0
     },
     "automatic_selection": {
       "actionable_route": {
@@ -468,20 +468,20 @@
       "bossku": {
         "top1": {
           "skill_id": "bosskuai-database-engineering",
-          "score": 21.001
+          "score": 21.004
         },
         "top3": [
           {
             "skill_id": "bosskuai-database-engineering",
-            "score": 21.001049
+            "score": 21.004125
           },
           {
             "skill_id": "bosskuai-tenant-isolation-security",
-            "score": 12.135887
+            "score": 12.132104
           },
           {
             "skill_id": "database-migrations",
-            "score": 9.232563
+            "score": 9.224977
           }
         ],
         "top1_hit": true,
@@ -490,20 +490,20 @@
       "description_only": {
         "top1": {
           "skill_id": "bosskuai-database-engineering",
-          "score": 0.75672
+          "score": 0.757084
         },
         "top3": [
           {
             "skill_id": "bosskuai-database-engineering",
-            "score": 0.75672
+            "score": 0.757084
           },
           {
             "skill_id": "bosskuai-mongodb",
-            "score": 0.51344
+            "score": 0.514168
           },
           {
             "skill_id": "database-migrations",
-            "score": 0.396279
+            "score": 0.395686
           }
         ],
         "top1_hit": true,
@@ -875,16 +875,16 @@
       "bossku": {
         "top1": {
           "skill_id": "bosskuai-ai-model-selection",
-          "score": 23.585
+          "score": 23.675
         },
         "top3": [
           {
             "skill_id": "bosskuai-ai-model-selection",
-            "score": 23.585385
+            "score": 23.674555
           },
           {
             "skill_id": "bosskuai-cross-model-escalation",
-            "score": 14.507401
+            "score": 14.596571
           },
           {
             "skill_id": "write-swift",
@@ -910,7 +910,7 @@
           },
           {
             "skill_id": "bosskuai-3d-web-development",
-            "score": 0.519406
+            "score": 0.528058
           }
         ],
         "top1_hit": true,
@@ -1009,20 +1009,20 @@
       "bossku": {
         "top1": {
           "skill_id": "ab-testing",
-          "score": 13.631
+          "score": 13.639
         },
         "top3": [
           {
             "skill_id": "ab-testing",
-            "score": 13.631195
+            "score": 13.638633
           },
           {
             "skill_id": "bosskuai-growth-experiment",
-            "score": 9.11639
+            "score": 9.096754
           },
           {
             "skill_id": "bosskuai-competitor-intelligence",
-            "score": 7.667582
+            "score": 7.645412
           }
         ],
         "top1_hit": true,
@@ -1031,20 +1031,20 @@
       "description_only": {
         "top1": {
           "skill_id": "offers",
-          "score": 0.761258
+          "score": 0.763148
         },
         "top3": [
           {
             "skill_id": "offers",
-            "score": 0.761258
+            "score": 0.763148
           },
           {
             "skill_id": "ab-testing",
-            "score": 0.532009
+            "score": 0.535715
           },
           {
             "skill_id": "ads",
-            "score": 0.499582
+            "score": 0.503544
           }
         ],
         "top1_hit": false,
@@ -1081,20 +1081,20 @@
       "bossku": {
         "top1": {
           "skill_id": "bosskuai-api-design",
-          "score": 20.454
+          "score": 20.466
         },
         "top3": [
           {
             "skill_id": "bosskuai-api-design",
-            "score": 20.453878
+            "score": 20.465644
           },
           {
             "skill_id": "bosskuai-software-architecture",
-            "score": 6.143515
+            "score": 6.153636
           },
           {
-            "skill_id": "bosskuai-integration-testing",
-            "score": 5.93101
+            "skill_id": "cloud",
+            "score": 5.665705
           }
         ],
         "top1_hit": true,
@@ -1103,20 +1103,20 @@
       "description_only": {
         "top1": {
           "skill_id": "bosskuai-api-design",
-          "score": 0.545618
+          "score": 0.546319
         },
         "top3": [
           {
             "skill_id": "bosskuai-api-design",
-            "score": 0.545618
+            "score": 0.546319
           },
           {
             "skill_id": "cloud",
-            "score": 0.424802
+            "score": 0.424146
           },
           {
-            "skill_id": "bosskuai-integration-testing",
-            "score": 0.324328
+            "skill_id": "offers",
+            "score": 0.325371
           }
         ],
         "top1_hit": true,
@@ -1242,24 +1242,24 @@
       "description_only": {
         "top1": {
           "skill_id": "bosskuai-context-budget",
-          "score": 0.294616
+          "score": 0.276815
         },
         "top3": [
           {
             "skill_id": "bosskuai-context-budget",
-            "score": 0.294616
+            "score": 0.276815
+          },
+          {
+            "skill_id": "bosskuai-performance-profiling",
+            "score": 0.276815
           },
           {
             "skill_id": "antislop",
-            "score": 0.228239
-          },
-          {
-            "skill_id": "antislop-copywriting",
-            "score": 0.228239
+            "score": 0.233999
           }
         ],
         "top1_hit": false,
-        "top3_hit": false
+        "top3_hit": true
       },
       "automatic_selection": {
         "expected_mode": "model_primary",
@@ -1717,20 +1717,20 @@
       "bossku": {
         "top1": {
           "skill_id": "dcg",
-          "score": 18.627
+          "score": 18.669
         },
         "top3": [
           {
             "skill_id": "dcg",
-            "score": 18.627338
+            "score": 18.668882
           },
           {
             "skill_id": "bosskuai-agent-introspection",
-            "score": 4.733961
+            "score": 4.716822
           },
           {
             "skill_id": "loop-budget",
-            "score": 4.565639
+            "score": 4.505993
           }
         ],
         "top1_hit": true,
@@ -1739,20 +1739,20 @@
       "description_only": {
         "top1": {
           "skill_id": "dcg",
-          "score": 0.589864
+          "score": 0.595105
         },
         "top3": [
           {
             "skill_id": "dcg",
-            "score": 0.589864
+            "score": 0.595105
           },
           {
             "skill_id": "antislop",
-            "score": 0.332725
+            "score": 0.335682
           },
           {
             "skill_id": "bosskuai-agentic-e2e",
-            "score": 0.307893
+            "score": 0.301744
           }
         ],
         "top1_hit": true,
@@ -1873,20 +1873,20 @@
       "description_only": {
         "top1": {
           "skill_id": "bosskuai-3d-web-development",
-          "score": 0.603959
+          "score": 0.604844
         },
         "top3": [
           {
             "skill_id": "bosskuai-3d-web-development",
-            "score": 0.603959
+            "score": 0.604844
           },
           {
             "skill_id": "imagegen-frontend-web",
-            "score": 0.233872
+            "score": 0.234215
           },
           {
             "skill_id": "scroll-world",
-            "score": 0.223245
+            "score": 0.222107
           }
         ],
         "top1_hit": true,
@@ -2074,20 +2074,20 @@
       "description_only": {
         "top1": {
           "skill_id": "review-animations",
-          "score": 0.745094
+          "score": 0.745663
         },
         "top3": [
           {
             "skill_id": "review-animations",
-            "score": 0.745094
+            "score": 0.745663
           },
           {
             "skill_id": "schema",
-            "score": 0.418173
+            "score": 0.419472
           },
           {
             "skill_id": "seo-audit",
-            "score": 0.418173
+            "score": 0.419472
           }
         ],
         "top1_hit": true,
@@ -2297,7 +2297,7 @@
             "score": 0.209299
           },
           {
-            "skill_id": "bosskuai-throwaway-prototype",
+            "skill_id": "bosskuai-polyglot-engineering",
             "score": 0.209299
           }
         ],
@@ -2403,16 +2403,16 @@
       "bossku": {
         "top1": {
           "skill_id": "mysql-patterns",
-          "score": 19.459
+          "score": 19.569
         },
         "top3": [
           {
             "skill_id": "mysql-patterns",
-            "score": 19.45915
+            "score": 19.568776
           },
           {
             "skill_id": "bosskuai-database-engineering",
-            "score": 4.442453
+            "score": 4.476902
           },
           {
             "skill_id": "bosskuai-aws-deployment",
@@ -2425,20 +2425,20 @@
       "description_only": {
         "top1": {
           "skill_id": "mysql-patterns",
-          "score": 0.408525
+          "score": 0.405318
         },
         "top3": [
           {
             "skill_id": "mysql-patterns",
-            "score": 0.408525
+            "score": 0.405318
+          },
+          {
+            "skill_id": "bosskuai-performance-profiling",
+            "score": 0.211494
           },
           {
             "skill_id": "bosskuai-database-engineering",
-            "score": 0.195357
-          },
-          {
-            "skill_id": "antislop-code",
-            "score": 0.165141
+            "score": 0.193824
           }
         ],
         "top1_hit": true,
@@ -2472,20 +2472,20 @@
       "bossku": {
         "top1": {
           "skill_id": "database-migrations",
-          "score": 17.891
+          "score": 17.89
         },
         "top3": [
           {
             "skill_id": "database-migrations",
-            "score": 17.890903
+            "score": 17.889789
           },
           {
             "skill_id": "bosskuai-database-engineering",
-            "score": 6.76843
+            "score": 6.779772
           },
           {
             "skill_id": "bosskuai-engineering-delivery",
-            "score": 3.110417
+            "score": 3.123989
           }
         ],
         "top1_hit": true,
@@ -2494,20 +2494,20 @@
       "description_only": {
         "top1": {
           "skill_id": "bosskuai-database-engineering",
-          "score": 0.235044
+          "score": 0.236123
         },
         "top3": [
           {
             "skill_id": "bosskuai-database-engineering",
-            "score": 0.235044
+            "score": 0.236123
           },
           {
             "skill_id": "bosskuai-data-architecture",
-            "score": 0.142176
+            "score": 0.141976
           },
           {
             "skill_id": "bosskuai-laravel-development",
-            "score": 0.142176
+            "score": 0.141976
           }
         ],
         "top1_hit": true,
@@ -2562,20 +2562,20 @@
       "description_only": {
         "top1": {
           "skill_id": "mcp-server-patterns",
-          "score": 0.756989
+          "score": 0.756488
         },
         "top3": [
           {
             "skill_id": "mcp-server-patterns",
-            "score": 0.756989
+            "score": 0.756488
           },
           {
             "skill_id": "open-source",
-            "score": 0.631291
+            "score": 0.632592
           },
           {
             "skill_id": "remote-browser",
-            "score": 0.423677
+            "score": 0.42455
           }
         ],
         "top1_hit": true,
@@ -2630,20 +2630,20 @@
       "description_only": {
         "top1": {
           "skill_id": "accessibility",
-          "score": 0.858117
+          "score": 0.85842
         },
         "top3": [
           {
             "skill_id": "accessibility",
-            "score": 0.858117
+            "score": 0.85842
           },
           {
             "skill_id": "antislop-human",
-            "score": 0.353941
+            "score": 0.353185
           },
           {
             "skill_id": "bosskuai-ui-ux-design-to-code",
-            "score": 0.187685
+            "score": 0.187284
           }
         ],
         "top1_hit": true,
@@ -2812,20 +2812,20 @@
       "bossku": {
         "top1": {
           "skill_id": "write-swift",
-          "score": 29.687
+          "score": 29.688
         },
         "top3": [
           {
             "skill_id": "write-swift",
-            "score": 29.686551
+            "score": 29.687899
           },
           {
             "skill_id": "bosskuai-go-development",
-            "score": 3.612669
+            "score": 3.608707
           },
           {
             "skill_id": "bosskuai-prompt-injection-defense",
-            "score": 3.209775
+            "score": 3.206265
           }
         ],
         "top1_hit": true,
@@ -2834,20 +2834,20 @@
       "description_only": {
         "top1": {
           "skill_id": "write-swift",
-          "score": 0.786611
+          "score": 0.787129
         },
         "top3": [
           {
             "skill_id": "write-swift",
-            "score": 0.786611
+            "score": 0.787129
           },
           {
             "skill_id": "open-source",
-            "score": 0.34038
+            "score": 0.341982
           },
           {
             "skill_id": "bosskuai-autonomous-loops",
-            "score": 0.213389
+            "score": 0.212871
           }
         ],
         "top1_hit": true,
@@ -3233,20 +3233,20 @@
       "bossku": {
         "top1": {
           "skill_id": "antislop-copywriting",
-          "score": 36.45
+          "score": 36.428
         },
         "top3": [
           {
             "skill_id": "antislop-copywriting",
-            "score": 36.449535
+            "score": 36.42846
           },
           {
             "skill_id": "antislop",
-            "score": 3.778498
+            "score": 3.777282
           },
           {
             "skill_id": "copy-editing",
-            "score": 3.25364
+            "score": 3.250981
           }
         ],
         "top1_hit": true,
@@ -3302,20 +3302,20 @@
       "bossku": {
         "top1": {
           "skill_id": "antislop-code",
-          "score": 19.343
+          "score": 19.319
         },
         "top3": [
           {
             "skill_id": "antislop-code",
-            "score": 19.343218
+            "score": 19.319474
           },
           {
             "skill_id": "bosskuai-code-revamp",
-            "score": 5.111583
+            "score": 5.101406
           },
           {
             "skill_id": "receiving-code-review",
-            "score": 4.982069
+            "score": 4.97123
           }
         ],
         "top1_hit": true,
@@ -3324,20 +3324,20 @@
       "description_only": {
         "top1": {
           "skill_id": "antislop-code",
-          "score": 0.330806
+          "score": 0.330007
         },
         "top3": [
           {
             "skill_id": "antislop-code",
-            "score": 0.330806
+            "score": 0.330007
           },
           {
             "skill_id": "image-to-code-skill",
-            "score": 0.242204
+            "score": 0.241298
           },
           {
             "skill_id": "imagegen-frontend-mobile",
-            "score": 0.242204
+            "score": 0.241298
           }
         ],
         "top1_hit": true,
@@ -3392,20 +3392,20 @@
       "description_only": {
         "top1": {
           "skill_id": "antislop-human",
-          "score": 0.611968
+          "score": 0.610783
         },
         "top3": [
           {
             "skill_id": "antislop-human",
-            "score": 0.611968
+            "score": 0.610783
           },
           {
             "skill_id": "accessibility",
-            "score": 0.523191
+            "score": 0.524115
           },
           {
             "skill_id": "bosskuai-throwaway-prototype",
-            "score": 0.222352
+            "score": 0.221922
           }
         ],
         "top1_hit": false,
@@ -3737,20 +3737,20 @@
       "description_only": {
         "top1": {
           "skill_id": "odl-pdf",
-          "score": 0.637038
+          "score": 0.636544
         },
         "top3": [
           {
             "skill_id": "odl-pdf",
-            "score": 0.637038
+            "score": 0.636544
           },
           {
             "skill_id": "directory-submissions",
-            "score": 0.202275
+            "score": 0.20255
           },
           {
             "skill_id": "customer-research",
-            "score": 0.154944
+            "score": 0.153792
           }
         ],
         "top1_hit": true,
@@ -3951,16 +3951,16 @@
       "bossku": {
         "top1": {
           "skill_id": "animate",
-          "score": 21.365
+          "score": 21.477
         },
         "top3": [
           {
             "skill_id": "animate",
-            "score": 21.365326
+            "score": 21.477351
           },
           {
             "skill_id": "bosskuai-ui-ux-design-to-code",
-            "score": 15.364166
+            "score": 15.285327
           },
           {
             "skill_id": "soft-skill",
@@ -3973,20 +3973,20 @@
       "description_only": {
         "top1": {
           "skill_id": "bosskuai-claude-code-setup",
-          "score": 0.372075
+          "score": 0.359397
         },
         "top3": [
           {
             "skill_id": "bosskuai-claude-code-setup",
-            "score": 0.372075
+            "score": 0.359397
           },
           {
             "skill_id": "bosskuai-docker",
-            "score": 0.372075
+            "score": 0.359397
           },
           {
             "skill_id": "bosskuai-github-workflow",
-            "score": 0.372075
+            "score": 0.359397
           }
         ],
         "top1_hit": false,
@@ -4309,20 +4309,20 @@
       "description_only": {
         "top1": {
           "skill_id": "revops",
-          "score": 0.515433
+          "score": 0.514359
         },
         "top3": [
           {
             "skill_id": "revops",
-            "score": 0.515433
+            "score": 0.514359
           },
           {
             "skill_id": "marketing-loops",
-            "score": 0.484567
+            "score": 0.485641
           },
           {
             "skill_id": "sales-enablement",
-            "score": 0.304393
+            "score": 0.303758
           }
         ],
         "top1_hit": false,
@@ -4493,20 +4493,20 @@
       "bossku": {
         "top1": {
           "skill_id": "bosskuai-investor-prep",
-          "score": 29.417
+          "score": 29.423
         },
         "top3": [
           {
             "skill_id": "bosskuai-investor-prep",
-            "score": 29.416871
+            "score": 29.423128
           },
           {
             "skill_id": "loop-budget",
-            "score": 3.27862
+            "score": 3.269354
           },
           {
             "skill_id": "bosskuai-database-engineering",
-            "score": 3.096537
+            "score": 3.116762
           }
         ],
         "top1_hit": true,
@@ -4515,20 +4515,20 @@
       "description_only": {
         "top1": {
           "skill_id": "bosskuai-go-development",
-          "score": 0.142425
+          "score": 0.141609
         },
         "top3": [
           {
             "skill_id": "bosskuai-go-development",
-            "score": 0.142425
+            "score": 0.141609
           },
           {
             "skill_id": "odl-pdf",
-            "score": 0.142425
+            "score": 0.141609
           },
           {
-            "skill_id": "bosskuai-code-revamp",
-            "score": 0.120396
+            "skill_id": "bosskuai-database-engineering",
+            "score": 0.12544
           }
         ],
         "top1_hit": false,
@@ -4582,20 +4582,20 @@
       "description_only": {
         "top1": {
           "skill_id": "prospecting",
-          "score": 0.316624
+          "score": 0.315634
         },
         "top3": [
           {
             "skill_id": "prospecting",
-            "score": 0.316624
+            "score": 0.315634
           },
           {
             "skill_id": "bosskuai-lead-intelligence",
-            "score": 0.228253
+            "score": 0.228584
           },
           {
             "skill_id": "free-tools",
-            "score": 0.194216
+            "score": 0.193049
           }
         ],
         "top1_hit": true,
@@ -4648,21 +4648,21 @@
       },
       "description_only": {
         "top1": {
-          "skill_id": "bosskuai-laravel-development",
-          "score": 0.357767
+          "skill_id": "bosskuai-coding-best-practices",
+          "score": 0.356348
         },
         "top3": [
           {
+            "skill_id": "bosskuai-coding-best-practices",
+            "score": 0.356348
+          },
+          {
             "skill_id": "bosskuai-laravel-development",
-            "score": 0.357767
+            "score": 0.356348
           },
           {
             "skill_id": "bosskuai-context-budget",
-            "score": 0.321117
-          },
-          {
-            "skill_id": "bosskuai-database-engineering",
-            "score": 0.321117
+            "score": 0.321826
           }
         ],
         "top1_hit": false,
@@ -4762,20 +4762,20 @@
       "bossku": {
         "top1": {
           "skill_id": "bosskuai-nuxt-development",
-          "score": 18.252
+          "score": 18.235
         },
         "top3": [
           {
             "skill_id": "bosskuai-nuxt-development",
-            "score": 18.252141
+            "score": 18.234928
           },
           {
             "skill_id": "bosskuai-react-development",
-            "score": 10.043786
+            "score": 10.049524
           },
           {
             "skill_id": "vue-patterns",
-            "score": 6.223165
+            "score": 6.217427
           }
         ],
         "top1_hit": true,
@@ -4784,20 +4784,20 @@
       "description_only": {
         "top1": {
           "skill_id": "bosskuai-react-development",
-          "score": 0.643161
+          "score": 0.644707
         },
         "top3": [
           {
             "skill_id": "bosskuai-react-development",
-            "score": 0.643161
+            "score": 0.644707
           },
           {
             "skill_id": "bosskuai-lenis-smooth-scroll",
-            "score": 0.356839
+            "score": 0.355293
           },
           {
             "skill_id": "bosskuai-nuxt-development",
-            "score": 0.356839
+            "score": 0.355293
           }
         ],
         "top1_hit": false,
@@ -5030,20 +5030,20 @@
       "bossku": {
         "top1": {
           "skill_id": "ads",
-          "score": 23.028
+          "score": 23.014
         },
         "top3": [
           {
             "skill_id": "ads",
-            "score": 23.027844
+            "score": 23.013572
           },
           {
             "skill_id": "bosskuai-mobile-app-release",
-            "score": 8.859054
+            "score": 8.831321
           },
           {
             "skill_id": "ad-creative",
-            "score": 7.166845
+            "score": 7.154088
           }
         ],
         "top1_hit": true,
@@ -5052,20 +5052,20 @@
       "description_only": {
         "top1": {
           "skill_id": "ads",
-          "score": 0.767457
+          "score": 0.768957
         },
         "top3": [
           {
             "skill_id": "ads",
-            "score": 0.767457
+            "score": 0.768957
           },
           {
             "skill_id": "ad-creative",
-            "score": 0.528967
+            "score": 0.525556
           },
           {
             "skill_id": "bosskuai-paid-acquisition-monetization",
-            "score": 0.528967
+            "score": 0.525556
           }
         ],
         "top1_hit": true,
@@ -5131,7 +5131,7 @@
             "score": 0.299758
           },
           {
-            "skill_id": "bosskuai-throwaway-prototype",
+            "skill_id": "bosskuai-polyglot-engineering",
             "score": 0.280449
           }
         ],
@@ -5164,20 +5164,20 @@
       "bossku": {
         "top1": {
           "skill_id": "launch",
-          "score": 33.725
+          "score": 33.718
         },
         "top3": [
           {
             "skill_id": "launch",
-            "score": 33.724706
+            "score": 33.717557
           },
           {
             "skill_id": "directory-submissions",
-            "score": 8.615282
+            "score": 8.605439
           },
           {
             "skill_id": "bosskuai-launch-commercialization",
-            "score": 8.590393
+            "score": 8.575896
           }
         ],
         "top1_hit": true,
@@ -5195,11 +5195,11 @@
           },
           {
             "skill_id": "directory-submissions",
-            "score": 0.807292
+            "score": 0.805436
           },
           {
             "skill_id": "offers",
-            "score": 0.636321
+            "score": 0.638319
           }
         ],
         "top1_hit": true,
@@ -5392,20 +5392,20 @@
       "description_only": {
         "top1": {
           "skill_id": "bosskuai-greptile-review-loop",
-          "score": 0.540313
+          "score": 0.541639
         },
         "top3": [
           {
             "skill_id": "bosskuai-greptile-review-loop",
-            "score": 0.540313
+            "score": 0.541639
           },
           {
             "skill_id": "bosskuai-pr-check",
-            "score": 0.540313
+            "score": 0.541639
           },
           {
             "skill_id": "bosskuai-rigorous-code-review",
-            "score": 0.540313
+            "score": 0.541639
           }
         ],
         "top1_hit": false,
@@ -5468,20 +5468,20 @@
       "description_only": {
         "top1": {
           "skill_id": "bosskuai-rigorous-code-review",
-          "score": 0.357367
+          "score": 0.35813
         },
         "top3": [
           {
             "skill_id": "bosskuai-rigorous-code-review",
-            "score": 0.357367
+            "score": 0.35813
           },
           {
             "skill_id": "bosskuai-greptile-review-loop",
-            "score": 0.222026
+            "score": 0.22295
           },
           {
             "skill_id": "bosskuai-pr-check",
-            "score": 0.222026
+            "score": 0.22295
           }
         ],
         "top1_hit": true,
@@ -5513,20 +5513,20 @@
       "bossku": {
         "top1": {
           "skill_id": "bosskuai-rigorous-code-review",
-          "score": 8.669
+          "score": 8.658
         },
         "top3": [
           {
             "skill_id": "bosskuai-rigorous-code-review",
-            "score": 8.668826
+            "score": 8.65754
           },
           {
             "skill_id": "animation-vocabulary",
-            "score": 7.05318
+            "score": 7.042288
           },
           {
             "skill_id": "bosskuai-agentic-e2e",
-            "score": 6.163639
+            "score": 6.167581
           }
         ],
         "top1_hit": true,
@@ -5535,20 +5535,20 @@
       "description_only": {
         "top1": {
           "skill_id": "bosskuai-agentic-e2e",
-          "score": 0.263984
+          "score": 0.264947
         },
         "top3": [
           {
             "skill_id": "bosskuai-agentic-e2e",
-            "score": 0.263984
+            "score": 0.264947
           },
           {
             "skill_id": "bosskuai-cypress",
-            "score": 0.263984
+            "score": 0.264947
           },
           {
             "skill_id": "odl-pdf",
-            "score": 0.263984
+            "score": 0.264947
           }
         ],
         "top1_hit": false,
@@ -5611,20 +5611,20 @@
       "description_only": {
         "top1": {
           "skill_id": "bosskuai-greptile-review-loop",
-          "score": 0.657399
+          "score": 0.658135
         },
         "top3": [
           {
             "skill_id": "bosskuai-greptile-review-loop",
-            "score": 0.657399
+            "score": 0.658135
           },
           {
             "skill_id": "bosskuai-pr-check",
-            "score": 0.657399
+            "score": 0.658135
           },
           {
             "skill_id": "pr-review-triage",
-            "score": 0.657399
+            "score": 0.658135
           }
         ],
         "top1_hit": false,
@@ -5825,7 +5825,7 @@
             "score": 0.300067
           },
           {
-            "skill_id": "bosskuai-throwaway-prototype",
+            "skill_id": "bosskuai-polyglot-engineering",
             "score": 0.300067
           }
         ],
@@ -5880,20 +5880,20 @@
       "description_only": {
         "top1": {
           "skill_id": "antislop",
-          "score": 0.440769
+          "score": 0.43945
         },
         "top3": [
           {
             "skill_id": "antislop",
-            "score": 0.440769
+            "score": 0.43945
           },
           {
             "skill_id": "accessibility",
-            "score": 0.31311
+            "score": 0.315166
           },
           {
             "skill_id": "ai-seo",
-            "score": 0.310274
+            "score": 0.312338
           }
         ],
         "top1_hit": true,
@@ -5925,20 +5925,20 @@
       "bossku": {
         "top1": {
           "skill_id": "bosskuai-ui-ux-design-to-code",
-          "score": 19.078
+          "score": 19.081
         },
         "top3": [
           {
             "skill_id": "bosskuai-ui-ux-design-to-code",
-            "score": 19.077669
+            "score": 19.080946
           },
           {
             "skill_id": "antislop-ui",
-            "score": 8.43089
+            "score": 8.424567
           },
           {
             "skill_id": "brutalist-skill",
-            "score": 6.845489
+            "score": 6.842328
           }
         ],
         "top1_hit": true,
@@ -5946,21 +5946,21 @@
       },
       "description_only": {
         "top1": {
-          "skill_id": "community-marketing",
-          "score": 0.338905
+          "skill_id": "bosskuai-product-strategy",
+          "score": 0.338465
         },
         "top3": [
           {
+            "skill_id": "bosskuai-product-strategy",
+            "score": 0.338465
+          },
+          {
             "skill_id": "community-marketing",
-            "score": 0.338905
+            "score": 0.338465
           },
           {
             "skill_id": "offers",
-            "score": 0.338905
-          },
-          {
-            "skill_id": "bosskuai-observability-sre",
-            "score": 0.316137
+            "score": 0.338465
           }
         ],
         "top1_hit": false,
@@ -6014,20 +6014,20 @@
       "description_only": {
         "top1": {
           "skill_id": "image",
-          "score": 0.467888
+          "score": 0.468692
         },
         "top3": [
           {
             "skill_id": "image",
-            "score": 0.467888
+            "score": 0.468692
           },
           {
             "skill_id": "graphify",
-            "score": 0.329459
+            "score": 0.328307
           },
           {
             "skill_id": "bosskuai-ui-ux-design-to-code",
-            "score": 0.32211
+            "score": 0.320945
           }
         ],
         "top1_hit": false,

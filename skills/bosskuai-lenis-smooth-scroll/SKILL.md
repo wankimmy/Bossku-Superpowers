@@ -1,6 +1,6 @@
 ---
 name: bosskuai-lenis-smooth-scroll
-description: "Use for Lenis smooth scroll: setup, React/Vue/Nuxt, GSAP ticker sync, anchors, nested/modal scroll, snap, horizontal/infinite scroll, cleanup, reduced motion, and whether smooth scroll is warranted."
+description: "Use when adding or debugging Lenis smooth scroll: setup, React/Vue/Nuxt, GSAP ticker sync, anchors, nested/modal scroll, snap, horizontal/infinite scroll, cleanup, reduced motion, and whether smooth scroll is warranted."
 ---
 
 # BosskuAI Lenis Smooth Scroll

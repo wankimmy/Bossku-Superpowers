@@ -1,6 +1,6 @@
 ---
 name: bosskuai-ai-model-selection
-description: Use this for recommending which AI model fits a specific task based on reasoning depth, speed, tool use, coding needs, multimodality, cost sensitivity, and reliability tradeoffs.
+description: Use when recommending which AI model fits a specific task, weighing reasoning depth, speed, tool use, coding needs, multimodality, cost sensitivity, and reliability tradeoffs.
 ---
 
 # BosskuAI AI Model Selection

@@ -1,6 +1,6 @@
 ---
 name: bosskuai-customer-success-support
-description: Use this for support SOPs, ticket triage and SLAs, human-led onboarding to first value, account health, renewals, and turning repeated tickets into product fixes. Cancel flows and dunning live in churn-prevention.
+description: Use when you need support SOPs, ticket triage and SLAs, human-led onboarding to first value, account health, renewals, and turning repeated tickets into product fixes. Cancel flows and dunning live in churn-prevention.
 ---
 
 # BosskuAI Customer Success & Support

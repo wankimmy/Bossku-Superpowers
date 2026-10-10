@@ -1,6 +1,6 @@
 ---
 name: bosskuai-deep-research
-description: Use this skill for in-depth investigation tasks — multi-source research, due diligence, technology evaluation, and evidence synthesis with citations. Produces sourced executive summaries, not strategy.
+description: "Use when a task needs in-depth investigation: multi-source research, due diligence, technology evaluation, and evidence synthesis with citations. Produces sourced executive summaries, not strategy."
 ---
 
 # BosskuAI Deep Research

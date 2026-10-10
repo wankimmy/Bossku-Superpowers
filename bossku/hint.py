@@ -16,6 +16,7 @@ import os
 import re
 from pathlib import Path
 
+import bossku.index as bossku_index
 import bossku.skills as skills
 from bossku.index import load_index, skill_index_signature
 from bossku.paths import routing_index_copy, routing_signature_path, user_config_path
@@ -214,21 +215,30 @@ def hook_output(payload_text: str, *, root: Path | None = None, home: Path | Non
         brief = resume_context(cwd, home=home)
         if brief:
             return {"hookSpecificOutput": {"hookEventName": "UserPromptSubmit", "additionalContext": brief}}
-    # Every prompt pays for this hook, so read the saved index instead of re-hashing all skills per lookup.
+    # Every prompt pays for this hook, so read the saved index instead of re-hashing all skills per lookup, and build
+    # the idf table once: ranking the prompt and each of its clauses would rebuild it every time (a quarter of the time).
     original, saved = skills._routing_index, {}
+    idf_original, idf_saved = bossku_index.compute_idf, {}
 
     def saved_index(index_root=None):
         if "data" not in saved:
             saved["data"] = _copied_index(index_root, home) or load_index(index_root) or original(index_root)
         return saved["data"]
 
+    def saved_idf(entries):
+        if id(entries) not in idf_saved:
+            idf_saved[id(entries)] = (entries, idf_original(entries))    # holding entries keeps its id from being reused
+        return idf_saved[id(entries)][1]
+
     skills._routing_index = saved_index
+    bossku_index.compute_idf = saved_idf
     try:
         hint = build_hint(prompt, root=root, home=home, host=host, mode=hint_mode(home))
     except Exception:  # noqa: BLE001 - a hint is a convenience; it must never break the user's prompt
         hint = None
     finally:
         skills._routing_index = original
+        bossku_index.compute_idf = idf_original
     parts = [hint] if hint else []
     project = os.environ.get("CLAUDE_PROJECT_DIR") or (cwd if isinstance(cwd, str) else "")
     if states_rule(prompt):

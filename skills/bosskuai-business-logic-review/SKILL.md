@@ -1,6 +1,6 @@
 ---
 name: bosskuai-business-logic-review
-description: Use this for workflow review, state transitions, approval and assignment design, edge cases, rule consistency, and finding hidden business logic flaws in products or systems.
+description: "Use when reviewing workflow rules for hidden business logic flaws: state transitions, approval and assignment design, edge cases, and rule consistency in products or systems."
 ---
 
 # BosskuAI Business Logic Review

@@ -1,6 +1,6 @@
 ---
 name: bosskuai-laravel-tdd
-description: Laravel testing strategies with PHPUnit, Pest, model factories, HTTP tests, Sanctum authentication testing, mocking, and coverage. Use when writing or testing Laravel features test-first.
+description: Use when writing or testing Laravel features test-first, with PHPUnit, Pest, model factories, HTTP tests, Sanctum authentication testing, mocking, and coverage.
 license: MIT
 metadata:
   author: affaan-m/ECC

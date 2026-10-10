@@ -1,6 +1,6 @@
 ---
 name: bosskuai-eval-driven-agent-improvement
-description: Use this for agent eval design, routing tests, retrieval tests, LLM quality cases, regression harnesses, scorecards, and continuous agent improvement.
+description: Use when you need agent eval design, routing tests, retrieval tests, LLM quality cases, regression harnesses, scorecards, and continuous agent improvement.
 ---
 
 # BosskuAI Eval-Driven Agent Improvement

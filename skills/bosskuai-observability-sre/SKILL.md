@@ -1,6 +1,6 @@
 ---
 name: bosskuai-observability-sre
-description: Use this for logs, metrics, tracing, alerts, SLOs, health checks, dashboards, incident detection, and production reliability instrumentation.
+description: Use when adding logs, metrics, tracing, alerts, SLOs, health checks, dashboards, incident detection, or production reliability instrumentation.
 ---
 
 # BosskuAI Observability & SRE

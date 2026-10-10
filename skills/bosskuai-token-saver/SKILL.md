@@ -1,6 +1,6 @@
 ---
 name: bosskuai-token-saver
-description: Use this when the user explicitly asks for terse output, lower token use, caveman mode, compressed prompts, shorter rules, or reducing prompt bloat without losing meaning.
+description: Use when the user explicitly asks for terse output, lower token use, caveman mode, compressed prompts, shorter rules, or reducing prompt bloat without losing meaning.
 ---
 
 # BosskuAI Token Saver

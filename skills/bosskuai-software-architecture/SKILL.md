@@ -1,6 +1,6 @@
 ---
 name: bosskuai-software-architecture
-description: Use this for software architecture, module boundaries, system design, integration design, layering decisions, structural refactors, and long-term maintainability tradeoffs.
+description: Use when deciding software architecture, module boundaries, system design, integration design, layering decisions, structural refactors, and long-term maintainability tradeoffs.
 ---
 
 # BosskuAI Software Architecture

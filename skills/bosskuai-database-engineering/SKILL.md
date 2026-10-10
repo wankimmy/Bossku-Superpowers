@@ -1,6 +1,6 @@
 ---
 name: bosskuai-database-engineering
-description: Use this for SQL and NoSQL database design across MariaDB, MySQL, PostgreSQL, SQLite, MongoDB, indexing and index design, query plans, transactions and locking, safe online migrations, constraints, multi-tenant schemas, connection pooling, backups, and data correctness.
+description: "Use when SQL or NoSQL database design affects correctness or scale (MariaDB, MySQL, PostgreSQL, SQLite, MongoDB): indexing, query plans, transactions and locking, safe online migrations, constraints, multi-tenant schemas, connection pooling, backups."
 ---
 
 # Database engineering

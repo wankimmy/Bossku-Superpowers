@@ -1,6 +1,6 @@
 ---
 name: bosskuai-saas-billing-ops
-description: Use this for SaaS subscription lifecycle, invoices, failed payments, dunning, tax/receipt flows, plan changes, entitlement gating, and billing operations.
+description: Use when handling SaaS subscription lifecycle, invoices, failed payments, dunning, tax/receipt flows, plan changes, entitlement gating, and billing operations.
 ---
 
 # BosskuAI SaaS Billing Ops

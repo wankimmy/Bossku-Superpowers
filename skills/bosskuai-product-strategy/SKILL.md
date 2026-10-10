@@ -1,6 +1,6 @@
 ---
 name: bosskuai-product-strategy
-description: Use this for product strategy, feature shaping, PRD review, scope refinement, prioritization, user-value analysis, and go-to-market implications of product decisions.
+description: "Use when deciding what to build and why: product strategy, feature shaping, PRD review, scope refinement, prioritization, user-value analysis, and go-to-market implications."
 ---
 
 # BosskuAI Product Strategy

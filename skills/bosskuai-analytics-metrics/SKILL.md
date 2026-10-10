@@ -1,6 +1,6 @@
 ---
 name: bosskuai-analytics-metrics
-description: Use this for instrumentation strategy, event design, funnels, experimentation, north-star metrics, KPI definitions, attribution logic, and making sure product decisions can be measured reliably.
+description: "Use when working out what to measure: instrumentation strategy, event design, funnels, experimentation, north-star metrics, KPI definitions, attribution logic, and whether the numbers support product decisions."
 ---
 
 # BosskuAI Analytics / Metrics

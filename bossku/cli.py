@@ -48,11 +48,15 @@ def main(argv: list[str] | None = None) -> int:
     child = argparse.ArgumentParser(add_help=False)
     child.add_argument("--root", type=Path, default=argparse.SUPPRESS, help="BosskuAI repo root")
     child.add_argument("--home", type=Path, default=argparse.SUPPRESS, help="Override home for tests")
+    # Commands that report a result print JSON for scripts and agents, and a short summary only on a terminal.
+    json_flag = argparse.ArgumentParser(add_help=False)
+    json_flag.add_argument("--json", dest="as_json", action="store_true",
+                           help="print the JSON result even on a terminal (it is always JSON when piped)")
 
     parser = argparse.ArgumentParser(prog="bossku", description="Bossku Superpower toolkit CLI (formerly BosskuAI)", parents=[parent])
     sub = parser.add_subparsers(dest="command", required=True)
 
-    p_install = sub.add_parser("install", help="Install skills to user-level agent dirs", parents=[child])
+    p_install = sub.add_parser("install", help="Install skills to user-level agent dirs", parents=[child, json_flag])
     p_install.add_argument("--profile", choices=list(PROFILES), default=None,
                            help="lean lists ~25 skills with short descriptions and keeps the rest "
                                 "reachable through bossku skills show; core is the minimal set; engineering is "
@@ -63,12 +67,12 @@ def main(argv: list[str] | None = None) -> int:
                            help="primary memory storage (obsidian keeps memory outside repos)")
     _install_choices(p_install)
 
-    p_init = sub.add_parser("init", help="Initialize project adapter", parents=[child])
+    p_init = sub.add_parser("init", help="Initialize project adapter", parents=[child, json_flag])
     p_init.add_argument("project", type=Path)
     p_init.add_argument("--portable", action="store_true")
     p_init.add_argument("--profile", choices=list(PROFILES), default="core")
 
-    p_update = sub.add_parser("update", help="Refresh user-level skills from repo", parents=[child])
+    p_update = sub.add_parser("update", help="Refresh user-level skills from repo", parents=[child, json_flag])
     _install_choices(p_update)
     p_doctor = sub.add_parser("doctor", help="Check install health", parents=[child])
     p_doctor.add_argument(
@@ -78,7 +82,7 @@ def main(argv: list[str] | None = None) -> int:
         help="Also verify project AGENTS.md + CLAUDE.md adapters",
     )
 
-    p_remember = sub.add_parser("remember", help="Save curated memory", parents=[child])
+    p_remember = sub.add_parser("remember", help="Save curated memory", parents=[child, json_flag])
     p_remember.add_argument("--kind", required=True, choices=["decision", "plan", "learning", "project"])
     p_remember.add_argument("--project", type=Path, default=Path("."), help="project root (default: current directory)")
     p_remember.add_argument("note")
@@ -91,7 +95,7 @@ def main(argv: list[str] | None = None) -> int:
     p_brief.add_argument("--limit", type=int, default=1000, help="character budget for the brief")
     sub.add_parser("session-brief", help="Internal: SessionStart hook that puts the project notes in context",
                    parents=[child])
-    p_sync = sub.add_parser("sync", help="Export project memory to Obsidian", parents=[child])
+    p_sync = sub.add_parser("sync", help="Export project memory to Obsidian", parents=[child, json_flag])
     p_sync.add_argument("--project", type=Path, default=Path("."), help="project root (default: current directory)")
 
     p_sync_hook = sub.add_parser(
@@ -105,19 +109,21 @@ def main(argv: list[str] | None = None) -> int:
         "hooks", help="Manage denser Obsidian auto-sync hooks (Claude Code, Cursor, Codex, OpenCode)", parents=[child]
     )
     p_hooks_sub = p_hooks.add_subparsers(dest="hooks_cmd", required=True)
-    p_hooks_install = p_hooks_sub.add_parser("install", parents=[child])
+    p_hooks_install = p_hooks_sub.add_parser("install", parents=[child, json_flag])
     p_hooks_install.add_argument(
         "--tools", type=str, default=None, help="comma-separated subset: claude_code,cursor,codex,opencode"
     )
-    p_hooks_uninstall = p_hooks_sub.add_parser("uninstall", parents=[child])
+    p_hooks_uninstall = p_hooks_sub.add_parser("uninstall", parents=[child, json_flag])
     p_hooks_uninstall.add_argument("--tools", type=str, default=None)
 
     p_vault = sub.add_parser("vault", help="Mirror agent memory and rules into the Obsidian vault, and tidy it", parents=[child])
     p_vault_sub = p_vault.add_subparsers(dest="vault_cmd", required=True)
-    p_vault_sync = p_vault_sub.add_parser("sync", help="Mirror auto-memory, rules and legacy notes now", parents=[child])
+    p_vault_sync = p_vault_sub.add_parser("sync", help="Mirror auto-memory, rules and legacy notes now", parents=[child, json_flag])
     p_vault_sync.add_argument("--project", type=Path, default=Path("."), help="project folder (default: here)")
     p_vault_tidy = p_vault_sub.add_parser("tidy", help="Show what a clean-up would do; --apply does it (zip backup first, nothing deleted)",
                                           parents=[child])
+    p_vault_tidy.add_argument("--json", dest="as_json", action="store_true",
+                              help="with --apply, end with the JSON result even on a terminal")
     p_vault_tidy.add_argument("--apply", action="store_true")
 
     p_tools = sub.add_parser("tools", help="See which optional tools are installed, and install the safe ones on request",
@@ -172,7 +178,7 @@ def main(argv: list[str] | None = None) -> int:
     p_hint.add_argument("--host", choices=HOSTS, default="claude",
                         help="who reads the hint: Codex has no Skill tool, so every skill is named by its SKILL.md path")
     sub.add_parser("validate", help="Validate repository layout", parents=[child])
-    p_uninstall = sub.add_parser("uninstall", help="Remove user-level BosskuAI skills", parents=[child])
+    p_uninstall = sub.add_parser("uninstall", help="Remove user-level BosskuAI skills", parents=[child, json_flag])
     p_uninstall.add_argument("--purge", action="store_true")
 
     args = parser.parse_args(argv)
@@ -186,22 +192,23 @@ def main(argv: list[str] | None = None) -> int:
             profile = args.profile or (kept if kept in PROFILES else "lean")
             result = install_user(root=root, home=home, profile=profile, vault=args.vault,
                                   memory_storage=args.memory_storage, **_choices(args))
-            print(json.dumps(result, indent=2))
+            _emit(result, args.as_json, lambda r: _install_summary(r, "installed", profile))
             return 1 if _hook_failed(result.get("hooks") or {}) else 0
         if args.command == "init":
             result = init_project(args.project, root=root, home=home, portable=args.portable, profile=args.profile)
-            print(json.dumps(result, indent=2))
+            _emit(result, args.as_json, _init_summary)
             return 0
         if args.command == "update":
             choices = _choices(args)
             result = _update_with(root, home, choices) if choices else update_user(root=root, home=home)
-            print(json.dumps(result, indent=2))
+            _emit(result, args.as_json,
+                  lambda r: _install_summary(r, "updated", load_user_config(home).get("profile", "full")))
             return 1 if _hook_failed(result.get("hooks") or {}) else 0
         if args.command == "doctor":
             return _doctor(root, home, getattr(args, "project", None))
         if args.command == "remember":
             result = remember(args.project, args.kind, args.note, home=home)
-            print(json.dumps(result, indent=2))
+            _emit(result, args.as_json, lambda r: r["message"])
             return 0
         if args.command == "memory-path":
             print(json.dumps({"memory_dir": str(memory_directory(args.project, home=home)),
@@ -218,7 +225,7 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         if args.command == "sync":
             result = sync_project(args.project, home=home)
-            print(json.dumps(result, indent=2))
+            _emit(result, args.as_json, _sync_summary)
             return 0
         if args.command == "sync-hook":
             result = run_sync_hook(project=args.project, home=home)
@@ -237,7 +244,7 @@ def main(argv: list[str] | None = None) -> int:
                                        harness=load_user_config(home).get("harness", True) is not False)
             else:
                 result = uninstall_hooks(home=home, tools=tools)
-            print(json.dumps(result, indent=2))
+            _emit(result, args.as_json, lambda r: _hooks_summary(r, args.hooks_cmd))
             return 1 if _hook_failed(result) else 0
         if args.command == "vault":
             return _vault(args, home)
@@ -365,7 +372,7 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         if args.command == "uninstall":
             result = uninstall_user(root=root, home=home, purge=args.purge)
-            print(json.dumps(result, indent=2))
+            _emit(result, args.as_json, _uninstall_summary)
             return 1 if _hook_failed(result.get("hooks_removed") or {}) else 0
     except Exception as exc:  # noqa: BLE001 - CLI boundary
         print(f"error: {exc}", file=sys.stderr)
@@ -400,7 +407,7 @@ def _vault(args, home) -> int:
     from bossku import vault
 
     if args.vault_cmd == "sync":
-        print(json.dumps(vault.sync(args.project, home=home, force=True), indent=2))
+        _emit(vault.sync(args.project, home=home, force=True), args.as_json, _sync_summary)
         return 0
     plan = vault.plan_tidy(home=home)
     if not plan:
@@ -414,7 +421,7 @@ def _vault(args, home) -> int:
         print("Nothing was changed. Run again with --apply: a zip backup is made first and no note is deleted.")
         return 0
     result = vault.apply_tidy(plan, home=home)
-    print(json.dumps(result, indent=2))
+    _emit(result, args.as_json, _tidy_summary)
     return 0 if result.get("status") == "ok" else 1
 
 
@@ -454,6 +461,124 @@ def _tools(args, home=None) -> int:
 def _hook_failed(hooks: dict) -> bool:
     """True when any hook installer reported an error. The JSON still lists every tool; only the exit code changes."""
     return any(isinstance(v, dict) and v.get("status") == "error" for v in hooks.values())
+
+
+def _emit(result: dict, as_json: bool, summary) -> None:
+    """Scripts and agents read the JSON; a person at a terminal who did not pass --json gets a short summary instead."""
+    text = None
+    if not as_json and sys.stdout.isatty():
+        try:
+            text = summary(result)
+        except Exception:  # noqa: BLE001 - the work is done; a summary bug must not turn it into an error exit
+            pass
+    print(text if text is not None else json.dumps(result, indent=2))
+
+
+_HOOK_NAMES = {"claude_code": "Claude Code", "claude_harness": "Claude Code safety gates", "cursor": "Cursor",
+               "codex": "Codex", "opencode": "OpenCode"}
+_HOOK_STATUS = {"installed": "set up", "already_installed": "already set up", "removed": "removed",
+                "not_installed": "was not set up, nothing to remove", "skipped_no_node": "skipped"}
+
+
+def _hook_lines(hooks: dict, indent: str = "  ") -> list[str]:
+    lines = []
+    for tool, info in hooks.items():
+        if not isinstance(info, dict):
+            continue
+        status = info.get("status", "unknown")
+        text = _HOOK_STATUS.get(status, status.replace("_", " "))
+        if status == "skipped_not_found":
+            text = f"skipped, nothing found at {info.get('path')}"
+        note = info.get("message") or info.get("warning") or (info.get("features") or {}).get("warning")
+        lines.append(f"{indent}{_HOOK_NAMES.get(tool, tool)}: {text}" + (f" ({note})" if note else ""))
+    return lines
+
+
+def _install_summary(r: dict, verb: str, profile: str) -> str:
+    lines = [f"Bossku is {verb} (skill profile: {profile}).",
+             f"  Skills: {r['installed_count']} listed for your agents"
+             + (f", and {r['library_count']} more one `bossku skills show <id>` away." if r["library_count"] else ".")]
+    if not r["claude_count"]:
+        lines.append("  Skills in ~/.claude/skills: left out (--no-claude).")
+    if r["pruned_skills"]:
+        lines.append(f"  Removed {len(r['pruned_skills'])} skills that Bossku no longer ships.")
+    if r["agents_installed"]:
+        lines.append(f"  Subagents: {len(r['agents_installed'])} contracts copied to ~/.claude/agents.")
+    if r["agents_kept"]:
+        lines.append(f"  Subagents left alone because the files are yours: {', '.join(r['agents_kept'])}.")
+    if r["agents_removed"]:
+        lines.append(f"  Subagents: {len(r['agents_removed'])} removed (--no-agents).")
+    if r["auto_memory_instructions"]:
+        lines.append(f"  Memory and voice rules written to: {', '.join(r['auto_memory_instructions'])}")
+    lines += ["  Hooks:", *_hook_lines(r["hooks"], "    ")]
+    if _hook_failed(r["hooks"]):
+        return "\n".join(lines + ["Next: fix the error above, then run `bossku hooks install`."])
+    return "\n".join(lines + ["Next: cd your-project && bossku init ." if verb == "installed" else "Next: bossku doctor"])
+
+
+def _init_summary(r: dict) -> str:
+    here = Path(r["project"]).resolve() == Path.cwd().resolve()
+    lines = [f"Set up {r['project']} for Bossku.",
+             "  AGENTS.md has the Bossku block; CLAUDE.md and .omp/AGENTS.md import it.",
+             f"  Project notes folder: {r['memory']}",
+             "  .bossku/DESIGN.md: created, fill it in before the first UI work." if r["design_md"]
+             else "  DESIGN.md: already there, left alone."]
+    if r["portable_skills"]:
+        lines.append(f"  Skills copied into the project: {r['portable_skills']}")
+    target = "." if here else f'"{r["project"]}"'
+    return "\n".join(lines + [f"Next: bossku doctor --project {target}"])
+
+
+def _hooks_summary(r: dict, command: str) -> str:
+    lines = ["Hooks:", *_hook_lines(r)]
+    if all(str(v.get("status")).startswith("skipped") for v in r.values() if isinstance(v, dict)):
+        return "\n".join(lines + ["Nothing was changed: none of these tools was found."])
+    if _hook_failed(r):
+        return "\n".join(lines + [f"Next: fix the error above, then run `bossku hooks {command}` again."])
+    next_step = "bossku doctor" if command == "install" else "put them back any time with `bossku hooks install`."
+    return "\n".join(lines + [f"Next: {next_step}"])
+
+
+def _uninstall_summary(r: dict) -> str:
+    lines = [f"Removed {len(r['removed_skills'])} skills and {len(r['removed_agents'])} subagent contracts."]
+    if not r["purged_config"]:
+        return "\n".join(lines + ["The hooks and the config are still in place.",
+                                  "Next: bossku uninstall --purge, to remove those too."])
+    lines.append("Also removed the Bossku config and hooks"
+                 + (f", and the Bossku rules from {len(r['cleaned_instructions'])} instruction file(s)." if r["cleaned_instructions"] else "."))
+    return "\n".join(lines + _hook_lines(r["hooks_removed"] or {}) + ["Your projects and their notes were not touched."])
+
+
+def _sync_summary(r: dict) -> str:
+    if r.get("status") != "ok":
+        why = r.get("reason", r.get("status"))
+        hint = ['Next: bossku install --vault "/path/to/Obsidian/Vault" --memory-storage obsidian'] if why == "no vault configured" else []
+        return "\n".join([f"Nothing was copied to the vault: {why}.", *hint])
+    mirrored = r.get("mirrored") or {}
+    changed = r.get("changed") or mirrored.get("changed") or []
+    lines = []
+    if r.get("exported"):   # sync_project lists files that were already the same as well, so this is not a count of copies
+        lines.append(f"{len(r['exported'])} note file(s) are in the vault at {r['vault_dir']}.")
+    elif r.get("vault_dir"):
+        lines.append(f"Your notes are kept in the vault already: {r['vault_dir']}")
+    if changed:
+        more = " ..." if len(changed) > 5 else ""
+        lines.append(f"Updated {len(changed)} file(s) in the vault: {', '.join(changed[:5])}{more}")
+    if mirrored.get("status") == "error":
+        lines.append(f"Mirroring auto-memory and rules to the vault failed: {mirrored.get('reason', 'unknown error')}")
+    if r.get("conflicts"):
+        lines.append(f"{len(r['conflicts'])} note file(s) were edited in the vault; your edit was saved as: {', '.join(r['conflicts'])}")
+    return "\n".join(lines or ["The vault is already up to date."])
+
+
+def _tidy_summary(r: dict) -> str:
+    if r.get("status") == "skipped":
+        return "Nothing was changed: no vault is available."
+    done = ", ".join(f"{n} {action}" for action, n in r["done"].items() if n)
+    lines = [f"Tidy finished ({r['status']}): {done or 'nothing to do'}.",
+             f"A zip backup of the vault is at {r['backup']}. No note was deleted."]
+    lines += [f"  failed: {item['step']} {item['source']} ({item['error']})" for item in r.get("failed", [])]
+    return "\n".join(lines)
 
 
 def _stocktake(root: Path | None, *, strict: bool = False, as_json: bool = False) -> int:

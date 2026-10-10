@@ -1,6 +1,6 @@
 ---
 name: bosskuai-i18n-l10n
-description: Use this for internationalization and localization across content, locale handling, translations, formatting, right-to-left support, expansion-safe UI, and product decisions needed for multi-language experiences.
+description: "Use when a product must work across languages, locales, and regions: content, locale handling, translations, formatting, right-to-left support, expansion-safe UI, and multi-language product decisions."
 ---
 
 # BosskuAI i18n / l10n

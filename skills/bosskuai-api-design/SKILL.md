@@ -1,6 +1,6 @@
 ---
 name: bosskuai-api-design
-description: Use this for API contract design across REST, GraphQL, and event-driven interfaces, including resource modeling, versioning, errors, pagination, idempotency, and integration-facing correctness.
+description: "Use when designing an API contract across REST, GraphQL, and event-driven interfaces: resource modeling, versioning, errors, pagination, idempotency, and integration-facing correctness."
 ---
 
 # API design

@@ -1,6 +1,6 @@
 ---
 name: bosskuai-council
-description: "Use for ambiguous tradeoffs and go/no-go calls (product bets, scope cuts, architecture forks) needing structured disagreement. Four voices: Architect, Skeptic, Pragmatist, Critic."
+description: "Use when an ambiguous tradeoff or go/no-go call (product bet, scope cut, architecture fork) needs structured disagreement. Four voices: Architect, Skeptic, Pragmatist, Critic."
 license: MIT
 metadata:
   author: affaan-m/ECC

@@ -1,6 +1,6 @@
 ---
 name: bosskuai-browser-automation
-description: Use this skill for browser-level testing, UI verification, automated user flow testing, visual regression, and scraping JavaScript-rendered pages. Covers QA smoke tests through full user journey automation.
+description: Use when doing browser-level testing, UI verification, automated user flow testing, visual regression, or scraping JavaScript-rendered pages. Covers QA smoke tests through full user journey automation.
 ---
 
 # BosskuAI Browser Automation

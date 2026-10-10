@@ -1,6 +1,6 @@
 ---
 name: bosskuai-planning-execution
-description: Use this for roadmap planning, execution slicing, milestone sequencing, launch planning, prioritization, delivery coordination, ownership clarity, and keeping projects moving through to completion.
+description: Use when you need roadmap planning, execution slicing, milestone sequencing, launch planning, prioritization, delivery coordination, ownership clarity, and keeping projects moving through to completion.
 ---
 
 # BosskuAI Planning and Execution

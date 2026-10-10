@@ -1,6 +1,6 @@
 ---
 name: bosskuai-design-systems
-description: Use this for creating, auditing, or applying design systems — including DESIGN.md generation, design token definition, component specification, brand reference calibration, and systematic design language enforcement.
+description: Use when creating, auditing, or applying a design system, including DESIGN.md generation, design token definition, component specification, brand reference calibration, and systematic design language enforcement.
 ---
 
 # BosskuAI Design Systems

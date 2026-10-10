@@ -1,6 +1,6 @@
 ---
 name: bosskuai-rules-distill
-description: Use this to extract repeated cross-cutting principles from skills and references, then propose safe rule updates instead of letting important guidance stay fragmented.
+description: "Use when principles repeat across skills or references: extract repeated cross-cutting principles, then propose safe rule updates instead of leaving guidance fragmented."
 ---
 
 # BosskuAI Rules Distill

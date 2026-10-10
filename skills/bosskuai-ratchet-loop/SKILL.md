@@ -1,6 +1,6 @@
 ---
 name: bosskuai-ratchet-loop
-description: Use this for measurable improvement loops where every change needs a baseline, metric, test/eval, keep-or-revert decision, and short log entry.
+description: Use when improving something measurable, where every change needs a baseline, metric, test/eval, keep-or-revert decision, and short log entry.
 ---
 
 # BosskuAI Ratchet Loop

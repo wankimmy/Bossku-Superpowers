@@ -1,6 +1,6 @@
 ---
 name: bosskuai-sales-strategy
-description: Use this for sales positioning, ICP definition, pipeline strategy, founder-led sales, objection handling, pricing narrative, and turning product value into a repeatable buying motion.
+description: "Use when turning interest into revenue: sales positioning, ICP definition, pipeline strategy, founder-led sales, objection handling, pricing narrative, and a repeatable buying motion."
 ---
 
 # BosskuAI Sales Strategy

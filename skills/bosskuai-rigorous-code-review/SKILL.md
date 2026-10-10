@@ -1,6 +1,6 @@
 ---
 name: bosskuai-rigorous-code-review
-description: "Use for PR or pre-merge review, adversarial review, or challenging an implementation, a docs or rules change, or a plan: skeptical expert review of correctness, intended outcome and downstream impact that prefers minimal fixes."
+description: "Use when doing PR or pre-merge review, adversarial review, or challenging an implementation, a docs or rules change, or a plan: skeptical expert review of correctness, intended outcome and downstream impact that prefers minimal fixes."
 ---
 
 # Rigorous code review

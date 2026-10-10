@@ -1,6 +1,6 @@
 ---
 name: bosskuai-hyperframes
-description: "Use for Hyperframes: authoring, previewing, and rendering HTML compositions (seekable GSAP/CSS animation) to MP4 with the hyperframes CLI. Picking a video tool or AI video generation: video."
+description: "Use when authoring, previewing, or rendering Hyperframes HTML compositions (seekable GSAP/CSS animation) to MP4 with the hyperframes CLI. Picking a video tool or AI video generation: video."
 ---
 
 # BosskuAI Hyperframes

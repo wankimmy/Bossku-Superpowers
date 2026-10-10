@@ -1,6 +1,6 @@
 ---
 name: bosskuai-code-revamp
-description: Use this for safe code modernization, structural cleanup, legacy refactors, and revamps that should still respect the current codebase structure and avoid unnecessary churn.
+description: "Use when revamping legacy code safely: modernization, structural cleanup, and refactors that respect the current codebase structure and avoid unnecessary churn."
 ---
 
 # Code revamp

@@ -1,6 +1,6 @@
 ---
 name: bosskuai-continuous-learning
-description: Use this after meaningful tasks, reviews, incidents, or repeated observations to decide the smallest durable artifact that should capture the lesson and keep future sessions from relearning it.
+description: "Use when tasks, reviews, incidents, or repeated observations produced a lesson: decide the smallest durable artifact that should capture it so future sessions do not relearn it."
 ---
 
 # BosskuAI Continuous Learning

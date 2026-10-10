@@ -1,6 +1,6 @@
 ---
 name: bosskuai-integration-testing
-description: Use this for integration test design, contract testing (CDC/Pact), test double strategy, fixture management, and validating behavior at module and service boundaries.
+description: "Use when designing integration tests: contract testing (CDC/Pact), test double strategy, fixture management, and behavior at module and service boundaries."
 ---
 
 # BosskuAI Integration Testing

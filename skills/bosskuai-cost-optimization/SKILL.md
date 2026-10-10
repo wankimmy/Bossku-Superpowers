@@ -1,6 +1,6 @@
 ---
 name: bosskuai-cost-optimization
-description: Use this for cloud/server/API/model cost control, token budgets, queue sizing, storage costs, vendor spend, and unit economics.
+description: "Use when controlling cloud/server/API/model cost: token budgets, queue sizing, storage costs, vendor spend, and unit economics."
 ---
 
 # BosskuAI Cost Optimization

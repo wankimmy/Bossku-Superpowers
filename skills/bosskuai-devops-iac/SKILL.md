@@ -1,6 +1,6 @@
 ---
 name: bosskuai-devops-iac
-description: Use for infrastructure as code (Terraform/OpenTofu, Pulumi), environment promotion, release strategies (canary, blue-green, feature flags), drift, and rollback design. Pipeline YAML goes to bosskuai-ci-cd-pipelines; Dockerfiles and Compose to bosskuai-docker.
+description: Use when doing infrastructure as code (Terraform/OpenTofu, Pulumi), environment promotion, release strategies (canary, blue-green, feature flags), drift, or rollback design. Pipeline YAML goes to bosskuai-ci-cd-pipelines; Dockerfiles and Compose to bosskuai-docker.
 ---
 
 # BosskuAI DevOps / IaC

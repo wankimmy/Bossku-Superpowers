@@ -118,6 +118,8 @@ Agents spend a fixed share of their context window on the skill list and cut the
 
 Install choices: `--no-claude` leaves out the skills in `~/.claude/skills` (for a machine where a Claude Code plugin serves them), `--no-agents` leaves out the subagent contracts, and `--no-harness` leaves out the Node gates and the deny list and takes ours out again. Each flag has a positive form (`--claude`, `--agents`, `--harness`). Left out, `install` and `update` keep the saved choice, and a first install turns all three on.
 
+Summary or JSON: `install`, `update`, `init`, `uninstall`, `remember`, `sync`, `hooks install`, `hooks uninstall`, `vault sync` and `vault tidy --apply` print a short summary when stdout is a terminal (what changed, what was skipped and why, and one next step). When stdout is a pipe or a file, which is how scripts and agents usually run them, they print the JSON described on this page, unchanged. An agent that runs commands in a real terminal gets the summary, so anything that parses the output should pass `--json`. In a terminal `--json` gives the JSON too; for `vault tidy` it applies with `--apply` (without it only the plan is printed). Exit codes are the same either way. `memory-path`, `skills find`, `skills index` and the hook commands print what they always did.
+
 Re-run `bossku hooks install` anytime; uninstall with `bossku hooks uninstall`. Codex needs a one-time `/hooks` trust approval in-session before hooks fire.
 
 ### Resume a Codex task in Claude Code

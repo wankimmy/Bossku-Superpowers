@@ -1,6 +1,6 @@
 ---
 name: bosskuai-3d-web-development
-description: "Use for Three.js, React Three Fiber, WebGL/WebGPU, shaders, Spline, and scroll-driven 3D scenes: scene graph, lighting, models, post-processing, perf tiers. Not 2D DOM motion (bosskuai-gsap-animation) or video fly-throughs (scroll-world)."
+description: "Use when working with Three.js, React Three Fiber, WebGL/WebGPU, shaders, Spline, or scroll-driven 3D scenes: scene graph, lighting, models, post-processing, perf tiers. Not 2D DOM motion (bosskuai-gsap-animation) or video fly-throughs (scroll-world)."
 ---
 
 # BosskuAI 3D Web Development Expert

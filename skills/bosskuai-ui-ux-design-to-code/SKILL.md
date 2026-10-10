@@ -1,6 +1,6 @@
 ---
 name: bosskuai-ui-ux-design-to-code
-description: Use this for UI/UX review, interface critique, design systems thinking, mobile-responsive behavior, accessibility (WCAG), and translating designs or screenshots into implementation-ready code guidance.
+description: "Use when reviewing or critiquing UI/UX, or turning designs or screenshots into implementation-ready code guidance: design systems thinking, mobile-responsive behavior, and accessibility (WCAG)."
 ---
 
 # UI/UX and design-to-code

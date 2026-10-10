@@ -1,6 +1,6 @@
 ---
 name: bosskuai-prompt-injection-defense
-description: Use this for prompt injection, tool abuse, memory poisoning, untrusted document handling, agent permissions, and AI workspace security.
+description: Use when handling prompt injection, tool abuse, memory poisoning, untrusted document handling, agent permissions, and AI workspace security.
 ---
 
 # BosskuAI Prompt Injection Defense

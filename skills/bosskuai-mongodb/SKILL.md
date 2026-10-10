@@ -1,6 +1,6 @@
 ---
 name: bosskuai-mongodb
-description: Use this for MongoDB work including collection design, indexes, aggregation pipelines, query performance, migrations, schema validation, backups, and MongoDB MCP-assisted database inspection.
+description: "Use when the task involves MongoDB work: collection design, indexes, aggregation pipelines, query performance, migrations, schema validation, backups, and MongoDB MCP-assisted database inspection."
 ---
 
 # BosskuAI MongoDB

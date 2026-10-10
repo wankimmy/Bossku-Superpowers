@@ -1,6 +1,6 @@
 ---
 name: bosskuai-investor-prep
-description: "Use this for fundraising materials and process: pitch decks, one-pagers, investor memos, monthly investor updates, accelerator applications, the investor pipeline, and SAFE or priced-round basics, with every number consistent across documents."
+description: "Use when preparing fundraising materials and process: pitch decks, one-pagers, investor memos, monthly investor updates, accelerator applications, the investor pipeline, and SAFE or priced-round basics, with every number consistent across documents."
 ---
 
 # BosskuAI Investor Prep

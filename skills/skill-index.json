@@ -1,6 +1,6 @@
 {
   "version": "2.1.0",
-  "fingerprint": "56c55a081ce40225",
+  "fingerprint": "5553cb493a0d46a3",
   "count": 243,
   "aliases": {
     "bosskuai-caveman": "bosskuai-token-saver",
@@ -1682,7 +1682,7 @@
     "bosskuai-3d-web-development": {
       "path": "skills/bosskuai-3d-web-development/SKILL.md",
       "name": "bosskuai-3d-web-development",
-      "description": "Use for Three.js, React Three Fiber, WebGL/WebGPU, shaders, Spline, and scroll-driven 3D scenes: scene graph, lighting, models, post-processing, perf tiers. Not 2D DOM motion (bosskuai-gsap-animation) or video fly-throughs (scroll-world).",
+      "description": "Use when working with Three.js, React Three Fiber, WebGL/WebGPU, shaders, Spline, or scroll-driven 3D scenes: scene graph, lighting, models, post-processing, perf tiers. Not 2D DOM motion (bosskuai-gsap-animation) or video fly-throughs (scroll-world).",
       "triggers": [
         "3d web development",
         "three.js",
@@ -1692,7 +1692,9 @@
         "shader"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "working with three"
+      ],
       "keywords": [
         "3d",
         "web",
@@ -1705,6 +1707,7 @@
         "webgl",
         "scene",
         "shader",
+        "working",
         "webgpu",
         "spline",
         "scroll-driven",
@@ -1752,8 +1755,7 @@
         "gsap",
         "transform",
         "parallax",
-        "background",
-        "layer"
+        "background"
       ],
       "model_role": "coder",
       "pack": "bossku",
@@ -1844,7 +1846,7 @@
     "bosskuai-agent-introspection": {
       "path": "skills/bosskuai-agent-introspection/SKILL.md",
       "name": "bosskuai-agent-introspection",
-      "description": "Self-debugging for agent failures — capture, diagnose, contained recovery, report. Use when an agent run loops, burns tokens, drifts, or returns empty/degraded results.",
+      "description": "Use when an agent run loops, burns tokens, drifts, or returns empty/degraded results: self-debugging with failure capture, diagnosis, contained recovery, and a report.",
       "triggers": [
         "agent introspection",
         "agent looping",
@@ -1858,7 +1860,7 @@
         "an agent run loops",
         "burns tokens",
         "returns empty",
-        "degraded results"
+        "contained recovery"
       ],
       "keywords": [
         "agent",
@@ -1870,26 +1872,25 @@
         "empty",
         "result",
         "stuck",
-        "self-debugging",
-        "failure",
-        "capture",
-        "diagnose",
-        "contained",
-        "recovery",
-        "report",
         "run",
         "loop",
         "burn",
         "drift",
         "return",
         "degraded",
+        "self-debugging",
+        "failure",
+        "capture",
+        "diagnosis",
+        "contained",
+        "recovery",
+        "report",
         "activate",
         "scope",
         "boundarie",
         "four-phase",
         "phase",
         "root-cause",
-        "diagnosis",
         "action",
         "self-debug",
         "heuristic",
@@ -1969,7 +1970,7 @@
     "bosskuai-ai-model-selection": {
       "path": "skills/bosskuai-ai-model-selection/SKILL.md",
       "name": "bosskuai-ai-model-selection",
-      "description": "Use this for recommending which AI model fits a specific task based on reasoning depth, speed, tool use, coding needs, multimodality, cost sensitivity, and reliability tradeoffs.",
+      "description": "Use when recommending which AI model fits a specific task, weighing reasoning depth, speed, tool use, coding needs, multimodality, cost sensitivity, and reliability tradeoffs.",
       "triggers": [
         "ai model selection",
         "which model",
@@ -1986,7 +1987,11 @@
         "context window"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "weighing reasoning depth",
+        "cost sensitivity",
+        "reliability tradeoffs"
+      ],
       "keywords": [
         "ai",
         "model",
@@ -2007,7 +2012,7 @@
         "fits",
         "specific",
         "task",
-        "based",
+        "weighing",
         "reasoning",
         "depth",
         "speed",
@@ -2039,7 +2044,7 @@
     "bosskuai-analytics-metrics": {
       "path": "skills/bosskuai-analytics-metrics/SKILL.md",
       "name": "bosskuai-analytics-metrics",
-      "description": "Use this for instrumentation strategy, event design, funnels, experimentation, north-star metrics, KPI definitions, attribution logic, and making sure product decisions can be measured reliably.",
+      "description": "Use when working out what to measure: instrumentation strategy, event design, funnels, experimentation, north-star metrics, KPI definitions, attribution logic, and whether the numbers support product decisions.",
       "triggers": [
         "analytics metrics",
         "north star metric",
@@ -2051,7 +2056,12 @@
         "cohort retention"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "event design",
+        "north-star metrics",
+        "kpi definitions",
+        "attribution logic"
+      ],
       "keywords": [
         "analytics",
         "metrics",
@@ -2067,6 +2077,8 @@
         "model",
         "cohort",
         "retention",
+        "working",
+        "measure",
         "strategy",
         "event",
         "design",
@@ -2074,11 +2086,10 @@
         "experimentation",
         "north-star",
         "logic",
-        "sure",
+        "number",
+        "support",
         "product",
         "decision",
-        "measured",
-        "reliably",
         "differ",
         "nearby",
         "mindset",
@@ -2106,7 +2117,7 @@
     "bosskuai-api-design": {
       "path": "skills/bosskuai-api-design/SKILL.md",
       "name": "bosskuai-api-design",
-      "description": "Use this for API contract design across REST, GraphQL, and event-driven interfaces, including resource modeling, versioning, errors, pagination, idempotency, and integration-facing correctness.",
+      "description": "Use when designing an API contract across REST, GraphQL, and event-driven interfaces: resource modeling, versioning, errors, pagination, idempotency, and integration-facing correctness.",
       "triggers": [
         "api design",
         "rest api",
@@ -2118,7 +2129,11 @@
         "idempotency"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "designing an api contract across rest",
+        "event-driven interfaces: resource modeling",
+        "integration-facing correctness"
+      ],
       "keywords": [
         "api",
         "design",
@@ -2129,6 +2144,7 @@
         "versioning",
         "pagination",
         "idempotency",
+        "designing",
         "event-driven",
         "interface",
         "resource",
@@ -2434,7 +2450,7 @@
     "bosskuai-browser-automation": {
       "path": "skills/bosskuai-browser-automation/SKILL.md",
       "name": "bosskuai-browser-automation",
-      "description": "Use this skill for browser-level testing, UI verification, automated user flow testing, visual regression, and scraping JavaScript-rendered pages. Covers QA smoke tests through full user journey automation.",
+      "description": "Use when doing browser-level testing, UI verification, automated user flow testing, visual regression, or scraping JavaScript-rendered pages. Covers QA smoke tests through full user journey automation.",
       "triggers": [
         "browser automation",
         "headless browser",
@@ -2446,7 +2462,12 @@
         "console errors"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "doing browser-level testing",
+        "ui verification",
+        "automated user flow testing",
+        "scraping javascript-rendered pages"
+      ],
       "keywords": [
         "browser",
         "automation",
@@ -2507,7 +2528,7 @@
     "bosskuai-business-logic-review": {
       "path": "skills/bosskuai-business-logic-review/SKILL.md",
       "name": "bosskuai-business-logic-review",
-      "description": "Use this for workflow review, state transitions, approval and assignment design, edge cases, rule consistency, and finding hidden business logic flaws in products or systems.",
+      "description": "Use when reviewing workflow rules for hidden business logic flaws: state transitions, approval and assignment design, edge cases, and rule consistency in products or systems.",
       "triggers": [
         "business logic review",
         "state machine",
@@ -2517,7 +2538,10 @@
         "business rules"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "assignment design",
+        "rule consistency in products"
+      ],
       "keywords": [
         "business",
         "logic",
@@ -2530,13 +2554,13 @@
         "flow",
         "edge",
         "case",
+        "reviewing",
+        "hidden",
+        "flaw",
         "transition",
         "assignment",
         "design",
         "consistency",
-        "finding",
-        "hidden",
-        "flaw",
         "product",
         "system",
         "differ",
@@ -2773,7 +2797,7 @@
     "bosskuai-code-revamp": {
       "path": "skills/bosskuai-code-revamp/SKILL.md",
       "name": "bosskuai-code-revamp",
-      "description": "Use this for safe code modernization, structural cleanup, legacy refactors, and revamps that should still respect the current codebase structure and avoid unnecessary churn.",
+      "description": "Use when revamping legacy code safely: modernization, structural cleanup, and refactors that respect the current codebase structure and avoid unnecessary churn.",
       "triggers": [
         "code revamp",
         "refactor",
@@ -2784,7 +2808,11 @@
         "restructure"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "revamping legacy code safely: modernization",
+        "structural cleanup",
+        "avoid unnecessary churn"
+      ],
       "keywords": [
         "code",
         "revamp",
@@ -2795,11 +2823,11 @@
         "tech",
         "debt",
         "restructure",
-        "safe",
+        "revamping",
+        "safely",
         "modernization",
         "structural",
         "cleanup",
-        "still",
         "respect",
         "current",
         "codebase",
@@ -2859,7 +2887,7 @@
     "bosskuai-coding-best-practices": {
       "path": "skills/bosskuai-coding-best-practices/SKILL.md",
       "name": "bosskuai-coding-best-practices",
-      "description": "Use this for implementation quality, maintainability, readability, testing expectations, error handling, naming, and pragmatic best-practice checks that still fit the current repo conventions.",
+      "description": "Use when writing or reviewing code for quality: maintainability, readability, testing expectations, error handling, naming, and best-practice checks that fit repo conventions.",
       "triggers": [
         "coding best practices",
         "code quality",
@@ -2869,7 +2897,12 @@
         "maintainability"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "reviewing code for quality: maintainability",
+        "testing expectations",
+        "error handling",
+        "best-practice checks that fit repo conventions"
+      ],
       "keywords": [
         "coding",
         "best",
@@ -2880,18 +2913,16 @@
         "good",
         "naming",
         "maintainability",
-        "implementation",
+        "writing",
+        "reviewing",
         "readability",
         "testing",
         "expectation",
         "error",
         "handling",
-        "pragmatic",
         "best-practice",
         "check",
-        "still",
         "fit",
-        "current",
         "repo",
         "convention",
         "operating",
@@ -2917,7 +2948,7 @@
     "bosskuai-competitor-intelligence": {
       "path": "skills/bosskuai-competitor-intelligence/SKILL.md",
       "name": "bosskuai-competitor-intelligence",
-      "description": "Use this for recurring competitor monitoring: a dated comparison matrix, pricing/feature/messaging/hiring deltas since the last check, and what they mean. For a first deep profile use competitor-profiling; for vs/alternative pages use competitors.",
+      "description": "Use when doing recurring competitor monitoring: a dated comparison matrix, pricing/feature/messaging/hiring deltas since the last check, and what they mean. For a first deep profile use competitor-profiling; for vs/alternative pages use competitors.",
       "triggers": [
         "competitor intelligence",
         "competitor monitoring",
@@ -2926,7 +2957,9 @@
         "what are they shipping"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "hiring deltas since the last check"
+      ],
       "keywords": [
         "competitor",
         "intelligence",
@@ -2980,14 +3013,20 @@
     "bosskuai-content-calendar": {
       "path": "skills/bosskuai-content-calendar/SKILL.md",
       "name": "bosskuai-content-calendar",
-      "description": "Use this for content calendar planning, platform-specific posts, hooks, CTAs, content pillars, Malaysian mixed Malay-English tone, repurposing, and publishing cadence.",
+      "description": "Use when planning content: calendars, platform-specific posts, hooks, CTAs, content pillars, Malaysian mixed Malay-English tone, repurposing, and publishing cadence.",
       "triggers": [
         "content calendar",
         "posting schedule",
         "editorial calendar"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "planning content: calendars",
+        "platform-specific posts",
+        "content pillars",
+        "malaysian mixed malay-english tone",
+        "publishing cadence"
+      ],
       "keywords": [
         "content",
         "calendar",
@@ -3123,7 +3162,7 @@
     "bosskuai-continuous-learning": {
       "path": "skills/bosskuai-continuous-learning/SKILL.md",
       "name": "bosskuai-continuous-learning",
-      "description": "Use this after meaningful tasks, reviews, incidents, or repeated observations to decide the smallest durable artifact that should capture the lesson and keep future sessions from relearning it.",
+      "description": "Use when tasks, reviews, incidents, or repeated observations produced a lesson: decide the smallest durable artifact that should capture it so future sessions do not relearn it.",
       "triggers": [
         "continuous learning",
         "capture this lesson",
@@ -3146,19 +3185,18 @@
         "learned",
         "post",
         "task",
-        "meaningful",
         "review",
         "incident",
         "repeated",
         "observation",
+        "produced",
         "decide",
         "smallest",
         "durable",
         "artifact",
-        "keep",
         "future",
         "session",
-        "relearning",
+        "relearn",
         "configured",
         "memory",
         "location",
@@ -3178,7 +3216,7 @@
     "bosskuai-cost-optimization": {
       "path": "skills/bosskuai-cost-optimization/SKILL.md",
       "name": "bosskuai-cost-optimization",
-      "description": "Use this for cloud/server/API/model cost control, token budgets, queue sizing, storage costs, vendor spend, and unit economics.",
+      "description": "Use when controlling cloud/server/API/model cost: token budgets, queue sizing, storage costs, vendor spend, and unit economics.",
       "triggers": [
         "cost optimization",
         "bill",
@@ -3192,7 +3230,13 @@
         "unit economics"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "controlling cloud",
+        "model cost: token budgets",
+        "queue sizing",
+        "storage costs",
+        "vendor spend"
+      ],
       "keywords": [
         "cost",
         "optimization",
@@ -3207,6 +3251,7 @@
         "budget",
         "unit",
         "economic",
+        "controlling",
         "server",
         "api",
         "model",
@@ -3238,7 +3283,7 @@
     "bosskuai-council": {
       "path": "skills/bosskuai-council/SKILL.md",
       "name": "bosskuai-council",
-      "description": "Use for ambiguous tradeoffs and go/no-go calls (product bets, scope cuts, architecture forks) needing structured disagreement. Four voices: Architect, Skeptic, Pragmatist, Critic.",
+      "description": "Use when an ambiguous tradeoff or go/no-go call (product bet, scope cut, architecture fork) needs structured disagreement. Four voices: Architect, Skeptic, Pragmatist, Critic.",
       "triggers": [
         "council",
         "debate this",
@@ -3246,7 +3291,14 @@
         "multiple perspectives"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "an ambiguous tradeoff",
+        "no-go call",
+        "product bet",
+        "scope cut",
+        "architecture fork",
+        "structured disagreement"
+      ],
       "keywords": [
         "council",
         "debate",
@@ -3258,12 +3310,11 @@
         "no-go",
         "call",
         "product",
-        "bets",
+        "bet",
         "scope",
-        "cuts",
+        "cut",
         "architecture",
         "fork",
-        "needing",
         "structured",
         "disagreement",
         "four",
@@ -3477,7 +3528,7 @@
     "bosskuai-customer-discovery": {
       "path": "skills/bosskuai-customer-discovery/SKILL.md",
       "name": "bosskuai-customer-discovery",
-      "description": "Use this to plan and run customer discovery interviews: hypothesis, recruiting segment, JTBD script, transcript tagging, persona and insight cards. To mine existing reviews, tickets, surveys or VOC at scale use customer-research.",
+      "description": "Use when planning and running customer discovery interviews: hypothesis, recruiting segment, JTBD script, transcript tagging, persona and insight cards. To mine existing reviews, tickets, surveys or VOC at scale use customer-research.",
       "triggers": [
         "customer discovery",
         "user interviews",
@@ -3486,14 +3537,20 @@
         "discovery interviews"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "running customer discovery interviews: hypothesis",
+        "recruiting segment",
+        "jtbd script",
+        "transcript tagging",
+        "insight cards"
+      ],
       "keywords": [
         "customer",
         "discovery",
         "interview",
         "script",
-        "plan",
-        "run",
+        "planning",
+        "running",
         "hypothesis",
         "recruiting",
         "segment",
@@ -3532,7 +3589,7 @@
     "bosskuai-customer-success-support": {
       "path": "skills/bosskuai-customer-success-support/SKILL.md",
       "name": "bosskuai-customer-success-support",
-      "description": "Use this for support SOPs, ticket triage and SLAs, human-led onboarding to first value, account health, renewals, and turning repeated tickets into product fixes. Cancel flows and dunning live in churn-prevention.",
+      "description": "Use when you need support SOPs, ticket triage and SLAs, human-led onboarding to first value, account health, renewals, and turning repeated tickets into product fixes. Cancel flows and dunning live in churn-prevention.",
       "triggers": [
         "customer success support",
         "support sop",
@@ -3546,7 +3603,12 @@
         "account management"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "you need support sops",
+        "human-led onboarding to first value",
+        "account health",
+        "turning repeated tickets into product fixes"
+      ],
       "keywords": [
         "customer",
         "success",
@@ -3599,7 +3661,7 @@
     "bosskuai-customize-bosskuai": {
       "path": "skills/bosskuai-customize-bosskuai/SKILL.md",
       "name": "bosskuai-customize-bosskuai",
-      "description": "Use only when editing BosskuAI's own configuration (AGENTS.md, skills/skill-index.json, skills/*/SKILL.md, agents/*.md, host plugin manifests): injects the real schemas, paths and verification commands so the model doesn't guess.",
+      "description": "Use when editing only BosskuAI's own configuration (AGENTS.md, skills/skill-index.json, skills/*/SKILL.md, agents/*.md, host plugin manifests): injects the real schemas, paths and verification commands so the model doesn't guess.",
       "triggers": [
         "customize bosskuai",
         "edit agents.md",
@@ -3607,7 +3669,9 @@
         "bossku config"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "editing only bosskuai's own configuration"
+      ],
       "keywords": [
         "customize",
         "bosskuai",
@@ -3651,7 +3715,7 @@
     "bosskuai-cybersecurity-risk": {
       "path": "skills/bosskuai-cybersecurity-risk/SKILL.md",
       "name": "bosskuai-cybersecurity-risk",
-      "description": "Use this for cybersecurity review, privacy, abuse-case analysis, auth and authorization concerns, trust boundaries, fraud risk, and operational risk evaluation.",
+      "description": "Use when doing a cybersecurity review or hardening: privacy, abuse-case analysis, auth and authorization concerns, trust boundaries, and operational risk evaluation.",
       "triggers": [
         "cybersecurity risk",
         "security review",
@@ -3673,7 +3737,14 @@
         "secure this"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "doing a cybersecurity review",
+        "hardening: privacy",
+        "abuse-case analysis",
+        "authorization concerns",
+        "trust boundaries",
+        "operational risk evaluation"
+      ],
       "keywords": [
         "cybersecurity",
         "risk",
@@ -3698,13 +3769,13 @@
         "idor",
         "audit",
         "api",
+        "hardening",
         "privacy",
         "abuse-case",
         "analysis",
         "authorization",
         "concern",
         "boundarie",
-        "fraud",
         "operational",
         "evaluation"
       ],
@@ -3775,7 +3846,7 @@
     "bosskuai-data-architecture": {
       "path": "skills/bosskuai-data-architecture/SKILL.md",
       "name": "bosskuai-data-architecture",
-      "description": "Use this for data modeling, schema boundaries, migrations, warehouses, analytics pipelines, ownership of entities, retention, and correctness tradeoffs in data-intensive systems.",
+      "description": "Use when you need data modeling, schema boundaries, migrations, warehouses, analytics pipelines, entity ownership, retention, and correctness tradeoffs in data-intensive systems.",
       "triggers": [
         "data architecture",
         "data model",
@@ -3785,7 +3856,12 @@
         "retention policy"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "you need data modeling",
+        "schema boundaries",
+        "analytics pipelines",
+        "correctness tradeoffs in data-intensive systems"
+      ],
       "keywords": [
         "data",
         "architecture",
@@ -3801,7 +3877,6 @@
         "schema",
         "boundarie",
         "migration",
-        "entitie",
         "correctness",
         "tradeoff",
         "data-intensive",
@@ -3823,7 +3898,7 @@
     "bosskuai-database-engineering": {
       "path": "skills/bosskuai-database-engineering/SKILL.md",
       "name": "bosskuai-database-engineering",
-      "description": "Use this for SQL and NoSQL database design across MariaDB, MySQL, PostgreSQL, SQLite, MongoDB, indexing and index design, query plans, transactions and locking, safe online migrations, constraints, multi-tenant schemas, connection pooling, backups, and data correctness.",
+      "description": "Use when SQL or NoSQL database design affects correctness or scale (MariaDB, MySQL, PostgreSQL, SQLite, MongoDB): indexing, query plans, transactions and locking, safe online migrations, constraints, multi-tenant schemas, connection pooling, backups.",
       "triggers": [
         "database engineering",
         "database schema",
@@ -3847,7 +3922,11 @@
         "foreign key"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "nosql database design affects correctness",
+        "query plans",
+        "safe online migrations"
+      ],
       "keywords": [
         "database",
         "engineering",
@@ -3868,6 +3947,9 @@
         "key",
         "foreign",
         "nosql",
+        "affect",
+        "correctness",
+        "scale",
         "postgresql",
         "sqlite",
         "mongodb",
@@ -3880,9 +3962,7 @@
         "multi-tenant",
         "connection",
         "pooling",
-        "backup",
-        "data",
-        "correctness"
+        "backup"
       ],
       "model_role": "planner",
       "pack": "bossku",
@@ -3891,7 +3971,7 @@
     "bosskuai-deep-research": {
       "path": "skills/bosskuai-deep-research/SKILL.md",
       "name": "bosskuai-deep-research",
-      "description": "Use this skill for in-depth investigation tasks — multi-source research, due diligence, technology evaluation, and evidence synthesis with citations. Produces sourced executive summaries, not strategy.",
+      "description": "Use when a task needs in-depth investigation: multi-source research, due diligence, technology evaluation, and evidence synthesis with citations. Produces sourced executive summaries, not strategy.",
       "triggers": [
         "deep research",
         "research",
@@ -3902,7 +3982,10 @@
         "investigate"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "technology evaluation",
+        "evidence synthesis with citations"
+      ],
       "keywords": [
         "deep",
         "research",
@@ -3914,9 +3997,9 @@
         "tool",
         "citation",
         "investigate",
+        "task",
         "in-depth",
         "investigation",
-        "task",
         "multi-source",
         "technology",
         "evaluation",
@@ -3953,7 +4036,7 @@
     "bosskuai-design-systems": {
       "path": "skills/bosskuai-design-systems/SKILL.md",
       "name": "bosskuai-design-systems",
-      "description": "Use this for creating, auditing, or applying design systems — including DESIGN.md generation, design token definition, component specification, brand reference calibration, and systematic design language enforcement.",
+      "description": "Use when creating, auditing, or applying a design system, including DESIGN.md generation, design token definition, component specification, brand reference calibration, and systematic design language enforcement.",
       "triggers": [
         "design systems",
         "design system",
@@ -3962,7 +4045,9 @@
         "design.md"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "applying a design system"
+      ],
       "keywords": [
         "design",
         "systems",
@@ -4003,7 +4088,7 @@
     "bosskuai-devops-iac": {
       "path": "skills/bosskuai-devops-iac/SKILL.md",
       "name": "bosskuai-devops-iac",
-      "description": "Use for infrastructure as code (Terraform/OpenTofu, Pulumi), environment promotion, release strategies (canary, blue-green, feature flags), drift, and rollback design. Pipeline YAML goes to bosskuai-ci-cd-pipelines; Dockerfiles and Compose to bosskuai-docker.",
+      "description": "Use when doing infrastructure as code (Terraform/OpenTofu, Pulumi), environment promotion, release strategies (canary, blue-green, feature flags), drift, or rollback design. Pipeline YAML goes to bosskuai-ci-cd-pipelines; Dockerfiles and Compose to bosskuai-docker.",
       "triggers": [
         "devops iac",
         "infrastructure as code",
@@ -4019,7 +4104,12 @@
         "secrets management"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "doing infrastructure as code",
+        "release strategies",
+        "feature flags",
+        "rollback design"
+      ],
       "keywords": [
         "devops",
         "iac",
@@ -4076,7 +4166,7 @@
     "bosskuai-diagnose-loop": {
       "path": "skills/bosskuai-diagnose-loop/SKILL.md",
       "name": "bosskuai-diagnose-loop",
-      "description": "Diagnosis loop for hard bugs and perf regressions — reproduce, minimise, hypothesise, instrument, fix, regression-test. Triggers: 'diagnose/debug this', bug reports, broken/throwing/failing, perf regressions.",
+      "description": "Use when diagnosing hard bugs or perf regressions: reproduce, minimise, hypothesise, instrument, fix, regression-test. Triggers: 'diagnose/debug this', bug reports, broken/throwing/failing, perf regressions.",
       "triggers": [
         "diagnose loop",
         "bug",
@@ -4111,6 +4201,8 @@
       "exclusions": [],
       "phrases": [
         "diagnose/debug this",
+        "diagnosing hard bugs",
+        "perf regressions: reproduce",
         "bug reports",
         "perf regressions"
       ],
@@ -4146,7 +4238,7 @@
         "hard",
         "work",
         "randomly",
-        "diagnosis",
+        "diagnosing",
         "bugs",
         "perf",
         "minimise",
@@ -4230,7 +4322,7 @@
     "bosskuai-documentation-lookup": {
       "path": "skills/bosskuai-documentation-lookup/SKILL.md",
       "name": "bosskuai-documentation-lookup",
-      "description": "Use this for version-specific framework or library documentation lookup through Context7, including API signatures, configuration options, breaking changes, and recently changed behavior.",
+      "description": "Use when looking up version-specific framework or library documentation through Context7, including API signatures, configuration options, breaking changes, and recently changed behavior.",
       "triggers": [
         "documentation lookup",
         "official docs",
@@ -4238,7 +4330,14 @@
         "look up the docs"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "looking up version-specific framework",
+        "library documentation through context7",
+        "including api signatures",
+        "configuration options",
+        "breaking changes",
+        "recently changed behavior"
+      ],
       "keywords": [
         "documentation",
         "lookup",
@@ -4246,6 +4345,7 @@
         "docs",
         "context7",
         "look",
+        "looking",
         "version-specific",
         "framework",
         "library",
@@ -4325,7 +4425,7 @@
     "bosskuai-eval-driven-agent-improvement": {
       "path": "skills/bosskuai-eval-driven-agent-improvement/SKILL.md",
       "name": "bosskuai-eval-driven-agent-improvement",
-      "description": "Use this for agent eval design, routing tests, retrieval tests, LLM quality cases, regression harnesses, scorecards, and continuous agent improvement.",
+      "description": "Use when you need agent eval design, routing tests, retrieval tests, LLM quality cases, regression harnesses, scorecards, and continuous agent improvement.",
       "triggers": [
         "eval driven agent improvement",
         "eval",
@@ -4337,7 +4437,14 @@
         "scorecard"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "you need agent eval design",
+        "routing tests",
+        "retrieval tests",
+        "llm quality cases",
+        "regression harnesses",
+        "continuous agent improvement"
+      ],
       "keywords": [
         "eval",
         "driven",
@@ -4483,7 +4590,7 @@
     "bosskuai-financial-modeling": {
       "path": "skills/bosskuai-financial-modeling/SKILL.md",
       "name": "bosskuai-financial-modeling",
-      "description": "Use this for forward-looking startup finance: revenue and ARR/MRR projections, runway and burn, unit economics, pricing model math, fundraising scenarios, and sensitivity analysis.",
+      "description": "Use when modeling forward-looking startup finance: revenue and ARR/MRR projections, runway and burn, unit economics, pricing model math, fundraising scenarios, and sensitivity analysis.",
       "triggers": [
         "financial modeling",
         "runway",
@@ -4497,7 +4604,14 @@
         "revenue model"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "modeling forward-looking startup finance: revenue",
+        "mrr projections",
+        "unit economics",
+        "pricing model math",
+        "fundraising scenarios",
+        "sensitivity analysis"
+      ],
       "keywords": [
         "financial",
         "modeling",
@@ -4555,7 +4669,7 @@
     "bosskuai-github-workflow": {
       "path": "skills/bosskuai-github-workflow/SKILL.md",
       "name": "bosskuai-github-workflow",
-      "description": "Use this for GitHub workflow operations across issues, pull requests, Actions, releases, Dependabot, repository settings, and GitHub MCP-assisted project coordination.",
+      "description": "Use when GitHub is the delivery surface: issues, pull requests, Actions, releases, Dependabot, repository settings, and GitHub MCP-assisted project coordination.",
       "triggers": [
         "github workflow",
         "pull request workflow",
@@ -4563,7 +4677,12 @@
         "repo settings"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "github is the delivery surface: issues",
+        "pull requests",
+        "repository settings",
+        "github mcp-assisted project coordination"
+      ],
       "keywords": [
         "github",
         "workflow",
@@ -4572,7 +4691,8 @@
         "dependabot",
         "repo",
         "setting",
-        "operation",
+        "delivery",
+        "surface",
         "issue",
         "action",
         "release",
@@ -4799,7 +4919,7 @@
     "bosskuai-grounding": {
       "path": "skills/bosskuai-grounding/SKILL.md",
       "name": "bosskuai-grounding",
-      "description": "Ground every factual claim in quotes, file:line, or command output; say not enough information instead of guessing. Use when the user mentions hallucination, citations, accuracy, only use these documents, or asks to verify claims.",
+      "description": "Use when the user mentions hallucination, citations, accuracy, only use these documents, or asks to verify claims. Grounds every factual claim in quotes, file:line, or command output; says not enough information instead of guessing.",
       "triggers": [
         "grounding",
         "hallucination",
@@ -4839,20 +4959,20 @@
         "answer",
         "fact",
         "check",
+        "mention",
+        "citation",
+        "accuracy",
+        "asks",
         "factual",
         "file",
         "line",
         "command",
         "output",
-        "say",
+        "says",
         "enough",
         "information",
         "instead",
         "guessing",
-        "mention",
-        "citation",
-        "accuracy",
-        "asks",
         "configured",
         "memory",
         "location",
@@ -4873,14 +4993,21 @@
     "bosskuai-growth-experiment": {
       "path": "skills/bosskuai-growth-experiment/SKILL.md",
       "name": "bosskuai-growth-experiment",
-      "description": "Use this to pre-register an experiment's decision rules (MDE, sample size, ship/kill/iterate), choose holdout, bandit or pre/post designs, test channels on CAC, and read out results. For standard page A/B test setup and ICE backlogs use ab-testing.",
+      "description": "Use when you pre-register an experiment's decision rules (MDE, sample size, ship/kill/iterate), choose holdout, bandit or pre/post designs, test channels on CAC, and read out results. For standard page A/B test setup and ICE backlogs use ab-testing.",
       "triggers": [
         "growth experiment",
         "test this channel",
         "activation experiment"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "you pre-register an experiment's decision rules",
+        "sample size",
+        "choose holdout",
+        "post designs",
+        "test channels on cac",
+        "read out results"
+      ],
       "keywords": [
         "growth",
         "experiment",
@@ -4947,7 +5074,7 @@
     "bosskuai-gsap-animation": {
       "path": "skills/bosskuai-gsap-animation/SKILL.md",
       "name": "bosskuai-gsap-animation",
-      "description": "Use for GSAP work: timelines, ScrollTrigger pins/scrubs, SplitText, Flip, MorphSVG, matchMedia, useGSAP cleanup, Lenis/ScrollSmoother sync, and deciding when native CSS scroll-driven animation suffices. UI micro-motion: animate.",
+      "description": "Use when doing GSAP work: timelines, ScrollTrigger pins/scrubs, SplitText, Flip, MorphSVG, matchMedia, useGSAP cleanup, Lenis/ScrollSmoother sync, and deciding when native CSS scroll-driven animation suffices. UI micro-motion: animate.",
       "triggers": [
         "gsap animation",
         "gsap",
@@ -4975,7 +5102,12 @@
         "animation-timeline"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "doing gsap work: timelines",
+        "scrolltrigger pins",
+        "usegsap cleanup",
+        "scrollsmoother sync"
+      ],
       "keywords": [
         "gsap",
         "animation",
@@ -5299,7 +5431,7 @@
     "bosskuai-hyperframes": {
       "path": "skills/bosskuai-hyperframes/SKILL.md",
       "name": "bosskuai-hyperframes",
-      "description": "Use for Hyperframes: authoring, previewing, and rendering HTML compositions (seekable GSAP/CSS animation) to MP4 with the hyperframes CLI. Picking a video tool or AI video generation: video.",
+      "description": "Use when authoring, previewing, or rendering Hyperframes HTML compositions (seekable GSAP/CSS animation) to MP4 with the hyperframes CLI. Picking a video tool or AI video generation: video.",
       "triggers": [
         "hyperframes",
         "hyperframes composition",
@@ -5307,7 +5439,12 @@
         "html to mp4"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "rendering hyperframes html compositions",
+        "seekable gsap",
+        "css animation",
+        "to mp4 with the hyperframes cli"
+      ],
       "keywords": [
         "hyperframes",
         "hyperframe",
@@ -5345,7 +5482,7 @@
     "bosskuai-i18n-l10n": {
       "path": "skills/bosskuai-i18n-l10n/SKILL.md",
       "name": "bosskuai-i18n-l10n",
-      "description": "Use this for internationalization and localization across content, locale handling, translations, formatting, right-to-left support, expansion-safe UI, and product decisions needed for multi-language experiences.",
+      "description": "Use when a product must work across languages, locales, and regions: content, locale handling, translations, formatting, right-to-left support, expansion-safe UI, and multi-language product decisions.",
       "triggers": [
         "i18n l10n",
         "translate",
@@ -5360,7 +5497,14 @@
         "chinese"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "a product must work across languages",
+        "regions: content",
+        "locale handling",
+        "right-to-left support",
+        "expansion-safe ui",
+        "multi-language product decisions"
+      ],
       "keywords": [
         "i18n",
         "l10n",
@@ -5375,18 +5519,18 @@
         "rtl",
         "malay",
         "chinese",
-        "internationalization",
+        "product",
+        "must",
+        "work",
+        "region",
         "content",
         "handling",
         "formatting",
         "right-to-left",
         "expansion-safe",
         "ui",
-        "product",
-        "decision",
-        "needed",
         "multi-language",
-        "experience",
+        "decision",
         "differ",
         "nearby",
         "mindset",
@@ -5404,7 +5548,7 @@
     "bosskuai-incident-response": {
       "path": "skills/bosskuai-incident-response/SKILL.md",
       "name": "bosskuai-incident-response",
-      "description": "Use this for active incident triage, severity classification, escalation coordination, on-call communication, timeline reconstruction, and blameless postmortem facilitation.",
+      "description": "Use when an incident is active: triage, severity classification, escalation coordination, on-call communication, timeline reconstruction, and blameless postmortems.",
       "triggers": [
         "incident response",
         "outage",
@@ -5419,7 +5563,14 @@
         "paging"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "an incident is active: triage",
+        "severity classification",
+        "escalation coordination",
+        "on-call communication",
+        "timeline reconstruction",
+        "blameless postmortems"
+      ],
       "keywords": [
         "incident",
         "response",
@@ -5442,7 +5593,6 @@
         "timeline",
         "reconstruction",
         "blameless",
-        "facilitation",
         "differ",
         "nearby",
         "mindset",
@@ -5476,7 +5626,7 @@
     "bosskuai-integration-testing": {
       "path": "skills/bosskuai-integration-testing/SKILL.md",
       "name": "bosskuai-integration-testing",
-      "description": "Use this for integration test design, contract testing (CDC/Pact), test double strategy, fixture management, and validating behavior at module and service boundaries.",
+      "description": "Use when designing integration tests: contract testing (CDC/Pact), test double strategy, fixture management, and behavior at module and service boundaries.",
       "triggers": [
         "integration testing",
         "integration test",
@@ -5487,7 +5637,13 @@
         "mocking strategy"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "designing integration tests: contract testing",
+        "test double strategy",
+        "fixture management",
+        "behavior at module",
+        "service boundaries"
+      ],
       "keywords": [
         "integration",
         "testing",
@@ -5498,10 +5654,9 @@
         "fixture",
         "mocking",
         "strategy",
-        "design",
+        "designing",
         "cdc",
         "management",
-        "validating",
         "behavior",
         "module",
         "service",
@@ -5524,7 +5679,7 @@
     "bosskuai-investor-prep": {
       "path": "skills/bosskuai-investor-prep/SKILL.md",
       "name": "bosskuai-investor-prep",
-      "description": "Use this for fundraising materials and process: pitch decks, one-pagers, investor memos, monthly investor updates, accelerator applications, the investor pipeline, and SAFE or priced-round basics, with every number consistent across documents.",
+      "description": "Use when preparing fundraising materials and process: pitch decks, one-pagers, investor memos, monthly investor updates, accelerator applications, the investor pipeline, and SAFE or priced-round basics, with every number consistent across documents.",
       "triggers": [
         "investor prep",
         "investor update",
@@ -5544,7 +5699,15 @@
         "seed round"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "preparing fundraising materials",
+        "process: pitch decks",
+        "investor memos",
+        "monthly investor updates",
+        "accelerator applications",
+        "the investor pipeline",
+        "priced-round basics"
+      ],
       "keywords": [
         "investor",
         "prep",
@@ -5570,6 +5733,7 @@
         "round",
         "valuation",
         "seed",
+        "preparing",
         "material",
         "process",
         "one-pagers",
@@ -5762,7 +5926,7 @@
     "bosskuai-laravel-tdd": {
       "path": "skills/bosskuai-laravel-tdd/SKILL.md",
       "name": "bosskuai-laravel-tdd",
-      "description": "Laravel testing strategies with PHPUnit, Pest, model factories, HTTP tests, Sanctum authentication testing, mocking, and coverage. Use when writing or testing Laravel features test-first.",
+      "description": "Use when writing or testing Laravel features test-first, with PHPUnit, Pest, model factories, HTTP tests, Sanctum authentication testing, mocking, and coverage.",
       "triggers": [
         "laravel tdd",
         "laravel test",
@@ -5771,7 +5935,10 @@
       ],
       "exclusions": [],
       "phrases": [
-        "testing laravel features test-first"
+        "testing laravel features test-first",
+        "model factories",
+        "http tests",
+        "sanctum authentication testing"
       ],
       "keywords": [
         "laravel",
@@ -5779,8 +5946,10 @@
         "test",
         "pest",
         "phpunit",
+        "writing",
         "testing",
-        "strategie",
+        "feature",
+        "test-first",
         "model",
         "factorie",
         "http",
@@ -5788,9 +5957,6 @@
         "authentication",
         "mocking",
         "coverage",
-        "writing",
-        "feature",
-        "test-first",
         "activate",
         "workflow",
         "red-green-refactor",
@@ -5883,7 +6049,7 @@
     "bosskuai-launch-commercialization": {
       "path": "skills/bosskuai-launch-commercialization/SKILL.md",
       "name": "bosskuai-launch-commercialization",
-      "description": "Use this when you need a balanced cofounder workflow across engineering readiness, SEO/GEO, marketing, sales, monetization, country strategy, and product-market-fit planning for launching a product.",
+      "description": "Use when launching a product and you need a balanced cofounder workflow across engineering readiness, SEO/GEO, marketing, sales, monetization, country strategy, and product-market-fit planning.",
       "triggers": [
         "launch commercialization",
         "launch readiness",
@@ -5893,7 +6059,9 @@
       ],
       "exclusions": [],
       "phrases": [
-        "country strategy"
+        "launching a product",
+        "country strategy",
+        "product-market-fit planning"
       ],
       "keywords": [
         "launch",
@@ -5903,6 +6071,8 @@
         "go",
         "live",
         "commercialize",
+        "launching",
+        "product",
         "balanced",
         "cofounder",
         "workflow",
@@ -5916,8 +6086,6 @@
         "strategy",
         "product-market-fit",
         "planning",
-        "launching",
-        "product",
         "differ",
         "nearby",
         "mindset",
@@ -5939,7 +6107,7 @@
     "bosskuai-lead-intelligence": {
       "path": "skills/bosskuai-lead-intelligence/SKILL.md",
       "name": "bosskuai-lead-intelligence",
-      "description": "Use this for named-contact research: investor, partner, press, and key-account contact lists, pre-meeting research on a person or company, warm-intro paths, outreach drafts, and the pre-send deliverability and consent check.",
+      "description": "Use when researching named contacts: investor, partner, press, and key-account contact lists, pre-meeting research on a person or company, warm-intro paths, outreach drafts, and the pre-send deliverability and consent check.",
       "triggers": [
         "lead intelligence",
         "investor list",
@@ -5959,7 +6127,13 @@
         "bulk sender"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "researching named contacts: investor",
+        "key-account contact lists",
+        "pre-meeting research on a person",
+        "warm-intro paths",
+        "outreach drafts"
+      ],
       "keywords": [
         "lead",
         "intelligence",
@@ -5985,9 +6159,10 @@
         "can-spam",
         "bulk",
         "sender",
-        "named-contact",
-        "key-account",
+        "researching",
+        "named",
         "contact",
+        "key-account",
         "pre-meeting",
         "company",
         "warm-intro",
@@ -6027,7 +6202,7 @@
     "bosskuai-legal-compliance": {
       "path": "skills/bosskuai-legal-compliance/SKILL.md",
       "name": "bosskuai-legal-compliance",
-      "description": "Use this for product-facing legal and compliance readiness such as privacy posture, consent, retention, vendor/data obligations, policy alignment, and identifying when qualified human legal review is required.",
+      "description": "Use when checking product-facing legal and compliance readiness, such as privacy posture, consent, retention, vendor/data obligations, policy alignment, and when qualified human legal review is required.",
       "triggers": [
         "legal compliance",
         "gdpr",
@@ -6036,7 +6211,14 @@
         "compliance"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "checking product-facing legal",
+        "compliance readiness",
+        "such as privacy posture",
+        "data obligations",
+        "policy alignment",
+        "when qualified human legal review is required"
+      ],
       "keywords": [
         "legal",
         "compliance",
@@ -6045,6 +6227,7 @@
         "service",
         "privacy",
         "policy",
+        "checking",
         "product-facing",
         "readiness",
         "posture",
@@ -6054,7 +6237,6 @@
         "data",
         "obligation",
         "alignment",
-        "identifying",
         "qualified",
         "human",
         "review",
@@ -6076,7 +6258,7 @@
     "bosskuai-lenis-smooth-scroll": {
       "path": "skills/bosskuai-lenis-smooth-scroll/SKILL.md",
       "name": "bosskuai-lenis-smooth-scroll",
-      "description": "Use for Lenis smooth scroll: setup, React/Vue/Nuxt, GSAP ticker sync, anchors, nested/modal scroll, snap, horizontal/infinite scroll, cleanup, reduced motion, and whether smooth scroll is warranted.",
+      "description": "Use when adding or debugging Lenis smooth scroll: setup, React/Vue/Nuxt, GSAP ticker sync, anchors, nested/modal scroll, snap, horizontal/infinite scroll, cleanup, reduced motion, and whether smooth scroll is warranted.",
       "triggers": [
         "lenis smooth scroll",
         "lenis",
@@ -6084,12 +6266,20 @@
         "scroll sync"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "debugging lenis smooth scroll: setup",
+        "gsap ticker sync",
+        "modal scroll",
+        "infinite scroll",
+        "reduced motion"
+      ],
       "keywords": [
         "lenis",
         "smooth",
         "scroll",
         "sync",
+        "adding",
+        "debugging",
         "setup",
         "react",
         "vue",
@@ -6132,7 +6322,7 @@
     "bosskuai-malaysia-pdpa-privacy": {
       "path": "skills/bosskuai-malaysia-pdpa-privacy/SKILL.md",
       "name": "bosskuai-malaysia-pdpa-privacy",
-      "description": "Use this for Malaysia PDPA-aware privacy review, data minimization, consent, retention, user rights, vendor processors, and privacy-safe SaaS operations.",
+      "description": "Use when doing a Malaysia PDPA-aware privacy review: data minimization, consent, retention, user rights, vendor processors, and privacy-safe SaaS operations.",
       "triggers": [
         "malaysia pdpa privacy",
         "pdpa",
@@ -6140,7 +6330,10 @@
         "malaysia privacy"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "vendor processors",
+        "privacy-safe saas operations"
+      ],
       "keywords": [
         "malaysia",
         "pdpa",
@@ -6179,7 +6372,7 @@
     "bosskuai-market-analysis": {
       "path": "skills/bosskuai-market-analysis/SKILL.md",
       "name": "bosskuai-market-analysis",
-      "description": "Use this for market analysis, competitor comparison, trend research, demand validation, positioning, pricing context, and strategy recommendations that require current market awareness.",
+      "description": "Use when you need market analysis, competitor comparison, trend research, demand validation, positioning, pricing context, and strategy recommendations that require current market awareness.",
       "triggers": [
         "market analysis",
         "market size",
@@ -6188,7 +6381,12 @@
         "market research"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "you need market analysis",
+        "competitor comparison",
+        "trend research",
+        "pricing context"
+      ],
       "keywords": [
         "market",
         "analysis",
@@ -6224,7 +6422,7 @@
     "bosskuai-marketing-growth": {
       "path": "skills/bosskuai-marketing-growth/SKILL.md",
       "name": "bosskuai-marketing-growth",
-      "description": "Use this for a one-pass go-to-market or growth strategy: audience, positioning line, stage-fit channels, AARRR gap, growth loop, first experiments. For a full 12-month plan use marketing-plan; tactic lists marketing-ideas; posting calendars bosskuai-content-calendar.",
+      "description": "Use when you need a one-pass go-to-market or growth strategy: audience, positioning line, stage-fit channels, AARRR gap, growth loop, first experiments. For a full 12-month plan use marketing-plan; tactic lists marketing-ideas; posting calendars bosskuai-content-calendar.",
       "triggers": [
         "marketing growth",
         "go to market",
@@ -6235,7 +6433,15 @@
         "growth loops"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "you need a one-pass go-to-market",
+        "growth strategy: audience",
+        "positioning line",
+        "stage-fit channels",
+        "aarrr gap",
+        "growth loop",
+        "first experiments"
+      ],
       "keywords": [
         "marketing",
         "growth",
@@ -6392,7 +6598,7 @@
     "bosskuai-mongodb": {
       "path": "skills/bosskuai-mongodb/SKILL.md",
       "name": "bosskuai-mongodb",
-      "description": "Use this for MongoDB work including collection design, indexes, aggregation pipelines, query performance, migrations, schema validation, backups, and MongoDB MCP-assisted database inspection.",
+      "description": "Use when the task involves MongoDB work: collection design, indexes, aggregation pipelines, query performance, migrations, schema validation, backups, and MongoDB MCP-assisted database inspection.",
       "triggers": [
         "mongodb",
         "mongo",
@@ -6400,7 +6606,12 @@
         "document store"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "aggregation pipelines",
+        "query performance",
+        "schema validation",
+        "mongodb mcp-assisted database inspection"
+      ],
       "keywords": [
         "mongodb",
         "mongo",
@@ -6408,6 +6619,8 @@
         "pipeline",
         "document",
         "store",
+        "task",
+        "involve",
         "work",
         "collection",
         "design",
@@ -6459,9 +6672,7 @@
         "version",
         "wrong",
         "write",
-        "concern",
-        "critical",
-        "without"
+        "concern"
       ],
       "model_role": "reviewer",
       "pack": "bossku",
@@ -6543,7 +6754,7 @@
     "bosskuai-observability-sre": {
       "path": "skills/bosskuai-observability-sre/SKILL.md",
       "name": "bosskuai-observability-sre",
-      "description": "Use this for logs, metrics, tracing, alerts, SLOs, health checks, dashboards, incident detection, and production reliability instrumentation.",
+      "description": "Use when adding logs, metrics, tracing, alerts, SLOs, health checks, dashboards, incident detection, or production reliability instrumentation.",
       "triggers": [
         "observability sre",
         "logging",
@@ -6565,7 +6776,11 @@
         "health checks"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "adding logs",
+        "incident detection",
+        "production reliability instrumentation"
+      ],
       "keywords": [
         "observability",
         "sre",
@@ -6587,6 +6802,7 @@
         "error",
         "budget",
         "uptime",
+        "adding",
         "logs",
         "incident",
         "detection",
@@ -6613,7 +6829,7 @@
     "bosskuai-operations": {
       "path": "skills/bosskuai-operations/SKILL.md",
       "name": "bosskuai-operations",
-      "description": "Use this for business operations work including vendor management, process documentation, change management, capacity planning, operational risk, SOPs, RACI, and cross-functional operating cadence.",
+      "description": "Use when doing business operations work: vendor management, process documentation, change management, capacity planning, operational risk, SOPs, RACI, and cross-functional operating cadence.",
       "triggers": [
         "operations",
         "vendor management",
@@ -6622,7 +6838,13 @@
         "sop"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "doing business operations work: vendor management",
+        "process documentation",
+        "change management",
+        "operational risk",
+        "cross-functional operating cadence"
+      ],
       "keywords": [
         "operations",
         "vendor",
@@ -6671,7 +6893,7 @@
     "bosskuai-paid-acquisition-monetization": {
       "path": "skills/bosskuai-paid-acquisition-monetization/SKILL.md",
       "name": "bosskuai-paid-acquisition-monetization",
-      "description": "Use this to decide whether paid acquisition is worth it yet: CAC/LTV/payback gates, stop-loss rules, channel choice by budget, and monetization model. To build or optimize Google/Meta/LinkedIn campaigns use ads; ad copy ad-creative; tier design pricing.",
+      "description": "Use when deciding whether paid acquisition is worth it yet: CAC/LTV/payback gates, stop-loss rules, channel choice by budget, and monetization model. To build or optimize Google/Meta/LinkedIn campaigns use ads; ad copy ad-creative; tier design pricing.",
       "triggers": [
         "paid acquisition monetization",
         "cac",
@@ -6681,7 +6903,11 @@
         "monetization model"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "payback gates",
+        "stop-loss rules",
+        "channel choice by budget"
+      ],
       "keywords": [
         "paid",
         "acquisition",
@@ -6691,7 +6917,7 @@
         "payback",
         "period",
         "model",
-        "decide",
+        "deciding",
         "worth",
         "yet",
         "gate",
@@ -6739,7 +6965,7 @@
     "bosskuai-performance-profiling": {
       "path": "skills/bosskuai-performance-profiling/SKILL.md",
       "name": "bosskuai-performance-profiling",
-      "description": "Use this for CPU/memory profiling, bottleneck diagnosis, query optimization, caching strategy, flame graph reading, and turning performance intuition into evidence-backed fixes.",
+      "description": "Use when investigating why something is slow or growing: CPU/memory profiling, bottleneck diagnosis, query optimization, caching strategy, flame graph reading, and evidence-backed fixes.",
       "triggers": [
         "performance profiling",
         "slow",
@@ -6759,7 +6985,16 @@
         "where the time is going"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "investigating why something is slow",
+        "growing: cpu",
+        "memory profiling",
+        "bottleneck diagnosis",
+        "query optimization",
+        "caching strategy",
+        "flame graph reading",
+        "evidence-backed fixes"
+      ],
       "keywords": [
         "performance",
         "profiling",
@@ -6779,6 +7014,8 @@
         "load",
         "time",
         "going",
+        "investigating",
+        "growing",
         "diagnosis",
         "query",
         "optimization",
@@ -6787,8 +7024,6 @@
         "flame",
         "graph",
         "reading",
-        "turning",
-        "intuition",
         "evidence-backed",
         "fixe"
       ],
@@ -6864,7 +7099,7 @@
     "bosskuai-planning-execution": {
       "path": "skills/bosskuai-planning-execution/SKILL.md",
       "name": "bosskuai-planning-execution",
-      "description": "Use this for roadmap planning, execution slicing, milestone sequencing, launch planning, prioritization, delivery coordination, ownership clarity, and keeping projects moving through to completion.",
+      "description": "Use when you need roadmap planning, execution slicing, milestone sequencing, launch planning, prioritization, delivery coordination, ownership clarity, and keeping projects moving through to completion.",
       "triggers": [
         "planning execution",
         "milestones",
@@ -6873,7 +7108,15 @@
         "who owns what"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "you need roadmap planning",
+        "execution slicing",
+        "milestone sequencing",
+        "launch planning",
+        "delivery coordination",
+        "ownership clarity",
+        "keeping projects moving through to completion"
+      ],
       "keywords": [
         "planning",
         "execution",
@@ -6925,7 +7168,7 @@
     "bosskuai-polyglot-engineering": {
       "path": "skills/bosskuai-polyglot-engineering/SKILL.md",
       "name": "bosskuai-polyglot-engineering",
-      "description": "Use this for engineering guidance across programming languages, frameworks, runtimes, and ecosystem-specific tradeoffs rather than assuming one default stack.",
+      "description": "Use when a task spans several languages, frameworks, or runtimes, or ecosystem context changes the answer, rather than assuming one default stack.",
       "triggers": [
         "polyglot engineering",
         "which language",
@@ -6933,7 +7176,11 @@
         "ecosystem choice"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "a task spans several languages",
+        "ecosystem context changes the answer",
+        "rather than assuming one default stack"
+      ],
       "keywords": [
         "polyglot",
         "engineering",
@@ -6941,11 +7188,14 @@
         "tradeoff",
         "ecosystem",
         "choice",
-        "guidance",
-        "programming",
+        "task",
+        "span",
+        "several",
         "framework",
         "runtime",
-        "ecosystem-specific",
+        "context",
+        "change",
+        "answer",
         "rather",
         "assuming",
         "one",
@@ -6968,7 +7218,7 @@
         "output",
         "format"
       ],
-      "model_role": "planner",
+      "model_role": "coder",
       "pack": "bossku",
       "qterms": "10k:1 50k:1 actual:2 aman:1 android:1 antara:2 arc:1 assumption:1 async:3 await:1 backend:6 balance:1 batch:1 bc:1 besar:1 bottleneck:1 boundarie:1 boundary:3 bugs:1 butuh:1 call:2 cargo-culting:1 catch:1 celery:1 certain:1 cli:3 compared:2 concurrency:1 concurrent:2 connection:2 contract:3 coroutine:1 cross:1 cross-platform:1 cycle:1 dalam:2 dart:2 develop:1 dont:3 dua:3 ecosystem:2 ending:1 exception:1 explicitly:1 feel:2 fighting:1 flow:2 flutter:3 frontend:3 gila:1 gimana:1 go:16 gonna:1 goroutine:1 gotcha:3 handle:5 handling:2 harmoniously:1 hell:1 implicit:1 insane:1 java:2 js:2 json:3 juga:1 jvm:2 kah:1 kedua:1 killing:1 kontrak:1 kotlin:3 lambda:1 language:3 latency:1 leak:1 learning:1 legacy:1 locked:1 logic:3 maintenance:1 masa:1 maturity:2 memory:2 microservice:2 mind:1 mixing:1 ml:1 modernize:1 monolith:3 move:2 multi-language:1 native:1 natively:1 nightmare:1 nih:1 node:7 null:1 ops:1 overhead:1 paling:1 part:2 pas:1 php:1 piece:1 platform:2 play:1 porting:3 project:2 pulling:1 python:11 rail:4 react:4 real-time:1 rewrite:3 ruby:1 runtime:1 rust:5 safely:1 safest:1 scheduling:1 schema:2 seam:1 serialization:4 service:4 share:2 source:1 standardize:2 starting:1 stick:2 style:1 swapping:1 swift:1 switching:1 talk:1 tanpa:1 tech:1 tiga:1 timezone:1 tool:3 trade-off:1 tradeoff:1 truth:1 tukar:1 type:2 typescript:4 velocity:1 verbose:2 versus:1 vs:2 web:3"
     },
@@ -7124,7 +7374,7 @@
     "bosskuai-product-strategy": {
       "path": "skills/bosskuai-product-strategy/SKILL.md",
       "name": "bosskuai-product-strategy",
-      "description": "Use this for product strategy, feature shaping, PRD review, scope refinement, prioritization, user-value analysis, and go-to-market implications of product decisions.",
+      "description": "Use when deciding what to build and why: product strategy, feature shaping, PRD review, scope refinement, prioritization, user-value analysis, and go-to-market implications.",
       "triggers": [
         "product strategy",
         "roadmap",
@@ -7137,7 +7387,15 @@
         "prioritize the roadmap"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "deciding what to build",
+        "why: product strategy",
+        "feature shaping",
+        "prd review",
+        "scope refinement",
+        "user-value analysis",
+        "go-to-market implications"
+      ],
       "keywords": [
         "product",
         "strategy",
@@ -7149,6 +7407,7 @@
         "scope",
         "trim",
         "cut",
+        "deciding",
         "feature",
         "shaping",
         "prd",
@@ -7159,7 +7418,6 @@
         "analysis",
         "go-to-market",
         "implication",
-        "decision",
         "differ",
         "nearby",
         "mindset",
@@ -7278,7 +7536,7 @@
     "bosskuai-prompt-injection-defense": {
       "path": "skills/bosskuai-prompt-injection-defense/SKILL.md",
       "name": "bosskuai-prompt-injection-defense",
-      "description": "Use this for prompt injection, tool abuse, memory poisoning, untrusted document handling, agent permissions, and AI workspace security.",
+      "description": "Use when handling prompt injection, tool abuse, memory poisoning, untrusted document handling, agent permissions, and AI workspace security.",
       "triggers": [
         "prompt injection defense",
         "prompt injection",
@@ -7299,7 +7557,12 @@
         "command injection",
         "dependency injection"
       ],
-      "phrases": [],
+      "phrases": [
+        "handling prompt injection",
+        "untrusted document handling",
+        "agent permissions",
+        "ai workspace security"
+      ],
       "keywords": [
         "prompt",
         "injection",
@@ -7323,8 +7586,8 @@
         "inside",
         "fetched",
         "content",
-        "document",
         "handling",
+        "document",
         "permission",
         "ai",
         "workspace",
@@ -7427,7 +7690,7 @@
     "bosskuai-qa-automation-strategy": {
       "path": "skills/bosskuai-qa-automation-strategy/SKILL.md",
       "name": "bosskuai-qa-automation-strategy",
-      "description": "Use this for automated testing strategy, Playwright/Cypress, feature tests, integration tests, regression suites, fixtures, CI gates, and release confidence.",
+      "description": "Use when setting automated testing strategy: Playwright/Cypress, feature tests, integration tests, regression suites, fixtures, CI gates, and release confidence.",
       "triggers": [
         "qa automation strategy",
         "test strategy",
@@ -7439,7 +7702,14 @@
         "coverage"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "setting automated testing strategy: playwright",
+        "feature tests",
+        "integration tests",
+        "regression suites",
+        "ci gates",
+        "release confidence"
+      ],
       "keywords": [
         "qa",
         "automation",
@@ -7452,6 +7722,7 @@
         "flaky",
         "pyramid",
         "coverage",
+        "setting",
         "automated",
         "testing",
         "playwright",
@@ -7469,7 +7740,7 @@
     "bosskuai-rapid-prototype": {
       "path": "skills/bosskuai-rapid-prototype/SKILL.md",
       "name": "bosskuai-rapid-prototype",
-      "description": "Use this for rapid prototypes, proof-of-concepts, demos, hackathon-style builds, MVP scaffolds, unfamiliar API experiments, explicit time-boxing, and prototype debt ledgers.",
+      "description": "Use when you need rapid prototypes, proof-of-concepts, demos, hackathon-style builds, MVP scaffolds, unfamiliar API experiments, time-boxing, and prototype debt ledgers.",
       "triggers": [
         "rapid prototype",
         "mvp scaffold",
@@ -7478,7 +7749,13 @@
         "poc scaffold"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "you need rapid prototypes",
+        "hackathon-style builds",
+        "mvp scaffolds",
+        "unfamiliar api experiments",
+        "prototype debt ledgers"
+      ],
       "keywords": [
         "rapid",
         "prototype",
@@ -7493,7 +7770,6 @@
         "unfamiliar",
         "api",
         "experiment",
-        "explicit",
         "time-boxing",
         "debt",
         "ledger",
@@ -7512,6 +7788,7 @@
         "stack",
         "time-box",
         "explicitly",
+        "explicit",
         "annotation",
         "verify",
         "core",
@@ -7536,7 +7813,7 @@
     "bosskuai-ratchet-loop": {
       "path": "skills/bosskuai-ratchet-loop/SKILL.md",
       "name": "bosskuai-ratchet-loop",
-      "description": "Use this for measurable improvement loops where every change needs a baseline, metric, test/eval, keep-or-revert decision, and short log entry.",
+      "description": "Use when improving something measurable, where every change needs a baseline, metric, test/eval, keep-or-revert decision, and short log entry.",
       "triggers": [
         "ratchet loop",
         "ratchet",
@@ -7544,15 +7821,20 @@
         "no backsliding"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "improving something measurable",
+        "where every change needs a baseline",
+        "keep-or-revert decision",
+        "short log entry"
+      ],
       "keywords": [
         "ratchet",
         "loop",
         "incremental",
         "tightening",
         "backsliding",
+        "improving",
         "measurable",
-        "improvement",
         "every",
         "change",
         "baseline",
@@ -7683,7 +7965,7 @@
     "bosskuai-redis-caching-queues": {
       "path": "skills/bosskuai-redis-caching-queues/SKILL.md",
       "name": "bosskuai-redis-caching-queues",
-      "description": "Use this for Redis caching, Laravel queues, cache invalidation, locks, rate limits, sessions, Horizon-style worker operations, and queue performance debugging.",
+      "description": "Use when Redis, queues, or caching affect correctness or performance. Covers Redis caching, Laravel queues, cache invalidation, locks, rate limits, sessions, Horizon-style worker operations, and queue performance debugging.",
       "triggers": [
         "redis caching queues",
         "redis",
@@ -7695,7 +7977,9 @@
         "job backlog"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "caching affect correctness"
+      ],
       "keywords": [
         "redis",
         "caching",
@@ -7709,13 +7993,16 @@
         "limit",
         "job",
         "backlog",
+        "affect",
+        "correctness",
+        "performance",
+        "cover",
         "laravel",
         "invalidation",
         "lock",
         "session",
         "horizon-style",
         "operation",
-        "performance",
         "debugging",
         "differ",
         "nearby",
@@ -7734,7 +8021,7 @@
     "bosskuai-rigorous-code-review": {
       "path": "skills/bosskuai-rigorous-code-review/SKILL.md",
       "name": "bosskuai-rigorous-code-review",
-      "description": "Use for PR or pre-merge review, adversarial review, or challenging an implementation, a docs or rules change, or a plan: skeptical expert review of correctness, intended outcome and downstream impact that prefers minimal fixes.",
+      "description": "Use when doing PR or pre-merge review, adversarial review, or challenging an implementation, a docs or rules change, or a plan: skeptical expert review of correctness, intended outcome and downstream impact that prefers minimal fixes.",
       "triggers": [
         "rigorous code review",
         "review this code",
@@ -7762,7 +8049,14 @@
         "will this actually work as intended"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "pre-merge review",
+        "adversarial review",
+        "challenging an implementation",
+        "rules change",
+        "a plan: skeptical expert review of correctness",
+        "intended outcome"
+      ],
       "keywords": [
         "rigorous",
         "code",
@@ -7808,7 +8102,7 @@
     "bosskuai-rules-distill": {
       "path": "skills/bosskuai-rules-distill/SKILL.md",
       "name": "bosskuai-rules-distill",
-      "description": "Use this to extract repeated cross-cutting principles from skills and references, then propose safe rule updates instead of letting important guidance stay fragmented.",
+      "description": "Use when principles repeat across skills or references: extract repeated cross-cutting principles, then propose safe rule updates instead of leaving guidance fragmented.",
       "triggers": [
         "rules distill",
         "distill rules",
@@ -7816,7 +8110,9 @@
         "consolidate guidance"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "principles repeat across skills"
+      ],
       "keywords": [
         "rules",
         "distill",
@@ -7825,16 +8121,15 @@
         "principle",
         "consolidate",
         "guidance",
+        "repeat",
+        "reference",
         "repeated",
         "cross-cutting",
-        "reference",
         "propose",
         "safe",
         "update",
         "instead",
-        "letting",
-        "important",
-        "stay",
+        "leaving",
         "fragmented",
         "differ",
         "nearby",
@@ -7856,7 +8151,7 @@
     "bosskuai-saas-billing-ops": {
       "path": "skills/bosskuai-saas-billing-ops/SKILL.md",
       "name": "bosskuai-saas-billing-ops",
-      "description": "Use this for SaaS subscription lifecycle, invoices, failed payments, dunning, tax/receipt flows, plan changes, entitlement gating, and billing operations.",
+      "description": "Use when handling SaaS subscription lifecycle, invoices, failed payments, dunning, tax/receipt flows, plan changes, entitlement gating, and billing operations.",
       "triggers": [
         "saas billing ops",
         "subscription",
@@ -7872,7 +8167,14 @@
         "billing"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "handling saas subscription lifecycle",
+        "failed payments",
+        "receipt flows",
+        "plan changes",
+        "entitlement gating",
+        "billing operations"
+      ],
       "keywords": [
         "saas",
         "billing",
@@ -7891,6 +8193,7 @@
         "refund",
         "stripe",
         "webhook",
+        "handling",
         "lifecycle",
         "tax",
         "receipt",
@@ -7919,7 +8222,7 @@
     "bosskuai-sales-strategy": {
       "path": "skills/bosskuai-sales-strategy/SKILL.md",
       "name": "bosskuai-sales-strategy",
-      "description": "Use this for sales positioning, ICP definition, pipeline strategy, founder-led sales, objection handling, pricing narrative, and turning product value into a repeatable buying motion.",
+      "description": "Use when turning interest into revenue: sales positioning, ICP definition, pipeline strategy, founder-led sales, objection handling, pricing narrative, and a repeatable buying motion.",
       "triggers": [
         "sales strategy",
         "icp",
@@ -7936,7 +8239,14 @@
         "after a demo"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "turning interest into revenue: sales positioning",
+        "icp definition",
+        "pipeline strategy",
+        "founder-led sales",
+        "pricing narrative",
+        "a repeatable buying motion"
+      ],
       "keywords": [
         "sales",
         "strategy",
@@ -7956,14 +8266,14 @@
         "demo",
         "follow-up",
         "cadence",
+        "turning",
+        "interest",
+        "revenue",
         "positioning",
         "definition",
         "founder-led",
         "pricing",
         "narrative",
-        "turning",
-        "product",
-        "value",
         "repeatable",
         "buying",
         "motion",
@@ -7985,7 +8295,7 @@
     "bosskuai-search-first": {
       "path": "skills/bosskuai-search-first/SKILL.md",
       "name": "bosskuai-search-first",
-      "description": "Use this when deciding whether to adopt an existing package, service, MCP, internal utility, or pattern before building custom code or workflow logic.",
+      "description": "Use when deciding whether to adopt an existing package, service, MCP, internal utility, or pattern before building custom code or workflow logic.",
       "triggers": [
         "search first",
         "is there a library",
@@ -8029,7 +8339,7 @@
     "bosskuai-seo-geo": {
       "path": "skills/bosskuai-seo-geo/SKILL.md",
       "name": "bosskuai-seo-geo",
-      "description": "Use this for a one-pass SEO + AI-answer (GEO) readiness check of your own site or app before launch or after a site change, incl. SSR rendering and AI-crawler access. Deep audits: seo-audit; AI-citation strategy: ai-seo; JSON-LD: schema; IA: site-architecture.",
+      "description": "Use when you need a one-pass SEO + AI-answer (GEO) readiness check of your own site or app before launch or after a site change, incl. SSR rendering and AI-crawler access. Deep audits: seo-audit; AI-citation strategy: ai-seo; JSON-LD: schema; IA: site-architecture.",
       "triggers": [
         "seo geo",
         "seo geo readiness",
@@ -8042,7 +8352,12 @@
         "discoverability"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "you need a one-pass seo + ai-answer",
+        "readiness check of your own site",
+        "app before launch",
+        "after a site change"
+      ],
       "keywords": [
         "seo",
         "geo",
@@ -8212,7 +8527,7 @@
     "bosskuai-skill-stocktake": {
       "path": "skills/bosskuai-skill-stocktake/SKILL.md",
       "name": "bosskuai-skill-stocktake",
-      "description": "Use this to audit local skills, commands, and nearby guidance for overlap, stale content, weak triggers, and prompt-weight bloat.",
+      "description": "Use when auditing local skills, commands, and nearby guidance for overlap, stale content, weak triggers, and prompt-weight bloat.",
       "triggers": [
         "skill stocktake",
         "skill audit",
@@ -8230,6 +8545,10 @@
       ],
       "exclusions": [],
       "phrases": [
+        "auditing local skills",
+        "nearby guidance for overlap",
+        "stale content",
+        "weak triggers",
         "prompt-weight bloat"
       ],
       "keywords": [
@@ -8243,6 +8562,7 @@
         "overlap",
         "stale",
         "health",
+        "auditing",
         "local",
         "command",
         "nearby",
@@ -8267,7 +8587,7 @@
     "bosskuai-software-architecture": {
       "path": "skills/bosskuai-software-architecture/SKILL.md",
       "name": "bosskuai-software-architecture",
-      "description": "Use this for software architecture, module boundaries, system design, integration design, layering decisions, structural refactors, and long-term maintainability tradeoffs.",
+      "description": "Use when deciding software architecture, module boundaries, system design, integration design, layering decisions, structural refactors, and long-term maintainability tradeoffs.",
       "triggers": [
         "software architecture",
         "architecture",
@@ -8279,7 +8599,13 @@
         "monolith or services"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "deciding software architecture",
+        "integration design",
+        "layering decisions",
+        "structural refactors",
+        "long-term maintainability tradeoffs"
+      ],
       "keywords": [
         "software",
         "architecture",
@@ -8293,6 +8619,7 @@
         "refactor",
         "monolith",
         "service",
+        "deciding",
         "integration",
         "decision",
         "long-term",
@@ -8631,7 +8958,7 @@
     "bosskuai-tenant-isolation-security": {
       "path": "skills/bosskuai-tenant-isolation-security/SKILL.md",
       "name": "bosskuai-tenant-isolation-security",
-      "description": "Use this for multi-tenant data isolation, organization scoping, cross-tenant leaks, authorization boundaries, row-level access, and SaaS tenant security review.",
+      "description": "Use when checking multi-tenant data isolation: organization scoping, cross-tenant leaks, authorization boundaries, row-level access, and SaaS tenant security review.",
       "triggers": [
         "tenant isolation security",
         "multi-tenant",
@@ -8647,7 +8974,12 @@
         "workspace isolation"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "cross-tenant leaks",
+        "authorization boundaries",
+        "row-level access",
+        "saas tenant security review"
+      ],
       "keywords": [
         "tenant",
         "isolation",
@@ -8667,6 +8999,7 @@
         "customer",
         "data",
         "workspace",
+        "checking",
         "organization",
         "authorization",
         "boundarie",
@@ -8695,7 +9028,7 @@
     "bosskuai-throwaway-prototype": {
       "path": "skills/bosskuai-throwaway-prototype/SKILL.md",
       "name": "bosskuai-throwaway-prototype",
-      "description": "Throwaway prototype to answer one design question — runnable terminal app for state/logic, or several toggleable UI variations. Triggers: 'prototype this', 'try a few designs', sanity-check a data model.",
+      "description": "Use when one design question needs a throwaway prototype: a runnable terminal app for state/logic, or several toggleable UI variations. Triggers: 'prototype this', 'try a few designs', sanity-check a data model.",
       "triggers": [
         "throwaway prototype",
         "throwaway spike",
@@ -8707,6 +9040,7 @@
       "phrases": [
         "prototype this",
         "try a few designs",
+        "several toggleable ui variations",
         "sanity-check a data model"
       ],
       "keywords": [
@@ -8717,7 +9051,6 @@
         "work",
         "one-question",
         "learn",
-        "answer",
         "one",
         "design",
         "question",
@@ -8748,7 +9081,7 @@
     "bosskuai-token-saver": {
       "path": "skills/bosskuai-token-saver/SKILL.md",
       "name": "bosskuai-token-saver",
-      "description": "Use this when the user explicitly asks for terse output, lower token use, caveman mode, compressed prompts, shorter rules, or reducing prompt bloat without losing meaning.",
+      "description": "Use when the user explicitly asks for terse output, lower token use, caveman mode, compressed prompts, shorter rules, or reducing prompt bloat without losing meaning.",
       "triggers": [
         "token saver",
         "save tokens",
@@ -8859,7 +9192,7 @@
     "bosskuai-ui-ux-design-to-code": {
       "path": "skills/bosskuai-ui-ux-design-to-code/SKILL.md",
       "name": "bosskuai-ui-ux-design-to-code",
-      "description": "Use this for UI/UX review, interface critique, design systems thinking, mobile-responsive behavior, accessibility (WCAG), and translating designs or screenshots into implementation-ready code guidance.",
+      "description": "Use when reviewing or critiquing UI/UX, or turning designs or screenshots into implementation-ready code guidance: design systems thinking, mobile-responsive behavior, and accessibility (WCAG).",
       "triggers": [
         "ui ux design to code",
         "ui review",
@@ -8879,7 +9212,11 @@
         "product ui"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "critiquing ui",
+        "turning designs",
+        "mobile-responsive behavior"
+      ],
       "keywords": [
         "ui",
         "ux",
@@ -8902,15 +9239,17 @@
         "app",
         "screen",
         "product",
+        "reviewing",
+        "critiquing",
+        "turning",
+        "implementation-ready",
+        "guidance",
         "system",
         "thinking",
         "mobile-responsive",
         "behavior",
         "accessibility",
-        "wcag",
-        "translating",
-        "implementation-ready",
-        "guidance"
+        "wcag"
       ],
       "model_role": "reviewer",
       "pack": "bossku",
@@ -9806,7 +10145,7 @@
     "cofounder": {
       "path": "skills/cofounder/SKILL.md",
       "name": "cofounder",
-      "description": "Use this when the user wants BosskuAI to behave like an expert AI cofounder across product, engineering, UI/UX, security, SEO/GEO, GTM, marketing, sales, prioritization, and next-step decision making.",
+      "description": "Use when the user wants BosskuAI to behave like an expert AI cofounder across product, engineering, UI/UX, security, SEO/GEO, GTM, marketing, sales, prioritization, and next-step decision making.",
       "triggers": [
         "cofounder",
         "co-founder",

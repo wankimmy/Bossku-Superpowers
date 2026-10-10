@@ -1,6 +1,6 @@
 ---
 name: bosskuai-gsap-animation
-description: "Use for GSAP work: timelines, ScrollTrigger pins/scrubs, SplitText, Flip, MorphSVG, matchMedia, useGSAP cleanup, Lenis/ScrollSmoother sync, and deciding when native CSS scroll-driven animation suffices. UI micro-motion: animate."
+description: "Use when doing GSAP work: timelines, ScrollTrigger pins/scrubs, SplitText, Flip, MorphSVG, matchMedia, useGSAP cleanup, Lenis/ScrollSmoother sync, and deciding when native CSS scroll-driven animation suffices. UI micro-motion: animate."
 ---
 
 # BosskuAI GSAP Animation

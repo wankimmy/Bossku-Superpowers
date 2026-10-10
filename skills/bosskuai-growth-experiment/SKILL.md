@@ -1,6 +1,6 @@
 ---
 name: bosskuai-growth-experiment
-description: Use this to pre-register an experiment's decision rules (MDE, sample size, ship/kill/iterate), choose holdout, bandit or pre/post designs, test channels on CAC, and read out results. For standard page A/B test setup and ICE backlogs use ab-testing.
+description: Use when you pre-register an experiment's decision rules (MDE, sample size, ship/kill/iterate), choose holdout, bandit or pre/post designs, test channels on CAC, and read out results. For standard page A/B test setup and ICE backlogs use ab-testing.
 ---
 
 # Growth Experiment

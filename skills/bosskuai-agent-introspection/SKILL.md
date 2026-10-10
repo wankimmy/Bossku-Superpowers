@@ -1,6 +1,6 @@
 ---
 name: bosskuai-agent-introspection
-description: "Self-debugging for agent failures — capture, diagnose, contained recovery, report. Use when an agent run loops, burns tokens, drifts, or returns empty/degraded results."
+description: "Use when an agent run loops, burns tokens, drifts, or returns empty/degraded results: self-debugging with failure capture, diagnosis, contained recovery, and a report."
 license: MIT
 metadata:
   author: affaan-m/ECC

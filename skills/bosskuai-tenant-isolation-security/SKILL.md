@@ -1,6 +1,6 @@
 ---
 name: bosskuai-tenant-isolation-security
-description: Use this for multi-tenant data isolation, organization scoping, cross-tenant leaks, authorization boundaries, row-level access, and SaaS tenant security review.
+description: "Use when checking multi-tenant data isolation: organization scoping, cross-tenant leaks, authorization boundaries, row-level access, and SaaS tenant security review."
 ---
 
 # BosskuAI Tenant Isolation Security

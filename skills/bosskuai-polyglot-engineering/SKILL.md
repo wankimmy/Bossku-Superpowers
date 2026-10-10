@@ -1,6 +1,6 @@
 ---
 name: bosskuai-polyglot-engineering
-description: Use this for engineering guidance across programming languages, frameworks, runtimes, and ecosystem-specific tradeoffs rather than assuming one default stack.
+description: Use when a task spans several languages, frameworks, or runtimes, or ecosystem context changes the answer, rather than assuming one default stack.
 ---
 
 # BosskuAI Polyglot Engineering

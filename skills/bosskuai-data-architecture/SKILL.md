@@ -1,6 +1,6 @@
 ---
 name: bosskuai-data-architecture
-description: Use this for data modeling, schema boundaries, migrations, warehouses, analytics pipelines, ownership of entities, retention, and correctness tradeoffs in data-intensive systems.
+description: Use when you need data modeling, schema boundaries, migrations, warehouses, analytics pipelines, entity ownership, retention, and correctness tradeoffs in data-intensive systems.
 ---
 
 # BosskuAI Data / Schema Architecture

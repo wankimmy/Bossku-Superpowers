@@ -1,6 +1,6 @@
 ---
 name: bosskuai-cybersecurity-risk
-description: Use this for cybersecurity review, privacy, abuse-case analysis, auth and authorization concerns, trust boundaries, fraud risk, and operational risk evaluation.
+description: "Use when doing a cybersecurity review or hardening: privacy, abuse-case analysis, auth and authorization concerns, trust boundaries, and operational risk evaluation."
 ---
 
 # Security: review and hardening
