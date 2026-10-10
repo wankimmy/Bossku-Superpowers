@@ -1,0 +1,18 @@
+{
+  "id": "memdev-1",
+  "category": "memory-dev",
+  "setup": [
+    "Please add two helpers to `runsched.py`: `parse_iso(text)`, which turns an ISO-8601 string such as '2026-03-01T09:30:00+08:00' or '2026-03-01T09:30:00' (no offset means it is already UTC) into a datetime, and `is_expired(deadline, now=None)`, which returns True when `deadline` is before `now` (`now` defaults to the current time).\n\nRule for this codebase: every datetime we handle must be timezone-aware and in UTC. Never naive datetimes, and never `datetime.utcnow()`, bare `datetime.now()` or `datetime.today()`. A naive timestamp caused an 8-hour billing bug at our Kuala Lumpur office last year."
+  ],
+  "prompt": "Add two more helpers to `runsched.py`: `age_seconds(created, now=None)` returning the number of seconds between `created` and `now` as a float (`now` defaults to the current time), and `next_run(last_run, every_hours)` returning the datetime that is `every_hours` hours after `last_run`.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_memdev_1_hidden"
+    ],
+    "timeout": 120
+  }
+}

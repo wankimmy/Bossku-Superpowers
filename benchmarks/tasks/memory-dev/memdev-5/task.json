@@ -1,0 +1,18 @@
+{
+  "id": "memdev-5",
+  "category": "memory-dev",
+  "setup": [
+    "In `cache.py` add a `TTLCache` class: `TTLCache(ttl_seconds, clock=time.monotonic)` with `set(key, value)` and `get(key, default=None)`; an entry older than `ttl_seconds` (measured with `clock()`) counts as missing. Also add a module-level default for the TTL, 300.\n\nNaming convention for this project: every module-level constant that holds a duration must carry the unit in its name and end in `_SECONDS`, and its value is always in seconds (never milliseconds or minutes). For example `DEFAULT_TTL_SECONDS = 300`."
+  ],
+  "prompt": "Add `fetch_with_retry(fn, attempts=3, sleep=time.sleep)` to `cache.py`: call `fn()` and return its result; if it raises, wait using `sleep(...)` and try again, up to `attempts` calls in total, then re-raise the last error. The wait between attempts is 2 seconds and the overall give-up timeout is 30 seconds. Expose both of those numbers as module-level constants so ops can tune them.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_memdev_5_hidden"
+    ],
+    "timeout": 120
+  }
+}

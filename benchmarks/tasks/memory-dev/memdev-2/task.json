@@ -1,0 +1,18 @@
+{
+  "id": "memdev-2",
+  "category": "memory-dev",
+  "setup": [
+    "In `stock.py` please add an `Inventory` class with `add(sku, qty)`, `remove(sku, qty)` and `quantity(sku)` (0 for an unknown sku). `add` and `remove` raise `ValueError` when `qty` is not a positive int, and `remove` also raises `ValueError` when there is not enough stock.\n\nHouse rule for this module: every exception message must start with the tag `[stock] ` (a space after the bracket), because our log aggregator routes alerts on that prefix. Anything after the tag is up to you."
+  ],
+  "prompt": "Now add a module-level function `transfer(source, target, sku, qty)` to `stock.py` that moves `qty` units of `sku` from one `Inventory` to another. If the source does not have enough, raise `ValueError` and leave both inventories unchanged. Also raise `ValueError` when `source` and `target` are the same object.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_memdev_2_hidden"
+    ],
+    "timeout": 120
+  }
+}

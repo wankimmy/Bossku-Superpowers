@@ -1,0 +1,18 @@
+{
+  "id": "memdev-7",
+  "category": "memory-dev",
+  "setup": [
+    "In the `shop` package add an `Invoice` model with `number`, `customer` and `total_cents` attributes (a plain class with an `__init__` is fine) and an optional fourth constructor argument `paid` (default False) and a method `is_paid()` that returns it.\n\nLayout rule for this package: models live in `shop/models/`, exactly one class per file, and the file name is the snake_case of the class name (so `Invoice` goes in `shop/models/invoice.py`). No catch-all `models.py`."
+  ],
+  "prompt": "Add two more models: `LineItem` with `sku`, `qty`, `unit_cents` and a `total_cents()` method returning qty times unit_cents, and `CreditNote` with `number`, `invoice_number` and `amount_cents`.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_memdev_7_hidden"
+    ],
+    "timeout": 120
+  }
+}

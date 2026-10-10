@@ -1,0 +1,18 @@
+{
+  "id": "memdev-6",
+  "category": "memory-dev",
+  "setup": [
+    "Add `apply_discount(cents, percent)` to `pricing.py`: it takes a price in integer cents and an integer percent off (0 to 100) and returns the discounted price in integer cents. Raise `ValueError` for a negative price or a percent outside 0..100.\n\nMoney rules from finance: prices are integer cents, never floats, and whenever a calculation needs rounding it must round half up (an exact .5 goes up to the next cent). Python's built-in `round()` is not allowed for money because it rounds half to even, and that failed our last audit."
+  ],
+  "prompt": "Add `add_tax(cents, rate_percent)` to `pricing.py`: given a price in integer cents and an integer tax rate in percent, return the price including tax as integer cents. Raise `ValueError` for a negative price or a negative rate.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_memdev_6_hidden"
+    ],
+    "timeout": 120
+  }
+}
