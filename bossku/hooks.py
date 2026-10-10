@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import codecs
+import contextlib
 import json
 import os
 import re
@@ -82,6 +83,33 @@ def _read_json(path: Path) -> dict:
 def _write_json(path: Path, data: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, indent=2), encoding="utf-8")
+
+
+def _remove_scratch(scratch: Path) -> None:
+    """Delete the .tmp sibling, never raising: a failed cleanup must not hide the error that came first. Windows will
+    not delete a read-only file (the .tmp inherits a read-only settings.json's mode), so make it writable first."""
+    with contextlib.suppress(OSError):
+        if not scratch.is_symlink():      # chmod would follow a link and change the file it points at
+            os.chmod(scratch, stat.S_IWRITE)
+    with contextlib.suppress(OSError):
+        scratch.unlink(missing_ok=True)
+
+
+def _write_json_atomic(path: Path, data: dict) -> None:
+    """Like _write_json, but a crash mid-write never leaves half a settings.json (write a sibling, then swap it in).
+    A symlinked file is written through, so a dotfile-managed settings.json stays a link; its mode is kept."""
+    target = path.resolve()
+    target.parent.mkdir(parents=True, exist_ok=True)
+    scratch = target.with_name(target.name + ".tmp")
+    _remove_scratch(scratch)              # one leftover from a crash or an earlier failed run must not block this run
+    try:
+        scratch.write_text(json.dumps(data, indent=2), encoding="utf-8")
+        if target.exists():
+            shutil.copymode(target, scratch)
+        os.replace(scratch, target)
+    except OSError:
+        _remove_scratch(scratch)          # a failed swap (a locked or read-only file on Windows) leaves no .tmp behind
+        raise
 
 
 def _commands(node) -> list[str]:

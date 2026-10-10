@@ -15,6 +15,7 @@ from bossku.paths import (
     user_config_dir,
 )
 from bossku.hooks import install_hooks, uninstall_hooks
+from bossku.skill_listing import fit_settings
 from bossku.skills import (
     copy_library_to,
     copy_skills_to,
@@ -284,6 +285,7 @@ def install_user(
     claude: bool | None = None,
     agents: bool | None = None,
     harness: bool | None = None,
+    fit_skill_list: bool | None = None,
 ) -> dict:
     """Install skills, agent contracts and hooks at user level.
 
@@ -292,13 +294,17 @@ def install_user(
     ~/.claude/agents; `harness=False` leaves the Node gates and deny rules out of ~/.claude/settings.json and takes
     ours out when an earlier install put them there (the Python verify-gate becomes the Stop gate).
     A flag left as None keeps the choice saved in config.json (on for a first install), so `bossku update` and
-    a plain re-install do not undo it."""
+    a plain re-install do not undo it.
+    `fit_skill_list=True` also raises skillListingBudgetFraction in ~/.claude/settings.json so Claude Code keeps every
+    skill description on a 1M-context model (bossku.skill_listing). It is the one choice that is off for a first
+    install, because it costs context; False stops raising it and leaves the value alone."""
     r = repo_root(root)
     h = home if home is not None else Path.home()
     cfg_path = user_config_dir(h) / "config.json"
     cfg: dict = json.loads(cfg_path.read_text(encoding="utf-8")) if cfg_path.is_file() else {}
     claude, agents, harness = (_saved_choice(cfg, key, flag)
                                for key, flag in (("claude_skills", claude), ("agents", agents), ("harness", harness)))
+    fit = fit_skill_list if fit_skill_list is not None else cfg.get("fit_skill_list") is True
     agents_dest = agents_skills_dir(h)
     claude_dest = claude_skills_dir(h)
     installed_agents = copy_skills_to(agents_dest, r, profile)
@@ -344,6 +350,8 @@ def install_user(
     cfg["installed_from"] = str(r)
     cfg["profile"] = profile
     cfg["claude_skills"], cfg["agents"], cfg["harness"] = claude, agents, harness
+    if fit or "fit_skill_list" in cfg:     # a default install leaves config.json without the key, as before
+        cfg["fit_skill_list"] = fit
     if vault:
         cfg["obsidian_vault"] = vault
     if memory_storage is not None:
@@ -357,6 +365,7 @@ def install_user(
     # Default denser Obsidian auto-sync hooks (clone → pip install -e . → bossku install).
     hooks_result = install_hooks(home=h, harness=harness, root=r)
     memory_instructions = install_auto_memory_instructions(h)
+    fitted = {"skill_listing": fit_settings(h)} if fit else {}   # a default install adds no key
     return {
         "agents_skills": str(agents_dest),
         "claude_skills": str(claude_dest),
@@ -379,6 +388,7 @@ def install_user(
         "tools": tools_coverage_map(agents_dest, claude_dest, claude),
         "hooks": hooks_result,
         "auto_memory_instructions": memory_instructions,
+        **fitted,
     }
 
 

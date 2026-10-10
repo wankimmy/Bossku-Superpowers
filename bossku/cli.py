@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 
 from bossku import __version__
-from bossku.doctor import format_doctor_success, gather_doctor_issues
+from bossku.doctor import format_doctor_success, gather_doctor_issues, skill_listing_lines
 from bossku.hooks import install_hooks, read_hook_stdin, run_sync_hook, uninstall_hooks
 from bossku.brief import memory_brief, session_output
 from bossku.gate import gate_output
@@ -381,16 +381,22 @@ def main(argv: list[str] | None = None) -> int:
 
 
 def _install_choices(parser: argparse.ArgumentParser) -> None:
-    """--claude/--agents/--harness (and their --no- forms). Left unset, `install` and `update` keep the saved choice."""
+    """--claude/--agents/--harness/--fit-skill-list (and their --no- forms). Left unset, `install` and `update` keep the saved choice."""
     for flag, what in (("claude", "the skills in ~/.claude/skills (off when a Claude Code plugin serves them)"),
                        ("agents", "the subagent contracts in ~/.claude/agents"),
                        ("harness", "the Node gates and deny rules in ~/.claude/settings.json")):
         parser.add_argument(f"--{flag}", action=argparse.BooleanOptionalAction, default=None,
                             help=f"install {what}; default: keep the saved choice (on for a first install)")
+    parser.add_argument("--fit-skill-list", action=argparse.BooleanOptionalAction, default=None,
+                        help="raise skillListingBudgetFraction in ~/.claude/settings.json so Claude Code keeps every skill "
+                             "description on a 1M-context model (never lowers it; costs context in every session); "
+                             "--no-fit-skill-list stops doing that and leaves the value as it is; "
+                             "default: keep the saved choice (off for a first install)")
 
 
 def _choices(args) -> dict:
-    return {name: getattr(args, name) for name in ("claude", "agents", "harness") if getattr(args, name, None) is not None}
+    names = ("claude", "agents", "harness", "fit_skill_list")
+    return {name: getattr(args, name) for name in names if getattr(args, name, None) is not None}
 
 
 def _update_with(root: Path | None, home: Path | None, choices: dict) -> dict:
@@ -510,10 +516,24 @@ def _install_summary(r: dict, verb: str, profile: str) -> str:
         lines.append(f"  Subagents: {len(r['agents_removed'])} removed (--no-agents).")
     if r["auto_memory_instructions"]:
         lines.append(f"  Memory and voice rules written to: {', '.join(r['auto_memory_instructions'])}")
+    fit = r.get("skill_listing")
+    if fit:
+        lines.append("  " + _fit_summary(fit))
     lines += ["  Hooks:", *_hook_lines(r["hooks"], "    ")]
     if _hook_failed(r["hooks"]):
         return "\n".join(lines + ["Next: fix the error above, then run `bossku hooks install`."])
     return "\n".join(lines + ["Next: cd your-project && bossku init ." if verb == "installed" else "Next: bossku doctor"])
+
+
+def _fit_summary(fit: dict) -> str:
+    status = fit["status"]
+    if status == "set":
+        return (f"Skill list: skillListingBudgetFraction set to {fit['fraction']:g} in ~/.claude/settings.json "
+                f"(was {'not set' if fit['was'] is None else format(fit['was'], 'g')}), so every description fits on a 1M-context model.")
+    if status == "already_fits":
+        return f"Skill list: skillListingBudgetFraction {fit['fraction']:g} is already enough, left as it is."
+    detail = f"{status}: {fit['error']}" if fit.get("error") else status
+    return f"Skill list: skillListingBudgetFraction not changed ({detail})."
 
 
 def _init_summary(r: dict) -> str:
@@ -642,6 +662,8 @@ def _doctor(root: Path | None, home: Path | None, project: Path | None = None) -
         print("doctor: issues found")
         for item in issues:
             print(f"  - {item}")
+        for line in skill_listing_lines(home, project, only_warning=True):   # a warning too, not an issue
+            print(line)
         return 1
     for line in format_doctor_success(root, home, version=__version__, project=project):
         print(line)

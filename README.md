@@ -69,6 +69,7 @@ More choices:
 
 - **Where are my notes?** In `.bossku/memory` inside the project, unless you chose Obsidian storage in step 2.
 - **Want all skills listed?** A first install starts at `--profile lean` (about 25 listed, the rest one command away); a later `bossku install` keeps your profile. Use `--profile core` for a small set, `--profile engineering` for everything except the marketing skills, or `--profile full` for all 240+.
+- **Claude Code cutting skill descriptions?** On the full profile, Claude Code may cut skill descriptions; `bossku doctor` tells you, and `--fit-skill-list` fixes it at a context cost ([details](docs/installation.md#skill-list-budget-claude-code)).
 - **Other tools?** See setup for [Claude Code](docs/installation.md#claude-code), [Cursor](docs/installation.md#cursor), [Codex](docs/installation.md#codex), [OpenCode](docs/installation.md#opencode), [OMP](docs/installation.md#omp) or [portable mode](docs/installation.md#portable-mode-cloudshared-repos).
 
 ## What's inside

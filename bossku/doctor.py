@@ -17,6 +17,7 @@ from bossku.memory import load_user_config
 from bossku.paths import (
     MARKER_END, MARKER_START, agents_skills_dir, claude_skills_dir, library_dir, repo_root, routing_signature_path,
 )
+from bossku.skill_listing import BUDGET_KEY, UNSEEN_CHARS, USER_FILE, estimate
 from bossku.skills import NOT_INSTALLED, count_managed_skills, is_managed_skill_name, load_lean, skills_dir, validate_skills
 from bossku.validate import claude_imports_agents_md, omp_imports_agents_md
 
@@ -129,6 +130,41 @@ def routing_copy_issue(source: Path, home: Path) -> str | None:
         return None
     return ("the skill index copy in ~/.bosskuai is older than the skills in the repo, so the prompt hook reads the "
             "repo's index instead; run `bossku skills index` if you edited a skill, then `bossku update`")
+
+
+def skill_listing_lines(home: Path | None = None, project: Path | None = None, *, only_warning: bool = False) -> list[str]:
+    """Plain words on whether Claude Code shows every skill description. A warning, never a doctor failure: the list
+    is cut by a Claude Code setting, not broken by the install. No SKILL.md files, or `only_warning` and it fits: []."""
+    found = estimate(home, project)
+    models = found["models"]
+    if not found["skills"] or (only_warning and all(m["fits"] for m in models.values())):
+        return []
+    in_project = found["fraction_file"] != USER_FILE      # a project settings file overrides the user file
+    fraction = f"{found['fraction']:g}" + (" (the default)" if found["fraction_is_default"]
+                                           else f" (from {found['fraction_file']})" if in_project else "")
+    where = "~/.claude/skills" + (" and the project's .claude/skills" if project is not None else "")
+    warn = not all(m["fits"] for m in models.values())
+    lines = [f"  {'warning: ' if warn else ''}skill listing: about {found['chars']:,} characters (about {found['tokens']:,} "
+             f"tokens) for {found['skills']} skills in {where}; {BUDGET_KEY} is {fraction}"]
+    for label, m in models.items():
+        verdict = "every description fits" if m["fits"] else f"Claude Code would cut about {m['cut']} descriptions"
+        lines.append(f"    {label}-context model: limit {m['budget']:,} characters, {verdict}")
+    lines.append(f"    A 1M-context model needs {BUDGET_KEY} {found['fit_fraction']:g}: this list plus room for Claude "
+                 f"Code's own skills ({UNSEEN_CHARS:,} characters, measured on one machine).")
+    if not models["1M"]["fits"]:
+        how = (f"set {BUDGET_KEY} to {found['fit_fraction']:g} in {found['fraction_file']} (`--fit-skill-list` only "
+               f"writes ~/.claude/settings.json, and the project file wins over it)" if in_project else
+               f"set {BUDGET_KEY} to {found['fit_fraction']:g} in ~/.claude/settings.json, or run "
+               f"`bossku update --fit-skill-list`"
+               + (" (it sizes from ~/.claude/skills only, not this project's skills)" if project is not None else ""))
+        lines.append(f"    To keep every description on a 1M-context model, {how}. That costs context: the whole list "
+                     f"is sent every session, about {found['whole_tokens']:,} tokens. No skill is shortened or removed.")
+    elif warn:
+        lines.append("    A 200K-context model needs a fraction 5 times higher for the same list; "
+                     "`--fit-skill-list` sizes it for a 1M-context model only.")
+    lines.append("    This counts the SKILL.md files above. Skills from plugins and Claude Code's own bundled skills "
+                 "also count, so the real list can be larger.")
+    return lines
 
 
 def gather_doctor_issues(
@@ -323,4 +359,5 @@ def format_doctor_success(
             "  denser Obsidian auto-sync hooks: none installed; run `bossku hooks install` "
             "for denser Obsidian auto-sync (per-turn / session-end / after-response)"
         )
+    lines.extend(skill_listing_lines(h, project))
     return lines
