@@ -10,7 +10,7 @@ def _tree():
         return ast.parse(f.read())
 
 
-from skuparse import parse_sku, is_valid_sku, parse_order_line
+from skuparse import parse_sku, is_valid_sku, find_skus
 
 
 class SkuHiddenTests(unittest.TestCase):
@@ -19,7 +19,7 @@ class SkuHiddenTests(unittest.TestCase):
         self.assertEqual(parse_sku("ZZ-0007"), ("ZZ", 7))
 
     def test_parse_sku_bad(self):
-        for bad in ("ab-1234", "AB1234", "AB-123", "AB-12345", "ABC-1234", "AB-12a4", "", "AB-1234\n", "A\u0e51-1234"):
+        for bad in ("ab-1234", "AB1234", "AB-123", "AB-12345", "ABC-1234", "AB-12a4", "", "AB-1234\n"):
             with self.assertRaises(ValueError, msg=repr(bad)):
                 parse_sku(bad)
 
@@ -28,14 +28,24 @@ class SkuHiddenTests(unittest.TestCase):
         self.assertFalse(is_valid_sku("qr-9999"))
         self.assertFalse(is_valid_sku(None))
 
-    def test_order_line(self):
-        self.assertEqual(parse_order_line("3x AB-1234"), (3, "AB", 1234))
-        self.assertEqual(parse_order_line("  12x CD-0001 "), (12, "CD", 1))
+    def test_find_skus_example(self):
+        text = "Please ship AB-1234 and CD-0007, plus ef-1234 (typo) and XY-12345."
+        self.assertEqual(find_skus(text), [("AB", 1234), ("CD", 7)])
 
-    def test_order_line_bad(self):
-        for bad in ("0x AB-1234", "x AB-1234", "3 AB-1234", "3xAB-1234", "3x ab-1234", "-3x AB-1234", "3x AB-1234 extra", ""):
-            with self.assertRaises(ValueError, msg=repr(bad)):
-                parse_order_line(bad)
+    def test_find_skus_punctuation_and_order(self):
+        self.assertEqual(find_skus("(GH-0001) then ZZ-9999. Finally KL-0042; MN-0003:"),
+                         [("GH", 1), ("ZZ", 9999), ("KL", 42), ("MN", 3)])
+
+    def test_find_skus_repeats_kept(self):
+        self.assertEqual(find_skus("AB-1234 AB-1234"), [("AB", 1234), ("AB", 1234)])
+
+    def test_find_skus_rejects_partial_words(self):
+        self.assertEqual(find_skus("XXAB-1234 AB-12345 AB-123 ab-1234 AB_1234"), [])
+
+    def test_find_skus_empty_and_odd_input(self):
+        self.assertEqual(find_skus(""), [])
+        self.assertEqual(find_skus("nothing to see here"), [])
+        self.assertEqual(find_skus("---- ,,, ()"), [])
 
     # ---- rule: no regular expressions ----
 

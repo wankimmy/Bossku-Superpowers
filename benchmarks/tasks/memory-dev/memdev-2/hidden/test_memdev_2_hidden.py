@@ -66,8 +66,10 @@ class StockHiddenTests(unittest.TestCase):
     # ---- rule: every raised message carries the tag ----
 
     def test_every_raise_literal_has_tag(self):
+        raises = 0
         for node in ast.walk(_tree()):
             if isinstance(node, ast.Raise) and isinstance(node.exc, ast.Call) and node.exc.args:
+                raises += 1
                 first = node.exc.args[0]
                 if isinstance(first, ast.JoinedStr) and first.values:
                     first = first.values[0]
@@ -75,6 +77,7 @@ class StockHiddenTests(unittest.TestCase):
                     first = first.left
                 if isinstance(first, ast.Constant) and isinstance(first.value, str):
                     self.assertTrue(first.value.startswith("[stock] "), first.value)
+        self.assertGreater(raises, 0)
 
 
 if __name__ == "__main__":

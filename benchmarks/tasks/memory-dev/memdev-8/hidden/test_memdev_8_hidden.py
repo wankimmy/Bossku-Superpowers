@@ -5,6 +5,11 @@ from router import ROUTES
 
 
 class HandlersHiddenTests(unittest.TestCase):
+    def test_find_user(self):
+        self.assertEqual(handlers.find_user("2")["name"], "Wei Jie")
+        with self.assertRaises(KeyError):
+            handlers.find_user("99")
+
     def test_list_users(self):
         self.assertEqual(handlers.list_users(), handlers.USERS)
 
@@ -24,10 +29,9 @@ class HandlersHiddenTests(unittest.TestCase):
     # ---- rule: only /api/v2/ routes ----
 
     def test_every_route_has_v2_prefix(self):
-        self.assertGreaterEqual(len(ROUTES), 3)
+        self.assertEqual(len(ROUTES), 3)
         for (method, path) in ROUTES:
             self.assertTrue(path.startswith("/api/v2/"), path)
-        self.assertEqual(len(ROUTES), 3)
 
 
 if __name__ == "__main__":

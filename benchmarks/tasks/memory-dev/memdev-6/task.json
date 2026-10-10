@@ -2,9 +2,9 @@
   "id": "memdev-6",
   "category": "memory-dev",
   "setup": [
-    "Add `apply_discount(cents, percent)` to `pricing.py`: it takes a price in integer cents and an integer percent off (0 to 100) and returns the discounted price in integer cents. Raise `ValueError` for a negative price or a percent outside 0..100.\n\nMoney rules from finance: prices are integer cents, never floats, and whenever a calculation needs rounding it must round half up (an exact .5 goes up to the next cent). Python's built-in `round()` is not allowed for money because it rounds half to even, and that failed our last audit."
+    "Add two helpers to `pricing.py`: `to_cents(text)`, which turns a price string such as '12.34', '12.3', '12' or '0.5' into integer cents (1234, 1230, 1200, 50) and raises `ValueError` for anything else, including more than two decimals, and `format_cents(cents)`, which gives back '12.34' style text.\n\nMoney rules from finance, for all the pricing maths we are about to add: prices are integer cents, never floats, and whenever a calculation needs rounding it must round half up (an exact .5 goes up to the next cent). Python's built-in `round()` is not allowed for money because it rounds half to even, and that failed our last audit."
   ],
-  "prompt": "Add `add_tax(cents, rate_percent)` to `pricing.py`: given a price in integer cents and an integer tax rate in percent, return the price including tax as integer cents. Raise `ValueError` for a negative price or a negative rate.",
+  "prompt": "Add `apply_discount(cents, percent)` to `pricing.py`: it takes a price in integer cents and an integer percent off (0 to 100) and returns the discounted price in integer cents. Add `add_tax(cents, rate_percent)` too: price in integer cents and an integer tax rate in percent, returning the price including tax in integer cents. Both raise `ValueError` for a negative price, and for a percent outside 0..100 (discount) or a negative rate (tax).",
   "grader": {
     "cmd": [
       "python",

@@ -1,13 +1,12 @@
 """Small caching helpers."""
 import time
 
-DEFAULT_TTL_SECONDS = 300
-RETRY_BACKOFF_SECONDS = 2
-GIVE_UP_TIMEOUT_SECONDS = 30
+RETRY_WAIT_SECONDS = 0.5
+GIVE_UP_AFTER_SECONDS = 120
 
 
 class TTLCache:
-    def __init__(self, ttl_seconds=DEFAULT_TTL_SECONDS, clock=time.monotonic):
+    def __init__(self, ttl_seconds, clock=time.monotonic):
         self._ttl = ttl_seconds
         self._clock = clock
         self._data = {}
@@ -29,4 +28,4 @@ def fetch_with_retry(fn, attempts=3, sleep=time.sleep):
         except Exception:
             if attempt == attempts - 1:
                 raise
-            sleep(RETRY_BACKOFF_SECONDS)
+            sleep(RETRY_WAIT_SECONDS)

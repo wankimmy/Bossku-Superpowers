@@ -18,9 +18,9 @@ def is_valid_sku(text):
     return True
 
 
-def parse_order_line(line):
-    qty_text, sep, sku = line.strip().partition("x ")
-    if not sep or not qty_text.isascii() or not qty_text.isdigit() or int(qty_text) < 1:
-        raise ValueError("bad order line")
-    letters, number = parse_sku(sku)
-    return int(qty_text), letters, number
+def find_skus(text):
+    found = []
+    for word in text.translate(str.maketrans({c: " " for c in "(),.;:[]"})).split():
+        if is_valid_sku(word):
+            found.append(parse_sku(word))
+    return found

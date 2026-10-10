@@ -1,5 +1,5 @@
 # skuparse
 
-SKU and order line parsing.
+SKU parsing.
 
 Run tests: `python -m unittest discover -s tests`

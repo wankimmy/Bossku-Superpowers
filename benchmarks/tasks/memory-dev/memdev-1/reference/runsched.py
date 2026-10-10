@@ -16,12 +16,16 @@ def parse_iso(text):
     return _utc(datetime.fromisoformat(text))
 
 
-def is_expired(deadline, now=None):
-    return _utc(deadline) < (_utc(now) if now else _now())
+def format_iso(dt):
+    return _utc(dt).isoformat()
 
 
 def age_seconds(created, now=None):
-    return (( _utc(now) if now else _now()) - _utc(created)).total_seconds()
+    return ((_utc(now) if now else _now()) - _utc(created)).total_seconds()
+
+
+def start_of_today():
+    return _now().replace(hour=0, minute=0, second=0, microsecond=0)
 
 
 def next_run(last_run, every_hours):

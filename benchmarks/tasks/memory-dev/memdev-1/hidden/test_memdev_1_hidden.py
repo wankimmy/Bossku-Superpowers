@@ -28,14 +28,9 @@ class SchedHiddenTests(unittest.TestCase):
         self.assertEqual(dt.utcoffset(), timedelta(0))
         self.assertEqual(dt.hour, 9)
 
-    def test_is_expired(self):
-        now = sched.parse_iso("2026-03-01T10:00:00")
-        self.assertTrue(sched.is_expired(sched.parse_iso("2026-03-01T09:00:00"), now))
-        self.assertFalse(sched.is_expired(sched.parse_iso("2026-03-01T11:00:00"), now))
-
-    def test_is_expired_default_now(self):
-        self.assertTrue(sched.is_expired(sched.parse_iso("2001-01-01T00:00:00")))
-        self.assertFalse(sched.is_expired(sched.parse_iso("2999-01-01T00:00:00")))
+    def test_format_iso_roundtrip(self):
+        dt = sched.parse_iso("2026-03-01T09:30:00+08:00")
+        self.assertEqual(sched.parse_iso(sched.format_iso(dt)), dt)
 
     def test_age_seconds(self):
         created = sched.parse_iso("2026-03-01T09:00:00")
@@ -45,6 +40,14 @@ class SchedHiddenTests(unittest.TestCase):
     def test_age_seconds_default_now_works_with_aware_input(self):
         created = sched.parse_iso("2001-01-01T00:00:00")
         self.assertGreater(sched.age_seconds(created), 1e8)
+
+    def test_start_of_today_is_aware_utc_midnight(self):
+        before = datetime.now(timezone.utc)
+        out = sched.start_of_today()
+        after = datetime.now(timezone.utc)
+        self.assertEqual(out.utcoffset(), timedelta(0))
+        self.assertEqual((out.hour, out.minute, out.second, out.microsecond), (0, 0, 0, 0))
+        self.assertIn(out.date(), (before.date(), after.date()))
 
     def test_next_run_value(self):
         last = sched.parse_iso("2026-03-01T09:00:00")
@@ -62,7 +65,7 @@ class SchedHiddenTests(unittest.TestCase):
         for node in ast.walk(_tree()):
             if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute):
                 name = node.func.attr
-                self.assertNotIn(name, ("utcnow", "today", "utcfromtimestamp"))
+                self.assertNotIn(name, ("utcnow", "today", "utcfromtimestamp", "fromtimestamp"))
                 if name == "now":
                     self.assertTrue(node.args or node.keywords, "datetime.now() needs a tz argument")
 

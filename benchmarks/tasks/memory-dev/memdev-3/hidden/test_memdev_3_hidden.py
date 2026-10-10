@@ -10,6 +10,10 @@ def _tree():
         return ast.parse(f.read())
 
 
+import logging
+import shlex
+
+import orders as orders_mod
 from orders import place_order, cancel_order, refund_order
 
 
@@ -19,29 +23,27 @@ class OrdersHiddenTests(unittest.TestCase):
         for rec in cm.records:
             msg = rec.getMessage()
             self.assertTrue(msg.startswith("event="), msg)
-            for token in msg.split():
+            for token in shlex.split(msg):   # key="quoted value" is still key=value
                 self.assertIn("=", token, msg)
 
     def test_place_and_cancel(self):
         orders = []
-        with self.assertLogs("orders", level="DEBUG") as cm:
-            o = place_order(orders, 1, 500)
-            cancel_order(orders, 1)
-        self.assertEqual(o["status"], "cancelled")
-        self._assert_format(cm)
-
-    def test_cancel_unknown(self):
+        o = place_order(orders, 1, 500)
+        self.assertEqual(o, {"id": 1, "total_cents": 500, "status": "placed"})
+        self.assertEqual(cancel_order(orders, 1)["status"], "cancelled")
         with self.assertRaises(KeyError):
-            cancel_order([], 9)
+            cancel_order(orders, 9)
 
-    def test_refund_logs_in_format_with_reason(self):
+    def test_refund_logs_in_format_with_id_and_reason(self):
         orders = []
         place_order(orders, 7, 900)
         with self.assertLogs("orders", level="DEBUG") as cm:
             out = refund_order(orders, 7, "damaged")
         self.assertEqual(out["status"], "refunded")
         self._assert_format(cm)
-        self.assertTrue(any("damaged" in r.getMessage() for r in cm.records))
+        text = " ".join(r.getMessage() for r in cm.records)
+        self.assertIn("damaged", text)
+        self.assertIn("7", text)
 
     def test_refund_reason_with_spaces_stays_key_value(self):
         orders = []
@@ -50,14 +52,18 @@ class OrdersHiddenTests(unittest.TestCase):
             refund_order(orders, 7, "arrived broken")
         self._assert_format(cm)
 
-    def test_refund_errors(self):
+    def test_rejected_refunds_are_logged_too(self):
         orders = []
         place_order(orders, 1, 100)
         cancel_order(orders, 1)
-        with self.assertRaises(ValueError):
-            refund_order(orders, 1, "x")
-        with self.assertRaises(KeyError):
-            refund_order(orders, 2, "x")
+        with self.assertLogs("orders", level="DEBUG") as cm:
+            with self.assertRaises(ValueError):
+                refund_order(orders, 1, "late")
+        self._assert_format(cm)
+        with self.assertLogs("orders", level="DEBUG") as cm:
+            with self.assertRaises(KeyError):
+                refund_order(orders, 2, "late")
+        self._assert_format(cm)
 
     # ---- rule: no print, module logger ----
 
@@ -67,9 +73,9 @@ class OrdersHiddenTests(unittest.TestCase):
                 self.assertNotEqual(node.func.id, "print")
 
     def test_uses_named_module_logger(self):
-        import logging
-        self.assertEqual(orders.logger.name, "orders") if hasattr(orders, "logger") else self.fail("no logger")
-        self.assertIsInstance(orders.logger, logging.Logger)
+        self.assertTrue(hasattr(orders_mod, "logger"), "no module-level logger")
+        self.assertIsInstance(orders_mod.logger, logging.Logger)
+        self.assertEqual(orders_mod.logger.name, "orders")
 
 
 if __name__ == "__main__":

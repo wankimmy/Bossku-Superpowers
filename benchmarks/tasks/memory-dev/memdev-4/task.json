@@ -2,9 +2,9 @@
   "id": "memdev-4",
   "category": "memory-dev",
   "setup": [
-    "In `skuparse.py` add `parse_sku(text)` and `is_valid_sku(text)`. A SKU is two uppercase ASCII letters, a dash, then exactly four digits, e.g. 'AB-1234'. `parse_sku` returns a tuple like ('AB', 1234) and raises `ValueError` for anything that is not a valid SKU; `is_valid_sku` returns a bool and never raises.\n\nOne constraint from the security review: the `re` module is banned in this codebase (we had a ReDoS incident), including `import re`, `from re import ...` and third-party regex packages. Parse with plain string methods."
+    "In `skuparse.py` add `parse_sku(text)` and `is_valid_sku(text)`. A SKU is two uppercase ASCII letters, a dash, then exactly four digits, e.g. 'AB-1234'. `parse_sku` returns a tuple like ('AB', 1234) and raises `ValueError` for anything that is not a valid SKU; `is_valid_sku` returns a bool and never raises.\n\nOne constraint from the security review: the `re` module is banned in this codebase (we had a ReDoS incident), including `import re`, `from re import ...` and third-party regex packages. Use plain string methods."
   ],
-  "prompt": "Add `parse_order_line(line)` to `skuparse.py`. A line looks like '3x AB-1234' (a positive integer quantity, the letter x, one space, then a SKU). It returns (3, 'AB', 1234). Raise `ValueError` for malformed lines, a quantity of 0 and a bad SKU. Surrounding whitespace on the line is allowed and ignored.",
+  "prompt": "Add `find_skus(text)` to `skuparse.py`: it scans free text such as 'Please ship AB-1234 and CD-0007, plus ef-1234 (typo) and XY-12345.' and returns a list of (letters, number) tuples for every valid SKU in it, in order of appearance. A SKU only counts when it is a whole word: punctuation next to it such as a comma, full stop, colon, semicolon or bracket is fine, but 'XY-12345' and 'XXAB-1234' are not SKUs. For the example the result is [('AB', 1234), ('CD', 7)]. It must never raise on odd input; text without SKUs gives [].",
   "grader": {
     "cmd": [
       "python",

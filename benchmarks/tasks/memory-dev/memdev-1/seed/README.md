@@ -1,4 +1,4 @@
-# sched
+# runsched
 
 Tiny scheduling helpers.
 
