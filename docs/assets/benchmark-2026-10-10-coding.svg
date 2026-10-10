@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 590" width="880" height="590" role="img" aria-labelledby="t d">
+<title id="t">Coding tasks and HumanEval: hidden tests passed</title>
+<desc id="d">Coding tasks and HumanEval: hidden tests passed. Both models already pass almost everything without Bossku Superpower, so there is little room to gain. Hidden-test coding tasks (17 tasks) Claude Haiku 5.5: Without Bossku Superpower 94%  (16/17), v2.2.0 94%  (16/17), Improved build 94%  (16/17). Hidden-test coding tasks (17 tasks) Claude Opus 5.5: Without Bossku Superpower 100%  (17/17), v2.2.0 94%  (16/17), Improved build 94%  (16/17). HumanEval problems (40 problems) Claude Haiku 5.5: Without Bossku Superpower 100%  (40/40), v2.2.0 98%  (39/40), Improved build 100%  (40/40). HumanEval problems (40 problems) Claude Opus 5.5: Without Bossku Superpower 100%  (40/40), v2.2.0 100%  (40/40), Improved build 100%  (40/40).</desc>
+<style>text{font-family:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif}.card{fill:#fcfcfb}.ink{fill:#0b0b0b}.ink2{fill:#52514e}.muted{fill:#898781}.grid{stroke:#e1e0d9}.base{stroke:#c3c2b7}.whisker{stroke:#52514e}.s0{fill:#2a78d6}.s1{fill:#eb6834}.s2{fill:#1baf7a}@media (prefers-color-scheme:dark){.card{fill:#1a1a19}.ink{fill:#ffffff}.ink2{fill:#c3c2b7}.muted{fill:#898781}.grid{stroke:#2c2c2a}.base{stroke:#383835}.whisker{stroke:#c3c2b7}.s0{fill:#3987e5}.s1{fill:#d95926}.s2{fill:#199e70}}</style>
+<rect class="card" width="880" height="590" rx="14"/>
+<text class="ink" x="28" y="42" font-size="22" font-weight="650">Coding tasks and HumanEval: hidden tests passed</text>
+<text class="ink2" x="28" y="66" font-size="14">Both models already pass almost everything without Bossku Superpower, so there is little room to gain.</text>
+<rect class="s0" x="28" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="46" y="89" font-size="13">Without Bossku Superpower</text>
+<rect class="s1" x="254" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="272" y="89" font-size="13">v2.2.0</text>
+<rect class="s2" x="341" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="359" y="89" font-size="13">Improved build</text>
+<text class="ink" x="28" y="112" font-size="15" font-weight="650">Hidden-test coding tasks (17 tasks)</text>
+<line class="grid" x1="204.0" y1="126" x2="204.0" y2="278" stroke-width="1"/>
+<text class="muted" x="204.0" y="294" font-size="12" text-anchor="middle">0%</text>
+<line class="grid" x1="335.5" y1="126" x2="335.5" y2="278" stroke-width="1"/>
+<text class="muted" x="335.5" y="294" font-size="12" text-anchor="middle">25%</text>
+<line class="grid" x1="467.0" y1="126" x2="467.0" y2="278" stroke-width="1"/>
+<text class="muted" x="467.0" y="294" font-size="12" text-anchor="middle">50%</text>
+<line class="grid" x1="598.5" y1="126" x2="598.5" y2="278" stroke-width="1"/>
+<text class="muted" x="598.5" y="294" font-size="12" text-anchor="middle">75%</text>
+<line class="grid" x1="730.0" y1="126" x2="730.0" y2="278" stroke-width="1"/>
+<text class="muted" x="730.0" y="294" font-size="12" text-anchor="middle">100%</text>
+<line class="base" x1="204" y1="126" x2="204" y2="278" stroke-width="1.5"/>
+<text class="ink" x="28" y="168.0" font-size="14" font-weight="600">Claude Haiku 5.5</text>
+<path class="s0" d="M204,134 H695.1 Q699.1,134 699.1,138.0 V148.0 Q699.1,152 695.1,152 H204 Z"/>
+<line class="whisker" x1="588.1" y1="143.0" x2="724.5" y2="143.0" stroke-width="1.5"/>
+<line class="whisker" x1="588.1" y1="139.0" x2="588.1" y2="147.0" stroke-width="1.5"/>
+<line class="whisker" x1="724.5" y1="139.0" x2="724.5" y2="147.0" stroke-width="1.5"/>
+<text class="ink" x="732.5" y="147.5" font-size="13" font-weight="600">94%  (16/17)</text>
+<path class="s1" d="M204,154 H695.1 Q699.1,154 699.1,158.0 V168.0 Q699.1,172 695.1,172 H204 Z"/>
+<line class="whisker" x1="588.1" y1="163.0" x2="724.5" y2="163.0" stroke-width="1.5"/>
+<line class="whisker" x1="588.1" y1="159.0" x2="588.1" y2="167.0" stroke-width="1.5"/>
+<line class="whisker" x1="724.5" y1="159.0" x2="724.5" y2="167.0" stroke-width="1.5"/>
+<text class="ink" x="732.5" y="167.5" font-size="13" font-weight="600">94%  (16/17)</text>
+<path class="s2" d="M204,174 H695.1 Q699.1,174 699.1,178.0 V188.0 Q699.1,192 695.1,192 H204 Z"/>
+<line class="whisker" x1="588.1" y1="183.0" x2="724.5" y2="183.0" stroke-width="1.5"/>
+<line class="whisker" x1="588.1" y1="179.0" x2="588.1" y2="187.0" stroke-width="1.5"/>
+<line class="whisker" x1="724.5" y1="179.0" x2="724.5" y2="187.0" stroke-width="1.5"/>
+<text class="ink" x="732.5" y="187.5" font-size="13" font-weight="600">94%  (16/17)</text>
+<text class="ink" x="28" y="248.0" font-size="14" font-weight="600">Claude Opus 5.5</text>
+<path class="s0" d="M204,214 H726.0 Q730.0,214 730.0,218.0 V228.0 Q730.0,232 726.0,232 H204 Z"/>
+<line class="whisker" x1="633.0" y1="223.0" x2="730.0" y2="223.0" stroke-width="1.5"/>
+<line class="whisker" x1="633.0" y1="219.0" x2="633.0" y2="227.0" stroke-width="1.5"/>
+<line class="whisker" x1="730.0" y1="219.0" x2="730.0" y2="227.0" stroke-width="1.5"/>
+<text class="ink" x="738.0" y="227.5" font-size="13" font-weight="600">100%  (17/17)</text>
+<path class="s1" d="M204,234 H695.1 Q699.1,234 699.1,238.0 V248.0 Q699.1,252 695.1,252 H204 Z"/>
+<line class="whisker" x1="588.1" y1="243.0" x2="724.5" y2="243.0" stroke-width="1.5"/>
+<line class="whisker" x1="588.1" y1="239.0" x2="588.1" y2="247.0" stroke-width="1.5"/>
+<line class="whisker" x1="724.5" y1="239.0" x2="724.5" y2="247.0" stroke-width="1.5"/>
+<text class="ink" x="732.5" y="247.5" font-size="13" font-weight="600">94%  (16/17)</text>
+<path class="s2" d="M204,254 H695.1 Q699.1,254 699.1,258.0 V268.0 Q699.1,272 695.1,272 H204 Z"/>
+<line class="whisker" x1="588.1" y1="263.0" x2="724.5" y2="263.0" stroke-width="1.5"/>
+<line class="whisker" x1="588.1" y1="259.0" x2="588.1" y2="267.0" stroke-width="1.5"/>
+<line class="whisker" x1="724.5" y1="259.0" x2="724.5" y2="267.0" stroke-width="1.5"/>
+<text class="ink" x="732.5" y="267.5" font-size="13" font-weight="600">94%  (16/17)</text>
+<text class="ink" x="28" y="334" font-size="15" font-weight="650">HumanEval problems (40 problems)</text>
+<line class="grid" x1="204.0" y1="348" x2="204.0" y2="500" stroke-width="1"/>
+<text class="muted" x="204.0" y="516" font-size="12" text-anchor="middle">0%</text>
+<line class="grid" x1="335.5" y1="348" x2="335.5" y2="500" stroke-width="1"/>
+<text class="muted" x="335.5" y="516" font-size="12" text-anchor="middle">25%</text>
+<line class="grid" x1="467.0" y1="348" x2="467.0" y2="500" stroke-width="1"/>
+<text class="muted" x="467.0" y="516" font-size="12" text-anchor="middle">50%</text>
+<line class="grid" x1="598.5" y1="348" x2="598.5" y2="500" stroke-width="1"/>
+<text class="muted" x="598.5" y="516" font-size="12" text-anchor="middle">75%</text>
+<line class="grid" x1="730.0" y1="348" x2="730.0" y2="500" stroke-width="1"/>
+<text class="muted" x="730.0" y="516" font-size="12" text-anchor="middle">100%</text>
+<line class="base" x1="204" y1="348" x2="204" y2="500" stroke-width="1.5"/>
+<text class="ink" x="28" y="390.0" font-size="14" font-weight="600">Claude Haiku 5.5</text>
+<path class="s0" d="M204,356 H726.0 Q730.0,356 730.0,360.0 V370.0 Q730.0,374 726.0,374 H204 Z"/>
+<line class="whisker" x1="683.9" y1="365.0" x2="730.0" y2="365.0" stroke-width="1.5"/>
+<line class="whisker" x1="683.9" y1="361.0" x2="683.9" y2="369.0" stroke-width="1.5"/>
+<line class="whisker" x1="730.0" y1="361.0" x2="730.0" y2="369.0" stroke-width="1.5"/>
+<text class="ink" x="738.0" y="369.5" font-size="13" font-weight="600">100%  (40/40)</text>
+<path class="s1" d="M204,376 H712.9 Q716.9,376 716.9,380.0 V390.0 Q716.9,394 712.9,394 H204 Z"/>
+<line class="whisker" x1="662.2" y1="385.0" x2="727.7" y2="385.0" stroke-width="1.5"/>
+<line class="whisker" x1="662.2" y1="381.0" x2="662.2" y2="389.0" stroke-width="1.5"/>
+<line class="whisker" x1="727.7" y1="381.0" x2="727.7" y2="389.0" stroke-width="1.5"/>
+<text class="ink" x="735.7" y="389.5" font-size="13" font-weight="600">98%  (39/40)</text>
+<path class="s2" d="M204,396 H726.0 Q730.0,396 730.0,400.0 V410.0 Q730.0,414 726.0,414 H204 Z"/>
+<line class="whisker" x1="683.9" y1="405.0" x2="730.0" y2="405.0" stroke-width="1.5"/>
+<line class="whisker" x1="683.9" y1="401.0" x2="683.9" y2="409.0" stroke-width="1.5"/>
+<line class="whisker" x1="730.0" y1="401.0" x2="730.0" y2="409.0" stroke-width="1.5"/>
+<text class="ink" x="738.0" y="409.5" font-size="13" font-weight="600">100%  (40/40)</text>
+<text class="ink" x="28" y="470.0" font-size="14" font-weight="600">Claude Opus 5.5</text>
+<path class="s0" d="M204,436 H726.0 Q730.0,436 730.0,440.0 V450.0 Q730.0,454 726.0,454 H204 Z"/>
+<line class="whisker" x1="683.9" y1="445.0" x2="730.0" y2="445.0" stroke-width="1.5"/>
+<line class="whisker" x1="683.9" y1="441.0" x2="683.9" y2="449.0" stroke-width="1.5"/>
+<line class="whisker" x1="730.0" y1="441.0" x2="730.0" y2="449.0" stroke-width="1.5"/>
+<text class="ink" x="738.0" y="449.5" font-size="13" font-weight="600">100%  (40/40)</text>
+<path class="s1" d="M204,456 H726.0 Q730.0,456 730.0,460.0 V470.0 Q730.0,474 726.0,474 H204 Z"/>
+<line class="whisker" x1="683.9" y1="465.0" x2="730.0" y2="465.0" stroke-width="1.5"/>
+<line class="whisker" x1="683.9" y1="461.0" x2="683.9" y2="469.0" stroke-width="1.5"/>
+<line class="whisker" x1="730.0" y1="461.0" x2="730.0" y2="469.0" stroke-width="1.5"/>
+<text class="ink" x="738.0" y="469.5" font-size="13" font-weight="600">100%  (40/40)</text>
+<path class="s2" d="M204,476 H726.0 Q730.0,476 730.0,480.0 V490.0 Q730.0,494 726.0,494 H204 Z"/>
+<line class="whisker" x1="683.9" y1="485.0" x2="730.0" y2="485.0" stroke-width="1.5"/>
+<line class="whisker" x1="683.9" y1="481.0" x2="683.9" y2="489.0" stroke-width="1.5"/>
+<line class="whisker" x1="730.0" y1="481.0" x2="730.0" y2="489.0" stroke-width="1.5"/>
+<text class="ink" x="738.0" y="489.5" font-size="13" font-weight="600">100%  (40/40)</text>
+<text class="muted" x="28" y="558" font-size="12">Whiskers: 95% interval, the range the real pass rate most likely sits in. Labels: tasks passed.</text>
+<text class="muted" x="28" y="574" font-size="12">One trial per task. The improved build ran about three hours after v2.2.0, so read gaps as hints.</text>
+</svg>

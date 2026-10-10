@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 692" width="880" height="692" role="img" aria-labelledby="t d">
+<title id="t">Extra tokens per run compared with no Bossku Superpower</title>
+<desc id="d">Extra tokens per run compared with no Bossku Superpower. Zero is the run without Bossku Superpower. Left of zero used fewer tokens, right of zero used more. Hidden-test coding tasks (17 tasks) Claude Haiku 5.5: v2.2.0 +13%, Improved build -12%. Hidden-test coding tasks (17 tasks) Claude Opus 5.5: v2.2.0 +17%, Improved build +3%. HumanEval problems (40 problems) Claude Haiku 5.5: v2.2.0 +46%, Improved build -1%. HumanEval problems (40 problems) Claude Opus 5.5: v2.2.0 -5%, Improved build -6%. Two-session tasks (22 tasks) Claude Haiku 5.5: v2.2.0 -17%, Improved build -23%. Two-session tasks (22 tasks) Claude Opus 5.5: v2.2.0 -23%, Improved build -15%.</desc>
+<style>text{font-family:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif}.card{fill:#fcfcfb}.ink{fill:#0b0b0b}.ink2{fill:#52514e}.muted{fill:#898781}.grid{stroke:#e1e0d9}.base{stroke:#c3c2b7}.whisker{stroke:#52514e}.s0{fill:#eb6834}.s1{fill:#1baf7a}@media (prefers-color-scheme:dark){.card{fill:#1a1a19}.ink{fill:#ffffff}.ink2{fill:#c3c2b7}.muted{fill:#898781}.grid{stroke:#2c2c2a}.base{stroke:#383835}.whisker{stroke:#c3c2b7}.s0{fill:#d95926}.s1{fill:#199e70}}</style>
+<rect class="card" width="880" height="692" rx="14"/>
+<text class="ink" x="28" y="42" font-size="22" font-weight="650">Extra tokens per run compared with no Bossku Superpower</text>
+<text class="ink2" x="28" y="66" font-size="14">Zero is the run without Bossku Superpower. Left of zero used fewer tokens, right of zero used more.</text>
+<rect class="s0" x="28" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="46" y="89" font-size="13">v2.2.0</text>
+<rect class="s1" x="115" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="133" y="89" font-size="13">Improved build</text>
+<text class="ink" x="28" y="112" font-size="15" font-weight="650">Hidden-test coding tasks (17 tasks)</text>
+<line class="grid" x1="204.0" y1="126" x2="204.0" y2="238" stroke-width="1"/>
+<text class="muted" x="204.0" y="254" font-size="12" text-anchor="middle">-40%</text>
+<line class="grid" x1="309.2" y1="126" x2="309.2" y2="238" stroke-width="1"/>
+<text class="muted" x="309.2" y="254" font-size="12" text-anchor="middle">-20%</text>
+<line class="grid" x1="414.4" y1="126" x2="414.4" y2="238" stroke-width="1"/>
+<text class="muted" x="414.4" y="254" font-size="12" text-anchor="middle">0%</text>
+<line class="grid" x1="519.6" y1="126" x2="519.6" y2="238" stroke-width="1"/>
+<text class="muted" x="519.6" y="254" font-size="12" text-anchor="middle">+20%</text>
+<line class="grid" x1="624.8" y1="126" x2="624.8" y2="238" stroke-width="1"/>
+<text class="muted" x="624.8" y="254" font-size="12" text-anchor="middle">+40%</text>
+<line class="grid" x1="730.0" y1="126" x2="730.0" y2="238" stroke-width="1"/>
+<text class="muted" x="730.0" y="254" font-size="12" text-anchor="middle">+60%</text>
+<line class="whisker" x1="414.4" y1="126" x2="414.4" y2="238" stroke-width="1.5"/>
+<text class="ink" x="28" y="151.0" font-size="14" font-weight="600">Claude Haiku 5.5</text>
+<text class="muted" x="28" y="168.0" font-size="12">Without: 293k tokens</text>
+<path class="s0" d="M414.4,134 H478.1 Q482.1,134 482.1,138.0 V148.0 Q482.1,152 478.1,152 H414.4 Z"/>
+<text class="ink" x="490.1" y="147.5" font-size="13" font-weight="600">+13%</text>
+<path class="s1" d="M414.4,154 H355.9 Q351.9,154 351.9,158.0 V168.0 Q351.9,172 355.9,172 H414.4 Z"/>
+<text class="ink" x="343.9" y="167.5" font-size="13" font-weight="600" text-anchor="end">-12%</text>
+<text class="ink" x="28" y="211.0" font-size="14" font-weight="600">Claude Opus 5.5</text>
+<text class="muted" x="28" y="228.0" font-size="12">Without: 147k tokens</text>
+<path class="s0" d="M414.4,194 H499.5 Q503.5,194 503.5,198.0 V208.0 Q503.5,212 499.5,212 H414.4 Z"/>
+<text class="ink" x="511.5" y="207.5" font-size="13" font-weight="600">+17%</text>
+<path class="s1" d="M414.4,214 H427.8 Q431.8,214 431.8,218.0 V228.0 Q431.8,232 427.8,232 H414.4 Z"/>
+<text class="ink" x="439.8" y="227.5" font-size="13" font-weight="600">+3%</text>
+<text class="ink" x="28" y="294" font-size="15" font-weight="650">HumanEval problems (40 problems)</text>
+<line class="grid" x1="204.0" y1="308" x2="204.0" y2="420" stroke-width="1"/>
+<text class="muted" x="204.0" y="436" font-size="12" text-anchor="middle">-40%</text>
+<line class="grid" x1="309.2" y1="308" x2="309.2" y2="420" stroke-width="1"/>
+<text class="muted" x="309.2" y="436" font-size="12" text-anchor="middle">-20%</text>
+<line class="grid" x1="414.4" y1="308" x2="414.4" y2="420" stroke-width="1"/>
+<text class="muted" x="414.4" y="436" font-size="12" text-anchor="middle">0%</text>
+<line class="grid" x1="519.6" y1="308" x2="519.6" y2="420" stroke-width="1"/>
+<text class="muted" x="519.6" y="436" font-size="12" text-anchor="middle">+20%</text>
+<line class="grid" x1="624.8" y1="308" x2="624.8" y2="420" stroke-width="1"/>
+<text class="muted" x="624.8" y="436" font-size="12" text-anchor="middle">+40%</text>
+<line class="grid" x1="730.0" y1="308" x2="730.0" y2="420" stroke-width="1"/>
+<text class="muted" x="730.0" y="436" font-size="12" text-anchor="middle">+60%</text>
+<line class="whisker" x1="414.4" y1="308" x2="414.4" y2="420" stroke-width="1.5"/>
+<text class="ink" x="28" y="333.0" font-size="14" font-weight="600">Claude Haiku 5.5</text>
+<text class="muted" x="28" y="350.0" font-size="12">Without: 186k tokens</text>
+<path class="s0" d="M414.4,316 H652.6 Q656.6,316 656.6,320.0 V330.0 Q656.6,334 652.6,334 H414.4 Z"/>
+<text class="ink" x="664.6" y="329.5" font-size="13" font-weight="600">+46%</text>
+<path class="s1" d="M414.4,336 H411.5 Q408.7,336 408.7,338.9 V351.1 Q408.7,354 411.5,354 H414.4 Z"/>
+<text class="ink" x="400.7" y="349.5" font-size="13" font-weight="600" text-anchor="end">-1%</text>
+<text class="ink" x="28" y="393.0" font-size="14" font-weight="600">Claude Opus 5.5</text>
+<text class="muted" x="28" y="410.0" font-size="12">Without: 112k tokens</text>
+<path class="s0" d="M414.4,376 H393.2 Q389.2,376 389.2,380.0 V390.0 Q389.2,394 393.2,394 H414.4 Z"/>
+<text class="ink" x="381.2" y="389.5" font-size="13" font-weight="600" text-anchor="end">-5%</text>
+<path class="s1" d="M414.4,396 H389.4 Q385.4,396 385.4,400.0 V410.0 Q385.4,414 389.4,414 H414.4 Z"/>
+<text class="ink" x="377.4" y="409.5" font-size="13" font-weight="600" text-anchor="end">-6%</text>
+<text class="ink" x="28" y="476" font-size="15" font-weight="650">Two-session tasks (22 tasks)</text>
+<line class="grid" x1="204.0" y1="490" x2="204.0" y2="602" stroke-width="1"/>
+<text class="muted" x="204.0" y="618" font-size="12" text-anchor="middle">-40%</text>
+<line class="grid" x1="309.2" y1="490" x2="309.2" y2="602" stroke-width="1"/>
+<text class="muted" x="309.2" y="618" font-size="12" text-anchor="middle">-20%</text>
+<line class="grid" x1="414.4" y1="490" x2="414.4" y2="602" stroke-width="1"/>
+<text class="muted" x="414.4" y="618" font-size="12" text-anchor="middle">0%</text>
+<line class="grid" x1="519.6" y1="490" x2="519.6" y2="602" stroke-width="1"/>
+<text class="muted" x="519.6" y="618" font-size="12" text-anchor="middle">+20%</text>
+<line class="grid" x1="624.8" y1="490" x2="624.8" y2="602" stroke-width="1"/>
+<text class="muted" x="624.8" y="618" font-size="12" text-anchor="middle">+40%</text>
+<line class="grid" x1="730.0" y1="490" x2="730.0" y2="602" stroke-width="1"/>
+<text class="muted" x="730.0" y="618" font-size="12" text-anchor="middle">+60%</text>
+<line class="whisker" x1="414.4" y1="490" x2="414.4" y2="602" stroke-width="1.5"/>
+<text class="ink" x="28" y="515.0" font-size="14" font-weight="600">Claude Haiku 5.5</text>
+<text class="muted" x="28" y="532.0" font-size="12">Without: 319k tokens</text>
+<path class="s0" d="M414.4,498 H330.0 Q326.0,498 326.0,502.0 V512.0 Q326.0,516 330.0,516 H414.4 Z"/>
+<text class="ink" x="318.0" y="511.5" font-size="13" font-weight="600" text-anchor="end">-17%</text>
+<path class="s1" d="M414.4,518 H298.4 Q294.4,518 294.4,522.0 V532.0 Q294.4,536 298.4,536 H414.4 Z"/>
+<text class="ink" x="286.4" y="531.5" font-size="13" font-weight="600" text-anchor="end">-23%</text>
+<text class="ink" x="28" y="575.0" font-size="14" font-weight="600">Claude Opus 5.5</text>
+<text class="muted" x="28" y="592.0" font-size="12">Without: 191k tokens</text>
+<path class="s0" d="M414.4,558 H297.8 Q293.8,558 293.8,562.0 V572.0 Q293.8,576 297.8,576 H414.4 Z"/>
+<text class="ink" x="285.8" y="571.5" font-size="13" font-weight="600" text-anchor="end">-23%</text>
+<path class="s1" d="M414.4,578 H340.6 Q336.6,578 336.6,582.0 V592.0 Q336.6,596 340.6,596 H414.4 Z"/>
+<text class="ink" x="328.6" y="591.5" font-size="13" font-weight="600" text-anchor="end">-15%</text>
+<text class="muted" x="28" y="660" font-size="12">Tokens per run: every input token across all turns (cached or not) plus the output tokens, averaged.</text>
+<text class="muted" x="28" y="676" font-size="12">One trial per task. The two builds ran about three hours apart, so read it as a hint.</text>
+</svg>

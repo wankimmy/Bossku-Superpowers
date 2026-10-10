@@ -31,6 +31,10 @@ SERIES = {
     'baseline': ('Without Bossku Superpower', '#2a78d6', '#3987e5'),
     'keyword': ('Without Bossku Superpower (keyword search)', '#2a78d6', '#3987e5'),
     'after': ('With Bossku Superpower', '#1baf7a', '#199e70'),
+    # The 10 October set draws three setups: slot 1 (baseline, above), slot 2 and slot 3. Slots 1-3 pass
+    # `validate_palette.js --pairs all` in light and dark (worst CVD pair 9.2 / 9.4, normal vision 24.0 / 20.9).
+    'ship': ('v2.2.0', '#eb6834', '#d95926'),
+    'ship2': ('Improved build', '#1baf7a', '#199e70'),
 }
 FONT = 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif'
 MODELS = {
@@ -79,6 +83,7 @@ class Panel:
     axis_max: float | None = None
     ticks: list[float] | None = None
     note: str = ''
+    axis_min: float | None = None   # below zero: a signed panel, bars grow from the zero line both ways
 
 
 @dataclass
@@ -107,8 +112,13 @@ class Figure:
             block = len(self.series) * bar_h + (len(self.series) - 1) * gap
             rows_h = len(panel.groups) * block + (len(panel.groups) - 1) * group_gap
 
+            lowest = panel.axis_min or 0
+
             def x_of(value: float) -> float:
-                return left + plot_w * value / axis_max
+                return left + plot_w * (value - lowest) / (axis_max - lowest)
+
+            zero = round(x_of(0), 1) if lowest else left   # where the bars start
+            zero_class = 'whisker' if lowest else 'base'   # a signed panel's zero line is its reference, so it is drawn in ink, not hairline gray
 
             if panel.title:
                 body.append(f'<text class="ink" x="28" y="{y}" font-size="15" font-weight="650">{html.escape(panel.title)}</text>')
@@ -122,7 +132,7 @@ class Figure:
                 body.append(f'<line class="grid" x1="{x:.1f}" y1="{top - 8}" x2="{x:.1f}" y2="{top + rows_h + 6}" stroke-width="1"/>')
                 body.append(f'<text class="muted" x="{x:.1f}" y="{top + rows_h + 22}" font-size="12" text-anchor="middle">'
                             f'{html.escape(panel.fmt(tick))}{html.escape(panel.unit)}</text>')
-            body.append(f'<line class="base" x1="{left}" y1="{top - 8}" x2="{left}" y2="{top + rows_h + 6}" stroke-width="1.5"/>')
+            body.append(f'<line class="{zero_class}" x1="{zero}" y1="{top - 8}" x2="{zero}" y2="{top + rows_h + 6}" stroke-width="1.5"/>')
             gy = top
             for group in panel.groups:
                 multiline = bool(group.sublabel)
@@ -134,21 +144,23 @@ class Figure:
                     by = gy + index * (bar_h + gap)
                     if value is None:
                         continue
-                    width = max(x_of(max(value, 0)) - left, 1.0)
+                    sign = -1 if value < 0 else 1
+                    width = max(abs(x_of(max(value, lowest)) - zero), 1.0)
                     r = min(4, width / 2, bar_h / 2)
-                    path = (f'M{left},{by} H{left + width - r:.1f} Q{left + width:.1f},{by} {left + width:.1f},{by + r:.1f} '
-                            f'V{by + bar_h - r:.1f} Q{left + width:.1f},{by + bar_h} {left + width - r:.1f},{by + bar_h} H{left} Z')
+                    end = zero + sign * width
+                    path = (f'M{zero},{by} H{end - sign * r:.1f} Q{end:.1f},{by} {end:.1f},{by + r:.1f} '
+                            f'V{by + bar_h - r:.1f} Q{end:.1f},{by + bar_h} {end - sign * r:.1f},{by + bar_h} H{zero} Z')
                     body.append(f'<path class="s{index}" d="{path}"/>')
                     tip = group.tips[index] if group.tips else f'{panel.fmt(value)}{panel.unit}'
-                    label_x = left + width + 8
+                    label_x, anchor = (end + 8, '') if sign > 0 else (end - 8, ' text-anchor="end"')
                     ci = group.ci[index] if group.ci else None
                     if ci:
                         lo, hi, cy = x_of(ci[0]), x_of(ci[1]), by + bar_h / 2
                         body.append(f'<line class="whisker" x1="{lo:.1f}" y1="{cy}" x2="{hi:.1f}" y2="{cy}" stroke-width="1.5"/>')
                         for edge in (lo, hi):
                             body.append(f'<line class="whisker" x1="{edge:.1f}" y1="{cy - 4}" x2="{edge:.1f}" y2="{cy + 4}" stroke-width="1.5"/>')
-                        label_x = max(label_x, hi + 8)
-                    body.append(f'<text class="ink" x="{label_x:.1f}" y="{by + bar_h / 2 + 4.5:.1f}" font-size="13" font-weight="600">'
+                        label_x = max(label_x, hi + 8) if sign > 0 else min(label_x, lo - 8)
+                    body.append(f'<text class="ink" x="{label_x:.1f}" y="{by + bar_h / 2 + 4.5:.1f}" font-size="13" font-weight="600"{anchor}>'
                                 f'{html.escape(tip)}</text>')
                 gy += block + group_gap
             y = top + rows_h + 22 + panel_gap

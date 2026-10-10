@@ -1,8 +1,9 @@
-"""The 10 October 2026 result set: the saved summary, the tables of its page and the scrubbing of its rows must match the raw rows.
+"""The 10 October 2026 result set: the saved summary, the tables and charts of its page and the scrubbing of its rows must match the raw rows.
 
 `benchmarks/results/raw/2026-10-10/` is the source of truth. `benchmarks/results/2026-10-10.json` is recomputed from it
-(the same functions as `benchmark_agent.py report`), and the marked tables of `docs/benchmarks/results-2026-10-10.md` are
-rebuilt from that summary. The 1-8 October files are checked by test_results_consistent.py and are not touched here.
+(the same functions as `benchmark_agent.py report`), the marked tables of `docs/benchmarks/results-2026-10-10.md` are
+rebuilt from that summary, and so are the three SVG charts in `docs/assets/`. The 1-8 October files are checked by
+test_results_consistent.py and are not touched here.
 """
 
 import json
@@ -16,12 +17,14 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from scripts.benchmark_agent import coding_report, excluded, scrub  # noqa: E402
-from scripts.summarize_run_set import BOTH, SUITES, marker, render, split_name, summarize  # noqa: E402
+from scripts.summarize_run_set import BOTH, SUITES, charts, marker, render, split_name, summarize  # noqa: E402
 from tests.test_results_consistent import same  # noqa: E402
 
 RAW = ROOT / "benchmarks" / "results" / "raw" / "2026-10-10"
 SAVED = ROOT / "benchmarks" / "results" / "2026-10-10.json"
 PAGE = ROOT / "docs" / "benchmarks" / "results-2026-10-10.md"
+README = ROOT / "README.md"
+ASSETS = ROOT / "docs" / "assets"
 ARMS = {"baseline", "ship", "ship2"}
 
 
@@ -49,6 +52,26 @@ class RunSetTests(unittest.TestCase):
                 start, end = marker(name, "start"), marker(name, "end")
                 self.assertIn(start, page, f"the page is missing the {name} block")
                 self.assertEqual(page.split(start, 1)[1].split(end, 1)[0].strip("\n"), expected)
+
+    def test_the_charts_regenerate_byte_for_byte_from_the_saved_summary(self):
+        """The three SVGs are drawn from the summary alone, so a chart can never drift from its numbers."""
+        drawn = charts(self.saved)
+        self.assertEqual(sorted(drawn), [f"benchmark-2026-10-10-{name}.svg" for name in ("coding", "memory", "tokens")])
+        for name, svg in drawn.items():
+            with self.subTest(chart=name):
+                path = ASSETS / name
+                self.assertTrue(path.exists(), f"{name} is not committed")
+                self.assertEqual(path.read_text(encoding="utf-8"), svg)   # text mode: a CRLF checkout reads as LF
+
+    def test_the_page_and_the_readme_show_the_charts(self):
+        page = PAGE.read_text(encoding="utf-8")
+        readme = README.read_text(encoding="utf-8")
+        for name in ("coding", "memory", "tokens"):
+            with self.subTest(chart=name):
+                self.assertIn(f"](../assets/benchmark-2026-10-10-{name}.svg)", page)
+        for name in ("memory", "tokens"):
+            with self.subTest(chart=name, where="README"):
+                self.assertIn(f"](docs/assets/benchmark-2026-10-10-{name}.svg)", readme)
 
     def test_a_cell_with_a_baseline_in_the_same_run_matches_the_report_command(self):
         """`benchmark_agent.py report` on the same files gives the arms and the paired differences of the summary."""

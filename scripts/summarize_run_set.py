@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Summarise one dated run set (benchmarks/results/raw/<date>/) into <date>.json and the tables of its results page.
+"""Summarise one dated run set (benchmarks/results/raw/<date>/) into <date>.json, the tables of its results page and its charts.
 
-    python scripts/summarize_run_set.py 2026-10-10           # rewrite benchmarks/results/2026-10-10.json and the page tables
-    python scripts/summarize_run_set.py 2026-10-10 --check   # change nothing; exit 1 when either differs from the raw rows
+    python scripts/summarize_run_set.py 2026-10-10           # rewrite benchmarks/results/2026-10-10.json, the page tables and the charts
+    python scripts/summarize_run_set.py 2026-10-10 --check   # change nothing; exit 1 when any of them differs from the raw rows
 
 The numbers come from the same functions as `benchmark_agent.py report`. A file is named <suite>-<model>.jsonl, where the
 suite is `test` (the 17 hidden-test coding tasks), `humaneval`, `memory` (10 two-session tasks) or `memory-rules` (12 more).
@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import re
 import sys
 from collections import Counter
@@ -22,8 +23,10 @@ REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
 from scripts.benchmark_agent import build_report, count_excluded, excluded, load_runs  # noqa: E402
+from scripts.make_charts import Figure, Group, Panel  # noqa: E402
 
 RESULTS = REPO / 'benchmarks' / 'results'
+ASSETS = REPO / 'docs' / 'assets'
 FILE_NAME = re.compile(r'(memory-rules|memory|test|humaneval)-(.+)\.jsonl')
 SUITES = ('test', 'humaneval', 'memory', 'memory-rules')
 BOTH = 'memory-both'   # the two memory sets pooled, for a model that has scored runs in both
@@ -246,6 +249,85 @@ def render(summary: dict) -> dict[str, str]:
     return blocks
 
 
+# ------------------------------------------------------------------------------ the charts of the results page
+# Three setups in a fixed order, one colour each (SERIES in make_charts.py), so a reader learns the colours once.
+# Drawn from the summary alone, as static SVG: GitHub shows no hover, so the tables of the page are the data view.
+
+CHART_ARMS = ('baseline', 'ship', 'ship2')
+# ponytail: the charts are specific to the 2026-10-10 set (both Claude models and the ship2 arm).
+CHART_MODELS = ('claude-haiku-5-5', 'claude-opus-5-5')
+FOOT_PASS = ('Whiskers: 95% interval, the range the real pass rate most likely sits in. Labels: tasks passed.\n'
+             'One trial per task. The improved build ran about three hours after v2.2.0, so read gaps as hints.')
+
+
+def pass_groups(cells: dict, noun: str = '') -> list[Group]:
+    """One group per model: pass rate with its 95% whiskers for the three setups, labelled with the pass count."""
+    groups = []
+    for model in CHART_MODELS:
+        arms = cells[model]['arms']
+        groups.append(Group(model_label(model), [100 * arms[a]['pass_rate'] for a in CHART_ARMS],
+                            f'{arms["baseline"]["runs"]} {noun}' if noun else '',
+                            ci=[tuple(100 * c for c in arms[a]['pass_ci']) for a in CHART_ARMS],
+                            tips=[f'{pct(arms[a]["pass_rate"])}  ({arms[a]["passed"]}/{arms[a]["runs"]})' for a in CHART_ARMS]))
+    return groups
+
+
+def pass_panel(title: str, groups: list[Group]) -> Panel:
+    return Panel(title, groups, fmt=lambda v: f'{v:.0f}', unit='%', axis_max=100, ticks=[0, 25, 50, 75, 100])
+
+
+def chart_memory(summary: dict) -> str:
+    return Figure('Remembering a rule from an earlier session',
+                  'Session 1 states a project rule. Session 2 asks for work that breaks it unless the agent remembers.',
+                  list(CHART_ARMS), [pass_panel('', pass_groups(summary['suites'][BOTH], 'tasks'))], footnote=FOOT_PASS).render()
+
+
+def chart_coding(summary: dict) -> str:
+    panels = []
+    for title, suite, noun in (('Hidden-test coding tasks', 'test', 'tasks'), ('HumanEval problems', 'humaneval', 'problems')):
+        cells = summary['suites'][suite]
+        runs = cells[CHART_MODELS[0]]['arms']['baseline']['runs']
+        panels.append(pass_panel(f'{title} ({runs} {noun})', pass_groups(cells)))
+    return Figure('Coding tasks and HumanEval: hidden tests passed',
+                  'Both models already pass almost everything without Bossku Superpower, so there is little room to gain.',
+                  list(CHART_ARMS), panels, footnote=FOOT_PASS).render()
+
+
+def token_change(arms: dict, arm: str) -> float:
+    """Percent more tokens per run than the Without setup; below zero is fewer."""
+    return 100 * (tokens(arms[arm]) / tokens(arms['baseline']) - 1)
+
+
+def chart_tokens(summary: dict) -> str:
+    suites = (('Hidden-test coding tasks', 'test', 'tasks'), ('HumanEval problems', 'humaneval', 'problems'),
+              ('Two-session tasks', BOTH, 'tasks'))
+    changes = [token_change(summary['suites'][suite][model]['arms'], arm)
+               for _, suite, _ in suites for model in CHART_MODELS for arm in ('ship', 'ship2')]
+    low, high = min(-20, 20 * math.floor(min(changes) / 20)), max(20, 20 * math.ceil(max(changes) / 20))   # one scale for every panel
+    panels = []
+    for title, suite, noun in suites:
+        cells = summary['suites'][suite]
+        groups = [Group(model_label(model), [token_change(cells[model]['arms'], arm) for arm in ('ship', 'ship2')],
+                        f'Without: {tokens(cells[model]["arms"]["baseline"]) / 1000:,.0f}k tokens',
+                        tips=[f'{signed(token_change(cells[model]["arms"], arm))}%' for arm in ('ship', 'ship2')])
+                  for model in CHART_MODELS]
+        runs = cells[CHART_MODELS[0]]['arms']['baseline']['runs']
+        panels.append(Panel(f'{title} ({runs} {noun})', groups, fmt=signed, unit='%', axis_min=low, axis_max=high,
+                            ticks=list(range(low, high + 1, 20))))
+    return Figure('Extra tokens per run compared with no Bossku Superpower',
+                  'Zero is the run without Bossku Superpower. Left of zero used fewer tokens, right of zero used more.',
+                  ['ship', 'ship2'], panels,
+                  footnote='Tokens per run: every input token across all turns (cached or not) plus the output tokens, averaged.\n'
+                           'One trial per task. The two builds ran about three hours apart, so read it as a hint.').render()
+
+
+def charts(summary: dict) -> dict[str, str]:
+    """File name -> SVG for the three charts of the results page."""
+    prefix = f'benchmark-{summary["set"]}-'
+    return {prefix + 'memory.svg': chart_memory(summary), prefix + 'coding.svg': chart_coding(summary),
+            prefix + 'tokens.svg': chart_tokens(summary)}
+
+
 def marker(name: str, edge: str) -> str:
     return f'<!-- {name}:{edge} -->'
 
@@ -270,14 +352,18 @@ def main(argv: list[str] | None = None) -> int:
     text = json.dumps(summary, indent=2) + '\n'
     page = page_path.read_text(encoding='utf-8')   # text mode: a CRLF page reads as LF
     new_page = inject(page, render(summary))
+    drawn = charts(json.loads(text))   # from the saved text, so a chart can never show more than the summary does
     if args.check:
-        same = saved.exists() and saved.read_text(encoding='utf-8') == text and new_page == page
+        same = (saved.exists() and saved.read_text(encoding='utf-8') == text and new_page == page and
+                all((ASSETS / name).exists() and (ASSETS / name).read_text(encoding='utf-8') == svg for name, svg in drawn.items()))
         print('up to date' if same else 'out of date')
         return 0 if same else 1
     saved.write_text(text, encoding='utf-8', newline='\n')
+    for name, svg in drawn.items():
+        (ASSETS / name).write_text(svg, encoding='utf-8', newline='\n')
     ending = '\r\n' if b'\r\n' in page_path.read_bytes() else '\n'   # keep the page's own line endings
     page_path.write_text(new_page, encoding='utf-8', newline=ending)
-    print(f'wrote {saved.relative_to(REPO)} and the tables of {page_path.relative_to(REPO)}')
+    print(f'wrote {saved.relative_to(REPO)}, the tables of {page_path.relative_to(REPO)} and {len(drawn)} charts in {ASSETS.relative_to(REPO)}')
     return 0
 
 

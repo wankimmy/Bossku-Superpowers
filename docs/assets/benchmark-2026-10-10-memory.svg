@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 346" width="880" height="346" role="img" aria-labelledby="t d">
+<title id="t">Remembering a rule from an earlier session</title>
+<desc id="d">Remembering a rule from an earlier session. Session 1 states a project rule. Session 2 asks for work that breaks it unless the agent remembers.  Claude Haiku 5.5: Without Bossku Superpower 45%  (10/22), v2.2.0 73%  (16/22), Improved build 68%  (15/22).  Claude Opus 5.5: Without Bossku Superpower 68%  (15/22), v2.2.0 77%  (17/22), Improved build 73%  (16/22).</desc>
+<style>text{font-family:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif}.card{fill:#fcfcfb}.ink{fill:#0b0b0b}.ink2{fill:#52514e}.muted{fill:#898781}.grid{stroke:#e1e0d9}.base{stroke:#c3c2b7}.whisker{stroke:#52514e}.s0{fill:#2a78d6}.s1{fill:#eb6834}.s2{fill:#1baf7a}@media (prefers-color-scheme:dark){.card{fill:#1a1a19}.ink{fill:#ffffff}.ink2{fill:#c3c2b7}.muted{fill:#898781}.grid{stroke:#2c2c2a}.base{stroke:#383835}.whisker{stroke:#c3c2b7}.s0{fill:#3987e5}.s1{fill:#d95926}.s2{fill:#199e70}}</style>
+<rect class="card" width="880" height="346" rx="14"/>
+<text class="ink" x="28" y="42" font-size="22" font-weight="650">Remembering a rule from an earlier session</text>
+<text class="ink2" x="28" y="66" font-size="14">Session 1 states a project rule. Session 2 asks for work that breaks it unless the agent remembers.</text>
+<rect class="s0" x="28" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="46" y="89" font-size="13">Without Bossku Superpower</text>
+<rect class="s1" x="254" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="272" y="89" font-size="13">v2.2.0</text>
+<rect class="s2" x="341" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="359" y="89" font-size="13">Improved build</text>
+<line class="grid" x1="204.0" y1="104" x2="204.0" y2="256" stroke-width="1"/>
+<text class="muted" x="204.0" y="272" font-size="12" text-anchor="middle">0%</text>
+<line class="grid" x1="335.5" y1="104" x2="335.5" y2="256" stroke-width="1"/>
+<text class="muted" x="335.5" y="272" font-size="12" text-anchor="middle">25%</text>
+<line class="grid" x1="467.0" y1="104" x2="467.0" y2="256" stroke-width="1"/>
+<text class="muted" x="467.0" y="272" font-size="12" text-anchor="middle">50%</text>
+<line class="grid" x1="598.5" y1="104" x2="598.5" y2="256" stroke-width="1"/>
+<text class="muted" x="598.5" y="272" font-size="12" text-anchor="middle">75%</text>
+<line class="grid" x1="730.0" y1="104" x2="730.0" y2="256" stroke-width="1"/>
+<text class="muted" x="730.0" y="272" font-size="12" text-anchor="middle">100%</text>
+<line class="base" x1="204" y1="104" x2="204" y2="256" stroke-width="1.5"/>
+<text class="ink" x="28" y="139.0" font-size="14" font-weight="600">Claude Haiku 5.5</text>
+<text class="muted" x="28" y="156.0" font-size="12">22 tasks</text>
+<path class="s0" d="M204,112 H439.1 Q443.1,112 443.1,116.0 V126.0 Q443.1,130 439.1,130 H204 Z"/>
+<line class="whisker" x1="345.6" y1="121.0" x2="547.7" y2="121.0" stroke-width="1.5"/>
+<line class="whisker" x1="345.6" y1="117.0" x2="345.6" y2="125.0" stroke-width="1.5"/>
+<line class="whisker" x1="547.7" y1="117.0" x2="547.7" y2="125.0" stroke-width="1.5"/>
+<text class="ink" x="555.7" y="125.5" font-size="13" font-weight="600">45%  (10/22)</text>
+<path class="s1" d="M204,132 H582.5 Q586.5,132 586.5,136.0 V146.0 Q586.5,150 582.5,150 H204 Z"/>
+<line class="whisker" x1="476.7" y1="141.0" x2="660.8" y2="141.0" stroke-width="1.5"/>
+<line class="whisker" x1="476.7" y1="137.0" x2="476.7" y2="145.0" stroke-width="1.5"/>
+<line class="whisker" x1="660.8" y1="137.0" x2="660.8" y2="145.0" stroke-width="1.5"/>
+<text class="ink" x="668.8" y="145.5" font-size="13" font-weight="600">73%  (16/22)</text>
+<path class="s2" d="M204,152 H558.6 Q562.6,152 562.6,156.0 V166.0 Q562.6,170 558.6,170 H204 Z"/>
+<line class="whisker" x1="452.9" y1="161.0" x2="643.9" y2="161.0" stroke-width="1.5"/>
+<line class="whisker" x1="452.9" y1="157.0" x2="452.9" y2="165.0" stroke-width="1.5"/>
+<line class="whisker" x1="643.9" y1="157.0" x2="643.9" y2="165.0" stroke-width="1.5"/>
+<text class="ink" x="651.9" y="165.5" font-size="13" font-weight="600">68%  (15/22)</text>
+<text class="ink" x="28" y="219.0" font-size="14" font-weight="600">Claude Opus 5.5</text>
+<text class="muted" x="28" y="236.0" font-size="12">22 tasks</text>
+<path class="s0" d="M204,192 H558.6 Q562.6,192 562.6,196.0 V206.0 Q562.6,210 558.6,210 H204 Z"/>
+<line class="whisker" x1="452.9" y1="201.0" x2="643.9" y2="201.0" stroke-width="1.5"/>
+<line class="whisker" x1="452.9" y1="197.0" x2="452.9" y2="205.0" stroke-width="1.5"/>
+<line class="whisker" x1="643.9" y1="197.0" x2="643.9" y2="205.0" stroke-width="1.5"/>
+<text class="ink" x="651.9" y="205.5" font-size="13" font-weight="600">68%  (15/22)</text>
+<path class="s1" d="M204,212 H606.5 Q610.5,212 610.5,216.0 V226.0 Q610.5,230 606.5,230 H204 Z"/>
+<line class="whisker" x1="501.5" y1="221.0" x2="676.8" y2="221.0" stroke-width="1.5"/>
+<line class="whisker" x1="501.5" y1="217.0" x2="501.5" y2="225.0" stroke-width="1.5"/>
+<line class="whisker" x1="676.8" y1="217.0" x2="676.8" y2="225.0" stroke-width="1.5"/>
+<text class="ink" x="684.8" y="225.5" font-size="13" font-weight="600">77%  (17/22)</text>
+<path class="s2" d="M204,232 H582.5 Q586.5,232 586.5,236.0 V246.0 Q586.5,250 582.5,250 H204 Z"/>
+<line class="whisker" x1="476.7" y1="241.0" x2="660.8" y2="241.0" stroke-width="1.5"/>
+<line class="whisker" x1="476.7" y1="237.0" x2="476.7" y2="245.0" stroke-width="1.5"/>
+<line class="whisker" x1="660.8" y1="237.0" x2="660.8" y2="245.0" stroke-width="1.5"/>
+<text class="ink" x="668.8" y="245.5" font-size="13" font-weight="600">73%  (16/22)</text>
+<text class="muted" x="28" y="314" font-size="12">Whiskers: 95% interval, the range the real pass rate most likely sits in. Labels: tasks passed.</text>
+<text class="muted" x="28" y="330" font-size="12">One trial per task. The improved build ran about three hours after v2.2.0, so read gaps as hints.</text>
+</svg>
