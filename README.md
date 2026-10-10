@@ -38,6 +38,17 @@ We tested it with real agents on the same tasks, with and without Bossku Superpo
 
 Full numbers, charts and limits: [benchmark results](docs/benchmarks/results.md). How it was tested: [benchmark notes](docs/benchmarks/README.md).
 
+### The 10 October run
+
+A second run compared no Bossku Superpower, v2.2.0 and the improved build that followed it, on Claude Haiku 5.5 and Claude Opus 5.5. It sits next to the numbers above and does not replace them.
+
+- **Memory again.** Over the 22 two-session tasks, Claude Haiku 5.5 passed 10 without, 16 with v2.2.0 and 15 with the improved build. Claude Opus 5.5 passed 15, 17 and 16, which is no clear difference.
+- **Coding tasks and HumanEval: no clear difference.** Both Claude models were already at or near the top without it.
+- **The improved build is not clearly better or worse than v2.2.0** on passes. It used fewer tokens per run in 7 of the 8 comparisons, but the two builds ran about three hours apart with one trial per task, so read that as a hint.
+- **The Ollama Cloud models mostly did not run.** The account hit its usage limit part-way, and the coding runs of three models failed during setup. GLM 5.3, GLM 5.3 Flash and Kimi K3 have only some of the 10 original two-session tasks, DeepSeek V4.1 Flash has v2.2.0 only, and there is no Ollama coding or HumanEval result.
+
+Details, tables and limits: [10 October results](docs/benchmarks/results-2026-10-10.md).
+
 ## Quick start
 
 Need **Python 3.11+** and **Git**. About five minutes:

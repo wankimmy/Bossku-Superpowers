@@ -7,6 +7,8 @@ These files are the evidence behind the numbers in the main [README](../../READM
 | `raw/*.jsonl` | One row per agent run: model, version, task, tokens, turns, tool calls, hidden-test result. Free text is cut to 240 characters, and account and folder names are replaced with placeholders. |
 | `overhead.json`, `routing-live.json`, `coding-test.json`, `hard.json`, `memory.json`, `humaneval.json` | Summaries computed from `raw/` by `scripts/benchmark_agent.py` (`overhead-report`, `routing-report`, `report`). |
 | `routing-heldout.json` | The offline skill-search comparison, from `scripts/benchmark_routing_heldout.py`. It makes no model calls. |
+| `raw/2026-10-10/<suite>-<model>.jsonl` | The 10 October 2026 set, kept apart from the files above. One file per suite (`test`, `humaneval`, `memory`, `memory-rules`) and model, in the same row format. Setups are tagged `baseline`, `ship` (v2.2.0) and `ship2` (the improved build). Runs the harness excluded (a rate limit, a failed folder setup) stay in the files, marked, so they can be counted. |
+| `2026-10-10.json` | The summary of that set, from `scripts/summarize_run_set.py`: per suite, model and setup the runs, passes, pass rate with its Wilson interval, paired differences, tokens, turns and cost, the excluded-run counts, and the row time windows. |
 
 `raw/timeouts-first-attempt.jsonl` holds the first tries of the runs that hit the 25-minute limit while the model service was slow. Each was run again with a 60-minute limit, and the rerun is the one counted in the other files.
 
@@ -33,3 +35,12 @@ python -m unittest tests.test_results_consistent -v
 The test recomputes every summary from `raw/`, redraws every chart in `docs/assets/`, and rebuilds the README text, then fails on any difference. It also fails if a saved coding run was ended by a dollar cap, or if a saved row carries a home folder path or a provider request id (in `raw/` or `raw/earlier/`).
 
 `python scripts/make_charts.py --readme docs/benchmarks/results.md` rewrites the results page from these files. It stops with exit code 1 and changes nothing when one of the summary files is missing; pass `--allow-partial` to rewrite the page anyway.
+
+## The 10 October 2026 set
+
+- **Setups.** `baseline` is no Bossku Superpower. `ship` is commit `acf4fb3`, which is the v2.2.0 release plus changes to the benchmark tool only. `ship2` is commit `cd73169`, the improved build (v2.2.0 plus `afda557` and `cd73169`).
+- **Agent and date.** Claude Code 2.1.281 in every row where Claude Code started (the version is in each row; the 102 harness-error rows have none), 9 to 10 October 2026 (times in UTC). Claude Haiku 5.5 and Claude Opus 5.5 on the author's login; DeepSeek V4.1 Flash, GLM 5.3 Flash, GLM 5.3 and Kimi K3 through Ollama Cloud.
+- **Reused baselines.** The `baseline` runs do not depend on the build, so the improved build is compared with the `baseline` rows made about three hours earlier, and DeepSeek V4.1 Flash, which ran only `ship` here, takes its `baseline` rows from `raw/memory-deepseek-v4.1-flash.jsonl` (1 and 5 October), limited to the tasks it completed. The summary says so in `baseline_source`.
+- **Partial Ollama coverage.** The Ollama account reached its session usage limit part-way (HTTP 429); other runs ended as a harness error while the run folder was being set up. Both kinds are excluded, counted in `excluded_runs`, and never scored. The files with no scored run are kept for the count.
+- **Files made with** `python scripts/benchmark_agent.py compact RUN_FOLDERS --kind task --kind selftest --out raw/2026-10-10/<suite>-<model>.jsonl` from the git-ignored `latest/2026-10-10/` and `latest/2026-10-10-improve/` folders. The Claude files merge both folders.
+- **Check it.** `python -m unittest tests.test_results_2026_10_10 -v` recomputes `2026-10-10.json` from `raw/2026-10-10/`, rebuilds the tables of [the results page](../../docs/benchmarks/results-2026-10-10.md), and fails if a row carries an account name, a home folder path or a provider request id. `python scripts/summarize_run_set.py 2026-10-10 --check` does the first two from the command line.

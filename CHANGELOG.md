@@ -1,5 +1,23 @@
 # Changelog
 
+## Unreleased
+
+Two commits after v2.2.0 and a second benchmark set that measures them.
+
+### Fixes
+
+- **The stop gate counts running the code (`afda557`).** The Node stop gate only counted test runners, linters and builds as the check, so a model that wrote a small check script and ran it (`python check.py`, `python - <<EOF`, `python -c`, `node script.js`, `bash run.sh`) was sent back anyway. It now counts what the Python verify gate always counted: a script, `-c` or a heredoc fed to an interpreter, or a shell script, per command segment. Read-only segments (`grep`, `cat`), `--version`, `-h` and pip installs still do not count. `tests/hooks.test.mjs` has the new cases. The commit message reports, on the 9 dev tasks with Claude Haiku 5.5, the gate firing 2 times before and 0 after and turns 80 before and 67 after; those rows are not committed.
+
+### Changed
+
+- **Skill descriptions open with "Use when ..." (`cd73169`).** 70 first-party skill descriptions were reworded so a model reading the skill list can pick well. No vendored skill changed. `tests/test_descriptions.py` pins the convention.
+- **Friendlier CLI output on a terminal (`cd73169`).** On an interactive terminal, `install`, `update`, `init`, `remember`, `hooks`, `vault sync` and `tools` print a short summary and the next step. Piped output (agents, scripts, tests) is the same JSON as before, and `--json` forces JSON. `tests/test_cli_output.py` covers it, and the README quick start and `docs/installation.md` say so.
+- **Faster skill hint (`cd73169`).** The hint gives the same picks and output on 628 prompts, and the 95th percentile of the `v1` hook is about 10 ms lower (33.5, 33.7 and 33.8 ms before; 24.0, 23.9 and 23.8 ms after; in-process on one machine; `benchmarks/results/hint-tuning.json`). Tuned multi-skill hints were measured there and did not pass their gate (more recall, less precision and less primary accuracy), so the default stays `v1`.
+
+### New
+
+- **A second benchmark set, 10 October 2026.** Claude Haiku 5.5 and Claude Opus 5.5 with no Bossku Superpower, with v2.2.0 (`acf4fb3`) and with the improved build (`cd73169`), on the same coding, HumanEval and two-session tasks, one trial each. Four Ollama Cloud models were also started but mostly did not run: the account hit its session usage limit (HTTP 429) and the coding-suite runs failed while the run folder was being set up, so only some of the 10 original two-session tasks were scored for three of them and DeepSeek V4.1 Flash has v2.2.0 runs only. Result: no clear difference on the coding tasks and HumanEval (both Claude models near the ceiling); on the 22 two-session tasks Haiku passed 10 without, 16 with v2.2.0 and 15 with the improved build, and Opus passed 15, 17 and 16; the improved build was not clearly better or worse than v2.2.0 on passes and used fewer tokens per run in 7 of 8 comparisons, two sessions of work apart. Page: [`docs/benchmarks/results-2026-10-10.md`](docs/benchmarks/results-2026-10-10.md). Rows: `benchmarks/results/raw/2026-10-10/`. Summary: `benchmarks/results/2026-10-10.json`, built by `scripts/summarize_run_set.py`; `tests/test_results_2026_10_10.py` fails if the summary, the page tables or the scrubbing of the rows drift. The 1 to 8 October files are unchanged.
+
 ## v2.2.0 - Guarded hooks, Codex resume, Cypress, and an audit of the install and memory code
 
 This release adds hooks that watch the agent (a command guard, a syntax check, one stop gate), a way to carry a Codex task that hit its usage limit over to Claude Code, and a Cypress tool. A line-by-line audit of the hooks, the memory sync and the installers also found real bugs, fixed below. The Node hooks are new in this release, so their audit fixes landed before they shipped. The longer notes written while the release was built are in the three "v2.2.0 details" sections after this one.

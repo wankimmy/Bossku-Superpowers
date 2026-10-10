@@ -2,6 +2,8 @@
 
 Everything in the [results page](results.md) and the main README summary comes from the checks below. The raw rows are in [`benchmarks/results/raw/`](../../benchmarks/results/raw/), one summary per check is in [`benchmarks/results/`](../../benchmarks/results/), and [`scripts/make_charts.py`](../../scripts/make_charts.py) draws every chart and results table from them, so no number is typed by hand. [`tests/test_results_consistent.py`](../../tests/test_results_consistent.py) recomputes each summary from the raw rows and fails if a summary, a chart, or the results page has drifted from them.
 
+A second, separate set was run on 10 October 2026: Claude Haiku 5.5 and Claude Opus 5.5 with no Bossku Superpower, v2.2.0 and the improved build that followed it, plus four Ollama Cloud models that only partly ran. Its results are on [their own page](results-2026-10-10.md), its raw rows are in [`benchmarks/results/raw/2026-10-10/`](../../benchmarks/results/raw/2026-10-10/), and [`tests/test_results_2026_10_10.py`](../../tests/test_results_2026_10_10.py) recomputes its summary the same way. The method and the rules on this page apply to it; the page lists what differs (the setups, the reused baselines, the usage limit).
+
 | Check | What it answers | Needs a model? | Saved result |
 |---|---|---|---|
 | Session overhead | What does Bossku Superpower add to the first call of every session? | Yes (2 Claude models, a few cents) | `overhead.json` |
