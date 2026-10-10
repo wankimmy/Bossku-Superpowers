@@ -2458,58 +2458,58 @@
       "deepseek-v4.1-flash": {
         "arms": {
           "baseline": {
-            "runs": 18,
-            "passed": 14,
-            "pass_rate": 0.7777777777777778,
+            "runs": 36,
+            "passed": 26,
+            "pass_rate": 0.7222222222222222,
             "pass_ci": [
-              0.5478497354769452,
-              0.90999218086618
+              0.5600719978365485,
+              0.841518299741862
             ],
             "saved_a_note_rate": 0.0,
-            "edited_runs": 18,
+            "edited_runs": 36,
             "unchecked_finishes": 0,
             "unchecked_rate": 0.0,
             "cost_mean": null,
             "cost_total": null,
             "cost_per_solved": null,
-            "input_tokens_mean": 138872.88888888888,
-            "output_tokens_mean": 3751.4444444444443,
-            "cache_read_mean": 123230.22222222222,
+            "input_tokens_mean": 132138.11111111112,
+            "output_tokens_mean": 3753.027777777778,
+            "cache_read_mean": 113580.66666666667,
             "cache_write_mean": 0,
-            "turns_mean": 9.333333333333334,
-            "wall_s_mean": 121.06666666666666,
+            "turns_mean": 8.972222222222221,
+            "wall_s_mean": 132.06666666666666,
             "skills_loaded_per_run": 0,
             "bossku_calls_per_run": 0,
-            "shell_calls_mean": 2.388888888888889,
-            "lines_changed_mean": 162.22222222222223,
+            "shell_calls_mean": 2.4166666666666665,
+            "lines_changed_mean": 155.19444444444446,
             "timeouts": 0,
             "budget_stops": 0
           },
           "ship": {
-            "runs": 6,
-            "passed": 5,
-            "pass_rate": 0.8333333333333334,
+            "runs": 12,
+            "passed": 9,
+            "pass_rate": 0.75,
             "pass_ci": [
-              0.43649056343635395,
-              0.9699474141282697
+              0.46768966087934005,
+              0.9110599603710386
             ],
             "saved_a_note_rate": 1.0,
-            "edited_runs": 6,
+            "edited_runs": 12,
             "unchecked_finishes": 0,
             "unchecked_rate": 0.0,
             "cost_mean": null,
             "cost_total": null,
             "cost_per_solved": null,
-            "input_tokens_mean": 127497,
-            "output_tokens_mean": 4129.5,
-            "cache_read_mean": 107491,
+            "input_tokens_mean": 126141.75,
+            "output_tokens_mean": 4154.333333333333,
+            "cache_read_mean": 105788.16666666667,
             "cache_write_mean": 0,
             "turns_mean": 9.166666666666666,
-            "wall_s_mean": 93.08333333333333,
+            "wall_s_mean": 55.733333333333334,
             "skills_loaded_per_run": 0,
             "bossku_calls_per_run": 0,
             "shell_calls_mean": 2,
-            "lines_changed_mean": 195.83333333333334,
+            "lines_changed_mean": 186.83333333333334,
             "timeouts": 0,
             "budget_stops": 0
           }
@@ -2520,40 +2520,40 @@
               "tasks": 0
             },
             "input_tokens": {
-              "tasks": 6,
-              "mean_diff": -11375.888888888885,
+              "tasks": 12,
+              "mean_diff": -5996.361111111109,
               "ci": [
-                -57446.49999999999,
-                32929.5
+                -30916.55555555555,
+                17558.02777777778
               ],
-              "mean_ratio": 1.0478734786628427
+              "mean_ratio": 1.0302404705771429
             },
             "output_tokens": {
-              "tasks": 6,
-              "mean_diff": 378.0555555555555,
+              "tasks": 12,
+              "mean_diff": 401.3055555555556,
               "ci": [
-                -879.2222222222223,
-                1553.7222222222222
+                -276.00000000000006,
+                1037.611111111111
               ],
-              "mean_ratio": 1.3998824955708677
+              "mean_ratio": 1.2585206011926526
             },
             "turns": {
-              "tasks": 6,
-              "mean_diff": -0.16666666666666638,
+              "tasks": 12,
+              "mean_diff": 0.19444444444444473,
               "ci": [
-                -2.4444444444444438,
-                1.8333333333333335
+                -1.1666666666666663,
+                1.416666666666667
               ],
-              "mean_ratio": 1.068424996056575
+              "mean_ratio": 1.063510665076001
             },
             "passed": {
-              "tasks": 6,
-              "mean_diff": 0.05555555555555557,
+              "tasks": 12,
+              "mean_diff": 0.027777777777777794,
               "ci": [
                 -0.16666666666666666,
-                0.33333333333333337
+                0.19444444444444448
               ],
-              "mean_ratio": 1.1666666666666667
+              "mean_ratio": 1.0909090909090908
             }
           }
         },
@@ -2565,25 +2565,125 @@
         "baseline_source": {
           "file": "raw/memory-deepseek-v4.1-flash.jsonl",
           "arm": "baseline",
-          "tasks": 6,
-          "runs": 18,
+          "tasks": 12,
+          "runs": 36,
           "claude_code_versions": {
-            "2.1.284": 18
+            "2.1.284": 36
           },
           "first_row": "2026-10-05T08:37:15+00:00",
-          "last_row": "2026-10-05T09:49:55+00:00"
+          "last_row": "2026-10-05T10:01:53+00:00"
         }
       },
       "glm-5.3": {
-        "arms": {},
-        "paired": {},
+        "arms": {
+          "baseline": {
+            "runs": 12,
+            "passed": 6,
+            "pass_rate": 0.5,
+            "pass_ci": [
+              0.2537781703934222,
+              0.7462218296065778
+            ],
+            "saved_a_note_rate": 0.0,
+            "edited_runs": 12,
+            "unchecked_finishes": 0,
+            "unchecked_rate": 0.0,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 123695.41666666667,
+            "output_tokens_mean": 3906.4166666666665,
+            "cache_read_mean": 116405.33333333333,
+            "cache_write_mean": 0,
+            "turns_mean": 8.666666666666666,
+            "wall_s_mean": 33.19166666666667,
+            "skills_loaded_per_run": 0,
+            "bossku_calls_per_run": 0,
+            "shell_calls_mean": 1.75,
+            "lines_changed_mean": 210.91666666666666,
+            "timeouts": 0,
+            "budget_stops": 0
+          },
+          "ship": {
+            "runs": 12,
+            "passed": 9,
+            "pass_rate": 0.75,
+            "pass_ci": [
+              0.46768966087934005,
+              0.9110599603710386
+            ],
+            "saved_a_note_rate": 1.0,
+            "edited_runs": 12,
+            "unchecked_finishes": 0,
+            "unchecked_rate": 0.0,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 123665.58333333333,
+            "output_tokens_mean": 3564.9166666666665,
+            "cache_read_mean": 113264,
+            "cache_write_mean": 0,
+            "turns_mean": 9.25,
+            "wall_s_mean": 34.75,
+            "skills_loaded_per_run": 0.25,
+            "bossku_calls_per_run": 0.5,
+            "shell_calls_mean": 2.1666666666666665,
+            "lines_changed_mean": 158.75,
+            "timeouts": 0,
+            "budget_stops": 0
+          }
+        },
+        "paired": {
+          "ship": {
+            "cost": {
+              "tasks": 0
+            },
+            "input_tokens": {
+              "tasks": 12,
+              "mean_diff": -29.833333333333332,
+              "ci": [
+                -39676.666666666664,
+                44492.916666666664
+              ],
+              "mean_ratio": 1.2375075782244562
+            },
+            "output_tokens": {
+              "tasks": 12,
+              "mean_diff": -341.5,
+              "ci": [
+                -2222.5833333333335,
+                1129.9166666666667
+              ],
+              "mean_ratio": 1.6430524907133635
+            },
+            "turns": {
+              "tasks": 12,
+              "mean_diff": 0.5833333333333334,
+              "ci": [
+                -1.4166666666666667,
+                2.8333333333333335
+              ],
+              "mean_ratio": 1.2472222222222222
+            },
+            "passed": {
+              "tasks": 12,
+              "mean_diff": 0.25,
+              "ci": [
+                0.0,
+                0.5
+              ],
+              "mean_ratio": 1.0
+            }
+          }
+        },
         "excluded_runs": {
           "ship: infrastructure failure": 2,
           "baseline: infrastructure failure": 1
         },
         "excluded_rate_limited": 3,
         "baseline_canary": [
-          "no answer (excluded)"
+          "no answer (excluded)",
+          "answered NONE"
         ],
         "baseline_source": "same run"
       },
@@ -2601,15 +2701,115 @@
         "baseline_source": "same run"
       },
       "kimi-k3": {
-        "arms": {},
-        "paired": {},
-        "excluded_runs": {
-          "baseline: infrastructure failure": 1,
-          "ship: infrastructure failure": 2
+        "arms": {
+          "baseline": {
+            "runs": 7,
+            "passed": 5,
+            "pass_rate": 0.7142857142857143,
+            "pass_ci": [
+              0.35892909014821267,
+              0.9177828342909844
+            ],
+            "saved_a_note_rate": 0.0,
+            "edited_runs": 7,
+            "unchecked_finishes": 0,
+            "unchecked_rate": 0.0,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 118580.28571428571,
+            "output_tokens_mean": 2392.4285714285716,
+            "cache_read_mean": 102086,
+            "cache_write_mean": 0,
+            "turns_mean": 9,
+            "wall_s_mean": 37.25714285714286,
+            "skills_loaded_per_run": 0,
+            "bossku_calls_per_run": 0,
+            "shell_calls_mean": 2.4285714285714284,
+            "lines_changed_mean": 137.57142857142858,
+            "timeouts": 0,
+            "budget_stops": 0
+          },
+          "ship": {
+            "runs": 9,
+            "passed": 7,
+            "pass_rate": 0.7777777777777778,
+            "pass_ci": [
+              0.4525833436728054,
+              0.9367762376877727
+            ],
+            "saved_a_note_rate": 1.0,
+            "edited_runs": 9,
+            "unchecked_finishes": 0,
+            "unchecked_rate": 0.0,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 106460.88888888889,
+            "output_tokens_mean": 2682.5555555555557,
+            "cache_read_mean": 88279.55555555556,
+            "cache_write_mean": 0,
+            "turns_mean": 8,
+            "wall_s_mean": 40.03333333333333,
+            "skills_loaded_per_run": 0,
+            "bossku_calls_per_run": 0.1111111111111111,
+            "shell_calls_mean": 1.4444444444444444,
+            "lines_changed_mean": 136,
+            "timeouts": 0,
+            "budget_stops": 0
+          }
         },
-        "excluded_rate_limited": 3,
+        "paired": {
+          "ship": {
+            "cost": {
+              "tasks": 0
+            },
+            "input_tokens": {
+              "tasks": 5,
+              "mean_diff": -1371.6,
+              "ci": [
+                -27503.2,
+                18707.6
+              ],
+              "mean_ratio": 1.0781486674438083
+            },
+            "output_tokens": {
+              "tasks": 5,
+              "mean_diff": 406.8,
+              "ci": [
+                -622.4,
+                1314.8
+              ],
+              "mean_ratio": 1.4015028500537026
+            },
+            "turns": {
+              "tasks": 5,
+              "mean_diff": 0.2,
+              "ci": [
+                -1.8,
+                2.4
+              ],
+              "mean_ratio": 1.1538461538461537
+            },
+            "passed": {
+              "tasks": 5,
+              "mean_diff": 0.2,
+              "ci": [
+                0.0,
+                0.6
+              ],
+              "mean_ratio": 1.0
+            }
+          }
+        },
+        "excluded_runs": {
+          "baseline: infrastructure failure": 5,
+          "ship: infrastructure failure": 3
+        },
+        "excluded_rate_limited": 8,
         "baseline_canary": [
-          "no answer (excluded)"
+          "no answer (excluded)",
+          "answered NONE"
         ],
         "baseline_source": "same run"
       }
@@ -3094,58 +3294,58 @@
       "deepseek-v4.1-flash": {
         "arms": {
           "baseline": {
-            "runs": 48,
-            "passed": 40,
-            "pass_rate": 0.8333333333333334,
+            "runs": 66,
+            "passed": 52,
+            "pass_rate": 0.7878787878787878,
             "pass_ci": [
-              0.7042189996260375,
-              0.9130458996054678
+              0.6748670057937918,
+              0.8692213312431603
             ],
             "saved_a_note_rate": 0.0,
-            "edited_runs": 48,
+            "edited_runs": 66,
             "unchecked_finishes": 0,
             "unchecked_rate": 0.0,
             "cost_mean": null,
             "cost_total": null,
             "cost_per_solved": null,
-            "input_tokens_mean": 110570.75,
-            "output_tokens_mean": 3552.3958333333335,
-            "cache_read_mean": 95150,
+            "input_tokens_mean": 114616,
+            "output_tokens_mean": 3607.5454545454545,
+            "cache_read_mean": 97544.84848484848,
             "cache_write_mean": 0,
-            "turns_mean": 7.854166666666667,
-            "wall_s_mean": 121.55833333333334,
+            "turns_mean": 8.06060606060606,
+            "wall_s_mean": 127.42424242424242,
             "skills_loaded_per_run": 0,
             "bossku_calls_per_run": 0,
-            "shell_calls_mean": 1.9166666666666667,
-            "lines_changed_mean": 142.52083333333334,
+            "shell_calls_mean": 2.0606060606060606,
+            "lines_changed_mean": 144.06060606060606,
             "timeouts": 0,
             "budget_stops": 0
           },
           "ship": {
-            "runs": 16,
-            "passed": 14,
-            "pass_rate": 0.875,
+            "runs": 22,
+            "passed": 18,
+            "pass_rate": 0.8181818181818182,
             "pass_ci": [
-              0.6397666856325173,
-              0.9650232506629428
+              0.6148297802336213,
+              0.9269323397589488
             ],
             "saved_a_note_rate": 1.0,
-            "edited_runs": 16,
+            "edited_runs": 22,
             "unchecked_finishes": 0,
             "unchecked_rate": 0.0,
             "cost_mean": null,
             "cost_total": null,
             "cost_per_solved": null,
-            "input_tokens_mean": 115488.0625,
-            "output_tokens_mean": 4349.875,
-            "cache_read_mean": 96050.75,
+            "input_tokens_mean": 118024,
+            "output_tokens_mean": 4303.318181818182,
+            "cache_read_mean": 98242,
             "cache_write_mean": 0,
-            "turns_mean": 8.125,
-            "wall_s_mean": 79.93125,
+            "turns_mean": 8.409090909090908,
+            "wall_s_mean": 63.14545454545455,
             "skills_loaded_per_run": 0,
             "bossku_calls_per_run": 0,
-            "shell_calls_mean": 1.8125,
-            "lines_changed_mean": 184.3125,
+            "shell_calls_mean": 1.8636363636363635,
+            "lines_changed_mean": 182.54545454545453,
             "timeouts": 0,
             "budget_stops": 0
           }
@@ -3156,40 +3356,40 @@
               "tasks": 0
             },
             "input_tokens": {
-              "tasks": 16,
-              "mean_diff": 4917.3125,
+              "tasks": 22,
+              "mean_diff": 3408.0000000000005,
               "ci": [
-                -17520.791666666664,
-                26996.875
+                -13684.83333333333,
+                19605.303030303032
               ],
-              "mean_ratio": 1.1401145287008652
+              "mean_ratio": 1.1053398742801137
             },
             "output_tokens": {
-              "tasks": 16,
-              "mean_diff": 797.4791666666666,
+              "tasks": 22,
+              "mean_diff": 695.7727272727273,
               "ci": [
-                -80.70833333333333,
-                1901.5625
+                14.166666666666659,
+                1483.4848484848485
               ],
-              "mean_ratio": 1.5680356739048407
+              "mean_ratio": 1.4450692283347308
             },
             "turns": {
-              "tasks": 16,
-              "mean_diff": 0.2708333333333334,
+              "tasks": 22,
+              "mean_diff": 0.3484848484848486,
               "ci": [
-                -0.9374999999999999,
-                1.5
+                -0.5909090909090907,
+                1.3333333333333333
               ],
-              "mean_ratio": 1.1206703392389346
+              "mean_ratio": 1.1037410651088868
             },
             "passed": {
-              "tasks": 16,
-              "mean_diff": 0.04166666666666667,
+              "tasks": 22,
+              "mean_diff": 0.030303030303030314,
               "ci": [
-                -0.14583333333333334,
-                0.25
+                -0.13636363636363635,
+                0.196969696969697
               ],
-              "mean_ratio": 1.0333333333333334
+              "mean_ratio": 1.025
             }
           }
         },
@@ -3201,14 +3401,242 @@
         "baseline_source": {
           "file": "raw/memory-deepseek-v4.1-flash.jsonl",
           "arm": "baseline",
-          "tasks": 16,
-          "runs": 48,
+          "tasks": 22,
+          "runs": 66,
           "claude_code_versions": {
-            "2.1.284": 48
+            "2.1.284": 66
           },
           "first_row": "2026-10-01T15:26:09+00:00",
-          "last_row": "2026-10-05T09:49:55+00:00"
+          "last_row": "2026-10-05T10:01:53+00:00"
         }
+      },
+      "glm-5.3": {
+        "arms": {
+          "baseline": {
+            "runs": 20,
+            "passed": 13,
+            "pass_rate": 0.65,
+            "pass_ci": [
+              0.43285051021946463,
+              0.8188104521320554
+            ],
+            "saved_a_note_rate": 0.0,
+            "edited_runs": 20,
+            "unchecked_finishes": 0,
+            "unchecked_rate": 0.0,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 113875.05,
+            "output_tokens_mean": 3562.8,
+            "cache_read_mean": 105987.2,
+            "cache_write_mean": 0,
+            "turns_mean": 8.1,
+            "wall_s_mean": 58.77,
+            "skills_loaded_per_run": 0,
+            "bossku_calls_per_run": 0,
+            "shell_calls_mean": 1.6,
+            "lines_changed_mean": 192.25,
+            "timeouts": 0,
+            "budget_stops": 0
+          },
+          "ship": {
+            "runs": 20,
+            "passed": 16,
+            "pass_rate": 0.8,
+            "pass_ci": [
+              0.5839782779742401,
+              0.9193436467288
+            ],
+            "saved_a_note_rate": 1.0,
+            "edited_runs": 20,
+            "unchecked_finishes": 0,
+            "unchecked_rate": 0.0,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 119131.7,
+            "output_tokens_mean": 3666.35,
+            "cache_read_mean": 108915.2,
+            "cache_write_mean": 0,
+            "turns_mean": 8.7,
+            "wall_s_mean": 58.905,
+            "skills_loaded_per_run": 0.25,
+            "bossku_calls_per_run": 0.35,
+            "shell_calls_mean": 1.9,
+            "lines_changed_mean": 167.1,
+            "timeouts": 0,
+            "budget_stops": 0
+          }
+        },
+        "paired": {
+          "ship": {
+            "cost": {
+              "tasks": 0
+            },
+            "input_tokens": {
+              "tasks": 19,
+              "mean_diff": 5564.578947368421,
+              "ci": [
+                -21882.947368421053,
+                33738.63157894737
+              ],
+              "mean_ratio": 1.2245197160108972
+            },
+            "output_tokens": {
+              "tasks": 19,
+              "mean_diff": -60.63157894736842,
+              "ci": [
+                -1341.7368421052631,
+                897.578947368421
+              ],
+              "mean_ratio": 1.505911163778103
+            },
+            "turns": {
+              "tasks": 19,
+              "mean_diff": 0.5789473684210527,
+              "ci": [
+                -0.8421052631578947,
+                2
+              ],
+              "mean_ratio": 1.2106516290726816
+            },
+            "passed": {
+              "tasks": 19,
+              "mean_diff": 0.15789473684210525,
+              "ci": [
+                0.0,
+                0.3157894736842105
+              ],
+              "mean_ratio": 1.0
+            }
+          }
+        },
+        "excluded_runs": {
+          "baseline: infrastructure failure": 3,
+          "ship: infrastructure failure": 4
+        },
+        "excluded_rate_limited": 7,
+        "baseline_canary": [
+          "answered NONE",
+          "no answer (excluded)",
+          "answered NONE"
+        ],
+        "baseline_source": "same run"
+      },
+      "kimi-k3": {
+        "arms": {
+          "baseline": {
+            "runs": 14,
+            "passed": 9,
+            "pass_rate": 0.6428571428571429,
+            "pass_ci": [
+              0.3876400468214042,
+              0.8365550926279727
+            ],
+            "saved_a_note_rate": 0.0,
+            "edited_runs": 14,
+            "unchecked_finishes": 0,
+            "unchecked_rate": 0.0,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 104076.85714285714,
+            "output_tokens_mean": 2543.5,
+            "cache_read_mean": 87657.42857142857,
+            "cache_write_mean": 0,
+            "turns_mean": 7.642857142857143,
+            "wall_s_mean": 67.3,
+            "skills_loaded_per_run": 0,
+            "bossku_calls_per_run": 0,
+            "shell_calls_mean": 2,
+            "lines_changed_mean": 144.14285714285714,
+            "timeouts": 0,
+            "budget_stops": 0
+          },
+          "ship": {
+            "runs": 17,
+            "passed": 13,
+            "pass_rate": 0.7647058823529411,
+            "pass_ci": [
+              0.5273775411082839,
+              0.9044511092832406
+            ],
+            "saved_a_note_rate": 1.0,
+            "edited_runs": 17,
+            "unchecked_finishes": 0,
+            "unchecked_rate": 0.0,
+            "cost_mean": null,
+            "cost_total": null,
+            "cost_per_solved": null,
+            "input_tokens_mean": 104400.41176470589,
+            "output_tokens_mean": 2616.4117647058824,
+            "cache_read_mean": 85371.05882352941,
+            "cache_write_mean": 0,
+            "turns_mean": 7.882352941176471,
+            "wall_s_mean": 68.13529411764706,
+            "skills_loaded_per_run": 0,
+            "bossku_calls_per_run": 0.11764705882352941,
+            "shell_calls_mean": 1.7647058823529411,
+            "lines_changed_mean": 126.3529411764706,
+            "timeouts": 0,
+            "budget_stops": 0
+          }
+        },
+        "paired": {
+          "ship": {
+            "cost": {
+              "tasks": 0
+            },
+            "input_tokens": {
+              "tasks": 11,
+              "mean_diff": 7659.363636363636,
+              "ci": [
+                -10153.363636363636,
+                23463.454545454544
+              ],
+              "mean_ratio": 1.1902397911340243
+            },
+            "output_tokens": {
+              "tasks": 11,
+              "mean_diff": 177.1818181818182,
+              "ci": [
+                -559.2727272727273,
+                864.9090909090909
+              ],
+              "mean_ratio": 1.2860784995438117
+            },
+            "turns": {
+              "tasks": 11,
+              "mean_diff": 0.8181818181818182,
+              "ci": [
+                -0.36363636363636365,
+                1.9090909090909092
+              ],
+              "mean_ratio": 1.2425130425130426
+            },
+            "passed": {
+              "tasks": 11,
+              "mean_diff": 0.2727272727272727,
+              "ci": [
+                0.0,
+                0.5454545454545454
+              ],
+              "mean_ratio": 1.0
+            }
+          }
+        },
+        "excluded_runs": {
+          "baseline: infrastructure failure": 8,
+          "ship: infrastructure failure": 5
+        },
+        "excluded_rate_limited": 13,
+        "baseline_canary": [
+          "answered NONE",
+          "no answer (excluded)",
+          "answered NONE"
+        ],
+        "baseline_source": "same run"
       }
     }
   },
@@ -3267,29 +3695,29 @@
     },
     "deepseek-v4.1-flash": {
       "ship": {
-        "rows": 32,
+        "rows": 38,
         "first": "2026-10-09T21:29:19+00:00",
-        "last": "2026-10-09T23:29:30+00:00",
+        "last": "2026-10-10T01:17:19+00:00",
         "versions": {
-          "2.1.281": 32
+          "2.1.281": 38
         }
       }
     },
     "glm-5.3": {
       "baseline": {
-        "rows": 30,
+        "rows": 42,
         "first": "2026-10-09T21:30:31+00:00",
-        "last": "2026-10-10T00:13:48+00:00",
+        "last": "2026-10-10T01:31:32+00:00",
         "versions": {
-          "2.1.281": 13
+          "2.1.281": 25
         }
       },
       "ship": {
-        "rows": 30,
+        "rows": 42,
         "first": "2026-10-09T21:30:43+00:00",
-        "last": "2026-10-10T00:13:34+00:00",
+        "last": "2026-10-10T01:32:46+00:00",
         "versions": {
-          "2.1.281": 13
+          "2.1.281": 25
         }
       }
     },
@@ -3313,27 +3741,27 @@
     },
     "kimi-k3": {
       "baseline": {
-        "rows": 30,
+        "rows": 41,
         "first": "2026-10-09T21:31:16+00:00",
-        "last": "2026-10-10T00:14:22+00:00",
+        "last": "2026-10-10T02:42:40+00:00",
         "versions": {
-          "2.1.281": 13
+          "2.1.281": 24
         }
       },
       "ship": {
-        "rows": 30,
+        "rows": 40,
         "first": "2026-10-09T21:30:49+00:00",
-        "last": "2026-10-10T00:14:09+00:00",
+        "last": "2026-10-10T02:03:22+00:00",
         "versions": {
-          "2.1.281": 13
+          "2.1.281": 23
         }
       }
     }
   },
   "ollama_limit": {
-    "last_scored_row": "2026-10-09T21:45:19+00:00",
+    "last_scored_row": "2026-10-10T01:43:30+00:00",
     "first_rate_limited_row": "2026-10-09T22:02:25+00:00",
-    "last_rate_limited_row": "2026-10-10T00:14:22+00:00",
-    "scored_rows_after_first_rate_limit": 0
+    "last_rate_limited_row": "2026-10-10T02:42:40+00:00",
+    "scored_rows_after_first_rate_limit": 46
   }
 }

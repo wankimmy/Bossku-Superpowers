@@ -36,23 +36,7 @@ We tested it with real agents on the same tasks, with and without Bossku Superpo
 - **No clear change on coding and harder tasks** for any model. Samples are small, so read each result with its interval.
 - **Which setup was measured.** Build `b8ccea1`, whose Stop hook was the Python verify gate. It also sent the agent back to save a rule it was told and to edit a file instead of pasting code. A default install now uses the Node stop gate, which only checks that code was run, so those two Stop reminders are not in it (the rule reminder on your prompt is). `bossku install --no-harness` brings the Python gate back. Details: [memory](docs/memory.md#automatic-remembering).
 
-Full numbers, charts and limits: [benchmark results](docs/benchmarks/results.md). How it was tested: [benchmark notes](docs/benchmarks/README.md).
-
-### The 10 October run
-
-A second run compared no Bossku Superpower, v2.2.0 and the improved build that followed it, on Claude Haiku 5.5 and Claude Opus 5.5. It sits next to the numbers above and does not replace them.
-
-![Share of the 22 two-session tasks passed by Claude Haiku 5.5 and Claude Opus 5.5 without Bossku Superpower, with v2.2.0 and with the improved build](docs/assets/benchmark-2026-10-10-memory.svg)
-
-- **Memory helped Haiku with v2.2.0.** Over the 22 two-session tasks, Claude Haiku 5.5 passed 10 without Bossku Superpower, 16 with v2.2.0 (a clear gain) and 15 with the improved build (likely a gain too, but its 95% interval reaches zero, so we are less sure). Claude Opus 5.5 passed 15, 17 and 16, which is no clear difference.
-- **Coding tasks and HumanEval: no clear difference.** Both Claude models were already at or near the top without it.
-
-![Percent more or fewer tokens per run than without Bossku Superpower, for v2.2.0 and the improved build](docs/assets/benchmark-2026-10-10-tokens.svg)
-
-- **Tokens: it depends on the task.** v2.2.0 mostly used more tokens on the coding tasks and HumanEval, and fewer on the two-session tasks. The improved build is not clearly better or worse than v2.2.0 on passes. It used fewer tokens per run in 7 of the 8 comparisons, but the two builds ran about three hours apart with one trial per task, so read that as a hint.
-- **The Ollama Cloud models mostly did not run.** The account hit its usage limit part-way, and the coding runs of three models failed during setup. GLM 5.3, GLM 5.3 Flash and Kimi K3 have only some of the 10 original two-session tasks, DeepSeek V4.1 Flash has v2.2.0 only, and there is no Ollama coding or HumanEval result.
-
-Details, tables and limits: [10 October results](docs/benchmarks/results-2026-10-10.md).
+Full numbers, charts and limits: [benchmark results](docs/benchmarks/results.md) and the [10 October run](docs/benchmarks/results-2026-10-10.md). How it was tested: [benchmark notes](docs/benchmarks/README.md).
 
 ## Quick start
 

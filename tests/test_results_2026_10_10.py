@@ -63,15 +63,13 @@ class RunSetTests(unittest.TestCase):
                 self.assertTrue(path.exists(), f"{name} is not committed")
                 self.assertEqual(path.read_text(encoding="utf-8"), svg)   # text mode: a CRLF checkout reads as LF
 
-    def test_the_page_and_the_readme_show_the_charts(self):
+    def test_the_page_shows_the_charts_and_the_readme_links_it(self):
         page = PAGE.read_text(encoding="utf-8")
         readme = README.read_text(encoding="utf-8")
         for name in ("coding", "memory", "tokens"):
             with self.subTest(chart=name):
                 self.assertIn(f"](../assets/benchmark-2026-10-10-{name}.svg)", page)
-        for name in ("memory", "tokens"):
-            with self.subTest(chart=name, where="README"):
-                self.assertIn(f"](docs/assets/benchmark-2026-10-10-{name}.svg)", readme)
+        self.assertIn("](docs/benchmarks/results-2026-10-10.md)", readme)   # README links the page, it does not show the run
 
     def test_a_cell_with_a_baseline_in_the_same_run_matches_the_report_command(self):
         """`benchmark_agent.py report` on the same files gives the arms and the paired differences of the summary."""
