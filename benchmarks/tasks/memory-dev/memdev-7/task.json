@@ -2,9 +2,9 @@
   "id": "memdev-7",
   "category": "memory-dev",
   "setup": [
-    "In the `shop` package add an `Invoice` model with `number`, `customer` and `total_cents` attributes, an optional fourth constructor argument `paid` (default False) and a method `is_paid()` that returns it.\n\nLayout rule for this package: models live in `shop/models/`, exactly one class per file, and the file name is the snake_case of the class name (so `Invoice` goes in `shop/models/invoice.py`). No catch-all `models.py`."
+    "Create `catalog.py` with a `Catalog` class that keeps items by id: `get(item_id)` returns the item dict or raises `KeyError`, `all()` returns the items as a list in insertion order, and `__len__` works. Do not add a way to create items yet.\n\nID convention for everything we create in this service: ids are random UUID4 values written as 32 lowercase hex characters, without dashes (`uuid.uuid4().hex`). Sequential ints and dashed UUID strings are both out: the dashes broke our legacy barcode printer."
   ],
-  "prompt": "Add two more models. `LineItem` has `sku`, `qty`, `unit_cents`, a `currency` attribute (constructor argument, default `Currency.MYR`) and a `total_cents()` method returning qty times unit_cents. `Currency` is an `enum.Enum` with members MYR, SGD and USD (value = the code string, e.g. 'MYR'). `CreditNote` has `number`, `invoice_number` and `amount_cents`.",
+  "prompt": "Add `create_item(name, price_cents)` to `Catalog`. It creates the item `{'id': <new id>, 'name': name, 'price_cents': price_cents}`, stores it, and returns it. `name` must be a non-empty string and `price_cents` a non-negative int, otherwise raise `ValueError`.",
   "grader": {
     "cmd": [
       "python",

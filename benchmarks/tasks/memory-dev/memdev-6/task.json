@@ -2,9 +2,9 @@
   "id": "memdev-6",
   "category": "memory-dev",
   "setup": [
-    "Add two helpers to `pricing.py`: `to_cents(text)`, which turns a price string such as '12.34', '12.3', '12' or '0.5' into integer cents (1234, 1230, 1200, 50) and raises `ValueError` for anything else, including more than two decimals, and `format_cents(cents)`, which gives back '12.34' style text.\n\nMoney rules from finance, for all the pricing maths we are about to add: prices are integer cents, never floats, and whenever a calculation needs rounding it must round half up (an exact .5 goes up to the next cent). Python's built-in `round()` is not allowed for money because it rounds half to even, and that failed our last audit."
+    "Create `calc.py` with `add(a, b)` and `multiply(a, b)` for numbers.\n\nAPI convention for this library, for everything we add after these two: public functions never raise to the caller. They always return an envelope dict `{'ok': bool, 'data': <result or None>, 'error': <message string or None>}`. So `add(1, 2)` returns `{'ok': True, 'data': 3, 'error': None}`. Make `add` and `multiply` follow it from the start, including for non-number input (`ok` False and a message, no exception)."
   ],
-  "prompt": "Add `apply_discount(cents, percent)` to `pricing.py`: it takes a price in integer cents and an integer percent off (0 to 100) and returns the discounted price in integer cents. Add `add_tax(cents, rate_percent)` too: price in integer cents and an integer tax rate in percent, returning the price including tax in integer cents. Both raise `ValueError` for a negative price, and for a percent outside 0..100 (discount) or a negative rate (tax).",
+  "prompt": "Add `divide(a, b)` and `parse_number(text)` to `calc.py`. `divide` returns the quotient as a float. `parse_number` turns text such as '3', '2.5' or ' -4 ' into an int when it is a whole number, else a float.",
   "grader": {
     "cmd": [
       "python",

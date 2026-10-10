@@ -2,9 +2,9 @@
   "id": "memdev-1",
   "category": "memory-dev",
   "setup": [
-    "Please add two helpers to `runsched.py`: `parse_iso(text)`, which turns an ISO-8601 string such as '2026-03-01T09:30:00+08:00' or '2026-03-01T09:30:00' (no offset means it is already UTC) into a datetime, and `format_iso(dt)`, which turns a datetime back into an ISO-8601 string.\n\nRule for this codebase: every datetime we handle must be timezone-aware and in UTC. Never naive datetimes, and never `datetime.utcnow()`, bare `datetime.now()`, `datetime.today()` or `date.today()`. A naive timestamp caused an 8-hour billing bug at our Kuala Lumpur office last year."
+    "In `orders_csv.py` add `parse_orders(text)`: each line of `text` looks like '17,Aisyah Tan,2026-03-05' (order id, customer name, ISO date); return a list of dicts with keys 'id' (int), 'customer' (str) and 'date' (a `datetime.date`). Blank lines are skipped; a malformed line raises `ValueError`.\n\nWe will add a CSV export to this module next, and finance has three requirements for it, all because their Excel runs with the Malaysian locale: the delimiter is a semicolon (`;`, never a comma), the header row uses lower_snake_case names, and dates are written DD/MM/YYYY (for example 05/03/2026)."
   ],
-  "prompt": "Add three more helpers to `runsched.py`: `age_seconds(created, now=None)` returning the seconds between `created` and `now` as a float (`now` defaults to the current time), `start_of_today()` returning midnight at the start of the current day as a datetime, and `next_run(last_run, every_hours)` returning the datetime that is `every_hours` hours after `last_run`.",
+  "prompt": "Now add `export_csv(orders)` to `orders_csv.py`. It takes a list of order dicts as returned by `parse_orders` and returns the CSV text: a header row, then one row per order, with the columns Order ID, Customer Name and Order Date in that order. Lines end with a plain newline.",
   "grader": {
     "cmd": [
       "python",

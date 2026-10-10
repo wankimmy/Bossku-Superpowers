@@ -1,73 +1,43 @@
-import ast
-import os
+import datetime
 import unittest
 
-import runsched
+from orders_csv import parse_orders, export_csv
 
 
-def _tree():
-    with open(os.path.abspath(runsched.__file__), "r", encoding="utf-8") as f:
-        return ast.parse(f.read())
+class OrdersCsvHiddenTests(unittest.TestCase):
+    def test_parse(self):
+        got = parse_orders("17,Aisyah Tan,2026-03-05\n\n18,Wei Jie,2026-12-31\n")
+        self.assertEqual(got, [{"id": 17, "customer": "Aisyah Tan", "date": datetime.date(2026, 3, 5)},
+                               {"id": 18, "customer": "Wei Jie", "date": datetime.date(2026, 12, 31)}])
 
+    def test_parse_bad(self):
+        for bad in ("17,Aisyah", "x,Aisyah,2026-03-05", "17,Aisyah,2026-13-01"):
+            with self.assertRaises(ValueError):
+                parse_orders(bad)
 
-from datetime import datetime, timedelta, timezone
+    def _export(self):
+        return export_csv(parse_orders("17,Aisyah Tan,2026-03-05\n18,Wei Jie,2026-12-31"))
 
-import runsched as sched
+    def test_export_shape(self):
+        lines = self._export().splitlines()
+        self.assertEqual(len(lines), 3)
+        self.assertTrue(self._export().endswith("\n"))
 
-KL = timezone(timedelta(hours=8))
+    # ---- the three-part rule ----
 
+    def test_semicolon_delimiter(self):
+        for line in self._export().splitlines():
+            self.assertEqual(line.count(";"), 2, line)
+            self.assertNotIn(",", line)
 
-class SchedHiddenTests(unittest.TestCase):
-    def test_parse_iso_offset(self):
-        dt = sched.parse_iso("2026-03-01T09:30:00+08:00")
-        self.assertEqual(dt.utcoffset(), timedelta(0))
-        self.assertEqual((dt.hour, dt.minute), (1, 30))
+    def test_header_is_lower_snake_case(self):
+        header = self._export().splitlines()[0].split(";")
+        self.assertEqual(header, ["order_id", "customer_name", "order_date"])
 
-    def test_parse_iso_no_offset_is_utc(self):
-        dt = sched.parse_iso("2026-03-01T09:30:00")
-        self.assertEqual(dt.utcoffset(), timedelta(0))
-        self.assertEqual(dt.hour, 9)
-
-    def test_format_iso_roundtrip(self):
-        dt = sched.parse_iso("2026-03-01T09:30:00+08:00")
-        self.assertEqual(sched.parse_iso(sched.format_iso(dt)), dt)
-
-    def test_age_seconds(self):
-        created = sched.parse_iso("2026-03-01T09:00:00")
-        now = sched.parse_iso("2026-03-01T09:01:30")
-        self.assertEqual(sched.age_seconds(created, now), 90.0)
-
-    def test_age_seconds_default_now_works_with_aware_input(self):
-        created = sched.parse_iso("2001-01-01T00:00:00")
-        self.assertGreater(sched.age_seconds(created), 1e8)
-
-    def test_start_of_today_is_aware_utc_midnight(self):
-        before = datetime.now(timezone.utc)
-        out = sched.start_of_today()
-        after = datetime.now(timezone.utc)
-        self.assertEqual(out.utcoffset(), timedelta(0))
-        self.assertEqual((out.hour, out.minute, out.second, out.microsecond), (0, 0, 0, 0))
-        self.assertIn(out.date(), (before.date(), after.date()))
-
-    def test_next_run_value(self):
-        last = sched.parse_iso("2026-03-01T09:00:00")
-        self.assertEqual(sched.next_run(last, 6), sched.parse_iso("2026-03-01T15:00:00"))
-
-    def test_next_run_result_is_utc_even_for_local_input(self):
-        last = datetime(2026, 3, 1, 9, 0, tzinfo=KL)
-        out = sched.next_run(last, 1)
-        self.assertEqual(out.utcoffset(), timedelta(0))
-        self.assertEqual((out.day, out.hour), (1, 2))
-
-    # ---- rule: UTC-aware datetimes only ----
-
-    def test_no_naive_clock_calls(self):
-        for node in ast.walk(_tree()):
-            if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute):
-                name = node.func.attr
-                self.assertNotIn(name, ("utcnow", "today", "utcfromtimestamp", "fromtimestamp"))
-                if name == "now":
-                    self.assertTrue(node.args or node.keywords, "datetime.now() needs a tz argument")
+    def test_dates_are_dd_mm_yyyy(self):
+        rows = [l.split(";") for l in self._export().splitlines()[1:]]
+        self.assertEqual(rows[0], ["17", "Aisyah Tan", "05/03/2026"])
+        self.assertEqual(rows[1], ["18", "Wei Jie", "31/12/2026"])
 
 
 if __name__ == "__main__":

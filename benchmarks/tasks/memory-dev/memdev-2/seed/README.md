@@ -1,5 +1,5 @@
-# stock
+# payments
 
-In-memory stock keeping.
+Wallet helpers.
 
 Run tests: `python -m unittest discover -s tests`

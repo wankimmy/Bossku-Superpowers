@@ -4,12 +4,12 @@ import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-import runsched
+import orders_csv
 
 
 class ImportTests(unittest.TestCase):
     def test_module_imports(self):
-        self.assertTrue(runsched.__doc__)
+        self.assertTrue(orders_csv.__doc__)
 
 
 if __name__ == "__main__":

@@ -2,9 +2,9 @@
   "id": "memdev-2",
   "category": "memory-dev",
   "setup": [
-    "In `stock.py` please add an `Inventory` class with `add(sku, qty)` and `quantity(sku)` (0 for an unknown sku); `add` should simply add stock.\n\nHouse rule for this module, for all the error handling we are about to build on top of it: every exception message must start with the tag `[stock] ` (a space after the bracket), because our log aggregator routes alerts on that prefix. Anything after the tag is up to you."
+    "In `payments.py` add a `Wallet` class with a `balance_cents` attribute (starts at 0), `deposit(cents)` and `balance()`; `deposit` should accept positive ints only, raising `ValueError` otherwise.\n\nNaming convention for this codebase, for the errors we will define next: our own exception classes are named `<Something>Failure` and never `<Something>Error` (the `Error` suffix collides with the names our monitoring tool reserves). Every custom exception derives from a single base class named `PaymentFailure`."
   ],
-  "prompt": "Now extend `stock.py`. Give `Inventory` a `remove(sku, qty)` method, and make `add` and `remove` raise `ValueError` when `qty` is not a positive int; `remove` also raises `ValueError` when there is not enough stock. Then add a module-level function `transfer(source, target, sku, qty)` that moves stock from one `Inventory` to another; if the source cannot cover it, raise `ValueError` and leave both inventories unchanged, and also raise `ValueError` when `source` and `target` are the same object.",
+  "prompt": "Add a withdrawal to `Wallet`: `withdraw(cents)` lowers the balance, and raises a dedicated custom exception when the wallet does not hold enough, leaving the balance unchanged. Invalid amounts (not a positive int) still raise `ValueError`. Also add a separate dedicated custom exception for withdrawing from a wallet that has been frozen: give `Wallet` `freeze()` and have `withdraw` and `deposit` refuse to work on a frozen wallet with that exception.",
   "grader": {
     "cmd": [
       "python",

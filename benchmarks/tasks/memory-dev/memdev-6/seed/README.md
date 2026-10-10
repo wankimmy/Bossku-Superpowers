@@ -1,5 +1,5 @@
-# pricing
+# calc
 
-Price helpers. Money is integer cents.
+Calculator helpers.
 
 Run tests: `python -m unittest discover -s tests`

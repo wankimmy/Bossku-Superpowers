@@ -2,82 +2,76 @@ import ast
 import os
 import unittest
 
-import stock
+import payments
+from payments import Wallet
 
 
-def _tree():
-    with open(os.path.abspath(stock.__file__), "r", encoding="utf-8") as f:
-        return ast.parse(f.read())
+def _classes():
+    with open(os.path.abspath(payments.__file__), "r", encoding="utf-8") as f:
+        return [n for n in ast.walk(ast.parse(f.read())) if isinstance(n, ast.ClassDef)]
 
 
-from stock import Inventory, transfer
+class PaymentsHiddenTests(unittest.TestCase):
+    def test_deposit_and_balance(self):
+        w = Wallet()
+        w.deposit(500)
+        self.assertEqual((w.balance(), w.balance_cents), (500, 500))
+        for bad in (0, -5, 1.5, "3"):
+            with self.assertRaises(ValueError):
+                w.deposit(bad)
 
+    def test_withdraw(self):
+        w = Wallet()
+        w.deposit(500)
+        w.withdraw(200)
+        self.assertEqual(w.balance(), 300)
+        with self.assertRaises(ValueError):
+            w.withdraw(0)
 
-class StockHiddenTests(unittest.TestCase):
-    def _msg(self, fn, *args):
-        with self.assertRaises(ValueError) as ctx:
-            fn(*args)
-        return str(ctx.exception)
+    def test_insufficient_funds_raises_custom_failure_and_keeps_balance(self):
+        w = Wallet()
+        w.deposit(100)
+        with self.assertRaises(payments.PaymentFailure) as ctx:
+            w.withdraw(101)
+        self.assertNotIsInstance(ctx.exception, ValueError)
+        self.assertEqual(w.balance(), 100)
 
-    def test_add_remove_quantity(self):
-        inv = Inventory()
-        inv.add("A", 5)
-        inv.remove("A", 2)
-        self.assertEqual(inv.quantity("A"), 3)
-        self.assertEqual(inv.quantity("nope"), 0)
+    def test_frozen_wallet(self):
+        w = Wallet()
+        w.deposit(100)
+        w.freeze()
+        for call in (lambda: w.withdraw(1), lambda: w.deposit(1)):
+            with self.assertRaises(payments.PaymentFailure) as ctx:
+                call()
+            self.assertNotIsInstance(ctx.exception, ValueError)
+        self.assertEqual(w.balance(), 100)
 
-    def test_bad_qty(self):
-        inv = Inventory()
-        for bad in (0, -1, 1.5):
-            self.assertTrue(self._msg(inv.add, "A", bad).startswith("[stock] "))
-            self.assertTrue(self._msg(inv.remove, "A", bad).startswith("[stock] "))
+    def test_two_distinct_failures(self):
+        a, b = Wallet(), Wallet()
+        a.deposit(1)
+        b.deposit(1)
+        b.freeze()
+        with self.assertRaises(payments.PaymentFailure) as first:
+            a.withdraw(5)
+        with self.assertRaises(payments.PaymentFailure) as second:
+            b.withdraw(1)
+        self.assertIsNot(type(first.exception), type(second.exception))
 
-    def test_remove_too_much(self):
-        inv = Inventory()
-        inv.add("A", 1)
-        self.assertTrue(self._msg(inv.remove, "A", 2).startswith("[stock] "))
-        self.assertEqual(inv.quantity("A"), 1)
+    # ---- rule: <Something>Failure, one base called PaymentFailure ----
 
-    def test_transfer_moves(self):
-        a, b = Inventory(), Inventory()
-        a.add("A", 5)
-        transfer(a, b, "A", 3)
-        self.assertEqual((a.quantity("A"), b.quantity("A")), (2, 3))
+    def test_exception_classes_end_with_failure(self):
+        exception_like = [c for c in _classes() if c.name != "Wallet"]
+        self.assertGreaterEqual(len(exception_like), 3)
+        for c in exception_like:
+            self.assertTrue(c.name.endswith("Failure"), c.name)
+            self.assertFalse(c.name.endswith("Error"), c.name)
 
-    def test_transfer_insufficient_leaves_both_unchanged(self):
-        a, b = Inventory(), Inventory()
-        a.add("A", 2)
-        msg = self._msg(transfer, a, b, "A", 3)
-        self.assertTrue(msg.startswith("[stock] "), msg)
-        self.assertEqual((a.quantity("A"), b.quantity("A")), (2, 0))
-
-    def test_transfer_same_inventory(self):
-        a = Inventory()
-        a.add("A", 2)
-        msg = self._msg(transfer, a, a, "A", 1)
-        self.assertTrue(msg.startswith("[stock] "), msg)
-        self.assertEqual(a.quantity("A"), 2)
-
-    def test_transfer_bad_qty(self):
-        a, b = Inventory(), Inventory()
-        a.add("A", 2)
-        self.assertTrue(self._msg(transfer, a, b, "A", 0).startswith("[stock] "))
-
-    # ---- rule: every raised message carries the tag ----
-
-    def test_every_raise_literal_has_tag(self):
-        raises = 0
-        for node in ast.walk(_tree()):
-            if isinstance(node, ast.Raise) and isinstance(node.exc, ast.Call) and node.exc.args:
-                raises += 1
-                first = node.exc.args[0]
-                if isinstance(first, ast.JoinedStr) and first.values:
-                    first = first.values[0]
-                if isinstance(first, ast.BinOp):
-                    first = first.left
-                if isinstance(first, ast.Constant) and isinstance(first.value, str):
-                    self.assertTrue(first.value.startswith("[stock] "), first.value)
-        self.assertGreater(raises, 0)
+    def test_base_class_exists_and_everything_derives_from_it(self):
+        base = payments.PaymentFailure
+        self.assertTrue(issubclass(base, Exception))
+        for c in _classes():
+            if c.name not in ("Wallet", "PaymentFailure"):
+                self.assertTrue(issubclass(getattr(payments, c.name), base), c.name)
 
 
 if __name__ == "__main__":
