@@ -92,7 +92,7 @@ def main(argv: list[str] | None = None) -> int:
 
     p_brief = sub.add_parser("memory-brief", help="Print the newest project notes in one short block", parents=[child])
     p_brief.add_argument("--project", type=Path, default=Path("."))
-    p_brief.add_argument("--limit", type=int, default=1000, help="character budget for the brief")
+    p_brief.add_argument("--limit", type=int, default=1300, help="character budget for the brief")
     sub.add_parser("session-brief", help="Internal: SessionStart hook that puts the project notes in context",
                    parents=[child])
     p_sync = sub.add_parser("sync", help="Export project memory to Obsidian", parents=[child, json_flag])

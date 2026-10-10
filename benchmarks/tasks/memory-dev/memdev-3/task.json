@@ -1,0 +1,18 @@
+{
+  "id": "memdev-3",
+  "category": "memory-dev",
+  "setup": [
+    "In `orders.py` add `place_order(orders, order_id, total_cents)`, which appends `{'id': order_id, 'total_cents': total_cents, 'status': 'placed'}` to the `orders` list and returns that dict, and `cancel_order(orders, order_id)`, which sets the status of the matching order to 'cancelled' and returns it (raise `KeyError` for an unknown id). No logging in these two for now.\n\nWe are about to add logging across this module, so here is the convention to keep in mind: no `print()` anywhere. Use a module logger from `logging.getLogger(__name__)`, and every log message is plain space-separated key=value pairs that begins with `event=<snake_case_name>`, for example `event=order_placed order_id=17`. Ops greps for `event=`, so no free text."
+  ],
+  "prompt": "Please add `refund_order(orders, order_id, reason)` to `orders.py`. It marks a 'placed' order as 'refunded' and returns it; for an unknown id raise `KeyError`; for an order that is already refunded or cancelled raise `ValueError`. Every refund, successful or rejected, must leave a trace in the logs that includes the order id and the reason given.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_memdev_3_hidden"
+    ],
+    "timeout": 120
+  }
+}

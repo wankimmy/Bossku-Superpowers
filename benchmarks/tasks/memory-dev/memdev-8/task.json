@@ -1,0 +1,18 @@
+{
+  "id": "memdev-8",
+  "category": "memory-dev",
+  "setup": [
+    "`router.py` has a tiny `route(method, path)` decorator that registers handlers in `ROUTES`. In `handlers.py`, which already has a `USERS` list, add a plain helper `find_user(user_id)` that returns the user dict with that id or raises `KeyError`. Do not register any routes yet.\n\nHeads-up on API versions, for the routes we register next: v1 is retired. Every route we register must live under the `/api/v2/` prefix (so the real path for `GET /users` is `/api/v2/users`), and nothing may be registered under `/api/v1/` or without a version prefix."
+  ],
+  "prompt": "Now register the handlers in `handlers.py` with the `route` decorator: `list_users()` for `GET /users` returning the `USERS` list, `get_user(user_id)` for `GET /users/{id}` (use `find_user`), and `list_user_names()` for `GET /users/names` returning just the names.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_memdev_8_hidden"
+    ],
+    "timeout": 120
+  }
+}

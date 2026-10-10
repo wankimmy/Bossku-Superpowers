@@ -42,7 +42,15 @@ def _clip(text: str, limit: int) -> str:
     return text if len(text) <= limit else text[:limit].rsplit(" ", 1)[0].rstrip(",;:") + "..."
 
 
-def memory_brief(project: Path, *, home: Path | None = None, limit: int = 1000, per_entry: int = 220) -> str:
+RULE_ENTRY = 480   # decisions are rules: clipping one loses the exact name or value that matters
+
+BRIEF_INTRO = ("BosskuAI project notes, newest first. These rules and decisions apply to this request even when its "
+               "own wording differs from them (names, values, formats): apply the rule and say so in your reply. "
+               "Only an explicit instruction to change or drop a rule overrides it "
+               "(do not read the memory files again):\n")
+
+
+def memory_brief(project: Path, *, home: Path | None = None, limit: int = 1300, per_entry: int = 220) -> str:
     """Newest entries first, at most `limit` characters; empty when there is nothing worth saying."""
     try:
         folder = memory_directory(project, home=home)
@@ -57,7 +65,8 @@ def memory_brief(project: Path, *, home: Path | None = None, limit: int = 1000, 
         except OSError:
             continue
         for stamp, body in reversed(_entries(text)):
-            line = f"- [{label}{' ' + stamp if stamp else ''}] {_clip(body, per_entry)}"
+            room = max(per_entry, RULE_ENTRY) if label == "decision" else per_entry
+            line = f"- [{label}{' ' + stamp if stamp else ''}] {_clip(body, room)}"
             if used + len(line) > limit:
                 break
             lines.append(line)
@@ -66,8 +75,7 @@ def memory_brief(project: Path, *, home: Path | None = None, limit: int = 1000, 
                 break   # the project summary is one paragraph; older stamps are history
     if not lines:
         return ""
-    return ("BosskuAI project notes, newest first. Follow the rules and decisions below unless the request says "
-            "otherwise (do not read the memory files again):\n" + "\n".join(lines))
+    return BRIEF_INTRO + "\n".join(lines)
 
 
 def session_output(payload_text: str, *, home: Path | None = None) -> dict:

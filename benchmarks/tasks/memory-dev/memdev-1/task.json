@@ -1,0 +1,18 @@
+{
+  "id": "memdev-1",
+  "category": "memory-dev",
+  "setup": [
+    "In `orders_csv.py` add `parse_orders(text)`: each line of `text` looks like '17,Aisyah Tan,2026-03-05' (order id, customer name, ISO date); return a list of dicts with keys 'id' (int), 'customer' (str) and 'date' (a `datetime.date`). Blank lines are skipped; a malformed line raises `ValueError`.\n\nWe will add a CSV export to this module next, and finance has three requirements for it, all because their Excel runs with the Malaysian locale: the delimiter is a semicolon (`;`, never a comma), the header row uses lower_snake_case names, and dates are written DD/MM/YYYY (for example 05/03/2026)."
+  ],
+  "prompt": "Now add `export_csv(orders)` to `orders_csv.py`. It takes a list of order dicts as returned by `parse_orders` and returns the CSV text: a header row, then one row per order, with the columns Order ID, Customer Name and Order Date in that order. Lines end with a plain newline.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_memdev_1_hidden"
+    ],
+    "timeout": 120
+  }
+}

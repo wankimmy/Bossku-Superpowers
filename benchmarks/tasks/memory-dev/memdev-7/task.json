@@ -1,0 +1,18 @@
+{
+  "id": "memdev-7",
+  "category": "memory-dev",
+  "setup": [
+    "Create `catalog.py` with a `Catalog` class that keeps items by id: `get(item_id)` returns the item dict or raises `KeyError`, `all()` returns the items as a list in insertion order, and `__len__` works. Do not add a way to create items yet.\n\nID convention for everything we create in this service: ids are random UUID4 values written as 32 lowercase hex characters, without dashes (`uuid.uuid4().hex`). Sequential ints and dashed UUID strings are both out: the dashes broke our legacy barcode printer."
+  ],
+  "prompt": "Add `create_item(name, price_cents)` to `Catalog`. It creates the item `{'id': <new id>, 'name': name, 'price_cents': price_cents}`, stores it, and returns it. `name` must be a non-empty string and `price_cents` a non-negative int, otherwise raise `ValueError`.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_memdev_7_hidden"
+    ],
+    "timeout": 120
+  }
+}

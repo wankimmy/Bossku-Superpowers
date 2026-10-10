@@ -1,0 +1,18 @@
+{
+  "id": "memdev-5",
+  "category": "memory-dev",
+  "setup": [
+    "Create `settings.py` with `parse_bool(text)`: 'true', '1', 'yes', 'on' (any letter case) give True, 'false', '0', 'no', 'off' give False, anything else raises `ValueError`.\n\nOperations rule for this service, for the configuration code we will write next: every environment variable we read must be prefixed `OPSX_`, because the shared hosting box has hundreds of unrelated variables and anything unprefixed has caused clashes before. Never read an unprefixed name."
+  ],
+  "prompt": "Add `load_config(env=None)` to `settings.py`; `env` is a mapping and defaults to `os.environ`. It reads the database host from `DB_HOST` (default 'localhost'), the database port from `DB_PORT` (default 5432, returned as an int), and a debug flag from `DEBUG` (default False, parsed with `parse_bool`). It returns a dict with the keys 'db_host', 'db_port' and 'debug'.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_memdev_5_hidden"
+    ],
+    "timeout": 120
+  }
+}

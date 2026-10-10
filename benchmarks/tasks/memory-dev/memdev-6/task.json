@@ -1,0 +1,18 @@
+{
+  "id": "memdev-6",
+  "category": "memory-dev",
+  "setup": [
+    "Create `calc.py` with `add(a, b)` and `multiply(a, b)` for numbers.\n\nAPI convention for this library, for everything we add after these two: public functions never raise to the caller. They always return an envelope dict `{'ok': bool, 'data': <result or None>, 'error': <message string or None>}`. So `add(1, 2)` returns `{'ok': True, 'data': 3, 'error': None}`. Make `add` and `multiply` follow it from the start, including for non-number input (`ok` False and a message, no exception)."
+  ],
+  "prompt": "Add `divide(a, b)` and `parse_number(text)` to `calc.py`. `divide` returns the quotient as a float. `parse_number` turns text such as '3', '2.5' or ' -4 ' into an int when it is a whole number, else a float.",
+  "grader": {
+    "cmd": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_memdev_6_hidden"
+    ],
+    "timeout": 120
+  }
+}
