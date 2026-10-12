@@ -595,6 +595,21 @@ These patterns compose well:
 
 ---
 
+## Guardrails for unattended loops
+
+Before a loop runs without a human watching, check each item:
+
+- **Bounds on every external call:** a timeout, a retry cap, and a cheaper or safe fallback. No open-ended retry loop.
+- **Spend limit:** a max cost per run, and an estimated cost for the primary and fallback paths when the loop calls a paid model or API.
+- **Circuit breaker:** on a traffic spike or a run of 402/429 errors, stop calling that endpoint, switch to the fallback, and alert a human.
+- **Score before you shadow-test:** when trying a new model or prompt on real traffic, run it in the background (a small sample) so it cannot affect production, and fix the scoring criteria in numbers first. Do not grade by feel afterwards.
+- **Decide whether to automate at all:** weigh time saved per month, how critical the data is, how many external services are in the chain, and whether retries and rate limits still hold at 100x volume. A valid outcome is automate only the safe segments, pilot first, or defer.
+- **Reliability baseline:** an explicit error branch, duplicate protection, safe retries with a stop condition, a timeout, an alert, and a manual fallback.
+- **Log each run:** workflow name and version, time, source system, affected entity id, success or failure, and error class with a short cause.
+- **Test before trusting it:** happy path, invalid input, dependency failure, duplicate event, and recovery.
+- **Re-audit** when an API or schema changes, the error rate rises, volume jumps, or the same manual fix keeps recurring. Re-audit does not mean touching production on its own.
+- **No change to critical production flows** without explicit approval.
+
 ## Anti-Patterns
 
 ### Common Mistakes
@@ -635,3 +650,5 @@ The orchestrator contract (`agents/orchestrator.md`, Autonomous run flow) drives
 | Infinite Agentic Loop | disler | credit: @disler |
 | Continuous Claude | AnandChowdhary | credit: @AnandChowdhary |
 | Autonomous Loops (upstream) | affaan-m/ECC | `skills/autonomous-loops/` |
+
+Unattended-loop guardrails adapted in part from engineering/engineering-autonomous-optimization-architect.md and specialized/automation-governance-architect.md (agency-agents, MIT).

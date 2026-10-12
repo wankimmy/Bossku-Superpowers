@@ -56,6 +56,9 @@ Use this skill when building, auditing, or debugging a React Native app, with or
 - Feature folders (`features/<name>/{components,hooks,api,schema}`) with zod schemas shared with the backend when possible.
 - Theming through a single token module; i18n with `expo-localization` + i18next or Lingui from day one if more than one language is plausible.
 - Crash and error reporting (Sentry) with source maps uploaded per build.
+- Offline-first: decide the sync and conflict rule (last write wins, server wins, or merge) per data type before building the queue, and show the user pending and failed states.
+- Biometric sign-in unlocks a stored credential through `expo-local-authentication` and `SecureStore`; keep a non-biometric fallback and handle enrolment changes.
+- Background work and location cost battery: request the lowest accuracy and shortest background window the feature needs, and test on a real device with the battery profiler.
 
 ## Performance on device
 
@@ -105,3 +108,5 @@ Device verification: [devices/OS versions tested, results]
 - `../../references/checklists/expo-react-native-checklist.md`
 - `../../references/checklists/react-development-checklist.md`
 - `../../references/checklists/mobile-app-release-checklist.md`
+
+Offline, biometric and battery bullets adapted in part from engineering/engineering-mobile-app-builder.md (agency-agents, MIT).

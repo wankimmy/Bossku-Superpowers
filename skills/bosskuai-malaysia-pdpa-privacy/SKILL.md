@@ -37,6 +37,14 @@ Amendment duties in force since 1 June 2025 (PDPA (Amendment) Act 2024): notify 
 - **Cross-border transfer**: know where data physically lands, including your hosting region and each vendor's.
 - **Breach readiness**: a tested runbook that meets the 72-hour Commissioner deadline: who assesses harm, who notifies, and what evidence is kept.
 
+## Enforcement checks
+
+- **Find it first**: build the data map across every store, including logs, error traces, caches, queues, search indexes, analytics streams and backups. Free-text fields drift into holding personal data; re-scan on a schedule.
+- **Consent gates the write**: a stored opt-out that the analytics or marketing pipeline never reads is not consent. Check at the point of write or use, per purpose.
+- **Deletion needs proof**: the request must reach every primary, replica, warehouse, index, cache and vendor, and leave an auditable record. A delete that clears one table is a false promise.
+- **Anonymization is tested**: postcode plus birth date plus gender can still re-identify. Aggregate or generalize, then test re-identification risk before calling data anonymous.
+- **Review at design time**: check data flows in the design doc, not after an incident. A new vendor, region or purpose needs a basis and a data-map entry.
+
 ## Guardrails
 
 - Do not present this as legal advice or claim compliance certainty. Flag where counsel is needed.
@@ -67,3 +75,5 @@ Breach path: [owner, last 72h drill]
 ## References
 
 - `../../references/checklists/malaysia-pdpa-privacy-checklist.md`
+
+Adapted from engineering/engineering-privacy-engineer.md (agency-agents, MIT).

@@ -54,6 +54,14 @@ Use these as patterns to hunt for in any domain — they are not exhaustive.
 
 7. **Check cross-module side effects** — When state changes in one module, what does it trigger elsewhere? Are all downstream consumers aware of every possible transition?
 
+## Finding workflows nobody wrote down
+
+- Scan for entry points that imply a workflow: routes, queue workers, cron jobs, migrations (each implies a lifecycle), webhooks and infra config. A workflow in code with no spec gets edited without anyone knowing its shape.
+- For each step, branch it: what if it fails, times out, returns nothing, or is retried? Write what cleans up after a failure at step N and who owns it.
+- Write each handoff between services as a contract: payload, success, failure, timeout.
+- List every timing assumption (step 4 slower than expected) and every unwritten assumption as an open question, with the code line that depends on it.
+- Check the spec against the code, not against memory of the code.
+
 ## Guardrails
 
 - Do not confuse input validation with business rules — they are different concerns.
@@ -87,3 +95,5 @@ Recommended rule changes:
 
 - `../../references/checklists/business-logic-checklist.md`
 - `../../references/pitfalls/business-logic-pitfalls.md`
+
+Adapted from specialized/specialized-workflow-architect.md (agency-agents, MIT).

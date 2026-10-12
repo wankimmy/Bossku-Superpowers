@@ -52,6 +52,24 @@ When two languages or runtimes exchange data:
 - Error representation: languages handle errors differently — standardize error shape at the API contract.
 - Numeric types: integer overflow, float precision, and bigint handling differ — validate at the boundary.
 
+## CLI and developer-tool contract checks
+
+A CLI's flags, output format, and exit codes are a contract with every script that calls it, whatever language it is written in.
+
+- **Errors name the cause and the next step**, not just the failure. Keep stack traces behind `--verbose`.
+- **Respect the pipe.** Detect a TTY: colour and tables for humans, plain stable output when piped. Offer `--json` or another parseable mode, `--quiet`, and honour `NO_COLOR`.
+- **Exit codes are an API.** 0 for success, nonzero for failure, distinct codes for distinct failure classes.
+- **Flags mean the same thing in every subcommand.** Document precedence: flag, then env var, then config file.
+- **`--help` at every level**, with a one-line summary and real usage examples; the bare command shows an overview, not an error.
+- **Safe by default.** Destructive actions confirm or need `--force`; anything that changes state has `--dry-run`.
+- **Do not break the interface silently.** Renamed flags, changed output, or new exit codes get a deprecation warning and a migration note.
+- **Keep startup fast.** Lazy-load subcommands, keep network calls off the hot path, and check startup time in CI for tools run many times a day. Pick the runtime with startup in mind.
+- **First run:** the shortest path to a real result should not need sign-up or key setup. Test it with someone who has not used the tool.
+
+## Testing note for TypeScript
+
+For large typed fixtures in tests, check whether `@total-typescript/shoehorn` (`fromPartial`, `fromAny`) is already installed or acceptable before writing `as unknown as Type`. Use it in test code only, never in production code.
+
 ## Workflow
 
 1. **Identify the actual stack**: language, version, framework, runtime, and build/deploy tools in use.
@@ -101,3 +119,5 @@ Tradeoffs:
 ## References
 
 - `../../references/checklists/polyglot-engineering-checklist.md`
+
+CLI checks adapted in part from engineering/engineering-developer-tooling-engineer.md and product/product-dx-engineer.md (agency-agents, MIT); shoehorn note from misc/migrate-to-shoehorn (skills pack by Matt Pocock, MIT).

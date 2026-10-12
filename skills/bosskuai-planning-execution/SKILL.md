@@ -52,6 +52,30 @@ Two modes:
 
 7. **Recommend the smallest next plan** — What is the lowest-risk first action that reduces uncertainty and builds momentum? Start there, not at phase 3.
 
+### Breaking a plan into tickets
+
+Use when the plan must become work an agent or teammate can pick up one at a time.
+
+- **Vertical slices, not layers.** Each ticket cuts a narrow but complete path through every layer (schema, API, UI, tests), can be demoed or verified on its own, and fits one fresh context window. Do any prefactoring first.
+- **Declare blocking edges.** List only the tickets that genuinely gate this one. A ticket with no blockers can start now; the frontier is every ticket whose blockers are done.
+- **Ticket fields:** title; what to build (the end-to-end behaviour from the user's side, not a layer-by-layer task list); blocked by (or "none"); status; acceptance criteria as a checklist. Name modules and behaviours, not file paths or code snippets, which go stale. Inline a snippet only if it encodes a decision prose cannot (state machine, schema, type shape).
+- **Wide refactors are the exception.** One mechanical change that breaks many call sites (rename a column, retype a shared symbol) cannot land as a vertical slice. Sequence it expand, then migrate call sites in batches (each batch a ticket blocked by the expand), then contract (delete the old form, blocked by every batch). If batches cannot stay green alone, put them on one integration branch behind a final integrate-and-verify ticket.
+- **Show the breakdown and get it approved** (granularity, blocking edges, merge or split) before publishing tickets to the tracker.
+- **Pick test seams early** when writing the spec: prefer an existing seam, use the highest one possible, and keep the number of new seams low.
+
+### Plans too big for one session
+
+When the destination is clear but the way is foggy, plan with decision tickets instead of build tickets.
+
+- Name the destination first (a spec, a locked decision, or an in-place change); it fixes the scope.
+- Keep a short map that only indexes decisions made and links to the ticket holding the detail. Do not restate a decision in two places.
+- Ticket a question only when you can state it precisely now, even if you cannot answer it yet. Vague areas stay in a "not yet specified" list until earlier answers sharpen them. Work beyond the destination goes in an "out of scope" list and is closed, not parked.
+- Resolve one decision ticket per session and mark it claimed before starting. Planning ends when nothing is left to decide, not when the work is built.
+
+### Workflows worth delegating
+
+When specifying a recurring workflow (a loop), record its trigger (event or schedule), which steps need a human checkpoint and which can run alone, and what the checkpoint shows. Push checkpoints as late as possible so the human is asked once, with everything prepared, and reads a short decision-ready brief rather than raw output. A workflow spec is done when an implementer could build it without asking a question.
+
 ## Part 2 — Delivery tracking
 
 ### RACI ownership
@@ -177,3 +201,5 @@ Next action: [single most important thing to do right now]
 - `../../references/checklists/planning-checklist.md`
 - `../../references/checklists/project-management-checklist.md`
 - `../../references/playbooks/project-management-playbook.md`
+
+Ticket, wayfinding and workflow sections adapted in part from engineering/to-tickets, engineering/to-spec, engineering/wayfinder and in-progress/loop-me (skills pack by Matt Pocock, MIT).

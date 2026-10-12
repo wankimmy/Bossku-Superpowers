@@ -57,6 +57,15 @@ Use this skill when the main question is **how the product behaves across langua
 6. **Name the intentional gaps** — markets not supported, partial translations, untranslated legal/support flows, or locale-limited features.
 7. **Recommend the smallest safe localization slice** — what to externalize or fix first to reduce future pain.
 
+## Build-level checks
+
+- Messages are whole ICU strings with named placeholders and a translator description; never join translated fragments.
+- Plurals follow CLDR categories, always with `other`; do not write `count === 1`.
+- Format dates, numbers, currencies, lists and relative times through `Intl` or the platform equivalent. Use logical CSS (`margin-inline-start`, `text-align: start`) so RTL is not a late patch.
+- Normalize Unicode (NFC) at input, truncate on grapheme clusters, and pass a locale to case changes and sorting.
+- Run pseudo-localization in CI and demo one RTL locale with each feature.
+- Ask "who is left out": a forced first/last name split, gender dropdowns, and colour or icon meanings that differ by market (for example red means rising in some finance markets).
+
 ## Guardrails
 
 - Do not treat hardcoded English as acceptable just because the first market is English-speaking.
@@ -88,3 +97,5 @@ Intentional gaps to document:
 ## References
 
 - `../../references/checklists/i18n-l10n-checklist.md`
+
+Adapted from engineering/engineering-i18n-engineer.md and specialized/specialized-cultural-intelligence-strategist.md (agency-agents, MIT).

@@ -15,6 +15,17 @@ Use when schema, indexes, query plans, locking, or a migration affects correctne
 6. **Scope every tenant query and composite index by `tenant_id`**, and check ownership on update/delete, not only on read.
 7. **Re-run the plan after the change** and compare before/after; confirm backups and the restore path still work if schema changed.
 
+For availability and recovery work, also check:
+
+- **Restore, not just backup.** A backup never restored is a hope. Schedule restore tests and record the real time-to-restore against the agreed RPO and RTO.
+- **Drill failover** on a schedule, and fix what the drill exposes. Do not promote a lagging replica without knowing what data would be lost.
+- **Replication lag is a correctness issue:** monitor it, and gate reads that need read-after-write on it.
+- **Budget locks for each migration:** check the engine's actual lock mode (even metadata-only changes can need an exclusive lock), set a short lock timeout, keep scans and backfills out of the locking transaction, and have a retry plan.
+- **Protect the database from clients:** use a pooler and per-service connection limits so one buggy client cannot exhaust connections.
+- **Heavy or destructive operations** (migrations, failover, large deletes) get a written back-out plan and a blast-radius estimate first.
+
 Check before you finish: tests ran on the production engine or the gap is stated, every new foreign key on PostgreSQL has an explicit index, no invariant lives only in app code, and no migration shipped without a stated rollback.
 
 Index and plan-reading detail, the full online-migration ladder, multi-tenancy shapes, and the operational baseline: `reference.md`.
+
+Availability and recovery checks adapted in part from engineering/engineering-database-reliability-engineer.md (agency-agents, MIT).

@@ -16,6 +16,10 @@ For the pipeline itself: shape, speed, gates, secrets, and promotion to producti
 7. **Give flakiness a policy**: quarantine with an owner and expiry, count retries as failures, fix the cause instead of sleeps or blanket retries.
 8. **Verify.** `actionlint`, then `gh run watch <id> --exit-status`. Confirm no unpinned action, no `pull_request_target` with PR-head checkout, and every deploy has a gate and rollback.
 
+**Local pre-commit hooks** (JavaScript repos) are a fast first gate, not a replacement for CI. Detect the package manager from the lockfile, then run a staged-files formatter (lint-staged with Prettier, using `--ignore-unknown`) first, and the full typecheck and tests after it. Leave out a typecheck or test line if the repo has no such script, and tell the user. Check the installed Husky version for the init command and hook-file format, create a formatter config only if none exists, and verify by running the staged-files step and making a test commit.
+
 If nobody can settle a policy choice, default to the smallest safe rule: required checks on main, no merge queue, zero blanket retries, and say so in one line.
 
 Stack presets, the Actions rules list, secrets detail, and the output template: `reference.md`.
+
+Pre-commit hook note adapted in part from misc/setup-pre-commit (skills pack by Matt Pocock, MIT).

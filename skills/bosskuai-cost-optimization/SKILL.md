@@ -39,6 +39,14 @@ Cache only what is safe, scoped, and invalidatable. Every cache needs a key that
 
 Track cost per active user, per job, per lead, or per successful transaction. Absolute spend rising is not automatically bad; cost per successful outcome rising is.
 
+## Order of work
+
+1. **Allocate**: tag every resource by team, service, environment and cost center; deny provisioning without tags. Spend you cannot attribute cannot be owned.
+2. **Remove waste**: idle, orphaned and forgotten dev environments.
+3. **Rightsize**, then **commit**: buy reserved or committed capacity only for a steady baseline, never for a workload about to be refactored or retired.
+4. Give each saving an owner (the team that controls the resource) and watch daily spend with anomaly alerts, so a runaway job shows up in hours, not at month end.
+5. Trace the data path for egress: cross-AZ and cross-region traffic and NAT processing hide in line items.
+
 ## Guardrails
 
 - Never reduce cost by weakening security, audit trails, tenant isolation, or backup integrity.
@@ -65,3 +73,5 @@ Verification: [how the saving will be confirmed]
 ## References
 
 - `../../references/checklists/cost-optimization-checklist.md`
+
+Adapted from engineering/engineering-finops-engineer.md (agency-agents, MIT).

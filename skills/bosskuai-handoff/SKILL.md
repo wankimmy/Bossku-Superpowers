@@ -16,6 +16,10 @@ For compacting the current conversation into a document a fresh agent, in any to
 6. **Route durable lessons elsewhere.** Anything worth keeping beyond this one task goes through `bosskuai-continuous-learning`, not into `handoff.md`.
 7. **Don't duplicate** content that already lives in a PRD, plan, ADR, issue, or commit — link it instead of copying it in.
 
+When the user wants a background agent to start at once, only launch it on request: save the summary to a temp file, give the session a descriptive name, and pass the file to the command (for example `claude --bg --name "<name>" -- "$(cat <file>)"`) so the shell cannot expand backticks or `$` in the summary. Check the installed CLI supports the flag first. The summary becomes the new agent's prompt, so redact secrets and personal data in it.
+
 If the user passed arguments, treat them as the next session's focus and write the document around that.
 
 The full template and the memory-first handoff protocol: `reference.md`.
+
+Background-agent launch note adapted in part from in-progress/claude-handoff (skills pack by Matt Pocock, MIT).

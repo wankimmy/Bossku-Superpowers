@@ -21,3 +21,34 @@ Name the attacker and what they control (input, filenames, URLs, headers, payloa
 Write one test per attack input (it is rejected) and one per legitimate edge (it is still accepted).
 
 **For a review:** go through STRIDE for each trust boundary, label every finding confirmed or inferred with a severity, and give the smallest fix. The OWASP list, auth and session checks, supply-chain rules, worked threat models, privacy and what to skip at MVP stage: read `reference.md` in this folder.
+
+## Extra checks by theme
+
+Use the themes that match the system; skip the rest.
+
+**AI-generated and web/serverless code**
+- A secret behind a client-exposed prefix (`NEXT_PUBLIC_`, `VITE_`, `EXPO_PUBLIC_`) or compiled into the bundle is leaked. A designed-public key (publishable, anon) is not a finding.
+- "RLS enabled" is a claim to verify: RLS on with no policy denies all; `USING (true)` allows all. Public buckets and tables without RLS count too.
+- Authorize on server-only identity (`app_metadata`), never on client-editable fields (`user_metadata`, a role in the body or header).
+- Untrusted input in the system prompt, or in a call that also has tools, is high severity. Untrusted text in its own user message with no tools is the safe pattern; do not flag it. Label this check heuristic.
+
+**Secrets**
+- A leaked secret is burned from commit time. Order: rotate at the provider, swap the code to a secret-store reference, purge git history (coordinate the rewrite), audit use during the exposure window, then fix why the scanner missed it.
+- Prefer short-lived, least-privilege credentials (OIDC in CI, workload identity) over static keys. Never print a secret value in a report; give type, location, redacted preview.
+
+**Cloud and infrastructure**
+- No root account for daily work; MFA for humans; no wildcard IAM in production; disable dormant accounts.
+- No `0.0.0.0/0` to management ports; workloads in private subnets; default-deny network policy between pods or services.
+- Storage encrypted, public access blocked, audit logs sent to separate immutable storage; alert on IAM and security-group changes.
+- Containers: scanned image, non-root. On AWS use IMDSv2 so SSRF cannot steal instance credentials.
+
+**Incident and detection**
+- Order: triage and open a timeline, preserve volatile evidence before containing, contain, scope from logs, rebuild from known-good, reset credentials and sessions, post-mortem with owners and dates.
+- A detection rule needs a test against a known sample, a false-positive review, and a link to the behaviour it covers. A rule that fires constantly gets ignored.
+
+**Compliance and scope**
+- Evidence must show a control worked over the whole period, not only today. Every gap names the control, current state, target state, fix, effort. Never report "compliant" or "% secure" from a code scan.
+- Smart contracts: tools are a first pass only; check reentrancy, access control, oracle and flash-loan paths, and that audited code matches deployed bytecode.
+- Pen tests and attacker emulation run only inside written scope and rules of engagement.
+
+Adapted from agency-agents/security/ (AI-generated-code auditor, secrets, cloud architect, incident responder, threat detection, blockchain auditor, compliance auditor, pen tester) (agency-agents, MIT).

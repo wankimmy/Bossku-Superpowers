@@ -37,6 +37,13 @@ Select this skill for Hindsight integration or explicit Hindsight operations. Ro
 6. **Reuse selectively.** Consider mental models only for repeated queries. Creating, refreshing, or configuring them is an authorized service write. Keep the same bank/audience scope through source selection, refresh, and retrieval; verify completion, freshness, and underlying evidence.
 7. **Report.** Distinguish canonical note saved, Hindsight retain accepted, memory searchable, and configured storage status. An asynchronous operation ID does not prove retention or mental-model refresh is complete.
 
+## When several agents share one bank
+
+- Give the same real-world entity one stable identity regardless of which agent asks; sort and match on external identifiers, not random internal ids.
+- Prefer proposing a merge or correction, with per-field evidence and a confidence, over overwriting another agent's record. Flag it when two agents propose a merge and a split on the same entities.
+- Record who made each decision and why, so a bad merge can be found and rolled back.
+- Scope every query to the project or tenant, and mask personal data unless the caller is authorised to see it.
+
 ## Gotchas
 
 - Hindsight extracts and reasons with a model; it is not a verbatim file store. Keep exact evidence in source files and approved local notes.
@@ -64,3 +71,5 @@ Mental models: [scoped, refreshed and verified / pending / not used]
 
 - `../../references/playbooks/hindsight-memory-playbook.md`
 - `../../references/memory-first-handoff-protocol.md`
+
+Shared-bank section adapted in part from specialized/identity-graph-operator.md (agency-agents, MIT).

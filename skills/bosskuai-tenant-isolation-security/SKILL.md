@@ -35,6 +35,13 @@ Check each path independently. A correct controller does not imply a correct exp
 - **Row-level security itself**: table owners and superusers bypass RLS unless `FORCE ROW LEVEL SECURITY` is set; a tenant id set with session-level `SET` leaks to the next borrower under transaction pooling (use `SET LOCAL` inside the transaction); on Supabase/PostgREST a table with RLS disabled is readable with the public anon key.
 - **Vector stores and RAG retrieval**: a shared embedding index without a tenant filter at query time returns another tenant's chunks to the model.
 
+## Identity checks that tenant scope depends on
+
+- **SSO and SCIM**: per-tenant IdP config must not let one tenant's IdP assert users into another; deprovisioning must revoke sessions and tokens, not only disable the login.
+- **Tokens**: tenant comes from the authenticated context, not from a claim the client can swap. Refresh tokens rotate; a reused one revokes the whole family and raises an alert.
+- **Recovery and impersonation**: password reset, MFA reset and support impersonation are the common bypasses. Test them across tenants, and write an audit event for each.
+- Auth changes need failure-path tests: expired, revoked, replayed, cross-tenant.
+
 ## Guardrails
 
 - Enforce tenant scope **server-side**. Never trust `tenant_id`, `org_id`, or a workspace slug supplied by the client.
@@ -73,3 +80,5 @@ Verification: [what was actually run]
 ## References
 
 - `../../references/checklists/tenant-isolation-security-checklist.md`
+
+Adapted from engineering/engineering-identity-access-engineer.md (agency-agents, MIT).

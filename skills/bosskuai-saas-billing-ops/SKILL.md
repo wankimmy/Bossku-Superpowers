@@ -43,6 +43,14 @@ Keep two state lists. Processor states come from the processor, spelled exactly 
 - Provide a manual support path to fix a stuck account without direct database editing.
 - Do not test billing changes only on the happy path.
 
+## Payment integration checks
+
+- Money is an integer in minor units plus a currency code, never a float. Zero-decimal currencies (for example JPY) change the factor.
+- Every money mutation (charge, refund, plan change) carries an idempotency key derived from the business operation (order id plus attempt), not a random id per HTTP call.
+- Card numbers never reach your server; use hosted fields or SDK tokenization to stay in the smallest PCI scope.
+- Store the verified webhook event before acknowledging it, and mark it done only after processing succeeds, so a crash replays safely.
+- Reconcile processor payouts against the internal ledger daily and alert on drift. Test with the processor's failure cards (decline, 3DS challenge, dispute), not only the success card.
+
 ## Output format
 
 ```text
@@ -64,3 +72,5 @@ Verification: [tests run; on Stripe, a sandbox test-clock simulation through tri
 ## References
 
 - `../../references/checklists/saas-billing-ops-checklist.md`
+
+Adapted from engineering/engineering-payments-billing-engineer.md (agency-agents, MIT).

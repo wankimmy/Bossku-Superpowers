@@ -45,6 +45,10 @@ For iterative edits, plain-language technical posts or benchmark claims, read
 [rewrite and explain](references/rewrite-and-explain.md). A rewrite preserves
 claims; a request to check whether a test is credible also needs source evidence.
 
+## Re-pitch when the reader did not follow
+
+If the user says the last message did not land, do not repeat it. Give one or two lines of context first, then restate in plain short sentences (one idea per sentence, no idioms), using the project's own glossary terms (for example from `GLOSSARY.md`) so the same thing keeps the same name.
+
 ## Choose the voice
 
 Read [register-router](references/register-router.md). The requested deliverable's
@@ -114,3 +118,5 @@ latest wording corrections survived across the whole requested deliverable.
 For evaluation use [eval guide](evals/README.md). For evidence and reuse boundaries
 see [data sources](DATA_SOURCES.md). This skill does not require external datasets,
 network access, an API key, background hooks or package installation at runtime.
+
+Adapted from productivity/wait-what/SKILL.md (skills, MIT).

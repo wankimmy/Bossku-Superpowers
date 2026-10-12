@@ -148,6 +148,10 @@ Use this section when a team is considering event sourcing, CQRS, or horizontal 
    - **Consequences**: what gets better, what gets harder, what risks remain?
    - **Alternatives considered**: what other options were evaluated and why rejected?
 
+   Write an ADR only when all three hold: the decision is hard to reverse, a future reader would find it surprising without context, and it was a real trade-off between genuine alternatives. If one is missing, skip the ADR.
+
+   When the model itself is changing, sharpen the domain language as you go: call out a term that conflicts with the project glossary, propose one canonical name for an overloaded term (for example Customer versus User), stress-test relationships with concrete edge-case scenarios, and check whether the code agrees with what was just said. Keep the glossary free of implementation detail, and update it when a term is resolved rather than in a batch later.
+
 6. **Surface the residual risks** — Every architecture has tradeoffs. Name them explicitly so the user can make an informed decision.
 
 ## Guardrails
@@ -181,3 +185,5 @@ Residual risks: [what remains after the recommendation]
 
 - `../../references/playbooks/architecture-playbook.md`
 - `../../references/checklists/architecture-review-checklist.md`
+
+ADR gate and glossary practice adapted in part from engineering/domain-modeling (skills pack by Matt Pocock, MIT).

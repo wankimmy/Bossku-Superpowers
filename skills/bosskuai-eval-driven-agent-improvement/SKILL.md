@@ -41,6 +41,16 @@ Pass rate alone is misleading. Watch how often the agent is confidently wrong, s
 
 Tuning prompts against a fixed set produces agents that pass the set and fail reality. Keep a held-out set the prompt author does not read, add fresh generalization cases regularly, and avoid encoding exact phrases from eval cases into prompts.
 
+## Independent review of a model or scorer
+
+When judging a statistical or ML model rather than an agent:
+
+- The reviewer must not have built the model. Record every deviation from the documented method.
+- Make the analysis reproducible from raw data: versioned, self-contained scripts, pinned library versions, no manual steps. Replication produces a script plus a delta report against the original.
+- Compare against an independently built challenger as a benchmark.
+- Check input stability (for example a population stability index per feature) and calibration, not only the headline score. Treat thresholds as monitoring heuristics, not proof of validity.
+- Each finding has an observation, evidence, impact, and recommendation, with severity from unsound to informational. Do not say "the model is wrong" without quantifying the impact.
+
 ## Guardrails
 
 - Never tune on the held-out set.
@@ -69,3 +79,5 @@ Decision: [ship / iterate / revert] - [why]
 ## References
 
 - `../../references/checklists/eval-driven-agent-improvement-checklist.md`
+
+Model review section adapted in part from specialized/specialized-model-qa.md (agency-agents, MIT).

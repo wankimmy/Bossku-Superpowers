@@ -87,6 +87,16 @@ Do nothing when the lesson is a one-off outcome, temporary debug note, or alread
     - **reviewer**: overlap and failure modes
     - **benchmark**: realistic prompt behavior
 
+## Writing for the agent that reads it
+
+- A description or an `AGENTS.md` line that names a document is a pointer: its wording decides when the material is reached. If a must-have target sits behind a weak pointer, sharpen the wording before inlining the material.
+- Front-load the key word, use one trigger per distinct case (synonyms for one case are one case written twice), and cut identity the body already carries.
+- Every step ends on a clear completion criterion that is checkable and exhaustive ("every modified model accounted for"), not a vague one ("understanding reached"). Fix a vague bound before splitting the steps.
+- Put what every path needs in the file; move what only some paths need behind a pointer to a sibling file. Keep one concept's definition, rules, and caveats under one heading.
+- Keep each meaning in one place. Do not copy what the environment already shows (`package.json` scripts, config, `--help`); cache only the unwritten convention, the reason, or the gotcha.
+- State the behaviour you want rather than the one you ban; keep a prohibition only as a hard guardrail, paired with the positive target.
+- Delete a sentence the model already obeys by default. Test by running the document, not by debate.
+
 ## Gotchas
 
 - Descriptions should tell the router when to fire, not summarize every section. Put broader phrase coverage in the generated index's curated trigger source.
@@ -132,3 +142,5 @@ Validation:
 - `../../references/checklists/skill-creator-checklist.md`
 - `../../references/playbooks/claude-code-practices-playbook.md`
 - `../../references/checklists/learning-promotion-checklist.md`
+
+Writing section adapted in part from productivity/writing-for-agents (skills pack by Matt Pocock, MIT).

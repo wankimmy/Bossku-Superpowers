@@ -257,6 +257,16 @@ Audits should produce structured reports following this shape:
 }
 ```
 
+## Multi-agent identity and delegation
+
+Add this when agents call each other or act with real authority.
+
+- Identity is proven, not claimed: an agent saying it is "finance-agent" or "was told to do this" is not authorization. Look for verifiable credentials with scope and expiry, plus rotation and revocation.
+- Delegation is scoped (one action type is not all) and revocation reaches downstream agents. A broken link in the chain invalidates the chain.
+- Audit records are append-only and tamper-evident; the writer cannot edit its own log. Fail closed: if identity cannot be verified or evidence cannot be written, the action does not run.
+- Assume one agent in the network is compromised or misconfigured, and ask what it can reach.
+- Key material never appears in logs, evidence records or API responses.
+
 ## Related Skills
 
 - `bosskuai-agent-introspection` — Debug agent runtime failures (loops, timeouts, state errors)
@@ -264,3 +274,5 @@ Audits should produce structured reports following this shape:
 - `bosskuai-cybersecurity-risk` — Security audit for code and configuration
 - `bosskuai-prompt-injection-defense` — Harden agent workspaces, MCP setups, and injection surfaces
 - `bosskuai-context-budget` — Quantify context overhead when layer 1-5 duplication is the finding
+
+Adapted from specialized/agentic-identity-trust.md (agency-agents, MIT).

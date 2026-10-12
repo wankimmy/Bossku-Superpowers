@@ -48,6 +48,14 @@ Use Context7 `query-docs` with the resolved `libraryId` and a focused `query`.
 - Cite the library name and version in the response so the user can verify
 - If the docs reveal the user's approach is wrong or outdated, flag this before proceeding
 
+### 5. If the lookup becomes written documentation
+When the result goes into a README, guide, or API reference rather than an answer:
+- Run every code example against the installed version before it ships.
+- Make each page stand alone, or link its prerequisites explicitly.
+- Keep one voice: second person, present tense, active.
+- State which version the page describes; deprecate old pages instead of deleting them.
+- Prefer generating reference pages from the source spec or docstrings, and fail the docs build when they go stale.
+
 ## Output format
 - Relevant documentation excerpt (quoted or paraphrased with attribution)
 - Applied answer: how the docs answer the specific question or task
@@ -60,3 +68,5 @@ Use Context7 `query-docs` with the resolved `libraryId` and a focused `query`.
 - If Context7 is unavailable, explicitly label the answer as training data with a verification reminder.
 - Do not silently use training data when Context7 is available — always attempt the lookup first.
 - If docs conflict with user's existing code, surface the conflict rather than silently overriding.
+
+Written-documentation checks adapted in part from engineering/engineering-technical-writer.md (agency-agents, MIT).

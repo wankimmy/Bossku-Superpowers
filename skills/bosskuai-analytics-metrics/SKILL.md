@@ -70,6 +70,14 @@ Use this skill when the main question is **what to measure, how to instrument it
 6. **Recommend the smallest instrumentation slice** — add or refine only what supports a real decision.
 7. **Name the validation plan** — how the team will verify the instrumentation is correct after shipping.
 
+## Reporting and charts
+
+- Aggregate reports (dashboards, territory or team roll-ups) use the latest value per metric and date, guard divisions such as attainment = revenue / quota against zero, and state the window (MTD, YTD, trailing N months).
+- The question picks the chart: compare categories with sorted bars, trend with a line, distribution with a histogram or box, relation with a scatter, many groups with small multiples.
+- Bars start at zero. Avoid dual-axis charts, which can fake a correlation; index the series or use small multiples.
+- Do not carry a number in colour alone: use a colourblind-safe palette and add a label or shape. Use categorical, sequential or diverging scales to match the data.
+- Test at real data volume; SVG slows at tens of thousands of elements, so move to canvas or aggregate.
+
 ## Guardrails
 
 - Do not add events with no clear decision owner.
@@ -141,3 +149,5 @@ Instrument the transition between each adjacent stage, not just the stages thems
 ## References
 
 - `../../references/checklists/analytics-metrics-checklist.md`
+
+Adapted from engineering/engineering-data-visualization-engineer.md and specialized/data-consolidation-agent.md (agency-agents, MIT).

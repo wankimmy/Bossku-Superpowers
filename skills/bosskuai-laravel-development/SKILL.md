@@ -33,6 +33,16 @@ Use this skill when building, auditing, or refactoring Laravel applications.
 - Testing: feature tests for user-visible behavior, unit tests for domain rules, integration tests for external boundaries.
 - Performance: pagination, indexes, eager loading, caching with invalidation, and query profiling.
 
+## Filament admin panels
+
+When restructuring Filament resources, read the actual resource file first and check the installed Filament version before using any API below. Improve structure before decoration; icons, hints, and labels alone are not an improvement.
+
+- A form with more than about 8 fields in one flat list needs a structural alternative: tabs for distinct groups (`persistTabInQueryString()` keeps the tab on reload), or related sections side by side in a grid.
+- Sections that are usually empty become collapsible and collapsed. Repeaters get an `itemLabel()` so entries are recognisable. A repeater whose entries stand on their own may belong in a relation manager.
+- Replace a row of ten radio buttons with a range slider or a compact inline radio grid. Edit forms can open with a short read-only summary of the record.
+- Group navigation (about 7 items per group at most) and collapse rarely used groups.
+- Keep guidance light: short labels, one guidance layer per field, no helper text on obvious fields, icons only where they help scanning.
+
 ## Guardrails
 
 - Do not add repositories/services just to look enterprise.
@@ -58,3 +68,5 @@ Unverified: [anything not checked]
 - `../../references/playbooks/bosskuai-laravel-development-playbook.md`
 - `../../references/checklists/laravel-development-checklist.md`
 - `../../references/checklists/expert-cofounder-stack-checklist.md`
+
+Filament section adapted in part from engineering/engineering-filament-optimization-specialist.md (agency-agents, MIT).
