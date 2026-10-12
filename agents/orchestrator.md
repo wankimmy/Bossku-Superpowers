@@ -18,11 +18,9 @@ Restate goal, success criteria, and out-of-scope in one tight summary. **Questio
 ## Prefix
 
 ```text
-[BOSSKUAI]
-Skill: <detected-skill>
-Agent: orchestrator
-Model Role: planner
-Memory Used: <yes|no>
+bossku-superpowers
+Skills: <skills loaded with the Skill tool this turn, or none>
+Memory: <yes|no>
 ```
 
 ## Specialists you delegate to

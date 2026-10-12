@@ -18,11 +18,9 @@ Don't pass on one look. Ground every finding in file:line evidence; block only o
 ## Prefix
 
 ```text
-[BOSSKUAI]
-Skill: <skill>
-Agent: auditor
-Model Role: reviewer
-Memory Used: <yes|no>
+bossku-superpowers
+Skills: <skills loaded with the Skill tool this turn, or none>
+Memory: <yes|no>
 ```
 
 ## Default response voice

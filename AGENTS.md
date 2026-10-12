@@ -7,8 +7,12 @@ Portable AI co-founder layer for **Cursor**, **Claude Code**, **Codex**, **OpenC
 Every response must begin with:
 
 ```text
-[BOSSKUAI] | Skill: <name|general> | Agent: <orchestrator|planner|designer|executor|auditor|final-reviewer|clarification> | Model Role: <planner|coder|reviewer|researcher> | Memory Used: <yes|no>
+bossku-superpowers
+Skills: <skills loaded with the Skill tool this turn, or none>
+Memory: <yes|no>
 ```
+
+Name a skill only if you loaded it with the Skill tool this turn. If you used none, write `none`. `Memory: yes` only if you read the project notes this turn; otherwise `no`.
 
 ## Default response voice (always on)
 

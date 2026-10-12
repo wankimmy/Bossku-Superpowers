@@ -34,10 +34,10 @@ def outside_fences(text):
     return "\n".join(out)
 
 
-def indicator(rel):
-    match = re.search(r"^\[BOSSKUAI\] \| Skill: (<[^>]+>) \| Agent: <([^>]+)> \| Model Role:", read(rel), re.M)
-    assert match, f"no one-line [BOSSKUAI] indicator in {rel}"
-    return match.group(1), match.group(2).split("|")
+def header_block(rel):
+    match = re.search(r"^bossku-superpowers\nSkills: [^\n]+\nMemory: <yes\|no>$", read(rel).replace("\r\n", "\n"), re.M)
+    assert match, f"no bossku-superpowers response header in {rel}"
+    return match.group(0)
 
 
 class ManifestTests(unittest.TestCase):
@@ -71,17 +71,21 @@ class CiWorkflowTests(unittest.TestCase):
 
 
 class InstructionFileTests(unittest.TestCase):
-    def test_indicator_is_one_format_with_the_full_agent_list(self):
-        agents_skill, agents_list = indicator("AGENTS.md")
-        cursor_skill, cursor_list = indicator(".cursor/rules/bosskuai.mdc")
-        self.assertEqual(agents_skill, cursor_skill)
-        self.assertEqual(agents_list, cursor_list)
-        contracts = {p.stem for p in (ROOT / "agents").glob("*.md")}
-        self.assertEqual(set(agents_list), contracts | {"clarification"})
+    def test_response_header_is_one_format_everywhere_and_allows_none(self):
+        block = header_block("AGENTS.md")
+        self.assertEqual(block, header_block(".cursor/rules/bosskuai.mdc"))
+        for path in sorted((ROOT / "agents").glob("*.md")):
+            text = path.read_text(encoding="utf-8")
+            self.assertNotIn("[BOSSKUAI]", text, path.name)
+            if "bossku-superpowers" in text:
+                self.assertEqual(block, header_block(f"agents/{path.name}"), path.name)
+        self.assertIn("or none", block)
         hook = ROOT / "hooks" / "session-start.mjs"
         if hook.is_file():
-            for name in agents_list:
-                self.assertIn(name, hook.read_text(encoding="utf-8"))
+            hook_text = hook.read_text(encoding="utf-8")
+            self.assertIn("bossku-superpowers", hook_text)
+            self.assertIn("or none", hook_text)
+            self.assertIn("Never name a skill you did not load", hook_text)
 
     def test_agents_md_links_every_agent_contract(self):
         text = read("AGENTS.md")

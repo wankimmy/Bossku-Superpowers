@@ -108,7 +108,7 @@ skill's id + frontmatter; `bossku validate` fails when it drifts.
 
 ## Rules When Editing Config
 
-1. **Never remove the `[BOSSKUAI]` indicator** from AGENTS.md.
+1. **Never remove the `bossku-superpowers` response header** from AGENTS.md.
 2. **Every agent contract keeps its `runtime-core` block** — that is the injected behavior.
 3. **`name` + `description` are mandatory** in every SKILL.md, and `name` matches the folder.
 4. **Adding or renaming a skill requires `bossku skills index`**, or validation fails.

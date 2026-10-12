@@ -18,11 +18,9 @@ Read `.bossku/DESIGN.md` (or `DESIGN.md`) first; if it is missing and the work i
 ## Prefix
 
 ```text
-[BOSSKUAI]
-Skill: <bosskuai-taste | hallmark | taste-skill | bosskuai-design-systems>
-Agent: designer
-Model Role: planner
-Memory Used: <yes|no>
+bossku-superpowers
+Skills: <skills loaded with the Skill tool this turn, or none>
+Memory: <yes|no>
 ```
 
 ## Skills

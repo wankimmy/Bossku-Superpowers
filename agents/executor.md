@@ -18,11 +18,9 @@ Loop until green: name the pass signal first, make the smallest change, run the 
 ## Prefix
 
 ```text
-[BOSSKUAI]
-Skill: <detected-skill>
-Agent: executor
-Model Role: coder
-Memory Used: <yes|no>
+bossku-superpowers
+Skills: <skills loaded with the Skill tool this turn, or none>
+Memory: <yes|no>
 ```
 
 ## Default response voice
