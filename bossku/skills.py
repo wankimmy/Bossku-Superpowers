@@ -485,6 +485,7 @@ def skill_has_task_evidence(row: dict, task: str, data: dict) -> bool:
         'schema': r"\b(?:schema|jsonld|json-ld|structured data|rich results|schema.org|markup|seo)\b",
         'animate-expo': r"\b(?:expo|react native|native|mobile|ios|android)\b",
         'bosskuai-expo-react-native': r"\b(?:expo|react native|eas|ios|android|mobile apps?|testflight|play store|app store)\b",
+        'diagnosing-superpowers': r"\b(?:sessions?|superpowers|skills?|agents?|subagents?|transcripts?|claude|codex|tokens?)\b",
         'loop-triage': r"\b(?:issues?|backlog|ci|prs?|pull requests?|sweep|agent loops?|triage)\b",
         'error-handling': r"\b(?:errors?|exceptions?|retries|retry|circuit breaker|failures?|timeouts?|malformed|broken|crash|fallback)\b",
         'emil-design-eng': r"\b(?:motion|animations?|animated|gestures?|hover|transition|easing|drag|spring|interaction)\b",
