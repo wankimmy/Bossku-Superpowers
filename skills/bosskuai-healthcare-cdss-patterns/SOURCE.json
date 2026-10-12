@@ -1,0 +1,11 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/healthcare-cdss-patterns/SKILL.md",
+  "source_sha256": "439875d2fff3bbf14e0b46b7310b4c815c2596e54a6cafaafb4b2b93b4865626",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {},
+  "resources": []
+}

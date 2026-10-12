@@ -1,0 +1,11 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/ui-demo/SKILL.md",
+  "source_sha256": "893eee77f98f52d28bffa6bbababa7481300cc13535dea519fa0cc1b0168b2f8",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {},
+  "resources": []
+}

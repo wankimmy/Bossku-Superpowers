@@ -105,6 +105,8 @@ Pick how much of the library your agent lists in every session:
 | `engineering` | Every skill except the 47 of the marketingskills pack (about 195) | Already listed | People who build software and do not need the marketing set |
 | `full` | All 240+ skills | Already listed | Hosts with a very large skill budget |
 
+Library-only skills (`skills/library-only.json`: 173 adapted ECC workflows for niche stacks such as C++, Rust, GIS and network operations) are listed by no profile. The skill hint and `bossku skills find` still name them, and the agent reads their `SKILL.md` on demand.
+
 Agents spend a fixed share of their context window on the skill list and cut the rest to bare names, so listing everything makes every session pay for skills it never uses. Measured costs are in the [benchmark](benchmarks/README.md). Switch any time by running `bossku install --profile <name>`; `bossku update` and a plain `bossku install` keep your profile (a first install starts at `lean`). After pulling Bossku-AI changes, run `bossku update` so installed skills match the repo.
 
 `bossku install` also refreshes the Claude Code, Cursor, Codex, and OpenCode hooks by default:

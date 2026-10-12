@@ -1,0 +1,11 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/nestjs-patterns/SKILL.md",
+  "source_sha256": "7f41406abaf10185d9a784e894108ded771a0177b1051e0b2c65d14f226bd581",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {},
+  "resources": []
+}

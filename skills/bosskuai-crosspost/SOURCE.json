@@ -1,0 +1,15 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/crosspost/SKILL.md",
+  "source_sha256": "03bd2ef6e08191cd336e9b8e7a55c29040e7a3225defdaeab1b51d983565661f",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "brand-voice": "bosskuai-brand-voice",
+    "content-engine": "content-strategy",
+    "x-api": "bosskuai-x-api"
+  },
+  "resources": []
+}

@@ -1,0 +1,11 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/springboot-security/SKILL.md",
+  "source_sha256": "566ecf928bf76812d15efd62e2f00841652e1618f0a97d8dda93e1c247a162c5",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {},
+  "resources": []
+}

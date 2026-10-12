@@ -1,0 +1,17 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/mybatis-patterns/SKILL.md",
+  "source_sha256": "9b1d2d79222a57ab7bdbebeeb53a92aa87849f329a96c7df5b9ada651796f9f0",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "database-migrations": "database-migrations",
+    "mysql-patterns": "mysql-patterns",
+    "postgres-patterns": "bosskuai-postgres-patterns",
+    "security-review": "bosskuai-cybersecurity-risk",
+    "springboot-patterns": "bosskuai-springboot-patterns"
+  },
+  "resources": []
+}

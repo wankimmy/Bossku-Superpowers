@@ -1,0 +1,40 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/frontend-slides/SKILL.md",
+  "source_sha256": "9d58ad7d4555a9d6ea1944a5084fd0428ee44276ac13ee8df02c1c4e63925291",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "e2e-testing": "e2e-testing",
+    "frontend-patterns": "bosskuai-react-development",
+    "liquid-glass-design": "bosskuai-liquid-glass-design"
+  },
+  "resources": [
+    {
+      "path": "animation-patterns.md",
+      "sha256": "152ac81e87eba92dea96ef5ac488e3e0a341836aca034e908b0c1b6d60bff204"
+    },
+    {
+      "path": "html-template.md",
+      "sha256": "0ba1acf5016472f0f902ee2a67cf2d6e20e8dbd3f733df9cd8f5ee67d5ca0adf"
+    },
+    {
+      "path": "scripts/export-pdf.sh",
+      "sha256": "d19c5fb88b0165b47b21d7cc46f2947def88bc9ffc395f4efbaf96a6e07be2ac"
+    },
+    {
+      "path": "scripts/extract-pptx.py",
+      "sha256": "4f5e7603c99b8b53e20c5b2a65abdf5edf9422b4c490dca9f2b872a752c17d2a"
+    },
+    {
+      "path": "STYLE_PRESETS.md",
+      "sha256": "f3448493022f8fa3f858319b14c0c48a35d441864dc78a2411f7938c28e7a265"
+    },
+    {
+      "path": "viewport-base.css",
+      "sha256": "dab42c1a556a0fa51d3c39f7edfb93d8303e5c29625ade479a18ba97f2640734"
+    }
+  ]
+}

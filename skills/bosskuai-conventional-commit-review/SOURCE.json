@@ -1,0 +1,14 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/conventional-commit-review/SKILL.md",
+  "source_sha256": "c81397a4bfc2ec66986aae7a4dff5a02f78c519bc9774a80778fa9055e7fa2fe",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "coding-standards": "bosskuai-coding-best-practices",
+    "git-workflow": "bosskuai-github-workflow"
+  },
+  "resources": []
+}

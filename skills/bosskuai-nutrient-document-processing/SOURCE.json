@@ -1,0 +1,11 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/nutrient-document-processing/SKILL.md",
+  "source_sha256": "2a8096af72efaeb29a4221929ac1f1ea9d97b95d44316720764fb7c191c7a5b9",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {},
+  "resources": []
+}

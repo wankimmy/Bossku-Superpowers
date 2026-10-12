@@ -1,0 +1,13 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/energy-procurement/SKILL.md",
+  "source_sha256": "4b4cb5d87f571cf02c26631e647fa06df21601a4faed6baf97a8100e1f32cc50",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "benchmark": "bosskuai-performance-profiling"
+  },
+  "resources": []
+}

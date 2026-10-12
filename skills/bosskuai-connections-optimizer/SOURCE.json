@@ -1,0 +1,17 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/connections-optimizer/SKILL.md",
+  "source_sha256": "499c7e7e361ec17afdad57b725b4d105efb21f707b5724115f71152fe1755c67",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "brand-voice": "bosskuai-brand-voice",
+    "content-engine": "content-strategy",
+    "lead-intelligence": "bosskuai-lead-intelligence",
+    "social-graph-ranker": "bosskuai-social-graph-ranker",
+    "x-api": "bosskuai-x-api"
+  },
+  "resources": []
+}

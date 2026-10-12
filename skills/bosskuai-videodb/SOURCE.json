@@ -1,0 +1,56 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/videodb/SKILL.md",
+  "source_sha256": "4509fd09f659314f8cec19bf8d9593e4907f244b576b36d83b2259064cae4da4",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {},
+  "resources": [
+    {
+      "path": "reference/api-reference.md",
+      "sha256": "fa15b0239185cc807ee77f201818c49cdaf74a50142a04ab8acfa0d90eef43b9"
+    },
+    {
+      "path": "reference/capture-reference.md",
+      "sha256": "c84989ef482bbb5504d6952ee5733b2a5f1e70c5bc0478dd475041b647351c6b"
+    },
+    {
+      "path": "reference/capture.md",
+      "sha256": "e0021243fda7da46f4d080af9a2fc9b3e067a0554cdc64bba5313b269e05f948"
+    },
+    {
+      "path": "reference/editor.md",
+      "sha256": "5f0d0ac43c9534f4eed8e1459a17a3879ee5e4e4d36aed5d6b58561f379a668e"
+    },
+    {
+      "path": "reference/generative.md",
+      "sha256": "2004debb4e62aa904f7163c1d5252bbd21e7400c5495caaaf91fdb752371ff9f"
+    },
+    {
+      "path": "reference/rtstream-reference.md",
+      "sha256": "e73dc675c9a433986cea6a78a36085e0552ee4a74317d7f7e0eb988ea4271dcf"
+    },
+    {
+      "path": "reference/rtstream.md",
+      "sha256": "bd929e5583ff6377b7b5d72fb8c3416f97c8548450dc6d570fb75586753fea73"
+    },
+    {
+      "path": "reference/search.md",
+      "sha256": "c26a1eab8b4adde439f1bdf252ef4dc1dd17275ebc65c3524ed8c6061b836797"
+    },
+    {
+      "path": "reference/streaming.md",
+      "sha256": "8963e4a52985dd2b274a259d815dd2ef23bdc2b75930d7f42cb2b8d6a6e0f935"
+    },
+    {
+      "path": "reference/use-cases.md",
+      "sha256": "b64966f872d036191747050c5c8121601f54ce8099716665cf09bc0a66c69905"
+    },
+    {
+      "path": "scripts/ws_listener.py",
+      "sha256": "1b8867e19cca1509993a9136554e3330b4a0d7942bf1b01c3b9469bfe5da06cd"
+    }
+  ]
+}

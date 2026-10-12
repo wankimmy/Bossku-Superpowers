@@ -1,0 +1,17 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/automation-audit-ops/SKILL.md",
+  "source_sha256": "71aa878fd06ef02f0c8ca50eaaee0ec45995981d769d8701806b9b83ca8a2f2c",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "github-ops": "bosskuai-github-workflow",
+    "knowledge-ops": "bosskuai-permanent-memory-orchestration",
+    "research-ops": "bosskuai-deep-research",
+    "verification-loop": "verification-before-completion",
+    "workspace-surface-audit": "bosskuai-tools"
+  },
+  "resources": []
+}

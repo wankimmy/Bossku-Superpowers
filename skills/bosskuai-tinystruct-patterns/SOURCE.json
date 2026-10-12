@@ -1,0 +1,36 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/tinystruct-patterns/SKILL.md",
+  "source_sha256": "ee23f46cbdf7d0a8fd9fe2e50df2e29d9acab6913459cf293a7ecd77173a3369",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {},
+  "resources": [
+    {
+      "path": "references/architecture.md",
+      "sha256": "6821df0fe22bfed26071e0a8386b47b820de7ff916275d6e0fffde6dc649a43e"
+    },
+    {
+      "path": "references/data-handling.md",
+      "sha256": "4f14344808d3468228cb2f99215c6a340f25e3e34217147709c60f579742bdcf"
+    },
+    {
+      "path": "references/database.md",
+      "sha256": "f258537d4882cb7dd5094946f43780c698b9a2c6d5016fa915995cdc9fc8191d"
+    },
+    {
+      "path": "references/routing.md",
+      "sha256": "5accd76c48394eeb0b8f97733c1e928a58c0ee28080951c66979b35b0029cd24"
+    },
+    {
+      "path": "references/system-usage.md",
+      "sha256": "6ff5f0ffab18340a298712e93170ff2e3207785c6ec3eb65b3e7f84cae2f06bf"
+    },
+    {
+      "path": "references/testing.md",
+      "sha256": "a4c82b7b9b9877049dcba49b8dbfd88e2713e32ad90ac37f598f9be6b2b864f4"
+    }
+  ]
+}

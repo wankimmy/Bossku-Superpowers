@@ -1,0 +1,15 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/homelab-network-readiness/SKILL.md",
+  "source_sha256": "22ca735343716f296daa024c57128ceb6d5c38d54b3edb3045f6a9ef376a61f8",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "homelab-network-setup": "bosskuai-homelab-network-setup",
+    "network-config-validation": "bosskuai-network-config-validation",
+    "network-interface-health": "bosskuai-network-interface-health"
+  },
+  "resources": []
+}

@@ -1,0 +1,20 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/manim-video/SKILL.md",
+  "source_sha256": "bb890b019664a995ca2bf6c08add444a85099caf4c0085de50e9ad6f62d62d5f",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "content-engine": "content-strategy",
+    "remotion-video-creation": "bosskuai-remotion-video-creation",
+    "video-editing": "bosskuai-video-editing"
+  },
+  "resources": [
+    {
+      "path": "assets/network_graph_scene.py",
+      "sha256": "5d8ef9a5c55b244610a910229d195b10a5bb0b7d7e2add584b9915be6aa8a306"
+    }
+  ]
+}

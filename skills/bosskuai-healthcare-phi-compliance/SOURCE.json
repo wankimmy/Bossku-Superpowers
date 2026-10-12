@@ -1,0 +1,11 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/healthcare-phi-compliance/SKILL.md",
+  "source_sha256": "02f9091e652f278a722230d5b96948d6ceaf10f9f37bc4c7eb6ddaad7bc8a271",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {},
+  "resources": []
+}

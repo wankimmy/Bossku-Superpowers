@@ -1,0 +1,17 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/finance-billing-ops/SKILL.md",
+  "source_sha256": "823a1b8f75495022227bb9af4537eb5c0b1c62793d68b74c6bd1af14eea79786",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "customer-billing-ops": "bosskuai-customer-billing-ops",
+    "github-ops": "bosskuai-github-workflow",
+    "market-research": "bosskuai-market-analysis",
+    "research-ops": "bosskuai-deep-research",
+    "verification-loop": "verification-before-completion"
+  },
+  "resources": []
+}

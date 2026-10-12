@@ -1,0 +1,47 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/brand-discovery/SKILL.md",
+  "source_sha256": "e6b9999ef722a42e0a01cd663072608609f69acc6bfd558fa3d4a14fcc3650b9",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "brand-voice": "bosskuai-brand-voice",
+    "competitive-platform-analysis": "bosskuai-competitive-platform-analysis"
+  },
+  "resources": [
+    {
+      "path": "references/10_purpose-why.md",
+      "sha256": "d70beb1dcf73512e235a377c59ca43f544de084dd555701f99a65574b17939ea"
+    },
+    {
+      "path": "references/20_positioning.md",
+      "sha256": "50e2c71b8b4d6a44d59b45609c06aa258f6c16871a4d2a184f68983433e954c4"
+    },
+    {
+      "path": "references/30_audience-niche.md",
+      "sha256": "189e8d41d08df421fa5bad5d15e814334dc8fe706255701b277e258100b6007d"
+    },
+    {
+      "path": "references/40_personality-archetype.md",
+      "sha256": "58b04b09cf1e206d1240fc01d8c77c22fcc9b9c0d8ef326ad418476589072182"
+    },
+    {
+      "path": "references/50_voice-tone.md",
+      "sha256": "cf69dc9573ed00561cfb8e7e489450ae644b90703a2d9315b77d8629af69bde3"
+    },
+    {
+      "path": "references/60_narrative-story.md",
+      "sha256": "46a6184f00ffa8d6900d59d58164f5e767012bc12dd67dc2b2ba53976d6811b9"
+    },
+    {
+      "path": "references/70_founder-tension.md",
+      "sha256": "88e7149f2ace5d3f726d33e5fb7ca2caddb7e3301574e849517e16277590ab39"
+    },
+    {
+      "path": "references/90_SYNTHESIS.md",
+      "sha256": "04d0215bb054685ab8f6956f8369a7eb9d39e16acd1f7ae5ffe46725f2c00c61"
+    }
+  ]
+}

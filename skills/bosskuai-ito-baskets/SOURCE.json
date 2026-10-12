@@ -1,0 +1,27 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/ito-baskets/SKILL.md",
+  "source_sha256": "ef5e4353d1d90a75ad0b9c435d831c178187b4be407b9270e2d32b2bb64589bc",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "deep-research": "bosskuai-deep-research",
+    "exa-search": "bosskuai-exa-search",
+    "ito-compute": "bosskuai-ito-compute",
+    "market-research": "bosskuai-market-analysis",
+    "prediction-market-risk-review": "bosskuai-prediction-market-risk-review",
+    "x-api": "bosskuai-x-api"
+  },
+  "resources": [
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "b5fc7bf3b938608ae9794248dc64e6aaf71942c12caae4131289e95056c1c441"
+    },
+    {
+      "path": "scripts/ito-baskets.js",
+      "sha256": "696d05df7600ce3babcc5887a997b7e799e331015384bd5d6a0b4fd6a2ea51ee"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/brownfield-retrospective/SKILL.md",
+  "source_sha256": "805439bc795d40dff6bceb34da6a2ab2115badfea6c9f4729e7fe0ccda62c382",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "architecture-decision-records": "architecture-decision-records",
+    "codebase-onboarding": "bosskuai-project-understanding",
+    "production-audit": "bosskuai-product-verification",
+    "security-review": "bosskuai-cybersecurity-risk",
+    "tdd-workflow": "bosskuai-tdd-loop",
+    "unified-memory": "bosskuai-permanent-memory-orchestration",
+    "verification-loop": "verification-before-completion"
+  },
+  "resources": []
+}

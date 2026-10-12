@@ -1,0 +1,15 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/benchmark-methodology/SKILL.md",
+  "source_sha256": "f24585262b9c3e106dc27d45f75c4b965501680a16ff6dc5a9995a53322549df",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "benchmark": "bosskuai-performance-profiling",
+    "competitive-platform-analysis": "bosskuai-competitive-platform-analysis",
+    "competitive-report-structure": "bosskuai-competitive-report-structure"
+  },
+  "resources": []
+}

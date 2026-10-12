@@ -1,0 +1,14 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/cisco-ios-patterns/SKILL.md",
+  "source_sha256": "85b6a97574cc236d4a9336b1c74b42aaf4386338417e787cbed0c88677bf1179",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "network-config-validation": "bosskuai-network-config-validation",
+    "network-interface-health": "bosskuai-network-interface-health"
+  },
+  "resources": []
+}

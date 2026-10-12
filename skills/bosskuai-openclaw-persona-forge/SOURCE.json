@@ -1,0 +1,46 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/openclaw-persona-forge/SKILL.md",
+  "source_sha256": "3498442cf72ee7efbc4cc56553b48dbbb1a26d1d95eca4037aede69e164a9875",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "error-handling": "error-handling"
+  },
+  "resources": [
+    {
+      "path": "gacha.py",
+      "sha256": "032aed98c1c93ced971ac223357b2d3a4162f7e6ca8ecd7eb3e35a121fe5d5bc"
+    },
+    {
+      "path": "gacha.sh",
+      "sha256": "7f37efda4df83e547e37df7fb19d2ce34500cce7a6ab62e6983a2095b3761b67"
+    },
+    {
+      "path": "references/avatar-style.md",
+      "sha256": "b422938377812dff985dd6887756af87a4f866bc27a5fa33f9be1f0db60d8df1"
+    },
+    {
+      "path": "references/boundary-rules.md",
+      "sha256": "10ceeed8f1290d30de994efc42375619b458083b60d1b49d3a8f4abc645d2bfe"
+    },
+    {
+      "path": "references/error-handling.md",
+      "sha256": "2e22cdd76b1b119b04f076b71d6fb3834d5a422fc952b3478237de85683bd243"
+    },
+    {
+      "path": "references/identity-tension.md",
+      "sha256": "e0f0c7ac300ed9c755fa6460197bdc3efe8f8186e738806a0591c779da4d16a9"
+    },
+    {
+      "path": "references/naming-system.md",
+      "sha256": "ca0e8710c330222d03abf05e25e7a67d1ae3200fb239ebaea2fcb880c6bbb563"
+    },
+    {
+      "path": "references/output-template.md",
+      "sha256": "4a832227b34b69aec997ae2c4b08cc1df81abcbb048b03e80173ea3f97c8e202"
+    }
+  ]
+}

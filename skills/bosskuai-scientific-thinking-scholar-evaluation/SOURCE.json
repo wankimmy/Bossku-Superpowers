@@ -1,0 +1,11 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/scientific-thinking-scholar-evaluation/SKILL.md",
+  "source_sha256": "079ed9182c086fbb2168b723f36cb167d4cb2272a10a41b131f38945d2f0b145",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {},
+  "resources": []
+}

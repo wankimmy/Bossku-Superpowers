@@ -1,0 +1,27 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/master-agreement-generator/SKILL.md",
+  "source_sha256": "46f8c847b3fc406929a52c0064214715abb5412ecabb068730e6d4af50f89ac6",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "esign-field-placement": "bosskuai-esign-field-placement",
+    "operator-approval-loop": "bosskuai-operations"
+  },
+  "resources": [
+    {
+      "path": "references/master-template.example.md",
+      "sha256": "165f3a7b8cffd03dbf2bfb52fdf600be3fd1a16d77f3fa91ab7364ff7fa3203b"
+    },
+    {
+      "path": "references/spec.example.json",
+      "sha256": "66046914a2d257721c101cacfc97f1ca5fe001c80fa7befbf46e81dc9473541e"
+    },
+    {
+      "path": "scripts/build-agreement.js",
+      "sha256": "6806f46261f3229857f7d9f3402c3712f9222eafebb412e5b9c524b4c13cab94"
+    }
+  ]
+}

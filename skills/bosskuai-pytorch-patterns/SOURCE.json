@@ -1,0 +1,13 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/pytorch-patterns/SKILL.md",
+  "source_sha256": "168c8740f548414a75f576265ddb03329be98ed57f06c5edaf79c7cd4b6a9cf4",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "benchmark": "bosskuai-performance-profiling"
+  },
+  "resources": []
+}

@@ -16,6 +16,7 @@ from bossku.skills import (
     pack_stocktake,
     skills_dir,
     validate_lean,
+    validate_library_only,
     validate_skills,
 )
 
@@ -417,6 +418,7 @@ def validate_repo(root: Path | None = None) -> list[str]:
         errors.append("missing skills directory")
     errors.extend(validate_skills(r))
     errors.extend(validate_lean(r))
+    errors.extend(validate_library_only(r))
     if not index_path(r).is_file():
         errors.append("missing skills/skill-index.json (run `bossku skills index`)")
     elif index_is_stale(r):

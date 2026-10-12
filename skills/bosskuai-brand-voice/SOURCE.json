@@ -1,0 +1,21 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/brand-voice/SKILL.md",
+  "source_sha256": "57c7f8440b7bd4c91c0d325640b5c6fb7a3dc7fc05595946c7bc705761a987a7",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "content-engine": "content-strategy",
+    "crosspost": "bosskuai-crosspost",
+    "lead-intelligence": "bosskuai-lead-intelligence",
+    "x-api": "bosskuai-x-api"
+  },
+  "resources": [
+    {
+      "path": "references/voice-profile-schema.md",
+      "sha256": "3c5c2b04fd4b68642d2d3279829541bc56d211fdefc3498e86c1486abee8261b"
+    }
+  ]
+}

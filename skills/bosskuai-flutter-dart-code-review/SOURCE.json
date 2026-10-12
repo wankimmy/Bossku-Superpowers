@@ -1,0 +1,13 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/flutter-dart-code-review/SKILL.md",
+  "source_sha256": "5ceac13c9b99c97340f9a47c081737aceee1f803ed9045b7fbc980243b01db03",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "accessibility": "accessibility"
+  },
+  "resources": []
+}

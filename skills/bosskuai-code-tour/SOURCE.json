@@ -1,0 +1,16 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/code-tour/SKILL.md",
+  "source_sha256": "416c7eb9229554a1ef113bbb873ff0b260a2ad9ae6e6075a75c375955d3fcf6f",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "codebase-onboarding": "bosskuai-project-understanding",
+    "coding-standards": "bosskuai-coding-best-practices",
+    "council": "bosskuai-council",
+    "documentation-lookup": "bosskuai-documentation-lookup"
+  },
+  "resources": []
+}

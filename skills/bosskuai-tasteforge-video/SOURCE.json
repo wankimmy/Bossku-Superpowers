@@ -1,0 +1,18 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/tasteforge-video/SKILL.md",
+  "source_sha256": "8c7e696fa6e34fa1722d9b8e7b8d8ca819aff68a660d85a35d7eca3f4541272a",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "content-engine": "content-strategy",
+    "fal-ai-media": "bosskuai-fal-ai-media",
+    "taste": "bosskuai-video-creative-direction",
+    "taste-application": "bosskuai-video-style-application",
+    "taste-distillation": "bosskuai-video-style-distillation",
+    "video-editing": "bosskuai-video-editing"
+  },
+  "resources": []
+}

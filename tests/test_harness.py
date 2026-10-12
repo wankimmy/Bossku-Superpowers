@@ -21,7 +21,7 @@ from bossku.hooks import (
 from bossku.init_project import PROJECT_BLOCK, init_project
 from bossku.install import AGENT_FILES, AGENT_SIGNATURE, install_user, uninstall_user, update_user
 from bossku.memory import load_user_config
-from bossku.skills import _profile_skills, list_skill_ids, load_pack_skill_ids
+from bossku.skills import _profile_skills, list_skill_ids, load_library_only, load_pack_skill_ids
 from bossku.validate import package_version, validate_agents, validate_hooks
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -77,7 +77,7 @@ class ProfileTests(unittest.TestCase):
         full = set(list_skill_ids(ROOT))
         marketing = set(load_pack_skill_ids("marketingskills", ROOT))
         engineering = set(_profile_skills("engineering", ROOT))
-        self.assertEqual(engineering, full - marketing)
+        self.assertEqual(engineering, full - marketing - load_library_only(ROOT))
         self.assertNotIn("copywriting", engineering)
         for keep in ("bosskuai-taste", "brainstorming", "hallmark", "mysql-patterns", "i-have-adhd"):
             self.assertIn(keep, engineering)

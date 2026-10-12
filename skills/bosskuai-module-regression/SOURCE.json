@@ -1,0 +1,21 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/module-regression/SKILL.md",
+  "source_sha256": "5c3db104f8e4aec868d010fa9354ec64b4c138557a59d13d7355fc9eacdcc846",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "ai-regression-testing": "bosskuai-qa-automation-strategy",
+    "change-impact": "bosskuai-codebase-analysis",
+    "contract-first": "bosskuai-contract-first",
+    "test-collaboration": "bosskuai-test-collaboration"
+  },
+  "resources": [
+    {
+      "path": "templates/REGRESSION.example.md",
+      "sha256": "5a12a499eae38389ca4c12dbdb2789e9ac7ad894c3d3723b2c3580d3b2ae8284"
+    }
+  ]
+}

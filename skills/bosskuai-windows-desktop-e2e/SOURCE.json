@@ -1,0 +1,16 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/windows-desktop-e2e/SKILL.md",
+  "source_sha256": "cbc93a1e2514ecdcee30da744aa13eb6c0ebe4948ca3dfff52b287df4f9f0814",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "accessibility": "accessibility",
+    "cpp-coding-standards": "bosskuai-cpp-coding-standards",
+    "cpp-testing": "bosskuai-cpp-testing",
+    "e2e-testing": "e2e-testing"
+  },
+  "resources": []
+}

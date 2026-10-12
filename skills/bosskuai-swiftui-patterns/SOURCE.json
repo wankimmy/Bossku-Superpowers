@@ -1,0 +1,14 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/swiftui-patterns/SKILL.md",
+  "source_sha256": "79e3c8b5b7c38fa04778b1084cddc2f8db5f671e682b0e9c1d5bd2f95800f690",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "swift-actor-persistence": "bosskuai-swift-actor-persistence",
+    "swift-protocol-di-testing": "bosskuai-swift-protocol-di-testing"
+  },
+  "resources": []
+}

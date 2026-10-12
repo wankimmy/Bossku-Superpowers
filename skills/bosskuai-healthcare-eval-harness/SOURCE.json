@@ -1,0 +1,11 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/healthcare-eval-harness/SKILL.md",
+  "source_sha256": "0c74bb0309d4fb7e3bf04b0f779909156520c73bd6162bd405f7232af19c0a68",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {},
+  "resources": []
+}

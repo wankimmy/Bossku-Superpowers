@@ -1,0 +1,13 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/recsys-pipeline-architect/SKILL.md",
+  "source_sha256": "309fe65f0ffdb44b62005c63ab9f460ddbe813f994e010316f7a2e55fc52e436",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "benchmark": "bosskuai-performance-profiling"
+  },
+  "resources": []
+}

@@ -1,0 +1,16 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/kubernetes-patterns/SKILL.md",
+  "source_sha256": "808b2ec032224e251f1bef9f6e9879e88e2e7abd0feb393632fb6042d8ac5ecc",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "deployment-patterns": "bosskuai-devops-iac",
+    "docker-patterns": "bosskuai-docker",
+    "git-workflow": "bosskuai-github-workflow",
+    "security-review": "bosskuai-cybersecurity-risk"
+  },
+  "resources": []
+}

@@ -1,0 +1,14 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/social-publisher/SKILL.md",
+  "source_sha256": "c2fde5ac9d953cb649ce69331ca49be1df854d051ebc31eb54423c5d262337f6",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "social-graph-ranker": "bosskuai-social-graph-ranker",
+    "x-api": "bosskuai-x-api"
+  },
+  "resources": []
+}

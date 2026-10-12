@@ -1,0 +1,13 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/rails-patterns/SKILL.md",
+  "source_sha256": "914ab8d9d907da06436a512180a65660fbb5d94cd04f56426e3b87a42357acd1",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "backend-patterns": "bosskuai-software-architecture"
+  },
+  "resources": []
+}

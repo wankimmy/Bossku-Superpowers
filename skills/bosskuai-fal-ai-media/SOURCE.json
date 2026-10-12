@@ -1,0 +1,17 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/fal-ai-media/SKILL.md",
+  "source_sha256": "723ffbe93063a8927a07a9d2c6d5743045ffb15d292f90472dee89582ed7714f",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "content-engine": "content-strategy",
+    "taste": "bosskuai-video-creative-direction",
+    "tasteforge-video": "bosskuai-tasteforge-video",
+    "video-editing": "bosskuai-video-editing",
+    "videodb": "bosskuai-videodb"
+  },
+  "resources": []
+}

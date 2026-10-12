@@ -1,0 +1,16 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/laravel-plugin-discovery/SKILL.md",
+  "source_sha256": "6cf2b48ae39f26df7f8d17cf6480635b5203f6942a756a290efa27cf339169d3",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "documentation-lookup": "bosskuai-documentation-lookup",
+    "laravel-patterns": "bosskuai-laravel-development",
+    "laravel-security": "bosskuai-laravel-security",
+    "laravel-tdd": "bosskuai-laravel-tdd"
+  },
+  "resources": []
+}

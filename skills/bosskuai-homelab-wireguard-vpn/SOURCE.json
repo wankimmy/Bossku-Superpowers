@@ -1,0 +1,15 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/homelab-wireguard-vpn/SKILL.md",
+  "source_sha256": "38df424e399549d3ba42d6f50c77554d9a88a46b3bac4dd1436158874535c13c",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "homelab-network-setup": "bosskuai-homelab-network-setup",
+    "homelab-pihole-dns": "bosskuai-homelab-pihole-dns",
+    "homelab-vlan-segmentation": "bosskuai-homelab-vlan-segmentation"
+  },
+  "resources": []
+}

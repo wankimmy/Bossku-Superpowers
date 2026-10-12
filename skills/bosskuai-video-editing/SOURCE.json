@@ -1,0 +1,67 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/video-editing/SKILL.md",
+  "source_sha256": "4ab8c9ef5a511e8a0de9ed375b9edbbfa74f23a0881519d2aceea67e7252b197",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "content-engine": "content-strategy",
+    "fal-ai-media": "bosskuai-fal-ai-media",
+    "taste": "bosskuai-video-creative-direction",
+    "taste-application": "bosskuai-video-style-application",
+    "taste-distillation": "bosskuai-video-style-distillation",
+    "videodb": "bosskuai-videodb"
+  },
+  "resources": [
+    {
+      "path": "assets/fusion/ito-production-v1/install_ito_production_v1.lua",
+      "sha256": "fcde297435ac97ae7b9f01b65615ed7b0cd6622774a9952b1a041d642808d2b8"
+    },
+    {
+      "path": "assets/fusion/ito-production-v1/ITO_PROD_HighlightBloom.setting",
+      "sha256": "859f20d4c3e29a91367cc0c1e4472be5f85919d7953957549a0afde5bac74ba1"
+    },
+    {
+      "path": "assets/fusion/ito-production-v1/ITO_PROD_LumaHalo.setting",
+      "sha256": "fa767774ef6a20d52422f8dfea7f1577a1308261212d730cdba39a4df2169186"
+    },
+    {
+      "path": "assets/fusion/ito-production-v1/ITO_PROD_RGBFringe.setting",
+      "sha256": "81aa1cde3412782d6ec4e0ca815ba52f1eaca1065df96d813a0885f72a9add9b"
+    },
+    {
+      "path": "assets/fusion/ito-production-v1/provenance.json",
+      "sha256": "04f255db2e35f3bf062faf183a0ac1cfadede5c5a8b9fbcb1b813b7f600c06c6"
+    },
+    {
+      "path": "assets/fusion/ito-production-v1/README.md",
+      "sha256": "fbae2d79d7f0ac1bdf0ac5c8b2ffb969f7737321e3e8f87faa5d7d12b9e3181e"
+    },
+    {
+      "path": "assets/fusion/ito-v28/install_ito_v28.lua",
+      "sha256": "b111d9ed0773e29682a8e426fa9f65099022cfac3de4330db187e9303d4a0dd4"
+    },
+    {
+      "path": "assets/fusion/ito-v28/ITO_V28_FlashEtherealBloom.setting",
+      "sha256": "6bc178e29cc1a39458f58d53d397357eb8ecb4510780d5993fb25cef30b26d47"
+    },
+    {
+      "path": "assets/fusion/ito-v28/ITO_V28_RGBDisplacement.setting",
+      "sha256": "66598d0c60e8551e1704932ef014691fc8cd684d50f1bf0646b39e3d2f4ccf36"
+    },
+    {
+      "path": "assets/fusion/ito-v28/ITO_V28_SubjectHalo.setting",
+      "sha256": "ac70fca7f622da29ad34963a737f668c73b526a7852c2504f66b719d2c14b638"
+    },
+    {
+      "path": "assets/fusion/ito-v28/provenance.json",
+      "sha256": "9306a1b61b1c4b1b4c28b2e2a223894558e3dfa8da53b5f884c6e0fcf81c7594"
+    },
+    {
+      "path": "assets/fusion/ito-v28/README.md",
+      "sha256": "b24ba1f873aa5f4bb178719995b0f06af6c6d5a46c5e48daaa79e4d562fff2f1"
+    }
+  ]
+}

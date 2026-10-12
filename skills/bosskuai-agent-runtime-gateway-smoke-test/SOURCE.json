@@ -1,0 +1,14 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/agent-runtime-gateway-smoke-test/SKILL.md",
+  "source_sha256": "69c3a3825244aed5b5d3b2de517185f9cf0adfc3db83b128049440a626f2ddbf",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "agent-introspection-debugging": "bosskuai-agent-introspection",
+    "verification-loop": "verification-before-completion"
+  },
+  "resources": []
+}

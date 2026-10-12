@@ -1,0 +1,11 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/google-workspace-ops/SKILL.md",
+  "source_sha256": "93ab16b44764e3c00472c7dfb0b58cf59a3c7493ac99ab93fcabf280f164b6a1",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {},
+  "resources": []
+}

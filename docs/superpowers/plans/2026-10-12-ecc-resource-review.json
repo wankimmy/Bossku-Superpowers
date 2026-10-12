@@ -1,0 +1,633 @@
+{
+  "scope": "Static scan of canonical candidate sidecar code; no script executed, installed or granted implicit authorization. This is not a complete runtime-security audit.",
+  "scripts": [
+    {
+      "source_id": "frontend-slides",
+      "path": "scripts/export-pdf.sh",
+      "flags": [
+        "network",
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "frontend-slides",
+      "path": "scripts/extract-pptx.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "ios-icon-gen",
+      "path": "scripts/iconify_gen.sh",
+      "flags": [
+        "network"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "ito-baskets",
+      "path": "scripts/ito-baskets.js",
+      "flags": [
+        "network",
+        "secret-env"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "manim-video",
+      "path": "assets/network_graph_scene.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "master-agreement-generator",
+      "path": "scripts/build-agreement.js",
+      "flags": [
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "openclaw-persona-forge",
+      "path": "gacha.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "openclaw-persona-forge",
+      "path": "gacha.sh",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "story-lifecycle",
+      "path": "scripts/ledger.js",
+      "flags": [
+        "secret-env",
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/apply.py",
+      "flags": [
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/blender_prop.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/distill.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/falapi.py",
+      "flags": [
+        "network",
+        "secret-env",
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/forge.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/mint.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/mint3d.py",
+      "flags": [
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/pipeline.py",
+      "flags": [
+        "subprocess"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/resolve_ingest.py",
+      "flags": [
+        "secret-env"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/verify.py",
+      "flags": [
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/workflow_graphs.py",
+      "flags": [
+        "network"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "tests/test_apply.py",
+      "flags": [
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "tests/test_assets.py",
+      "flags": [
+        "network",
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "tests/test_cli.py",
+      "flags": [
+        "network",
+        "subprocess",
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "tests/test_distill.py",
+      "flags": [
+        "network"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "tests/test_integration.py",
+      "flags": [
+        "network",
+        "subprocess",
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "tests/test_interview.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "tests/test_media_utilities.py",
+      "flags": [
+        "subprocess",
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "tests/test_multimodal_contract.py",
+      "flags": [
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "tests/test_multimodal_workflow.py",
+      "flags": [
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "tests/test_offline_fixture.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "tests/test_pack.py",
+      "flags": [
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "tests/test_provenance.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "tests/test_providers.py",
+      "flags": [
+        "network",
+        "secret-env"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "tests/test_resolve.py",
+      "flags": [
+        "subprocess",
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "tests/test_schema.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "tests/test_timeline_export.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/taste/assemble.py",
+      "flags": [
+        "subprocess",
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/taste/cadence.py",
+      "flags": [
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/taste/falapi.py",
+      "flags": [
+        "network",
+        "secret-env",
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/taste/frames.py",
+      "flags": [
+        "subprocess"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/taste/grade.py",
+      "flags": [
+        "subprocess",
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/taste/pack.py",
+      "flags": [
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/taste/plates.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/taste/render3d.py",
+      "flags": [
+        "subprocess",
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/taste/resolve.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/taste/timeline.py",
+      "flags": [
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/taste/__init__.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/tasteforge/apply.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/tasteforge/assets.py",
+      "flags": [
+        "network"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/tasteforge/cli.py",
+      "flags": [
+        "subprocess",
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/tasteforge/contract.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/tasteforge/distill.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/tasteforge/export.py",
+      "flags": [
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/tasteforge/integration.py",
+      "flags": [
+        "network"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/tasteforge/interview.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/tasteforge/pack.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/tasteforge/provenance.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/tasteforge/providers.py",
+      "flags": [
+        "network",
+        "secret-env"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/tasteforge/resolve.py",
+      "flags": [
+        "subprocess"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/tasteforge/schema.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/tasteforge/timeline.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/tasteforge/workflow.py",
+      "flags": [
+        "subprocess",
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/tasteforge/__init__.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/tasteforge/__main__.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/tasteforge/media/capcut.py",
+      "flags": [
+        "subprocess"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/tasteforge/media/common.py",
+      "flags": [
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/tasteforge/media/glitch.py",
+      "flags": [
+        "subprocess"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/tasteforge/media/manim_geo.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/tasteforge/media/stills.py",
+      "flags": [
+        "subprocess"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-application",
+      "path": "scripts/tasteforge/media/__init__.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-distillation",
+      "path": "scripts/distill.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-distillation",
+      "path": "scripts/mint.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-distillation",
+      "path": "scripts/taste/assemble.py",
+      "flags": [
+        "subprocess",
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-distillation",
+      "path": "scripts/taste/cadence.py",
+      "flags": [
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-distillation",
+      "path": "scripts/taste/falapi.py",
+      "flags": [
+        "network",
+        "secret-env",
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-distillation",
+      "path": "scripts/taste/frames.py",
+      "flags": [
+        "subprocess"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-distillation",
+      "path": "scripts/taste/grade.py",
+      "flags": [
+        "subprocess",
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-distillation",
+      "path": "scripts/taste/pack.py",
+      "flags": [
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-distillation",
+      "path": "scripts/taste/plates.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-distillation",
+      "path": "scripts/taste/render3d.py",
+      "flags": [
+        "subprocess",
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-distillation",
+      "path": "scripts/taste/timeline.py",
+      "flags": [
+        "writes"
+      ],
+      "reference_only": true
+    },
+    {
+      "source_id": "taste-distillation",
+      "path": "scripts/taste/__init__.py",
+      "flags": [],
+      "reference_only": true
+    },
+    {
+      "source_id": "videodb",
+      "path": "scripts/ws_listener.py",
+      "flags": [
+        "network",
+        "secret-env",
+        "writes"
+      ],
+      "reference_only": true
+    }
+  ]
+}

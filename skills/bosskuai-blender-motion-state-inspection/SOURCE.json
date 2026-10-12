@@ -1,0 +1,11 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/blender-motion-state-inspection/SKILL.md",
+  "source_sha256": "97b8aee8822a8603e2fc930f66b4bd18507c11ca756accd1419a2a3526196f5c",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {},
+  "resources": []
+}

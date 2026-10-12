@@ -9,7 +9,8 @@ from bossku.cli import main
 from bossku.install import install_user, uninstall_user
 from bossku.paths import claude_skills_dir, library_dir
 from bossku.skills import (
-    MAX_LEAN_DESCRIPTION_CHARS, _parse_frontmatter, load_lean, locate_skill, set_description, validate_lean,
+    MAX_LEAN_DESCRIPTION_CHARS, PROFILES, _parse_frontmatter, _profile_skills, load_lean, load_library_only,
+    locate_skill, set_description, validate_lean, validate_library_only,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -262,6 +263,40 @@ class ValidateLeanTests(unittest.TestCase):
             self.assertIn("listed skill has no folder: ghost", text)
             self.assertIn("alpha description is 200 chars", text)
             self.assertIn("description for a skill that is not listed: beta", text)
+
+
+class LibraryOnlyTests(unittest.TestCase):
+    """skills/library-only.json keeps a skill out of every profile's list, never out of reach."""
+
+    def test_no_profile_lists_a_library_only_skill_and_find_still_reaches_it(self):
+        library_only = load_library_only(ROOT)
+        self.assertIn("bosskuai-cpp-testing", library_only)
+        self.assertEqual(validate_library_only(ROOT), [])
+        for profile in PROFILES:
+            with self.subTest(profile=profile):
+                self.assertEqual(set(_profile_skills(profile, ROOT)) & library_only, set())
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp)
+            (home / ".bosskuai").mkdir()
+            (home / ".bosskuai" / "config.json").write_text(json.dumps({"profile": "full"}), encoding="utf-8")
+            code, out = run_cli("skills", "--root", str(ROOT), "--home", str(home), "find",
+                                "use the cpp testing skill for my GoogleTest suite")
+            self.assertEqual(code, 0)
+            selected = [row["skill_id"] for row in json.loads(out)["selection"]["selected"]]
+            self.assertIn("bosskuai-cpp-testing", selected)
+
+    def test_an_unknown_or_lean_listed_id_is_an_error(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            for sid in ("bosskuai-skill-finder", "alpha"):
+                (root / "skills" / sid).mkdir(parents=True)
+            (root / "skills" / "lean.json").write_text(
+                json.dumps({"listed": ["bosskuai-skill-finder", "alpha"], "descriptions": {}}), encoding="utf-8")
+            (root / "skills" / "library-only.json").write_text(json.dumps({"skills": ["alpha", "ghost"]}),
+                                                               encoding="utf-8")
+            text = "\n".join(validate_library_only(root))
+            self.assertIn("ghost has no skill folder", text)
+            self.assertIn("alpha is also in lean.json listed", text)
 
 
 if __name__ == "__main__":

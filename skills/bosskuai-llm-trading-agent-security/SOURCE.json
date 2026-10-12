@@ -1,0 +1,11 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/llm-trading-agent-security/SKILL.md",
+  "source_sha256": "8a59b241f6ae86d8f96b88122643b4d27d70adb6c15b31f5163f9586cb81b293",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {},
+  "resources": []
+}

@@ -1,0 +1,13 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/network-config-validation/SKILL.md",
+  "source_sha256": "08ba871a685d55e14e0866de27eb98a37ebf91dc2d0d06976c4acb4e99f76550",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "network-interface-health": "bosskuai-network-interface-health"
+  },
+  "resources": []
+}

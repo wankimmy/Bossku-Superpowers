@@ -1,0 +1,13 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/carrier-relationship-management/SKILL.md",
+  "source_sha256": "e325d73fd0078a101e826a84178c87aeeb80700d037faf45cda8e9ba9e53b27e",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "benchmark": "bosskuai-performance-profiling"
+  },
+  "resources": []
+}

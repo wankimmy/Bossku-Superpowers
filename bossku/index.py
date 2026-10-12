@@ -18,6 +18,7 @@ from pathlib import Path
 from bossku.paths import repo_root
 from bossku.skills import (
     LEAN_FILE,
+    LIBRARY_ONLY_FILE,
     _parse_frontmatter,
     list_skill_ids,
     load_aliases,
@@ -1106,16 +1107,23 @@ def skills_fingerprint(root: Path | None = None) -> str:
 def skill_index_signature(root: Path | None = None) -> str:
     """Cheap proof that the skills and the saved index are still the ones an install copied.
 
-    Size and mtime of every SKILL.md, lean.json and skill-index.json, with no file read, so the prompt hook and
-    `bossku doctor` can ask it on every call. skills_fingerprint stays the exact check (it hashes the text).
-    A touched file that did not change reads as changed; that only costs a fallback to the repo index.
+    Size and mtime of every listed SKILL.md, lean.json, library-only.json and skill-index.json, with no file read,
+    so the prompt hook and `bossku doctor` can ask it on every call. skills_fingerprint stays the exact check (it
+    hashes the text). A touched file that did not change reads as changed; that only costs a fallback to the repo
+    index. Library-only skills are left out: a stat costs about a tenth of a millisecond on Windows and there are
+    many of them, and an edit to one only routes after `bossku skills index`, which rewrites skill-index.json.
     """
     base = skills_dir(root)
     h = hashlib.sha256()
     with os.scandir(base) as entries:
         names = sorted(entry.name for entry in entries if entry.is_dir())
+    try:
+        library_only = set(json.loads((base / LIBRARY_ONLY_FILE).read_text(encoding="utf-8")).get("skills", []))
+    except (OSError, ValueError):
+        library_only = set()
     # The base is already resolved; index_path(root) would resolve it again.
-    paths = [*(f"{name}/SKILL.md" for name in names), LEAN_FILE, "skill-index.json"]
+    paths = [*(f"{name}/SKILL.md" for name in names if name not in library_only),
+             LEAN_FILE, LIBRARY_ONLY_FILE, "skill-index.json"]
     base_path = os.fspath(base)
 
     def metadata(rel: str) -> str:

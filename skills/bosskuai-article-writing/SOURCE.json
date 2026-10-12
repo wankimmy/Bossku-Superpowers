@@ -1,0 +1,13 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/article-writing/SKILL.md",
+  "source_sha256": "4aa61709450a2148ef4036896d870da748e93ad68528bb7679b74f3597ffb021",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "brand-voice": "bosskuai-brand-voice"
+  },
+  "resources": []
+}

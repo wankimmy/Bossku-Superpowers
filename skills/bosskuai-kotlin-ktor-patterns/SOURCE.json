@@ -1,0 +1,11 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/kotlin-ktor-patterns/SKILL.md",
+  "source_sha256": "f2fa0b135ad0f37ee7a79dd346d236758f25c60c525de451bba28678659a5261",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {},
+  "resources": []
+}

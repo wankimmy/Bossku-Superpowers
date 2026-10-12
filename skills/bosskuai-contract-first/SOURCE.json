@@ -1,0 +1,17 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/contract-first/SKILL.md",
+  "source_sha256": "3eaacf16a9bbd92888659e9c1e15b0fa4eb96a41c257dd9e08f2e63b824f0cea",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "ai-regression-testing": "bosskuai-qa-automation-strategy",
+    "api-design": "bosskuai-api-design",
+    "backend-patterns": "bosskuai-software-architecture",
+    "frontend-patterns": "bosskuai-react-development",
+    "tdd-workflow": "bosskuai-tdd-loop"
+  },
+  "resources": []
+}

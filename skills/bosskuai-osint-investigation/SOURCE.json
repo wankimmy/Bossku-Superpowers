@@ -1,0 +1,21 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/osint-investigation/SKILL.md",
+  "source_sha256": "f30f873cb28cd3befc757dc7ea63d29250d6537c20c7fe4de8394fde0c2bd78b",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "deep-research": "bosskuai-deep-research",
+    "exa-search": "bosskuai-exa-search",
+    "research-ops": "bosskuai-deep-research",
+    "security-review": "bosskuai-cybersecurity-risk"
+  },
+  "resources": [
+    {
+      "path": "LICENSE.txt",
+      "sha256": "2ee4926edd20442e2237f93f90bcb519f97b4200f0334426e76f273be6a764d4"
+    }
+  ]
+}

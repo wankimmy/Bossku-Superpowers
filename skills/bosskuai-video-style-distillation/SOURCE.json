@@ -1,0 +1,70 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/taste-distillation/SKILL.md",
+  "source_sha256": "7aa53f4a4cc7a959da5b60d77a6f43e5541cb3a95aa982fea73a2b706d9cd408",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "taste-application": "bosskuai-video-style-application"
+  },
+  "resources": [
+    {
+      "path": "scripts/distill.py",
+      "sha256": "a8e7f5b9077814b750719e4f98198f708d1c3eeddaf8ce6b73045467815400ea"
+    },
+    {
+      "path": "scripts/mint.py",
+      "sha256": "90dc757f11462ee4b6628a0811a78753de81a7df744fe1adb678bce533b3efaf"
+    },
+    {
+      "path": "scripts/requirements-live.txt",
+      "sha256": "0b54b9df6f4da4e0c5bd0b2eebdd0123972d826e59a4c30c7c66ddea9dc63f9a"
+    },
+    {
+      "path": "scripts/requirements.txt",
+      "sha256": "269eed88dc45309ca8ff64fc0dd7f454601ad5eb8a0971b0d1ba47c10bebd345"
+    },
+    {
+      "path": "scripts/taste/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "scripts/taste/assemble.py",
+      "sha256": "05dbbbc794b83028bc3c3eb1e72165fe156ce5674041b9a2b26c0893a21bdbee"
+    },
+    {
+      "path": "scripts/taste/cadence.py",
+      "sha256": "0cbbf74701943b9be8aaed7e026b1a616dbd752f397785b5ed6f67911518fa16"
+    },
+    {
+      "path": "scripts/taste/falapi.py",
+      "sha256": "d52ae50059dc94b1b7d96a6c538c06a4db9509fb0281d770444e38ba1b63d78a"
+    },
+    {
+      "path": "scripts/taste/frames.py",
+      "sha256": "d9bc5f1df87592a9b9b2eae9f286c40048b1208708e36a0ab9841027829fc76b"
+    },
+    {
+      "path": "scripts/taste/grade.py",
+      "sha256": "2e4cfaa6e932dbf6d17875a5fdfc9722ad71c512d75d1e96a3fe8801eb60c906"
+    },
+    {
+      "path": "scripts/taste/pack.py",
+      "sha256": "db67cb8459e1335e765070fbf9459c94d72173a49e9dc4a6ddcad98e7dac8813"
+    },
+    {
+      "path": "scripts/taste/plates.py",
+      "sha256": "2b93a78f9fb17f8558835df3c1e52806097b92dc29918283d667076d95ce3e2b"
+    },
+    {
+      "path": "scripts/taste/render3d.py",
+      "sha256": "3902b8973c651d80a433730bf54928c4dae9b469c771c9c8f7cc01530cef322a"
+    },
+    {
+      "path": "scripts/taste/timeline.py",
+      "sha256": "bbd8c53139dea08edecfd9fdf2c028b197097488fc1f57a7acef74536f0b2623"
+    }
+  ]
+}

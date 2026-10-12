@@ -1,0 +1,13 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/perl-patterns/SKILL.md",
+  "source_sha256": "617ced86628e866a6242ef763ec736d5f7ee3fa0a5afc34236d808db6de9c4b3",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "perl-security": "bosskuai-perl-security"
+  },
+  "resources": []
+}

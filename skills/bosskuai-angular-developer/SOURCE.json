@@ -1,0 +1,158 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/angular-developer/SKILL.md",
+  "source_sha256": "28ee37a8cf63add48fffc7c8676c6368aee35f3042525e79769b5a3d4e01aed1",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "accessibility": "accessibility",
+    "e2e-testing": "e2e-testing",
+    "frontend-patterns": "bosskuai-react-development",
+    "security-review": "bosskuai-cybersecurity-risk",
+    "tdd-workflow": "bosskuai-tdd-loop"
+  },
+  "resources": [
+    {
+      "path": "references/angular-animations.md",
+      "sha256": "0361278cabc4925807c8a93ebce717f1c8d52d553870ddd8634b1075b0395dbc"
+    },
+    {
+      "path": "references/angular-aria.md",
+      "sha256": "96daed398824f2947c5f4221065cdeabf82ac020874f99cb4338e5e84cd96aa1"
+    },
+    {
+      "path": "references/cli.md",
+      "sha256": "b7a5f9f85125659966fe087b623939fe2b89ea5d7cdf53265476adf1666e37d9"
+    },
+    {
+      "path": "references/component-harnesses.md",
+      "sha256": "ffa4258a4877fe4e200c2fca5eb65507dafc85296e2861ba420765f43cd98d16"
+    },
+    {
+      "path": "references/component-styling.md",
+      "sha256": "de3351fdb72174361c6eee150940193f20d148afaceab0f22107758a3cb2d787"
+    },
+    {
+      "path": "references/components.md",
+      "sha256": "dbfb520f2dddd017acb617369c45544374440fcb0b178d9648fab7ada0178468"
+    },
+    {
+      "path": "references/creating-services.md",
+      "sha256": "9b0d8b6d627ec33e5957638049877eac655cd31444cd4afa440597e191e4cb94"
+    },
+    {
+      "path": "references/data-resolvers.md",
+      "sha256": "0a6eb7ee89b29d1766941ed88881803b32870e705f2e438a7cae1c4e59ed8289"
+    },
+    {
+      "path": "references/define-routes.md",
+      "sha256": "1288b38bad6cc9749e9d0fd35a294771ea2181dd712bfc2887d80e8b40fab7e6"
+    },
+    {
+      "path": "references/defining-providers.md",
+      "sha256": "e654c23a080c642cf7031b5cc5de1101b8c75030c15256f7e3b81b0336953c6d"
+    },
+    {
+      "path": "references/di-fundamentals.md",
+      "sha256": "45d4431765c46d7492d1daeb2de2aecc326e3255518e95b7b8303e259a4d8a64"
+    },
+    {
+      "path": "references/e2e-testing.md",
+      "sha256": "50aa1fa9a832666407b66c524ffc05fb2fe8e7063300fb26e304dc278cb907fc"
+    },
+    {
+      "path": "references/effects.md",
+      "sha256": "c06ad02460be7f57d024bb8e263a3390e72059815879bf6bcd0583e510a2b4ad"
+    },
+    {
+      "path": "references/hierarchical-injectors.md",
+      "sha256": "05546d8043b93a2ab8deccdc2bd9c1704350883107701139e790ff8adb0f626a"
+    },
+    {
+      "path": "references/host-elements.md",
+      "sha256": "b898bab74d518feba3c527dbf9694abe6d3ec7bfa44d81b34cff119016984080"
+    },
+    {
+      "path": "references/injection-context.md",
+      "sha256": "0ab76274d761da9c8ad5d789be2a4b4158d637f06074908d6fb4540cb8f45a34"
+    },
+    {
+      "path": "references/inputs.md",
+      "sha256": "229a6e37f7006a6f3426cc2bc42baa67ecbbab77c343d141e44b10c1bb11de09"
+    },
+    {
+      "path": "references/linked-signal.md",
+      "sha256": "4971692a36c4d470b5c8efec1a8106418ac28cdc33601e554ecff9dded95d289"
+    },
+    {
+      "path": "references/loading-strategies.md",
+      "sha256": "fa82c48573532a7f5e3ccf7eaa50dc7a2db1f23a8599638d9c18e023dbd73e2f"
+    },
+    {
+      "path": "references/mcp.md",
+      "sha256": "7197d06d79bb57084a5c4ff203ddf9d86a30116dddb103b9d4fc138bf2dd8cb1"
+    },
+    {
+      "path": "references/navigate-to-routes.md",
+      "sha256": "ea3c3d53b5db47b4f8d8b05124330e72bea92fc908d42c06aa7edb9e652b425e"
+    },
+    {
+      "path": "references/outputs.md",
+      "sha256": "a191f8982d9ac6868023d56c887f362052c4fccc70a89adc8a6bc546f851e5dc"
+    },
+    {
+      "path": "references/reactive-forms.md",
+      "sha256": "e71118562247c94141dfaca74efd246e38226bf26ffedbd7f3337f1866113283"
+    },
+    {
+      "path": "references/rendering-strategies.md",
+      "sha256": "329aa9aa35c85dd2048c899f26025439d3b0244067dbb508e724d291fdad7c97"
+    },
+    {
+      "path": "references/resource.md",
+      "sha256": "ff03e5f21219cb0cb6e8ea9fe3c47ead2308471a15a925cbcaf051473669c40c"
+    },
+    {
+      "path": "references/route-animations.md",
+      "sha256": "eda1452f85ce05f3f28753cc77cd8c31c7a52515d7ccebbb35de0ec1e3beb374"
+    },
+    {
+      "path": "references/route-guards.md",
+      "sha256": "491a93cb49fbcba04f7e8ffcd0f784fce7319ca3e2fe393c553f3d683a68424c"
+    },
+    {
+      "path": "references/router-lifecycle.md",
+      "sha256": "4abc8cb8dfeb2e9f57dc11c117d5f4a5b756b39dc076910d9ced9da640effc2d"
+    },
+    {
+      "path": "references/router-testing.md",
+      "sha256": "42bdaa9ac7d523093fb44ab945f3235ff72715ac4faeb99176bb0ae2fc406213"
+    },
+    {
+      "path": "references/show-routes-with-outlets.md",
+      "sha256": "43a2ed62ea2edafa8569bf7045f20928110f8f844d5890bfb6a2f2dde45e754b"
+    },
+    {
+      "path": "references/signal-forms.md",
+      "sha256": "7ff19051876697eeb43058fb52ab01ec9bc6bd486fd8674be723978dcde16b90"
+    },
+    {
+      "path": "references/signals-overview.md",
+      "sha256": "f0a4d5fe4a88a3f06d81683cedddf1b65ee1c771ef3eaaec4ff1ca5d804e45a3"
+    },
+    {
+      "path": "references/tailwind-css.md",
+      "sha256": "bdb952d0dd2d415560a796ecaf843cacff5ac20d8ef961eaaf75656fef9b9263"
+    },
+    {
+      "path": "references/template-driven-forms.md",
+      "sha256": "52e83e576b0c6dc05f854e903c4cfda1222bcd55c50ddee07344d1e53d02c1df"
+    },
+    {
+      "path": "references/testing-fundamentals.md",
+      "sha256": "94fe1a3b42f4cc299d71d3dcc12190485913bba00fc1d0757097c91306084356"
+    }
+  ]
+}

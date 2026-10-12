@@ -25,6 +25,7 @@ from bossku.skills import (
     rank_skills,
     select_skill_stack,
     _profile_skills,
+    load_library_only,
     _routing_index,
 )
 from bossku.validate import validate_repo
@@ -257,7 +258,8 @@ def main(argv: list[str] | None = None) -> int:
                 limit = max(args.limit if args.limit is not None else (MAX_HINTS if args.brief else 5), 1)
                 matches = rank_skills(args.task, root, limit=limit, data=data)
                 # The lean profile lists a few skills but keeps the whole library one `show` away.
-                available = None if profile == "lean" else set(_profile_skills(profile, root))
+                # Library-only skills are listed nowhere and reachable from every profile the same way.
+                available = None if profile == "lean" else set(_profile_skills(profile, root)) | load_library_only(root)
                 selection = select_skill_stack(args.task, root, limit=limit, available=available, data=data)
                 for row in selection["selected"]:
                     kind, path = locate_skill(row["skill_id"], root, home)

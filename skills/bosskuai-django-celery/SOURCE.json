@@ -1,0 +1,15 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/django-celery/SKILL.md",
+  "source_sha256": "1f9189ece910eb90a5d2cd520a9a6238ccb89a3e48629ac1ad9b55ec3eb21f88",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "django-patterns": "bosskuai-django-patterns",
+    "django-tdd": "bosskuai-django-tdd",
+    "python-testing": "python-testing"
+  },
+  "resources": []
+}

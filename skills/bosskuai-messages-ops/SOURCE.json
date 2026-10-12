@@ -1,0 +1,16 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/messages-ops/SKILL.md",
+  "source_sha256": "c2036d3ff01fd13258a2d8af88c04b94f68a10808c799be4e62b975874b263af",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "connections-optimizer": "bosskuai-connections-optimizer",
+    "email-ops": "bosskuai-email-ops",
+    "knowledge-ops": "bosskuai-permanent-memory-orchestration",
+    "lead-intelligence": "bosskuai-lead-intelligence"
+  },
+  "resources": []
+}

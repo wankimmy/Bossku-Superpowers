@@ -1,0 +1,16 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/hipaa-compliance/SKILL.md",
+  "source_sha256": "4bc1f29a3be7986f89bdd7b5ec3894451e67c687a558b683cab62bd8d1fd2264",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "healthcare-emr-patterns": "bosskuai-healthcare-emr-patterns",
+    "healthcare-eval-harness": "bosskuai-healthcare-eval-harness",
+    "healthcare-phi-compliance": "bosskuai-healthcare-phi-compliance",
+    "security-review": "bosskuai-cybersecurity-risk"
+  },
+  "resources": []
+}

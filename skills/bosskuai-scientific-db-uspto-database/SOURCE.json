@@ -1,0 +1,11 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/scientific-db-uspto-database/SKILL.md",
+  "source_sha256": "aeb87193dbafc68b5218612e4845ae3d6c3a040203ff8a625ed98661255fef58",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {},
+  "resources": []
+}

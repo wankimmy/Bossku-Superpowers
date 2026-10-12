@@ -1,0 +1,26 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/taste/SKILL.md",
+  "source_sha256": "c0aa611b4d150d2d8356fb29d0cc437e48a4e5ceeb870c609229b9afa78bb9cf",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "content-engine": "content-strategy",
+    "fal-ai-media": "bosskuai-fal-ai-media",
+    "frontend-design-direction": "bosskuai-taste",
+    "motion-advanced": "animate",
+    "motion-foundations": "animate",
+    "motion-patterns": "emil-design-eng",
+    "remotion-video-creation": "bosskuai-remotion-video-creation",
+    "video-editing": "bosskuai-video-editing",
+    "videodb": "bosskuai-videodb"
+  },
+  "resources": [
+    {
+      "path": "references/genre-taxonomy.md",
+      "sha256": "56b0a37d643c79b0b18f67053e4733ffc383f82c7c9e1134f3c6e21e295d8c77"
+    }
+  ]
+}

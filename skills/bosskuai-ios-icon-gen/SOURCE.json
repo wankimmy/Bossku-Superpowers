@@ -1,0 +1,20 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/ios-icon-gen/SKILL.md",
+  "source_sha256": "893627c44e6d209f9b2e02de2f4879188649d22ae9723cd5b9445de6df3d6482",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {},
+  "resources": [
+    {
+      "path": "scripts/generate_icons.swift",
+      "sha256": "41efd2b2dc30a744e65252d7715b36ae951c489262262b42d96e06d42fd3ca2e"
+    },
+    {
+      "path": "scripts/iconify_gen.sh",
+      "sha256": "5a0efeece4dfd4b60d345b5e2034ab152557793a4248ef6cba2f8fa4d6533c4a"
+    }
+  ]
+}

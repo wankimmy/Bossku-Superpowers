@@ -1,0 +1,13 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/prediction-market-oracle-research/SKILL.md",
+  "source_sha256": "63f91f6e71839efc4b10be347fa160e402b9b72307f0a7e6ac0a50bd4b9fd8cb",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "llm-trading-agent-security": "bosskuai-llm-trading-agent-security"
+  },
+  "resources": []
+}

@@ -1,0 +1,11 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/claude-devfleet/SKILL.md",
+  "source_sha256": "5fe6efbb5663699ba8e348b2a77fbf7c396ed1903bb95fa0c05c1174f81fabfc",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {},
+  "resources": []
+}

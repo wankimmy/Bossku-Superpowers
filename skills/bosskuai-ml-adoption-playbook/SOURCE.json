@@ -1,0 +1,16 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/ml-adoption-playbook/SKILL.md",
+  "source_sha256": "488f83a5c3766043e0ff98466f8d5534f69863d9adebda8b4d2903f00860e312",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "django-patterns": "bosskuai-django-patterns",
+    "fastapi-patterns": "bosskuai-fastapi-development",
+    "mle-workflow": "bosskuai-mle-workflow",
+    "pytorch-patterns": "bosskuai-pytorch-patterns"
+  },
+  "resources": []
+}

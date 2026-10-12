@@ -1,0 +1,14 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/kotlin-coroutines-flows/SKILL.md",
+  "source_sha256": "ed7d895ecd6c717fbdbf7f1469110df74a6337792acd1232c4ad7286abee76e4",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "android-clean-architecture": "bosskuai-android-clean-architecture",
+    "compose-multiplatform-patterns": "bosskuai-compose-multiplatform-patterns"
+  },
+  "resources": []
+}

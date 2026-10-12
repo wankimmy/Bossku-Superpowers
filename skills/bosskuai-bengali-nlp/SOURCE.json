@@ -1,0 +1,15 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/bengali-nlp/SKILL.md",
+  "source_sha256": "7080235437516fbc227f759aac138219e85c95e8ce271187c3c978e51b094bde",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "database-migrations": "database-migrations",
+    "prompt-optimizer": "bosskuai-prompt-optimizer",
+    "regex-vs-llm-structured-text": "bosskuai-regex-vs-llm-structured-text"
+  },
+  "resources": []
+}

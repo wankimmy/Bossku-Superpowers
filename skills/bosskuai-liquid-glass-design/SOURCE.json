@@ -1,0 +1,13 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/liquid-glass-design/SKILL.md",
+  "source_sha256": "6e424b8daba26c92a8283cd3e5b35c7b2bc78a0a9fc07821a5939027090b8e43",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "accessibility": "accessibility"
+  },
+  "resources": []
+}

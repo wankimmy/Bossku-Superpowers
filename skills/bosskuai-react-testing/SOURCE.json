@@ -1,0 +1,16 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/react-testing/SKILL.md",
+  "source_sha256": "51c18b4e28285bb876ef469e47c6f53108b5a9f900950a60e897c3c24826a65e",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "accessibility": "accessibility",
+    "e2e-testing": "e2e-testing",
+    "react-patterns": "bosskuai-react-development",
+    "tdd-workflow": "bosskuai-tdd-loop"
+  },
+  "resources": []
+}

@@ -1,0 +1,13 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/investor-outreach/SKILL.md",
+  "source_sha256": "e5d4918dcbc62eb25d42829b56683ae6befe3a623f7ce6ed66bef37ce1a57c65",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "brand-voice": "bosskuai-brand-voice"
+  },
+  "resources": []
+}

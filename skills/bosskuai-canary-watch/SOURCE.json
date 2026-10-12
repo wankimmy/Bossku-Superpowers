@@ -1,0 +1,13 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/canary-watch/SKILL.md",
+  "source_sha256": "d2cb536f8ccb201266e094542cb20af8a4d6474feb5b16116cfb4497c2b8149f",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "browser-qa": "bosskuai-browser-automation"
+  },
+  "resources": []
+}

@@ -1,0 +1,15 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/dashboard-builder/SKILL.md",
+  "source_sha256": "6823d9984c060597a312b867c317e0969e1cb0a2dec19730ce944fe789f41d38",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "backend-patterns": "bosskuai-software-architecture",
+    "research-ops": "bosskuai-deep-research",
+    "terminal-ops": "bosskuai-terminal-ops"
+  },
+  "resources": []
+}

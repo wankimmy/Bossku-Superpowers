@@ -1,0 +1,17 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/terminal-ops/SKILL.md",
+  "source_sha256": "f26e518e6922fe0796f5b6a55349a409f5b03745c4eeed9be80b4c66d890d852",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "github-ops": "bosskuai-github-workflow",
+    "knowledge-ops": "bosskuai-permanent-memory-orchestration",
+    "security-review": "bosskuai-cybersecurity-risk",
+    "tdd-workflow": "bosskuai-tdd-loop",
+    "verification-loop": "verification-before-completion"
+  },
+  "resources": []
+}

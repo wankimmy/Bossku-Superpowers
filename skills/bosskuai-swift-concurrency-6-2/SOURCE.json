@@ -1,0 +1,11 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/swift-concurrency-6-2/SKILL.md",
+  "source_sha256": "00aed6a804ff7dc9b37d119cdb115d0869643dd84caf3c01d7f058398ab1955a",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {},
+  "resources": []
+}

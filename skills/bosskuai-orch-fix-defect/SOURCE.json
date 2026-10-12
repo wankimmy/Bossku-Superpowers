@@ -1,0 +1,15 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/orch-fix-defect/SKILL.md",
+  "source_sha256": "399e142bbf3751b5a0fdec1ae450f5673bd1a038304a221748c865280e885b2d",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "orch-add-feature": "bosskuai-orch-add-feature",
+    "orch-change-feature": "bosskuai-orch-change-feature",
+    "orch-pipeline": "bosskuai-orch-pipeline"
+  },
+  "resources": []
+}

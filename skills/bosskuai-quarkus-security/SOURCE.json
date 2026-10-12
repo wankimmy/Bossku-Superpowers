@@ -1,0 +1,11 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/quarkus-security/SKILL.md",
+  "source_sha256": "bb7c13aec927ec8d73f2e949eee2a4d44a9f908541e7d9acd7e2fd8f64f0ae3e",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {},
+  "resources": []
+}

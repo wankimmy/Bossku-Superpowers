@@ -1,0 +1,18 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/email-ops/SKILL.md",
+  "source_sha256": "188b226ec0dfd4304d6c9b60498b5f0dc2b3c97b14e159e5bde5db323ad45721",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "brand-voice": "bosskuai-brand-voice",
+    "customer-billing-ops": "bosskuai-customer-billing-ops",
+    "investor-outreach": "bosskuai-investor-outreach",
+    "knowledge-ops": "bosskuai-permanent-memory-orchestration",
+    "messages-ops": "bosskuai-messages-ops",
+    "research-ops": "bosskuai-deep-research"
+  },
+  "resources": []
+}

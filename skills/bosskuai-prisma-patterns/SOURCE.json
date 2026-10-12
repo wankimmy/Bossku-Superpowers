@@ -1,0 +1,17 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/prisma-patterns/SKILL.md",
+  "source_sha256": "fb0c7644f32b22ee030071c71fa00bda1825f955f7304a375ef299a7290227f2",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "backend-patterns": "bosskuai-software-architecture",
+    "benchmark": "bosskuai-performance-profiling",
+    "database-migrations": "database-migrations",
+    "nestjs-patterns": "bosskuai-nestjs-patterns",
+    "postgres-patterns": "bosskuai-postgres-patterns"
+  },
+  "resources": []
+}

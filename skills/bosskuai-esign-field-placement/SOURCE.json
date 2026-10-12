@@ -1,0 +1,18 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/esign-field-placement/SKILL.md",
+  "source_sha256": "712e73679a640a521291db96ca7e8147f4d3252832c56ac91b8151cffb9aece5",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "master-agreement-generator": "bosskuai-master-agreement-generator"
+  },
+  "resources": [
+    {
+      "path": "references/placement-checklist.md",
+      "sha256": "62fd7002b29d37120c2046342e72f343a1d2ed4d4eafa57472134318853b03ea"
+    }
+  ]
+}

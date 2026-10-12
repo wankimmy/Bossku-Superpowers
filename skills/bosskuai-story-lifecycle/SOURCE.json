@@ -1,0 +1,21 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/story-lifecycle/SKILL.md",
+  "source_sha256": "1492a724d4df362d8e95a340fabd22423e20965b1d0f9ebc6d2d319aca843194",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "council": "bosskuai-council",
+    "project-flow-ops": "bosskuai-project-flow-ops",
+    "tdd-workflow": "bosskuai-tdd-loop",
+    "verification-loop": "verification-before-completion"
+  },
+  "resources": [
+    {
+      "path": "scripts/ledger.js",
+      "sha256": "552d2059c3d29f7cbb71ac3d1a13b913a82549a4bc2fd5de998d3455fa33b32d"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/unified-notifications-ops/SKILL.md",
+  "source_sha256": "0ade130619dfc73781d6a4beaf79b65b6d3ac70f0751dce0844a8f9fd39167aa",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "customer-billing-ops": "bosskuai-customer-billing-ops",
+    "github-ops": "bosskuai-github-workflow",
+    "knowledge-ops": "bosskuai-permanent-memory-orchestration",
+    "project-flow-ops": "bosskuai-project-flow-ops",
+    "workspace-surface-audit": "bosskuai-tools"
+  },
+  "resources": []
+}

@@ -1,0 +1,16 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/ito-compute/SKILL.md",
+  "source_sha256": "ed0664f44307b1243cd7fa7521b05ca3f50a1dd4460e93b55edb8bcda988e815",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {},
+  "resources": [
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "75e87ae788bd1431fb25c0a1e070313e4e4a5d2ea8cb5f85b228b7a22f969e08"
+    }
+  ]
+}

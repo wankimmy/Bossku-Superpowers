@@ -1,0 +1,14 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/exa-search/SKILL.md",
+  "source_sha256": "ebc8e7ab299a6649f575e218f0c25f4d869017b8ad4b5f7725cedceaf82700e5",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "deep-research": "bosskuai-deep-research",
+    "market-research": "bosskuai-market-analysis"
+  },
+  "resources": []
+}

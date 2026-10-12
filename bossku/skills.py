@@ -540,7 +540,11 @@ def select_skill_stack(
     task_l = normalize_task(task)
     requested: list[str] = []
     mentions = []
+    # A substring test first: a regex per skill name overflows re's 512-pattern cache and recompiles every prompt.
     for name in [*entries, *aliases]:
+        spaced = name.removeprefix("bosskuai-").replace("-", " ")
+        if name not in task_l and spaced + " skill" not in task_l:
+            continue
         for match in re.finditer(r"(?<![\w-])" + re.escape(name) + r"(?![\w-])", task_l):
             before = task_l[:match.start()]
             named = ("-" in name or "_" in name or task_l.strip() == name
@@ -551,7 +555,6 @@ def select_skill_stack(
                 continue
             mentions.append((match.start(), resolve_skill_id(name, root, aliases)))
         # "use the mysql patterns skill", "run the four-voice council skill": a spaced id, asked for by a verb.
-        spaced = name.removeprefix("bosskuai-").replace("-", " ")
         for match in re.finditer(r"\b(?:use|load|invoke|run|apply|try)\s+(?:[\w-]+\s+){0,3}?"
                                  + re.escape(spaced) + r"\s+skill\b", task_l):
             mentions.append((match.start(), resolve_skill_id(name, root, aliases)))
@@ -880,6 +883,25 @@ def locate_skill(sid: str, root: Path | None = None, home: Path | None = None) -
     return ("repo", path) if path.is_file() else ("missing", None)
 
 
+LIBRARY_ONLY_FILE = "library-only.json"
+
+
+def load_library_only(root: Path | None = None) -> frozenset[str]:
+    """Skills no profile lists. The hint and `bossku skills find` still reach them; `show` or a read loads them."""
+    path = skills_dir(root) / LIBRARY_ONLY_FILE
+    if not path.is_file():
+        return frozenset()
+    return frozenset(json.loads(path.read_text(encoding="utf-8")).get("skills", []))
+
+
+def validate_library_only(root: Path | None = None) -> list[str]:
+    ids = set(list_skill_ids(root))
+    listed = set(load_lean(root)["listed"])
+    errors = [f"{LIBRARY_ONLY_FILE}: {sid} has no skill folder" for sid in sorted(load_library_only(root) - ids)]
+    errors += [f"{LIBRARY_ONLY_FILE}: {sid} is also in {LEAN_FILE} listed" for sid in sorted(load_library_only(root) & listed)]
+    return errors
+
+
 MAX_LEAN_SKILLS = 48
 MAX_LEAN_DESCRIPTION_CHARS = 150
 
@@ -969,10 +991,11 @@ def _profile_skills(profile: str, root: Path | None) -> list[str]:
             seen.add(sid)
             combined.append(sid)
         return [s for s in combined if (base_dir / s).is_dir()]
+    library_only = load_library_only(root)
     if profile == "engineering":   # everything except the marketing pack; copy_skills_to still refuses NOT_INSTALLED
         marketing = set(load_pack_skill_ids("marketingskills", root))
-        return [s for s in list_skill_ids(root) if s not in marketing]
-    return [s for s in list_skill_ids(root) if s not in NOT_INSTALLED]
+        return [s for s in list_skill_ids(root) if s not in marketing and s not in library_only]
+    return [s for s in list_skill_ids(root) if s not in NOT_INSTALLED and s not in library_only]
 
 
 def is_managed_skill_name(name: str, root: Path | None = None) -> bool:
@@ -1024,6 +1047,9 @@ def audit_skills(root: Path | None = None) -> dict:
     ids = list_skill_ids(root)
     vendored = load_vendored(root)
     custom = [sid for sid in ids if sid not in vendored]
+    # Library-only skills are listed by no profile, so their descriptions cost no session any context.
+    library_only = load_library_only(root)
+    listed_custom = [sid for sid in custom if sid not in library_only]
     descriptions: dict[str, str] = {}
     body_words: dict[str, int] = {}
     broken_links: list[dict[str, str]] = []
@@ -1040,7 +1066,7 @@ def audit_skills(root: Path | None = None) -> dict:
             broken_links.append({"skill_id": sid, "pack": pack, "target": target})
 
     description_chars = sum(len(value) for value in descriptions.values())
-    custom_description_chars = sum(len(descriptions[sid]) for sid in custom)
+    custom_description_chars = sum(len(descriptions[sid]) for sid in listed_custom)
     broken_by_pack: dict[str, int] = {}
     for item in broken_links:
         broken_by_pack[item["pack"]] = broken_by_pack.get(item["pack"], 0) + 1
@@ -1055,8 +1081,9 @@ def audit_skills(root: Path | None = None) -> dict:
         "descriptions_over_300_chars": sorted(
             sid for sid, value in descriptions.items() if len(value) > 300
         ),
+        "library_only_count": len(library_only & set(ids)),
         "custom_descriptions_over_300_chars": sorted(
-            sid for sid in custom if len(descriptions[sid]) > 300
+            sid for sid in listed_custom if len(descriptions[sid]) > 300
         ),
         "custom_descriptions_without_use_when": sorted(
             sid for sid in custom if not descriptions[sid].lower().startswith("use when")

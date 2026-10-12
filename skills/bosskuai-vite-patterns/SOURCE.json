@@ -1,0 +1,15 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/vite-patterns/SKILL.md",
+  "source_sha256": "2238d353196b6732ba897e32f1872078fde7a9d11f5aca43b53da8bfc7e3917d",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {
+    "docker-patterns": "bosskuai-docker",
+    "frontend-patterns": "bosskuai-react-development",
+    "nextjs-turbopack": "bosskuai-nextjs-turbopack"
+  },
+  "resources": []
+}

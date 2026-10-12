@@ -1,0 +1,16 @@
+{
+  "upstream": "affaan-m/ECC",
+  "source_path": "skills/visa-doc-translate/SKILL.md",
+  "source_sha256": "528a180f10389f3228980a487f004e0eaccccf00be0d88073a554001c36bcd89",
+  "reviewed_local_snapshot": "2026-10-12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Affaan Mustafa",
+  "runtime_status": "reference only; not installed or executed",
+  "source_skill_map": {},
+  "resources": [
+    {
+      "path": "README.md",
+      "sha256": "34c2550bd066d0dbfb976704da8c532f52f7c788b9ecad31f1262754d426e152"
+    }
+  ]
+}
