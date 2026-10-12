@@ -36,7 +36,7 @@ try {
   const memory = fs.existsSync(path.join(cwd, ".bossku", "memory"));
   const lines = [
     "[BosskuAI harness active]",
-    "- Start every response with this 3-line header: `bossku-superpowers`, `Skills: <skills you loaded with the Skill tool this turn, or none>`, `Memory: <yes|no>` (yes only if you read the project notes this turn). Never name a skill you did not load.",
+    "- Start every response with this 3-line header: `bossku-superpowers`, `Skills: <skills you loaded this turn (Skill tool or its SKILL.md), or none>`, `Memory: <yes|no>` (yes only if you read the project notes this turn). Never name a skill you did not load.",
     "- Route to one primary skill first and load it with the Skill tool. Landing or marketing UI: bosskuai-taste; dashboards, app screens, and product UI: bosskuai-ui-ux-design-to-code. State a one-line Design Read, then build. Motion: animate (web) or animate-expo.",
     !design
       ? "- No DESIGN.md in this repo. For anything beyond a one-off page, have the designer contract write .bossku/DESIGN.md first."

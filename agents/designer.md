@@ -19,7 +19,7 @@ Read `.bossku/DESIGN.md` (or `DESIGN.md`) first; if it is missing and the work i
 
 ```text
 bossku-superpowers
-Skills: <skills loaded with the Skill tool this turn, or none>
+Skills: <skills loaded this turn (Skill tool or its SKILL.md), or none>
 Memory: <yes|no>
 ```
 

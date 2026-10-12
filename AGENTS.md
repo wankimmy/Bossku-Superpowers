@@ -8,11 +8,11 @@ Every response must begin with:
 
 ```text
 bossku-superpowers
-Skills: <skills loaded with the Skill tool this turn, or none>
+Skills: <skills loaded this turn (Skill tool or its SKILL.md), or none>
 Memory: <yes|no>
 ```
 
-Name a skill only if you loaded it with the Skill tool this turn. If you used none, write `none`. `Memory: yes` only if you read the project notes this turn; otherwise `no`.
+Name a skill only if you loaded it this turn: with the Skill tool, or by reading its `SKILL.md` (how a library skill from the hint loads). If you used none, write `none`. `Memory: yes` only if you read the project notes this turn; otherwise `no`.
 
 ## Default response voice (always on)
 

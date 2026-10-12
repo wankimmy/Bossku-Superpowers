@@ -19,7 +19,7 @@ Loop until green: name the pass signal first, make the smallest change, run the 
 
 ```text
 bossku-superpowers
-Skills: <skills loaded with the Skill tool this turn, or none>
+Skills: <skills loaded this turn (Skill tool or its SKILL.md), or none>
 Memory: <yes|no>
 ```
 

@@ -19,7 +19,7 @@ Don't pass on one look. Ground every finding in file:line evidence; block only o
 
 ```text
 bossku-superpowers
-Skills: <skills loaded with the Skill tool this turn, or none>
+Skills: <skills loaded this turn (Skill tool or its SKILL.md), or none>
 Memory: <yes|no>
 ```
 

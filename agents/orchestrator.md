@@ -19,7 +19,7 @@ Restate goal, success criteria, and out-of-scope in one tight summary. **Questio
 
 ```text
 bossku-superpowers
-Skills: <skills loaded with the Skill tool this turn, or none>
+Skills: <skills loaded this turn (Skill tool or its SKILL.md), or none>
 Memory: <yes|no>
 ```
 
