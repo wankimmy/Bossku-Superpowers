@@ -138,6 +138,8 @@ function dangerousTarget(t, cwd) {
   // those roots are refused. Neither is allowed when it is a home or system folder itself (`cd ~ && rm -rf ~/x`).
   if (absolute && under(n, c) && !broad(c)) return false;
   if (absolute && under(n, TMP) && !broad(TMP)) return false;
+  // Only what is inside the temp folder is scratch: on Linux it is /tmp itself, which matches the hints below.
+  if (absolute && (n.toLowerCase() === TMP.toLowerCase() || /^\/(tmp|temp)$/i.test(n))) return true;
   if (/^(\/(bin|boot|dev|etc|lib|lib64|opt|proc|root|sbin|sys|usr|var|home|Users))(\/|$)/i.test(n)) return true;
   if (/^[a-zA-Z]:\/(Windows|Program Files|Users)(\/|$)/i.test(n)) return true;
   if (absolute) {

@@ -368,7 +368,8 @@ class FitTests(HomeCase):
             self.assertEqual(set(self.settings_path.parent.glob("settings.json.bak*")), backups)
             self.assertEqual(self.settings_path.read_bytes(), before)
         finally:
-            os.chmod(self.settings_path, stat.S_IWRITE)
+            # S_IWRITE alone is write-only on POSIX, and an unreadable file reads as invalid JSON.
+            os.chmod(self.settings_path, stat.S_IREAD | stat.S_IWRITE)
         self.assertEqual(fit_settings(self.home)["status"], "set")
         self.assertFalse(tmp.exists())
 

@@ -751,11 +751,15 @@ def make_path_writable(path: Path) -> None:
 
 
 def make_tree_writable(path: Path) -> None:
+    """Parents first: on POSIX a folder without read and search bits hides its children until it is fixed."""
     if not path.exists():
         return
-    for child in path.rglob("*"):
-        make_path_writable(child)
-    make_path_writable(path)
+    if path.is_dir() and not path.is_symlink():
+        os.chmod(path, path.stat().st_mode | stat.S_IRUSR | stat.S_IWUSR | stat.S_IXUSR)
+        for child in path.iterdir():
+            make_tree_writable(child)
+    else:
+        make_path_writable(path)
 
 
 def _remove_read_only(func, path: str, _exc_info) -> None:
@@ -765,8 +769,15 @@ def _remove_read_only(func, path: str, _exc_info) -> None:
 
 
 def remove_tree(path: Path) -> None:
-    """Remove a tree even when copied files carry Windows read-only attributes."""
-    if path.exists():
+    """Remove a tree even when copied files carry Windows read-only attributes or POSIX read-only modes."""
+    if not path.exists():
+        return
+    try:
+        shutil.rmtree(path, onerror=_remove_read_only)
+    except OSError:
+        # POSIX: a file in a folder without write permission cannot be unlinked, and the error names the file,
+        # not the folder, so the handler above cannot fix it. Open the whole tree, then try once more.
+        make_tree_writable(path)
         shutil.rmtree(path, onerror=_remove_read_only)
 
 
