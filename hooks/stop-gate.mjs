@@ -48,7 +48,7 @@ function isVerification(command) {
 }
 
 // User-role lines the app writes that no person typed (same list as bossku/gate.py).
-const NOT_TYPED = ["<ci-monitor-event>", "<task-notification>", "<local-command", "<system-reminder>"];
+const NOT_TYPED = ["<ci-monitor-event>", "<task-notification>", "<agent-message", "<local-command", "<system-reminder>"];
 // The gate's own block message comes back as an isMeta user line; it keeps restarting the window so the gate fires once per turn.
 const OWN_BLOCK = "BosskuAI stop gate: ";
 

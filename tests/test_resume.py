@@ -456,7 +456,8 @@ class TriggerTests(ResumeBase):
 
     def test_the_words_and_the_length_limit(self):
         for prompt in ("continue", "Continue please", "carry on", "keep going", "pick up where it stopped", "lanjut", "lanjutkan",
-                       "sambung balik kerja tadi", "teruskan", "bossku resume", "ok continue with that now ya"):
+                       "sambung balik kerja tadi", "teruskan", "bossku resume", "ok continue with that now ya",
+                       "continue what codex do, if u not sure, can ask me"):
             with self.subTest(prompt=prompt):
                 self.assertTrue(wants_resume(prompt))
         for prompt in ("", "thanks", "continued", "discontinue the plan", "please continue with the whole refactor of the module",
@@ -472,12 +473,13 @@ class TriggerTests(ResumeBase):
         self.assertIn("Continuing a Codex task", text)
         self.assertNotIn("skill hint", text)
 
-    def test_continue_without_a_stop_gives_nothing_and_a_long_sentence_gives_nothing(self):
+    def test_continue_without_a_stop_is_quiet_and_a_long_task_does_not_resume(self):
         self.assertEqual(self.ask("continue"), {})
         self.build(self.thread([started(self.at - 5), complete(self.at, None)]))
         self.assertEqual(self.ask("continue"), {})
         self.build(self.thread(limit_session(self.at)))
-        self.assertEqual(self.ask("please continue with the whole refactor of the importer module now"), {})
+        out = self.ask("please continue with the whole refactor of the importer module now")
+        self.assertNotIn("Continuing a Codex task", str(out))
         self.assertEqual(self.ask("continue", cwd="C:\\somewhere\\else"), {})
         self.assertEqual(hook_output(json.dumps({"prompt": "continue"}), root=ROOT, home=self.home), {})
 
@@ -802,7 +804,9 @@ class GitCrossCheckTests(ResumeBase):
         self.assertIn("file list unverified", text)
 
     def test_a_folder_that_is_not_a_repository_says_the_list_is_unverified(self):
-        text = self.brief(self.session(self.lowered("a.py")))
+        # A workspace-local temporary directory must not inherit the checkout's Git context.
+        with mock.patch.dict(os.environ, {"GIT_CEILING_DIRECTORIES": str(self.repo.parent)}):
+            text = self.brief(self.session(self.lowered("a.py")))
         self.assertIn("a.py", text)
         self.assertIn("file list unverified", text)
 

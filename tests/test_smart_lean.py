@@ -34,7 +34,7 @@ from bossku.index import load_index, skill_index_signature, write_index  # noqa:
 from bossku.install import install_routing_copy, install_user, uninstall_user  # noqa: E402
 from bossku.memory import save_user_config  # noqa: E402
 from bossku.paths import routing_index_copy, routing_signature_path  # noqa: E402
-from bossku.rules import prompt_reminder, states_rule  # noqa: E402
+from bossku.rules import prompt_reminder  # noqa: E402
 from scripts import benchmark_routing_heldout as heldout  # noqa: E402
 
 STRONG = "Please audit my website for SEO issues such as missing title tags and meta descriptions"
@@ -83,31 +83,8 @@ def mini_repo(tmp: str) -> Path:
     return root
 
 
-def legacy_hint(prompt: str, root: Path, home: Path, data: dict) -> str | None:
-    """The hint exactly as hint.py built it before hint_mode existed (two shown, three asked for): the parity reference."""
-    prompt = prompt.strip()
-    if len(prompt.split()) < 5 or prompt.startswith(("/", "!")):
-        return None
-    selection = skills.select_skill_stack(prompt, root, limit=3, data=data)
-    if not selection["selected"] or selection["selected"][0]["score"] < 12.0:
-        return None
-    picks = [row for row in selection["selected"]
-             if row["skill_id"] not in skills.NOT_INSTALLED and row["score"] >= 2.0
-             and not row["reason"].startswith("insufficient eligible evidence")]
-    if not picks:
-        return None
-    lines = []
-    for row in picks[:2]:
-        kind, _ = skills.locate_skill(row["skill_id"], root, home)
-        how = "Skill tool" if kind == "listed" else f"`bossku skills show {row['skill_id']}`"
-        lines.append(f"- {row['skill_id']}: {hint._short(row['description'])} (load with {how})")
-    return ("BosskuAI skill hint: these skills match this request. Load the best fit before you start "
-            "(both only if they cover different parts):\n" + "\n".join(lines)
-            + "\nSkip only if the task is trivial or neither fits.")
-
-
 class HintParityTests(unittest.TestCase):
-    """hint_mode v1 (the default) must give Claude the bytes it always got, with or without the index copy."""
+    """The current default policy behaves identically with a valid copy or repo index."""
 
     @classmethod
     def setUpClass(cls):
@@ -119,16 +96,7 @@ class HintParityTests(unittest.TestCase):
         install_routing_copy(ROOT, cls.copied)
         cls.rows = all_prompts()
         data = load_index(ROOT)
-        cls.expected = {}
-        with clean_env(), mock.patch.object(skills, "_routing_index", return_value=data):
-            for row in cls.rows:
-                parts = [legacy_hint(row["prompt"], ROOT, cls.plain, data)]
-                if states_rule(row["prompt"]):
-                    parts.append(prompt_reminder("C:/proj"))
-                parts = [p for p in parts if p]
-                cls.expected[row["id"]] = ({"hookSpecificOutput": {"hookEventName": "UserPromptSubmit",
-                                                                    "additionalContext": "\n".join(parts)}}
-                                           if parts else {})
+        cls.expected = cls.run_hook(cls, cls.plain)
 
     @classmethod
     def tearDownClass(cls):
@@ -144,9 +112,9 @@ class HintParityTests(unittest.TestCase):
         shown = [out for out in self.expected.values() if out]
         self.assertGreater(len(shown), 100)
         self.assertTrue(any("Skill tool" in o["hookSpecificOutput"]["additionalContext"] for o in shown))
-        self.assertTrue(any("bossku skills show" in o["hookSpecificOutput"]["additionalContext"] for o in shown))
+        self.assertTrue(any("skills show <id>" in o["hookSpecificOutput"]["additionalContext"] for o in shown))
 
-    def test_claude_v1_output_is_byte_identical_on_every_prompt(self):
+    def test_claude_v1_output_is_repeatable_on_every_prompt(self):
         got = self.run_hook(self.plain)
         self.assertEqual([i for i in self.expected if got[i] != self.expected[i]], [])
 
@@ -169,6 +137,23 @@ class HintParityTests(unittest.TestCase):
 
 
 class SignatureTests(unittest.TestCase):
+    def test_it_changes_when_a_skill_file_is_added_or_removed(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = mini_repo(tmp)
+            # Exercise the bounded concurrent path on Windows as well as serial
+            # metadata reads on other hosts; empty directories are not skills.
+            for number in range(40):
+                (root / "skills" / f"empty-{number}").mkdir()
+            original = skill_index_signature(root)
+            folder = root / "skills" / "new-skill"
+            folder.mkdir()
+            self.assertEqual(skill_index_signature(root), original)
+            skill = folder / "SKILL.md"
+            skill.write_text("New skill", encoding="utf-8")
+            self.assertNotEqual(skill_index_signature(root), original)
+            skill.unlink()
+            self.assertEqual(skill_index_signature(root), original)
+
     def test_it_changes_with_a_skill_the_lean_list_or_the_saved_index_and_with_nothing_else(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = mini_repo(tmp)
@@ -248,7 +233,7 @@ class IndexCopyTests(unittest.TestCase):
             skill = repo / "skills" / "alpha-skill" / "SKILL.md"
             skill.write_text(skill.read_text(encoding="utf-8") + "\nA new line.\n", encoding="utf-8")
             self.assertIsNotNone(routing_copy_issue(repo, home))
-            with mock.patch.object(hint, "MIN_TOP_SCORE", 0.5), clean_env():
+            with clean_env():
                 out = hook_output(json.dumps({"prompt": "please inspect the apples in the orchard today", "cwd": tmp}),
                                   root=repo, home=home)
             self.assertIn("alpha-skill", out["hookSpecificOutput"]["additionalContext"])
@@ -270,7 +255,7 @@ class HintModeTests(unittest.TestCase):
         payload = json.dumps({"prompt": NAMED, "cwd": "C:/proj"})
         with tempfile.TemporaryDirectory() as tmp, clean_env():
             home = Path(tmp)
-            self.assertEqual(hook_output(payload, root=ROOT, home=home), {})
+            self.assertIn("bosskuai-tdd-loop", hook_output(payload, root=ROOT, home=home)["hookSpecificOutput"]["additionalContext"])
             save_user_config({"hint_mode": "v2"}, home)
             out = hook_output(payload, root=ROOT, home=home)
             self.assertIn("bosskuai-tdd-loop", out["hookSpecificOutput"]["additionalContext"])
@@ -292,37 +277,30 @@ class V2PolicyTests(unittest.TestCase):
     def ids(self, picks):
         return [row["skill_id"] for row in picks]
 
-    def test_three_picks_come_back_when_three_qualify_and_v1_still_shows_two(self):
-        rows = [fake_row("a", 15.0, "primary prompt match"), fake_row("b", 9.0), fake_row("c", 5.0)]
-        self.assertEqual(self.ids(self.pick(STRONG, rows)), ["a", "b", "c"])
-        self.assertEqual(self.select.call_args.kwargs["limit"], hint.MAX_HINTS)
-        self.assertEqual(hint.MAX_HINTS, 3)
-        self.assertEqual(self.ids(self.pick(STRONG, rows, mode="v1")), ["a", "b"])
+    def test_three_evidenced_picks_are_available_in_both_modes(self):
+        rows = [fake_row("a", 1.0), fake_row("b", 0.9), fake_row("c", 0.5)]
+        with mock.patch.object(hint, "skill_has_task_evidence", return_value=True):
+            for mode in ("v1", "v2"):
+                self.assertEqual(self.ids(self.pick(STRONG, rows, mode=mode)), ["a", "b", "c"])
+                self.assertEqual(self.select.call_args.kwargs["limit"], 3)
 
-    def test_a_later_pick_under_the_second_bar_is_dropped_and_the_next_one_can_still_stand(self):
-        rows = [fake_row("a", 15.0, "primary prompt match"), fake_row("b", 3.9), fake_row("c", 5.0)]
-        self.assertEqual(self.ids(self.pick(STRONG, rows)), ["a", "c"])
-        self.assertEqual(hint.SECOND_MIN, 4.0)
-        self.assertEqual(self.ids(self.pick(STRONG, [fake_row("a", 15.0), fake_row("b", 1.9)])), ["a"])
+    def test_lexical_score_alone_cannot_admit_an_unsupported_pick(self):
+        rows = [fake_row("a", 100.0), fake_row("b", 1.0)]
+        with mock.patch.object(hint, "skill_has_task_evidence", side_effect=lambda row, *_: row["skill_id"] == "b"):
+            self.assertEqual(self.ids(self.pick(STRONG, rows)), ["b"])
 
-    def test_the_first_pick_still_needs_the_top_bar(self):
-        self.assertEqual(self.pick(STRONG, [fake_row("a", 11.9, "primary prompt match"), fake_row("b", 9.0)]), [])
-        self.assertEqual(self.ids(self.pick(STRONG, [fake_row("a", 12.0, "primary prompt match")])), ["a"])
+    def test_the_fallback_row_and_unavailable_skill_are_not_hinted(self):
+        rows = [fake_row("a", 1.0), fake_row("x402", 100.0),
+                fake_row("cofounder", 100.0, "insufficient eligible evidence; look")]
+        with mock.patch.object(hint, "skill_has_task_evidence", return_value=True):
+            self.assertEqual(self.ids(self.pick(STRONG, rows)), ["a"])
 
-    def test_the_fallback_row_and_a_skill_that_is_never_installed_are_not_hinted(self):
-        rows = [fake_row("a", 15.0), fake_row("x402", 9.0), fake_row("cofounder", 5.0, "insufficient eligible evidence; look")]
-        self.assertEqual(self.ids(self.pick(STRONG, rows)), ["a"])
-
-    def test_a_named_skill_passes_below_the_bar_but_alone(self):
-        weak = "please use bosskuai-ponytail when you tidy this module today"
-        self.assertEqual(self.pick(weak, mode="v1"), [])
-        found = self.pick(weak)
-        self.assertEqual(self.ids(found), ["bosskuai-ponytail"])
-        self.assertEqual(found[0]["reason"], hint.EXPLICIT)
-        rows = [fake_row("named", 3.0, hint.EXPLICIT), fake_row("other", 6.9)]
-        self.assertEqual(self.ids(self.pick(weak, rows)), ["named"])    # under the bar only the named skill speaks
-        self.assertEqual(self.ids(self.pick(NAMED))[:1], ["bosskuai-tdd-loop"])
-        self.assertEqual(self.pick(NAMED, mode="v1"), [])
+    def test_named_skills_pass_in_both_modes_without_a_score_bar(self):
+        for mode in ("v1", "v2"):
+            found = self.pick("please use bosskuai-ponytail when you tidy this module today", mode=mode)
+            self.assertEqual(self.ids(found), ["bosskuai-ponytail"])
+            self.assertEqual(found[0]["reason"], hint.EXPLICIT)
+            self.assertEqual(self.ids(self.pick(NAMED, mode=mode))[:1], ["bosskuai-tdd-loop"])
 
     def test_naming_needs_a_whole_word_and_a_real_skill_id(self):
         names = ["ads", "bosskuai-tdd-loop"]
@@ -331,10 +309,10 @@ class V2PolicyTests(unittest.TestCase):
         for text in ("this loads slowly", "bosskuai-tdd-loop-extra is not it", "my-ads are fine", "nothing here"):
             self.assertFalse(hint._mentions_a_skill(text, names), text)
 
-    def test_slash_commands_and_short_prompts_stay_silent_and_min_words_can_be_lowered(self):
+    def test_slash_commands_and_greetings_stay_silent_but_short_explicit_requests_pass(self):
         self.assertEqual(self.pick("/bosskuai-tdd-loop do the next change now please"), [])
         self.assertEqual(self.pick("thanks a lot"), [])
-        self.assertEqual(self.pick("please use bosskuai-tdd-loop"), [])
+        self.assertEqual(self.ids(self.pick("please use bosskuai-tdd-loop")), ["bosskuai-tdd-loop"])
         self.assertEqual(self.ids(self.pick("please use bosskuai-tdd-loop", min_words=3)), ["bosskuai-tdd-loop"])
 
     def test_the_nonce_is_appended_only_when_the_canary_sets_a_clean_one(self):
@@ -395,11 +373,10 @@ class HintTextTests(unittest.TestCase):
         self.assertIn(f"(Read {self.library_path()})", text)
         self.assertNotIn(chr(92), text)
 
-    def test_claude_v1_keeps_its_original_wording_and_codex_v1_does_not_use_the_skill_tool(self):
+    def test_both_modes_use_host_aware_loading_instructions(self):
         legacy = self.render("claude", mode="v1")
-        self.assertIn("(both only if they cover different parts)", legacy)
-        self.assertIn("`bossku skills show seo-audit`", legacy)
-        self.assertNotIn("Read ", legacy)
+        self.assertEqual(legacy, self.render("claude", mode="v2"))
+        self.assertIn(f"(Read {self.library_path()})", legacy)
         codex = self.render("codex", mode="v1")
         self.assertIn(f"(Read {self.library_path()})", codex)
         self.assertNotIn("Skill tool", codex)
@@ -438,6 +415,15 @@ class HintTextTests(unittest.TestCase):
         self.assertTrue(lines[0].startswith("- bosskuai-tdd-loop:"))
         self.assertLessEqual(len(fewer), 480)
 
+    def test_a_single_extreme_path_does_not_break_the_hint_bound(self):
+        long_path = Path("C:/" + "long-folder/" * 90 + "SKILL.md")
+        for mode in ("v1", "v2"):
+            with mock.patch.object(hint, "locate_skill", return_value=("library", long_path)):
+                text = self.render("codex", mode=mode, rows=self.rows[:1])
+            self.assertLessEqual(len(text), hint.HINT_CHARS)
+            self.assertIn("bossku skills show bosskuai-tdd-loop", text)
+            self.assertNotIn("Read C:/", text)
+
     def test_every_hint_on_all_628_prompts_is_at_most_800_characters_and_made_of_whole_lines(self):
         data = load_index(ROOT)
         home = Path(self.tmp.name) / "nothing-installed"      # every skill is read from the repo
@@ -466,9 +452,9 @@ class HostFlagTests(unittest.TestCase):
 
     def test_the_cli_takes_a_host_and_claude_is_the_default(self):
         claude, codex = self.hint_text(), self.hint_text("--host", "codex")
-        self.assertIn("`bossku skills show ", claude)
+        self.assertIn("(Read ", claude)
         self.assertIn("(Read ", codex)
-        self.assertNotIn("`bossku skills show ", codex)
+        self.assertNotIn("Skill tool", codex)
         self.assertEqual(self.hint_text("--host", "claude"), claude)
 
     def test_both_hosts_get_json_a_hook_can_print(self):
@@ -689,7 +675,7 @@ class HintPolicyBenchmarkTests(unittest.TestCase):
             self.assertEqual(set(group), set(heldout.POLICIES))
         self.assertEqual(fresh_groups["all"]["full_router"]["shown_rate"]["rate"], 1.0)
         self.assertEqual(fresh_groups["trivial"]["v1"]["no_skill_fire_rate"]["hits"], 0)
-        self.assertEqual(fresh_groups["short"]["v1"]["shown_rate"]["hits"], 0)            # under five words
+        self.assertGreater(fresh_groups["short"]["v1"]["shown_rate"]["hits"], 0)  # evidenced short tasks work
         # the self-check of the plan: the full router's first pick is the old table's top-1
         gold = [r for r in old + fresh_part + trivial[:5] if r["concerns"]]
         old_top1 = heldout.score(gold, answers, with_stack=True)["top1"]["hits"]

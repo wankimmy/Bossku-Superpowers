@@ -50,6 +50,9 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
         "is broken", "stopped working", "debug this", "test is failing", "tests are failing",
         "only happens sometimes", "happens intermittently", "comes and goes", "cant figure out why",
         "can't figure out why", "hard to reproduce", "works sometimes", "happens randomly",
+        "fix this bug", "fix the bug", "timeout bug", "app crash", "crashes with", "crash when",
+        "issue still happens", "still broken", "still not working",
+        "skill routing", "skill router", "auto route skills", "didnt use any skills",
     ],
     "bosskuai-performance-profiling": [
         "slow", "faster", "speed up", "latency", "sluggish", "takes too long",
@@ -128,6 +131,7 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
         "poc scaffold",
     ],
     "animate": [
+        "animate this", "animate a component",
         "add a transition", "animate this component", "build an animation", "make a transition",
         "component feel alive", "entrance animation", "exit animation", "hover animation",
         "hover effect", "micro-interaction", "micro-interactions", "staggered list",
@@ -304,6 +308,7 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
     ],
     "bosskuai-coding-best-practices": [
         "code quality", "clean this up", "is this good code", "naming", "maintainability",
+        "implement a function", "write a function", "create a function",
     ],
     "bosskuai-devops-iac": [
         "infrastructure as code", "iac", "terraform", "opentofu", "pulumi", "canary deploy",
@@ -615,7 +620,7 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
     "accessibility": ["accessibility", "a11y", "wcag", "wcag 2.2", "screen reader", "keyboard navigation", "keyboard focus", "focus order", "aria", "contrast ratio", "color contrast", "accessible form", "axe"],
     "architecture-decision-records": ["adr", "architecture decision record", "decision record", "record the architecture decision", "why did we choose", "document this decision", "adr log", "write an adr"],
     "vue-patterns": ["vue", "vue 3", "composition api", "pinia", "vue router", "ref vs reactive", "composable", "vue component", "watcheffect", "defineprops", "vite vue", "script setup"],
-    "python-patterns": ["python", "pythonic", "pep 8", "type hints", "dataclass", "pydantic", "python idioms", "python code review", "mypy", "asyncio", "python packaging", "python script"],
+    "python-patterns": ["python", "pythonic", "pep 8", "type hints", "dataclass", "pydantic", "python idioms", "python code review", "mypy", "asyncio", "python packaging", "python script", "python parser", "python function"],
     "python-testing": ["pytest", "python tests", "pytest fixture", "parametrize", "monkeypatch", "unittest mock", "pytest coverage", "conftest", "test this python"],
     # --- 2026-09-26 skill review: routing for requests that had no owner ---
     "sales-enablement": ["discovery call", "discovery call script", "sales call script", "sales deck"],
@@ -627,7 +632,7 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
     "ai-seo": ["answer engine", "ai overviews", "llms.txt", "cited by chatgpt", "cited by perplexity"],
     "ads": ["google ads", "meta ads", "facebook ads", "linkedin ads", "ppc", "performance max"],
     "launch": ["product hunt", "launch plan", "launch day", "feature announcement", "beta launch"],
-    "copywriting": ["landing page copy", "homepage copy", "hero copy", "write copy", "value proposition"],
+    "copywriting": ["landing page copy", "homepage copy", "hero copy", "write copy", "value proposition", "marketing copy", "launch announcement"],
     "competitor-profiling": [
         "competitive analysis", "competitor analysis", "competitor profile",
         "deep profile", "profile on", "company profile", "profile on each",
@@ -689,7 +694,7 @@ for _sid, _more in {
     "bosskuai-ci-cd-pipelines": ["setup ci", "set up ci", "auto run tests", "run tests on push", "tests on push",
                                  "ci so tests", "long-lived keys", "long lived keys"],
     "verification-before-completion": ["verification pass", "confirm everything still works", "verify before we tag",
-                                       "before we tag", "triage ci, fix, verify", "fix, verify"],
+                                       "before we tag", "triage ci, fix, verify", "fix, verify", "run the tests", "run tests"],
     "finishing-a-development-branch": ["release branch is ready", "branch is ready", "ready to tag", "before we tag"],
     "brainstorming": ["what we should decide first", "edge cases yet", "haven't worked out", "haven't decided yet",
                       "decide first", "tak tahu nak start"],
@@ -900,6 +905,45 @@ def singular(token: str) -> str:
     return token
 
 
+_LOCAL_TASK_WORDS = {
+    "tolong": "", "saya": "", "aku": "", "awak": "", "ni": "", "tu": "",
+    "yang": "", "kena": "", "kat": "on", "untuk": "for", "bila": "when",
+    "kenapa": "why", "tekan": "click", "butang": "button", "bisnes": "business",
+    "buat": "build", "bina": "build", "baiki": "fix", "betulkan": "fix",
+    "semak": "review", "tulis": "write", "ujian": "tests", "fungsi": "function",
+    "rosak": "broken", "ralat": "error", "gagal": "failing", "lambat": "slow",
+    "cantik": "polished", "guna": "use", "pakai": "use", "jangan": "do not",
+    "tanpa": "without", "tapi": "but", "dan": "and", "serta": "and",
+    "kemudian": "then", "lepas": "after", "dengan": "with",
+}
+_LOCAL_TASK_PHRASES = {
+    "tak jalan": "not working", "tak berfungsi": "not working", "tak boleh": "cannot",
+    "jangan guna": "do not use", "jangan pakai": "do not use",
+    "laman web": "website", "senang guna": "easy to use", "lepas tu": "then",
+}
+_LOCAL_WORD = re.compile(r"(?<![\w./$:-])(" + "|".join(_LOCAL_TASK_WORDS) + r")(?![\w./:-])")
+
+
+def normalize_task(text: str) -> str:
+    """Normalize common task wording; leave skill IDs, paths and invocation markers intact."""
+    text = text.lower()
+    text = re.sub(r"^(?:thanks|thank you|ok|okay|alright|sure)[!,\s]+(?:now\b[,\s]*)?", "", text)
+    for phrase, equivalent in _LOCAL_TASK_PHRASES.items():
+        text = re.sub(r"(?<![\w./$:-])" + re.escape(phrase) + r"(?![\w./:-])", equivalent, text)
+    text = _LOCAL_WORD.sub(lambda match: _LOCAL_TASK_WORDS[match.group(1)], text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def routing_context(text: str) -> str:
+    """Include language evidence from concrete source filenames without rewriting them."""
+    text = normalize_task(text)
+    languages = {'py': 'python', 'ts': 'typescript', 'tsx': 'react typescript',
+                 'jsx': 'react javascript', 'js': 'javascript', 'vue': 'vue',
+                 'go': 'golang', 'php': 'php', 'swift': 'swift'}
+    extensions = re.findall(r"\b[\w-]+\.(py|tsx?|jsx?|vue|go|php|swift)\b", text)
+    return ' '.join([text, *dict.fromkeys(languages[ext] for ext in extensions)]).strip()
+
+
 def tokenize(text: str) -> list[str]:
     """Split on `/` so `Three.js/React` is two terms, and also emit dotted sub-parts
     so a query for `three.js` reaches a description that only says `Three.js`."""
@@ -1070,12 +1114,28 @@ def skill_index_signature(root: Path | None = None) -> str:
     h = hashlib.sha256()
     with os.scandir(base) as entries:
         names = sorted(entry.name for entry in entries if entry.is_dir())
-    for rel in [*(f"{name}/SKILL.md" for name in names), LEAN_FILE, index_path(root).name]:
+    # The base is already resolved; index_path(root) would resolve it again.
+    paths = [*(f"{name}/SKILL.md" for name in names), LEAN_FILE, "skill-index.json"]
+    base_path = os.fspath(base)
+
+    def metadata(rel: str) -> str:
         try:
-            stat = os.stat(base / rel)
+            stat = os.stat(os.path.join(base_path, rel))
         except OSError:
-            continue
-        h.update(f"{rel}:{stat.st_size}:{stat.st_mtime_ns};".encode())
+            return ""
+        return f"{rel}:{stat.st_size}:{stat.st_mtime_ns};"
+
+    # Windows metadata requests can be slow on synced folders. Bound concurrent
+    # reads without caching: every call still checks every file, in stable order.
+    if os.name == "nt" and len(paths) > 32:
+        from concurrent.futures import ThreadPoolExecutor
+
+        with ThreadPoolExecutor(max_workers=8) as pool:
+            for item in pool.map(metadata, paths):
+                h.update(item.encode())
+    else:
+        for rel in paths:
+            h.update(metadata(rel).encode())
     return h.hexdigest()[:16]
 
 

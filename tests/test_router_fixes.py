@@ -76,9 +76,11 @@ class OneFingerprintPerLookupTests(unittest.TestCase):
 
 
 class HintGateTests(unittest.TestCase):
-    def test_a_weak_prompt_stops_before_the_full_selection(self):
-        with mock.patch("bossku.hint.select_skill_stack", side_effect=AssertionError("selection should not run")):
-            self.assertIsNone(hint.build_hint(WEAK, root=ROOT, home=ROOT))
+    def test_a_concrete_filename_routes_without_the_old_score_gate(self):
+        with mock.patch("bossku.hint.select_skill_stack", wraps=select_skill_stack) as select:
+            text = hint.build_hint(WEAK, root=ROOT, home=ROOT)
+        self.assertEqual(select.call_count, 1)
+        self.assertIn('python-patterns', text)
 
     def test_a_strong_prompt_still_gets_its_hint_through_the_gate(self):
         with mock.patch("bossku.hint.select_skill_stack", wraps=select_skill_stack) as select:

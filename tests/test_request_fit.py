@@ -63,10 +63,12 @@ class QueryTermTests(unittest.TestCase):
 
 
 class HintConfidenceTests(unittest.TestCase):
-    def test_a_weak_match_gets_no_hint(self):
-        weak = "Implement count_inversions(nums) in inversions.py and make it fast for large lists of numbers please"
-        self.assertLess(rank_skills(weak, ROOT, limit=1)[0][1], MIN_TOP_SCORE)
-        self.assertIsNone(build_hint(weak, root=ROOT, home=ROOT))
+    def test_a_concrete_source_file_routes_without_a_fixed_score_bar(self):
+        task = "Implement count_inversions(nums) in inversions.py and make it fast for large lists of numbers please"
+        self.assertIn('python-patterns', build_hint(task, root=ROOT, home=ROOT))
+
+    def test_a_request_without_task_evidence_gets_no_hint(self):
+        self.assertIsNone(build_hint('zzzz qqqq vvvv', root=ROOT, home=ROOT))
 
 
 if __name__ == "__main__":

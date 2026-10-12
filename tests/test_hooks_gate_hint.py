@@ -206,12 +206,21 @@ class SkillHintTests(unittest.TestCase):
         self.assertIsNone(build_hint("thanks", root=ROOT))
         self.assertIsNone(build_hint("/prototype a pricing page with three layouts to compare", root=ROOT))
 
+    def test_short_tasks_and_explicit_requests_are_hinted_in_both_modes(self):
+        for mode in ("v1", "v2"):
+            for prompt, sid in (("audit SEO", "seo-audit"), ("use bosskuai-tdd-loop", "bosskuai-tdd-loop")):
+                with self.subTest(mode=mode, prompt=prompt):
+                    text = build_hint(prompt, root=ROOT, mode=mode)
+                    self.assertIsNotNone(text)
+                    self.assertIn(sid, text)
+
     def test_a_clear_request_names_the_matching_skill_and_how_to_load_it(self):
         hint = build_hint("Please audit my website for SEO issues such as missing title tags and meta descriptions",
                           root=ROOT, home=Path(tempfile.gettempdir()) / "no-such-home")
         self.assertIsNotNone(hint)
         self.assertIn("seo", hint.lower())
-        self.assertIn("bossku skills show", hint)   # not installed in that home, so it must say how to read it
+        self.assertIn(f"Read {(ROOT / 'skills' / 'seo-audit' / 'SKILL.md').as_posix()}", hint)
+        self.assertIn("skills show <id>", hint)
         self.assertLessEqual(len(hint.splitlines()), 4)
 
     def test_hook_output_has_the_shape_claude_code_expects(self):

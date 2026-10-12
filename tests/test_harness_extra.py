@@ -4,6 +4,7 @@ Every test uses a temporary home; none touches the real one, the real settings o
 """
 
 import json
+import os
 import re
 import shutil
 import tempfile
@@ -503,6 +504,9 @@ class AgentContractValidationTests(unittest.TestCase):
     def _root(self, tmp: str) -> Path:
         root = Path(tmp) / "repo"
         shutil.copytree(ROOT / "agents", root / "agents")
+        # OneDrive can mark the source directory read-only; copied fixtures must be removable.
+        if os.name == "nt":
+            os.chmod(root / "agents", 0o700)
         return root
 
     def _change(self, root: Path, name: str, old: str, new: str) -> None:

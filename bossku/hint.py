@@ -4,9 +4,8 @@ Agents rarely open a skill nobody pointed them to. A `UserPromptSubmit` hook run
 prompt and adds one short, honest hint (the best matches, with their own descriptions), so the
 choice is made on the request itself instead of on a skill list the agent has already stopped reading.
 
-`hint_mode` in ~/.bosskuai/config.json picks the policy. `v1` (the default) is what Claude Code has had so far and its
-text does not change. `v2` can name up to three skills (the best one plus one for each other part of the request),
-lets a skill the user named by id through, and keeps the whole hint under 800 characters.
+`hint_mode` in ~/.bosskuai/config.json picks the policy. `v1` (the default) and `v2` both use task evidence, name up to three complementary skills,
+accept eligible explicit requests, and keep the hint under 800 characters.
 """
 
 from __future__ import annotations
@@ -21,25 +20,22 @@ import bossku.skills as skills
 from bossku.index import load_index, skill_index_signature
 from bossku.paths import routing_index_copy, routing_signature_path, user_config_path
 from bossku.rules import prompt_reminder, states_rule
-from bossku.skills import NOT_INSTALLED, locate_skill, select_skill_stack
+from bossku.skills import NOT_INSTALLED, locate_skill, select_skill_stack, skill_has_task_evidence
 
-MIN_WORDS = 5            # a short ping ("thanks", "run the tests") needs no skill
-MIN_SCORE = 2.0          # below this the lexical evidence is a guess; say nothing
-# The hint costs tokens every time it speaks, so it speaks only when the best match is strong: on the tuning halves
-# of two held-out prompt sets a top score of 12 or more picked an acceptable skill 97% of the time (41% of those
-# prompts reached it), while the scores of spec-style coding prompts stay around 1-2.
-MIN_TOP_SCORE = 12.0
-V1_MAX_HINTS = 2         # hint_mode v1 asks for three, shows two: the third pick was always dropped
-MAX_HINTS = 3            # hint_mode v2: one number for the select limit and the cap, so a third concern is kept
-SECOND_MIN = 4.0         # v2: a later pick needs at least this much; the first one still needs MIN_TOP_SCORE
-HINT_CHARS = 800         # v2: the hint without the rule reminder; the lowest pick goes first when it is longer
-DESCRIPTION_CHARS = 100  # v2: the cut of each description (v1 keeps 110)
-SHORT_DESCRIPTION_CHARS = 60   # v2: tried before a pick is dropped for length
+MIN_WORDS = 5            # retained for callers; evidence, not word count, decides eligibility
+MIN_TOP_SCORE = 12.0     # legacy benchmark/caller compatibility; not an eligibility gate
+MAX_HINTS = 3            # one primary and at most two distinct prompt concerns in either mode
+HINT_CHARS = 800         # the hint without the separate rule reminder
+DESCRIPTION_CHARS = 100
+SHORT_DESCRIPTION_CHARS = 60
 MODES = ("v1", "v2")
 HOSTS = ("claude", "codex")
 NONCE_ENV = "BOSSKU_HINT_NONCE"     # test only: the delivery canary asks the agent to quote this value back
 _NONCE = re.compile(r"[A-Za-z0-9_.-]{1,40}")
 EXPLICIT = "explicit skill request"
+# Prompts the app submits that no person typed (a finished background task, a CI event). Same list as
+# bossku.gate._NOT_TYPED, kept here so the per-prompt hook does not import the gate.
+NOT_TYPED = ("<ci-monitor-event>", "<task-notification>", "<agent-message", "<local-command", "<system-reminder>")
 RESUME_MAX_WORDS = 8     # a longer prompt is a real request that merely contains the word
 # Kept here, not in bossku.resume, so a prompt that is not "continue" never pays for importing that module.
 RESUME_TRIGGER = re.compile(
@@ -55,6 +51,8 @@ def _short(description: str, limit: int = 110) -> str:
     text = " ".join(description.split())
     text = re.split(r"(?<=[a-z0-9)])\.\s", text, maxsplit=1)[0]
     text = _BOILERPLATE.sub("", text).rstrip(".")
+    if limit == 0:
+        return "See skill instructions"
     if len(text) <= limit:
         return text
     return text[:limit].rsplit(" ", 1)[0].rstrip(",;:") + "..."
@@ -63,7 +61,9 @@ def _short(description: str, limit: int = 110) -> str:
 def wants_resume(prompt: str) -> bool:
     """A short prompt that asks to go on ("continue", "lanjut", "bossku resume"); slash commands never do."""
     text = prompt.strip()
-    return bool(text) and not text.startswith(("/", "!")) and len(text.split()) <= RESUME_MAX_WORDS \
+    # "continue what codex was doing, ask me if unsure" names the task it means, so it may run longer.
+    limit = RESUME_MAX_WORDS * 2 if re.search(r"\bcodex\b", text, re.I) else RESUME_MAX_WORDS
+    return bool(text) and not text.startswith(("/", "!")) and len(text.split()) <= limit \
         and RESUME_TRIGGER.search(text) is not None
 
 
@@ -103,35 +103,20 @@ def _mentions_a_skill(text: str, names) -> bool:
 
 def pick_skills(prompt: str, *, root: Path | None = None, mode: str = "v1", min_words: int = MIN_WORDS,
                 data: dict | None = None) -> list[dict]:
-    """The rows (skill_id, score, description, reason) the hint would name for this prompt; empty means silence.
+    """Name eligible selected skills with task evidence; short requests work in either mode.
 
-    v1: the best match must score MIN_TOP_SCORE; up to V1_MAX_HINTS rows. v2: the same bar for the first pick,
-    SECOND_MIN for each later one (they come from select_skill_stack, so each covers another part of the request),
-    up to MAX_HINTS rows, and a skill the user names by id is let through below the bar.
+    `mode` and `min_words` remain accepted for caller compatibility. The host handles slash
+    commands directly; greetings, fallback selections and lexical coincidences stay silent.
     """
     prompt = prompt.strip()
-    if len(prompt.split()) < min_words or prompt.startswith(("/", "!")):
+    if not prompt or prompt.startswith(("/", "!")) or any(tag in prompt[:200] for tag in NOT_TYPED):
         return []
-    v2 = mode == "v2"
     data = skills._routing_index(root) if data is None else data
-    top = skills.rank_skills(prompt, root, limit=1, data=data)
-    gated = bool(top) and round(top[0][1], 3) >= MIN_TOP_SCORE    # no pick can score higher than the best-ranked skill
-    if not gated and not (v2 and _mentions_a_skill(prompt.lower(), [*data.get("skills", {}), *data.get("aliases", {})])):
-        return []
-    rows = select_skill_stack(prompt, root, limit=MAX_HINTS if v2 else V1_MAX_HINTS + 1, data=data)["selected"]
-    if not rows or (rows[0]["score"] < MIN_TOP_SCORE and not (v2 and rows[0]["reason"] == EXPLICIT)):
-        return []
-    picks = []
-    for row in rows:
-        if row["skill_id"] in NOT_INSTALLED or row["reason"].startswith("insufficient eligible evidence"):
-            continue
-        if not (v2 and row["reason"] == EXPLICIT):    # a skill the user named is not held to a score
-            if v2 and not gated:                      # under the bar only a named skill speaks
-                continue
-            if row["score"] < (SECOND_MIN if v2 and picks else MIN_SCORE):
-                continue
-        picks.append(row)
-    return picks[:MAX_HINTS if v2 else V1_MAX_HINTS]
+    rows = select_skill_stack(prompt, root, limit=MAX_HINTS, data=data)["selected"]
+    return [row for row in rows
+            if row["skill_id"] not in NOT_INSTALLED
+            and not row["reason"].startswith("insufficient eligible evidence")
+            and skill_has_task_evidence(row, prompt, data)][:MAX_HINTS]
 
 
 def _posix(path) -> str:
@@ -149,19 +134,8 @@ def _bossku_command() -> str:
 
 def render_hint(picks: list[dict], *, root: Path | None = None, home: Path | None = None, host: str = "claude",
                 mode: str = "v1") -> str:
-    """The hint text. Claude on v1 keeps its original wording. Every other case says how to load each skill: the
-    Skill tool for a skill Claude lists, otherwise `Read <absolute SKILL.md>` (Codex has no Skill tool), and a
-    footer with the absolute `bossku skills show` for a read that is refused."""
-    located = [(row, *locate_skill(row["skill_id"], root, home)) for row in picks]
-    if mode == "v1" and host == "claude":
-        lines = []
-        for row, kind, _ in located:
-            how = "Skill tool" if kind == "listed" else f"`bossku skills show {row['skill_id']}`"
-            lines.append(f"- {row['skill_id']}: {_short(row['description'])} (load with {how})")
-        return ("BosskuAI skill hint: these skills match this request. Load the best fit before you start "
-                "(both only if they cover different parts):\n"
-                + "\n".join(lines)
-                + "\nSkip only if the task is trivial or neither fits.")
+    """Bounded host-aware loading instructions, identical policies in v1 and v2."""
+    located = [(row, *locate_skill(row["skill_id"], root, home)) for row in picks[:MAX_HINTS]]
     command = _bossku_command()
     ways = [("Skill tool" if kind == "listed" and host == "claude"
              else f"Read {_posix(path)}" if path else f"run `{command} skills show {row['skill_id']}`")
@@ -178,13 +152,23 @@ def render_hint(picks: list[dict], *, root: Path | None = None, home: Path | Non
         return head + "\n".join(lines[:count]) + foot
 
     # Shorter descriptions before fewer skills: a second concern is worth more than the tail of a sentence.
-    # ponytail: a single pick is never cut, so a very long home path can still pass HINT_CHARS.
     count, limit = len(located), DESCRIPTION_CHARS
     if len(text(count, limit)) > HINT_CHARS:
         limit = SHORT_DESCRIPTION_CHARS
         while count > 1 and len(text(count, limit)) > HINT_CHARS:
             count -= 1
-    return text(count, limit)
+    result = text(count, limit)
+    if len(result) <= HINT_CHARS:
+        return result
+    # Paths and executable names can be arbitrarily long. Use the installed command name
+    # as a last resort rather than truncating a path into an unusable loading instruction.
+    head = "BosskuAI skill hint: load the best fit before starting:\n"
+    foot = "\nSkip if the task is trivial or none fits."
+    ways = ["Skill tool" if kind == "listed" and host == "claude"
+            else f"run `bossku skills show {row['skill_id']}`" for row, kind, _ in located]
+    while count and len(text(count, 0)) > HINT_CHARS:
+        count -= 1
+    return text(count, 0)
 
 
 def build_hint(prompt: str, *, root: Path | None = None, home: Path | None = None, host: str = "claude",

@@ -93,7 +93,7 @@ def _text_of(event: dict) -> str:
 
 
 # Lines the app writes as "user" turns that no person typed: they must not replace the request being judged.
-_NOT_TYPED = ("<ci-monitor-event>", "<task-notification>", "<local-command", "<system-reminder>")
+_NOT_TYPED = ("<ci-monitor-event>", "<task-notification>", "<agent-message", "<local-command", "<system-reminder>")
 
 
 def _typed_by_a_person(event: dict) -> bool:

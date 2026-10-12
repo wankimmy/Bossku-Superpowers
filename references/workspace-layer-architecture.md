@@ -14,7 +14,7 @@ This note explains how the workspace layer is meant to stay lean, local-first, a
 
 The repo uses a hub-and-spoke model:
 
-- [`AGENTS.md`](../../AGENTS.md) is the canonical cross-tool contract.
+- [`AGENTS.md`](../AGENTS.md) is the canonical cross-tool contract.
 - Tool-specific files carry only model mappings and small behavior deltas.
 - Skills carry specialist workflows.
 - References carry deep procedures, templates, and playbooks.

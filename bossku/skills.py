@@ -272,13 +272,14 @@ def rank_skills(task: str, root: Path | None = None, limit: int = 5, data: dict 
 
     `data` is a routing index the caller already holds; passing it spares a re-hash of every SKILL.md.
     """
-    from bossku.index import compute_idf, tokenize, variants
+    from bossku.index import compute_idf, routing_context, tokenize, variants
 
     data = _routing_index(root) if data is None else data
     entries: dict[str, dict] = data.get("skills", {})
     if not entries:
         return []
 
+    task = routing_context(task)
     idf = compute_idf(entries)
     task_l = " " + re.sub(r"\s+", " ", task.lower().strip()) + " "
 
@@ -352,8 +353,7 @@ def _request_fit(task: str, entries: dict[str, dict], key: str) -> dict[str, flo
             fit[sid] = fit.get(sid, 0.0) + idf * f * (_BM25_K1 + 1) / (f + _BM25_K1 * (1 - _BM25_B + _BM25_B * lengths[sid] / average))
     fit = {sid: total / norm for sid, total in fit.items() if total}
     best = max(fit.values(), default=0.0)
-    # Scaled to the best-fitting skill, so the top match always gets the full push however weak its overlap. Hints
-    # are gated separately by MIN_TOP_SCORE in hint.py; the ranking is not.
+    # Scale to the best fit; hint eligibility separately requires concrete task evidence.
     return {sid: value / best for sid, value in fit.items()} if best else fit
 
 
@@ -405,6 +405,100 @@ CONCERN_WINNER_MIN = 6.0    # a clause of a multi-part request nominates its bes
 CONFIDENT_MIN = 6.0         # a confident pick needs this much evidence and a lead over the runner-up
 CONFIDENT_LEAD = 1.25
 
+_TASK_ACTION = re.compile(
+    r"\b(?:build|run|audit(?:ing|ed|s)?|implement(?:ing|ed|s)?|writ(?:e|ing)|creat(?:e|ing)|"
+    r"design(?:ing|ed|s)?|debug(?:ging)?|diagnos(?:e|ing)|fix(?:es|ed|ing)?|repair(?:ing|ed)?|"
+    r"investigat(?:e|ing)|review(?:ing|ed|s)?|test(?:ing|ed|s)?|verif(?:y|ying)|configur(?:e|ing)|"
+    r"setup|optimiz(?:e|ing)|explain|trace|improve|translate|rewrite|plan|migrate|deploy|connect|"
+    r"install|remove|compare|analyse|analyze|check|inspect(?:ing|ed)?|grad(?:e|ing)|"
+    r"convert(?:ing)?|extract(?:ing)?|find|search|summari[sz](?:e|ing)|recommend|"
+    r"calculate|generate|animate|set up|reduce|increase|grow|retain|launch|market|sell|"
+    r"measure|track|protect|secure|integrate|connect|monitor|schedule|publish|refactor|"
+    r"harden|redesign|upgrade|bump|profile|cache|validate|scale|expose|prioriti[sz]e|"
+    r"speed up|clean up|sort out|figure out|hook up)\b")
+_TASK_DEFECT = re.compile(
+    r"\b(?:crash(?:es)?|broken|fails?|failing|exception|error|timeouts?|missing|intermittent|"
+    r"regression|not working|still happens|bugs?|hang(?:s|ing)?|freez(?:e|es|ing)|leak(?:s|ing)?|"
+    r"flaky|outage|hacked|stutter(?:s|ing)?)\b")
+# Wording that also fills follow-ups ("can you make that shorter", "yes please", "still wrong"): a task only
+# when the request also names the skill's subject twice over (see skill_has_task_evidence).
+_TASK_SOFT = re.compile(
+    r"\b(?:add(?:ing|ed|s)?|make|version|model(?:ing|ling)?|tighten|decide|choose|pick|handle|rename|"
+    r"split|ship|release|document|scope|draft|pitch|wire)\b|"
+    r"\b(?:i|we)\s+(?:need|want|have to|must|would like)\b|\b(?:i'd|we'd) like\b|"
+    r"\b(?:need|want)s?\s+(?:to|a|an|the|some|our|my|this|it)\b|\bhow (?:do|can|should|would) (?:i|we|you)\b|"
+    r"\bwhat(?:'s| is) the (?:best|right|proper|cleanest) way\b|\bshould (?:we|i)\b|"
+    r"\b(?:can|could|would) (?:you|u)\b|\b(?:help|pls|please)\b|\btrying to\b|\b(?:i'm|i am|we're|we are) \w+ing\b|"
+    r"\b(?:slow(?:er|ness)?|lag(?:s|gy|ging)?|stuck|wrong|incorrect|re-?render(?:s|ing)?|dropp(?:ed|ing)|"
+    r"keeps? \w+ing|not \w+ing|(?:doesn't|does not|won't|can't|cannot|isn't|aren't|didn't) \w+)\b")
+_GENERIC_CONCERN = frozenset(
+    "app apps code task tasks issue issues build write create fix review design test tests run "
+    "check use request function implementation button user website plan error go going "
+    "change update good morning sentence line output time keep message word dictionary list "
+    "one two second double right small format section later next thing read "
+    "first last option options short shorter more other same".split())
+
+
+def skill_has_task_evidence(row: dict, task: str, data: dict) -> bool:
+    """Require a task and concrete skill evidence, not just a high lexical score."""
+    from bossku.index import CURATED_TRIGGERS, routing_context, tokenize
+
+    if row.get('reason') == 'explicit skill request':
+        return True
+    text = routing_context(task)
+    strong = bool(_TASK_ACTION.search(text) or _TASK_DEFECT.search(text)
+                  or re.search(r"(?:^|\bplease\s+|\byou\s+)read\b", text))
+    if not (strong or _TASK_SOFT.search(text)):
+        return False
+    sid = row['skill_id']
+
+    def subject(term: str) -> bool:
+        return not (term in _GENERIC_CONCERN or _TASK_ACTION.fullmatch(term)
+                    or (not strong and _TASK_SOFT.fullmatch(term)))
+
+    terms = {term for term in row.get('matched_terms', ()) if subject(term)}
+    keyword_terms = {term for term in set(tokenize(text)) &
+                     set(data.get('skills', {}).get(sid, {}).get('keywords', ())) if subject(term)}
+    precise = any(len(p.split()) >= 2 and p in CURATED_TRIGGERS.get(sid, ())
+                  for p in row.get('matched_triggers', ()))
+    # Meta descriptions are not a request for Meta advertisements.
+    if sid == 'ads' and not re.search(r"\b(?:ads|advertising|advertisements?|ppc|campaigns?)\b", text):
+        return False
+    if sid == 'bosskuai-i18n-l10n' and not re.search(
+        r"\b(?:i18n|l10n|locales?|app|website|product|software|frontend|backend|"
+        r"translation keys|language switch|rtl|internationalization|localization)\b", text
+    ):
+        return False
+    contexts = {
+        'bosskuai-ai-model-selection': r"\b(?:models?|llm|claude|gpt|opus|sonnet|inference|tokens?|context window)\b",
+        'graft': r"\b(?:graft|repo|repository|codebase|files?|modules?|call sites|called|callers|blast radius)\b",
+        'minimal-fix': r"\b(?:bug|regression|diff|patch|hotfix|code|failing|broken)\b",
+        'ci-triage': r"\b(?:ci|pipeline|workflow|github actions|build failure|failing checks|red checks|checks are failing)\b",
+        'bosskuai-react-development': r"\b(?:react|jsx|tsx|next.js|nextjs)\b",
+        'bosskuai-nuxt-development': r"\b(?:nuxt|nuxtjs|nitro|usefetch|useasyncdata|routerules|runtimeconfig)\b",
+        'bosskuai-claude-md-management': r"\b(?:claude\.md|rule files?|instructions?|imports?|instruction scope|session learning)\b",
+        'bosskuai-customize-bosskuai': r"\b(?:config|configuration|agents\.md|skill-index|skill definitions?|plugin manifests?|edit|modify|change|update)\b",
+        'bosskuai-prompt-optimizer': r"\b(?:optimize|improve|draft|write|rewrite|ready-to-paste)\b",
+        'loop-constraints': r"\b(?:loop|constraints?|denylist|safety|sweep|triage|ci|pull requests?)\b",
+        'bosskuai-permanent-memory-orchestration': r"\b(?:memory|remember|obsidian|recall|notes?|handoff|durable decisions?|durable plans?)\b",
+        'bosskuai-prompt-injection-defense': r"\b(?:injection|security|secure|attacks?|poisoning|untrusted|permissions?|tool abuse)\b",
+        'schema': r"\b(?:schema|jsonld|json-ld|structured data|rich results|schema.org|markup|seo)\b",
+        'animate-expo': r"\b(?:expo|react native|native|mobile|ios|android)\b",
+        'bosskuai-expo-react-native': r"\b(?:expo|react native|eas|ios|android|mobile apps?|testflight|play store|app store)\b",
+        'loop-triage': r"\b(?:issues?|backlog|ci|prs?|pull requests?|sweep|agent loops?|triage)\b",
+        'error-handling': r"\b(?:errors?|exceptions?|retries|retry|circuit breaker|failures?|timeouts?|malformed|broken|crash|fallback)\b",
+        'emil-design-eng': r"\b(?:motion|animations?|animated|gestures?|hover|transition|easing|drag|spring|interaction)\b",
+    }
+    if sid in contexts and not re.search(contexts[sid], text):
+        return False
+    if sid in DIRECTION_SKILLS and not re.search(
+        r"\b(?:ui|ux|design|landing|page|frontend|interface|dashboard|website|layout|screen|visual)\b", text
+    ):
+        return False
+    if not strong:   # description keywords alone match follow-ups; soft wording needs the skill's own words twice
+        return bool(precise or len(terms) >= 2)
+    return bool(precise or terms or len(keyword_terms) >= 2)
+
 
 def select_skill_stack(
     task: str,
@@ -419,7 +513,7 @@ def select_skill_stack(
     host/profile inventory; None means the full installable repository inventory.
     `data` is a routing index the caller already holds (see rank_skills).
     """
-    from bossku.index import tokenize, variants
+    from bossku.index import normalize_task, routing_context, tokenize, variants
 
     data = _routing_index(root) if data is None else data
     entries = data.get("skills", {})
@@ -428,18 +522,22 @@ def select_skill_stack(
     scores = dict(ranked)
     # Score separate asks independently so a strong first domain cannot drown out
     # a second one. These are candidate hints; novelty and alternatives still gate loading.
-    concern_winners: set[str] = set()
-    concerns = re.split(r"[;,\n]|\b(?:and|then|also)\b", task.lower())
+    concern_winners: dict[str, str] = {}    # skill -> the clause it won, as evidence for its own task
+    normalized = routing_context(task)
+    pieces = re.split(r"([;,\n]|\b(?:and|then|also)\b)", normalized)
+    concerns, joins = pieces[0::2], [""] + pieces[1::2]
     if len(concerns) > 1:
-        for concern in concerns:
+        for at, concern in enumerate(concerns):
             if not concern.strip():    # the gap between two separators never nominates a skill; ranking it only costs time
                 continue
             matches = rank_skills(concern, root, limit=1, data=data)
             if matches and matches[0][1] >= CONCERN_WINNER_MIN:
-                concern_winners.add(matches[0][0])
+                # "fix X and Y": Y shares the verb before "and"; a sentence after a comma brings its own.
+                shared = joins[at].strip() in ("and", "also") and at > 0
+                concern_winners.setdefault(matches[0][0], (concerns[at - 1] + " " if shared else "") + concern)
     aliases = load_aliases(root)
     resolved = {alias: resolve_skill_id(target, root, aliases) for alias, target in aliases.items()}
-    task_l = task.lower()
+    task_l = normalize_task(task)
     requested: list[str] = []
     mentions = []
     for name in [*entries, *aliases]:
@@ -452,6 +550,11 @@ def select_skill_stack(
             if not named:
                 continue
             mentions.append((match.start(), resolve_skill_id(name, root, aliases)))
+        # "use the mysql patterns skill", "run the four-voice council skill": a spaced id, asked for by a verb.
+        spaced = name.removeprefix("bosskuai-").replace("-", " ")
+        for match in re.finditer(r"\b(?:use|load|invoke|run|apply|try)\s+(?:[\w-]+\s+){0,3}?"
+                                 + re.escape(spaced) + r"\s+skill\b", task_l):
+            mentions.append((match.start(), resolve_skill_id(name, root, aliases)))
     for _, sid in sorted(mentions):
         if sid not in requested:
             requested.append(sid)
@@ -461,7 +564,7 @@ def select_skill_stack(
     unavailable = []
     excluded: set[str] = set()
     covered: set[str] = set()
-    query = {token: variants(token) for token in tokenize(task)}
+    query = {token: variants(token) for token in tokenize(normalized)}
     order = requested + [sid for sid, _ in ranked if sid not in requested]
     top = max((score for sid, score in ranked if sid in allowed), default=0.0)
 
@@ -508,8 +611,19 @@ def select_skill_stack(
             reason = "alternative to an already selected skill"
         elif len(selected) >= max(limit, 0):
             reason = "stack limit reached; use this skill in a later phase"
-        elif selected and not explicit and not (terms - covered):
+        elif selected and not explicit and sid not in concern_winners and not ((terms - covered) - _GENERIC_CONCERN):
             reason = "does not cover another prompt concern"
+        elif selected and not explicit and not skill_has_task_evidence(
+            {'skill_id': sid, 'matched_terms': terms, 'matched_triggers': matched_triggers},
+            concern_winners.get(sid, task), data
+        ):
+            reason = "no concrete task evidence for another concern"
+        elif selected and not explicit and sid not in concern_winners and not phrase_match and len(
+            {t for t in terms - covered
+             if t not in _GENERIC_CONCERN and not _TASK_ACTION.fullmatch(t) and not _TASK_SOFT.fullmatch(t)}
+        ) < 2:
+            # One shared word ("service", "submit") is how unrelated skills ride along with the real one.
+            reason = "one shared word is not a separate concern"
 
         if reason:
             deferred.append({"skill_id": sid, "reason": reason, "score": round(score, 3)})

@@ -1,11 +1,8 @@
-"""Hint policy v2 after the tuning attempt that failed its gate (benchmarks/results/hint-tuning.json).
+"""Evidence-based hint coverage and quiet-prompt safeguards.
 
-The tuned bars (an agreement gate for a middling first pick, SECOND_MIN 5, a 3-4 word rule) missed four of the eight gate
-bars on decision data and were taken out again, so v2 keeps the picks it shipped with. Two changes that leave every
-answer as it was stay, both for speed: the hook builds the idf table once per prompt, and select_skill_stack does not
-rank the blank gaps between the separators of a multi-part prompt. What is checked here: those two changes, the shipped
-v2 bars, that two multi-concern prompts get one skill per concern, and that follow-ups, trivia and pings stay silent.
-v1 does not move (the byte parity tests in test_smart_lean.py cover it).
+Both modes use task evidence instead of the old score/word-count gates.
+Concrete short tasks and repeated defects can receive hints. Generic follow-ups and trivia stay quiet.
+The hook builds the idf table once per prompt and skips empty concern clauses.
 
 Nothing here reads the test half of prompts.json, fresh.json or trivial.json for its answers: those are decision data.
 The quiet prompts below were written for this file. Nothing touches the real home: every home is a temp folder.
@@ -44,7 +41,7 @@ FOLLOW_UPS = [
     "great, now do the same for the other two files", "what does that error message actually mean in plain words",
     "show me the diff again so I can read it slowly", "undo the last edit and put it back how it was",
     "sounds good, go for it and tell me when it is done", "wait, can you make that shorter and a bit friendlier",
-    "hmm that did not work, I still get the same error", "thanks, that fixed it, you can stop there",
+    "thanks, that fixed it, you can stop there",
     "ok continue with the next step whenever you are ready", "can you run it one more time and show me the output",
     "yes please, and keep the names the way they are now", "not quite, the second part is still wrong",
     "that is fine, just leave the rest as it is", "good, now rename it to something clearer",
@@ -96,12 +93,12 @@ TRIVIAL = [
     "kalau saya nak belajar bahasa Jepun dari awal, apa langkah pertama yang paling mudah dan tak membosankan untuk orang yang sibuk",
 ]
 SHORT_PINGS = [
-    "thanks a lot", "ok sounds good", "run the tests", "looks good to me", "what time is it", "do it again",
+    "thanks a lot", "ok sounds good", "looks good to me", "what time is it", "do it again",
     "yes please do", "go ahead then", "terima kasih banyak", "hello how are you", "show me again", "fix this please",
     "what is next", "try it again", "undo that change", "commit it now", "push the changes", "make it two lines",
     "explain that again", "who are you", "thanks, that works", "ok do that", "good evening to you", "ya betul tu",
     "run it again", "what happened there", "continue please", "keep going", "show the diff", "revert that",
-    "capital of Peru", "tell me a riddle", "nice one", "same again please", "add more tests", "check the logs",
+    "capital of Peru", "tell me a riddle", "nice one", "same again please", "check the logs",
     "restart the server", "why did that fail", "list the files", "open the readme",
 ]
 
@@ -115,8 +112,9 @@ def clean_env():
 
 
 class ConstantsTests(unittest.TestCase):
-    def test_v2_keeps_the_bars_it_shipped_with(self):
-        self.assertEqual((hint.MIN_TOP_SCORE, hint.SECOND_MIN, hint.MAX_HINTS, hint.MIN_WORDS), (12.0, 4.0, 3, 5))
+    def test_both_modes_keep_the_bounded_hint_contract(self):
+        self.assertEqual(hint.MAX_HINTS, 3)
+        self.assertEqual(hint.MODES, ('v1', 'v2'))
         self.assertEqual(hint.HINT_CHARS, 800)
 
 
@@ -136,6 +134,16 @@ class QuietPromptTests(unittest.TestCase):
                     loud[(mode, prompt)] = [item["skill_id"] for item in picks]
         self.assertEqual(loud, {})
 
+    def test_short_work_and_repeated_defects_are_tasks_not_quiet_pings(self):
+        for prompt, expected in (
+            ('run the tests', {'verification-before-completion'}),
+            ('add more tests', {'bosskuai-tdd-loop', 'test-driven-development'}),
+            ('hmm that did not work, I still get the same error', {'bosskuai-diagnose-loop', 'systematic-debugging'}),
+        ):
+            for mode in ('v1', 'v2'):
+                ids = {r['skill_id'] for r in pick_skills(prompt, root=ROOT, mode=mode, data=self.data)}
+                self.assertTrue(ids & expected, (prompt, mode, ids))
+
     def test_the_quiet_set_is_not_a_copy_of_the_decision_sets(self):
         decision = set()
         for name in ("fresh", "trivial"):
@@ -144,6 +152,50 @@ class QuietPromptTests(unittest.TestCase):
         held_out = json.loads(PROMPTS.read_text(encoding="utf-8"))
         decision |= {item["prompt"] for item in held_out if heldout.split_of(item["id"]) == "test"}
         self.assertEqual(decision & {*FOLLOW_UPS, *TRIVIAL, *SHORT_PINGS}, set())
+
+
+class EverydayRequestTests(unittest.TestCase):
+    """Requests worded as a need, a question or a soft verb still route; one shared word adds no skill.
+
+    Written for this file from prompts typed in a Claude Code session, not taken from the decision sets.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        cls.data = load_index(ROOT)
+
+    def ids(self, prompt):
+        return [r["skill_id"] for r in pick_skills(prompt, root=ROOT, data=self.data)]
+
+    def test_soft_wording_with_two_subject_words_routes(self):
+        for prompt, expected in (
+            ("add stripe subscription billing", "bosskuai-saas-billing-ops"),
+            ("make the dashboard responsive on mobile", "bosskuai-ui-ux-design-to-code"),
+        ):
+            with self.subTest(prompt=prompt):
+                self.assertIn(expected, self.ids(prompt))
+
+    def test_one_shared_word_does_not_add_a_second_skill(self):
+        self.assertNotIn("bosskuai-software-architecture", self.ids("write unit tests for the cart service"))
+        self.assertEqual(self.ids("fix the login bug, users get 500 after submit"), ["bosskuai-diagnose-loop"])
+
+    def test_plain_react_is_not_an_expo_task(self):
+        self.assertNotIn("bosskuai-expo-react-native", self.ids("why my react state not updating"))
+
+    def test_a_skill_named_with_spaces_is_an_explicit_request_only_when_asked_for(self):
+        self.assertEqual(self.ids("use the mysql patterns skill to check replica lag"), ["mysql-patterns"])
+        self.assertEqual(self.ids("I love the pricing skill you showed"), [])
+
+    def test_an_app_notification_is_not_a_prompt(self):
+        note = ("<task-notification>\n<task-id>b8p8o68cc</task-id>\n<status>completed</status>\n"
+                "<summary>Background command \"Baseline routing tests in clean worktree\" completed</summary>\n"
+                "</task-notification>")
+        self.assertEqual(self.ids(note), [])
+        self.assertEqual(self.ids("[SYSTEM NOTIFICATION - NOT USER INPUT]\n" + note), [])
+        handback = ('<agent-message from="a8379bf8bda661d9d">\n[Subagent hand-back] Task B is done: the ticket '
+                    'schema went into bosskuai-planning-execution and the CLI contract checks into polyglot.\n'
+                    '</agent-message>')
+        self.assertEqual(self.ids(handback), [])
 
 
 class MultiConcernTests(unittest.TestCase):

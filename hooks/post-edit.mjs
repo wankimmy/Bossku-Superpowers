@@ -99,12 +99,11 @@ export function syntaxCheck(file, e) {
       return null;
     }
     if (e === "js" || e === "mjs" || e === "cjs") {
-      // node --check passes a .js with import/export without parsing it unless the package is type: module,
-      // so check a temp .mjs copy of such files. Flow and JSX in a .js are valid for the bundler but not for
-      // node: Flow files keep the plain check, and a .js that fails on its first "<" is JSX, so it passes
-      // (fails open; a real error before the first tag is still reported).
+      // Check ESM through .mjs regardless of package settings. Flow module types belong
+      // to the project's bundler; a lone first-error "<" is handled as JSX below.
       const src = e === "js" ? fs.readFileSync(file, "utf8") : "";
-      const esm = /^\s*(?:import|export)\s*[\w{*"'$]/m.test(src) && !FLOW_ONLY.test(src);
+      const esm = /^\s*(?:import|export)\s*[\w{*"'$]/m.test(src);
+      if (esm && FLOW_ONLY.test(src)) return null;
       const dir = esm ? fs.mkdtempSync(path.join(os.tmpdir(), "bossku-esm-")) : null;
       const target = esm ? path.join(dir, "check.mjs") : file;
       try {
