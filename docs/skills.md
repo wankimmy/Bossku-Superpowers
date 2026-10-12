@@ -36,7 +36,7 @@ A loaded skill stays in the conversation and is read again on every later turn, 
 | Pack | Skills | Optional pip tool |
 |---|---|---|
 | marketingskills | 47 marketing/CRO/SEO/copy skills | — |
-| superpowers | 14 process skills (brainstorm, TDD, debug, plans) | — |
+| superpowers | 15 process skills (brainstorm, TDD, debug, plans, session diagnosis) | — |
 | hallmark | Anti-AI design skill | — |
 | browser-use | 5 browser agent skills | `browser-use` |
 | graphify | Knowledge-graph skill | `graphifyy` |

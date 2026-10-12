@@ -8,7 +8,7 @@
     },
     "superpowers": {
       "upstream": "obra/superpowers",
-      "last_synced": "2026-09-07"
+      "last_synced": "2026-10-12"
     },
     "hallmark": {
       "upstream": "Nutlope/hallmark",
@@ -123,6 +123,7 @@
     ],
     "superpowers": [
       "brainstorming",
+      "diagnosing-superpowers",
       "dispatching-parallel-agents",
       "executing-plans",
       "finishing-a-development-branch",
@@ -282,6 +283,7 @@
     "social": "marketingskills",
     "video": "marketingskills",
     "brainstorming": "superpowers",
+    "diagnosing-superpowers": "superpowers",
     "dispatching-parallel-agents": "superpowers",
     "executing-plans": "superpowers",
     "finishing-a-development-branch": "superpowers",
