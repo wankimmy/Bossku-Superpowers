@@ -545,7 +545,10 @@ class CodexWrapperEncodingTests(unittest.TestCase):
                 input=json.dumps({"cwd": str(project)}, ensure_ascii=False).encode("utf-8"),
                 capture_output=True, env=env, cwd=str(ROOT), timeout=180)
             self.assertIn(b'"continue"', done.stdout)
-            self.assertTrue((vault / "BosskuAI" / name / "decisions.md").is_file())
+            # The wrapper swallows bossku's output; show it, and what reached the vault, when the note is missing.
+            synced = sorted(str(p.relative_to(vault)) for p in vault.rglob("*"))
+            self.assertTrue((vault / "BosskuAI" / name / "decisions.md").is_file(),
+                            f"stderr={done.stderr.decode('utf-8', 'replace')!r} vault={synced!r}")
 
 
 if __name__ == "__main__":
