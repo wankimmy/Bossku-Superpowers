@@ -16,3 +16,14 @@ Ship the change in this order. Work on your own; ask the user only if the reques
 7. **Report** what you ran, what passed, and anything you could not verify.
 
 Migrations, public APIs, security-sensitive changes, rollback plans, feature flags, ADRs and the long Definition of Done: read `reference.md` in this folder.
+
+## When agents do most of the work
+
+- Define the completion check before executing: one capability check for the new behaviour and one regression check for what must not change. Run both first and keep the failure output as the baseline; rerun and compare after.
+- Split work into units that fit about 15 minutes: each independently verifiable, with one dominant risk and a clear done condition.
+- Use the cheapest model that fits (narrow edits and boilerplate small, implementation and refactors mid, architecture and root-cause analysis largest). Move up a tier only after a lower tier fails with a clear reasoning gap, not on a hunch.
+- Keep the session for tightly coupled units; start fresh after a major phase change; compact after a milestone, not mid-debug.
+- Spend review on invariants, edge cases, error boundaries, auth assumptions, hidden coupling and rollout risk. Leave style to the formatter and linter.
+- Raise the bar for generated code: regression tests for every touched area, explicit edge-case assertions, and integration checks at interface boundaries.
+
+Adapted in part from ECC skills/agentic-engineering and skills/ai-first-engineering (affaan-m/ECC, MIT).

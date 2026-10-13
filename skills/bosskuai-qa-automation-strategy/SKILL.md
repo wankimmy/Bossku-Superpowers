@@ -18,3 +18,15 @@ For deciding what to test, at which level, and what gates a release — not writ
 If the right level for a behaviour is genuinely unclear and nobody can answer, write it as a feature/integration test — the safest default.
 
 The full risk-allocation reasoning and the output template: `reference.md`.
+
+## Regression coverage for AI-assisted changes
+
+When the same model wrote and reviewed a change, it carries its blind spots into both steps, so mechanical tests must come first.
+
+- Run tests and the type-check/build before any code review; a failure there is the top finding and needs no judgement.
+- Assert the response contract (a list of required fields) rather than implementation, and name regression tests after the bug they prevent.
+- Most common AI-introduced regressions to test for: mock/sandbox path and production path returning different shapes (assert both, or force the mock path in tests); a new field added to the response but not to the query's column list, so it is always undefined; error handling that sets an error but leaves stale data on screen; optimistic updates with no rollback when the request fails; a type cast hiding a null.
+- Write the test when the bug is found, ideally before the fix, and add tests where bugs cluster (auth, multi-path logic, state) rather than chasing a coverage percentage. Do not add tests for code that has never failed just to raise the count.
+- Keep this suite fast (seconds, no database) so it runs on every bug-check.
+
+Adapted in part from ECC skills/ai-regression-testing (affaan-m/ECC, MIT).

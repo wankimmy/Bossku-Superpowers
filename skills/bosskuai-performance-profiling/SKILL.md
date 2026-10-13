@@ -19,3 +19,14 @@ Use when the question is why something is slow or growing, not just "make it fas
 Check before you finish: every recommendation traces to profiler evidence, no cache was added before the bottleneck was confirmed, and nothing off the critical path was "optimized" for free.
 
 Profiling lenses per area and the output template: `reference.md`.
+
+## Bounded optimization loop and baselines
+
+- **Set a search budget before trying variants**: max variants, max time, max spend, and the correctness gate that must stay green. Test one hypothesis per variant, on the same input shape.
+- **Keep a variant ledger** (variant, hypothesis, command, time, correct?, notes). Compare against the last accepted winner, not only the previous run. Stop when the gain is within noise, correctness fails, the budget is spent, or you change more variables than you can explain. Say "best measured safe variant", not "optimum", unless the search was exhaustive.
+- **Promote only when** tests pass, the delta repeats (or is explained), rollback is obvious, and the winning path is in source control or a runbook with exact commands and numbers.
+- **Page baselines** (common targets): LCP < 2.5s, INP < 200ms, CLS < 0.1, FCP < 1.8s, TTFB < 800ms, JS < 200KB gzipped. Also count requests and render-blocking resources. **API baselines**: ~100 hits per endpoint for p50/p95/p99, plus a small concurrent run. **Build baselines**: cold build, hot reload, test, typecheck, lint.
+- **Realtime paths**: write the path from source event to visible state (provider, ingest, queue, cache, edge, client, render) and time each hop. Also track freshness age and queue depth. Order of fixes: drop round trips, cache stable reads with freshness metadata, batch, split hot and cold paths, add backpressure before queues grow unbounded.
+- Do not hide stale data behind fast cache hits, drop validation for speed, or claim millisecond behaviour from client labels without measurement.
+
+Adapted in part from ECC skills/benchmark, skills/benchmark-optimization-loop and skills/latency-critical-systems (affaan-m/ECC, MIT).

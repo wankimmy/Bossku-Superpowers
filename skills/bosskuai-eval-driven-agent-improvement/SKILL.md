@@ -81,3 +81,13 @@ Decision: [ship / iterate / revert] - [why]
 - `../../references/checklists/eval-driven-agent-improvement-checklist.md`
 
 Model review section adapted in part from specialized/specialized-model-qa.md (agency-agents, MIT).
+
+## Capability vs regression evals, reliability, and self-rating
+
+- **Define evals before coding.** Two kinds: capability evals (can it do the new thing; task plus checkable success criteria) and regression evals (a baseline SHA or checkpoint plus the existing tests that must stay green).
+- **Reliability metrics**: pass@k (at least one success in k tries) shows practical reliability; pass^k (all k tries succeed) is the bar for critical paths. Common targets: capability pass@3 >= 90%, release-critical regression pass^3 = 100%. Never let a flaky grader gate a release.
+- **Human grader** for security-sensitive or ambiguous outputs: file the change, why review is needed, and a risk level. Never fully automate security checks.
+- **Extra anti-patterns**: measuring only happy paths; ignoring cost and latency drift while chasing pass rate; slow evals nobody runs. Version the eval definitions and run history with the code.
+- **Post-task self-rating** (not a pass/fail gate): score accuracy, completeness, clarity, actionability, and conciseness from 1 to 5, scoring each axis separately rather than averaging first. Every score below 5 must cite concrete evidence (tool output, a missing case, a wrong library). "All 5s with no evidence" is self-congratulation. Judge only against what was asked (no penalty for unrequested scope), not personal taste, and do not re-argue earlier design decisions. Fix gaps that take seconds; flag the rest with the specific fix and expected score.
+
+Adapted in part from ECC skills/eval-harness and skills/agent-self-evaluation (affaan-m/ECC, MIT).

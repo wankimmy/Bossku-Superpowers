@@ -71,3 +71,14 @@ Return:
 - `../../references/checklists/continuous-learning-checklist.md`
 - `../../references/playbooks/continuous-learning-playbook.md`
 - `../../docs/memory.md`
+
+## Writing the lesson well
+
+- **Record the pattern, not the event.** Title names the pattern ("browser default change breaks cross-origin auth"), not "fixed login bug". Failures teach more than clean wins; skip typo-level changes with no debugging, rework, rollback, or non-obvious decision.
+- **Extract it in five steps**: say what happened in one sentence; ask "why" until you hit the root cause (usually 3-5 times); generalize to a class of problem; write "Next time I see [signal], I will [action]"; name the observable signal. No "next time" sentence means no lesson yet.
+- **Search before writing.** Same root cause with a new symptom: add the symptom as an example to the existing note (merge). New root cause: new note.
+- **Shape**: 4-8 sentences, covering context, root cause (not symptom), the transferable action plus signal, and related notes. Under 30 seconds of writing is too shallow; over 2 minutes means you are narrating.
+- **Scope check**: language/framework conventions, file layout, and code style stay project-specific; security habits, tool workflow habits, and git practices can be global. Promote a project lesson to global only when it showed up in 2+ projects with good evidence.
+- **Confidence**: tentative lessons are suggestions; raise them when seen again without correction, and lower or retire them when the user corrects them, they stop appearing, or contrary evidence shows up. Never export raw transcripts, only the distilled lesson.
+
+Adapted in part from ECC skills/growth-log and skills/continuous-learning-v2 (affaan-m/ECC, MIT).

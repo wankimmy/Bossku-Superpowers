@@ -133,3 +133,14 @@ Use these patterns when a deployment touches a high-risk surface or when the tea
 ## References
 
 - `../../references/checklists/devops-iac-checklist.md`
+
+## Strategy choice, health probes, and release readiness
+
+- **Pick the strategy**: rolling (default; old and new versions run together, so changes must be backward compatible); blue-green (instant rollback, needs 2x infra during the cutover); canary (real-traffic signal, needs traffic splitting and monitoring).
+- **Health endpoints**: a cheap liveness/readiness `/health` that returns 200 with no dependency calls, and a separate detailed check (DB, cache, key external deps) returning 503 when degraded, kept internal. Do not point liveness at a deep dependency check, or a dependency blip restarts healthy pods.
+- **Kubernetes probes**: add a `startupProbe` (for example 30 failures x 5s) for slow starts, so liveness does not kill an app that is still booting. Readiness should fail faster than liveness.
+- **Config**: all config from environment, validated at startup with a schema (fail fast, name the missing key, never print the value). Keep an explicit app-environment variable separate from the framework's mode flag.
+- **Rollback checklist**: previous artifact is tagged and still available; migrations are backward-compatible (expand, then contract later); feature flags can disable the new path without a deploy; error-rate alerts exist; rollback was rehearsed in staging.
+- **Production readiness**: tests green; no hardcoded secrets; structured logs without PII; image tags pinned (no `:latest`) and non-root user; resource limits and min/max scaling set; TLS on all endpoints; dependencies scanned for CVEs; CORS limited to allowed origins; rate limits on public endpoints; security headers set; migration rehearsed on production-sized data; runbook, on-call, and escalation path defined.
+
+Adapted in part from ECC skills/deployment-patterns (affaan-m/ECC, MIT).

@@ -52,3 +52,21 @@ Use the themes that match the system; skip the rest.
 - Pen tests and attacker emulation run only inside written scope and rules of engagement.
 
 Adapted from agency-agents/security/ (AI-generated-code auditor, secrets, cloud architect, incident responder, threat detection, blockchain auditor, compliance auditor, pen tester) (agency-agents, MIT).
+
+## More checks
+
+**Uploads and sessions**
+- Validate uploads on the server by size, extension allowlist and sniffed content, not the client-sent MIME type alone; store outside the web root under a generated name.
+- Keep session tokens in `HttpOnly; Secure; SameSite` cookies, not `localStorage`. Cookie auth on state-changing routes also needs a CSRF token or a strict SameSite policy. Rate-limit harder on expensive and search endpoints than on plain reads.
+
+**Reportable-vulnerability triage (bounty or disclosure work)**
+- Read the program scope, `SECURITY.md` and exclusions first. Look for remotely reachable, user-controlled paths: SSRF, auth bypass in guards, upload or deserialization to code execution, SQL and command injection in handlers, path traversal, auto-triggered XSS.
+- Drop local-only `pickle`/`torch.load`, `eval` in CLI tools, `shell=True` on hardcoded commands, missing headers alone, generic rate-limit complaints, self-XSS, and demo or test code. Static scanner output is triage input only; read the path end to end.
+- Before reporting: the input is truly user-controlled, the sink is exploitable, a minimal safe PoC works, it is not a known advisory or open ticket, and the target is in scope. Report: description, vulnerable file and lines, PoC, impact, affected version.
+
+**Agent configuration (`CLAUDE.md`, settings, MCP, hooks, agent files)**
+- Critical: secrets in config, `Bash(*)` or other wildcard allow rules, hooks that interpolate file names or input into shell strings, MCP servers that run shells.
+- High: instructions that tell the agent to auto-run commands (prompt-injection vector), no deny list, agents with Bash they do not need.
+- Medium: hooks that swallow errors (`2>/dev/null`, `|| true`), unpinned `npx -y` MCP servers. Do not apply auto-fixes or install a scanner without the user's say-so.
+
+Adapted in part from ECC skills/security-bounty-hunter, skills/security-review and skills/security-scan (affaan-m/ECC, MIT).

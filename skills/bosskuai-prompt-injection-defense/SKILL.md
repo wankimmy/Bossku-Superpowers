@@ -76,3 +76,16 @@ Verification method: plant an instruction string in each untrusted surface (file
 
 - `../../references/checklists/prompt-injection-defense-checklist.md`
 - `../../references/playbooks/bosskuai-agent-security-hardening-playbook.md`
+
+## Enforcement at the action boundary (agent runtimes)
+- Validation in the prompt is advisory. Put the same invariant in code immediately before the side effect, and test a model response that violates it.
+- Map each boundary as source -> parser -> validator -> side effect. Every write, command, network mutation and credential use needs one named authorization boundary, a size limit, audit evidence and a recovery path. Fail closed when identity, destination, ownership or containment cannot be proven.
+- Default external integrations to read-only; grant each write capability separately. Irreversible actions (delete, publish, credential rotation) must authorize the principal for that exact operation and resource, then need confirmation or a scoped pre-approval.
+- Identifiers that become filenames, keys or CLI arguments: allowlist the characters, cap the length from deployment config (if no limit is defined, mark it a required decision, do not invent one), and pass them via an argv API after the end-of-options marker.
+- Outbound URLs from untrusted input: allow only needed schemes, require a host, reject embedded credentials and private-network targets, and re-check the connected address on every redirect hop so DNS rebinding cannot reach an internal peer. Send credentials only over verified HTTPS and strip them when the origin changes.
+- Paths: reject absolute and `..` paths, resolve both root and candidate and test component-aware containment (not string prefix: `/work/app` vs `/work/application`), reject Windows device names, trailing dot or space, and `:` stream syntax. For sensitive writes open relative to a trusted directory, refuse symlinks and create exclusively.
+- Secrets and temp data: owner-only modes (0600 files, 0700 dirs), atomic unpredictable names, cleanup in `finally`, and secrets kept out of argv, model context, logs and exceptions. Redact before logging, not after; prove it with a sentinel secret absent from every output channel.
+- Tool output: read with a byte limit, strip control characters, append a truncation marker with the original size, and return a typed failure instead of an empty success on malformed output.
+- Mock-only tests do not prove OS permissions, symlink handling, subprocess isolation or egress controls; test through the real entry point and report the command, exit status and the observed absence of the side effect.
+
+Adapted in part from ECC skills/agent-security-hardening (affaan-m/ECC, MIT).

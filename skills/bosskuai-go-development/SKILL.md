@@ -110,3 +110,15 @@ Verification: [commands run and result; race detector status]
 - `../../references/checklists/go-development-checklist.md`
 - `../../references/checklists/api-design-checklist.md`
 - `../../references/checklists/database-engineering-checklist.md`
+
+## Extra idioms and test habits
+
+- **Functional options**: `type Option func(*Server)` with `WithTimeout(...)` style constructors and sensible defaults set before applying options, instead of long config parameter lists.
+- **Style traps**: naked returns in long functions; `panic` for control flow; `context.Context` stored in a struct; mixing value and pointer receivers on one type (pick one); package-level `var db` set in `init()` (inject through a constructor instead); embedding a type just to borrow its methods when a named field would be clearer.
+- **Leak-safe producer**: if a goroutine sends on a channel, use a buffered channel of 1 or `select` on `ctx.Done()` so it cannot block forever when the receiver is gone.
+- **Linters worth enabling** in golangci: errcheck with `check-type-assertions`, govet with `shadow`, staticcheck, ineffassign, unused, misspell, unconvert, unparam.
+- **Test helpers**: call `t.Helper()`, register teardown with `t.Cleanup()`, use `t.TempDir()` for files, and use tiny generic assert helpers sparingly. Never `time.Sleep` in tests; wait on a channel or condition. Test behavior through the public API, not private functions. Mock at interface boundaries but prefer real integration tests where cheap.
+- **Flaky hunt**: `go test -count=10 ./...` (plus `-race` and `-shuffle=on`); fix or delete flaky tests, do not ignore them.
+- **Coverage as a signal only**: roughly 100% for critical business logic, 90%+ for public APIs, 80%+ elsewhere, generated code excluded; use `go tool cover -func` to find untested branches rather than chasing the number.
+
+Adapted in part from ECC skills/golang-patterns and skills/golang-testing (affaan-m/ECC, MIT). The ECC testing example that uses in-memory sqlite as a database test helper was not adopted; use a real Postgres as above.

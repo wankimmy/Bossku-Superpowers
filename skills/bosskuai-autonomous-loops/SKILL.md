@@ -610,6 +610,35 @@ Before a loop runs without a human watching, check each item:
 - **Re-audit** when an API or schema changes, the error rate rises, volume jumps, or the same manual fix keeps recurring. Re-audit does not mean touching production on its own.
 - **No change to critical production flows** without explicit approval.
 
+## Designing and reviewing a loop
+
+- **Gate first.** Build a loop only if the task repeats about weekly or more, verification can be automated, the token budget allows it, and the agent has tools that run the code and see the result. Miss one and do it by hand; a repo without tests and a reconciliation baseline only gets its errors amplified.
+- **Machine-decidable goal.** Someone outside the domain should be able to run one command and say whether it is done. Write the done-criterion together with a boundary ("must not delete or weaken tests, must not lower coverage"), a retry cap with human escalation, and where possible reconcile against an external fact (golden sample, upstream total, diff under a threshold) instead of "all tests pass".
+- **Loop type.** Clear done test: closed loop that stops at the goal. No endpoint, keep a state healthy: a regulator that acts only on change. Watch until a condition: a regulator with an exit. Must happen on time: wrap it in a scheduler.
+- **Skeleton.** Maintenance: read a doc on a timer and dispatch only when it changed; humans write the problem column, the loop writes results, state moves one way and stops at "awaiting verification", a human flips "done", and the script's exit code is final. Greenfield: plan (spec plus decidable acceptance), build (may not edit the acceptance), judge (independent and deterministic: tests, diff, type check). Three failed retries means escalate.
+- **Land in stages:** run once by hand, then harden into a skill or subagents, then put it on a schedule.
+- **Review against five failure modes:** (1) a vague goal spins and burns money; (2) the builder judges its own work and says "looks fine"; (3) a done-criterion with no boundary lets the agent delete the tests; (4) it never asks mid-run, so front-load every clarification before launch; (5) stale instructions and memory make a fast loop err faster.
+- **Red lines for automation:** a human owns acceptance and the final switch (open the PR, do not auto-merge); never auto-hand authority for things you cannot afford to get wrong; the more a loop rewrites its own rules, the harder the human gate before the action.
+- **Recovery for a stuck loop:** freeze it, cut scope to the failing unit, replay with explicit acceptance criteria. Typical failures: churn with no measurable progress, the same root cause retried, merge queue stalls, cost drift from unbounded escalation.
+
+## Generator and evaluator harness
+
+For quality-critical builds (a full app, a frontend that must not look generic), split generation from evaluation, because an agent grading its own work is too generous.
+- Planner expands a short brief into a spec with acceptance criteria; generator builds in sprints and agrees a "sprint contract" with the evaluator first; evaluator tests the running app (browser automation: click, fill forms, hit error states), not only screenshots or code.
+- Score a rubric (for example design quality, originality, craft, functionality, each 1-10 with weights) and set a pass threshold and max iterations up front. Pass feedback as `feedback-NNN.md` files the generator reads each round.
+- The evaluator only critiques; it never suggests fixes and then grades them. If the first pass scores everything high, the rubric is too lenient. Stop and ask a human if the score plateaus for 3 rounds.
+- Every harness part encodes an assumption about what the model cannot do alone; re-test and drop scaffolding (sprints, context resets) as models improve. Expect much higher cost and time than a solo run and use it only where quality justifies that.
+
+## Task-local harnesses and scheduled agents
+
+- Make a task-local harness only when it is cheaper and safer than driving the steps by hand: one-shot tasks stay inline. It needs an objective (what it ships and does not), inputs and credentials policy, outputs, a task-specific pass/fail eval, and a handoff note (status, evidence, next action). Stop on a failed gate, unclear ownership or an unsafe external action.
+- Promote it to a shared skill when at least two hold: it recurs across sessions or repos, it needs specific safety sequencing, failures repeat because gates get skipped, it has a stable input and output contract, or it benefits from a team status board. Another person must be able to rerun its eval.
+- Cheapest eval by work type: code (focused test, lint, one integration path); UI (browser smoke with screenshot and overflow/error checks); agent workflow (seeded work item with expected routing); research (claim checklist); integration (dry run, config validation, no-secret scan).
+- Scheduling and background agents must be explicitly requested and scoped; prefer a dry run and a local queue file first. A `/loop` style prompt lives only as long as its session, so use an OS or CI scheduler for work that must survive. Verify the exact package and version before registering any MCP server (never a guessed name under `npx -y`), and check that each scheduled run actually completed.
+- RFC work units also carry `risk_level` and a `rollback_plan`; never merge a unit with unresolved dependency failures, rebase on the latest integration branch, and rerun integration tests after each queued merge.
+
+Adapted in part from ECC skills/autonomous-agent-harness, autonomous-loops, continuous-agent-loop, dynamic-workflow-mode, gan-style-harness, loop-design-check and ralphinho-rfc-pipeline (affaan-m/ECC, MIT).
+
 ## Anti-Patterns
 
 ### Common Mistakes

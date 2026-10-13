@@ -94,3 +94,13 @@ All outputs include a "Numbers consistency check" section confirming every figur
 ## Further reading
 
 - `../../references/playbooks/investor-prep-detailed-playbook.md` — extended step-by-step workflow and detailed templates that complement this playbook.
+
+## Source-of-truth and model checks
+
+- Fix one source of truth for traction, pricing and revenue assumptions, raise size and instrument, use of funds, team bios and titles, and milestones and dates. If two documents show conflicting numbers, stop and resolve them before drafting more.
+- Financial model: explicit assumptions, layer-by-layer revenue logic that sums cleanly, spending tied to milestones, bear/base/bull cases and a sensitivity check where the decision hinges on a fragile assumption.
+- One-pager or memo: one clean sentence on what the company does, why now, traction and proof early, a precise ask, and claims that are easy to verify.
+- Accelerator application: answer the exact question asked, lead with traction, insight and team advantage, avoid puffery, and keep every metric identical to the deck and model.
+- Extra red flags: fuzzy market sizing without assumptions, inconsistent team roles or titles across assets, and inflated certainty on fragile assumptions. The finished asset should read clearly without hype and hold up in a partner meeting.
+
+Adapted in part from ECC skills/investor-materials (affaan-m/ECC, MIT).

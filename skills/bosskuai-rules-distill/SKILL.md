@@ -91,3 +91,14 @@ Won't promote (and why):
 - `../../references/checklists/rule-distillation-checklist.md`
 - `../../references/playbooks/rules-distillation-playbook.md`
 - `../../references/checklists/learning-promotion-checklist.md`
+
+## Running it at scale
+
+- Collect facts first (list every skill and index every rule heading), then judge with the full rules text in view; do not pre-filter rules by keyword, because the same idea is often worded differently.
+- With many skills, group them into thematic clusters and analyse each cluster separately, then merge candidates across clusters. Re-count evidence over all clusters: a principle seen once per cluster but in 2+ skills overall still qualifies.
+- Per candidate record: the principle as "do X" or "don't do Y", evidence as skill name plus section, the violation risk in one sentence, the verdict, the target rule file and section, and a confidence (high, medium, low). A "Revise" verdict also needs the reason, the current text and the replacement text.
+- A verdict names the file and section and says what is missing. Good: "Append to security rules, Input Validation: treat model output stored in memory as untrusted. Two skills describe the risk; current rules cover human input only." Bad: "Add an LLM security principle."
+- Keep rules to the what, not the how: code and commands stay in skills, and draft rule text ends with a pointer to the skill that holds the detail.
+- Present a numbered summary table (principle, verdict, target, confidence) and let the user approve, modify or skip by number. Record the outcome of each candidate so a rejected one is not re-proposed next run.
+
+Adapted in part from ECC skills/rules-distill (affaan-m/ECC, MIT).

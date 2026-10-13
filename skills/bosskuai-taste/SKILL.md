@@ -76,3 +76,12 @@ Tick every box; if one fails honestly, it's not done:
 - On conflict, the direction skill decides palette, type, shape and density; the gate decides honesty, accessibility, contrast and reduced motion.
 
 The point isn't more decoration - it's intent. If the explanation for a flourish is "to look designed," delete it.
+
+## Evidence contract and rendered finish gate
+
+- Before building, write down the product surface, the user's job, the primary action, the hierarchy, the target viewports (for example 390x844 and 1440x900) and the reference observation behind each major choice. A palette alone is not evidence.
+- For each content state record trigger, visible feedback and a safe next action: loading (stable structure), empty (explain and offer a next step), error (specific cause plus recovery), partial (show what exists, mark what is missing), success (confirm and show next step or undo), permission (explain the boundary and a safe path). If a state does not apply, write the reason; a state you could not test is untested, not "not applicable".
+- Use existing project components, tokens and icon libraries before a new visual system. Fixed-format elements (toolbars, grids, tiles, counters) keep stable dimensions when labels or hover states change. Long labels wrap or resize, never overflow.
+- Finish gate: inspect the rendered result at every target viewport, not just the source. Check keyboard path, visible focus, labels, contrast, reduced motion, touch targets, narrow and wide layouts with long content, and each applicable state. Keep screenshots in the workspace, note what each shows, fix failures, and repeat affected checks after structural changes. Report untested items instead of claiming a pass.
+
+Adapted in part from ECC skills/frontend-design-direction (affaan-m/ECC, MIT).

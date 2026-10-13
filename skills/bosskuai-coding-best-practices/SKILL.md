@@ -71,3 +71,16 @@ Return:
 - `../../references/checklists/coding-best-practices-checklist.md`
 - `../../references/playbooks/coding-best-practices-playbook.md`
 - `../../references/checklists/engineering-delivery-checklist.md`
+
+## Quick conventions
+
+- Names: nouns for values, verb-noun for functions (`fetchMarketData`, `isValidEmail`), booleans read as questions (`isUserAuthenticated`); a one-letter or `flag` name is a finding.
+- Default to returning new objects and arrays instead of mutating inputs; mutate deliberately and say why (for example a hot path over large arrays).
+- Await independent calls together (`Promise.all` or the language equivalent) instead of one after another.
+- Check the HTTP status before parsing a response body and wrap low-level errors with context; do not log and swallow them.
+- Comments explain why (a constraint, a trade-off), never what the next line does. Extract magic numbers into named constants with units (`DEBOUNCE_DELAY_MS`).
+- Query only the columns you need; `SELECT *` on a wide table is a finding.
+- Tests follow arrange, act, assert, and their names state the behaviour ("returns empty array when no markets match query"), not "works".
+- Use one consistent response envelope for an API, validate request bodies against a schema at the boundary, and return field-level validation details with a 400.
+
+Adapted in part from ECC skills/coding-standards (affaan-m/ECC, MIT).

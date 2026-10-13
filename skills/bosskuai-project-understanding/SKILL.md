@@ -19,3 +19,12 @@ Use when the first task is learning what a repo is before touching it. For traci
 Check before you finish: every claim in the summary cites a file, sampled vs unread areas are stated, and any existing memory or map was re-checked against current source rather than trusted as-is.
 
 Full workflow, output template, and checklist: `reference.md`.
+
+## Onboarding extras
+- Start recon with cheap signals via glob and grep, not full reads: package manifests, framework configs, entry points (`main.*`, `index.*`, `cmd/`), a depth-2 tree without vendor and build folders, CI and Docker files, and test layout and runner config.
+- Trace one request end to end: where it enters, how it is validated, where the business logic sits, how it reaches the database.
+- Detect conventions from the code: file and test naming, error-handling style, async and state patterns, and from recent commits the branch and commit style. If history is missing or shallow, write "Git history unavailable or too shallow" instead of guessing.
+- If the repo's detected framework disagrees with what the code actually does, trust the code. If a convention is not detectable, say "could not determine".
+- If the user wants a guide or an instruction file, keep it scannable in two minutes: a "I want to... / look at..." table, common commands, key entry points. Keep any generated CLAUDE.md under about 100 lines, list only dependencies that shape how code is written, and do not copy the README. If one exists, read it first, extend it, and mark what was added.
+
+Adapted in part from ECC skills/codebase-onboarding (affaan-m/ECC, MIT).

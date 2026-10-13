@@ -70,3 +70,14 @@ Verification: [commands run and result]
 - `../../references/playbooks/bosskuai-nuxt-development-playbook.md` — audit reference, wrong-way/right-way pairs
 - `../../references/playbooks/nuxt-development-detailed-playbook.md` — feature development workflow
 - `../../references/checklists/expert-cofounder-stack-checklist.md`
+
+## More Nuxt checks (verify against the docs for the version in use)
+- Hydration: keep the first render deterministic; move `Date.now()`, `Math.random()`, storage reads and browser APIs behind `onMounted`, `import.meta.client`, `<ClientOnly>` or a `.client.vue` component. Use Nuxt's `useRoute()`, not the `vue-router` one, and do not drive SSR markup from `route.fullPath` (URL fragments are client-only).
+- `useAsyncData`: use it when the fetcher is not a plain `$fetch`, or when composing several sources. Give it a stable key (a getter keyed on the route param works) and keep the handler free of side effects, since it can run during SSR and hydration.
+- Use `$fetch` for user-triggered writes, not for page data that should hydrate from SSR.
+- Non-critical data: `lazy: true` (or `useLazyFetch`) and handle `status === 'pending'` in the UI. Use `server: false` only when the data is not needed for SEO or first paint. Trim payload with `pick`.
+- `routeRules` per route group, not globally: `prerender` (static at build), `swr` (serve cached, revalidate in background), `isr` (platform dependent), `ssr: false` (client-rendered, for admin areas), `cache`/`redirect` (Nitro level).
+- Lazy loading: use the `Lazy` prefix with `v-if` so the chunk loads only when needed, and `hydrate-on-visible` or `defineLazyHydrationComponent()` for below-the-fold interactive UI. Passing new props to a lazily hydrated component forces immediate hydration. Use `NuxtLink` for internal links so routes and payloads prefetch.
+- Review checklist: first SSR render equals the hydrated render, page data goes through `useFetch`/`useAsyncData`, loading UI exists for lazy data, route rules match SEO and freshness needs.
+
+Adapted in part from ECC skills/nuxt4-patterns (affaan-m/ECC, MIT).

@@ -108,3 +108,14 @@ Numbered list of issues requiring fix, ordered by severity.
 ## Further reading
 
 - `../../references/playbooks/browser-automation-detailed-playbook.md` — extended step-by-step workflow and detailed templates that complement this playbook.
+
+## Post-deploy QA additions
+
+- **Read-only by default.** Never run a mutating journey (checkout, payment, delete, mass update) against a production URL. It needs explicit user opt-in and a staging or preview URL. Use seeded test credentials, and redact credentials, tokens, and PII from screenshots before saving.
+- **Smoke filters**: ignore analytics and third-party console noise when counting errors; report it separately as warnings.
+- **Interaction sweep**: click every nav link (no dead links), submit forms with valid and invalid data (check both success and error states), and run login to protected page to logout with test accounts only.
+- **Visual**: check dark mode if the app has it; flag layout shifts over about 5px, missing elements, and horizontal overflow. No stored baseline means INCONCLUSIVE, never a silent PASS.
+- **Accessibility**: run axe-core (or equivalent) for WCAG 2.2 AA, plus keyboard navigation end to end, focus order, and landmarks. Automated runs cover only roughly 30-40% of WCAG, so a clean run is necessary, not sufficient; do not report "accessible" from it alone.
+- **Verdict line** at the end of the report: SHIP, SHIP WITH FIXES, DO NOT SHIP, or INCONCLUSIVE (with issue and blocker counts).
+
+Adapted in part from ECC skills/browser-qa (affaan-m/ECC, MIT).

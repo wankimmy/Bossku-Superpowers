@@ -17,3 +17,15 @@ Before building anything custom, check whether it already exists. Stop at the fi
 Check before you finish: you actually looked at the candidate's last commit and license before recommending it, you didn't reject an option just because it needs reading docs, and "we can just use X" is backed by a real check of X.
 
 Full evaluation table, the build-vs-adopt matrix, and the output template: `reference.md`.
+
+**Preflight the search channels you rely on** and report skipped ones honestly (never "nothing found" when a channel was unavailable):
+
+- Repo: `rg --files` plus targeted `rg`; if that is all you could do, say only visible files were inspected.
+- Package registry: confirm the package manager works (`npm --version`, `python -m pip --version`); otherwise use docs or web search and do not claim registry coverage.
+- GitHub: `gh auth status`; if unauthenticated, use public web or local git history only.
+- MCP and docs tools: check the available tool list or local MCP config; fall back to official docs.
+- Local skills: list the skills directory; if none, say no skill catalog was available.
+
+**Decision outcomes**: adopt as-is (exact match, maintained, permissive license); extend or wrap (partial match, thin wrapper); compose (2-3 small packages when several matches are weak); build (nothing suitable, but informed by what you found). Anti-patterns: over-customizing a library until it loses its benefit, and installing a large package for one small feature.
+
+Adapted in part from ECC skills/search-first (affaan-m/ECC, MIT).

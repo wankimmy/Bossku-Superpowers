@@ -157,3 +157,15 @@ Verification:
 - `../../references/checklists/docker-checklist.md`
 - `../../references/checklists/devops-iac-checklist.md`
 - `../../references/checklists/security-risk-checklist.md`
+
+## Hardening and isolation extras
+
+- Compose hardening where the app allows it: `security_opt: [no-new-privileges:true]`, `read_only: true` with `tmpfs` for the paths it must write (`/tmp`, caches), `cap_drop: [ALL]` and add back only what is needed (for example `NET_BIND_SERVICE` below port 1024). Pin base images by version, or by digest for reproducibility.
+- Segment networks: put the database on a backend-only network reachable from the API, not the frontend. Publish data-service ports to `127.0.0.1` for local use only and omit `ports:` in production, where services talk over the Docker network by service name.
+- Keep dev-only settings (debug ports, verbose logging, bind mounts) in `compose.override.yaml` and production settings (restart policy, resource limits, `target: production`) in an explicit second file passed with `-f`.
+- One process per container; data in named volumes, because container storage is ephemeral. Compose alone is not production orchestration for multi-host workloads.
+- A Linux container does not validate macOS or Windows behavior (shared Linux kernel; Windows containers need a Windows engine). Keep a native OS matrix in CI for path, quoting, shim and filesystem differences, and do not claim otherwise.
+- Testing an installer or CLI that mutates files: mount the source read-only, copy it into a writable `tmpfs` workspace first, run as a non-root numeric UID, use `network_mode: none` by default, pass no host credentials, default to dry run, and call processes with argument arrays instead of interpolated shell strings.
+- Debugging: follow logs per service, open a shell in the service, check DNS from inside the app container (`nslookup db`), and rebuild a single service without cache. Removing volumes with the down command's volume flag, or pruning unused images, deletes data; confirm that is intended first.
+
+Adapted in part from ECC skills/docker-patterns (affaan-m/ECC, MIT).

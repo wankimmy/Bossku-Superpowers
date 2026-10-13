@@ -54,3 +54,16 @@ Verification: [tests/commands/logs]
 - `../../references/playbooks/bosskuai-redis-caching-queues-playbook.md`
 - `../../references/checklists/redis-caching-queues-checklist.md`
 - `../../references/checklists/expert-cofounder-stack-checklist.md`
+
+## Pattern details
+
+- Cache-aside for read-heavy data that tolerates slight staleness; write-through (write the database first, then refresh the cache) when stale reads are not acceptable. Always set a TTL; keys without one grow until memory pressure hits. Match TTL to data: sessions about a day, API response caches minutes, rate-limit keys the window length, short-lived tokens 5-10 minutes.
+- Invalidate groups of related keys by registering them under a tag set with its own TTL, then delete the members and the set together.
+- A single command is atomic; multi-step flows need a Lua script or MULTI/EXEC. Rate limits: fixed window (INCR plus EXPIRE in one transaction) for low-traffic endpoints, sliding window in a Lua script when accuracy matters.
+- Locks: acquire with a unique token via `SET key token NX PX ttl`; release only if the stored token still matches (compare-and-delete in Lua). Set the TTL above the expected job duration and release in `finally`. Single-node locks only; multi-node needs a vetted Redlock implementation, and a lock never replaces a database constraint.
+- Pub/Sub is fire-and-forget. Use Streams when you need delivery guarantees, consumer groups or replay: cap length (`maxlen`), read through a consumer group, and acknowledge only after processing succeeds.
+- Cache-miss stampede on a cold or just-expired hot key: lock around the refill and re-check the cache after acquiring the lock (a cross-process lock when multiple workers run), or expire early with jitter.
+- Avoid `KEYS *` in production (use `SCAN`), blobs above roughly 100 KB (store a reference to object storage), and mass deletes with a broad flush command; scope deletes by key pattern.
+- Client config: connection pool sized to the workload with connect and socket timeouts; eviction policy per instance as above.
+
+Adapted in part from ECC skills/redis-patterns (affaan-m/ECC, MIT).

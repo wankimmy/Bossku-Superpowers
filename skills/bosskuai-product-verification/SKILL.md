@@ -45,3 +45,14 @@ State any remaining gap and the cleanup performed. Never claim product verificat
 
 - `../../references/playbooks/claude-code-practices-playbook.md`
 - `../../references/checklists/engineering-delivery-checklist.md`
+
+## Production readiness pass ("what breaks in prod?")
+
+Use when asked whether something is ready to ship. Green CI is not readiness. Build it from local, user-authorized evidence only: do not upload repo contents to an outside service or run unpinned remote scanners unless the user approves that tool and data flow. This is engineering triage, not a compliance certification.
+
+- Gather evidence first: branch state and recent log, diff against the base branch, CI workflows and release scripts, deploy files, routes/webhooks/auth middleware, workers and cron, migrations, env documentation and startup checks, health checks and error reporting, rollback/backfill notes, E2E coverage of the launch-critical paths.
+- Look through these lenses: server-side auth and public/admin route separation; secrets kept out of client bundles and logs; rate limits, CSRF, CORS, upload validation; migrations that run forward cleanly with a rollback plan; idempotent retries for writes, jobs and webhooks; webhook signatures verified before trusting the payload, with replay, duplicate and out-of-order delivery handled; test and live credentials separated; clean-checkout startup with fail-fast env validation; a health check that proves dependencies are reachable; mobile and loading/empty/error/denied states on critical paths.
+- Treat as ship blockers: missing auth on sensitive data, non-idempotent payment or fulfillment webhooks, migrations that cannot run safely, exposed secrets, no rollback path for a high-impact release. A red CI or an untested launch-critical path caps the verdict at "ship with caveats".
+- Report one lead sentence with the verdict and the top two risks, then: blockers, next fixes, evidence checked, evidence missing, and one concrete next action. Never give a verdict without naming the evidence behind it.
+
+Adapted in part from ECC skills/production-audit (affaan-m/ECC, MIT).

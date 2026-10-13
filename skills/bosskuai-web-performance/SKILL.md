@@ -110,3 +110,16 @@ Before/after: [numbers, method]
 - `../../references/checklists/web-performance-checklist.md`
 - `../../references/pitfalls/performance-pitfalls.md`
 - `../../references/checklists/seo-geo-checklist.md`
+
+## React and Next.js rules, in priority order
+1. **Waterfalls first.** Check cheap synchronous conditions before awaiting remote data; move an `await` into the branch that uses it; run independent work with `Promise.all`; start promises early and await late; in Server Components split sibling awaits into child components so React runs them in parallel; put `<Suspense>` close to the data and reserve space for late content.
+2. **Bundle.** Import from the file, not a barrel `index.ts` (Next's `optimizePackageImports` covers listed packages only); avoid dynamic `import()` paths built from variables; `dynamic()` for heavy components; load analytics and widgets after hydration; preload a route or chunk on hover or focus.
+3. **Server.** Treat every `"use server"` function as a public endpoint and authenticate and authorize inside it. Use `React.cache` for per-request dedup and an LRU or `unstable_cache` for cross-request data. Never keep mutable module-level state in RSC or SSR code (shared across users); use request-scoped storage. Pass Client Components only the fields they need. Use `after()` for logging and cache warming after the response.
+4. **Client fetching.** Use SWR or TanStack Query for shared data instead of hand-rolled `useEffect` + `fetch`; one shared scroll listener, `{ passive: true }`; version and minimize `localStorage` (it is synchronous).
+5. **Re-renders.** Read state used only in callbacks with `getState()` instead of subscribing; subscribe to derived booleans (`cart.length > 0`); derive values during render, not in `useEffect` + `setState`; hoist default non-primitive props and use primitive effect deps; functional `setState`; lazy `useState` initializer; `startTransition` and `useDeferredValue` for non-urgent work; never define a component inside a component. `useMemo` on a cheap primitive is overhead. With React Compiler enabled, manual memoization is review-only.
+6. **Rendering.** `content-visibility: auto` with `contain-intrinsic-size` for long lists; animate a wrapper `div`, not the SVG; set theme or locale before hydration with an inline script; `suppressHydrationWarning` only on known-divergent leaf nodes; `{count > 0 ? <X/> : null}` instead of `{count && <X/>}`; React 19 `<Activity>` to hide tabs without unmounting.
+7. **Hot paths only:** `Map`/`Set` for repeated lookups, one pass instead of `filter().map()`, hoist RegExp out of loops, min/max by loop not `sort()`.
+
+Metric mapping: LCP is mostly waterfalls and bundle size; INP is re-renders, rendering and JS; CLS is Suspense placement and image dimensions; TBT is bundle size, JS and third-party scripts.
+
+Adapted in part from ECC skills/react-performance (affaan-m/ECC, MIT; itself from Vercel Labs react-best-practices, MIT).

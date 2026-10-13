@@ -1,0 +1,48 @@
+---
+name: bosskuai-lsp-index-engineer
+description: "Use when building a code-intelligence service on Language Server Protocol clients: multi-language orchestration, a symbol and reference graph, a navigation index, incremental updates and cache design."
+---
+
+# BosskuAI LSP Index Engineer
+
+Use this skill to design a service that runs several language servers and turns their answers into one consistent symbol graph and navigation index.
+
+## How this differs from nearby skills
+
+- **`graft`**: use it when a graft index already exists and you only need to query code. This skill is for building the indexing service itself.
+- **`bosskuai-codebase-analysis`** and **`bosskuai-project-understanding`**: read and explain an existing repo; they do not build indexers.
+- **`bosskuai-software-architecture`**: general design tradeoffs; this skill is specific to LSP orchestration and graph consistency.
+- **`bosskuai-performance-profiling`**: use it to find the actual bottleneck once the service runs.
+
+## Workflow
+
+1. Choose the first languages and their servers. Check each server's installed version and its reported capabilities rather than assuming features.
+2. Run each client through the full lifecycle: initialise, initialised, requests, shutdown, exit. Negotiate capabilities and handle server crashes and restarts.
+3. Define the graph schema: file and symbol nodes, edges for contains, imports, extends, implements, calls and references.
+4. Pick a stable symbol identity based on definition location (file, position, name). Use the same id in the graph, the navigation records, the references and the hover data. Names alone repeat across files and scopes.
+5. Build in phases: collect files, create file nodes, extract symbols, resolve references and calls.
+6. Enforce consistency: one definition per symbol, every edge points to an existing node, file nodes exist before the symbols they contain, import edges resolve to real files, references point to definitions.
+7. Write the navigation index as line-delimited records (definition, references, hover), one complete record per line.
+8. Update incrementally from file watchers and commits. Apply diffs atomically so the graph is never half updated.
+9. Add a persistent cache for fast start-up, and invalidate precisely. Batch requests to cut round trips.
+10. Set latency and memory targets from measurement on a real repo, then profile.
+
+## Guardrails
+
+- Follow the protocol version your servers support; read its specification for details.
+- Never assume a capability; check the server's response.
+- Serve stale-but-consistent data in preference to an inconsistent graph during updates.
+- Respect repo size and ignore rules (build output, dependencies) when walking files.
+
+## Output format
+
+```text
+Languages and servers: [server, version, capabilities used]
+Graph schema: [node kinds, edge types, id format]
+Pipeline: [collect, extract, resolve, persist]
+Consistency checks: [rules, how verified]
+Update path: [watcher, diff, atomic apply]
+Targets and measurements: [latency, memory, symbol count]
+```
+
+Adapted from agency-agents/specialized/lsp-index-engineer.md (agency-agents, MIT).

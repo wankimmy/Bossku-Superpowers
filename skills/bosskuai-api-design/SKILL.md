@@ -27,6 +27,19 @@ For public or partner APIs, also settle these:
 
 Check before you finish: no internal DB shape leaks into the public contract without a reason, no versioning was added without a named compatibility problem it solves, and every webhook/event flow has replay, idempotency, and authenticity.
 
+REST conventions to check:
+
+- **URLs:** plural, lowercase, kebab-case nouns; filters in query params; ownership via nesting (`/users/:id/orders`); non-CRUD actions as a sparing `POST /orders/:id/cancel`. No verbs in paths.
+- **Status codes:** 201 with a `Location` header on create; 204 for no body; 400 malformed, 422 semantically invalid (field-level `details`), 401 unauthenticated, 403 unauthorized, 409 state conflict, 503 with `Retry-After`. Never leak stack traces or SQL in a 500.
+- **Pagination:** offset for small admin/search lists (users want page numbers); cursor (opaque, fetch limit+1 to compute `has_next`) for feeds, large sets and public APIs, because offsets get slow and drift under concurrent inserts.
+- **Query shape:** `sort=-created_at,price`, `price[gte]=10`, `fields=id,name` sparse fieldsets, `q=` for search.
+- **Versioning:** do not version until needed; keep at most two active versions; after the `Sunset` date return 410.
+- **Authorization:** check resource ownership per request, not only the role.
+- Before shipping an endpoint: input validated by schema, auth required or explicitly public, rate limit set, spec updated.
+
+Adding an integration or connector to an existing repo: read at least two existing connectors first and copy their layout, config schema, auth, retry/pagination, registry wiring and test style. Do not start from vendor docs alone or invent a second architecture; the result should look obvious in the codebase, with config validation, explicit auth and error handling, registration and tests in place.
+
 Full design-lens checklist and output template: `reference.md`.
 
 Public API checks adapted in part from engineering/engineering-api-platform-engineer.md (agency-agents, MIT).
+Adapted in part from ECC skills/api-design and api-connector-builder (affaan-m/ECC, MIT).

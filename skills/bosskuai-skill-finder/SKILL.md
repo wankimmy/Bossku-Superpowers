@@ -13,3 +13,7 @@ The skill list shows the most-used skills only. The rest of the library is insta
 4. If `confident` is false, read the descriptions and pick the best fit, or carry on without a skill.
 
 Search once per job. Search again only when the task changes.
+
+If the user wants a new skill built, search first: pull 3-5 keywords plus synonyms, check installed skills, then (if remote search is available) at most a few targeted GitHub or web queries. Vet any external skill before adopting it: read it for unexpected shell commands, file writes, network calls, credential handling or installs, and copy it to review the diff instead of editing the original. Rank by name match, description match, then local over remote over web-only mention, show at most 10, and offer use as-is, fork, or create fresh. Create only after the user picks that or nothing close exists; if they say to skip the search, do.
+
+Adapted in part from ECC skills/skill-scout (affaan-m/ECC, MIT).

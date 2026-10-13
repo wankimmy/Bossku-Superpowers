@@ -14,3 +14,7 @@ Some skills document a separate program. `bossku tools` knows where each one sta
 5. **Do not wire it up unasked.** Installing a tool does not mean enabling its hooks, plugins, proxies or auto-capture. Turn those on only when the user asks for them.
 
 If a skill's program is missing and the user declines, carry on with the parts of the task that do not need it and say what you skipped.
+
+**Auditing what a workspace can already do** (read-only, only when asked): inspect just what the question needs (package manifests and lockfiles, `.mcp.json`, editor/agent settings, `AGENTS.md`/`CLAUDE.md`, hook configs, `.env*` file names). Never print secret values; report only provider or key names and whether they exist. Sort findings into: available now; available but not wrapped well; not available and needs a new integration. Pick the right shape for a gap: repeatable workflow is a skill, automatic enforcement is a hook, a delegated role is an agent, an external bridge is an MCP server or connector. Recommend at most 1-2 high-value ideas per category.
+
+Adapted in part from ECC skills/workspace-surface-audit (affaan-m/ECC, MIT).

@@ -19,3 +19,14 @@ For critiquing a screen or flow and turning it into implementation-ready guidanc
 Verify with `pnpm lint && pnpm typecheck && pnpm test && pnpm build`, plus a browser check at each breakpoint.
 
 The Nielsen heuristics, the full anti-AI checklist, and the output template: `reference.md`.
+
+## Batch screenshots to Vue 3
+
+For a folder of design exports going into a Vue 3 app (Vant, Element Plus or Ant Design Vue):
+- Group screenshots by module and page; treat list, detail, form, loading and empty variants of one page as states of one component, not separate pages.
+- Map visual elements to the chosen library's components and keep to that one library. Use asset priority page-level, then module-level, then global. Extract a shared component only when a region repeats.
+- Match CSS units to the export baseline (for example a 3x export width) and wire routes in the project's existing router style.
+- Design images may contain private data. Do not send customer designs to an external model API or converter without permission. Do not install or run a third-party converter, or put an API key in a committed config, unless the user approves; pin its version if used.
+- Treat the output as a first draft: review placeholder copy, mock data and assets, then run the project's formatter, linter, type check and build.
+
+Adapted in part from ECC skills/ui-to-vue (affaan-m/ECC, MIT).

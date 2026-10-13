@@ -18,3 +18,15 @@ Use when splitting work across agents beats running it serially: independent wor
 Check before you finish: no two writers touched the same file concurrently, nothing started before a dependency it needed had returned, and every task had enough context to run with nobody able to answer a follow-up.
 
 Host-specific patterns (Claude Code, Cursor, Codex, OpenCode/OMP) and the delegation-plan template: `reference.md`.
+
+## Lane matrix, context retrieval and merge gates
+
+- Before a large fan-out, write a lane matrix: lane, parallel/sequential/gated, write surface, risk, verification. Run lanes in parallel only when their write surfaces do not collide; if a lane finds a blocker that changes the plan, pause its dependents and update the matrix.
+- Never parallelize destructive commands, migrations, writes to the same table, or customer-impacting deploys without an explicit gate. Start long builds and tests as separate sessions and poll them deliberately; nothing should outlive the turn unless the user asked for it.
+- When a child cannot know what context it needs, give it a bounded retrieval loop: broad keyword/path search, score each hit for relevance and list missing context, refine terms (the codebase may use different vocabulary, e.g. "throttle" for "rate limit"), and stop after 3 cycles or once a few clearly relevant files are found. A few high-relevance files beat many mediocre ones.
+- Treat each agent as a teammate with an owner, a scope (files, branch, forbidden areas), a state (ready, running, review, blocked, merged), evidence (tests, logs, screenshots) and one exact merge gate. Move a card to review only when its handoff artifact and changed files exist.
+- Review order before merge: tests, diff review, risk/security check, then polish. One integrator resolves conflicts.
+- Failure modes: many agents with no owner or merge gate, useful output that lives only in a chat transcript, a task board whose cards have no acceptance criteria, overlapping writes without worktrees, and reporting "fast" before correctness is proven.
+- Finish with a verification table: lanes run and completed, blocked lane with owner and next action, checks run, checks skipped (never hidden behind a success summary).
+
+Adapted in part from ECC skills/iterative-retrieval, skills/parallel-execution-optimizer and skills/team-agent-orchestration (affaan-m/ECC, MIT).

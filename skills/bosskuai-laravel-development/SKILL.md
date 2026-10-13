@@ -70,3 +70,14 @@ Unverified: [anything not checked]
 - `../../references/checklists/expert-cofounder-stack-checklist.md`
 
 Filament section adapted in part from engineering/engineering-filament-optimization-specialist.md (agency-agents, MIT).
+
+## Routing, models and migrations
+
+- Use `Route::scopeBindings()` for nested routes so a child must belong to its parent in the URL (blocks cross-tenant access), and still authorize in a policy. Keep one parameter name per bound model (`{conversation}` for `Conversation`) and avoid double-nested prefixes; if a name maps to a different class, use `Route::model()` or `resolveRouteBinding()`.
+- Models: explicit `$fillable`, enum or value-object casts (`Attribute::make` for money in cents), named scopes for reusable filters. Use a global scope or a named scope for the same filter, not both, unless you want layered behaviour; remember global scopes silently affect every query, including admin and job code.
+- Controllers call a Form Request (rules plus `authorize()`), which can build a small DTO via `toDto()`, then an action or service. Return API Resources with a consistent envelope and paginated meta (page, per_page, total).
+- Cache read-heavy queries and invalidate on the model events that change them; use cache tags for related groups.
+- Migrations: anonymous-class files, plural snake_case tables, foreign keys with `constrained()` and an explicit delete rule, indexes on filtered columns, money stored as integer cents, and a working `down()`.
+- Keep secrets in `.env` and read them only through `config/*.php`; run `config:cache` in production.
+
+Adapted in part from ECC skills/laravel-patterns (affaan-m/ECC, MIT).

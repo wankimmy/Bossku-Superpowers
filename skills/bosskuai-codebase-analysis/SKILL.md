@@ -29,3 +29,18 @@ Use to explain how code actually runs before changing it. If the project's purpo
 Full phase-by-phase workflow and output template: `reference.md`.
 
 Drift checks adapted in part from specialized/specialized-codebase-archaeologist.md (agency-agents, MIT).
+
+**Before a cross-module or high-risk change (blast radius), answer in order, with evidence from real imports, calls, routes, schemas, `git grep`, `git diff`, or tests, never directory names; mark gaps `unverified`:**
+
+1. Code: entry points, direct callers, downstream consumers, generated artifacts, compatibility layers.
+2. Data: schemas, migrations, historical data, serialization, caches, idempotency keys.
+3. Interfaces: APIs, messages, file formats, CLIs, and who consumes and provides them.
+4. Tests: which success criteria and regression commands prove the change.
+5. Docs: which ADRs, contracts, specs, or status docs go stale.
+6. Release: deploy order, compatibility window, data recovery, rollback command, irreversible effects. For migrations, auth, breaking interfaces, and production releases, a missing rollback or recovery step is a blocker.
+
+**After implementation**, compare the actual diff with the plan: does it solve the original problem, did it exceed the declared scope (and was that approved), does the evidence cover the success criteria rather than just show a command ran, are docs synced, and is any temporary code or follow-up left.
+
+**Inventorying an unfamiliar or legacy repo**: tag each file as own code, embedded third-party code (find it by directory names, headers, license files, version markers), or build artifact; note committed artifacts and duplicated wrappers or outdated vendored copies. Label each module core, extract/merge, rebuild, or deprecate. Start with 1-2 files per module on huge repos, then go deeper only on modules flagged for refactoring.
+
+Adapted in part from ECC skills/change-impact and skills/repo-scan (affaan-m/ECC, MIT). The repo-scan ECC skill is only an installer pointer for an external tool; nothing from it is installed here.

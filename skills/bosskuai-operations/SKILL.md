@@ -123,3 +123,14 @@ Smallest next step:
 
 - `../../references/checklists/operations-checklist.md`
 - `../../references/checklists/legal-compliance-checklist.md`
+
+## Agents talking to outside parties and running agents in production
+
+- **Shared channels with customers or suppliers**: default to speak only when explicitly addressed (mention, direct reply, or a real one-to-one DM). A message to another human, an attachment alone, or past thread participation is not consent. Identity comes from authenticated adapter facts, never display names or message text. Unknown channels stay quiet. Silence is a valid outcome.
+- **Never put in counterparty-visible text**: reasoning, stack traces, secrets, host paths, test status, approval status, or internal filing notices. Say honestly what you cannot do (for example cannot read an attachment) and ask for the smallest useful input. Check the draft against other counterparties' confidential terms before sending.
+- **Draft-only (operator approves the exact text)**: prices, contract wording, legal matters, public posts, unverified claims. **Hard stops**: signing, moving money, entering credentials, publishing packages, cross-counterparty disclosure.
+- **Approval hygiene**: hash the draft and show the hash prefix to the approver; any re-draft invalidates earlier approvals; one send attempt per approval; if a send's outcome is unknown, reconcile by hand rather than auto-retry; keep a ledger linking sent text, approver, and time. Before drafting, check the record for a signed contract or known facts so you do not re-ask the counterparty for them.
+- **Long-running agent services**: use immutable artifacts, least-privilege credentials, injected secrets, hard timeout and retry budgets, and an audit log for high-risk actions. Track success rate, retries per task, time to recovery, cost per successful task, and failure classes.
+- **Failure spike**: freeze new rollout, capture representative traces, isolate the failing route, patch the smallest safe change, run regression and security checks, then resume gradually.
+
+Adapted in part from ECC skills/counterparty-channel-discipline, skills/enterprise-agent-ops and skills/operator-approval-loop (affaan-m/ECC, MIT).

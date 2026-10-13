@@ -75,3 +75,16 @@ Verification: [how the saving will be confirmed]
 - `../../references/checklists/cost-optimization-checklist.md`
 
 Adapted from engineering/engineering-finops-engineer.md (agency-agents, MIT).
+
+## LLM pipeline and prompt caching checks
+
+- Route by task complexity (input size, item count) with a cheap default and a `force_model` override; keep model names in config, not scattered in code; log each routing decision so thresholds can be tuned from real data.
+- Set a budget limit before a batch and fail early when it is exceeded. Keep cost records append-only, one per call, so totals can be audited.
+- Retry only transient errors (connection, rate limit, 5xx) with backoff and a cap; fail fast on auth and validation errors.
+- Prompt caching: keep tools, instructions and stable examples first and unchanged (a changed prefix breaks reuse from that point); put the question, timestamps and retrieved results after it. Confirm the provider's minimum prefix length, TTL and write price from current docs, since a short prefix yields zero cache hits and a write can cost more than plain input. Caching does not shrink the context window.
+- A one-off call or a prefix that keeps expiring can cost more with caching. Count warmup, miss, refresh and retry requests in the measured period.
+- Measure with provider usage counters (ordinary input, cache write, cache read, output). Do not double count the same tokens, never apply a cache discount to output tokens, and report token hit rate (cache reads / total input) separately from request hit rate. With no measured traffic, label hit rate and savings `unmeasured`.
+- Cache keys and cached handles are scoped to tenant, permission and content revision; a cache key is not an authorization check.
+- Usage logs that store cumulative per-session snapshots must be reduced to the latest row per session before summing, and a recorded cost field beats recomputing from token counts.
+
+Adapted in part from ECC skills/cost-aware-llm-pipeline, skills/cost-tracking and skills/prompt-caching-strategy (affaan-m/ECC, MIT).

@@ -67,3 +67,14 @@ GTM implications: [if any]
 
 - `../../references/playbooks/bosskuai-product-strategy-playbook.md`
 - `../../references/checklists/product-spec-checklist.md`
+
+## Extra diagnostics
+- **Pressure-test questions** to add to step 1: why now (what changed), the 10-star version, the anti-goal (what you are explicitly not building), and the metric that shows it works (a number, not a feeling). End with a go/no-go and the next step.
+- **Founder review** of an existing project: read README, instructions, manifest and recent commits; infer what it is trying to be; score usage growth, retention, revenue signals and moat; name the one thing that would 10x it and the things being built that do not matter.
+- **Journey audit:** go through the product as a new user, time each step, list friction, and measure time to first win. Recommend the top 3 onboarding fixes.
+- **Choosing among many ideas:** score impact x confidence / effort (each 1-5), rank, then apply real constraints (runway, team size, dependencies). Treat the score as a tiebreaker, not a verdict.
+- **Acceptance criteria quality:** each one has a starting condition, one trigger, an observable result, a "must not" side effect, a verification method and a priority. Words like "correctly", "secure", "fast" need observable evidence or a marked human judgment.
+- **Business rules are not discoverable from code.** Pricing, tier limits, compliance, SLAs, retention and priorities come from the user or a product document. List them as assumptions to confirm, never as discovered facts.
+- Ask for confirmation before work only when an open decision risks security exposure, data loss, an irreversible migration, a breaking contract or real cost. Otherwise record assumptions and proceed. If a criterion proves unachievable mid-build, mark it revised with the constraint and re-present only the changed criteria.
+
+Adapted in part from ECC skills/intent-driven-development and product-lens (affaan-m/ECC, MIT).

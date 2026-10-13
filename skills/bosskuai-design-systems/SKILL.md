@@ -92,3 +92,10 @@ Every DESIGN.md follows this structure. Use it for generation and auditing:
 ## Further reading
 
 - `../../references/playbooks/design-systems-detailed-playbook.md` — extended step-by-step workflow and detailed templates that complement this playbook.
+
+## Extract from code and score an existing UI
+- **Extract before inventing.** In an existing codebase, scan CSS, Tailwind config and styled-components for what is already used: colors, type, spacing, radius, shadows, breakpoints. Count usage, then propose the token set from the dominant values and map stray values onto it. Emit `design-tokens.json` plus CSS custom properties, with a rationale for each decision in DESIGN.md. A self-contained HTML preview page (no dependencies) makes the tokens reviewable.
+- **Score the UI 0-10 on ten dimensions:** color consistency (palette vs random hex), type hierarchy, spacing rhythm, component consistency, responsive behavior, dark mode (complete or half-done), animation (purposeful or gratuitous), accessibility (contrast, focus, touch targets), information density, polish (hover, transitions, loading and empty states). Each score needs concrete examples and a fix with `file:line`.
+- **Slop signals to flag in a PR or audit:** gradients on everything, purple-to-blue defaults, glass cards with no purpose, rounded corners where they do not belong, scroll animations everywhere, a centered hero over a stock gradient, and a font stack with no personality.
+
+Adapted in part from ECC skills/design-system (affaan-m/ECC, MIT).

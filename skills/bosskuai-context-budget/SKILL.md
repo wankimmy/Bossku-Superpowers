@@ -146,3 +146,27 @@ Skill: Current overhead 33% → adding 5 servers (~50 tools) would add ~25,000 t
 - `bosskuai-skill-stocktake` — overlap/staleness audit across skills and commands
 - `bosskuai-context-limit-continuation` — when a session is already at the limit and needs a clean handoff
 - `bosskuai-agent-architecture-audit` — when duplication is a symptom of deeper wrapper-stack problems
+
+## Scope and bounds
+
+- A plain "how much context is left" is a live-meter question: point to the harness meter (`/context` in Claude Code, `/status` in Codex) and do not scan files. Run the static audit above only when the user clearly asks for it.
+- Keep an audit read-only and bounded: only the named install root and the harness's known config files, no recursive sweep of home or workspace, no launching MCP servers just to count tools, at most 50 entries per component class (summarize the rest).
+- Eager overhead is mostly descriptions, always-loaded instruction files and MCP tool schemas. Skill, agent and rule bodies load on demand, so report their disk size separately instead of adding them to the baseline.
+- Say every number is an estimate of static config, never a provider-reported or realized saving.
+
+## When to compact
+
+| Transition | Compact? |
+|---|---|
+| Research to plan, plan to implementation | Yes, once the plan is written to a file |
+| Implementation to testing | Only if switching focus |
+| Debugging to unrelated work, or after a failed approach | Yes |
+| Mid-implementation | No: variable names, paths and partial state are lost |
+
+Write the plan and key decisions to a file or memory before compacting; the task list may not exist in the harness and read file contents do not survive. Give `/compact` a focus line for the next phase. Prefer a keyword-to-skill trigger table over loading skills up front.
+
+## Depth on request
+
+If the user asks for a shorter or longer answer, offer 25/50/75/100% depth with a rough token estimate (words x 1.3 for prose, chars / 4 for code; label it +/-15%), then keep the chosen level for the session. Do not trigger when "token" means an auth or payment token.
+
+Adapted in part from ECC skills/context-budget, skills/strategic-compact and skills/token-budget-advisor (affaan-m/ECC, MIT).

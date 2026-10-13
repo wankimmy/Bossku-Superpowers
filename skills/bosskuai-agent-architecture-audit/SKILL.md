@@ -276,3 +276,16 @@ Add this when agents call each other or act with real authority.
 - `bosskuai-context-budget` — Quantify context overhead when layer 1-5 duplication is the finding
 
 Adapted from specialized/agentic-identity-trust.md (agency-agents, MIT).
+
+## Harness design checks (layers 6-8)
+
+When tool selection or interpretation is the suspect layer, check the harness before blaming the model.
+
+- Tool names are stable and explicit; inputs are schema-first and narrow; output shapes are deterministic. Flag catch-all tools and tools with overlapping semantics.
+- Granularity matches risk: micro-tools for deploy, migration and permission changes; medium tools for routine read/edit/search loops; macro-tools only where round-trip cost dominates.
+- Each tool result carries a status (success/warning/error), a one-line summary, follow-up actions and artifact paths or IDs. Error-only or opaque output with no next step is a finding.
+- Each error path gives a root-cause hint, a safe retry instruction and an explicit stop condition; otherwise expect retry loops (layer 11).
+- Context budget: system prompt minimal and invariant, large guidance loaded on demand, file references instead of inlined documents, compaction at phase boundaries rather than at arbitrary token counts.
+- Prefer ReAct-style planning with typed tool execution; pure ReAct for deterministic flows or pure function-calling for exploratory ones is a smell.
+
+Adapted in part from ECC skills/agent-harness-construction (affaan-m/ECC, MIT).

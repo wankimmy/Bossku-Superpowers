@@ -187,3 +187,19 @@ Residual risks: [what remains after the recommendation]
 - `../../references/checklists/architecture-review-checklist.md`
 
 ADR gate and glossary practice adapted in part from engineering/domain-modeling (skills pack by Matt Pocock, MIT).
+
+## Backend API checks
+
+When the design includes an HTTP backend, check these before recommending a shape:
+
+- Resource-based URLs with filtering, sorting and pagination as query parameters; auth, logging and rate limiting as middleware, not repeated in handlers.
+- Controllers stay thin: validation and the response shape at the edge, business rules in a service, data access behind a repository only when it earns its keep (a second store, heavy test seams). Do not add a repository layer over an ORM by reflex.
+- Reads: select only needed columns, batch-fetch related rows instead of querying per row (N+1), and wrap multi-write operations in one transaction.
+- Caching: cache-aside with a TTL, with the invalidation path named for every write that changes the cached value. Say how stale is acceptable.
+- Errors: one central handler maps known operational errors to status codes, validation failures to 400 with details, and everything else to a generic 500 that logs the cause but does not leak it.
+- Retries: exponential backoff with a cap, only for idempotent calls or calls with an idempotency key.
+- Rate limits belong in a shared store, gateway or platform limiter, never per-process counters (they reset on deploy and split across replicas).
+- Background work: an in-process array queue loses jobs on restart. Use a durable queue, make jobs idempotent, and record failures instead of only logging them.
+- Structured JSON logs with a request id, and no secrets or tokens in them.
+
+Adapted in part from ECC skills/backend-patterns (affaan-m/ECC, MIT).

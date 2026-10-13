@@ -110,3 +110,17 @@ Device verification: [devices/OS versions tested, results]
 - `../../references/checklists/mobile-app-release-checklist.md`
 
 Offline, biometric and battery bullets adapted in part from engineering/engineering-mobile-app-builder.md (agency-agents, MIT).
+
+## Screen-level patterns
+
+- **Thin route files**: a route reads and validates params, then hands off to a screen component in `features/` or `components/`. Deep links and dynamic routes deliver untrusted strings, so parse them with a schema (for example `z.string().uuid()`) and `router.replace('/not-found')` on failure.
+- **State has one home each**: server data in a query cache (never copied into a client store); UI state in a small store or context (start with local `useState`); route state in router params; forms in a form library plus schema resolver; tokens in SecureStore; non-secret persistence in MMKV or AsyncStorage.
+- **Validate at the boundary**: parse API responses, route params, and push payloads with a schema, and infer types from it.
+- **Every screen renders loading, error, and empty states** (not just a spinner); errors use an alert accessibility role. Pull-to-refresh via `onRefresh` plus `refreshing`.
+- **Lists**: memoized row components and a memoized `renderItem`, stable `keyExtractor`; tune `initialNumToRender` and `windowSize` on `FlatList`; `FlashList` for large or mixed lists.
+- **Native APIs live in `use*` hooks**, never in JSX. Track a status (loading, denied, granted) rather than just a value, so the UI can tell "still loading" from "permission denied". Use an `active` flag in effect cleanup to ignore stale results after unmount.
+- **Styling**: pick one system (StyleSheet or a utility-class library) and stay with it; no inline style objects on hot paths.
+- **Forms**: set `keyboardType`, `autoCapitalize`, and an `accessibilityLabel` on inputs; respect safe areas and Dynamic Type from the start.
+- **Never ship a real secret in the bundle**; privileged calls stay server-side and only public keys protected by backend rules go in the app.
+
+Adapted in part from ECC skills/react-native-patterns (affaan-m/ECC, MIT).

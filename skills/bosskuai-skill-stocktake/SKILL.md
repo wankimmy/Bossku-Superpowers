@@ -57,3 +57,14 @@ Return:
 - `../../references/playbooks/claude-code-practices-playbook.md`
 - `../../references/playbooks/skill-stocktake-playbook.md`
 - `../../references/checklists/learning-promotion-checklist.md`
+
+## Verdicts and evidence
+
+- Verdicts: Keep, Improve (name the change), Update (technology outdated; verify with a source), Retire, Merge into X (name the target and what to integrate). Judge holistically on actionability, scope fit, uniqueness and currency; do not use a numeric rubric.
+- Every reason stands alone and enables a decision. Never write "unchanged" or "superseded" alone: Retire states the defect and what covers the need; Merge names the target and the content to move; Improve names the section and the target size (for example "section X duplicates Y, delete to reach about 150 lines").
+- Usage data is optional. When no usage log exists, mark use as unmeasured, not zero, and never retire a skill on missing usage data.
+- For large inventories evaluate in chunks of about 20 skills, keyed by file path (not name) so same-named skills cannot overwrite each other. Keep a results cache with the path, modification time, verdict and reason, and on a quick pass re-evaluate only files whose mtime changed. Skip archived or trash directories.
+- Evaluate blind to origin: the same checklist applies to vendored, first-party and auto-extracted skills. Before retiring or merging, list dependents (other skills, memory references, workflows). Deleting or archiving always needs explicit user confirmation.
+- Host portability: a skill copied into another host's skills folder should keep only the frontmatter keys that host supports, and bash fences must not rely on Claude-only substitutions (`${CLAUDE_SKILL_DIR}`, `${CLAUDE_PLUGIN_ROOT}`, `${CLAUDE_PROJECT_DIR}`, `$ARGUMENTS`); rewrite them to a resolved path in the copy. A passing frontmatter check does not prove a skill is safe on another host.
+
+Adapted in part from ECC skills/skill-stocktake and skills/skill-host-compat (affaan-m/ECC, MIT).
