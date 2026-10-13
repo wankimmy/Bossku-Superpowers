@@ -901,11 +901,15 @@ def codex_hint_commands(home: Path | None = None) -> list[str]:
 # --- the hook entrypoint itself (`bossku sync-hook`) -----------------------
 
 def read_hook_stdin() -> str:
-    """The hook payload as UTF-8 text: a Windows pipe would otherwise decode it with the console code page."""
+    """The hook payload as UTF-8 text: a Windows pipe would otherwise decode it with the console code page.
+
+    utf-8-sig drops a leading byte-order mark: some PowerShell setups add one to text piped into a native command,
+    and json.loads rejects it, which turned the payload into "no folder named" and synced the wrong folder.
+    """
     if sys.stdin.isatty():
         return ""
     raw = getattr(sys.stdin, "buffer", None)
-    return raw.read().decode("utf-8", errors="replace") if raw is not None else sys.stdin.read()
+    return raw.read().decode("utf-8-sig", errors="replace") if raw is not None else sys.stdin.read().lstrip("﻿")
 
 
 def _payload_project(payload) -> tuple[Path | None, bool]:
