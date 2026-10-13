@@ -1,6 +1,13 @@
 # Changelog
 
-## Unreleased
+## v2.4.0 - Library skills the hint can find, 137 niche skills, and green CI on every runner
+
+This release makes the 310 library-only skills reachable from the prompt hint without moving listed skills, adds 137 niche skills and newer ECC methods, and fixes the hook bug behind the last red Windows CI job.
+
+### Fixes
+
+- **Hooks ignored a payload that started with a byte-order mark (`430a464`).** On the GitHub windows-latest runner, PowerShell puts a UTF-8 BOM in front of the text the Codex wrapper pipes into bossku; `json.loads` rejected it and `sync-hook` quietly synced its own working folder instead of the project. Hook stdin is now decoded as `utf-8-sig`, which covers `sync-hook`, `skill-hint` and `session-brief`. `tests/test_hooks_fixes.py` (`BomPayloadTests`) sends a BOM payload on every OS; it failed before the fix. This was the one failing Windows CI test listed as a known issue in v2.3.0.
+- **Windows CI temp folder (`8c4656f`).** The test step uses `runner.temp`, because the runner's `%TEMP%` is an 8.3 short path that broke 18 path comparisons in the vault, memory and resume tests on the runner only.
 
 ### New
 
