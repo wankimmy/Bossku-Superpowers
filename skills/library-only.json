@@ -1,6 +1,7 @@
 {
   "note": "Kept in the repo and the lean library but never listed by any profile: reached through the prompt hint, `bossku skills find` and `bossku skills show`. Listing them would cost every session their descriptions.",
   "skills": [
+    "anatomy",
     "bosskuai-accounts-payable-agent",
     "bosskuai-agent-benchmark-comparison",
     "bosskuai-agent-runtime-gateway-smoke-test",

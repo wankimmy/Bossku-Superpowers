@@ -69,6 +69,10 @@
     "moli": {
       "upstream": "lexmount/moli",
       "last_synced": "2026-10-08"
+    },
+    "anatomy": {
+      "upstream": "wheresryan22/anatomy",
+      "last_synced": "2026-10-13"
     }
   },
   "packs": {
@@ -232,6 +236,9 @@
     "moli": [
       "moli-webfetch",
       "moli-cdp-server"
+    ],
+    "anatomy": [
+      "anatomy"
     ]
   },
   "skills": {
@@ -361,7 +368,8 @@
     "antislop-ui": "antislop",
     "odl-pdf": "opendataloader-pdf",
     "moli-webfetch": "moli",
-    "moli-cdp-server": "moli"
+    "moli-cdp-server": "moli",
+    "anatomy": "anatomy"
   },
   "excluded": {
     "taste-skill-v1": "taste-skill: legacy v1 kept upstream for exact-v1 compatibility; conflicts with the default stack",

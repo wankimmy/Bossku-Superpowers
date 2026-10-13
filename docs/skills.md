@@ -45,6 +45,7 @@ A loaded skill stays in the conversation and is read again on every later turn, 
 | loop-engineering | 12 loop/triage/CI/PR skills | — |
 | taste-skill | 10 anti-slop frontend / imagegen skills | — |
 | scroll-world | Scroll-scrub Higgsfield cinematic world landing | Higgsfield CLI, ffmpeg |
+| anatomy | Interactive isometric SVG explainer figures (library-only; optional WebGL and 3D) | Node.js 20.10+, Chrome for its checks |
 | dcg | Destructive Command Guard (agent shell/git safety hooks) | `dcg` binary (upstream installer) |
 | emil-skills | 12 motion craft / design engineering skills (web + Expo animation, Sonner, Swift) | — |
 | i-have-adhd | Action-first, numbered, no-preamble output shape (explicit `/i-have-adhd`) | — |
