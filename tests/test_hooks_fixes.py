@@ -545,10 +545,22 @@ class CodexWrapperEncodingTests(unittest.TestCase):
                 input=json.dumps({"cwd": str(project)}, ensure_ascii=False).encode("utf-8"),
                 capture_output=True, env=env, cwd=str(ROOT), timeout=180)
             self.assertIn(b'"continue"', done.stdout)
-            # The wrapper swallows bossku's output; show it, and what reached the vault, when the note is missing.
-            synced = sorted(str(p.relative_to(vault)) for p in vault.rglob("*"))
-            self.assertTrue((vault / "BosskuAI" / name / "decisions.md").is_file(),
-                            f"stderr={done.stderr.decode('utf-8', 'replace')!r} vault={synced!r}")
+            note = vault / "BosskuAI" / name / "decisions.md"
+            if not note.is_file():   # the wrapper swallows bossku's output: probe each link of the chain instead
+                payload = json.dumps({"cwd": str(project)}, ensure_ascii=False).encode("utf-8")
+                direct = subprocess.run([sys.executable, "-m", "bossku", "sync-hook"], input=payload,
+                                        capture_output=True, env=env, cwd=str(ROOT), timeout=180)
+                piped = subprocess.run(
+                    ["powershell", "-NoProfile", "-Command",
+                     "$u = New-Object System.Text.UTF8Encoding($false); $OutputEncoding = $u; "
+                     "$m = New-Object System.IO.MemoryStream; [Console]::OpenStandardInput().CopyTo($m); "
+                     "$u.GetString($m.ToArray()) | & $env:PYEXE -c "
+                     "'import sys; sys.stdout.write(repr(sys.stdin.buffer.read()))'; "
+                     "'bossku=' + (Get-Command bossku -ErrorAction SilentlyContinue).Source"],
+                    input=payload, capture_output=True, env=dict(env, PYEXE=sys.executable), timeout=180)
+                synced = sorted(str(p.relative_to(vault)) for p in vault.rglob("*"))
+                self.fail(f"no note; wrapper stderr={done.stderr!r} vault={synced!r} sent={payload!r} "
+                          f"direct={direct.stdout!r}{direct.stderr[-300:]!r} piped={piped.stdout!r}{piped.stderr[-300:]!r}")
 
 
 if __name__ == "__main__":
