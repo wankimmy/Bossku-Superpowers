@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+### New
+
+- **137 library-only niche skills (`34130a8`).** The rest of the agency-agents and mattpocock/skills audit: GIS, game engines, healthcare and legal operations, China platforms, finance operations, XR, CMS and more, rewritten as Bossku workflows with a not-professional-advice guardrail on every regulated domain. No profile lists them (310 library-only skills in total), so no session pays for them.
+- **The hint can find library skills.** Every library skill now has 30 example prompts in `benchmarks/routing-queries.json.gz`, and the index marks library skills. Their example-prompt fit is scored against the listed skills' statistics, so adding them never moves a listed skill's fit, and counts three quarters (`LIBRARY_FIT_SHARE` in `bossku/skills.py`). Trained on 20 examples per ECC library skill with 10 held back, the right library skill was named for 20.5% of held-back test prompts, against 3.9% without examples; scoring library and listed skills on shared statistics instead had broken a listed hint ("What is causing this Python error?" lost `python-patterns`), which `tests/test_routing_coverage.py` caught. The cost, measured once on the held-out sets against the build just before it: precision 74.2% to 72.2% on the test half and 79.1% to 76.7% on the fresh set, nearly all from 5 prompts where a library skill was added or came first (the labels predate those skills, so a pick of one always counts as wrong); hinted prompts 69.0% on the test half (unchanged) and 78.8% to 77.9% on the fresh set; no false hints on chit-chat or trivia.
+
+### Changed
+
+- **Newer ECC methods in 51 first-party skills (`34130a8`)**, appended as short sections, each ending with "Adapted in part from ECC skills/...". Descriptions are unchanged.
+
 ## v2.3.0 - Smarter skill hints, a lean library, Superpowers 7 and new skills
 
 This release makes the prompt hint name a skill for far more real requests, keeps every session small on the lean profile, and adds Superpowers 7, 173 library-only ECC workflows and five engineering skills. It also ships what was listed as unreleased after v2.2.0: two commits after v2.2.0, a skill-list budget check (a `bossku doctor` warning and an opt-in `--fit-skill-list` flag), and a second benchmark set that measures the two commits.

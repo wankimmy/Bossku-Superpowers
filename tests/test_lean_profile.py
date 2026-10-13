@@ -285,6 +285,20 @@ class LibraryOnlyTests(unittest.TestCase):
             selected = [row["skill_id"] for row in json.loads(out)["selection"]["selected"]]
             self.assertIn("bosskuai-cpp-testing", selected)
 
+    def test_library_skills_are_marked_in_the_index_and_their_example_prompts_count_half(self):
+        from bossku.index import load_index
+        from bossku.skills import LIBRARY_FIT_SHARE, rank_skills
+
+        entries = load_index(ROOT)["skills"]
+        self.assertTrue(entries["bosskuai-cpp-testing"].get("library"))
+        self.assertFalse(entries["bosskuai-tdd-loop"].get("library"))
+        self.assertEqual(LIBRARY_FIT_SHARE, 0.75)
+        twin = {"description": "Use when grading widget sprockets.", "triggers": [], "phrases": [],
+                "keywords": [], "qterms": "grade:5 sprocket:5 widget:5"}
+        data = {"fingerprint": "", "skills": {"listed-twin": dict(twin), "library-twin": dict(twin, library=True)}}
+        scores = dict(rank_skills("grade the widget sprocket", None, limit=2, data=data))
+        self.assertGreater(scores["listed-twin"], scores["library-twin"])
+
     def test_an_unknown_or_lean_listed_id_is_an_error(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

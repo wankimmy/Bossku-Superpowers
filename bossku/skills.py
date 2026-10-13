@@ -296,7 +296,8 @@ def rank_skills(task: str, root: Path | None = None, limit: int = 5, data: dict 
     for sid, entry in entries.items():
         if sid in NOT_INSTALLED:
             continue
-        scored.append((sid, _score_entry(sid, entry, task_l, q_terms, q_mass) + REQUEST_FIT_WEIGHT * request_fit.get(sid, 0.0)))
+        fit = REQUEST_FIT_WEIGHT * request_fit.get(sid, 0.0) * (LIBRARY_FIT_SHARE if entry.get("library") else 1.0)
+        scored.append((sid, _score_entry(sid, entry, task_l, q_terms, q_mass) + fit))
     scored.sort(key=lambda pair: (-pair[1], pair[0]))
     return scored[:limit]
 
@@ -304,13 +305,18 @@ def rank_skills(task: str, root: Path | None = None, limit: int = 5, data: dict 
 # How strongly the vocabulary of real requests counts next to the skill's own words (tuned on the dev halves of two
 # prompt sets, reported on the test halves).
 REQUEST_FIT_WEIGHT = 5.0
+# Library-only skills are many and niche, and their example prompts share everyday words with listed skills. Their fit
+# is scored against the listed skills' statistics (see _request_model) and counts three quarters: on the dev halves the
+# right library skill was named for 19% of held-back library prompts (4% without examples) while 4 held-out prompts
+# went to a library skill (18 at full weight).
+LIBRARY_FIT_SHARE = 0.75
 _BM25_K1, _BM25_B = 1.2, 0.75
 _request_models: dict[str, tuple] = {}
 _COUNT = re.compile(r":(\d+)")
 
 
 def _request_model(entries: dict[str, dict], key: str) -> tuple:
-    """(' word:count ...' text per skill, length per skill, average length, postings per word).
+    """(' word:count ...' text per skill, length per skill, average listed length, library ids, postings per word).
 
     The text stays as the index stores it; a request only looks up its own few words (see _request_fit),
     so a hook process, which runs once per prompt, never parses the other ~8,000.
@@ -319,8 +325,11 @@ def _request_model(entries: dict[str, dict], key: str) -> tuple:
         return _request_models[key]
     texts = {sid: f" {entry['qterms']} " for sid, entry in entries.items() if entry.get("qterms")}
     lengths = {sid: sum(map(int, _COUNT.findall(text))) for sid, text in texts.items()}
-    average = sum(lengths.values()) / max(len(lengths), 1)
-    model = (texts, lengths, average, {})
+    # Statistics come from the listed skills only, so adding library examples never moves a listed skill's fit.
+    library = frozenset(sid for sid in texts if entries[sid].get("library"))
+    listed = [length for sid, length in lengths.items() if sid not in library] or list(lengths.values())
+    average = sum(listed) / max(len(listed), 1)
+    model = (texts, lengths, average, library, {})
     if key:
         _request_models[key] = model
     return model
@@ -330,9 +339,10 @@ def _request_fit(task: str, entries: dict[str, dict], key: str) -> dict[str, flo
     """0..1 per skill: how well the words of the request match the words people use when they need that skill (BM25)."""
     from bossku.index import singular, tokenize
 
-    texts, lengths, average, postings = _request_model(entries, key)
+    texts, lengths, average, library, postings = _request_model(entries, key)
     if not texts:
         return {}
+    documents = len(texts) - len(library) or len(texts)
     words = list(dict.fromkeys(singular(t) for t in tokenize(task)))
     for w in words:
         if w not in postings:
@@ -343,7 +353,8 @@ def _request_fit(task: str, entries: dict[str, dict], key: str) -> dict[str, flo
                 if at >= 0:
                     start = at + len(needle)
                     hits[sid] = int(text[start:text.index(" ", start)])
-            idf = math.log(1 + (len(texts) - len(hits) + 0.5) / (len(hits) + 0.5)) if hits else 0.0
+            frequency = sum(1 for sid in hits if sid not in library)
+            idf = math.log(1 + (documents - frequency + 0.5) / (frequency + 0.5)) if hits else 0.0
             postings[w] = (hits, idf)
     norm = sum(postings[w][1] for w in words) * (_BM25_K1 + 1) or 1.0
     fit: dict[str, float] = {}
@@ -352,9 +363,9 @@ def _request_fit(task: str, entries: dict[str, dict], key: str) -> dict[str, flo
         for sid, f in hits.items():
             fit[sid] = fit.get(sid, 0.0) + idf * f * (_BM25_K1 + 1) / (f + _BM25_K1 * (1 - _BM25_B + _BM25_B * lengths[sid] / average))
     fit = {sid: total / norm for sid, total in fit.items() if total}
-    best = max(fit.values(), default=0.0)
-    # Scale to the best fit; hint eligibility separately requires concrete task evidence.
-    return {sid: value / best for sid, value in fit.items()} if best else fit
+    best = max((value for sid, value in fit.items() if sid not in library), default=0.0) or max(fit.values(), default=0.0)
+    # Scale to the best listed fit (a library skill is capped at it); task evidence still decides eligibility.
+    return {sid: min(value / best, 1.0) for sid, value in fit.items()} if best else fit
 
 
 def find_skill(task: str, root: Path | None = None, data: dict | None = None) -> tuple[str, float]:

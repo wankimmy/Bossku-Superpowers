@@ -19,6 +19,7 @@ from bossku.paths import repo_root
 from bossku.skills import (
     LEAN_FILE,
     LIBRARY_ONLY_FILE,
+    load_library_only,
     _parse_frontmatter,
     list_skill_ids,
     load_aliases,
@@ -1091,7 +1092,8 @@ def skills_fingerprint(root: Path | None = None) -> str:
     h = hashlib.sha256()
     policy = {"version": INDEX_VERSION, "triggers": CURATED_TRIGGERS,
               "exclusions": CURATED_EXCLUSIONS, "roles": CURATED_ROLES,
-              "aliases": load_aliases(root), "vendored": load_vendored(root)}
+              "aliases": load_aliases(root), "vendored": load_vendored(root),
+              "library_only": sorted(load_library_only(root))}
     h.update(json.dumps(policy, sort_keys=True).encode("utf-8"))
     source = query_source(root)
     h.update(hashlib.sha256(source.read_bytes()).digest() if source.is_file() else b"-")
@@ -1151,6 +1153,7 @@ def build_index(root: Path | None = None) -> dict:
     r = repo_root(root)
     base = skills_dir(r)
     vendored = load_vendored(r)
+    library_only = load_library_only(r)
     entries: dict[str, dict] = {}
     query_terms = _query_terms(r)
 
@@ -1182,6 +1185,8 @@ def build_index(root: Path | None = None) -> dict:
         }
         if query_terms.get(sid):
             entries[sid]["qterms"] = query_terms[sid]
+        if sid in library_only:
+            entries[sid]["library"] = True
         # Claude Code refuses model calls to these; the user runs them as /<id>.
         if str(_parse_frontmatter(text).get("disable-model-invocation", "")).lower() == "true":
             entries[sid]["user_invoked"] = True

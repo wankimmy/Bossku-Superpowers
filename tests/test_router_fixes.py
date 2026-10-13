@@ -90,16 +90,23 @@ class HintGateTests(unittest.TestCase):
 
 
 def old_request_fit(task, entries):
-    """The request-fit model as it was parsed before the lookup rewrite: every posting turned into a dict up front."""
+    """The request-fit model as it was parsed before the lookup rewrite: every posting turned into a dict up front.
+
+    Statistics (average length, document frequency, the best fit) come from listed skills only; a library skill is
+    scored against them and capped at the best listed fit.
+    """
     counts = {sid: {w: int(c) for w, _, c in (item.partition(":") for item in entry["qterms"].split())}
               for sid, entry in entries.items() if entry.get("qterms")}
+    library = {sid for sid in counts if entries[sid].get("library")}
     lengths = {sid: sum(c.values()) for sid, c in counts.items()}
-    average = sum(lengths.values()) / max(len(lengths), 1)
+    listed = [n for sid, n in lengths.items() if sid not in library] or list(lengths.values())
+    average = sum(listed) / max(len(listed), 1)
+    documents = len(counts) - len(library) or len(counts)
     df = {}
-    for c in counts.values():
+    for sid, c in counts.items():
         for w in c:
-            df[w] = df.get(w, 0) + 1
-    idf = {w: math.log(1 + (len(counts) - f + 0.5) / (f + 0.5)) for w, f in df.items()}
+            df[w] = df.get(w, 0) + (sid not in library)
+    idf = {w: math.log(1 + (documents - f + 0.5) / (f + 0.5)) for w, f in df.items()}
     if not counts:
         return {}
     k1, b = skills._BM25_K1, skills._BM25_B
@@ -114,8 +121,8 @@ def old_request_fit(task, entries):
                 total += idf[w] * f * (k1 + 1) / (f + k1 * (1 - b + b * lengths[sid] / average))
         if total:
             fit[sid] = total / norm
-    best = max(fit.values(), default=0.0)
-    return {sid: value / best for sid, value in fit.items()} if best else fit
+    best = max((v for sid, v in fit.items() if sid not in library), default=0.0) or max(fit.values(), default=0.0)
+    return {sid: min(value / best, 1.0) for sid, value in fit.items()} if best else fit
 
 
 class RequestFitLookupTests(unittest.TestCase):
