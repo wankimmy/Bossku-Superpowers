@@ -1,5 +1,13 @@
 # Changelog
 
+## v2.4.1 - Anatomy: isometric explainer figures
+
+This release adds one vendored skill.
+
+### New
+
+- **`anatomy` skill (`84f427e`).** Vendored from [wheresryan22/anatomy](https://github.com/wheresryan22/anatomy) (MIT, upstream `454a0ef`) as a library-only skill with 30 example prompts. It builds interactive isometric SVG figures that explain a technical idea as a real physical machine, with optional WebGL shaders and a 3D mode, and needs Node.js 20.10+ and Chrome for its checks. The built example pages (about 8 MB) are left out; `node examples/<name>/build.mjs` writes them again.
+
 ## v2.4.0 - Library skills the hint can find, 137 niche skills, and green CI on every runner
 
 This release makes the 310 library-only skills reachable from the prompt hint without moving listed skills, adds 137 niche skills and newer ECC methods, and fixes the hook bug behind the last red Windows CI job.
