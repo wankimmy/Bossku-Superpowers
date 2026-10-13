@@ -37,6 +37,11 @@ jobs:
 
       - name: Unit tests
         run: python -m unittest discover -s tests -v
+        # The Windows runner's %TEMP% is an 8.3 short path (C:\Users\RUNNER~1\...) that resolves to a different
+        # spelling, so path assertions in the vault and resume tests fail there only. runner.temp has no short name.
+        env:
+          TMP: ${{ runner.os == 'Windows' && runner.temp || '' }}
+          TEMP: ${{ runner.os == 'Windows' && runner.temp || '' }}
 
       # Warning only: a stale docs/benchmarks/routing.json snapshot should be seen, not block a merge.
       # Regenerate it last with `python scripts/benchmark_routing.py`.
