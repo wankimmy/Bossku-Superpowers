@@ -647,6 +647,9 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
         "brand kit", "brand guidelines", "logo system", "logo concept", "identity board",
         "visual identity",
     ],
+    "logo-design": [
+        "logo", "logos", "wordmark", "monogram", "logotype", "lettermark", "favicon", "brand mark",
+    ],
     "output-skill": [
         "full file", "complete file", "without truncating", "don't truncate", "no placeholders",
     ],

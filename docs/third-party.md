@@ -20,6 +20,7 @@ Bossku Superpower vendors Agent Skills from these open-source upstream projects.
 | ecc | [affaan-m/ECC](https://github.com/affaan-m/ECC) | MIT | Copyright (c) 2026 Affaan Mustafa |
 | antislop | [miqdadbadjuber/anti-slop](https://github.com/miqdadbadjuber/anti-slop) | MIT | Copyright (c) anti-slop contributors |
 | anatomy | [wheresryan22/anatomy](https://github.com/wheresryan22/anatomy) | MIT | Copyright (c) 2026 Ryan |
+| logo-design | [kaankiziltug/logo-design-skill](https://github.com/kaankiziltug/logo-design-skill) | MIT (reference logos excluded, see below) | Copyright (c) 2026 kaankiziltug |
 | opendataloader-pdf | [opendataloader-project/opendataloader-pdf](https://github.com/opendataloader-project/opendataloader-pdf) | Apache-2.0 | Copyright 2025-2026 Hancom, Inc. (upstream NOTICE; [LICENSE](third-party-licenses/opendataloader-pdf-LICENSE.txt) and [NOTICE](third-party-licenses/opendataloader-pdf-NOTICE.txt) kept here) |
 | moli | [lexmount/moli](https://github.com/lexmount/moli) | MIT OR Apache-2.0 (used under MIT) | Copyright (c) 2026 Moli contributors ([MIT text](third-party-licenses/moli-LICENSE-MIT.txt), [Apache text](third-party-licenses/moli-LICENSE-APACHE.txt)) |
 | greptile (adapted, first-party) | [greptileai/skills](https://github.com/greptileai/skills) | MIT | Copyright (c) 2026 Greptile AI |
@@ -92,3 +93,5 @@ These dates are recorded syncs, not a live upstream check - the tool reports tha
 pack is due for review, never that upstream actually changed.
 
 `anatomy` is vendored without the built example pages (`examples/*/*.html`, about 8 MB); `node examples/<name>/build.mjs` writes them again. Upstream repo files (README, CHANGELOG, contributing docs, CI, `evals/`) are left out. The 2026-10-13 sync was copied from a local clone at upstream commit 454a0ef.
+
+`logo-design` is vendored without its reference logo library (`assets/library/svg/`, 1,432 trademarked logos, about 12 MB) and `gallery.html`; the MIT licence does not cover those logos (upstream `TRADEMARKS.md`). `catalog.json`, `classifications.json` and `stats.json` are kept, so `search_library.py`, `svg_audit.py` and the scripts that need no reference files work. Options that read reference files (`--refs`, `--refs-industry`, `--format paths`) need the SVGs: copy upstream `skills/logo-design/assets/library/svg/` into the skill's `assets/library/svg/` (ignored by git here). Upstream repo files (README, TRADEMARKS, CI, `evals/`, `tools/`, `docs/images/`, `.claude-plugin/`) are left out. The 2026-10-14 sync was copied from a local clone at upstream commit 0ecf52e.

@@ -46,6 +46,7 @@ A loaded skill stays in the conversation and is read again on every later turn, 
 | taste-skill | 10 anti-slop frontend / imagegen skills | — |
 | scroll-world | Scroll-scrub Higgsfield cinematic world landing | Higgsfield CLI, ffmpeg |
 | anatomy | Interactive isometric SVG explainer figures (library-only; optional WebGL and 3D) | Node.js 20.10+, Chrome for its checks |
+| logo-design | Logo and brand-mark design from brief to SVG kit (library-only; reference logo SVGs not bundled) | Python 3; a renderer (cairosvg, rsvg-convert, Inkscape or Chrome) to view PNGs |
 | dcg | Destructive Command Guard (agent shell/git safety hooks) | `dcg` binary (upstream installer) |
 | emil-skills | 12 motion craft / design engineering skills (web + Expo animation, Sonner, Swift) | — |
 | i-have-adhd | Action-first, numbered, no-preamble output shape (explicit `/i-have-adhd`) | — |

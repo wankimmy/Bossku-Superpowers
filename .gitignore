@@ -30,3 +30,6 @@ temp/
 # IDE
 .idea/
 .vscode/
+
+# logo-design reference logos (trademarks; fetched locally, never committed)
+skills/logo-design/assets/library/svg/

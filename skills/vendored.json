@@ -73,6 +73,10 @@
     "anatomy": {
       "upstream": "wheresryan22/anatomy",
       "last_synced": "2026-10-13"
+    },
+    "logo-design": {
+      "upstream": "kaankiziltug/logo-design-skill",
+      "last_synced": "2026-10-14"
     }
   },
   "packs": {
@@ -239,6 +243,9 @@
     ],
     "anatomy": [
       "anatomy"
+    ],
+    "logo-design": [
+      "logo-design"
     ]
   },
   "skills": {
@@ -369,7 +376,8 @@
     "odl-pdf": "opendataloader-pdf",
     "moli-webfetch": "moli",
     "moli-cdp-server": "moli",
-    "anatomy": "anatomy"
+    "anatomy": "anatomy",
+    "logo-design": "logo-design"
   },
   "excluded": {
     "taste-skill-v1": "taste-skill: legacy v1 kept upstream for exact-v1 compatibility; conflicts with the default stack",
