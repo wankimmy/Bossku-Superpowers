@@ -171,12 +171,12 @@ class VaultMemoryTests(unittest.TestCase):
         chat = self.home / 'Codex' / '2026-10-09' / 'referenced-chatgpt-conversation-this-is-an'
         chat.mkdir(parents=True)
         result = remember(chat, 'decision', 'Portable skills.', home=self.home)
-        inbox = self.vault / 'BosskuAI' / '_inbox'
+        inbox = self.vault / 'BosskuAI' / '_other-notes'
         self.assertEqual(Path(result['file']), inbox / 'decisions.md')
         self.assertIn(f'From: {chat.resolve()}', Path(result['file']).read_text(encoding='utf-8'))
-        self.assertIn('vault inbox', result['message'])
+        self.assertIn('folder for other notes', result['message'])
         remember(self.home / 'Codex', 'decision', 'Second folder, same inbox.', home=self.home)
-        self.assertEqual(sorted(p.name for p in (self.vault / 'BosskuAI').iterdir()), ['_inbox'])
+        self.assertEqual(sorted(p.name for p in (self.vault / 'BosskuAI').iterdir()), ['_other-notes'])
         self.assertEqual(sync_project(chat, home=self.home)['mirrored']['status'], 'skipped')
 
     def test_a_clone_or_worktree_joins_the_folder_of_its_repo(self):

@@ -31,6 +31,35 @@ from bossku.redact import redact
 NOTE_FILES = tuple(KIND_TO_FILE.values()) + ("handoff.md",)
 THROTTLE_SECONDS = 60
 ARCHIVE = "_archive"
+GLOBAL_RULES = "_global-rules"          # copies of the rules every agent reads, for all projects
+AGENT_RULES = "agent-rules"             # in a project: copies of its CLAUDE.md, AGENTS.md and .claude/rules
+CLAUDE_MEMORY = "claude-memory"         # in a project: copies of Claude Code's own memory notes
+# _archive sub-folders: old copies kept for safety, never read by an agent
+EDIT_CONFLICTS = "edit-conflicts"       # your vault edit, kept when the original changed underneath it
+MERGED_ORIGINALS = "merged-originals"   # a notes file as it was before tidy merged it into another folder
+DELETED_FOLDER_COPIES = "deleted-folder-copies"   # copies of files from a folder that no longer exists
+OLD_FORMAT_NOTES = "old-format-notes"   # notes in the layout of older versions
+TEST_LEFTOVERS = "test-leftovers"       # notes a test run wrote to the real vault
+# the global rules copies, named after the tool that reads them
+GLOBAL_RULE_FILES = (((".claude", "CLAUDE.md"), "claude-code-CLAUDE.md"),
+                     ((".codex", "AGENTS.md"), "codex-AGENTS.md"),
+                     ((".config", "opencode", "AGENTS.md"), "opencode-AGENTS.md"))
+FILE_RENAMES = {"claude-CLAUDE.md": "claude-code-CLAUDE.md"}
+# old name -> new name, applied by tidy: (path relative to BosskuAI, or to a project folder when it starts with "*/")
+OLD_LAYOUT = (
+    ("_inbox", INBOX),
+    ("_unsorted", INBOX),
+    ("_global/notes", INBOX),
+    ("_global/rules", GLOBAL_RULES),
+    ("_archive/conflicts", f"{ARCHIVE}/{EDIT_CONFLICTS}"),
+    ("_archive/merged", f"{ARCHIVE}/{MERGED_ORIGINALS}"),
+    ("_archive/old-folders", f"{ARCHIVE}/{DELETED_FOLDER_COPIES}"),
+    ("_archive/legacy", f"{ARCHIVE}/{OLD_FORMAT_NOTES}"),
+    ("_archive/unsorted", f"{ARCHIVE}/{TEST_LEFTOVERS}"),
+    ("*/rules", AGENT_RULES),
+    ("*/claude-memory/root", CLAUDE_MEMORY),
+    ("*/_legacy", f"{ARCHIVE}/{OLD_FORMAT_NOTES}"),
+)
 CONFLICT = re.compile(r"\.md\.conflict(\.\d+)?\.md$")
 
 
@@ -146,7 +175,7 @@ def _claude_project_dirs(root: Path, home_dir: Path) -> list[tuple[str, Path]]:
     projects = home_dir / ".claude" / "projects"
     if not projects.is_dir():
         return []
-    wanted = {_slug(root).lower(): "root"}
+    wanted = {_slug(root).lower(): ""}        # the root's own notes sit directly in claude-memory/
     try:
         children = [c for c in root.iterdir() if c.is_dir()]
     except OSError:
@@ -160,7 +189,7 @@ def _claude_project_dirs(root: Path, home_dir: Path) -> list[tuple[str, Path]]:
                 if tree.is_dir():
                     wanted.setdefault(_slug(tree).lower(), f"{holder.name}-worktree-{tree.name}")
     return sorted((label, entry) for entry in projects.iterdir()
-                  if entry.is_dir() and (label := wanted.get(entry.name.lower())))
+                  if entry.is_dir() and (label := wanted.get(entry.name.lower())) is not None)
 
 
 def sync(project: Path, *, home: Path | None = None, force: bool = False) -> dict:
@@ -190,17 +219,15 @@ def sync(project: Path, *, home: Path | None = None, force: bool = False) -> dic
         memory = folder / "memory"
         if memory.is_dir():
             for note in sorted(memory.glob("*.md")):
-                mirror(note, base / ns / "claude-memory" / suffix / note.name, "Claude Code auto-memory")
-    for src, name in ((home_dir / ".claude" / "CLAUDE.md", "claude-CLAUDE.md"),
-                      (home_dir / ".codex" / "AGENTS.md", "codex-AGENTS.md"),
-                      (home_dir / ".config" / "opencode" / "AGENTS.md", "opencode-AGENTS.md")):
-        mirror(src, base / "_global" / "rules" / name, "global rules")
+                mirror(note, base / ns / CLAUDE_MEMORY / suffix / note.name, "Claude Code auto-memory")
+    for parts, name in GLOBAL_RULE_FILES:
+        mirror(home_dir.joinpath(*parts), base / GLOBAL_RULES / name, "global rules")
     for name in ("CLAUDE.md", "AGENTS.md"):
-        mirror(root / name, base / ns / "rules" / name, "project rules")
+        mirror(root / name, base / ns / AGENT_RULES / name, "project rules")
     rules_dir = root / ".claude" / "rules"
     if rules_dir.is_dir():
         for rule in sorted(rules_dir.glob("*.md")):
-            mirror(rule, base / ns / "rules" / "claude-rules" / rule.name, "project rules")
+            mirror(rule, base / ns / AGENT_RULES / "claude-rules" / rule.name, "project rules")
     legacy = root / ".bossku" / "memory"
     if legacy.is_dir():
         for name in NOTE_FILES:
@@ -213,28 +240,109 @@ def sync(project: Path, *, home: Path | None = None, force: bool = False) -> dic
     return {"status": "ok", "namespace": ns, "changed": changed}
 
 
+NOTE_ABOUT = {
+    "project.md": "what the project is: stack, setup, facts",
+    "decisions.md": "choices made and why",
+    "plans.md": "work planned for later",
+    "learnings.md": "lessons and gotchas",
+    "handoff.md": "unfinished work to pick up next",
+}
+GUIDE = """# Start here: BosskuAI memory
+
+What your agents remembered, one folder per project. This page is rewritten automatically.
+
+## What is where
+
+| Folder | What it holds |
+|---|---|
+| `<project>/` | one folder per project (a git repo, or a folder in `memory_project_roots`) |
+| `<project>/repos/<repo>/` | notes about one repo inside that project |
+| `<project>/agent-rules/` | copies of the project's CLAUDE.md and AGENTS.md (edit the originals in the repo) |
+| `<project>/claude-memory/` | copies of Claude Code's own memory for that project (MEMORY.md lists them) |
+| `_other-notes/` | notes saved from folders that are not projects; each note says where it came from |
+| `_global-rules/` | copies of the rules every agent reads, for all projects |
+| `_archive/` | old copies kept for safety; agents never read them |
+
+Every notes folder uses the same files: `project.md` (what the project is), `decisions.md` (choices and why), `plans.md` (work for later), `learnings.md` (lessons and gotchas) and `handoff.md` (unfinished work). Newest entries are at the bottom.
+"""
+ARCHIVE_ABOUT = {
+    EDIT_CONFLICTS: "your vault edit, kept when the original changed underneath it",
+    MERGED_ORIGINALS: "notes files as they were before tidy merged them into another folder",
+    DELETED_FOLDER_COPIES: "copies of files from folders that no longer exist",
+    OLD_FORMAT_NOTES: "notes in the layout of older versions",
+    TEST_LEFTOVERS: "notes a test run wrote to the real vault",
+}
+
+
+def _link(base: Path, p: Path, label: str) -> str:
+    return f"[[{p.relative_to(base).with_suffix('').as_posix()}|{label}]]"
+
+
+OTHER_ABOUT = {
+    "project.md": "facts and reviews",
+    "decisions.md": "choices made and why",
+    "plans.md": "work planned for later",
+    "learnings.md": "lessons and gotchas",
+    "handoff.md": "unfinished work to pick up next",
+}
+RULE_LABELS = {
+    "claude-code-CLAUDE.md": "Claude Code: CLAUDE.md",
+    "codex-AGENTS.md": "Codex: AGENTS.md",
+    "opencode-AGENTS.md": "OpenCode: AGENTS.md",
+}
+
+
+def _notes_lines(base: Path, folder: Path, about: dict[str, str] = NOTE_ABOUT) -> list[str]:
+    return [f"- {_link(base, folder / name, name[:-3])}: {text}"
+            for name, text in about.items() if (folder / name).is_file()]
+
+
 def write_index(base: Path) -> bool:
-    """A table of contents of every project folder, with links. True when it changed."""
+    """The vault's start page: what each folder is for, then every project with links. True when it changed."""
     if not base.is_dir():
         return False
-    lines = ["---", "generated: true", "---", "", "# Bossku Superpower memory", "",
-             "Notes, learnings, decisions and rules saved by your agents. This page is rewritten automatically.", ""]
-    sections = []
-    for folder in sorted(p for p in base.iterdir() if p.is_dir() and not p.name.startswith(("_", "."))):
-        notes = sorted(p for p in folder.rglob("*.md") if p.name != "Index.md" and not CONFLICT.search(p.name))
-        if not notes:
+    sections = [GUIDE.rstrip()]
+    for folder in sorted((p for p in base.iterdir() if p.is_dir() and not p.name.startswith(("_", "."))),
+                         key=lambda p: p.name.lower()):
+        md = sorted(p for p in folder.rglob("*.md") if not CONFLICT.search(p.name))
+        if not md:
             continue
-        links = [f"- [[{p.relative_to(base).with_suffix('').as_posix()}|{p.relative_to(folder).as_posix()}]]" for p in notes]
-        sections.append(f"## {folder.name}\n\n" + "\n".join(links))
-    inbox = sorted((base / INBOX).glob("*.md")) if (base / INBOX).is_dir() else []
-    if inbox:
-        sections.append("## Inbox (notes from folders that are not projects)\n\n" + "\n".join(
-            f"- [[{p.relative_to(base).with_suffix('').as_posix()}|{p.name}]]" for p in inbox))
-    glob = sorted((base / "_global").rglob("*.md")) if (base / "_global").is_dir() else []
+        part = [f"## {folder.name}", ""] + _notes_lines(base, folder)
+        repos = folder / "repos"
+        for repo in sorted(p for p in repos.iterdir() if p.is_dir()) if repos.is_dir() else []:
+            links = ", ".join(_link(base, repo / n, n[:-3]) for n in NOTE_ABOUT if (repo / n).is_file())
+            if links:
+                part.append(f"- repo `{repo.name}`: {links}")
+        rules = sorted((folder / AGENT_RULES).rglob("*.md")) if (folder / AGENT_RULES).is_dir() else []
+        if rules:
+            part.append("- agent rules (copies): " + ", ".join(
+                _link(base, p, p.relative_to(folder / AGENT_RULES).as_posix()) for p in rules))
+        memory = folder / CLAUDE_MEMORY
+        if memory.is_dir():
+            count = sum(1 for p in memory.rglob("*.md") if p.name != "MEMORY.md")
+            start = memory / "MEMORY.md"
+            label = _link(base, start, "MEMORY") if start.is_file() else f"`{CLAUDE_MEMORY}/`"
+            part.append(f"- Claude Code memory (copies): {label}, {count} note{'' if count == 1 else 's'}")
+        shown = {folder / n for n in NOTE_ABOUT} | set(rules)
+        rest = [p for p in md if p not in shown and repos not in p.parents and memory not in p.parents]
+        if rest:
+            part.append("- other files: " + ", ".join(_link(base, p, p.relative_to(folder).as_posix()) for p in rest))
+        sections.append("\n".join(part))
+    other = base / INBOX
+    if other.is_dir() and any(other.glob("*.md")):
+        sections.append("\n".join(["## Other notes (not from a project)", "",
+                                   "Each entry starts with `From:` and the folder it was saved in.", ""]
+                                  + _notes_lines(base, other, OTHER_ABOUT)))
+    glob = sorted((base / GLOBAL_RULES).glob("*.md")) if (base / GLOBAL_RULES).is_dir() else []
     if glob:
-        sections.append("## Global\n\n" + "\n".join(
-            f"- [[{p.relative_to(base).with_suffix('').as_posix()}|{p.relative_to(base / '_global').as_posix()}]]" for p in glob))
-    text = "\n".join(lines) + "\n" + "\n\n".join(sections) + "\n"
+        sections.append("## Rules for all projects (copies)\n\n" + "\n".join(
+            f"- {_link(base, p, RULE_LABELS.get(p.name, p.stem))}" for p in glob))
+    archive = base / ARCHIVE
+    kept = [f"- `{ARCHIVE}/{p.name}/`: {ARCHIVE_ABOUT.get(p.name, 'old files kept for safety')}"
+            for p in sorted(archive.iterdir()) if p.is_dir()] if archive.is_dir() else []
+    if kept:
+        sections.append("## Archive (old copies, safe to ignore)\n\n" + "\n".join(kept))
+    text = "---\ngenerated: true\n---\n\n" + "\n\n".join(sections) + "\n"
     target = base / "Index.md"
     if target.is_file() and _read(target) == text:
         return False
@@ -297,6 +405,58 @@ def _folder_moves(cfg: dict, base: Path) -> dict[str, Path]:
     return moves
 
 
+def _same_file(a: Path, b: Path) -> bool:
+    try:
+        return a.read_bytes() == b.read_bytes()
+    except OSError:
+        return False
+
+
+def _already_in(src: Path, target: Path) -> bool:
+    """True when every entry of `src` is already in `target`, so importing it again would change nothing."""
+    try:
+        current = _read(target)
+        return merge_notes(current, _read(src)) == merge_notes(current, "")
+    except OSError:
+        return False
+
+
+def _layout_steps(base: Path) -> list[dict]:
+    """Steps that move folders still using an older name (`_inbox`, `rules`, `claude-memory/root`...) to the
+    current one. Notes files are merged; a mirrored copy that sync already wrote again under the new name is dropped
+    when it is identical, and archived when it is not."""
+    projects = [p for p in base.iterdir() if p.is_dir() and not p.name.startswith(("_", "."))]
+    pairs: list[tuple[Path, Path]] = []
+    for old, new in OLD_LAYOUT:
+        if old.startswith("*/"):
+            for project in projects:
+                dest = base / new / project.name if new.startswith("_") else project / new
+                pairs.append((project / old[2:], dest))
+        else:
+            pairs.append((base / old, base / new))
+    steps: list[dict] = []
+    why = "renamed so the vault is easier to read"
+    for src_dir, dest_dir in pairs:
+        if not src_dir.is_dir():
+            continue
+        for f in sorted(_files(src_dir)):
+            if dest_dir.name == INBOX and f.name in NOTE_FILES and (dest_dir / f.name).is_file():
+                steps.append({"action": "merge", "source": str(f), "target": str(dest_dir / f.name), "why": why})
+                continue
+            rel = f.relative_to(src_dir)
+            dest = dest_dir / rel.parent / FILE_RENAMES.get(rel.name, rel.name)
+            if not dest.is_file() or f.relative_to(base).parts[0] == ARCHIVE:   # archived copies are never merged
+                steps.append({"action": "move", "source": str(f), "target": str(dest), "why": why})
+            elif _same_file(f, dest):
+                steps.append({"action": "drop-duplicate", "source": str(f), "target": str(dest), "why": "the same file is already there"})
+            elif f.name in NOTE_FILES:
+                steps.append({"action": "merge", "source": str(f), "target": str(dest), "why": why})
+            else:
+                steps.append({"action": "archive", "source": str(f),
+                              "target": str(base / ARCHIVE / EDIT_CONFLICTS / f.relative_to(base)), "why": "an older copy of a file that is already there"})
+    return steps
+
+
 def plan_tidy(*, home: Path | None = None) -> list[dict]:
     """What a clean-up would do, as a list of {action, source, target, why}. Changes nothing."""
     cfg = load_user_config(home)
@@ -314,7 +474,7 @@ def plan_tidy(*, home: Path | None = None) -> list[dict]:
                 if child.is_dir() and not child.name.startswith("."):
                     owners.setdefault(child.name.lower(), set()).add(namespaces[root])
     moves = _folder_moves(cfg, base)
-    plan: list[dict] = []
+    plan: list[dict] = _layout_steps(base)
     for folder in sorted(p for p in base.iterdir() if p.is_dir() and not p.name.startswith(("_", "."))):
         files = _files(folder)
         if not files:
@@ -322,7 +482,7 @@ def plan_tidy(*, home: Path | None = None) -> list[dict]:
             continue
         conflicts = [f for f in files if CONFLICT.search(f.name)]
         for f in conflicts:
-            plan.append({"action": "archive", "source": str(f), "target": str(base / ARCHIVE / "conflicts" / folder.name / f.name),
+            plan.append({"action": "archive", "source": str(f), "target": str(base / ARCHIVE / EDIT_CONFLICTS / folder.name / f.name),
                          "why": "backup the old export made when the vault copy had been edited"})
         real = [f for f in files if f not in conflicts]
         low = folder.name.lower()
@@ -356,11 +516,11 @@ def plan_tidy(*, home: Path | None = None) -> list[dict]:
                     plan.append({"action": "merge", "source": str(f), "target": str(base / dest / f.name), "why": why})
                 else:            # mirrored rules and other copies: regenerated by sync, so the old copy is archived
                     plan.append({"action": "archive", "source": str(f),
-                                 "target": str(base / ARCHIVE / "old-folders" / folder.name / f.relative_to(folder)), "why": why})
+                                 "target": str(base / ARCHIVE / DELETED_FOLDER_COPIES / folder.name / f.relative_to(folder)), "why": why})
         elif all(_stale_mirror(f) for f in real):
             for f in real:
                 plan.append({"action": "archive", "source": str(f),
-                             "target": str(base / ARCHIVE / "old-folders" / folder.name / f.relative_to(folder)),
+                             "target": str(base / ARCHIVE / DELETED_FOLDER_COPIES / folder.name / f.relative_to(folder)),
                              "why": "copies of files in a folder that no longer exists"})
     for root in roots:
         if not root.is_dir():
@@ -368,9 +528,10 @@ def plan_tidy(*, home: Path | None = None) -> list[dict]:
         for sub in [root, *[c for c in root.iterdir() if c.is_dir()]]:
             memory = sub / ".bossku" / "memory"
             for name in NOTE_FILES:
-                if (memory / name).is_file() and (memory / name).stat().st_size > 0:
-                    plan.append({"action": "import", "source": str(memory / name),
-                                 "target": str(base / namespaces[root] / "repos" / (sub.name if sub != root else "_root") / name),
+                src = memory / name
+                target = base / namespaces[root] / "repos" / (sub.name if sub != root else "_root") / name
+                if src.is_file() and src.stat().st_size > 0 and not _already_in(src, target):
+                    plan.append({"action": "import", "source": str(src), "target": str(target),
                                  "why": "notes stored outside the vault (the original is left in place)"})
     return plan
 
@@ -435,6 +596,11 @@ def _apply_step(step: dict, base: Path) -> str | None:
         return None
     if not src.is_file() or dest is None:
         return None
+    if action == "drop-duplicate":   # only when an identical copy is still there (the zip backup has it as well)
+        if dest.is_file() and _same_file(src, dest):
+            src.unlink()
+            return action
+        return None
     dest.parent.mkdir(parents=True, exist_ok=True)
     if action in ("merge", "import"):
         if dest.is_file():
@@ -442,7 +608,7 @@ def _apply_step(step: dict, base: Path) -> str | None:
         else:
             dest.write_text(_read(src), encoding="utf-8")
         if action == "merge":        # keep the original: it moves to the archive once its entries are in the target
-            keep = _free(base / ARCHIVE / "merged" / src.relative_to(base).parent / src.name)
+            keep = _free(base / ARCHIVE / MERGED_ORIGINALS / src.relative_to(base).parent / src.name)
             keep.parent.mkdir(parents=True, exist_ok=True)
             shutil.move(str(src), str(keep))
         return action
@@ -456,7 +622,7 @@ def apply_tidy(plan: list[dict], *, home: Path | None = None) -> dict:
     if base is None or not base.is_dir():
         return {"status": "skipped"}
     zip_path = backup(base, home)
-    done = {"merge": 0, "move": 0, "archive": 0, "import": 0, "remove-empty-folder": 0}
+    done = {"merge": 0, "move": 0, "archive": 0, "import": 0, "drop-duplicate": 0, "remove-empty-folder": 0}
     failed: list[dict] = []
     for step in plan:
         try:
@@ -466,10 +632,11 @@ def apply_tidy(plan: list[dict], *, home: Path | None = None) -> dict:
             continue
         if action:
             done[action] += 1
-    for folder in sorted((p for p in base.iterdir() if p.is_dir() and not p.name.startswith(("_", "."))), key=lambda p: p.name):
-        if not _files(folder):
+    folders = (p for p in base.rglob("*") if p.is_dir() and not any(s.startswith(".") for s in p.relative_to(base).parts))
+    for folder in sorted(folders, key=lambda p: len(p.parts), reverse=True):     # deepest first, so parents empty out
+        if not any(folder.iterdir()):
             try:
-                _remove_empty_folder(folder)
+                _rmdir(folder)
                 done["remove-empty-folder"] += 1
             except OSError as error:
                 failed.append({"step": "remove-empty-folder", "source": str(folder), "error": str(error)})

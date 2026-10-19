@@ -19,7 +19,7 @@ KIND_TO_FILE = {
 TEMP_SKIP = "the project is in the OS temp folder, so it is not copied to a vault outside it"
 # Notes from a folder that is not a project (a Codex chat folder, a scratch folder) all go to this one vault folder,
 # so throwaway folder names never become top-level vault folders.
-INBOX = "_inbox"
+INBOX = "_other-notes"
 
 
 def load_user_config(home: Path | None = None) -> dict:
@@ -261,7 +261,7 @@ def _saved(kind: str, target: Path, vault: dict) -> dict:
     "skipped" took a saved note for a failure and retried, wrote test notes, and edited the memory files by hand."""
     status = vault.get("status")
     if status == "ok" and vault.get("storage") == "obsidian" and target.parent.name == INBOX:
-        where = (f"in the vault inbox: {target} (this folder is not a git repo or a memory_project_roots entry; "
+        where = (f"in the vault folder for other notes: {target} (this folder is not a git repo or a memory_project_roots entry; "
                  "add it there to give it its own vault folder)")
     elif status == "ok" and vault.get("storage") == "obsidian":
         where = f"in the vault: {target}"

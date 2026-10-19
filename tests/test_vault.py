@@ -21,7 +21,7 @@ ENTRY_A = "## 2026-09-01 10:00 UTC\n\nUse integer cents for money."
 ENTRY_B = "## 2026-09-02 10:00 UTC\n\nTests live next to the code."
 
 
-MOVES = {"02dd35b7f2": "_archive/unsorted/02dd35b7f2", "web-legacy": "Shop/repos/web", "se": "_global/notes/se"}
+MOVES = {"02dd35b7f2": "_archive/test-leftovers/02dd35b7f2", "web-legacy": "Shop/repos/web", "se": "_other-notes/se"}
 
 
 class World:
@@ -56,14 +56,14 @@ class SyncTests(unittest.TestCase):
             result = vault.sync(w.root, home=w.home, force=True)
             self.assertEqual(result["status"], "ok")
             self.assertEqual(result["namespace"], "Shop")
-            self.assertIn("prefers short answers", (w.base / "Shop" / "claude-memory" / "root" / "MEMORY.md").read_text(encoding="utf-8"))
+            self.assertIn("prefers short answers", (w.base / "Shop" / "claude-memory" / "MEMORY.md").read_text(encoding="utf-8"))
             self.assertTrue((w.base / "Shop" / "claude-memory" / "api" / "api.md").is_file())
-            self.assertIn("Always run the tests.", (w.base / "_global" / "rules" / "claude-CLAUDE.md").read_text(encoding="utf-8"))
-            self.assertTrue((w.base / "Shop" / "rules" / "AGENTS.md").is_file())
+            self.assertIn("Always run the tests.", (w.base / "_global-rules" / "claude-code-CLAUDE.md").read_text(encoding="utf-8"))
+            self.assertTrue((w.base / "Shop" / "agent-rules" / "AGENTS.md").is_file())
             self.assertTrue((w.base / "Shop" / "imported" / "repo-memory" / "decisions.md").is_file())
             index = (w.base / "Index.md").read_text(encoding="utf-8")
-            self.assertIn("[[Shop/claude-memory/root/MEMORY", index)
-            self.assertIn("## Global", index)
+            self.assertIn("[[Shop/claude-memory/MEMORY", index)
+            self.assertIn("## Rules for all projects", index)
 
     def test_a_second_sync_changes_nothing_and_a_changed_source_is_picked_up(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -73,7 +73,7 @@ class SyncTests(unittest.TestCase):
             self.assertEqual(vault.sync(w.root, home=w.home, force=True)["changed"], [])
             note.write_text("two", encoding="utf-8")
             again = vault.sync(w.root, home=w.home, force=True)
-            self.assertIn("Shop/claude-memory/root/MEMORY.md", [c.replace("\\", "/") for c in again["changed"]])
+            self.assertIn("Shop/claude-memory/MEMORY.md", [c.replace("\\", "/") for c in again["changed"]])
 
     def test_a_sibling_folder_with_a_longer_name_is_not_part_of_the_project(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -93,7 +93,7 @@ class SyncTests(unittest.TestCase):
             vault.sync(w.root, home=w.home, force=True)
             self.assertEqual(vault.sync(w.root, home=w.home)["status"], "throttled")
             self.assertEqual(vault.sync(other, home=w.home)["status"], "ok")          # another project is not held back
-            self.assertTrue((w.base / "Blog" / "claude-memory" / "root" / "MEMORY.md").is_file())
+            self.assertTrue((w.base / "Blog" / "claude-memory" / "MEMORY.md").is_file())
 
     def test_a_namespace_cannot_leave_the_vault_and_matches_where_notes_are_saved(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -102,7 +102,7 @@ class SyncTests(unittest.TestCase):
             write(w.root / "AGENTS.md", "rules")
             result = vault.sync(w.root, home=w.home, force=True)
             self.assertEqual(result["namespace"], "------escape-ns")
-            self.assertTrue((w.base / "------escape-ns" / "rules" / "AGENTS.md").is_file())
+            self.assertTrue((w.base / "------escape-ns" / "agent-rules" / "AGENTS.md").is_file())
             self.assertFalse((w.tmp / "escape ns").exists())
 
     def test_a_missing_bosskuai_folder_is_not_an_error(self):
@@ -118,7 +118,7 @@ class SyncTests(unittest.TestCase):
             write(w.home / ".claude" / "CLAUDE.md",
                   "token: sk-ant-abcdefghijklmnopqrstuvwxyz0123456789\nuse sk-proj-abcdefghijklmnopqrstuvwxyz0123456789 here")
             vault.sync(w.root, home=w.home, force=True)
-            copy = (w.base / "_global" / "rules" / "claude-CLAUDE.md").read_text(encoding="utf-8")
+            copy = (w.base / "_global-rules" / "claude-code-CLAUDE.md").read_text(encoding="utf-8")
             self.assertNotIn("sk-ant-abcdefghijklmnop", copy)
             self.assertNotIn("sk-proj-abcdefghijklmnop", copy)
 
@@ -127,7 +127,7 @@ class SyncTests(unittest.TestCase):
             w = World(tmp)
             rules = write(w.root / "AGENTS.md", "version one")
             vault.sync(w.root, home=w.home, force=True)
-            copy = w.base / "Shop" / "rules" / "AGENTS.md"
+            copy = w.base / "Shop" / "agent-rules" / "AGENTS.md"
             copy.write_text(copy.read_text(encoding="utf-8") + "\nMY OWN EDIT\n", encoding="utf-8")
             vault.sync(w.root, home=w.home, force=True)
             self.assertIn("MY OWN EDIT", copy.read_text(encoding="utf-8"))                 # original unchanged: left alone
@@ -231,13 +231,13 @@ class TidyTests(unittest.TestCase):
             (registry / "a.json").write_text(json.dumps({"project_root": str(chat),
                                                          "memory_dir": str(w.base / "referenced-chatgpt")}), encoding="utf-8")
             write(w.base / "referenced-chatgpt" / "decisions.md", "# Decisions\n\n" + ENTRY_A + "\n")
-            write(w.base / "bw2" / "rules" / "AGENTS.md", f"---\nmirror_of: {w.tmp / 'gone' / 'AGENTS.md'}\n---\n\nrules\n")
+            write(w.base / "bw2" / "agent-rules" / "AGENTS.md", f"---\nmirror_of: {w.tmp / 'gone' / 'AGENTS.md'}\n---\n\nrules\n")
             write(w.base / "Mine" / "ideas.md", "my own note")                   # a folder you made is left alone
             result = vault.apply_tidy(vault.plan_tidy(home=w.home), home=w.home)
             self.assertEqual(result["status"], "ok")
-            self.assertIn("integer cents", (w.base / "_inbox" / "decisions.md").read_text(encoding="utf-8"))
-            self.assertTrue((w.base / "_archive" / "old-folders" / "bw2" / "rules" / "AGENTS.md").is_file())
-            self.assertEqual(sorted(p.name for p in w.base.iterdir() if p.is_dir()), ["Mine", "_archive", "_inbox"])
+            self.assertIn("integer cents", (w.base / "_other-notes" / "decisions.md").read_text(encoding="utf-8"))
+            self.assertTrue((w.base / "_archive" / "deleted-folder-copies" / "bw2" / "agent-rules" / "AGENTS.md").is_file())
+            self.assertEqual(sorted(p.name for p in w.base.iterdir() if p.is_dir()), ["Mine", "_archive", "_other-notes"])
 
     def test_a_three_letter_project_keeps_its_notes(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -267,10 +267,10 @@ class TidyTests(unittest.TestCase):
             self.assertIn("Tests live next to the code.", repo)
             web = (w.base / "Shop" / "repos" / "web" / "decisions.md").read_text(encoding="utf-8")
             self.assertIn("integer cents", web)                                       # imported from the repo's .bossku
-            self.assertTrue((w.base / "_archive" / "conflicts" / "api" / "decisions.md.conflict.md").is_file())
-            self.assertTrue((w.base / "_archive" / "unsorted" / "02dd35b7f2" / "learnings.md").is_file())    # via vault_folder_moves
-            self.assertIn("something", (w.base / "_inbox" / "project.md").read_text(encoding="utf-8"))
-            self.assertTrue((w.base / "_global" / "notes" / "se" / "decisions.md").is_file())
+            self.assertTrue((w.base / "_archive" / "edit-conflicts" / "api" / "decisions.md.conflict.md").is_file())
+            self.assertTrue((w.base / "_archive" / "test-leftovers" / "02dd35b7f2" / "learnings.md").is_file())    # via vault_folder_moves
+            self.assertIn("something", (w.base / "_other-notes" / "project.md").read_text(encoding="utf-8"))
+            self.assertTrue((w.base / "_other-notes" / "se" / "decisions.md").is_file())
             self.assertIn("separate project named like a sub-repo", (w.base / "Shop" / "repos" / "web" / "learnings.md").read_text(encoding="utf-8"))
             for kept in ("decade2025", "other-project"):
                 self.assertTrue((w.base / kept / "learnings.md").is_file(), kept)
@@ -288,7 +288,7 @@ class TidyTests(unittest.TestCase):
             vault.apply_tidy(vault.plan_tidy(home=w.home), home=w.home)
             write(w.base / "api" / "decisions.md", "# Decisions\n\n## 2026-09-03 10:00 UTC\n\nthird\n")
             vault.apply_tidy(vault.plan_tidy(home=w.home), home=w.home)
-            archived = "".join(p.read_text(encoding="utf-8") for p in (w.base / "_archive" / "merged").rglob("*.md"))
+            archived = "".join(p.read_text(encoding="utf-8") for p in (w.base / "_archive" / "merged-originals").rglob("*.md"))
             for text in ("integer cents", "next to the code", "third"):
                 self.assertIn(text, archived)
 
@@ -316,11 +316,33 @@ class TidyTests(unittest.TestCase):
             self.assertTrue((w.base / "Shop" / "repos" / "web" / "learnings.md").is_file())
             if os.name == "nt":
                 self.assertFalse(locked.exists())
-            with mock.patch("bossku.vault._remove_empty_folder", side_effect=PermissionError("denied")):
+            with mock.patch("bossku.vault._rmdir", side_effect=PermissionError("denied")):
                 (w.base / "stuck").mkdir()
                 again = vault.apply_tidy([], home=w.home)
             self.assertEqual(again["status"], "partial")
             self.assertEqual(again["failed"][0]["step"], "remove-empty-folder")
+
+    def test_old_folder_names_are_renamed_to_the_current_layout(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            w = World(tmp)
+            write(w.base / "_inbox" / "decisions.md", "# Decisions\n\n" + ENTRY_A + "\n")
+            write(w.base / "_global" / "rules" / "claude-CLAUDE.md", "global rules")
+            write(w.base / "Shop" / "rules" / "AGENTS.md", "project rules")
+            write(w.base / "Shop" / "claude-memory" / "root" / "MEMORY.md", "same")
+            write(w.base / "Shop" / "claude-memory" / "MEMORY.md", "same")              # sync already wrote it again
+            write(w.base / "Shop" / "_legacy" / "20260929" / "plans.md", "old plans")
+            write(w.base / "_archive" / "conflicts" / "Shop" / "plans.md.conflict.md", "kept")
+            result = vault.apply_tidy(vault.plan_tidy(home=w.home), home=w.home)
+            self.assertEqual(result["status"], "ok", result)
+            self.assertIn("integer cents", (w.base / "_other-notes" / "decisions.md").read_text(encoding="utf-8"))
+            self.assertTrue((w.base / "_global-rules" / "claude-code-CLAUDE.md").is_file())
+            self.assertTrue((w.base / "Shop" / "agent-rules" / "AGENTS.md").is_file())
+            self.assertEqual((w.base / "Shop" / "claude-memory" / "MEMORY.md").read_text(encoding="utf-8"), "same")
+            self.assertTrue((w.base / "_archive" / "old-format-notes" / "Shop" / "20260929" / "plans.md").is_file())
+            self.assertTrue((w.base / "_archive" / "edit-conflicts" / "Shop" / "plans.md.conflict.md").is_file())
+            for old in ("_inbox", "_global", "Shop/rules", "Shop/claude-memory/root", "Shop/_legacy", "_archive/conflicts"):
+                self.assertFalse((w.base / old).exists(), old)
+            self.assertEqual(vault.plan_tidy(home=w.home), [])                           # a second run has nothing to do
 
     def test_two_backups_in_a_row_keep_both(self):
         with tempfile.TemporaryDirectory() as tmp:
