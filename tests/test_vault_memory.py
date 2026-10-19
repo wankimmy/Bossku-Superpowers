@@ -28,7 +28,7 @@ class VaultMemoryTests(unittest.TestCase):
         self.addCleanup(self.tmp.cleanup)
         self.home = Path(self.tmp.name)
         self.project = self.home / 'repo'
-        self.project.mkdir()
+        (self.project / '.git').mkdir(parents=True)   # a project is a git checkout or a memory_project_roots entry
         self.vault = self.home / 'vault'
         self.vault.mkdir()
         save_user_config({'obsidian_vault': str(self.vault), 'memory_storage': 'obsidian'}, self.home)
@@ -130,7 +130,7 @@ class VaultMemoryTests(unittest.TestCase):
 
     def other_project(self, name='repo'):
         project = self.home / 'other' / name
-        project.mkdir(parents=True)
+        (project / '.git').mkdir(parents=True)
         return project
 
     def snapshot(self):
@@ -160,12 +160,46 @@ class VaultMemoryTests(unittest.TestCase):
 
     def test_sanitized_project_names_cannot_share_claimed_memory(self):
         first = self.home / 'billing.accounts'
-        first.mkdir()
+        (first / '.git').mkdir(parents=True)
         second = self.other_project('billing-accounts')
         result = remember(first, 'decision', 'Billing evidence.', home=self.home)
         self.assertEqual(Path(result['file']).parent.name, 'billing-accounts')
         with self.assertRaisesRegex(ValueError, 'already belongs'):
             remember(second, 'decision', 'Unrelated evidence.', home=self.home)
+
+    def test_a_folder_that_is_not_a_project_saves_to_the_shared_inbox(self):
+        chat = self.home / 'Codex' / '2026-10-09' / 'referenced-chatgpt-conversation-this-is-an'
+        chat.mkdir(parents=True)
+        result = remember(chat, 'decision', 'Portable skills.', home=self.home)
+        inbox = self.vault / 'BosskuAI' / '_inbox'
+        self.assertEqual(Path(result['file']), inbox / 'decisions.md')
+        self.assertIn(f'From: {chat.resolve()}', Path(result['file']).read_text(encoding='utf-8'))
+        self.assertIn('vault inbox', result['message'])
+        remember(self.home / 'Codex', 'decision', 'Second folder, same inbox.', home=self.home)
+        self.assertEqual(sorted(p.name for p in (self.vault / 'BosskuAI').iterdir()), ['_inbox'])
+        self.assertEqual(sync_project(chat, home=self.home)['mirrored']['status'], 'skipped')
+
+    def test_a_clone_or_worktree_joins_the_folder_of_its_repo(self):
+        def remote(project):
+            (project / '.git' / 'config').write_text(
+                '[core]\n\tbare = false\n[remote "origin"]\n\turl = https://github.com/acme/Shop.git\n', encoding='utf-8')
+        remote(self.project)
+        first = remember(self.project, 'decision', 'Original checkout.', home=self.home)
+        clone = self.other_project('bw2')
+        remote(clone)
+        second = remember(clone / 'src', 'decision', 'From the clone.', home=self.home)
+        self.assertEqual(second['file'], first['file'])
+        tree = self.home / 'trees' / 'feature'
+        tree.mkdir(parents=True)
+        (tree / '.git').write_text(f'gitdir: {self.project / ".git" / "worktrees" / "feature"}\n', encoding='utf-8')
+        (self.project / '.git' / 'worktrees' / 'feature').mkdir(parents=True)
+        (self.project / '.git' / 'worktrees' / 'feature' / 'commondir').write_text('../..\n', encoding='utf-8')
+        third = remember(tree, 'decision', 'From the worktree.', home=self.home)
+        self.assertEqual(third['file'], first['file'])
+        other = self.other_project('unrelated')
+        with self.assertRaisesRegex(ValueError, 'already belongs'):          # a different repo with the same name
+            remember(self.other_project('repo'), 'decision', 'No.', home=self.home)
+        self.assertNotEqual(remember(other, 'decision', 'Own folder.', home=self.home)['file'], first['file'])
 
     def test_namespaces_separate_duplicates_without_moving_existing_notes(self):
         other = self.other_project()

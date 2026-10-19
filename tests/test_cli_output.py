@@ -231,6 +231,7 @@ class MemoryTests(OutputCase):
         _, human, _ = self.run_cli("vault", "sync", "--project", str(self.project), tty=True)
         self.assertPlainSummary(human, "Nothing was copied to the vault: no vault configured or vault unavailable.")
         (self.set_vault() / "BosskuAI").mkdir()
+        (self.project / ".git").mkdir(parents=True)          # only a project (a git checkout here) is mirrored into the vault
         _, human, _ = self.run_cli("vault", "sync", "--project", str(self.project), tty=True)
         self.assertPlainSummary(human, "Updated 1 file(s) in the vault: Index.md")
         _, text, result = self.run_cli("vault", "sync", "--project", str(self.project), spy=(vault_module, "sync"))

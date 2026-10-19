@@ -88,7 +88,7 @@ class SyncTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             w = World(tmp)
             other = w.tmp / "work" / "Blog"
-            other.mkdir()
+            (other / ".git").mkdir(parents=True)
             write(w.claude(other) / "MEMORY.md", "blog note")
             vault.sync(w.root, home=w.home, force=True)
             self.assertEqual(vault.sync(w.root, home=w.home)["status"], "throttled")
@@ -197,7 +197,7 @@ class TidyTests(unittest.TestCase):
             self.assertIn(("move", "learnings.md", "02dd35b7f2"), by)               # you asked for it
             self.assertIn(("merge", "learnings.md", "web-legacy"), by)
             self.assertIn(("move", "decisions.md", "se"), by)
-            self.assertIn(("move", "project.md", "g-p-6aa3a5039a348191aa34f447d515df42"), by)
+            self.assertIn(("merge", "project.md", "g-p-6aa3a5039a348191aa34f447d515df42"), by)
             self.assertIn(("remove-empty-folder", "hel", w.base.name), by)
             self.assertIn(("import", "decisions.md", "memory"), by)
             touched = [Path(s["source"]) for s in plan]
@@ -220,6 +220,24 @@ class TidyTests(unittest.TestCase):
             self.build(w)
             plan = vault.plan_tidy(home=w.home)
             self.assertFalse([s for s in plan if Path(s["source"]).parent.name in ("se", "other-project")])
+
+    def test_folders_made_for_chat_folders_and_deleted_clones_are_cleaned_up(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            w = World(tmp)
+            chat = w.tmp / "Codex" / "2026-10-09" / "referenced-chatgpt"
+            chat.mkdir(parents=True)
+            registry = w.home / ".bosskuai" / "memory-project-registry"
+            registry.mkdir(parents=True)
+            (registry / "a.json").write_text(json.dumps({"project_root": str(chat),
+                                                         "memory_dir": str(w.base / "referenced-chatgpt")}), encoding="utf-8")
+            write(w.base / "referenced-chatgpt" / "decisions.md", "# Decisions\n\n" + ENTRY_A + "\n")
+            write(w.base / "bw2" / "rules" / "AGENTS.md", f"---\nmirror_of: {w.tmp / 'gone' / 'AGENTS.md'}\n---\n\nrules\n")
+            write(w.base / "Mine" / "ideas.md", "my own note")                   # a folder you made is left alone
+            result = vault.apply_tidy(vault.plan_tidy(home=w.home), home=w.home)
+            self.assertEqual(result["status"], "ok")
+            self.assertIn("integer cents", (w.base / "_inbox" / "decisions.md").read_text(encoding="utf-8"))
+            self.assertTrue((w.base / "_archive" / "old-folders" / "bw2" / "rules" / "AGENTS.md").is_file())
+            self.assertEqual(sorted(p.name for p in w.base.iterdir() if p.is_dir()), ["Mine", "_archive", "_inbox"])
 
     def test_a_three_letter_project_keeps_its_notes(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -251,7 +269,7 @@ class TidyTests(unittest.TestCase):
             self.assertIn("integer cents", web)                                       # imported from the repo's .bossku
             self.assertTrue((w.base / "_archive" / "conflicts" / "api" / "decisions.md.conflict.md").is_file())
             self.assertTrue((w.base / "_archive" / "unsorted" / "02dd35b7f2" / "learnings.md").is_file())    # via vault_folder_moves
-            self.assertTrue((w.base / "_unsorted" / "g-p-6aa3a5039a348191aa34f447d515df42" / "project.md").is_file())
+            self.assertIn("something", (w.base / "_inbox" / "project.md").read_text(encoding="utf-8"))
             self.assertTrue((w.base / "_global" / "notes" / "se" / "decisions.md").is_file())
             self.assertIn("separate project named like a sub-repo", (w.base / "Shop" / "repos" / "web" / "learnings.md").read_text(encoding="utf-8"))
             for kept in ("decade2025", "other-project"):

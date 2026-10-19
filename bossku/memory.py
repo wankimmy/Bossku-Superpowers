@@ -17,6 +17,9 @@ KIND_TO_FILE = {
     "project": "project.md",
 }
 TEMP_SKIP = "the project is in the OS temp folder, so it is not copied to a vault outside it"
+# Notes from a folder that is not a project (a Codex chat folder, a scratch folder) all go to this one vault folder,
+# so throwaway folder names never become top-level vault folders.
+INBOX = "_inbox"
 
 
 def load_user_config(home: Path | None = None) -> dict:
@@ -43,7 +46,43 @@ def _memory_project_root(project: Path, cfg: dict) -> Path:
         raise ValueError("memory_project_roots must be a list of project paths")
     matches = [Path(root).resolve() for root in roots
                if resolved == Path(root).resolve() or Path(root).resolve() in resolved.parents]
-    return max(matches, key=lambda root: len(root.parts)) if matches else resolved
+    if matches:
+        return max(matches, key=lambda root: len(root.parts))
+    return git_top(resolved) or resolved
+
+
+def git_top(path: Path) -> Path | None:
+    """The top folder of the git checkout (or worktree) that holds `path`, or None."""
+    for folder in (path, *path.parents):
+        if (folder / ".git").exists():
+            return folder
+    return None
+
+
+def git_identity(top: Path) -> str | None:
+    """`owner/repo` of the checkout's origin remote, lower-cased, so clones and worktrees of one repo match."""
+    git = top / ".git"
+    try:
+        if git.is_file():                                    # a worktree: .git says where its git folder is
+            line = git.read_text(encoding="utf-8").strip()
+            git = (top / line.split(":", 1)[1].strip()).resolve() if line.startswith("gitdir:") else git
+            common = git / "commondir"
+            if common.is_file():
+                git = (git / common.read_text(encoding="utf-8").strip()).resolve()
+        text = (git / "config").read_text(encoding="utf-8", errors="replace")
+    except (OSError, IndexError):
+        return None
+    section = ""
+    for raw in text.splitlines():
+        line = raw.strip()
+        if line.startswith("["):
+            section = line
+        elif section == '[remote "origin"]' and line.replace(" ", "").startswith("url="):
+            url = line.split("=", 1)[1].strip().replace("\\", "/").rstrip("/")
+            url = url[:-4] if url.endswith(".git") else url
+            parts = [p for p in url.replace(":", "/").split("/") if p]
+            return "/".join(parts[-2:]).lower() if len(parts) >= 2 else None
+    return None
 
 
 def memory_directory(project: Path, *, home: Path | None = None) -> Path:
@@ -79,14 +118,50 @@ def _memory_location(project: Path, *, home: Path | None = None) -> tuple[str, P
              if Path(root).resolve() == project_root}
     if len(names) > 1:
         raise ValueError("memory_project_namespaces has conflicting names for this project")
-    namespace = next(iter(names), project_root.name)
+    namespace = next(iter(names), None) or auto_namespace(project_root, cfg, vault, home=home)
     target = vault_export_dir(vault, namespace)
     target = ensure_inside(target, vault)
     project_roots = (project.resolve(), project_root)
     if any(target == root or root in target.parents for root in project_roots):
         raise ValueError("Obsidian memory must be outside the code repository")
-    _check_memory_owner(project_root, target, home=home)
+    if namespace != INBOX:          # the inbox is shared by every non-project folder, so nobody owns it
+        _check_memory_owner(project_root, target, home=home)
     return storage, project_root, target
+
+
+def auto_namespace(project_root: Path, cfg: dict, vault: Path, *, home: Path | None = None) -> str:
+    """The vault folder for a project with no configured name.
+
+    A configured root keeps its folder name. A git checkout uses the folder its repo already has (found through the
+    origin remote, so a clone or worktree named `bw2` joins it), else its own folder name. Any other folder is not a
+    project: its notes go to the shared inbox (`bossku vault tidy` moves folders older versions made for one).
+    """
+    roots = cfg.get("memory_project_roots") or []
+    if any(Path(r).resolve() == project_root for r in roots if isinstance(r, str)):
+        return project_root.name
+    if git_top(project_root) == project_root:
+        identity = git_identity(project_root)
+        if identity:
+            for claim in _claims(home):
+                if claim["identity"] == identity and Path(claim["memory_dir"]).is_dir():
+                    return Path(claim["memory_dir"]).name
+        return project_root.name
+    return INBOX
+
+
+def _claims(home: Path | None) -> list[dict]:
+    """Every memory ownership claim, with the git identity of its root (stored, or read now when the root exists)."""
+    folder = user_config_path(home).parent / "memory-project-registry"
+    found = []
+    for path in sorted(folder.glob("*.json")) if folder.is_dir() else []:
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+            root, mem = Path(data["project_root"]).resolve(), Path(data["memory_dir"]).resolve()
+        except (OSError, ValueError, KeyError, TypeError):
+            continue
+        identity = data.get("identity") or (git_identity(root) if git_top(root) == root else None)
+        found.append({"project_root": str(root), "memory_dir": str(mem), "identity": identity})
+    return found
 
 
 def _memory_claim_path(memory_dir: Path, *, home: Path | None = None) -> Path:
@@ -114,7 +189,7 @@ def _check_memory_owner(project_root: Path, memory_dir: Path, *, home: Path | No
         return False
     except (OSError, ValueError) as exc:
         raise ValueError(f"Invalid memory ownership claim: {claim}") from exc
-    if owner != project_root:
+    if owner != project_root and not _same_repo(owner, project_root, data.get("identity")):
         raise ValueError(
             f"Memory directory already belongs to another project: {memory_dir}. "
             "Configure a distinct memory_project_namespaces entry; existing notes were not moved."
@@ -122,12 +197,26 @@ def _check_memory_owner(project_root: Path, memory_dir: Path, *, home: Path | No
     return True
 
 
+def _same_repo(owner: Path, project_root: Path, owner_identity: str | None) -> bool:
+    """True when both roots are checkouts of one git repo (a clone or worktree shares the original's notes)."""
+    if git_top(project_root) != project_root:
+        return False
+    mine = git_identity(project_root)
+    theirs = owner_identity or (git_identity(owner) if git_top(owner) == owner else None)
+    return bool(mine) and mine == theirs
+
+
 def _claim_memory_owner(project_root: Path, memory_dir: Path, *, home: Path | None = None) -> None:
+    if memory_dir.name == INBOX:
+        return
     claim = _memory_claim_path(memory_dir, home=home)
     claim.parent.mkdir(parents=True, exist_ok=True)
+    data = {"project_root": str(project_root), "memory_dir": str(memory_dir)}
+    if git_top(project_root) == project_root and (identity := git_identity(project_root)):
+        data["identity"] = identity
     try:
         with claim.open("x", encoding="utf-8") as stream:
-            json.dump({"project_root": str(project_root), "memory_dir": str(memory_dir)}, stream)
+            json.dump(data, stream)
     except FileExistsError:
         if not _check_memory_owner(project_root, memory_dir, home=home):
             raise ValueError(f"Memory ownership claim disappeared: {claim}")
@@ -151,6 +240,8 @@ def remember(
     mem_dir.mkdir(parents=True, exist_ok=True)
     target = mem_dir / KIND_TO_FILE[kind]
     stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    if storage == "obsidian" and mem_dir.name == INBOX:     # say where an inbox note came from
+        cleaned = f"From: {project_root}\n\n{cleaned}"
     entry = f"\n## {stamp}\n\n{cleaned}\n"
     with target.open("a", encoding="utf-8") as stream:
         if target.stat().st_size == 0:
@@ -169,7 +260,10 @@ def _saved(kind: str, target: Path, vault: dict) -> dict:
     """The result of a successful save. The first two keys say so plainly: agents that only saw a vault status of
     "skipped" took a saved note for a failure and retried, wrote test notes, and edited the memory files by hand."""
     status = vault.get("status")
-    if status == "ok" and vault.get("storage") == "obsidian":
+    if status == "ok" and vault.get("storage") == "obsidian" and target.parent.name == INBOX:
+        where = (f"in the vault inbox: {target} (this folder is not a git repo or a memory_project_roots entry; "
+                 "add it there to give it its own vault folder)")
+    elif status == "ok" and vault.get("storage") == "obsidian":
         where = f"in the vault: {target}"
     elif status == "ok":
         where = f"to {target} and copied it to the vault"

@@ -204,6 +204,7 @@ class TempProjectIsNotSyncedTests(unittest.TestCase):
         project = parent / name
         notes = project / ".bossku" / "memory"
         notes.mkdir(parents=True)
+        (project / ".git").mkdir()
         (notes / "decisions.md").write_text("# Decisions\n\nKeep it small.\n", encoding="utf-8")
         return project
 
@@ -243,7 +244,7 @@ class TempProjectIsNotSyncedTests(unittest.TestCase):
     def test_obsidian_storage_still_writes_a_project_outside_the_temp_folder_to_the_vault(self):
         save_user_config({"obsidian_vault": str(self.vault), "memory_storage": "obsidian"}, self.home)
         project = self.home / "work" / "shop"
-        project.mkdir(parents=True)
+        (project / ".git").mkdir(parents=True)
         remember(project, "decision", "Keep it small.", home=self.home)
         self.assertIn("Keep it small.", (self.vault / "BosskuAI" / "shop" / "decisions.md").read_text(encoding="utf-8"))
         self.assertFalse((project / ".bossku" / "memory").exists())

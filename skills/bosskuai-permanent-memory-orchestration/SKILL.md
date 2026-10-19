@@ -11,7 +11,7 @@ Automatically save useful verified decisions, plans, project facts, and lessons 
 
 Run `bossku memory-path --project <actual-project-root>` and read relevant kind files from the returned `memory_dir`. Start with a non-empty handoff.md when continuing unfinished work.
 Storage comes from ~/.bosskuai/config.json:
-- `memory_storage: "obsidian"`: canonical notes live directly under `<obsidian_vault>/BosskuAI/<project-name>/`. No memory or sync state is written inside the repo. Obsidian edits are authoritative.
+- `memory_storage: "obsidian"`: canonical notes live directly under `<obsidian_vault>/BosskuAI/<project-name>/` (a configured root or git repo; clones and worktrees share their repo's folder; any other folder saves to `BosskuAI/_inbox/`). No memory or sync state is written inside the repo. Obsidian edits are authoritative.
 - `memory_storage: "repo"` (legacy default when unset): repo Markdown is exported one way to the vault.
 Configure vault storage with `bossku install --vault <existing-vault-path> --memory-storage obsidian`.
 The vault must exist outside the code repo. If unavailable, report the failed save; never fall back to repo storage.

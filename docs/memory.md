@@ -6,6 +6,8 @@ Run `bossku install --vault <existing-vault-path> --memory-storage obsidian`.
 The setting lives only in ~/.bosskuai/config.json. Run `bossku memory-path --project <project-root>` to resolve canonical memory.
 `remember` appends redacted, UTC-stamped notes directly to `<vault>/BosskuAI/<project-name>/`, preserving Obsidian edits. No .bossku/memory or repo sync-state file is created. If the vault is unavailable, the write fails without a repo fallback.
 
+Only a project gets its own vault folder: a `memory_project_roots` entry, or a git checkout. A clone or worktree (`bw2`, `.claude/worktrees/x`) joins the folder its repo already has, matched by the `origin` remote. Any other folder (a Codex chat folder, a scratch folder) saves to the shared `BosskuAI/_inbox/`, each entry starting with `From: <folder>`, and nothing of it is mirrored. `bossku vault tidy` moves folders that older versions made for such folders, and folders that only hold copies of files that no longer exist, into `_inbox/` or `_archive/old-folders/`.
+
 | File | Purpose |
 |---|---|
 | project.md | Durable project facts |
@@ -64,7 +66,7 @@ bossku vault tidy            # prints the plan; changes nothing
 bossku vault tidy --apply    # zip backup first (~/.bosskuai/backups), then carry it out
 ```
 
-The plan merges the notes of a folder into `<project>/repos/<name>/` only when its name is exactly the name of a folder inside one configured project root (entries from both files are kept, none twice, oldest first; text without a date is kept as an undated entry). Names that two roots share, and project folders themselves, are left alone. It moves `.md.conflict.md` backups to `_archive/`, moves folders named `g-p-<hex>` to `_unsorted/` for you to place, moves folders you list under `vault_folder_moves` in `~/.bosskuai/config.json` (`{"folder-name": "where/it/goes"}`, relative to `BosskuAI/`; for example a leftover benchmark folder to `_archive/unsorted/<name>`), imports notes found in a repository's `.bossku/memory` (the original stays), and removes only folders with no file inside them. A name that is already taken gets a number, so nothing is overwritten, and a step that fails is reported while the rest still run. No note is deleted, and a zip of the whole `BosskuAI` folder is made first.
+The plan merges the notes of a folder into `<project>/repos/<name>/` only when its name is exactly the name of a folder inside one configured project root (entries from both files are kept, none twice, oldest first; text without a date is kept as an undated entry). Names that two roots share, and project folders themselves, are left alone. It moves `.md.conflict.md` backups to `_archive/`, merges folders named `g-p-<hex>` into `_inbox/`, moves folders you list under `vault_folder_moves` in `~/.bosskuai/config.json` (`{"folder-name": "where/it/goes"}`, relative to `BosskuAI/`; for example a leftover benchmark folder to `_archive/unsorted/<name>`), imports notes found in a repository's `.bossku/memory` (the original stays), and removes only folders with no file inside them. A name that is already taken gets a number, so nothing is overwritten, and a step that fails is reported while the rest still run. No note is deleted, and a zip of the whole `BosskuAI` folder is made first.
 
 ## Session hooks
 
