@@ -1,5 +1,12 @@
 # Changelog
 
+## v2.7.0 - A researcher on Haiku, and subagents for every tool
+
+### New
+
+- **`researcher` agent on Haiku (`2cea1e5`).** A read-only scout (`Read`, `Grep`, `Glob`, `model: haiku`) that maps the area a change touches (files, patterns, the closest existing feature, tests, risks) before the planner commits to a plan. The orchestrator calls it for medium and large work in an area nobody has mapped yet. Claude Code now has seven contracts: researcher on `haiku`, planner on `opus`, executor on `sonnet`, and the other four on `inherit`.
+- **Subagents for Codex, OpenCode, Cursor and Devin (`2cea1e5`).** `bossku install` and `bossku update` render the seven contracts in each tool's own subagent format, for every tool you have set up, with a model chosen per role for that tool's providers (table in `docs/installation.md`). Read-only roles are locked where the tool has a lock (OpenCode, Cursor, Devin); Codex has none, so its contract rules apply. A tool folder linked to `~/.claude/agents` is skipped. `bossku uninstall` and `--no-agents` remove only Bossku's files, and `bossku doctor` reports a missing or stale copy.
+
 ## v2.6.1 - Doctor spots old agent copies
 
 ### Fixes
