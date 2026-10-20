@@ -1,3 +1,3 @@
 """BosskuAI toolkit - cross-agent co-founder layer."""
 
-__version__ = "2.5.0"
+__version__ = "2.6.0"

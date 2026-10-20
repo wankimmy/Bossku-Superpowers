@@ -1,5 +1,26 @@
 # Changelog
 
+## v2.6.0 - Software-factory gates
+
+Gates taken from two software-factory write-ups (the claude-code-ultimate-guide "agentic software factories" map and freeCodeCamp's "How to Build a Software Factory with Claude Code"), fitted to the existing planner → executor → auditor → final-reviewer chain. They are on by default (`ac5fa94`).
+
+### New
+
+- **Credential-file guard.** `hooks/guard.mjs` refuses a `git add` or `git commit` that would start tracking `.env`, a private key, `.netrc` and similar files. Example copies (`.env.example`), public certificates and files already tracked are allowed. The full list is in `hooks/README.md`.
+- **Brief gate and ship gate.** For medium and large tiers, the orchestrator shows a one-page brief and waits for the user's approval before the executor starts. The build then runs from that brief in a fresh context. Push, merge and PRs wait for the user's go-ahead.
+- **Auditor checks.** A criteria matrix (covered, failed, unclear or skipped for every acceptance criterion), a "wired, not just present" check (a guard that is imported but never called is blocking), and a scope check of changed files against the plan.
+
+### Changed
+
+- **Risk overrides size.** The planner tiers a unit `large` when it touches auth, payments, tenant isolation, migrations, secrets or a public contract, and numbers the acceptance criteria.
+- **Rules for every host.** `AGENTS.md`, the Cursor rule and the block `bossku init` writes now carry the secret-file, installed-version, restart-on-wrong-premise and go-ahead rules. Codex, OpenCode, Cursor and Devin get them as instructions, and Claude Code also gets the hook. Run `bossku init` again in existing projects to refresh their managed block (`bossku doctor` reports an old one).
+- **AGENTS.md budget in bytes.** `validate` counts UTF-8 bytes against the 16,000 budget, so the file stays inside the 16,384 bytes Devin loads automatically.
+
+### Fixes
+
+- `agents/final-reviewer.md` named a "3-cycle stop rule" that does not exist. It now points to the `max_revision_rounds` budget.
+- The planner's plan template has a `Tier` line, so the orchestrator can see when the brief gate applies.
+
 ## v2.5.0 - A clearer vault, logo-design, and marketingskills 52
 
 This release tidies the Obsidian vault layout, adds a logo-design skill and brings the marketingskills pack up to date.
