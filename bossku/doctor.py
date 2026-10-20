@@ -50,6 +50,22 @@ def count_managed_agents(dest: Path) -> int:
     return total
 
 
+def outdated_managed_agents(dest: Path, root: Path) -> list[str]:
+    """Our contracts in `dest` whose text differs from the checkout's agents/ copy; line endings do not count.
+
+    A user's own file of the same name (no signature) is theirs, so it is never reported."""
+    stale = []
+    for name in AGENT_FILES:
+        try:
+            installed = (dest / name).read_text(encoding="utf-8", errors="replace")
+            source = (root / "agents" / name).read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            continue
+        if AGENT_SIGNATURE in installed and installed.replace("\r\n", "\n") != source.replace("\r\n", "\n"):
+            stale.append(name)
+    return stale
+
+
 def claude_hook_state(home: Path) -> tuple[list[str], list[str], list[str]]:
     """(installed pieces, missing pieces, problems) of the BosskuAI hooks in ~/.claude/settings.json. Read-only."""
     path = home / ".claude" / "settings.json"
@@ -202,6 +218,9 @@ def gather_doctor_issues(
         ):
             if not path.is_dir() and (claude_skills_on or path is agents_path):
                 issues.append(f"missing skill directory {label}; run `bossku install`")
+        stale_agents = outdated_managed_agents(claude_agents_dir(h), r) if r is not None else []
+        if stale_agents:
+            issues.append(f"~/.claude/agents contracts out of date ({', '.join(stale_agents)}); run `bossku update`")
         if r is not None and agents_path.is_dir() and (claude_path.is_dir() or not claude_skills_on):
             agents_n = count_managed_skills(agents_path, r)
             claude_n = count_managed_skills(claude_path, r) if claude_skills_on else 0

@@ -342,6 +342,22 @@ class DoctorHarnessTests(unittest.TestCase):
             uninstall_hooks(home=home, tools=("claude_code",))
             self.assertIn("  harness gates: not installed; run `bossku install`", format_doctor_success(ROOT, home, version="x"))
 
+    def test_doctor_reports_agent_contracts_that_are_out_of_date(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp)
+            install_user(root=ROOT, home=home, profile="core")
+            agents = home / ".claude" / "agents"
+            self.assertFalse(any("out of date" in i for i in gather_doctor_issues(ROOT, home)))
+            planner = agents / "planner.md"
+            planner.write_bytes(planner.read_bytes().replace(b"\n", b"\r\n"))   # line endings alone are not drift
+            self.assertFalse(any("contracts out of date" in i for i in gather_doctor_issues(ROOT, home)))
+            auditor = agents / "auditor.md"
+            auditor.write_text(auditor.read_text(encoding="utf-8").replace("Criteria matrix", "Old matrix"), encoding="utf-8")
+            issues = gather_doctor_issues(ROOT, home)
+            self.assertIn("~/.claude/agents contracts out of date (auditor.md); run `bossku update`", issues)
+            auditor.write_text("# my own auditor\n", encoding="utf-8")   # no signature: the user's file, never reported
+            self.assertFalse(any("contracts out of date" in i for i in gather_doctor_issues(ROOT, home)))
+
     def test_the_double_load_advice_does_not_strip_the_sync_hooks(self):
         with tempfile.TemporaryDirectory() as tmp:
             home = Path(tmp)
