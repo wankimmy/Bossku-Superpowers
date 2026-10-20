@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.6.1 - Doctor spots old agent copies
+
+### Fixes
+
+- **`bossku doctor` reports out-of-date agent contracts (`a66cc36`).** It used to say "6 of 6 contracts" even when the copies in `~/.claude/agents` were from an older release, so new rules (like the v2.6.0 brief gate and auditor checks) were silently missing. It now compares each managed copy with the checkout's `agents/` file and lists the stale ones with `run bossku update`. Line endings do not count, and a file you wrote yourself (no Bossku signature) is never reported.
+
 ## v2.6.0 - Software-factory gates
 
 Gates taken from two software-factory write-ups (the claude-code-ultimate-guide "agentic software factories" map and freeCodeCamp's "How to Build a Software Factory with Claude Code"), fitted to the existing planner → executor → auditor → final-reviewer chain. They are on by default (`ac5fa94`).
