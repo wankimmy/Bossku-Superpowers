@@ -1,5 +1,22 @@
 # Changelog
 
+## v2.5.0 - A clearer vault, logo-design, and marketingskills 52
+
+This release tidies the Obsidian vault layout, adds a logo-design skill and brings the marketingskills pack up to date.
+
+### Fixes
+
+- **Vault folders only for real projects (`26452a3`).** Only a `memory_project_roots` entry or a git checkout gets its own `BosskuAI/<name>` folder. Clones and worktrees join their repo's folder through the origin remote. Other folders (Codex chat folders, scratch) save to one shared folder and are not mirrored. `vault tidy` moves old non-project folders there and archives rules-only copies of deleted folders.
+
+### New
+
+- **Clear vault layout with a start-here `Index.md` (`17d30dc`).** Projects keep `agent-rules/` (was `rules/`) and a flat `claude-memory/`. Non-project notes go to `_other-notes` (was `_inbox`), global rule copies to `_global-rules`, and `_archive` gets named sub-folders. `Index.md` explains every folder and file. `vault tidy` renames older layouts and skips imports already merged.
+- **`logo-design` skill (`c819bb0`).** Vendored from [kaankiziltug/logo-design-skill](https://github.com/kaankiziltug/logo-design-skill) (MIT, upstream `0ecf52e`) as a library-only skill with 30 example prompts and routing triggers. The reference logo library (1,432 trademarked logos, about 12 MB) and `gallery.html` are left out; the catalog metadata stays so library search still works.
+
+### Changed
+
+- **marketingskills re-vendored, 47 to 52 skills (`84c466d`).** Synced from [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) (upstream `e85f3cb`). All 47 existing skills are updated, and `attribution`, `conversion-tracking`, `events`, `influencer-marketing` and `link-building` are new. `ads/references/conversion-tracking.md` moved upstream into the new `conversion-tracking` skill.
+
 ## v2.4.1 - Anatomy: isometric explainer figures
 
 This release adds one vendored skill.
