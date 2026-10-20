@@ -1,5 +1,13 @@
 # Changelog
 
+## v2.7.1 - OpenCode follows your provider, Cursor gets real models
+
+### Changed
+
+- **OpenCode subagents follow your provider (`b3208b6`).** With Ollama Cloud connected they use `deepseek-v4.1-flash` (researcher), `kimi-k2.7-code` (executor, designer), `kimi-k3` (planner) and `glm-5.3` (auditor, final reviewer); with Anthropic, the Claude 5.5 models. Your OpenCode default `model` picks the provider when both are set up; with neither, the subagents use your session model.
+- **Cursor subagents get real models (`b3208b6`).** `composer-2.5` (researcher), `claude-sonnet-5-5` (executor, designer), `claude-opus-5-5[effort=high]` (planner) and `gpt-5.6-sol` (auditor, final reviewer), instead of `inherit` for every role.
+- **The checker is not the builder's model (`b3208b6`).** Where a tool offers another family, the auditor runs on a different family from the executor (Devin's auditor moves to `codex`). A test keeps it that way.
+
 ## v2.7.0 - A researcher on Haiku, and subagents for every tool
 
 ### New
