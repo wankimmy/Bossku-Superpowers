@@ -11,7 +11,7 @@ from pathlib import Path
 
 from bossku.doctor import gather_doctor_issues
 from bossku.host_agents import (
-    HOSTS, ROLE_MODELS, anthropic_configured, file_name, host_dirs, outdated_host_agents, remove_host_agents, render,
+    HOSTS, ROLE_MODELS, file_name, host_dirs, opencode_provider, outdated_host_agents, remove_host_agents, render,
 )
 from bossku.install import AGENT_FILES, AGENT_SIGNATURE, install_user, uninstall_user
 from bossku.skills import _parse_frontmatter
@@ -64,15 +64,30 @@ class RenderTests(unittest.TestCase):
         self.assertEqual(_parse_frontmatter(render("opencode", "executor", contract("executor")))["mode"], "subagent")
 
     def test_models_follow_the_table(self):
-        self.assertIn("model: anthropic/claude-haiku-5-5", render("opencode", "researcher", contract("researcher")))
-        self.assertIn("model: anthropic/claude-opus-5-5", render("opencode", "auditor", contract("auditor")))
-        self.assertNotIn("model:", render("opencode", "researcher", contract("researcher"), anthropic=False),
-                         "no Anthropic set up: the subagent inherits instead of failing")
-        for role in ROLES:
-            self.assertIn("model: inherit", render("cursor", role, contract(role)))
-        self.assertIn("model: swe", render("devin", "researcher", contract("researcher")))
-        self.assertIn("model: opus", render("devin", "planner", contract("planner")))
-        self.assertNotIn("model:", render("devin", "orchestrator", contract("orchestrator")))
+        r = lambda host, role, **kw: render(host, role, contract(role), **kw)
+        self.assertIn("model: anthropic/claude-haiku-5-5", r("opencode", "researcher", provider="anthropic"))
+        self.assertIn("model: ollama-cloud/deepseek-v4.1-flash", r("opencode", "researcher", provider="ollama-cloud"))
+        self.assertIn("model: ollama-cloud/kimi-k2.7-code", r("opencode", "executor", provider="ollama-cloud"))
+        self.assertIn("model: ollama-cloud/kimi-k3", r("opencode", "planner", provider="ollama-cloud"))
+        self.assertNotIn("model:", r("opencode", "researcher"), "no provider set up: the subagent inherits")
+        self.assertNotIn("model:", r("opencode", "orchestrator", provider="ollama-cloud"), "it follows the session")
+        self.assertIn("model: composer-2.5", r("cursor", "researcher"))
+        self.assertIn("model: claude-opus-5-5[effort=high]", r("cursor", "planner"))
+        self.assertIn("model: claude-sonnet-5-5", r("cursor", "executor"))
+        self.assertIn("model: gpt-5.6-sol", r("cursor", "auditor"))
+        self.assertIn("model: inherit", r("cursor", "orchestrator"))
+        self.assertIn("model: swe", r("devin", "researcher"))
+        self.assertIn("model: opus", r("devin", "planner"))
+        self.assertIn("model: codex", r("devin", "auditor"))
+        self.assertNotIn("model:", r("devin", "orchestrator"))
+
+    def test_the_checker_is_not_the_same_model_family_as_the_builder(self):
+        # Creator and verifier apart: where a tool offers another family, the auditor does not grade its own family.
+        family = lambda model: re.split(r"[-:.\[]", model)[0]
+        for host, key in (("cursor", "model"), ("devin", "model"), ("opencode", "ollama-cloud")):
+            builder = ROLE_MODELS["executor"][host][key]
+            checker = ROLE_MODELS["auditor"][host][key]
+            self.assertNotEqual(family(builder), family(checker), host)
 
     def test_read_only_roles_are_locked_and_builders_are_not(self):
         researcher = render("opencode", "researcher", contract("researcher"))
@@ -155,27 +170,32 @@ class InstallTests(unittest.TestCase):
             self.assertEqual(remove_host_agents(home), {})
             self.assertEqual(sorted(p.name for p in claude.glob("*.md")), sorted(before), "nothing deleted through the link")
 
-    def test_anthropic_is_detected_from_opencode_login_or_config(self):
+    def test_the_opencode_provider_comes_from_its_login_or_config(self):
         with tempfile.TemporaryDirectory() as tmp:
             home = Path(tmp)
-            self.assertFalse(anthropic_configured(home))
+            self.assertIsNone(opencode_provider(home), "nothing set up: subagents inherit")
             auth = home / ".local" / "share" / "opencode" / "auth.json"
             auth.parent.mkdir(parents=True)
             auth.write_text(json.dumps({"openai": {"type": "api"}}), encoding="utf-8")
-            self.assertFalse(anthropic_configured(home))
-            auth.write_text(json.dumps({"anthropic": {"type": "oauth"}}), encoding="utf-8")
-            self.assertTrue(anthropic_configured(home))
-            auth.unlink()
+            self.assertIsNone(opencode_provider(home), "a provider Bossku has no picks for")
+            auth.write_text(json.dumps({"ollama-cloud": {"type": "api"}}), encoding="utf-8")
+            self.assertEqual(opencode_provider(home), "ollama-cloud", "/connect Ollama Cloud")
+            auth.write_text(json.dumps({"anthropic": {"type": "oauth"}, "ollama-cloud": {"type": "api"}}), encoding="utf-8")
+            self.assertEqual(opencode_provider(home), "ollama-cloud", "both set up and no default model: Ollama Cloud first")
             cfg = home / ".config" / "opencode" / "opencode.jsonc"
             cfg.parent.mkdir(parents=True)
+            cfg.write_text('{\n  // mine\n  "model": "anthropic/claude-sonnet-5-5"\n}\n', encoding="utf-8")
+            self.assertEqual(opencode_provider(home), "anthropic", "the user's default model picks the provider")
+            auth.unlink()
             cfg.write_text('{"provider": {"openrouter": {"models": {"x": {"id": "anthropic/claude-haiku-5-5"}}}}}', encoding="utf-8")
-            self.assertFalse(anthropic_configured(home), "an anthropic/ model id under another provider is not Anthropic")
-            cfg.write_text('{\n  // mine\n  "provider": { "anthropic": { "options": {} } }\n}\n', encoding="utf-8")
-            self.assertTrue(anthropic_configured(home))
+            self.assertIsNone(opencode_provider(home), "an anthropic/ model id under another provider is not Anthropic")
+            cfg.write_text('{"provider": {"ollama-cloud": {"options": {}}}}', encoding="utf-8")
+            self.assertEqual(opencode_provider(home), "ollama-cloud")
             use_tools(home, "opencode")
             install_user(root=ROOT, home=home, profile="core")
-            text = (host_dirs(home)["opencode"][1] / "researcher.md").read_text(encoding="utf-8")
-            self.assertTrue(re.search(r"(?m)^model: anthropic/claude-haiku-5-5$", text))
+            agents = host_dirs(home)["opencode"][1]
+            self.assertTrue(re.search(r"(?m)^model: ollama-cloud/deepseek-v4.1-flash$", (agents / "researcher.md").read_text(encoding="utf-8")))
+            self.assertTrue(re.search(r"(?m)^model: ollama-cloud/glm-5.3$", (agents / "auditor.md").read_text(encoding="utf-8")))
 
 
 if __name__ == "__main__":

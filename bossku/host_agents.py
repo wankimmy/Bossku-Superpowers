@@ -23,33 +23,44 @@ from bossku.skills import _parse_frontmatter, make_path_writable
 HOSTS = ("codex", "opencode", "cursor", "devin")
 
 # Model per role and tool, checked against each tool's docs on 2026-10-20. Tiers: the researcher maps code (small and
-# fast), the executor and designer build (the main coding model), the planner, auditor and final reviewer reason
-# deeply (the top model). The orchestrator is usually the main session itself, so it follows the session.
-# None means no pinned model: the tool's own default for subagents (the parent's model in Codex, OpenCode and Cursor;
-# Devin's router).
+# fast), the executor and designer build (the main coding model), the planner reasons deeply (the top model), and the
+# auditor and final reviewer check the work on a strong model from a different family than the executor wherever the
+# tool offers one, so the checker is not the same model that wrote the code. The orchestrator is usually the main
+# session itself, so it follows the session. None means no pinned model: the tool's own default for subagents (the
+# parent's model in Codex, OpenCode and Cursor; Devin's router).
 # - Codex runs OpenAI models only: gpt-6-luna (efficient), gpt-6.1-sol (coding), gpt-6-astra (most capable), from
 #   learn.chatgpt.com/docs/models; effort values from its subagents page.
-# - OpenCode ids are models.dev's; they are written only when Anthropic is set up (anthropic_configured), else the
-#   subagent inherits, so a user on another provider never gets a model they cannot run.
-# - Cursor documents only display names for Claude 5.5, so every role inherits rather than risk a wrong id.
-# - Devin takes family names that resolve to the latest version (docs.devin.ai/cli/models); `haiku` is not one, so the
-#   researcher uses `swe`, Devin's own fast family.
+# - OpenCode ids are models.dev's (the registry OpenCode uses), per provider. A role gets the model of the provider
+#   the user has set up (opencode_provider); with none of them, the subagent inherits, so nobody gets a model they
+#   cannot run. Ollama Cloud picks follow models.dev's metadata (context, price, a code-tuned model), not benchmarks.
+# - Cursor: `composer-2.5` and `gpt-5.6-sol` appear in its subagent docs; the Claude 5.5 ids follow the documented
+#   `claude-opus-5-5-fast` (cursor.com/docs/models). Cursor falls back to a compatible model when a plan lacks one.
+# - Devin takes family names that resolve to the latest version (docs.devin.ai/cli/models): opus, sonnet, swe, codex,
+#   gemini. `haiku` is not one, so the researcher uses `swe`, Devin's own fast family.
 ROLE_MODELS: dict[str, dict[str, dict[str, str | None]]] = {
-    "orchestrator": {"codex": {"model": None, "effort": None}, "opencode": {"model": None},
+    "orchestrator": {"codex": {"model": None, "effort": None},
+                     "opencode": {"anthropic": None, "ollama-cloud": None},
                      "cursor": {"model": "inherit"}, "devin": {"model": None}},
-    "researcher": {"codex": {"model": "gpt-6-luna", "effort": "low"}, "opencode": {"model": "anthropic/claude-haiku-5-5"},
-                   "cursor": {"model": "inherit"}, "devin": {"model": "swe"}},
-    "planner": {"codex": {"model": "gpt-6-astra", "effort": "high"}, "opencode": {"model": "anthropic/claude-opus-5-5"},
-                "cursor": {"model": "inherit"}, "devin": {"model": "opus"}},
-    "designer": {"codex": {"model": "gpt-6.1-sol", "effort": "medium"}, "opencode": {"model": "anthropic/claude-sonnet-5-5"},
-                 "cursor": {"model": "inherit"}, "devin": {"model": "sonnet"}},
-    "executor": {"codex": {"model": "gpt-6.1-sol", "effort": "medium"}, "opencode": {"model": "anthropic/claude-sonnet-5-5"},
-                 "cursor": {"model": "inherit"}, "devin": {"model": "sonnet"}},
-    "auditor": {"codex": {"model": "gpt-6-astra", "effort": "high"}, "opencode": {"model": "anthropic/claude-opus-5-5"},
-                "cursor": {"model": "inherit"}, "devin": {"model": "opus"}},
-    "final-reviewer": {"codex": {"model": "gpt-6-astra", "effort": "high"}, "opencode": {"model": "anthropic/claude-opus-5-5"},
-                       "cursor": {"model": "inherit"}, "devin": {"model": "opus"}},
+    "researcher": {"codex": {"model": "gpt-6-luna", "effort": "low"},
+                   "opencode": {"anthropic": "claude-haiku-5-5", "ollama-cloud": "deepseek-v4.1-flash"},
+                   "cursor": {"model": "composer-2.5"}, "devin": {"model": "swe"}},
+    "planner": {"codex": {"model": "gpt-6-astra", "effort": "high"},
+                "opencode": {"anthropic": "claude-opus-5-5", "ollama-cloud": "kimi-k3"},
+                "cursor": {"model": "claude-opus-5-5[effort=high]"}, "devin": {"model": "opus"}},
+    "designer": {"codex": {"model": "gpt-6.1-sol", "effort": "medium"},
+                 "opencode": {"anthropic": "claude-sonnet-5-5", "ollama-cloud": "kimi-k2.7-code"},
+                 "cursor": {"model": "claude-sonnet-5-5"}, "devin": {"model": "sonnet"}},
+    "executor": {"codex": {"model": "gpt-6.1-sol", "effort": "medium"},
+                 "opencode": {"anthropic": "claude-sonnet-5-5", "ollama-cloud": "kimi-k2.7-code"},
+                 "cursor": {"model": "claude-sonnet-5-5"}, "devin": {"model": "sonnet"}},
+    "auditor": {"codex": {"model": "gpt-6-astra", "effort": "high"},
+                "opencode": {"anthropic": "claude-opus-5-5", "ollama-cloud": "glm-5.3"},
+                "cursor": {"model": "gpt-5.6-sol"}, "devin": {"model": "codex"}},
+    "final-reviewer": {"codex": {"model": "gpt-6-astra", "effort": "high"},
+                       "opencode": {"anthropic": "claude-opus-5-5", "ollama-cloud": "glm-5.3"},
+                       "cursor": {"model": "gpt-5.6-sol"}, "devin": {"model": "opus"}},
 }
+OPENCODE_PROVIDERS = ("ollama-cloud", "anthropic")   # checked in this order when the config names no default model
 
 WRITE_TOOLS = frozenset({"Edit", "Write", "MultiEdit", "NotebookEdit"})
 # Roles whose shell use is inspection only (git log, ls), so a tool's read-only mode fits them. The auditor and final
@@ -97,29 +108,37 @@ def _toml_multiline(value: str) -> str:
     return '"""\n' + escaped + '"""'
 
 
-def anthropic_configured(home: Path) -> bool:
-    """True when OpenCode has Anthropic set up: a stored login (`/connect`) or an `anthropic` provider in its config.
+def opencode_provider(home: Path) -> str | None:
+    """The OpenCode provider whose models the subagents should use, or None to let them inherit the session model.
 
-    Only files count, not the shell's ANTHROPIC_API_KEY: the shell that runs bossku is not the one OpenCode runs in,
-    and doctor would flip between stale and current with the environment. Nothing from the files is kept."""
+    The user's default `model` in the OpenCode config wins when it names a provider in OPENCODE_PROVIDERS. Otherwise
+    the first of those providers that is set up: a stored login (`/connect` writes auth.json) or a provider block in
+    the config. Only files count, not the shell's environment: the shell that runs bossku is not the one OpenCode runs
+    in, and doctor would flip between stale and current with it. Nothing from the files is kept."""
     data_home = Path(os.environ["XDG_DATA_HOME"]) if home == Path.home() and os.environ.get("XDG_DATA_HOME") else home / ".local" / "share"
+    found: set[str] = set()
     try:
-        if "anthropic" in json.loads((data_home / "opencode" / "auth.json").read_text(encoding="utf-8")):
-            return True
+        logins = json.loads((data_home / "opencode" / "auth.json").read_text(encoding="utf-8"))
+        found |= {p for p in OPENCODE_PROVIDERS if p in logins}
     except (OSError, ValueError, TypeError):
         pass
+    preferred = None
     for name in ("opencode.json", "opencode.jsonc"):
         try:
             text = (home / ".config" / "opencode" / name).read_text(encoding="utf-8")
         except OSError:
             continue
         # A key, not a value: `"model": "anthropic/claude-..."` under another provider (OpenRouter) does not count.
-        if re.search(r'"anthropic"\s*:', text):
-            return True
-    return False
+        found |= {p for p in OPENCODE_PROVIDERS if re.search(rf'"{re.escape(p)}"\s*:', text)}
+        default = re.search(r'"model"\s*:\s*"([\w.-]+)/', text)
+        if default and default.group(1) in OPENCODE_PROVIDERS and preferred is None:
+            preferred = default.group(1)
+    if preferred:
+        return preferred
+    return next((p for p in OPENCODE_PROVIDERS if p in found), None)
 
 
-def render(host: str, role: str, text: str, *, anthropic: bool = True) -> str:
+def render(host: str, role: str, text: str, *, provider: str | None = None) -> str:
     """One contract rendered as `host`'s subagent file."""
     front, body = _split(text)
     description = str(front.get("description", "")).strip()
@@ -142,8 +161,9 @@ def render(host: str, role: str, text: str, *, anthropic: bool = True) -> str:
     head = []
     if host == "opencode":
         head += [f"description: {_yaml_str(description)}", "mode: subagent"]
-        if model and (anthropic or not model.startswith("anthropic/")):
-            head.append(f"model: {model}")
+        picked = choice.get(provider) if provider else None
+        if picked:
+            head.append(f"model: {provider}/{picked}")
         if read_only:
             # No bash and no task for the researcher: a subagent it starts could edit for it.
             head += ["permission:", "  edit: deny"] + ([] if runs_commands else ["  bash: deny", "  task: deny"])
@@ -204,7 +224,7 @@ def target_dirs(home: Path) -> tuple[dict[str, Path], dict[str, str]]:
 def expected_files(root: Path | None, home: Path) -> dict[str, dict[Path, str]]:
     """Per tool that is in use: target path -> the text it should hold."""
     source = repo_root(root) / "agents"
-    anthropic = anthropic_configured(home)
+    provider = opencode_provider(home)
     out: dict[str, dict[Path, str]] = {}
     for host, dest in target_dirs(home)[0].items():
         files: dict[Path, str] = {}
@@ -212,7 +232,7 @@ def expected_files(root: Path | None, home: Path) -> dict[str, dict[Path, str]]:
             role = name[:-3]
             src = source / name
             if role in ROLE_MODELS and src.is_file():
-                files[dest / file_name(host, role)] = render(host, role, src.read_text(encoding="utf-8"), anthropic=anthropic)
+                files[dest / file_name(host, role)] = render(host, role, src.read_text(encoding="utf-8"), provider=provider)
         out[host] = files
     return out
 

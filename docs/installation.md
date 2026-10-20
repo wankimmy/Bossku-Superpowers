@@ -118,17 +118,17 @@ Agents spend a fixed share of their context window on the skill list and cut the
 - **Verify gate** (Claude Code `Stop`, `bossku verify-gate`, Python): used instead of the Node stop gate when you install with `--no-harness`, or when there is no `node` or no checkout. Besides the run-your-code check it sends the agent back once when you asked for a change and it only pasted code into the reply, and once when your message stated a rule and the turn ended without `bossku remember`. The Node stop gate does not do those two. Switch it off with `BOSSKU_VERIFY_GATE=0`, which does nothing while the Node gate is the one wired.
 - **Subagent contracts**: the seven files in `agents/` (orchestrator, researcher, planner, designer, executor, auditor, final-reviewer) are copied to `~/.claude/agents`. For each other tool you have set up (its config folder exists), the same contracts are written in that tool's format, with a model per role:
 
-  | Role | Claude Code | Codex | OpenCode (with Anthropic) | Cursor | Devin |
-  |---|---|---|---|---|---|
-  | orchestrator | inherit | Codex default (`[agents] default_subagent_model`, else the session model) | session model | inherit | Devin default |
-  | researcher | haiku | `gpt-6-luna`, low effort | `anthropic/claude-haiku-5-5` | inherit | `swe` |
-  | planner | opus | `gpt-6-astra`, high | `anthropic/claude-opus-5-5` | inherit | `opus` |
-  | designer | inherit | `gpt-6.1-sol`, medium | `anthropic/claude-sonnet-5-5` | inherit | `sonnet` |
-  | executor | sonnet | `gpt-6.1-sol`, medium | `anthropic/claude-sonnet-5-5` | inherit | `sonnet` |
-  | auditor | inherit | `gpt-6-astra`, high | `anthropic/claude-opus-5-5` | inherit | `opus` |
-  | final-reviewer | inherit | `gpt-6-astra`, high | `anthropic/claude-opus-5-5` | inherit | `opus` |
+  | Role | Claude Code | Codex | OpenCode: Ollama Cloud | OpenCode: Anthropic | Cursor | Devin |
+  |---|---|---|---|---|---|---|
+  | orchestrator | inherit | Codex default (`[agents] default_subagent_model`, else the session model) | session model | session model | inherit | Devin default |
+  | researcher | haiku | `gpt-6-luna`, low effort | `deepseek-v4.1-flash` | `claude-haiku-5-5` | `composer-2.5` | `swe` |
+  | planner | opus | `gpt-6-astra`, high | `kimi-k3` | `claude-opus-5-5` | `claude-opus-5-5[effort=high]` | `opus` |
+  | designer | inherit | `gpt-6.1-sol`, medium | `kimi-k2.7-code` | `claude-sonnet-5-5` | `claude-sonnet-5-5` | `sonnet` |
+  | executor | sonnet | `gpt-6.1-sol`, medium | `kimi-k2.7-code` | `claude-sonnet-5-5` | `claude-sonnet-5-5` | `sonnet` |
+  | auditor | inherit | `gpt-6-astra`, high | `glm-5.3` | `claude-opus-5-5` | `gpt-5.6-sol` | `codex` |
+  | final-reviewer | inherit | `gpt-6-astra`, high | `glm-5.3` | `claude-opus-5-5` | `gpt-5.6-sol` | `opus` |
 
-  OpenCode without an Anthropic provider inherits the session model. Cursor inherits because its docs do not list ids for the Claude 5.5 models. Read-only roles are locked where the tool has a lock: OpenCode `edit: deny` (plus `bash` and `task` denied for the researcher), Cursor `readonly` for the researcher and planner, Devin `allowed-tools` (read, grep, glob) for the researcher. Codex has no per-agent edit lock and reads files through the shell, so there the contract's own rules keep those roles read-only. A tool folder that is a link to `~/.claude/agents` (or to another tool's folder) is skipped, so the Claude Code contracts are never replaced. The table lives in `ROLE_MODELS` in `bossku/host_agents.py`.
+  Where a tool offers more than one model family, the auditor and final reviewer use a different family from the executor, so the code is not checked by the model that wrote it. OpenCode ids get the provider prefix (`ollama-cloud/kimi-k3`, `anthropic/claude-opus-5-5`). The provider is the one your OpenCode default `model` names, or else the first one set up (`/connect` login or a config `provider` block), Ollama Cloud before Anthropic; with neither, the subagents use your session model. Run `bossku update` after connecting a provider. The Ollama Cloud picks follow each model's role, context and price on models.dev, not benchmarks. Cursor's Claude 5.5 ids follow its documented `claude-opus-5-5-fast`; on a plan without a model, Cursor falls back to a compatible one. Read-only roles are locked where the tool has a lock: OpenCode `edit: deny` (plus `bash` and `task` denied for the researcher), Cursor `readonly` for the researcher and planner, Devin `allowed-tools` (read, grep, glob) for the researcher. Codex has no per-agent edit lock and reads files through the shell, so there the contract's own rules keep those roles read-only. A tool folder that is a link to `~/.claude/agents` (or to another tool's folder) is skipped, so the Claude Code contracts are never replaced. The table lives in `ROLE_MODELS` in `bossku/host_agents.py`.
 
 Install choices: `--no-claude` leaves out the skills in `~/.claude/skills` (for a machine where a Claude Code plugin serves them), `--no-agents` leaves out the subagent contracts, and `--no-harness` leaves out the Node gates and the deny list and takes ours out again. Each flag has a positive form (`--claude`, `--agents`, `--harness`). Left out, `install` and `update` keep the saved choice, and a first install turns all three on.
 
