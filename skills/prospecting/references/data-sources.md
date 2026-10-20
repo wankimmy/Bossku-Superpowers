@@ -14,7 +14,7 @@ Tool selection guide for prospecting across all three branches.
 | **Funding signals (SaaS)** | Crunchbase, Pitchbook | Crunchbase free tier sufficient for early signals; Pitchbook for deeper investor data |
 | **Email pattern discovery** | Hunter, Snov, Apollo | Pattern guessing — followed by verification |
 | **Email deliverability verification** | Truelist, Hunter, NeverBounce, ZeroBounce | Always verify before adding to outreach lists |
-| **Visitor identification (warm intent)** | RB2B, Clearbit Reveal | Anonymous traffic → company identification |
+| **Visitor identification (warm intent)** | RB2B, Warmly, Vector, Ploy ◆ (sites hosted on Ploy) | Anonymous traffic → company or person identification |
 | **Intent data** | ZoomInfo Intent, 6sense, Bombora | Pre-warmed signals; mid-market+ pricing |
 | **Trigger event monitoring** | Google Alerts, Feedly, LinkedIn Sales Nav alerts | Free options are sufficient for most |
 | **Local business discovery** | Google Maps (manual), Yelp, Facebook Pages | Browser-assisted, not bulk-extracted |
@@ -36,7 +36,7 @@ Tool selection guide for prospecting across all three branches.
 - Email accuracy ~60–80% — always validate
 - Bulk export limits apply
 
-**Integration**: see [apollo.md](../../../tools/integrations/apollo.md)
+**Integration**: see [apollo.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/apollo.md)
 
 ---
 
@@ -45,7 +45,7 @@ Tool selection guide for prospecting across all three branches.
 **Use for**: Multi-source enrichment, waterfall lookups, custom scoring logic. When list quality matters more than list size.
 
 **Strengths**:
-- Waterfall logic: try Apollo first → fallback to ZoomInfo → fallback to Clearbit
+- Waterfall logic: query providers in order and stop at the first verified result (see [sourcing-and-enrichment.md](sourcing-and-enrichment.md) for ordering and the bake-off)
 - 100+ data provider integrations
 - AI-powered enrichment (LLM-driven extraction from URLs)
 - Custom columns + scoring formulas
@@ -55,7 +55,7 @@ Tool selection guide for prospecting across all three branches.
 - Per-credit pricing can spike on large lists
 - Complexity overhead — easy to over-engineer workflows
 
-**Integration**: see [clay.md](../../../tools/integrations/clay.md)
+**Integration**: see [clay.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/clay.md)
 
 ---
 
@@ -74,25 +74,27 @@ Tool selection guide for prospecting across all three branches.
 - Overkill for SMB prospecting
 - Locked into multi-year contracts typically
 
-**Integration**: see [zoominfo.md](../../../tools/integrations/zoominfo.md)
+**Integration**: see [zoominfo.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/zoominfo.md)
 
 ---
 
-## Clearbit
+## Waterfall aggregators (FullEnrich, LeadMagic)
 
-**Use for**: Email → company enrichment, anonymous visitor identification (Clearbit Reveal).
-
-**Strengths**:
-- Strong company enrichment (industry, size, funding, tech stack)
-- Email lookup by domain
-- Reveal: identify anonymous site visitors at company level
-- API-first
+**Use for**: Email and phone enrichment through one API call that queries several providers in sequence. The simpler alternative to building a waterfall in Clay.
 
 **Watch out for**:
-- HubSpot acquisition (2023) — bundled into HubSpot Breeze Intelligence now
-- Standalone API still available but pricing/access depends on tier
+- Coverage and false-positive rates vary by ICP; run the bake-off in [sourcing-and-enrichment.md](sourcing-and-enrichment.md) before committing
+- Verify results anyway; finding an address isn't the same as confirming it
 
-**Integration**: see [clearbit.md](../../../tools/integrations/clearbit.md)
+**Integration**: see [fullenrich.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/fullenrich.md) and [leadmagic.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/leadmagic.md)
+
+---
+
+## Clearbit (legacy)
+
+Clearbit was absorbed into HubSpot (Breeze Intelligence). Its free tools ended in 2025, and new standalone API access is no longer generally available. Use HubSpot's enrichment if you're on HubSpot; otherwise use the providers above.
+
+**Integration**: see [clearbit.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/clearbit.md)
 
 ---
 
@@ -114,7 +116,7 @@ Tool selection guide for prospecting across all three branches.
 - Both are pattern-guessing tools — accuracy depends on the target company's email pattern being inferable
 - Always run results through a dedicated validator (Truelist or similar) before outreach
 
-**Integrations**: see [hunter.md](../../../tools/integrations/hunter.md), [snov.md](../../../tools/integrations/snov.md)
+**Integrations**: see [hunter.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/hunter.md), [snov.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/snov.md)
 
 ---
 
@@ -133,7 +135,7 @@ Tool selection guide for prospecting across all three branches.
 
 **Why this matters**: Cold email reputation craters when bounce rates exceed 2%. Validating before sending is non-negotiable. Apollo/ZoomInfo/Hunter data is often 60–80% accurate — Truelist catches the rest.
 
-**Integration**: see [truelist.md](../../../tools/integrations/truelist.md)
+**Integration**: see [truelist.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/truelist.md)
 
 ---
 
@@ -205,7 +207,7 @@ Cross-reference both for high-confidence tech stack signals.
 - Very-popular repos (100K+ stars) are mostly noise; smaller targeted repos (5K–25K) give better signal density
 - Most prospects are individuals, not company contacts directly — need to figure out their company from `company` field or LinkedIn
 
-**Integration**: see [github.md](../../../tools/integrations/github.md)
+**Integration**: see [github.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/github.md)
 
 ---
 
@@ -234,11 +236,11 @@ Both tools can technically point at any URL. The hard rule:
 
 Discovery happens on platforms (manual browser-assisted research). Extraction happens on individual public business sites.
 
-**Integrations**: see [firecrawl.md](../../../tools/integrations/firecrawl.md), [browserbase.md](../../../tools/integrations/browserbase.md)
+**Integrations**: see [firecrawl.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/firecrawl.md), [browserbase.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/browserbase.md)
 
 ---
 
-## RB2B / Clearbit Reveal
+## Visitor identification (RB2B, Warmly, Vector)
 
 **Use for**: Identifying anonymous site visitors as warm intent signals.
 
@@ -251,7 +253,18 @@ Discovery happens on platforms (manual browser-assisted research). Extraction ha
 - Privacy/GDPR considerations — verify your privacy policy disclosures
 - Person-level identification raises higher concerns than company-level
 
-**Integration**: see [rb2b.md](../../../tools/integrations/rb2b.md)
+**Integration**: see [rb2b.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/rb2b.md)
+
+## Built into a site platform (Ploy ◆)
+
+Some site platforms identify visitors natively. Ploy, a [Verified Partner](https://github.com/coreyhaines31/marketingskills/blob/main/tools/REGISTRY.md#verified-partners) of this repository (disclosure, not endorsement), returns person, company, title, and pages viewed for visitors to sites hosted on it, with contact enrichment alongside.
+
+**Watch out for**:
+- Only works if the site is hosted on Ploy; for any other site use a pixel tool like RB2B, Warmly, or Vector
+- Metered by plan (as of 2026-10: 50 enrichments a month on Starter, 1,000 on Pro)
+- Ploy says no consent banner is needed; the same privacy and person-level cautions as above still apply, and the legal call is yours
+
+**Integration**: see [ploy.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/ploy.md)
 
 ---
 

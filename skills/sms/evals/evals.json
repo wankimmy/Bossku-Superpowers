@@ -95,6 +95,24 @@
         "Calculates cost impact at scale"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "We sell fashion accessories in Brazil and Mexico and get about 1,500 abandoned carts a week. Most customers use WhatsApp, not SMS. Can we send cart reminders on WhatsApp an hour after they leave, and what will it cost?",
+      "expected_output": "Should check for product-marketing.md first. Should confirm WhatsApp fits better than SMS for Brazil and Mexico and reference references/whatsapp.md. Should explain that a reminder 1 hour after abandonment falls outside the 24-hour customer service window, so it must be a Meta-approved template, and that cart reminders are classified as marketing templates (submitting as utility gets recategorized). Should require WhatsApp-specific opt-in that names the business, captured at checkout or in chat, plus an opt-out button or STOP footer on every marketing template. Should explain current per-message pricing (since July 1, 2025): every delivered marketing template is charged at a per-country rate, with no free window unless the customer recently messaged for these reminders, and recommend modeling cost per recovered order using current Meta or BSP rate cards rather than old per-conversation pricing. Should warn that blocks and reports lower the quality rating, can flag the number and cut the messaging limit, and recommend warming up a new number, business verification, and limiting to 1-2 cart touches with exit on purchase or opt-out. Should design the template with name, product, and checkout URL button, holding any discount for a later touch.",
+      "assertions": [
+        "Checks for product-marketing.md",
+        "Checks whether a 24-hour service window (or a click-to-WhatsApp free window) is open from the customer's messaging history, and uses an approved template when it isn't",
+        "Classifies cart reminders as marketing templates",
+        "Requires opt-in that names the business (and ideally WhatsApp), compliant with local law",
+        "Includes an opt-out button or STOP footer",
+        "Explains per-message pricing with marketing templates charged per delivery",
+        "Does not quote per-conversation pricing as current",
+        "Warns about quality rating, flagging, and messaging limit risk from blocks",
+        "Recommends number warm-up or business verification",
+        "References references/whatsapp.md"
+      ],
+      "files": []
     }
   ]
 }

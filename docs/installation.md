@@ -102,7 +102,7 @@ Pick how much of the library your agent lists in every session:
 |---|---|---|---|
 | `lean` (default for a first install) | About 25 everyday engineering and process skills with short descriptions | `bossku skills find` / `bossku skills show`, installed whole in `~/.bosskuai/library` | Most people; the smallest per-session cost |
 | `core` | Co-founder essentials plus the **loop-engineering** pack | Not installed | A minimal set |
-| `engineering` | Every skill except the 47 of the marketingskills pack (about 200) | Already listed | People who build software and do not need the marketing set |
+| `engineering` | Every skill except the 52 of the marketingskills pack (about 200) | Already listed | People who build software and do not need the marketing set |
 | `full` | All 240+ skills | Already listed | Hosts with a very large skill budget |
 
 Library-only skills (`skills/library-only.json`: 310 niche skills, such as 173 adapted ECC workflows for C++, Rust or network operations and 137 domain skills for GIS, game engines, healthcare operations, China marketing or legal intake) are listed by no profile. The skill hint and `bossku skills find` still name them, and the agent reads their `SKILL.md` on demand.

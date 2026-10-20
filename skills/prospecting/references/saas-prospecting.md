@@ -55,7 +55,7 @@ Combine 2+ sources for cross-verification.
 ### Tier 3 — buying signals
 
 - **Job boards** (LinkedIn Jobs, Indeed, AngelList): role openings as signals
-- **RB2B / Clearbit Reveal**: visitor identification (warm anonymous traffic)
+- **RB2B, Warmly, or Vector**: visitor identification (warm anonymous traffic)
 - **GitHub stars/forks of competitor or adjacent repos**: developer-level intent signal (see `tools/integrations/github.md` and the `github-prospects.js` CLI). Especially strong for dev-tool SaaS — a developer who starred `vercel/next.js` last week is in-market for adjacent Next.js infrastructure.
 - **Recent blog posts / changelog**: product direction signals
 - **G2 reviews mentioning competitor switches**: explicit dissatisfaction signal
@@ -119,5 +119,5 @@ Each top target gets a one-sentence outreach rationale that names the specific s
 1. **Buying lists from Apollo wholesale** without re-verifying email and re-checking firmographics. Stale data is the norm.
 2. **Treating tech stack data as 100% accurate**. BuiltWith and Wappalyzer miss things; Clay's waterfalls miss things. Cross-check.
 3. **Targeting Series C+ for early-stage SaaS sellers**. The buyer profile is wrong — too many procurement hoops, too much red tape.
-4. **Targeting Series Pre-Seed seed** for products requiring meaningful budget. They have neither budget nor evaluator bandwidth.
+4. **Targeting Pre-Seed/Seed** for products requiring meaningful budget. They have neither budget nor evaluator bandwidth.
 5. **Ignoring intent data when it exists** (ZoomInfo Intent, 6sense, etc.) — pre-warm signals beat cold every time.

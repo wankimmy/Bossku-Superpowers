@@ -4,7 +4,7 @@
   "provenance": {
     "marketingskills": {
       "upstream": "coreyhaines31/marketingskills",
-      "last_synced": "2026-09-07"
+      "last_synced": "2026-10-20"
     },
     "superpowers": {
       "upstream": "obra/superpowers",
@@ -87,6 +87,7 @@
       "ai-seo",
       "analytics",
       "aso",
+      "attribution",
       "churn-prevention",
       "co-marketing",
       "cold-email",
@@ -94,16 +95,20 @@
       "competitor-profiling",
       "competitors",
       "content-strategy",
+      "conversion-tracking",
       "copy-editing",
       "copywriting",
       "cro",
       "customer-research",
       "directory-submissions",
       "emails",
+      "events",
       "free-tools",
       "image",
+      "influencer-marketing",
       "launch",
       "lead-magnets",
+      "link-building",
       "marketing-council",
       "marketing-ideas",
       "marketing-loops",
@@ -377,7 +382,12 @@
     "moli-webfetch": "moli",
     "moli-cdp-server": "moli",
     "anatomy": "anatomy",
-    "logo-design": "logo-design"
+    "logo-design": "logo-design",
+    "attribution": "marketingskills",
+    "conversion-tracking": "marketingskills",
+    "events": "marketingskills",
+    "influencer-marketing": "marketingskills",
+    "link-building": "marketingskills"
   },
   "excluded": {
     "taste-skill-v1": "taste-skill: legacy v1 kept upstream for exact-v1 compatibility; conflicts with the default stack",

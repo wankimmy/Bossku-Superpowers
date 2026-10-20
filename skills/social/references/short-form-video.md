@@ -10,7 +10,7 @@ Detailed reference for creating short-form video content on TikTok, Instagram Re
 
 **The "Secret" Formula:**
 - "The secret to [outcome] that nobody talks about"
-- "I found the hidden feature in [product/platform] that changes everything"
+- "I found a feature in [product/platform] that saves me [specific time/result]"
 - "I can't believe this actually works..."
 
 **The Unexpected Discovery:**
@@ -28,7 +28,7 @@ Detailed reference for creating short-form video content on TikTok, Instagram Re
 **The Promise:**
 - "How to [achieve outcome] in [specific timeframe]"
 - "[Number] [things] that will [benefit]"
-- "Everything you need to know about [topic] in 60 seconds"
+- "[Topic] in 60 seconds: the [N] things that matter"
 
 **The Hack/Shortcut:**
 - "[Outcome] hack that actually works"
@@ -36,7 +36,7 @@ Detailed reference for creating short-form video content on TikTok, Instagram Re
 - "If you're struggling with [problem], watch this"
 
 **The Warning:**
-- "Stop doing [common practice] — here's why"
+- "Stop doing [common practice]. It cost me [specific result]."
 - "[Number] mistakes that are killing your [results]"
 - "Why [thing you think is good] is actually hurting you"
 
@@ -45,7 +45,7 @@ Detailed reference for creating short-form video content on TikTok, Instagram Re
 **The Transformation:**
 - "3 months ago, I [bad state]. Today, I [good state]."
 - "Here's how I went from [before] to [after]"
-- "I used to think [old belief]. Then [event] changed everything."
+- "I used to think [old belief]. Then [specific event] happened."
 
 **The Failure:**
 - "I made a huge mistake with [topic]"
@@ -54,7 +54,7 @@ Detailed reference for creating short-form video content on TikTok, Instagram Re
 
 **The Journey:**
 - "So this just happened..."
-- "This changed everything for me"
+- "This cut my [task] from [X] to [Y]"
 - "Let me tell you about the time I [interesting situation]"
 
 ### Controversial Hooks (Best for comments)
@@ -63,6 +63,16 @@ Detailed reference for creating short-form video content on TikTok, Instagram Re
 - "[Common advice] is actually wrong"
 - "I'm going to get hate for this, but..."
 - "Most [audience] get this completely wrong"
+
+### Contrast Hooks (Best for educational content and decisions)
+
+- "Should you [option A] or [option B]?"
+- "We used to [old way]. Now everyone [new way]. Which one actually works?"
+- "Most [audience] do [X]. The ones who [result] do [Y]."
+- "You can cancel [thing they think they need]." (challenges a false assumption)
+- "You need [common belief]. Or do you?"
+
+Both sides of the contrast must be real options the viewer weighs, and the video has to pick one. See the ad-creative skill's hook system for when each works.
 
 ---
 

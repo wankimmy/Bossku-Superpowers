@@ -20,15 +20,27 @@ Ask each respondent:
 
 ### How to Analyze
 
-1. Plot cumulative distributions for each question
-2. Find the intersections:
+1. Validate responses in one currency, billing period, and product description. Flag missing, nonnumeric, or inconsistent threshold ordering (`too cheap ≤ cheap ≤ expensive ≤ too expensive`); document any exclusions instead of silently changing answers.
+2. Plot candidate price on the x-axis and the share of respondents on the y-axis. The two cheap curves decrease as price rises; the two expensive curves increase. At each candidate price `p`, use:
+
+   | Curve | Share to plot | Direction |
+   |-------|---------------|-----------|
+   | Too cheap | Respondents whose too-cheap threshold is at or above `p` | Decreasing |
+   | Cheap / good value | Respondents whose cheap threshold is at or above `p` | Decreasing |
+   | Expensive | Respondents whose expensive threshold is at or below `p` | Increasing |
+   | Too expensive | Respondents whose too-expensive threshold is at or below `p` | Increasing |
+
+   Use a consistent endpoint convention for ties and record it. Do not apply an increasing cumulative distribution to all four questions: it reverses the meaning of the cheap curves. [Sawtooth's example](https://sawtoothsoftware.com/resources/blog/posts/van-westendorp-pricing-sensitivity-meter) illustrates the too-cheap share falling as price increases.
+3. Find the intersections:
    - **Point of Marginal Cheapness (PMC):** "Too cheap" crosses "Expensive"
    - **Point of Marginal Expensiveness (PME):** "Too expensive" crosses "Cheap"
    - **Optimal Price Point (OPP):** "Too cheap" crosses "Too expensive"
    - **Indifference Price Point (IDP):** "Expensive" crosses "Cheap"
 
 **The acceptable price range:** PMC to PME
-**Optimal pricing zone:** Between OPP and IDP
+**Candidate prices to test:** OPP and IDP can inform a shortlist; they do not establish an economically optimal zone.
+
+The four questions measure price perceptions, not purchase probabilities. Before forecasting demand, use additional purchase-intent research (such as the Newton-Miller-Smith extension, with its assumptions stated), a choice study or actual price tests. Compare revenue, margin and retention; a higher acceptable price does not guarantee unchanged demand. See [Sawtooth's explanation of the method and its limits](https://sawtoothsoftware.com/resources/blog/posts/van-westendorp-pricing-sensitivity-meter).
 
 ### Survey Tips
 - Need 100-300 respondents for reliable data
@@ -46,9 +58,11 @@ Optimal Price Point:          $49/mo
 Indifference Price Point:     $59/mo
 Point of Marginal Expensiveness: $79/mo
 
-Recommended range: $49-59/mo
-Current price: $39/mo (below optimal)
-Opportunity: 25-50% price increase without significant demand impact
+Candidate test prices: $49 and $59/mo
+Current price: $39/mo
+Price changes: +25.6% and +51.3%
+Demand, conversion and churn impact: not measured by these four questions
+Next step: validate purchase behavior and unit economics before rollout
 ```
 
 ---

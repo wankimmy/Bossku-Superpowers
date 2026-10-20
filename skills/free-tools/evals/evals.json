@@ -85,6 +85,20 @@
         "Does not attempt full page CRO using free tool strategy patterns"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "We're deciding whether a free tool is worth building for our SaaS. What kind of results do free tools actually get, and what usually goes wrong?",
+      "expected_output": "Should cite sourced named examples as design patterns, distinguish documented facts from unverified conversion claims, and avoid quoting unsupported rates. Should explain that forecasts require the user's baseline or labeled assumptions, with cohort, denominator, funnel stage, and attribution limits for any quantitative case. Should surface over-engineering, poor product integration, maintenance/security debt, and vanity metrics; track qualified leads and customer contribution rather than traffic alone. Should invoke the 'your product is my marketing opportunity' framing.",
+      "assertions": [
+        "Cites sourced named examples without inventing conversion rates",
+        "Invokes 'your product is my marketing opportunity' framing",
+        "Distinguishes documented outcomes from assumptions and requires cohort and denominator for numerical benchmarks",
+        "Lists the common pitfalls (over-engineering, poor product integration, maintenance/security debt, vanity metrics)",
+        "Connects expected results to tool type",
+        "Recommends tracking leads/conversion over vanity metrics"
+      ],
+      "files": []
     }
   ]
 }

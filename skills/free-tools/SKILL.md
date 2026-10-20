@@ -2,7 +2,7 @@
 name: free-tools
 description: When the user wants to plan, evaluate, or build a free tool for marketing purposes — lead generation, SEO value, or brand awareness. Also use when the user mentions "engineering as marketing," "free tool," "marketing tool," "calculator," "generator," "interactive tool," "lead gen tool," "build a tool for leads," "free resource," "ROI calculator," "grader tool," "audit tool," "should I build a free tool," or "tools for lead gen." Use this whenever someone wants to build something useful and give it away to attract leads or earn links. For downloadable content lead magnets (ebooks, checklists, templates), see lead-magnets.
 metadata:
-  version: 2.0.0
+  version: 2.0.3
 ---
 
 # Free Tool Strategy (Engineering as Marketing)
@@ -25,6 +25,8 @@ Before designing a tool strategy, understand:
 ---
 
 ## Core Principles
+
+**"Your product is my marketing opportunity."** Bezos said "your margin is my opportunity." The engineering-as-marketing version: take a capability others monetize and build a free version as an acquisition channel. Unsplash gave away the stock photos Getty sold — and Getty acquired it. See [references/tool-benchmarks.md](references/tool-benchmarks.md) for sourced cases and measurement limits.
 
 ### 1. Solve a Real Problem
 - Tool must provide genuine value
@@ -58,6 +60,8 @@ Before designing a tool strategy, understand:
 | Interactive | Tutorials, playgrounds, quizzes | Learning/understanding |
 
 **For detailed tool types and examples**: See [references/tool-types.md](references/tool-types.md)
+
+**For sourced case examples (Unsplash, HubSpot Website Grader, Buffer, Shopify) and evidence requirements**: See [references/tool-benchmarks.md](references/tool-benchmarks.md)
 
 ---
 
@@ -170,10 +174,18 @@ Rate each factor 1-5:
 
 ---
 
+## Common Pitfalls
+
+- **Over-engineering** — Shipping a bloated tool before validating demand. Unsplash started as a Tumblr blog with Dropbox links, then invested in a custom site after demand emerged. Scope to one useful job and test it with your audience.
+- **Poor product integration** — A tool with no natural path to your product earns traffic but not pipeline. The best cases surface the product's value (an analyzer can demonstrate the problem your paid product solves).
+- **Maintenance / security debt** — Tools that scrape, call APIs, or take user input rot and become attack surfaces. Budget for upkeep before you build.
+- **Vanity metrics** — Visitors and usage feel good but don't pay. Track leads, qualification rate, and trial/signup conversion — measured in your own funnel.
+
 ## Related Skills
 
 - **lead-magnets**: For downloadable content lead magnets (ebooks, checklists, templates)
 - **cro**: For optimizing the tool's landing page
 - **seo-audit**: For SEO-optimizing the tool
+- **link-building**: For promoting the tool to sites that link to resources like it
 - **analytics**: For measuring tool usage
 - **emails**: For nurturing leads from the tool

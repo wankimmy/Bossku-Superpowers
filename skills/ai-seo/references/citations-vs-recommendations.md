@@ -2,7 +2,7 @@
 
 Being cited by an AI engine and being recommended by it are **two different outcomes governed by two different systems**. A citation means your page was useful enough to pull information from. A recommendation means the model put your brand on the buyer's shortlist. Optimizing for the first does not automatically earn the second — and for smaller brands, conflating them leads to content strategies that can actively help competitors.
 
-Source note: the analysis and data in this reference draw on Lily Ray's (Amsive) 2026 study of B2B "best [category] software" queries, behavioral studies by Scrunch and SimilarWeb, and commentary by John-Henry Scherck (Growth Plays).
+Source note: the analysis and data in this reference draw on Lily Ray's (Amsive) 2026 study of B2B "best [category] software" queries, behavioral studies by Scrunch and SimilarWeb, and commentary by John-Henry Scherck (Growth Plays). The citation-mix taxonomy and decision rules are adapted (re-expressed and restructured) from Profound's MIT-licensed ai-citation-mix-strategist skill, credited.
 
 ---
 
@@ -21,6 +21,8 @@ Rungs 1–3 are legitimate signals your content is working, and most prompt-trac
 
 There is also a shadow rung: **recommended against**. On detailed, requirements-heavy prompts, models increasingly name products a buyer should *avoid* for their use case, with sources. The downside of weak third-party consensus is no longer just absence from the shortlist — it can be an explicit rule-out. This makes monitoring the *framing* around your mentions (favorable / neutral / hedged / negative), not just counting them, part of the job.
 
+**Repairing a weakness models repeat.** Address it in public, with specifics, from a real person. One practitioner's client was "slaughtered" on implementation time; over 1.5–2 years, founder posts about the process, guides on real timelines, and a concrete "4–8 weeks" on the implementation page shifted how models described it (anecdote, Harpreet Singh on Edward Sturm's podcast, Sep 2026). More in [positioning-and-consensus.md](positioning-and-consensus.md).
+
 ---
 
 ## The Self-Promotional Listicle Risk
@@ -37,6 +39,8 @@ The common tactic — publish a "best [category] software" guide, rank yourself 
 - **Emerging brands** may win the citation and even shape the category's framing, but miss the recommendation. That's not a wasted outcome — influencing how an LLM defines the category and its evaluation criteria is real positioning work — but it is not the shortlist placement the tactic promises.
 
 **What this changes (and doesn't):** genuinely useful buyer's guides still belong in a B2B content strategy at any stage. What changes is the expectation and the investment split. If you're not yet the consensus pick, weight effort toward the offsite signals that actually govern recommendations (below) rather than publishing a plethora of self-ranked listicles.
+
+**A third option between ranking yourself #1 and not writing the guide:** name the category leader first, say honestly what it does well, then show the specific cases where your product goes further (practitioner pattern, Sep 2026). It reads as a fair source, which is what models are now starting to filter for.
 
 ---
 
@@ -58,6 +62,37 @@ The encouraging flip side: earning an AI recommendation is harder to game than a
 
 ---
 
+## Reading the Citation Mix Before Picking Channels
+
+"Do more PR" and "post on Reddit" are guesses until you know which sources the engines actually cite for your prompts. The mix differs sharply by engine and industry. Profound's analysis of 11.84 billion citations across eight models and 29 industries found about 57% went to company-operated sites overall, with ChatGPT at 47% and Gemini at 69%; in 24 of 29 industries, the median Profound customer got more citations from brand sites than from earned or social sources (Profound, July 2026). Profound sells AI visibility tracking, so treat this as vendor research. Ahrefs Brand Radar, Semrush, Peec AI, and Otterly also report cited domains you can classify the same way.
+
+**Classify every cited source** across a stable prompt sample, split by engine and prompt cluster:
+
+| Class | Examples | Roll-up |
+|---|---|---|
+| Your own site | Product, docs, pricing, blog | Owned |
+| Competitor or adjacent company site | A rival's comparison page, a partner's docs | Owned (someone else's) |
+| Earned editorial | Trade press, independent reviews, newsletters | Earned |
+| Institutional or primary authority | Standards bodies, government, universities, analyst firms | Earned |
+| PR wire | Press release distribution | Earned |
+| Social and user-generated | Reddit, YouTube, LinkedIn, forums | Community |
+| Marketplace, directory, or review platform | G2, Capterra, app stores, Amazon | Community |
+| Other or unknown | Anything you can't classify yet | Unclassified |
+
+Diagnose with the granular classes; report to executives with the three roll-ups. Separate sources that cite *you* from sources that only shape the surrounding answer.
+
+**Then follow the mix:**
+
+- **Engines already cite company sites, and yours lacks the facts:** strengthen owned content first. State specific, current facts on the page that should own them.
+- **Editorial or institutional sources dominate:** pursue earned coverage and analyst inclusion. The **link-building** skill turns the cited pages into a prospect list.
+- **Communities contribute materially:** participate where you can do it honestly and in your own name. Skip communities the engines don't cite.
+- **Competitor pages get cited:** read them for the facts and framing you're missing. Don't copy them.
+- **Engines disagree:** plan per engine. A blended average can hide opposite behavior.
+
+Re-measure on the same prompt cohort over time; mixes shift with retrieval updates (see the volatility section in [agent-readiness.md](agent-readiness.md)).
+
+---
+
 ## What a Recommendation Is Worth
 
 Two behavioral studies quantified the gap between rungs:
@@ -70,7 +105,7 @@ Two behavioral studies quantified the gap between rungs:
 **Measurement triad** (no single signal is complete; together they give a reliable read):
 
 1. **AI prompt tracking** — whether and how you're mentioned/recommended in LLM answers, even when no click ever lands (tools in SKILL.md's Monitoring section). Track the framing around mentions — recommended, neutral, hedged, or recommended-against — not just the count.
-2. **Self-reported attribution** — a "how did you hear about us?" field catches buyers whose journey started in an AI chat but arrived via branded search or direct.
+2. **Self-reported attribution** — a "how did you hear about us?" field catches buyers whose journey started in an AI chat but arrived via branded search or direct. Add an AI option with a follow-up, "What did you type?", so buyers hand you real prompts to track. ChatGPT referral UTMs undercount, and AI Overview revenue can't be separated from organic in analytics, so this field is often the clearest signal you have.
 3. **Sales call recordings** — buyers' own language often reveals an AI conversation shaped the shortlist long before any form fill.
 
 Also watch **branded search volume** as a proxy: sustained lifts without a matching campaign are increasingly AI-influence showing up under another name.

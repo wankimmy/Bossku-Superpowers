@@ -27,7 +27,7 @@ A loaded skill stays in the conversation and is read again on every later turn, 
 
 `bossku install --profile core` installs Bossku co-founder essentials plus the **loop-engineering** pack (12 loop/triage/CI/PR skills) and `bosskuai-grounding`. Always-on loop discipline is in [`AGENTS.md`](../AGENTS.md#loop-engineering-always-on); always-on grounding is in [`AGENTS.md`](../AGENTS.md#grounding-always-on).
 
-`bossku install --profile engineering` installs and lists every skill except the 47 of the marketingskills pack (about 195), for people who build software and do not need the marketing set.
+`bossku install --profile engineering` installs and lists every skill except the 52 of the marketingskills pack (about 195), for people who build software and do not need the marketing set.
 
 `bossku install --profile full` installs and lists the entire library (~240 skills), including all other vendored packs.
 
@@ -35,7 +35,7 @@ A loaded skill stays in the conversation and is read again on every later turn, 
 
 | Pack | Skills | Optional pip tool |
 |---|---|---|
-| marketingskills | 47 marketing/CRO/SEO/copy skills | — |
+| marketingskills | 52 marketing/CRO/SEO/copy skills | — |
 | superpowers | 15 process skills (brainstorm, TDD, debug, plans, session diagnosis) | — |
 | hallmark | Anti-AI design skill | — |
 | browser-use | 5 browser agent skills | `browser-use` |
