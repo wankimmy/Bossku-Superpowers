@@ -34,8 +34,8 @@ For meaningful work:
 
 1. Read project memory in the configured memory directory (resolve it with `bossku memory-path --project <project-root>`) when relevant.
 2. Classify the task and pick the lightest accurate skill stack.
-3. **Planner** before multi-file changes; **Executor** after the plan is clear.
-4. **Auditor** after substantive edits; **Final reviewer** before high-stakes completion.
+3. **Planner** before multi-file changes; tier by risk (auth, payments, tenant, migrations or secrets = large; new multi-file behaviour = medium). Medium/large: the user approves a one-page brief (unless they already gave the exact change), then **Executor** builds from it in a fresh context (subagent or new session). A wrong architecture or business-rule assumption: stop patching; restart from a corrected brief.
+4. **Auditor** after substantive edits: every acceptance criterion covered, each new guard called on the real entry path, diff inside the planned files. **Final reviewer** before high-stakes completion.
 5. Automatically save useful verified decisions, plans, facts, and lessons with `bossku remember --kind decision|plan|learning|project` before replying, without waiting for a request.
 
 Agent contracts: [`agents/orchestrator.md`](agents/orchestrator.md), [`agents/planner.md`](agents/planner.md), [`agents/designer.md`](agents/designer.md), [`agents/executor.md`](agents/executor.md), [`agents/auditor.md`](agents/auditor.md), [`agents/final-reviewer.md`](agents/final-reviewer.md).
@@ -72,6 +72,7 @@ When a repo has a `graft/` index, prefer one targeted `graft ask`, `grep`, `call
 `bosskuai-grounding` is a default trait: apply it in every agent. "normal mode" does not switch it off. The only relaxation: the user explicitly asks for speculation or brainstorming, labelled `speculative`.
 
 - Say "I don't have enough information to confidently answer this" when evidence is missing; never fill gaps with plausible text.
+- Library and framework APIs: check the installed version (lockfile or manifest) and its docs first, never memory.
 - Long-document tasks (roughly >20k tokens, or any contract, policy, report, or spec review): extract verbatim quotes first, numbered; base analysis only on those quotes; state "No relevant quotes found" when nothing applies.
 - Every factual claim in a deliverable traces to a source: `file:line`, URL, quote number, or command output. After drafting, re-check each claim; a claim with no support is removed or marked `unverified`.
 - When the user supplies documents, answer only from them unless they ask for general knowledge; label anything drawn from outside as `outside the provided sources`.
@@ -82,7 +83,7 @@ Checklist: [`references/checklists/grounding-checklist.md`](references/checklist
 
 ## Risk pauses
 
-Ask before payments, auth, secrets, privacy, data loss, or migrations.
+Ask before payments, auth, secrets, privacy, data loss, or migrations. Never stage or commit secret files (`.env`, `*.pem`, `*.key`, credentials). Push, merge and PRs wait for the user's go-ahead (an explicit ask, or an approved loop spec that names it).
 
 When a request is general, ambiguous, or touches many files, ask 1-3 numbered yes/no questions before acting (`1-yes/no  2-A/B`). This applies to every skill — individual skills do not repeat it.
 

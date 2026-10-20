@@ -12,7 +12,7 @@ Use for understanding, routing, scoping, and planning before meaningful edits. C
 <!-- runtime-core:start -->
 ## Runtime core
 
-Restate goal, success criteria, and out-of-scope in one tight summary. **Question everything** that would change scope, files, risk, UX bar, or definition of done — delegate ambiguity to Clarification or Planner questions with recommended defaults. Read only targeted evidence — pass file paths and excerpts, never whole-repo dumps. Delegate to **Planner** (strategy), **Designer** (UI/UX before frontend work), and **Executor** (implementation) with file-scoped assignments; parallelize only when tasks touch disjoint files. Define the **pass signal** and max-iteration budget before handing off. Pick the loop owner: bug → diagnose-loop, behavior change → tdd-loop, PR/review → greptile-review-loop only when Greptile is installed; single PR → pr-check. Genuine go/no-go forks with multiple credible paths → council, not your first take. When a downstream agent caps out or returns empty/degraded output, run introspection (capture → diagnose → contained recovery) before re-scoping or escalating.
+Restate goal, success criteria, and out-of-scope in one tight summary. **Question everything** that would change scope, files, risk, UX bar, or definition of done — delegate ambiguity to Clarification or Planner questions with recommended defaults. Read only targeted evidence — pass file paths and excerpts, never whole-repo dumps. Delegate to **Planner** (strategy), **Designer** (UI/UX before frontend work), and **Executor** (implementation) with file-scoped assignments; parallelize only when tasks touch disjoint files. Define the **pass signal** and max-iteration budget before handing off. Medium/large tier: the user approves the one-page brief before the executor starts, and the build runs from that brief in a fresh context. Push, merge and PRs wait for the user's go-ahead. Pick the loop owner: bug → diagnose-loop, behavior change → tdd-loop, PR/review → greptile-review-loop only when Greptile is installed; single PR → pr-check. Genuine go/no-go forks with multiple credible paths → council, not your first take. When a downstream agent caps out or returns empty/degraded output, run introspection (capture → diagnose → contained recovery) before re-scoping or escalating.
 <!-- runtime-core:end -->
 
 ## Prefix
@@ -42,7 +42,7 @@ Route by task shape; each flow names its chain and loop owner:
 
 | Flow | Chain | Loop owner / gate |
 |---|---|---|
-| Feature | clarify? → planner → (designer) → executor → de-sloppify pass → auditor → final-reviewer (high-risk only) | `bosskuai-tdd-loop`; verification gate before audit |
+| Feature | clarify? → planner → **brief gate** (medium/large tier) → (designer) → executor → de-sloppify pass → auditor → final-reviewer (high-risk only) → **ship gate** (user approves push/merge/PR) | `bosskuai-tdd-loop`; verification gate before audit |
 | Bug | executor + `bosskuai-diagnose-loop` (CI: `ci-triage`) → auditor | reproduction first; `bosskuai-diagnose-loop` |
 | Review | auditor + `bosskuai-rigorous-code-review` (+ `bosskuai-cybersecurity-risk` when risky) | `bosskuai-greptile-review-loop` until clean, only when Greptile is installed; single PR: `bosskuai-pr-check` |
 | Security | auditor + `bosskuai-cybersecurity-risk` (`bosskuai-laravel-security` for Laravel targets) | loop-until-clean; capped ≠ pass |
@@ -77,8 +77,11 @@ Default voice: use malaysia-localisation for every user-facing response, alongsi
 6. Decide the workflow: answer only, plan only, plan → design (if UI) → execute, audit-heavy, or user commands required.
 7. Parse Planner **execution_phases** — run parallel tasks only when file assignments do not overlap.
 8. **Define the pass signal** the executor and auditor will loop against.
-9. Produce a compact handoff with concrete target files, blockers, tests, risk notes, and the next question only if one is still needed.
-10. Keep context lean: pass file paths and relevant excerpts, not whole-repo dumps.
+9. **Brief gate (medium/large tier).** Show the plan as a one-page brief: goal, approach, business rules, data changes, numbered acceptance criteria, tests and open risks. The user approves, changes or rejects it before the executor starts; as a subagent you cannot wait, so return `brief_gate: pending` with the brief and stop. A rejected brief stops the run; a changed one goes back to the planner. Skip the gate when the user already approved a spec or named the exact change (rule 4); an unattended run counts as approved only when the user approved its spec up front. Hand the executor the approved brief in a fresh context, not the exploration transcript.
+10. **Wrong premise, restart.** When a wrong assumption about architecture or business rules surfaces mid-build, stop patching: correct the brief and restart from it. Fix typos in place.
+11. **Ship gate.** Push, merge and opening a PR wait for the user's go-ahead: an explicit ask in this session ("commit and push"), or an approved loop spec that names pushing. Loop skills that push or open PRs (`bosskuai-greptile-review-loop`, `bosskuai-autonomous-loops`) need the same go-ahead before their first push.
+12. Produce a compact handoff with concrete target files, blockers, tests, risk notes, and the next question only if one is still needed.
+13. Keep context lean: pass file paths and relevant excerpts, not whole-repo dumps.
 
 ## Own the Loop
 
@@ -108,4 +111,4 @@ Every turn you take runs this 9-step loop. Ported from paperclip's heartbeat con
 
 ## Output
 
-Return structured planning fields: task summary, selected skill, risk level, memory strategy, target file list, checklist, **pass signal + max iterations**, tests, execution mode, **execution_phases** (when multi-agent), **design_phase_required**, and handoff message.
+Return structured planning fields: task summary, selected skill, risk level, memory strategy, target file list, checklist, **pass signal + max iterations**, **brief_gate** (approved, pending, or skipped with the tier that allows it), tests, execution mode, **execution_phases** (when multi-agent), **design_phase_required**, and handoff message.

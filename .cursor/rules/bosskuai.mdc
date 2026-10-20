@@ -23,7 +23,7 @@ For meaningful work: read the configured memory directory (resolve it with `boss
 
 **Ponytail:** simplest thing that works; never skip validation, security, accessibility, or data-loss checks. **Superpowers:** use the phase skill for planning, TDD, debugging, and verification. **Anti-Slop:** add the relevant UI, mobile, copy, comment, or code specialist and use `antislop` as the final gate. **Context:** use Headroom only when installed and bulky output merits reversible compression. **Grounding (always on, not switched off by "normal mode"):** load `bosskuai-grounding`; say "not enough information" instead of guessing; quote first for long documents; every claim traces to a source or is marked unverified. Disable always-on modes with "normal mode".
 
-Pause before payments, auth, secrets, privacy, data loss, or migrations.
+Pause before payments, auth, secrets, privacy, data loss, or migrations. Tier work by risk (auth, payments, tenant, migrations or secrets = large; new multi-file behaviour = medium); for medium/large work the user approves a one-page brief before the build, unless they already gave the exact change, and the build runs from it in a fresh context. The auditor checks every acceptance criterion, that each new guard is called on the real entry path, and that the diff stays inside the planned files. Check a library's installed version before using its API. A wrong architecture assumption means restart from a corrected brief, not patching. Never stage or commit `.env`, `*.pem`, `*.key` or credential files; push, merge and PRs wait for the user's go-ahead (an explicit ask, or an approved loop spec that names it).
 
 ## Memory
 

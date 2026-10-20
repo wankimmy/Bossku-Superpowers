@@ -52,7 +52,8 @@ VERIFYING_AGENTS = ("executor.md", "auditor.md", "final-reviewer.md", "designer.
 
 CLAUDE_AGENTS_IMPORT = "@AGENTS.md"
 OMP_AGENTS_IMPORT = "@../AGENTS.md"
-# Always loaded in every session, so growth is a cost: raise this on purpose, not by accident.
+# Always loaded in every session, so growth is a cost: raise this on purpose, not by accident. Counted in UTF-8
+# bytes: Devin auto-includes only the first 16,384 bytes of an AGENTS.md, so the budget stays under that.
 AGENTS_MD_MAX_CHARS = 16000
 # Files that repeat the voice rule word for word.
 VOICE_RULE_COPIES = ("AGENTS.md", ".cursor/rules/bosskuai.mdc", *(f"agents/{name}" for name in REQUIRED_AGENTS))
@@ -343,10 +344,10 @@ def validate_instructions(root: Path) -> list[str]:
     errors: list[str] = []
     agents_md = root / "AGENTS.md"
     if agents_md.is_file():
-        size = len(agents_md.read_text(encoding="utf-8"))
+        size = len(agents_md.read_bytes())
         if size > AGENTS_MD_MAX_CHARS:
             errors.append(
-                f"AGENTS.md is {size} characters, over the {AGENTS_MD_MAX_CHARS} always-on budget "
+                f"AGENTS.md is {size} bytes, over the {AGENTS_MD_MAX_CHARS}-byte always-on budget "
                 "(trim it, or raise AGENTS_MD_MAX_CHARS in bossku/validate.py on purpose)"
             )
     rule = " ".join(DEFAULT_VOICE_RULE.split())

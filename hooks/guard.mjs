@@ -7,7 +7,10 @@
 //
 // Manual test:
 //   echo '{"tool_name":"Bash","tool_input":{"command":"git reset --hard"}}' | node hooks/guard.mjs
+import { execFileSync } from "node:child_process";
+import fs from "node:fs";
 import os from "node:os";
+import path from "node:path";
 import { emit, isMain, isOff, readStdinJson, segments, toPosix } from "./_lib.mjs";
 
 // `git -C dir -c k=v --no-pager <verb>`: global options sit between git and the verb and hide it from RULES.
@@ -150,15 +153,191 @@ function dangerousTarget(t, cwd) {
   return false;
 }
 
-export function judge(command, cwd) {
+// Files that hold credentials. Example, sample and template copies of .env are meant to be committed, and so is
+// dotenv-vault's encrypted .env.vault; `.env.d.ts` and `.env.mjs` are source code that reads env vars.
+const ENV_NOT_SECRET = /\.(?:example|sample|template|dist|defaults?|vault|[cm]?[jt]sx?|py|rb|php|go|rs|sh|md)$/i;
+// A credential whatever is inside.
+const SECRET_NAME = /^(?:id_(?:rsa|dsa|ecdsa|ed25519)|[^/]+\.(?:p12|pfx|jks)|secrets\.json|credentials\.json|creds\.md|[._]netrc|\.pgpass)$/i;
+// A credential only when the content says so: a public CA bundle or a Keynote .key is fine, a private key is not.
+const SECRET_BY_CONTENT = [
+  { name: /\.(?:pem|key)$/i, content: /PRIVATE KEY-----/, unreadable: true },
+  // `_authToken=${NPM_TOKEN}` reads the token from the environment: that file is meant to be committed.
+  { name: /^\.(?:npmrc|pypirc)$/i, content: /_auth(?:Token)?\s*=\s*(?!\$\{?\w)\S|^\s*password\s*[=:]\s*(?!\$\{?\w)\S/im, unreadable: false },
+];
+
+function readHead(file) {
+  try {
+    const fd = fs.openSync(file, "r");
+    try {
+      const buf = Buffer.alloc(64 * 1024);
+      return buf.toString("latin1", 0, fs.readSync(fd, buf, 0, buf.length, 0));
+    } finally {
+      fs.closeSync(fd);
+    }
+  } catch {
+    return null;
+  }
+}
+
+// `read(file)` returns the file's text or null; by default the file is read from the current folder.
+export function isSecretFile(file, read = readHead) {
+  const posix = toPosix(file).replace(/\/+$/, "");
+  const base = posix.split("/").pop() || "";
+  if (/^\.env(?:\..+)?$/i.test(base)) return !ENV_NOT_SECRET.test(base);
+  if (SECRET_NAME.test(base) || /(?:^|\/)\.aws\/credentials$/i.test(posix)) return true;
+  if (/\.keystore$/i.test(base)) return base.toLowerCase() !== "debug.keystore"; // Android's shared debug key
+  const rule = SECRET_BY_CONTENT.find((r) => r.name.test(base));
+  if (!rule) return false;
+  const text = read(file);
+  return text === null ? rule.unreadable : rule.content.test(text);
+}
+
+// git's own answer as text, or null on any failure (no git, not a repo, timeout): every caller fails open on null.
+// One budget per hook call keeps all lookups inside the 10 s hook timeout.
+function budgetedGit(totalMs = 6000) {
+  const end = Date.now() + totalMs;
+  return (args, cwd) => {
+    const left = end - Date.now();
+    if (left < 250) return null;
+    try {
+      return execFileSync("git", args, {
+        cwd, encoding: "utf8", timeout: Math.min(2500, left), maxBuffer: 256 * 1024 * 1024,
+        stdio: ["ignore", "pipe", "ignore"], windowsHide: true,
+      });
+    } catch {
+      return null;
+    }
+  };
+}
+const nulList = (text) => (text ? text.split("\0").filter(Boolean) : []);
+
+const rawWords = (s) => String(s).match(/"[^"]*"|'[^']*'|\S+/g) || [];
+const shellWords = (s) => rawWords(s).map(unquote);
+
+// Git Bash spells C:\x as /c/x (Cygwin as /cygdrive/c/x); Node on Windows would read that as \c\x on this drive.
+export function nativePath(p) {
+  if (process.platform !== "win32") return p;
+  const m = toPosix(p).match(/^(?:\/cygdrive)?\/([a-zA-Z])(?:\/(.*))?$/);
+  return m ? `${m[1].toUpperCase()}:/${m[2] || ""}` : p;
+}
+const resolveDir = (base, p) => path.resolve(base, nativePath(HOME_TOKEN.test(p) && HOME ? p.replace(HOME_TOKEN, HOME) : p));
+
+// `cd x`, `cd /d x`, `Set-Location -Path x`, `pushd x`: the folder, or null when it cannot be known (`cd "$(...)"`).
+const CD_RE = /^(?:cd|chdir|pushd|Set-Location|sl)(?=\s|$)(.*)$/i;
+function cdTarget(rest) {
+  for (const raw of rawWords(rest)) {
+    if (/^\d*[<>]|^&>/.test(raw)) break; // a redirection ends the arguments
+    if (raw === "-") return null; // `cd -`: the previous folder
+    if (/^(?:\/d|-(?:Path|LiteralPath|L|P|e|@)|--)$/i.test(raw)) continue;
+    const word = unquote(raw);
+    if (!HOME_TOKEN.test(word) && /[$`%]/.test(raw.startsWith("'") ? "" : raw)) return null;
+    return word;
+  }
+  return "~";
+}
+
+// Where git would run for this segment: the folder from `cd` earlier on the line, then `git -C x`. `--git-dir` and
+// `--work-tree` are passed through as they are. `base` is the folder ls-files paths are relative to: the work tree
+// when the command runs outside it, else the folder git runs in.
+function gitContext(seg, dir) {
+  const m = seg.match(/\bgit((?:\s+(?:-C\s+(?:"[^"]*"|'[^']*'|\S+)|-c\s+(?:"[^"]*"|'[^']*'|\S+)|--no-pager|--git-dir(?:=|\s+)\S+|--work-tree(?:=|\s+)\S+|-P|--paginate))*)\s+(?:add|commit)\b/i);
+  const pre = [];
+  let workTree = null;
+  if (m) {
+    const words = shellWords(m[1]);
+    for (let i = 0; i < words.length; i++) {
+      const w = words[i];
+      const opt = /^--(git-dir|work-tree)(?:=(.*))?$/s.exec(w);
+      if (w === "-C" && words[i + 1]) dir = resolveDir(dir, words[++i]);
+      else if (opt && (opt[2] !== undefined || words[i + 1])) {
+        const value = nativePath(opt[2] !== undefined ? opt[2] : words[++i]);
+        pre.push(`--${opt[1]}=${value}`);
+        if (opt[1] === "work-tree") workTree = path.resolve(dir, value);
+      }
+    }
+  }
+  const inside = workTree && (dir === workTree || dir.toLowerCase().startsWith(workTree.toLowerCase() + path.sep));
+  return { dir, pre, base: workTree && !inside ? workTree : dir };
+}
+
+// `git add` and `git commit` that would put a credential file into history. Only files that become tracked count:
+// a file the repo already tracks is not a new leak, and a fixture that is already committed stays editable.
+const ADD_RE = new RegExp(`^${WRAP}git\\s+add(?![-\\w])(.*)$`, "i");
+const COMMIT_RE = new RegExp(`^${WRAP}git\\s+commit(?![-\\w])(.*)$`, "i");
+
+function secretCommit(bare, seg, dir, git) {
+  const add = bare.match(ADD_RE);
+  if (add) {
+    const opts = [];
+    const specs = [];
+    let endOfOpts = false;
+    for (const w of shellWords(add[1])) {
+      if (!endOfOpts && w === "--") endOfOpts = true;
+      else if (!endOfOpts && w.startsWith("-")) opts.push(w);
+      else specs.push(w);
+    }
+    const has = (long, short) => opts.some((o) => o === long || (short && new RegExp(`^-[a-zA-Z]*${short}[a-zA-Z]*$`).test(o)));
+    if (has("--dry-run", "n")) return null;
+    // -u stages tracked files only; -p, -i and -e only edit hunks of tracked files.
+    if (!has("--all", "A") && (has("--update", "u") || has("--patch", "p") || has("--interactive", "i") || has("--edit", "e"))) return null;
+    const ctx = gitContext(seg, dir);
+    const readHere = (f) => readHead(path.resolve(ctx.base, nativePath(f)));
+    const named = specs.filter((s) => !/[*?[]/.test(s) && isSecretFile(s, readHere));
+    if (named.length) {
+      // ls-files prints paths relative to the folder it runs in, so compare in that form.
+      const rel = (s) => toPosix(path.relative(ctx.dir, path.resolve(ctx.dir, nativePath(s))));
+      const tracked = new Set(nulList(git([...ctx.pre, "ls-files", "-z", "--", ...named], ctx.dir)).map(toPosix));
+      const fresh = named.filter((s) => !tracked.has(rel(s)));
+      if (fresh.length) return { files: fresh, staged: false };
+    }
+    if (!specs.length && !has("--all", "A")) return null; // bare `git add` adds nothing
+    const force = has("--force", "f");
+    const list = [...ctx.pre, "ls-files", "--others", ...(force ? [] : ["--exclude-standard"]), "-z", "--", ...(specs.length ? specs : [":/"])];
+    const hits = nulList(git(list, ctx.dir)).filter((f) => isSecretFile(f, readHere));
+    return hits.length ? { files: hits, staged: false } : null;
+  }
+  const commit = bare.match(COMMIT_RE);
+  if (commit && !rawWords(commit[1]).includes("--dry-run")) {
+    const ctx = gitContext(seg, dir);
+    // diff --name-only prints paths from the repo root, and `:path` reads that path from the index.
+    const readStaged = (f) => git([...ctx.pre, "cat-file", "-p", `:${f}`], ctx.dir);
+    const added = nulList(git([...ctx.pre, "diff", "--cached", "--name-only", "--diff-filter=A", "-z"], ctx.dir));
+    const hits = added.filter((f) => isSecretFile(f, readStaged));
+    return hits.length ? { files: hits, staged: true } : null;
+  }
+  return null;
+}
+
+// After `cd <to>`: the new folder, or null (unknown) when `to` cannot be known or is relative to an unknown folder.
+function moveTo(here, to) {
+  if (to === null) return null;
+  const expanded = HOME_TOKEN.test(to) && HOME ? to.replace(HOME_TOKEN, HOME) : to;
+  if (here === null && !path.isAbsolute(nativePath(expanded))) return null;
+  return resolveDir(here || process.cwd(), to);
+}
+
+// `cwd` is the project, used to judge deletes. `dir` is where the commands run after a `cd` on the line, used only
+// for git lookups; null means unknown, and then git add/commit are not looked up (fail-open). `git` runs git (a
+// parameter so tests can stand in for it).
+export function judge(command, cwd, git = budgetedGit(), dir = cwd) {
   const whole = String(command || "");
   for (const rule of WHOLE_LINE_RULES) {
     if (rule.re.test(whole)) return { rule: whole.trim().slice(0, 160), why: rule.why };
   }
+  let here = dir === null ? null : dir || cwd || process.cwd();
   for (const seg of segments(command)) {
+    const cd = seg.match(CD_RE);
+    if (cd) here = moveTo(here, cdTarget(cd[1]));
     const bare = seg.replace(GIT_GLOBAL, "git "); // RULES see the verb; rmTargets keeps the raw text
     for (const rule of RULES) {
       if (rule.re.test(bare)) return { rule: seg, why: rule.why };
+    }
+    const secrets = here === null ? null : secretCommit(bare, seg, here, git);
+    if (secrets) {
+      const { files, staged } = secrets;
+      const shown = files.slice(0, 3).join(", ") + (files.length > 3 ? ` (+${files.length - 3} more)` : "");
+      const fix = staged ? "unstage with `git rm --cached <file>` and add it to .gitignore" : "add it to .gitignore";
+      return { rule: seg, why: `would commit credential file(s) ${shown}; ${fix}, or let the user run it if the file holds no secret` };
     }
     const targets = rmTargets(seg) || findTargets(seg);
     if (targets) {
@@ -167,8 +346,14 @@ export function judge(command, cwd) {
     }
     const nested = seg.match(NESTED);
     if (nested) {
-      const hit = judge(nested[1].replace(/^["']/, "").replace(/["']$/, ""), cwd);
+      const body = nested[1].replace(/^["']/, "").replace(/["']$/, "");
+      const hit = judge(body, cwd, git, here);
       if (hit) return { rule: seg, why: hit.why };
+      // `bash -c "cd sub && git add ."` is split at the && above, so its cd carries into the segments after it, but
+      // only while the body's quote is still open: `bash -c "cd x" && git add .` runs the git add where it started.
+      const quote = /^["']/.exec(nested[1]);
+      const innerCd = quote && !nested[1].includes(quote[0], 1) && body.match(CD_RE);
+      if (innerCd) here = moveTo(here, cdTarget(innerCd[1]));
     }
   }
   return null;

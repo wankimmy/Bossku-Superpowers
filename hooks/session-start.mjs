@@ -44,7 +44,7 @@ try {
         ? `- ${design.rel} is still an unfilled stub. For anything beyond a one-off page, have the designer contract fill it in first.`
         : `- Design source of truth: ${design.rel}. Read it before any UI change; keep tokens, type, and components consistent with it.`,
     "- Ponytail: simplest thing that works. Never lazy about validation, security, accessibility, or data loss.",
-    "- Gates enforced by hooks: destructive commands are denied (hand them to the user with recovery steps); slop is linted on write; a turn that edits source cannot end until a verification command ran, or you state exactly what is unverified.",
+    "- Gates enforced by hooks: destructive commands, and a git add/commit that would track a credential file (.env, *.pem, *.key), are denied (hand them to the user with recovery steps); slop is linted on write; a turn that edits source cannot end until a verification command ran, or you state exactly what is unverified.",
     `- UI edits: screenshot 390 and 1440 with node "${root}/scripts/shot.mjs" <url> and look at both before claiming done.`,
     memory
       ? "- Project memory: .bossku/memory (read when the task touches prior decisions; save with `bossku remember`)."

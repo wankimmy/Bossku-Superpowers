@@ -381,6 +381,17 @@ class ValidateTests(unittest.TestCase):
             agents.write_text(agents.read_text(encoding="utf-8") + "x" * AGENTS_MD_MAX_CHARS, encoding="utf-8")
             self.assertTrue(any("always-on budget" in e for e in validate_instructions(root)))
 
+    def test_agents_md_budget_counts_bytes_not_characters(self):
+        # Devin loads only the first 16,384 bytes, so three-byte characters must count three times.
+        with tempfile.TemporaryDirectory() as tmp:
+            root = mini_repo(tmp)
+            agents = root / "AGENTS.md"
+            text = agents.read_text(encoding="utf-8")
+            room = AGENTS_MD_MAX_CHARS - len(text.encode("utf-8"))
+            agents.write_text(text + "→" * (room // 3 + 1), encoding="utf-8")
+            self.assertLess(len(agents.read_text(encoding="utf-8")), AGENTS_MD_MAX_CHARS)
+            self.assertTrue(any("always-on budget" in e for e in validate_instructions(root)))
+
     def test_a_changed_voice_rule_copy_fails_but_rewrapping_does_not(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = mini_repo(tmp)

@@ -12,7 +12,7 @@ Use after substantive code, config, data, or prompt changes.
 <!-- runtime-core:start -->
 ## Runtime core
 
-Don't pass on one look. Ground every finding in file:line evidence; block only on confidence ≥ 80. Reconcile the executor's claimed evidence against the actual diff, and require that the stated verification command actually ran green. Hand required fixes back to the executor and re-audit only the changed surface — repeat within the run's configured revision budget (`max_revision_rounds`). A capped audit with an open confidence-80+ finding is a FAIL, never a silent pass. Separate required fixes from optional improvements; report Pass / Pass with Notes / Fail with a risk level.
+Don't pass on one look. Ground every finding in file:line evidence; block only on confidence ≥ 80. Reconcile the executor's claimed evidence against the actual diff, and require that the stated verification command actually ran green. Check every acceptance criterion (covered / failed / unclear / skipped), that each new guard or check is called on the real entry path (imported-only is blocking), and that the diff stays inside the planned file scope. Hand required fixes back to the executor and re-audit only the changed surface — repeat within the run's configured revision budget (`max_revision_rounds`). A capped audit with an open confidence-80+ finding is a FAIL, never a silent pass. Separate required fixes from optional improvements; report Pass / Pass with Notes / Fail with a risk level.
 <!-- runtime-core:end -->
 
 ## Prefix
@@ -47,6 +47,9 @@ Default voice: use malaysia-localisation for every user-facing response, alongsi
 5. Separate required fixes from optional improvements.
 6. Verify that executor evidence matches the diff and that the commands actually ran. When the verification command is cheap, run it yourself with Bash and quote the real output; a claim is not evidence.
 7. Check factual claims in executor evidence and user-facing prose against a source (file:line, command output, quote). An unsupported claim is a finding; it must be retracted or marked unverified before Pass.
+8. **Criteria matrix.** List every acceptance criterion from the plan or request as covered (the test or run, with file:line), failed, unclear or skipped. A required criterion that is failed, unclear or skipped is a finding. Never summarise a criterion away.
+9. **Wired, not just present.** For each new or changed guard, check, validator, auth or tenant scope, or verification step, cite the call site on the production entry path. Imported but never called, `import type` only, a registration nothing reads, or a flag that is off by default (unless the plan says it ships dark) is a blocking finding.
+10. **Scope.** Compare `git status --porcelain` (changed and untracked files) with the plan's file scope. A file outside it with no stated reason is a finding.
 
 ## Loop Until Clean
 
@@ -58,13 +61,20 @@ Auditing is not a single pass. Run it as a ratchet (`bosskuai-ratchet-loop`):
 4. **Repeat** until the pass signal holds or the loop budget is exhausted. In the Laravel pipeline that budget is `max_revision_rounds` (default **1** — raise it in Settings for harder fixes); in editor/subagent mode, self-cap at ~5 re-audits.
 5. **On cap**, stop and report the remaining blocking findings verbatim with evidence; escalate via `bosskuai-cross-model-escalation` rather than waving the change through. A capped audit is a FAIL, never a silent pass.
 
-Never report Pass while a confidence-80+ finding is open or while the verification command has not been run green.
+Never report Pass while a confidence-80+ finding is open, a required criterion is not covered, or the verification command has not been run green.
 
 ## Output
 
 ```text
 Audit Result: Pass / Pass with Notes / Fail
 Loop: <iteration N within revision budget> — signal: <met | not met>
+
+Criteria:
+1. <criterion> — covered (<test file:line or command>) | failed | unclear | skipped
+
+Wiring and scope:
+- <new guard or check> — called at <file:line> | not wired
+- files outside plan scope: <none | list with reason>
 
 Findings:
 1. [severity] [confidence] [file:line] issue and impact

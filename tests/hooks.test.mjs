@@ -8,8 +8,8 @@ import path from "node:path";
 import { test } from "node:test";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
-import { isMain, isScratch, pluginRoot, segments } from "../hooks/_lib.mjs";
-import { judge, RULES } from "../hooks/guard.mjs";
+import { isMain, isScratch, pluginRoot, segments, toPosix } from "../hooks/_lib.mjs";
+import { isSecretFile, judge, RULES } from "../hooks/guard.mjs";
 import { slopLint, syntaxCheck, which } from "../hooks/post-edit.mjs";
 import { installHint, shotArgs, spawnPlan } from "../scripts/shot.mjs";
 import { analyze, tailLines } from "../hooks/stop-gate.mjs";
@@ -942,4 +942,120 @@ test("post-edit script: no syntax check and no lint for ~/.claude or the OS temp
   const play = path.join(tmp, "play");
   assert.equal(post(write(path.join(play, "w.js"), esmReturn), play).code, 2, "a project that lives in the temp folder");
   assert.equal(post(write(path.join(home, ".claude", "w.js"), esmReturn), path.join(home, ".claude")).code, 2, "a session inside ~/.claude");
+});
+
+// ---------------- guard: credential files ----------------
+
+test("guard: isSecretFile matches credential files and leaves example copies alone", () => {
+  const missing = () => null; // unreadable: a .pem or .key counts as a key
+  for (const f of [".env", ".env.local", ".env.production", "config/.env.testing", "server.pem", "certs/tls.key", "id_rsa", "id_ed25519", "secrets.json", "credentials.json", "creds.md", "keystore.p12", "release.jks", "upload.keystore", ".netrc", "_netrc", ".pgpass", "home/.aws/credentials", "C:\\proj\\.env"]) {
+    assert.ok(isSecretFile(f, missing), `expected secret: ${f}`);
+  }
+  for (const f of [".env.example", ".env.sample", ".env.local.example", ".env.template", ".env.dist", ".env.vault", ".envrc", "id_rsa.pub", "env.ts", "keys.ts", "src/.env.d.ts", "secrets.md", "README.md", "templates/secret.yaml", "secrets.yaml", "app/debug.keystore", "credentials", ".npmrc"]) {
+    assert.equal(isSecretFile(f, missing), false, `expected not secret: ${f}`);
+  }
+  const cert = "-----BEGIN CERTIFICATE-----\nMIIB\n-----END CERTIFICATE-----\n";
+  assert.equal(isSecretFile("certs/cacert.pem", () => cert), false, "a public certificate bundle");
+  assert.ok(isSecretFile("certs/tls.pem", () => cert + "-----BEGIN PRIVATE KEY-----\nMIIE\n"), "a chain with its private key");
+  assert.ok(isSecretFile("id.key", () => "-----BEGIN OPENSSH PRIVATE KEY-----\n"));
+  assert.equal(isSecretFile("Talk.key", () => "PK\u0003\u0004 keynote zip"), false, "a Keynote deck");
+  assert.ok(isSecretFile(".npmrc", () => "//registry.npmjs.org/:_authToken=abc\n"), ".npmrc with a token");
+  assert.equal(isSecretFile(".npmrc", () => "registry=https://registry.npmjs.org/\n"), false, ".npmrc with only a registry");
+  assert.equal(isSecretFile(".npmrc", () => "//registry.npmjs.org/:_authToken=${NPM_TOKEN}\n"), false, "a token read from the environment");
+  assert.equal(isSecretFile(".pypirc", () => "[pypi]\npassword = $PYPI_TOKEN\n"), false);
+  assert.ok(isSecretFile(".pypirc", () => "[pypi]\npassword = pypi-AgEIcHlwaS5vcmc\n"));
+});
+
+test("guard: git add of a named credential file is denied unless git already tracks it", () => {
+  const noGit = () => assert.fail("git should not be called");
+  const notRepo = () => null;
+  assert.ok(judge("git add .env", CWD, notRepo));
+  assert.ok(judge("git add -f certs/tls.key", CWD, notRepo));
+  assert.ok(judge("cd app && git add -- .env.local", CWD, notRepo));
+  assert.ok(judge('bash -c "git add .env"', CWD, notRepo), "a nested shell body is judged too");
+  assert.equal(judge("git add .env.production", CWD, (args) => (args.includes("--others") ? "" : ".env.production\0")), null, "already tracked: not a new leak");
+  assert.equal(judge("git add .env.example", CWD, notRepo), null);
+  assert.equal(judge("git add -n .env", CWD, noGit), null, "dry run");
+  assert.equal(judge("git add -u .", CWD, noGit), null, "-u stages tracked files only");
+  assert.equal(judge("git add -p", CWD, noGit), null);
+  assert.equal(judge("echo git add .env", CWD, noGit), null, "not a git command");
+  assert.equal(judge("git commit-tree abc", CWD, noGit), null, "commit-tree is not commit");
+  assert.equal(judge("git status", CWD, noGit), null);
+});
+
+test("guard: git add and git commit that would track a new credential file are denied (real repo)", (t) => {
+  const git = (cwd, ...args) =>
+    spawnSync("git", ["-c", "user.name=t", "-c", "user.email=t@t", "-c", "core.autocrlf=false", ...args], { cwd, encoding: "utf8" });
+  const repo = tmpdir();
+  if (git(repo, "init", "-q").status !== 0) return t.skip("git is not available");
+  fs.mkdirSync(path.join(repo, "src"));
+  fs.writeFileSync(path.join(repo, "src", "a.js"), "export {};\n");
+  fs.writeFileSync(path.join(repo, ".env"), "TOKEN=x\n");
+  fs.writeFileSync(path.join(repo, ".env.example"), "TOKEN=\n");
+
+  assert.ok(judge("git add .", repo), "git add . picks up the untracked .env");
+  assert.ok(judge("git add -A", repo));
+  assert.ok(judge("git add --all && git commit -m x", repo));
+  assert.ok(judge(`git -C "${repo}" add .`, os.tmpdir()), "git -C points at the repo");
+  assert.ok(judge(`cd "${repo}" && git add .`, os.tmpdir()), "cd earlier on the line points at the repo");
+  assert.equal(judge("git add src", repo), null, "the pathspec does not reach .env");
+  assert.equal(judge("git add .env.example", repo), null);
+
+  assert.ok(judge(`bash -c "cd '${repo}' && git add ."`, os.tmpdir()), "a cd inside bash -c carries over");
+  assert.ok(judge(`cd "${repo}" 2>/dev/null && git add -A`, os.tmpdir()), "a redirection after cd is not part of the folder");
+  assert.ok(judge(`Set-Location -Path "${repo}"; git add -A`, os.tmpdir()), "Set-Location -Path");
+  assert.ok(judge(`git --git-dir="${repo}/.git" --work-tree="${repo}" add -A`, os.tmpdir()), "--git-dir and --work-tree are followed");
+  if (process.platform === "win32") {
+    const msys = "/" + repo[0].toLowerCase() + toPosix(repo).slice(2);
+    assert.ok(judge(`cd ${msys} && git add .`, os.tmpdir()), `Git Bash path ${msys}`);
+    assert.ok(judge(`git -C ${msys} add .`, os.tmpdir()), "Git Bash path in -C");
+  }
+
+  const other = tmpdir();
+  assert.equal(judge(`bash -c "cd '${other}'" && git add .`, other), null, "the cd ran in a subshell: git add runs in other");
+  assert.ok(judge(`bash -c "cd '${other}'" && git add .`, repo), "...and so a git add in the repo is still judged there");
+  assert.equal(judge('cd "$(dirname x)" && git add .', repo), null, "an unknown folder is not looked up");
+  fs.writeFileSync(path.join(repo, "src", "ca.pem"), "-----BEGIN CERTIFICATE-----\nMIIB\n-----END CERTIFICATE-----\n");
+  const wt = `git --git-dir="${repo}/.git" --work-tree="${repo}" add src`;
+  assert.equal(judge(wt, other), null, "a public certificate is read from the work tree, not from the folder git runs in");
+  fs.rmSync(path.join(repo, "src", "ca.pem"));
+
+  fs.writeFileSync(path.join(repo, ".gitignore"), ".env\n");
+  assert.equal(judge("git add .", repo), null, "an ignored .env is not added");
+  assert.ok(judge("git add -f .", repo), "-f adds ignored files too");
+
+  fs.writeFileSync(path.join(repo, "src", "ca.pem"), "-----BEGIN CERTIFICATE-----\nMIIB\n-----END CERTIFICATE-----\n");
+  fs.writeFileSync(path.join(repo, "src", "dev.key"), "-----BEGIN RSA PRIVATE KEY-----\nMIIE\n");
+  assert.ok(judge("git add src", repo), "a private key under the pathspec");
+  fs.rmSync(path.join(repo, "src", "dev.key"));
+  assert.equal(judge("git add src", repo), null, "a public certificate is fine");
+
+  assert.equal(git(repo, "add", "-f", ".env").status, 0);
+  const staged = judge('git commit -m "wip"', repo);
+  assert.ok(staged, "a staged new .env blocks the commit");
+  assert.match(staged.why, /git rm --cached/);
+  assert.ok(judge('git commit -m "skip the --dry-run flag"', repo), "--dry-run inside the message is not the option");
+  assert.equal(judge("git commit --dry-run", repo), null);
+  assert.equal(git(repo, "commit", "-q", "-m", "seed").status, 0);
+  fs.writeFileSync(path.join(repo, ".env"), "TOKEN=y\n");
+  assert.equal(git(repo, "add", ".env").status, 0);
+  assert.equal(judge('git commit -m "edit"', repo), null, "an already tracked file is not a new leak");
+  assert.equal(judge("git add .env", repo), null, "naming an already tracked .env is fine");
+  assert.equal(judge("git commit -m x", path.join(repo, "missing")), null, "a folder git cannot use fails open");
+});
+
+test("guard: a cd on the line moves git lookups only, never the project used to judge deletes", () => {
+  const proj = "C:/proj";
+  for (const cmd of [
+    'cd C:/Windows/System32 && bash -c "rm -rf C:/Windows/System32/drivers"',
+    'cd C:/Windows && pwsh -Command "Remove-Item -Recurse C:/Windows/Temp2"',
+    'cd C:/srv && bash -c "rm -rf C:/srv/data"',
+    'cd /etc/nginx && bash -c "rm -rf /etc/nginx/conf.d"',
+    'cd C:/srv && rm -rf C:/srv/data',
+  ]) {
+    assert.ok(judge(cmd, proj, () => null), `expected deny: ${cmd}`);
+  }
+  assert.equal(judge('cd C:/proj/sub && bash -c "rm -rf C:/proj/sub/build"', proj, () => null), null, "inside the project stays allowed");
+  assert.ok(judge('cd "$(git reset --hard)"', proj, () => null), "a command hidden in a cd argument is still judged");
+  assert.ok(judge("cd `git stash drop`", proj, () => null));
 });

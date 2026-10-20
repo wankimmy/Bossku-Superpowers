@@ -64,7 +64,7 @@ Output ONLY valid JSON (no markdown fences):
 }
 ```
 
-`loop_iteration` is the REVISE count for this work item (1 on first review); use it to enforce the 3-cycle stop rule above.
+`loop_iteration` is the REVISE count for this work item (1 on first review); use it to enforce the revision-budget stop rule above (`max_revision_rounds`).
 
 ### Decision guide
 

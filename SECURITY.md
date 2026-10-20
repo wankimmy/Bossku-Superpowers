@@ -22,7 +22,7 @@ Remove them with `bossku hooks uninstall` (`--tools` picks a subset). The Claude
 
 Other things `bossku install` writes for Claude Code, all removable the same way or with `--no-harness` / `--no-agents`:
 
-- **Node hooks** in `~/.claude/settings.json`: a `PreToolUse` guard that reads each shell command to refuse destructive ones, a `PostToolUse` check that reads the file the agent just wrote, a `SessionStart` reminder, and a `Stop` gate that reads the end of the session transcript. Each command runs a script from your checkout of this repo (`hooks/`) and ends in `--bossku-harness`. Switches are in [`hooks/README.md`](hooks/README.md).
+- **Node hooks** in `~/.claude/settings.json`: a `PreToolUse` guard that reads each shell command to refuse destructive ones (and runs read-only `git ls-files` / `git diff --cached` before a `git add` or `git commit`, to refuse one that would track a credential file), a `PostToolUse` check that reads the file the agent just wrote, a `SessionStart` reminder, and a `Stop` gate that reads the end of the session transcript. Each command runs a script from your checkout of this repo (`hooks/`) and ends in `--bossku-harness`. Switches are in [`hooks/README.md`](hooks/README.md).
 - **`permissions.deny` entries** in the same file (`git reset --hard`, `git clean -f`, `git push -f`, `migrate:fresh`, `db:wipe`, `docker compose down`, `docker-compose down`, `docker system prune`), kept next to your own entries. `bossku hooks uninstall` removes only ours. They hold even if the guard is off.
 - **Subagent contracts** copied from `agents/` to `~/.claude/agents` (six files).
 

@@ -129,8 +129,23 @@ class InstructionFileTests(unittest.TestCase):
         budget = getattr(validate, "AGENTS_MD_MAX_CHARS", None)
         if budget is None:
             self.skipTest("validate has no AGENTS.md budget")
-        self.assertIn(f"{budget:,} characters", read("CONTRIBUTING.md"))
-        self.assertLessEqual(len(read("AGENTS.md")), budget)
+        self.assertIn(f"{budget:,} bytes", read("CONTRIBUTING.md"))
+        self.assertLessEqual(len((ROOT / "AGENTS.md").read_bytes()), budget)
+
+    def test_factory_gates_reach_every_host(self):
+        # Claude Code, Codex, OpenCode and Devin read AGENTS.md; Cursor also loads its alwaysApply rule; user
+        # projects get PROJECT_BLOCK from `bossku init`. Each must carry the secret, version and wiring rules.
+        from bossku.init_project import PROJECT_BLOCK
+
+        sources = {"AGENTS.md": read("AGENTS.md"), ".cursor/rules/bosskuai.mdc": read(".cursor/rules/bosskuai.mdc"),
+                   "PROJECT_BLOCK": PROJECT_BLOCK}
+        for name, text in sources.items():
+            for phrase in (".env", "*.pem", "installed version", "restart from a corrected", "go-ahead" if name != "PROJECT_BLOCK" else "user says so"):
+                self.assertIn(phrase, text, f"{name} is missing {phrase!r}")
+        for name in ("AGENTS.md", ".cursor/rules/bosskuai.mdc"):
+            self.assertIn("real entry path", sources[name], name)
+            self.assertIn("one-page brief", sources[name], name)
+        self.assertIn("real code path", PROJECT_BLOCK)
 
 
 class DocClaimTests(unittest.TestCase):

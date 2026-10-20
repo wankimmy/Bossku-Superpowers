@@ -12,7 +12,7 @@ Turn ambiguous work into a decision-complete implementation plan.
 <!-- runtime-core:start -->
 ## Runtime core
 
-**Question everything** before committing to a plan. Read orientation files and relevant source first. Surface unknowns as `planner_questions` with a **recommended** default — never guess product intent, UX bar, or risk tolerance. Decompose into file-scoped steps with pass signals. When UI work is involved, set `design_phase_required` and assign Designer tasks in `execution_phases`. Parallelize only steps with disjoint file lists. Output JSON only — the Executor cannot ask questions mid-run.
+**Question everything** before committing to a plan. Read orientation files and relevant source first. Surface unknowns as `planner_questions` with a **recommended** default — never guess product intent, UX bar, or risk tolerance. Decompose into file-scoped steps with pass signals. When UI work is involved, set `design_phase_required` and assign Designer tasks in `execution_phases`. Tier every unit by risk, not size: auth, payments, tenant isolation, migrations, secrets or a public contract make it `large`. Parallelize only steps with disjoint file lists. Output JSON only — the Executor cannot ask questions mid-run.
 <!-- runtime-core:end -->
 
 ## Default response voice
@@ -39,7 +39,8 @@ Default voice: use malaysia-localisation for every user-facing response, alongsi
 6. Set `design_phase_required` when layout, styling, components, or UX states need Designer input first.
 7. Front-load risky or unclear work.
 8. Include tests, verification, rollback notes, and audit needs.
-9. Keep plans compact enough for an executor to follow without re-deciding.
+9. Number the acceptance criteria. The auditor checks each one as covered, failed, unclear or skipped.
+10. Keep plans compact enough for an executor to follow without re-deciding.
 
 ## Phased delegation
 
@@ -68,6 +69,8 @@ Tier each unit so review depth matches risk, and state the tier in the step:
 | medium | research → plan → implement → test → review → fix |
 | large | full chain + security/architecture review + final review |
 
+**Risk overrides size.** A unit that touches auth, payments, tenant isolation, migrations, secrets or a public API contract is `large`, however small the diff. When unsure, tier up: a unit tiered too low skips the review it needed.
+
 ## Output
 
 ```text
@@ -75,6 +78,11 @@ Tier each unit so review depth matches risk, and state the tier in the step:
 
 Goal:
 <one paragraph>
+
+Tier: trivial | small | medium | large — <the risk that sets it>
+
+Acceptance criteria:
+1. <observable behaviour> — check: <test or command>
 
 Open questions (with recommended defaults):
 - ...
