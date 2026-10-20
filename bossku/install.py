@@ -26,7 +26,7 @@ from bossku.skills import (
 )
 
 # The subagent contracts copied to ~/.claude/agents. A copy carries the signature; a file without it is the user's own.
-AGENT_FILES = ("orchestrator.md", "planner.md", "designer.md", "executor.md", "auditor.md", "final-reviewer.md")
+AGENT_FILES = ("orchestrator.md", "researcher.md", "planner.md", "designer.md", "executor.md", "auditor.md", "final-reviewer.md")
 AGENT_SIGNATURE = "<!-- runtime-core:start -->"
 # Shared files the repo no longer ships. remove_skill_support only deletes copies of files the repo still has,
 # so a retired file is cleaned up by its exact path.
@@ -337,6 +337,9 @@ def install_user(
         contracts_removed: list[str] = []
     else:
         contracts_installed, contracts_kept, contracts_removed = [], [], remove_managed_agents(contracts_dest)
+    from bossku.host_agents import install_host_agents, remove_host_agents   # it imports AGENT_FILES from here
+    # The same contracts as Codex, OpenCode, Cursor and Devin subagents, for each of those tools the user has.
+    host_agents = install_host_agents(r, h) if agents else {"removed": remove_host_agents(h)}
     library = library_dir(h)
     if profile == "lean":
         # Skills the hosts do not list stay installed whole, one `bossku skills show <id>` away.
@@ -375,6 +378,7 @@ def install_user(
         "agents_installed": contracts_installed,
         "agents_kept": contracts_kept,
         "agents_removed": contracts_removed,
+        "host_agents": host_agents,
         "agents_count": agents_n,
         "claude_count": claude_n,
         "installed_count": agents_n,
@@ -427,6 +431,8 @@ def uninstall_user(*, root: Path | None = None, home: Path | None = None, purge:
                 if child.name not in removed:
                     removed.append(child.name)
     removed_agents = remove_managed_agents(claude_agents_dir(h))
+    from bossku.host_agents import remove_host_agents
+    removed_host_agents = remove_host_agents(h)
     remove_tree(library_dir(h))
     for name in ("references", "site", "docs"):   # shared files the lean library links to
         remove_tree(user_config_dir(h) / name)
@@ -446,5 +452,6 @@ def uninstall_user(*, root: Path | None = None, home: Path | None = None, purge:
     cache = user_config_dir(h) / "routing-cache.json"
     if purge and cache.is_file():
         cache.unlink()
-    return {"removed_skills": removed, "removed_agents": removed_agents, "purged_config": purge,
+    return {"removed_skills": removed, "removed_agents": removed_agents, "removed_host_agents": removed_host_agents,
+            "purged_config": purge,
             "hooks_removed": hooks_removed, "cleaned_instructions": cleaned}

@@ -37,6 +37,12 @@ class AgentContractTests(unittest.TestCase):
             text = (ROOT / "agents" / name).read_text(encoding="utf-8")
             self.assertRegex(text, r"(?m)^tools: .*\bBash\b", msg=name)
 
+    def test_researcher_is_read_only_on_haiku(self):
+        # The cheap scout maps code for the planner; it must not be able to edit or run anything.
+        text = (ROOT / "agents" / "researcher.md").read_text(encoding="utf-8")
+        self.assertRegex(text, r'(?m)^tools: \["Read", "Grep", "Glob"\]$')
+        self.assertRegex(text, r"(?m)^model: haiku$")
+
     def test_no_contract_references_phantom_agents(self):
         phantoms = ("code-simplifier", "build-fixer", "database-reviewer", "security-reviewer", "loop-operator", "TaskCheckoutService")
         for path in (ROOT / "agents").glob("*.md"):

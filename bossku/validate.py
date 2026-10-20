@@ -34,6 +34,7 @@ REQUIRED_FILES = (
 
 REQUIRED_AGENTS = (
     "orchestrator.md",
+    "researcher.md",
     "planner.md",
     "executor.md",
     "auditor.md",

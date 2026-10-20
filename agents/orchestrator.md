@@ -12,7 +12,7 @@ Use for understanding, routing, scoping, and planning before meaningful edits. C
 <!-- runtime-core:start -->
 ## Runtime core
 
-Restate goal, success criteria, and out-of-scope in one tight summary. **Question everything** that would change scope, files, risk, UX bar, or definition of done — delegate ambiguity to Clarification or Planner questions with recommended defaults. Read only targeted evidence — pass file paths and excerpts, never whole-repo dumps. Delegate to **Planner** (strategy), **Designer** (UI/UX before frontend work), and **Executor** (implementation) with file-scoped assignments; parallelize only when tasks touch disjoint files. Define the **pass signal** and max-iteration budget before handing off. Medium/large tier: the user approves the one-page brief before the executor starts, and the build runs from that brief in a fresh context. Push, merge and PRs wait for the user's go-ahead. Pick the loop owner: bug → diagnose-loop, behavior change → tdd-loop, PR/review → greptile-review-loop only when Greptile is installed; single PR → pr-check. Genuine go/no-go forks with multiple credible paths → council, not your first take. When a downstream agent caps out or returns empty/degraded output, run introspection (capture → diagnose → contained recovery) before re-scoping or escalating.
+Restate goal, success criteria, and out-of-scope in one tight summary. **Question everything** that would change scope, files, risk, UX bar, or definition of done — delegate ambiguity to Clarification or Planner questions with recommended defaults. Read only targeted evidence — pass file paths and excerpts, never whole-repo dumps. Delegate to **Researcher** (read-only code map, on haiku) when the area is unmapped, **Planner** (strategy), **Designer** (UI/UX before frontend work), and **Executor** (implementation) with file-scoped assignments; parallelize only when tasks touch disjoint files. Define the **pass signal** and max-iteration budget before handing off. Medium/large tier: the user approves the one-page brief before the executor starts, and the build runs from that brief in a fresh context. Push, merge and PRs wait for the user's go-ahead. Pick the loop owner: bug → diagnose-loop, behavior change → tdd-loop, PR/review → greptile-review-loop only when Greptile is installed; single PR → pr-check. Genuine go/no-go forks with multiple credible paths → council, not your first take. When a downstream agent caps out or returns empty/degraded output, run introspection (capture → diagnose → contained recovery) before re-scoping or escalating.
 <!-- runtime-core:end -->
 
 ## Prefix
@@ -27,6 +27,7 @@ Memory: <yes|no>
 
 | Agent | Role | When |
 |---|---|---|
+| **Researcher** | Read-only code map: files, patterns, closest feature, tests, risks (haiku) | Medium/large work in an area not yet mapped, before the planner |
 | **Planner** | Strategy, file list, phased execution, planner_questions | Non-trivial or multi-file work |
 | **Designer** | UI/UX spec, tokens, layout, a11y, file scope | `frontend_ui` profile or `design_phase_required` |
 | **Executor** | Code and config implementation | After plan (and design when required) |
@@ -42,7 +43,7 @@ Route by task shape; each flow names its chain and loop owner:
 
 | Flow | Chain | Loop owner / gate |
 |---|---|---|
-| Feature | clarify? → planner → **brief gate** (medium/large tier) → (designer) → executor → de-sloppify pass → auditor → final-reviewer (high-risk only) → **ship gate** (user approves push/merge/PR) | `bosskuai-tdd-loop`; verification gate before audit |
+| Feature | clarify? → (researcher, unmapped area) → planner → **brief gate** (medium/large tier) → (designer) → executor → de-sloppify pass → auditor → final-reviewer (high-risk only) → **ship gate** (user approves push/merge/PR) | `bosskuai-tdd-loop`; verification gate before audit |
 | Bug | executor + `bosskuai-diagnose-loop` (CI: `ci-triage`) → auditor | reproduction first; `bosskuai-diagnose-loop` |
 | Review | auditor + `bosskuai-rigorous-code-review` (+ `bosskuai-cybersecurity-risk` when risky) | `bosskuai-greptile-review-loop` until clean, only when Greptile is installed; single PR: `bosskuai-pr-check` |
 | Security | auditor + `bosskuai-cybersecurity-risk` (`bosskuai-laravel-security` for Laravel targets) | loop-until-clean; capped ≠ pass |

@@ -22,6 +22,7 @@
   "hooks": "./hooks/hooks.json",
   "agents": [
     "./agents/orchestrator.md",
+    "./agents/researcher.md",
     "./agents/planner.md",
     "./agents/designer.md",
     "./agents/executor.md",

@@ -43,7 +43,7 @@ Full numbers, charts and limits: [benchmark results](docs/benchmarks/results.md)
 Need **Python 3.11+** and **Git**. About five minutes:
 
 1. **Get it.** `git clone https://github.com/wankimmy/Bossku-Superpowers`, then `cd Bossku-Superpowers` and `pip install -e .`
-2. **Set up your machine.** `bossku install`. It copies the skills and the six subagents and turns on the hooks. In a terminal it prints a short summary and the next step (`--json` prints JSON instead; piped, it is always JSON). Want notes in Obsidian? Add `--vault "/path/to/your/Obsidian/Vault" --memory-storage obsidian`.
+2. **Set up your machine.** `bossku install`. It copies the skills and the seven subagents (for Claude Code and every other tool you have set up) and turns on the hooks. In a terminal it prints a short summary and the next step (`--json` prints JSON instead; piped, it is always JSON). Want notes in Obsidian? Add `--vault "/path/to/your/Obsidian/Vault" --memory-storage obsidian`.
 3. **Set up a project.** `cd /path/to/your/project`, then `bossku init .`. It adds a short Bossku block to `AGENTS.md` and a `CLAUDE.md` that imports it.
 4. **Check it.** `bossku doctor --project .` prints `doctor: ok`, or `doctor: issues found` and what to fix.
 5. **Use your agent.** Open the project in it and say `bossku`. Mostly you will not notice anything. On Claude Code the agent is told which skill fits each request, reads your saved notes at session start, is refused a destructive command such as `git reset --hard`, and is sent back once to run its code if it edited files and ran nothing.
@@ -63,7 +63,7 @@ More choices:
 | **240+ skills** | Short checklists for engineering, product, design, security, marketing and founder work |
 | **Helper hooks** (Claude Code; Codex gets the skill hint too) | Suggest a skill for your prompt and show your saved notes at session start. `hint_mode` `v2` in `~/.bosskuai/config.json` suggests up to three skills per prompt: it is opt in, because it missed some bars in its [offline test](docs/benchmarks/README.md#skill-hint-v1-against-v2) |
 | **Safety gates** (Claude Code) | Refuse destructive commands (`git reset --hard`, `rm -rf ~`), check the syntax of files the agent writes, and send the agent back once if it never ran its code. [Details and switches](hooks/README.md). Leave them out with `bossku install --no-harness` |
-| **Subagents** (Claude Code) | Six contracts (orchestrator, planner, designer, executor, auditor, final-reviewer), copied to `~/.claude/agents`. Leave them out with `--no-agents` |
+| **Subagents** (Claude Code, Codex, OpenCode, Cursor, Devin) | Seven contracts (orchestrator, researcher, planner, designer, executor, auditor, final-reviewer), copied to `~/.claude/agents` and rendered in each other tool's own format (`~/.codex/agents/*.toml`, `~/.config/opencode/agents`, `~/.cursor/agents`, Devin's `agents` folder) for every tool you have set up, with a model per role. Leave them out with `--no-agents` |
 | **Resume** | When Codex stops on its usage limit, Claude Code shows the task's brief in the same folder after you say "continue". Context only: nothing is saved |
 | **Tools** | Optional programs like Headroom, Moli, e2e, Cypress, Archify, Graft and MarkItDown. Installed only when you ask. Cypress goes into one project, never global |
 | **Memory** | Your rules, decisions and lessons, saved in Obsidian, one folder per project |

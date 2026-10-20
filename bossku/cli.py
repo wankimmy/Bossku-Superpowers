@@ -516,6 +516,17 @@ def _install_summary(r: dict, verb: str, profile: str) -> str:
         lines.append(f"  Subagents left alone because the files are yours: {', '.join(r['agents_kept'])}.")
     if r["agents_removed"]:
         lines.append(f"  Subagents: {len(r['agents_removed'])} removed (--no-agents).")
+    for host, got in sorted(r.get("host_agents", {}).items()):
+        if host == "removed":
+            if got:
+                lines.append(f"  Subagents removed for {', '.join(sorted(got))} (--no-agents).")
+            continue
+        if got.get("installed"):
+            lines.append(f"  Subagents for {host}: {len(got['installed'])} written.")
+        if got.get("kept"):
+            lines.append(f"  Subagents for {host} left alone because the files are yours: {', '.join(got['kept'])}.")
+        for why in got.get("skipped", []):
+            lines.append(f"  Subagents for {host} skipped: {why}.")
     if r["auto_memory_instructions"]:
         lines.append(f"  Memory and voice rules written to: {', '.join(r['auto_memory_instructions'])}")
     fit = r.get("skill_listing")
@@ -563,6 +574,9 @@ def _hooks_summary(r: dict, command: str) -> str:
 
 def _uninstall_summary(r: dict) -> str:
     lines = [f"Removed {len(r['removed_skills'])} skills and {len(r['removed_agents'])} subagent contracts."]
+    others = r.get("removed_host_agents") or {}
+    if others:
+        lines.append("Also removed the subagents for " + ", ".join(f"{h} ({len(n)})" for h, n in sorted(others.items())) + ".")
     if not r["purged_config"]:
         return "\n".join(lines + ["The hooks and the config are still in place.",
                                   "Next: bossku uninstall --purge, to remove those too."])

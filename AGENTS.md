@@ -33,12 +33,12 @@ Read [`malaysia-localisation`](skills/malaysia-localisation/SKILL.md) for voice 
 For meaningful work:
 
 1. Read project memory in the configured memory directory (resolve it with `bossku memory-path --project <project-root>`) when relevant.
-2. Classify the task and pick the lightest accurate skill stack.
+2. Classify the task and pick the lightest accurate skill stack. Unmapped area on medium/large work: **Researcher** (read-only, haiku) maps it first.
 3. **Planner** before multi-file changes; tier by risk (auth, payments, tenant, migrations or secrets = large; new multi-file behaviour = medium). Medium/large: the user approves a one-page brief (unless they already gave the exact change), then **Executor** builds from it in a fresh context (subagent or new session). A wrong architecture or business-rule assumption: stop patching; restart from a corrected brief.
 4. **Auditor** after substantive edits: every acceptance criterion covered, each new guard called on the real entry path, diff inside the planned files. **Final reviewer** before high-stakes completion.
 5. Automatically save useful verified decisions, plans, facts, and lessons with `bossku remember --kind decision|plan|learning|project` before replying, without waiting for a request.
 
-Agent contracts: [`agents/orchestrator.md`](agents/orchestrator.md), [`agents/planner.md`](agents/planner.md), [`agents/designer.md`](agents/designer.md), [`agents/executor.md`](agents/executor.md), [`agents/auditor.md`](agents/auditor.md), [`agents/final-reviewer.md`](agents/final-reviewer.md).
+Agent contracts: [`agents/orchestrator.md`](agents/orchestrator.md), [`agents/researcher.md`](agents/researcher.md), [`agents/planner.md`](agents/planner.md), [`agents/designer.md`](agents/designer.md), [`agents/executor.md`](agents/executor.md), [`agents/auditor.md`](agents/auditor.md), [`agents/final-reviewer.md`](agents/final-reviewer.md).
 
 ## Ponytail (always on)
 

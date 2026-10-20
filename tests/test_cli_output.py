@@ -82,14 +82,14 @@ class InstallAndUpdateTests(OutputCase):
     def test_install_on_a_terminal_says_what_changed_and_the_one_next_step(self):
         code, text, _ = self.run_cli("install", "--profile", "core", tty=True)
         self.assertEqual(code, 0)
-        self.assertPlainSummary(text, "Bossku is installed (skill profile: core).", "Skills: ", "Subagents: 6 contracts",
+        self.assertPlainSummary(text, "Bossku is installed (skill profile: core).", "Skills: ", "Subagents: 7 contracts",
                                 "Hooks:", "Claude Code: set up", "Next: cd your-project && bossku init .")
         self.assertEqual(text.count("Next:"), 1)
 
     def test_install_on_a_terminal_names_what_was_skipped_and_why(self):
         _, text, _ = self.run_cli("install", "--profile", "core", "--no-claude", "--no-agents", tty=True)
         self.assertPlainSummary(text, "Skills in ~/.claude/skills: left out (--no-claude)", "Cursor: skipped, nothing found at")
-        self.assertNotIn("Subagents: 6", text)
+        self.assertNotIn("Subagents: 7", text)
 
     def test_json_flag_forces_the_json_on_a_terminal(self):
         code, text, result = self.run_cli("install", "--profile", "core", "--json", tty=True, spy="install_user")
@@ -129,7 +129,7 @@ class InstallAndUpdateTests(OutputCase):
         self.run_cli("install", "--profile", "core")
         code, human, _ = self.run_cli("update", "--no-agents", tty=True)
         self.assertEqual(code, 0)
-        self.assertPlainSummary(human, "Bossku is updated", "Subagents: 6 removed (--no-agents).")
+        self.assertPlainSummary(human, "Bossku is updated", "Subagents: 7 removed (--no-agents).")
 
 
 class InitTests(OutputCase):

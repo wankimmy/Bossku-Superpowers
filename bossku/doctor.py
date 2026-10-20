@@ -221,6 +221,10 @@ def gather_doctor_issues(
         stale_agents = outdated_managed_agents(claude_agents_dir(h), r) if r is not None else []
         if stale_agents:
             issues.append(f"~/.claude/agents contracts out of date ({', '.join(stale_agents)}); run `bossku update`")
+        if r is not None and cfg.get("agents", True) is not False:   # `--no-agents` installs none, so none is stale
+            from bossku.host_agents import outdated_host_agents
+            for host, names in outdated_host_agents(r, h).items():
+                issues.append(f"{host} subagents missing or out of date ({', '.join(names)}); run `bossku update`")
         if r is not None and agents_path.is_dir() and (claude_path.is_dir() or not claude_skills_on):
             agents_n = count_managed_skills(agents_path, r)
             claude_n = count_managed_skills(claude_path, r) if claude_skills_on else 0
