@@ -1,0 +1,2925 @@
+{
+ "slugs": {
+  "11-mois-sans-toi-t": [
+   "3d",
+   "webgl",
+   "storytelling",
+   "interaction-design",
+   "react",
+   "nextjs"
+  ],
+  "197-historias-ilustradas": [
+   "three-js",
+   "react-three-fiber",
+   "gsap",
+   "animation",
+   "storytelling",
+   "nextjs"
+  ],
+  "20-years-inspired-by-people": [
+   "sites_of_the_day"
+  ],
+  "20-years-of-xbox-museum": [
+   "sites_of_the_month"
+  ],
+  "2018-year-in-review": [
+   "sites_of_the_month"
+  ],
+  "2021-virtual-webbys": [
+   "sites_of_the_month"
+  ],
+  "21-hrs-on-the-moon": [
+   "sites_of_the_day"
+  ],
+  "250-broadway": [
+   "framer"
+  ],
+  "2degc-earth": [
+   "sites_of_the_month"
+  ],
+  "2xa-studio": [
+   "sites_of_the_day"
+  ],
+  "360-c2-b0-langstrasse-zurich": [
+   "sites_of_the_year"
+  ],
+  "360-lexington-ave": [
+   "framer"
+  ],
+  "3dcc-three-dimensional-cognitive-coordinate": [
+   "3d",
+   "webgl",
+   "three-js",
+   "react-three-fiber",
+   "animation",
+   "interaction-design",
+   "colorful"
+  ],
+  "a-bear-s-eye-view-of-yellowstone": [
+   "sites_of_the_month"
+  ],
+  "a-journey-through-middle-earth": [
+   "sites_of_the_year"
+  ],
+  "a-p-j-abdul-kalam": [
+   "3d",
+   "scrolling"
+  ],
+  "a-world-with-no-heroes": [
+   "sites_of_the_month"
+  ],
+  "a24": [
+   "3d",
+   "three-js",
+   "react-three-fiber",
+   "gsap",
+   "animation",
+   "portfolio"
+  ],
+  "aakanksha-mirdha": [
+   "black"
+  ],
+  "aardvark-book-club": [
+   "sites_of_the_day",
+   "e-commerce"
+  ],
+  "abhay-singh": [
+   "framer"
+  ],
+  "achilles-heel": [
+   "fashion",
+   "shopify"
+  ],
+  "active-theory-v4": [
+   "sites_of_the_year",
+   "sites_of_the_month"
+  ],
+  "active-theory-v6": [
+   "sites_of_the_month"
+  ],
+  "adcker": [
+   "sites_of_the_day"
+  ],
+  "adobe-x-bowie": [
+   "sites_of_the_month"
+  ],
+  "agence-cartier": [
+   "black"
+  ],
+  "agence-f": [
+   "nuxt-js"
+  ],
+  "agence-theo": [
+   "colorful",
+   "webflow"
+  ],
+  "ai-dubbing-2": [
+   "react-three-fiber",
+   "react"
+  ],
+  "ai-garage-by-bryan-oh": [
+   "webgl",
+   "animation",
+   "storytelling",
+   "interaction-design",
+   "portfolio",
+   "nextjs"
+  ],
+  "ai-in-design-report-2026": [
+   "sites_of_the_day",
+   "framer"
+  ],
+  "aim-ai-modernism-of-kharkiv": [
+   "sites_of_the_month"
+  ],
+  "aimees-papercraft-world": [
+   "sites_of_the_day"
+  ],
+  "aino-agency": [
+   "sites_of_the_day"
+  ],
+  "air-1": [
+   "sites_of_the_day"
+  ],
+  "akaru-2": [
+   "sites_of_the_month"
+  ],
+  "alan-menken": [
+   "sites_of_the_month"
+  ],
+  "alcove": [
+   "webflow"
+  ],
+  "alejandro-ha-web-developer": [
+   "big-typography",
+   "gsap",
+   "animation",
+   "transitions",
+   "page-transition",
+   "microinteractions",
+   "interaction-design",
+   "typography",
+   "portfolio",
+   "webflow"
+  ],
+  "alethia": [
+   "sites_of_the_day",
+   "framer"
+  ],
+  "ali-ali": [
+   "sites_of_the_month"
+  ],
+  "altamed-foundation": [
+   "storytelling",
+   "nextjs"
+  ],
+  "altitude-101-1": [
+   "3d"
+  ],
+  "an-ocean-of-ideas-aoi": [
+   "e-commerce",
+   "fashion",
+   "react",
+   "shopify"
+  ],
+  "anime-js": [
+   "sites_of_the_month"
+  ],
+  "anveril": [
+   "minimal",
+   "framer"
+  ],
+  "ap-transit-nyc-subway-map": [
+   "3d"
+  ],
+  "apc": [
+   "microinteractions",
+   "webflow"
+  ],
+  "apechain": [
+   "sites_of_the_day"
+  ],
+  "apini-studio": [
+   "shopify"
+  ],
+  "apocalypse-coffee-roasters": [
+   "e-commerce"
+  ],
+  "app-state-department-of-art": [
+   "big-typography",
+   "typography"
+  ],
+  "apple-airpods-pro": [
+   "sites_of_the_month"
+  ],
+  "aquest-1": [
+   "sites_of_the_year"
+  ],
+  "aralesk-collages-motion": [
+   "fashion"
+  ],
+  "arcoglobal": [
+   "parallax",
+   "typography",
+   "architecture"
+  ],
+  "aristide-portfolio-2021": [
+   "sites_of_the_month"
+  ],
+  "arrested-development": [
+   "storytelling",
+   "microinteractions",
+   "react"
+  ],
+  "arstraumur-electronic-music": [
+   "3d",
+   "webgl"
+  ],
+  "artefakt": [
+   "sites_of_the_day"
+  ],
+  "artem-shcherbakov": [
+   "sites_of_the_day"
+  ],
+  "artem-shcherban-portfolio": [
+   "sites_of_the_day"
+  ],
+  "arturo-spatino": [
+   "typography",
+   "minimal",
+   "portfolio",
+   "react"
+  ],
+  "ascension-pegassi-r": [
+   "3d",
+   "three-js",
+   "react-three-fiber",
+   "gsap",
+   "microinteractions",
+   "nuxt-js"
+  ],
+  "ashley-brooke": [
+   "sites_of_the_day"
+  ],
+  "aspen-search": [
+   "sites_of_the_day",
+   "three-js",
+   "typography",
+   "minimal",
+   "nextjs"
+  ],
+  "astrodither": [
+   "sites_of_the_day"
+  ],
+  "aten7": [
+   "sites_of_the_month"
+  ],
+  "austensor-ai-webgl-art": [
+   "3d",
+   "webgl",
+   "three-js",
+   "react-three-fiber",
+   "animation",
+   "transitions",
+   "page-transition",
+   "nextjs"
+  ],
+  "austin-werner": [
+   "blender"
+  ],
+  "awards-racing": [
+   "webgl",
+   "three-js",
+   "react-three-fiber",
+   "animation",
+   "transitions",
+   "page-transition",
+   "nuxt-js"
+  ],
+  "axiom-webflow-featured": [
+   "storytelling",
+   "microinteractions",
+   "minimal",
+   "webflow"
+  ],
+  "b-d-r-jams": [
+   "sites_of_the_month"
+  ],
+  "b-e-digital": [
+   "transitions",
+   "colorful",
+   "design-agencies"
+  ],
+  "backforty": [
+   "black"
+  ],
+  "ballance": [
+   "framer"
+  ],
+  "balmoral": [
+   "sites_of_the_day",
+   "shopify"
+  ],
+  "base-power-company-base-core": [
+   "react"
+  ],
+  "beagle-better-proposals": [
+   "sites_of_the_year"
+  ],
+  "because-recollection": [
+   "sites_of_the_year"
+  ],
+  "beetogreen": [
+   "nuxt-js"
+  ],
+  "behfar-behzad-fe-developer": [
+   "3d",
+   "three-js",
+   "react-three-fiber",
+   "gsap",
+   "animation",
+   "parallax",
+   "minimal",
+   "portfolio",
+   "react"
+  ],
+  "bellussi": [
+   "e-commerce"
+  ],
+  "benjamin-hoang": [
+   "framer"
+  ],
+  "bennett-clive": [
+   "sites_of_the_month"
+  ],
+  "best-bean-best-cup": [
+   "blender"
+  ],
+  "beyond-beauty": [
+   "sites_of_the_month"
+  ],
+  "biipmk": [
+   "framer"
+  ],
+  "bitnomial": [
+   "transitions",
+   "microinteractions",
+   "typography"
+  ],
+  "black-shard": [
+   "typography",
+   "react"
+  ],
+  "blacknegative": [
+   "sites_of_the_year"
+  ],
+  "bleibtgleich26": [
+   "sites_of_the_day",
+   "gsap",
+   "portfolio",
+   "webflow"
+  ],
+  "bless-a-business-extraordinarily": [
+   "3d"
+  ],
+  "blue-fox-studio": [
+   "black"
+  ],
+  "boc-studio": [
+   "sites_of_the_day",
+   "big-typography",
+   "page-transition",
+   "microinteractions",
+   "typography",
+   "design-agencies",
+   "framer"
+  ],
+  "bodicine-collagen": [
+   "e-commerce",
+   "shopify"
+  ],
+  "boon-global": [
+   "transitions",
+   "page-transition",
+   "microinteractions",
+   "nuxt-js"
+  ],
+  "bornfight-studio": [
+   "black"
+  ],
+  "botblox-systems": [
+   "blender",
+   "framer"
+  ],
+  "bou": [
+   "minimal",
+   "colorful",
+   "portfolio"
+  ],
+  "brand-breeder": [
+   "black"
+  ],
+  "brand-packaging-portfolio": [
+   "scrolling",
+   "portfolio",
+   "design-agencies"
+  ],
+  "brandon-yasin": [
+   "big-typography",
+   "gsap",
+   "animation",
+   "typography",
+   "minimal",
+   "portfolio",
+   "design-agencies",
+   "nuxt-js"
+  ],
+  "bread-boxers": [
+   "e-commerce",
+   "fashion",
+   "nuxt-js"
+  ],
+  "brigade-overland": [
+   "e-commerce",
+   "shopify"
+  ],
+  "brilean": [
+   "3d",
+   "portfolio",
+   "webflow"
+  ],
+  "brooke-beswick-portfolio": [
+   "portfolio",
+   "react"
+  ],
+  "brunello-cucinelli-ai-e-com": [
+   "sites_of_the_day",
+   "fashion"
+  ],
+  "bruno-simon-portfolio": [
+   "sites_of_the_year",
+   "sites_of_the_month"
+  ],
+  "brunos-portfolio": [
+   "sites_of_the_month"
+  ],
+  "bucks-sauce": [
+   "sites_of_the_day"
+  ],
+  "built-environs": [
+   "3d",
+   "microinteractions",
+   "architecture"
+  ],
+  "bulbs-series": [
+   "gsap",
+   "animation",
+   "transitions",
+   "page-transition",
+   "minimal",
+   "architecture"
+  ],
+  "byotone": [
+   "webgl",
+   "big-typography",
+   "scrolling",
+   "storytelling",
+   "typography"
+  ],
+  "c2-montreal": [
+   "sites_of_the_month"
+  ],
+  "canals": [
+   "sites_of_the_month"
+  ],
+  "capitolium": [
+   "sites_of_the_day"
+  ],
+  "cartier-le-choeur-des-pierres": [
+   "webgl",
+   "colorful"
+  ],
+  "cartier-watches-wonders-2025": [
+   "sites_of_the_month"
+  ],
+  "cartier-watches-wonders-2026": [
+   "sites_of_the_day"
+  ],
+  "cassandra-vale": [
+   "parallax",
+   "fashion"
+  ],
+  "catskills": [
+   "parallax",
+   "storytelling",
+   "webflow"
+  ],
+  "cavalier-conqueror-of-excellence": [
+   "sites_of_the_year"
+  ],
+  "cdiscount-jumping-max": [
+   "sites_of_the_day"
+  ],
+  "cecilie-bahnsen": [
+   "e-commerce",
+   "fashion",
+   "shopify"
+  ],
+  "cerebrium": [
+   "sites_of_the_day",
+   "3d"
+  ],
+  "champions-for-good": [
+   "sites_of_the_day"
+  ],
+  "charmling": [
+   "e-commerce"
+  ],
+  "chasing-the-moment": [
+   "3d",
+   "webgl"
+  ],
+  "checkpoint-research": [
+   "blender",
+   "animation",
+   "webflow"
+  ],
+  "chile20": [
+   "sites_of_the_month"
+  ],
+  "chungi-folio": [
+   "sites_of_the_year"
+  ],
+  "ciao-energy-launch-website": [
+   "sites_of_the_day",
+   "blender"
+  ],
+  "cine-casero": [
+   "black"
+  ],
+  "cipher": [
+   "sites_of_the_day",
+   "nuxt-js"
+  ],
+  "clarvos": [
+   "webflow"
+  ],
+  "cleo-ai": [
+   "sites_of_the_day"
+  ],
+  "clico-ai-studio": [
+   "storytelling",
+   "minimal",
+   "nextjs"
+  ],
+  "club-athletic": [
+   "e-commerce",
+   "framer"
+  ],
+  "club-charlestown": [
+   "typography",
+   "colorful"
+  ],
+  "coastal-world": [
+   "sites_of_the_month"
+  ],
+  "cocoon-2": [
+   "parallax",
+   "e-commerce",
+   "fashion",
+   "shopify"
+  ],
+  "code-precision": [
+   "webgl"
+  ],
+  "coffeetech-r": [
+   "sites_of_the_day"
+  ],
+  "cole-son": [
+   "black"
+  ],
+  "colonia-zacamil": [
+   "webgl"
+  ],
+  "converse-diamonds": [
+   "sites_of_the_month"
+  ],
+  "corentin-bernadou-portfolio": [
+   "sites_of_the_day"
+  ],
+  "couro-azul": [
+   "sites_of_the_month"
+  ],
+  "coutumes": [
+   "e-commerce",
+   "fashion",
+   "shopify"
+  ],
+  "crav-burgers": [
+   "sites_of_the_day"
+  ],
+  "crealo": [
+   "webflow"
+  ],
+  "creativeans": [
+   "portfolio"
+  ],
+  "creche-the-tank": [
+   "3d",
+   "webgl",
+   "scrolling",
+   "portfolio"
+  ],
+  "crency-agency": [
+   "scrolling",
+   "parallax",
+   "typography",
+   "colorful",
+   "react"
+  ],
+  "crisp-barbershop": [
+   "fashion"
+  ],
+  "cue": [
+   "webflow"
+  ],
+  "curtis-designr": [
+   "gsap",
+   "scrolling",
+   "portfolio",
+   "nextjs"
+  ],
+  "daniel-kiss-portfolio": [
+   "webgl",
+   "gsap",
+   "page-transition",
+   "microinteractions",
+   "portfolio"
+  ],
+  "daq-consulting": [
+   "react-three-fiber",
+   "page-transition",
+   "scrolling",
+   "react",
+   "nextjs"
+  ],
+  "dark-official-netflix-guide": [
+   "sites_of_the_year"
+  ],
+  "david-spaeth": [
+   "fashion",
+   "nuxt-js"
+  ],
+  "david-whyte-experience": [
+   "sites_of_the_month"
+  ],
+  "dd-nyc": [
+   "black"
+  ],
+  "deadstock-coffee": [
+   "shopify"
+  ],
+  "decathlon-yestalgia": [
+   "sites_of_the_day",
+   "e-commerce"
+  ],
+  "defly-crypto-wallet-1": [
+   "spline"
+  ],
+  "delassus": [
+   "sites_of_the_month"
+  ],
+  "delice": [
+   "gsap",
+   "animation",
+   "transitions",
+   "page-transition",
+   "microinteractions"
+  ],
+  "denmu": [
+   "framer"
+  ],
+  "depo-luxe": [
+   "sites_of_the_day"
+  ],
+  "design-bomb-festival": [
+   "3d",
+   "blender",
+   "scrolling",
+   "colorful",
+   "framer"
+  ],
+  "design-canada": [
+   "sites_of_the_month"
+  ],
+  "detroit-paris": [
+   "sites_of_the_day"
+  ],
+  "dev": [
+   "minimal"
+  ],
+  "digital-darts": [
+   "storytelling",
+   "e-commerce"
+  ],
+  "digital-meadow-1": [
+   "3d",
+   "microinteractions",
+   "colorful",
+   "portfolio"
+  ],
+  "digitalists-1": [
+   "sites_of_the_day"
+  ],
+  "discover-your-patronus": [
+   "sites_of_the_month"
+  ],
+  "disko": [
+   "react"
+  ],
+  "dkton": [
+   "big-typography",
+   "gsap",
+   "microinteractions",
+   "typography",
+   "portfolio",
+   "webflow"
+  ],
+  "dogstudio-1": [
+   "sites_of_the_month"
+  ],
+  "dolce-gabbanabeauty-giftfinder": [
+   "fashion"
+  ],
+  "don-molinico": [
+   "sites_of_the_day"
+  ],
+  "dont-board-me": [
+   "sites_of_the_year"
+  ],
+  "dont-look-up-game": [
+   "3d",
+   "three-js",
+   "react-three-fiber",
+   "gsap",
+   "animation",
+   "storytelling",
+   "minimal"
+  ],
+  "door-dennis": [
+   "three-js",
+   "react-three-fiber",
+   "gsap",
+   "page-transition",
+   "colorful",
+   "portfolio",
+   "design-agencies"
+  ],
+  "doronsupply": [
+   "e-commerce"
+  ],
+  "dragone": [
+   "sites_of_the_year"
+  ],
+  "dragonfly-redux": [
+   "sites_of_the_day"
+  ],
+  "draniki-digital-studio": [
+   "blender"
+  ],
+  "drasa-studio": [
+   "storytelling",
+   "typography",
+   "minimal",
+   "colorful",
+   "design-agencies",
+   "react",
+   "nextjs"
+  ],
+  "driessen-architectuur": [
+   "scrolling",
+   "colorful",
+   "architecture"
+  ],
+  "dropbox-brand": [
+   "sites_of_the_month"
+  ],
+  "dsgn-interior": [
+   "parallax",
+   "portfolio",
+   "architecture"
+  ],
+  "dunkirk-webvr": [
+   "sites_of_the_year",
+   "sites_of_the_month"
+  ],
+  "ecolinear-studio": [
+   "architecture"
+  ],
+  "editorial-new": [
+   "sites_of_the_month"
+  ],
+  "elva": [
+   "sites_of_the_day"
+  ],
+  "emo-r-altar-ii": [
+   "typography",
+   "e-commerce"
+  ],
+  "emotion-agency-1": [
+   "three-js",
+   "big-typography",
+   "transitions",
+   "storytelling",
+   "typography",
+   "portfolio",
+   "design-agencies",
+   "nuxt-js"
+  ],
+  "emotionaler-hunger": [
+   "e-commerce"
+  ],
+  "enerblock": [
+   "sites_of_the_day"
+  ],
+  "era-residence": [
+   "sites_of_the_month",
+   "sites_of_the_day",
+   "parallax",
+   "architecture"
+  ],
+  "esr-bespoke": [
+   "big-typography"
+  ],
+  "ethan-w-photography": [
+   "big-typography",
+   "transitions",
+   "typography",
+   "portfolio"
+  ],
+  "eve-bcn-private-wine-tours": [
+   "e-commerce"
+  ],
+  "everest": [
+   "sites_of_the_month"
+  ],
+  "everswap": [
+   "sites_of_the_day"
+  ],
+  "evolve-2": [
+   "sites_of_the_day"
+  ],
+  "exo-ape": [
+   "sites_of_the_month"
+  ],
+  "fabbrica": [
+   "black"
+  ],
+  "faers": [
+   "framer"
+  ],
+  "fai": [
+   "e-commerce"
+  ],
+  "falter-inferno": [
+   "sites_of_the_year"
+  ],
+  "fauna-robotics": [
+   "sites_of_the_day"
+  ],
+  "ferm-living": [
+   "e-commerce",
+   "shopify"
+  ],
+  "filmbot": [
+   "webgl",
+   "webflow"
+  ],
+  "finseo": [
+   "webgl"
+  ],
+  "floema": [
+   "sites_of_the_month",
+   "sites_of_the_day"
+  ],
+  "fluid-glass": [
+   "sites_of_the_day"
+  ],
+  "fmi-website": [
+   "react-three-fiber",
+   "interaction-design",
+   "react"
+  ],
+  "font-widget": [
+   "minimal"
+  ],
+  "foodnia": [
+   "3d",
+   "storytelling",
+   "colorful"
+  ],
+  "foosball-world-cup-18": [
+   "sites_of_the_month"
+  ],
+  "for-honor-scars": [
+   "sites_of_the_month"
+  ],
+  "forge-automotive": [
+   "webgl",
+   "gsap",
+   "transitions",
+   "page-transition",
+   "scrolling",
+   "parallax",
+   "storytelling",
+   "nextjs"
+  ],
+  "format": [
+   "big-typography",
+   "transitions",
+   "scrolling",
+   "interaction-design",
+   "typography"
+  ],
+  "four-chapter-portfolio": [
+   "scrolling",
+   "portfolio"
+  ],
+  "fourmula-ai": [
+   "sites_of_the_day"
+  ],
+  "franshals-museum": [
+   "sites_of_the_year"
+  ],
+  "fromanother-love": [
+   "sites_of_the_day"
+  ],
+  "g-colombel-portfolio-2026": [
+   "3d",
+   "webgl",
+   "three-js",
+   "react-three-fiber",
+   "animation",
+   "page-transition",
+   "portfolio"
+  ],
+  "gallery-of-emerging-species": [
+   "sites_of_the_month"
+  ],
+  "gather-ai": [
+   "framer"
+  ],
+  "gestionphi": [
+   "black"
+  ],
+  "gil-huybrecht": [
+   "sites_of_the_day",
+   "webgl",
+   "big-typography",
+   "microinteractions",
+   "typography",
+   "portfolio",
+   "design-agencies",
+   "nextjs"
+  ],
+  "gionatan-nese-26": [
+   "sites_of_the_day",
+   "3d",
+   "webgl",
+   "typography"
+  ],
+  "gleec-chat": [
+   "sites_of_the_month"
+  ],
+  "glitch-grit": [
+   "sites_of_the_day"
+  ],
+  "goats": [
+   "parallax"
+  ],
+  "goboldtm-agency": [
+   "fashion"
+  ],
+  "google-cloud-infrastructure": [
+   "sites_of_the_month"
+  ],
+  "gq-ap-the-extraordinary-lab": [
+   "sites_of_the_month",
+   "sites_of_the_day"
+  ],
+  "graffico-office": [
+   "3d",
+   "blender"
+  ],
+  "grafik-4": [
+   "nuxt-js"
+  ],
+  "grail": [
+   "3d",
+   "webgl",
+   "blender",
+   "page-transition",
+   "scrolling",
+   "storytelling"
+  ],
+  "grids": [
+   "sites_of_the_month"
+  ],
+  "grigoletti": [
+   "typography",
+   "framer"
+  ],
+  "grounded": [
+   "architecture"
+  ],
+  "gucci-mystery-unfolds": [
+   "sites_of_the_day"
+  ],
+  "guidely": [
+   "webgl"
+  ],
+  "guillaume-zhu": [
+   "3d",
+   "webgl",
+   "three-js",
+   "react-three-fiber",
+   "gsap",
+   "animation",
+   "transitions",
+   "page-transition",
+   "scrolling",
+   "interaction-design",
+   "portfolio"
+  ],
+  "haoqi-design": [
+   "sites_of_the_day"
+  ],
+  "hape": [
+   "sites_of_the_month"
+  ],
+  "happly": [
+   "sites_of_the_day"
+  ],
+  "hashgraph-ventures": [
+   "sites_of_the_day"
+  ],
+  "havu": [
+   "parallax",
+   "minimal",
+   "design-agencies"
+  ],
+  "hearst-exhibit-2026": [
+   "sites_of_the_day"
+  ],
+  "helmetverse": [
+   "3d"
+  ],
+  "heron-ai": [
+   "architecture"
+  ],
+  "hilden-kaira": [
+   "sites_of_the_day"
+  ],
+  "hiroto-sato": [
+   "sites_of_the_day"
+  ],
+  "hobro-digital": [
+   "sites_of_the_day"
+  ],
+  "honda-wing-mark-history": [
+   "3d",
+   "transitions",
+   "scrolling",
+   "storytelling",
+   "interaction-design"
+  ],
+  "house-of-honey-1": [
+   "sites_of_the_day"
+  ],
+  "https-aquirin-com": [
+   "portfolio"
+  ],
+  "https-mercury-com-command": [
+   "blender"
+  ],
+  "https-tyo-co-jp-recruit": [
+   "blender"
+  ],
+  "hubtown": [
+   "sites_of_the_day"
+  ],
+  "humana-studio-1": [
+   "black"
+  ],
+  "humanz-australia": [
+   "nuxt-js"
+  ],
+  "huy-phan-vol-2": [
+   "typography",
+   "framer"
+  ],
+  "hydradb": [
+   "framer"
+  ],
+  "i-am-residente": [
+   "sites_of_the_month"
+  ],
+  "icomat": [
+   "sites_of_the_day"
+  ],
+  "icon-x-khaby-lame": [
+   "black"
+  ],
+  "igel-1": [
+   "e-commerce"
+  ],
+  "igloo-inc": [
+   "sites_of_the_year",
+   "sites_of_the_month"
+  ],
+  "il-capo-production": [
+   "sites_of_the_day"
+  ],
+  "illoca": [
+   "sites_of_the_day",
+   "3d",
+   "webgl",
+   "architecture"
+  ],
+  "immersive-garden-website": [
+   "sites_of_the_month"
+  ],
+  "in-development-studios": [
+   "minimal",
+   "portfolio",
+   "design-agencies",
+   "webflow"
+  ],
+  "in-my-world": [
+   "sites_of_the_month"
+  ],
+  "in-pieces": [
+   "sites_of_the_year"
+  ],
+  "incredibles": [
+   "nuxt-js"
+  ],
+  "indigo-laboratory": [
+   "sites_of_the_day"
+  ],
+  "indisea": [
+   "big-typography",
+   "scrolling",
+   "typography",
+   "colorful",
+   "react"
+  ],
+  "inherited-band": [
+   "big-typography",
+   "gsap",
+   "transitions",
+   "page-transition",
+   "scrolling",
+   "typography",
+   "minimal"
+  ],
+  "inkfish": [
+   "sites_of_the_month"
+  ],
+  "inside-out": [
+   "react-three-fiber",
+   "big-typography",
+   "typography",
+   "minimal",
+   "design-agencies",
+   "react",
+   "nextjs"
+  ],
+  "inside-the-head-publication": [
+   "sites_of_the_year"
+  ],
+  "insta360-luna-ultra": [
+   "e-commerce"
+  ],
+  "into-the-arctic-greenpeace-1": [
+   "sites_of_the_year"
+  ],
+  "into-the-storm": [
+   "sites_of_the_month"
+  ],
+  "ivress-spin-a-tale": [
+   "sites_of_the_day"
+  ],
+  "iyo": [
+   "sites_of_the_day"
+  ],
+  "izanami": [
+   "sites_of_the_day"
+  ],
+  "jacob-how-portfolio": [
+   "animation",
+   "portfolio",
+   "design-agencies"
+  ],
+  "jacques-paris-agence-a-impact-positif": [
+   "webgl",
+   "minimal",
+   "colorful"
+  ],
+  "jamie-mckaye-the-instrument": [
+   "typography",
+   "minimal",
+   "portfolio"
+  ],
+  "jasmine-gunarto": [
+   "sites_of_the_day"
+  ],
+  "jealous-films": [
+   "gsap",
+   "transitions",
+   "page-transition",
+   "microinteractions",
+   "design-agencies"
+  ],
+  "jeffrey-milanes": [
+   "typography"
+  ],
+  "jesper-landberg-4": [
+   "nuxt-js"
+  ],
+  "joshuas-world": [
+   "black"
+  ],
+  "joy-rush": [
+   "shopify"
+  ],
+  "juan-mora-1": [
+   "sites_of_the_day"
+  ],
+  "juan-mora-romero": [
+   "microinteractions",
+   "portfolio",
+   "react",
+   "nextjs"
+  ],
+  "julien-calot": [
+   "sites_of_the_day"
+  ],
+  "junni-is": [
+   "black"
+  ],
+  "kardev-feed-machinery": [
+   "architecture"
+  ],
+  "kavieng-creative": [
+   "typography",
+   "portfolio"
+  ],
+  "kavimada": [
+   "portfolio"
+  ],
+  "khanh-nguyen-portfolio": [
+   "typography",
+   "portfolio"
+  ],
+  "kikk-festival2016": [
+   "sites_of_the_year",
+   "sites_of_the_month"
+  ],
+  "klarisana": [
+   "spline"
+  ],
+  "klausen": [
+   "3d",
+   "typography"
+  ],
+  "kode": [
+   "sites_of_the_year",
+   "sites_of_the_month"
+  ],
+  "kononenko-architectural-bureau": [
+   "sites_of_the_day",
+   "architecture"
+  ],
+  "koox": [
+   "sites_of_the_year"
+  ],
+  "kosa": [
+   "e-commerce"
+  ],
+  "kott-studio-the-impossible-one": [
+   "three-js",
+   "microinteractions",
+   "typography",
+   "portfolio",
+   "design-agencies",
+   "react",
+   "nextjs"
+  ],
+  "kpr": [
+   "sites_of_the_year",
+   "sites_of_the_month"
+  ],
+  "kraken-industries": [
+   "e-commerce",
+   "fashion"
+  ],
+  "kriss-ai": [
+   "sites_of_the_month"
+  ],
+  "kurosawa-design-manager": [
+   "parallax"
+  ],
+  "kvs-studio": [
+   "sites_of_the_day"
+  ],
+  "l-i-s-a": [
+   "sites_of_the_day",
+   "3d",
+   "webgl",
+   "blender",
+   "design-agencies"
+  ],
+  "la-dolfina-jumping": [
+   "gsap",
+   "parallax",
+   "storytelling",
+   "fashion"
+  ],
+  "la-revoltosa": [
+   "sites_of_the_day"
+  ],
+  "lacoste-ace-breaker": [
+   "sites_of_the_day",
+   "fashion"
+  ],
+  "lacoste-polo-factory": [
+   "sites_of_the_day",
+   "fashion"
+  ],
+  "lama-lama-2": [
+   "sites_of_the_month",
+   "sites_of_the_day"
+  ],
+  "lando-norris": [
+   "sites_of_the_year",
+   "sites_of_the_month"
+  ],
+  "le-mans-classic": [
+   "nuxt-js"
+  ],
+  "le-saint-georges": [
+   "parallax"
+  ],
+  "leo-parpeix-portfolio-2026": [
+   "sites_of_the_day",
+   "3d",
+   "webgl",
+   "blender",
+   "transitions",
+   "microinteractions",
+   "typography",
+   "portfolio"
+  ],
+  "leonardo-moreira": [
+   "webgl"
+  ],
+  "lepopee-de-steven-dieu": [
+   "blender",
+   "storytelling",
+   "interaction-design",
+   "portfolio"
+  ],
+  "lia-voice-agent": [
+   "e-commerce"
+  ],
+  "lidar-drone-scanning": [
+   "webgl"
+  ],
+  "likova": [
+   "sites_of_the_day"
+  ],
+  "linusbio": [
+   "3d",
+   "big-typography"
+  ],
+  "lircle": [
+   "typography"
+  ],
+  "loam-house": [
+   "big-typography",
+   "gsap",
+   "transitions",
+   "page-transition",
+   "scrolling",
+   "parallax",
+   "storytelling",
+   "typography",
+   "architecture"
+  ],
+  "locomotive-1": [
+   "sites_of_the_month"
+  ],
+  "locomotive-r": [
+   "sites_of_the_month"
+  ],
+  "loehx-com": [
+   "3d",
+   "three-js",
+   "react-three-fiber",
+   "animation",
+   "transitions",
+   "page-transition",
+   "parallax",
+   "colorful",
+   "portfolio",
+   "react"
+  ],
+  "longbow": [
+   "sites_of_the_day"
+  ],
+  "loop-creative-studio": [
+   "framer"
+  ],
+  "louisiana-governors-mansion": [
+   "architecture"
+  ],
+  "lpas": [
+   "architecture"
+  ],
+  "lula-avocado-oil": [
+   "shopify"
+  ],
+  "lunchline-partners": [
+   "scrolling",
+   "typography"
+  ],
+  "lusion": [
+   "sites_of_the_month"
+  ],
+  "lusion-v3": [
+   "sites_of_the_year",
+   "sites_of_the_month"
+  ],
+  "lxl-creative": [
+   "sites_of_the_day",
+   "transitions",
+   "microinteractions",
+   "colorful",
+   "webflow"
+  ],
+  "m3-planungsgruppe": [
+   "typography",
+   "architecture"
+  ],
+  "ma": [
+   "sites_of_the_year",
+   "sites_of_the_month"
+  ],
+  "mad-dogs-design-concept": [
+   "3d"
+  ],
+  "mad-monkey": [
+   "webflow"
+  ],
+  "madamepolare": [
+   "architecture"
+  ],
+  "made-in-a-free-world-slavery-footprint": [
+   "sites_of_the_year"
+  ],
+  "made-with-gsap-1": [
+   "sites_of_the_day"
+  ],
+  "madeleine-dalla": [
+   "sites_of_the_month"
+  ],
+  "magical-reflections": [
+   "sites_of_the_month"
+  ],
+  "maison-auge": [
+   "parallax",
+   "design-agencies",
+   "fashion",
+   "nextjs"
+  ],
+  "maison-des-elites": [
+   "3d",
+   "blender",
+   "minimal",
+   "e-commerce"
+  ],
+  "mammut-expedition-baikal": [
+   "sites_of_the_year"
+  ],
+  "mana-yerba-mate": [
+   "sites_of_the_year"
+  ],
+  "maria-vasilyeva-portfolio": [
+   "webgl",
+   "typography"
+  ],
+  "marine-layer": [
+   "shopify"
+  ],
+  "married-gr": [
+   "e-commerce"
+  ],
+  "marry-bride": [
+   "e-commerce"
+  ],
+  "marvell-tile-stone": [
+   "sites_of_the_day"
+  ],
+  "masia-mont-rural": [
+   "big-typography",
+   "animation",
+   "typography",
+   "minimal"
+  ],
+  "masters-residence": [
+   "architecture"
+  ],
+  "mathis-biabiany": [
+   "nuxt-js"
+  ],
+  "matt-jinn": [
+   "webgl",
+   "portfolio"
+  ],
+  "matteo-vincenti": [
+   "big-typography",
+   "animation",
+   "interaction-design",
+   "typography",
+   "nextjs"
+  ],
+  "max-mara-jacket-circle": [
+   "sites_of_the_day"
+  ],
+  "maxima-therapy": [
+   "sites_of_the_day"
+  ],
+  "medal-of-honor-above-beyond": [
+   "sites_of_the_month"
+  ],
+  "meech213": [
+   "sites_of_the_day"
+  ],
+  "meet-your-psychic": [
+   "animation",
+   "page-transition",
+   "interaction-design",
+   "nextjs"
+  ],
+  "melius": [
+   "3d"
+  ],
+  "mendo-book-store": [
+   "sites_of_the_year",
+   "sites_of_the_month"
+  ],
+  "mensch": [
+   "blender"
+  ],
+  "mersi": [
+   "sites_of_the_day"
+  ],
+  "messenger": [
+   "sites_of_the_year"
+  ],
+  "michael-gatt": [
+   "sites_of_the_day",
+   "nuxt-js"
+  ],
+  "mike-barton-portfolio": [
+   "microinteractions",
+   "minimal",
+   "portfolio",
+   "nextjs"
+  ],
+  "milan-compain": [
+   "portfolio",
+   "react"
+  ],
+  "mimosa-agency": [
+   "minimal",
+   "portfolio",
+   "design-agencies",
+   "framer"
+  ],
+  "mind-robotics": [
+   "three-js",
+   "react-three-fiber",
+   "animation",
+   "transitions",
+   "page-transition",
+   "scrolling",
+   "react",
+   "nextjs"
+  ],
+  "mindmarket": [
+   "sites_of_the_month"
+  ],
+  "minds": [
+   "nuxt-js"
+  ],
+  "miralife-app": [
+   "minimal",
+   "react"
+  ],
+  "miranda-paper-portfolio": [
+   "sites_of_the_month"
+  ],
+  "miu-miu-a-house-that-we-shaped": [
+   "sites_of_the_day",
+   "webgl",
+   "fashion"
+  ],
+  "money-in-check-a-novel-by-oscar-perez": [
+   "three-js",
+   "react-three-fiber",
+   "big-typography",
+   "gsap",
+   "scrolling",
+   "storytelling",
+   "typography"
+  ],
+  "monolog": [
+   "sites_of_the_day"
+  ],
+  "montfort": [
+   "sites_of_the_month"
+  ],
+  "montreal-canadiens-foundation": [
+   "parallax"
+  ],
+  "moonslider": [
+   "black"
+  ],
+  "moremedia-r": [
+   "big-typography",
+   "scrolling",
+   "microinteractions",
+   "interaction-design",
+   "typography",
+   "minimal",
+   "design-agencies"
+  ],
+  "mosbys-files": [
+   "sites_of_the_day"
+  ],
+  "moto-finance": [
+   "sites_of_the_day",
+   "3d",
+   "three-js",
+   "react-three-fiber",
+   "big-typography",
+   "gsap",
+   "page-transition",
+   "scrolling",
+   "parallax",
+   "webflow"
+  ],
+  "mount-street-printers": [
+   "shopify"
+  ],
+  "moves-you-portfolio": [
+   "webgl",
+   "blender",
+   "parallax"
+  ],
+  "mwd-technologies": [
+   "3d",
+   "gsap",
+   "transitions",
+   "page-transition",
+   "scrolling"
+  ],
+  "nabil-issa-architect": [
+   "architecture",
+   "nuxt-js"
+  ],
+  "nala-kun": [
+   "big-typography",
+   "gsap",
+   "animation",
+   "scrolling",
+   "interaction-design",
+   "typography",
+   "colorful",
+   "webflow"
+  ],
+  "naughtyduk-c-1": [
+   "sites_of_the_day"
+  ],
+  "navigate": [
+   "sites_of_the_month"
+  ],
+  "new-zealanderlivery-service": [
+   "3d",
+   "blender",
+   "transitions",
+   "page-transition",
+   "interaction-design",
+   "nextjs"
+  ],
+  "newcastle-art-gallery": [
+   "microinteractions",
+   "typography",
+   "react",
+   "nextjs"
+  ],
+  "nexstudio": [
+   "3d"
+  ],
+  "nick-ho": [
+   "3d",
+   "webflow"
+  ],
+  "nightkidz-shop": [
+   "e-commerce"
+  ],
+  "nike-reactor": [
+   "sites_of_the_month"
+  ],
+  "nine-to-five": [
+   "sites_of_the_day"
+  ],
+  "nixon-ecommerce-platform": [
+   "sites_of_the_year"
+  ],
+  "no-art": [
+   "sites_of_the_day",
+   "shopify"
+  ],
+  "noho": [
+   "sites_of_the_day",
+   "3d",
+   "webgl",
+   "page-transition",
+   "webflow"
+  ],
+  "nomadic-tribe": [
+   "sites_of_the_year",
+   "sites_of_the_month"
+  ],
+  "nominal": [
+   "nuxt-js"
+  ],
+  "nomu-custom-merch-platform": [
+   "webgl",
+   "e-commerce"
+  ],
+  "noomo-agency": [
+   "sites_of_the_year"
+  ],
+  "noomo-showcase": [
+   "sites_of_the_day"
+  ],
+  "nora-vale": [
+   "framer"
+  ],
+  "normal-is-boring": [
+   "sites_of_the_day"
+  ],
+  "not-found": [
+   "portfolio"
+  ],
+  "nothin": [
+   "sites_of_the_day"
+  ],
+  "nothing-on-purpose": [
+   "storytelling",
+   "minimal",
+   "colorful"
+  ],
+  "nrg-build-your-data-center": [
+   "sites_of_the_day"
+  ],
+  "numa": [
+   "scrolling",
+   "interaction-design"
+  ],
+  "nymphai-cosmetics": [
+   "shopify"
+  ],
+  "oat-the-goat": [
+   "sites_of_the_month"
+  ],
+  "object-archive": [
+   "shopify"
+  ],
+  "obys-2": [
+   "sites_of_the_day"
+  ],
+  "obys-r-experiment-space": [
+   "sites_of_the_day"
+  ],
+  "odd-ritual": [
+   "sites_of_the_day"
+  ],
+  "odins-crow": [
+   "black"
+  ],
+  "off-menu": [
+   "sites_of_the_day"
+  ],
+  "offfforum": [
+   "nuxt-js"
+  ],
+  "offporter": [
+   "shopify"
+  ],
+  "oimachi": [
+   "sites_of_the_day"
+  ],
+  "okc-media-evolved-simplicity": [
+   "e-commerce"
+  ],
+  "once-upon-a-time-in-hollywood": [
+   "sites_of_the_month"
+  ],
+  "onda-studio": [
+   "microinteractions",
+   "portfolio",
+   "design-agencies",
+   "webflow"
+  ],
+  "onnu-jonu-son": [
+   "sites_of_the_month"
+  ],
+  "opal-tadpole": [
+   "sites_of_the_year"
+  ],
+  "orano": [
+   "sites_of_the_year",
+   "sites_of_the_month"
+  ],
+  "orchid-security-2": [
+   "webflow"
+  ],
+  "oryzo-ai": [
+   "sites_of_the_month",
+   "sites_of_the_day"
+  ],
+  "ouigo-let-s-play": [
+   "sites_of_the_year",
+   "sites_of_the_month"
+  ],
+  "outfit": [
+   "sites_of_the_day"
+  ],
+  "outpost-1": [
+   "black"
+  ],
+  "overworld-audio": [
+   "3d",
+   "nuxt-js"
+  ],
+  "oxigen": [
+   "webgl"
+  ],
+  "pacome-pertant-portfolio": [
+   "sites_of_the_day"
+  ],
+  "palmo": [
+   "3d",
+   "colorful",
+   "e-commerce"
+  ],
+  "pangram-pangram-foundry": [
+   "sites_of_the_year"
+  ],
+  "paper-planes": [
+   "sites_of_the_year",
+   "sites_of_the_month"
+  ],
+  "paradigm-festival": [
+   "colorful",
+   "webflow"
+  ],
+  "partake-foods": [
+   "e-commerce",
+   "shopify"
+  ],
+  "partizan": [
+   "sites_of_the_day"
+  ],
+  "pasqua-wines": [
+   "sites_of_the_month"
+  ],
+  "paul-kalkbrenner": [
+   "sites_of_the_day"
+  ],
+  "penguin-music": [
+   "3d",
+   "webgl",
+   "blender"
+  ],
+  "pensatori-irrazionali": [
+   "sites_of_the_day",
+   "webgl",
+   "three-js",
+   "react-three-fiber",
+   "gsap",
+   "page-transition",
+   "microinteractions",
+   "portfolio",
+   "design-agencies"
+  ],
+  "perform-europe": [
+   "react"
+  ],
+  "persepolis-reimagined": [
+   "sites_of_the_year",
+   "sites_of_the_month"
+  ],
+  "persona-studio": [
+   "3d",
+   "webgl",
+   "portfolio",
+   "react"
+  ],
+  "personaal-studio": [
+   "framer"
+  ],
+  "peryton-film": [
+   "3d",
+   "webgl",
+   "gsap",
+   "microinteractions",
+   "webflow"
+  ],
+  "pharrell-williams-24-hours-of-happy": [
+   "sites_of_the_year"
+  ],
+  "photiu-ai": [
+   "nextjs"
+  ],
+  "pieterkoopt-r": [
+   "sites_of_the_day"
+  ],
+  "pinnacl": [
+   "3d",
+   "microinteractions",
+   "architecture"
+  ],
+  "pioneer-corn-revolutionized": [
+   "sites_of_the_year",
+   "sites_of_the_month"
+  ],
+  "plnty-app": [
+   "webgl"
+  ],
+  "podium": [
+   "sites_of_the_day"
+  ],
+  "ponpon-mania": [
+   "sites_of_the_month"
+  ],
+  "poppr": [
+   "black"
+  ],
+  "portfolio-26": [
+   "typography",
+   "minimal",
+   "portfolio",
+   "framer"
+  ],
+  "portfolio-dinesh-revunuru": [
+   "e-commerce"
+  ],
+  "portfolio-zxc": [
+   "blender"
+  ],
+  "powerhouse-company": [
+   "sites_of_the_month"
+  ],
+  "pp-neue-montreal": [
+   "sites_of_the_day"
+  ],
+  "pragadheeshs-showcase": [
+   "webgl",
+   "parallax"
+  ],
+  "prime-os": [
+   "microinteractions",
+   "interaction-design",
+   "design-agencies"
+  ],
+  "produx-design": [
+   "sites_of_the_day"
+  ],
+  "project-cult-1": [
+   "3d",
+   "blender",
+   "big-typography",
+   "typography",
+   "portfolio",
+   "design-agencies"
+  ],
+  "projectone": [
+   "framer"
+  ],
+  "prometheus-fuels": [
+   "sites_of_the_year",
+   "sites_of_the_month"
+  ],
+  "proteinbolaget": [
+   "big-typography",
+   "typography",
+   "design-agencies",
+   "e-commerce",
+   "shopify"
+  ],
+  "protest-sportswear": [
+   "sites_of_the_year"
+  ],
+  "px-push": [
+   "sites_of_the_day",
+   "nuxt-js"
+  ],
+  "quinta-d-amalia": [
+   "architecture"
+  ],
+  "rabbit-r1": [
+   "e-commerce",
+   "shopify"
+  ],
+  "radian": [
+   "sites_of_the_day"
+  ],
+  "rainforest-foods-interactive-journey": [
+   "sites_of_the_month"
+  ],
+  "rapide-yacht-group": [
+   "minimal"
+  ],
+  "rapidkert": [
+   "webgl"
+  ],
+  "ravi-klaassens": [
+   "sites_of_the_day"
+  ],
+  "razorpay-sprint-26": [
+   "sites_of_the_day"
+  ],
+  "readymag-woty-2026": [
+   "scrolling",
+   "colorful"
+  ],
+  "readymag-x-spline": [
+   "spline"
+  ],
+  "red-print-productions": [
+   "black"
+  ],
+  "redouane-oumahi": [
+   "typography",
+   "portfolio"
+  ],
+  "ref-digital": [
+   "sites_of_the_day"
+  ],
+  "remyshoots": [
+   "transitions",
+   "portfolio",
+   "fashion"
+  ],
+  "repeat": [
+   "black"
+  ],
+  "resn-co-nz": [
+   "sites_of_the_month"
+  ],
+  "revelatio-studio": [
+   "sites_of_the_day"
+  ],
+  "rewords-ai": [
+   "big-typography",
+   "e-commerce"
+  ],
+  "rezonbio": [
+   "blender"
+  ],
+  "ria-scureman-designs": [
+   "framer"
+  ],
+  "ringer-studio-noah-lesage": [
+   "interaction-design",
+   "colorful",
+   "portfolio",
+   "design-agencies"
+  ],
+  "risk": [
+   "sites_of_the_day"
+  ],
+  "rly-network": [
+   "black"
+  ],
+  "roberto-collina-1": [
+   "e-commerce",
+   "shopify"
+  ],
+  "robin-mastromarino-portfolio-1": [
+   "sites_of_the_month"
+  ],
+  "ronnsquare": [
+   "architecture"
+  ],
+  "rose-island": [
+   "black"
+  ],
+  "rozalia-boma-writer": [
+   "colorful"
+  ],
+  "rpa-comunicacion": [
+   "sites_of_the_day"
+  ],
+  "ruinart-digital-fresco": [
+   "sites_of_the_day"
+  ],
+  "s0": [
+   "blender"
+  ],
+  "sakazuki": [
+   "sites_of_the_day"
+  ],
+  "samu-clima": [
+   "webgl"
+  ],
+  "san-rita": [
+   "sites_of_the_day"
+  ],
+  "santioni-spirits": [
+   "webgl"
+  ],
+  "sarah-zaheer": [
+   "framer"
+  ],
+  "sasha-martynchuk": [
+   "webgl",
+   "parallax"
+  ],
+  "schyns-medizintechnik": [
+   "nuxt-js"
+  ],
+  "sculpting-harmony": [
+   "sites_of_the_month"
+  ],
+  "sea-shepherd-no-fishing-net": [
+   "sites_of_the_month"
+  ],
+  "seacat": [
+   "black"
+  ],
+  "seasats": [
+   "sites_of_the_day",
+   "3d"
+  ],
+  "sedlecky-kaolin": [
+   "blender",
+   "typography"
+  ],
+  "see-for-yourself": [
+   "animation",
+   "architecture",
+   "framer"
+  ],
+  "see-me": [
+   "nuxt-js"
+  ],
+  "see-what-eye-see-simulator": [
+   "three-js",
+   "react-three-fiber",
+   "gsap",
+   "animation",
+   "transitions",
+   "page-transition",
+   "interaction-design",
+   "nuxt-js"
+  ],
+  "selkirk-cs-2-0-shoes": [
+   "e-commerce",
+   "shopify"
+  ],
+  "selkirk-omni-paddle": [
+   "e-commerce",
+   "shopify"
+  ],
+  "senawa": [
+   "architecture"
+  ],
+  "sentientx": [
+   "webgl"
+  ],
+  "serotoninn": [
+   "sites_of_the_day",
+   "e-commerce",
+   "fashion"
+  ],
+  "serve-robotics": [
+   "sites_of_the_day"
+  ],
+  "shader-development-studio": [
+   "sites_of_the_day"
+  ],
+  "sharplink": [
+   "sites_of_the_day"
+  ],
+  "shed": [
+   "sites_of_the_day"
+  ],
+  "short-print-promo": [
+   "colorful",
+   "e-commerce"
+  ],
+  "sibaldesign": [
+   "big-typography",
+   "animation",
+   "interaction-design",
+   "typography",
+   "portfolio",
+   "design-agencies"
+  ],
+  "sidewave": [
+   "sites_of_the_day"
+  ],
+  "siena-film-foundation": [
+   "sites_of_the_month"
+  ],
+  "sigl-sollerer-notaries": [
+   "spline"
+  ],
+  "sigma-imaging": [
+   "e-commerce"
+  ],
+  "silencio-digital-products": [
+   "sites_of_the_month"
+  ],
+  "silent-house": [
+   "sites_of_the_day"
+  ],
+  "silvia-malavasi-portfolio": [
+   "three-js",
+   "react-three-fiber",
+   "gsap",
+   "scrolling",
+   "storytelling",
+   "interaction-design",
+   "portfolio",
+   "react"
+  ],
+  "simonholm-studio": [
+   "sites_of_the_day"
+  ],
+  "simply-chocolate": [
+   "sites_of_the_year"
+  ],
+  "skanvi": [
+   "e-commerce"
+  ],
+  "slight-twist": [
+   "shopify"
+  ],
+  "slosh-seltzer": [
+   "sites_of_the_month"
+  ],
+  "sobha-privy-collection": [
+   "sites_of_the_day",
+   "3d",
+   "webgl",
+   "three-js",
+   "react-three-fiber",
+   "animation",
+   "parallax",
+   "architecture"
+  ],
+  "sohub": [
+   "sites_of_the_day"
+  ],
+  "solarin": [
+   "sites_of_the_month"
+  ],
+  "som": [
+   "sites_of_the_day"
+  ],
+  "son-daven": [
+   "sites_of_the_month",
+   "sites_of_the_day"
+  ],
+  "southern-lifts": [
+   "architecture"
+  ],
+  "sowieso-wero": [
+   "sites_of_the_day"
+  ],
+  "spa-1": [
+   "fashion"
+  ],
+  "spline-group": [
+   "spline"
+  ],
+  "spotify-astrology-club": [
+   "sites_of_the_month"
+  ],
+  "spotify-wrapped-party": [
+   "sites_of_the_day"
+  ],
+  "spyker-cars": [
+   "3d",
+   "webgl",
+   "scrolling",
+   "parallax",
+   "e-commerce"
+  ],
+  "squarespace-foundations": [
+   "sites_of_the_day"
+  ],
+  "sstr-friction-reduction": [
+   "sites_of_the_day"
+  ],
+  "stanzza-design": [
+   "typography",
+   "architecture",
+   "webflow"
+  ],
+  "star-atlas": [
+   "sites_of_the_year"
+  ],
+  "steven-com": [
+   "sites_of_the_day"
+  ],
+  "still": [
+   "e-commerce"
+  ],
+  "stillwater-r": [
+   "black"
+  ],
+  "storey-architecture": [
+   "architecture",
+   "nuxt-js"
+  ],
+  "stroms-man-woman": [
+   "shopify"
+  ],
+  "studio-foundry": [
+   "architecture"
+  ],
+  "studio-k95-3": [
+   "sites_of_the_day",
+   "nuxt-js"
+  ],
+  "studio-loop": [
+   "colorful",
+   "portfolio",
+   "design-agencies"
+  ],
+  "studio-namma": [
+   "sites_of_the_day"
+  ],
+  "studio-nikita": [
+   "minimal",
+   "portfolio",
+   "react"
+  ],
+  "studio-now": [
+   "e-commerce"
+  ],
+  "studio-x": [
+   "sites_of_the_day"
+  ],
+  "studio375-2": [
+   "sites_of_the_day"
+  ],
+  "studiofmrg": [
+   "fashion"
+  ],
+  "studiors": [
+   "react-three-fiber",
+   "gsap",
+   "animation",
+   "transitions",
+   "page-transition",
+   "minimal",
+   "design-agencies",
+   "react"
+  ],
+  "subscrr": [
+   "webgl"
+  ],
+  "sui": [
+   "sites_of_the_day"
+  ],
+  "superhuge": [
+   "webgl",
+   "big-typography",
+   "microinteractions",
+   "interaction-design",
+   "typography",
+   "portfolio",
+   "nextjs"
+  ],
+  "superlist": [
+   "sites_of_the_month"
+  ],
+  "superlogica": [
+   "parallax",
+   "react"
+  ],
+  "sutera": [
+   "sites_of_the_day"
+  ],
+  "swsh": [
+   "3d",
+   "three-js",
+   "react-three-fiber",
+   "animation",
+   "transitions",
+   "page-transition",
+   "nextjs"
+  ],
+  "synchrodogs-portfolio": [
+   "sites_of_the_month"
+  ],
+  "synchronized-studio": [
+   "sites_of_the_year"
+  ],
+  "tamas-olajos-ai-filmmaker": [
+   "webgl",
+   "parallax"
+  ],
+  "tao-tajima-filmmaker": [
+   "sites_of_the_month"
+  ],
+  "tde-1": [
+   "black"
+  ],
+  "ten-years-away": [
+   "sites_of_the_day"
+  ],
+  "terminal-industries": [
+   "sites_of_the_month"
+  ],
+  "terraunits": [
+   "storytelling",
+   "nextjs"
+  ],
+  "terry-ho": [
+   "shopify"
+  ],
+  "the-agency-of-love-logic": [
+   "sites_of_the_day"
+  ],
+  "the-cool-club-x-fwa": [
+   "sites_of_the_year"
+  ],
+  "the-donut-studio": [
+   "framer"
+  ],
+  "the-explora-journal": [
+   "e-commerce"
+  ],
+  "the-fabulous-cartier-journey": [
+   "sites_of_the_month"
+  ],
+  "the-frontier-within": [
+   "sites_of_the_month"
+  ],
+  "the-hall-of-zero-limits": [
+   "sites_of_the_month"
+  ],
+  "the-harmonic-state": [
+   "sites_of_the_month"
+  ],
+  "the-last-tango": [
+   "3d",
+   "webgl",
+   "three-js",
+   "microinteractions"
+  ],
+  "the-lookback": [
+   "sites_of_the_day"
+  ],
+  "the-new-mobile-workforce-4": [
+   "sites_of_the_year",
+   "sites_of_the_month"
+  ],
+  "the-obsidian-assembly": [
+   "sites_of_the_day"
+  ],
+  "the-other-side-of-truth": [
+   "sites_of_the_year"
+  ],
+  "the-power-of-storytelling": [
+   "sites_of_the_day"
+  ],
+  "the-quaker-school-at-horsham": [
+   "transitions",
+   "typography",
+   "colorful",
+   "nextjs"
+  ],
+  "the-renaissance-edition": [
+   "sites_of_the_month"
+  ],
+  "the-ride": [
+   "big-typography",
+   "gsap",
+   "storytelling",
+   "interaction-design",
+   "typography",
+   "portfolio"
+  ],
+  "the-robot-and-me": [
+   "storytelling",
+   "interaction-design",
+   "portfolio"
+  ],
+  "the-shift-1": [
+   "sites_of_the_month"
+  ],
+  "the-state-of-the-gallery": [
+   "sites_of_the_day"
+  ],
+  "the-story-of-the-king-of-pop": [
+   "parallax",
+   "typography",
+   "colorful"
+  ],
+  "the-studio-by-julie-granger": [
+   "e-commerce"
+  ],
+  "the-thread-a-personal-story": [
+   "webgl"
+  ],
+  "the-tie-break": [
+   "sites_of_the_day",
+   "webgl",
+   "three-js",
+   "react-three-fiber",
+   "colorful",
+   "fashion"
+  ],
+  "the-tuscan-journey-begins": [
+   "sites_of_the_day",
+   "webgl",
+   "storytelling",
+   "fashion"
+  ],
+  "the-unconventional-gallery": [
+   "sites_of_the_month"
+  ],
+  "the-watch": [
+   "sites_of_the_day"
+  ],
+  "the-year-of-greta": [
+   "sites_of_the_month"
+  ],
+  "theatre-rude-ingenierie": [
+   "webflow"
+  ],
+  "their-nibs": [
+   "e-commerce",
+   "fashion",
+   "shopify"
+  ],
+  "thelinestudio-com": [
+   "sites_of_the_month"
+  ],
+  "thenest": [
+   "typography"
+  ],
+  "thewood-fils": [
+   "blender"
+  ],
+  "thirdway": [
+   "transitions",
+   "page-transition",
+   "interaction-design",
+   "architecture",
+   "nextjs"
+  ],
+  "thorgal": [
+   "sites_of_the_day"
+  ],
+  "three-js-game-gallery-dian-noy-you-ji-chang": [
+   "3d",
+   "webgl"
+  ],
+  "tilly-sveaas": [
+   "e-commerce",
+   "fashion",
+   "shopify"
+  ],
+  "tokonoma-studio": [
+   "interaction-design",
+   "portfolio",
+   "design-agencies"
+  ],
+  "tomoro-sugawara-design-profile": [
+   "blender"
+  ],
+  "tour-kyrgyzstan": [
+   "typography"
+  ],
+  "tracing-art": [
+   "sites_of_the_month"
+  ],
+  "tresmares-capital": [
+   "sites_of_the_day"
+  ],
+  "trevor-noah": [
+   "sites_of_the_day",
+   "webgl",
+   "typography",
+   "webflow"
+  ],
+  "tricks-gmbh": [
+   "nuxt-js"
+  ],
+  "trionn-2": [
+   "sites_of_the_day"
+  ],
+  "truckn-roll-r": [
+   "sites_of_the_day"
+  ],
+  "twenty-one-pilots-bandito": [
+   "sites_of_the_month"
+  ],
+  "twofold-therapy": [
+   "nuxt-js"
+  ],
+  "ukft": [
+   "fashion"
+  ],
+  "ultragrid": [
+   "blender"
+  ],
+  "umami-land": [
+   "sites_of_the_year",
+   "sites_of_the_month"
+  ],
+  "unbelievably-crap": [
+   "webgl",
+   "three-js",
+   "react-three-fiber",
+   "storytelling",
+   "interaction-design"
+  ],
+  "unimatic": [
+   "big-typography",
+   "interaction-design",
+   "e-commerce",
+   "fashion",
+   "shopify"
+  ],
+  "united-carriers": [
+   "sites_of_the_day",
+   "3d",
+   "webflow"
+  ],
+  "unitree-go2-ai-robots": [
+   "e-commerce"
+  ],
+  "units": [
+   "sites_of_the_day"
+  ],
+  "unleashing-your-best-version": [
+   "sites_of_the_month"
+  ],
+  "unseen-studio": [
+   "sites_of_the_month"
+  ],
+  "unseen-studio-2025-wrapped": [
+   "sites_of_the_day"
+  ],
+  "untitled": [
+   "parallax",
+   "framer"
+  ],
+  "usavionix": [
+   "sites_of_the_day",
+   "3d",
+   "webgl"
+  ],
+  "usul": [
+   "e-commerce"
+  ],
+  "utah-jazz-purple-is-back": [
+   "black"
+  ],
+  "utopia-tokyo": [
+   "sites_of_the_day"
+  ],
+  "vakantiehuis-coquelicots": [
+   "parallax",
+   "nuxt-js"
+  ],
+  "vander-hotel": [
+   "parallax"
+  ],
+  "vanmotion": [
+   "fashion",
+   "nextjs"
+  ],
+  "vast": [
+   "sites_of_the_day"
+  ],
+  "vaulk": [
+   "sites_of_the_day"
+  ],
+  "vectorelements": [
+   "e-commerce"
+  ],
+  "vectr": [
+   "sites_of_the_day"
+  ],
+  "velour-productions": [
+   "big-typography",
+   "gsap",
+   "microinteractions",
+   "interaction-design",
+   "typography",
+   "portfolio",
+   "nextjs"
+  ],
+  "vero-new-york": [
+   "sites_of_the_day",
+   "e-commerce"
+  ],
+  "vide-infra-1": [
+   "black"
+  ],
+  "vilendesign": [
+   "typography",
+   "portfolio"
+  ],
+  "viskhan-khasiyev": [
+   "e-commerce"
+  ],
+  "vita-travels": [
+   "e-commerce"
+  ],
+  "vizz": [
+   "3d",
+   "webgl",
+   "three-js",
+   "react-three-fiber",
+   "colorful"
+  ],
+  "void-messenger": [
+   "e-commerce"
+  ],
+  "vurrle-studio": [
+   "black"
+  ],
+  "wama-2": [
+   "portfolio",
+   "design-agencies",
+   "framer"
+  ],
+  "war-in-ukraine": [
+   "black"
+  ],
+  "warm-fuzzy": [
+   "sites_of_the_day",
+   "3d",
+   "colorful",
+   "portfolio",
+   "design-agencies"
+  ],
+  "watson": [
+   "sites_of_the_month"
+  ],
+  "we-the-fans": [
+   "sites_of_the_month"
+  ],
+  "web-tactics": [
+   "parallax"
+  ],
+  "weber-bbq-cultures": [
+   "sites_of_the_year"
+  ],
+  "weevolveit": [
+   "3d",
+   "typography",
+   "react"
+  ],
+  "welcome-to-hogwarts": [
+   "sites_of_the_month"
+  ],
+  "welcome-to-the-continent": [
+   "sites_of_the_month"
+  ],
+  "wembi": [
+   "sites_of_the_day"
+  ],
+  "where-worlds-take-shape": [
+   "sites_of_the_day"
+  ],
+  "white-desert": [
+   "sites_of_the_day"
+  ],
+  "whiteout-an-ascent": [
+   "webgl",
+   "three-js",
+   "react-three-fiber",
+   "animation",
+   "page-transition",
+   "scrolling",
+   "storytelling",
+   "minimal"
+  ],
+  "whp-creative": [
+   "three-js",
+   "scrolling",
+   "design-agencies",
+   "nextjs"
+  ],
+  "why-zero": [
+   "sites_of_the_day",
+   "3d",
+   "blender"
+  ],
+  "wild-ag": [
+   "architecture"
+  ],
+  "wild-week-athens": [
+   "sites_of_the_day"
+  ],
+  "williams-grand-prix-tech": [
+   "blender"
+  ],
+  "windows": [
+   "webgl",
+   "three-js",
+   "react-three-fiber",
+   "transitions",
+   "page-transition",
+   "storytelling"
+  ],
+  "wispr-flow": [
+   "webflow"
+  ],
+  "wolverine-worldwide": [
+   "sites_of_the_day"
+  ],
+  "wpkoi-themes": [
+   "e-commerce"
+  ],
+  "written-in-the-stars": [
+   "transitions",
+   "storytelling",
+   "interaction-design",
+   "typography"
+  ],
+  "xox": [
+   "sites_of_the_day"
+  ],
+  "ylem": [
+   "fashion"
+  ],
+  "younergy-1": [
+   "spline"
+  ],
+  "zentry": [
+   "sites_of_the_month"
+  ],
+  "zeroz-brand-site": [
+   "sites_of_the_day",
+   "blender",
+   "e-commerce"
+  ],
+  "zes-nullen": [
+   "black"
+  ],
+  "zettajoule": [
+   "sites_of_the_day"
+  ],
+  "zeynapp": [
+   "three-js",
+   "react-three-fiber",
+   "big-typography",
+   "animation",
+   "interaction-design",
+   "typography",
+   "react"
+  ],
+  "zirka-interceptor": [
+   "3d",
+   "blender",
+   "animation",
+   "microinteractions",
+   "interaction-design",
+   "webflow"
+  ],
+  "zoumboulakis-galleries-1": [
+   "e-commerce"
+  ]
+ },
+ "failures": [
+  "https://www.awwwards.com/websites/sites_of_the_year/?page=3"
+ ]
+}

@@ -1,0 +1,349 @@
+{
+ "slug": "why-zero",
+ "title": "Why Zero",
+ "live_url": "https://why.zero.university/",
+ "award": "Awwwards Site of the Day, Sep 7, 2026 (Honors + SOTD)",
+ "scores": {
+  "overall": 7.73,
+  "design": 7.7,
+  "usability": 7.46,
+  "creativity": 8.16,
+  "content": 7.75,
+  "dev": {
+   "overall": 7.26,
+   "semantics_seo": 6.6,
+   "animations": 8.4,
+   "accessibility": 6.6,
+   "wpo": 8.0,
+   "responsive": 7.0,
+   "markup": 6.8
+  }
+ },
+ "industry": "Education / edtech startup campaign microsite (Zero University: AI-native learning, waitlist)",
+ "signature": "A scroll-length manifesto you have to earn with gestures. You draw a zero on frozen ice to unlock it, hold to shatter an Arcadian 'Creation of Adam' idyll into a blood-red stage, and descend a depth gauge from -100 BZ to 0 BZ. Every beat is scored with sound, graded in-shader and paid out in XP.",
+ "first_screen": {
+  "composition": "Observed (desktop_00): a full-bleed top-down view through a sheet of cracked grey-teal ice (median #75998c) with moving caustics. It's a frost texture plus an ice-normal refraction pass, and 40-50k pixels change between probe steps. A green toon fist (loader_hand.glb) rises from the bottom centre with its index finger up to the middle of the screen, warped as if seen through meltwater (it renders #a3e092-#b2e598 through the ice). 'DRAW A ZERO' (PP Supply Mono 20px, white) sits dead centre. There is no static guide ring. The ring you see is the comet itself: a 40vh stage (360px at 900 tall) holds a conic-gradient masked by a radial-gradient to a 1.2vh band (radius 19.4-20.6vh, feathered from 18.7 to 21.3vh), plus a 2vh head dot. The head traces clockwise from 12 o'clock, and the tail length equals the angle swept in the last 2s. It reads as a full faint ring right after a sweep (desktop_00, desktop_03), shows only a 40-150 degree tail at other times, and there is no ring at all during the 2s rest (desktop_05, 07 show only a short tail). A white 'zero' wordmark (~490px wide) bleeds off the bottom-left edge in desktop_00 only. It is not a distressed typeface. The loader is a 2D canvas drawn onto a plane inside the WebGL scene, so the ice refraction chews up its edges. When loading ends, the '99' slides up out of its slot while the logo (nav_logo_white.svg) rises into it (1s power2.inOut; 3/f01-f02 catch it forming under the frost). The canvas then slides 750px left and fades (0.8s power3.in after a 1.2s delay), and desktop_00 caught it mid-exit, which is why it is clipped at the edge. There's no nav, copy or CTA, and nothing scrolls until the gesture is done: the story timeline only starts when the recogniser fires onCircleComplete, which plays gate0to1. Stage1 then holds scroll for up to 1s more (scrollManager.setHeld(true)) until 'You Believed' is visible. Before this, element 3/f00 shows the loader: a '99' counter in Supply Sans, bottom-left, over a dark-green-to-mint radial gradient. It is sized to the viewport height: 180/1080 of the height (16.7vh, so 150px at 900 tall) on desktop and 110/1080 below 768px wide (86px at 844, matching the probe's mobile 85.96px). It is inset 40/1920 of the width from the left and sits 40/1080 of the height above the bottom. The 700 weight is synthetic: only the 400 face is loaded.",
+  "what_owns_it": "3d",
+  "display_type_px": 150,
+  "evidence": [
+   "probes/why-zero/desktop_00.jpg",
+   "probes/why-zero/desktop_01.jpg",
+   "probes/why-zero/desktop_03.jpg",
+   "frames/why-zero/3/f00.jpg",
+   "frames/why-zero/3/f03.jpg",
+   "probe measure.largest_text",
+   "probes/why-zero/desktop_05.jpg",
+   "probes/why-zero/desktop_07.jpg",
+   "frames/why-zero/3/f04.jpg"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "PP Supply Mono",
+    "role": "ui",
+    "classification": "monospace grotesk",
+    "foundry": "Pangram Pangram",
+    "source": "probe fonts_loaded 'PP Supply Mono 400'; CSS @font-face /assets/fonts/PPSupplyMono-Regular.otf"
+   },
+   {
+    "name": "Supply Sans (PP Supply Sans)",
+    "role": "display",
+    "classification": "geometric-technical sans",
+    "foundry": "Pangram Pangram",
+    "source": "probe largest_text '99' Supply Sans weight 700 at 150px. But the only @font-face is PPSupplySans-Regular.otf at weight 400 and fonts_loaded lists 'Supply Sans 400', so the 150px counter is browser faux-bold."
+   },
+   {
+    "name": "STK Bureau Serif (Book)",
+    "role": "display",
+    "classification": "contemporary high-contrast serif",
+    "foundry": "inferred: Studio K / STK type (file STKBureau-SerifBook.otf)",
+    "source": "CSS @font-face; inferred to set '3,933 people' and the serif halves of the text sprites"
+   },
+   {
+    "name": "Bethany Elingston",
+    "role": "accent",
+    "classification": "flourished script (swash capitals)",
+    "foundry": "unknown commercial script",
+    "source": "CSS @font-face /assets/fonts/Bethany Elingston.otf; inferred to set the swash 'B' and 'C' in 'You Believed' and 'College would'"
+   },
+   {
+    "name": "Google Sans Flex / Google Sans Code",
+    "role": "ui",
+    "classification": "humanist sans / mono",
+    "foundry": "Google",
+    "source": "Google Fonts link in HTML; probe font_families_rendered 'Google Sans Flex' x2 ('Join Beta' pill)"
+   },
+   {
+    "name": "Caveat 700, Newsreader 400/500, Inter 400-600",
+    "role": "accent",
+    "classification": "handwriting / text serif / UI sans",
+    "foundry": "Google Fonts",
+    "source": "HTML fonts.googleapis link; Caveat visible as 'Congrats! we found a use for your degree' (2/f03)"
+   }
+  ],
+  "display_size_px": 150,
+  "body_size_px": 16,
+  "scale_notes": "Measured: loader counter 150px (line-height 150px) at 900 tall, which is 180/1080 of the viewport height (bundle). Gate prompt 20px, and it stays 20px on mobile (128px wide at both 1440 and 390). 'SCROLL' 16.8px (line-height 12.6px). Ruler labels 12px spans. The five 10px elements (font_sizes_px [10,5]) are the ruler's hover-nav stage buttons (-100 to 0 BZ, alpha .7, letter-spacing .12em = 1.2px). The hold label 'TAP / HOLD' is 1.4rem (22.4px) at weight 700 with line-height 1.05. The big narrative words are WebGL text sprites from /assets/atlases/texts.ktx2, so the probe can't measure them. Inferred from the element frames, scaled by the 20px 'DRAW A ZERO' label (frame px x 1.29 = CSS px in those recordings): 'Bullsh*t' cap height ~180px, 'You Believed' ~150-190px, 'JOB' ~110-140px, with the small companion words ('would', 'land', 'That's') at ~1/3 that size. So the scale is a giant/tiny mixed-size lockup, not a heading ladder.",
+  "tracking_leading": "HUD mono is uppercase with letter-spacing 1.2px at 10px (0.12em) and 0.96px at 12px (0.08em). The display sprites are set tight: 'Bullsh*t' reads at about -0.02em (inferred), and the lockup leading overlaps the script swash into the serif line.",
+  "case_and_style": "Narrative lines are sentence fragments split one per scroll beat ('You Believed' / 'College would land You' / 'JOB' / 'But,' / 'That's Bullsh*t'). Each lockup mixes a script swash capital, an upright high-contrast serif and an italic. The HUD and prompts are uppercase mono ('DRAW A ZERO', 'TAP HOLD', '-75 BZ').",
+  "signature_moves": [
+   "Mixed-script lockups rendered as WebGL sprites: a script swash capital fused to a serif word, with a tiny word tucked beside a giant one ('land' over 'You')",
+   "Phrase fragments are spread across scroll beats so the sentence only completes as you descend",
+   "A censored expletive as the turn: 'That's Bullsh*t' in huge glowing white serif over a red curtain",
+   "The narrative sprites are inked in brand greens, not white: 'You Believed' slate-teal ~#4b6b6e, 'College would' emerald ~#11936d, 'You land' mint-emerald ~#10dd8a, 'JOB' ~#14ab7e (0/f00-f07). In the red act 'But,' turns pale mint ~#dfffec and 'That's Bullsh*t' pure white with a glow, so a trace of the brand green survives the red grade."
+  ],
+  "mobile": "mobile_00/01 at 390px: the gate ring measures ~351px because it is sized in vh (40vh stage, ~42.6vh outer feather at 844 tall), not vw, 'DRAW A ZERO' stays at 20px, and the hand fills the lower half. There's no 'zero' wordmark and no custom cursor (the cursor is disabled on hover:none / pointer:coarse). The probe measured a largest mobile text of 85.96px (the loader counter) and no horizontal overflow."
+ },
+ "color": {
+  "mode": "section-shifting",
+  "base": "#1C4839 (body rgb(28,72,57), deep bottle green) under the canvas; each scene is authored in WebGL",
+  "ink": "#FFFFFF with alpha steps for the HUD: .92, .9, .7, .6, .5 (probe text_colors)",
+  "accents": [
+   "#01C654 electric green (Awwwards palette): the toon hand, the logo orb, the ref-link pill tint",
+   "#201D1D near-black: the 'Join Beta' pill (probe bg rgb(32,29,29))",
+   "oxblood red: the curtain measures ~#92000b in the lit centre band and #45060b-#54030c at the sides (1/f06). The stage-2 grade is uRedTint up to .85.",
+   "gold: XP star and wax seal",
+   "rgba(255,255,255,.35): the depth-ruler ticks (128 elements)",
+   "ice grey-teal ~#75998c (gate) with the frost edge tinted #C5FFCB (shader constant vec3(.773, 1, .796))",
+   "narrative type greens: #4b6b6e -> #11936d -> #10dd8a -> #14ab7e, then mint-white #dfffec on the red stage"
+  ],
+  "ratio": "Stage 1 is ~70% pastel mint/white haze, 20% saturated green hand, 10% ink. Stage 2 flips to ~80% red/black with a warm skin tone.",
+  "section_shifts": "Hard, narrative-driven shifts: frozen teal ice (gate) -> mint-white fog (narrative) -> Arcadian sky-and-meadow photo scene -> red-graded, collapsing into black on hold -> shattered red glass -> red velvet curtain with a live-action hand (stage2_background_video) -> aerial city map (stage 5) -> mint waitlist panel. The shifts are shader uniforms (uRedTint, uSaturation, uExposure, uContrast, uWhiteout), not CSS.",
+  "texture": "Frost and ice normal map with a cursor-wiped trail on the gate. Refractive meltwater distortion on the hand. God rays and petals in the idyll. Fine noise is uniform-toggled (uEnableNoise); all quality tiers use foregroundNoise 2 and noiseStrength .04. A lens-blur depth-of-field pass defocuses foreground props (0/f04 arm, 0/f05 petals). Everything sits in the WebGL layer behind the DOM HUD, which stays crisp.",
+  "notes": "The mint-to-white radial wash in the narrative frames (0/f00-f04) runs from #feffff at the centre to #b1d0be in the lower corners. It's the riskiest colour choice, rescued only because the scene resolves quickly into a photographed landscape."
+ },
+ "layout": {
+  "grid": "No CSS grid (grid_containers 0). A fixed HUD frame sits over a fixed full-viewport canvas (z 1). Sizes are measured in element frames and scaled by the 20px 'DRAW A ZERO' label (x1.29): a 40px circular sound toggle at top 16px / left 20px (CSS); a depth ruler centred 16px from the top, a 300x60px window masked to transparent over its outer 8% on each side, with ticks on a 12px pitch, one 2x18px centre index at 90% white and 12px labels on the tape; a glass 'XP' pill ~108px wide at the top-right; and a centred bottom dock ~437x57px (green logo orb + black 'Join Beta' pill + white '=' menu circle inside a frosted track).",
+  "density": "airy",
+  "alignment": "Centred axial composition for gates and beats (ring, 'JOB', 'But,', 'Bullsh*t'). The narrative lockups sit on diagonals: top-left fragment and bottom-right fragment with the hand crossing between them (0/f03).",
+  "composition_moves": [
+   "Diagonal lockup: phrase start top-left, phrase end bottom-right, a 3D hand bridging them",
+   "Michelangelo 'Creation of Adam' restaged: a green toon hand and a real human hand reaching for the word 'JOB' between two Ionic columns",
+   "Full-screen gesture prompts (ring + label) dead centre with nothing else",
+   "Instrument HUD: a depth gauge in 'BZ' units replaces a nav or progress bar",
+   "Split waitlist result: a 3D origami diploma left, a big serif stat right, with a rounded mint panel that rises and compresses the aerial-map strip above it (from ~3.9:1 in 2/f00 to ~12:1 in 2/f03)"
+  ],
+  "section_rhythm": "Stage-based virtual scroll. Segment order from the bundle: gate0to1 50vh -> stage1 175vh -> gate1to2 50vh -> stage2 250vh -> stage3 325vh -> gate3to4 50vh -> stage4 368vh -> gate4to5 50vh -> stage5 50vh. The zero is drawn before the timeline starts. gate0to1 is the 3.5s melt that auto-plays once the zero is recognised, and it leads into stage1, whose end holds the idyll hold. Stage2 hands straight to stage3 at .99 progress with no gate. The gates auto-play rather than scrub: gate0to1 over 3.5s (frost melt and whiteout), gate1to2 over 3s (glass shatter), gate3to4 over 3s (tunnel, sound at rate 1/3), gate4to5 instantly. The draw and the holds are mandatory stops. There are two holds: stage1's idyll hold (element 1) uses the default holdDuration of 3s, with ripple and regrade, and stage3's tunnel hold is 1.5s, with no ripple and a smoothstep camera push. Each hold button appears at stage progress .95 and hides below .9. The depth labels -100 BZ, -75, -50, -25 and 0 BZ map to stages 1-5, and the HUD switches between white and black themes per stage (setPageTheme).",
+  "mobile_adaptation": "isMobile = innerWidth <= 768. Mobile keeps the same scene with the ring at ~90vw. The skipped 'pan-velocity controller' is the stage-5 map's keyboard/joystick control (isMobile ? null : ...); mobile pans the map by drag and pinch-zoom instead. The camera rig uses pointer parallax on desktop and device-orientation gyro on touch (iOS permission request; max offset .18, smoothing constant .12, gyro range 20 degrees). Touch drives the custom scroll (touchmove non-passive). The custom cursor is off on touch devices. Pixel ratio is capped by quality tier (min(dpr,2) / min(dpr,1.5) / 1)."
+ },
+ "motion": {
+  "smooth_scroll": "Custom virtual scroll, not Lenis: wheel and touch set targetScrollPos, and progress eases with SCROLL_LERP .075, converted to frame-rate-independent damping as speed = -ln(1 - .075) * 60 ≈ 4.68/s. Per-stage scrollPos resets on stage change (setActiveStage). During the gate, scroll is held (setHeld(true)) until the zero is recognised.",
+  "preloader": "A counter counts up to 99 (Supply Sans, faux-bold, 150px) bottom-left on a deep-green-to-mint radial gradient (3/f00). There are two loader layers. The DOM loader (role=progressbar, aria-valuemax 99) slides out left (x: -(width + 40), opacity 0, 0.8s power3.in after a 2s delay). The WebGL copy is a canvas texture on a plane inside the scene: the counter rolls up out of frame while the 'zero' logo rolls up into the same slot (1s power2.inOut), then the canvas slides 750px left and fades (0.8s power3.in, 1.2s delay). Because it sits inside the scene, the ice pass refracts it. The navbar groups enter from y -28 with back.out(1.5) over 0.6s, staggered .1. The fx_loader and fx_loader-drag sounds accompany it.",
+  "intro_sequence": "The loader cross-dissolves into the frozen-ice gate (3/f01 at 1.53s shows bare ice with the wordmark splotch forming; the hand and comet appear by 3/f03 at 3.57s). The comet demo is one clockwise 360 degree sweep from 12 o'clock over 2s sine.inOut, then a 2s rest, looping. While you draw, the toon hand's fingertip follows the pointer (3/f03 -> f04) and the stroke melts a wide channel through the frost with a glowing white rim and a white-hot head (3/f04). Once the zero is recognised, gate0to1 auto-plays for 3.5s: the frost melts open from the centre as an irregular hole with a bright white rim, with a flash at the fingertip (3/f05 at 5.6s). The background progresses over the first 67%, and uWhiteout ramps linearly over the last 17% (~0.6s). Then a glossy gold 4-point star appears with '+100 XP' rolling on an odometer (digits motion-blurred mid-roll in 3/f06 at 6.64s, settled in f07). The 'xp-topup' sound plays and the HUD counter gets an 'xp-ripple' animation.",
+  "scroll_techniques": [
+   "stage-based virtual scroll with lerp .075",
+   "depth-gauge progress HUD",
+   "gesture gate (draw a circle)",
+   "hold-to-proceed gates (3s at the stage-1 idyll, 1.5s in the stage-3 tunnel)",
+   "3D hand rigs animated along scroll",
+   "layered parallax photo scene (uBgParallaxAmp, uLayerDepth)",
+   "text-sprite phrase reveals per beat",
+   "glass-shatter scene cut",
+   "video background stage (stage2_background_video-desktop.mp4)"
+  ],
+  "text_animation": "The phrase sprites fade and scale in as planes from the KTX2 atlas (uOpacity, uProgress). The fragments arrive in reading order, starting with the script capital. In 1/f05 -> f07 (5.52s -> 7.53s) 'But,' appears alone, the stage then clears to only the curtain and the raised hand for a beat (1/f06, no text), and then 'That's Bullsh*t' resolves left to right: at 7.53s 'Bull' is already sharp while 'sh*t' is still horizontally smeared and glowing. The XP odometer rolls digits with vertical motion blur. The fade/scale timing of the sprites is inferred; the frames only show the states.",
+  "image_animation": "The hand model re-poses per beat: open palm reaching (0/f01), wrist rotating across frame (0/f02-f04), index-finger reach toward 'JOB' (0/f06-f07). The brand-logo coins tumble around the hand in 3D. Petals drift from the shards-petals-coins atlas. Burn shader on paper and money: an fbm-noise threshold grows from the centre or edges (uBurnDirection), with an ember rim uEmberWidth .025, uBurnScale 4, char band uCharWidth and flicker = vnoise(uv*.8 + t*2.5)*10 + .5.",
+  "page_transitions": "Hold-to-proceed (element 1, 8.0s clip). At 0.50s (f00) the ring is empty over the idyll, with a faint ~235 frame-px refractive bubble around it. At 1.51s (f01) the ring is ~20% filled. At 2.51s (f02, ~60%) the photo layers are re-graded crimson with a stormy purple sky, the left column is gone, and the green toon hand stays fully saturated green while it curls around a petal. At 3.52s (f03, ~90%) exposure is near zero, leaving only the ring on black. At 4.52s (f04) red glass shards (stage2_glass-shatter.glb) burst past a live-action hand with red fingertips. At 5.52s (f05) the red curtain stage and 'But,' appear, and at 7.53s (f07) 'That's Bullsh*t' with XP mid-count at 171 on its way to 200. Code: this stage-1 hold sets no holdDuration, so it falls back to the default `holdDuration ?? 3`, which is 3s. The 1.5s value belongs to the second, stage-3 tunnel hold. The frames agree: fill is ~20% at 1.51s, ~60% at 2.51s and ~90% at 3.52s, a 3s slope, where 1.5s would have finished by ~2.7s. Progress p is linear on requestAnimationFrame. p drives exposure 1-p, contrast 1+.9p, uRedTint .85p, background zoom 1-.08p and a camera dolly of .03p. The ripple intensity is .4+.6p and its half-width .75-.55p. The hand animation is scrubbed to .7 + .3 x easeInOutCubic(p), and the ambient beds crossfade (stage1 volume x (1-p), stage2 x p). The hold SFX plays at one constant rate, (clip length / holdDuration) x holdRateScale .75, and seeks to the current progress when a hold resumes; it is not pitch-ramped. Releasing lets the progress decay linearly over 500ms, so a quick re-press resumes where you were. Cancelling resets the ring in 0.3s power2.out. On completion gate1to2 auto-plays 3s: the shatter pass scrubs and the glass-shatter sound fires.",
+  "hover_micro": [
+   "Copy-link icon swap: the icon translates Y 0 -> -200% while the success tick comes from 200% -> 0, over 0.4s cubic-bezier(0.625,0.05,0,1) (Osmo-style)",
+   "Menu and nav use the GSAP CustomEase 'osmoNav' = 'M0,0 C0.625,0.05 0,1 1,1'",
+   "Invalid form field: a jf-shake keyframe over 0.42s cubic-bezier(0.36,0.07,0.19,0.97) with ±6px translate and a red underline",
+   "Sound toggle: an SVG wave animates via SMIL beginElement and flattens when muted or when reduced motion is on",
+   "Menu open (osmoNav, 0.65s): the dock track grows in width and height into the menu panel; the two burger lines move y +/-3.3 and rotate +/-45 degrees with back.out(2) over 0.4s, forming an X; links rise from yPercent 100 with autoAlpha over 0.6s, stagger .03",
+   "Stage-5 joystick: the knob springs back to centre with back.out(2) over 0.22s on release. Arrow keys drive the knob too.",
+   "Depth ruler: minor ticks magnify toward the centre index like a dock. Ticks within 3 tick-spacings grow from 9px to 18px tall via scaleY with a smoothstep falloff. Hovering the ruler (.is-hover-nav) fades the tape out over .25s and fades in a row of five stage buttons: 10px mono at 70% white, each with a 28px x 1px line that grows to 40px on hover and to 40 x 2px when active (0.2s). A spinner replaces the line while a jump loads, and all buttons disable until the jump finishes.",
+   "XP top-up: the pill flashes from #0006 to #fffffff2 and back (xpFlashWhite, 1.8s ease-out). A 2px gold stroke (#ffc832) with an amber glow (xpStrokeGlow) plays at the same time, and the number counts up over 2s (1/f07 catches it mid-count at 171)."
+  ],
+  "cursor": "Custom sprite cursor. A fixed 56px div shows cells from /assets/ui/cursors_atlas.webp (3x2 atlas: arrow, pointer, grab, grabbed, text, move), moved with translate3d on pointermove, and it fades in over 0.15s. The glyph is picked each move with elementFromPoint (data-cursor, then inline cursor styles, then canvas -> arrow). An injected '*, *::before, *::after { cursor: none !important }' hides the OS cursor, which is why the probe counts cursor:none on 360 elements. The idle glyph is an arrow (0/f00-f07, 1/f04-f07). The hand glyphs show on pointer/grab targets: the gate, the hold button and the draggable origami (desktop_01, 1/f00-f03, 2/f03). It's disabled on touch. The pointer also drives the frost brush (uCursorUV, radius .07 UV).",
+  "easing_curves": [
+   "GSAP power2.out (28 uses), power2.inOut (11), power2.in (10), power3.inOut (5), power3.in (4), power3.out (3), sine.inOut (3), back.out(2) (3), back.out(1.5) (1), power1.out (3); comet demo sine.inOut 2s",
+   "CustomEase osmoNav: cubic-bezier(0.625,0.05,0,1)",
+   "CSS cubic-bezier(.22,1,.36,1) (probe, x2)",
+   "CSS cubic-bezier(0.4,0,0.2,1)",
+   "shake: cubic-bezier(0.36,0.07,0.19,0.97)"
+  ],
+  "duration_range_ms": "160-3500. GSAP clusters at 300, 450, 500, 600 and 650ms, with long 1.8/2/3.5s moves for scene changes. CSS durations 0.2-0.7s, plus 1.4/1.8/2.8s ambient keyframes. Holds are 3000ms (stage-1 idyll) and 1500ms (stage-3 tunnel). The XP count-up is 2s and the XP pill flash 1.8s ease-out.",
+  "stagger_ms": "10 (each .01, from 'end'), 30, 45, 90, 100 (bundle stagger values)",
+  "choreography_notes": "Each beat is scored with a sound cue (whoosh, hand-entry, tunnel), a camera and grade change, a text sprite and an XP reward. The exact order within a beat is inferred. The gates stop the scroll, and after each gesture a 50vh gate segment auto-plays for 3-3.5s, so the big transitions are triggered by the user's action and played as authored films, never scrubbed by passive scroll.",
+  "evidence": [
+   "frames/why-zero/0/f00-f07.jpg",
+   "frames/why-zero/1/f00-f07.jpg",
+   "frames/why-zero/2/f00-f03,f06.jpg",
+   "frames/why-zero/3/f00-f07.jpg",
+   "probes/why-zero/desktop_00-07.jpg",
+   "bundle grep main-B9-HtP-f.js"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "mixed",
+  "art_direction": "Surreal campaign collage: a stylised glossy toon hand in electric green set against photoreal material (a real hand, marble Ionic columns, a flower meadow with a pond, cumulus sky, red velvet) and prop atlases (brand-logo coins, petals, glass shards, burning banknotes, a diploma). The grades are high-key and hazy in the 'belief' act and a red/black horror grade in the 'bullsh*t' act.",
+  "treatments": [
+   "frost/ice refraction with a cursor-wiped trail",
+   "meltwater distortion on the hand",
+   "god rays and bloom haze",
+   "colour grade uniforms (exposure, contrast, saturation, red tint, whiteout)",
+   "burn/ember dissolve",
+   "glass shatter",
+   "layered 2.5D parallax photo planes (uLayerDepth, uLayerRect, uBgParallaxAmp)",
+   "personalised canvas-rendered diploma texture folded into one of 10 origami animals (angelfish, cat, dog, dolphin, elephant, fox, goldfish, rhino, seal, wolf), chosen by a hash of the entered name, with baked AO per animal",
+   "lens-blur depth of field (maxBlur 16; 24 samples HIGH, 16 MEDIUM, off LOW; focalRadius .3)",
+   "radial melt hole with a white 4m(1-m) rim (3/f05)"
+  ],
+  "crops_and_ratios": "Full-bleed scenes at the viewport ratio (the element recordings are 4:3). The waitlist's aerial-map strip is ~3.9:1 in 2/f00 and compresses to ~12:1 as the mint panel rises (2/f03).",
+  "formats": "probe: webp 10, glb 9, ktx2 6 (atlases), svg 3, otf 2, mp4 2, png 1. Bytes: 3D 3.65MB, audio (mpeg) 0.99MB, mp4 0.49MB, webp 0.49MB. Audio is a Howler cue set of 14 mp3s.",
+  "evidence": [
+   "frames/why-zero/0/f05.jpg",
+   "frames/why-zero/0/f07.jpg",
+   "frames/why-zero/1/f02.jpg",
+   "frames/why-zero/1/f04.jpg",
+   "frames/why-zero/2/f03.jpg",
+   "probe asset_extensions",
+   "frames/why-zero/3/f05.jpg",
+   "frames/why-zero/0/f04.jpg"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r160 (WebGL2) with a custom ShaderMaterial/RawShaderMaterial pipeline, GLTFLoader + DRACOLoader + MeshoptDecoder + KTX2Loader, InstancedMesh for props, an EffectComposer composite pass; modelled in Blender (Awwwards tag)",
+  "role": "hero object (the hands) plus a world of layered photo planes and instanced prop particles",
+  "assets": [
+   "https://why.zero.university/assets/models/loader_hand.glb",
+   "https://why.zero.university/assets/models/human_hand_1.glb",
+   "https://why.zero.university/assets/models/human_hand_2.glb",
+   "https://why.zero.university/assets/models/fancy_hand_2.glb",
+   "https://why.zero.university/assets/models/glass_shards.glb",
+   "https://why.zero.university/assets/models/stage2_glass-shatter.glb",
+   "https://why.zero.university/assets/models/tunnel_new_new.glb",
+   "https://why.zero.university/assets/models/camera_1.glb",
+   "https://why.zero.university/assets/models/camera_2.glb",
+   "https://why.zero.university/assets/atlases/texts.ktx2",
+   "https://why.zero.university/assets/atlases/shards-petals-coins.ktx2",
+   "https://why.zero.university/assets/atlases/leather-money-shreds.ktx2",
+   "https://why.zero.university/assets/atlases/human_hands.ktx2",
+   "https://why.zero.university/assets/atlases/clouds.ktx2",
+   "https://why.zero.university/assets/atlases/board-certificates.ktx2"
+  ],
+  "materials_lighting_post": "The toon hand gets a glossy green look with a cyan rim/fresnel glow and an under-glow plane (uPlaneGlowColor/Width/Strength/Z). Frost pass: a half-res RG ping-pong buffer. R is the cleared trail, faded x.97 per frame; G is the head, faded x.95. The brush is a soft disc at uCursorUV, radius .07 UV. The composite sets frostAlpha = opacity x (1 - cleared), roughened by ice luma at the edge, and colours the frost as mix(scene, frostTex x light, .3). A white glow band sits at smoothstep(.05,.5,c) x (1 - smoothstep(.5,1.2,c)), a white-hot head at smoothstep(.15,.5,head), and the freeze edge is tinted #C5FFCB. The ice normal displaces the scene only where the ice isn't cleared. uSpread is a directional max-dilation (decay .92) whose step scales with 0.4 + 1.2 x ice luma, so melt runs along the bright cracks. uMelt opens a radial hole with a rim of 4m(1-m). Photo planes are composited as texture A/B crossfades with premultiplied alpha and optional ripple (uRippleTime/Intensity/Resolution/Hw). The fg grade pass does linearToSRGB with uExposure, uContrast, uSaturation and uRedTint, and god rays. The paper shred shader uses a stripHash per strip with uWaviness and uShredProgress plus a matcap. Camera paths come from camera_1/2.glb (animated cameras exported from Blender), lerped at .08.",
+  "interaction": "Draw-a-circle gesture (the toon fingertip follows the pointer while drawing), hold-to-proceed, scroll-driven camera along baked Blender camera paths, a draggable origami certificate (grab cursor), a game-controls map with an on-screen joystick (.s5-joystick, backdrop-filter saturate(120%) blur(6px)), and a money-burn shader interaction.",
+  "performance_tactics": "Adaptive quality tiers with a 60-frame rolling frame-time monitor: downgrade above 22ms, upgrade below 12ms, 180-frame cooldown. HIGH uses DPR min(dpr,2), lens blur 24 samples, coin ring 24 segments, text RT scale 1. MEDIUM uses min(dpr,1.5), 16 samples, 16 segments. LOW uses DPR 1, no lens blur, 12 segments, text RT .75. On hold start the shatter pass is prewarmed (shaders compiled, shard geometry rendered once into a 1x1 target) and DPR drops to 0.8x until the gate finishes, so the payoff doesn't hitch. The frost trail runs at half resolution. KTX2/Basis GPU-compressed atlases for text and props (one texture per family, uAtlasScale/Offset). Draco/Meshopt geometry. InstancedMesh for coins and petals. Audio preload flags per cue ('money-burn' is lazy). html2canvas, mp4-muxer, autoScrollMode, lil-gui and stats are lazy chunks. (The earlier 'setPixelRatio(1) for effect buffers' claim was wrong: those hits are three.js WebXR internals.)",
+  "fallback_mobile": "Same WebGL scene. The mobile branch drops the pan-velocity controller and uses touch scroll; no static fallback observed.",
+  "evidence": [
+   "probe globals three_revision 160, contexts webgl2 x2, assets_3d",
+   "bundle grep: GLTFLoader 27, KTX2Loader 18, DRACOLoader 9, InstancedMesh 14, ShaderMaterial 9, RawShaderMaterial 7, uniform names",
+   "bundle grep: quality tiers __ {HIGH, MEDIUM, LOW}, v_ {sampleWindow 60, downgradeThreshold 22, upgradeThreshold 12, cooldownFrames 180}, ix()/ax() prewarm and DPR x.8"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "There's no traditional nav. The HUD holds a sound toggle (top-left), a depth gauge (top-centre, -100 BZ to 0 BZ), an XP counter (top-right) and a bottom dock with the logo orb, a 'Join Beta' primary pill and a '=' menu button. The depth gauge doubles as the only jump navigation: hover it and it turns into five stage buttons.",
+  "menu": "The '=' opens an Osmo-style glass menu (Awwwards element 'Interactive UI Elements': menu, glass, osmo, links, gsap). The dock track expands into the panel over 0.65s osmoNav, the burger morphs into an X, and the links stagger up. The HUD glass is a JS-injected, seven-layer .glass-effect stack prepended to 11 selectors: fill (#d4d4d426), fill-burn (5% of currentColor #201d1d, color-burn), highlight-soft (overlay, inset -.28em -.28em .09em -.33em #ffffff80), highlight-strong (normal, inset .28em .28em .09em -.33em #fffc), edge-light (plus-lighter, inset .19em .28em .09em -.19em #b3b3b380), edge-dark (overlay) and inner-glow (darken, inset 0 0 1.75em #f2f2f24d). The em-based insets make the highlights scale with each control's font size. Caveat: main.css ships the pills' blur only as -webkit-backdrop-filter: saturate(120%) blur(14px) (blur(12px) on the menu). So in Chromium the XP/audio/menu pills have no blur at all, and the probe's Chromium counted backdrop_filter 0 while 3 glass stacks (15 blend-mode layers) were live. The JS-injected dock track does ship both prefixes: rgba(0,0,0,.3) with saturate(120%) blur(5px). The frames only show the closed button.",
+  "buttons_links": "'Join Beta' is a solid near-black pill (#201D1D) with Google Sans Flex 500 white text inside a frosted track with real padding (code comment: 'outer frosted-glass track'). Circular glass buttons (the 40px audio toggle) use radius 999px (27 elements) and 50% (10). The hold button is an 88px disc drawn as a radial-gradient donut (clear to 24%, white at 48%, 92% at 62%, 32% at 82%) with a double white glow (0 0 34px 12px #ffffff8c, 0 0 90px 40px #ffffff3d) and an invisible hit area 30px larger all round. The copy-link button does an icon slot-swap on success.",
+  "unusual_interactions": [
+   "DRAW A ZERO: an unlock gesture on frozen ice, with a demo comet looping the path",
+   "TAP / HOLD ring for 3s (stage-1 default) to shatter the scene; a second 1.5s hold pushes the camera into the stage-3 tunnel",
+   "XP economy: XP = 100 x the number of stages entered for the first time. So it's 100 after the unlock, 200 after the hold (the '171' in 1/f07 is a mid-roll frame), and 500 at stage 5 (2/f00). The HUD pill counts up with an odometer, a ripple and a sound.",
+   "Waitlist result folds your personalised diploma (your name + 'so-called university') into a draggable origami animal: one of 10, picked by a hash of the name (an angelfish for 'Sindhur Dutta'). It shows a referral queue position that counts up (3,925 -> 3,933 across 2/f01-f02), 'Share to move up', and a mono ref link on a mint pill.",
+   "Interactive city map with game controls (stage 5): joystick, arrow keys, drag and pinch. The markers open job-project cards for Nike, OpenAI, Google and Spotify with a role, a scenario and a tool list.",
+   "Burning money and paper shader interaction",
+   "Depth gauge with dock-style tick magnification that turns into a stage-jump menu on hover"
+  ],
+  "sound": "Howler with autoUnlock, and ambient starts on first touch. Cues: amb_stage1 (vol .55, fadeIn 1.5s, fadeOut 2.5s, loop), amb_stage2-3, amb_stage4-5 (vol 1), amb_stage5, fx_loader, fx_loader-drag (loop .255), fx_hand-entry, fx_whoosh, fx_click, fx_xp-topup, fx_tunnel, fx_glass-shatter, fx_hold-button (.75, rate scales with the hold), fx_money-burn (loop .05, lazy).",
+  "footer": "No footer. The journey ends in the waitlist panel with share actions."
+ },
+ "content_voice": {
+  "headline_style": "A single manifesto sentence broken across scroll beats, built as a setup and a turn: first the promise ('You Believed / College would land You / JOB'), then the reversal ('But, / That's Bullsh*t').",
+  "copy_tone": "Provocative, irreverent and gamified. It uses the language of disillusionment (a 'so-called university' on the diploma, 'Congrats! we found a use for your degree'), and a gamer HUD (XP, BZ depth) aimed at Gen-Z students. One template glitch is visible: 'You are in Sindhur Dutta, there are 3,933 people ahead of you.' splices the name in where 'You're in, <name>.' was presumably meant.",
+  "examples": [
+   "You Believed / College would land You / JOB",
+   "But, / That's Bullsh*t",
+   "DRAW A ZERO",
+   "TAP / HOLD",
+   "Congrats! we found a use for your degree",
+   "You are in Sindhur Dutta, there are 3,933 people ahead of you."
+  ]
+ },
+ "tech_stack": {
+  "framework": "Vanilla JS + Vite (single /assets/main-*.js ESM bundle, modulepreload polyfill), no framework runtime detected",
+  "libraries": [
+   "three r160",
+   "GSAP 3 + CustomEase (3.15.0 headless)",
+   "Howler.js",
+   "GLTFLoader/DRACOLoader/MeshoptDecoder/KTX2Loader",
+   "html2canvas (lazy chunk)",
+   "mp4-muxer (lazy chunk)",
+   "Google Analytics / GTM"
+  ],
+  "evidence": "probe globals three_revision 160, libs_from_requests []; HTML: one main-B9-HtP-f.js + main-yeWZtezw.css (lightningcss vars); bundle: gsap 33, Howl 81, CustomEase 2, KE.version '3.15.0', lazy imports ./html2canvas-*.js, ./mp4-muxer-*.js, ./autoScrollMode-*.js"
+ },
+ "performance_accessibility": {
+  "requests": 67,
+  "weight_notes": "~6.4MB declared: 3D 3.65MB (glb + ktx2), audio 0.99MB, mp4 0.49MB, webp 0.49MB, JS main bundle 1.22MB uncompressed (probe declares 176KB javascript, likely the compressed transfer). Settle took 6.3s.",
+  "reduced_motion": "probe reduced_motion_rules 1. In code, prefers-reduced-motion only stops the sound-wave icon animation. The scroll, the WebGL motion and the gestures all ignore it.",
+  "contrast_issues": "White 12px mono HUD at alpha .6 over pale mint haze (0/f00-f04) is low contrast. The 'DRAW A ZERO' 20px white over light ice is marginal. Big display sprites are fine. The 150px loader counter is faux-bold (weight 700 requested, only a 400 face shipped).",
+  "mobile_quality": "No horizontal overflow. The gate scales well to 390px (mobile_00/01). The responsive dev score is 7.0, and gesture gates on touch cost usability.",
+  "dev_scores": {
+   "semantics_seo": 6.6,
+   "animations": 8.4,
+   "accessibility": 6.6,
+   "wpo": 8.0,
+   "responsive": 7.0,
+   "markup": 6.8
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Gesture-gate unlock with a looping ghost demo",
+   "why_it_works": "The first action is the brand mark itself (draw a 'zero'), so the site gets commitment and meaning in one gesture. The comet loop teaches the gesture without any instruction text beyond three words.",
+   "how_to_build": "Recognise the circle the way Why Zero does (bundle). Collect pointer samples in NDC while the pointer is down, capped at 2000, and clear them on pointerup. With at least 20 samples: take the centroid as the mean point and r = mean distance to it; reject if r < .02 or std(r)/r > .35. Sum the unwrapped atan2 angle deltas around the centroid: fire a 'near complete' callback at |sum| >= .9 x 5.76 and accept at |sum| >= 5.76 rad (~330 degrees), but only if the end point is within r of the start point. That makes it direction-agnostic and size-agnostic, and you don't have to trace the guide ring. Demo: size it in vh (Why Zero: a 40vh stage, a ring masked with radial-gradient(circle, transparent 18.7vh, #000 19.4vh 20.6vh, transparent 21.3vh), and a 2vh head dot) so it scales with the viewport height on every device. The ring's background is conic-gradient(from 0deg, rgba(255,255,255,.85) 0deg, transparent 4deg, transparent (360 - tail)deg, rgba(255,255,255,.85) 360deg), rotated to the head angle, where tail = the angle swept in the last 2000ms. Add a separate head dot, sweep 2*PI from 12 o'clock over 2s sine.inOut, then pause 2s and repeat. On success, auto-play a 3.5s segment: a radial melt hole with a bright rim, a whiteout ramped linearly over the last ~0.6s, then a gold star and a '+100 XP' odometer."
+  },
+  {
+   "technique": "Cursor-wiped frost trail (ping-pong feedback buffer)",
+   "why_it_works": "The surface reacts physically under the pointer, which makes a static gate feel alive and rewards exploring before the gesture.",
+   "how_to_build": "Use two half-res render targets holding two channels: R = trail, G = head. Each frame write R = max(prev.r * .97, disc) and G = max(prev.g * .95, disc), where disc is a soft circle at the cursor UV, radius .07 aspect-corrected, then swap. In the composite: cleared = trail; frostAlpha = (1 - cleared), roughened at the edge by ice luma; frost colour = mix(scene, frostTex * light, .3). Add a white glow band at smoothstep(.05,.5,c) * (1 - smoothstep(.5,1.2,c)) and a white-hot head at smoothstep(.15,.5,head), and tint the freeze edge #C5FFCB. Refract the scene by the ice normal only where frost remains: uv += (normal.rg*2-1) * k * (1 - cleared). For creeping melt, dilate R along one axis with max() over +/-1 and +/-2 steps (decay .92), with the step scaled by 0.4 + 1.2 * iceLuma so it follows the cracks."
+  },
+  {
+   "technique": "Hold-to-proceed with a scene regrade that tracks the hold",
+   "why_it_works": "The hold is dramatic tension you perform yourself. Tying the colour grade, the camera and the ambient crossfade to hold progress makes 3 seconds feel like a ritual, and the payoff (shatter to black to red stage) lands harder.",
+   "how_to_build": "Use a centred 88px ring button (a radial-gradient donut with a soft white glow, 'TAP / HOLD' mono label 22px to its right, hit area 30px larger than the visual) and an SVG circle stroke-dashoffset driven by progress. On pointerdown, run p = elapsed / holdDuration on requestAnimationFrame (linear), and capture the pointer. Why Zero uses 3s for the big story hold and 1.5s for a lighter later one. Bind Why Zero's mappings: exposure = 1 - p, contrast = 1 + .9p, redTint = .85p, background zoom = 1 - .08p, camera dolly = .03p, ripple intensity = .4 + .6p, ripple half-width = .75 - .55p. Scrub the hero animation to .7 + .3 * easeInOutCubic(p) and crossfade the two ambient beds by p. Play the hold SFX at rate (clip length / holdDuration) * .75 so it spans the hold, and seek it to p on resume. On release, keep the progress and let it decay linearly over 500ms so a quick re-press resumes; otherwise reset the ring in 0.3s power2.out. At hold start, prewarm the payoff (compile shaders, upload shard geometry) and drop the DPR to 0.8x. At p = 1, auto-play a 3s gate: shatter, glass sound, then cut to the video-backed next stage."
+  },
+  {
+   "technique": "Mixed-script phrase sprites from a KTX2 atlas",
+   "why_it_works": "Hand-set lockups (swash capital + serif + tiny companion word) look typeset rather than generated, stay razor-sharp at any size, and sit in 3D depth with the props.",
+   "how_to_build": "Typeset each phrase fragment (inferred workflow: Figma or Illustrator) (script swash capital like Bethany Elingston fused to a serif like STK Bureau), export to a transparent atlas, and encode to KTX2/UASTC. Render each as a plane with a ShaderMaterial sampling uAtlas with uAtlasScale/uAtlasOffset, premultiplied alpha, and uOpacity/uProgress for the reveal (inferred: ~0.6s power2.out fade with a slight scale-up; 'Bullsh*t' resolves left to right from a horizontal blur). Ink the sprites in a green ramp (#4b6b6e -> #11936d -> #10dd8a) rather than white. Place fragments on a diagonal (start top-left, end bottom-right) and give the layout a per-breakpoint table ('Responsive Text Sprites')."
+  },
+  {
+   "technique": "Depth-gauge HUD as scroll progress",
+   "why_it_works": "A named, diegetic unit ('BZ', counting up to zero) turns the progress bar into story and brand. It says where you are in the argument, not just in the page.",
+   "how_to_build": "Build a fixed top-centre ruler 300x60px, masked with linear-gradient(90deg, transparent, #000 8% 92%, transparent). Place one minor tick per 10vh of story scroll on a 12px pitch: 1px x 9px at rgba(255,255,255,.35) (Why Zero renders 128 tick nodes). Major ticks (1 x 18px at 60% white) sit only at the 5 stage boundaries, with 12px labels riding on the tape, plus one fixed 2 x 18px centre index at 90% white. Magnify the ticks near the index: for each minor tick with distance x < 3 spacings, t = x/3; s = t*t*(3-2t); height = 18 - 9*s via scaleY from the top. On hover, fade the tape out and fade in stage-jump buttons. Translate the tape with scroll progress, lerped at .075 with dt-corrected damping k = -ln(1 - .075) * 60, x += (target - x) * (1 - exp(-k*dt)). Label the stops in PP Supply Mono 12px uppercase with letter-spacing .08em (-100 BZ, -75, -50, -25, 0). Stage lengths are 175/250/325/368/50vh, with 50vh auto-played gates between them."
+  },
+  {
+   "technique": "Ember burn dissolve for paper and money props",
+   "why_it_works": "The flickering char-and-ember rim is physically convincing and on-message: the site literally burns tuition money.",
+   "how_to_build": "In the fragment shader, compute distField from the uv centre (or its inverse via uBurnDirection). Set threshold = progress*1.5 and n = fbm(uv*aspect*4 + seed*73.156)*.65 + fbm(uv*3.2 + ...)*.35. Discard below the threshold. edge = n*.5 + distField*.5 - threshold. Ember when edge < .025: color = mix(emberColor, emberTip, 1-smoothstep(0,.025,edge)) * (vnoise(uv*.8 + t*2.5)*10 + .5). Char band: darken toward charColor over uCharWidth. Use HDR ember colours so bloom catches them (ember (4, .75, .05), tip (6, 1.5, .25), char (.02, .01, .01), char width .18). Randomise each prop's seed, delay (0-.5) and speed (1-2.5x) so the bills don't burn in sync. Add a small vertex wave (amp .008, freq 8). Loop a low (.05 vol) crackle sound while it burns."
+  },
+  {
+   "technique": "Adaptive quality tiers driven by frame time",
+   "why_it_works": "A heavy WebGL story stays smooth on weak GPUs without a settings menu. The site degrades the expensive passes (DOF samples, DPR, instance counts, text render-target scale) only when frames actually slow down.",
+   "how_to_build": "Keep a 60-frame ring buffer of frame times. If the average is above 22ms, step down a tier; if it's below 12ms, step up; wait 180 frames between changes. HIGH: DPR min(dpr,2), DOF 24 samples, 24 ring segments. MEDIUM: DPR min(dpr,1.5), 16 samples, 16 segments. LOW: DPR 1, DOF off, 12 segments, text RT x.75. Notify subscribers so each pass rebuilds its buffers."
+  },
+  {
+   "technique": "Seven-layer glass pill (shipped with both prefixes)",
+   "why_it_works": "Stacked inset highlights and blend-mode layers give a pill a lit top lip, a darker lower edge and a soft inner glow. That reads as a material rather than a flat tinted box, and em-based insets keep it consistent from a 40px button to the dock.",
+   "how_to_build": "Inject one absolutely positioned, isolated .glass-effect child (inset 0, border-radius inherit, overflow hidden, pointer-events none, color #201d1d) into each control, holding: fill (#d4d4d426); fill-burn (currentColor at .05, mix-blend color-burn); highlight-soft (overlay, box-shadow inset -.28em -.28em .09em -.33em #ffffff80); highlight-strong (inset .28em .28em .09em -.33em #fffc); edge-light (plus-lighter, inset .19em .28em .09em -.19em #b3b3b380); edge-dark (overlay, inset -.19em -.28em .09em -.19em #b3b3b34d); inner-glow (darken, inset 0 0 1.75em #f2f2f24d). Give the host background #0006, a 1px #ffffff1a border and 0 4px 16px #0000004d. Write BOTH backdrop-filter and -webkit-backdrop-filter (saturate(120%) blur(14px)). Why Zero's main.css shipped only the -webkit- form, so Chrome drew these pills with no blur. Only use it over a backdrop with real detail to refract."
+  }
+ ],
+ "slop_risks": [
+  "Content gated behind an interaction: the page shows nothing until the zero is drawn. The probe's 8 wheel steps all returned the gate, which is the invisible-content trap at page scale. Provide a skip affordance and a readable no-JS/reduced-motion path.",
+  "Saturated accent color: the electric #01C654 toon hand plus a cyan rim glow is exactly the 'saturated accent pop'. It works here only because it's one character. Copied onto buttons and labels it's slop.",
+  "Pastel candy gradient: the mint-to-white radial haze behind the narrative (0/f00-f04) edges toward the mint pastel wash and radial glow halo behind the hand (the white bloom at the wrist).",
+  "Monospace as the house voice / one label treatment everywhere: PP Supply Mono uppercase tracked caps carry the HUD, the gate prompts ('DRAW A ZERO', 'TAP HOLD'), the ruler and the ref link. The copy that carries the argument is set in the script and serif sprites instead, which is why the site mostly gets away with it.",
+  "Botched glass: the HUD pills stack seven glass layers (five blend modes) meant for a saturate(120%) blur(14px) backdrop. But main.css ships only -webkit-backdrop-filter, so in Chrome the XP/audio/menu pills render with no blur: a flat #0006 pill with a 1px #ffffff1a hairline and highlight shadows. That is the 'frosted box that ignores its background' tell in the most common browser. The dock track (blur(5px), both prefixes) and the joystick (blur(6px)) are fine. Over flat pastel fields there is little to refract anyway.",
+  "High-contrast Didone-style serif plus flourish script ('You Believed') is the reflexive 'luxury' pairing. It's earned here by the ironic context, not by default.",
+  "Third-party brand logos on the floating coins: Apple, IBM, Nike, Microsoft and Meta are legible in 0/f02-f03, plus a gold 'G' and a red and a maroon glyph (Tesla is plausible but not verified). The stage-5 map cards also use Nike, OpenAI, Google and Spotify. That is a trademark and credibility risk if reused.",
+  "A global cursor:none with a sprite cursor (arrow plus hand glyphs) adds a frame of lag and fails whenever the script is late. It's scoped off on touch, but reduced motion is effectively ignored.",
+  "Expletive shock headline ('Bullsh*t'): it lands once in a narrative. As a template move it's cheap.",
+  "Faux bold, twice: the loader counter asks for weight 700 ('700 {size}px Supply Sans' on the canvas, weight 700 in the DOM) and the 'TAP / HOLD' label asks for 700 in PP Supply Mono, but only the 400 faces of both are loaded, so the browser smears a synthetic bold at display size.",
+  "Radial glow halo: the hold button carries a double white box-shadow (34px/12px spread plus 90px/40px spread) that blooms into the scene around the ring, the 'glow behind an object' tell. It is rescued only because the scene goes black during the hold (1/f03)."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots and both mobile screenshots show only the DRAW A ZERO gate (plus the comet demo loop), because the site blocks scroll until the gesture is completed. A re-probe with --settle 12 would not pass a gesture gate, and interaction is out of bounds, so the loaded content comes from element frames. I viewed all 8 frames of element 0 (Narrative Scroll) and element 1 (Hold to proceed), and f00/f03/f06 of element 2 (Waitlist origami) and element 3 (Page Unlock). Code facts come from 3 fetches (HTML, main JS, main CSS) and local greps: GSAP ease counts, the CustomEase osmoNav path, the SCROLL_LERP .075 virtual scroll, stage scrollVh values, BZ stage labels, holdDuration 1.5, the Howler cue table with volumes and fades, uniform names, and the burn/frost/shred GLSL. INFERRED: display px of the WebGL text sprites, which font sets which sprite (Bethany Elingston / STK Bureau), the gesture-recognition thresholds, the red hex, and the joystick map (stage 5 is seen only as a cropped aerial strip in 2/f00). audit (2026-09-24): re-viewed desktop_00, 01, 03, 05, 07 and mobile_00 at full size, all 8 frames of elements 0, 1 and 3, and 2/f00-f03, f06. Re-grepped the saved main.js and main.css. Fixed: the stage order is 175/250/325/368/50vh, not 250/175/325/368, and the gates auto-play for 3.5s/3s/3s/0s rather than being scrubbed. The XP '171' is a mid-roll frame: XP is 100 per first stage entry. The hold SFX rate is constant and seeks on resume, not ramped. The cursor idles on an arrow glyph from a sprite atlas, not a hand. The 'zero' wordmark appears only in desktop_00. 'DRAW A ZERO' stays 20px on mobile. The '99' is faux-bold. HUD sizes were given in frame px: the dock is ~437px not 340, the ruler window ~280px not 220, the hold ring ~105px not 64, the toggle ~39px not 32. The red is #92000b measured, not #b3121b. The 'setPixelRatio(1)' perf claim was three.js XR code. The origami is one of 10 animals picked by a name hash. Replaced the invented gesture thresholds and hold uniform curves with the actual bundle logic (the angle sum >= 5.76 rad, radius CV <= .35, closure <= r; exposure 1-p, contrast 1+.9p, red .85p). Added: the comet conic-gradient 2s trail, fingertip-follows-pointer, the melt hole (3/f05), frost-shader constants, the green sprite inks, 5-layer glass blend stack, quality tiers, hold prewarm + DPR x.8, 500ms hold-resume grace, ambient crossfade, gyro camera rig, menu morph, the copy template glitch. Still inferred: sprite px sizes, reveal timings, the fonts used inside the sprites. audit 2 (2026-09-25): re-viewed desktop_00, 01, 03, 05, 07 and mobile_00 at full size, all 8 frames of element 1, plus 0/f00, f02, f03, f06, 2/f00, f03 and 3/f00, f01, f04, f05, and re-read the saved main.js / main.css. Fixed: the element-1 idyll hold is 3s (default `holdDuration ?? 3`, and the fill fractions in 1/f01-f03 fit a 3s slope); 1.5s is the second, stage-3 tunnel hold. The segment order puts gate0to1 before stage1, and stage2 -> stage3 has no gate. There is no static guide ring: the visible ring is the vh-sized conic comet tail, so 'DRAW A ZERO'-ring sizing on mobile is vh, not 90vw. The 'distressed zero wordmark' is the loader's clean logo rolling into the counter's slot on a WebGL canvas plane, refracted by the ice, and caught mid-exit in desktop_00. The glass stack has seven layers, not five, and the pills' blur is -webkit- only (Chromium renders none; probe backdrop_filter 0). Ruler minor ticks are 9px, not 8px. There are five 10px nav buttons, not four. The hold button is 88px by CSS, not ~105px. The audio toggle is 40px. Added: dock-style tick magnification and hover stage-nav on the ruler; the XP flash/gold-stroke keyframes; the blank beat between 'But,' and 'That's Bullsh*t' (1/f06); faux-bold 'TAP / HOLD'; the hold button's glow halo; the loader counter sized at 180/1080 of the viewport height. Coins: Meta is visible and Tesla is unverified. Still inferred: sprite px sizes, reveal timings, the fonts inside the sprites, the STK Bureau / Bethany Elingston foundries."
+}

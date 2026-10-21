@@ -1,0 +1,295 @@
+{
+ "slug": "steven-com",
+ "title": "Steven.com",
+ "live_url": "https://steven.com",
+ "award": "Awwwards Site of the Day, Jun 4 2026 (Honors); corpus bucket category-mix. Agency: OFF+BRAND. (the same studio as lando-norris; jury tags Webflow, Three.js, WebGL, Unusual Navigation)",
+ "scores": {
+  "overall": 7.64,
+  "design": 7.69,
+  "usability": 7.28,
+  "creativity": 8.17,
+  "content": 7.47,
+  "dev": {
+   "overall": 7.44,
+   "semantics_seo": 7.4,
+   "animations": 7.6,
+   "accessibility": 6.6,
+   "wpo": 8.0,
+   "responsive": 7.4,
+   "markup": 7.2
+  }
+ },
+ "industry": "Creator-economy holding company (Steven Bartlett): creator media, communities/events, products and tech ventures",
+ "signature": "The home page is a single WebGL instrument. A chrome armillary of rings unspins for 4.5s into a flat dial, and the dial's curved SDF-text segments are the navigation: clicking one dives the camera through a refracting glass orb into that venture's own lit 3D room, with no page load.",
+ "first_screen": {
+  "composition": "OBSERVED: desktop_00 (6s) is the preloader-to-WebGL handoff: a white bloom field with a blurred black 'iris' dot dead centre (the ● of STEVEN●COM) and pale yellow light streaks. desktop_01: #121212 field, the chrome rings still tumbling with RGB colour fringes, and the headline mid-entrance: the left part of each line is already set while the last characters are still sliding in from the right ('THE OPERATIN G S Y', 'FOR THE CREA T O R'). desktop_02-07 (settled): a centred dial ~620px across (x 410-1030, y 140-760) made of concentric gunmetal rings. Curved white labels (CREATOR TECHNOLOGY outer top and bottom; CREATOR MEDIA / COMMUNITIES / PRODUCTS inner), hand-drawn arrow strokes between segments, and a ~120px glass orb at centre that cycles documentary photos. HUD in the four corners: STEVEN●COM wordmark top-left (x~58, y~53), '( L.A )  21:45' city clock top-centre in grey, MENU top-right. The headline sits bottom-left: 3 lines of 51px condensed caps (y ~630-775), with 'About Us' + a 38px outlined circle-chevron under it. The page does not scroll (doc height 900). A cookie card covers the bottom-right corner in every probe shot (not dismissed by rule); the jury frames show a pill theme/sketch toggle there.",
+  "what_owns_it": "3d",
+  "display_type_px": 51,
+  "evidence": [
+   "probes/steven-com/desktop_00.jpg",
+   "probes/steven-com/desktop_01.jpg",
+   "probes/steven-com/desktop_03.jpg",
+   "probes/steven-com/probe.json measure.largest_text, doc_height 900",
+   "frames/steven-com/0/f05.jpg"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Field Gothic Trimmed",
+    "role": "display",
+    "classification": "condensed gothic grotesque, 'Trimmed' cut (inferred: vertical metrics trimmed so caps sit tight at line-height 1)",
+    "foundry": "inferred: Frere-Jones Type (Field Gothic is an FJT family); not verified from the font file",
+    "source": "probe fonts_loaded 'Field Gothic Trimmed'; site.css @font-face 'Field Gothic' (a single 400 field-gothic.woff2 self-hosted on the Webflow CDN); inline CSS references 'Field Gothic Trimmed', sans-serif"
+   },
+   {
+    "name": "Host Grotesk",
+    "role": "ui",
+    "classification": "neo-grotesque sans",
+    "foundry": "Element Type (Google Fonts, open source)",
+    "source": "probe fonts_loaded 400/600; self-hosted woff2 on the Webflow CDN (Light 300 also declared); body 12px"
+   },
+   {
+    "name": "troika-three-text SDF glyphs",
+    "role": "accent",
+    "classification": "wide-tracked caps set on curves inside WebGL (ring labels)",
+    "foundry": "inferred: a wide geometric sans, face not identified",
+    "source": "bundle uniforms uTroikaSDFTexture / uTroikaSDFGlyphSize etc.; screenshot desktop_03"
+   },
+   {
+    "name": "Summertime Stories (+ Summertime Stories Doodles)",
+    "role": "accent",
+    "classification": "handwritten marker script plus a doodle dingbat companion",
+    "foundry": "not verified",
+    "source": "site.css @font-face declarations; paired with the --text--sub-title-sketch and --subpage--title-sketch-width tokens; not rendered on home (absent from probe fonts_loaded)"
+   }
+  ],
+  "display_size_px": 51,
+  "body_size_px": 12,
+  "scale_notes": "Measured: 62px (menu items, 144 nodes incl. hidden clones) / 51px home h1 / 15 / 13.4 (nav 'About Us', 600) / 12 body / 11.28 cookie copy. Tokens reach much larger on subpages: --text--title-callout clamp up to 13rem (208px), --text--title-subpage up to 6.87rem, --text--title-homepage up to 3.75rem. On the home page the display is deliberately small (51px, about 1/12 of the dial's width) so the object owns the screen.",
+  "tracking_leading": "Display 51px, line-height 1.0 (51/51), letter-spacing -0.01em (-0.51px). CSS letter-spacing mix: -.02em x7, -.01em x6, +.1em x4, +.05em x2. Ring labels in WebGL are very widely tracked (inferred ~0.3em from desktop_03). UI 13.4px with +0.01em (0.134px).",
+  "case_and_style": "Display in uppercase condensed; UI in sentence case ('About Us', 'Our Ecosystem'); the MENU/CLOSE label is split into single letters that roll yPercent (0.5s power2.inOut, stagger 0.03); the clock uses parenthesised city codes '( LDN )'; the menu's '( )' radio brackets split open from +/-0.5rem as the menu enters.",
+  "signature_moves": [
+   "Direction-matched headline motion. On the desktop home the headline is left-aligned, and its characters start at x +2rem / autoAlpha 0 and sweep in left to right (delay 0.5 + i*0.05s, 0.5s power2.out; desktop_01 and frames/steven-com/0 f04 catch the tail still arriving). They leave the same way toward the left (x -2rem, i*0.05s, 0.5s power2.inOut; frames/steven-com/1 f03 shows the first letters already split off: 'T HE', 'F OR', 'E CONOMY'). Centred text uses the centre-out converge instead (T4): the centred mobile headline, the room and subpage titles ('CRE ATOR' / 'TE CH' mid-converge in frames/steven-com/1 f04) and the preloader wordmark. There, left-half characters start at -2rem and right-half at +2rem, delay = distance from centre x 50ms, and the exit runs edges-first.",
+   "Accessible split: the real text lives in a visually-hidden span, and the animated clone is aria-hidden + data-nosnippet (split.js).",
+   "Rolling world clock: the city label and digits roll yPercent 100 -> 0 / 0 -> -100 in 0.5s power2.inOut, stagger 30ms, cycling L.A / LDN / NYC; skipped under prefers-reduced-motion.",
+   "Curved SDF text on the 3D rings (troika-three-text) instead of DOM labels, so the nav labels are part of the object."
+  ],
+  "mobile": "mobile_01: headline centred on 2 lines (probe mobile h1 41.4px, second size 31.3px), grey 'Our Ecosystem >' link under it, the rings shown as a tilted gyroscope below, and a draggable row of pill buttons peeking at the bottom edge. No horizontal overflow."
+ },
+ "color": {
+  "mode": "dark",
+  "base": "#121212 (--color--dark; body bg rgb(18,18,18)), a neutral near-black with no blue cast",
+  "ink": "#FFFFFF (--color--light); secondary grey #A0A0A0 (color(srgb .628), 168 nodes: inactive menu items, clock); tertiary #414141",
+  "accents": [
+   "#FFDD4B yellow = Creator Tech (room light, sketch stroke, nav radio fill)",
+   "#FF5541 red = Creator Media",
+   "#5595FF blue = Creator Products",
+   "#51B75A green = Creator Communities",
+   "#FFF5A8 warm pale yellow = bloom colour (BLOOM_COLOR 16774568)"
+  ],
+  "ratio": "inferred: ~85% #121212 and gunmetal greys, ~12% white/chrome highlights, ~3% venture colour",
+  "section_shifts": "No sections on home. The colour shift happens per 3D room on navigation: the Tech room floods yellow (frames/steven-com/1 f04-f07). The preloader goes from white to dark by animating post-FX uniforms, then tweening body background-color to --color--bg over 0.2s. The bottom-right pill is a real light/dark theme toggle ([data-theme-toggle] -> html[data-theme=light], stored in localStorage, with a 1s html.theme-transitioning crossfade). In light theme the room re-renders as pale grey clay-like figures on a light floor (frames/steven-com/2 f07 behind the menu). A separate 'sketch mode' ([data-sketch=trigger] on subpages) is a different feature (see unusual_interactions).",
+  "texture": "All texture is in-canvas post-processing, behind the DOM HUD: bloom (power 1.3, spread 100, colour #FFF5A8, intensity 0.6 after intro), vignette (power 3, strength -> 0.5; the bundle has two shared-uniform blocks, one with VIGNETTE_COLOR #121212 plus chromatic-aberration uniforms and one with #CED5D9 plus ZOOM_TRANSITION_COLOR #454545), barrel distortion, radial distortion 0.2 -> 0 during intro, cursor distortion 0.05, and RGB colour fringing visible on the rings in desktop_01 / mobile_01. No grain over text.",
+  "notes": "The greys are built with color-mix(in hsl, var(--color--bg) X%, var(--color--text) Y%) (--color--grey-20/40/80), so one flip of bg/text drives both themes. The venture colours never appear as fills or buttons: only as hand-drawn strokes, radio fills and scene light."
+ },
+ "layout": {
+  "grid": "No CSS grid (0 grid containers); 21 fixed-position elements form a HUD over a full-viewport canvas (probe: 1440x900, position absolute, z-index -1). Side gutter ~58px at 1440 (--padding--container clamp 1.875rem -> 4.375rem). Fluid tokens are clamp() between 20rem and 120rem viewports; mobile uses a container-based font unit (--size-font = container / (390/16)).",
+  "density": "airy",
+  "alignment": "Four-corner HUD around a dead-centre object: wordmark top-left, clock top-centre, MENU top-right, headline + CTA bottom-left, toggle bottom-right.",
+  "composition_moves": [
+   "The object is the page: the headline is shrunk to 51px and tucked bottom-left so the dial reads as the hero and the nav at once.",
+   "Menu as a right-half panel (~50% width) over the world, which goes blurred and greyed on the left (frames/steven-com/2).",
+   "Rooms are full 3D stages: a central subject on a lit disc, photo panels floating in depth on both sides with a blurred floor reflection, and the title sitting on the floor light (frames/steven-com/1 f05)."
+  ],
+  "section_rhythm": "Home is a single viewport with no scroll; the wheel does nothing (desktop_02-07 are identical apart from the clock and the orb photo). Subpages scroll (sub-scroll.js, Lenis): a scrubbed character highlight, a divider line that scales in, and callout lines that pop in.",
+  "mobile_adaptation": "Headline moves to top-centre; the camera sits higher and further back on touch (y 0.2, z 7.75 vs 0 / 6.5 on desktop) so the rings read as a tilted gyroscope; a Draggable + Inertia pill slider (snap to item width) replaces hovering the dial; separate armillary-mobile KTX2 texture."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis (html class 'lenis'): lerp 0.1, touchMultiplier 1, syncTouch true, autoResize true; on touch devices smoothWheel is off, lerp 1 and duration 0. Lenis stops while the menu or manifesto overlay is open. The canvas gets a scrubbed uParallax 0 -> 1 (ScrollTrigger 'top top' -> 'bottom top') that fades its bottom edge via smoothstep as subpages scroll.",
+  "preloader": "frames/steven-com/0 (11.9s clip) and the preloader module: a white screen with the STEVEN●COM wordmark. Letters left of the ● slide in from -2rem and letters right of it from +2rem (CSS transitions on var(--animation-inout) = 0.735s cubic-bezier(0.65,0,0.35,1)), with transition-delay 0.30 -> 0.55s by distance from the ●: nearest first, so in f00 'VEN' is solid while 'STE' is still pale. Two SVG strokes cross the wordmark, a grey base and a red marker line masked by a grain webp. The red stroke IS the progress bar: dashoffset = L*(1 - p), where p damps (lambda 2) toward the real WebGL asset progress, and the small counter under it shows floor(p*100) zero-padded (71 -> 98, f00 -> f01). At 100: class 'break' slides the letters back out +/-2rem with reversed delays (farthest first); both strokes retract from 2L to L with an easeOutCubic lerp over 1.0s (red) and 0.6s (grey); class 'center' then shifts the logo so the ● sits at screen centre. After 400ms the counter digits roll out (yPercent -100, 0.5s power2.inOut, stagger 0.03) and the tagline words roll in (f02). After another 1s, class 'end' shrinks the DOM ● with a keyframe (scale 1 -> 0, blur 1rem, opacity 0 over 1.5s cubic-inout) while the WebGL sphere takes its place in a white bloom field (f03). Finally the body background tweens to #121212 in 0.2s, the HUD fades in over 0.2s, and the nav items drop from y -2rem (0.6s power2.out, stagger 0.1, delay 1.5s).",
+  "intro_sequence": "WebGL intro (playIntroTl + playRevealSystemTl, both 4-7s). Post-FX: vBlur uTransition 0 -> 1 over 4s expo.inOut; BLUR_CENTER_POWER 0 -> 4 and BLUR_STRENGTH -> 0 over 4s power2.inOut; DISTORTION_STRENGTH 0.2 -> 0; VIGNETTE_STRENGTH -> 0.5 (all 4s power2.inOut); BLOOM_INTENSITY set to 0.6 on complete. Rings: inner from x 2*PI, y PI -> 0 and outer from x PI, z 4*PI -> 0, both 4.5s power2.inOut; parent rings from y +/-0.2*PI -> 0 over 3.5s starting at 2s. Camera z 3 -> 6.5 (y 0 -> 0.2, z -> 7.75 on touch) over 4.5s power2.inOut. uSceneTransition 0 -> 1 over 7s power1.inOut at 0.5s; globe uFresnelReveal over 6s linear; label reveals uIntroReveal0 at 2s and uIntroReveal1 at 3s (4s power2.inOut each). The DOM headline sweeps in left to right from x +2rem as the blur clears (f04 'THE OPERAT I' / 'FOR THE C R E A' -> f05 settled). The paragraph words follow (x +2rem -> 0, 0.4s, 0.03s apart), then the About Us button (x +2rem, 0.5s).",
+  "scroll_techniques": [
+   "none on home",
+   "subpages: scrub char highlight (chars autoAlpha 0.1 -> 1, stagger 0.05, ease none, 'top 90%' -> 'center 40%')",
+   "divider scaleX 0 -> 1 scrub ('top 90%' -> 'top 40%')",
+   "eyebrow/paragraph autoAlpha 0.1 -> 1 scrub",
+   "canvas uParallax fade scrub"
+  ],
+  "text_animation": "Desktop home headline: a left-to-right character sweep in from +2rem and out to -2rem (see typography). Centre-out converge / edges-first disperse (T4) for the mobile headline, room and subpage titles and the preloader wordmark. Subpage callout lines scale 0 -> 1 + autoAlpha over 0.5s power2.out, stagger 0.08, delay 0.3; words autoAlpha 0 -> 1 over 0.5s power2.out, stagger 0.03. Clock roll. Menu (desktop): the panel slides from x 100% to 0 over 0.85s power4.out (close: 0.55s power3.inOut). Each item's '( )' brackets split open from +/-0.5rem and its characters slide from x +2rem at 0.2s power2.out, 0.05s per character plus 0.05s per item, so the gaps close left to right (frames/steven-com/2 f00 'CREATO R', 'CREA T'). The footer links roll up from yPercent 101 (0.2s, stagger 0.1).",
+  "image_animation": "The glass orb cycles documentary photos (desktop_03-07: five different people) with fisheye refraction; photos come from 4K KTX2 layout atlases (photos-media/tech/products/community-layout-4K). Hovering a ring segment brightens it, dims the others and swaps the orb to that venture's imagery (frames/steven-com/1 f00-f03; on the Tech segment the orb shows the yellow Tech room itself).",
+  "page_transitions": "Clicking a ring segment runs transitionZoomIn -> playZoomTl at timeScale 1.5 (about 2s real time; frames/steven-com/1 f03 -> f05). The headline sweeps out to the left (0.5s power2.inOut) and the HUD fades. The system camera dollies z 6.5 -> 1.75 (7.75 -> 1.5 on touch) over 3s power3.inOut while the globe's uGlobeDetailZoom goes 0 -> 1. The two ring parents spin rotation.z 0 -> PI (1.75s power3.in, delay 0.25, stagger 0.05). Blur strength goes 0 -> 25, the vignette 0.5 -> 0, and distortion (0 -> 0.1) and barrel (0 -> -0.2) yoyo over 1.5s. uZoomTransition and uVignetteTransition carry the crossfade, and the lazily created room's camera dollies z 8 -> 3 over 3s power3.inOut. The URL becomes /creator-tech etc. through the router, inside the same WebGL context, and the system scene stops rendering afterwards. Room-to-room moves use a different timeline (transitionBetween, uBetweenTransition, timeScale 1.5). The room title converges centre-out with a yellow marker swash across it, and a bottom-centre chevron invites scroll.",
+  "hover_micro": [
+   "Menu item: grey #A0A0A0 -> white (color transition var(--animation-short) = 0.3s cubic-bezier(0.65,0.05,0,1)). A venture-coloured textured marker swash draws on (stroke-dashoffset 609.93 -> 0 via var(--animation-inout) = 0.735s cubic-bezier(0.65,0,0.35,1), masked by nav-line-sketch-mask.webp). The swash rises from below-left of the word diagonally through the lower half of its letters to above the right end, so it crosses the word rather than underlining it (frames/steven-com/2 f06). The radio glyph fills with the venture colour (fill transition 0.735s; [data-arm-active] yellow/red/green/blue).",
+   "Ring segment hover: segment and label light up, neighbours dim, orb swaps photo",
+   "Circle-chevron buttons (38px outlined circle)",
+   "Rive 'signature' / drawing files with draw and light inputs for hand-drawn strokes"
+  ],
+  "cursor": "Native pointer. In the Tech room (frames/steven-com/3, frames/steven-com/1 f05-f07) there are three layers: (1) a 'wand' GPGPU emitter of 1000 particles (32x32 float texture; spawnGap 0.01, lifeTime 6, gravity 0.02) driven by the eased mouse, which gives the yellow sparks; (2) a separate 500-particle (23x23) flowfield dust cloud around the globe (snoise flowfield, MOUSE_IMPACT_STRENGTH, scale 1.8 at z -3.25) that the pointer pushes through uMousePosition / uMousePace / uMouseDirection; (3) the crumpled silver foil ribbon, a screen-space cursor-line texture composited in the final post pass (mix by alpha * uCursorVisibility * uCursorToggle). The ribbon is desktop-only, ramps in during the zoom (uCursorVisibility 0 -> 1 from +1s over 3s) and is also switched by the sketchModeActivated event. Other rooms were not checked.",
+  "easing_curves": [
+   "CSS --cubic-default cubic-bezier(0.65,0.05,0,1) (hard start, very long tail)",
+   "CSS --cubic-inout cubic-bezier(0.65,0,0.35,1)",
+   "GSAP power2.inOut (107 uses)",
+   "GSAP power2.out (54)",
+   "GSAP power3.inOut (14)",
+   "GSAP power1.inOut (10)",
+   "GSAP expo.out (7), expo.inOut (4, intro blur)",
+   "GSAP global defaults set in the bundle: {ease:'expo.out', duration:1.2}"
+  ],
+  "duration_range_ms": "300-7000 (DOM: --duration-short 300, --duration-default 735, --duration-mode 1000, --duration-long 1500; GSAP 500 most common; WebGL 3000-4500 typical, 6000-7000 for fresnel/scene reveals)",
+  "stagger_ms": "30 (clock, words), 50 (chars by distance, preloader letters, subpage highlight), 80 (callout lines)",
+  "choreography_notes": "Two clocks: the WebGL world moves slowly (4-7s, power2.inOut, overlapping reveals offset by 0.5-1s), while DOM text moves fast (0.5s) and lands inside the world's motion. Order: post-FX blur clears -> rings unspin -> camera dolly -> labels reveal at 2s/3s -> fresnel/scene fill finishes at ~7s. Exits always move type away from the object: the left-aligned desktop headline sweeps out to the left (i*0.05s), while centred titles disperse edges-first. On navigation the text leaves before the camera dive starts.",
+  "evidence": [
+   "frames/steven-com/0/f00-f07 (Preloader)",
+   "frames/steven-com/1/f00-f07 (Navigation + page transition)",
+   "frames/steven-com/2/f00,f03,f06 (Menu)",
+   "frames/steven-com/3/f00,f03,f06 (Particle trail)",
+   "probes/steven-com/desktop_00..07.jpg, mobile_00-01.jpg",
+   "probes/steven-com/probe.json root_vars/easings/durations",
+   "bundle grep steven-henna.vercel.app/app.js (playIntroTl, playRevealSystemTl, T4 char offsets, clock dJ/mJ, GPGPU particlesCount, shared post-FX uniforms)",
+   "inline <style> in steven.com HTML (preloader / nav sketch-line CSS)"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "realtime-3d",
+  "art_direction": "Machined gunmetal and chrome rings with a single hard specular sweep, a black glossy sphere, dark studio void. Documentary photos of the team and events are refracted through the orb or hung as floating panels, mostly desaturated / B&W in the rooms. A hand-drawn layer sits over the machined 3D: textured marker swashes, arrows on the dial and Rive 'signature' / drawing files with draw and light inputs. inferred: pencil-sketch textures come from drawing-*.ktx2.",
+  "treatments": [
+   "Fisheye refraction of photos inside a glass orb (refract / dispersion / fresnel shader terms)",
+   "Human silhouette (human-10.ktx2) inside a yellow wireframe globe on a lit disc, floor reflection, photo panels in depth with DOF blur (Tech room)",
+   "Textured marker strokes under titles and menu items (SVG masks + Rive draw)",
+   "Light theme (bottom-right toggle) re-renders the rooms as pale grey clay-like figures on a light floor with blurred colour panels (frames/steven-com/2 f07). inferred: the drawing-*.ktx2 textures and the drawing pass add the hand-drawn layer",
+   "Chromatic RGB fringing on ring edges during motion"
+  ],
+  "crops_and_ratios": "Circular (orb ~120px on home); ~16:10 floating panels; full-viewport canvas.",
+  "formats": "Probe: glb x5 (11.8MB declared '3d'), ktx2 x23, webp x5, riv x1, woff2 x3; img 1, video 0, svg 27.",
+  "evidence": [
+   "probes/steven-com/desktop_03.jpg",
+   "probes/steven-com/desktop_07.jpg",
+   "frames/steven-com/1/f05.jpg",
+   "frames/steven-com/2/f06.jpg",
+   "probes/steven-com/probe.json assets_3d"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r182, custom bundle (app.js, 1.88MB, hosted on steven-henna.vercel.app) injected into Webflow; GLTFLoader + KTX2Loader + DRACOLoader + MeshoptDecoder; troika-three-text; GPUComputationRenderer; EffectComposer + RenderPass + custom full-screen ShaderMaterial passes",
+  "role": "world: a 'system' scene (armillary dial + glass orb) and four venture rooms; the 3D is both hero and navigation",
+  "assets": [
+   "https://steven.itsoffbrand.io/models/STEVEN_system-ktx2-04.glb",
+   "https://steven.itsoffbrand.io/models/STEVEN_creatorTech-ktx2-04.glb",
+   "https://steven.itsoffbrand.io/models/STEVEN_creatorMedia-ktx2-04.glb",
+   "https://steven.itsoffbrand.io/models/STEVEN_creatorProduct-ktx2-04.glb",
+   "https://steven.itsoffbrand.io/models/STEVEN_creatorEvents-ktx2-03.glb",
+   "https://steven.itsoffbrand.io/textures/ktx2/armillary-desktop-05.ktx2",
+   "https://steven.itsoffbrand.io/textures/ktx2/armillary-mobile-07.ktx2",
+   "https://steven.itsoffbrand.io/textures/ktx2/tech-sphere-01.ktx2",
+   "https://steven.itsoffbrand.io/textures/ktx2/human-10.ktx2",
+   "https://steven.itsoffbrand.io/textures/ktx2/shadow-bake-01.ktx2",
+   "https://steven.itsoffbrand.io/textures/ktx2/concrete-01.ktx2",
+   "https://steven.itsoffbrand.io/textures/ktx2/photos-tech-layout-4K-04.ktx2",
+   "https://steven.itsoffbrand.io/textures/ktx2/drawing-13-01.ktx2"
+  ],
+  "materials_lighting_post": "Bundle counts: MeshStandardMaterial 13, MeshPhysicalMaterial 4, ShaderMaterial 12, RawShaderMaterial 9, MeshMatcapMaterial 2, InstancedMesh (32 refs), WebGLRenderTarget 6. GLSL terms: bloom (52), refract (38), fresnel (32), dispersion (30), vignette (20), snoise (15), barrel (14), chromatic (7). Baked shadows (shadow-bake ktx2) plus a concrete floor; per-room shadow uniforms (uShadowTech/Media/Products/Communities). Post chain: blur (centre-weighted), radial distortion, bloom (#FFF5A8), vignette (power 3; #121212 in one uniform block, #CED5D9 in the other), barrel distortion, cursor distortion 0.05, drawing / reflection passes. Final composite alpha fades by uParallax.",
+  "interaction": "Click ring segments to navigate; hover highlight; eased-mouse parallax (params.easedMouse); cursor-driven GPGPU particles and a post-pass cursor ribbon in rooms; the light/dark theme toggle swaps the look of the world.",
+  "performance_tactics": "All textures are Basis KTX2 with separate desktop/mobile armillary maps; rooms are created on demand and disposed (createRoomScene / dispose); some render targets pinned to setPixelRatio(1); GPGPU particles sized to a square float texture (1000 -> 32x32 for the wand trail, 500 -> 23x23 for the flowfield dust); a URL param (particlesCount) and a debug flag that runs every timeline at 4x; a flag skips the intro when arriving from a non-WebGL page (uIsLoadingFromNonWebglPage).",
+  "fallback_mobile": "Same WebGL scene on mobile with its own armillary texture and a pulled-back, raised camera; the dial hover is replaced by the draggable pill slider (mobile_01).",
+  "evidence": [
+   "probes/steven-com/probe.json assets_3d, globals three_revision 182, contexts webgl2 6",
+   "bundle grep app.js class/uniform counts, playRevealSystemTl, shared post-FX uniforms"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Fixed HUD: STEVEN●COM wordmark (Host Grotesk 600 caps, the ● as the brand's recurring object), live rotating city clock top-centre, MENU text button top-right whose label rolls letter by letter to CLOSE.",
+  "menu": "Right-half panel (inferred: #121212 at 80% alpha, probe bg color(srgb .0706 / 0.8)) slides in from x 100% over 0.85s power4.out while the world on the left goes blurred and greyed (frames/steven-com/2). Items at ~62px Field Gothic caps in grey #A0A0A0: About Us / Creator Media / Creator Communities / Creator Products / Creator Tech / Join Us (the live probe nav also lists 'Press & News', absent from the May 2026 jury frames), each led by a '( ◉ )' radio glyph whose brackets split open on entry. Hovered or current items turn white with a coloured marker swash drawn diagonally across the word (red media, blue products). Footer row inside the panel: © 2026 Steven.com, Terms & Conditions, Privacy Policy, Cookies, Site by OFF+BRAND. The panel closes by sliding back right over 0.55s power3.inOut (f07).",
+  "buttons_links": "Text + 38px outlined circle with a chevron ('About Us'); radius tokens 30px pills and 100% circles; the nav hover is the textured stroke draw, not an underline wipe.",
+  "unusual_interactions": [
+   "The 3D dial is the primary navigation (curved WebGL labels are hit targets)",
+   "Camera dive through the orb into per-venture rooms without a full page reload",
+   "Cursor particle wand + foil-ribbon trail in rooms",
+   "Light/dark theme toggle bottom-right that re-renders the 3D world pale (frames/steven-com/2)",
+   "Subpage 'sketch mode' ([data-sketch=trigger], bundle only, not observed): scrolls to top, stops Lenis, hides the content (y -3em, scale 0.9, 0.8s expo.out) and shows a sketch prompt, firing sketchModeActivated for the WebGL cursor layer",
+   "Rolling multi-city clock in the header"
+  ],
+  "sound": "None observed.",
+  "footer": "No page footer on home; legal links live inside the menu panel."
+ },
+ "content_voice": {
+  "headline_style": "One declarative positioning line in condensed caps; venture names form a strict taxonomy (Creator Media / Communities / Products / Tech).",
+  "copy_tone": "Corporate-ambitious but terse; the object and the taxonomy do the talking, with almost no body copy on home.",
+  "examples": [
+   "THE OPERATING SYSTEM FOR THE CREATOR ECONOMY."
+  ]
+ },
+ "tech_stack": {
+  "framework": "Webflow (pages, CMS, CSS tokens) + a custom bundled JS app (esbuild/Bun-style IIFE) loaded from Vercel",
+  "libraries": [
+   "GSAP 3 + ScrollTrigger",
+   "GSAP SplitText 3.13",
+   "GSAP Draggable + InertiaPlugin (slider)",
+   "Lenis",
+   "three.js r182",
+   "troika-three-text",
+   "GPUComputationRenderer",
+   "Rive",
+   "jQuery 3.5.1 (Webflow)"
+  ],
+  "evidence": "probe globals Webflow, three_revision 182, html class 'w-mod-js lenis', libs_from_requests rive; steven.com HTML script tags (steven-henna.vercel.app/app.js, cdn.prod.website-files.com); app.js module list (preloader.js, webgl.js, split.js, nav.js, sub-transition.js, rive.js, slider.js, theme.js, ...)"
+ },
+ "performance_accessibility": {
+  "requests": 91,
+  "weight_notes": "Declared: GLB 11.8MB, other 0.5MB, JS 0.3MB compressed (app.js 1.88MB raw), webp 218KB, ktx2 143KB declared (probably mostly streamed later), woff2 67KB. Settled in 6.5s; the WebGL intro itself runs another 4-7s.",
+  "reduced_motion": "Probe: 0 prefers-reduced-motion CSS rules. The bundle reads prefers-reduced-motion in three places: a global flag computed next to the GSAP setup (its use was not traced), the clock (instant swap instead of the roll) and the pill slider. The 4-7s WebGL intro and the camera dives have no reduced-motion branch in the timelines read (playIntroTl, playRevealSystemTl, playZoomTl).",
+  "contrast_issues": "Mostly fine (white on #121212; #A0A0A0 on the dark menu panel). Weak spots: the dimmed ring labels during hover (frames/steven-com/1 f01-f02) and the grey clock. The home page has one h1 and no in-page DOM links to the ventures except via MENU, so without WebGL the dial navigation is gone.",
+  "mobile_quality": "No overflow; the composition is re-authored (centred headline, tilted gyroscope, pill slider) rather than scaled down. The faded, raised MENU label in mobile_01 is the nav-load tween mid-flight (y -2rem -> 0 and autoAlpha, delay 1.5s after preloaderFinished), not a styling bug.",
+  "dev_scores": {
+   "overall": 7.44,
+   "semantics_seo": 7.4,
+   "animations": 7.6,
+   "accessibility": 6.6,
+   "wpo": 8.0,
+   "responsive": 7.4,
+   "markup": 7.2
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Logo-dot handoff preloader (brand glyph becomes the 3D object)",
+   "why_it_works": "The loader is not a separate screen; the last surviving character of the wordmark is the first object of the world, so load time reads as a single continuous shot.",
+   "how_to_build": "DOM: wordmark letters as spans with data-direction left/right of the dot and an index by distance from it; transition: transform/opacity 0.735s cubic-bezier(0.65,0,0.35,1); transition-delay 0.30s (nearest) -> 0.55s (farthest). State 'load': left letters translateX(-2rem), right letters +2rem, opacity 0; 'ready': 0. Progress: an SVG marker path with stroke-dasharray = length L and mask-image: url(grain.webp); each frame p = damp(p, assetsProgress, 2, dt), dashoffset = L*(1-p), counter = String(floor(p*100)).padStart(2,'0'). At 100: add 'break' (the same ±2rem offsets with reversed delays, farthest first), retract the stroke from 2L to L with an easeOutCubic lerp over 1s, then translate the logo so the dot is centred. +400ms: roll the counter digits out (yPercent -100, 0.5s power2.inOut, stagger 0.03) and the tagline words in. +1s: shrink the DOM dot with a keyframe (scale 1 -> 0, filter blur(1rem), opacity 0, 1.5s cubic-inout) while WebGL starts with the camera at z 3 (the sphere projects where the dot was), post blur at max, bloom tinted #FFF5A8 and distortion 0.2. Then tween blur uTransition 0 -> 1 over 4s expo.inOut, distortion 0.2 -> 0 and vignette 0 -> 0.5 over 4s power2.inOut, and dolly the camera z 3 -> 6.5 over 4.5s power2.inOut. Finish by tweening body background-color to the dark token over 0.2s."
+  },
+  {
+   "technique": "Armillary unspin intro",
+   "why_it_works": "Nested rings that land flat give a satisfying mechanical 'lock' and turn a logo-like object into a readable diagram at the end of the move.",
+   "how_to_build": "three.js: nest group(outerParent) > group(outerRot) > mesh, same for inner. One GSAP timeline: innerRot from {x:2*PI, y:PI} to 0 over 4.5s power2.inOut at 0; outerRot from {x:PI, z:4*PI} to 0 over 4.5s power2.inOut at 0; innerParent.rotation.y from 0.2*PI and outerParent.rotation.y from -0.2*PI to 0 over 3.5s at 2s (a counter-twist that settles last); label material uReveal0 0 -> 1 over 4s at 2s and uReveal1 at 3s; a fresnel rim uniform 0 -> 1 over 6s linear. Chrome look: MeshStandardMaterial metalness 1, roughness ~0.25 with a studio env map, plus a baked shadow texture."
+  },
+  {
+   "technique": "Dial-as-navigation with a camera dive through a glass orb",
+   "why_it_works": "The information architecture (4 ventures) is literally the hero object; hovering previews content in the orb, and clicking travels into it, so navigation feels like exploring rather than paging.",
+   "how_to_build": "Curved labels: troika-three-text Text with curveRadius = ring radius, letterSpacing ~0.3, anchor centre, one per segment. Raycast the ring segment meshes; on hover raise the segment's emissive/opacity (0.3s), lower the others, and swap the orb's refracted texture (MeshPhysicalMaterial transmission 1, ior ~1.5, thickness ~1, dispersion ~0.3, or a custom refract shader sampling a photo atlas). On click, route to '/creator-tech' and play one timeline at timeScale 1.5: system camera z 6.5 -> 1.75 (3s power3.inOut); ring parents rotation.z 0 -> PI (1.75s power3.in, delay 0.25, stagger 0.05); a zoom-transition uniform 0 -> 1 (1.75s power3.in) that crossfades to the lazily created room scene; post blur 0 -> 25 and vignette 0.5 -> 0 (3s); distortion 0 -> 0.1 and barrel 0 -> -0.2 yoyo (1.5s power2); room camera z 8 -> 3 (3s power3.inOut). Headline out first (0.5s). Stop rendering the system scene when done and dispose rooms on exit."
+  },
+  {
+   "technique": "Centre-out character converge with edges-first exit (accessible), and a directional sweep for left-aligned text",
+   "why_it_works": "The word assembles from its middle, so it reads earlier than a left-to-right cascade, and the symmetric exit feels like the type is being pulled apart by the transition.",
+   "how_to_build": "Keep the real text for assistive tech: set aria-label on the element, put the text in a visually-hidden span, and put an aria-hidden, data-nosnippet clone next to it for SplitText to split into chars (wait for document.fonts.ready). Centred text: in a line of length F with mid W=floor(F/2), left chars get xOffset '-2rem' and delayIn (W-i)*0.05; right chars get '+2rem' and delayIn (i-W')*0.05 (W' = W for odd F, W-1 for even); the middle char of an odd line gets offset 0 and delay 0. In: gsap.to(char,{x:0, autoAlpha:1, duration:0.5, delay:delayIn, ease:'power2.out'}). Out: delayOut = distance from the nearest edge * 0.05, to {x:xOffset, autoAlpha:0, duration:0.5, ease:'power2.inOut'}. Left-aligned text (the desktop home h1): every char starts at x '+2rem' and enters with delay 0.5 + i*0.05, then leaves to '-2rem' with delay i*0.05, so the line reads like a conveyor moving away from the 3D object on its right. Only set chars to autoAlpha 0 inside the function that immediately plays the tween."
+  },
+  {
+   "technique": "Textured marker-stroke hover in the section's own colour",
+   "why_it_works": "A hand-inked swash says 'current / chosen' with personality and carries the venture colour-coding without painting any UI fill in a saturated colour.",
+   "how_to_build": "Per link: an absolutely positioned SVG path, a tapered swash that starts ~10% left of and below the word and rises through the lower half of the letters to above the right end, with stroke = var(--venture) and stroke-dasharray = stroke-dashoffset = pathLength (e.g. 609.93); CSS mask-image: url(stroke-grain.webp), mask-size: cover. .link:hover path, .link[aria-current] path { stroke-dashoffset: 0 } with transition: stroke-dashoffset 0.735s cubic-bezier(0.65,0,0.35,1). Pair it with a label colour change #A0A0A0 -> #fff over 0.3s cubic-bezier(0.65,0.05,0,1) and fill the radio glyph with the venture colour over 0.735s."
+  },
+  {
+   "technique": "Rolling multi-city clock in the header",
+   "why_it_works": "A tiny live element that proves the brand is global and alive, and gives the HUD a heartbeat while the page itself does not scroll.",
+   "how_to_build": "Three rows (L.A / LDN / NYC), each a label plus HH:MM from new Intl.DateTimeFormat('en-GB',{hour:'2-digit', minute:'2-digit', hour12:false, timeZone}); split every character into an inline-block span inside an overflow-clipped row. Refresh the digits every 1s. Every 10s swap cities: current chars yPercent 0 -> -100 while next chars 100 -> 0, 0.5s power2.inOut, stagger 0.03, then park the old row at 100. Under prefers-reduced-motion, swap instantly with gsap.set."
+  }
+ ],
+ "slop_risks": [
+  "Content hidden until a reveal fires, and dead navigation without the canvas: the headline characters are invisible until fonts.ready + preloaderFinished (desktop_01 still shows them half-assembled after 6s), and the dial that serves as the main nav exists only in WebGL. A copy must keep the h1 and plain DOM links to each section visible without JS/WebGL.",
+  "Radial glow halo behind an object: the Tech room floods a symmetric yellow bloom around the globe and the disc (frames/steven-com/1 f05), and the preloader is a white bloom field. Copied without the dim, directional stage it becomes the centred glow-halo tell; keep the light raking from one direction.",
+  "Chromatic aberration as decoration: the RGB fringing on the rings (desktop_01, mobile_01) is only acceptable because it appears during motion. A constant RGB split on static UI or text is cheap.",
+  "Underline-draw hover: the menu hover is structurally a line that draws in (stroke-dashoffset). It survives because the stroke is textured, rises diagonally across the word and is coloured per venture. A clean straight line that wipes in is the underline-fill tell, and a thin line through the letters that misses their optical centre is the off-centre strike tell.",
+  "Stock pill theme toggle: the bottom-right light/dark switch ([data-theme-toggle]) is a plain knob-in-pill (frames/steven-com/0 f05). The law allows almost any theme switch except the stock pill; a copy should use a bespoke control (e.g. a small pencil glyph that draws itself).",
+  "Saturated accent: #FF5541 / #FFDD4B / #5595FF / #51B75A are poster-bright; they work here only as hand-drawn strokes and scene light. Used as button fills or text highlights they become the saturated-accent tell."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots and both mobile screenshots; all 8 frames of the Preloader (0) and Navigation/Page transition (1); f00/f03/f06 of Menu (2) and Particle trail (3); probe.json tokens, easings and assets; bundle numbers from app.js (intro timelines, char offset function T4, clock timing, GPGPU particle count, shared post-FX uniform defaults) and inline CSS for the sketch strokes. The home page never scrolls, so desktop_02-07 show the same settled state (the clock and orb photo change only). A cookie card covered the bottom-right in every probe shot (not dismissed per rules). Menu, rooms, particles and sketch mode come from jury frames only; they were not re-verified live. INFERRED: the menu panel colour, the troika font face, the ring label tracking, the orb material (the bundle has refract/dispersion/fresnel terms, but the exact material was not isolated), and the source of the RGB fringe (the chromatic-aberration code in the composite shader is commented out and its uniforms default to 0, yet fringes are visible; likely dispersion or blur passes). The Field Gothic foundry was not verified. audit (2026-09-25, adversarial re-check against probe, desktop_00/01/03/05/07, mobile_00/01, all 8 frames of elements 0 and 1, four menu frames, two particle frames, and a re-read of app.js / index.html / site.css): FIXED the desktop home headline motion, which is a left-to-right sweep in from +2rem and out to -2rem (the centre-out converge applies to the mobile headline, room and subpage titles and the preloader wordmark); the red preloader stroke is the damped asset-progress bar, not a separate draw; the preloader letters leave by sliding ±2rem outward with reversed delays, not a yPercent collapse; the DOM dot fades via a 1.5s scale/blur keyframe; the zoom transition timings are rewritten from playZoomTl (uBetweenTransition is room-to-room only); the cursor trail is the 1000-particle wand emitter, while the 500-particle system is the flowfield dust, and the foil ribbon is a post-pass cursor-line layer; the bottom-right pill is a light/dark theme toggle, separate from the subpage sketch mode, and the light world is pale clay figures rather than pencil drawings; the clock swaps cities every 10s, not ~4s; the menu swash crosses the word diagonally rather than underlining it; the vignette colour has two uniform blocks. ADDED: the Summertime Stories handwriting face (subpages), 'Press & News' in the live nav, menu bracket and character timings, Lenis syncTouch, GSAP global defaults, and the mobile MENU explained as a mid-flight nav-load tween. Still inferred: the Field Gothic foundry (FJT), the orb material, the source of the RGB fringe, and the other rooms' particles."
+}

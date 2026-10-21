@@ -1,0 +1,297 @@
+{
+ "slug": "brunos-portfolio",
+ "title": "Bruno's Portfolio",
+ "live_url": "https://bruno-simon.com",
+ "award": "Awwwards Site of the Day, Jan 21 2026 (Honors); in the Site of the Month bucket for 2026. Solo credit: Bruno Simon.",
+ "scores": {
+  "overall": 8.11,
+  "design": 8.05,
+  "usability": 7.83,
+  "creativity": 8.62,
+  "content": 8.18,
+  "dev": {
+   "overall": 7.65,
+   "semantics_seo": 7.0,
+   "animations": 8.6,
+   "accessibility": 6.6,
+   "wpo": 8.2,
+   "responsive": 8.2,
+   "markup": 6.8
+  }
+ },
+ "industry": "Personal portfolio of a creative developer, built as a drivable open-world game",
+ "signature": "The portfolio is a drivable toy world where one custom toon NodeMaterial (saturated violet core shadows, ground-colored bounce light, a two-color fog, and a world-space reveal cylinder that discards every pixel beyond a radius and paints an HDR rim on the cut) gives every object one painterly, time-of-day-aware look. The loading screen is that same system: a progress ring on a grid floor, then a 3.5-unit disc of world that pops open with overshoot, its trees and lamp post sliced by the cylinder with glowing vertical seams.",
+ "first_screen": {
+  "composition": "The 1440x900 frame is entirely a WebGPU canvas; there is no DOM heading (h1 to h3 are empty in the probe). State 1 (desktop_00): a 100x100 grid floor plane in warm plum-black (base #1b191f through the toon material, sampled #1f1619) carrying violet #8d55ff cross marks at a fine spacing and faint #675369 full lines at a 10x coarser spacing, and at the center a thin glowing ring (RingGeometry inner 3.46, outer 3.5, 128 segments) whose arc fills in with a smoothed load progress. State 2 (desktop_01 to 07): the ring collapses, then a disc of world of radius 3.5 pops open with overshoot: an orange paved disc (#ff9b61 sampled; the paving is a procedural slab texture mixed between #a87762 and #ffcf8b by perlin noise over the terrain color, then lit), a red off-road truck with lit amber headlights, a cherry tree of pink leaf cards (#fc8372 sampled), a lantern post, a wooden slat board and grass. The reveal is a vertical cylinder in world space, so the tree canopy, trunk, grass and lamp post are sliced along its wall and the last 0.05 units before the cut glow in the HDR reveal color (blue-white at day), which reads as glowing vertical seams on the left of the tree. The grid floor discards the inside of the same radius, so floor and world are complementary. A hand-lettered 'CLICK TO START' label (a pre-rendered, alpha-tested KTX bitmap, not live text) with a curved arrow and a separate clickable speaker icon floats right of the disc. The speaker is a two-frame sprite: intro/sound.ktx holds the on and muted glyphs side by side and the mute toggle just shifts texture offset.x between 0 and 0.5. The world waits there for a click; wheel scrolling does nothing, so all 7 scroll steps look the same.",
+  "what_owns_it": "3d",
+  "display_type_px": null,
+  "evidence": [
+   "probes/brunos-portfolio/desktop_00.jpg",
+   "probes/brunos-portfolio/desktop_01.jpg",
+   "probes/brunos-portfolio/desktop_02.jpg",
+   "probes/brunos-portfolio/desktop_03.jpg",
+   "probes/brunos-portfolio/desktop_04.jpg",
+   "probes/brunos-portfolio/desktop_05.jpg",
+   "probes/brunos-portfolio/desktop_06.jpg",
+   "probes/brunos-portfolio/desktop_07.jpg",
+   "audit crop of desktop_01 left edge (sliced canopy with glowing seams)",
+   "bundle: class Grid (MeshGridMaterial, lines #8d55ff / #675369, discards inside reveal distance), class Intro, MeshDefaultMaterial.revealDiscardNodeBuilder"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Nunito",
+    "role": "ui",
+    "classification": "rounded sans",
+    "foundry": "Google Fonts (Vernon Adams)",
+    "source": "probe fonts_loaded 400/700; Google Fonts link wght 400;700;900; 242 rendered text nodes"
+   },
+   {
+    "name": "Amatic SC",
+    "role": "display",
+    "classification": "hand-drawn condensed caps",
+    "foundry": "Google Fonts (Vernon Adams)",
+    "source": "probe fonts_loaded 700; Google Fonts css2 Amatic+SC:wght@700. Used for DOM modal titles (.title 2.5rem), the 64px touch-button list, and in-world labels drawn to canvas (TextCanvas with fontFamily 'Amatic SC', weight 700, density 200; interactive-point labels; whispers). The intro 'CLICK TO START' is NOT live Amatic text: it is a pre-rendered KTX bitmap in the same hand style (intro/mouseKeyboardLabel.ktx, swapped for gamepadXbox / gamepadPlaystation / touch variants when the input mode changes)."
+   },
+   {
+    "name": "Pally",
+    "role": "accent (loaded, not visibly used)",
+    "classification": "rounded display sans",
+    "foundry": "Indian Type Foundry / Fontshare",
+    "source": "probe fonts_loaded 'Pally-Medium 500'; self-hosted @font-face Pally-Regular / Medium / Bold. The only CSS rule using it is the hidden .fonts-loader .pally warm-up, and the JS never references it, so no visible UI is set in Pally."
+   }
+  ],
+  "display_size_px": 64,
+  "body_size_px": 20,
+  "scale_notes": "The DOM type exists only in the overlays (modals, controls, achievements, map, notifications, whispers). Measured rendered sizes: 20px (163 nodes), 16px (75), 34px (41), 50px (7), 40px (6), 64px (2), 13px (3), 30px (1). CSS sizes are mostly rem-based: 1.7rem (34px) section titles in Amatic/Nunito, 2.5rem (50px) Amatic modal titles, 64px Amatic touch list. The real display type is in-world (canvas and KTX textures scaled by the camera), so it has no fixed px value. The body is 20px Nunito on html. The circuit leaderboard in the world is drawn in 700 Nunito on a 512px canvas texture.",
+  "tracking_leading": "Default tracking and leading almost everywhere (letter-spacing normal, line-height normal on buttons). Exceptions: map location names are uppercase with 1px tracking on black chips; the circuit name-tag input is a 3-character arcade-initials field (placeholder '---', maxlength 3) in 25px bold uppercase with 8px tracking.",
+  "case_and_style": "Amatic SC is all-caps by design and reads as handwriting ('CLICK TO START'). Nunito is sentence case in the UI. Key hints are set in caps (WASD, SHIFT, SPACE).",
+  "signature_moves": [
+   "World-space handwritten labels with drawn arrows (canvas or KTX textures in 3D) instead of HTML overlays, with the intro label swapped per input device (keyboard, Xbox, PlayStation, touch)",
+   "Keyboard, gamepad (Xbox and PlayStation glyph sets) and touch control sheets, each a tab in the controls modal",
+   "Arcade-style 3-letter initials for the daily circuit leaderboard"
+  ],
+  "mobile": "At 390px: the probe measured largest text as 48/48/40px with no horizontal overflow. The portrait canvas keeps the disc centered with the canopy above it. The label sits closer and tilted (Quality level 1 placement: +2.3 x, -1.8 z, rotation.x -0.4, versus +3.5 x, -1 z on desktop), right of the tree (mobile_00). The far fog gradient shows as a teal-to-purple band at the top of the portrait frame."
+ },
+ "color": {
+  "mode": "dark (canvas) with time-of-day shifting",
+  "base": "#1f1619 sampled void. It is not a clear color: it is the 100x100 intro grid plane (base #1b191f) rendered through the toon material, which is why it reads warm plum-black rather than blue-charcoal. UI panels are radial-gradient(ellipse at top left, #251f2b, #1d1721).",
+  "ink": "#ffffff (27 CSS uses) and #ffceca pale pink (17 CSS uses; 120 rendered text nodes and 42 bg nodes)",
+  "accents": [
+   "reveal ring and rim follow the day cycle: day #5f7dff x12 (blue-white after bloom in desktop_00/01), dusk #ff86d9 x5.55, night #b678ff x10, dawn #ff9d9d x4.85. The mobile capture (taken at a different moment) shows a pink-lavender rim instead of blue, which is the cycle at work",
+   "#8d55ff violet grid cross marks and #675369 grid lines on the loader floor",
+   "#d5ff95 lime (achievement titles and positive/unlocked states)",
+   "#ff6a7c coral; #c21515 red in the red-to-plum radial (#c21515 to #46123b) of the menu trigger and close tabs",
+   "world: ~#ff9b61 orange disc (floor slabs #ffcf8b / #a87762 under #ffd2c2 x1.2 light), cherry foliage ~#fc8372 / #e55f6a (sampled)",
+   "day-cycle shadow colors: #6d3fff day, #4e009c dusk, #2f00db night, #db004f dawn",
+   "emissive radial-gradient materials for lights: orange #ff8641 to #ff3e00, purple #454bbc to #ff2eb4, blue #91f0ff to #128fff, green #f8ffa6 to #74ff00"
+  ],
+  "ratio": "About 70% plum-black void, 25% warm saturated world (orange, pink, red), 5% electric-blue rim glow at first screen. After the reveal the world fills the screen.",
+  "section_shifts": "No sections. The whole palette runs on a 240-second day cycle whose progress is Date.now()/1000/240 (so every visitor sees the same time of day at the same moment): day at 0 to 0.15, dusk at 0.25, night 0.35 to 0.6, dawn at 0.8, day again at 0.9, with night intervals firing events (pole-light glass and fireflies switch on over 5s). Each preset sets revealColor/intensity, lightColor/intensity, shadowColor and fogColorA/B with near/far ratios. A YearCycles system drives seasons, and Weather derives temperature, humidity, clouds, wind, rain, snow and an electric field from both cycles plus sine noise.",
+  "texture": "No grain. Atmosphere comes from a two-color distance fog gradient (day: #00ffff to #9b89ff, near ratio .315, far 1.25; visible as the teal-to-purple band at the top of mobile_00), bloom (threshold 1, strength .25, smoothWidth 1) and a cheap DOF pass on high quality.",
+  "notes": "Shadows are never black: the toon material mixes toward a saturated shadowColor (day #6d3fff violet), which gives the hand-painted feel. The default day light is #ffd2c2 at intensity 1.2."
+ },
+ "layout": {
+  "grid": "No page grid; a single fixed full-viewport canvas (1440x900 in the probe) with DOM overlays (4 position:fixed elements) for modals, notifications, the map and the controls.",
+  "density": "balanced",
+  "alignment": "The world is centered on the default respawn point. UI hugs the corners: notifications drop from the top, and the controls and achievements open as modals.",
+  "composition_moves": [
+   "An orbit camera whose zoom baseRatio is set to 0.6 and eased to 0.3 during the reveal, then to 0 on start",
+   "The play area revealed as a world-space cylinder (radius 3.5) around the spawn, with the grid floor showing only outside it",
+   "The label placed in 3D next to the object it points at (desktop offset +3.5 x, -1 z, y 3.3; mobile +2.3 x, -1.8 z, tilted)"
+  ],
+  "section_rhythm": "Content is spatial, not scrolled: 13 'areas' laid out on the terrain and matched to glb node names (Landing, Projects, Lab, Career, Social, Circuit, Altar, Cookie, Toilet, Bowling, Time Machine, Achievements, Behind The Scene), reached by driving; the 'Traveler' achievement counts all 13. The circuit is a race with a daily top-10 leaderboard, and 'whispers' are visitor messages (max 30 chars, max 30 total).",
+  "mobile_adaptation": "Quality.level is set to 1 (low) when the UA matches Mobi/Android/iPhone/iPad/iPod: bloom mips drop from 5 to 2 and the DOF pass is removed. The intro label moves closer and tilts. Touch controls (from the controls modal): one finger moves the car, two fingers move the camera and zoom, tap on the car to jump. Map names are always shown on touch (no hover). mobile_00 shows the portrait framing with a thin white streak from the car (inferred: a wind line or input trail)."
+ },
+ "motion": {
+  "smooth_scroll": "n/a (no document scroll; doc_height 900). Wheel input goes to the camera zoom after start.",
+  "preloader": "A world-space progress ring: RingGeometry(3.46, 3.5, 128) whose fragment shader discards where smoothedProgress < 1 - (atan(y,x)/2π + 0.5), so the arc fills around the circle as assets load (sweep direction not verified). smoothedProgress chases the real progress at delta*10 per tick. Its color is revealColor x revealIntensity (HDR), so bloom makes it glow; desktop_00 shows it complete.",
+  "intro_sequence": "Step 0: the ring collapses (scale 1 to 0, power4.in, 1.5s). Then the grid is shown and the reveal distance uniform tweens 0 to 3.5 (back.out(1.7), 2s), so the world pops open as a cylinder with overshoot, while the camera zoom baseRatio eases 0.6 to 0.3 (power1.inOut, 1.25s). After 1s the label scales in from 0.01 with elastic.out(0.5) over 2s. The cherry-leaf see-through hole starts at half size (seeThroughMultiplier 0.5). A 3.5-radius hit sphere at the spawn raises the rim intensity x1.22 on hover (0.2s). Step 1 (click on the sphere, or Enter / W / D / arrow up or down / gamepad cross): audio initializes, reveal-1.mp3 plays at 0.5 volume, distance goes 3.5 to 30 (back.in(1.3), 2s: it pulls inward for a beat, then floods out) and then snaps to 99999; the label hides (power2.in .3s); the zoom baseRatio goes to 0 (back.in(1.5), 1.75s); the see-through multiplier eases to 1 (2s). Step 2 destroys the grid and intro, starts the server connection and pre-opens the menu. A '#skip' URL hash divides the reveal and zoom durations by 4 and skips the click gate (the ring collapse is only sped up in debug mode).",
+  "scroll_techniques": [
+   "none (game input replaces scroll)"
+  ],
+  "text_animation": "DOM notifications drop in from translateY(calc(-100% - 20px)) to 0 over .6s cubic-bezier(.4,1.6,.65,1) (overshoot), with a 2px #ffceca time bar shrinking toward the right. They leave over .45s cubic-bezier(.42,0,.47,-.55) (anticipation dip) to translateY(calc(-100% + 20px)) scale(0). Map location names pop from scale(0) with transform-origin 50% 80%: cubic-bezier(.49,2.2,.53,.75) on hover-in, .3s cubic-bezier(.65,-1,.45,1) on out; on touch they are always shown, and they scale to .8 under 1100px and .65 under 520px.",
+  "image_animation": "All world motion is shader- or physics-driven. Wind rotates each foliage card's alpha-mask UVs by |windOffset| x 2.2 so the leaves flutter without moving geometry. Each canopy instance is a merged cluster of 80 leaf quads (0.8 x 0.8) scattered in a unit sphere, not a single card. The grass is 280×280 = 78,400 single-triangle blades (width 0.1, height 0.6) that follow the camera. There are also wind lines, tornado, confetti, explosions, fireballs and tire trails.",
+  "page_transitions": "None; modals (controls, achievements, whispers, behind-the-scene, circuit results) open over the live canvas with opacity .15 to .3s transitions.",
+  "hover_micro": [
+   "Intro: hovering the 3.5-radius hit sphere multiplies the reveal rim intensity by 1.22 over 0.2s",
+   "In-world speaker icon: brightness 1 to 1.5 over .3s on hover; click toggles mute by sliding the sound.ktx sprite offset.x between 0 and 0.5 (on / muted glyphs)",
+   "Map location label pop with elastic-overshoot cubic-bezier(.49,2.2,.53,.75)",
+   "A map player marker pulse keyframe (scale 1, 1.2, 1, 1.2, 1 over 1s, .5s delay)",
+   "Generic .button: border and text go to #fff on hover, no movement",
+   "Edge-docked tab buttons (menu trigger, map trigger, menu nav items, close): the inner plate is 4px oversize and slides 4px out from the screen edge on hover (.15s, the trigger with a .15s delay), with its icon going from .55 to full opacity"
+  ],
+  "cursor": "Default cursor, with grab/grabbing for camera drag, help and not-allowed in the UI, plus a 3D RayCursor that raycasts against interactive spheres (onEnter/onLeave/onClick) in world space",
+  "easing_curves": [
+   "back.out(1.7): reveal disc opening, 2s",
+   "back.in(1.3): disc flooding outward on start, 2s",
+   "back.in(1.5): camera zoom on start, 1.75s",
+   "power4.in: loader ring collapse, 1.5s",
+   "power1.inOut: camera zoom intro, 1.25s",
+   "elastic.out(0.5): intro label scale-in, 2s after a 1s delay",
+   "GSAP ease counts in the bundle: power2.inOut 16, power2.in 16, power2.out 10, power1.inOut 8, back.out(2) 8, linear 5, back.in(4.5) 3, elastic.out(1.3,0.4) 3, back.out(3) 2",
+   "CSS: cubic-bezier(.4,1.6,.65,1), cubic-bezier(.42,0,.47,-.55), cubic-bezier(.49,2.2,.53,.75), cubic-bezier(.65,-1,.45,1)"
+  ],
+  "duration_range_ms": "100 to 150 (UI opacity and tab slides), 200 to 300 (intro hover, speaker hover, map labels, label hide), 450 to 600 (notifications), 1250 to 2000 (intro camera and reveal tweens, label elastic), 5000 (night lights and fireflies fade), 240000 (full day cycle)",
+  "stagger_ms": "not applicable; intro beats are chained with ticker.wait(1s) and onComplete callbacks rather than staggers",
+  "choreography_notes": "Every beat uses anticipation or overshoot (back.in before an expansion, back.out and elastic on an opening, CSS beziers that dip below 0 or rise above 1). That cartoon physics matches the toy world. The camera and the reveal radius move together, so the world grows while the camera pulls back. Audio is gated behind the first input, which is also the moment the world floods out, so sound and space open together. The label waits 1s after the disc opens before it springs in, so the world lands first and the instruction second.",
+  "evidence": [
+   "probes/brunos-portfolio/desktop_00.jpg",
+   "probes/brunos-portfolio/desktop_01.jpg",
+   "probes/brunos-portfolio/mobile_00.jpg",
+   "bundle grep: https://bruno-simon.com/assets/index-ORr3L4no.js (4.86MB, mostly unminified) + index-Di03QkGT.css + index.html: class Reveal.updateStep, class Intro (setCircle, setText, setSoundButton, showLabel), class Grid, MeshDefaultMaterial.revealDiscardNodeBuilder, CSS .notifications/.map/.menu rules",
+   "audit2: bundle re-read of class Foliage (80-quad sphere clusters, normals lerped .85 toward the radial direction, instance lookAt(view.spherical.offset) with random up), class Title (document.title ticker), class Areas (13 entries), Intro.setSoundButton (sound.ktx offset), KonamiCode key list, Floor slab colors"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "realtime-3d",
+  "art_direction": "A low-poly Blender-modeled toy diorama with chunky proportions. Meshes arrive with only material names; at load, Materials.updateObject swaps each mesh's material by name for a shared library entry, including 'palette' (a MeshDefaultMaterial sampling one palette.ktx atlas by UV) or an emissive radial gradient. Light is one directional key with a smoothstepped terminator: a warm key against saturated violet shadows. The foliage is clouds of flat leaf cards, and the grass is sharp triangular blades. Night brings high light intensity (3.8) in blue #3240ff with an electric field. Lit headlights and lanterns bloom because their emissive values exceed 1.",
+  "treatments": [
+   "Toon lighting: core shadow = smoothstep(N·L) between two edges, max'd with drop shadows, then mixed toward baseColor x shadowColor",
+   "Light bounce: down-facing normals pick up the terrain's own color sampled under them (terrain.colorNode at positionWorld.xz), fading with height squared",
+   "Screen-space see-through hole in the foliage around the car (smoothstep between 3/cameraRadius and 15/cameraRadius, times a multiplier)",
+   "Canopies as clusters of 80 flat leaf cards scattered inside a sphere, with each card's normals bent 85% toward the cluster's radial direction, so a pile of flat quads shades like one soft painted ball (the smoothstep(N.L) two-color ramp does the rest)",
+   "A two-color distance fog gradient",
+   "A water surface line: pixels within a thickness of the water elevation turn #ffffff",
+   "One palette texture atlas shared by most props, plus named emissive gradient materials",
+   "Bloom at threshold 1 plus a cheap DOF pass on high quality"
+  ],
+  "crops_and_ratios": "full-viewport canvas at any aspect ratio; the camera framing recomputes an 'optimalArea' from the view frustum",
+  "formats": "23 .glb files (all *-compressed.glb; DRACO, meshopt and KTX2 loaders present), .ktx textures (palette.ktx, behindTheScene/stars.ktx, intro/sound.ktx, intro/<mode>Label.ktx), about 2.5MB wasm (Rapier physics), about 1.96MB mpeg audio (Howler), 44 img elements for UI icons",
+  "evidence": [
+   "probes/brunos-portfolio/desktop_01.jpg",
+   "probes/brunos-portfolio/mobile_00.jpg",
+   "probe assets_3d",
+   "bundle grep: https://bruno-simon.com/assets/index-ORr3L4no.js: class Foliage.setMaterial, MeshDefaultMaterial, Materials.createPalette / updateObject / createEmissiveGradient"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r183 WebGPURenderer with TSL (NodeMaterials). It falls back automatically to the WebGL2 backend (the probe saw 1 webgpu + 1 webgl2 context). Rapier physics (wasm), Howler.js audio, GSAP for tweens.",
+  "role": "The whole site: a drivable world with physics vehicle, areas, circuit, achievements and multiplayer whispers",
+  "assets": [
+   "https://bruno-simon.com/areas/areas-compressed.glb",
+   "https://bruno-simon.com/terrain/terrain-compressed.glb",
+   "https://bruno-simon.com/vehicle/default-compressed.glb",
+   "https://bruno-simon.com/scenery/scenery-compressed.glb",
+   "https://bruno-simon.com/playground/playgroundVisual-compressed.glb",
+   "https://bruno-simon.com/playground/playgroundPhysical-compressed.glb",
+   "https://bruno-simon.com/cherryTrees/cherryTreesVisual-compressed.glb",
+   "https://bruno-simon.com/cherryTrees/cherryTreesReferences-compressed.glb",
+   "https://bruno-simon.com/oakTrees/oakTreesVisual-compressed.glb",
+   "https://bruno-simon.com/birchTrees/birchTreesVisual-compressed.glb",
+   "https://bruno-simon.com/tornado/tornadoPathReferences-compressed.glb",
+   "https://bruno-simon.com/respawns/respawnsReferences-compressed.glb",
+   "… 23 glb total (benches, bricks, bushes, explosiveCrates, fences, flowers, lanterns, poleLights)",
+   "./palette.ktx",
+   "./behindTheScene/stars.ktx",
+   "./intro/sound.ktx"
+  ],
+  "materials_lighting_post": "MeshDefaultMaterial (36 constructions in the bundle) extends MeshLambertNodeMaterial but replaces outputNode entirely. Pipeline: base color, then light bounce (mix toward the terrain color under the fragment where normal·down passes smoothstep(lightBounceEdgeLow, High), attenuated by ((bounceDistance - y)/bounceDistance)^2), then the water line (white within a thickness of the water elevation), then x lighting color x intensity, then core shadow (smoothstep of N·L between coreShadowEdgeHigh and Low) max'd with drop shadows and mixed toward baseColor x shadowColor, then fog mix, then alpha test (0.1), then the reveal (distance of positionWorld.xz from the spawn; discard beyond it; step inside a 0.05 thickness to paint the HDR revealColor rim). Other materials: 45 MeshBasicNodeMaterial, 8 SpriteNodeMaterial, 6 MeshLambertNodeMaterial. Post: RenderPipeline with a scene pass; bloom(threshold 1, strength .25, smoothWidth 1, mips 5 high / 2 low) plus cheapDOF on high, bloom only on low. Tone mapping is never set (three's default NoToneMapping), so the authored hexes survive. Shadow maps on; antialias only when pixelRatio < 2.",
+  "interaction": "Drive (WASD/arrows, Shift boost, Space jump, B/Ctrl brake, H honk, numbers for hydraulics), drag or right stick to orbit, wheel to zoom, Enter to interact with areas, M map, T whisper, R respawn. Full gamepad mapping with Xbox and PlayStation glyphs, plus touch gestures. There is also a Konami code easter egg and a physics reset.",
+  "performance_tactics": "Compressed glb (DRACO/meshopt), KTX2 textures, instanced foliage and flowers (InstancedGroup), a grass field that is one generated geometry recentered on the camera, visual/physical/reference glb splits (placement references are loaded separately from visual meshes), material-by-name swap into one shared library, a two-level Quality switch driven by the mobile UA regex, a 'Renderer' option (WebGPU, or WebGL for performance), antialias skipped on high-DPR screens, and <link rel=preload as=fetch> for 4 critical assets (respawn references, palette.ktx, stars.ktx, intro/sound.ktx).",
+  "fallback_mobile": "The same world at Quality level 1 (bloom mips 2, no DOF) with touch controls. The probe measured no horizontal overflow at 390px, and the scene rendered (mobile_00/01).",
+  "evidence": [
+   "probe globals three_revision 183, contexts {webgpu:1, webgl2:1, 2d:51}, bytes wasm 2.51MB / mpeg 1.96MB / 3d 0.99MB / ktx2 108KB",
+   "bundle grep: https://bruno-simon.com/assets/index-ORr3L4no.js: new WebGPURenderer({forceWebGL:false, antialias: pixelRatio<2}), setPostprocessing(), class DayCycles presets, class Grass (subdivisions 280), class Quality, Materials.updateObject"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "No nav bar. Navigation is by driving, plus a map modal (M) with location pins that pop labels, and fixed-corner buttons for options, controls, achievements, whispers and 'I'm stuck'",
+  "menu": "Modals with tabs (Mouse Keyboard / Mobile Tablet / Gamepad) and an Options panel: audio toggle, quality Low/High, Renderer, Server status, Respawn, Reset",
+  "buttons_links": "Rounded rectangles (radius 4px x34, 6px x15, 8px x13, 15px x4) on plum radial-gradient panels (#251f2b to #1d1721) with Nunito 20px text; the menu trigger and close tabs use a red-to-plum radial (#c21515 to #46123b). Key-cap chips for controls. Generic buttons change border and text to #fff on hover without moving. Edge-docked tabs slide 4px out of the screen edge on hover (.15s), a drawer-tab reveal rather than a lift. Tooltips and some panels carry 1px #ffceca borders.",
+  "unusual_interactions": [
+   "The loading ring and the world reveal are one continuous in-world object",
+   "Daily circuit race with a leaderboard drawn in the world on a canvas texture ('NO SCORE YET TODAY', 'Resets in'; server-backed, offline during the probe) and arcade 3-letter initials",
+   "'Whispers': visitors pin messages of up to 30 characters with a country flag into the world; one per user, max 30 live, new ones remove old ones",
+   "Achievements with rewards that unlock car cosmetics, and a Konami code (the last key accepts A or Q, so AZERTY keyboards work) that swaps in an old-school car with confetti and swaps back on the next entry",
+   "The day/night and season cycle is synced to real time for everyone, and weather (rain, snow, lightning) derives from it",
+   "The foliage automatically opens a see-through hole around the car",
+   "The intro label redraws for the active input device (keyboard, Xbox, PlayStation, touch)",
+   "The browser tab title is a live ticker: document.title = 'Bruno' + 30 non-breaking-space slots with the car emoji fixed at slot 10 and a tree emoji every 18 slots scrolling past at the car's forward speed (at most 60 updates a second, and only while the car moves, so a parked probe sees the static <title>Bruno's</title>)",
+   "A developer console banner in box-drawing frames: how to open #debug and press V for a free camera, Three.js / TSL credits with the live REVISION, the MIT source link and the CC0 music"
+  ],
+  "sound": "Yes. Howler.js with music made for the site by Kounine (CC0) plus about 30 sound folders (42 audio.register calls: vehicle x10, circuit x5, mecanism, fire, magic, swoosh, bell, owl, rooster, wolf, waves, rain, crickets, jukebox, jingle bells, anvil...). Audio initializes only on the start input; the speaker glyph beside the label is itself a clickable mute toggle, and L mutes at any time.",
+  "footer": "none. The 'Behind the scene' modal credits Three.js/TSL, Rapier, Howler, the fonts and the MIT-licensed source on GitHub."
+ },
+ "content_voice": {
+  "headline_style": "Handwritten, imperative, playful: in-world signage in Amatic SC caps",
+  "copy_tone": "First person, warm and self-deprecating. He introduces himself as a creative developer, invites you to drive around and find the world's secrets, and credits collaborators by name.",
+  "examples": [
+   "And don't break anything!"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Vanilla JS game architecture (Game singleton, Ticker, Resources, Inputs) bundled by Vite",
+  "libraries": [
+   "three.js r183 (WebGPURenderer, TSL, GLTFLoader, DRACOLoader, KTX2Loader)",
+   "Rapier (wasm physics)",
+   "Howler.js",
+   "GSAP (97 gsap.to, 8 fromTo, 7 timeline)",
+   "camera-controls",
+   "tweakpane-style debug panel (#debug)"
+  ],
+  "evidence": "probe libs_from_requests ['vite'], globals three_revision 183; HTML 'Behind the scene' text; bundle class list (Game, World, Reveal, Intro, DayCycles, YearCycles, Weather, Wind, Grass, Foliage, Water, Tornado, Achievements, Whispers, Server, KonamiCode)"
+ },
+ "performance_accessibility": {
+  "requests": 149,
+  "weight_notes": "Declared by the probe: wasm 2.51MB, mpeg audio 1.96MB, glb 3d 0.99MB, octet-stream 0.87MB, ktx2 108KB, woff2 80KB, javascript 160KB. The 160KB does not include the main bundle: index-ORr3L4no.js is 4.86MB raw and about 1.0MB at gzip -9 (measured locally from the cached copy), so real JS transfer is closer to 1MB. Settle 8.0s. The world streams per system (visual, physical and reference glbs).",
+  "reduced_motion": "None: probe reduced_motion_rules 0, and no prefers-reduced-motion in CSS or JS. The only motion controls are the quality tier (automatic by UA, switchable in options), the renderer choice and the audio mute.",
+  "contrast_issues": "The DOM overlays are fine: white on #1d1721 is about 17.5:1, #ffceca about 12.5:1 and #d5ff95 about 15.5:1. In-world labels depend on the time of day and sit over busy geometry. There is no DOM text at all on the first screen, so screen readers get nothing (headings empty, sections 0): jury accessibility 6.6 and semantics 7.0.",
+  "mobile_quality": "Jury responsive 8.2. It renders at 390px with no overflow, uses a UA-based low quality tier and has dedicated touch controls.",
+  "dev_scores": {
+   "overall": 7.65,
+   "semantics_seo": 7.0,
+   "animations": 8.6,
+   "accessibility": 6.6,
+   "wpo": 8.2,
+   "responsive": 8.2,
+   "markup": 6.8
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "World-space reveal radius as the loader and the intro",
+   "why_it_works": "Loading and reveal are one object in the scene, so there is no swap from a loader screen to the site. The disc popping open with overshoot is the first delight, and the second expansion on click is the 'enter'.",
+   "how_to_build": "Add uniforms uCenter (vec2 xz), uRadius, uThickness (0.05), uRimColor (HDR, for example #5f7dff x 12, driven by your time-of-day preset) to every material through a shared TSL Fn or an onBeforeCompile chunk: d = length(positionWorld.xz - uCenter); if (d > uRadius) discard; color = mix(color, uRimColor, step(uRadius - uThickness, d)). Because the test ignores y, tall props are cut by a vertical cylinder and the cut faces glow, which is the look. Give the loader floor the inverse test (discard where d < uRadius) so floor and world never overlap. Loader: RingGeometry(3.46, 3.5, 128) whose fragment discards where smoothedProgress < 1 - (atan(y,x)/2π + .5), with smoothedProgress += (progress - smoothedProgress) * dt * 10. Sequence: ring scale 1 to 0 (power4.in 1.5s); then gsap.to(uRadius, {value:3.5, ease:'back.out(1.7)', duration:2}) with the camera zoom 0.6 to 0.3 (power1.inOut 1.25s) and the label springing in after 1s (elastic.out(0.5), 2s). On click, gsap.to(uRadius, {value:30, ease:'back.in(1.3)', duration:2, onComplete:()=>uRadius.value=1e5}). Keep bloom at threshold 1 so only the HDR rim glows."
+  },
+  {
+   "technique": "One custom toon material for everything, with colored shadows",
+   "why_it_works": "A single lighting model across every asset gives the painterly cohesion a mix of PBR assets never has. Saturated violet shadows instead of black make the world feel illustrated.",
+   "how_to_build": "TSL NodeMaterial with its own outputNode: base = colorNode (ideally sampled from one shared palette atlas by UV); bounce = smoothstep(edgeLow, edgeHigh, dot(N, vec3(0,-1,0))) * pow(max(0,(bounceDist - worldY)/bounceDist), 2); base = mix(base, terrainColorAt(world.xz), bounce*mult); lit = base * lightColor * lightIntensity; core = smoothstep(edgeHigh, edgeLow, dot(N, L)); shade = max(core, 1 - shadowMap); out = mix(lit, baseColor*shadowColor, shade); out = mix(out, fogColor, fogStrength). Leave tone mapping off so the authored hexes survive. Day values: light #ffd2c2 x 1.2, shadow #6d3fff, fog #00ffff to #9b89ff. Name materials in Blender ('palette', 'emissiveOrange'...) and swap them on load by name, so every glb inherits the same shader."
+  },
+  {
+   "technique": "Real-time shared day cycle as keyframed palette presets",
+   "why_it_works": "The site looks different on every visit but is the same for everyone at the same moment, which gives it a live-world feel and turns the palette into content.",
+   "how_to_build": "progress = (Date.now()/1000/240) % 1. Keyframes [{day,0},{day,.15},{dusk,.25},{night,.35},{night,.6},{dawn,.8},{day,.9}], where each preset holds {revealColor, revealIntensity, lightColor, lightIntensity, shadowColor, fogColorA, fogColorB, fogNear, fogFar}. Lerp Colors and floats between the bracketing stops every tick and write them into the uniforms. Add a 365-day YearCycles the same way for seasonal foliage and snow."
+  },
+  {
+   "technique": "Foliage as sphere clusters of wind-rotated alpha cards, with bent normals and a see-through hole around the hero object",
+   "why_it_works": "Lush canopies cost almost nothing (one instanced cluster per tree), bending the card normals toward the cluster's radius makes a pile of flat quads shade like one soft painted ball, and the player's car is never hidden behind a tree, which solves the classic isometric occlusion problem gracefully.",
+   "how_to_build": "Build one cluster geometry: 80 PlaneGeometry(0.8, 0.8) quads, each rotated by a random Z and translated to a point from Spherical(1 - rng^3, 2*PI*rng, PI*rng); for every vertex set normal = lerp(vertexPosition, radialDirection, 0.85); merge them. Instance the cluster once per tree reference with an Object3D whose up is a random unit vector in XY and which lookAt()s the camera's spherical offset (set once at load, not every frame). Material: color = mix(colorA, colorB, smoothstep(0, 1, dot(N, L))); tex = texture(leafMask, rotateUV(uv, length(windOffset(pos.xz)) * 2.2, vec2(.5))).r. See-through: h = length((screenUV - carScreenPos) * vec2(aspect, 1)); c = smoothstep(3/cameraRadius*k, 15/cameraRadius*k, h); alpha = tex * (c * (1 - .3) + .3) - .3, discarded below the 0.1 alpha test, with k = 0.5 during the intro and 1 afterwards. Shadows: mask the shadow with tex > .5 and offset the received-shadow position along the light direction."
+  },
+  {
+   "technique": "Cartoon-physics UI easing with anticipation",
+   "why_it_works": "The DOM overlays move with the same squash-and-stretch logic as the toy world, so the UI feels like part of the game rather than a web layer on top.",
+   "how_to_build": "Notification in: transform translateY(calc(-100% - 20px)) to 0, .6s cubic-bezier(.4,1.6,.65,1). Out: .45s cubic-bezier(.42,0,.47,-.55) to translateY(calc(-100% + 20px)) scale(0). Tooltip/label pop: scale(0) to 1, .3s cubic-bezier(.49,2.2,.53,.75), transform-origin 50% 80%; out uses cubic-bezier(.65,-1,.45,1)."
+  },
+  {
+   "technique": "Audio unlocked by the same gesture that enters the world",
+   "why_it_works": "The browser autoplay policy becomes a designed moment: the click is both consent to sound and the cue for the world to flood open, so the soundtrack arrives with the space.",
+   "how_to_build": "Put an in-world 'click to start' label next to the object, with a separate speaker glyph that is itself a mute toggle (brightness 1 to 1.5 on hover). Accept click on a hit area, Enter, W/D, the up/down arrows or gamepad cross. On that input: Howler.ctx.resume(), play a single reveal sting at volume 0.5, start the music, then run the reveal expansion. Offer a persistent mute key (L) and an options toggle. If you ship gamepad and touch, render the label per input mode so the instruction always matches the device."
+  }
+ ],
+ "slop_risks": [
+  "Purple / blue-purple palette: the grid marks are #8d55ff violet and the day ring is periwinkle #5f7dff. Copied without the warm world, it collapses into the default purple-glow tell. Bruno keeps it off the slop line with a warm plum-black base (#1f1619, not blue-charcoal) and the hot orange/pink diorama, and the ring color changes with the day cycle anyway.",
+  "Faint grid background: the loader stage is a full-bleed field of violet cross marks on perspective grid lines, which is the graph-paper tell. It is defensible only as a transient loading floor that discards itself inside the reveal and is destroyed at step 2; as a permanent backdrop it is slop.",
+  "Radial glow halo / bloom-as-shape: the glowing ring and rim risk the 'bloom that is just the element's shape, blurred' tell. It works only because the bloom is HDR-thresholded (threshold 1, strength .25) on a genuinely emissive object, not a CSS blur behind a card.",
+  "Default Google fonts: Nunito is exactly the 'friendly rounded Google sans' the law rejects, and Amatic SC is a free novelty display face. The hand-drawn label works in a toy world (and the intro label is a pre-drawn bitmap, not the font), but on a product or brand site the pair reads as the default-fonts rotation. Pally is loaded but unused, which is dead weight rather than a type decision.",
+  "Hairline light borders and gradient chrome: tooltips and panels use 1px #ffceca borders, and every panel is a subtle plum radial gradient (the menu tabs a red-to-plum one). It passes here because the gradients are low-contrast and warm, but lifted into a normal site it is the hairline-box plus gradient-panel look.",
+  "Content gated behind interaction: the first screen has no DOM text and nothing happens until a click (all 7 scroll steps are identical). It is the invisible-content trap in spirit: crawlers, screen readers and scroll-first visitors get a still scene. Jury accessibility is 6.6.",
+  "No reduced-motion path on a site that is all motion (camera flights, weather, confetti, day cycle).",
+  "A naive copy with PBR materials and black shadows loses the cohesion entirely. The look is the shared toon material and the palette atlas, not the models.",
+  "Hover movement on controls: the edge-docked menu/map triggers and nav items translate 4px on hover (translate(-4px) / translateY(-4px)). It reads as a drawer tab only because the plate is 4px oversize and anchored to a screen edge, so no gap opens. Copied onto free-floating buttons it becomes the hover boop."
+ ],
+ "confidence_notes": "The screenshots are not blank, but the probe cannot pass the click-to-start gate: desktop_01 to 07 are the same revealed-disc state with small foliage wind differences, and desktop_00 is the loading ring. The post-start world (areas, circuit, day cycle visuals) was NOT observed visually; it comes from the live bundle (unminified, so class and uniform names are real) plus the HTML modal text. There are no jury element videos for this site. OBSERVED in code: the reveal/intro tween values, the DayCycles presets and stops (240s), the Grass counts, the bloom/DOF config, the foliage see-through math, the CSS easings and the Quality tiers. OBSERVED in probe: three r183, WebGPU context, 23 glbs, font families, rendered sizes and colors. INFERRED: the areas' visual appearance and how the season visuals change. The re-probe was not run because the gate, not a blank capture, limits it, and clicking is out of scope. audit (2026-09-24): re-viewed desktop_00, 01, 03, 05, 07, mobile_00, mobile_01 one at a time plus a zoomed crop of desktop_01, sampled pixel colors, and re-read the cached bundle (Intro, Reveal, Grid, DayCycles/Cycles, MeshDefaultMaterial, Materials, Foliage, Grass, Quality, Rendering, input actions) and CSS. Corrected: 'CLICK TO START' is a per-input-mode KTX bitmap, not Amatic drawn through TextCanvas (Amatic is used for other in-world labels and modal titles); Pally is loaded but unused; the void is the grid plane through the toon material, not a clear color; the reveal is a vertical cylinder that slices tall props with glowing seams (visible in desktop_01); the 50% leaf value is a see-through hole-size multiplier, not transparency; the see-through edge max is 15/cameraRadius; '#skip' does not speed up the ring collapse; the light bounce samples the terrain color; JS weight is about 1MB gzipped, not 160KB; sound is about 30 folders / 42 registrations, not 40+ categories; the edge-tab buttons do slide 4px on hover; preload covers 4 assets only; the mobile disc is centered, not lower-center, and its rim is pink-lavender because the capture fell at another point of the day cycle; ring sweep direction downgraded to unverified. Added: the material-by-name library and palette.ktx atlas, emissive gradient materials, the speaker glyph as a real mute toggle, per-device label swap, arcade initials, the notification time bar, antialias gated on DPR. Verified as stated: tween values, DayCycles presets and stops, grass 280x280, bloom/DOF config, CSS easings, Quality regex, controls text, L mute key, 30-character whispers. audit2 (2026-09-25): re-viewed desktop_00, 01, 03, 05, 07, mobile_00 and mobile_01 one at a time, re-sampled pixels (void #1f1619, disc #ff9b61) and re-read the cached bundle, CSS and index.html. Re-confirmed: Grid lines (#8d55ff scale 10 cross .2 / #675369 scale 100), base #1b191f, ring 3.46-3.5x128, Intro/Reveal tween values and input keys, '#skip' behavior, label offsets per quality level, DayCycles presets and stops (240s, night interval .25-.7), MeshDefaultMaterial pipeline, bloom/cheapDOF config, WebGPURenderer options, no tone mapping set by game code, material and gsap call counts (36/45/8/6, 97/8/7), 42 audio.register calls, CSS easings and colors, 30/3 maxlengths, leaderboard 700 Nunito on 512px canvas. Corrected: the foliage steal described single camera-facing quads; each instance is an 80-quad sphere cluster with normals bent 85% radially, oriented once at load, with threshold math alpha = tex*(c*.7+.3)-.3. The area list had 10 of 13 areas (missing Projects, Lab, Circuit). Added: the live document.title ticker (car and tree emoji scrolling with speed), the speaker glyph as a two-frame sound.ktx sprite, the procedural floor slab colors behind the orange disc, the console credits banner, the AZERTY-friendly Konami, a hover-movement slop note for the 4px edge tabs, and the law's rounded-Google-sans call-out on Nunito. Still inferred or unobserved: everything after the click-to-start gate (areas, circuit, weather visuals), ring sweep direction, the white streak in mobile_00."
+}

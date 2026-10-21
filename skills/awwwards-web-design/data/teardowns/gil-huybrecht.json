@@ -1,0 +1,280 @@
+{
+ "slug": "gil-huybrecht",
+ "title": "Gil Huybrecht",
+ "live_url": "https://gilhuybrecht.com/",
+ "award": "Site of the Day Sep 21, 2026 (Honors); credits Gil Huybrecht, Jesper Landberg (inferred roles: design / development)",
+ "scores": {
+  "overall": 7.66,
+  "design": 7.93,
+  "usability": 7.33,
+  "creativity": 7.46,
+  "content": 7.92,
+  "dev": {
+   "overall": 7.4,
+   "semantics_seo": 6.6,
+   "animations": 8.4,
+   "accessibility": 7.4,
+   "wpo": 7.4,
+   "responsive": 7.6,
+   "markup": 7.2
+  }
+ },
+ "industry": "Independent freelance designer / art director portfolio (editorial sites, ecommerce, immersive web)",
+ "signature": "The home page is the archive: every page capture and clip from every project sits in one WebGL contact sheet (a 14-column grid with 2-column cells, so 7 visual columns) set in a single 16.32px type size, and a hidden 'Star Wars' mode reloads the site with music and turns the cursor into a lightsaber that burns, tears and chars the rendered page in a post-process shader.",
+ "first_screen": {
+  "composition": "OBSERVED desktop_00: pure black #000 at 1440x900. Top band at y~27 is a row of facts on the 14-column site grid, all white Lay Grotesk Medium 16.32px: 'Gil Huybrecht' (x13, span 2) | 'Available September 2026' (x217, span 3) | 'Services' with a 3-item list (span 3) | 'Recognition' with a 7-item list (span 3) | 'Profile' (span 1, right-aligned to x~1222) | 'Email me' (span 2, right edge x1426). The Services and Recognition heads hang one gutter left of their lists (s:-ml-14 = -1.4rem, head x509/815 vs list x523/829), so the list items sit exactly on the grid column. About 280px of empty black follows. The work grid starts at y~458: 7 cells of about 190px with a 1.4rem (13.4px) gutter. Each cell has an 18px label row (project name top-left on its first cell, index 1..n top-right on every cell, 0.6rem above the capture) over an uncropped page capture at its own aspect ratio, so row bottoms are ragged. The first row fits (captures y473-714); the second row's labels (y~795) and captures (y810+) are cut by the fold. Two fixed segmented toggles sit in the bottom corners in translucent chips: 'Grid | Gallery' at bottom-left and 'Normal | Star Wars' at bottom-right. Inactive halves are at 40% white.",
+  "what_owns_it": "mixed",
+  "display_type_px": 16.32,
+  "evidence": [
+   "probes/gil-huybrecht/desktop_00.jpg",
+   "probes/gil-huybrecht/probe.json measure.largest_text / css_usage / bg_colors",
+   "evidence/probe/gilhuybrecht.com.txt (cached HTML + bundle): header markup col-span-2/3/3/3/1/2, s:-ml-14, site-grid, gap-y-75, mb-6"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Lay Grotesk Medium (declared as font-family 'sans')",
+    "role": "display",
+    "classification": "neo-grotesque sans",
+    "foundry": "unknown (not verified)",
+    "source": "inline @font-face in HTML: font-family:sans; font-weight:500; src /_nuxt/LayGrotesk-Medium.*.woff2; probe fonts_loaded 'sans 500 normal'"
+   },
+   {
+    "name": "Lay Grotesk Medium",
+    "role": "body",
+    "classification": "neo-grotesque sans",
+    "foundry": "unknown (not verified)",
+    "source": "probe: 129/129 text nodes, one family"
+   },
+   {
+    "name": "Lay Grotesk Medium",
+    "role": "ui",
+    "classification": "neo-grotesque sans",
+    "foundry": "unknown (not verified)",
+    "source": "probe type.button / nav a"
+   }
+  ],
+  "display_size_px": 16.32,
+  "body_size_px": 16.32,
+  "scale_notes": "On the index the scale ratio is 1:1: the probe found all 129 text nodes at 16.32px, weight 500, line-height 18.1152px, white. Hierarchy comes from column position, hanging heads (Services and Recognition outdented by one 1.4rem gutter so their lists sit on the grid line) and opacity (inactive toggles text-white/40, hover /70; non-hovered projects and their labels drop to 20% alpha, measured ~51/255 on white captures in desktop_01). The root tracks viewport width: html{font-size:clamp(5px,12px,10*100vw/var(--size))} with --size 390 below 650px and 1500 from 650px, so the root is min(12px, 10vw*10/size): 9.6px at 1440 (1.7rem = 16.32px), 10px at 390 (17px), and it stops growing at 12px from a 1800px viewport. Off the index the site is not strictly one size: CSS also ships .t-h2 (3.2rem, 7rem from 650px = 67px at 1440, used for the Newsletter view heading) and .text-14 (1.4rem, 30% opacity disclaimer).",
+  "tracking_leading": "Body: letter-spacing normal; line-height 1.11 (18.1152/16.32), so stacked lists read like a spec sheet at an 18px pitch. The only display style, .t-h2, runs -0.02em tracking, line-height 0.9 and text-wrap:pretty. A .t-trim utility uses text-box: trim-both cap alphabetic to kill half-leading on project info rows. Toggle labels get a pt-[.075em] optical nudge to centre caps in their 2.5rem chips.",
+  "case_and_style": "Names in title case as authored, including client marks (Ray®, Vucko™, Better Off®). No all-caps, no italics. Plain numerals for cell indices (1..6 observed in desktop_03). Credentials use parenthetical counts: 'Awwwards SOTD (15x)', 'FWA Site of the day (13x)'. Cursor-label verbs are lowercase in data and capitalised with ::first-letter (e.g. 'back' shows as 'Back').",
+  "signature_moves": [
+   "One size, one weight, one colour across the whole index. The layout grid does all the hierarchy work (a 7rem heading exists only in the Newsletter view).",
+   "A header written as a CV row on the same 14-column grid as the work: name, availability date, services, award tallies, then two actions.",
+   "Hanging heads: 'Services' and 'Recognition' are pulled left by exactly one gutter (-1.4rem) so the list items, not the heads, align to the grid column.",
+   "The mobile header is fixed with mix-blend-mode:difference. In mobile_01 the white project title 'Ross Mason®' has scrolled under the white 'Gil Huybrecht' and the difference blend knocks the overlap out to black (an XOR look). This is a blend collision, not a label that reports the project in view; no such code exists in the bundle.",
+   "Star Wars mode recolours all type to #ffe81f (crawl yellow) with an html.star-wars class and a Tailwind 'sw:' variant (inline CSS: html.star-wars{color:#ffe81f}, .star-wars .sw:mix-blend-normal)."
+  ],
+  "mobile": "mobile_00/01 at 390px (2x captures): --size 390 gives a 10px root, so 1.7rem = 17px (probe mobile largest 17px). The header collapses to 'Gil Huybrecht' on the left and 'Profile,  Email me' on the right, comma-joined, and is position:fixed with mix-blend-difference. The site grid becomes 4 columns, so the 2-column cells make a 2-up grid (two ~174px captures, 14px gutter and margin); only the first two captures of each project appear, the project title sits on its own row, and index numbers are hidden (max-s:invisible). Rows are separated by ~75px (7.5rem) of black. No WebGL on touch (has-gl needs hover:hover, pointer:fine and min-width 650px). No horizontal overflow (probe)."
+ },
+ "color": {
+  "mode": "dark",
+  "base": "#000000 true black (probe html_bg rgb(0,0,0); Awwwards palette lists #0D0D0F)",
+  "ink": "#FFFFFF (129/129 text nodes); inactive toggle text rgba(255,255,255,.4) with hover .7; non-hovered projects and labels at 20% alpha (~#333 on black)",
+  "accents": [
+   "none in the UI; all colour comes from the client screenshots",
+   "toggle chips bg-black-1/60 = rgba(44,44,47,0.6) with backdrop-blur 16px (probe bg_colors, backdrop_filter 2)",
+   "hover pill on every text link: #ffffff26 (white 15%) with backdrop-filter blur(16px), radius .5rem",
+   "Star Wars mode: text #ffe81f; bundle constants _u=3837183 (0x3A8CFF) and 13624575 (0xCFE4FF) declared next to the starWars store flag, inferred: blade glow and core colours",
+   "burn shader ramp: rim vec3(0.35,0.02,0) -> (1.0,0.3,0.03) -> (1.0,0.85,0.4) -> white-hot (1.5,1.4,1.2); scorch (0.045,0.024,0.014); embers (1.0,0.34,0.05)"
+  ],
+  "ratio": "about 60% black / 38% screenshot content (mostly white and cream client pages) / 2% white type",
+  "section_shifts": "None. One continuous black field from the header to the footer (probe sections 1, doc_height 4440).",
+  "texture": "none; no grain, no gradients",
+  "notes": "A strict black-and-white frame lets the client work supply all the colour. In desktop_03, with no project hovered, the whole grid reads as a bright mosaic. On hover every other project drops to 20% alpha, so one project's cells light up across row breaks (desktop_01, 02, 04, 05)."
+ },
+ "layout": {
+  "grid": "A 14-column site grid (.site-grid repeat(14,minmax(0,1fr)), column-gap 1.4rem, .site-max padding 1.4rem; 4 columns below 650px). Every project cell is col-span-2, which gives 7 visual columns of ~190px at 1440 (origins x13, 217, 421, 625, 829, 1033, 1237). The header (spans 2/3/3/3/1/2) and footer use the same 14 columns. Row gap is 7.5rem (gap-y-75, 72px at 1440): measured captures-to-captures distance is 96px = 72px gap + the 24px label row.",
+  "density": "dense grid floating in an airy field (72px row gaps; about 280px of black under the header)",
+  "alignment": "top-left; cell labels split left (project name) and right (index number) across each 190px cell",
+  "composition_moves": [
+   "Stream layout: each project is a run of consecutive cells that wraps across rows like text. 'The Lookback' starts in column 5 and continues onto the next row.",
+   "Every capture shares one width at its true aspect ratio (padding-box --aspect), from ~120px tall (3:2 page grabs) to ~267px (tall scroll grabs), so row bottoms are ragged like a contact sheet.",
+   "The header is a fact row rather than a hero, laid on the same grid as the work, with hanging heads.",
+   "Mode toggles are pinned to opposite bottom corners (fixed bottom 1.2rem, inset-x 1.4rem), one for layout (Grid/Gallery) and one for personality (Normal/Star Wars). They are gone once the footer is in view (desktop_05; inferred trigger: footer visibility, leave tween .3s power1).",
+   "Footer of plain links at y~860-878 (desktop_05) placed on the 14-column grid: ©2026/Privacy Policy at column 1, Instagram/Twitter (X) at column 5 (x421), Savee/Youtube at column 8 (x727), Course at column 11 (x1033), Newsletter right-aligned.",
+   "A hidden designer overlay: Shift+G toggles a 14-column bg-white/10 grid over the page (4 columns on mobile)."
+  ],
+  "section_rhythm": "No sections. One index runs from the header to the footer in about 4.9 screens (doc height 4440). The rhythm comes from alternating tall and short captures inside each row.",
+  "mobile_adaptation": "4-column grid with the same col-span-2 cells, so 2-up. Each project shows only its first two captures under a title row; index numbers are hidden. The header becomes fixed with a difference blend. No WebGL, no toggles, no Star Wars mode on touch."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis (probe globals.lenis true, html class 'lenis'). Bundle: new Lenis({lerp:.15, wheelMultiplier:1.25, autoResize:false}); a second Lenis instance with the same options scrolls the project modal. One GSAP ticker drives lenis.raf. The programmatic scrollTo uses an expo in-out easing (y<.5 ? 2^(20y-10)/2 : (2-2^(-20y+10))/2). syncTouch and infinite appear only as Lenis's own defaults (both false), so there is no infinite scroll despite the Awwwards 'Infinite Scroll' tag; the probe reached a hard footer.",
+  "preloader": "Bundle (not seen: screenshots start after a 6s settle): a fixed black mask (z-99) shows a centred 'NN%' counter in the same 16.32px type. Progress is tweened (.6s power1 per step) while every project texture and video is preloaded, then the mask fades out (.6s power1.out). In Star Wars mode a full-screen 'Click to enter' layer follows, which unlocks audio and starts the music.",
+  "intro_sequence": "Bundle: after the mask lifts, planes.intro() takes every visible plane (and its .js-intro-el label) and slides it up from the bottom of the viewport (offset = viewport height - its top) to rest over 1.3s expo, staggered 75ms in top-to-bottom order. Header lines rise out of overflow:hidden masks (GSAP 'masked' effect: yPercent 105 to 0, .5s power2, 35ms stagger, .25s delay). .js-i-fade elements fade in .6s power1.inOut with 150ms stagger. Not captured in the screenshots.",
+  "scroll_techniques": [
+   "WebGL planes synced to Lenis on one fixed 1440x900 canvas (probe canvas fixed; 2 webgl2 contexts); each plane copies its DOM cell's rect every tick",
+   "a u_bulge uniform (vertex z += u_bulge*(1-d*d)*45, d = normalised distance from screen centre) is declared and initialised to 0, but nothing in the shipped bundle writes it, so it is dormant",
+   "burn field advection: uShift moves the cut field with the page so scars scroll with the content"
+  ],
+  "text_animation": "Masked line rises, not morphs: header items and modal copy sit in overflow-hidden wrappers and rise from yPercent 105 (.5s power2, 35ms stagger). The project modal splits its paragraphs with SplitText ({type:'lines', mask:'lines'}) and runs the same effect. No per-character effects on the index.",
+  "image_animation": "Grid-to-target flip, vertex shader gG on PlaneGeometry(1,1,32,16): each vertex moves from a u_from pixel rect to a u_to pixel rect. activation = 1-sqrt(ax*ax*0.6+ay*ay*0.4) with ax/ay measured from the trailing edge, so lead = 1-activation is largest at the corner facing the direction of travel and that corner leaves first. vertexProgress = progress/(1-lead*0.225), then an ease-out-quad. Mid-flight lift is 4p(1-p)*(dome*0.5+lead*0.5)*8, with dome = sin(uv.x*PI)*sin(uv.y*PI), so the card bows like paper, and the fragment shader multiplies colour by 1+vParab*(vShape-0.5)*2*0.22 so the bow catches light. The flip lasts 1.5s (Sg) on a custom ease registered as CustomEase 'snappy' (M0,0 C0.094,0.026 0.124,0.127 0.157,0.29 0.197,0.486 0.254,0.8 0.348,0.884 0.42,0.949 0.374,1 1,1). Exit variant: .75s power3.inOut, vertices pulled toward a pinch point at (screen width, half height) with pull .45 and bow 18, used when leaving planes fly off to the right. Ghost fade-outs multiply alpha by .72 per frame. Planes sample through uvCover() (object-fit: cover in GLSL) so the crop holds while the rect changes shape.",
+  "page_transitions": "Shader wipe masks (#include <wipe>): LTR, RTL, CIRCLE and CLOCK (atan sweep) with soft edge 0.2 (u_wipeSoft default), applied to entering and leaving plane groups, plus the plane flip into Gallery, the project modal and the profile, and a fixed black .js-t-mask layer. The 'Gallery view' and 'Profile page' Awwwards elements are images, not videos, so none of this timing was seen.",
+  "hover_micro": [
+   "Project isolation: hovering any cell of a project calls setFocus with fade:true; every other plane tweens u_alpha to 0.2 (.25s power1) and their labels dim with it (desktop_01 53 West 53, desktop_02 Vucko, desktop_04 Flow, desktop_05 Loop Earplugs; measured ~20%). While a project is hovered the header fades to opacity 0 (250ms ease-out-quad).",
+   "Frosted hover pill (.h-pill) on every text link and button: a ::before inset -.4rem -.8rem -.3rem, radius .5rem, clip-path inset(0 round .5rem), goes from transparent to #ffffff26 + backdrop blur(16px) in .3s cubic-bezier(.19,1,.22,1) and leaves in .15s cubic-bezier(.25,.46,.45,.94). The active route keeps the pill.",
+   "Toggle labels: text-white/40, hover /70, active white, transition-colors 300ms; the chip group fades in .3s power1 after .25s and out .3s.",
+   "'Email me' relabels to 'Copy email' on hover; a click copies hello@gilhuybrecht.com to the clipboard and shows 'Email copied' for 2s."
+  ],
+  "cursor": "Normal mode keeps the native cursor (cursor_none 0) but adds a text label that trails the pointer at +16px (gsap.quickTo x/y .35s power3) in a fixed, pointer-events:none, mix-blend-difference layer. It reads the nearest [data-cursor] attribute each tick: 'Focus' on modal media, 'Close' on the zoom lightbox, 'Back' on the modal scroller, 'Click to enter' on the Star Wars gate. Star Wars mode adds a lightsaber: each frame the stroke segment uA->uB is stamped into a 1024px ping-pong RGBA field (r=heat, g=char, ba=stroke direction) with a gaussian exp(-d*d/radius)*uAmt, radius 2.5e-4, heat capped at 1.5. Heat decays exp(-dt*6) (~0.35s), char grows by heat*dt*4.4 and decays exp(-dt*5). The composite pass tears content apart perpendicular to the stroke (offset * uTear), buckles it with zero-mean value noise at 115x and 340x, opens a void, runs a molten rim through a fire ramp, mixes the scorch toward sooty brown and scatters embers. It only affects pixels where the scene alpha shows content. Planes also pick up an additive blade glow: col += u_saberColor*exp(-3*d/falloff)*0.6.",
+  "easing_curves": [
+   "cubic-bezier(0.19,1,0.22,1) x19 (Tailwind ease-out-expo, the house curve)",
+   "cubic-bezier(0.23,1,0.32,1) x9",
+   "cubic-bezier(0.25,0.46,0.45,0.94) x5 (Tailwind ease-out-quad, pill exit and header fade)",
+   "cubic-bezier(0,0,0.2,1) x2",
+   "CustomEase 'snappy': M0,0 C0.094,0.026 0.124,0.127 0.157,0.29 0.197,0.486 0.254,0.8 0.348,0.884 0.42,0.949 0.374,1 1,1 (plane flip, 1.5s)",
+   "GSAP power1 x12 (mostly .3s fades; focus dim .25s)",
+   "GSAP expo 1.3s (plane intro rise, 75ms stagger)",
+   "GSAP power2 .5s ('masked' line rise), power3 .35s (cursor label quickTo), power3.inOut .75s (plane exit), power1.inOut .75s (dim restore), power1.out",
+   "Lenis scrollTo: custom expo in-out"
+  ],
+  "duration_range_ms": "150-1500 (CSS .15-1s; GSAP .15-1.3s; plane flip 1.5s; burn heat about 350ms, char fades a few hundred ms after)",
+  "stagger_ms": "35 (masked lines), 75 (plane intro), 150 (.js-i-fade); in-shader corner-to-corner stagger 0.225 of normalised progress",
+  "choreography_notes": "One entrance, then stillness. After the percentage mask lifts, the planes and labels rise from the bottom in top order and the header lines rise out of masks. After that, scroll only moves the grid, hover only changes alpha (and hides the header), and a click is the only thing that makes geometry fly. The heaviest motion (paper bow, burn) runs in shaders, so the DOM stays plain text.",
+  "evidence": [
+   "probes/gil-huybrecht/desktop_00-07.jpg",
+   "probes/gil-huybrecht/mobile_00-01.jpg",
+   "evidence/probe/gilhuybrecht.com.txt (cached HTML + /_nuxt/CuL0r0_T.js): Lenis options, GLSL gG/_G/zz/Dz with authored comments, ed={heatDecay:6,charDecay:5,charRate:4.4,radius:25e-5}, ca=1024, Sg=1.5 flip, CustomEase 'snappy', Qc={duration:1.3,ease:'expo',stagger:.075}, EE=.2 focus dim, masked effect, Cursor and Email components",
+   "inline CSS: .h-pill, .t-h2, .t-trim, site-grid, .star-wars rules",
+   "no element videos available (frames/gil-huybrecht missing; the Awwwards elements are .jpg)"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "mixed",
+  "art_direction": "Raw, uncropped browser captures of the client sites themselves: full page grabs, long scroll grabs, and individual sections such as hero, product grid and article list. They are shown as flat rectangles with no device mockups, shadows or radius (probe box_shadows 0; the only radius is 4.8px on the two toggle chips). Most captures are white or cream pages, so they read as bright cards on black.",
+  "treatments": [
+   "KTX2 GPU-compressed textures (159 .ktx2 requests; 26.2MB declared), mapped from DatoCMS URLs via /textures/manifest.json and transcoded with /basis/",
+   "Mux static MP4 renditions (video.mp4High) used as VideoTextures for moving thumbnails (36 stream.mux.com requests; 66MB mp4 declared), e.g. the scrolling 'RIBE SU' marquee capture in desktop_03; no HLS in the bundle",
+   "hover isolation to 20% alpha",
+   "additive blade glow and the burn composite in Star Wars mode"
+  ],
+  "crops_and_ratios": "Common width of about 190px at 1440. Heights vary from about 120px (roughly 3:2 landscape captures) to about 267px (tall scroll captures); aspect is stored per cell as a --aspect padding ratio. uvCover keeps cover-fit while a plane morphs to its gallery rect.",
+  "formats": "probe media: img 0 on desktop (DOM <picture> exists in the HTML but is hidden under has-gl; all imagery is drawn in WebGL), video 1 = the tiny base64 #test-video used to detect iOS Low Power Mode, not content; asset_extensions ktx2 159, mp4 36, jpg 35 (DatoCMS), png 1; avif 2.7MB declared",
+  "evidence": [
+   "probes/gil-huybrecht/desktop_00-05.jpg",
+   "probes/gil-huybrecht/probe.json assets_3d / top_hosts / bytes_by_type_declared"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r185 (probe three_revision 185) with custom ShaderMaterials and a post pass; no GLTF models",
+  "role": "image-plane shader grid (the whole portfolio) plus a full-screen post-process burn effect",
+  "assets": [
+   "https://gilhuybrecht.com/textures/154012_1775407815-tlb4.ktx2",
+   "https://gilhuybrecht.com/textures/154012_1775408238-ny1.ktx2",
+   "https://gilhuybrecht.com/textures/154012_1775408359-vuc1.ktx2",
+   "https://gilhuybrecht.com/textures/154012_1784297400-10.ktx2",
+   "(+155 more ktx2 textures, one per capture)"
+  ],
+  "materials_lighting_post": "Unlit planes: the fragment samples the capture through uvCover, applies paper-bow shading (+/-22%) and the additive blade glow, then alpha with an optional wipe mask. The post pass zz reads tDiffuse and the uCut field and applies tear offset, noise buckle (value noise at 115x and 340x), hole, rim, spill, scorch and embers. The update pass Dz advects the field by uShift and stamps the stroke with a segment-distance gaussian.",
+  "interaction": "scroll-synced grid, hover isolation, click-to-morph into gallery/profile, cursor blade cutting in Star Wars mode",
+  "performance_tactics": "KTX2/Basis textures with an LRU texture cache (MAX 64, ref-counted eviction); video textures updated via requestVideoFrameCallback and played/paused by an IntersectionObserver (rootMargin 25%); anisotropy capped at 8; one fixed canvas; Lenis autoResize:false with manual resize; a single GSAP ticker drives lenis.raf and the render; cut field held at 1024px. Crossing the has-gl media query on resize triggers a full reload (debounced 500ms).",
+  "fallback_mobile": "Verified in the inline script: html.has-gl is added only when (hover: hover) and (pointer: fine) and (min-width: 650px) match. Without it there is no WebGL, and the DOM <picture>/video cells render directly (mobile_00/01 2-up grid). No morph, burn, toggles or Star Wars mode on touch.",
+  "evidence": [
+   "probes/gil-huybrecht/probe.json globals/contexts/assets_3d",
+   "cached bundle CuL0r0_T.js shader strings and plane manager (AG class)",
+   "inline <script> has-gl matchMedia gate"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "No menu. On desktop the header is absolute at the top of the page (it scrolls away; desktop_01-05 show no header) and fades out while a project is hovered. On mobile it is fixed with a difference blend. It holds a name button (home / scroll to top), 'Profile' and 'Email me'. The index itself is the navigation; clicking a project opens a 'Project' modal dialog with its own Lenis scroller.",
+  "menu": "none; the Pinia store has a 'menu' flag but no menu was visible",
+  "buttons_links": "Bare white text with no underline or icon at rest. On hover a frosted pill (white 15% + 16px backdrop blur, .5rem radius) fades in behind the text and extends past it (.4rem top, .8rem sides, .3rem bottom). Segmented toggles show the active option at 100% white and the inactive one at 40% (70% on hover) in a rgba(44,44,47,.6) blurred chip, 2.5rem tall with a .5rem (4.8px) radius.",
+  "unusual_interactions": [
+   "Grid/Gallery layout switch (route change; planes flip to their new rects)",
+   "Normal/Star Wars switch: sets sessionStorage 'star-wars' and reloads the page into the yellow, sound-on, lightsaber mode",
+   "'Email me' copies the address (hover label 'Copy email', then 'Email copied' for 2s); 'Newsletter' opens a sign-up view with a 7rem heading and an email field",
+   "Cursor-trailing verb label from [data-cursor] (Focus / Close / Back / Click to enter)",
+   "Shift+G toggles a 14-column grid overlay"
+  ],
+  "sound": "Normal mode is silent. Star Wars mode has Web Audio sound with a speaker 'Toggle sound' chip (state saved in localStorage): /sound/main.mp3 music at volume .5 starts after 'Click to enter', switches to /sound/text.mp3 on a 'crawl' event (inferred: an opening text crawl), a lightsaber hum whose gain and playbackRate follow blade speed, lightsaber open/close files (referenced), and a random hit sound (hit1/hit2 at .45) on every pointerdown. From the bundle; not heard.",
+  "footer": "Five link groups on the 14-column grid in the same 16.32px type: ©2026 + Privacy Policy (col 1), Instagram + Twitter (X) (col 5), Savee + Youtube (col 8), Course (col 11), Newsletter (right-aligned). No wordmark, no CTA banner. The bottom toggle chips hide when the footer is in view."
+ },
+ "content_voice": {
+  "headline_style": "No headline. Facts replace the pitch: availability date, service list and award counts.",
+  "copy_tone": "Dry, CV-like and confident. Proof comes from counts, e.g. 'Awwwards SOTD (15x)'.",
+  "examples": [
+   "Available September 2026"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Nuxt 3 (Vue) with Pinia; the Awwwards tags say Next.js, but the live site exposes __NUXT__ and /_nuxt/ bundles",
+  "libraries": [
+   "three.js r185",
+   "GSAP 3.15.0 + ScrollTrigger, CustomEase ('snappy'), Flip (plugin code present), SplitText (lines with mask)",
+   "Lenis",
+   "Tailwind CSS (tw- vars; custom 0.1rem spacing scale, 's:' 650px breakpoint, 'gl:', 'sw:' and 'has-hover:' variants)",
+   "DatoCMS (www.datocms-assets.com)",
+   "Mux video (static MP4 renditions)",
+   "Pinia",
+   "Google Analytics / GTM"
+  ],
+  "evidence": "probe globals {lenis, __NUXT__, three_revision 185}; libs_from_requests nuxt; top_hosts; cached bundle strings (gsap version '3.15.0' x7, registerPlugin + CustomEase.create('snappy')); inline CSS"
+ },
+ "performance_accessibility": {
+  "requests": 276,
+  "weight_notes": "Declared 66.1MB mp4 (Mux MP4 renditions) + 26.2MB KTX2 + 2.7MB avif; JS about 187KB declared; a single 52KB woff2. The preloader waits for every project texture and video to reach loadeddata before lifting the % mask, so first meaningful paint waits on the whole archive.",
+  "reduced_motion": "probe reduced_motion_rules 0. The bundle reads prefers-reduced-motion into a device feature flag but nothing consumes it, so the intro, flips, wipes and burn all run regardless.",
+  "contrast_issues": "White on black is 21:1. The 40% inactive toggle labels are about 3.7:1 over the dark chip. Hover isolation drops every other project and its label to 20% alpha (~#333 on black, about 1.7:1), so those labels are effectively unreadable while one project is focused.",
+  "mobile_quality": "No horizontal overflow. Touch devices get a plain DOM 2-up grid with 17px titles (no WebGL), which stays readable; the fixed difference-blend header collides with titles as they scroll under it (mobile_01).",
+  "dev_scores": {
+   "semantics_seo": 6.6,
+   "animations": 8.4,
+   "accessibility": 7.4,
+   "wpo": 7.4,
+   "responsive": 7.6,
+   "markup": 7.2
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Single-size type system on a width-fluid root",
+   "why_it_works": "When every string on the index is the same size and weight, the grid and the work carry all the hierarchy. The page reads as confident and archival instead of shouty.",
+   "how_to_build": "html{font-size:clamp(5px,12px,10*100vw/var(--size))} (effectively min(12px, 10vw*10/size)) with :root{--size:390} and @media(min-width:650px){:root{--size:1500}}. Set body to font:500 1.7rem/1.11 'Your Grotesk'; letter-spacing:normal. Use only three levers: column placement, hanging heads (margin-left:-1.4rem, one gutter), and opacity (.4 inactive, .7 hover). Allow one display class for a single secondary view (7rem, -0.02em, line-height .9) and nothing else."
+  },
+  {
+   "technique": "Stream contact-sheet index on a 14-column grid",
+   "why_it_works": "Projects flow through the grid like words in a paragraph. The archive feels editorial, the ragged heights show the work is real captures, and header, cells and footer all snap to the same columns.",
+   "how_to_build": ".site-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:1.4rem} @media(min-width:650px){.site-grid{grid-template-columns:repeat(14,minmax(0,1fr))}}; padding-inline:1.4rem; row-gap:7.5rem; align-items:start. Flatten all projects' media into one list; each cell is col-span-2 with an h2 label row (display:flex; align-items:baseline; justify-content:space-between; margin-bottom:.6rem; project name only when i===0, index i+1 right-aligned and hidden below 650px) over a box whose height comes from a --aspect padding ratio."
+  },
+  {
+   "technique": "Hover isolation across the whole index",
+   "why_it_works": "One gesture turns a noisy mosaic into a single lit project and shows its full extent across row breaks. Hiding the header at the same time removes the only competing text.",
+   "how_to_build": "In WebGL, give each plane a u_alpha uniform and gsap.to(u_alpha,{value: isFocused ? 1 : 0.2, duration:.25, ease:'power1', overwrite:'auto'}) on mouseenter of any cell of that project; restore on the grid's mouseleave. Fade the header to opacity 0 over 250ms cubic-bezier(.25,.46,.45,.94). The DOM version is .grid:has([data-project='x']:hover) [data-project]:not([data-project='x']){opacity:.2} with transition:opacity .25s."
+  },
+  {
+   "technique": "Paper-bow plane flip (grid rect to target rect)",
+   "why_it_works": "The leading corner leaves first and the card lifts in a dome, so the thumbnail reads as a physical sheet being picked up rather than a scale tween.",
+   "how_to_build": "PlaneGeometry(1,1,32,16) with a vertex shader. Take pixel rects u_from and u_to (x,y,w,h); dir = centre(to)-centre(from); ax = dir.x>=0 ? uv.x : 1-uv.x (same for ay), so the value is 1 at the leading edge; lead = sqrt(ax*ax*.6+ay*ay*.4); vp = clamp(p/(1-lead*.225),0,1); vp = 1-(1-vp)^2; pixel = mix(fromPx,toPx,vp); z = 4p(1-p)*(sin(uv.x*PI)*sin(uv.y*PI)*.5+lead*.5)*8. Map pixel to world with the camera's frustum size, re-read u_to from the live DOM rect every tick, and pass vParab/vShape to multiply colour by 1+vParab*(vShape-.5)*.44. Drive p from 0 to 1 over 1.5s with CustomEase.create('snappy','M0,0 C0.094,0.026 0.124,0.127 0.157,0.29 0.197,0.486 0.254,0.8 0.348,0.884 0.42,0.949 0.374,1 1,1')."
+  },
+  {
+   "technique": "Cursor that burns the page (heat/char field post-process)",
+   "why_it_works": "It is a real simulation with a decaying molten rim, scorch and ember specks that tracks scroll. The easter egg rewards play and shows off engineering in a portfolio whose content is otherwise static.",
+   "how_to_build": "Two 1024px float render targets ping-ponging RGBA = (heat, char, dirX, dirY). Update pass: read prev at vUv-uShift (scroll advection); heat*=exp(-dt*6); char=min(1,char+heat*dt*4.4)*exp(-dt*5); add exp(-segDist(p,A,B)^2/2.5e-4) along the pointer segment in aspect-corrected space, capped at 1.5. Composite pass over the scene: offset sampling perpendicular to the stroke by smoothstep(.05,.5,heat)*uTear; buckle with zero-mean value noise at 115x and 340x gated by smoothstep(.2,.8,char); hole = smoothstep(.4,.75,heat*noise); rim = band-pass to a fire ramp; mix toward rgb(.045,.024,.014) by char*.85; embers = smoothstep(.58,.95,vnoise(uv*300))*char. Gate everything by scene alpha. Make it opt-in behind a toggle and honour prefers-reduced-motion (the site does not)."
+  },
+  {
+   "technique": "Frosted hover pill on bare text links",
+   "why_it_works": "Links stay plain type at rest, so the page keeps its one-size discipline, but every target gets a generous, soft hit area on hover without adding boxes to the layout.",
+   "how_to_build": ".h-pill{position:relative} .h-pill::before{content:'';position:absolute;inset:-.4rem -.8rem -.3rem;border-radius:.5rem;clip-path:inset(0 round .5rem);background:#fff0;backdrop-filter:blur(0);z-index:-1;transition:background-color .15s cubic-bezier(.25,.46,.45,.94),backdrop-filter .15s cubic-bezier(.25,.46,.45,.94)} .h-pill:hover::before,.h-pill.router-link-exact-active::before{background:#ffffff26;backdrop-filter:blur(16px);transition-duration:.3s;transition-timing-function:cubic-bezier(.19,1,.22,1)}. The asymmetric timing (slow in, fast out) is the detail."
+  },
+  {
+   "technique": "Cursor-trailing verb label",
+   "why_it_works": "The native cursor stays, but a one-word label says what a click will do ('Focus', 'Close', 'Back'), which matters when the whole page is image planes with no buttons.",
+   "how_to_build": "A fixed, pointer-events:none, mix-blend-mode:difference span. On pointermove: gsap.quickTo(el,'x',{duration:.35,ease:'power3'}) to clientX+16 (same for y). On each ticker frame: document.elementFromPoint(x,y)?.closest('[data-cursor]')?.dataset.cursor sets the text; clear it on pointerdown. Style it ::first-letter{text-transform:uppercase} so data stays lowercase."
+  }
+ ],
+ "slop_risks": [
+  "'One label treatment, everywhere' taken to its limit: a single 16.32px size for name, lists, labels, buttons and footer. It works here only because the work grid is the content. A naive copy on a text-led page is a flat wall with no hierarchy.",
+  "'Text you cannot read': the 40% inactive toggle states (~3.7:1) and every non-hovered project label at 20% alpha (~1.7:1) while one project is focused.",
+  "'A hero that does not own the first screen': about 280px of dead black sits between the header and the grid, and the second row's labels and captures are cut by the fold at y~787-900. Copying the gap without a dense header and strong captures looks like a failed load.",
+  "'Botched glass': the fixed bottom chips (rgba(44,44,47,.6) + 16px blur) and the white-15% hover pills sit over busy white captures. Copied with lighter blur, no tint or a blur that pops in, the text drowns or banding shows.",
+  "Difference-blend header collisions: the fixed mix-blend-difference header on mobile XORs with white titles and captures scrolling under it (mobile_01 'Gil Huybrecht' over 'Ross Mason®'), producing an unreadable knock-out for a moment on every project.",
+  "'Never hide content behind an entrance animation': the whole index sits behind a black % mask until every texture and video has loaded, then planes start offset below the viewport. A stalled video request or a throttled tab leaves a black page.",
+  "Novelty-cursor gimmick: a blade or burn cursor copied without the real heat/char simulation, scroll advection and content-alpha gating becomes a cheap trail effect. The movie reference, music and sound effects are also a licensing risk if lifted for a client brand.",
+  "Screenshot dump: the concept depends on excellent, varied client captures. With mediocre or same-looking screenshots it reads as a Dribbble grid with no point of view.",
+  "No working prefers-reduced-motion handling: the flag is detected but never used (probe reduced_motion_rules 0)."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots and both mobile screenshots viewed individually; probe numbers (font, sizes, colours, easings, durations, request weights) used verbatim; bundle greps of /_nuxt/CuL0r0_T.js gave the Lenis options, GSAP eases and durations, and the full GLSL of the morph, wipe, blade glow and burn passes, which include authored comments explaining intent. The inline CSS gave the font-face, --size fluid root, transitions and .star-wars rules. NOT OBSERVED: no Awwwards element videos were available (frames/gil-huybrecht does not exist), so Gallery view, Profile page, the Star Wars mode and the morph timing were reconstructed from code, not seen. Star Wars behaviour (blade colours 0x3A8CFF/0xCFE4FF, whether sound plays) is inferred from constants. The Lay Grotesk foundry was not verified. Awwwards lists Next.js, but the live site is Nuxt. audit (2026-09-25): re-viewed desktop_00, 01, 03, 04, 05 and mobile_00/01 at full size, measured pixels, and re-grepped the cached HTML+bundle at evidence/probe/gilhuybrecht.com.txt. Fixed: hover dim is 0.2 alpha over .25s power1 (not ~30%/.3s; measured ~51/255); the grid is 14 columns with col-span-2 cells, 1.4rem gutters and a 7.5rem row gap (not 7 columns with an ~11rem gap); the '14px indent' is a hanging head (-1.4rem); the root breakpoint is 650px (not 768px) and the root caps at 12px from 1800px; the flip runs 1.5s on CustomEase 'snappy' (1.3s expo is the load intro) on 32x16 geometry; u_bulge is never written (dormant); Mux clips are static MP4 renditions, not HLS; the probe's video is a Low Power Mode detector; the first row is not cut by the fold (the second is); 'syncTouch/infinite' are Lenis defaults. Removed a false claim: the header does not report the project in view; mobile_01 shows a mix-blend-difference collision between the fixed header and a scrolled title. Added from the bundle: % preloader and 1.3s expo intro, masked line reveals, .h-pill frosted hover pills, cursor verb label, Email copy states, Shift+G grid overlay, has-gl gate (no WebGL on touch), Star Wars toggle reloads the page, Star Wars music/lightsaber sound, .t-h2 display size, reduced-motion flag unused. Still not observed: any of the load/flip/wipe/burn motion (no element videos exist), the Gallery and Profile views, and the Lay Grotesk foundry."
+}

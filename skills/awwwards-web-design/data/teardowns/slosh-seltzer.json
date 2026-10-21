@@ -1,0 +1,278 @@
+{
+ "slug": "slosh-seltzer",
+ "title": "Slosh Seltzer",
+ "live_url": "https://sloshseltzer.com/",
+ "award": "Awwwards Site of the Day, Jun 5 2024 (Honors). Credited to Active Theory on Awwwards; page title, og copy and the JS bundle banner say Buttermax ('Buttermax: Slosh Seltzer', an in-house maximalist brand exploration for a fictional seltzer), built on Active Theory's Hydra framework. Corpus bucket portfolio-agency.",
+ "scores": {
+  "overall": 7.69,
+  "design": 7.6,
+  "usability": 7.34,
+  "creativity": 8.3,
+  "content": 7.87,
+  "dev": {
+   "overall": 7.45,
+   "semantics_seo": 6.8,
+   "animations": 8.6,
+   "accessibility": 6.8,
+   "wpo": 7.6,
+   "responsive": 7.6,
+   "markup": 7.2
+  }
+ },
+ "industry": "Food & drink / agency self-promo: a fake hard-seltzer brand used as a WebGL showcase (maximalist graphic design, transitions, microinteractions)",
+ "signature": "The product's physics is the navigation: a real-time PBR can pops its ring-pull, tips, and pours pink seltzer that floods the viewport as the section transition, while a mouse-driven Navier-Stokes fluid sim sloshes every piece of WebGL-rendered type like liquid.",
+ "first_screen": {
+  "composition": "desktop_00 (after 6s settle) is the preloader: flat #FFC1FF pink field, a ~200px ring of condensed green type 'PREPARING YOUR GOOD TIMES' with a 4-point star spacer rotating around a '100%' counter (steelfish-eb 38px, #00A165, letter-spacing 2px) dead center; a 12px mono top bar 'THE LIFE OF THE PARTY IN SELTZER FORM' centered at y=25 with green sparkle glyphs at both edges and a 4-bar audio toggle top-right. desktop_01-07 are all the same age-gate screen (the probe cannot click through): 'SLOSH' logotype 40px top-center, a two-line centered headline 'THIS IS THE / BIG KIDS TABLE' at 207px in #FF0837 spanning x 345-1098, a 16px mono subline, a solid red pill CTA 'I'M READY TO PARTY' (~324x77px, radius 45px) at y 710-787, and an 11px mono disclaimer at y 843. Five hand-drawn pure-red stickers (three lightning bolts at x~312/1342/67, a small starburst asterisk at x~169, a tongue-out smiley outline at x~1272; pixel blobs match probe bg rgb(255,0,0) x5) are scattered asymmetrically near the edges. The tagline bar from the preloader is NOT shown on the gate. Headline lines sit tighter than their computed 207px line-height: cap tops at y=176 and y=370, a 194px visual pitch (~0.94) with only ~20px (~0.1em) between the cap bottom of line 1 and the cap top of line 2.",
+  "what_owns_it": "type",
+  "display_type_px": 207,
+  "evidence": [
+   "probes/slosh-seltzer/desktop_00.jpg",
+   "probes/slosh-seltzer/desktop_01.jpg",
+   "probes/slosh-seltzer/desktop_01.jpg ... desktop_07.jpg (byte-identical md5, same gate)",
+   "probes/slosh-seltzer/probe.json measure.largest_text"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "steelfish-eb (Steelfish ExtraBold)",
+    "role": "display",
+    "classification": "ultra-condensed grotesque, poster/sign-painter feel, all caps",
+    "foundry": "inferred: Typodermic (Steelfish)",
+    "source": "probe fonts_loaded + inline @font-face assets/fonts/steelfish-eb.woff2; also shipped as MSDF atlas steelfish-eb.json/.png for WebGL text"
+   },
+   {
+    "name": "FKGrotesk (FK Grotesk Mono Regular)",
+    "role": "body",
+    "classification": "monospaced grotesque",
+    "foundry": "Florian Karsten (FK)",
+    "source": "probe fonts_loaded; @font-face maps family 'FKGrotesk' to FKGroteskMono-Regular.woff2; MSDF atlas FKGroteskMono-Regular.json"
+   },
+   {
+    "name": "FKGrotesk-Medium (FK Grotesk Mono Medium)",
+    "role": "ui",
+    "classification": "monospaced grotesque, medium",
+    "foundry": "Florian Karsten (FK)",
+    "source": "probe fonts_loaded; the bold 'not a real' is font-weight 700 applied to the single-weight FKGrotesk-Medium face, so the browser synthesizes (faux) bold on top of Medium"
+   }
+  ],
+  "display_size_px": 207,
+  "body_size_px": 16,
+  "scale_notes": "Measured on the gate: headline 207px, logotype 40px, counter 38px, CTA label 24px, subline 16px, top-bar tagline 12px, disclaimer 11px. Display:body = ~13:1, a two-tier scale (poster condensed vs tiny mono) with almost nothing in between. Inside the experience (element videos) the condensed type grows to fill whole bands: each 'SLOSH SELTZERS' line is fitted to the full viewport width: in frames/0 f00 the red band is 250px tall in the 960x720 capture and its caps are 213px (~0.22 of frame width), so with Steelfish's cap/em of ~0.845 the font-size is ~26vw and the band is ~1.0em (line-height ~1), the caps filling ~85% of the band.",
+  "tracking_leading": "Display: computed line-height 207px on 207px (1.0), but the desktop visual pitch is 194px (cap tops y=176 and y=370 in desktop_01), so the two lines read at ~0.94 with ~0.1em between caps; at 390px the pitch is a true 1.0 (74px on 74.1px). Letter-spacing -2px (about -0.01em), uppercase via text-transform. CTA 24px with +0.72px (0.03em). Counter +2px. Mono 16px set solid (line-height 16px = 1.0).",
+  "case_and_style": "Display all caps, never italic; mono in sentence case for the joke copy, all caps for the tagline bar and the vertical side labels ('4 FLAVORS', 'ONLY 20 CALS', '0 GRAMS SUGAR', 'GUARANTEED GOOD TIMES').",
+  "signature_moves": [
+   "Condensed caps pushed to band-filling scale, then physically distorted by a fluid velocity field (frames/0) so the type behaves like the drink",
+   "Liquid-fill lettering: letters swap between solid MSDF fill and MSDF outline (strokemsdf 0.4) where the fluid mask passes, so 'SELTZER' is half outline, half filled (frames/1 f02-f04; TextLanding.glsl). The outline zone follows the mouse wake, not a rising waterline: in f02-f03 the bottom of SELTZER is outline where the cursor passed and the top stays filled",
+   "AnimatedFillText shader: color rises inside each glyph with a noisy waterline: divider = 1 - (vLocal.y + abs(cnoise(vLocal*vec2(.3,.2) + time*.4 + rand/4))*.2)",
+   "Per-glyph masked rise in the vertex shader: pos.y -= 240 + rand*100*(1 - t); pos.y += 240*t; fragments below y=-200 discarded (a baseline mask without DOM overflow)",
+   "Circular text preloader ring rotating (CSS keyframes 'rotating' 9s linear infinite) around a live percentage",
+   "All in-experience text is MSDF text drawn in WebGL (fonts shipped as .json + .png atlases), so type can be warped by the same post passes as the 3D"
+  ],
+  "mobile": "mobile_00/01 (390px, captured at 2x = 780x1688; mobile_00 and mobile_01 are byte-identical): gate headline drops to ~74px (mobile_measure largest 74.1px; cap height 62.5 CSS px) still two centered lines at a true 1.0 pitch; SLOSH logotype stays ~40px CSS (cap 34 CSS px, same as desktop; an earlier '~62px' figure was device pixels); subline wraps to two centered mono lines; the pill becomes ~178x60 CSS px; disclaimer wraps to three centered lines with 'not a real' in bold; three lightning stickers retained, the smiley and asterisk dropped. No horizontal overflow."
+ },
+ "color": {
+  "mode": "section-shifting",
+  "base": "#FFC1FF candy pink (gate, preloader, top bar; UIL config lists #FFC1FF 9x)",
+  "ink": "#FF0837 hot red on pink (probe text color rgb(255,8,55) on 28 nodes; UIL also #FF0A36)",
+  "accents": [
+   "#00A165 green (preloader ring, counter, tagline; landing stage fill, video sample ~#0CAB59)",
+   "#FFC800 yellow band with #FF5F00 orange type (RollingPass uColor2/uColor1 in app.js; video sample ~#F3C706)",
+   "#0069D8 blue band with #ECE4D5 cream type (RollingPass uColor7/uColor8; video sample ~#095FCE)",
+   "#FF0837 red band with #FFC0FF pink type (uColor5/uColor6); the green band pairs with #FFC1FF (uColor3/uColor4)",
+   "#FF0000 pure red on the lightning stickers (probe bg rgb(255,0,0) x5)",
+   "#FFFFFF bubbles and foam highlights"
+  ],
+  "ratio": "Gate: ~85% pink, ~12% red type and CTA, ~3% green/sticker red. Experience: each band is ~70% band color / ~30% type color, one strict pair per band.",
+  "section_shifts": "Hard, deliberate band changes: landing green -> pink flood -> stacked yellow/green/red/blue bands (frames/0). Transitions are not cuts but liquid: the next color rises as a sloshing fill line (FXScrollTransition: cut = aastep(uv.y + uv.x*inclination, progress) with inclination = crange(sin(((time*.5 + uv.x)*.4)*20.), -1., 1., -0.2, 0.)).",
+  "texture": "No grain over type. Liquid areas carry GPU bubble particles (BubbleShader + pop sprites) and a foam spritesheet (16x16 frames) at the waterline. The paler washes on the green stage and over the bands (frames/1 f04-f05, frames/0 f04/f06) are the fluid dye made visible (Landing.fs adds noise*min(fluidMask.g,0.15)*2; RollingPass mixes toward white by bubbles*fluidMask), so they follow the cursor rather than being a fixed light spot. Band edges wobble like liquid surfaces (frames/0).",
+  "notes": "Maximalist but systematized: every section is exactly two colors (field + type), the side labels invert those two colors per band (RollingPass swaps uColor1<->uColor2 etc. where tSideText is drawn). Saturation is loud on purpose (it is a party-drink parody), and the pairing rule is what keeps it from reading as random. Code detail: RollingPass decides which color to paint a side label by testing color.rgb == uColorN exactly, so the two pinks are deliberately one step apart (#FFC1FF on green, #FFC0FF on red) to keep every band's pair unique. Earlier values #FFCA0A (yellow) and #0019D6 (blue) are beer-pong cup colors in the UIL config (CupPBR uOutsideColor), not the band colors."
+ },
+ "layout": {
+  "grid": "No DOM grid (probe grid_containers 0, sections 0, doc_height 900). Gate is a single centered column (headline block ~753px wide at 1440). The experience is one full-viewport WebGL canvas (1440x900) with a persistent ~52px-tall pink tagline bar at top (32px in the 960px-wide element capture, which scales CSS px by ~0.6; consistent with the tagline centered at y~25 in desktop_00); the bar is hidden on the age gate; compositions are centered on a hero can with type pinned left and right of it (frames/1 f00: 'SLOS[H]' left, '[S]ELTZER' right, can overlapping both).",
+  "density": "dense",
+  "alignment": "Centered axis for the hero object and gate; stickers and arc text scattered asymmetrically around it.",
+  "composition_moves": [
+   "Hero can overlaps and interrupts the wordmark: 'SLOSH' and 'SELTZER' sit behind and beside the can, cropped by it",
+   "Sticker-bomb layer: starburst '100% GOOD TIMES', circular '4 FLAVORS' badge with cherries, arc text 'GET THE PARTY STARTED', eyes, swirls, sparkles (PNG stickers assets/images/landing/*.png) around the product",
+   "Full-bleed stacked type bands (frames/0): equal-height rows (~1.0em tall, caps filling ~85% of each band), each one line of 'SLOSH SELTZERS' fitted edge to edge, glyphs sitting inside their band with a thin margin (only the viewport edge crops them), with vertical mono side labels in the far left and right margins ('0 GRAMS SUGAR' and '4 FLAVORS' left, 'GUARANTEED GOOD TIMES' and 'ONLY 20 CALS' right)",
+   "Vertical mono labels running up the edges as the only small print"
+  ],
+  "section_rhythm": "Gate (quiet, one color) -> landing (object + stickers) -> pour/flood (full-screen liquid) -> rolling-can bands (dense type wall) -> more product sections. inferred from shader names: DrinksCarousel with fruit PBR, TasteBuds, GoodTimes, a beer-pong mini game (PongFX, CupPBR, BallPBR, IconPong), and a Cheers finale (CheersFX, ConfettiShader, timeline-cheers.json).",
+  "mobile_adaptation": "Gate restacks at 390 with the same centered column; body/html use touch-action:none and a .mob/.ios class for 100vh stage (inline CSS). Inner experience on mobile not observed; openarrow_mobile.png asset suggests mobile-specific sticker art."
+ },
+ "motion": {
+  "smooth_scroll": "Custom virtual scroll inside the framework (bundle has ScrollController x22, smoothScroll x8, Scroll.create x3); html/body overflow:hidden, touch-action:none, document height 900, so the page never scrolls natively. No Lenis/Locomotive.",
+  "preloader": "Ring of green condensed type 'PREPARING YOUR GOOD TIMES' rotating 9s linear infinite (inline @keyframes rotating) around a percentage counter (steelfish 38px, #00A165) on #FFC1FF; ~198 requests / ~13MB declared to load behind it.",
+  "intro_sequence": "Age gate with pill CTA, then authored JSON timelines (assets/data/timeline-landing.json, timeline-landing-title.json, timeline-ringpull.json) drive the landing: title letters rise per glyph, the can spins in, then on 'POP THE TOP' the ring-pull opens and the pour begins.",
+  "scroll_techniques": [
+   "scrub (virtual scroll drives section timelines)",
+   "liquid-level wipe between sections (FXScrollTransition, scroll-scrubbed via ScrollRenderManager)",
+   "velocity-driven noise zoom inside the transition: scaleUV(uv, 1 + (noise.b*0.2 + grain*0.05)*uVelocity) (FXScrollTransition)",
+   "3D object hand-off between sections (can persists and swaps flavor texture)",
+   "horizontal band stack with rolling can"
+  ],
+  "text_animation": "All in WebGL. Glyph rise: vertex offset -240 - rand*100*(1-t) to 0, with discard under y=-200 as the mask, eased easeOutCubic-style (cubicOut term in AnimatedText). Liquid fill: color transition line with simplex noise wobble moves up through the glyphs (AnimatedFillText). Outline/fill toggle where the fluid mask passes (TextLanding: alpha = msdf - smoothstep(0.9,1, fluidMask.g - stroke) + rim band + bubbles).",
+  "image_animation": "Stickers flip between solid and outline states and new ones pop in on the off-beats rather than drifting: the '100% GOOD TIMES' starburst is solid pink in frames/1 f00 and outlined from f01 on; the arc text 'GET THE PARTY STARTED' appears at f01; a curved arrow plus a small rectangular 'POP THE TOP' tag (popthetop.png, openarrow.png) circles the lid at f02-f03 as a twist hint. Background: CarouselBackgroundShader offers 4 procedural patterns (texture tile, rotating radial rays via atan, noisy concentric rings, fbm contour bands) cross-faded by uLiquidTransition.",
+  "page_transitions": "Liquid flood: pour stream from the can (PouroutFX) is a flat, unlit pink blob with white bubbles (same pink as the type, so the liquid literally becomes the next field color); its pool rises with a curved surface and a thin white meniscus until pink owns the viewport and the next section's vertical labels ('4 FLAVORS', 'ONLY 20 CALS') show through (frames/1 f05-f07, 3.69s-5.03s). The green scene translates up ~60px between f05 and f06 while the cursor stays still, so the pour is advanced by scroll. Section changes elsewhere use FXScrollTransition, created with a ScrollRenderManager (scroll-driven progress, scroll velocity fed to uVelocity), a sine-inclined fill line with a brighter meniscus band (color*1.1 between cut and cut2, offset 0.01). The PouroutFX render target is also bound as tLiquid in the text shaders, so pour, fill lettering and transitions share one liquid texture.",
+  "hover_micro": [
+   "Mouse movement splats velocity into a 2D fluid sim; the velocity/mask texture warps type, backgrounds and bubbles everywhere (DrinksCarouselPass, RollingPass, GoodTimesPass, Landing.fs all sample tFluidMask)",
+   "Ripple around the view centre while fluid is active: ripple = sin(40*(time*0.3 - dist)) scaled by the fluid mask (DrinksCarouselPass and RollingPass)",
+   "Buttons are shader-drawn and fluid-aware (ButtonShader/ButtonUI/ButtonText sample the fluid mask)"
+  ],
+  "cursor": "Native arrow/hand stays visible (probe cursor_none 0; cursor visible in all element frames); the 'cursor' effect is the fluid wake it leaves in the type.",
+  "easing_curves": [
+   "easeOutCubic dominant: 77 occurrences in app.js",
+   "easeInOutCubic x9, easeOutQuart x8, easeInOutSine x6, easeOutSine x4, easeOutBack x4, easeOutQuint x3, easeInOutExpo x3, easeOutBounce x1 (800ms)",
+   "Shader-side: cubicOut, sineInOut (GoodTimesPass strength), smoothstep everywhere",
+   "No cubic-bezier() in CSS (probe easings [])"
+  ],
+  "duration_range_ms": "UI tweens 250-800ms (500ms easeOutCubic x12, 300ms x8, 250ms x7, 600ms with delays x14, 800ms x2); preloader ring 9000ms linear loop; pour-to-flood sequence ~1300ms and whole landing element ~5.4s (meta.json).",
+  "stagger_ms": "Tween delays 100/120/150/200/250/300/350/400ms seen with 600ms easeOutCubic; glyph stagger is not fixed ms but a per-glyph random attribute (animation.x) scaling the start offset.",
+  "choreography_notes": "Product first, type reacts: the can rotates from a tilted side view to a top-down lid view (f00-f02, ~1.7s), the 'POP THE TOP' tag and circular arrow appear (f03, 2.35s), the ring-pull opens to show pink liquid (f04, 3.0s), then it tips and pours (f05, 3.7s); stickers re-arrange around it on the off-beats, then liquid overtakes type and stickers as the climax. Type never animates alone for long; it is always being displaced by the can, the cursor's fluid wake or the liquid.",
+  "evidence": [
+   "frames/slosh-seltzer/1/f00-f07 (Landing and Carousel, 5.37s)",
+   "frames/slosh-seltzer/0/f00-f07 (Mouse Fluid, 5.25s)",
+   "bundle grep app.1780936124566.js (ease names, durations, fluid config CURL 30, SPLAT_RADIUS .25, VELOCITY_DISSIPATION .98, DENSITY_DISSIPATION .97, PRESSURE_ITERATIONS 20)",
+   "assets/shaders/compiled.vs (141 GLSL chunks: advection/curl/vorticity/divergence/pressure/gradientSubtract/splat fluid, FXScrollTransition, AnimatedFillText, TextLanding, RollingPass, DrinksCarouselPass)",
+   "probes/slosh-seltzer/probe.json durations 9s"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "realtime-3d",
+  "art_direction": "Glossy PBR aluminum can (brushed metal lid, ring-pull, rolled rim) lit by studio environment maps (tomoco_studio / MapCan RGBM+sRGB in the UIL config) on a flat green stage; the pale washes behind it are fluid dye that follows the cursor, not a fixed spotlight; flavor labels are flat 2-color graphic prints (cherries, strawberries, smileys, lightning) matching the band palette. Surrounding art is flat sticker illustration: starbursts, swirls, sparkles, eyes, all in the same pink-on-green two-color logic.",
+  "treatments": [
+   "dented-looking can in the rolling section (frames/0); inferred: the dents are baked into can_full.bin or can_Normal.jpg, since the geometry list has no separate crumpled mesh and CanPBR does no vertex deformation",
+   "per-flavor label swap as the can crosses a band (orange -> green -> pink strawberry -> cream/blue)",
+   "SSAO pass on the taste-buds scene (tSSAO, uSSAOStrength)",
+   "bubbles and pop sprites inside liquid",
+   "fluid-driven UV warping of flat layers"
+  ],
+  "crops_and_ratios": "Landing: the tilted can spans ~85% of the stage height (frames/1 f00) and the lid view fills ~50% of it (f02-f04); it bleeds off the top edge during the pour (f06). Rolling section: the can lies horizontal at ~30% of frame height and ~45% of width (frames/0). Type is cropped by the can on purpose (SLOS[H] / [S]ELTZER) and by the viewport edge while scrolling; band glyphs are not cropped by their band edges.",
+  "formats": "probe media: img 1, svg 2, video 0; declared bytes png 6.2MB, jpeg 2.9MB, KTX2 textures (9 files, ~1.05MB '3d'), audio mpeg 1.86MB + ogg 766KB, wasm 254KB (KTX2/Basis transcoder).",
+  "evidence": [
+   "frames/slosh-seltzer/1/f00-f07",
+   "frames/slosh-seltzer/0/f00-f07",
+   "probes/slosh-seltzer/probe.json assets_3d, bytes_by_type_declared"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "Hydra (Active Theory's in-house WebGL2 engine): Class-based shaders with #!ATTRIBUTES/#!UNIFORMS blocks in one compiled.vs, GLUI, Antimatter GPU particles, Proton; no three.js global, no GSAP (probe globals {}).",
+  "role": "hero product object + full-screen fluid/liquid simulation + WebGL-rendered UI and type",
+  "assets": [
+   "https://sloshseltzer.com/assets/images/can/blue_BaseColor.ktx2",
+   "https://sloshseltzer.com/assets/images/can/green_BaseColor.ktx2",
+   "https://sloshseltzer.com/assets/images/can/orange_BaseColor.ktx2",
+   "https://sloshseltzer.com/assets/images/can/pink_BaseColor.ktx2",
+   "https://sloshseltzer.com/assets/images/can/can_plain_MRO.ktx2",
+   "https://sloshseltzer.com/assets/geometry/can/can_full.bin",
+   "https://sloshseltzer.com/assets/geometry/ringpull/can.bin",
+   "https://sloshseltzer.com/assets/geometry/ringpull/pull_tab.bin",
+   "https://sloshseltzer.com/assets/geometry/ringpull/opening.bin",
+   "inferred URLs from UIL config paths: assets/geometry/{cup,ball,cherry,lime,orange,raspberry,strawberry}.bin (Hydra binary geometry, not glTF)"
+  ],
+  "materials_lighting_post": "CanPBR / CupPBR / BallPBR / FruitPBR materials sharing one metal-roughness-AO (MRO) map with swappable base-color KTX2 per flavor; image-based lighting from RGBM/sRGB environment maps (tomoco_studio, MapCan) plus an area-lights config (arealights.json), SSAO (ssaoplus, deNoiseSSAO, upSampleSSAO), FXAA, fast blur on the pour FX. Fluid: classic stable-fluids pipeline (advection, curl, vorticity, divergence, pressure x20 iterations, gradient subtract, splat) whose velocity/mask texture feeds every post pass.",
+  "interaction": "Mouse splats into the fluid (distorts type and liquid); authored timelines move the can (spin, ring-pull, tip, pour); virtual scroll advances sections; carousel drag area (.carousel-drag-area in inline CSS) for the drinks carousel.",
+  "performance_tactics": "KTX2/Basis compressed textures, MSDF text instead of DOM, shared MRO map across flavors, one canvas with pass chain, fluid at reduced resolution (inferred), audio sprites.",
+  "fallback_mobile": "Unsupported-browser redirect (window._UNSUPPORTED_PAGE_ = 'unsupported.html' if optional chaining fails); noscript shows only 'Please enable javascript'. Mobile inner experience not observed.",
+  "evidence": [
+   "probes/slosh-seltzer/probe.json contexts webgl2:3, canvas 1440x900, assets_3d",
+   "assets/shaders/compiled.vs",
+   "app.js asset list"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "No conventional nav (probe nav []). A 32px tagline bar with sparkle glyphs and an audio toggle persists; progression is linear by scroll and a few shader-drawn buttons ('POP THE TOP').",
+  "menu": "None observed.",
+  "buttons_links": "Gate CTA is a solid #FF0837 pill (radius 45px) with pink condensed caps label, no shadow; in-experience buttons are WebGL-drawn stickers/tags reacting to the fluid mask.",
+  "unusual_interactions": [
+   "'POP THE TOP' prompt opens the can's ring-pull and triggers the pour transition",
+   "Mouse-stirred fluid that warps all typography",
+   "Drag carousel of drinks (carousel-drag-area)",
+   "inferred: beer-pong mini game (PongFX, CupPBR, BallPBR, IconPong, TextPong shaders) and a cheers/confetti finale"
+  ],
+  "sound": "Yes: backing track (assets/audio/backing.mp3), looping soda pour-out (soda_pour-out_loop.wav), audio sprites; 4-bar equalizer toggle at top-right of the bar.",
+  "footer": "None observed (single canvas)."
+ },
+ "content_voice": {
+  "headline_style": "Short shouty condensed caps, party slang, kid/adult double meaning.",
+  "copy_tone": "Self-aware parody ad copy with legal-disclaimer jokes in tiny mono ('you agree to be amazed and amused').",
+  "examples": [
+   "THIS IS THE BIG KIDS TABLE"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Active Theory's Hydra WebGL framework (243 'Hydra/hydra' mentions in app.js; UIL tweak config, #Stage root, GLA11y layer, compiled.vs shader bundle, JSON tween timelines); bundle banner credits Buttermax (https://buttermax.net), build dated 6/8/26.",
+  "libraries": [
+   "in-house WebGL2 renderer (VAO, Vector3 classes in bundle)",
+   "Antimatter/Proton GPU particles",
+   "MSDF text",
+   "KTX2/Basis transcoder (wasm)",
+   "Google Analytics gtag"
+  ],
+  "evidence": "curl index.html (loader script, inline @font-face and CSS), assets/js/app.1780936124566.js (1.71MB), assets/data/uil.1780936124566.json (241KB, palette hexes), assets/shaders/compiled.vs (174KB, 141 chunks); probe libs_from_requests [] and globals {}."
+ },
+ "performance_accessibility": {
+  "requests": 198,
+  "weight_notes": "~13MB declared: PNG 6.2MB (stickers, MSDF atlases, spritesheets), JPEG 2.9MB, audio 2.6MB, KTX2 1.05MB, JS 634KB transferred (1.71MB raw), wasm 254KB, 68 JSON files (timelines, fonts, UIL).",
+  "reduced_motion": "probe reduced_motion_rules 0; no prefers-reduced-motion handling found; motion is the content.",
+  "contrast_issues": "#FF0837 on #FFC1FF is 2.68:1 (computed), which fails WCAG AA even for large text (3:1); the 207px headline survives on sheer size, but the 16px subline and 11px disclaimer are genuinely hard to read. The 12px green tagline #00A165 on #FFC1FF is 2.28:1 and the orange-on-yellow band pair #FF5F00 on #FFC800 is ~2:1. Canvas-drawn text is invisible to assistive tech except via the GLA11y shadow layer (accessibility dev score 6.8).",
+  "mobile_quality": "Gate adapts cleanly at 390 (74px headline, no overflow). Inner experience on mobile not verified.",
+  "dev_scores": {
+   "semantics_seo": 6.8,
+   "animations": 8.6,
+   "accessibility": 6.8,
+   "wpo": 7.6,
+   "responsive": 7.6,
+   "markup": 7.2
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Product pour as the section transition",
+   "why_it_works": "The transition is the product benefit (fizzy pink liquid) and it physically hands the viewport to the next color, so a navigation event becomes the brand moment.",
+   "how_to_build": "Render current and next section to two render targets; full-screen quad mixes them with a liquid line: inclination = mix(-0.2, 0.0, 0.5 + 0.5*sin((time*0.5 + uv.x)*8.0)); cut = smoothstep(p - fw, p + fw, uv.y + uv.x*inclination) with p = remap(progress, 0..1, inclination..1); cut2 = same with uv.y + 0.01 + tiny noise; color = mix(A, B, cut); color = mix(color, color*1.1, cut - cut2) for a bright meniscus. Drive progress from the (virtual) scroll position, not a timed tween, and feed scroll velocity into a noise zoom: uv = scale(uv, 1 + (noise*0.2 + grain*0.05)*velocity). Lead it with a pour stream (flat unlit blob in the NEXT section's field color, blurred particle ribbon) and GPU bubbles (white dots rising, popping sprite at the surface). CSS-only fallback: clip-path: polygon() wave on the next section, its y bound to scroll progress with a sine x-offset."
+  },
+  {
+   "technique": "Mouse-stirred fluid that warps the typography",
+   "why_it_works": "It turns idle mouse movement into 'sloshing' that is literally the brand name; the whole type wall feels liquid rather than decorated.",
+   "how_to_build": "Port Pavel Dobryakov's WebGL-Fluid-Simulation (advection, curl, vorticity, divergence, pressure, gradient subtract, splat) at 1/4 resolution with CURL 30, SPLAT_RADIUS 0.25, VELOCITY_DISSIPATION 0.98, DENSITY_DISSIPATION 0.97, PRESSURE_ITERATIONS 20. In the post pass: mask = smoothstep(0.1, 0.7, dye); uv = scale(uv, 1.0 + mask*0.8) about centre; uv -= velocity.xy*0.002; add ripple uv += dir*sin(40.0*(time*0.3 - dist))*0.04*smoothstep(0.0, 0.4, mask). Draw type as MSDF (troika-three-text or msdf-bmfont) into the scene texture so the warp hits it."
+  },
+  {
+   "technique": "Liquid-fill lettering with a noisy waterline",
+   "why_it_works": "Type becomes a container for the product; the wobble reads as liquid without any 3D.",
+   "how_to_build": "Per glyph pass local UV (0..1 inside each glyph quad). Fragment: divider = 1.0 - (vLocal.y + abs(snoise(vLocal*vec2(0.3,0.2) + time*0.4 + rand/4.0))*0.2); t = smoothstep(remap(u,0.3,1,-0.4,1.32), remap(u,0.3,1,-0.42,1.31), divider); color = mix(outline/emptyColor, liquidColor, t); add bubbles texture * alpha * t. Outline state via strokemsdf (width 0.4). DOM fallback: text with -webkit-text-stroke 2px and an SVG <clipPath> wave path whose y animates from 100% to 0% over 900ms easeOutCubic, wave x-phase looping 2s linear."
+  },
+  {
+   "technique": "Baseline-masked per-glyph rise with random stagger in the vertex shader",
+   "why_it_works": "Masked line reveals without DOM overflow wrappers, and random per-letter offsets make a condensed caps headline feel poured in rather than typed.",
+   "how_to_build": "Give each glyph attribute rand in 0..1. Vertex: y -= 240.0 + rand*100.0*(1.0 - t); y += 240.0*t (t eased with cubicOut). Fragment: if (vPos < -200.0) discard (the mask line). Tween t 0->1 over 500-600ms easeOutCubic, delay lines by 100-150ms. In DOM: SplitText chars inside overflow:hidden line wrappers, yPercent 110 -> 0, duration 0.6, ease 'power3.out', stagger { each: 0.02, from: 'random' }."
+  },
+  {
+   "technique": "One can, four flavors: shared MRO + swappable base-color KTX2",
+   "why_it_works": "The product changes identity as it crosses each colored band, so color sections and product line are the same system.",
+   "how_to_build": "Single can mesh with a MeshStandardMaterial-style PBR; metalness/roughness/AO packed in one MRO KTX2 (R=metal, G=rough, B=AO); four BaseColor KTX2 via KTX2Loader. As the can crosses a band edge, swap material.map (the whole can switches at once in frames/0: it keeps one label even while straddling two bands). The can lies on its side and rolls about its long axis so the SLOSH label rotates (frames/0 f02-f07). inferred: crossfade duration and roll rate; neither is measurable from 8 frames."
+  },
+  {
+   "technique": "Strict two-color pairs per band with inverted edge labels",
+   "why_it_works": "Maximalism stays legible because every band obeys one field/type pair, and the tiny side labels invert that pair so the edges stay alive.",
+   "how_to_build": "Tokens from RollingPass: orange #FF5F00 on yellow #FFC800, pink #FFC1FF on green #00A165, pink #FFC0FF on red #FF0837, cream #ECE4D5 on blue #0069D8 (keep each pair's hexes unique so a shader or lookup can tell bands apart). Each band: one line of condensed caps fitted to 100vw (Steelfish 'SLOSH SELTZERS' measures ~26vw font-size), line-height/band height ~1.0em so the caps fill ~85% of the band without being cropped; vertical mono labels (writing-mode: vertical-rl, 11px, uppercase) pinned ~8px from the viewport edges, drawn in whichever color of the band pair they sit on is NOT underneath them, so they invert where they cross a glyph and recolor at every band edge."
+  }
+ ],
+ "slop_risks": [
+  "Invisible-content trap at site scale: everything past the gate is canvas-drawn after a ~13MB preload; with JS or WebGL off the page is a black 'Please enable javascript' notice. A copy must keep real DOM text for headings.",
+  "Saturated accent colors colliding: hot red #FF0837 on candy pink plus pure #FF0000 stickers and green; copied without the strict one-pair-per-band rule it becomes the deslop 'colliding colours' and 'saturated accent pop' tell.",
+  "Pastel background: #FFC1FF is one flat, specific brand tone, not the deslop 'pastel candy gradient background' (a multi-stop sorbet wash). Keep it flat; turning it into a pink-to-peach gradient would make it the tell.",
+  "Pill CTA: the solid full-radius 'I'M READY TO PARTY' button is close to the default pill; it avoids glow/shadow, keep it that way.",
+  "Sticker scatter (lightning bolts, smiley, sparkles) can read as the 'floating decorative icons' tell when used as generic confetti; it only works because the stickers are bespoke brand illustration tied to flavors and copy.",
+  "Monospace as the house voice: FK Grotesk Mono carries all small copy; fine as a tagline/label voice, slop if it spreads to body text.",
+  "Rotating circular-text preloader badge is a common trope; it earns its place only with a real load percentage.",
+  "Condensed caps poster type swapped for Bebas Neue/Anton (Google default rotation) would lose the character; Steelfish plus the fluid warp is the point.",
+  "Gimmick risk: fluid distortion on type that has no liquid story would be decorative noise; here 'Slosh' makes it the concept.",
+  "Text you cannot read: red #FF0837 on pink is 2.68:1 and green #00A165 on pink is 2.28:1, so the 16px/11px/12px mono copy fails the deslop contrast rule; a copy should darken the small-copy ink or raise its size.",
+  "Radial glow halo behind an object: the pale wash behind the can is cursor-driven fluid dye; reproduced as a fixed radial spot behind a hero product it becomes the 'radial glow halo' tell.",
+  "Faux bold: 'not a real' is weight 700 on a single-weight Medium face, so the bold is browser-synthesized; ship a real bold cut instead."
+ ],
+ "confidence_notes": "OBSERVED: preloader and age gate only (desktop_00-07, mobile_00-01); the probe cannot click 'I'M READY TO PARTY' and per instructions I did not interact, so a re-probe with longer settle would show the same gate and was not run. All inner-experience description comes from the two jury element videos (frames/0 and frames/1, all 16 frames viewed in order) plus code: live index.html, app.1780936124566.js greps, uil json palette, and the compiled GLSL bundle (shader bodies quoted from source). Probe measurements (207px, -2px, 16px mono, colors, 9s ring, KTX2 URLs, 198 requests) describe the gate. INFERRED: section list beyond landing/rolling-can (from shader and timeline names), mobile inner experience, fluid resolution. audit (2026-09-25): re-viewed desktop_00, desktop_01, desktop_03 (01-07 byte-identical by md5), mobile_00 (00/01 identical), all 8 frames of frames/1 and 5 of frames/0, and re-fetched index.html, app.1780936124566.js, compiled.vs and uil json. Confirmed: fonts, 207px/-2px, pill 324x77, ease counts, fluid config, shader formulas, KTX2 list, noscript and unsupported redirect. Fixed: sticker count 6 -> 5; mobile SLOSH '62px' was device px (~40px CSS); tagline bar ~52px CSS not 32px; band colors from RollingPass code (yellow #FFC800 and blue #0069D8, not the pong-cup #FFCA0A/#0019D6); red-on-pink contrast 2.68:1 (fails AA large), not ~3:1; 'type bands crop glyphs at band edges' was false; band type is fit-to-width ~26vw in ~1.0em bands (measured frames/0 f00), not 24vh; section transition is scroll-driven (ScrollRenderManager), not a 1300ms tween; can size ~85% of stage height in the landing, not 35-45%; 'crumpled variant' downgraded to inferred (no separate mesh); ripple lives in DrinksCarouselPass/RollingPass. Added: 194px visual line pitch, #FFC1FF/#FFC0FF uniqueness trick, sticker solid/outline flip, POP THE TOP twist hint, visible fluid dye, shared tLiquid texture, .bin geometry assets, faux-bold and contrast slop risks; corrected the pastel accusation (flat tone, not the gradient tell)."
+}

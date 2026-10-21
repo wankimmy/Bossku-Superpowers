@@ -1,0 +1,326 @@
+{
+ "slug": "the-power-of-storytelling",
+ "title": "The Power of Storytelling",
+ "live_url": "https://storytelling.noomoagency.com",
+ "award": "Site of the Day, Jun 8 2026 + Honors (bucket 3d-webgl, award year 2026)",
+ "scores": {
+  "overall": 7.87,
+  "design": 7.84,
+  "usability": 7.59,
+  "creativity": 8.37,
+  "content": 7.83,
+  "dev": {
+   "overall": 7.42,
+   "semantics_seo": 7.2,
+   "animations": 8.6,
+   "accessibility": 6.4,
+   "wpo": 7.6,
+   "responsive": 7.4,
+   "markup": 7.0
+  }
+ },
+ "industry": "Digital/3D agency (Noomo) self-promotional manifesto microsite, showcasing work for Salesforce, AMD, Coinbase, Intel, Vogue",
+ "signature": "One fixed WebGL stage where a skinned iridescent-glass phoenix is flown by a Blender-authored timeline (camera, sun, feather, crystal positions AND ~40 'data-channel' empties whose keyframed positions drive glass colour, iridescence, halo, environment darkness, burning state and which idle clip plays), scrubbed by ScrollSmoother so that each of 20 authored scroll sections is exactly one second of the 20s Blender timeline (section length in vh sets how long you dwell on that second), while a one-sentence manifesto resolves character by character out of blur and scale, so the reader flies through the argument that craft is the story.",
+ "first_screen": {
+  "composition": "Full-bleed 1440x900 WebGL canvas showing an extreme close-up of the phoenix's glass feathers (lilac, violet, pink, pale cyan). Lower-left h2 'The power / of digital' in TT Neoris 66px #29345a (lg:text-sans-66, text-brand-black) with 'of' swapped to TheSeasons italic 66px and offset right; under it the h1 'storytelling' in TheSeasons italic at 19.5vw = 281px, each of its 12 chars filled with a vertical background-clip:text gradient #fffcff -> #e3f0ff (base colour #fdebfd), bbox x 40-1416, y 578-878: the descenders stop ~22px above the fold, they are not cut. Top row: 'noomo' wordmark (pixel-notched o's) + handwritten 'Storytelling' script left (x 58), Agency / Labs / Contact 18px right (ends x 1378). The 'Click to start' capsule at top-left is NOT a fixed button: it is the liquid-glass cursor, parked at its initial 10,10 offset until the pointer moves, stretched to a 162px pill while its text is 'Click to start' (the logo under it is visibly refracted). The glass sound button and 'Reimagine Phoenix' pill are absent in the probe's desktop_00 (pre-start) and present from desktop_01 and in the element frames (bottom-left / bottom-right). Before this frame: a full-screen lavender preloader (linear-gradient(45deg,#cebdf8,#e2dbf8)) with a 50px 18-frame pixel-bird GIF opens as a feathered circular iris once the WebGL scene reports loaded. Clicking anywhere on the hero (onClickOnce) starts the music and auto-flies the visitor forward: ScrollSmoother scrollTop to 2 x innerHeight over 3s ease none on desktop (window scrollTo 1.15 x innerHeight over 3s on touch/tablet); simply scrolling past 10px also counts as a start. (The hero also fires a playWingsSound action on pointer move, throttled to 200ms, but the store action is an empty stub and no listener plays anything: a dead hook.)",
+  "what_owns_it": "3d",
+  "display_type_px": 281,
+  "evidence": [
+   "probes/the-power-of-storytelling/desktop_00.jpg",
+   "probes/the-power-of-storytelling/mobile_00.jpg",
+   "frames/the-power-of-storytelling/2/f00.jpg",
+   "frames/the-power-of-storytelling/3/f00.jpg",
+   "pixel bbox of the h1 in desktop_00 (audit)",
+   "SSR HTML <h1 class=pointer-events-none>storytelling</h1>, <h2 class='lg:text-sans-66 ...'>",
+   "entry.BEbxiOYI.css .home-hero h1 / .char rules",
+   "CbdjwYMp.js TestCursor component (setCursorText 'Click to start' -> width 162)",
+   "FZFS71Nt.js HomeHero (onClickOnce E(): setEnableSound, setExperienceStarted, gsap.to(smoother,{scrollTop:innerHeight*2,duration:3,ease:'none'}))",
+   "CbdjwYMp.js Preloader (--reveal-radius 0 -> 200vmax, 2s power3.inOut; smoother unpaused at 1.2s); /images/loader.gif (67x60, 18 frames x 160ms)"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "TTNeoris",
+    "role": "display|body|ui",
+    "classification": "geometric-humanist grotesque sans, regular 400 only",
+    "foundry": "TypeType (TT Neoris); shipped file is TTNeorisTrialRegular.ttf",
+    "source": "probe fonts_loaded 'TTNeoris 400 normal'; entry.BEbxiOYI.css @font-face"
+   },
+   {
+    "name": "TheSeasons",
+    "role": "accent",
+    "classification": "high-contrast display serif italic with calligraphic terminals",
+    "foundry": "file served as fonnts.com-theseasons-it.otf (sourced from a free-font download site)",
+    "source": "probe fonts_loaded 'TheSeasons 400 italic'; entry.BEbxiOYI.css @font-face"
+   }
+  ],
+  "display_size_px": 281,
+  "body_size_px": 26,
+  "scale_notes": "Measured font_sizes: 50px (x163 split nodes), 66px (x95), 26px (x50), 18px (x26), 208px (x26), 281px (x12), 38px (x6), 30px, 10px. Verified in CSS: the hero h1 is 19.5vw (=281px at 1440; 18.8vw below the breakpoint = 73.32px at 390) split into 12 .char spans, one per letter of 'storytelling'; scene words use the --text-208 token (20.8rem, 10px root) in TheSeasons italic (.animated-text-big) with the small 'is' at 5.2rem = 52px lifted -32px. Tokens: --text-18/26/38/50/66/208. Manifesto lines 50px and 66px, italic accent words 66px/38px, body 26px, nav 18px.",
+  "tracking_leading": "TT Neoris 50px: -1px (-0.02em), lh 46px (0.92). 66px: -1.98px (-0.03em), lh 60px (0.91). TheSeasons italic 66px: -0.66px (-0.01em), lh 66px (1.0); 38px: -0.76px, lh 33px. Body 26px/30px normal tracking. Nav 18px/20px -0.18px.",
+  "case_and_style": "All sentence/lowercase, weight 400 only. Hierarchy comes from size and from swapping one emotional word per line into the serif italic ('of', 'shifting,', 'change,', 'unknown-', 'Stories', 'narrative.', 'heart', 'clarity', 'guide', 'Experiment', 'personal').",
+  "signature_moves": [
+   "Single-weight sans with one serif-italic word per line as the voice change",
+   "Scene-title words in TheSeasons italic at 208-281px, each char filled with a pale vertical gradient via background-clip:text (#fffcff 0-15% -> #e3f0ff 45-70%) and revealed char by char out of blur (opacity 0, scale 1.3, blur 8px -> sharp, stagger .05, scroll-scrubbed), which reads as a soft left-to-right sweep (desktop_04 -> 05)",
+   "Clip-safe italic: every gradient char gets oversized padding (.23em .2em .6em ~3rem) cancelled by a negative margin (-.35em), and the h1 chars get padding-right ~.9-1.01em tuned per letter (.char1/.char3/.char4/.char8-.char11), so the swash overhangs and descenders are not sliced by the background-clip box",
+   "Chevron line layout: lines step right for three lines, then back left for three ('what / guides / us through / change, / reinvention, / and the unknown-', desktop_03), tracing a wing curve rather than a straight staircase",
+   "Faint 2px gradient rule running into each line's start: .text-line (linear-gradient(90deg,#fff0 22.12%,#fff 50%,#fff0)) with .half (#ffffff80 peak) and .dark (#fff3 peak) variants; .cases-text-line (#fff0 4.33% -> #fff 78.37%) for project titles",
+   "A sentence is split across several screens so each scroll step completes a clause",
+   "Pixel-art motif against the photoreal 3D: a pixel swallow above centred headlines, a pixel 4-point star inside the cursor, pixel-notched o's in the noomo wordmark, the 18-frame pixel-bird loader GIF, and a glowing white pixel-art icon inside every project crystal (element 1 f01, f05-f07)"
+  ],
+  "mobile": "Same fonts. Verified from HTML classes and the 2x-DPR screenshot: 'The power of digital' 38px (xs:text-sans-38) with 'of' at 26px serif (xs:text-serif-26), 'storytelling' h1 18.8vw = 73.32px (probe mobile_measure h1), not ~100px (the 100px 'largest' value is another, hidden element); fragments stay one short line per screen ('constantly shifting,'); no overflow."
+ },
+ "color": {
+  "mode": "section-shifting",
+  "base": "#c4c5f1 lavender body; visually the rendered sky: lilac/periwinkle to pink to pale mint, a white sun disc and a thin rainbow halo ring",
+  "ink": "#29345a (rgb 41,52,90) on light scenes; #ffffff on dark scenes and for the giant italic words",
+  "accents": [
+   "#020612 navy-black floor for the projects/crystals section (Awwwards palette)",
+   "#e5ddf9 pale lavender (Awwwards palette)",
+   "#ff5a1f fire orange for the contact/fire title with text-shadow glow",
+   "#eabdf6 at 10-20% alpha in the glass button radial gradients",
+   "phoenix material shifts from blue-violet to orange-red as the story advances (observed frames)",
+   "#fdebfd h1 base colour; #fffcff -> #e3f0ff background-clip text gradient on the giant italic words",
+   "CSS brand tokens beyond ink: --color-brand-blue #3762be, blue-200 #88aeff, blue-500 #143a8a, blue-600 #00276e, rose-200 #6248a4, brand-white #f5f5f5",
+   "Unlisted tokens: --color-dark-400 #060b1d and --color-dark-500 #051125 (the navy-blacks behind the crystal gallery), --color-brand-blue-300 #062969; preloader gradient #cebdf8 -> #e2dbf8; click-ripple ring #fb5959"
+  ],
+  "ratio": "approx 85% rendered pastel scene, 10% #29345a ink, 5% white; the projects section flips to ~90% #020612",
+  "section_shifts": "Day (pastel iridescent sky) -> phoenix warms to fire orange -> hard cut to deep navy #020612 for the crystal projects -> fire and water reflection for contact. Keyframed channels in dev.glb date these shifts in timeline seconds: Env_darkness ramps 0 -> 1 between 10s and 11s, Post_halo fades .5 -> 0 by 12.3s, Projects_visible is 1 only from 17.0s to 18.04s, Snowfall_visible from 18s, isBurning from 19s. Shifts happen inside the WebGL scene (lighting, sun opacity track, materials), not as DOM section backgrounds.",
+  "texture": "No CSS grain. In-scene: sparkle glints (a 'fairy' sprite texture), bloom, and a lens-flare 'halo' pass that samples bloom mips mirrored around the screen centre with an RGB (anaglyph) offset, producing the rainbow ring. A blue-noise texture (/textures/LDR_RG01_0.png) is loaded (inferred: dithering against banding in the sky and bloom). All behind the DOM text.",
+  "notes": "This is the deslop 'purple / blue-to-purple / pastel candy' territory, carried by a physically based iridescent render (thin-film interference changes hue with view angle), so the colour is a material property, not a CSS gradient. Crystal gallery floor sampled from element 1 frames at ~#000211 to #020315, consistent with the Awwwards #020612 (the hex itself is not in the CSS or JS)."
+ },
+ "layout": {
+  "grid": "No DOM grid (probe grid_containers 0, sticky 0, 17 fixed). One fixed full-viewport canvas; text blocks are absolutely positioned per scene and scrubbed at absolute scroll offsets. Header gutters ~58-62px at 1440 (~4vw). Document height 38970px (~43 viewports) of pure scroll distance.",
+  "density": "airy",
+  "alignment": "Mixed on purpose: hero block lower-left, manifesto centred or staircased to the right third, scene-title words centred over the subject.",
+  "composition_moves": [
+   "Text centred over the 3D subject's body so the wings frame the words (desktop_01, desktop_06/07)",
+   "Chevron-indented lines (three steps right, three back left) with 2px gradient rules running into each line start",
+   "Giant italic word as a scene title with a small 52px italic 'is' tucked at its top-left, lifted 32px (desktop_04/05)",
+   "Extreme macro close-up of the hero asset as the opening frame, then a pull-back to reveal the whole creature",
+   "Projects as floating glass crystals on navy with the title/subtitle blurring in beside the hovered crystal"
+  ],
+  "section_rhythm": "Macro close-up -> full phoenix under a sun -> empty sky with a sentence -> title word -> phoenix returns in new colours -> dark crystal gallery -> fiery contact. Each 'section' is a camera move on one continuous stage.",
+  "mobile_adaptation": "Separate camera track timelines/cam-mob.glb reframes the same scene for portrait; backdrop-filter is disabled below 1024px (body *{backdrop-filter:none!important}); 'Tap to explore' double-ring glass pill replaces 'Click to start'; Menu becomes a glass pill."
+ },
+ "motion": {
+  "smooth_scroll": "GSAP 3.13.0 ScrollSmoother.create({smooth:1.5, effects:false, normalizeScroll:true, ignoreMobileResize:true, smoothTouch:true}); created paused and scrolled to 0, then unpaused by the Preloader 1.2s into its 2s iris reveal, which only starts when the scene reports loaded (setSceneLoaded). It is NOT gated on 'Click to start'. onUpdate maps scrollTop through 20 authored sections (lengths in vh, desktop 100,150,300,300,200,300,500,200,80,80,170,190,280,50,50,100,140,560,200,280 = 4230vh, which plus one viewport is exactly the 38,970px document at 900px tall; mobile halves the first ten and gives section 18 1100vh) into progress = sectionIndex + fraction, 0..20, and a watcher calls scene.seek(progress): one section = one second of the 20s Blender timeline. getVelocity() feeds scrollSpeed to the scene.",
+  "preloader": "Verified in code and CSS: fixed full-screen .preloader with background linear-gradient(45deg,#cebdf8,#e2dbf8) and a centred 50px /images/loader.gif (a pixel-art bird, 67x60, 18 frames x 160ms, same motif as the CTA icon). When the WebGL scene dispatches setSceneLoaded: the GIF goes autoAlpha 0 + scale .92 over 2s power1.out while the panel's --reveal-radius tweens 0 -> 200vmax over 2s power3.inOut; the panel carries mask-image: radial-gradient(circle at center, transparent up to radius - 14vmax, .34 alpha at radius - 8vmax, .72 at radius - 3vmax, opaque at radius), so a soft-edged iris opens from the centre onto the render. The scroller is unpaused at 1.2s. If WebGL never loads, the page stays on this panel.",
+  "intro_sequence": "Preloader iris opens onto the macro wing shot (timeline 0-0.67s plays the dedicated 'Wing_CloseUp' clip, Phoenix_animationId 2, then 'Idle_MainPose_flying' until 17s and 'Float_WingPulse' after). 'Click to start' appears in the lens cursor after 100ms; a click enables sound and auto-scrolls two viewports in 3s. Hero shader element (20.2s clip, frames every ~2.5s): the pointer drags a luminous trail through the feather close-up; the trail refracts the feathers with RGB-split fringes, exposes bright white cloud-like density, ripples outward in rings and dissipates within ~2s (each frame shows a fresh trail at the new cursor position). Built from a GPU stable-fluids sim: FluidPointer splats a segment between prevPoint and point (radius .001), then Advection, Curl, Vorticity, Divergence, Pressure, GradientSubtract passes; FluidNormal derives a normal map from the density field (epsilon .005) which offsets the scene lookup for refraction.",
+  "scroll_techniques": [
+   "fixed WebGL stage for the whole 38970px document",
+   "Blender timeline, verified: three animation-only GLBs are loaded as timelines 'tl' (cam.glb, 235KB), 'tl-mobile' (cam-mob.glb) and 'tl-dev' (dev.glb, 164KB). cam.glb nodes: Phoenix, Camera, Target, Sun, Sun_opacity, Feather, Floor, project0-6 (the seven crystal positions, clips EmptyAction.001-.007). dev.glb holds ~38 clips on data-channel empties (Glass_color, Glass_fringeColor, Glass_reflectionVIri, Glass_refractionVIri, Env_background, Env_darkness, Post_halo, isBurning, Phoenix_animationId, Camera_pointerInfluence, Fluid_epsSize, Water_opacity, Projects_visible, Snowfall_visible, ...). Clip length 20s.",
+   "seek, verified: BlenderTimeline.seek(t) clamps t to the longest clip, then for every clip action: play(), paused=true, action.time=min(t, clipDuration); mixer.update(0); then each bound dependency copies an empty's position.x / position / colour into a scene field (33 field bindings such as Camera.position, Target.position, Phoenix.quaternion, Sun_opacity.position.x, isBurning.position.x; shader tunables such as fluid.normal.epsilon <- Fluid_epsSize.position.x). Portrait devices switch tl -> tl-mobile.",
+   "independent idle loops on the skinned phoenix (clips Idle_MainPose_flying, Float_WingPulse, Wing_CloseUp, Idle_MainPose_gliding, chosen by the keyframed Phoenix_animationId) keep it alive while scroll is still: element 0 frames show a full wing-flap cycle at a fixed scroll position; the frames are 1.5s apart and repeat every 4 frames, so the period is 6s or an alias of it (not resolvable)",
+   "scrubbed text blocks between absolute scroll offsets (scrollStart/scrollEnd, scrollStart2/scrollEnd2 per block); blocks are display:none outside their window"
+  ],
+  "text_animation": "Three scrubbed variants (FZFS71Nt.js), all ease 'none', trigger body from `top+=${scrollStart} top` to `top+=${scrollEnd} top`, scrub:true, SplitText used for the splits: (1) line blocks (AnimatedText): lines fromTo {opacity 0, scale 1.05 (or 0 for .from-scale), filter blur(8px)} -> {opacity 1, scale 1, blur(0)}, stagger .05; exit is the whole block drifting up toTop (default 110px) between scrollStart2/End2. (2) char blocks (BigTextNew, the giant italic words): chars fromTo {opacity 0, scale 1.3, blur(8px)} -> sharp, stagger .05; exit chars back to {opacity 0, scale 1.3, blur(8px)}. (3) light/dark line blocks: lines from scale 1.3 (or 0) + blur in, exit to scale 1.3 + blur. The blur is only applied when isDesktop (UA-based device check; otherwise filter 'none'), not a GPU-quality flag. Observed: the leading characters are sharp while the trailing ones are still dim and blurred (desktop_02 'us thro|ugh', desktop_06 'emer|ge'), and the outgoing word swells and blurs (desktop_07). Hero exit (HomeHero): 'storytelling' is split into chars (charsClass 'char++' -> .char1..12) and 'The power of digital' into chars, then scrubbed from 'top top' to 'top+=1000 top' (500 on mobile) to {opacity 0, scale 1.3, blur 8px} with NEGATIVE stagger (-.05 on the h1, -.03 on the h2), so the title dissolves from its last letter backwards; the hero is set display:none once past. Footer items: y 15 -> 0, blur 8 -> 0 (desktop only), opacity, stagger .2 over the last 400px. Contact/404 fire title (CSS): .hero-title-char heroLetterPop .7s cubic-bezier(.19,1,.22,1) from translateY(30px) scale(.8) rotateX(35deg) via a 60% overshoot (translateY(-4px) scale(1.05)), 50ms per char, perspective 1200px; then heroTitleGlowIdle 4s ease-in-out alternate orange text-shadow; .hero-title-hot #ff5a1f.",
+  "image_animation": "No DOM images animate; everything is in-scene: phoenix hue shifts from cool violet to warm orange via material/lighting as the story proceeds; crystals rotate and refract project key art; a smoke/fluid trail follows the pointer across the dark crystal gallery.",
+  "page_transitions": "Awwwards element 'Page transition' (ice shader, 3D transition) was not in the frame set; not observed.",
+  "hover_micro": [
+   "Crystal hover: the hovered crystal's rotation and colour are driven by springs (rotationSpring, colorSprings per crystalHovers setting), so it floods with a per-project tint (gold in element 1 f00, green-teal in f03) while the others stay clear glass; the title + subtitle ('Coinbase & Warner / Brand ...', 'Vogue Business | Archive / Editorial website', 'Noomo Labs / 3D website') resolve beside it and a fluid smoke trail streams from the cursor",
+   "Crystal hover SFX: one of five /audio/hover1-5.mp3 HTML audio clips at random (volume .5, max 5 plays/s per clip), not Web Audio",
+   "Cursor states: shrinks to 75% and fades its ring over links; hides the star and shows an up-right (-45deg) arrow over a case crystal; case text fades .18s",
+   "Glass pill buttons: backdrop blur 6px over #ffffff05 + two #eabdf6 radial tints (10-20% alpha), and a 1px rim drawn as a masked gradient (mask-composite exclude) linear-gradient(90deg,#fff 0,transparent 35%,#fff 65%,transparent); on hover the rim cross-fades (.4s) to the mirrored 270deg gradient, so the specular highlight jumps to the opposite side. Each label letter is its own span. Clicking 'Reimagine Phoenix' (verified in NavigationsReleaseSpirit): a gtag event 'reimagine_phoenix'; a blurred 1px ring inside the pill is set to scale .2 with a random border colour from [#FB5959,#41B8FF,#52D273,#F7C948,#B388FF] (never the same twice running, 10%-alpha fill) and tweened to scale 26, opacity 0 over 3s power3.out, so a coloured ring sweeps across the whole screen; the letters flash white (black on dark scenes) with blur(3px) for .18s and settle over .34s, each delayed |i - index of 'g'| x .04s, a wave radiating from the middle of the word; the pixel bird icon inverts and blurs 3px for a beat. The click calls changeBirdColor('bird', or 'fire' on dark sections): ReleaseSpirit.mp3 plays at volume .3 (label was 'Release Spirit' in the May 2026 element videos) and the glass is re-rolled: timeline bindings are switched off and every glass parameter springs to a random value (colours to random HSL with saturation 1-t^3 and lightness 1-r^2, i.e. biased vivid and light; scalars uniform in [min,max]; springs stiffness 50, damping 8 for colours and 15 for scalars) until the keyframed Glass_forceTimeline channel hands control back",
+   "Sound toggle: FIVE 2px bars (line-1..line-5); while sound is on, bars 1, 2 and 5 pulse 2 -> 7px and bars 3 and 4 pulse 2 -> 10px (1s infinite, delays 0/.2/.4/.6/.8s); at rest they read as five dots (desktop_01 crop); hover rotates its border-circle image 180deg; it has the same kind of blurred click ring",
+   "Nav links (Agency / Labs / Contact): on hover a 2px gradient bar 3px under the label grows from width 0 to 100% and fades in over 300ms (linear-gradient(90deg,#fff0 4.33%,#fff 78.37%,#fff0)); each link also swaps corner radius on hover (xs -> 20px, 20px -> 0, 0 -> 20px)"
+  ],
+  "cursor": "Liquid-glass lens cursor (TestCursor component): a 48px circle (4.8rem) inside a 64px ring (1px hsla(0,0%,100%,.64)) plus a 49px inner ring that is NOT dashed: cursor_border.svg strokes one 1px circle with two opposed white-to-transparent linear gradients (glints at top-left and bottom-right), rotating 4s linear so the glint travels round the rim, with a pixel-art 4-point star (drawn from 2.5px squares) at centre. The lens refracts whatever is under it: a displacement map is computed on a hidden 2D canvas from a rounded-box SDF + smoothstep, written into an SVG <feImage> feeding <feDisplacementMap>, and applied as backdrop-filter: url(#id_filter) blur(1px) contrast(1.2) brightness(1.05) saturate(1.1) (Chromium; Safari/Firefox get the blur/contrast without displacement). Position lerps at followSpeed .18 and is clamped inside the viewport; it starts at 10,10. It stretches into a 162-178px pill for 'Click to start', shrinks/fades over links, swaps the star for a backArrowNew.svg arrow at scale 1.2 rotate(-45deg) over crystals (element 1 f02-f05). The same pointer also splats into the fluid sim. Native cursor stays visible.",
+  "easing_curves": [
+   "cubic-bezier(.65,.05,.36,1) (Tailwind --ease-in-out token)",
+   "cubic-bezier(.4,0,.2,1) (Tailwind default transition)",
+   "cubic-bezier(0.19,1,0.22,1) (letter pop, title entrance)",
+   "GSAP strings: power2.inOut x5, power1.inOut x4, power3.out x2, power2.out x2, power1.out, power3.inOut",
+   "ease 'none' on every scroll-scrubbed text tween (scroll smoothing supplies the easing)",
+   "heroLetterPop overshoot keyframes (60%: translateY(-4px) scale(1.05))",
+   "cursor follow: linear lerp factor .18 per frame",
+   "springs (Di class): stiffness 50 / damping 15 for scalar glass params, crystal hover and the neck follow; 50 / 8 for colour channels"
+  ],
+  "duration_range_ms": "CSS 75-1000ms (300ms x10, 400ms x9, 1000ms x6); char pop 700ms; glow idle 4000ms; scroll-scrubbed timelines have no fixed duration (ScrollSmoother smooth 1.5s)",
+  "stagger_ms": "50 between lines/chars, 200 between footer items",
+  "choreography_notes": "Scroll owns the camera and the words; time owns the creature (wing loops, sparkle, fluid dissipation). Text always resolves in front of the subject after the camera has settled, and the previous line exits by growing to 1.3x while blurring, so the eye is pulled forward into the scene rather than up the page.",
+  "evidence": [
+   "frames/the-power-of-storytelling/0/f00-f07",
+   "frames/the-power-of-storytelling/2/f00-f07",
+   "frames/the-power-of-storytelling/1/f00,f03,f06",
+   "frames/the-power-of-storytelling/3/f00,f03,f06",
+   "probes/the-power-of-storytelling/desktop_00-07.jpg",
+   "bundle grep CbdjwYMp.js (ScrollSmoother.create options, Fluid* programs and tunables, audio files)",
+   "bundle grep FZFS71Nt.js (scrubbed blur/scale line timelines)",
+   "entry.BEbxiOYI.css (keyframes, .line.dark, backdrop-filter kill <1024px)",
+   "GLB JSON headers: timelines/cam.glb animations, models/v20.glb skin/clips",
+   "audit re-read 2026-09-24: FZFS71Nt.js (three text variants, isDesktop blur gate, Footer), CbdjwYMp.js (ScrollSmoother paused start, BlenderTimeline seek + 33 Et bindings, TestCursor liquid glass, settings fov 25 / glassConfig / sample counts, post tunables), GLB JSON of v20/cam/cam-mob/dev/crystal0/feather, SSR index.html (h1/h2)",
+   "audit v3 2026-09-25: FZFS71Nt.js HomeHero (click auto-fly, negative-stagger exit), Footer, NavigationsReleaseSpirit (click ring + letter wave); CbdjwYMp.js Preloader, scroll-section mapping g() + watcher seek(progress), Zte neck follow, GlassSupport randomize, runtime settings {devMode:false,timeAtStart:0}; dev.glb keyframes decoded (isFollowing, Phoenix_animationId, Env_darkness, Projects_visible, isBurning); entry.BEbxiOYI.css sound-button/release-spirit/simple-button/preloader rules; cursor_border.svg; loader.gif"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "realtime-3d",
+  "art_direction": "Glass-and-light fantasy: a crystalline phoenix with thin-film iridescence and transmission under a soft white sun in a pastel dawn sky; later rendered in fire colours; a night gallery of rough crystal hulls on navy, each holding a glowing white pixel-art icon (8-bit glyphs, element 1 f01/f05/f06/f07) that refracts with strong chromatic dispersion and RGB fringes; fire and water reflection for contact. Lighting is high-key, diffuse, from a studio HDRI plus the sun disc.",
+  "treatments": [
+   "Thin-film iridescence + transmission on the phoenix (hue changes with view angle and wing pose)",
+   "Chromatic dispersion inside crystals",
+   "Bloom + 'halo' post pass with anaglyph (RGB) offset producing the rainbow ring around the sun",
+   "Fluid-sim refraction and smoke trails driven by the pointer",
+   "Sparkle glints as small 4-point stars"
+  ],
+  "crops_and_ratios": "Always full-bleed 16:10 desktop / portrait mobile via separate camera tracks; macro crops of the asset (single wing filling the frame) alternate with full-figure shots.",
+  "formats": "No video. 15 jpg (~1.08MB: crystal normal maps /textures/crystals/0-6.jpg, contact.jpg, 404.jpg, ...), 6 png (incl. blue-noise LDR_RG01_0.png, fairy sprite.png, icon.png), 12 svg, 1 HDR (wooden_studio_19_1k.hdr), 12 GLB (Draco on the mesh GLBs; timelines carry no meshes), mp3 audio ~1.84MB. KTX2Loader is bundled but no .ktx2 file was requested (probe asset_extensions).",
+  "evidence": [
+   "probes/the-power-of-storytelling/desktop_01.jpg",
+   "probes/the-power-of-storytelling/desktop_06.jpg",
+   "probes/the-power-of-storytelling/desktop_07.jpg",
+   "frames/the-power-of-storytelling/1/f00.jpg",
+   "frames/the-power-of-storytelling/1/f03.jpg",
+   "frames/the-power-of-storytelling/1/f06.jpg",
+   "probes/the-power-of-storytelling/probe.json asset_extensions/bytes_by_type_declared"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r179 (probe globals three_revision 179) inside Nuxt, hand-rolled (no R3F/Tres in bundle); GLTFLoader + DRACOLoader + KTX2Loader + RGBELoader; custom ShaderMaterial/RawShaderMaterial FBO passes",
+  "role": "hero object (skinned phoenix) + world flythrough (Blender camera timeline) + product objects (project crystals) + pointer-driven fluid field",
+  "assets": [
+   "https://storytelling.noomoagency.com/models/crystal0.glb",
+   "https://storytelling.noomoagency.com/models/crystal1.glb",
+   "https://storytelling.noomoagency.com/models/crystal2.glb",
+   "https://storytelling.noomoagency.com/models/crystal3.glb",
+   "https://storytelling.noomoagency.com/models/crystal4.glb",
+   "https://storytelling.noomoagency.com/models/crystal5.glb",
+   "https://storytelling.noomoagency.com/models/crystal6.glb",
+   "https://storytelling.noomoagency.com/models/feather.glb",
+   "https://storytelling.noomoagency.com/models/v20.glb",
+   "https://storytelling.noomoagency.com/textures/wooden_studio_19_1k.hdr",
+   "https://storytelling.noomoagency.com/timelines/cam-mob.glb",
+   "https://storytelling.noomoagency.com/timelines/cam.glb",
+   "https://storytelling.noomoagency.com/timelines/dev.glb"
+  ],
+  "materials_lighting_post": "Phoenix v20.glb (verified): 4.35MB Draco, 121,364 triangles, 21 meshes split by body part (back, belly, body, chest, legs, neck-top/bottom, tail-top/center/bottom, trail, wing-left/right bottom/center-bottom/center-top/pole/top), one 237-joint skin, 4 clips, a single placeholder material 'Material_0.006', so the look is assigned in code. The glass is a custom shader, not a stock MeshPhysicalMaterial: settings.glassConfig exposes 23 tunables (Glass.iorStart/iorDelta, distancesFactor/resetDistances, uvShiftFactor, envReflection/envRefraction, reflectionIridescence/refractionIridescence, convexity/concavity/peaksFactor, fringeCurve/fringeMix, colorBoost/colorFactor/colorCurve RGB, maxColorValue 25, decayFactor, useTransmittance) with sample counts hyper 16 / back 5 / front 12 (lowFront 5), and many are keyframed through dev.glb empties (Glass_color, Glass_fringeColor, Glass_reflectionVIri ...), which is why the phoenix shifts from violet to fire orange along the story. Crystals: 62KB Draco each, meshes 'Cube', 'Icon', 'OUT_ConvexHull' (6,232 tris) plus a per-crystal normal-map JPG. Feather: 6.6KB 'Tear' mesh (272 tris). Env: wooden_studio_19 1k HDR via RGBELoader. Camera fov 25 (long lens, flattens the macro shots), water reflector plane at y -2.35. Tone mapping AgX/ACES code present, exposure 1. Post: custom mip-chain bloom (filter threshold 1, width .25, power 1, radius 2) and a lens-flare 'halo' pass sampling bloomLevel2/4 mirrored around the screen centre (min .5, max .75, shift .6667, anaglyph width 12.5).",
+  "interaction": "Scroll-driven camera, object and shader-parameter tracks (cam/dev.glb, one scroll section = one timeline second); keyframed pointer influence on the camera (Camera_pointerInfluence .1 rising from ~1.1s); in the finale a keyframed isFollowing weight (0 -> 1 between 18.54s and 19s) hands the phoenix's b_neck bone to the pointer: spring-smoothed pointer NDC -> rotation.x = y*.5 - PI, rotation.y = PI/4 - x*.5, lerped against the animated neck pose by isFollowing, so the bird turns its head to look at you; pointer fluid refraction; spring-driven hover on crystals (each crystal swaps to its own full glass preset from settings.crystalHovers) with SFX; 'Reimagine Phoenix' re-rolls all glass parameters at random (not a per-body-part recolour UI; the Awwwards 'Phoenix customisation' element video was not in the frame set).",
+  "performance_tactics": "Draco on every mesh GLB, 1k HDRI, camera and art-direction choreography as tiny animation-only GLBs (cam.glb 235KB, dev.glb 164KB, no meshes) instead of code, separate portrait camera track, text blur gated to desktop UAs, backdrop-filter disabled under 1024px, fewer glass samples on the low path (lowFrontSamplesCount 5 vs 12), 72 total requests. Not done: fonts ship as raw TTF/OTF, KTX2 not used, Tweakpane 4.0.5 dev GUI bundled in production as dead weight: the settings object defaults devMode:true / timeAtStart 18.8, but the Vue wrapper instantiates the scene with {devMode:false, timeAtStart:0}, so no pane is built.",
+  "fallback_mobile": "Same realtime scene on mobile with cam-mob.glb; no static/video fallback observed.",
+  "evidence": [
+   "probes/the-power-of-storytelling/probe.json assets_3d/contexts (webgl2 x2, 2d x3)",
+   "GLB JSON chunk reads of crystal0.glb, v20.glb, feather.glb, cam.glb",
+   "bundle grep CbdjwYMp.js",
+   "audit: GLB JSON of cam-mob.glb and dev.glb (node and clip names), settings object in CbdjwYMp.js",
+   "audit v3: dev.glb binary keyframes decoded; CbdjwYMp.js class Zte (b_neck follow), glassAnimationIdToClipName ['Idle_MainPose_flying','Float_WingPulse','Wing_CloseUp','Idle_MainPose_gliding']"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Minimal fixed header: noomo wordmark + script 'Storytelling' left, three 18px text links right (Agency, Labs, Contact). Bottom corners hold persistent controls: round glass sound toggle (equaliser bars) bottom-left and glass pill CTA with pixel swallow icon bottom-right on desktop; on mobile the two swap sides (CTA bottom-left, sound bottom-right; mobile_01). A second logo layer (logo2.svg, white) cross-fades in on dark scenes (element 1 frames); a 'Scroll to explore' hint (18px #29345a at 70% with a .text-line half rule under it) sits fixed at bottom centre when visible.",
+  "menu": "Mobile: 'Menu' glass pill top-right opening a mobile menu component.",
+  "buttons_links": "All controls are fully rounded glass (radius 9999px x7, 50% x5): backdrop-filter blur(6px), background linear-gradient(#ffffff05) + two radial gradients of #eabdf6 at 10-20% alpha, a 1px masked-gradient rim (white at 0% and 65%, transparent at 35% and 100%) that mirrors on hover; text 18-20px #29345a with a small icon. Mobile 'Tap to explore' is a double-ring pill with sparkle glyphs at both ends.",
+  "unusual_interactions": [
+   "Liquid-glass lens cursor that refracts the page under it (SVG feDisplacementMap as a backdrop-filter)",
+   "Pointer as a fluid emitter that refracts the 3D scene",
+   "'Reimagine Phoenix' as a toy inside a manifesto: one click re-rolls the glass shader to a random look on springs",
+   "Project gallery as glass crystals you hover, each with a smoke trail and SFX",
+   "Contact scene with fire reflected in water; 404 with an ice shader (from Awwwards element titles, not observed)",
+   "In the finale the phoenix turns its head toward the pointer (neck bone on springs, weight keyframed in the Blender timeline)"
+  ],
+  "sound": "BG_music_ST.mp3 is fetched, decoded into an AudioContext buffer and looped through a gain of .4 once sound is enabled (the hero click enables it). Crystal hovers call playCubeSound: one of five HTML <audio> clips (/audio/hover1-5.mp3) chosen at random, cloned per play at volume .5, rate-limited to 5 plays per second per clip. changeBirdColor (the 'Reimagine Phoenix' click) plays ReleaseSpirit.mp3 at .3. Sound mutes itself when the tab is hidden and restores on return; the sound toggle stays in the bottom corner. playWingsSound is a no-op stub.",
+  "footer": "Fixed full-screen contact finale (footer fixed z-9, pointer-events off until reached): a 26px white line 'Let us help you tell your story the way it was meant', the noomo mark (logoSimple.svg, 130px tall) stacked over a blur-lg copy of itself as a glow, 'hello@noomoagency.com' at 66px white, then 18px social links (x, Instagram, LinkedIn) followed by a stray literal '>' character in the markup. Items rise y 15 -> 0 and blur 8 -> 0 (desktop only) with stagger .2, scrubbed over the final 400px of scroll ('bottom-=400 bottom' to 'bottom bottom')."
+ },
+ "content_voice": {
+  "headline_style": "One manifesto sentence broken into short clauses across screens, each clause completing on a scroll step; one italic serif word per line carries the emotion.",
+  "copy_tone": "Poetic, first-person plural, agency-manifesto ('us', 'we'), abstract nouns (change, reinvention, the unknown, narrative), no product claims until the project crystals.",
+  "examples": [
+   "It is how a spark becomes a fire."
+  ]
+ },
+ "tech_stack": {
+  "framework": "Nuxt 3 (Vue 3) + Tailwind CSS v4 (@layer, --spacing .1rem on a 10px root, --ease-in-out token)",
+  "libraries": [
+   "three.js r179 (hand-rolled, no R3F/Tres)",
+   "GSAP 3 (ScrollTrigger, ScrollSmoother, SplitText used for line/char splits)",
+   "custom WebGL stable-fluids solver",
+   "Web Audio API",
+   "Tweakpane 4.0.5 (dev GUI, bundled)",
+   "Google Analytics"
+  ],
+  "evidence": "probe globals three_revision 179, libs_from_requests nuxt; audit counts in CbdjwYMp.js: GLTFLoader x26, KTX2Loader x17, DRACOLoader x7, RGBELoader x5, ScrollSmoother x10, ScrollTrigger x7, SplitText (bundled, imported as K in FZFS71Nt.js and called with type lines/chars), Fluid* program names, 'tp-' Tweakpane styles with version 4.0.5; entry CSS Tailwind v4 layers"
+ },
+ "performance_accessibility": {
+  "requests": 72,
+  "weight_notes": "Declared: mp3 1.84MB, jpeg 1.08MB, JS 176KB compressed (main chunk 1.6MB uncompressed incl. three + GSAP + app), png 76KB; the phoenix GLB alone is 4.35MB, crystals 62KB each, cam.glb 235KB. Document 38970px tall. Fonts are served uncompressed (TTNeorisTrialRegular.ttf, fonnts.com-theseasons-it.otf). css_usage filters 391: blur filters on hundreds of split chars/lines are the main compositing cost.",
+  "reduced_motion": "1 reduced-motion rule, only for the CSS fire title (animation none, opacity 1). No reduced-motion branch observed for ScrollSmoother, the camera timeline or the fluid sim.",
+  "contrast_issues": "Giant near-white italic words (#fffcff -> #e3f0ff) over the pale lilac sky (#c4c5f1 body) are about 1.4-1.6:1 (computed: #e3f0ff on #c4c5f1 = 1.44:1, #fffcff on #c4c5f1 = 1.63:1; #29345a on #c4c5f1 is 7.3:1 for comparison): decorative scale carries them, but they are the h1 and scene titles. White 26px body copy ('Storytelling is much more than words.') sits on light scenes too. #29345a manifesto text crosses bright feathers and the sun. Headings exist but are thin: SSR HTML has one h1 ('storytelling', pointer-events none) and one h2 ('The power of digital'); the probe's empty headings list only means they were not visible at the after-scroll position. Every manifesto block is a <p> set to display:none outside its scroll window, so assistive tech sees only the active fragment.",
+  "mobile_quality": "No horizontal overflow at 390px; full 3D kept with a dedicated camera path; glass blur removed below 1024px for performance.",
+  "dev_scores": {
+   "semantics_seo": 7.2,
+   "animations": 8.6,
+   "accessibility": 6.4,
+   "wpo": 7.6,
+   "responsive": 7.4,
+   "markup": 7.0
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Author the scroll film in Blender, ship it as an animation-only GLB",
+   "why_it_works": "Camera, subject, sun and prop moves are keyframed by a 3D artist with real curves, and the web code only maps scroll progress to time; art direction and engineering stop fighting.",
+   "how_to_build": "In Blender animate Camera, Target, Phoenix, Sun, Feather, Floor and the gallery anchors (project0-6) on one 20s timeline and export only those objects as cam.glb (no meshes, ~200KB) plus a portrait variant cam-mob.glb. Put every art-direction scalar on an empty whose position.x is the value (Sun_opacity, Env_darkness, isBurning, Phoenix_animationId, Camera_pointerInfluence, Fluid_epsSize ...; position xyz for colours like Env_background) and export them as a second GLB (dev.glb). In three.js: one AnimationMixer per timeline GLB, clipAction for every clip; seek(t){ t=clamp(t,0,maxDuration); actions.forEach(a=>{a.play(); a.paused=true; a.time=Math.min(t,a.getClip().duration)}); mixer.update(0); bindings.forEach(b=>b.target[b.field]=b.empty.position.x) }. Map scroll to time piecewise, as the site does: define N sections with lengths in vh (here 20 sections, one per timeline second, 50-560vh each); in ScrollSmoother onUpdate find the section containing scrollTop and set progress = index + (scrollTop - sectionStart) / sectionLength, then seek(progress). Long sections slow the film down where there is something to read (the crystal gallery second gets 560vh desktop, 1100vh mobile), short ones rush through transitions; document height = sum(lengths) + one viewport. Text blocks use the same vh units for their scrollStart/scrollEnd. Copy the animated Camera/Target onto the render camera each frame. Keep the character's idle clips on their own mixer updated by real delta time, choosing the clip from the keyframed animationId."
+  },
+  {
+   "technique": "Blur-scale line reveal scrubbed at absolute scroll offsets",
+   "why_it_works": "Lines focus in like a camera pull and exit by swelling past the viewer, which matches the flythrough; ease 'none' keeps it perfectly tied to the (already smoothed) scroll.",
+   "how_to_build": "Split with SplitText into lines or chars. Chars (display words): gsap.timeline().fromTo(chars,{opacity:0,scale:1.3,filter:'blur(8px)'},{opacity:1,scale:1,filter:'blur(0px)',stagger:.05,ease:'none',scrollTrigger:{trigger:'body',start:`top+=${a} top`,end:`top+=${b} top`,scrub:true}}).fromTo(chars,{opacity:1,scale:1,filter:'blur(0px)'},{opacity:0,scale:1.3,filter:'blur(8px)',stagger:.05,ease:'none',scrollTrigger:{trigger:'body',start:`top+=${c} top`,end:`top+=${d} top`,scrub:true}}). Lines (sentences): enter from scale 1.05 + blur 8, exit by moving the whole block up ~110px. Smooth with ScrollSmoother {smooth:1.5, normalizeScroll:true}. The site applies the blur only on desktop user agents; do the same (or gate on a GPU tier) and fall back to opacity + scale. Toggle each block to display:none outside its window. Keep the text readable without JS: render it visible in CSS and only apply the hidden start state once the stage reports it is running. For the exit of a title, reverse the order with a negative stagger (the hero uses stagger -.05 on the h1 chars and -.03 on the h2 over the first 1000px), so the word dissolves from its last letter back to its first. Express start/end offsets in vh (offset = innerHeight * value / 100) so pacing survives any viewport height."
+  },
+  {
+   "technique": "Pointer-driven fluid field that refracts the render",
+   "why_it_works": "The cursor becomes a physical disturbance in glass and air, not a decorative follower, and the same field later powers smoke trails in the dark gallery.",
+   "how_to_build": "Ping-pong half-float render targets at ~1/4 resolution for velocity, density, pressure. Per frame: splat a capsule between prevPoint and point (radius .001 in aspect-corrected UV, velocity ~3, density ~50), advect (dissipation <1), curl + vorticity confinement, divergence, ~20 Jacobi pressure iterations, gradient subtract. Derive a normal map from density with central differences (epsilon .005). In the final composite sample the scene texture at uv + normal.xy*strength, and sample R/G/B at slightly different offsets for dispersion fringes; add density*white for the glowing core. On this site the splat radius (.001) and normal epsilon (.005) are not constants: they are bound to the Fluid_epsSize empty in the Blender timeline, so the trail's size and sharpness change per chapter. (Ping-pong resolution and Jacobi iteration count are inferred, not read from the bundle.)"
+  },
+  {
+   "technique": "One serif-italic word per line inside a single-weight sans manifesto, set as a staircase",
+   "why_it_works": "The italic swap gives voice without adding weights; the right-stepping indent plus fading hairlines makes the sentence read as a descending flight path.",
+   "how_to_build": "Sans 400 only at 50/66px, letter-spacing -0.02/-0.03em, line-height .91-.92; wrap the emphasised word in <i> set in the italic display face at the same px size, tracking -0.01em, line-height 1. Position lines explicitly so they step right for three lines and back left for three (a chevron that follows the subject), not a uniform n*em indent. Under each line a 2px absolutely positioned rule running from the left into the line start: background linear-gradient(90deg,#fff0 22.12%,#fff 50%,#fff0), with #ffffff80 and #fff3 peaks for weaker variants. Pick a licensed italic that belongs to the brand rather than a stock Didone."
+  },
+  {
+   "technique": "Glass hull with the project inside",
+   "why_it_works": "Case studies become collectible objects; refraction plus dispersion makes flat key art look precious and hides low-res thumbnails.",
+   "how_to_build": "Model a rough convex hull (Blender Convex Hull + decimate/displace) around a small extruded 'Icon' mesh carrying the project art, and bake a per-crystal normal map (JPG). Site: a custom glass shader (IOR start/delta, fringe curve, reflection/refraction iridescence, 12 front / 5 back samples) with hover rotation and tint on springs; approximation with stock three: MeshPhysicalMaterial({transmission:1, thickness:~1.5, roughness:.05, ior:1.5, dispersion:~5, iridescence:.3-1, envMap from a 1k studio HDRI}). Render on near-black (#020612) so dispersion reads; drive the hover with a spring (rotation speed up + lerp an emissive/tint colour per project) and resolve the project title beside it with the char reveal above."
+  },
+  {
+   "technique": "Budget the heavy effects per device",
+   "why_it_works": "Keeps a 4MB skinned glass creature viable on phones without a separate site.",
+   "how_to_build": "Separate portrait camera GLB instead of CSS scaling; @media(max-width:1024px){body *{backdrop-filter:none!important}}; text blur only on desktop; fewer glass samples on the low path (5 vs 12); Draco on mesh GLBs; 1k HDRI; bloom threshold 1 so only the sun and highlights bloom. Go further than the site: ship fonts as WOFF2 and textures as KTX2."
+  },
+  {
+   "technique": "Liquid-glass lens cursor with an SVG displacement backdrop-filter",
+   "why_it_works": "The cursor becomes a small lens that bends the type and the render under it, so it belongs to the glass world instead of floating on top as a dot.",
+   "how_to_build": "Fixed 48px circle, pointer-events none, position lerped to the pointer at .18 per frame and clamped inside the viewport (re-applied on scroll and resize). Build the displacement map once per lens size, exactly as the site does: for each pixel p = uv - .5, d = roundedBoxSDF(p, halfSize .3 x .2, radius .6); s = smoothstep(0, 1, smoothstep(.6, 0, d - .1)); target uv' = p*s + .5. Store (uv' - uv) per pixel, normalise by the max offset, encode as R/G around 128 on a hidden canvas, putImageData, toDataURL into an SVG <feImage>, and feed <feDisplacementMap in='SourceGraphic' xChannelSelector='R' yChannelSelector='G' scale=maxOffset>. Apply el.style.backdropFilter=`url(#lens_filter) blur(1px) contrast(1.2) brightness(1.05) saturate(1.1)` with background rgba(255,255,255,.01); Safari/Firefox do not take url() in backdrop-filter, so give them the blur/contrast chain only. Add a 64px ring (1px white at 64%), a 49px inner ring stroked with two opposed white-to-transparent gradients so it reads as two glints, rotating 4s linear and a custom glyph at centre; rebuild the map when the lens morphs into a text pill (162px for 'Click to start')."
+  },
+  {
+   "technique": "Let the timeline hand the character's neck to the pointer",
+   "why_it_works": "For most of the film the bird is on rails; at the finale it turns and looks at you. Because the blend weight is a keyframed channel, the art director decides exactly when the creature notices the visitor, and the moment lands as a reward instead of a gimmick.",
+   "how_to_build": "Find the neck bone in the skinned GLB (here 'b_neck'). Keep two springs (stiffness ~50, damping ~15) on pointer NDC x/y. After the mixer updates each frame, store the animated neck rotation, then set neck.rotation.x = lerp(animX, springY*.5 - PI, w) and neck.rotation.y = lerp(animY, PI/4 - springX*.5, w), where w is read from an empty in the Blender timeline (isFollowing.position.x, 0 -> 1 over half a second near the end). Tune the -PI and PI/4 offsets to your rig's rest pose; clamp the angles so the head cannot spin."
+  },
+  {
+   "technique": "A button click that radiates: centre-out letter wave plus a screen-sized ring",
+   "why_it_works": "The click on 'Reimagine Phoenix' visibly travels: the ring leaves the pill and crosses the whole viewport while the label flickers outward from its middle letter, so a small control announces a scene-wide change before the phoenix finishes re-colouring.",
+   "how_to_build": "Split the label into inline-block letter spans. On click: pick a colour from a short list (skip the previous one); gsap.set(ring,{scale:.2,opacity:.99,borderColor:c,backgroundColor:c+'1A'}); gsap.to(ring,{scale:26,opacity:0,duration:3,ease:'power3.out'}) where ring is a 15px circle with a 1px border and filter blur(2px) centred in the button (overflow visible on the fixed wrapper). Letter wave: const mid = label.indexOf('g'); letters.forEach((el,i)=>{const t=Math.abs(i-mid)*.04; tl.to(el,{color:'#fff',filter:'blur(3px)',duration:.18,ease:'power2.out'},t).to(el,{color:base,filter:'blur(0px)',duration:.34,ease:'power2.inOut',clearProps:'color,filter'},t+.18)}). Skip the blur on low-end devices; keep the colour flash."
+  },
+  {
+   "technique": "Soft iris preloader keyed to scene-ready",
+   "why_it_works": "The reveal waits for the thing it reveals, then opens from the centre with a feathered edge, so the first frame of the 3D arrives like a lens opening instead of a cut or a fade.",
+   "how_to_build": ".preloader{position:fixed;inset:0;background:linear-gradient(45deg,#cebdf8,#e2dbf8);--reveal-radius:0vmax;--reveal-feather:14vmax} .preloader--revealing{mask-image:radial-gradient(circle at center,transparent 0,transparent calc(var(--reveal-radius) - var(--reveal-feather)),rgba(0,0,0,.34) calc(var(--reveal-radius) - 8vmax),rgba(0,0,0,.72) calc(var(--reveal-radius) - 3vmax),#000 var(--reveal-radius),#000 100%);mask-repeat:no-repeat}. On scene loaded: add the class, gsap.to(panel,{'--reveal-radius':'200vmax',duration:2,ease:'power3.inOut'}), fade the loader glyph out with scale .92, and unpause the smooth scroller about 1.2s in. Unlike the site, add a timeout that opens the iris onto a static poster if WebGL has not reported ready after a few seconds."
+  }
+ ],
+ "slop_risks": [
+  "Purple and blue-to-purple gradients plus pastel candy wash: the whole day palette is lilac, periwinkle and pink with a mint edge. It is earned only because it is the output of a rendered iridescent material and an HDRI; a CSS copy of this sky is textbook slop.",
+  "Radial glow halo behind an object: the white sun with a rainbow ring (bloom + anaglyph halo) sits directly behind the phoenix and the centred text. Copy the directional light, not the concentric bloom.",
+  "Cool blue-charcoal: the projects section floor #020612 is the stock navy-black; works here only because dispersion colour needs a near-black stage.",
+  "Botched glass / glowy pill buttons: every control is a fully rounded backdrop-blur pill with pastel #eabdf6 radial tints and a hairline border. Earlier 'Click to start overlaps the logo' was a misread: it is the lens cursor parked at its 10,10 start position (a first-frame wart until the pointer moves, not a layout collision). The site kills the blur under 1024px, which is the honest move. The rims are a real attempt at gloss (masked gradient border whose highlight flips sides on hover), which is the law's good version; the pastel radial tints inside are the slop part.",
+  "Content hidden until JS and WebGL succeed: the SSR hero container ships with style='opacity:0' (it only turns visible once the app sets currentPage), every manifesto block is gsap.set to opacity 0 / scale 1.3 and display:none outside its scroll window, the footer items are opacity-0, and the whole page sits behind a preloader that only opens on setSceneLoaded, with the scroller paused until then. If WebGL or JS fails, the visitor gets a lavender panel with a pixel bird, forever. (Correction to earlier versions: 'Click to start' is not a scroll gate; the preloader is. The SSR HTML does carry an h1 and an h2.)",
+  "Gradient-filled headline text: the h1 and the 208px scene words are background-clip:text gradients (#fffcff -> #e3f0ff). It is a near-white tonal shift, not the magenta-to-cyan tell, and it is paired with real clip-safe padding, but it is still the law's 'gradient poured into the type'. A copy should use a flat tint unless the gradient samples the scene.",
+  "High-contrast serif italic for the one 'elegant' word: TheSeasons plays the Cormorant/Didone-italic role; choose a face with a reason to exist for the brand.",
+  "Sparkle glyph as decoration: 4-point stars appear as background glints (fairy sprite), on the 'Tap to explore' pill ends and inside the cursor. The cursor star is pixel-built and ties into the pixel swallow and pixel-notched logo, which makes it a motif; the smooth stars on the mobile pill and the glints are the generic AI-sparkle cliche when lifted without the phoenix context.",
+  "Font licensing: the live site serves TTNeorisTrialRegular.ttf and an OTF from a free-font download site; never copy font files from a teardown.",
+  "Underline that grows on hover: the header links sprout a 2px gradient bar from width 0 to 100% (300ms). The law bans animating underlines at all; a copy should use a tonal colour shift or nothing.",
+  "The bloom that is just the element's shape, blurred: the footer noomo mark is a blur-lg duplicate of the same SVG stacked under the sharp one to fake a glow. Light it or leave it flat.",
+  "Glowing type (from CSS, scene not observed): the contact/404 fire title pulses an orange text-shadow glow (heroTitleGlowIdle 4s alternate, #ff5a1f with 18px/45px shadows). It is scene-motivated (fire), but lifted onto a headline elsewhere it is the default glow."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop and both mobile screenshots viewed individually; element 0 ('3d scroll') and element 2 ('Hero shader animation') viewed frame by frame f00-f07; element 1 ('3D project crystals') and element 3 ('Bird fly-through') at f00/f03/f06. Type, colour, easing, duration numbers are from probe.json. From live code (fetched 2026-09-24): ScrollSmoother options, scrubbed line timelines (blur 8px, scale 1.05/1.3, stagger .05, ease none), fluid program list and tunables (splat radius .001, normal epsilon .005, spawn velocity 3 / density 50), post bloom/halo tunables, audio files, CSS keyframes and the <1024px backdrop-filter kill. From GLB JSON headers: cam.glb animation clip names, v20.glb (21 meshes, 237-joint skin, 4 clips, ~121k tris, placeholder material), crystal and feather mesh names. INFERRED: mapping of 281px/208px sizes to 'storytelling'/'narrative.'; exact material parameter values (not literal in the bundle, likely set via onBeforeCompile or runtime objects); that setTime is fed by scroll progress; purpose of 'Click to start'; fluid RT resolution. Not observed: preloader, page-transition ice shader, 404, contact fire/water scene, customiser UI (only named in Awwwards element titles). | audit (2026-09-24, adversarial re-check): re-viewed desktop_00-07, mobile_00/01, element 0 f00-f07, element 1 f00/f03/f06, element 2 f00/f03/f06, element 3 f00/f04/f07 one at a time; pixel-measured the hero h1 and sampled the gallery floor; re-fetched index.html, entry/index CSS, CbdjwYMp.js, FZFS71Nt.js and v20/cam/cam-mob/dev/crystal0/feather GLBs. Confirmed: ScrollSmoother options, fluid tunables and pass names, halo and bloom tunables, audio files, GLB mesh/skin/clip counts, backdrop-filter kill, fonts, .text-line gradients, fire-title keyframes. Fixed: 'Click to start' is the liquid-glass cursor (not a fixed pill, not a layout collision); 'no semantic headings' was false (h1 + h2 in SSR); h1 descenders end 22px above the fold; hero h2 is 66px; mobile sizes 38px / 73.32px (not ~42/~100); blur gate is isDesktop, not a quality flag; exit/enter variants per text component; scene words reveal per char, not by an alpha mask; the staircase is a right-then-left chevron; hairline class is .text-line (2px); timeline seek uses paused actions + action.time, not mixer.setTime; the phoenix glass is a custom 23-parameter shader, not MeshPhysicalMaterial; KTX2 is not used; SplitText is used, not just referenced; sound 'dots' are bars. Added: dev.glb data-channel empties, fov 25, spring crystal hover tint, cursor states, pixel motif, gradient-text slop flag, Tweakpane/devMode in prod, mobile corner swap. Still inferred: exact scroll-to-seconds mapping per section, wing-cycle period, fluid RT resolution and iterations, the purpose of the second webgl2 context, whether devMode is overridden at runtime. | audit v3 (2026-09-25, adversarial re-check): re-viewed desktop_00-07, mobile_00/01, element 1 f00-f07, element 2 f02 and element 3 f03 one at a time, zoomed the cursor and sound button; re-fetched index.html (same bundles), re-read FZFS71Nt.js, CbdjwYMp.js, entry/index CSS, decoded dev.glb keyframe data, fetched cursor_border.svg and loader.gif. Fixed: scroll is unpaused by the preloader, not by 'Click to start' (click = sound on + 3s auto-fly of two viewports); sound toggle has FIVE bars (7/10px pulses, delays 0-.8s), not four; cursor inner ring is a gradient-glint ring, not dashed; 'customiser recolouring per body part' -> a random re-roll of the glass parameters on springs; glass rims are masked gradients that flip on hover, not a plain white border; contrast 1.7:1 -> 1.4-1.6:1; devMode is overridden to false at runtime (resolved). Resolved inference: scroll-to-time is piecewise, one of 20 vh-length sections per timeline second, and the section sum reproduces the measured 38,970px document. Added: preloader (lavender gradient, pixel-bird GIF, feathered iris), phoenix head-follow in the finale, keyframed chapter times (darkness 10-11s, projects 17-18s, snow 18s, burning 19s), hero exit with negative stagger, footer line + blurred-logo glow + stray '>', nav underline-grow, three new slop flags and three new steal_this entries (head follow, click wave, iris). Still inferred: purpose of the second webgl2 context, fluid RT resolution/iterations, the wing-cycle period."
+}

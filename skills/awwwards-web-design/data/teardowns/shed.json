@@ -1,0 +1,287 @@
+{
+ "slug": "shed",
+ "title": "Shed",
+ "live_url": "https://shed.design/",
+ "award": "Site of the Day - Mar 23, 2026 (Honors, SOTD) - credits: Isaac Powell, Thomas Aufresne",
+ "scores": {
+  "overall": 7.64,
+  "design": 7.82,
+  "usability": 7.55,
+  "creativity": 7.31,
+  "content": 7.81,
+  "dev": {
+   "overall": 7.37,
+   "semantics_seo": 7.0,
+   "animations": 7.8,
+   "accessibility": 6.8,
+   "wpo": 7.8,
+   "responsive": 7.4,
+   "markup": 7.2
+  }
+ },
+ "industry": "Brand and interior design agency for retail, hospitality, workplace and exhibition spaces (London)",
+ "signature": "The intro fast-cuts through the portfolio inside a 26.5vw clip-path window, each photo dropping in top-down on a reversed stagger that speeds up, blows the last frame up to a full-bleed hero and raises 'THIS IS SHED' word by word in 16vw Owners caps; the hero then keeps running as a 5s slideshow whose next-slide pill fills from greyscale to colour as its own timer.",
+ "first_screen": {
+  "composition": "Full-bleed interior photograph of a colour-swapped washroom: green walls with red cubicles on the left, red walls with green cubicles on the right, meeting on a hard vertical seam at x~716. It is a symmetric diptych, not a mirrored copy (the floor numbers run 6/5 on the left and 4/3 on the right). The h1 'THIS IS SHED' runs edge to edge across the top (x 10-1430, y ~60-230) in white 231.3px Owners 600 caps. Header row at y~22: serif 'Shed.' wordmark left (absolutely positioned in the hero, so it scrolls away); the hero subtitle as a centred Reckless marquee ('Building brands through experience for more than 25 years •', faded at both ends, pauses on hover); '+ MENU' at 25.2px right; one 1px white rule under the header across the width at y~50. Bottom-left is a 126x77px (8.75vw x 5.375vw) stadium button with a 3px white border: the hero carousel control, showing the next slide's thumbnail in greyscale while its colour copy slides across as a 5s timer (colour on the left, grey on the right in desktop_00). Bottom-right a white 79px (5.5vw) circle labelled 'SCROLL' that scrolls one viewport. No subline, no CTA.",
+  "what_owns_it": "mixed",
+  "display_type_px": 231.3,
+  "evidence": [
+   "desktop_00.jpg",
+   "probe measure.largest_text[0]",
+   "frames/2/f05-f07",
+   "index.Lp7IhUWI.css .home-hero-carousel-control / .home-hero__scroll",
+   "Cj-_l8F8.js HeroCarouselControl"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Owners (OwnersWeb)",
+    "role": "display",
+    "classification": "grotesque sans, set at 600 in uppercase with tight leading",
+    "foundry": "OH no Type Co",
+    "source": "probe fonts_loaded 'OwnersWeb 600 normal' (the html class reads wf-ownersweb-n7-active, the loader's 700 slot); 22 nodes"
+   },
+   {
+    "name": "Sequel Sans (SequelWeb)",
+    "role": "body",
+    "classification": "neo-grotesque; 500 for statements, links and list names, 400 for body and labels",
+    "foundry": "OGJ Type Design",
+    "source": "probe fonts_loaded 'SequelWeb 400/500'; body 16px"
+   },
+   {
+    "name": "Reckless (RecklessWeb)",
+    "role": "accent",
+    "classification": "contemporary high-contrast serif, 400 only, for the hero subtitle marquee, the services paragraph and the body of news captions (their lead-in, e.g. 'NEW PROJECT DROP —', is Sequel 500 caps at 14.4px)",
+    "foundry": "Displaay",
+    "source": "probe fonts_loaded 'RecklessWeb 400 normal'; 150 nodes (split text)"
+   }
+  ],
+  "display_size_px": 231.3,
+  "body_size_px": 16.2,
+  "scale_notes": "Every desktop size is a vw multiple: h1 231.3px = 16.06vw; footer 'SEE WORK' ~186px (12.9vw, 7 char nodes); sector list 144px = 10vw; five nodes at 153px (10.625vw) are most likely the five menu links; client names 38.7px = 2.69vw; intro statement 54px = 3.75vw; menu button 25.2px = 1.75vw; Reckless paragraph 21.6px = 1.5vw; CTA links (OUR WORK / OUR SERVICES) 17.1px = 1.19vw; body 16.2px = 1.125vw; news lead-ins 14.4px = 1vw; section labels 10.8px = 0.75vw. Roughly 21:13:5:2:1.5:1 from h1 to body.",
+  "tracking_leading": "h1 line-height 0.9 (208.17/231.3) with -0.01em; sector list 144px line-height 0.81 with -0.01em; intro statement 54px line-height 1.0 with -0.02em; body 16.2px line-height 1.3 with -0.02em; Reckless 21.6px line-height 1.15 with -0.01em; uppercase UI (CTA links 17.1px +0.03em, labels 10.8px +0.01em). The hero title's line masks use overflow-y: clip (not hidden) and lines with descenders get padding-bottom .12em (.06em on corrected titles).",
+  "case_and_style": "Display is ALL CAPS Owners 600; prose is sentence-case Sequel 500 with no italics. Reckless serif adds warmth in the marquee and service copy. Section labels are tiny uppercase Sequel inside outlined pills. Sqm and years are set as plain numerals in tiny caps.",
+  "signature_moves": [
+   "16vw caps headline set edge to edge over photography, with only a 0.75vw gutter",
+   "Giant 10vw caps list (RETAIL / HOSPITALITY / WORKPLACE / EXHIBITION) where a light-blue copy wipes through each word as it crosses the viewport",
+   "A three-voice system: industrial caps for shouting, a neutral grotesk for talking, a serif for asides"
+  ],
+  "mobile": "At 390px the h1 is 100px (probe mobile_measure) and reflows to 'THIS IS / SHED', centred (mobile_00). Body stays ~16px Sequel (a 21px line pitch measured at 2x DPR in mobile_01). The subtitle marquee is display:none below 1024px and the SCROLL circle below 768px. The layout leaves vw for rem below 1024px. No horizontal overflow."
+ },
+ "color": {
+  "mode": "section-shifting",
+  "base": "#ffffff white page",
+  "ink": "#1c1c1c",
+  "accents": [
+   "#0F00B0 ultramarine: the full sectors section and the Index page",
+   "#6CCAFF sky blue: the scroll-wipe copy on the sector words and the active index row",
+   "#F48502 orange: full-screen menu field",
+   "#FFC700 yellow: menu link hover and the current route",
+   "#3B15EB electric violet: the custom cursor bubble (e.g. 'VISIT ↗' over news cards)"
+  ],
+  "ratio": "inferred: home is ~55% white, ~25% photography/video, ~12% ultramarine field, ~8% ink. Accents are whole fields, not sprinkles.",
+  "section_shifts": "Hard cuts between flat fields: white intro, then an ultramarine #0F00B0 sectors block (desktop_02 edge at y~278), then white clients and news. The menu takes over the viewport in orange. Colour arrives as whole rooms, like the interiors Shed designs.",
+  "texture": "none; flat fields and photography",
+  "notes": "Each hue has one job and one surface: blue = sectors/index, orange = navigation, violet = the cursor, sky = active state, yellow = hover/current. Colour works as architecture, not decoration."
+ },
+ "layout": {
+  "grid": "Edge-to-edge with a 0.75vw (~11px) outer gutter at 1440. The video/text split is ~943px media plus a right column after a 1px vertical rule (x~964). Clients are two columns split at x~487 by a vertical rule. News uses an asymmetric 783px + 624px pair. The home services image panel is 30.3125vw wide and absolute on the right (CSS).",
+  "density": "airy",
+  "alignment": "Hard left on the 0.75vw gutter for type; news captions centred under images",
+  "composition_moves": [
+   "Headline spans the full viewport width over a full-bleed photo",
+   "Seven-line 54px statement alone on a white field with ~150px above and below (desktop_01)",
+   "Giant caps list separated by full-width 1px white rules on ultramarine",
+   "Two-column client list (38.7px; left from x=11, right from x=498 after a vertical rule that draws on reveal). desktop_03 caught its stagger mid-way (items enter at .36s + 60ms each, right column from .66s), which is why the lower names look grey; that is not a designed fade",
+   "Footer that is a CTA: 'SEE WORK' ~186px caps + an inline 213x130 project thumbnail that starts on the fourth footer column (x=963) + a ~140px custom arrow, on one baseline ~10px above the viewport bottom (desktop_05)"
+  ],
+  "section_rhythm": "Poster (hero) -> statement (54px) -> media + column -> poster list (144px caps on blue) -> mid list (38.7px names) -> media pair -> poster footer. Scale swings from huge to mid every section.",
+  "mobile_adaptation": "Single column; the carousel-control pill moves to bottom-centre (14rem x 8.6rem = 140x86 CSS px; ~280x170 device px in the 2x mobile_00); media full width with the play button kept; the sector list stacks; the services image panel only exists at (hover:hover) and (min-width:1240px); below 1024px the intro window is 70vw and uses a vertical --clipYBot reveal."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis: new Lenis({lerp:.2, wheelMultiplier:1.25}), driven from the gsap ticker (e.raf(i*1e3)); scroll progress/direction is broadcast through a Nuxt hook 'SCROLL:UPDATE'. html class 'lenis'. Lenis is stopped for the whole intro and restarted on its onComplete.",
+  "preloader": "The jury's 'Shed Intro Loader'. White screen; a centred window 26.5vw wide at aspect 424/273 (381.6x245.7 at 1440; frames/2 measure ~382x246) opens as a strip from its top edge and fast-cuts through project photos (each new photo drops in top-down about every 0.35s, speeding up), lands on the hero photo, then scales to full-bleed. Code (Cj-_l8F8.js HeroAssets + index CSS): all hero figures are stacked full-size (z-index by nth-last-child, so the first child, the hero, is on top), scaled by L = windowH/figH, with --clipX = 50 - windowW/(W*L)*100/2 %. The desktop clip-path is inset(0 var(--clipX) var(--clipY) var(--clipX)), so --clipY is the BOTTOM inset: fromTo {'--clipY':'100%'} -> {'--clipX':k%, '--clipY':'0%'}, ease expoInOut (0.9,0,0.1,1), 1.2s, stagger {each:-.35, ease:'introOut' (0.3,0.6,0.9,1)}; at label figScale = .38 + .35*(n+1) the first figure goes to scale 1 and clip 0 (expoInOut 1.2s), and the headline fires at figScale+0.2. Below 1024px the window is 70vw and --clipYBot animates instead (clip-path inset(var(--clipY) var(--clipX) var(--clipYBot))).",
+  "intro_sequence": "Frames/2 at 0.34s: a thin strip at the top edge of the window. 1.01-2.36s: cuts through 3-4 projects. 3.03s: the window starts growing. 3.70s: full-bleed; 'THIS' is fully up and 'IS' is rising from under the line mask, and the header row (logo, subtitle marquee, + MENU, rule) is already in. 4.37s: the carousel pill and the SCROLL circle have scaled in (CSS transform scale 0->1, 1s cubic-bezier(.9,0,.1,1), .5s delay, on .home-hero--visible). Total ~4.4s. Headline code (HeroTitle): TextSplitter 'lines, words' with lineClass 'oh', then fromTo(words,{yPercent:103},{yPercent:0, duration:1.2, stagger:.25, ease:'expoInOut'}): word by word, not per character.",
+  "scroll_techniques": [
+   "scrub counter-mask wipe on each sector word (code-verified ServiceItem: ghost wrapper yPercent -100->0 while its inner 100->0, ease none, then both out from 1.3; ScrollTrigger start 'top 70%', end 'bottom 60%', scrub:true), with onEnter/onEnterBack setting the active sector",
+   "clip-path panel reveal for sector images (CSS class toggle: inset(0 0 100% 0) -> inset(0 0), 1s cubic-bezier(.9,0,.1,1))",
+   "reveal: masked rises from a TextSplitter component (lines/words/chars inside .oh / anim-line wrappers; split lazily at 'top bottom+=50%' after FONTS:LOADED; reverted once scrolled well past)",
+   "hero after the intro: the slide container scrubs yPercent 0->40 as the hero leaves ('top top' to 'bottom top'), and the active slide drifts yPercent 0->4.5 over 6s (the figure is 105% tall at top -5%)",
+   "case study (frames/1): an editorial scroll of full-bleed, unequal 2-up and centred images, with an in-flow auto slideshow whose numbered circle counters (01/02/03) fill black for the active slide beside a thin progress arc; f03 catches a crossfade. No pinning is evidenced.",
+   "hero subtitle marquee in the header row, paused on hover",
+   "vertical rules that hand off: ::before retracts toward the bottom while ::after draws from the top (scaleY, 1.2s/1s expoInOut, .2-.5s delays) when the block becomes visible, so the rule is present before any JS runs"
+  ],
+  "text_animation": "Masked rise everywhere, split by a TextSplitter component (GSAP SplitText 3.11.3). Hero title: words yPercent 103->0, 1.2s, stagger .25, expoInOut. Footer 'SEE WORK' (FooterLink, CspfGs-C.js): chars set to yPercent 100 and rise to 0 over 1s expoInOut with stagger .04; the inline thumbnail wipes up with clipPath inset(100% 0 0 0) -> inset(0) at +.4s, and the arrow rises yPercent 110->0 at +.5s, triggered at 'top bottom+=20'. The earlier claim that the hero characters replay on hover is wrong; that code belongs to the footer (see hover_micro). List items use CSS transition-delay steps of 60ms (clients .36s + .06s x n).",
+  "image_animation": "Hero slideshow after the intro (5s timer): each next figure is set to clipPath inset(0% 0% 100% 0%) and a higher z-index, then tweened to inset(0) over 1s expoInOut (a top-down wipe over the previous photo). The carousel pill shows the next slide as a greyscale thumbnail (filter: grayscale(1)) while its colour copy slides in with a counter-translate (inner xPercent -100->0, figure 100->0, linear over the 5s timer); its onComplete advances the hero, and it pauses when the hero is offscreen or the menu is open. Services panel images wipe with the same curve through CSS clip-path transitions.",
+  "page_transitions": "Nuxt route changes with a fixed .transition-overlay of rgba(0,0,0,.4) (the probe's single rgba(0,0,0,0.4) background); the rest of the sequence is inferred and was not captured.",
+  "hover_micro": [
+   "Text roll: .link--clone-hover:after{content:attr(data-label); top:100%}; on hover the label and its clone translateY(-100%) over .8s cubic-bezier(.14,1,.34,1), and return in .4s cubic-bezier(1,0,.65,.61). The enter is slow and the exit fast. Same on the SCROLL circle label.",
+   "Menu links: black caps turn yellow #FFC700 on the orange field (the current route is yellow too); the 1px black rules above and below the hovered item redraw with scaleX from the left over 1.4s cubic-bezier(.14,1,.34,1); WORK reveals 'SEE FEATURED / SEE INDEX' child pills that slide up from translateY(calc(100% + .5vw)) in .4s cubic-bezier(1,0,.65,.61), the second delayed .1s (frames/0 f03, entry CSS)",
+   "Index rows: the row under the pointer turns #6CCAFF and the sticky preview swaps to that project, even while the list scrolls under a stationary cursor (frames/3 f04-f06); the highlight lags about one row during scroll (f06: Cha Cha Teng lit while the status bar shows the pointer on The Counter House link)",
+   "Filter chips on the Index: outlined pills; the active one fills white",
+   "Client names: hover turns the name #a4a4a4 (.8s expoOut) and slides 'SEE PROJECT' up from translateY(105%) beside it (.4s)",
+   "Footer 'SEE WORK' (code-verified FooterLink): hovering each letter advances the inline thumbnail to the next of a shuffled set of case-study images (one per letter); hovering the thumbnail or the arrow plays through the set at .1s per image (hover:hover and >=1024px only; below 1024px one word is hidden)"
+  ],
+  "cursor": "Native cursor kept (cursor_none 0) plus a custom follower on hover-capable devices: a fixed 10rem #3b15eb circle (::before scale 0 -> 1 over .8s expoOut, or .65 in 'small' mode) lerped toward the pointer on the gsap ticker, carrying a label and an arrow icon set through a CURSOR:UPDATE hook. 'VISIT ↗' over news cards is this bubble (the 64px circle in desktop_04 sits exactly at the parked pointer, 720,450). Also a custom scrollbar: a fixed right-edge handle, rgba(0,0,0,.4), .375vw wide, min-height 5vw, grab cursor, faded in after the intro.",
+  "easing_curves": [
+   "cubic-bezier(0.14,1,0.34,1) = CustomEase 'expoOut' (174 CSS uses)",
+   "cubic-bezier(1,0,0.65,0.61) hover-out/exit (70)",
+   "cubic-bezier(0.9,0,0.1,1) = CustomEase 'expoInOut' (33 CSS; 10 GSAP)",
+   "cubic-bezier(0.43,0.2,0.02,1) (13)",
+   "CustomEase 'expoIn' 0.66,0,0.86,0",
+   "CustomEase 'introOut' 0.3,0.6,0.9,1 (used as the ease on the stagger itself)",
+   "gsap.defaults({ease:'power2.out'}); power4.out x3"
+  ],
+  "duration_range_ms": "CSS 400-1200ms (0.8s x109, 0.4s x86, 1s x48, 0.6s x37, 1.2s x23, 1.4s once); GSAP 0.4-1.2s (duration:1 x12, 1.2 x4, .8 x4)",
+  "stagger_ms": "250ms per word (hero title), 40ms per char (footer 'SEE WORK'), 350ms reversed with an accelerating ease (intro photos), 60ms CSS transition-delay steps (client list), 100ms per image on the footer thumbnail flip",
+  "choreography_notes": "Photos first, type second: the portfolio flashes and the hero lands; the header row is already in by 3.70s while the title words rise, and the carousel pill and SCROLL circle scale in last (by 4.37s). In lists the colour wipe runs with scroll position (scrub) rather than on a timer, so the page reads like a scanning display.",
+  "evidence": [
+   "frames/2/f00-f07 (Intro Loader, 5.38s)",
+   "frames/3/f00,f04,f06 (Index, 7.03s)",
+   "frames/0/f00,f03,f06 (Menu)",
+   "frames/1/f00,f02-f07 (Case Study)",
+   "audit re-read of /_nuxt/: 5CLAcI1G.js (Lenis, CustomEase, cursor, scrollbar), Cj-_l8F8.js (Hero, HeroAssets, HeroCarouselControl, ServiceItem), CspfGs-C.js (FooterLink), index.Lp7IhUWI.css, entry.BxsTIKus.css, Link.DR_Xs1uC.css",
+   "probe easings/durations"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "photo",
+  "art_direction": "The agency's own built interiors shot as architecture: symmetrical, frontal, saturated colour-blocking (red/green washroom, ultramarine Harrods atrium, Liberty's orange), crisp and flash-bright, sometimes one tonal B/W shopfront next to a colour video still. Short Vimeo loops for campaign work.",
+  "treatments": [
+   "colour-swapped symmetric hero diptych (green|red halves on a hard centre seam)",
+   "clip-path windowed slideshow",
+   "carousel-control pill: the next slide's thumbnail in greyscale, filling to colour as the 5s timer, 3px white border, stadium radius",
+   "white circular play button (~94px) on video",
+   "sticky hover preview on the Index",
+   "inline photo thumbnail inside a giant caps footer line that flips through case studies on hover"
+  ],
+  "crops_and_ratios": "Full-bleed hero; home video 943x590 (~16:10); news 783x745 and 624x388; index preview ~0.84 portrait (~31vw); footer thumbnail 213x130; carousel pill 126x77",
+  "formats": "DatoCMS avif via <picture> (30 picture elements, 3.99MB avif declared), Vimeo progressive 720p mp4 (9.34MB declared), 24 jpg requests",
+  "evidence": [
+   "desktop_00.jpg",
+   "desktop_02.jpg",
+   "desktop_04.jpg",
+   "desktop_05.jpg",
+   "frames/3/f03-f07",
+   "probe media/videos"
+  ]
+ },
+ "three_d": {
+  "present": false,
+  "stack": "none",
+  "role": "none",
+  "assets": [],
+  "materials_lighting_post": "",
+  "interaction": "none",
+  "performance_tactics": "",
+  "fallback_mobile": "",
+  "evidence": [
+   "probe contexts {} and canvas []"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Home: the header row belongs to the hero (the 'Shed.' logo is .header-logo--abs, the subtitle marquee sits inside .home-hero, '+ MENU' is 25.2px Sequel 500 caps with a text-roll, plus a 1px white rule), so none of it appears in the scrolled screenshots (desktop_01-07). The CSS also defines a fixed black rounded .header-sticky bar (.75vw inset, radius .8125vw, centred title); where it shows was not observed. On the Index page the logo and MENU stay fixed over the list (frames/3).",
+  "menu": "Full-screen #F48502 orange overlay. Five giant black caps links (ABOUT, SERVICES, WORK, NEWS & VIEWS, CONTACT); the probe's five 153px (10.625vw) nodes are most likely these links. A centred outlined pill 'WHAT'S YOUR DESTINATION?' at top and '× CLOSE' top-right. Hover turns the link #FFC700 and redraws the hairlines; WORK shows the 'SEE FEATURED / SEE INDEX' child pills (frames/0).",
+  "buttons_links": "Uppercase Sequel links with a static underline (OUR WORK, OUR SERVICES, NEWS & INSIGHTS) and the clone text-roll on hover; circle buttons (SCROLL white 5.5vw = 79px, play white ~94px); outlined pill labels for section names and filters. The violet 'VISIT' circle is the custom cursor, not a button.",
+  "unusual_interactions": [
+   "Scroll-scrubbed colour wipe through giant list words",
+   "Index list where scrolling under a still cursor changes the hovered project and the sticky preview",
+   "Floating segmented 'FEATURED | INDEX' pill at bottom centre on work pages",
+   "Footer 'SEE WORK' letters that flip the inline thumbnail through case studies, one image per letter",
+   "Hero carousel pill that fills from greyscale to colour as the slide timer"
+  ],
+  "sound": "None observed. The probe's one <video> with an empty src and muted:false is not the pill (the pill is an image carousel control); inferred: a lazy-loaded player for the home reel.",
+  "footer": "White: four tiny uppercase link columns on a 22vw grid (socials, sitemap, terms, credit 'SITE BY IJP + TA'), bottom-aligned, then one composed line of 'SEE WORK' caps (~186px), an inline project thumbnail that starts on the fourth column and a custom 155x157 arrow, sitting ~10px above the bottom edge (desktop_05/06). The jury's 'Footer Interaction' clip was not in the frame set, but the code shows it: letters rise on entry, and hovering letters flips the thumbnail through case studies."
+ },
+ "content_voice": {
+  "headline_style": "Declarative, all-caps, few words; sector nouns as headlines; imperatives in the footer.",
+  "copy_tone": "Confident British agency voice: first person plural, anti-template stance (no house style, tailored not one-size), concrete sector nouns, client names as proof.",
+  "examples": [
+   "THIS IS SHED"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Nuxt 3 (Vue) with DatoCMS; hashed /_nuxt/ chunks",
+  "libraries": [
+   "GSAP 3.12.7 (ScrollTrigger, CustomEase; SplitText 3.11.3 bundled)",
+   "Lenis",
+   "Nuxt plugin hooks SCROLL:UPDATE / CURSOR:UPDATE / FONTS:LOADED",
+   "Web Font Loader-style wf-* classes with self-hosted woff (Owners, Sequel, Reckless)",
+   "Vimeo progressive mp4",
+   "GTM, LinkedIn Insight"
+  ],
+  "evidence": "probe globals {__NUXT__}, libs_from_requests [nuxt], top_hosts datocms-assets/vimeo; curl of https://shed.design/ plus the 23 /_nuxt/ chunks grepped (CustomEase.create strings and gsap.defaults power2.out in 5CLAcI1G.js, Lenis constructor, SplitText 3.11.3 banner, intro and hero carousel in Cj-_l8F8.js, footer link in CspfGs-C.js, clone-hover CSS in Link.DR_Xs1uC.css)"
+ },
+ "performance_accessibility": {
+  "requests": 133,
+  "weight_notes": "Moderate: ~9.3MB of Vimeo mp4 (720p renditions), ~4MB avif, ~344KB JS, ~9KB CSS declared (the bundles fetched were 440KB for the main chunk).",
+  "reduced_motion": "45 reduced-motion rules: CSS transitions sit inside @media (prefers-reduced-motion: no-preference) and hover effects inside (hover:hover), so reduced motion drops the CSS transitions by construction. The JS does not check it: no 'reduced-motion' string in the main, home or footer chunks, so the ~4.4s GSAP intro (with Lenis stopped), the masked rises and the scroll scrubs run for everyone.",
+  "contrast_issues": "Yellow #FFC700 hover text on orange #F48502 is 1.64:1. White '+ MENU', logo and header rule sit on the photo with no scrim; in desktop_00 the 'E' of MENU is lost against a neon strip. 10.8px (0.75vw) section labels are too small at 1440 and smaller below. White on #0F00B0 (12.8:1) and #1c1c1c on white are strong. The grey lower client names in desktop_03 are a mid-reveal capture, not a resting state.",
+  "mobile_quality": "Good layout (100px h1, no overflow, carousel pill centred), but mobile_01 shows the ultramarine sectors block empty except its pill label and one rule: the Reckless paragraph, OUR SERVICES and the sector words had not revealed yet.",
+  "dev_scores": {
+   "semantics_seo": 7.0,
+   "animations": 7.8,
+   "accessibility": 6.8,
+   "wpo": 7.8,
+   "responsive": 7.4,
+   "markup": 7.2
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Clip-window portfolio flash that zooms to the hero",
+   "why_it_works": "It shows range (many projects) and focus (one hero) in about four seconds, and the loader is the portfolio instead of a progress bar.",
+   "how_to_build": "Stack N <figure>s absolutely at full size inside the hero, hero first in the DOM, and set z-index by nth-last-child so the first child is on top. Measure a centred intro box (26.5vw wide, aspect-ratio 424/273). L = introH/figH (use widths below 1024px); k = 50 - introW/(W*L)*100/2. gsap.set(wrappers,{scale:L, '--clipX':k+'%', '--clipY':'100%', '--clipYBot':'0%'}) with CSS clip-path: inset(0 var(--clipX) var(--clipY) var(--clipX)) at >=1024px, so --clipY is the bottom inset and each photo drops in from the top. lenis.stop(); const tl=gsap.timeline({onComplete:()=>{lenis.start(); gsap.set(figs,{clearProps:'all'});}}); tl.fromTo(wrappers,{'--clipY':'100%'},{'--clipX':k+'%','--clipY':'0%', ease:CustomEase.create('expoInOut','0.9, 0, 0.1, 1'), duration:1.2, stagger:{each:-.35, ease:CustomEase.create('introOut','0.3, 0.6, 0.9, 1')}},0); tl.addLabel('figScale', .38 + .35*(n+1)); tl.to(wrappers[0],{scale:1,'--clipX':'0%','--clipY':'0%','--clipYBot':'0%', ease:'expoInOut', duration:1.2, clearProps:'all'},'figScale'); tl.add(playHeadline,'figScale+=0.2'). GSAP interpolates the custom properties itself; @property is only needed if CSS transitions drive them. Keep the hero photo visible if JS fails (apply the intro state only under an html.js class), and skip the intro under prefers-reduced-motion or on repeat visits, which Shed does not do."
+  },
+  {
+   "technique": "Scroll-scrubbed counter-mask colour wipe through giant list words",
+   "why_it_works": "Each 10vw word lights up as it passes the reading line, so a plain list of four sectors reads as a scanning display, and it tracks scroll exactly with no timers.",
+   "how_to_build": "Each <li> holds the white word plus an aria-hidden ghost copy in #6CCAFF: an outer wrapper with overflow:hidden and an inner span. ScrollTrigger({trigger:li, start:'top 70%', end:'bottom 60%', scrub:true, onEnter:()=>setActive(id), onEnterBack:()=>setActive(id)}); tl.fromTo(outer,{yPercent:-100},{yPercent:0,ease:'none',duration:1},0).fromTo(inner,{yPercent:100},{yPercent:0,ease:'none',duration:1},0).to(outer,{yPercent:100,ease:'none',duration:1},1.3).to(inner,{yPercent:-100,ease:'none',duration:1},1.3): the sky band enters from the top, holds, then leaves through the bottom. Type: Owners-like 600 caps, 10vw, line-height .81, -0.01em, .625vw vertical margins, 1px solid #fff rules drawn as li::after between rows. The active id drives a right panel (30.3125vw, absolute right) whose images reveal with clip-path inset(0 0 100% 0) -> inset(0 0) over 1s cubic-bezier(.9,0,.1,1), only under @media (hover:hover) and (min-width:1240px)."
+  },
+  {
+   "technique": "Masked rise with type-aware splitting",
+   "why_it_works": "Letters come up from behind a baseline rather than fading in, which keeps the poster feel, and splitting lines first stops descenders being clipped.",
+   "how_to_build": "Split after fonts load (Shed waits for a FONTS:LOADED hook and splits lazily at 'top bottom+=50%'). SplitText(el,{type:'lines, words', linesClass:'oh'}) with .oh{overflow-y:clip} (clip, not hidden, so nothing is cut sideways) and padding-bottom .12em on lines with descenders. gsap.set(words,{yPercent:103}) only when html has .js; then gsap.to(words,{yPercent:0, duration:1.2, stagger:.25, ease:'expoInOut'}) for the hero title. For a big footer word use chars: yPercent 100 -> 0, 1s, stagger .04, then follow with the next element at +.4s (clip-path inset(100% 0 0 0) -> inset(0)) and +.5s (yPercent 110 -> 0). Revert the split once the block has scrolled well past, as Shed does."
+  },
+  {
+   "technique": "Asymmetric enter/exit hover timing",
+   "why_it_works": "A slow expo-out on enter feels deliberate, and a fast ease-in on exit gets out of the way, so hover never lags behind the pointer.",
+   "how_to_build": "@media (hover:hover) and (prefers-reduced-motion:no-preference){ .link{overflow:hidden; position:relative} .link::after{content:attr(data-label); position:absolute; left:0; top:100%} .link__label, .link::after{transition:transform .4s cubic-bezier(1,0,.65,.61)} .link:hover .link__label, .link:hover::after{transform:translateY(-100%); transition-duration:.8s; transition-timing-function:cubic-bezier(.14,1,.34,1)} }. The same enter .8s/exit .4s pair applies to colour: color .8s cubic-bezier(.14,1,.34,1)."
+  },
+  {
+   "technique": "Viewport-locked poster type scale",
+   "why_it_works": "Every size is a vw ratio, so the composition (headline edge to edge, 0.75vw gutter) holds at any desktop width like a scaled poster.",
+   "how_to_build": "At >=1024px: h1 16.0625vw (231px@1440), list 10vw, menu ~10.6vw, footer CTA 12.9vw, statement 3.75vw (lh 1, -0.02em), serif aside 1.5vw, body 1.125vw (lh 1.3, -0.02em), CTA caps 1.1875vw (+0.03em), gutter .75vw, section padding ~11vw. Below 1024px switch to rem. Floor the small sizes: font-size:max(12px,.75vw) for labels and max(15px,1.125vw) for body, which Shed skips."
+  },
+  {
+   "technique": "Index list with a sticky hover preview that follows the scroll",
+   "why_it_works": "A 40-project archive stays scannable as a table, and the preview gives each row a face without cards.",
+   "how_to_build": "Rows: a 4-column grid (name / sector / city / sqm) with 1px rules; name ~2vw Sequel, meta ~.6vw caps (sizes inferred from frames/3). Right column: position:sticky; top:~30vh; width ~31vw; aspect-ratio ~0.84; stacked <img>s swapped with clip-path wipes. inferred mechanism: track the pointer and on each Lenis scroll re-hit-test with document.elementFromPoint(lastX,lastY).closest('[data-row]') so the active row (#6CCAFF) and the preview update while the list scrolls under a still cursor; run it in the same frame to avoid the one-row lag visible in frames/3 f06. Add a fixed bottom-centre segmented pill 'FEATURED | INDEX'."
+  },
+  {
+   "technique": "Next-slide pill that is also the timer",
+   "why_it_works": "One small control does three jobs: it previews what comes next, shows how long until it comes, and advances on click, with no dots or progress bar.",
+   "how_to_build": "A <button aria-label='Show next asset in carousel'> 8.75vw x 5.375vw (140x86px on mobile), border .3rem solid #fff, border-radius 10vw, bottom/left .75vw, transform scale(0) -> scale(1) over 1s cubic-bezier(.9,0,.1,1) with a .5s delay once the hero is visible. Inside, per slide: a greyscale <img> (filter:grayscale(1)) and a colour copy in an overflow:hidden wrapper. For the next slide: gsap.fromTo(inner,{xPercent:-100},{xPercent:0,duration:5,ease:'none'}) and gsap.fromTo(fig,{xPercent:100},{xPercent:0,duration:5,ease:'none'}) at the same time, so the colour copy stays put on screen while its window slides in; onComplete (or click) advances the big hero with a top-down clip wipe (inset(0 0 100% 0) -> inset(0), 1s expoInOut). Pause the timeline while the hero is offscreen (ScrollTrigger onToggle) or the menu is open."
+  },
+  {
+   "technique": "Footer word that flips an inline thumbnail per letter",
+   "why_it_works": "The giant 'SEE WORK' is a CTA and a contact sheet at once: running the pointer across the letters flips through case studies, so the footer shows the portfolio instead of a slogan.",
+   "how_to_build": "One line: split the word into chars (yPercent 100 -> 0, 1s expoInOut, stagger .04 on entry), an inline 213x130 figure (clip-path inset(100% 0 0 0) -> inset(0) at +.4s) and an arrow (yPercent 110 -> 0 at +.5s). Build a shuffled list of case-study images, one per character (label length - 1). Under gsap.matchMedia('(hover: hover) and (min-width: 1024px)'), each char's mouseenter advances the thumbnail index; mouseenter on the thumbnail or arrow plays a paused timeline that steps through every image at .1s offsets. Below 1024px hide one word so the line still fits. Keep ~10px clear under the caps so no glyph is cut at the page edge."
+  }
+ ],
+ "slop_risks": [
+  "Invisible-content trap: in desktop_01 the right column next to the video is blank except its hollow caption bullet until the reveal fires, and mobile_01 shows the ultramarine sectors block empty. Text is set to yPercent 100 inside masks before the trigger, and the split waits for fonts. A copy must keep content visible without JS or triggers.",
+  "Labels and metadata as pill chips everywhere / pill-eyebrow badge: every section name (CORE SERVICES AND SECTORS, SELECTED CLIENTS, LATEST UPDATES), the NEWS tags, the menu title and the Index filters are outlined pills.",
+  "One label treatment everywhere: tiny uppercase Sequel caps for section labels, links, footer, meta and credits.",
+  "Stock hover tic: the clone text-roll is on nearly every Awwwards site; the asymmetric timing is what makes it considered. Without it, it reads as a template.",
+  "Underline-fill risk: OUR WORK / OUR SERVICES / NEWS & INSIGHTS carry static underlines (Link.css animates only the clone text-roll). Animating them in would hit the underline-fill tell.",
+  "Colliding saturated colours: ultramarine, sky, orange, yellow and violet. Shed gets away with it because each hue owns a whole surface; a naive copy that uses them as accents on one screen (yellow on orange hover is already 1.64:1) becomes a sprayed palette.",
+  "Unrounded hairline rules: 1px square rules under the header, between list rows and as column dividers. They are structural here, and the vertical dividers draw with a scaleY hand-off, which gives them intent; as decoration they are the tell.",
+  "Oversized footer wordmark: 'SEE WORK' ~186px sits ~10px above the page bottom with an inline thumbnail and arrow, whole and aligned to the footer grid. A copy that lets it clip at the viewport edge or drops the thumbnail and arrow becomes the clipped footer wordmark.",
+  "Loader tax: ~4.4s of intro before the first readable screen, with Lenis stopped the whole time, no repeat-visit skip (the intro-done flag lives only in the in-memory store) and no JS check for prefers-reduced-motion. Skip it on repeat visits (sessionStorage) and under reduced motion.",
+  "Hard colour seams: white -> #0F00B0 is a hard cut at y~278 (desktop_02) and back to white at y~193 (desktop_03). The law flags hard section seams unless deliberate; Shed makes them deliberate rooms, and a copy that cuts between unrelated colours without that idea gets the tell.",
+  "Text with no scrim over imagery: the white MENU, logo and rule sit on bright parts of the hero photo, and on the Index page list rows scroll under the fixed white logo and 'FEATURED PROJECTS' pill and collide with them (frames/3 f06)."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots (05-07 are identical because the 5406px page bottom was reached at step 5), mobile_00/01, all 8 frames of the Intro Loader and the Index, f00/f03/f06 of Menu and Case Study, probe numbers, and grep of the Nuxt chunks (CustomEase definitions, Lenis {lerp:.2, wheelMultiplier:1.25}, the intro timeline with clip vars and stagger {each:-.35, ease:'introOut'}, SplitText configs, the counter-mask scrub, the clone-hover CSS). INFERRED: menu link size (~10vw by visual match), the client-list fade mechanism, page transitions, and the footer interaction (its jury clip was not in the frame set). Hover states other than those in the element videos were not probed. No re-probe was needed. audit (2026-09-25): re-viewed desktop_00-07, mobile_00/01 and frames/2 f00-f07, frames/0, frames/1 and frames/3 one at a time, and re-read the Nuxt chunks and CSS. Fixed: the hero title rises word by word (stagger .25, 1.2s, yPercent 103), not per char; the chars/.04/hover-replay code is the footer 'SEE WORK' link, whose hover flips the inline thumbnail per letter; the bottom-left pill is the hero carousel control (greyscale-to-colour 5s timer), not a showreel video; the desktop intro clip-path is inset(0 clipX clipY clipX) so photos drop in top-down and the how_to_build formula was corrected; the header row is already in at 3.70s (only the pill and SCROLL arrive last); 'VISIT' is a custom lerped cursor (#3b15eb, 10rem, .65 small), not a button, and cursor was not native-only; a custom scrollbar exists; the case-study element shows an in-flow numbered slideshow, no pinning; the client-list grey is a mid-reveal stagger, not a design; desktop_05-07 are the same scroll position but not identical (video frame and a ~4px arrow shift differ); mobile pill is 140x86 CSS px (the 270x160 figure was device px) and mobile body is ~16px, not 22px; GSAP ignores reduced motion (verified), Lenis is stopped during the intro; sector rules are #fff, not .6 alpha; menu links likely 153px, not 144px. Added the carousel-pill and footer-flip recipes and the hard-seam and no-scrim risks."
+}

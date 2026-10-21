@@ -1,0 +1,299 @@
+{
+ "slug": "mindmarket",
+ "title": "MindMarket",
+ "live_url": "https://mindmarket.com/",
+ "award": "SOTD Dec 29, 2025 + Honors (corpus award_heading/badges); corpus source is the Sites of the Month list, month not recorded - credits: Deven Caron, Marie-Christine Dion, Domaine Public, Kim Levan, KOKI-KIKO, Louis Paquet, Pier-Luc Cossette",
+ "scores": {
+  "overall": 7.85,
+  "design": 8.09,
+  "usability": 7.48,
+  "creativity": 7.95,
+  "content": 7.75,
+  "dev": {
+   "overall": 7.55,
+   "semantics_seo": 7.4,
+   "animations": 8.0,
+   "accessibility": 6.8,
+   "wpo": 7.8,
+   "responsive": 7.6,
+   "markup": 7.4
+  }
+ },
+ "industry": "Global qualitative market research agency (B2B services)",
+ "signature": "One thick scroll-drawn SVG trail winds down the services section like a board-game path, with commissioned Rive-animated characters staged along it and plain white cards riding over it, so a dry B2B services list reads as an illustrated journey.",
+ "first_screen": {
+  "composition": "Flat #8ed462 green full-bleed. Two floating white bars at top (y=17, 68px tall, 10px radius): a main bar with the scribble-figure logo + 'MindMarket', 5 nav items and a green circular hamburger, and a separate 'Get a quote' bar with a round Rive avatar (mindmarket_cursor_crop.riv) that tracks the cursor. Both bars drop in from above on first load (translate -100% - 16px -> 0, .4s after a .2s delay, --ease). Centered two-line h1 'Real human insights' (139.68px = 9.7vw; the heading-2xl clamp token is overridden to 9.7vw at >=1000px, 8vh on portrait screens, 12.5vw on tall ones) and a 29.75px h2 tagline 'One global partner'; both rise 80px on first load (transform only, .8s cubic-bezier(.5,0,0,1)), bottom-up: the tagline (.anim-first-hit -delay-1, .1s) moves before the title (-delay-2, .2s); html.is-first-loaded is added 1.25s into the preloader, just before the logo lifts out (1.3-2.3s), so the rise overlaps the exit. One Rive file (hero_animation.riv) holds three running characters (a pink-faced runner reaching left with a brown glove, a blue-faced girl with a black ponytail, a laughing man with a yellow headband and a lilac pointing arm) plus clouds and confetti; it rises from the bottom edge with an elastic reveal, bleeds off the fold on purpose and straddles the seam into the next section (desktop_01 top edge, mobile_01).",
+  "what_owns_it": "type",
+  "display_type_px": 139.68,
+  "evidence": [
+   "desktop_00.jpg",
+   "mobile_00.jpg",
+   "mobile_01.jpg",
+   "probe measure.type.h1",
+   "saved HTML typo/css/mindmarket.html (c-rive hero_animation.riv, .anim-first-hit)",
+   "saved CSS: .c-hero-home_title{font-size:9.7vw} at >=1000px; html.is-first-loaded .c-menu-desktop{transition:transform .4s .2s var(--ease)}"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Inter",
+    "role": "display",
+    "classification": "neo-grotesque sans, weights 400/500 only; the site's 'normal' weight token is 500 (--font-sans-weight-normal: 500), so every heading, paragraph and button is Inter Medium and 400 appears only on the stat numerals",
+    "foundry": "Rasmus Andersson (self-hosted woff2, 2 files)",
+    "source": "probe fonts_loaded ['Inter 400','Inter 500'], font_families_rendered Inter 179 nodes"
+   },
+   {
+    "name": "Inter",
+    "role": "body",
+    "classification": "same family",
+    "foundry": "Rasmus Andersson",
+    "source": "probe body 17px Inter (root/UI size); running copy is body-lg 20.19px at weight 500"
+   }
+  ],
+  "display_size_px": 144,
+  "body_size_px": 20.19,
+  "scale_notes": "Root font-size is fluid, not 16px: html{font-size: var(--text-base)} with --text-md = clamp(1rem, .9783rem + .1087vw, 1.0625rem), i.e. 17px at 1440 (16.08px at 390, 15px between 1000 and 1199px, 19px from 2000px, 21.5px from 2400px). Every rem token therefore scales with it, and at 1440 each heading token sits at its clamp MAXIMUM: --text-heading-2xl clamp(3.625rem, 1.1033rem + 12.6087vw, 10.875rem) = 61.6->184.9px (but .heading-2xl/.c-hero-home_title switch to 9.7vw at >=1000px, 8vh when aspect <= 3/4, 12.5vw !important when min-height 1000 and max-width 1700 and aspect <= 2); xl 7.5rem max = 127.5px; lg 4.75rem = 80.75px; md 3.125rem = 53.125px; sm 2.375rem = 40.375px; xs 1.75rem = 29.75px; body-lg 1.1875rem = 20.19px; body-md = 17px. (The earlier 58->174px style ranges assumed a 16px rem and were wrong for desktop.) Stat numerals override --text-heading-xl to 10vw when the viewport is >=860px tall and >=1000px wide, which is why they measure 144px at 1440x900 (size keyed to height as well as width). Measured at 1440: stat numbers 144px/400, h1 139.68px/500, h2 80.75px/500, h2 53.125px, tile h3 40.375px, tagline h2 and intro p 29.75px, body p 20.19px, nav/UI 17px. Display:body about 7:1; card heading:body 2:1.",
+  "tracking_leading": "Uniform -0.06em tracking on all display sizes (h1 -8.38px at 139.68px, stats -8.64px at 144px, h2 -4.845px at 80.75px, h2 -3.1875px at 53.125px, lead -1.785px at 29.75px); body-lg 20.19px and body-md 17px at -0.04em (-0.8075px at 20.19), both weight 500; nav 17px normal. Leading 0.95 on display (132.7/139.68, 136.8/144, 76.7/80.75), 1.15 on 53px, 1.2 on lead, 1.25 on 20px body, 1.5 on 17px UI.",
+  "case_and_style": "Sentence case everywhere, no uppercase labels. Emphasis by one animated wavy underline (a CSS mask) under a single word: 'insights' in the numbers title (colour from --accent-color: pink-500 #ebc1ff) and 'Connect' in the footer (the same .underline-wave, -wave-large, replayed on each entry via data-scroll-repeat). Numerals as big 400-weight stats with a '+' suffix. The footer 'Let's / Connect' is pulled -0.07em left (-ml-[0.07em]) so the L's stem optically aligns with the 109px content margin.",
+  "signature_moves": [
+   "Heavy negative tracking (-0.06em) on a neutral grotesque at 140px, so Inter reads tight and custom rather than default.",
+   "Weight drop for numbers: stats at 400 while headings are 500, giving the numerals a lighter, larger presence.",
+   "Wavy underline as a CSS mask: a 64x20 SVG path (stroke 10) repeated on x as the mask of an ::after bar, animated by @keyframes wave-scroll (mask-position 0 -> var(--wave-w)=-64px) at 3s linear infinite, with animation-play-state paused until the element gets .is-inview. Mobile uses a 30x9.5 wave.",
+   "Depth-sandwich ribbon (desktop_04), four layers in one rounded 2268:1350 sheet: (1) background photo mm-audience-bg.jpg; (2) an aria-hidden SVG (viewBox 1512x563) with the whole #f5e211 band and the coral #ff705d 'Connecting you ... to your audience' lettering as outlined paths, sitting UNDER (3) a full cutout of the people (mm-audience-front.png, z-above), so the band disappears behind the man's head and the girl's hair; (4) a second SVG above the cutout that repeats only the lower loop segment crossing their bodies, filled with a linear gradient #cebd22 -> #e4d218 -> #f5e211 so the turn of the band reads as shaded. Photo and cutout parallax together at -0.1 (c-inner-parallax, image 4em taller than its box); both ribbon SVGs at -0.05, disabled on mobile. (Replaces the earlier 'one SVG under a heads-only cutout' inference.)",
+   "Same fake-fold trick twice: the trail's #shadow-path and the ribbon's front segment are duplicate strokes filled with a dark-to-light gradient laid over the crossing, the only shading on an otherwise flat site."
+  ],
+  "mobile": "h1 drops to 66.91px (probe mobile_measure) with the same 2-line break, centered; stats stay the largest type at 105.3px; tile headings use --text-heading-md (~34px); body ~20px. A separate mobile trail SVG (viewBox 847.9x4471) under 1000px; the sticky hero variant is display:none under 1000px. Caveat: that sticky copy is the one holding the semantic <h1>; the copy phones actually see is the aria-hidden duplicate (<div class='c-hero-home_title'>), so on mobile the page has no h1 in the accessibility tree."
+ },
+ "color": {
+  "mode": "section-shifting light",
+  "base": "#f5f1e4 warm beige (--color-beige-400, 49 bg nodes) alternating with #8ed462 green (--color-green-500) and #ffffff cards; page templates change the hero colour (blue #2ba0ff on the sectors hub, frames/3/f00); #fbfbf0 is the backdrop during page transitions",
+  "ink": "#2c2e2a charcoal (161 text nodes)",
+  "accents": [
+   "#8ed462 green (hero, trail, CTA callout, stat card)",
+   "#f5e211 yellow (footer, ribbon) and #f9d314 yellow-600",
+   "#ff705d coral red (buttons, tile plate, stat card)",
+   "#2ba0ff blue (stat numerals and captions, buttons, sectors hub hero)",
+   "#ebc1ff lilac pink (wavy underline, buttons)",
+   "#e0dbce / #c2bcad deeper beiges (articles, brands)",
+   "#378e43 / #439745 dark greens: stops of the trail's fold-shadow gradient (#8ED462 -> #378e43 at .3 -> #439745 at .7 -> #8ED462); the ribbon's front segment uses #cebd22 -> #e4d218 -> #f5e211 the same way"
+  ],
+  "ratio": "inferred: ~45% beige/white, ~35% green, ~15% illustration multicolor, ~5% charcoal ink",
+  "section_shifts": "Green hero -> beige trail sheet with the green path -> green 'Ready when you are!' callout with rounded bottom corners -> full-bleed photo sheet with the ribbon -> beige numbers -> deeper beige #e0dbce articles/brands -> yellow footer. Each section is a rounded sheet (radius 50px, 35px under 1000px) that slides over the previous one; the sticky hero also scales to .8 and takes a charcoal overlay (opacity progress*.4) as the trail sheet covers it, so shifts are layered, not seamed.",
+  "texture": "Flat vector fills and no box-shadows (probe box_shadows 0). There are exactly two shading devices, both the same trick: the trail's #shadow-path, a duplicate of the crossing segment stroked with a linear gradient (#8ED462 -> #378e43 -> #439745 -> #8ED462) where the band folds under itself (desktop_02, frames/0/f03), and the ribbon's front segment filled #cebd22 -> #e4d218 -> #f5e211 (desktop_04).",
+  "notes": "Five saturated hues are held together because every one of them is used inside the commissioned illustration system (KOKI-KIKO), then echoed on buttons and stat cards. Each card button takes a different hue (coral, yellow, blue, lilac)."
+ },
+ "layout": {
+  "grid": "16-column fluid grid (--grid-columns 16, gutter = margin = --spacing-gutter); numbers section on 14 columns with sticky content in columns 1/9. Container ~1222px (x 109-1331 at 1440).",
+  "density": "balanced",
+  "alignment": "Centered hero and CTA; services cards alternate right / left / center / right along the trail; numbers block is left text + right sticky stack.",
+  "composition_moves": [
+   "Floating split nav: two separate white bars (nav + quote CTA) instead of one full-width header.",
+   "Trail section: three stroked paths (#main-path, #shadow-path, #secondary-path, stroke-width 500, round caps) in one 1944.2x6151.5 SVG with preserveAspectRatio='none'. The wrapper is given the viewBox's own aspect ratio (md:aspect-[1944.2/6151.5]) and 104vw width (margin -2vw each side), so nothing is actually stretched on desktop and the band is a uniform ~385px at 1440 (500 x 1497.6/1944.2). Drawn under four white tile cards in .c-homepage-timeline-cards wrappers parallaxed at data-scroll-speed 0.1 that alternate right / left / center / right. Under 1000px a separate 847.9x4471 SVG (stroke 250) is 214% of the column wide (ml -50%, mr -64%), so phones see only a slice of the loop.",
+   "Illustrations deliberately crop at section and viewport edges and straddle seams (hero runners overlap the trail sheet; the flower bed and clouds close the trail).",
+   "Stacked sticky stat cards on the right (grid columns 10-15 of 14) while the headline and copy stay sticky on the left (columns 1-9).",
+   "Rounded 50px sheets overlapping the previous section.",
+   "Depth sandwich: photo, back ribbon (band + lettering), people cutout, front ribbon segment with a shading gradient (desktop_04), see typography.signature_moves.",
+   "Trail finale: three layered green hill bands (back at bottom -10%, middle, front) and five clouds, each cloud with its own --start/--end px offsets (e.g. 200px -> -200px) driven by the section's --progress, closing the route like a stage flat (desktop_03)."
+  ],
+  "section_rhythm": "Loud illustrated beats (hero, trail, callout) alternate with calm typographic/data beats (numbers, articles, brands); doc height 13,732px, about 15 viewports.",
+  "mobile_adaptation": "Single white nav bar with logo + green hamburger circle; tiles full-width with 20px insets (--unit-md); a dedicated mobile trail SVG and timeline (power1.in) rebuilt on resize at 1000px; illustrations reflow above cards (mobile_01); the preloader is skipped under 700px and on hover:none devices."
+ },
+ "motion": {
+  "smooth_scroll": "Locomotive Scroll v5 (wraps Lenis; html class 'lenis', data-scroll attributes: data-scroll-speed x21, data-scroll-offset x9, data-scroll-css-progress x8, data-scroll-event-progress x1). Lenis defaults found in bundle (smoothWheel true, wheelMultiplier 1, touchMultiplier 1, syncTouch false).",
+  "preloader": "Preloader.astro (skipped entirely when the deviceStatus store reports isTouchOrSmall: the timeline is killed, is-first-loaded is added at once and the stored delay is 0). GSAP timeline: the logo SVG (viewBox 442x377, #8ED462 stroke 42.25px, round caps) rises y 15% -> 0 and fades in (1s power2.inOut) while its scribble path draws 0 -> 100% (DrawSVG, 1s power1.inOut); two gradient 'shadow' paths fade in at +0.39s and +0.58s (.25s each); the head dot pops scaleY 0 -> 1 (elastic.out(1,0.3), 1s); the logo lifts to -15% (1s power2.inOut); html.is-first-loaded is added at 1.25s, so the hero rise overlaps the logo's exit. Its duration is published through a store and added to the hero Rive reveal delay (data-reveal-delay-with-preloader).",
+  "intro_sequence": "Verified: html.is-first-loaded drops the two nav bars in from above (.4s, .2s delay, --ease) and releases .anim-first-hit, so the tagline (delay .1s) and h1 (delay .2s) rise from translateY(80px) over .8s with cubic-bezier(.5,0,0,1), transform only, text visible throughout. The hero Rive group then reveals after the preloader + 0.15s: scale .75->1 and y 100->0 over 1.75s elastic.out(1, 0.3), x from data-reveal-translate-x to 0% with power3.inOut, opacity 0->1 in 0.15s power1.out.",
+  "scroll_techniques": [
+   "pin (sticky hero, sticky numbers content)",
+   "scrub (DrawSVG trail from scroll progress)",
+   "parallax (cards speed 0.1, inner image parallax speed 0.1)",
+   "stacking (sticky stat cards)",
+   "CSS-variable progress tweens",
+   "marquee rails"
+  ],
+  "text_animation": "No split text. Hero lines rise 80px on first load (transform only). Tile cards (.c-tile-animated): title, description and CTA start at opacity 0 and settle when Locomotive adds .is-inview (data-scroll-offset 20%), over .4s --ease-inOut cubic-bezier(.455,.03,.515,.955) with delays .3s / .35s / .45s, after their background plates. Only the description and CTA also move, from translateY(-10px), so they settle DOWN into place; the title only fades. Wavy underlines loop via mask-position keyframes only while in view.",
+  "image_animation": "Rive state-machine characters loop in place (hero group, climber, shrug, composer, two trumpeters, gamer, scientist, soccer, binoculars, unicycle, basketball player). Tile plates: two absolutely positioned plates scale(0)->1 over .6s with --ease-bounce (overshoot): the coloured plate (the card's button hue, inset 1px) first and the white plate .2s later, so a coloured ring flashes around the growing white card before it covers it (frames/0/f00). Callout hover: pop_up_girl.riv sits in a sticky, pointer-events:none wrapper (56% width, bottom-left) and slides from translateY(100%) to 12% over 300ms --ease-smooth when the callout gets .is-active; it is drawn in front of the headline and body copy (frames/1/f02-f05). Clouds translate with --progress at the trail end; photos use inner parallax (0.1).",
+  "page_transitions": "Swup, verified in CSS: the previous container is clipped to the current viewport (clip-path inset from --scroll-y), drops to opacity .5 and scale(.9) translateY(10svh); the next container starts at translateY(110svh) and slides up; both .75s cubic-bezier(.5,0,0,1) with transform-origin 50% 50svh, over a #fbfbf0 backdrop, cursor:wait while transitioning; .transition-fade elements fade in .15s.",
+  "hover_micro": [
+   "Buttons: the right-side 40px round arrow icon scales to 0 while a matching icon scales 0->1 at the left, and the label translates by icon width + gap (--button-label-transform); label, both icons and the ::before plate (to scale 1.05) all run .4s on --ease-bounce cubic-bezier(.17,.67,.3,1.33), so everything overshoots slightly (frames/0/f05 shows the icon on the left).",
+   "Get-a-quote avatar (Rive view model on mindmarket_cursor_crop.riv): every mousemove sets posx/posy directly to -90 + (cursorX - rect.left)/rect.width*110 (same for y), unclamped, so it keeps tracking across the whole page; the 0.1 lerp only eases it back to rest (-34, -15) after the pointer leaves the document. isSmiling toggles on button enter/leave.",
+   "Hub list rows: hover fills the row white slightly past the column (~6px), the chevron gains a round plate, and a ~5deg tilted photo thumbnail appears and slides its images vertically when moving between rows (frames/3/f03-f06). The thumbnail sits at a fixed point about 78% along the hovered row, just left of the chevron, vertically centred on that row; it does not sit at the cursor (cursor x ~262 vs thumbnail centre ~382 in f03, cursor x ~517-548 vs ~781 in f04-f05). Inferred from frames: anchored per row, not a cursor follower (earlier 'trails the cursor with lag' dropped).",
+   "CTA 'Get a quote' in the green callout: hovering slides a big Rive character up from the bottom-left edge, in front of the text (frames/1/f02-f05).",
+   "Desktop dropdowns: items enter with transition-delay index x 25ms, and the dropdown's visual image settles from scale 1.05 to 1 over .6s --ease-inOut; the mobile menu staggers items at index x 50ms + 50ms."
+  ],
+  "cursor": "system cursor (cursor_none 0)",
+  "easing_curves": [
+   "--ease: cubic-bezier(.5,0,0,1) (default, first-hit rise, page transition)",
+   "--ease-smooth: cubic-bezier(.38,.005,.215,1) (pop-up character)",
+   "--ease-bounce: cubic-bezier(.17,.67,.3,1.33) (button plate, tile plates)",
+   "--ease-inOut: cubic-bezier(.455,.03,.515,.955) (tile text)",
+   "Tailwind --ease-in-out: cubic-bezier(.4,0,.2,1) (default transitions)",
+   "GSAP: CustomEase 'M0,0 C0.952,0.017 0.744,0.69 1,1' on the trail draw",
+   "GSAP: elastic.out(1, 0.3), power3.inOut, power1.out (Rive reveal)",
+   "GSAP: power1.in (mobile trail)",
+   "GSAP (preloader): power2.inOut (logo rise/lift), power1.inOut (scribble draw), elastic.out(1, 0.3) (head dot)"
+  ],
+  "duration_range_ms": "100-800ms UI (.1s x19, .15s x13, .2-.3s, tile text .4s, tile plates .6s, first-hit rise .8s, pop-up 300ms, page .75s); Rive reveal 1750ms; wave loop 3s; scroll-scrubbed pieces have no fixed duration. Preloader ~2.3s end to end (is-first-loaded at 1.25s); nav drop-in 400ms after a 200ms delay.",
+  "stagger_ms": "Time staggers are small and CSS-driven: hero tagline 100ms then title 200ms; tile plates colored then white +200ms; tile title/description/CTA at 300/350/450ms. Stat cards are offset spatially (translateY(index * --spacing-fluid-xl)) rather than in time.",
+  "choreography_notes": "The trail timeline is sequential: the main path draws over timeline 0-0.9 with the custom ease (almost flat until about half its span, then accelerating), the secondary path then draws linearly over 0.9-1.9, and the shadow path fades in at 0.95-1.1. Mapped onto scroll progress (total 1.9), the main path covers the first ~47%, the fold shadow appears at ~50-58%, and the secondary path finishes the route. The line appears to lead the reader to each card. Characters loop independently of scroll, which keeps the page alive when the user stops.",
+  "evidence": [
+   "frames/0/f00-f07",
+   "frames/1/f00-f07",
+   "frames/2/f00-f07",
+   "frames/3/f00-f07",
+   "saved HTML + inline CSS: evidence/typo/css/mindmarket.html",
+   "HomepageTimeline.BCaTIgOW.js",
+   "Rive.iUYJ15Oq.js",
+   "ButtonQuote.LvbIvViF.js",
+   "Scroll bundle (Locomotive 5.0.0, Lenis 1.3.17)",
+   "scratchpad mm/Preloader.astro_*.js, b_HomepageTimeline.BCaTIgOW.js, b_Rive.iUYJ15Oq.js, b_ButtonQuote.LvbIvViF.js, scroll.js, index.html re-read 2026-09-25"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "illustration",
+  "art_direction": "Commissioned flat vector characters (KOKI-KIKO): rubber-hose limbs, blue/pink/green skin tones, thin black contour accents, oversized hands and shoes, confetti squiggles and paper sheets; mid-action poses (running, kicking, shrugging, trumpeting). Photography (articles, 'connecting you' band) is warm, natural-light editorial stock of real people in homes and meeting rooms.",
+  "treatments": [
+   "Rive state-machine animation on canvas",
+   "SVG path drawn by scroll",
+   "vector ribbon split into back and front layers around a photo cutout",
+   "rounded 50px photo sheet",
+   "hover thumbnails anchored near the row chevron, tilted ~5deg",
+   "two-plate tile reveal"
+  ],
+  "crops_and_ratios": "Stat cards min-height 550px on tall desktop viewports (aspect 450:550 only between 1000 and 1400px wide); featured articles: the first card spans 3 rows x 2 columns at 638:916 (~1:1.44), the others are 7:6 (desktop_06: 601x515), all at radius 20px (--radius-md); hero illustration crops at the bottom edge; ribbon photo sheet aspect 2268:1350 with 50px radius.",
+  "formats": "DatoCMS images as avif (574KB total) + webp; 18 png, 40 svg; 14 .riv files (~319KB); no video.",
+  "evidence": [
+   "desktop_00-07",
+   "mobile_00-01",
+   "frames/0",
+   "probe asset_extensions",
+   "index.html c-rive list"
+  ]
+ },
+ "three_d": {
+  "present": false,
+  "stack": "none. 14 Rive instances (13 c-rive + the quote avatar); the probe counted 15 webgl2 + 14 2d contexts, inferred to be Rive's WebGL2 renderer blitting to per-character canvases (package not verified).",
+  "role": "none",
+  "assets": [],
+  "materials_lighting_post": "",
+  "interaction": "none",
+  "performance_tactics": "Rive canvases start/stop rendering via IntersectionObserver; characters flagged data-disable-firefox-renderer do not autoplay and get no observer or reveal on Firefox (hero and pop-up are exempt); the preloader and sticky hero variant are skipped on small or touch screens.",
+  "fallback_mobile": "n/a",
+  "evidence": [
+   "probe contexts webgl2 15",
+   "Rive.iUYJ15Oq.js IntersectionObserver start/stopRendering"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Two floating white rounded bars that stay fixed at the top: the nav (logo, Services, Methodology v, Sectors v, Strategy v, Pricing, green circle menu) and a separate 'Get a quote' bar with a live Rive avatar. Both bars drop in from above on first load.",
+  "menu": "Desktop dropdowns plus a full menu from the green circle; mobile menu component (MenuMobile); the active item gets a beige pill fill ('Industry Sectors' in frames/3).",
+  "buttons_links": "63.75px tall (--button-height = spacing*15 = 3.75rem at the 17px root), 10px radius, solid hue fills with a white circular arrow icon; icon swaps sides on hover with label slide.",
+  "unusual_interactions": [
+   "Cursor-tracking avatar in the quote button",
+   "Hover-summoned Rive characters on CTAs",
+   "Three logo marquee rails in the brands section: directions 1 / -1 / 1 at velocities 0.35 / 0.35 / 0.6, so the third row runs faster than the counter-moving pair"
+  ],
+  "sound": "none",
+  "footer": "Yellow #f5e211 sheet (radius 50px, min-height 100svh, overflow hidden): short invitation copy + white 'Get a quote' button left, two link columns right, office addresses (Dubai, London...) in 60% charcoal, and a giant 'Let's / Connect' at heading-2xl (~140px) whose 'Connect' carries the replaying wave underline."
+ },
+ "content_voice": {
+  "headline_style": "Short, plain, punchy sentence-case lines, often two or three words with a full stop.",
+  "copy_tone": "Warm, human, jargon-light B2B ('No more chaos.', 'One brief. One team.', 'Speak their language.', 'Global, for real.').",
+  "examples": [
+   "Real human insights",
+   "No more chaos.",
+   "One brief. One team.",
+   "Speak their language.",
+   "Global, for real.",
+   "Ready when you are!",
+   "Connecting you ... to your audience"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Astro v5.17.1 (meta generator) with custom elements (c-rive, c-homepage-timeline, c-rail, c-inner-parallax, c-deluxe-callout, c-button-quote) via a component-manager; Tailwind v4 tokens (@layer theme, --spacing)",
+  "libraries": [
+   "GSAP 3.13.0",
+   "GSAP DrawSVGPlugin",
+   "GSAP CustomEase (paths 3.13.0)",
+   "Locomotive Scroll 5.0.0 (window.locomotiveScrollVersion) over Lenis 1.3.17 (defaults: lerp .1, smoothWheel true)",
+   "Swup (page transitions)",
+   "@rive-app runtime (rive.CThzgbxe.js)",
+   "DatoCMS (images)",
+   "vanilla-cookieconsent (--cc-* vars)",
+   "Google Analytics/GTM; Meta Pixel gated behind marketing consent"
+  ],
+  "evidence": "probe globals.swup + libs_from_requests [astro, rive] + html classes 'swup-enabled lenis'; curl of https://mindmarket.com/ and /_astro/ HomepageTimeline.BCaTIgOW.js, Rive.iUYJ15Oq.js, ButtonQuote.LvbIvViF.js, index.CsVyfrhj.js (GSAP 3.13.0 header), Scroll.Bil0v7NL.js (Lenis options) grepped."
+ },
+ "performance_accessibility": {
+  "requests": 130,
+  "weight_notes": "Light: ~1.3MB declared (avif 574KB, riv 319KB, JS 219KB, html 125KB with ~166KB inline CSS, fonts 48KB).",
+  "reduced_motion": "1 reduced-motion rule in CSS, and it only zeroes the cookie modal transition; Rive loops, the trail draw, tile fades, card rotation and the wave loops have no reduced-motion path.",
+  "contrast_issues": "Charcoal #2c2e2a on #8ed462 green is 7.7:1 and fine on beige. Failures (computed): white numerals and caption on the #8ed462 green stat card 1.8:1, white on the #ff705d coral card 2.7:1, and the #2ba0ff blue caption on the white stat card 2.8:1 (small text). The ribbon message is aria-hidden outlined paths, so it is lost to screen readers. Also: the footer office addresses in 60% charcoal on #f5e211 blend to about #7c7620, ~3.5:1 at 17px; the coral ribbon lettering on the yellow band is ~2.0:1 (decorative and aria-hidden, but it is the section's only statement of the message).",
+  "mobile_quality": "Good: no horizontal overflow, dedicated mobile trail, h1 66.9px, cards full width. Accessibility catch: under 1000px the <h1> copy is display:none and the visible hero text is the aria-hidden duplicate, so phones get no h1 in the accessibility tree. Nice touch: html.is-ready:not(:has(:focus-visible)){scroll-behavior:smooth} turns native smooth scrolling off while a keyboard focus ring is showing.",
+  "dev_scores": {
+   "semantics_seo": 7.4,
+   "animations": 8.0,
+   "accessibility": 6.8,
+   "wpo": 7.8,
+   "responsive": 7.6,
+   "markup": 7.4
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Scroll-drawn SVG trail as page spine",
+   "why_it_works": "One continuous line ties unrelated service cards into a route, and its eased draw pulls the eye to the next stop.",
+   "how_to_build": "Author one tall SVG (desktop viewBox 1944.2x6151.5) positioned absolute inset-0 with preserveAspectRatio='none' inside a wrapper whose aspect-ratio equals the viewBox (aspect-ratio: 1944.2/6151.5) at 104vw wide, so the stroke scales uniformly with width instead of distorting (do NOT use vector-effect:non-scaling-stroke: it would pin the 500-unit stroke to 500 CSS px) with #main-path, #secondary-path (z above, continuing from where the loop crosses) and #shadow-path (a duplicate of the crossing segment, placed between main and secondary in DOM order, stroked with a userSpaceOnUse linearGradient #8ED462 0 -> #378e43 .3 -> #439745 .7 -> #8ED462 1 to fake the fold); stroke-width 500 in viewBox units (~385px at 1440 with the 104vw wrapper), round caps, brand green. GSAP timeline {paused:true}, sequential: fromTo(main, {drawSVG:'5%'}, {drawSVG:'100%', ease: CustomEase.create('trail','M0,0 C0.952,0.017 0.744,0.69 1,1'), duration:.9}); fromTo(secondary, {drawSVG:'0%'}, {drawSVG:'100%', ease:'none', duration:1}); fromTo(shadow, {opacity:0}, {opacity:1, ease:'none', duration:.15}, .95). Drive timeline.progress(p) from Locomotive data-scroll-event-progress (the site dispatches a 'pathProgress' event) or a ScrollTrigger scrub. Build a second SVG (viewBox 847.9x4471) with main + overlap-end + shadow paths and a power1.in timeline for widths < 1000px, and rebuild on resize. Under 1000px the site's mobile SVG is 214% of the column wide (margin-left -50%, margin-right -64%), so only a slice of the loop is visible."
+  },
+  {
+   "technique": "Pure-CSS progress tweens from one --progress variable",
+   "why_it_works": "Dozens of scroll-linked moves with zero per-element JS; everything reverses and stays in sync with smooth scroll.",
+   "how_to_build": "Let the scroll lib write --progress (0..1) on each [data-scroll-css-progress] element. In CSS: --t: clamp(0, 1, (var(--progress) - var(--progress-start)) / (var(--progress-end) - var(--progress-start))); --tx: calc(var(--tx-start) + (var(--tx-end) - var(--tx-start)) * var(--t)); same for --ty, --rot, --scale; transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(var(--scale)). Sticky hero example: content scale3d(1 - 0.2*progress) and a charcoal ::before at opacity progress*0.4 as the next rounded sheet slides over."
+  },
+  {
+   "technique": "Sticky stat-card stack with tilt-in",
+   "why_it_works": "Numbers arrive like dealt cards and keep the previous stat peeking, so three stats read as one growing pile.",
+   "how_to_build": "List items: position:sticky; top: calc(menu-bar-height + 10vh - var(--spacing-fluid-lg)); transform: translateY(calc(var(--index) * var(--spacing-fluid-xl))); transition: transform .3s. Cards radius 50px, no shadow, min-height 550px on tall desktop viewports (aspect 450/550 between 1000 and 1400px wide); white card with blue numerals, then green, then coral with white numerals. Each card is a CSS progress tween: --ty-start 20%, --rot-start -10deg on odd and +10deg on even cards, both easing to 0 as --progress goes 0->1 (data-scroll-offset '0%, 40%'). Numerals at 10vw (144px at 1440) when the viewport is >=860px tall, weight 400, -0.06em, line-height .95. Check caption contrast on the green and blue cards."
+  },
+  {
+   "technique": "Rive characters with elastic reveal and offscreen pause",
+   "why_it_works": "Commissioned characters stay lively and cheap: each canvas only renders while visible.",
+   "how_to_build": "One <canvas> per .riv inside a custom element; new Rive({src, canvas, autoplay:true}); IntersectionObserver -> rive.startRendering()/stopRendering(). On first intersect play a GSAP timeline on the canvas parent: fromTo({scale:.75, y:100}, {scale:1, y:0, duration:1.75, ease:'elastic.out(1, 0.3)'}) + fromTo({x: data-reveal-translate-x}, {x:'0%', duration:1.75, ease:'power3.inOut'}, 0). The site also fades the parent opacity 0 -> 1 over .15s (power1.out) and starts it at opacity 0; skip that part and keep the parent visible by default (scale/translate only) so a failed load does not leave holes. Add the preloader's duration to the first reveal's delay so the hero group lands after the logo exits."
+  },
+  {
+   "technique": "Cursor-tracking avatar inside the primary CTA",
+   "why_it_works": "The quote button looks back at the visitor, which makes the one conversion action feel personal without any extra copy.",
+   "how_to_build": "Rive file with a view model exposing number posx/posy and a state-machine boolean isSmiling (the site's file is mindmarket_cursor_crop.riv, 'State Machine 1'). On window mousemove set posx = -90 + (clientX - rect.left)/rect.width*110 and the same for posy (clamp it if you do not want the eyes to over-rotate far from the button). On document mouseleave, lerp both back to a rest pose (-34, -15) at 0.1 per rAF until within 0.5. Toggle isSmiling on the button's mouseenter/mouseleave."
+  },
+  {
+   "technique": "Icon-swap button instead of a lift",
+   "why_it_works": "The button changes state in place: the arrow travels to the other side and the label shifts, with no bounce up.",
+   "how_to_build": "Button = label + two 40px round icons (default at right; hover icon absolutely at left, translateY(-50%) scale(0)). On :hover: default icon scale(0), hover icon scale(1), label transform: translate3d(calc(icon-width + gap), 0, 0). The site runs all three (and a 1.05 plate scale) at .4s on cubic-bezier(.17,.67,.3,1.33), which overshoots; for a calmer anti-slop version use .4s cubic-bezier(.5,0,0,1) and drop the plate scale. Gate the whole thing behind @media (hover:hover)."
+  },
+  {
+   "technique": "Two-plate tile reveal",
+   "why_it_works": "The card announces its accent colour for a beat before settling to white, so a plain white card gets a moment of personality tied to its own button colour.",
+   "how_to_build": "Tile = relative box with two absolute plates behind the content: .bg.-colored (background: var(--color-bg), inset:1px) and .bg.-white (inset:0, transition-delay .2s). Both start transform:scale(0) with transition transform .6s cubic-bezier(.17,.67,.3,1.33) and go to scale(1) on .is-inview. The coloured plate lands first; the white one overshoots over it 200ms later, leaving a brief coloured ring. The site fades the title (opacity only, .3s delay) and fades + drops the description and CTA from translateY(-10px) (.35s / .45s), all .4s --ease-inOut. Keep the text visible by default: animate only the small translate, or gate the opacity behind a JS-added class so no-JS still shows it."
+  },
+  {
+   "technique": "Depth-sandwich ribbon through a photo",
+   "why_it_works": "A flat brand shape passes behind the subjects' heads and in front of their bodies, so a stock-looking photo gains depth and the message wraps around real people; a gradient on the front segment sells the turn of the band.",
+   "how_to_build": "Stack four layers in one rounded, overflow:hidden box (aspect 2268/1350): (1) the background photo; (2) an SVG with the full ribbon path and the lettering (outlined, or live <textPath> text so it stays readable to assistive tech); (3) a transparent PNG cutout of the people, full figures, on top of it, so the band vanishes behind heads and hair; (4) a second SVG above the cutout containing only the loop segment that should cross in front of the bodies, filled with a short linear gradient from a darker to the base yellow (#cebd22 -> #e4d218 -> #f5e211) to shade the turn. Parallax layers 1 and 3 together (the site uses -0.1, with the image 4em taller than its box) and both ribbon SVGs at a different rate (-0.05) so the band slides slightly against the people; turn the ribbon parallax off on mobile."
+  }
+ ],
+ "slop_risks": [
+  "Inter everywhere: Inter 400/500 carries every string, which the law calls the most common slop font. The site survives on -0.06em tracking and the commissioned illustration; a copy without commissioned art will read as a template.",
+  "Cream/beige background: #f5f1e4 is the base for most sections, the exact cream editorial tell; here it is a neutral stage for saturated art, but on its own it is slop.",
+  "Hover overshoot: the button's ::before plate scales to 1.05 and the label slide and both icon scales all run on cubic-bezier(.17,.67,.3,1.33). Nothing lifts, but everything bounces: a reflexive overshoot on every button.",
+  "An icon with a box behind it: stat cards put a globe or check glyph inside a filled circle (blue/white), and the brand marquee sets each logo in a round white chip inside a pill.",
+  "Floating tag pinned to an image: article cards stack 2-3 white rounded pills ('Worldwide', 'Educational', 'Methodology') on the top-left of each photo (desktop_06).",
+  "Em dashes in body copy: 'translating insights across cultures — it adds up fast' (desktop_01), 'high-quality insights—without compromise' (frames/0/f01) and 'just reach out — we'll help guide you' on the sectors hub (frames/3/f03).",
+  "Invisible-content trap on real copy: every service tile's title, description and CTA is opacity:0 until Locomotive adds .is-inview. If the observer never fires, the four service cards render as empty white boxes. The Rive canvases also start at opacity 0 (decorative). The hero's first-hit rise is transform-only and is the safe model to copy.",
+  "Big number + caption stat cards with round metrics ('400', '60+', '50+'): the fake-metric tile prefab if the numbers are not real and sourced (the jury clips showed 55+/300+/40+, so they are maintained, but still unsourced on the page).",
+  "Colliding colours: five saturated hues (green, yellow, coral, blue, lilac) cohere only because the illustration uses all of them; a naive copy with stock illustration becomes a candy-palette clash.",
+  "Text you cannot read: white on the light green stat card (1.8:1), white on coral (2.7:1) and blue #2ba0ff captions on white (2.8:1).",
+  "CTA-banner skeleton: 'Ready when you are!' is a wide rounded colour slab with a centred headline, a one-paragraph byline and a single button. Flat brand green, a mid-page position and the hover-summoned character keep it from the law's gradient pre-footer banner; copied without them it is the template.",
+  "Borderline flung-to-edges footer: invitation copy sits in the left columns and the link and address columns start at column 10, with an empty middle (desktop_07). It is grid-aligned (same 109px margin and column starts as the numbers section) and the giant 'Let's / Connect' anchors the lower left, which is what saves it."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop + 2 mobile screenshots viewed individually; frames/0 and frames/2 all 8 frames; frames/1 and frames/3 f00/f03/f06; probe numbers; live HTML (324KB with inline CSS) and 7 JS chunks grepped. The jury clips show an older nav (Industry Sectors / Network) than the live site (Sectors / Strategy / Pricing) and slightly different stats (55+/300+/40+ in clips vs 60+/400/50+ live). INFERRED: exact card rotation formula (tokens --rot-start +/-10deg and --ty-start found, final formula wiring assumed), Swup outgoing scale value, ribbon textPath animation, preloader timing, trail stroke width (estimated from screenshots). The hub-listing hover thumbnail tilt (~5deg) is estimated from frames. | audit 2026-09-24 (adversarial): re-viewed desktop_00-07 and mobile_00-01 one at a time plus frames/0 (all 8) and frames/1, 2, 3 (f00, f02-f07 of each); verified against the saved HTML + inline CSS (evidence/typo/css/mindmarket.html) and the JS chunks in the session scratchpad. Fixed: the trail stroke is 500 viewBox units (~370px at 1440) in a preserveAspectRatio='none' SVG, not 120-160px; the shadow path appears at ~50% of scroll progress, not 95%; the pop-up character sits in front of the text, not behind, and is a 300ms CSS translateY(100%->12%) transition; the avatar sets posx/posy directly (the 0.1 lerp only returns it to rest); the ribbon is outlined SVG paths between a photo and a people cutout, not textPath text over a photo; tile copy is opacity-gated (the old 'decorative only' note was wrong); the Swup transition is verified, no longer inferred; the hero has three characters, not four; the footer wordmark accusation was removed (no clipping evidence; the viewport cut it in desktop_07) and 'Connect' carries the wave underline; the probe's css_features flags for scroll-driven animations and view transitions have no match in the CSS (likely regex false positives). Added: two-plate tile reveal, first-hit hero rise, the logo-scribble preloader, height-keyed stat numerals (10vw at >=860px tall), fold-shadow gradient, per-template hero colour, Firefox gating, contrast failures, Locomotive 5.0.0 / Lenis 1.3.17 versions. Still inferred: hub thumbnail cursor lag, the extent of the front cutout, the Rive rendering package, the card placement percentages. | audit 2 2026-09-25 (adversarial re-run): re-viewed desktop_00-07, mobile_00-01 and all 8 frames of frames/0 one at a time, plus frames/1 f00/f03/f06/f07, frames/2 f00/f03/f06, frames/3 f00/f02-f05/f07; re-read the saved CSS (typo/css/mindmarket.css) and the homepage HTML + JS chunks in the session scratchpad (mm/). Fixed: the root font-size is 17px at 1440, so the token px ranges were recomputed and the h1 is the 9.7vw override (with aspect-ratio switches), not the clamp; body copy is 20.19px weight 500 (the site's 'normal' weight is 500); the trail SVG is aspect-locked by its wrapper, so there is no non-uniform stretch and the band is ~385px, and the vector-effect advice in the steal would have broken the stroke; the ribbon is two SVGs (back band + lettering under a full cutout, gradient-shaded front segment above it), not one SVG under a heads-only cutout; tile titles only fade, while description and CTA drop from -10px; the button's label and icons also use the bounce ease; there are three marquee rails (0.35 / 0.35 / 0.6), not two; buttons are 63.75px; article cards are 638:916 and 7:6 at 20px radius; the hub thumbnail is anchored near the chevron, not a cursor follower. Added: nav drop-in, preloader timeline detail and the 1.25s handoff, the double fake-fold gradient, trail-end hill bands and progress-driven clouds, dropdown stagger, the mobile missing-h1 accessibility catch, focus-aware smooth scroll, two more contrast failures, CTA-banner and footer-balance slop checks, em dash evidence with the real characters. Still inferred: KOKI-KIKO as the illustrator (credit list only), Rive package (webgl2 vs canvas), what adds .is-active to the callout (DeluxeCallout chunk not downloaded; frames show it on CTA hover), hub thumbnail anchoring."
+}

@@ -1,0 +1,115 @@
+<!-- ==========================================================================
+     boot.html-snippet.html: paste into <head>, in this order, before other scripts
+     --------------------------------------------------------------------------
+     What it does
+       1. Motion gate: a tiny classic inline script that FLAGS capability and hides
+          nothing. It sets <html data-motion="full|reduce"> (plus the .motion-ok
+          alias used in data/research/motion-stack.md) from the OS setting and the
+          viewer's saved in-page choice (localStorage "motion" = "reduce").
+       2. Intro deadline: the only CSS that may hide content before JS runs. It
+          arms [data-intro] (clipped), [data-intro-item] (shifted down, still
+          visible) and [data-intro-media] (over-scaled, still visible), and only
+          under data-motion="full". A 1ms animation with a delay un-arms them by
+          itself, so the intro shows even when motion-core.js never arrives.
+          motion-core.js takes over in the same frame by setting
+          <html data-intro-owned>.
+       3. Import map with exact pinned versions from cdn.jsdelivr.net/npm/, plus
+          modulepreload so the module graph downloads in parallel.
+       4. Recommended head order for the recipe files.
+     Options
+       --intro-deadline (default 2s): how long the intro may stay armed. Do not
+         raise it without measuring LCP. Measured 2026-09-25 (Chromium 145,
+         localhost): the heading's LCP entry lands when the intro ENDS, because
+         SplitText's revert paints the full text node (1.33s with the intro,
+         0.05s under reduced motion). motion-core.js caps this with
+         introMaxStart (800ms): a module that boots later shows the intro at
+         rest (measured LCP 1.25s with a 1.2s-late module). With no JS the
+         deadline itself bounds LCP at about --intro-deadline.
+         Run the LCP check in usability-a11y-perf.md 7 on the real build.
+       --intro-shift (1rem), --intro-scale (1.06): the armed offsets. The JS
+         reads them back, so the hand-off never jumps.
+       Put data-intro on the hero heading, never on the LCP image. Use
+       data-intro-media for the image: it stays visible and only settles.
+       Only use data-intro on pages that load motion-core.js with intro enabled.
+     Fallback
+       No JS: the gate never runs, nothing is armed, the page is static.
+       Reduced motion (OS or saved choice): data-motion="reduce", nothing armed.
+       CDN down or slow: the deadline releases the intro after --intro-deadline.
+     Tested against
+       gsap 3.15.0, lenis 1.3.26 (jsdelivr +esm builds), Chromium 145,
+       Playwright 1.58, 2026-09-24. Firefox and WebKit not run.
+     Why +esm: jsdelivr's +esm build of each entry is minified and self-contained.
+     The plugins do not import the core, so there is still one gsap instance.
+     About 55 KB brotli in 4 requests, against 136 KB in 8 for the raw package
+     ESM files. The bare specifiers match npm (gsap/ScrollTrigger), so the same
+     module code works unchanged under a bundler.
+     ========================================================================== -->
+
+<!-- 1. Motion gate. Classic and inline: it must run before first paint. -->
+<script>
+  (function (root) {
+    var saved = null, osReduce = false;
+    try { saved = localStorage.getItem('motion'); } catch (e) {}          /* storage can throw */
+    try { osReduce = matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    var full = !osReduce && saved !== 'reduce';                           /* the OS "reduce" always wins */
+    root.setAttribute('data-motion', full ? 'full' : 'reduce');
+    if (full) root.classList.add('motion-ok');
+  })(document.documentElement);
+</script>
+
+<!-- 2. Intro arm with a CSS deadline. Inline so it applies at first paint. -->
+<style>
+  :root[data-motion="full"]:not([data-intro-owned]) [data-intro] {
+    clip-path: inset(0 0 100% 0);                       /* clipped, not opacity: 0 */
+    animation: intro-deadline-clip 1ms var(--intro-deadline, 2s) forwards;
+  }
+  :root[data-motion="full"]:not([data-intro-owned]) [data-intro-item] {
+    translate: 0 var(--intro-shift, 1rem);              /* visible, just lower */
+    animation: intro-deadline-shift 1ms var(--intro-deadline, 2s) forwards;
+  }
+  :root[data-motion="full"]:not([data-intro-owned]) [data-intro-media] {
+    scale: var(--intro-scale, 1.06);                    /* visible, slightly over-scaled; clip it in its frame */
+    animation: intro-deadline-scale 1ms var(--intro-deadline, 2s) forwards;
+  }
+  @keyframes intro-deadline-clip  { to { clip-path: none; } }
+  @keyframes intro-deadline-shift { to { translate: none; } }
+  @keyframes intro-deadline-scale { to { scale: none; } }
+</style>
+
+<!-- 3. Pinned module versions. The import map must come before any module script or modulepreload. -->
+<script type="importmap">
+{
+  "imports": {
+    "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/+esm",
+    "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/ScrollTrigger.js/+esm",
+    "gsap/SplitText": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/SplitText.js/+esm",
+    "gsap/CustomEase": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/CustomEase.js/+esm",
+    "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/+esm"
+  }
+}
+</script>
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/gsap@3.15.0/+esm">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/gsap@3.15.0/ScrollTrigger.js/+esm">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/gsap@3.15.0/SplitText.js/+esm">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/gsap@3.15.0/CustomEase.js/+esm">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/lenis@1.3.26/+esm">
+
+<!-- 4. Recipe files. Adjust paths. page-transitions.js is a CLASSIC script on purpose:
+        its pagereveal listener must exist before the first render (Chrome docs). -->
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="motion-core.css">
+<link rel="stylesheet" href="page-transitions.css">
+<script src="page-transitions.js"></script>
+<script type="module">
+  import { init } from './motion-core.js';
+  import { initMagnetic } from './magnetic.js';
+  init();          // options: see the header of motion-core.js
+  initMagnetic();  // optional
+</script>
+
+<!-- Optional: prerender same-site links on hover so cross-document transitions stay
+     well under Chrome's 4s cut-off. Speculation rules are Chromium-only; other engines ignore them.
+<script type="speculationrules">
+  { "prerender": [{ "where": { "href_matches": "/*" }, "eagerness": "moderate" }] }
+</script>
+-->

@@ -1,0 +1,319 @@
+{
+ "slug": "everswap",
+ "title": "EverSwap",
+ "live_url": "https://everswap.com/",
+ "award": "Site of the Day Jun 22 2026 (Honors); credits Lusion",
+ "scores": {
+  "overall": 7.58,
+  "design": 7.71,
+  "usability": 7.39,
+  "creativity": 7.85,
+  "content": 7.1,
+  "dev": {
+   "overall": 7.39,
+   "semantics_seo": 7.4,
+   "animations": 8.0,
+   "accessibility": 6.6,
+   "wpo": 7.6,
+   "responsive": 7.4,
+   "markup": 7.0
+  }
+ },
+ "industry": "DeFi protocol (single-sided liquidity pools: trade, lend, borrow); crypto / fintech startup",
+ "signature": "A DeFi protocol told as a hand-painted, low-poly mountain world: a Blender-baked camera flies over the peak as you scroll, and the brand's split-diamond mark is the whole graphic system. It is the preloader portal, the chapter nav, the stroke-drawn frame around the kicker copy and (code-verified, not screenshotted) the rhombus mask that closes the page back to #203727 at the end.",
+ "first_screen": {
+  "composition": "Full-bleed realtime WebGL scene (fixed 1440x900 canvas) looking up at a central hand-painted green peak with lower flanking peaks against a vignetted blue sky (#4677d3 top centre, #273f6b corners, #90c4ff near the horizon, JPEG samples; code sky pair #ADD8E6 / #6495ED). A 3D serif wordmark 'EverSwap' sits dead-centre across the peak (x 355 to 1085, about 730 px wide). The mesh is positioned and sized from the bounding box of the visibility:hidden DOM h1. In desktop_00 it is still outlines; in desktop_01 it is solid white. Chrome: logo mark plus 'EverSwap' sans wordmark top-left at the 40 px site padding, kicker 'DeFi at Peak.' (Feature Display 400, 18 px) top-centre, glass 'Launch App' pill with a cream arrow disc top-right. There are five diamond chapter markers at the left edge (x about 40, y 390 to 500); in desktop_00 they are still sliding in from off-screen left at x about 5. 'Scroll to start' (Feature Display 400, 18 px) sits under the wordmark and is still blurred in desktop_00. The 6 px scroll thumb at the right edge only appears once scrolling starts (desktop_01). Symmetric, centred axis; no DOM imagery at all (0 img, 0 video).",
+  "what_owns_it": "3d",
+  "display_type_px": 188.889,
+  "evidence": [
+   "probes/everswap/desktop_00.jpg",
+   "probes/everswap/desktop_01.jpg",
+   "frames/everswap/0/f05.jpg",
+   "frames/everswap/0/f07.jpg",
+   "probe measure.type.h1, media counts"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Feature Display",
+    "role": "display",
+    "classification": "high-contrast transitional serif, used at weight 200 (light) and 400",
+    "foundry": "inferred: Commercial Type (Feature family), not verified",
+    "source": "probe fonts_loaded (200, 400) + root var --header-font"
+   },
+   {
+    "name": "Britti Sans",
+    "role": "body",
+    "classification": "neo-grotesque sans, weights 300 / 400 / 600",
+    "foundry": "unverified",
+    "source": "probe fonts_loaded + root var --default-font"
+   }
+  ],
+  "display_size_px": 188.889,
+  "body_size_px": 18.889,
+  "scale_notes": "Every size is design-px x --content-unit, where content-unit = (100vw - 2 x site-padding) / --ref-screen-width. The CSS :root sets ref 1440 and 16 grid columns; under 991.98 px it switches to ref 768 and 8 columns. The probe's root_vars captured only the media-query values (768 / 8). The measured h1 188.889 px = 200 x 1360/1440 confirms ref 1440 with 40 px padding at desktop. Tokens: --h1 max(80px, 200u) = 188.9 px; --h2 max(65px, 110u) = 103.9 px ('One', 'Pool'); --h3 max(55px, 80u) = 75.6 px; --sub1 22u = 20.8 px ('Swap. Lend. Borrow.', Feature Display 400); --sub2 max(18px, 18u) = 18 px ('DeFi at Peak.', 'Scroll to start', 'Where liquidity', 'Stay close to the summit', Feature Display 400); --body1 20u = 18.9 px Britti 300; --body2 16u = 15.1 px Britti 400; --btn1 16 px Britti 600; --btn2 max(16px, 18u) = 17 px Feature Display 400 (the join links, measured 17 px / lh 44.2); --preloader max(30px, 45u) = 42.5 px Feature Display 200 (the % counter; probe font_sizes 43). Ratio display:h2:h3:sub:body is roughly 10 : 5.5 : 4 : 1.1 : 1, so the scale jumps straight from monumental to small with almost nothing in between.",
+  "tracking_leading": "Letter-spacing is normal everywhere except '#home-join .subtitle' (0.18 px); there is no negative tracking. Base line-height for h1-h3 is 1.0. The chapter titles #home-everblade / #home-evernet override it to 0.8 (83.1/103.9 measured). Body 1.4 (26.4/18.9) and buttons 1.4. Legibility over the paint comes from text-shadow, not weight: .title uses 0 0 .12em rgba(0,0,0,.3), and .subtitle / .description use 0 0 1em rgba(0,0,0,.3).",
+  "case_and_style": "Sentence / title case only, with no all-caps labels. The display serif is light (200) and never bold. Serif 400 is used for small kickers and the join links; the sans carries UI and body (600 on the button, 300 on body1). Short slogans take full stops ('DeFi at Peak.', 'Swap. Lend. Borrow.'). There are NO chapter numerals anywhere in the HTML or bundle (see the audit note on the '01' misread).",
+  "signature_moves": [
+   "The hero wordmark is a 3D mesh (scene1/TITLE.buf + TITLE_OUTLINE.buf) living in the scene. The camera flies past it, so it tilts in perspective (desktop_02) and is seen from below as thick extruded letters (desktop_03). The DOM h1 'EverSwap' is kept visibility:hidden (hence the empty probe text) and exists as SEO text plus a layout anchor: its getBoundingClientRect() positions and scales the mesh.",
+   "Outline-first wordmark: the TITLE_OUTLINE mesh draws on across ALL glyphs at once (frame 0/f03 shows partial strokes on every letter, not a left-to-right sweep) from 0.75 to 2.75 s. The solid mesh then wipes in left to right from 2 to 3.5 s (0/f06: 'EverS' solid, 'wap' still outline) while the outline fades out from 2.75 to 3.5 s.",
+   "Masked word split from a centre hairline: 'One' and 'Pool' each sit in an overflow:hidden wrapper whose inner edge is the 1 px canvas line, and they slide OUT of the line (inner span translateX from +/-110% to 0). The mid-reveal state 'O|ol' (the left arc of 'O' plus the end of 'Pool') reads like a numeral '01' in desktop_04, which is how the original teardown misread it.",
+   "Serif at weight 200 in white over a painted scene: the type is thin and the scene is dense. It works because the words are huge, sit on centre and carry a soft 0.12em dark text-shadow halo.",
+   "Blur-resolve reveals: every kicker, subtitle and SplitType body line animates opacity e with filter blur((1-e) x 0.25em) (class TextBlurAnimation; probe css_usage.filters = 61). Text comes into focus rather than sliding in."
+  ],
+  "mobile": "At 390 px the h1 measures 90.98 px (the max(80px, ...) floor plus the mobile unit) and the wordmark spans nearly the full width (about 355 of 390 px). The kicker 'DeFi at Peak.' drops out of the header into the hero stack directly above the wordmark, and 'Scroll to start' sits below. Largest mobile texts 30 / 18 / 18 px. No horizontal overflow (probe overflow_x false)."
+ },
+ "color": {
+  "mode": "section-shifting (uniform-driven: the sky grades from saturated blue-sky day to a dimmed slate during the 'One Pool' chapter, with code-only lavender / purple / dark-green passes later; the site chrome stays light-on-scene)",
+  "base": "No DOM base colour: body and html are transparent over the WebGL canvas. The preloader field is #203727 (--color-dark-green, painted by a 2D canvas; sampled #223b26 in frame 0/f00). The same #203727 is the u_joinMaskColor the page closes into at the end (code-verified, not screenshotted).",
+  "ink": "#fbfff4 (--color-white, a green-tinted off-white) for all type over the scene. SVG art uses warmer whites: #F8F7F2 for the logo, icons and glass gradients, and #ECEBE8 for the nav diamonds. #203727 is used for dark text on the light pills (the join links measured rgb(32,55,39)).",
+  "accents": [
+   "#e0ffab light chartreuse (--color-light-green): the fill of solid .button::before plates (the #home-pool 'Launch App' CTA) and of the Telegram / Twitter (X) pill in the join section. Code-verified; neither is in the screenshots.",
+   "#bccca2 muted sage (--color-light-green2): the active chapter diamond (paths plus the small inner rhombus), visible in desktop_01-07.",
+   "#516e5a / #62866d (--color-dark-link / -2): defined for footer links, but #home-join-link-footers is not in the shipped HTML, so they are dead tokens.",
+   "White HDR bloom on the light trail is the only 'glow' (bloom threshold .72, selective strength raised 1 to 2.5 as the sky dims).",
+   "Unseen in the screenshots but defined in the bundle: lavender #8a84d4 (u_evernetTransitionColor wash into the EverNet chapter) and a purple Voronoi water post pass #9370DB to #7447d1 (WaterPass, Relayers to Pool)."
+  ],
+  "ratio": "About 90% painted scene (greens #9eb75b / #678e57 / #263d37 plus sky blues), about 8% off-white type and chrome, under 2% chartreuse accent.",
+  "section_shifts": "Colour shifts come from uniforms, not from CSS backgrounds. The hero is a clear blue sky lerped between #ADD8E6 and #6495ED (code), sampled #4677d3 to #90c4ff after vignette and bloom. During the 'One Pool' chapter a u_dimRatio lerps the sky to the dimmed pair #536970 / #081733. That is the slate, foggy sky in desktop_06-07 (sampled #475c71). At the same time bloomSelectiveStrength rises 1 to 2.5 and halo .15 to .4, so the light trail pops against it. Code-verified but not screenshotted: a lavender #8a84d4 full-screen wash cuts into EverNet ('Where liquidity Flows'); a freeze-frame cache plus a purple Voronoi WaterPass covers Relayers to Pool; the scene 3 lake/land follows; and the join closes the frame into a rhombus with #203727 outside. The earlier claim of a light #fbfff4 footer surface was wrong: the single rgb(251,255,244) background the probe measured is the scroll-indicator bar.",
+  "texture": "Hand-painted brush-stroke albedo textures baked onto low-poly meshes (SC_01_MOUNTAIN_TEXTURE.webp, SC_01_RIDGE_TEXTURE.webp, SC_03_LAKE_TEXTURE.webp), animated fog / smoke sprites (fog.webp, fog_flow.webp, SMOKE.webp) with a flow map, and bokeh depth of field. The texture is the world itself, behind the type. There is no grain layer over the content.",
+  "notes": "The palette record (#fbfff4, #203727) is the brand pair. The observed frames lean on the fact that 'green on painted green' reads as nature and growth, not crypto neon: no gradient text, no dark blue-charcoal UI. Purple is NOT absent from the build, though. The WaterPass (#9370DB to #7447d1) and the EverNet wash (#8a84d4) exist for chapters the probe never reached, so 'no purple' holds only for the hero and chapter 1."
+ },
+ "layout": {
+  "grid": "Token grid: 16 columns at desktop (--grid-columns 16, --ref-screen-width 1440) and 8 columns / ref 768 under 991.98 px. --grid-gap-scale .15 makes each gutter 15% of a column. Site padding is min(60px, 40 x 100vw/ref), which is 40 px at 1440. The .o-grid helper is not actually used by the homepage (probe grid_containers 0). The hero and chapter frames are single-axis, centred compositions over the canvas. Six position:fixed layers; body is position:fixed with overflow hidden; doc height 900 (virtual scroll).",
+  "density": "airy",
+  "alignment": "Strict central vertical axis for display type, kicker and body. Chrome is pinned to the four edges: logo TL, CTA TR, chapter diamonds mid-left, scroll thumb mid-right.",
+  "composition_moves": [
+   "The wordmark is centred over the peak so the summit pierces the letters (desktop_00), and the 3D title then reads as part of the landscape.",
+   "Chapter screens use one centred statement (104 px serif) plus one centred two-line body paragraph pinned to the bottom padding (y about 800, max-width 50ch), with nothing else.",
+   "A 1 px canvas hairline on the centre axis is the mask edge the two title words slide out of. A separate 331 px canvas (1.75 x h1) then strokes a split diamond around the 20.8 px kicker, backed by a 65% rotated frosted pane (backdrop-filter blur .15em, rgba(255,255,255,.03)).",
+   "Chrome never moves after the intro: all motion happens in the canvas and the centre stack."
+  ],
+  "section_rhythm": "Full-screen chapters on one virtual scroll. Each section's content is 100vh and a CSS padding-bottom sets its dwell time (the scroll budget): hero 100 + 100vh; 'One | Pool' (#home-everblade) 100 + 500vh; 'Where liquidity Flows' (#home-evernet) 100 + 75vh; 'Made for EVERyone' LPs / Borrowers / Traders (#home-everyone) 100 + 400vh; 'Re-DeFi-ned' (#home-relayers) 100 + 100vh; 'One Pool / Every Function' + Launch App (#home-pool) 100 + 200vh; 'Stay close to the summit / Climb with EverSwap' (#home-join) 100vh. That is about 2075vh in total. Text-free transit beats (camera, bird, trail) alternate with dense statement beats. Only hero and chapter 1 are screenshotted.",
+  "mobile_adaptation": "The same WebGL scene is reframed (peak lower, more sky). The header collapses into one full-width glass capsule (radius 1000px, blur 8px, --bg-opacity fading in 3 to 4 s) holding the logo plus a filled cream #fbfff4 'Launch App ↗' pill. The chapter diamonds are NOT removed: under 992 px they become a horizontal row at bottom centre, kept hidden by JS only while on the hero. The scroll thumb moves to right .25em under 768 px and only shows while scrolling. The type stack is kicker / wordmark / 'Scroll to start'. In chapter 1 the mobile branch draws the canvas line horizontally and slides the words vertically out of their masks. mobile_01 is near-identical to mobile_00 (only scene drift): the probe's touch scroll did not advance the virtual scroller."
+ },
+ "motion": {
+  "smooth_scroll": "Custom virtual scroll (Lusion in-house ScrollPane / scrollManager; no Lenis, no GSAP). Wheel events go through the normalize-wheel routine (deltaY in px; deltaMode line x40, page x800) and are clamped to +/-200 px per event. They accumulate into targetScrollPixel, eased by scrollPixel += (target - scroll) x (1 - exp(-12 x dt)) (wheelEaseCoeff = 12), with no overshoot. Drag and touch use drag history to get a release velocity and then friction (frictionCoeff 2.1 to 1.9). Pointer inputs are smoothed by SecondOrderDynamics springs (addEasedInput('dragScroll', 2, 1, 1)). Arrow keys move +/-100 px; PageUp / PageDown are handled too. Scrolling is locked until 1.5 s into the intro (isMoveable needs startTime > 1.5). DOM sections are translated by -screenY per frame, and the section ranges drive the baked cameras.",
+  "preloader": "Drawn in a 2D canvas (#preloader-canvas), not CSS. Each frame it fills #203727, rotates 45° and punches a square with globalCompositeOperation 'destination-out' whose alpha is the hide progress, so the live scene shows through a diamond hole. Side c = viewport diagonal x (fit(load, .075 to d) + fit(hide, 0 to 1-d)), with d = .1 at 1440 (.25 at 375). The hole therefore grows with load (about 127 to 170 px side at 1440x900), then to the full diagonal over HIDE_DURATION 1 s with quartInOut. On top: a radial white gradient (c/3 to 2c, alpha .5 x load) as inner glass, and four 1 px edges with linear gradients that fade to transparent at both ends and overshoot the corners by 15 px x load. Centre: the SVG logo scales .45 to .75 with load; its 6 paths and 12 faded 45° hairlines (the 'sparkle') fade in staggered by 0.05 of load progress. Bottom: a Feature Display 200 '%' counter (real asset progress, MIN_PRELOAD_DURATION 1 s) that fades and drops 1em in the first 25% of the hide (frames 0/f00 96%, 0/f01 100% with the scene visible inside the growing diamond).",
+  "intro_sequence": "Code-timed off one clock, properties.startTime (s), via math.fit(t, a, b, from, to, ease). Tracks: camera fov +5 to 0 and translateZ -200 to 0 over 0.2-2.0 s cubicOut (slow dolly-in settle); vignette 1 to 0.54278 over 0.5-1.5 s cubicOut (the sky 'opens'); title outline u_showRatio 0.75-2.75 s linear; kicker 'DeFi at Peak.' 1.75-2.75 s cubicOut (blur-resolve plus a slide down from -100%); 'Scroll to start' blur-in 2-2.5 s linear; solid title u_showRatio 2-3.5 s linear; outline u_hideRatio 2.75-3.5 s linear; header logo + CTA slide down from translateY(-100%) and fade in over 2-3 s cubicOut; mobile header glass over 3-4 s cubicOut; chapter diamonds from 2 s (1 s ramp, centre-out, cubicOut). Scroll unlocks at 1.5 s. Bloom is held at 1.5663 while scene1.activeRatio < 1. The frames confirm it: f02 (1.27 s) is the bare scene, f03 (1.78 s) has partial outline strokes on every letter, f04 (2.29 s) the full outline with a blurred kicker, f05 (2.80 s) brings in nav, diamonds (mid-slide) and 'Scroll to start', f06 (3.30 s) has the fill wiped across 'EverS', and f07 (3.81 s) is fully solid.",
+  "scroll_techniques": [
+   "virtual scroll to baked camera paths (SC_01_CAMERA.buf, SC_03_CAMERA.buf scrubbed by section ranges)",
+   "3D title in scene that the camera flies past and under",
+   "canvas hairline that draws top-to-bottom then wipes top-to-bottom (section progress .08-.16 / .25-.33), acting as the mask edge",
+   "masked word split: 'One' / 'Pool' slide out of overflow:hidden wrappers from the line (.14-.23), then the wrappers push apart by 0.8 x kicker width (.30-.40)",
+   "stroke-drawn split diamond around the kicker (2D canvas, four staggered edges .35-.45; exit: scale to 0 while rotating 45° back to 0 at .65-.70)",
+   "sky dim uniform (u_dimRatio) plus selective bloom boost during chapter 1 so the trail glows",
+   "scroll-scrubbed bird along BIRD_PATH.buf (vertex-animation frames)",
+   "light-trail ribbon along a spline (SC_01_TRAIL_SPLINE; trailRatio over about 4 screens)",
+   "focus pulls (bokeh DOF, focusDistance) + camera motion blur (.35) + radial zoom blur leaving the hero",
+   "code-verified, not seen: lavender #8a84d4 wash into EverNet, freeze-frame + purple WaterPass at Relayers to Pool, CSS-3D tilt of 'One Pool / Every Function' + CTA (perspective 600px, rotate3d up to 25°), closing rhombus SDF mask to #203727 at the join",
+   "custom right-edge scroll thumb (6 px, height = track x max(1/10, 1/(1+contentSize)), shows on scroll activity)"
+  ],
+  "text_animation": "Wordmark: outline mesh draws on across all glyphs, then the solid mesh wipes left to right while the outline fades (shader-driven on meshes). Kickers / subtitles / body: TextBlurAnimation (opacity e, blur (1-e) x 0.25em), time-driven in the hero and scroll-scrubbed in chapters. Chapter 'One Pool' (section progress o, desktop branch): the canvas line draws down (.08-.16). The words emerge from it through overflow:hidden masks (inner spans +/-110% to 0, .14-.23; desktop_04 caught 'O|ol' mid-reveal). The line wipes away downward (.25-.33). The word wrappers slide apart by 0.8 x the kicker width (.30-.40: 'One' centre 603 to 468 px, 'Pool' 836 to 972 px, desktop_05 to 07). The diamond strokes on edge by edge (.35-.45; desktop_07 and 1/f04 show it partial, 1/f05 complete). 'Swap. Lend. Borrow.' blur-resolves (.35-.40) while scaling .8 to 1. The two SplitType body lines blur in one after the other (.32-.40, offset .04 each: desktop_07 has line 2 still blurred). The exit mirrors it: the diamond shrinks and un-rotates (.65-.70), words close (.66-.76), the line redraws bottom-up (.65-.75) and retracts (.85-.90), and body lines blur out (.82-.90) (frames 1/f06-f07: words closing onto the returned line, only the left arc of 'O' left beside it).",
+  "image_animation": "No DOM images. All imagery is the realtime scene: painterly textures with a flow-map drift (u_flowTexture, u_flowTime, u_flowStrength), a vertex-animated bird (u_animationFrame / u_animationFrameCount over BIRD_ANIMATION.buf), an FBO-simulated glowing strand ribbon along a spline (u_splinePositionTexture, u_trailTime, TRAILS.webp mask), 12 additive instanced painted cloud billboards (clouds/1-3.webp, 8 on mobile, tinted #ccccff to #e2bd79 at alpha .25) and 256 additive instanced specks (#55ff00 at alpha .05: the faint dots in the desktop_00 sky).",
+  "page_transitions": "Single page. Chapter-to-chapter transitions are camera moves, fog volumes and full-screen post passes (lavender wash, purple WaterPass, freeze-frame cache, closing rhombus mask), never DOM wipes.",
+  "hover_micro": [
+   "Launch App (transparent variant, desktop header): label 1 moves translateY(-1em) and fades while label 2 'Coming soon' rises from +1em to 0 (0.25 s ease-out on the spans). The ::before glass plate scales to 0.97 (a press-in, not a lift, 0.25 s ease-in-out), and its inset highlight changes from 0 1px 1px to an even 0 0 1px #f8f7f266. The element has cursor:default, so even the pointer says 'not clickable'.",
+   "Chapter diamonds: each 20x21 SVG has path-up / path-down halves that sit pushed 1 px toward each other at rest (a closed diamond). On hover or when active they return to translateY(0), which opens a 2 px split (0.25 s ease-in-out). Active also tints the paths #bccca2 and fades in a 4.2 px inner rhombus (0.5 s). While one item is hovered, the others dim to 0.5 opacity (JS). Click calls scrollManager.scrollTo(section, data-offset).",
+   "Join-section Telegram / Twitter (X) links scale their span 1.03 (0.18 s) inside a #e0ffab pill. The CSS for footer links (scale 1.02, #516e5a to #62866d) targets #home-join-link-footers, which does not exist in the shipped HTML.",
+   "Mouse 'screen paint' is real (ScreenPaint sim: sdSegment brush, velocity dissipation .985, push strength 25, plus an RGB-shift distortion pass). Its amount is fit(scene3.joinRatio, 0 to 1), so it only distorts in the final join section, not on the hero or chapters."
+  ],
+  "cursor": "Native cursor (cursor:none count 0). The .button rule even ends with cursor:default. Pointer interaction lives in the join-only screen-paint distortion, not in a cursor follower.",
+  "easing_curves": [
+   "cubicOut (t-1)^3+1: the house ease for the intro (camera dolly, vignette, kicker, header slide, nav ramp)",
+   "linear fits for the title outline, fill, outline hide and 'Scroll to start'",
+   "quartInOut: preloader hide (HIDE_DURATION 1 s)",
+   "quadIn: trail fade-out (trailActiveRatio)",
+   "exponential damping 1 - exp(-12 x dt) for wheel scroll; friction 2.1 to 1.9 for drag momentum",
+   "SecondOrderDynamics springs for pointer input (dragScroll f=2, zeta=1, r=1; default 1.35 / .5 / 1.25)",
+   "CSS: button labels .25 s ease-out; plate, nav halves, logo fill and colour .25 s ease-in-out; nav inner rhombus opacity .5 s ease-in-out; join / footer transforms .18 s (default ease)",
+   "No cubic-bezier() values in the CSS (probe easings empty)"
+  ],
+  "duration_range_ms": "180 to 500 ms for CSS UI; 500 to 2000 ms per intro track; about 4 s intro total from preloader 96% to settled hero (the element clip is 4.07 s)",
+  "stagger_ms": "The intro staggers by start offset, not by a fixed interval: 200 ms camera, 500 ms vignette, 750 ms outline, 1750 ms kicker, 2000 ms fill / header / nav, 2750 ms outline hide, 3000 ms mobile glass. The chapter diamonds enter centre-out: activeRatio ramps 1 per second and each ring outward is delayed 0.06, so about 60 ms per step. In chapters the stagger is scroll distance, not time: SplitType body lines are offset by 0.04 of section progress (about 24vh, roughly 216 px of scroll in the 600vh chapter), and the diamond's four edges overlap with makeStaggerRatios(.2) windows of about 0.29 each, starting every 0.235. The preloader logo paths are offset by 0.05 of load progress.",
+  "choreography_notes": "The world moves first (camera dolly + vignette open), then the title draws as line, then the words arrive, then the fill and the chrome settle. On scroll the camera is the lead actor and type answers to it. Type animates only at chapter stops, and the transit beats between them are type-free, which gives the flight its breathing room.",
+  "evidence": [
+   "frames/everswap/0/f00-f07 (meta 0.254 to 3.813 s)",
+   "frames/everswap/1/f00-f07 (meta 0.565 to 8.469 s)",
+   "probes/everswap/desktop_00-07 (desktop_04 zoom: 'O|ol' mask state; desktop_07 zoom: partial diamond edges)",
+   "bundle /_astro/hoisted.D5QinsOB.js (748,781 B, sha1 ae7b3585, re-fetched 2026-09-25): math.fit(properties.startTime,...) ranges, Preloader.update (destination-out diamond), HomeEverblade.update/drawCanvasLogo, drawSquareLine/makeLineGradient/makeStaggerRatios(.2), TextBlurAnimation, Navbar.update, ScrollPane (wheelEaseCoeff 12, clamp +/-200)",
+   "/_astro/index.DNelA_P1.css (22,420 B): :root ref 1440 / 16 cols, @media <992 ref 768 / 8 cols, .button / #navbar / #scroll-indicator__bar / .title text-shadow rules"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "realtime-3d",
+  "art_direction": "A storybook-painted landscape: low-poly faceted mountains wearing hand-painted brush-stroke textures (lime #9eb75b highlights, deep bottle-green #263d37 shadows, mauve-pink rock accents), lit by the paint rather than by realtime lights. Atmospheric perspective comes from distance fog and bokeh. A single white dove and a white-green light ribbon are the only 'characters'. It reads like concept art for a Ghibli-adjacent game, a deliberate anti-crypto aesthetic.",
+  "treatments": [
+   "hand-painted albedo on low-poly meshes",
+   "distance fog (u_fogNear 1800 / u_fogFar 2500 in scene 1) + sky gradient (u_skyColor0 / u_skyColor1, lerped to a dimmed pair by u_dimRatio)",
+   "flow-map animated fog and smoke sprites",
+   "instanced painted cloud billboards (additive) + 256 faint additive specks",
+   "bokeh depth of field (u_bokehTexture, u_maxCoC, fNumber 3, focal length 16, focus distance driven by the camera)",
+   "bloom (5-iteration HD, amount 1.5663 in scene 1, 1.0 in scene 2, .95977 after; threshold .72129, radius .08969, saturation .80744) with a chromatic halo; the lens-dirt and FFT-convolution paths exist in code but are switched off (USE_LENS_DIRT false, USE_CONVOLUTION false)",
+   "camera motion blur (.35) and radial zoom blur on scene hand-offs",
+   "SMAA (smaa-area / smaa-search) + blue-noise dither (LDR_RGB1_0.png)",
+   "vignette 1 to 0.54 on intro",
+   "WaterPass: a full-screen purple Voronoi 'water' post effect at the Relayers to Pool transition (code only; it is NOT the scene 3 lake, which is its own SC_03_WATER mesh)"
+  ],
+  "crops_and_ratios": "Always full-bleed 16:10 viewport; foreground slopes run off all edges to sell scale. The camera often frames extreme close-ups of the painted surface (desktop_03, 04), so the texture itself becomes the image.",
+  "formats": "0 img / 0 video / 14 inline SVG in DOM. Requests: 20 webp (4.48 MB declared, textures), .buf binary geometry and animation (2.38 MB as octet-stream), 5 png (182 KB), 1 jpg (170 KB), 5 woff2.",
+  "evidence": [
+   "probes/everswap/desktop_00-07",
+   "probe bytes_by_type_declared, asset_extensions",
+   "bundle /_astro/hoisted.D5QinsOB.js: texture / .buf filenames, Clouds / Particles / WaterPass / PostProfile values"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r148 (probe globals) inside Lusion's in-house engine; Astro shell. Blender-authored scenes exported to a custom .buf binary format. 25 ShaderMaterial + 7 RawShaderMaterial, 8 WebGLRenderTarget, 5 InstancedBufferGeometry, 2 DataArrayTexture, a WaterPass. The probe's 'spline' lib hit is the filename SC_01_TRAIL_SPLINE.buf, not the Spline runtime.",
+  "role": "World (the entire site is one flown-through landscape, scenes 1-3) + hero object (3D title) + particles / strands (light trail, clouds, specks) + character (bird). The three small canvases (331 px EverBlade = 1.75 x h1; 283 px EverNet and Relayers = 1.5 x h1) are 2D canvases (getContext('2d')), not WebGL. EverBlade strokes the hairline and split diamond; EverNet and Relayers draw evernet.png / relayers.png logos. The preloader and #transition-canvas are 2D as well.",
+  "assets": [
+   "scene1/SC_01_MOUNTAIN.buf",
+   "scene1/SC_01_MOUNTAIN_RIDGE.buf",
+   "scene1/SC_01_BACKGROUND_MOUNTAINS.buf",
+   "scene1/SC_01_CAMERA.buf",
+   "scene1/SC_01_HERO_FOG.buf",
+   "scene1/SC_01_TRAIL_SPLINE.buf",
+   "scene1/TITLE.buf",
+   "scene1/TITLE_OUTLINE.buf",
+   "scene1/BIRD.buf",
+   "scene1/BIRD_ANIMATION.buf",
+   "scene1/BIRD_PATH.buf",
+   "scene2/SC_02_PIECE_<n>.buf (tiled pieces) + scene2/TRAIL_0..2.buf",
+   "scene3/SC_03_CAMERA.buf",
+   "scene3/SC_03_LAND.buf",
+   "scene3/SC_03_WATER.buf",
+   "SC_01_MOUNTAIN_TEXTURE.webp",
+   "SC_01_RIDGE_TEXTURE.webp",
+   "SC_01_BACKGROUND_MOUNTAINS_TEXTURE.webp",
+   "SC_03_LAKE_TEXTURE.webp",
+   "BIRD_TEXTURE_01.webp",
+   "BIRD_ALPHA.webp",
+   "FLOW.webp",
+   "SMOKE.webp",
+   "TRAILS.webp",
+   "scene1/fog.webp",
+   "scene1/fog_flow.webp",
+   "clouds/1-3.webp (mobile/ variants)",
+   "waterNormal.jpg (scene 3 lake normal map; the 1 jpg / 170 KB request; lens_dirt.jpg is referenced but disabled)",
+   "LDR_RGB1_0.png (blue noise)",
+   "smaa-area.png / smaa-search.png",
+   "images/logos/evernet.png, images/logos/relayers.png (2D canvases)"
+  ],
+  "materials_lighting_post": "Unlit / painted: textures carry the lighting (inferred: no light rig found in the scene code reviewed). Custom shaders add fog and a two-colour sky gradient, and a flow map drifts the fog and water (u_flowTime, u_flowStrength). The scene 3 lake has its own water shader with waterNormal.jpg. Post queue order: SMAA, bokeh DOF (quality 0 on mobile), bloom (5 iterations; the FFT convolution and lens dirt are disabled, USE_CONVOLUTION / USE_LENS_DIRT false, so the u_convolutionBuffer uniforms are dead code), radial blur, screen-paint distortion (join only), camera motion blur, WaterPass, then a Final pass (vignette, saturation / contrast, blue-noise dither, EverNet colour wash, relayers freeze-frame, join rhombus mask). Bloom is animated per scene (1.5663 to 1.0 to .95977), with selective strength and halo boosted as the sky dims.",
+  "interaction": "Scroll-driven baked cameras are the main event, with drag-to-scroll momentum on touch and mouse. The pointer-driven screen-paint distortion is gated to the final join section (amount = scene3.joinRatio).",
+  "performance_tactics": "Geometry, cameras, bird animation and splines all ship as compact typed-array .buf files (no glTF parser). Textures are webp, with separate mobile/ texture folders, and there are fewer clouds on mobile (8 vs 12). The bird uses vertex-animation frames instead of skinning. Trail, clouds and specks are instanced. Scenes are split (scene1 / scene2 / scene3). The preloader compiles the scenes (renderer.compile) and covers the roughly 6.9 MB of webp + .buf assets.",
+  "fallback_mobile": "The same realtime scene runs at 390 px (mobile_00), reframed. There is no static fallback, and no reduced-motion path (0 rules).",
+  "evidence": [
+   "probe globals.three_revision 148, contexts webgl2 7 / 2d 6, canvas list (331 / 283 / 283)",
+   "bundle /_astro/hoisted.D5QinsOB.js: 25 new ShaderMaterial / 7 RawShaderMaterial / 8 WebGLRenderTarget / 5 InstancedBufferGeometry / 2 DataArrayTexture, getContext('2d') on the logo canvases, u_* uniform census, asset filenames, DEFAULT_POST_PROFILE values",
+   "probes/everswap/desktop_02/03 (extruded title seen in perspective)",
+   "frames/everswap/1/f02 (bird), f04-f05 (light trail)"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "A minimal fixed frame. Top-left: split-diamond logo mark + 'EverSwap' sans wordmark (outlined SVG, resembles Britti Sans). Top-centre: kicker 'DeFi at Peak.' in Feature Display 400 at 18 px (hero only). Top-right: 'Launch App' glass pill (.button.is-transparent: 3em / 48 px tall, radius 1.5em / 24 px. The ::before carries backdrop-filter blur(8px), linear-gradient(180deg, #f8f7f233, #f8f7f21a) and inset 0 1px 1px #f8f7f266, which is why the probe counted backdrop_filter 0 on elements) with a cream #fbfff4 disc holding a ↗ arrow. Left edge: five 20x21 split-diamond chapter markers in place of dots; the active one opens its halves and shows a #bccca2 inner rhombus. Right edge: a 6 px wide, 3 px radius #fbfff4 scroll thumb that appears while scrolling.",
+  "menu": "No hamburger or overlay menu. The chapter diamonds jump to sections via scrollManager.scrollTo(section, data-offset). Offsets land mid-chapter (0 / 0.5 / -0.7 / 0 / 1.75), and the third item covers both evernet and everyone. The nav hides again at the join.",
+  "buttons_links": "Launch App: text-roll to 'Coming soon' (spans .25 s ease-out) + 0.97 press-in plate (.25 s ease-in-out). It has no href and cursor:default. Solid .button variant (#home-pool CTA): #e0ffab plate with #203727 label. Join links: Feature Display 400 17 px #203727 in a #e0ffab pill, span scale 1.03 in .18 s.",
+  "unusual_interactions": [
+   "The preloader diamond opens as a portal into the already-running scene, and the page closes back into a diamond at the end (code)",
+   "Split-diamond geometry everywhere: 1 px strokes whose ends fade to transparent and whose corners cross with a 5% offset instead of meeting (pinwheel draw order) echo the logo mark",
+   "Pointer paints a fluid distortion into the final frame, but only in the join section",
+   "Drag-to-scroll with momentum on desktop as well as touch"
+  ],
+  "sound": "None observed (no audio assets in requests).",
+  "footer": "From HTML / CSS only (not screenshotted): #home-join is another scene-backed chapter, not a light surface. It holds 'Stay close to the summit' (sub2) / 'Climb with EverSwap' (h3) and a #e0ffab pill with Telegram and Twitter (X) links in dark-green Feature Display (the measured rgb(32,55,39) links). Buttons stagger up (translateY 20% to 0, 0.2 offsets). The frame then closes into a rhombus mask on #203727. The Launch App CTA lives in the preceding #home-pool chapter, not in the footer."
+ },
+ "content_voice": {
+  "headline_style": "Short, declarative, full-stopped fragments built on a mountain / flow metaphor, with a pun on the brand ('Made for EVERyone', 'Re DeFi ned'). Two-word statements at display size ('One Pool'), a three-verb kicker ('Swap. Lend. Borrow.').",
+  "copy_tone": "Calm, confident and non-hype: the product explanation is one plain sentence per chapter ('unifies trading, lending, and borrowing through single-sided liquidity pools') and never uses crypto slang or numbers on the hero. Closing CTA stays in metaphor ('Stay close to the summit').",
+  "examples": [
+   "DeFi at Peak.",
+   "One | Pool — Swap. Lend. Borrow.",
+   "EverSwap unifies trading, lending, and borrowing through single-sided liquidity pools.",
+   "Where liquidity Flows",
+   "Made for EVERyone",
+   "Re·DeFi·ned",
+   "Stay close to the summit / Climb with EverSwap"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Astro (/_astro/ hashed assets, hoisted.js bundle)",
+  "libraries": [
+   "three.js r148",
+   "Lusion in-house engine (ScrollPane/scrollManager, math.fit, own ease table, SecondOrderDynamics input, post-process chain, .buf loaders)",
+   "SplitType (bundled; splits the chapter body copy into lines)",
+   "normalize-wheel routine (bundled)",
+   "Cloudflare Web Analytics (static.cloudflareinsights.com request, injected at the edge)"
+  ],
+  "evidence": "probe libs_from_requests astro + globals three_revision 148. The bundle has no gsap / Lenis / ScrollTrigger / Theatre strings; 'SplitType' appears 8 times. The 'spline' request hit is the TRAIL_SPLINE.buf filename. The AudioItem loader class and AUDIO_PATH exist, but no audio file is referenced."
+ },
+ "performance_accessibility": {
+  "requests": 59,
+  "weight_notes": "About 7.2 MB declared: 4.48 MB webp textures + 2.38 MB .buf geometry / animation + 0.35 MB png/jpg + 5 woff2. JS main bundle 748 KB, CSS 22 KB. 8.7 s to settle in the probe (preloader-gated).",
+  "reduced_motion": "0 prefers-reduced-motion rules (probe + CSS grep), and no reduced-motion branch in the bundle. The scroll is a forced camera flight with no alternative.",
+  "contrast_issues": "Off-white light-weight (200) serif and 300-weight 18.9 px body sit over busy painted texture. The only aid is a 30% black text-shadow halo (0.12em on titles, 1em on body). Body lines are scroll-scrubbed blur reveals, so a reader who stops mid-range sees half-blurred copy (desktop_06 line 1, desktop_07 line 2). The h1 'EverSwap' is visibility:hidden (the visible title is a mesh), which removes it from the accessibility tree too. The chapter nav links and the header CTA have no text labels (SVG-only anchors, probe nav texts empty), and the CTA is an <a role=button> with no href. The jury accessibility score was 6.6.",
+  "mobile_quality": "Full realtime scene at 390 px with mobile texture sets, no overflow and a sensible merged header capsule. The virtual scroller did not advance under the probe's mobile scroll (mobile_01 near-identical), so mobile scroll behaviour and the bottom diamond row are unverified visually (CSS only).",
+  "dev_scores": {
+   "semantics_seo": 7.4,
+   "animations": 8.0,
+   "accessibility": 6.6,
+   "wpo": 7.6,
+   "responsive": 7.4,
+   "markup": 7.0
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Painted low-poly world flown by a Blender-baked camera on virtual scroll",
+   "why_it_works": "Scroll becomes a flight instead of a page, and hand-painted textures give a crypto brand warmth and authorship that stock 3D gradients never do.",
+   "how_to_build": "In Blender: model low-poly terrain, then hand-paint (Texture Paint or Procreate) an albedo with the lighting baked into the brush strokes. Keyframe a camera along the story beats. Export per-frame camera position + quaternion + fov as a Float32Array .bin, and meshes as glTF or custom typed arrays. In three.js: an unlit ShaderMaterial (color = texture2D(map, uv); mix with fog colour by smoothstep(uFogNear, uFogFar, viewDepth); sky = mix(uSkyColor0, uSkyColor1, vUv.y) on a sphere, e.g. #ADD8E6 / #6495ED). Scroll: keep body position:fixed; overflow:hidden. Give each DOM chapter 100vh content plus a padding-bottom in vh as its dwell budget (EverSwap: 100 / 500 / 75 / 400 / 100 / 200 / 0vh). On wheel, add deltaY clamped to +/-200 px to targetScroll, clamp to [0, total], and each frame do scroll += (target - scroll) x (1 - Math.exp(-12 x dt)). Map each section's range to its own 0-1 progress; progress indexes the camera frame array with lerp / slerp between frames. Lock scrolling until the intro has played (1.5 s). Add drag-to-scroll with release velocity and friction for touch. Post: BokehPass-style DOF, bloom threshold about 0.72 so only the light trail and highlights bloom, then SMAA."
+  },
+  {
+   "technique": "Outline-then-fill 3D wordmark intro on a single clock",
+   "why_it_works": "The title arrives as drawn line, then gains mass, which mirrors 'summit reached'. Timing every track off one clock with overlapping windows gives a film-like, non-mechanical cadence.",
+   "how_to_build": "Build two meshes from the logotype: a thin outline (extrude the glyph contours as thin ribbons with a per-glyph arc-length attribute) and the solid extruded title. Size and position the group from a visibility:hidden DOM h1's getBoundingClientRect() so CSS type tokens still drive layout. t = seconds since start. fit(t,a,b,from,to,ease) = ease(clamp((t-a)/(b-a))) x (to-from) + from. Tracks: camera fov +5 to 0 and z -200 to 0 on [0.2, 2.0] cubicOut; vignette 1 to 0.54 on [0.5, 1.5] cubicOut. Outline: discard where aArcLen > fit(t, 0.75, 2.75, 0, 1) linear, with every glyph drawing at once. Fill: in the solid mesh's fragment, alpha = smoothstep(p - 0.05, p, 1.0 - (vPos.x - minX)/(maxX - minX)) with p = fit(t, 2, 3.5, 0, 1) linear, so it wipes left to right. Fade the outline over [2.75, 3.5]. Kicker blur-resolves and drops from -100% on [1.75, 2.75] cubicOut. Header slides from -100% on [2, 3] cubicOut. cubicOut = (t-1)^3 + 1."
+  },
+  {
+   "technique": "Brand-shape preloader that opens as a portal into the live scene",
+   "why_it_works": "The loading screen is not a separate moment. The world is already running inside the logo shape, so 100% feels like a door opening rather than a curtain dropping.",
+   "how_to_build": "Render the scene from frame one under a full-screen 2D canvas overlay. Each frame: fillRect #203727, translate to centre, rotate 45°, set globalCompositeOperation 'destination-out' and fillRect a square of side c with fillStyle rgba(255,255,255,hide). The hole's opacity IS the hide progress, so the world fades in through the diamond as it grows. c = hypot(vw, vh) x (lerp(.075, d, load) + lerp(0, 1 - d, hide)), with d = .1 at 1440 wide and .25 at 375. hide = quartInOut over 1 s. Draw the four edges as 1 px lines with a linear gradient 0 to 25% to 75% to 0 alpha, extended 15 px x load past each corner, plus a radial white gradient from c/3 to 2c at alpha .5 x load as the glass. Put the logo in the centre scaling .45 to .75 with load, fading its paths in staggered by 0.05 of load. Put a display-serif counter (max(30px, 45u), weight 200) at the bottom that fades and drops 1em in the first 25% of the hide. Drive load from real asset callbacks (with a 1 s minimum), not a timer. For the bookend, close the page with the same shape: a final-pass sdRhombus mask shrinking to #203727."
+  },
+  {
+   "technique": "Words that slide out of a hairline, then a stroke-drawn split diamond (brand geometry as layout)",
+   "why_it_works": "The centre rule is not ornament: it is the mask edge the headline is born from, and the diamond that follows is the logo's own split-diamond geometry framing the one-line product promise. Decoration becomes grammar, and a mid-reveal frame even reads as a chapter numeral ('O|ol' looks like '01').",
+   "how_to_build": "Markup: <h2><span><span>One</span></span><span><span>Pool</span></span></h2>. Outer spans are inline-block with overflow:hidden; inner spans have padding-right / left .25em so the two masks meet on the axis. Put a square 2D canvas (1.75 x h1, about 331 px) behind the centre. With section progress o (0-1): draw a 1 px vertical line from top to fit(o, .08, .16) and retract its top over .25-.33, stroked with a gradient that fades to 0 at both ends (stops 0, .2, .8, 1). Inner spans: translateX(+/-(1 - u) x 110%) with u = fit(o, .14, .23), so the words emerge from the line. Then push the outer spans apart by 0.8 x kickerWidth x fit(o, .30, .40). Diamond: rotate the context -45° and draw four edges of a square (side = canvasW / sqrt2 so the tips touch the canvas edges), each shifted inward 5% so the corners cross instead of meeting, each growing from its own corner in pinwheel order with staggered windows (makeStaggerRatios(.2): about 0.29 long, starting every 0.235) over o .35-.45. Blur-resolve the kicker (sub1 20.8 px serif 400, scale .8 to 1) over .35-.40 and add a 65% rotated frosted pane behind it (backdrop-filter blur .15em, rgba(255,255,255,.03)). Exit: scale the diamond to 0 while un-rotating 45° to 0 (.65-.70), then close the words and retract the line upward."
+  },
+  {
+   "technique": "Design-unit fluid type scale locked to content width",
+   "why_it_works": "The type keeps the exact Figma proportions to the scene at every desktop width. The max() floors stop mobile collapse without separate breakpoint scales.",
+   "how_to_build": ":root{--ref:1440; --pad:min(60px, calc(40*100vw/var(--ref))); --u:calc((100vw - var(--pad)*2)/var(--ref)); --h1:max(80px, calc(var(--u)*200)); --h2:max(65px, calc(var(--u)*110)); --h3:max(55px, calc(var(--u)*80)); --sub1:max(16px, calc(var(--u)*22)); --sub2:max(18px, calc(var(--u)*18)); --body1:max(16px, calc(var(--u)*20)); --body2:max(14px, calc(var(--u)*16)); --btn2:max(16px, calc(var(--u)*18))} @media (max-width:991.98px){:root{--ref:768}}. Display serif weight 200, line-height 1 (0.8 on two-word statements); body sans weight 300, line-height 1.4. For legibility over imagery use .title{text-shadow:0 0 .12em rgba(0,0,0,.3)} and .description{text-shadow:0 0 1em rgba(0,0,0,.3)} instead of a scrim. The site also switches the grid from 16 to 8 columns at the same breakpoint."
+  },
+  {
+   "technique": "Instanced light-trail ribbon along a baked spline as the product metaphor",
+   "why_it_works": "'Liquidity flows' is shown as a literal luminous stream tracing the river valley. It is the only saturated highlight in the scene, so bloom lands exactly on the story.",
+   "how_to_build": "Export the river curve from Blender as points with a curve-u and an orientation per node, and bake them into a float texture. EverSwap simulates the node positions in a small FBO (TRAIL_NODE_COUNT x TRAIL_COUNT) with a position shader driven by uTrailTime, then samples it in the ribbon's vertex shader. Create an InstancedBufferGeometry of thin strips, each with a per-instance offset (small normal / binormal jitter) and phase. In the vertex shader, sample the position texture at u = fract(aU + uTime x speed + aPhase), offset along the normal, and orient to the camera. In the fragment, alpha = texture2D(uTrailMask, vec2(u x 4.0 - uTime, vUv.y)).r x smoothstep(0.0, 0.1, u) x smoothstep(1.0, 0.9, u), with additive blending in white to a pale lime (inferred from frames). Reveal with trailRatio = fit(sectionOffset, .45, 4.5) screens and fade with quadIn. At the same time lerp the sky to a dimmed pair (#536970 / #081733) and raise the selective bloom strength 1 to 2.5, so the threshold catches only the trail."
+  },
+  {
+   "technique": "Blur-resolve text reveals scrubbed by scroll",
+   "why_it_works": "Text that comes into focus reads as the camera's depth of field landing on it, so the DOM copy feels like part of the 3D world instead of a slide-in overlay. Tying it to scroll progress lets the reader hold any intermediate state.",
+   "how_to_build": "function reveal(el, e){ if(e>=1){el.style.opacity=1; el.style.filter='none'; return} el.style.opacity=e; el.style.filter=`blur(${(1-e)*0.25}em)` }. For paragraphs, split into lines (SplitType types:'lines'). Line i gets window [a + i x s, b + i x s] of section progress (EverSwap desktop: a=.32, b=.40, s=(b-a)/nLines), multiplied by an exit window (.82-.90) so it blurs out again. Always set filter:none at e=1 so the text is crisp and cheap at rest, and render the text visible when JS is absent (the site does not)."
+  }
+ ],
+ "slop_risks": [
+  "Invisible-content trap at page scale: CSS sets .page{opacity:0}, the hero h1 is visibility:hidden (the visible title is a WebGL mesh), JS toggles each section's visibility, and body is position:fixed with overflow hidden behind a preloader and virtual scroller. Without JS or WebGL the page is blank. A copy must ship real DOM text visible by default and treat the scene and the blur reveals as enhancement.",
+  "Dead control / fake interactivity: the primary CTA 'Launch App' has no href, cursor:default, and a hover that rolls the label to 'Coming soon'. That is a text-swap on a disabled action; don't copy the pattern for a live CTA.",
+  "Glass pill CTA with a circular arrow chip (::before blur 8px, #f8f7f233 to #f8f7f21a gradient, inset 0 1px 1px #f8f7f266): it works here only because a detailed painted scene sits behind it. Over a flat fill it becomes botched glass or a glowy pill.",
+  "Fading-end hairlines (1 px, gradient 0 to 20% to 80% to 0) are the 'eyebrow tick / decorative hairline' family. EverSwap earns them because the vertical rule is the literal mask edge the headline emerges from and the diamond is the logo's own geometry. A lone fading line beside a label, with no structural job, is slop.",
+  "Cut-off tell during reveals: overflow:hidden masks slice glyphs mid-animation (desktop_04 caught 'O|ol', which reads as '01'). It is acceptable only because the slice edge coincides with a visible line and the state is transient. A static or stalled mask that shaves a word is the cut-off tell.",
+  "Text you cannot read: body copy is 300-weight 18.9 px over busy paint with only a 30% black text-shadow, and it is scroll-scrubbed through blur. Stop mid-range and it stays half-blurred (desktop_06/07). Keep a contrast floor and let reveals complete on a timer once triggered, or make them purely time-based.",
+  "Chapter diamonds at the left edge with a sage #bccca2 active state are a dressed-up 'dot nav'. They pass because the shape is the brand mark and the active state opens the split diamond. Plain dots or a saturated accent here would be the template.",
+  "Thin (200) high-contrast display serif as the 'premium' voice: this is the elegant-serif default the law flags (Cormorant / Didone family). Here it is carried by monumental scale, centring and the painted world. It is not a transferable default for any 'premium' brief.",
+  "Kicker-plus-serif hero stack: on mobile it is literally 'DeFi at Peak.' / big light serif wordmark / 'Scroll to start', the default hero stack. It is carried only by the painted world; with a flat background it is template slop.",
+  "Purple: the bundle defines a purple Voronoi WaterPass (#9370DB to #7447d1) and a lavender #8a84d4 wash for chapters the probe did not reach. Lifting those into a fintech / crypto palette hits the purple / blue-to-purple tell. Keep the green-on-green world as the steal.",
+  "Faking the light trail with a CSS blur or drop-shadow glow would be the 'bloom that is just the element's shape, blurred' tell. It needs real HDR bloom over a threshold.",
+  "Radial sky vignette (#273f6b corners to #4677d3 centre) copied as a flat CSS radial gradient reads as a 'radial glow halo'. Here it is a lens vignette animating from 1 to 0.54 on a real scene."
+ ],
+ "confidence_notes": "OBSERVED: desktop_00-07 (hero intro settle, scroll into the dive, the 'O|ol' mask-reveal state, 'One Pool' diamond state), mobile_00/01 (hero only; mobile_01 identical, so the virtual scroll did not advance), all 8 frames of both jury elements (Intro 4.07 s, Navigation 9.03 s), probe numbers (type sizes, fonts, root tokens, contexts, request weights), and bundle / CSS greps (asset names, uniform census, easing table, intro math.fit windows, wheelEaseCoeff 12, HIDE_DURATION 1, hover rules). Sky / scene hexes are pixel samples from JPEG screenshots (approximate). NOT SEEN: sections after chapter 1 (Where liquidity Flows, Made for EVERyone, Re DeFi ned, One Pool Every Function, join footer); those are known only from HTML text and element ids. INFERRED: font foundries (the other items first listed here, screen paint, FFT bloom, light footer and body stagger, were resolved by the audit below). The probe's 'spline' library detection is a false positive from the TRAIL_SPLINE.buf filename. | audit 2026-09-25 (adversarial, re-viewed desktop_00-07, mobile_00/01, all 16 element frames at full size with zooms; re-fetched index.html, the hoisted.D5QinsOB.js bundle and the index.DNelA_P1.css, same hashes the teardown cited). FALSIFIED and fixed: (1) the 'chapter numeral 01' does not exist. desktop_04's '01' is the mid-reveal of 'One' / 'Pool' sliding out of overflow:hidden masks on either side of the canvas hairline ('O|ol'), so all numeral claims were removed. (2) The line does not morph into the diamond: the hairline draws and wipes, and a separate diamond is stroked edge by edge in the 331 px 2D EverBlade canvas. (3) The logo canvases are 2D, not WebGL. (4) The grid is 16 columns / ref 1440 at desktop; the probe's 8 / 768 are the <992 px media values. (5) #e0ffab is the solid-button / join-pill fill, and the active nav diamond is #bccca2. The nav halves OPEN on hover / active, they don't close. (6) The title fill runs 2-3.5 s linear (not 2-3 s cubicOut); 2-3 / 3-4 s cubicOut are the header and mobile glass. (7) Wheel input is deltaY clamped +/-200, not wheelDelta/120. (8) Button labels ease-out; pill radius 1.5em / 24 px; scroll thumb 6 px. (9) There is no light #fbfff4 footer surface; that bg is the scroll bar. The footer-link hover targets an element absent from the HTML. (10) The screen-paint distortion is real but only active in the join section. (11) 'No purple' was overstated: WaterPass #9370DB / #7447d1 and the lavender #8a84d4 wash exist in code. (12) The section order was wrong (One Pool = #home-everblade). (13) The body-line stagger is scroll-distance-based, not ms. (14) Mobile diamonds become a bottom row (hidden on the hero), not removed. ADDED: text-shadow legibility halo, TextBlurAnimation blur-resolve (and a new steal), SplitType, the canvas destination-out preloader math, fading-end, crossed-corner hairline system, the scroll budget per chapter, sky dim + selective bloom, clouds / specks, motion blur / radial blur / blue noise, and the join rhombus bookend. The FFT bloom and lens dirt the teardown hinted at are disabled flags (USE_CONVOLUTION / USE_LENS_DIRT false); the jpg request is waterNormal.jpg. Items after chapter 1 remain code-verified only (not screenshotted)."
+}

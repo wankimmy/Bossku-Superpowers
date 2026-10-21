@@ -1,0 +1,309 @@
+{
+ "slug": "igloo-inc",
+ "title": "Igloo Inc",
+ "live_url": "https://www.igloo.inc/",
+ "award": "Site of the Day Jul 23 2024 + Honors (saved award page, which also shows the DEV AWARD 7.66/10 score block); listed on the Awwwards Sites of the Year and Sites of the Month pages (corpus sources). inferred: Site of the Year 2024 winner (list membership alone could be a nominee; not shown on the saved page). Credits abeto + Bureaux",
+ "scores": {
+  "overall": 7.92,
+  "design": 8.05,
+  "usability": 7.5,
+  "creativity": 8.31,
+  "content": 7.91,
+  "dev": {
+   "overall": 7.66,
+   "semantics_seo": 6.6,
+   "animations": 9.6,
+   "accessibility": 6.6,
+   "wpo": 8.0,
+   "responsive": 8.4,
+   "markup": 6.4
+  }
+ },
+ "industry": "Web3 holding company (parent of Pudgy Penguins, OverpassIP, Abstract)",
+ "signature": "The entire site is one real-time WebGL world: a photoreal igloo materializes out of a blue triangle-tile shockwave, then idles 'breathing' with its upper bricks floating open (baked 'exploded' lightmap glowing through the gaps) and a live plexus of numbered crosshairs reading each brick's displacement; scrolling cranes the camera down and dollies it back, and a spectral diagonal wipe carries you into a fog where each portfolio company is frozen inside a refracting ice crystal annotated by a world-space HUD.",
+ "first_screen": {
+  "composition": "OBSERVED after intro (igloo-inc-deep/desktop_00 after a 14s settle, igloo-inc/desktop_04): full-bleed 1440x900 canvas, igloo dead-centre on a snow ridge, camera at eye level (fov 30), mountains and fog behind. Resting state is NOT a closed igloo: the bricks float outward and wobble (bundle mask smoothstep(.45,.7,centroid.y): the bottom two courses stay seated while mid-wall courses and the tunnel arch lift too, desktop_04, deep/desktop_00) with cool blue-white light spilling through the gaps; 3-5 bricks carry numbered crosshairs joined by 1px white lines at 25% opacity. HUD pinned to the corners in IBM Plex Mono Medium, two inks: dark slate #3C3C54 for the slash labels ('// Copyright © 2026', '////// Manifesto') and white for the content ('Igloo, Inc. / All Rights Reserved.', the 7-line right-aligned manifesto, 'Scroll down to discover.', speaker glyph + 'Sound: Off'). IGLOO wordmark measured 153x30px of ink at x53 y46; bundle: it is an MSDF quad (ui/logo-datatexture.ktx2) sized 200/160/140px wide x .21 by breakpoint (160x33.6 at 1440) at left = config gridSize (125/50/25) and top = topMargin (90/45/25). 'Scroll down to discover.' is removed for good once the scroll moves more than 25% of the hero scene height from its rest point (gone in desktop_05, deep/desktop_02). First 6s (desktop_00) is an almost blank #a3a5b4 grey with a faint wireframe disc and a stepped rounded-rect vignette: the loading state; the HUD is only emitted 4.5s into the intro timeline (webgl_show_ui_intro).",
+  "what_owns_it": "3d",
+  "display_type_px": null,
+  "evidence": [
+   "probes/igloo-inc/desktop_00.jpg",
+   "probes/igloo-inc/desktop_04.jpg",
+   "probes/igloo-inc-deep/desktop_00.jpg",
+   "bundle: config object manifesto/copyright/scroll strings",
+   "bundle app3d.js: U3 igloo update (displacement wave, mouse proximity, scroll re-seat), plexus classes, Be config (colorTitle, topMargin)",
+   "bundle app3d.js: LF logo class (logo-datatexture, show/hover), scroll-hint hide rule (scroll.y vs initialScrollAutocenter, height*.25)"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "IBM Plex Mono Medium",
+    "role": "ui",
+    "classification": "monospace grotesque",
+    "foundry": "IBM (open source)",
+    "source": "bundle: font:\"IBMPlexMono-Medium\", assets/fonts/IBMPlexMono-Medium-datatexture.ktx2 (MSDF atlas rendered in WebGL)"
+   },
+   {
+    "name": "IGLOO wordmark",
+    "role": "display",
+    "classification": "custom rounded geometric logotype (drawn, not a font)",
+    "foundry": "inferred: bespoke",
+    "source": "bundle: LF class renders ui/logo-datatexture.ktx2 as an MSDF quad (uColor #ffffff), 200/160/140px wide x .21 aspect by breakpoint; screenshot: bloomed white custom rounded heavy geometric, notched I"
+   }
+  ],
+  "display_size_px": null,
+  "body_size_px": 14,
+  "scale_notes": "No DOM typography at all: probe found 0 headings and a single 16px Times node, because every word is an MSDF text mesh inside the canvas (billboarded, depthTest false, renderOrder 999). Measured from glyph advance (Plex Mono = 0.6em): HUD copy ~14px at 1440w ('consumer brands at' = 149px / 18 chars = 8.3px advance; bundle size .09 world units, lineHeight .8, manifestoWidth .75, align right), line pitch ~14.5px; portfolio callouts ~18px ('PUDGY PENGUINS' = 152px / 14 chars = 10.9px advance); the only display element is the ~33px-tall logotype. Hierarchy comes from placement, ink (dark #3C3C54 labels vs white content), all-caps record labels, and from a separate layer of pre-blurred background text, not from size.",
+  "tracking_leading": "Mono default tracking; tight leading (bundle lineHeight .8 in text-mesh units, ~14.5px pitch at ~14px glyphs, i.e. ~1.04). Right-aligned manifesto is ragged-left.",
+  "case_and_style": "Sentence case for HUD prose; SNAKE_CASE/ALLCAPS for record labels (PORTFOLIO_CO_02, TEMP, D 06.01.2023); slash-run prefixes as section markers ('//', '///', '//////'); tabular numerals for live readouts (TEMP 30.01 -01.11).",
+  "signature_moves": [
+   "Blurred copy in the fog is NOT depth of field: it is a separate mesh (blurrytext.drc / blurrytext_cylinder.drc) textured with a pre-blurred text atlas (cubes/blurrytext_atlas.ktx2), tinted #c9d0df, depthTest false, renderOrder 5. The pmndrs DepthOfFieldEffect ships in the bundle only inside an unused addDOF() helper (defined, never called). Sharp HUD text stays a billboarded MSDF layer on top.",
+   "Character scramble while text resolves (mid-states captured: 'All Rights Reserwfe/', 'Lrw jfxxflk', '))***+ J^'): done in the vertex shader, not with random strings. Each glyph's UV is shifted by 0.125 * mod(floor((1-tr2)*5.753), 8) of the atlas width, so it samples a neighbouring atlas glyph until a left-to-right falloff wave over the normalised character index (textWeights.x) passes it; uShow1 fades alpha (wave width .1), uShow2 decodes (width 1.0), uBlink steps alpha between .6 and 1.0. The disabled link label is literally '???????????????' in the config.",
+   "Two-ink HUD: slash-prefixed labels in dark slate #3C3C54 (config colorTitle), content in white (colorText); the label is readable on bright sky where the white body copy is not.",
+   "Slash-count hierarchy: '//' copyright, '///' Follow Us, '//////' Manifesto.",
+   "Numbers are live data: each plexus label is floor(distance(brick.centroid, brick.position)*50), last two digits, zero-padded, i.e. the brick's current displacement.",
+   "Logo glitch on reveal and hover (bundle LF): the wordmark's uShow tweens 0->1 over .5s linear after a .75s delay; while <1 it steps through 3 random block offsets sampled from the same scroll-datatexture.ktx2 as the scene wipe (horizontal UV shift .0075) and blinks alpha .85 +/- .15 via sin(uShow*30). Hovering the logo replays it in .25s with no delay, blinks the copyright and rights lines (uBlink 0->1 .1s, .1s apart) and plays a 'logo' SFX."
+  ],
+  "mobile": "mobile_01 (390x844, 2x capture): same canvas, HUD kept in corners; measured ~12px CSS mono (7.2px advance), which is relatively larger (~3.1vw vs ~1vw on desktop) but absolutely smaller than desktop; logo ~137px wide (config 140); left gutter ~26px (config gridSizeMobile 25); manifesto right-aligned beside the logo; igloo reframed larger in portrait (bricks open). Scramble mid-state '****,,' visible in mobile_00. No horizontal overflow (probe)."
+ },
+ "color": {
+  "mode": "light (desaturated cool grey, monochrome)",
+  "base": "#a9afbd-#b2b8c6 fog grey sampled in the portfolio fog (deep/desktop_05, 06); page/html background rgb(160,165,177) #a0a5b1 (probe body bg); corpus palette #b6bac5; loading state #a3a5b4",
+  "ink": "Two HUD inks: #3C3C54 dark slate for slash labels (config colorTitle; pixel-checked on '// Copyright' and '////// Manifesto') and #ffffff for content (colorText / colorLogo); colorProjectTitle #67707E and colorProjectText #A1AAB7 for content pages",
+  "accents": [
+   "#83a1c5 frost tint on the ice material (uColorFrost)",
+   "cool blue-white interior light between the bricks (sampled #e5f0f4 / #c8d7ea; a baked 'exploded' lightmap, not a warm light)",
+   "blue (0.3,0.45,1.0) triangle-tile shockwave during the terrain intro",
+   "thin spectral rainbow fringes only during the scroll wipe / content transition (5-tap spectral chromatic aberration) and inside ice refraction"
+  ],
+  "ratio": "~85% scene greys / ~12% white highlights and snow / ~3% spectral fringe",
+  "section_shifts": "No hard sections. Hero is a lit snow landscape; scrolling crosses a scroll-scrubbed diagonal wipe (spectral CA + vertical data-texture displacement) into a flat fog void (#a9afbd-#b2b8c6) with a regular dot grid of tiny white particles (~67px pitch) for the portfolio. Colour continuity is kept by fog, so there is never a seam.",
+  "texture": "Blue-noise (noises/blue-8-128-rgb.ktx2) jitters the chromatic-aberration taps to hide banding; falling snow particles sit IN the scene behind the HUD. mosaic.ktx2 is nearest-sampled noise used by terrain/mountain/ground/patch materials to break up the intro shockwave edge (inputGradient += noise*3.5), not a glitch-block texture.",
+  "notes": "IglooColorCorrectionPass: tetrahedral 3D-LUT (uLUTSize/uLUTIntensity) applied after multiplying the frame by a diagonal exposure gradient mix(0.8,1.0,(uv.x+uv.y)/2) faded in by uGradientAlpha 0->1 over 4s from t=1s (film grain and RGB offset lines are commented out). Terrain/mountain shaders also compute their own screen-space diagonal fog gradient #afb6c7 -> #d1d6e3 (pow 2) plus height and distance fog, which is why the top-right sky is brighter than the bottom-left. That grading, not default three.js, is what makes the render feel photographed."
+ },
+ "layout": {
+  "grid": "Corner-anchored HUD over a full-bleed canvas: ~50px left/right margin, ~45px top, ~50px bottom at 1440w. Bundle config: the side margin is gridSize 125 / gridSizeLow 50 / gridSizeMobile 25px and the top margin topMargin 90 / 45 / 25px; the 'small' tier applies when width < 1600 OR height < 800 (so 1440x900 is small), mobile when either side < 640; the right-aligned manifesto block is 250 / 200 / 175px wide. Everything else is composed in 3D space around a centred hero object.",
+  "density": "airy",
+  "alignment": "Left block top-left, right-aligned block top-right, centred 3D object; project callouts attach to the object with leader lines (title upper-left of the crystal, TEMP readout right, date + CLICK TO EXPLORE lower-right).",
+  "composition_moves": [
+   "Single centred hero object per 'screen' (igloo, then one crystal at a time) with generous fog around it.",
+   "Annotation instead of layout: data labels, crosshairs and leader lines orbit the object like a survey instrument (max 5 plexus points, 2 connections each on the igloo).",
+   "Crystals are stacked on one vertical axis at options.verticalOffset intervals (createCube scrollPosition); scrolling travels that column so each enters from the bottom edge and exits through the top (deep/desktop_04 -> 05 -> 06, 07 -> 08 -> 09). Whether the camera or the objects move is inferred; on screen it reads as a fixed camera.",
+   "The corner HUD copy scrolls away with the hero (deep/desktop_04: 'Igloo, Inc.' and 'genera-ion of' leaving the top edge) while the logo and Sound toggle stay pinned. Bundle: the manifesto/copyright block hides when hero progress < .15 and re-shows between .25 and .8, and during the wipe it is part of the hero render target, which is why it is pushed up and smeared with the scene."
+  ],
+  "section_rhythm": "Hero landscape (dense, textured) -> scroll wipe -> 3 portfolio crystals (Pudgy Penguins, Overpass, Abstract) one per scroll slot (sparse fog) -> links volume: 150k particles morphing between VDB-derived 3D textures per social link (not captured); bundle: the links scene is a 3-item carousel driven by clicking the left or right half of the screen, ArrowLeft/ArrowRight, or a swipe (>100px and >1000px/s), and each change bursts uAdditionalNoise 1->0 over .5s power2.inOut and resets the volume's rotation to 1.5*PI. Tag 'Infinite Scroll': scroll is virtual (doc_height 900) and wraps with targetY % total; after 1.4s idle between two scenes it auto-centres to the nearest scene edge.",
+  "mobile_adaptation": "Same WebGL scene; the hero camera sets camera.zoom = min(1, aspect*1.25) (portrait 390x844 gives ~.58, i.e. it zooms out so the igloo keeps its width; the crystal scene uses aspect*1.5); HUD margins drop to 25px, logo to 140px, manifesto block to 175px (breakPointMobile 640)."
+ },
+ "motion": {
+  "smooth_scroll": "custom virtual scroll inside the WebGL app (no Lenis; doc_height 900, scroll.targetY2 % scroll.total loop, controller.centerScroll, FPS-normalised lerpFPS/damp). Auto-centre snap: if the scroll rests between two scenes for >1.4s it eases to the nearest scene top/bottom. Evidence: probe doc_height, bundle autoCenter block, lerpFPS.",
+  "preloader": "~6s of near-blank grey (#a3a5b4) with a faint wireframe disc (desktop_00) while 12.96MB (probe's declared '3d' bucket: Draco .drc + KTX2) and 2.94MB of ogg audio stream in; 49 .ktx2 requests.",
+  "intro_sequence": "GSAP timeline on shader uniforms (bundle createIntroTimeline, verified): t=0 igloo cage uProgress 0->1 4s sine.inOut, cage alpha 0->.4 in .1s then .4->0 over 3s from 2.1s; outline uIntroMaterialize 0->1 2.5s power3.inOut, outline alpha 1->0 3s inOut4 from 2s; intro particles 0->1 4s sine.out from .5s (alpha out 2s from 1.75s); solid igloo visible at 1.1s, uIntroMaterialize 0->1 2.25s igloo_ease_1; igloo uProgress 0->1 1s power2.inOut at 1s; brick displacement modulator 0->1 2s linear from 2s (this is what opens the bricks); terrain/mountain/patch uProgress 0->1 7.5s inOut1 and uProgress2 7.5s inOut3 from .7s (a radial shockwave: inputGradient = length(worldPos.xz) + mosaic noise*3.5, leading edge lit by blue triangle tiling out to radius 32); sky 3s power2.inOut from 1.5s; smoke 3s and snow 4s power2.inOut from 2s; colour-grade gradient 4s sine.inOut from 1s; bloom intensity 1.5->1 2s sine.inOut from 2.5s; HUD emitted at 4.5s; camera blends from aerial (-14,21,14) looking at (0,.5,0) to the scroll-timeline pose via introWeight 0->1 5.5s inOut1 from 2s, and camera touchAmount 0->1 over 5s from 2s. Screens: desktop_01 = igloo outline + cage over a field of scattered numbered triangle wireframes (the shockwave), desktop_02 = aerial solid igloo on terrain, desktop_03-04 = bricks open with plexus labels and HUD scramble, desktop_05-06 = bricks settling shut while the camera cranes down and dollies back (the breathing envelope plus the pointer's world point moving; forward scroll does not drive the bricks, see scroll_techniques), with the first rainbow cut entering at the bottom of desktop_06.",
+  "scroll_techniques": [
+   "virtual/infinite scroll with 1.4s idle auto-centre snap",
+   "scroll-driven camera crane and dolly (hero timeline, progress = scene progress, rest at .495): position y +9 -> 0 and target y +14 -> 0 power2.out over 0-14 of a 21-unit timeline, with a dolly x-2 z+10 power1.inOut over 7-21 overlapping it",
+   "bricks fling out only BEFORE the rest point: scrollKick = sineIn(fit(progress,0,.4,1,0)) is 1 at progress 0 and 0 from .4 on, while the hero rests at .495, so it fires when you scroll back up into the hero or arrive from the loop wrap (bricks fly outward with extra spin, rand*-1.5 rad per axis, then settle). Forward scroll from rest never re-seats them; the pointer-proximity term is also gated by fit(progress,0,.495,0,1)",
+   "scroll-scrubbed diagonal wipe between two scene render targets (spectral chromatic aberration + data-texture displacement + 0.4 parallax)",
+   "objects rise through frame bottom to top",
+   "pre-blurred text-atlas layers drifting in the fog (fake depth, not DOF)"
+  ],
+  "text_animation": "Character decode on HUD MSDF text via atlas-UV offset (neighbouring glyphs, 8 steps) driven by a left-to-right falloff wave, plus a stepped blink (alpha .6/1.0). During the scroll wipe the HUD is rendered inside the scene texture, so it gets the same spectral CA/displacement smear (deep/desktop_03: red-shifted 'All Rights Reserved').",
+  "image_animation": "No images. Idle 'breathing' igloo (bundle U3.update): per brick, disp = .4 * (sin(-t*2 + centroid.x)*.5+.5) * (cos(-t)*.5+.5) * mix(.5,2,rand) * .5 * modulator, raised to a mouse-proximity term fit(smoothstep(1,3,dist(centroid, mouse)), 0,1, .5+.3*sin(t+rand), 0), masked by smoothstep(.45,.7,centroid.y) (bottom two courses stay seated), then the masked displacement is lerped twice at .06 (an unmasked copy, 'bounce', lerped twice at .05, goes to the G channel of the per-instance DataTexture) for a springy lag. The cos(-t) envelope makes the whole dome exhale every 2*PI ~ 6.3s and the sin(-2t + centroid.x) term sends a ripple across it in x every PI ~ 3.1s; position = centroid + centroid*disp; each brick wobbles on 3 axes by cos(disp*2 + rand*30)*disp*.5. Per brick the colour crossfades from the 'together' lightmap to a baked 'exploded' lightmap by clamp(5*disp,0,1), which is the light you see through the gaps. Crystals rotate slowly while rising; snow particles drift.",
+  "page_transitions": "Content page (Awwwards element 'Content Page', tagged 3d + glitch; not captured by the probe): uDetailProgress 0->1 1.25s power3.in, uDetailProgress2 0->1 1.25s sine.out delayed +.75s; the composite shader displaces both views with a frost data texture (strength .1, zooming as progress rises) plus a horizontal 'tech' offset (.005) from scroll-datatexture.ktx2 and spectral CA; close = both back to 0 (1.25s / .6s power2.out) with a 'leave-project' SFX. The rainbow-smear frames in desktop_06/07 and deep/desktop_03 are the scroll scene wipe, not the content page: a diagonal cut (slope -0.2*aspect) shaped by scroll-datatexture.ktx2 (r = ice-crack cut, g = block displacement, b = slope jitter), outgoing scene pushed up by 0.4*power2In(progress), incoming pushed in from below, 5-tap spectral CA along a barrel distortion (offset grows with r^3 from centre), scaled by modulator 12*smoothstep(1,.7,|2x-1|)*smoothstep(1,.7,|2y-1|), which is full over the central 70% and fades to 0 in the outer 15% of each axis so the frame border stays clean; each scene's bend is the cut falloff (width 2.0) times a blue-noise sample. No RGB-split pass, no pixel sort, no mosaic texture.",
+  "hover_micro": [
+   "Logo hover replays the wordmark's 3-step block-displacement glitch (.25s), blinks the '// Copyright' and 'Igloo, Inc.' lines and plays a 'logo' SFX (bundle LF + L3.blinkAnimation)",
+   "Mouse proximity pushes igloo bricks further open (smoothstep(1,3) radius around the pointer in world space) and the plexus re-picks the nearest bricks (lines animate in .1s, out .06s)",
+   "Crystals: a mouse-painted frost render target (mouseFrost.finalRT) feeds tMouseFrost in the ice shader, tinted #83a1c5; 'Click to explore' label per crystal; uHoverMix/uHoverAnimation hover mixes (inferred from uniforms, not captured)",
+   "Ground glow is a baked glow texture (igloo/ground_glow.ktx2) pulsed by a travelling sine sin(vPos.x - t + 3.2), plus a mouse-position glow term",
+   "The WebGL fluid sim (FLUID_* passes, 128x128, 2 pressure iterations, curl 0, splat radius .22, force 35) drives the links particle volume, not the frost or the ground"
+  ],
+  "cursor": "native cursor; interaction is in the scene (brick push, frost paint, particle splat), not a custom cursor element",
+  "easing_curves": [
+   "GSAP defaults: ease power2.inOut, duration .6, overwrite 'auto'; config force3D",
+   "CustomEase inOut1 'M0,0 C0.5,0 0.1,1 1,1' = cubic-bezier(0.5,0,0.1,1)",
+   "inOut2 cubic-bezier(0.56,0,0,1)",
+   "inOut3 cubic-bezier(0.6,0,0,1)",
+   "inOut4 cubic-bezier(0.4,0,-0.06,1)",
+   "igloo_ease_1 cubic-bezier(0.662,0.073,0.047,1)",
+   "entry_ease_2 cubic-bezier(0.388,0.082,0.924,0.862)",
+   "multi-segment CustomEases also defined: inOut5, entry_ease, entry_ease_3",
+   "string eases by frequency: sine.out x22, power2.out x17, power2.inOut x16, power1.inOut x7"
+  ],
+  "duration_range_ms": "100-7500 (bundle duration counts: .4 x14, 2 x11, .75 x10, .2 x10, 3 x9, 7.5 x8)",
+  "stagger_ms": "not used as GSAP stagger (stagger:0); sequencing is done by absolute timeline offsets (0, .5, .7, 1, 1.1, 1.5, 2, 2.1, 2.5s)",
+  "choreography_notes": "Cage/outline and shockwave lead, solid geometry follows 1.1s later, bricks open at 2s, environment lands last and slowest (7.5s) so the object is legible before the world; HUD arrives at 4.5s; grade and bloom settle after geometry. Everything overlaps; nothing waits for a previous tween to end.",
+  "evidence": [
+   "probes/igloo-inc/desktop_00.jpg ... desktop_07.jpg",
+   "probes/igloo-inc-deep/desktop_00.jpg ... desktop_10.jpg",
+   "bundle grep assets/App3D-f554a111.js: createIntroTimeline, CustomEase.create, re.defaults, FLUID_* pass names",
+   "bundle app3d.js: f3 scene-composite shader (scroll wipe + detail overlay), uDetailProgress tweens, autoCenter block, U3.update brick displacement",
+   "bundle app3d.js re-read in this audit: U3.update (initialScrollAutocenter .495, scrollKick, bounce vs displacement lerps), F3 createTimeline/update, f3 composite shader modulator, LF logo, Be config gridSize, links changeLink"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "realtime-3d",
+  "art_direction": "Overcast arctic: soft top light, heavy fog graded by a diagonal gradient, desaturated blue-grey snow, cool blue-white light baked into an 'exploded' lightmap inside the igloo. Photoreal sculpted snow terrain and mountains against a clinical two-ink HUD: nature render versus instrument overlay.",
+  "treatments": [
+   "3D-LUT colour grade with diagonal exposure gradient",
+   "mipmap-blur bloom (levels 6, threshold .2, intensity 1, radius .85)",
+   "pre-blurred text-atlas meshes and billboard bokeh sprites (bokeh.ktx2 tinted #d1e3ff) for fake depth",
+   "chromatic aberration inside transmission ice",
+   "5-tap spectral CA + data-texture displacement on scene wipes",
+   "blue-noise jitter",
+   "blue triangle-tile shockwave materialize (triangles_tiling.ktx2 + mosaic noise)",
+   "baked lightmap crossfade (together vs exploded) per brick"
+  ],
+  "crops_and_ratios": "Full-bleed canvas only; subject centred, occupying ~35-45% of frame width.",
+  "formats": "0 img, 0 video, 0 svg in DOM (probe). Assets (probe assets_3d): 22 .drc Draco geometries (igloo, igloo_cage, igloo_outline, patch, ground, floor, mountain, cubes 1-3, background_shapes, pudgy, overpass_logo, abstractlogo, shattered_ring 1-2 + smoke, smoke_trail, ceilingsmoke, blurrytext, blurrytext_cylinder, intro_particles), 49 .ktx2 requests (incl. 3D volume textures for the links), 4 png, ogg audio 2.94MB.",
+  "evidence": [
+   "probes/igloo-inc/desktop_02.jpg",
+   "probes/igloo-inc/desktop_03.jpg",
+   "probes/igloo-inc-deep/desktop_05.jpg",
+   "probes/igloo-inc-deep/desktop_08.jpg",
+   "probe assets_3d, asset_extensions"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r165 (vanilla, custom engine) + pmndrs postprocessing (only Bloom actually added) + GSAP 3.12.5 CustomEase + three-mesh-bvh (MeshBVH boundsTree on crystals for raycast), bundled with Vite; App3D chunk (1.49MB) dynamically imported by a 16.5KB loader from a 1.4KB HTML shell",
+  "role": "world (hero landscape) + product (portfolio items frozen in ice crystals) + particles (intro, snow, 150k-particle links volume)",
+  "assets": [
+   "https://www.igloo.inc/assets/geometries/igloo.drc",
+   "https://www.igloo.inc/assets/geometries/igloo/igloo_cage.drc",
+   "https://www.igloo.inc/assets/geometries/igloo/igloo_outline.drc",
+   "https://www.igloo.inc/assets/geometries/igloo/patch.drc",
+   "https://www.igloo.inc/assets/geometries/mountain.drc",
+   "https://www.igloo.inc/assets/geometries/ground.drc",
+   "https://www.igloo.inc/assets/geometries/floor.drc",
+   "https://www.igloo.inc/assets/geometries/cubes/cube1.drc",
+   "https://www.igloo.inc/assets/geometries/cubes/cube2.drc",
+   "https://www.igloo.inc/assets/geometries/cubes/cube3.drc",
+   "https://www.igloo.inc/assets/geometries/cubes/background_shapes.drc",
+   "https://www.igloo.inc/assets/geometries/pudgy.drc",
+   "https://www.igloo.inc/assets/geometries/overpass_logo.drc",
+   "https://www.igloo.inc/assets/geometries/abstractlogo.drc",
+   "https://www.igloo.inc/assets/geometries/shattered_ring.drc",
+   "https://www.igloo.inc/assets/geometries/shattered_ring2.drc",
+   "https://www.igloo.inc/assets/geometries/shattered_ring_smoke.drc",
+   "https://www.igloo.inc/assets/geometries/smoke_trail.drc",
+   "https://www.igloo.inc/assets/geometries/ceilingsmoke.drc",
+   "https://www.igloo.inc/assets/geometries/blurrytext.drc",
+   "https://www.igloo.inc/assets/geometries/blurrytext_cylinder.drc",
+   "https://www.igloo.inc/assets/geometries/intro_particles.drc",
+   "https://www.igloo.inc/assets/fonts/IBMPlexMono-Medium-datatexture.ktx2",
+   "https://www.igloo.inc/assets/images/bokeh.ktx2",
+   "https://www.igloo.inc/assets/images/abstractlogo_dark_color.ktx2"
+  ],
+  "materials_lighting_post": "Custom ShaderMaterials with uProgress/uProgress2/uAlpha/uIntroMaterialize for dissolve-in. Igloo = instanced bricks (zt.batched igloo.drc) whose per-brick displacement/bounce is written to a float DataTexture each frame; lighting is baked: tMap ('together' lightmap) crossfaded to tMapExploded by clamp(5*displacement,0,1). Crystals = MeshPhysicalMaterial patched via onBeforeCompile (custom transmission, AWESOME_SAMPLES 3 for the cubes; uTransmission 1, uThickness 2, uChromaticAberration .1, uColorFrost #83a1c5, tMouseFrost, blue-noise sampling) with color #e0e8ef, roughness .65 + roughness map, normal map, ior 1.18, reflectivity .3, envMapIntensity .91; the logo/character inside is a separate mesh with a baked colour KTX2. Terrain shader: baked colour + ground-glow texture pulsed by a travelling sine + mouse glow; screen-space diagonal fog #afb6c7->#d1d6e3 + height/distance fog. Links: 150k GPGPU particles morphing between 3D volume textures (volumes/*.ktx2 loaded as 3d-data, sampler3D). Post: MipmapBlur BloomEffect (levels 6, luminanceThreshold .2 on igloo/cubes scenes, 0 on the links scene, intensity 1, radius .85), IglooColorCorrectionPass (3D LUT + diagonal gradient), custom scene-composite shader for wipes/detail overlay. DepthOfField and GodRays exist only as uncalled addDOF()/addGodRays() helpers of the composer wrapper.",
+  "interaction": "scroll-driven camera crane and dolly; bricks fling out with spin when arriving before the rest point (progress < .4) and settle; mouse pushes bricks, paints frost on crystals, splats the links fluid sim; click crystal (BVH raycast) to open the content page; links carousel by screen-half click, arrow keys or swipe",
+  "performance_tactics": "Draco geometry + KTX2/Basis textures; instanced bricks; DPR clamped to min(dpr,1.15) on <=2x screens and min(dpr,1.5) above; adaptive DPR: averages FPS over ~4s windows, multiplier -0.1 when <30fps (floor .6), +0.1 when >=60fps (cap 1), gives up ('Adaptive DPR stopped.') after 4 direction flips; FPS-normalised lerp; 1.4KB HTML shell, 3D app lazy-imported; fluid sim at 128x128 with 2 pressure iterations; each scene renders to its own composer and only the one or two scenes on screen are rendered.",
+  "fallback_mobile": "Same full scene on mobile (mobile_00/01 render it at 390px); no static fallback observed.",
+  "evidence": [
+   "probe globals three_revision 165, contexts webgl2:2, assets_3d",
+   "bundle grep: KTX2Loader x18, DRACOLoader x9, addBloom calls x3 vs addDOF/addGodRays definitions only, uniform names, Ei.create eases, adaptive-DPR constants 30/60/.1/.6/4"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "No nav bar. Corner HUD only: logo top-left, manifesto top-right, sound toggle bottom-left; navigation is the scroll itself.",
+  "menu": "none observed",
+  "buttons_links": "'CLICK TO EXPLORE' text labels with a 1px underline rule attached to each crystal's callout (deep/desktop_05, 08); '/// Visit' and '/// Follow Us' (X, LI) link lists in config.",
+  "unusual_interactions": [
+   "Sound toggle ('Sound: Off' with speaker glyph; config muted:true, volume 1) for ambient wind (volume tied to the igloo) + SFX (ogg, AudioContext), e.g. 'leave-project'",
+   "Crystals open a content page via the frost-refraction detail transition",
+   "Mouse pushes igloo bricks open and paints frost on crystals",
+   "Links footer: 150k particles re-form into a 3D volume per social link (LinkedIn, X / Twitter, Medium) and the mouse splats a fluid sim through them",
+   "Infinite looping scroll with idle auto-centre"
+  ],
+  "sound": "yes, opt-in toggle, 2.94MB ogg declared",
+  "footer": "Awwwards element 'Links' tagged particles + webgl: config links {title, url, vdb: peachesbody_64 / x_64 / medium_32, scale 1.2-1.3}; 150k particles in a .65 cube morph between VDB-derived volume textures, stirred by a 128x128 fluid sim; particle SFX volume follows splat velocity (not captured in probe); bundle: a carousel of 3 volumes changed by clicking the left/right half of the screen, arrow keys or a fast swipe, each change adding a .5s noise burst"
+ },
+ "content_voice": {
+  "headline_style": "No headlines. Terminal/lab-instrument labelling: SNAKE_CASE record IDs, slash prefixes, numeric readouts, one short manifesto.",
+  "copy_tone": "Cool, clinical, sparse; the company is presented as a specimen catalogue.",
+  "examples": [
+   "PORTFOLIO_CO_01 Pudgy Penguins",
+   "TEMP 30.01 -01.11 / D 06.01.2023 / CLICK TO EXPLORE",
+   "////// Manifesto"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Vite-built vanilla JS app (no React/Vue), custom WebGL engine",
+  "libraries": [
+   "three.js r165",
+   "GSAP 3.12.5 + CustomEase",
+   "pmndrs postprocessing (Bloom used)",
+   "three-mesh-bvh",
+   "DRACOLoader",
+   "KTX2Loader (basis_transcoder)",
+   "custom MSDF text",
+   "custom WebGL fluid sim",
+   "Web Audio"
+  ],
+  "evidence": "probe libs_from_requests [vite], globals three_revision 165; bundle read of assets/index-2eb69c09.js (16.5KB) and assets/App3D-f554a111.js (1.49MB), cached in scratchpad and re-grepped during audit"
+ },
+ "performance_accessibility": {
+  "requests": 108,
+  "weight_notes": "Declared bytes: '3d' bucket 12.96MB (Draco + KTX2), ogg 2.94MB, png 34KB. Heavy but compressed; first usable frame ~6-8s, HUD text only at +4.5s into the intro.",
+  "reduced_motion": "0 reduced-motion rules (probe); no reduced-motion path observed.",
+  "contrast_issues": "White ~14px mono is 2.2:1 on #a9afbd fog, 1.7:1 on #bec5cd, and ~1.4:1 where the right-aligned manifesto sits over the bright top-right sky (#d7d8de sampled). The dark #3C3C54 slash labels pass (7.1:1 on that sky, 4.9:1 on #a9afbd), so the labels are more legible than the content they introduce.",
+  "mobile_quality": "Renders the full scene at 390px without overflow; HUD scaled up; heavy on bandwidth and GPU.",
+  "dev_scores": {
+   "semantics_seo": 6.6,
+   "animations": 9.6,
+   "accessibility": 6.6,
+   "wpo": 8.0,
+   "responsive": 8.4,
+   "markup": 6.4
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Materialize-from-wireframe intro",
+   "why_it_works": "The object is introduced as data (numbered wireframe, cage, particles) and resolves into matter, so the load time itself becomes the story.",
+   "how_to_build": "three.js: give terrain/mountain materials uProgress + uProgress2. Fragment: float noise = texture(tMosaic (nearest), worldPos.xz*0.07).r; float g = length(worldPos.xz) + noise*3.5; float front = 1.0 - falloffSmooth(g, 0.0, 32.0, 8.0, uProgress2); color += front * texture(tTriangles, worldPos.xz*0.25).r * vec3(0.3,0.45,1.0) * 3.0; alpha = falloff(g, -0.1, 31.9, 0.1, uProgress2) (a radial blue triangle-lit shockwave from the object outward, background mountains masked by smoothstep(32,36,g)). Object: EdgesGeometry cage (uProgress 0->1 4s sine.inOut, alpha .4 then out over 3s at 2.1s) + outline (0->1 2.5s power3.inOut); solid mesh visible at 1.1s with uIntroMaterialize 0->1 2.25s CustomEase 'M0,0 C0.662,0.073 0.047,1 1,1'. Environment uProgress 0->1 7.5s cubic-bezier(0.5,0,0.1,1) at 0.7s; bloom intensity 1.5->1 over 2s at 2.5s; show UI at 4.5s; camera blend weight 0->1 5.5s cubic-bezier(0.5,0,0.1,1) at 2s from an aerial (-14,21,14) to the eye-level scroll pose."
+  },
+  {
+   "technique": "World-space two-ink HUD with glyph-decode + pre-blurred background text",
+   "why_it_works": "Labels feel like a survey instrument measuring the object; a second layer of pre-blurred copy in the fog adds depth for the cost of one textured mesh, no DOF pass.",
+   "how_to_build": "Bake a licensed mono to an MSDF atlas (the site uses IBM Plex Mono Medium, which the anti-slop law names on its rejected Google-mono list; keep mono for the readouts and set the manifesto/copyright prose in a sans); render billboarded text meshes with depthTest false, renderOrder 999. Give each glyph an attribute w = charIndex/charCount. Vertex: float tr2 = falloff(w, 0.0, 1.0, 1.0, uShow2); vUv.x = mod(uv.x + 0.125*mod(floor((1.0-tr2)*5.753), 8.0), 1.0) so unresolved glyphs sample a neighbouring atlas cell; alpha = falloff(w, 0,1, .1, uShow1). Tween uShow1 then uShow2 0->1 (~1s each). Optional blink: alpha *= .6 + .4*mod(floor(uBlink*5.),2.). Colour the slash labels #3C3C54 and the content #ffffff. Leader lines = THREE.LineSegments at opacity .25 between the 5 nearest instances to the pointer, labels showing floor(displacement*50). Background copy: render the text once, Gaussian-blur it offline into an atlas, map it onto a few planes/cylinder strips tinted #c9d0df, depthTest false, drifting slowly."
+  },
+  {
+   "technique": "Scroll-scrubbed spectral diagonal wipe between scenes",
+   "why_it_works": "Both worlds stay live render targets and the scroll position IS the transition, so the cut reads as ice cracking diagonally across the lens rather than a timed 'glitch' effect; users can scrub it back and forth.",
+   "how_to_build": "Render scene A and B to render targets; composite on a fullscreen quad with p = overlap progress from scroll. uv2 = (vUv-.5)*vec2(aspect,1)+.5; vec3 s = texture(tScrollData, uv2).rgb (authored data texture: r = crack mask, g = block displacement, b = slope jitter). slope = -0.2*aspect; incl = vUv.x + (s.b*2.-1.)*.4; front = vUv.y + incl*abs(slope); edge = falloff(front, 0,1, .2, fit(p,0,1,0,1+abs(slope))); cut = falloff(s.r, 0,1, 2., edge). A = CA(tA, vUv - vec2(0, .4*cubicIn(p) + .025*dispA)); B = CA(tB, vUv + vec2(0, .4*cubicIn(1.-p) + .025*(1.-dispA))); color = mix(A, B, cut). CA = 5 taps along a barrel distortion with spectral weights, amount scaled by 12*smoothstep(1,.7,|2uv-1|) per axis and by a blue-noise sample. Add a 1.4s-idle auto-centre so the scroll never rests half-cut."
+  },
+  {
+   "technique": "Portfolio items frozen in refracting ice",
+   "why_it_works": "Turns a list of three logos into three physical specimens; refraction makes a flat logo look precious and 3D.",
+   "how_to_build": "Put the logo/character mesh (baked colour KTX2, MeshBasicMaterial) inside a sculpted crystal mesh with MeshPhysicalMaterial {color:#e0e8ef, roughness:.65 + roughnessMap, normalMap, ior:1.18, reflectivity:.3, envMapIntensity:.91} patched via onBeforeCompile to a custom transmission (thickness 2, 3 transmission samples, chromatic aberration .1 = sampling R/G/B with offset refraction). Mix frost #83a1c5 by a mouse-painted mask render target in the crystal's second UV set. Stack the crystals on one vertical axis at a fixed offset, scroll through them with a slow spin; pin the HUD callout (title upper-left, TEMP readout right, date + CLICK TO EXPLORE with a 1px rule lower-right) to the crystal; raycast clicks with three-mesh-bvh."
+  },
+  {
+   "technique": "Mouse fluid sim stirring a particle sculpture",
+   "why_it_works": "The footer links become a physical object (particles re-forming into each social logo) that the pointer disturbs, instead of a link list with a hover underline.",
+   "how_to_build": "Classic WebGL fluid (splat, curl, vorticity, divergence, pressure, gradient subtract, advection) at simRes 128 / dyeRes 128, pressureIterations 2, curl 0, splatRadius .22, splatForce 35, density dissipation .88, velocity .98, pressure .86. Keep 150k particle positions in a float texture inside a .65 cube; each frame advect them by the fluid velocity (projected to screen) and pull them toward the occupied voxels of the current link's 3D volume texture (Data3DTexture from a 64^3 VDB bake); on link change tween the target volume. Separately, paint a small mouse-trail render target in UV space for frost/glow on other objects."
+  },
+  {
+   "technique": "Ship-weight discipline for a heavy 3D site",
+   "why_it_works": "8.0 WPO despite 16MB of assets.",
+   "how_to_build": "Draco-compress all geometry (.drc), KTX2/UASTC or ETC1S textures, dynamic import() the 3D app from a tiny shell, clamp renderer.setPixelRatio(Math.min(devicePixelRatio, devicePixelRatio<=2 ? 1.15 : 1.5)), then run adaptive DPR: average FPS over ~4s; if <30 multiply DPR by (m-0.1, floor .6), if >=60 raise it (cap 1); stop adapting after 4 direction changes. Render each scene to its own composer and only composite the scenes on screen."
+  },
+  {
+   "technique": "Breathing exploded hero object with baked-light crossfade",
+   "why_it_works": "The hero is alive without any camera move: the igloo slowly opens and closes like it is exhaling light (every ~6.3s), the numbers on it are real readouts of that motion, and the bricks nearest the pointer open further, so the pointer visibly does something to the object before the first scroll.",
+   "how_to_build": "Split the model into bricks as one InstancedMesh; store centroid + 3 randoms per instance. Per frame: d = .4*(sin(-t*2.+cx)*.5+.5)*(cos(-t)*.5+.5)*mix(.5,2.,r.z)*.5*uOpen; d = max(d, fit(smoothstep(1.,3.,distance(centroid, mouseWorld)),0.,1.,.5+.3*sin(t+r.x*12.342)*r.y,0.)); d *= smoothstep(.45,.7,centroid.y); smooth the masked value twice with a frame-rate-independent lerp at .06 (and keep an unmasked copy lerped twice at .05 if you want a second channel for glow); position = centroid*(1.+d + scrollKick); rotate on 3 axes by cos(d*2.+r*30.)*d*.5. scrollKick = sineIn(fit(progress,0.,.4,1.,0.))*smoothstep(.3,1.,cy)*fit(r.x,.4,1.,0.,1.)*2. with the rest point at progress .495, so the kick only fires when the user scrolls back into the hero (bricks fly out with rand*-1.5 rad of extra spin and settle as they reach rest); gate the pointer term by fit(progress,0.,.495,0.,1.). Bake two lightmaps in Blender (closed, and exploded with an interior emitter) and in the fragment shader mix(together, exploded, clamp(5.*d,0.,1.)) per instance (d passed via a DataTexture). Label the 3-5 bricks nearest the pointer with floor(length(position-centroid)*50)."
+  }
+ ],
+ "slop_risks": [
+  "Monospace as the house voice: every word is IBM Plex Mono. It works here only because the mono text is a physical HUD inside a 3D world; copied onto a flat page it is the 'monospace = technical' tell. The specific face is IBM Plex Mono, which the law names on its rejected Google-mono list, so a copy should license its mono.",
+  "Cool grey palette (#a9afbd / #383e4e): it earns its place as rendered atmosphere (diagonal fog gradient #afb6c7->#d1d6e3, LUT grade, distance fog). Copied as a flat #a9afbd page fill it becomes the slop-gray non-decision; copied dark it drifts toward the cool blue-charcoal default.",
+  "Text scramble / decoding labels and '//////' slash prefixes are crypto-tech cliches; one label treatment used everywhere ('One label treatment, everywhere').",
+  "Glitch-style rainbow fringe transition (here a spectral chromatic-aberration wipe, not an RGB split): award-level when it masks a real scene cut; as a hover effect or on DOM text it reads as a template glitch filter.",
+  "HUD callouts with leader lines are close to 'floating tag pinned to an image'; they only earn it because they are anchored in 3D and carry live data. The 1px hairlines under 'PORTFOLIO_CO_0x' and 'CLICK TO EXPLORE' are the same risk: they read as leader-line anchors here, as decorative rules anywhere else.",
+  "Invisible-content trap at page scale: zero DOM text (probe: 0 headings), nothing readable until ~6s and 16MB load; a11y and semantics scored 6.6. Any copy must ship real DOM text (visually hidden or overlaid) and a static poster fallback.",
+  "Interior glow of the igloo is directional light through gaps; a copy that puts a centred radial bloom halo behind a hero object is the 'radial glow halo' tell.",
+  "White ~14px mono over light fog and bright sky has poor contrast (2.2:1 down to ~1.4-1.6:1 behind the manifesto): text you cannot read.",
+  "Regular dot grid across the portfolio fog (~67px pitch, full-bleed): in 3D fog it reads as instrument space (it is not a fixed overlay: its x phase stays put while its y phase shifts with the scroll between deep/desktop_05, 06, 09, 10); flattened onto a DOM page it is the faint full-page grid background the law rejects.",
+  "Global bloom (threshold .2) puts a soft halo around the white IGLOO wordmark; applied to a flat logo on a page this is 'the bloom that is just the element's shape, blurred'. Bloom should be reserved for actual light sources (the igloo interior).",
+  "Monospace note: mono is defensible where the text is data (TEMP readouts, dates, displacement numbers), but the copyright line and manifesto in mono are the 'mono as house voice' costume; in a copy, keep mono for the readouts and set prose in a sans."
+ ],
+ "confidence_notes": "OBSERVED: original probe desktop_00-07 captured the loading state and the intro (wireframe -> aerial igloo -> scramble text -> settled hero -> first glitch frame); mobile_00/01 both usable. Because the original probe ended at the first transition, a supplementary non-destructive probe was run (probes/igloo-inc-deep, --settle 14 --steps 10 --no-mobile) which captured the settled hero, the glitch transition and two portfolio crystals (Pudgy Penguins, Overpass) with HUD. No Awwwards element videos exist for this site (frames dir absent), so hover/click interactions (content page, links particles, fluid frost) are from bundle code only, marked inferred where not seen. All type sizes are estimated from screenshots because text is WebGL MSDF (probe measured nothing). Eases, durations, uniforms, asset URLs and DPR logic are verbatim from assets/App3D-f554a111.js (3 fetches: HTML, loader, App3D). audit (2026-09-24, adversarial re-check of screenshots at full size + cached bundle app3d.js): REFUTED and fixed: DOF/god rays are not used (addDOF/addGodRays defined, never called; only Bloom added) so the blurred fog text is a pre-blurred atlas mesh and bokeh are billboard sprites; the scroll 'glitch' is a scroll-scrubbed diagonal spectral-CA wipe, not a timed 0.8s RGB-split/mosaic/pixel-sort pass (mosaic.ktx2 belongs to the terrain shockwave); the fluid sim drives the 150k-particle links volume, not the frost or ground glow; crystal material values (ior 1.18, roughness .65, color #e0e8ef, 3 samples) replaced invented ones (ior 1.31, roughness .15); adaptive DPR thresholds are <30 / >=60 fps, step .1, floor .6, not ~50; interior light is cool blue-white (#e5f0f4) from a baked exploded lightmap, not warm; #3C3C54 is the hero HUD label ink, not only content pages; HUD is ~14px (not 13), callouts ~18px (not 16), mobile ~12px CSS (not ~17); 22 .drc in the probe list (not 23); camera blend is 5.5s inOut1 from 2s (not 5s). ADDED: breathing-brick displacement formula, lightmap crossfade, plexus numbers = displacement readouts, two-ink HUD, glyph-decode shader mechanism, scroll re-seat, 1.4s auto-centre snap, content-page transition timings, links VDB particle volume, config margins, grade gradient + fog colours, new steal_this entry and three slop risks. Still unverified: hover mixes on crystals, content page layout, links scene visuals (no element videos exist for this site). audit 2 (2026-09-25, re-viewed desktop_00-07, deep/desktop_00-06, 08, 10 and mobile_00/01 one at a time; re-read the cached app3d.js): REFUTED and fixed: 'scroll re-seats the bricks' was backwards; the scroll kick fires only below progress .4 while the hero rests at .495, so forward scroll never closes the bricks (the closing in desktop_05/06 is the ~6.3s breathing envelope plus the camera moving the pointer's world point), in signature, intro_sequence, scroll_techniques, three_d.interaction and the breathing steal_this; the wipe CA is not 'strongest toward the frame edges' (the modulator zeroes it in the outer 15%); the lerp smoothing is .06 twice on the masked displacement, .05 twice on a separate bounce channel; the displacement mask also lifts mid-wall courses, not only the upper dome; contrast slop risk said ~13px (it is ~14px); award line now marks SOTY as inferred. ADDED: logo is an MSDF quad with its own 3-step glitch reveal and hover (replay, copyright blink, SFX); side margins are config gridSize 125/50/25 and the small tier triggers below 1600w OR 800h; scroll hint hides after 25% of the hero height; manifesto show/hide progress window; mobile camera.zoom = min(1, aspect*1.25); breath and ripple periods; links carousel controls; dot grid moves with scroll; IBM Plex Mono flagged as a named rejected font. Still unverified: content page, links scene visuals, crystal hover mixes (no element videos exist)."
+}

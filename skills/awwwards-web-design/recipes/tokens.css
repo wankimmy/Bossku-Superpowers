@@ -1,0 +1,162 @@
+/* ==========================================================================
+   tokens.css: motion and type-scale tokens for award-level builds
+   --------------------------------------------------------------------------
+   What it does
+     Easing curves, a duration scale, stagger steps, a fluid type scale and a
+     reduced-motion block. These are custom properties plus one opt-in helper
+     class (.fluid-type). Nothing in this file hides or moves content.
+   Options
+     Override any token on :root or on a subtree (e.g. .case-study { --dur-5: 1200ms }).
+     motion-core.js, magnetic.js and page-transitions.css read these tokens, so
+     CSS and JS share one set of curves and durations.
+   Fallback
+     Pure CSS, no JS dependency. Under prefers-reduced-motion: reduce (or
+     :root[data-motion="reduce"], set by boot.html-snippet.html or the in-page
+     motion toggle) the movement durations fall back to 200ms crossfades and a
+     safety net strips transform/animation motion but keeps colour and
+     opacity feedback.
+   Deliberately absent
+     No palette and no font family. Choose the faces with
+     data/research/typography.md (sections 0, 2, 5) and the skill's typography
+     reference. Choose colour from the brand, using the tonal-accent rule in
+     the house law (deslop-law.md: no saturated accent, no cream default) and
+     data/research/imagery.md section 2.1. Winners record 1-2 colours per site
+     (data/research/awwwards-editorial.md).
+   Grounding
+     data/probe_summary.json (51 SOTD winners, CSS literals) and
+     data/research/motion-stack.md section 2 (117 SOTD bundles, GSAP literals).
+   Tested
+     Chromium 145 via Playwright 1.58 (chromium-1228), 2026-09-24, alongside
+     gsap 3.15.0 and lenis 1.3.26. Firefox and WebKit not run.
+   ========================================================================== */
+
+:root {
+  /* ---- Easing -------------------------------------------------------------
+     One family set: easings.net cubic-bezier fits of the GSAP power eases
+     (motion-stack.md 2.2). The probe also found the older "classic" Penner fits
+     (expo-out .19,1,.22,1 on 11/51 sites; quart-inOut .77,0,.175,1 on 6/51).
+     They look nearly identical. Use one set per project, not both.
+     motion-core.js registers each curve as a GSAP CustomEase named
+     motion<Name> (e.g. motionOutExpo), so JS tweens use the same curve. */
+  --ease-out-cubic:    cubic-bezier(.33, 1, .68, 1);  /* power2.out. Most common GSAP ease on SOTDs (65/117). */
+  --ease-out-quart:    cubic-bezier(.25, 1, .5, 1);   /* power3.out  */
+  --ease-out-quint:    cubic-bezier(.22, 1, .36, 1);  /* power4.out  */
+  --ease-out-expo:     cubic-bezier(.16, 1, .3, 1);   /* expo.out: fast start, long settle, the "award" reveal curve */
+  --ease-in-cubic:     cubic-bezier(.32, 0, .67, 0);  /* power2.in: exits only, never entrances */
+  --ease-in-out-quart: cubic-bezier(.76, 0, .24, 1);  /* power3.inOut */
+  --ease-in-out-expo:  cubic-bezier(.87, 0, .13, 1);  /* expo.inOut: one dramatic takeover per site, at most */
+  --ease-in-out-sine:  cubic-bezier(.37, 0, .63, 1);  /* sine.inOut: ambient loops */
+  --ease-standard:     cubic-bezier(.4, 0, .2, 1);    /* The single most-shipped CSS curve in the probe (13/51),
+                                                         mostly framework defaults. Neutral: toggles, focus rings. */
+  /* linear (GSAP "none") is the only correct ease for scroll-scrubbed motion and marquees. */
+  /* Never on UI: back.out / cubic-bezier(.34,1.56,.64,1). Bouncy buttons and text are slop. */
+
+  /* Role aliases. Write components against these, not the family names. */
+  --ease-micro:   var(--ease-out-cubic);     /* hover colour/fill, icon nudge, 0.12-0.35s */
+  --ease-enter:   var(--ease-out-quart);     /* cards, meta rows, settles, 0.5-0.9s */
+  --ease-reveal:  var(--ease-out-expo);      /* line masks, image un-clip, 0.9-1.4s */
+  --ease-exit:    var(--ease-in-cubic);      /* leaving content, closing overlays, 0.25-0.4s */
+  --ease-move:    var(--ease-in-out-quart);  /* A-to-B travel on screen: curtains, shared elements, 0.6-1.0s */
+  --ease-ambient: var(--ease-in-out-sine);   /* loops with yoyo, 3-8s per leg */
+
+  /* ---- Duration -----------------------------------------------------------
+     Scale with distance and area, not importance (motion-stack.md 2.3).
+     Probe modes across 51 winners: 200ms and 300ms (34 sites each), 500ms (31),
+     400ms (27), 1000ms (27), 100/150ms (26), 800ms (23). */
+  --dur-1: 120ms;   /* :active press feedback */
+  --dur-2: 200ms;   /* hover and focus state change. Hover never takes longer than 250ms to respond */
+  --dur-3: 350ms;   /* exits and small UI enters. Exit is about 0.6 x enter */
+  --dur-4: 600ms;   /* menus, overlays, cards, settle reveals, page-transition legs */
+  --dur-5: 1000ms;  /* one masked line or media reveal */
+  --dur-6: 1400ms;  /* hero intro total, full-bleed image un-clip. Cap an intro here */
+
+  /* ---- Stagger (seconds per item) -----------------------------------------
+     Probe literals: .1 (25 sites), .05 (25), .08 (16), .04 (15), .02 (12). */
+  --stagger-chars: 0.02s;  /* 0.015-0.03, only on short display lines */
+  --stagger-words: 0.05s;  /* 0.04-0.06 */
+  --stagger-lines: 0.08s;  /* 0.07-0.12 */
+  --stagger-items: 0.08s;  /* cards and grid cells, 0.06-0.1 */
+  --stagger-max:   0.6s;   /* cap on total spread: nobody waits > 0.6s for the last item */
+
+  /* ---- Fluid type scale ---------------------------------------------------
+     Measured display sizes (probe_summary.json, largest heading per site):
+       1440px desktop, n=47: p25 41px, median 80px, p75 150px, max 346px
+       390px mobile,   n=51: p25 32px, median 47px, p75 80px,  max 160px
+       display letter-spacing median -0.023em; display line-height median 1.0 (p25 0.83)
+       body text at 1440: median 14.4px, p75 17px. Winners run small; floor body at 16px.
+     Formula, linear between a 390px and a 1440px viewport, anchored in rem so
+     browser zoom and user font size still scale it:
+       clamp(MIN/16 rem, (MIN - slope*390)/16 rem + slope*100 vw, MAX/16 rem)
+       where slope = (SIZE@1440 - SIZE@390) / 1050
+     WCAG 1.4.4 rule (Barvian 2023): MAX <= 2.5 x MIN. Never set the root font
+     size in vw (WCAG F94). Text steps below match data/research/typography.md 4.3,
+     which were tested at 1440 and 390. The display steps come from the probe
+     percentiles. Pick ONE display step per page. */
+  --step-meta:    0.8125rem;                                    /* 13px captions */
+  --step-body:    clamp(1rem, 0.95rem + 0.2vw, 1.1875rem);      /* 16 -> 18 */
+  --step-lead:    clamp(1.125rem, 1rem + 0.5vw, 1.5rem);        /* 18 -> 23 */
+  --step-h3:      clamp(1.5rem, 1.2rem + 1.2vw, 2.5rem);        /* 24 -> 36 */
+  --step-h2:      clamp(2.25rem, 1.5rem + 3.2vw, 5.5rem);       /* 36 -> 70 */
+  --step-display: clamp(2.9375rem, 2.1714rem + 3.1429vw, 6rem); /* probe median: 47 @390 -> 80 @1440, max 96 (2.04x) */
+  --step-hero:    clamp(3.5rem, 1.9rem + 6.3vw, 8.75rem);       /* typography.md 4.3: 56 -> 121, max 140 (2.5x) */
+  --step-poster:  clamp(5rem, 3.375rem + 6.6667vw, 11.25rem);   /* probe p75: 80 @390 -> 150 @1440, max 180 (2.25x).
+                                                                   Check the longest word at 320px before using it. */
+  /* Tracking and leading for display sizes (typography.md 4.4 has the full table). */
+  --tracking-display: -0.02em;  /* 48-100px grotesk; probe median -0.023em */
+  --tracking-poster:  -0.04em;  /* 100-200px grotesk. Serifs sit near 0 */
+  --lh-display: 0.9;            /* one or two display lines. Leave room for masks (motion-core.css pads them) */
+  --lh-heading: 1.05;
+  --lh-body:    1.5;            /* WCAG 1.4.8 asks >= 1.5 */
+  --measure:    65ch;
+}
+
+/* Fluid-size helper for one-off sizes:
+   <h2 class="fluid-type" style="--fluid-min: 40; --fluid-max: 96">
+   Values are px at a 390px and a 1440px viewport. Keep max <= 2.5 x min. */
+.fluid-type {
+  --_fluid-lo: calc(var(--fluid-min, 16) * 1rem / 16);
+  font-size: clamp(
+    var(--_fluid-lo),
+    var(--_fluid-lo) + (var(--fluid-max, 24) - var(--fluid-min, 16)) * (100vw - 390px) / 1050,
+    calc(var(--fluid-max, 24) * 1rem / 16)
+  );
+}
+
+/* ---- Reduced motion -------------------------------------------------------
+   "Reduce" means remove movement and keep feedback (MDN, WebKit): no
+   translate/scale/rotate, parallax, scroll-linked transforms or smooth-scroll
+   inertia. Colour, opacity, focus and open/close state still change, instantly
+   or as <= 200ms crossfades. Two gates, same rules:
+     1. the OS preference, which also covers pages without the boot script;
+     2. :root[data-motion="reduce"], set by the boot script (OS preference or a
+        saved in-page choice), so the in-page toggle works with a full-motion OS.
+   CSS scroll-driven animations (animation-timeline) are NOT stopped by this
+   net. Gate them in @media (prefers-reduced-motion: no-preference) yourself. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-3: var(--dur-2); --dur-4: var(--dur-2); --dur-5: var(--dur-2); --dur-6: var(--dur-2);
+    --stagger-chars: 0s; --stagger-words: 0s; --stagger-lines: 0s; --stagger-items: 0s; --stagger-max: 0s;
+  }
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color,
+                         fill, stroke, opacity, box-shadow !important;
+    scroll-behavior: auto !important;
+  }
+}
+:root[data-motion="reduce"] {
+  --dur-3: var(--dur-2); --dur-4: var(--dur-2); --dur-5: var(--dur-2); --dur-6: var(--dur-2);
+  --stagger-chars: 0s; --stagger-words: 0s; --stagger-lines: 0s; --stagger-items: 0s; --stagger-max: 0s;
+}
+:root[data-motion="reduce"] *,
+:root[data-motion="reduce"] *::before,
+:root[data-motion="reduce"] *::after {
+  animation-duration: 1ms !important;
+  animation-delay: 0s !important;
+  animation-iteration-count: 1 !important;
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color,
+                       fill, stroke, opacity, box-shadow !important;
+  scroll-behavior: auto !important;
+}

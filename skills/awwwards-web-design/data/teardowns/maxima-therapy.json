@@ -1,0 +1,288 @@
+{
+ "slug": "maxima-therapy",
+ "title": "Maxima Therapy",
+ "live_url": "https://maximatherapy.com/",
+ "award": "Site of the Day - Apr 7, 2026 (SOTD, Honors) - credits: Kim Levan, KOKI-KIKO, Louis Paquet, Nicolas Garnier",
+ "scores": {
+  "overall": 7.73,
+  "design": 7.8,
+  "usability": 7.38,
+  "creativity": 8.12,
+  "content": 7.76,
+  "dev": {
+   "overall": 7.98,
+   "semantics_seo": 8.0,
+   "animations": 8.2,
+   "accessibility": 7.4,
+   "wpo": 8.0,
+   "responsive": 8.2,
+   "markup": 7.8
+  }
+ },
+ "industry": "Healthcare / nonprofit therapy services for neurodivergent children, adults and families (California)",
+ "signature": "A 2D-canvas 'fan curtain': a destination-coloured square spins from 90 to 0 degrees while growing to 1.1x the viewport, revealed through a V-shaped window that opens from the bottom centre (a mirrored pair of mask blades swinging 0 to 90 degrees, subtracted with destination-out), while a second, painted blade pair stops at 58 degrees on program routes. The hero draws its pale V-hills on its own canvas with the same mirrored-blade code at 58 degrees (55 on very wide screens, 50 on mobile), so the transition's last frame and the hero layout are literally the same drawing.",
+ "first_screen": {
+  "composition": "Full-bleed flat-vector hero scene on #FDCB40 yellow: a smiling blue blob, a block tower (purple triangle, red square, pink arch), a jumping kid in polka-dot trousers, white scalloped clouds, a red-and-teal flower cup and a scalloped red sun/bush. Two pale #FFF2B7 hills cut in from the side edges and fall towards a V at bottom centre; each edge rises about 33-35 degrees from horizontal (measured on desktop_00), i.e. a blade rotated about 55-58 degrees from vertical around a bottom-centre pivot. A rounded #FD4401 label card sits bottom-centre with 'EARLY INTERVENTION' in cream #FFF2B7 Robuck Rounded (61.9px) and a white 'AGES 0-3' chip. Two 56px white circular arrow buttons sit on the hills. The nav is a white pill (Programs, About, Service Areas) plus an orange 'Donate' pill and a white mail circle, top right; the two-colour 'maxima' logo is top left. No headline block: the illustration owns the screen. The scene is one quadrant of a giant rotating wheel (see motion), so the next program is literally around the corner.",
+  "what_owns_it": "image",
+  "display_type_px": 62,
+  "evidence": [
+   "probes/maxima-therapy/desktop_00.jpg",
+   "frames/maxima-therapy/3/f00-f07",
+   "probe measure.type h3 61.9px",
+   "layout-wYxH71HP.js p2 (wheel) and H1 (hills canvas)"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Robuck Rounded",
+    "role": "display",
+    "classification": "condensed rounded grotesque, set in caps",
+    "foundry": "unknown",
+    "source": "probe fonts_loaded 'Robuck Rounded 400'; CSS .title-1/.title-2/.title-3/.curtain-title (file /assets/fonts/RobuckRounded.woff2). A plain 'Robuck' is also preloaded but not rendered on home."
+   },
+   {
+    "name": "ABC Diatype Rounded Plus",
+    "role": "body",
+    "classification": "rounded neo-grotesque, variable 300-900",
+    "foundry": "Dinamo",
+    "source": "probe fonts_loaded + CSS .text-body/.title-5/.tag/.btn-round/.curtain-desc. Served as ABCDiatypeRoundedPlusVariable-Trial.woff2 (a trial file in production)."
+   },
+   {
+    "name": "ABC Diatype Rounded",
+    "role": "display",
+    "classification": "rounded neo-grotesque at weight 900, used only for the giant decorative letters",
+    "foundry": "Dinamo",
+    "source": "CSS .text-big {font-family: ABC Diatype Rounded; font-weight: 900; font-size: 37.75rem (575px at 1440); letter-spacing: -0.02em; color: --color-blue}, 9.375rem below 1024px; probe font_families_rendered counts it on exactly 13 nodes = the 13 575px glyphs. Served as ABCDiatypeRoundedVariable-Trial.woff2."
+   },
+   {
+    "name": "ABC Diatype Rounded Mono",
+    "role": "accent",
+    "classification": "rounded mono 500",
+    "foundry": "Dinamo",
+    "source": "Preloaded through the FontFace API before SplitText runs, but no CSS rule references it and it is absent from probe font_families_rendered: unused on the home page."
+   }
+  ],
+  "display_size_px": 214.286,
+  "body_size_px": 19.05,
+  "scale_notes": "Measured at 1440: display h1/h2 214.286px, section h3 61.9px, statement h2 (Diatype 700) 33.33px, body 19.05px, ui/nav 15.24px, big-letter decoration 575px (13 glyphs in #2668FD). Verified in CSS: html{font-size:1.0582vw} (= 16px at a 1512 artboard), 0.925926vw at the largest breakpoint (16px at 1728) and 4.26667vw / 3.2vw on mobile (16px at 375 / 500), so the whole scale moves with vw. Tokens: .title-1 14.0625rem (225px@1512) Robuck Rounded, uppercase, line-height 80%, margin-bottom -0.1em (5.3125rem on mobile = the measured 88.4px at 390); .title-2 6.25rem; .title-3 4.0625rem (65px@1512); .title-5 Diatype Rounded Plus 700 1.5625rem lh 105%; .text-body 1.25rem 500 lh 120%; .text-big 37.75rem 900. Ratio display:section:body is about 11:3.2:1.",
+  "tracking_leading": "Robuck display: letter-spacing normal, line-height 0.8 (171.43 / 214.29) so stacked caps nearly touch. Diatype body/h2: -0.02em (-0.38px on 19px, -0.67px on 33px), line-height 1.2 on body and 1.05 on h2.",
+  "case_and_style": "Display is always uppercase Robuck Rounded (THE FIRST YEARS MATTER MOST, ADAPTIVE SKILLS TRAINING). Everything else is sentence case Diatype Rounded Plus. Card titles use Diatype 700 in orange. Type carries puns: the curtain line 'See life from a different angle' ends with the word 'angle' tipping to 8 degrees (root-wMmj4WL6.js ve()), and on Our Story the letters of 'gROWS' step up in size from left to right, so the word literally grows (0/f05).",
+  "signature_moves": [
+   "Five-line stacked caps headline at 214px with line-height 0.8, one word per line, in #FD4401 on cream #F3EFE0, with a polka-dot butterfly overlapping the letters (desktop_04).",
+   "Section title changes colour with its section: #A7EB98 light green 'ADAPTIVE SKILLS' on #00B351 green, running off the viewport as the 'Next stop' teaser, with white clouds layered in front of the letters (desktop_06).",
+   "A word hangs from two ropes inside the headline on the Careers page ('SUPPORTS' drops in on yellow strings between 'THAT' and 'PEOPLE') (frames 0/f03, 1/f00). How it is built was not verified: Matter.js is only used in the home layout module.",
+   "Giant rounded lowercase letters at 575px in #2668FD (ABC Diatype Rounded 900, -0.02em), each rotated separately, used as decoration (desktop_03).",
+   "Literal type puns: 'angle' lands tilted 8 degrees at the end of 'See life from a different angle'; 'gROWS' grows letter by letter (0/f05)."
+  ],
+  "mobile": "At 390px the h1 measures 88.4px and the largest text 156px. The hero keeps its illustration at full size and crops it, the label card becomes full width with the arrows above it, the nav collapses to Donate plus a hamburger circle, and there is no horizontal overflow (probe mobile_measure, mobile_00.jpg, mobile_01.jpg)."
+ },
+ "color": {
+  "mode": "section-shifting",
+  "base": "Per route or program: #FDCB40 yellow (0-3), #00B351 green (3-18), #F780D4 pink (18-65), #2CD1D0 teal (65+). Content pages sit on #F3EFE0 cream and #FFF2B7 pale yellow.",
+  "ink": "#000000 body text. Display ink is the route's accent: #FD4401 orange-red on cream or yellow, #A7EB98 on green, #FFF2B7 on the orange label card.",
+  "accents": [
+   "#FD4401 orange-red: Donate CTA, label cards, headlines",
+   "#2668FD blue: primary 'Get started' pill, arrow icons, curtain background",
+   "#FFF2B7 pale yellow: hills and 'fan' blades (secondary)",
+   "#AE0C36 crimson / #163F10 / #5D2B75 / #4A2CD6: per-program tertiary colours",
+   "#FFCCCD pink: footer social circles"
+  ],
+  "ratio": "About 55% saturated scene colour, 25% cream/pale, 10% black text, 10% orange/blue accents.",
+  "section_shifts": "Every route has a colour record in colors-C3rBv6kp.js with six fields (main, secondary, tertiary, curtainFan1, curtainFan2, curtainBg; program entries also carry prevCurtainBg). curtainFan1 is defined but the draw code never uses it. The curtain paints the destination's main colour, so the colour change is the transition. On the home hero, program changes do not use the curtain: the carousel section crossfades its background with CSS 'transition: background-color 1s ease-in-out' and the hills canvas tweens its fill to the program's secondary (#FFF2B7 / #A7EB98 / #F5CBFF / #B9ECEA). The logo recolours per route with a 500ms fill transition (areas yellow+blue, FAQ green-dark+red, careers salmon+red, programs blue / green-dark #005C00 / purple / mauve, each with red). Within a page, sections change hard: cream to a white rounded island to #00B351 green for 'Next stop' (desktop_06).",
+  "texture": "None. Pure flat vector fills: no grain, no gradients, no shadows (css_usage box_shadows 0, filters 0).",
+  "notes": "Flat 'colorful' palette held together by a fixed shape language (rounded rectangles, scallops, circles, polka dots) and by reusing the same orange #FD4401 on every page, whatever the section colour. The palette is a Tailwind v4 @theme token set: --color-red #fd4401, --color-blue #2668fd, --color-yellow #fdcb40, --color-yellow-pale #fff2b7, --color-beige #f3efe0, --color-green #00b351, --color-green-pale #a7eb98, --color-green-dark #005c00, --color-pink #f780d4, --color-pink-pale #f5cbff, --color-turquoise #2cd1d0, --color-blue-pale #b9ecea, --color-salmon #ffcccd, --color-salmon-pale #ffa8e5, --color-purple #6b3088, --color-mauve #503fd0, --color-red-dark #ae0c36 (root-C62cwV5F.css)."
+ },
+ "layout": {
+  "grid": "48px outer margin at 1440 (the footer island and white content card are inset 48px, desktop_06/07). Home program copy runs in two columns: a big display headline on the left starting around x=160, body on the right starting at x=957. Only 3 grid containers, so most of the layout is absolute-positioned illustration.",
+  "density": "airy",
+  "alignment": "Hero and statements centre-aligned. Program sections have a left display headline with right-aligned body copy. Card stacks are centred.",
+  "composition_moves": [
+   "Hero framed by two diagonal hills that form a V around a bottom-centre label card: a stage set rather than a text hero. The four program scenes sit on one giant disc (aspect 3341/3352, height calc(3352/982*100svh), about 3.4x the viewport) whose quadrants are rotated i*90deg with transform-origin bottom centre, so changing program rotates the wheel.",
+   "Pinned deck of program-service cards on the program's secondary colour, resting at preset tilts [0.01, -11, 7, -3.82, 5, -5] degrees. The deck arrives by a 3D flip from the hero's orange label card (label rotateY 0 to 180 while the deck goes -180 to 0, perspective 1200px, back.inOut(1.5) 1s), then each card lifts off upwards on scroll (desktop_01, desktop_02).",
+   "Photos cut with slanted clip-path edges (top and bottom) and overlapped by flat illustrated props: a blue blob, a mushroom and a flower tucked into the photo (desktop_04). css_usage clip_path=86.",
+   "One photo split into two rotated fragments with a stepped cut (frame 1/f03, MaskImage/LineImage modules).",
+   "White rounded content 'islands' inset 48px on coloured grounds, radius about 14.3px (15px at 1512; pixel-measured on desktop_07). The label card and program cards use the larger 23.8px (25px at 1512). The footer is one such island with an illustrated 'maxima' wordmark (desktop_07)."
+  ],
+  "section_rhythm": "Full-scene illustration, then a pinned card stack, then a centred caps statement, then a photo collage, then a big headline with body, then a full illustration, then a white steps island, then a full-bleed colour 'Next stop' teaser into the next program. Scale changes from 575px letters down to 19px body within 2 screens.",
+  "mobile_adaptation": "The same components in a single column. The hero wheel shrinks to calc(3352/982*70svh), the hills drop to 50 degrees with their pivot raised by 20% of the height, the label card goes nearly full width with the arrows above it (mobile_00), and the card deck keeps its tilts at full width (mobile_01). The illustration is scaled and cropped rather than re-drawn."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis (html.lenis). Default lerp 0.1 in the bundled class. Overlay panels create their own Lenis with {wrapper, syncTouch:true} driven by gsap.ticker with lagSmoothing(0) (BaseOverlay-DIYJSgJv.js).",
+  "preloader": "No bar. A fixed full-viewport overlay (z-100, beige #F3EFE0, shipped in the SSR HTML with no noscript fallback) acts as the preloader: an intro Lottie (/assets/lottie/0Intro/intro.json), three floating illustrated props, the 214px Robuck line 'See life from a different angle' in #FD4401 and a 21px blue Diatype 700 statement. All five fonts are preloaded through the FontFace API first. Words spring up, then the fan curtain opens the page at about 3.3s (the timeline runs at timeScale 1.1). The overlay fades with autoAlpha 0 over 0.4s once the timeline passes 88% (home and program pages) or 91% (other pages). (root-wMmj4WL6.js functions ve/be)",
+  "intro_sequence": "The curtain line is split with SplitText into words and chars. Each word goes y 200% to 0 with elastic.out(1.2,1) over 1.8s; its chars rotate -90 to 0 degrees with elastic.out(1.3,1) over 1.8s, words 0.1s apart. The last word ('angle') then tips to rotate 8 degrees (origin bottom left) with elastic.out(1.1,0.5) over 1s at t=2.5s. Paragraph lines go y 100% to 0 with expo.out over 1s at t=1. The blades swing at t=3.3s + i*0.1 (expo.inOut 1.2s) and the square grows at t=3.45s (expo.inOut 1.4s). Once the curtain completes, the hero wheel spins into place from a +180 degree offset: a 9s back.out(1.2) rotation whose timeline progress is itself tweened to 1 over 4.2s with power2.out; the label card rises with elastic.out(1,0.8) 1.2s and a per-program prop pops in at bottom left with elastic.out(1.2,0.8) 1.2s after 0.6s.",
+  "scroll_techniques": [
+   "pin (sticky 100svh stage inside a (n+1)*100svh track for the service deck; the hero label card is sticky in a 300svh track and rises from y -50% to 0 as you scroll)",
+   "3D flip handoff: hero label card rotateY 0 to 180 and service deck rotateY -180 to 0 at one viewport of scroll (perspective 1200px, backface hidden, back.inOut(1.5) 1s)",
+   "card lift-off: each service card's progress window is [i/n, (i+1.5)/n] of the section; it moves y 0 to -100% and rotates to 40 degrees x sign(its resting tilt) through elastic.out(1,0.5) 1s tweens fed by a scrubbed ScrollTrigger, so the deck peels with springy lag",
+   "reveal (SplitScale: words scaleY 0 to 1 from bottom centre plus y 200% to 0, elastic.out(1.2,0.8) 1s, stagger 0.1, reversed on leave-back with expo.out; gated on the curtain reaching 80%)",
+   "parallax (illustration layers with per-element 'weight' depth, plus useFooterParallax)",
+   "clip-path image reveals with slanted edges",
+   "Lottie play/stop toggled by ScrollTrigger onEnter/onLeave (Program-BfhAFH1Y.js)"
+  ],
+  "text_animation": "Springy and physical rather than masked: words rise from 200% with elastic overshoot and chars rotate up from -90 degrees, so letters look like they pop up out of the ground. Scroll headings use scaleY 0 to 1 from the baseline with elastic.out(1.2,0.8). Stagger is 0.1s everywhere.",
+  "image_animation": "Photos enter as tilted cut-outs with clip-path polygons and parallax at different speeds. Illustrated props (clouds, balloons, lighthouse beam, birds) loop idly as Lottie (24 JSON files). The hero balloon is a Matter.js body on a chained string with inverted gravity (gravity.y *= -1); pointer speed applies a force (applyForce, clamped to 2) so it sways when the mouse moves (layout-wYxH71HP.js).",
+  "page_transitions": "A canvas 'curtain' in root-wMmj4WL6.js, redrawn on every timeline update. Each frame: (1) fill the canvas with curtainBg (#2668FD on most routes, #FDCB40 for contact/areas/careers, #00B351 for FAQ); (2) draw a square in the destination's main colour, centred, rotated and sized from {w:0,h:0,angle:90} to {w,h: 1.1 x max(vw,vh), angle:0} (expo.inOut 1.4s, starting at 0.2s); (3) paint the curtainFan2 blade pair: two rectangles one viewport wide and two viewports tall whose inner edges meet on the centre line, rotated -a and +a around a bottom-centre pivot, a from 0 to 58 degrees when the destination is a program route and to 90 (fully out of view) otherwise (expo.inOut 1.2s, starting 0.15s after the mask); (4) draw a second mirrored pair (colour #000, final angle always 90) only on an offscreen mask canvas and subtract it with globalCompositeOperation 'destination-out'. At angle 0 the mask erases the whole curtain; as it swings open, the curtain appears through a widening V from the bottom centre (the narrow pale wedge in frame 0/f04). The timeline pauses at 70% while React Router navigates and resumes when the new route mounts; it flags 'curtain 90% complete' at 80% (which triggers entrance animations) and fades the overlay at 88% (program) or 91%. Navigation between home and a program page, or between two program pages, skips the curtain entirely (the wheel handles it). With the menu open, the page behind gets a pale translucent warm wash rather than a dark scrim (0/f00, 0/f04, 0/f06).",
+  "hover_micro": [
+   "BounceButton: on mouseenter (touchstart on touch devices) scale 1.1 with elastic.out(2,0.6) over 1s, back to 1 on leave (BounceButton-CtaazYoI.js). Used on the arrow circles and pills.",
+   "The About mega-menu drops as a white panel that swings in and settles rotated about -4 degrees, with stacked Robuck Rounded links in #FD4401 (OUR STORY / CAREERS / FAQ / SHOP / CONTACT); hovering a link swaps a tilted photo beside it; the page behind gets a pale warm wash (frames 0/f00-f02, 0/f04, 0/f06).",
+   "Hovering a hero arrow tilts the whole scene wheel 5 degrees towards that side (expo.out 1.4s, springing back with elastic.out(1.1,0.9) 1.2s) and previews the neighbouring program on the label card: its text slides in from x +/-500px with elastic.out(1,0.9) 1s, stagger 0.1, while the old text leaves with expo.out 1.2s.",
+   "Hero scene props are hoverable: hovering the binoculars bursts sparkle rings (3/f04).",
+   "Hero illustration groups follow the pointer: x/y = clamp(0.08 x pointer delta, -80, 80), only once the scene is ready to interact (layout-wYxH71HP.js N1)."
+  ],
+  "cursor": "Custom SVG image cursors, not cursor:none: cursor:url(/assets/svg/cursor-default.svg), cursor-pointer.svg, cursor-grab.svg and cursor-grabbing.svg (with smaller -70 variants below xl). The hero wheel shows the grab/grabbing hand and can be dragged (drag maps +/-1 to +/-5 degrees; release beyond 2.5 degrees advances). css cursor:none count 0.",
+  "easing_curves": [
+   "expo.out (17 uses)",
+   "elastic.out(1.2, 0.8) (13 uses): SplitScale headings, per-program prop pop",
+   "power2.out (8)",
+   "expo.inOut (6), used for the curtain square and blades",
+   "elastic.out(1.3,1) / elastic.out(1.2,1) / elastic.out(1.1,0.5) for the curtain intro words",
+   "elastic.out(2, 0.6) for BounceButton hover",
+   "elastic.out(0.8, 0.7), 2s: the hero wheel turning 90 degrees per program",
+   "back.out(1.2) over a 9s timeline, played to the end in 4.2s with power2.out: the wheel's first spin-in",
+   "back.inOut(1.5), duration 1 (ease-DsfWTwUb.js): the label-card-to-deck 3D flip",
+   "elastic.out(2, 0.8) 1.2s: service cards fanning out to their tilts; elastic.out(1, 0.5) 1s: cards lifting off",
+   "elastic.out(1, 0.9) / (1.1, 0.9): label text swap and wheel tilt return",
+   "CSS cubic-bezier(.16,1,.3,1) = --ease-expo-out",
+   "CSS cubic-bezier(.4,0,.2,1)",
+   "CSS background-color 1s ease-in-out: hero recolour per program"
+  ],
+  "duration_range_ms": "CSS 150-700ms for UI and a 1000ms hero background crossfade; GSAP 1000-1800ms for entrances and the curtain (1s x27, 1.2s x16, 1.4s, 1.8s x4); 2000ms wheel turn; the wheel's first spin compresses a 9s tween into 4.2s; idle loops 20s/25s/35s/45s; the hero auto-advances after 10s without input while in view.",
+  "stagger_ms": "100ms (stagger .1, 17 uses); 150ms between fan blades; 200ms rarely.",
+  "choreography_notes": "Order: the colour curtain first (the route's colour arrives before its content), then headline words pop with elastic overshoot 0.1s apart, then body lines slide up with expo.out, then 'angle' tips 8 degrees at 2.5s; after the curtain the scene wheel spins up from below. Illustration Lotties only run while their section is in view. Everything overshoots (elastic or back) except the curtain, which uses symmetric expo.inOut, so the one 'serious' motion is the page change. The hero auto-advances after 10s idle, cancelled by any touchstart, pointermove, wheel or keydown.",
+  "evidence": [
+   "frames/maxima-therapy/0/f00-f07",
+   "frames/maxima-therapy/3/f00-f07",
+   "frames/maxima-therapy/1/f00,f03",
+   "frames/maxima-therapy/2/f06",
+   "bundle re-read (audit): root-wMmj4WL6.js (curtain draw Y(), mask ee(), intro ve/be, route bypass), layout-wYxH71HP.js (p2 wheel, H1 hills canvas, d2 label flip, S1 Matter balloon, N1 pointer parallax), Program-BfhAFH1Y.js (P1 deck flip, o1 card lift-off, tilts V), SplitScale-1xK7kFCN.js, BounceButton-CtaazYoI.js, colors-C3rBv6kp.js, ease-DsfWTwUb.js, root-C62cwV5F.css / layout-k78QJj4t.css (tokens, cursors, carousel)",
+   "probe easings/durations"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "illustration",
+  "art_direction": "Commissioned flat geometric vector characters and scenes in the style of kids' picture books: primary and secondary hues at full saturation, simple dot-eyed faces, polka-dot and wavy-stripe patterns, and scalloped clouds and suns. Each life stage gets its own scene and palette (playroom for 0-3, reading in a park with a physics balloon for 3-18, binoculars on a city for 18-65, lighthouse at sunset for 65+; 3/f00-f07). Warm, natural-light stock-style photography of caregivers with children and elders is used for trust and is always overlapped by illustrated props.",
+  "treatments": [
+   "Photos clipped with slanted or stepped clip-path polygons",
+   "Illustrated props overlapping photo edges (blob, mushroom, flower, planet)",
+   "One photo split into two offset rotated fragments",
+   "Tilted polaroid photo in the menu",
+   "A character head drawn on each letter of the footer wordmark"
+  ],
+  "crops_and_ratios": "Full-bleed 16:10 hero scenes (quadrants of the wheel); photos as wide landscape strips with slanted top and bottom edges (desktop_03 to desktop_04); tilted rounded photos in the menu and program sections; square rounded circles for testimonial portraits.",
+  "formats": "img 9, inline svg 79, 24 Lottie JSON, 10 jpg (383KB), 2 webp (224KB), no video; woff2 663KB is the heaviest asset class.",
+  "evidence": [
+   "probes/maxima-therapy/desktop_00.jpg",
+   "probes/maxima-therapy/desktop_04.jpg",
+   "probes/maxima-therapy/desktop_05.jpg",
+   "probes/maxima-therapy/desktop_07.jpg",
+   "frames/maxima-therapy/1/f03",
+   "frames/maxima-therapy/2/f06"
+  ]
+ },
+ "three_d": {
+  "present": false,
+  "stack": "none (2D canvas plus Lottie plus Matter.js 2D physics)",
+  "role": "",
+  "assets": [],
+  "materials_lighting_post": "",
+  "interaction": "2D only: pointer parallax and pointer-speed forces on a Matter.js balloon",
+  "performance_tactics": "Lottie play/stop is toggled by ScrollTrigger visibility.",
+  "fallback_mobile": "",
+  "evidence": [
+   "probe assets_3d []",
+   "The probe counted webgl2=6, but no WebGL or GLSL calls were found in the first-party modules; the canvases are 2D (curtain, hills, balloon string). The only 3D is a CSS rotateY card flip with perspective 1200px."
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Fixed top-right cluster: a white pill holding Programs and About (each with a small blue caret) and Service Areas, then a separate #FD4401 'Donate' pill (19px Diatype 500, white), then a white mail circle. Top left, the logo collapses from the full 'maxima' wordmark to the two-figure mark once scroll passes 10px (desktop_00 compared with desktop_01), and its two colours change per route with a 500ms fill transition (orange+dark green on the green section in desktop_07, salmon on Careers in 0/f02).",
+  "menu": "Dropdowns open as a large white panel rotated a few degrees. It holds Robuck Rounded links in #FD4401 (OUR STORY / CAREERS / FAQ / SHOP / CONTACT) and a tilted photo that changes per hovered link; the page behind is dimmed. Programs lists 4 programs with age ranges. On mobile it becomes a hamburger in a white circle.",
+  "buttons_links": "Pill buttons radius 47.6px: orange Donate, blue #2668FD 'Get started', yellow 'About Maxima'. Hover scales them to 1.1 with an elastic wobble. Footer legal links are underlined.",
+  "unusual_interactions": [
+   "4-program hero wheel: each program is a whole illustrated world with its own palette on one quadrant of a giant disc. Arrow clicks navigate to /programs/<slug> without the curtain and turn the wheel 90 degrees (elastic.out(0.8,0.7), 2s) while the background crossfades in 1s; hovering an arrow tilts the wheel 5 degrees and previews the next label; the wheel can be dragged; it auto-advances after 10s idle.",
+   "Matter.js balloon in the 3-18 hero scene (3/f01-f02): a wavy-striped SVG balloon (mass 50) under inverted gravity on a 2-segment chain drawn as a white 3px line on a separate canvas. It reacts when the cursor hits it (onMouseEnter), with a force scaled by pointer speed, not to general mouse movement.",
+   "Hovering hero props triggers micro Lottie bursts",
+   "Interactive 404 page, illustrated California service-area map, illustrated shop listing (listed as Awwwards elements; not viewed here)",
+   "A word hung on ropes inside the Careers headline"
+  ],
+  "sound": "none",
+  "footer": "A white rounded island (48px inset) on the section colour. Link lists sit top left, pink social circles and a blue 'Get started' pill top right, and a huge two-colour 'maxima' wordmark with four illustrated character heads sitting on the letters sits bottom left. Small legal links are right-aligned. An illustrated reading character peeks over the island's top edge (desktop_07)."
+ },
+ "content_voice": {
+  "headline_style": "Short, affirming caps statements that are warm and plainly spoken, e.g. life stage plus promise. Program names are used as headlines (EARLY INTERVENTION, ADAPTIVE SKILLS TRAINING).",
+  "copy_tone": "Reassuring, family-facing, clinical terms softened ('play, therapy, and parent support'). The intro overlay states the stance plainly: they support differences rather than treat disabilities. Steps are framed as easy ('as quick, easy, and stress-free as possible').",
+  "examples": [
+   "THE FIRST YEARS MATTER MOST",
+   "See life from a different angle",
+   "Next stop"
+  ]
+ },
+ "tech_stack": {
+  "framework": "React Router v7 framework mode / Remix-style SSR (entry.client, manifest, route modules), built with Vite",
+  "libraries": [
+   "GSAP 3.13.0 (ScrollTrigger, SplitText, Draggable, CustomEase, CustomWiggle registered; Flip was not found)",
+   "Lenis (html.lenis; overlay panels run their own instance)",
+   "lottie-web",
+   "Matter.js",
+   "tweakpane (debug)",
+   "cookieconsent",
+   "Tailwind CSS v4.1.13 (@theme colour tokens)"
+  ],
+  "evidence": "probe libs_from_requests [lottie, scrolltrigger, splittext, vite]; the 51 /assets modules listed in the SSR HTML (hashes unchanged at audit); CustomWiggle 3.13.0 header in entry.client; 'tailwindcss v4.1.13' banner in the CSS; matter-BbZ0w5JX.js, tweakpane-fb6zVzU2.js, Draggable-BJtceQmS.js; html.lenis"
+ },
+ "performance_accessibility": {
+  "requests": 107,
+  "weight_notes": "Light for its richness: ~353KB JS declared, 663KB woff2 (5 fonts, the largest item), ~600KB images, no video. The illustration is SVG/Lottie vector, so scenes cost KB, not MB. The three Dinamo faces ship as '*-Trial.woff2' files, a licensing loose end in production.",
+  "reduced_motion": "Verified: the single reduced-motion rule the probe found belongs to the cookieconsent CSS (#cc-main modal transition 0s). No first-party module checks prefers-reduced-motion, so the curtain, the elastic entrances, the wheel spin and the 10s idle auto-advance all run regardless.",
+  "contrast_issues": "Computed WCAG ratios: white 19px Diatype 500 on #FD4401 (Donate pill, label-card copy) 3.5:1, which fails AA for normal text; cream #FFF2B7 on #FD4401 3.1:1, passing only as large text (the 62px label title); #FD4401 on #F3EFE0 3.0:1, display only; #A7EB98 on #00B351 2.0:1 and white 'Next stop' on #00B351 2.8:1 both fail (desktop_06); pink headline on blue on Careers about 2.0:1 (0/f02). Black on #FDCB40 (13.8:1) and white on #2668FD (4.7:1) are fine.",
+  "mobile_quality": "No horizontal overflow. The hero illustration is cropped rather than recomposed, so some props are cut at the edges. Scores: responsive 8.2.",
+  "dev_scores": {
+   "semantics_seo": 8.0,
+   "animations": 8.2,
+   "accessibility": 7.4,
+   "wpo": 8.0,
+   "responsive": 8.2,
+   "markup": 7.8
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Route-coloured canvas fan curtain whose end state is the hero frame",
+   "why_it_works": "The transition is a moving version of the hero layout, so the page change does not look like a generic wipe but like the scene assembling itself, and each route announces its colour before its content.",
+   "how_to_build": "Put a fixed full-viewport <canvas> with pointer-events:none on top, plus an offscreen mask canvas of the same size. Keep a per-route palette map {main, secondary, curtainBg, fan2}. Write one blade-pair function: for angle a, draw two rects (x from -0.5W and from 0.5W, y -H, width W, height 2H), rotating them by -a and +a around the pivot (0.5W, H). On link click, build a GSAP timeline that tweens plain objects and redraws on each update: clear; fillRect the whole canvas in curtainBg; draw the square {w:0,h:0,angle:90} to {w:1.1*max(W,H), h:same, angle:0} (expo.inOut 1.4s at 0.2s) rotated about the centre in main; paint the fan2 blade pair (angle 0 to 58 for a hero route, else 90; expo.inOut 1.2s at 0.15s); then draw the mask pair (angle 0 to 90, expo.inOut 1.2s at 0) on the offscreen canvas and composite it with ctx.globalCompositeOperation='destination-out' + drawImage(mask). At progress 0.7 pause and call router.navigate(); resume when the new route mounts. At 0.8 fire 'content can enter'; at 0.88 tween the canvas wrapper autoAlpha to 0 over 0.4s. Render the hero's hills with the same blade-pair function at 58 degrees (55 when W/H > 1405/748, 50 on mobile with the pivot raised 0.2H) on the page's own canvas, so the last curtain frame and the hero match exactly."
+  },
+  {
+   "technique": "Elastic pop-up headline (words rise, chars stand up)",
+   "why_it_works": "Chars rotating up from -90 degrees with an elastic overshoot look like toy blocks being set upright, which fits a children's therapy brand far better than a masked slide.",
+   "how_to_build": "SplitText.create(el,{type:'words,chars'}). For each word index i: gsap.fromTo(word,{y:'200%'},{y:0,duration:1.8,ease:'elastic.out(1.2,1)'}, i*0.1); gsap.fromTo(word.chars,{rotate:-90},{rotate:0,duration:1.8,ease:'elastic.out(1.3,1)'}, i*0.1); gsap.fromTo(word,{autoAlpha:0},{autoAlpha:1,duration:1}, i*0.1). Finish with gsap.to(lastWord,{rotate:8,transformOrigin:'bottom left',duration:1,ease:'elastic.out(1.1,0.5)'}, 2.5). For scroll headings use scaleY 0 to 1 with transformOrigin 'bottom center' plus y 200% to 0, elastic.out(1.2,0.8) 1s, stagger 0.1, and reverse to scaleY 0 with expo.out on leave-back. Keep the SSR text visible and apply the from-state only after fonts load and the timeline is built."
+  },
+  {
+   "technique": "Physics balloon on a string that you can bat with the cursor",
+   "why_it_works": "A small real-physics detail rewards touching the scene: the balloon reacts to being hit, and the string stays alive afterwards.",
+   "how_to_build": "Matter.js: engine=Engine.create(); engine.gravity.y*=-1 so it floats up. Build the string with Composites.stack(x,y,1,2,0,10,(x,y)=>Bodies.rectangle(x,y,1,segH,{collisionFilter:{group:Body.nextGroup(true)}})) (the site uses just 2 segments), then Composites.chain(stack,0,.3,0,-.3,{stiffness:1,length:0}). Make the balloon a Bodies.rectangle the size of the SVG with mass 50. Add Constraints with stiffness 0.5: stack top to balloon bottom, stack bottom to a static 20x20 anchor near the ground. Runner.run. Keep Matter.Render disabled: on gsap.ticker, set the SVG balloon's x/y/rotation from the body and draw the string as a white 3px round-capped lineTo path on your own DPR-capped (max 2) canvas. On the balloon SVG's mouseenter, Body.applyForce(balloon, pos, {x:-sign(vx)*min(|vx|*0.01,2), y:-sign(vy)*min(|vy|*0.01,2)}) using the pointer speed."
+  },
+  {
+   "technique": "Label card that flips into a deck of tilted cards, which then lift off on scroll",
+   "why_it_works": "The hero's label card becomes the service deck through a real 3D flip, so the scroll reads as picking up the card you were just looking at; resting tilts and springy lift-off make four descriptions feel like a physical deck without a carousel.",
+   "how_to_build": "Track: a relative wrapper of height (n+1)*100svh with padding-top 100svh and perspective 1200px; inside, a sticky 100svh stage. Put the hero label card and the deck in the same spot with backface-visibility hidden. At one viewport of scroll (ScrollTrigger start 'top top-=100vh'), tween the label rotateY 0 to 180 and the deck rotateY -180 to 0, both back.inOut(1.5) 1s; reverse on leave-back. When the deck enters, fan the cards from rotate 0 to preset tilts [0.01, -11, 7, -3.82, 5, -5] with elastic.out(2,0.8) 1.2s after 0.5s. Then one scrubbed ScrollTrigger over the section; in onUpdate, for card i compute f = clamp(0,1, mapRange(i/n, (i+1.5)/n, 0, 1, progress)) and gsap.to(card, {y: -f*100+'%', rotate: f*40*Math.sign(tilt[i]), duration:1, ease:'elastic.out(1,0.5)'}) so each card overlaps the next and springs as it leaves. Cards: radius 25px@1512, Diatype 700 orange title, a flat 2-3 shape Lottie icon, 19px centred body."
+  },
+  {
+   "technique": "Scene wheel where each program is a quadrant of one rotating world",
+   "why_it_works": "The four life stages read as four worlds on one planet: turning the wheel shows the next one literally coming round the horizon, and the recolour does the storytelling that copy would otherwise do.",
+   "how_to_build": "Make a square-ish wheel element (aspect 3341/3352, height about 3.4 x 100svh) positioned left 50%, translate(-50%, -8.95%) so its centre sits below the fold. Inside, place each scene as an absolute top-half child (w 100%, h 50%) with transform rotate(i*360/n deg) and transform-origin bottom center. To change program i: gsap.to(wheel, {rotate: -i*360/n, duration:2, ease:'elastic.out(0.8,0.7)'}), switch the section's background class (CSS transition: background-color 1s ease-in-out) and tween the hills canvas colour to the program's secondary; handle wrap-around by adjusting the running index rather than spinning back. On arrow hover, tilt an inner wrapper rotate: -dir*5 (expo.out 1.4s) and preview the next label; support pointer-drag (map drag to +/-5 degrees, advance past 2.5). First load: spin in from +180 degrees with a 9s back.out(1.2) tween driven to progress 1 over 4.2s. Only play the visible scene's Lotties. Keep the label card (#FD4401, radius 25px@1512, Robuck caps, age chip) fixed at bottom-centre so only the world turns."
+  }
+ ],
+ "slop_risks": [
+  "Hover boop: BounceButton scales pills and arrow circles to 1.1 with elastic.out(2,0.6) (verified in BounceButton-CtaazYoI.js; it fires on touchstart too). The law bans buttons that jump on hover. A copy should use a fill or colour change and keep the elastic for content.",
+  "Invisible-content trap, at page scale: the SSR HTML ships a fixed, full-viewport z-100 beige overlay with no noscript fallback, and only the JS curtain timeline removes it (autoAlpha 0 at 88-91%). If JS fails or the timeline stalls, the whole site sits behind a blank beige screen. On top of that, intro words start at autoAlpha 0 and y 200%, and SplitScale headings are set to scaleY 0 until ScrollTrigger onEnter. A copy should render the page visible and add the overlay only from JS.",
+  "Cream background: #F3EFE0 (rgb 243,239,224, --color-beige) is the ground under the photo and program sections (desktop_04/05) and the intro overlay. Here the saturated art justifies it, but a copy without commissioned illustration reads as the default oat-milk page.",
+  "Saturated accent pop and colliding colours: 10+ full-saturation hues (#FD4401, #2668FD, #00B351, #F780D4, #2CD1D0...) only work because they are locked to a per-route token map and a single illustrator's shape language; freehand colour picking would clash.",
+  "Crude CSS/SVG illustrations: the look depends on professional commissioned vector art. Hand-rolled circle-and-triangle SVG characters would be the 'crude illustration' tell.",
+  "Hard colour seams: cream to a flat #00B351 block cuts with no hand-off (desktop_06); acceptable as a chapter break, but not on every section.",
+  "Low contrast, measured: #A7EB98 on #00B351 2.0:1, white 'Next stop' on #00B351 2.8:1, white 19px on #FD4401 3.5:1 (Donate pill), pink on blue about 2.0:1 on Careers.",
+  "Eyebrow chip above a hero headline: subpages put a small coloured tag ('CAREERS', 'OUR STORY') right above the giant headline (0/f02, 0/f05), which is the law's pill/eyebrow tell; the illustration saves it here, but a copy should drop the kicker.",
+  "Icons parked in filled circles: footer social icons sit on #FFCCCD circles and the step faces sit in yellow discs (desktop_06/07), which is the law's 'icon with a box behind it' tell. The step faces are real illustrations, so they survive; generic glyphs in circles would not.",
+  "Motion without consent: the hero auto-advances after 10s idle and nothing honours prefers-reduced-motion; a copy should gate the curtain, the wheel spin and autoplay behind matchMedia('(prefers-reduced-motion: no-preference)')."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots plus 2 mobile, all 8 frames of element 0 (page transition) and element 3 (hero slider), and f00/f03/f06 of elements 1 (careers) and 2 (program presentation). Type, colour and asset figures come from probe.json. Motion numbers come from grepping 51 first-party modules (curtain timeline in root-wMmj4WL6.js, colour map in colors-C3rBv6kp.js, Matter balloon and pointer parallax in layout-wYxH71HP.js, SplitScale, BounceButton). INFERRED: that the hero's V hills are the curtain blades at their 58-degree final angle (strongly supported by the code: fan final angle 58, fan2 colour = secondary #FFF2B7 = hill colour); that slider changes reuse the curtain; the design artboard width of 1512 (from the rem ratio). The probe's webgl2=6 count is unexplained: no first-party WebGL code was found. Robuck Rounded's foundry is unknown. The 404 page, map and shop elements were not viewed (no frames). | audit (2026-09-25): re-viewed desktop_00-07, mobile_00-01, all frames of elements 0 and 3, plus 1/f00, 1/f03, 2/f06, and re-fetched the live first-party modules (hashes unchanged). Fixed: the curtain's black blade is an offscreen destination-out mask swinging to 90 (never painted), each 'blade' is a mirrored pair, and the 58-degree stop only applies to program routes; hero hills are their own canvas (H1) with the same geometry, which upgrades the signature from inferred to observed; the 'slider reuses the curtain' inference was false (home/program navigation bypasses the curtain; the hero is a rotating scene wheel with drag, hover-tilt and 10s autoplay); the card stack recipe was invented (real tilts [0.01,-11,7,-3.82,5,-5], y -100%, rotate 40*sign, elastic.out(1,0.5), entered by a 3D flip from the label card); balloon force fires on mouseenter, not pointermove, and lives in the 3-18 scene; the cursor is custom SVG, not native; ABC Diatype Rounded is the 575px decoration face (weight 900), not UI; Mono is unused; the 1512 artboard is confirmed (html{font-size:1.0582vw}); island radius is about 14.3px, not 23.8; reduced-motion is not honoured; fonts are Trial files; the menu wash is pale, not a dark dim; Flip removed from libraries. Added: angle/grows puns, logo recolour, contrast ratios, SSR overlay trap, eyebrow and icon-in-circle tells. Still unverified: how the Careers rope word is built, the webgl2=6 contexts, and the 404/map/shop elements."
+}

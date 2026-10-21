@@ -198,11 +198,10 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
         "already approved", "plan is already approved", "work through it step by step",
         "review checkpoints",
     ],
+    # The generic landing and portfolio phrases moved to bosskuai-taste, the Awwwards house rule (2026-10-21).
     "taste-skill": [
-        "landing page", "does not look ai", "doesn't look ai generated", "make it look good",
-        "design taste", "beautiful ui", "marketing site", "premium landing", "design dials",
-        "portfolio site", "avoid inter",
-        "nampak generic", "nampak premium", "tolong buat nampak",
+        "does not look ai", "doesn't look ai generated", "design taste", "design dials", "avoid inter",
+        "taste skill", "gsap skeleton",
     ],
     "brutalist-skill": [
         "brutalist design", "brutalist style", "brutalist portfolio", "neo-brutalist",
@@ -740,6 +739,37 @@ for _sid, _more in {
 }.items():
     CURATED_TRIGGERS.setdefault(_sid, []).extend(_more)
 
+# --- 2026-10-21 Awwwards is the default design style (user decision). bosskuai-taste is the house rule for every
+# website, landing page and portfolio; the vendored Awwwards packs are its deep references; jury scores a site. ---
+for _sid, _more in {
+    "bosskuai-taste": [
+        "landing page", "landing pages", "website", "web site", "build website", "build a website",
+        "build me a website", "create a website", "make a website", "design a website", "new website", "homepage", "home page", "portfolio",
+        "portfolio site", "marketing site", "brand site", "launch site", "agency site", "studio site",
+        "product site", "campaign site", "hero section", "web design", "website design", "premium website",
+        "premium landing", "make it look good", "beautiful ui", "awwwards", "awwwards style", "award winning",
+        "award-winning", "site of the day", "immersive website",
+        "laman web", "halaman web", "bina laman web", "buat laman web", "buatkan laman web", "reka laman web",
+        "buat website", "buatkan website", "bina website", "reka website",
+        "website cantik", "nampak generic", "nampak premium", "tolong buat nampak",
+    ],
+    "bosskuai-ui-ux-design-to-code": ["design a dashboard", "dashboard design", "design the app", "app ui"],
+    "awwwards": [
+        "award-winning build", "webgl portfolio", "gsap lenis ogl", "page transitions", "next.js portfolio",
+        "astro showcase",
+    ],
+    "awwwards-web-design": [
+        "awwwards teardown", "awwwards casebook", "awwwards evidence", "awwwards corpus", "site teardown",
+        "signature interaction",
+    ],
+    "jury": [
+        "score my website", "score this site", "rate my website", "roast my website", "awwwards score",
+        "awwwards jury", "jury score", "good enough for awwwards", "site of the day chance", "design qa",
+        "nilai website",
+    ],
+}.items():
+    CURATED_TRIGGERS.setdefault(_sid, []).extend(_more)
+
 # High-confidence task boundaries. These live in the generated index so agents can
 # avoid a superficially related skill without adding text to every loaded prompt.
 CURATED_EXCLUSIONS: dict[str, list[str]] = {
@@ -785,6 +815,12 @@ CURATED_EXCLUSIONS: dict[str, list[str]] = {
         "data table",
         "database outage", "connection pool", "on-call engineer", "paged at",
         "incident response", "postmortem",
+    ],
+    "awwwards": [
+        "admin dashboard", "admin panel", "this dashboard", "build a dashboard", "dashboard ui", "data table",
+    ],
+    "awwwards-web-design": [
+        "admin dashboard", "admin panel", "this dashboard", "build a dashboard", "dashboard ui", "data table",
     ],
     # --- 2026-09-26 skill review: routing for requests that had no owner ---
     "pricing": [

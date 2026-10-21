@@ -1,0 +1,332 @@
+{
+ "slug": "messenger",
+ "title": "Messenger",
+ "live_url": "https://messenger.abeto.co",
+ "award": "Awwwards Site of the Day, Nov 10 2025 (Honors); corpus bucket site-of-the-year 2025. Studio: abeto.",
+ "scores": {
+  "overall": 7.92,
+  "design": 8.04,
+  "usability": 7.46,
+  "creativity": 8.23,
+  "content": 8.15,
+  "dev": {
+   "overall": 8.21,
+   "semantics_seo": 7.6,
+   "animations": 9.0,
+   "accessibility": 7.6,
+   "wpo": 8.8,
+   "responsive": 8.4,
+   "markup": 7.6
+  }
+ },
+ "industry": "Games & entertainment / studio showcase: a browser multiplayer delivery game on a tiny planet (art & illustration, storytelling)",
+ "signature": "A real-time three.js world rendered through a screen-space ink-outline pass (depth + normal + object-ID edges, with each material able to mask or noise-break its own ink) and a 3D LUT grade, with every piece of UI (title, buttons, dialogue text) drawn inside the same renderer (Slug GPU vector glyphs) and animated on held, quantized poses at about 1.3-8 Hz, so a playable WebGL game reads as a moving hand-drawn illustration; even the title screen is a toy: every logotype tile springs, and flips 180 deg when you swipe across it, and the BEGIN block rolls a quarter turn as your pointer crosses it.",
+ "first_screen": {
+  "composition": "1440x900 single canvas, no scroll (doc height 900, html/body overflow hidden, touch-action none). Flat teal field (#65c1bc sampled identically in every frame; corpus palette #81BFBC; code: a sky shader with teal stops #75bdc3 / #9fe2e0 / #b9ebea plus cloud noise, then the LUT grade) scattered with small cyan flecks and paler teal swirl shapes in the far field. Dead center a miniature planet about 600-700px across (tanks and poles stick out), ringed by a paler aqua water rim and a few flat white low-poly cloud puffs: a dense diorama of a Japanese-style town (low concrete blocks, water tower, orange factory tanks, trees, cliffs, waterfall, the quest's red cliff house visible in desktop_05/07). The planet appears to turn, but it is the camera that auto-orbits it (autoRotate, one lap per 60s at 60fps). Over it the logotype 'MESSENGER' as extruded 3D geometry in a 3x3 grid (MES / SEN / GER): each letter is a TALL slab (hit box 4.05 x 5.35 x 4.25 world units, so about 3:4 and extruded about as deep as it is wide; measured about 115x145px) with #ecf0e4 faces and grey sides, the letterform read from narrow incised slots, with dark ink outlines; the block is about 385x490px. Title and CTA are camera-locked: every frame they are placed 45 units in front of the camera and turned with lookAt, so the world rotates behind a logotype that never turns. In every settled capture the center tile (the E of SEN) reads mirrored, slots opening left: inferred, a tile flipped 180 deg by the probe's centered pointer (see motion.hover_micro), since the other two Es open right. Below, a single chunky 3D 'BEGIN' block (face #f0d054, top bevel #c08834 sampled) about 175x75px; its label is flat Slug text in heading.font (#F8F8F8, blocky pixel-grid letters, the B like an 8 and a lowercase-form e) with a hard 0.06-unit offset shadow in #7A5E0D (sampled khaki #807858-#b0a080), not extruded letters and not the title's slot-cut script. The bevel angle differs between captures; the code has no idle sway, so inferred: pointer-driven quarter rolls or the camera's small mouse displacement. desktop_00 caught the intro mid-assembly: about six glyph tiles placed at odd angles, two still tumbling, no CTA yet.",
+  "what_owns_it": "3d",
+  "display_type_px": null,
+  "evidence": [
+   "probes/messenger/desktop_00.jpg",
+   "probes/messenger/desktop_01.jpg",
+   "probes/messenger/desktop_03.jpg / desktop_05.jpg (rotation, CTA sway)",
+   "probes/messenger/probe.json (contexts webgl2 2, largest_text empty, assets_3d title_vertical.drc)",
+   "App3D-DwM1eiaC.js (audit pass 3): introScene setupCamera/playInAnimation, title$1 (BatchedMesh, camera-locked update(), hover/flip), button (heading.font meshText, shadowColor #7A5E0D, quarter-roll hover, spinOut), sky$1 colour stops"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Custom slot-cut slab logotype (geometry: planets/present/intro/title_vertical.drc)",
+    "role": "display",
+    "classification": "tall slab letters (about 3:4, 4.05 x 5.35 world units, extruded 4.25 deep) whose shapes are read from narrow incised channels (counters as grooves); nine separate meshes batched in one three.js BatchedMesh so each tile can spin on its own; not monoline strokes and not near-square",
+    "foundry": "inferred: in-house (abeto)",
+    "source": "probe assets_3d + desktop_01 zoom + App3D title$1 (grid step 5.35 x 6.9 units, BoxGeometry(4.05, 5.35, 4.25) hit boxes)"
+   },
+   {
+    "name": "UglyDave-Alternates-optimized.font",
+    "role": "body",
+    "classification": "dialogue / textbox / arrowbox font, rendered in-world with the Slug GPU vector-glyph algorithm; NPC bubble text size .12 world units, #1f1f1f, letterSpacing -0.02, lineHeight 1",
+    "foundry": "third-party font converted to a custom binary .font (foundry not identified)",
+    "source": "bundle grep App3D-DwM1eiaC.js textbox$1/arrowbox/NPC textOptions"
+   },
+   {
+    "name": "REM-Medium.font",
+    "role": "ui",
+    "classification": "geometric sans (inferred: the open-source REM family) for default speech bubbles (lineHeight .85) and multiplayer name tags (tagsFont)",
+    "foundry": "inferred: REM (Google Fonts, Octavio Pardo), converted to .font",
+    "source": "bundle grep meshText font 'REM-Medium.font', tagsFont"
+   },
+   {
+    "name": "heading.font",
+    "role": "ui",
+    "classification": "blocky pixel-grid display face rendered as Slug GPU glyphs: the BEGIN / ENTER label and the quest title boxes; the B reads like an 8 and the e is a lowercase form, so the label looks mixed-case",
+    "foundry": "unknown (custom binary .font; not identified)",
+    "source": "App3D button class (font 'heading.font', meshText color #F8F8F8, shadow true, shadowX/Y .06, shadowColor #7A5E0D) and titlebox$1; desktop_01 / mobile_00 zoom"
+   },
+   {
+    "name": "Custom icon set (.icon binaries via glyphLoader: ui/arrow, ui/cross, ui/sidebuttons/poo, ui/quests/*, ui/npc-icons/*)",
+    "role": "ui",
+    "classification": "chunky pictograms decoded in a worker and drawn as Slug curve+band textures or extruded geometry (loadTexture(...,'band'|'curve'), loadGeometry)",
+    "foundry": "in-house",
+    "source": "bundle grep glyphLoader.loadTexture/loadGeometry, SlugVS/GlyphUnpack"
+   },
+   {
+    "name": "Invented pseudo-script on in-world signage",
+    "role": "accent",
+    "classification": "the same slot-cut rectilinear script as the logotype, painted on signs, shopfronts, water tower and backpacks (faux-kanji feel); the BEGIN label is NOT in this script (it uses heading.font)",
+    "foundry": "in-house",
+    "source": "Awwwards element thumbnails el0 (Character Navigation), el2 (Character Configuration), desktop_01"
+   }
+  ],
+  "display_size_px": null,
+  "body_size_px": null,
+  "scale_notes": "No DOM text at all: font_families_rendered is only the default Times on 1 element, largest_text is empty, no headings; all visible type is geometry or Slug glyphs inside the canvas. Measured from screenshots: title glyph cells about 115px wide x 145px tall at 1440; the BEGIN label about 90px wide x 24px tall. On a 390px phone each glyph is about 102x135 CSS px, so the title fills about 88% of the width (mobile_00).",
+  "tracking_leading": "Glyph cells butt together with about 10-20px gaps in a tight 3x3 grid; no line-height concept (geometry).",
+  "case_and_style": "All caps, tall slab letters with incised slots for the logotype and in-world signage; the CTA label and quest titles use the separate blocky heading.font. Dialogue text is sentence case in UglyDave Alternates. Slug text reveals glyph by glyph in 3-4 quantized steps.",
+  "signature_moves": [
+   "Logotype as extruded 3D geometry locked 45 units in front of the camera and outlined by the same ink pass as the world, so the planet turns behind a title that never turns",
+   "Letters as toys: hovering a title tile pops it to scale 1.05 (0.2s power2.out) and springs back (0.75s elastic.out(1, 0.6)); leaving it after a swipe flips it 180 deg about the axis perpendicular to the swipe (2.5s elastic.out(1, 0.5-0.8 random per flip)), squashes it to 0.9 and springs back, and plays a random rune1-3 sound",
+   "One invented script across brand and world: logotype, shop signs, water tower and backpacks share the slot-cut letterforms (desktop_01, el0, el2); UI labels switch to a separate blocky face (heading.font)",
+   "Text reveal quantized: trShow = floor(falloff(textWeights.y, 0, 1, k, show) * stepsShow) / stepsShow with stepsShow = floor(3 + seed*2), seed = fract(hash13(glyph centre)), i.e. 3 or 4 steps",
+   "Hide as stepped scale-down: 1 - floor(hide*(stepsHide+1))/(stepsHide+1), stepsHide = floor(1 + seed*2), i.e. 2 or 3 levels",
+   "Boil wiggle: steppedTime = floor(time*1.6*mix(fract(seed),0.8,1.0) + seed*15.3423)/7; offset = (hash23(centr+steppedTime)*2-1)*0.0025. mix(x, 0.8, 1.0) always returns 0.8, so every glyph re-poses about 1.28 times per second, desynchronised only by its seed phase",
+   "Slug GPU text: glyph outlines evaluated per pixel from curve + band textures, so in-world text stays crisp at any camera distance"
+  ],
+  "mobile": "Same canvas. A mobileLayout flag (portrait and width < 700) zooms the camera to 0.8, scales the title x1.2 and the BEGIN group x1.5 and drops it lower (offset -16 vs -13.5 units): measured, the title fills about 88% of 390px and BEGIN is about 190 CSS px wide, planet cropped at the sides (mobile_00/01)."
+ },
+ "color": {
+  "mode": "light",
+  "base": "#65c1bc sampled flat teal sky/ground (corpus lists #81BFBC and #C9D5C3)",
+  "ink": "#373f42 (uOutlineColor for the planet scene); #2a2e2f sampled on outlines",
+  "accents": [
+   "#f0d054 mustard BEGIN face with #c08834 bevel (sampled; the earlier #f1d156 / #bd8b36 are the same values within JPEG error)",
+   "BEGIN label #F8F8F8 with a hard #7A5E0D offset shadow (code); intro sky stops #75bdc3 / #9fe2e0 / #b9ebea, particles #6a8f89, cable ink #4d5457",
+   "orange-red factory tanks and roofs",
+   "muted diorama greens, greys and dusty pink",
+   "HUD: #F8F8F8 tile faces, #647A87 slate offset shadows and icons, about #445460 thin tile outline (sampled from the el0 zoom; not a code literal)",
+   "quest/NPC UI colours in code: #c25959 red, #de794e orange, #f3c258 yellow, #8cc48c green, #66BDE6 blue (dialogue arrow default)",
+   "code palette literals also include #afe7eb, #75bdc3, #6facb2, #468c92 (teal ramp) and #488BAA (second shadow colour)"
+  ],
+  "ratio": "about 70% teal field, 25% muted diorama, 5% mustard/orange",
+  "section_shifts": "None as page sections. The world is zoned (ambience files base, beach, city, factory, forest, temple, waterfalls) and the element thumbnails show forest-green and grey-street palettes under the same teal sky.",
+  "texture": "Far field: pale teal swirl shapes (inferred: the intro 'galaxies' mesh, galaxies.drc textured with galaxy.ktx2 and clouds_noise_64, fading in over 3s, and/or the sky shader's cloud-noise stops #9fe2e0 / #b9ebea). Near the planet: flat white low-poly cloud puffs (clouds.drc with its own cloudMaterial, parented to the planet) and a paler aqua water rim (water.drc); drifting particle flecks (points.drc + particle_sprites.ktx2, #6a8f89, sprites re-posed on a 2 Hz stepped clock); 15 birds in 5 groups on a flight curve (birds/1.drc + curve-1.drc, inferred visible as the small dark marks at the planet's upper left in desktop_07). The whole frame is graded by a 3D LUT (lut.ktx2, tetrahedral). Ink lines are not uniform: most materials write outline contribution 1, some write 0, and a few write a noise-stepped mask (step(-0.3, sinenoise) etc.), so selected surfaces get broken, dry-brush ink. No grain over UI.",
+  "notes": "Near-analogous teal and green with one warm accent (mustard/orange). Colour does the illustration's job, and the flat-shaded diorama keeps saturation mid rather than candy."
+ },
+ "layout": {
+  "grid": "No page grid; a single full-viewport canvas with a centered radial composition (planet, title, CTA on the vertical axis). In-game HUD: right-edge column of square icon buttons (menu list top-right; music note, shirt, poop emote bottom-right) with hard slate offset shadows; character-config arrow pickers flank the avatar symmetrically in 4 rows with a red X close button above (el2).",
+  "density": "airy",
+  "alignment": "Dead center on the title screen; HUD pinned to the right edge in game.",
+  "composition_moves": [
+   "Tiny planet as a centered 'globe' object in empty teal, so the whole site is one object",
+   "Logotype occupies the planet's face, overlapping the world rather than sitting above it; it is camera-locked (repositioned 45 units ahead of the camera every frame, offset 2 units up), so the rotating world slides behind a fixed title",
+   "Single CTA block directly under the planet (camera-locked, offset 13.5 units down), nothing else on screen",
+   "In game: low third-person camera where the street visibly curves away and buildings lean outward because the ground is a small sphere (el0, el2); the camera FOV value was not found in app code, so 'exaggerated wide angle' is a visual reading, not a measured 90deg"
+  ],
+  "section_rhythm": "Not a scrolling page: title screen, then (after BEGIN) a free-roam third-person world with dialogue, customization and multiplayer.",
+  "mobile_adaptation": "Same scene; title and CTA scale up relative to viewport (title about 88% of 390px, BEGIN about 189 CSS px) and the planet is cropped at the sides; touch input supported (touchstart handlers, fingers:2); no overflow. In-game mobile frames (el3) show no HUD column."
+ },
+ "motion": {
+  "smooth_scroll": "none: no scroll (doc height 900, wheel steps in the probe changed nothing but the planet's idle rotation)",
+  "preloader": "Svelte #loader: 8 SVG frames (#frame0-7, stroke #222, 2px, fill none) each shown by a 1s infinite CSS keyframe 'visible for 12.5% then hidden', with animation-delay 0, .125s ... .875s: a hand-drawn flipbook loop at 8 fps.",
+  "intro_sequence": "Code-verified timeline (introScene.playInAnimation, seconds after start): planet group rises from y -80 to 0 (2.25s, inOut1, delay 0.2), grows from scale 0.3 to 1 (6.3s, inOut3), spins 270 deg on y (5.65s, inOut3, delay 0.35) and flips upright from x -180 deg (2s, inOut1); particles swirl in at 0.5 (fade 2s sine.inOut, rotate y -135 deg -> 0 over 4s inOut3); atmosphere at 1.45; galaxies fade in at 2.2 (3s); title at 2.35: each of the 9 tiles starts at scale 0 at the CENTER tile's position with a random rotation of up to +/-180 deg on x and y, and springs to its grid slot, rotation 0 and scale 1 over 3s elastic.out(1, 0.75), staggered 75ms by index, so the word bursts out of its middle letter; birds at 2.7 (2s fade); BEGIN at 3.3 flips in from x -180 deg (3.25s elastic.out(1, 0.5)) while scaling 0 -> 1 (3.25s elastic.out(1, 0.9)). Sound cues: whoosh at 0.16 and 1.8, intro-letters at 2.5, button-turn at 3.45. Title interaction is enabled after 3s. desktop_00 (about six tiles at odd angles, two still flipping) and desktop_01 (all nine aligned) match this.",
+  "scroll_techniques": [
+   "none: the camera is game-driven (WASD, Shift run, Space jump, E interact, Escape, gamepad, touch)"
+  ],
+  "text_animation": "In-shader per-glyph reveal quantized to 3-4 steps (floor(3 + seed*2)), stepped scale-down hide in 2-3 levels, and a boil wiggle: floor(time*1.6*0.8 + seed*15.34)/7 feeds hash23, so each glyph jumps to a new 0.0025-unit offset about every 780ms, phase-shifted per glyph so the whole line never moves in unison.",
+  "image_animation": "UI squares (InstancedMesh 'trait squares' for character config, 'sidebutton squares' for the HUD): per-instance scale-in via falloff over instance index, quantized to floor(2 + rand*3) = 2-4 steps; each vertex pushed radially by a seed that changes with hover (+/-0.0125 on trait squares, +/-0.065 on side buttons), so the square redraws itself as a new hand-cut shape on hover.",
+  "page_transitions": "Single canvas, no DOM routing. BEGIN out-transition (introScene.playOutAnimation, code-verified, not seen moving): title and button interactions disable; the button spins a full -360 deg on x (1.5s inOut1, 'button-out' sound at 0.3s); after 0.2s the camera's auto-orbit eases to 0 (1s power2.inOut), the camera swings 45 deg around and down to phi 1.7 (2.5s, customEase 'tweaked'), dollies in to radius 40 (2.75s inOut1, delay 0.4) and rolls -45 deg (3.35s inOut1), with a whoosh at 1s; title and button stop following the camera (updateCamPosition false), so the camera flies away from them down to the planet; then 'switch_to_present_scene'. uWipe1/uWipe2/uWipeColor uniforms indicate further in-world screen wipes (not captured).",
+  "hover_micro": [
+   "Title tiles: hover_in scales the tile to 1.05 in 0.2s power2.out, then elastic.out(1, 0.6) back over 0.75s; on hover_out the pointer delta accumulated while over it (friction 0.4) picks the dominant axis, and the tile flips PI about the other axis in the swipe's direction (2.5s elastic.out(1, 0.5-0.8 random)), dips to scale 0.9 and springs back (1s elastic.out(1, 0.6)), with a random rune1-3 sound",
+   "BEGIN block: hover re-rolls its vertex-jitter seed with a 70ms uHover pulse (the hand-cut edge redraws) and plays 'hover2'; moving the pointer vertically across it rolls the block a quarter turn (+/-90 deg on x, 1.5s elastic.out(1, 0.9)) in the pointer's direction while the label blinks out (uHide 0.05s) and redraws 0.14s later (uShow 0.2s), with 'button-turn'; press scales it to 0.95 in 20ms (click2 down, click3 up); the cursor becomes a pointer",
+   "UI square hover: scaleHover enlarges the face and the offset shadow quad drops to 40% of uShadowOffset (offsetScale = scaleHover == 1 ? 1 : 0.4), reads as pressing into the shadow; vertex jitter re-rolls",
+   "uPulse: billboard icons scale x1.2 (mix(scale, scale*1.2, uPulse)) for attention states",
+   "Wiggle: pos += uWiggleDir * (0.05 + 0.05*sin(time*4.0)) on billboarded icons",
+   "NPC talking: mouth sprite swaps among 3 frames at 8 Hz (floor(hash11(floor(time*8))*3)) while uIsTalking"
+  ],
+  "cursor": "OS cursor (probe cursor_none 0); the interaction layer sets cursor:pointer on hoverable nodes and grab / grabbing on draggable ones.",
+  "easing_curves": [
+   "Custom tween library (no GSAP; 0 'gsap' hits) with named eases: power2.out / power2.inOut, sine.inOut, quadratic to quintic In/Out/InOut, backIn, bounceOut, sineOut",
+   "elastic.out(1, 0.75) title tile assembly; elastic.out(1, 0.5) and (1, 0.9) BEGIN flip-in and scale; elastic.out(1, 0.5-0.8 random) tile flips; elastic.out(1, 0.6) hover spring-backs: the springy ease is the title screen's dominant motion",
+   "inOut1 = cubic-bezier(0.5, 0, 0.1, 1), inOut2 = (0.56, 0, 0, 1), inOut3 = (0.6, 0, 0, 1): defined as SVG path strings ('M0,0 C0.5,0 0.1,1 1,1') that customEase() parses with three's SVGLoader into a lookup table",
+   "customEase('tweaked', 'M0,0 C0.388,0 0.441,0.356 0.496,0.496 0.553,0.641 0.647,1 1,1'): an ease-in-out S-curve with an almost linear middle, used for the post-BEGIN camera swing",
+   "shader-side quantization: floor(x*steps)/steps applied on top of the ease"
+  ],
+  "duration_range_ms": "Loader loop 1000 (125 per frame). Intro 2000-6300 (planet scale 6300, spin 5650, title tiles 3000 each, BEGIN 3250); tile flip 2500, hover pop 200 + 750 spring, BEGIN quarter roll 1500, press 20; out-transition 1000-3350; camera idle orbit 60000 per lap. Held-pose clocks in the shaders: 8 Hz NPC mouth sprites, 6 Hz vertex displacement (floor(time*6)), 3 Hz random stepped rotation (angle 0.02), 2 Hz sprite/billboard rotation, about 2.5 Hz noise-UV steps (floor(time*7*0.45*0.8)), about 1.28 Hz text/UI boil; everything else (camera, planet spin) runs at display rate.",
+  "stagger_ms": "Loader 125 per frame; title tiles 75 per index; glyph and UI-square staggers via index falloff (no fixed ms)",
+  "choreography_notes": "Two motion languages: elastic springs for the physical objects (title tiles, BEGIN block) and held, quantized poses for drawn graphics (Slug text, HUD squares, particles) stepping at 1.3-8 Hz, coarser than film 'on twos', while the camera and world move smoothly. Intro order is world first, then atmosphere and far field, then the title bursting out of its centre letter, then birds, then the CTA flipping in last, each step with its own sound cue.",
+  "evidence": [
+   "probes/messenger/desktop_00.jpg",
+   "probes/messenger/desktop_01.jpg",
+   "probes/messenger/desktop_02.jpg ... desktop_07.jpg (idle rotation, cloud drift, CTA sway only)",
+   "style-BgpnrCnL.css (loader keyframes)",
+   "bundle grep App3D-DwM1eiaC.js (stepped time clocks, glyph reveal, trait/sidebutton squares shaders, easing names, customEase 'tweaked', intro audio)",
+   "no jury element videos exist; 4 static Awwwards element thumbnails re-viewed (el0-el3 in the audit scratchpad)",
+   "App3D-DwM1eiaC.js (audit pass 3): introScene.playInAnimation / playOutAnimation, title$1.hover/playInAnimation, button.hover/touch/spinOut, particles/galaxies/birds playInAnimation, customEase inOut1-3"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "realtime-3d",
+  "art_direction": "Cel-look low-poly diorama of a cramped seaside Japanese town: flat two-tone shading, muted concrete greys, forest greens, dusty pinks and one warm orange, dark ink contours that thin and fade with distance (linear fade between 50 and 300 view units), painted cloud streaks in a teal sky, and real soft shadow maps (PCFSoftShadowMap: the courier casts a leg-shaped shadow on the road in el0/el3, not a blob). Characters are stylized anime-like couriers (orange hoodie, red backpack) with invented signage glyphs everywhere, so the world feels authored like an illustration plate.",
+  "treatments": [
+   "screen-space ink outline from depth + normal + object-ID discontinuities",
+   "per-material outline contribution mask (0 / 1 / noise-stepped) for broken dry-brush ink on chosen surfaces",
+   "3D LUT colour grade (tetrahedral)",
+   "distance-based fade/scale-in of props (uShowDistance, uFadeDistance 100, sphereFade)",
+   "painted noise cloud shapes",
+   "stepped boil on UI and text"
+  ],
+  "crops_and_ratios": "Full-viewport canvas at any aspect; the planet stays centered and scales with the short side.",
+  "formats": "img 0, video 0, svg 0 in DOM; requests: 10 KTX2 textures, 25 Draco (.drc) geometries, OGG audio 3.67MB, 3D payload 1.07MB declared, 2 PNG favicons",
+  "evidence": [
+   "probes/messenger/desktop_01.jpg",
+   "probes/messenger/probe.json assets_3d/bytes_by_type_declared",
+   "Awwwards element thumbnails el0 (68dcbdaf019bb337960640.png), el1 (68dcc07993232283664752.png), el2 (68dcbbce94daf234980581.png), el3 (68dcbc22f394a498820221.png)"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r180 with a custom engine (MultipleRenderPass MRT, global UBO uniforms, Slug GPU vector text, worker-decoded .font/.icon glyph binaries, chunked planet terrain with LODs) inside a Svelte 5 + Vite shell mounted through window.__webgl.start({cnt, interactionNode, relativePath})",
+  "role": "world: the whole site is the scene (planet title screen, then a third-person explorable town)",
+  "assets": [
+   "https://messenger.abeto.co/assets/geometries/planets/present/intro/planet.drc",
+   "https://messenger.abeto.co/assets/geometries/planets/present/intro/title_vertical.drc",
+   "https://messenger.abeto.co/assets/geometries/planets/present/intro/button.drc",
+   "https://messenger.abeto.co/assets/geometries/planets/present/intro/clouds.drc",
+   "https://messenger.abeto.co/assets/geometries/planets/present/intro/galaxies.drc",
+   "https://messenger.abeto.co/assets/geometries/planets/present/intro/trees.drc",
+   "https://messenger.abeto.co/assets/geometries/planets/present/intro/water.drc",
+   "https://messenger.abeto.co/assets/geometries/planets/intro/points.drc",
+   "https://messenger.abeto.co/assets/geometries/planets/present/cables-1.drc",
+   "https://messenger.abeto.co/assets/geometries/planets/present/cables-2.drc",
+   "https://messenger.abeto.co/assets/geometries/planets/present/waterfall_vfx.drc",
+   "https://messenger.abeto.co/assets/geometries/planets/present/waterfall_inlet_vfx.drc",
+   "https://messenger.abeto.co/assets/geometries/planets/present/waterfallsplash_vfx.drc",
+   "https://messenger.abeto.co/assets/geometries/birds/1.drc",
+   "https://messenger.abeto.co/assets/geometries/birds/curve-1.drc",
+   "https://messenger.abeto.co/assets/images/lut.ktx2",
+   "https://messenger.abeto.co/assets/images/clouds_noise_512.ktx2",
+   "https://messenger.abeto.co/assets/images/clouds_noise_64.ktx2",
+   "https://messenger.abeto.co/assets/images/noise-simplex-layered-blur-highq.ktx2",
+   "https://messenger.abeto.co/assets/images/noise-simplex-layered-pixellated-highq.ktx2",
+   "https://messenger.abeto.co/assets/images/noises-terrain.ktx2",
+   "https://messenger.abeto.co/assets/images/water-noises-highq.ktx2",
+   "https://messenger.abeto.co/assets/images/particle_sprites.ktx2",
+   "https://messenger.abeto.co/assets/images/galaxy.ktx2"
+  ],
+  "materials_lighting_post": "About 118 'ShaderMaterial' and 7 'RawShaderMaterial' string occurrences (these counts include three.js core), 25 'InstancedMesh'. Scene renders to 2 targets (colour + an 'info' buffer gInfo carrying depth, normal and a per-material outline-contribution channel). Final pass: outline(tDiffuse, tInfo, ...) with planet settings uOutlineThickness 1, uOutlineColor #373f42, uOutlineFade vec2(50, 300) (outline weight = fit(viewZ, 50, 300, 1, 0), a linear fade), uDepthRange (1e-4, 0.01001, 0.25), uNormalRange (0.4, 0.5, 0.3), uInfoRange (1e-4, 2e-4, 0.1), uSmoothMargin 0.2, uInfoMinScale 0.6; thickness scaled by resScale = min(1.0, resolution.y/1300.0) * uOutlineScale; then sceneColor = apply3DLUTTetrahedral(sceneColor, tLUT, uLUTIntensity 1). Renderer init: shadowMap true with PCFSoftShadowMap, adaptiveDPR true. Toon-style flat colours (uColor1/2/3, uColorShadow), fog (uFogDensity), wetness (uWet), NPC talking flag (uIsTalking) driving 8 Hz mouth sprites. Intro scene: camera base position (0, 0, -120) looking at (0, -2.5, 0), near 2 / far 1000, autoRotate, small mouse-driven target and roll displacement (-0.01, -0.0075, rotation 0.01); one DirectionalLight at (100, 100, 0) with a 1024 shadow map (shadow camera zoom 3.25, normalBias 0.3); title drawn as one BatchedMesh of 9 glyph geometries with a parallel BatchedMesh of box hit volumes for raycasting.",
+  "interaction": "Third-person character controller (WASD or arrow keys, Shift run, Space jump; Space/E advance NPC dialogue, Escape closes; gamepad capability; touch with fingers:2), NPC dialogue with speech bubbles and emoji emotes, a quest chain of deliveries (quest cards with uiIcon/uiColor), character configuration with in-world arrow pickers, live multiplayer presence with name tags over WebSocket (wss://multiplayer-server-76608060529.us-central1.run.app, permessage-deflate).",
+  "performance_tactics": "DPR clamp: devicePixelRatio <= 2 ? min(dpr, 1.15) : min(dpr, 1.5), plus adaptiveDPR; Draco-compressed geometry and KTX2/Basis textures; instancing for UI squares, trees and props; chunked terrain with LOD thresholds 6 / 12 / 20 and a dot-product threshold 0.45 to skip far-side chunks; distance-based show/fade so far props are not drawn at full cost; outline cost normalised to 1300px height; a lowMemoryDevice path (set for iPhones) loads low/ tree-leaf meshes, disables LOD3, swaps bgmusic-highq.ogg for bgmusic-mobile.ogg and skips the intro sound set; total 118 requests, 3D payload about 1.07MB; audio (3.67MB OGG) is the heaviest asset. WPO dev score 8.8.",
+  "fallback_mobile": "Same WebGL scene on phones with touch input and the iPhone low-memory path; no static or no-WebGL fallback observed.",
+  "evidence": [
+   "probes/messenger/desktop_01.jpg",
+   "probes/messenger/mobile_00.jpg",
+   "probes/messenger/probe.json globals three_revision 180, assets_3d, contexts webgl2 2",
+   "bundle grep App3D-DwM1eiaC.js: customUniforms$1.planet, outlines$1 fragment, global$1.init({DPR, adaptiveDPR, shadowMapType: PCFSoftShadowMap}), terrain LOD thresholds, lowMemoryDevice, WebSocket servers, key codes",
+   "webgl-CS4l6lxD.js (window.__webgl.start, injected CSS incl. Tweakpane .tp-dfwv rules)"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "No DOM nav. Title screen has one CTA (BEGIN). In game, a right-edge HUD of off-white (#F8F8F8) square icon tiles with thin dark-slate outlines and hard slate (#647A87) offset shadows: menu list (top), music, wardrobe (shirt), emote (poop) (bottom).",
+  "menu": "Opened from the list icon in the HUD (element thumbnails); not captured live. Keyboard: Escape closes panels and dialogue; a KeyL toggle shows/hides one panel (which one was not verified).",
+  "buttons_links": "Buttons are 3D or instanced WebGL objects: BEGIN is an extruded mustard block with a darker top bevel and broken ink outline, carrying a flat Slug label in heading.font (#F8F8F8 with a hard 0.06-unit #7A5E0D offset shadow; it reads 'ENTER' instead of 'BEGIN' when anyStepInitiated is set, inferred: a returning player); it rolls in quarter turns under a vertically moving pointer and spins out on click. HUD tiles are jittered #F8F8F8 quads over a #647A87 offset shadow quad (uShadowOffset 5.5 divided by instance scale) that drops to 40% on hover; config pickers use the same construction with slate arrow glyphs and a red X.",
+  "unusual_interactions": [
+   "Swipe the title: each letter tile flips 180 deg with an elastic settle and a rune sound",
+   "Walkable planet with third-person courier",
+   "NPC conversations with gibberish voice clips",
+   "Character customization with in-world arrow pickers",
+   "Live multiplayer presence via WebSocket",
+   "Emote bubbles"
+  ],
+  "sound": "Yes, rich WebAudio (54 OGG files): zone ambiances (ambiances/base, beach, city, factory, forest, temple, waterfalls), background music (music/bgmusic-highq.ogg or bgmusic-mobile.ogg on low-memory devices, volume .1, loop) and a musician NPC track, intro set (intro/letters, rune1-4, button-turn, button-out) plus ui/title, footsteps (normal and water), jump start/land, clothes rustle, speech-bubble start/end, emoji start/end x3, dialogue voices female1-3, male1-3, quest, 'wtf', UI (hover2, click2/3, openbox, paper, customize, quest-complete), camera zoom-in/zoom-off/whoosh; playbackRate/detune variation (setTargetAtTime with a 0.01 time constant).",
+  "footer": "None."
+ },
+ "content_voice": {
+  "headline_style": "No headlines on screen; the logotype and a one-word CTA carry the first screen; story is delivered by NPC dialogue in game.",
+  "copy_tone": "Cozy, wry, small-world game voice: quest dialogue is short and comic (a worker's roast note to the boss turns into a promotion), quest cards are terse imperatives ('Find the red cliff house...', some set in caps).",
+  "examples": [
+   "It's a small planet, but someone's gotta make the deliveries.",
+   "Find the red cliff house and get the letter back"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Svelte 5 (scoped svelte-7zu2uc classes, 397 'svelte' hits, $$events/effect runtime) built with Vite (hashed assets webgl-CS4l6lxD.js loader 3.8KB -> App3D-DwM1eiaC.js 1.93MB); the app mounts itself via window.__webgl.start(), so it can be embedded in another page with a container and interaction node",
+  "libraries": [
+   "three.js r180 (GLTFLoader, DRACOLoader, KTX2Loader, EffectComposer-style passes)",
+   "Slug-algorithm GPU text/icon rendering (SlugVS, GlyphUnpack, curve + band textures) with worker-decoded .font/.icon binaries",
+   "custom tween/easing module (no GSAP)",
+   "Tweakpane debug GUI styles shipped in the loader CSS (.tp-dfwv)",
+   "WebSocket multiplayer server on Google Cloud Run",
+   "Cloudflare Web Analytics"
+  ],
+  "evidence": "saved index.html (empty body, module script + modulepreload), style-BgpnrCnL.css, webgl-CS4l6lxD.js and the App3D bundle grep; probe globals three_revision 180, top_hosts messenger.abeto.co 116 + static.cloudflareinsights.com"
+ },
+ "performance_accessibility": {
+  "requests": 118,
+  "weight_notes": "Declared bytes: OGG 3.67MB, 3D 1.07MB, other 0.36MB; JS bundle 1.93MB uncompressed. Everything served from one origin.",
+  "reduced_motion": "None: 0 prefers-reduced-motion rules in CSS and 0 'prefers-reduced-motion' strings in the bundle; the planet rotates, clouds and particles drift and the CTA sways continuously.",
+  "contrast_issues": "BEGIN label is off-white #eef2de on #f0d054 mustard (about 1.3:1 face-to-face), readable only through the label's grey extruded sides and ink outline; the slot-cut logotype is hard to read as 'MESSENGER' at a glance. No DOM text, headings or labels for assistive tech on the title screen (measure.headings empty, 0 buttons in DOM), and the CTA is not a focusable element (keyboard entry from the title screen not verified).",
+  "mobile_quality": "Scene and CTA scale well at 390px with no overflow (mobile_00/01); responsive dev score 8.4.",
+  "dev_scores": {
+   "overall": 8.21,
+   "semantics_seo": 7.6,
+   "animations": 9.0,
+   "accessibility": 7.6,
+   "wpo": 8.8,
+   "responsive": 8.4,
+   "markup": 7.6
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Screen-space ink outlines plus a 3D LUT grade",
+   "why_it_works": "Turns ordinary low-poly three.js geometry into something that reads like a drawn illustration, and one LUT unifies every asset's colour.",
+   "how_to_build": "Render the scene with MRT (WebGLRenderTarget count 2, depthBuffer true): target 0 colour, target 1 packed depth + view normal + object id, plus an alpha channel each material writes as its outline contribution (1 = inked, 0 = no ink, step(0.25, noise) = broken dry-brush ink). Full-screen pass: for 4-8 neighbours at thickness * min(1, resolution.y/1300) px, compute depth delta (threshold range about 1e-4 to 0.01), normal delta (about 0.4-0.5) and id delta; outline = clamp(id + normal + depth, 0, 1) * centreContribution * fit(viewZ, 50.0, 300.0, 1.0, 0.0); color = mix(scene, vec3(0.216,0.247,0.259) /* #373f42 */, outline). Then grade with a 3D LUT (32^3 cube in a KTX2 or PNG strip) using tetrahedral or trilinear sampling at intensity 1."
+  },
+  {
+   "technique": "Stepped boil and quantized reveals for UI and text",
+   "why_it_works": "Held poses at about 1.3-8 Hz on top of a smooth 60fps camera are the signature of hand animation; it makes WebGL UI feel drawn, not tweened.",
+   "how_to_build": "In the vertex shader: float st = floor(uTime * 1.28 + seed * 15.34) / 7.0; pos.xy += (hash23(vec3(center, st)) * 2.0 - 1.0) * 0.0025; (the original writes uTime*1.6*mix(fract(seed),0.8,1.0), which always evaluates to uTime*1.28). For reveals quantize progress per glyph: p = floor(falloff(progress) * steps) / steps with steps = floor(3.0 + seed * 2.0) (3 or 4). For secondary motion use other held clocks: floor(time*3) random 0.02-rad rotations, floor(time*8) sprite swaps. CSS/DOM equivalent: animation-timing-function: steps(4) on reveals, and swap 2-3 pre-jittered outline variants every 600-800ms per element with a random phase for the boil."
+  },
+  {
+   "technique": "Hard offset-shadow UI tiles that press on hover",
+   "why_it_works": "A flat ink-and-paper button language that matches the outlined world; hover changes state without the button jumping.",
+   "how_to_build": "Instanced quad pairs: back quad offset by uShadowOffset * vec2(1,-1) (5.5 units / instance scale) in slate #647A87, front quad #F8F8F8 with each vertex pushed radially by +/-0.065 (side buttons) from a seed that re-rolls on hover; on hover shrink the offset to 0.4x and scale the face slightly. DOM version: background #f8f8f8; border 1px solid #445460; box-shadow 4px 4px 0 #647a87; a slightly irregular clip-path polygon per tile (regenerate on hover) for the hand-cut edge; icon glyphs in #647a87; on :hover box-shadow 1.6px 1.6px 0 #647a87 and transform: scale(1.04). Only use it where the rest of the UI is also drawn and outlined, or it reads as a fake-shadow box."
+  },
+  {
+   "technique": "Planet title screen: the world is the hero and the loader payoff",
+   "why_it_works": "One centered object on a flat field gives an instant, readable silhouette; the logotype living on the planet ties brand to world.",
+   "how_to_build": "Scene: a planet group at the origin and a perspective camera at distance 120 with autoRotate (theta -= 2*PI/3600 per 60fps frame = one lap per minute) and a tiny mouse-driven target offset. Do not parent the title to the planet: each frame place the title group 45 units in front of the camera along its view direction, offset 2 units up, and orient it with lookAt(camera.position, target) (the CTA the same, offset -13.5 down), so the world turns behind a fixed logotype. Logotype: 9 extruded slot-cut tiles (about 4 x 5.35 units, 4.25 deep) in one BatchedMesh on a 5.35 x 6.9 grid. Intro: planet rises from y -80 (2.25s), grows 0.3 -> 1 (6.3s) and spins 270 deg (5.65s) with cubic-bezier(0.6,0,0,1); at +2.35s each tile starts at scale 0 at the centre tile's position with random +/-180 deg x/y rotation and springs to its slot over 3s elastic.out(1, 0.75), 75ms stagger; at +3.3s the CTA box (face #f0d054, bevel #c08834) flips in from -180 deg on x with elastic.out(1, 0.5). Background: flat clear colour #65c1bc (or a sky shader with #75bdc3 / #9fe2e0 / #b9ebea stops through a LUT) plus a few slow noise-driven swirls a few % lighter, white low-poly cloud puffs and a paler water rim around the planet. Time sound cues to the beats (whoosh 0.16s and 1.8s, letters 2.5s, button 3.45s)."
+  },
+  {
+   "technique": "Letters and CTA as physical toys",
+   "why_it_works": "The title screen rewards idle pointer movement before the visitor commits: letters flip like tiles and the CTA rolls like a die, each with a sound, so the brand is played with, and the springs match the drawn, tactile world.",
+   "how_to_build": "Raycast against simple box hit volumes (one per letter, batched). On pointer enter: tween the tile's scale to 1.05 in 0.2s power2.out, then elastic.out(1, 0.6) back to 1 over 0.75s. Track pointer delta while over it with friction (delta *= 0.4 per frame at 60fps). On leave: axis = |dx| > |dy| ? 'x' : 'y'; rotate the tile by PI about the OTHER axis in the sign of that delta, rounding the target to a multiple of PI; tween with elastic.out(1, 0.5 + random*0.3) over 2.5s, dip scale to 0.9 (0.4s) and spring back (1s elastic.out(1, 0.6)); play one of 3 short 'rune' clips with a 0.2s minimum gap. CTA: a square-section box; when the pointer moves vertically over it, add +/-PI/2 to its x rotation (1.5s elastic.out(1, 0.9)) and blink the label (hide 50ms, show 140ms later over 200ms); on press scale 0.95 in 20ms; on click spin it -2*PI (1.5s) as the camera leaves. Keep a real, focusable DOM button with the same action for keyboard and screen-reader users."
+  },
+  {
+   "technique": "Hand-drawn flipbook preloader in pure CSS",
+   "why_it_works": "Sets the drawn tone before WebGL boots, costs almost nothing, and needs no JS.",
+   "how_to_build": "Inline SVG with 8 <g id='frameN'> drawings (stroke #222, 2px, fill none). CSS: #frameN{visibility:hidden; animation:1s seq infinite; animation-delay:calc(N * .125s)} @keyframes seq{0%{visibility:visible}12.5%{visibility:hidden}100%{visibility:hidden}}."
+  },
+  {
+   "technique": "Zone ambience and gibberish dialogue audio",
+   "why_it_works": "Sound makes a small world feel inhabited; voice blips give characters personality without writing voice lines.",
+   "how_to_build": "WebAudio: one looping OGG per zone into GainNodes, crossfade by the player's zone (a setTargetAtTime time constant around 0.3-0.5s is a suggestion; the bundle's visible setTargetAtTime calls use 0.01 for rate/detune); dialogue plays short random clips per character voice (female1-3/male1-3) per text chunk with playbackRate in about 0.9-1.1; start audio only after the BEGIN click (autoplay policy), expose a music toggle in the HUD, and ship a lighter music file and fewer SFX on low-memory devices."
+  },
+  {
+   "technique": "One invented script across logo and world",
+   "why_it_works": "The logotype, every shop sign, the water tower and the backpacks share the same slot-cut letterforms, so brand and setting read as one authored world instead of a game with a logo stuck on it; UI labels step into a separate blocky face so they stay legible.",
+   "how_to_build": "Design 26-36 glyphs on a square grid where each letter is a solid tile and the form is cut as 1-2 unit slots; export as an SVG font or as extruded meshes. Use the extruded version for the hero logotype, a flat version for UI labels (with a darker offset copy for depth), and scramble the same glyphs into pseudo-words for decorative signage. Keep readable text (dialogue, instructions) in a separate, legible face (the site uses UglyDave Alternates for dialogue, REM for bubbles and name tags, and a blocky heading.font for the CTA and quest titles)."
+  }
+ ],
+ "slop_risks": [
+  "Content gated behind an interaction and a canvas: the title screen has no DOM text, no h1, no buttons in the DOM; everything meaningful sits behind BEGIN inside WebGL. Fine for a game, but copied onto a normal site it is the invisible-content trap: if WebGL fails, the page is empty.",
+  "Faking a shadow with a second box: the HUD and config tiles' shadow is literally a second offset quad (side == 1) in slate #647A87. It works because the whole world is ink-outlined and the tiles jitter like hand-cut paper; a CSS copy on a clean UI is the hard-edged box-behind-it tell.",
+  "Text you cannot read: off-white #F8F8F8 'BEGIN' on mustard #f0d054 (about 1.3:1 face-to-face, carried only by a hard #7A5E0D offset shadow and the ink outline) and a slot-cut logotype that does not read as a word at a glance (the flip toy can even leave a letter showing its mirrored back).",
+  "Saturated accent pop: teal plus mustard CTA is a bright, mid-saturation pairing; lifted without the diorama's muted greys and ink it becomes a candy palette.",
+  "Floating decorative flecks: drifting cyan particles on the teal field are pure decoration; as a page background on a normal site they drift toward the floating/bobbing decoration tell, though here they are ambient particles in a game scene, not floating cards.",
+  "No prefers-reduced-motion path; continuous planet rotation, cloud and particle drift and CTA sway.",
+  "Keyboard and assistive access: the only action on the title screen is a WebGL mesh; there is no focusable button or accessible name, so copying the canvas-only CTA onto a normal site fails basic accessibility.",
+  "Bouncy, moving hover on the CTA: BEGIN rolls a quarter turn with an elastic settle and pops on press, and the title tiles spring on hover. In a toy world it is the point; copied onto a normal site's button it is the hover boop (a button that moves on hover) at its loudest."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots (00 mid-intro, 01-07 the settled title screen with idle rotation only, since the site does not scroll and the probe does not click BEGIN) and both mobile screenshots; probe.json (no DOM text, three r180, 3D asset list, bytes); live HTML, CSS and the 1.93MB App3D bundle grepped for outline/LUT shader, stepped-time GLSL, DPR clamp, audio file list, key codes and the multiplayer WebSocket host. In-game visuals (street, temple, character config, HUD) come only from 4 static Awwwards element thumbnails; no jury element videos exist, so walking, dialogue and transition motion were not seen moving. INFERRED: wipe transitions (from uniform names), hover visuals of HUD tiles (from shader code), classification of the custom glyphs. The post-BEGIN camera move is now read from code (audit pass 3), still not seen moving. display_size_px left null because the type is geometry, not DOM text; glyph sizes are measured from screenshots. audit (adversarial pass 2): re-viewed desktop_00, 01, 03, 05, 07 and mobile_00 individually, zoomed the BEGIN block and title, re-viewed the 4 element thumbnails (el0-el3) and re-grepped the saved App3D bundle, loader and CSS. Corrected: text reveal is 3-4 steps not 3-5 (seed = fract(hash13)); the boil re-poses about 1.28 times/s because mix(fract(seed),0.8,1.0) is constant 0.8, and 'on twos' was the wrong term (held clocks run 1.3-8 Hz); HUD shadow is slate #647A87 with a #F8F8F8 face and thin #445460 outline, not a dark #373f42 ink shadow (DOM recipe fixed); jitter is +/-0.065 on HUD tiles vs +/-0.0125 on config squares; the 90deg in-game FOV and PerspectiveCamera(50) had no support in app code (90 and 50 are three.js core shadow cameras) and were downgraded; shadows are PCFSoftShadowMap, not blobs; BEGIN label is off-white, not pale yellow; logotype letters are slot-cut slabs, not monoline strokes; outline fade is a linear fit(), not smoothstep. Added: UglyDave Alternates and REM Medium fonts, Slug GPU text, per-material noise-broken ink, adaptiveDPR, terrain LOD thresholds, iPhone low-memory path, intro SFX, quest palette, Svelte 5 + embeddable __webgl.start, Tweakpane styles, missing 3D assets, one new steal_this (shared invented script) and one new slop risk (keyboard access). Still unobserved in motion: post-BEGIN transitions, dialogue, HUD hover (no jury videos). audit (adversarial pass 3): re-viewed desktop_00, 01, 03, 05, 07 and mobile_00/01 one at a time, zoomed the title and BEGIN block and the planet's left edge, sampled the BEGIN label and shadow colours, re-viewed element thumbnail el0, and read the intro code paths in App3D-DwM1eiaC.js (introScene, title$1, button, particles, galaxies, birds, sky, customEase). Corrected: the BEGIN label is flat Slug text in a third font, heading.font, with a hard #7A5E0D offset shadow, not an extruded label in the title's slot-cut script; no idle sway exists in the button code (bevel changes inferred to come from pointer rolls or camera mouse displacement); the planet's turn is the camera auto-orbiting (one lap per 60s) with the title and CTA camera-locked 45 units ahead; letter tiles are tall 3:4 slabs (4.05 x 5.35 x 4.25 units), not near-square; the title assembles with 3s elastic.out(1, 0.75) springs bursting from the centre tile with a 75ms stagger, NOT a 3-4 step quantized ease (steal_this fixed); the pale swirls are far-field galaxies/sky noise and the planet's clouds are white low-poly puffs; #445460 is a sampled value, not a code literal; easing list now includes the elastic family and the SVG-path inOut1-3 curves. Added: code-verified intro and out-transition timelines with sound cues, title-tile hover/flip toy and BEGIN quarter-roll hover (new steal_this 'Letters and CTA as physical toys'), mobileLayout scaling rule, birds/particles/galaxies layers, BatchedMesh title, intro light and camera values, and a bouncy-hover slop risk. The mirrored centre E in the settled captures is inferred to be a flipped tile, not verified. Still no jury element videos, so none of this motion was seen as frames."
+}

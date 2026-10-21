@@ -1,0 +1,287 @@
+{
+ "slug": "siena-film-foundation",
+ "title": "Siena Film Foundation",
+ "live_url": "https://siena.film",
+ "award": "Awwwards Site of the Day, Mar 18 2025 (Honors); Site of the Month bucket",
+ "scores": {
+  "overall": 7.9,
+  "design": 7.99,
+  "usability": 7.61,
+  "creativity": 8.13,
+  "content": 8.0,
+  "dev": {
+   "overall": 7.51,
+   "semantics_seo": 7.2,
+   "animations": 8.6,
+   "accessibility": 6.6,
+   "wpo": 7.2,
+   "responsive": 8.0,
+   "markup": 7.2
+  }
+ },
+ "industry": "Film & TV: boutique production house / film foundation",
+ "signature": "The whole site is a projector: an infinite vertical film strip of WebGL frames that smear, bloom and grain with scroll speed (the DOM title and press overlays blur with them), navigated by a single cinema-ticket nav that re-titles itself to the film on screen once the strip settles (800ms queue).",
+ "first_screen": {
+  "composition": "An enter gate, not a hero. Full-bleed #000 with the SIENA logotype centred in #FAF7EF: custom lettering with flared, cut serifs, about 496x196px (x 497-993, y 352-548 in desktop_00, pixel measure). Below it, 'FILM FOUNDATION' in widely tracked caps spans the same width. At bottom centre (x 650-790, y 808-852) a 140x44px outlined ENTER ticket button (label Neue Brucke 12px, +1.8px tracking) with notched corners and a dashed perforation separating an arrow stub. Nothing else is on screen. Before the gate, the logo is revealed by the bars intro video logo_intro_desktop.mp4 (element 1; the jury clip is 3.23s, the file's own duration was not measured).",
+  "what_owns_it": "type (logotype) + a single ticket control",
+  "display_type_px": 196,
+  "evidence": [
+   "probes/siena-film-foundation/desktop_00.jpg",
+   "probes/siena-film-foundation/mobile_00.jpg",
+   "frames/siena-film-foundation/1/f06.jpg"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Neue Brucke",
+    "role": "display",
+    "classification": "display grotesk caps (not condensed: C and O are round) with circular punched counters in A and R and notched diagonal joins in N, used for titles, quotes, ticket and menu (poster display)",
+    "foundry": "unknown",
+    "source": "probe fonts_loaded 400; 42 rendered nodes; served as NeueBrucke-Regular.ttf from the Webflow CDN (font-display swap)"
+   },
+   {
+    "name": "P22 Parrish Roman",
+    "role": "accent",
+    "classification": "old-style roman used only as tiny spaced caps (press sources, categories)",
+    "foundry": "P22 Type Foundry",
+    "source": "probe fonts_loaded 400; 32 nodes; .ttf from the Webflow CDN"
+   },
+   {
+    "name": "NB International",
+    "role": "ui",
+    "classification": "neo-grotesk sans for body, buttons and hints",
+    "foundry": "Neubau (NB)",
+    "source": "probe fonts_loaded 400; body family (20px); .ttf from the Webflow CDN. The 13 '-apple-system' nodes in the probe belong to a hidden lil-gui debug panel, not the design."
+   }
+  ],
+  "display_size_px": 89.6,
+  "body_size_px": 20,
+  "scale_notes": "Measured: H2 film titles 89.6px Neue Brucke (--text-h1 5.6rem), H3 25.6px Neue Brucke (the press pull-quotes; 26px x21 in font_sizes_px), links/buttons/body 20px NB International, UI hints 10px, press labels 9.6px P22 (--text-eyeb-small .6rem), ticket title 20px Neue Brucke with 18px line-height ('SAVOY'). Contact headline: .contact-h-of font-size 12vw on desktop (Webflow steps it to 16vw / 18vw / 24vw at smaller breakpoints, and main.css switches to height units on short or very wide screens: 18vh at >=1024px wide and <=750px tall, 10vh at <=550px tall, 20vh at >=1920px wide) with line-height .8em inside a .7em-tall overflow:clip band, letter-spacing -.3rem; contact email/phone 48px (.contact-lab, line-height .9em, -.1rem). Tokens: --text-h2 3.2rem, --text-h3 3rem, --text-h4 2rem, --text-h5 1.6rem, --text-eyeb .8rem. The scale is extreme: 89.6 / 25.6 = 3.5 and 25.6 / 9.6 = 2.7, with almost nothing between 12 and 20px except body.",
+  "tracking_leading": "Titles are packed: 89.6px with line-height 68.992px (0.77) and letter-spacing -2.688px (-0.03em), uppercase. H3 25.6/23.04 (0.9). P22 labels 9.6px with line-height 9.6px and letter-spacing 3.36px (+0.35em). NB hints 10px, +0.8px (0.08em). The credit block (DIRECTOR / YEAR / CATEGORY with values) is set so tightly that the label lines overlap each other and the rules (element 0 f01-f02), like a film-poster billing block. Mechanism: fixed 14px row heights (.linecallout-item) with larger, nowrap text, so each line overflows its row.",
+  "case_and_style": "All caps for titles, quotes and labels, like a film poster. Quotes use straight double quotes, e.g. 'A GENIUS NOWHERE AT HOME'. Numerals as years (2024) and runtimes (MIN.93). Mixed roles: condensed grotesk caps, spaced old-style roman caps, neutral sans.",
+  "signature_moves": [
+   "Poster billing-block credits: stacked caps labels on rules with negative leading",
+   "Press stack: 5 stars, a 9.6px P22 spaced-caps source line, then a 25.6px Neue Brucke caps pull-quote, repeated down the right edge like a one-sheet",
+   "Film title at 0.77 line-height so the lines nearly touch",
+   "Contact headline 'CRAFT / THE NEXT / ACT' at 12vw, each line clipped in a .7em band between hairline rules so the cap top and baseline touch the rules; the letters play a slot-machine entrance inside those bands"
+  ],
+  "mobile": "The gate is identical at 390px (mobile_00): logotype about 170px wide, and the ENTER ticket turns solid cream with black text. Probe mobile_measure: largest 32px, no horizontal overflow. A separate intro_mobile.mp4 is served."
+ },
+ "color": {
+  "mode": "dark",
+  "base": "#000000 pure black (probe body bg rgb(0,0,0))",
+  "ink": "#FAF7EF warm paper white (rgb(250,247,239), 70 text nodes)",
+  "accents": [
+   "#FF0F00 (--red) contact field, full-bleed on the contact page",
+   "#D6D3CC hover tint: the bggrow fill behind ticket-list rows and buttons",
+   "#000000 notches and ink on the cream ticket",
+   "Unobserved tokens: --gold #FFC700, --white--30 #FAF7EF4D, --gray #222, --col--gray #BABABA"
+  ],
+  "ratio": "about 70% black and dark film imagery, 20% film colour (warm tungsten, teal), 8% cream (ticket nav + type), under 2% red (contact page only)",
+  "section_shifts": "The work pages stay black, so the film frames supply all colour. Contact switches to a full-bleed #FF0F00 floor with black type (element 2). The intro video flips cream to black through vertical bars.",
+  "texture": "WebGL post-pass grain: animated hash noise at noise_amount .07, added only in the canvas post shader, so the grain sits on imagery and not on DOM text. Per frame (roll program): a vertical vignette to black (smoothstep(.5,.1,|y-.5|)) and two opposite-corner warm burns around (0.15,0.15) and (0.85,0.85). Correction: the colour-dodge term darkens those corners (about color*0.16 plus 6% of an amber dodge), so it reads as a burnt film corner, not a bright light leak. The DOM overlays are not immune to motion: on desktop each strip item gets CSS filter blur(speed*10px), so titles and quotes smear together with the image during travel (element 0 f04-f06).",
+  "notes": "The cream is used as a physical object (the ticket, paper) against black, not as a page background. The red is used once and at full scale. Correction: the probe's #424242 (x18), #1F1F1F, #111111 backgrounds, #EBEBEB text and -apple-system font all come from a hidden lil-gui debug panel shipped in the bundle (its default theme), not from the site's palette."
+ },
+ "layout": {
+  "grid": "Film frames run nearly full-bleed with side margins of 3.8rem (60.8px, --roll-gx) and black gutters of roughly the same size between frames (element 0 f00/f05). The jury capture is about 1.8x downscaled (89.6px title caps measure ~35px in the 960px frames), so earlier estimates made at 1.5x were about 17% small. Fixed overlay: SIENA logo top-left (.svg-logo 6.15rem, about 98px wide), ticket nav top-right (.menu-w 341x103px closed). Per-frame overlay: year + festival laurel top-left, press stack in a right column about 150-180px wide, category + title + credits bottom-left, EXPLORE ticket button bottom-right. Webflow layout uses CSS grid heavily (probe grid_containers 38).",
+  "density": "balanced",
+  "alignment": "Poster logic: text is pinned to the 4 corners of each film frame, and the centre is left to the image. Titles are centred on their own left block.",
+  "composition_moves": [
+   "Every section is a 'frame' of a film strip with a rounded film-gate mask, black gutters and a looped infinite scroll",
+   "Corner-anchored poster furniture (laurel, stars, credits, CTA) over full-bleed stills",
+   "One fixed ticket object as the entire navigation",
+   "Full-bleed saturated colour floor for contact with a centred 3-line headline between rules"
+  ],
+  "section_rhythm": "Uniform frame-after-frame rhythm (one film per viewport). Rhythm comes from the footage and from speed effects rather than from varying section scale. Menus and the contact page are the only breaks.",
+  "mobile_adaptation": "Only the gate is observed at 390px (probe cannot pass ENTER). A dedicated intro_mobile.mp4 exists, the ticket shrinks (.menu-w height 4rem / 3rem at smaller breakpoints, 89% width), the strip lerp rises from .05 to .09 and touchMultiplier is 5, and the CSS blur on overlays, sounds and cursor are skipped on mobile (B.isMobile checks). The responsive dev score is 8.0 and there is no horizontal overflow."
+ },
+ "motion": {
+  "smooth_scroll": "Two layers. Lenis is bundled for page scroll (html class 'lenis', data-lenis-prevent handling, Lenis CSS). The film strip has its own scroller. Wheel, touch and keys arrive through the bundled virtual-scroll library (mouseMultiplier .5, touchMultiplier 5, firefoxMultiplier 30, keyStep 120); each delta does target += deltaY*.001 and speed += deltaY*5e-4. Every frame: target = lerp(target, Math.round(target), .1) (an always-on magnet to the nearest film), current = lerp(current, target, .05 desktop / .09 mobile), speed *= .85 and lspeed = lerp(lspeed, |speed|, .1). Custom mousedown/mouseup/touch handlers add 'hold and drag' (target = dragStartTarget + dy*.005). Correction: snapThreshold .25, snapFactor .1, lerpFactor .1 and touchMultiplier 5.5 live in a `roll` sub-object that the constructor spreads in as config.roll and never reads, so they are dead config. Correction: drag is not GSAP Observer; Observer only ships inside ScrollTrigger. Each plane wraps with a modulo (loopY), so the strip loops forever. Top and bottom hitboxes switch the cursor to prev/next and step one film on click.",
+  "preloader": "Pre-rendered logo_intro_desktop.mp4 (element 1; the jury clip is 3.23s). A cream field (f00) is split by about 20 vertical black bars that widen (f02-f03). The SIENA logotype inside is inverted where it crosses bars (a difference/XOR look), and it resolves to cream on black with faint hairline residue of the bars (f06), then 'FILM FOUNDATION' appears (f07). CSS .svg-logo path{mix-blend-mode:difference} (main.css) carries the same idea into the live logo, and .fake-nav-logo also uses difference.",
+  "intro_sequence": "Intro video, then the ENTER ticket gate. ENTER fires PRELOADER_CLICKED, which starts the page animate-in (wrapper autoAlpha 1 over .8s after a 1.4s delay on home/work, 0s on contact) and the tutorial. Bundle: the first document click also sets the Howler audio-context flag, so the gate doubles as the audio unlock. The tutorial overlay (tutorial-final.mp4 plus 10px hints such as 'SCROLL TO UNLOCK THE IMMERSIVE FILM EXPERIENCE') starts 2s later, rolls one hint every 4.8s (yPercent -100 -> -200, 1.2s), slides away (yPercent 100, 1.8s), and sets a 'tutorial_shown' cookie so it stays hidden for 48 hours. Missed by the first pass, verified in the roll's animateIn: the strip waits parked at current = target = -60; 200ms after ENTER it sets current = 0 and, on desktop, speed = lspeed = 10, so the reel runs back through 60 frame-steps (several full loops of the modulo strip) under maximum post blur and bloom and decelerates onto the first film, while the GL page alpha fades in (.4s delay, 1s expo.out default). The first thing past the gate is a projector spinning up.",
+  "scroll_techniques": [
+   "infinite vertical loop (film strip, modulo-wrapped plane positions)",
+   "velocity-driven blur / bloom / smear in the post pass",
+   "CSS blur on DOM overlays synced to strip speed (blur(speed*10px), desktop)",
+   "WebGL image planes synced to DOM (<img> kept at opacity 0)",
+   "scroll-linked parallax inside frames (roll program: texture uv shifted y by parallax*0.3; overlay items translate by o*value*10%)",
+   "magnet snap to the nearest film (target lerps .1 toward Math.round(target) every frame; the snapThreshold/snapFactor values in the bundle are dead config)",
+   "Flip re-arrangement between strip and detail layout",
+   "fly-to on ticket-list click with a fast blurred travel"
+  ],
+  "text_animation": "GSAP SplitText. Home film titles (h2.roll-cont-he) split into lines ('split-line-move') and then chars; each char holds an original plus a clone stacked vertically (set to y 18%) with its own paused timeline yPercent '-=100', repeat gsap.utils.random(8,14,1), ease 'none', duration 1. Correction: this is not a hover rollover. It auto-plays 2s after the strip settles on a film: all char timelines are tweened progress 0 -> 1 over 2s (stagger {each:.04, from:'random'}, ease expo.out) so letters spin like a slot machine and land at different times, then it repeats every 6s while the user is idle and stops while scrolling. The contact headline ([data-an='rollover']: CRAFT / THE NEXT / ACT) is an entrance variant: chars start yPercent 115, rise (1s linear), then spin repeat random(6,10) with yPercent '-=115'; progress 0 -> 1 over 2s, stagger {each:.1, from:'random'}, expo.out, delay data-del + .5s (element 2 f02-f03: letters mid-spin between partly drawn rules). The ticket title swaps with a vertical roll when the current film changes (element 0 f02: 'ANA MAXIM' overlapping 'OUTSIDER FREUD'); the nav queues slide changes and animates only the last one, 800ms after the strip settles.",
+  "image_animation": "Two OGL plane programs plus a post pass (bundle, verified). Roll program (vertical strip): cover-fit uv shifted y by parallax*0.3, film-gate alpha from a u_mask atlas, vertical vignette smoothstep(.5,.1,|y-.5|), and the two warm corner burns. Slider program (horizontal): planes offset x by u_x*(1+speed)*(1+footage*3.5); u_a_footage_focus lerps a plane to a target rect (u_a_footage_img) for the zoom into one film; texture uv zoomed to .8; planes away from centre are mixed toward a 2-axis blur13 and darkened by distance (center_d on v_x); bottom darkened by smoothstep(.15,.5,y). Post pass (both speeds summed): 13-tap directional blur mixed by speed*.5, additive blur*speed*blur_power*film_power(.5) glow (blur_power 3 on home, 2 on work; blur direction vertical on home), both masked out of the bottom 15% when the blur runs horizontally, then hash grain .07. The bulge uniform (strength .1) is effectively off because bulge_radius stays 0. Result: fast jumps overexpose and smear (element 0 f04, f06), and at rest the frame is crisp (f07).",
+  "page_transitions": "PJAX routing with Taxi.js (data-taxi wrapper, 'X-Requested-With: Taxi' fetches, prefetch on hover). 'Procedural Slider Re-Arrangement' per bundle: Flip.getState(title), reparent the H2 into the detail container, set text-align:left and align-items:start, Flip.from(state,{duration:1.2, ease:'expo.out'}). Titles shorter than 10 chars first drop y 2.5rem (.8s expo.out) and then shift xPercent -(10-len)*10 (.8s expo.out). The reverse re-centres the title with Flip.from(state,{duration:1.2, scale:true}). Choosing a film in the ticket list flies the strip to that film: motion-blurred, bloomed travel, then settle (element 0 f03-f07).",
+  "hover_micro": [
+   "Ticket list rows (element 3 f01, element 0 f03): [data-hover=bggrow] :before fill #D6D3CC scaleY 0 -> 1 from the bottom over 1.1s cubic-bezier(.23,1,.32,1), desktop (min-width 767px) only; the hovered row shows an arrow in a dashed 20px square, and a filled dot marks the active film",
+   "Circle cursor: a thin ring labelled 'SCROLL' over the frames (element 0 f02/f07, element 3 f04); it switches to prev/next arrows over the top and bottom hitboxes and hides over [data-cursor='hide'] zones",
+   "UI sounds (Howler): cta_in.mp3 on hover of [data-sound-hover='0'] elements and menu_IN.mp3 on opening the menu ([data-sound-hover='1']). cta_out.mp3 and menu_OUT.mp3 are loaded but no code path plays them. All sounds are skipped on mobile.",
+   "Menu arrow rotates 180deg when a panel is open; the burger's outer lines rotate ±45deg with scaleX .8 (.05s delay) while the middle line scales to 0"
+  ],
+  "cursor": "Native pointer plus a thin 1px circular follower (about 100px at 1440, measured ~56px in the ~1.8x-downscaled frames) with a tiny 'SCROLL' label, which turns into prev/next arrows over the strip's top and bottom hitboxes and hides when the pointer leaves the document.",
+  "easing_curves": [
+   "GSAP defaults {duration:1, ease:'expo.out'} (bundle: _e.defaults(Dv))",
+   "expo.out x9 explicit",
+   "power1.inOut x1",
+   "CSS --customEase cubic-bezier(.19,1,.22,1) (menu panels, lines, arrow)",
+   "CSS --easeOutQuint cubic-bezier(.23,1,.32,1) (bggrow row fill)",
+   "CSS --easeOut cubic-bezier(.77,0,.175,1)",
+   "CSS --easeOutBack cubic-bezier(.175,0,.77,1)",
+   "probe cubic-bezier(0.2,0.6,0.35,1) x1 (probe could read only 2 of 5 sheets)",
+   "Bug found in main.css: [data-a=y] sets --ease: var(----customEase) (four dashes, an undefined property), so the .8s menu-item reveals that use it fall back to the CSS default 'ease', not cubic-bezier(.19,1,.22,1)"
+  ],
+  "duration_range_ms": "GSAP 20-2000ms, dominated by 800ms (x22), 1200ms (x12), 1000ms (x7), 400ms (x6). CSS: --panels-duration .9s for the ticket panels, 1.1s (--halfDuration .7s) for menu lines and burger, 1.1s bggrow, .8s for [data-a=y] reveals (on plain 'ease' because of the var(----customEase) typo), .3/.5s for the home cursor. Tutorial hints step every 4.8s; title slot-machine spins run 2s and repeat every 6s when idle.",
+  "stagger_ms": "70-120ms (stagger .07, .1, .12), random-order staggers of 40ms (film titles) and 100ms (contact headline), menu items via --delay = index*.02s, plus CSS data-delay steps of .1-2s.",
+  "choreography_notes": "The ticket leads, and it is mostly CSS (element tags include 'css'): two hidden checkboxes (#smallpanel for the film list, #mainpanel for the full menu) drive .menu-w:has(#...:checked) rules. Each panel opens by transitioning grid-template-rows 0fr -> 1fr over .9s cubic-bezier(.19,1,.22,1); dashed rules draw scaleX 0 -> 1 from the left (1.1s); items stagger via --delay. In list mode the stub stays and one row per film with dashed separators unrolls (6 rows in element 3 f01, 7 in element 0 f03; the live home HTML holds 8 roll items). In full-menu mode the ticket extends to about 3x its height, the perforation notches jump to a new tear line, the burger morphs to ×, and WORK / ABOUT / CONTACT (01-03, about 40px Neue Brucke) appear with COOKIE / TERMS / PRIVACY, X/Instagram icons and '2024. SIENA FILM FOUNDATION' (f03). menu_IN.mp3 plays on open. Scrolling the strip: speed drives the post-pass blur and bloom and the CSS blur on overlays, so image and text smear together. The ticket content rolls to the new film last (800ms after settle).",
+  "evidence": [
+   "frames/siena-film-foundation/0/f00-f07",
+   "frames/siena-film-foundation/3/f01,f03,f04,f06",
+   "frames/siena-film-foundation/1/f00,f02,f04,f06,f07",
+   "frames/siena-film-foundation/2/f00,f02,f03,f05,f07",
+   "bundle re-fetched 2026-09-24: siena-film-foundation.vercel.app/app.js (429,374 bytes), styles/main.css; cached Webflow CSS + home HTML (evidence/typo/css/siena-film-foundation.*); siena.film/contact HTML"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "video",
+  "art_direction": "Film stills and footage from the foundation's own titles: tungsten-lit interiors, a Hopper-like train-window scene (Outsider Freud), intimate close-ups, and a graphic-novel animated portrait (Kafka's Last Trial). Dark, warm, low-key grading. Every frame reads as projected light.",
+  "treatments": [
+   "Rounded film-gate mask (u_mask texture atlas, two gate shapes)",
+   "Vertical vignette plus two opposite-corner warm burns (darkening, not a light leak)",
+   "Velocity motion blur + additive bloom ('film_power .5') in the post pass",
+   "Animated grain .07 on the canvas only",
+   "Off-centre frames blurred and dimmed in the horizontal slider program",
+   "CSS blur(speed*10px) on DOM overlays during travel (desktop)",
+   "Bulge uniform present (strength .1) but inactive (radius 0)"
+  ],
+  "crops_and_ratios": "Each film frame is about full width by about 85vh with rounded corners. Ticket thumbnails are small squares at a 2px radius (probe radius 2px x26). Festival laurels and stars are small SVGs.",
+  "formats": "mp4 24.2MB declared (3 videos: logo_intro_desktop, intro_mobile, tutorial-final, plus animated_logo_black as the preloader video's data-src), jpeg 4.8MB, webp 1.2MB, jpg 514KB, 76 img, 132 svg (probe). Images come from the Webflow CDN (cdn.prod.website-files.com, 27 requests); videos and sounds come from jsDelivr (cdn.jsdelivr.net/gh/niccolomiranda/siena).",
+  "evidence": [
+   "frames/siena-film-foundation/0/f01.jpg",
+   "frames/siena-film-foundation/0/f02.jpg",
+   "frames/siena-film-foundation/0/f06.jpg",
+   "frames/siena-film-foundation/3/f06.jpg",
+   "frames/siena-film-foundation/3/f07.jpg"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "OGL, vendored into app.js (the Renderer constructor signature {canvas, width, height, dpr, alpha, depth, stencil, antialias, premultipliedAlpha, preserveDrawingBuffer, powerPreference, autoClear, webgl:2} matches OGL's), with Mesh / Program / Plane classes; 2 webgl2 contexts. No three.js, no model assets.",
+  "role": "image-plane shaders: the vertical film strip (roll), a horizontal slider, a lightbox program, and a full-screen post-processing pass",
+  "assets": [],
+  "materials_lighting_post": "Roll fragment: u_diff (frame texture), u_mask (film-gate alpha, atlas uv x*.7168), u_a_page_alpha, vertical vignette smoothstep(.5,.1,|y-.5|), and corner burns: grads = smoothstep(.1,.4,dist(uv,.15)) * smoothstep(.1,.4,dist(uv,.85)); color = mix(mix(color*.2, blendColorDodge(color, vec3(1,.86,0))*.3, .2), color, grads). Slider vertex/fragment: u_x, u_a_speed, u_a_footage, u_a_footage_focus, u_a_footage_img, uv*.8 zoom, blur13 by distance from centre, bottom gradient; a disabled grid/difference pattern is left in the code (color is reset to baseColor). Post uniforms: u_BULGE_RADIUS / u_BULGE_STRENGTH (0 / .1, so no bulge), u_a_blur_direction, u_a_blur_power, u_FILM_POWER (.5), u_NOISE_AMOUNT (.07), u_time. GLSL: blur13 directional blur (resolution hard-coded 1920x1080), fract(sin(dot(...,vec2(12.9898,78.233)))*43758.5453) grain. Parameters are exposed to a hidden lil-gui panel. Audit 2 values: u_a_blur_direction is (0,1) on home (along the strip) and (1,0) on work; u_a_blur_power is 3 on home, 2 on work. The grain term is additive only (0 to +.07), so it lifts blacks; v_grad and mdf are computed in the post shader but never used.",
+  "interaction": "Scroll and drag velocity drive blur, bloom and horizontal spread. The ticket list triggers a fly-to. Footage focus zooms a plane to a DOM target rect.",
+  "performance_tactics": "Only textured quads, no geometry. Images load as textures with DOM <img> kept at opacity 0 for layout and SEO (this.el.style.opacity=0 in the mesh classes). Post blur uses a single 13-tap pass into a render target sized viewport x dpr. Images come from the Webflow CDN; video and audio from jsDelivr.",
+  "fallback_mobile": "unknown (the gate blocks the probe). A dedicated intro_mobile.mp4 exists, and the CSS overlay blur is skipped on mobile.",
+  "evidence": [
+   "bundle grep app.js (shader strings, uniforms, pe.post defaults)",
+   "probe contexts webgl2:2",
+   "frames/siena-film-foundation/0/f04.jpg",
+   "frames/siena-film-foundation/0/f06.jpg"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "A single fixed cinema-ticket card top-right (#FAF7EF, .menu-w 341x103px). The left part shows a 38.4px (2.4rem, 6px radius) thumbnail of the current film, its title in 20px Neue Brucke caps and a 3-cell meta row (category | year | MIN.66) in 7.2px Neue Brucke caps (+2px tracking) with 1px rules. A dashed perforation separates the right stub, which holds a 3-line burger. Black notches sit at the perforation ends and the corners; the notched outline is an SVG clipPath (clipPathUnits objectBoundingBox: #ticketMaskLarge, #smallPanelClip, #smallPanelClipTop), not a CSS mask. A blurred black copy underneath (.nav-shadow opacity .3, blur 2px, 2px down) gives the ticket a paper shadow (a duplicate element; see slop_risks).",
+  "menu": "Two modes driven by hidden checkboxes and :has(). (1) #smallpanel unrolls the film list: one row per film (6-7 in the jury captures) with thumbnail + caps title, dashed separators, #D6D3CC bggrow hover, arrow-in-dashed-box, and an active dot. (2) #mainpanel expands the ticket into a tall card: numbered WORK / ABOUT / CONTACT, COOKIE / TERMS / PRIVACY, X + Instagram glyphs, colophon. Panels open with grid-template-rows 0fr -> 1fr (.9s cubic-bezier(.19,1,.22,1)). menu_IN.mp3 plays on open.",
+  "buttons_links": "ENTER and EXPLORE are ticket-shaped buttons (label cell + dashed perforation + arrow stub), outlined on dark; the ENTER ticket turns solid cream on mobile. EXPLORE sits on a blurred black glow (.explore-btn-bg opacity .3, blur 5px, scale 2) for legibility on footage. Hover plays cta_in.mp3.",
+  "unusual_interactions": [
+   "Enter gate before any content",
+   "Hold-and-drag navigation of the strip (custom drag, dragSensitivity .005)",
+   "Top and bottom hitboxes that turn the cursor into prev/next and step one film per click",
+   "A tutorial overlay of 10px instructions with a 48-hour cookie",
+   "The ticket nav re-renders to the film currently in view (800ms after settle)",
+   "Slot-machine letter spins that auto-play on the settled film title and as the contact headline's entrance",
+   "Projector spin-up: after ENTER the strip whips through 60 frame-steps at full blur and bloom before settling on the first film (desktop only)"
+  ],
+  "sound": "Yes: Howler.js loads cta_in.mp3, cta_out.mp3, menu_IN.mp3 and menu_OUT.mp3 from cdn.jsdelivr.net/gh/niccolomiranda/siena at volume .5, but only cta_in (hover) and menu_IN (menu open) are triggered in the bundle; nothing plays on mobile.",
+  "footer": "No conventional footer: the colophon lives inside the expanded ticket ('2024. SIENA FILM FOUNDATION'). Contact is a red full-bleed page with the 12vw headline, then LEE@SIENA.FILM and the phone at 48px (.contact-lab) on rules at the bottom, each with a tiny P22 label (element 2)."
+ },
+ "content_voice": {
+  "headline_style": "Short cinematic imperatives and poster copy in caps, with film vocabulary (act, next, craft)",
+  "copy_tone": "Theatrical and restrained. The films speak through press quotes and festival credits rather than agency claims.",
+  "examples": [
+   "CRAFT THE NEXT ACT"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Webflow (site shell + CMS, jQuery 3.5.1) with a custom esbuild bundle (app.js, 429KB raw) hosted on Vercel",
+  "libraries": [
+   "GSAP 3.12.5 from @gsap/shockingly (SplitText, Flip, ScrollTrigger incl. Observer, DrawSVGPlugin; defaults {duration:1, ease:'expo.out'})",
+   "Lenis (page scroll; bundled, sets the html 'lenis' class) plus a custom strip scroller built on the bundled virtual-scroll library",
+   "OGL (vendored WebGL renderer)",
+   "Taxi.js (PJAX page transitions)",
+   "Howler.js (UI sounds)",
+   "lil-gui (debug panel shipped hidden in production)",
+   "Webflow CDN for images and fonts; jsDelivr GitHub CDN for video and audio"
+  ],
+  "evidence": "probe globals Webflow:true, libs_from_requests ['webflow'], top_hosts cdn.prod.website-files.com 27 / siena.film 10 / siena-film-foundation.vercel.app 3 / cdn.jsdelivr.net 3; HTML script tags (jQuery 3.5.1, webflow.*.js, vercel app.js, localhost:8000 leftovers); app.js grep (registerPlugin x4, DrawSVGPlugin 3.12.5 license, _e.defaults(Dv), data-taxi / X-Requested-With Taxi, Howl, lil-gui theme, OGL Renderer signature)"
+ },
+ "performance_accessibility": {
+  "requests": 47,
+  "weight_notes": "Heavy media: 24.2MB mp4 + 4.8MB jpeg + 1.2MB webp declared, JS 176KB declared (app.js 429KB uncompressed). Fonts ship as 3 .ttf files (no woff2). The HTML still links http://localhost:8000/app.js, styles/main.css and styles/out.css (dev leftovers alongside the Vercel URLs), and a lil-gui debug panel ships hidden in the bundle.",
+  "reduced_motion": "probe reduced_motion_rules 0; main.css has no prefers-reduced-motion. The speed-blur, bloom and grain run for everyone.",
+  "contrast_issues": "Cream on black is fine. 9.6px P22 spaced caps and 10px hints are very small. Pull-quotes over bright footage lose contrast during bloom, and the overlays themselves blur with speed (CSS blur(speed*10px)), so titles and faces are unreadable mid-travel (element 0 f04, f06). Markup: no h1 (probe h1 []), and the SVG clipPath id 'ticketMaskLarge' is duplicated 10 times in the home HTML. Accessibility dev score is 6.6, the lowest sub-score.",
+  "mobile_quality": "Only the gate was observable. No overflow. Responsive score 8.0.",
+  "dev_scores": {
+   "semantics_seo": 7.2,
+   "animations": 8.6,
+   "accessibility": 6.6,
+   "wpo": 7.2,
+   "responsive": 8.0,
+   "markup": 7.2
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Cinema-ticket navigation object",
+   "why_it_works": "One physical, on-theme object replaces the header, current-page indicator, project index and menu. It is always legible (cream on black) and, once the strip settles, tells you which film you are in. It lags on purpose: mid-travel it still names the previous film (element 0 f00/f01 show ANA MAXIM over Kafka / My Project X; f07 shows MOON IN THE 12TH HOUSE over Outsider Freud).",
+   "how_to_build": "Verified approach: a fixed card top-right, 341x103px, background #FAF7EF, clipped by an inline SVG <clipPath clipPathUnits='objectBoundingBox'> that punches the corner and perforation notches (one clipPath per panel state). Perforation: a 1px dashed border on the stub. Meta row: 3 cells with 1px solid dividers, set in .45rem (7.2px) Neue Brucke caps with 2px tracking (.menu-row-bot; these are the probe's 7px nodes). State without JS: two hidden checkboxes (#smallpanel, #mainpanel) as labels on the ticket body and stub; .menu-w:has(#smallpanel:checked) [data-menu=smallpanel]{grid-template-rows:1fr} from 0fr with transition grid-template-rows .9s cubic-bezier(.19,1,.22,1); rules inside scaleX 0 -> 1 from the left over 1.1s; rows stagger via --delay: index*.02s. Full menu: the same on #mainpanel, burger lines rotate ±45deg + scaleX .8 (middle scaleX 0), arrow rotate 180deg. Row hover: :before #D6D3CC scaleY 0 -> 1 from the bottom, 1.1s cubic-bezier(.23,1,.32,1), only above 767px. Paper shadow: Siena uses a blurred black duplicate of the ticket (.nav-shadow: opacity .3, blur 2px, translateY 2px). Build the same tight directional shadow as filter: drop-shadow(0 2px 2px rgb(0 0 0 / .3)) on an unclipped wrapper around the clip-pathed ticket, which follows the notched silhouette without a second element (a duplicate copy is the law's faked-shadow pattern). Sync the title whenever the in-view film changes: debounce 800ms after the strip settles, then roll the old title out and the new one in (SplitText lines, yPercent 0 -> -100 / 100 -> 0, .8s expo.out). Keep all of it as real DOM text."
+  },
+  {
+   "technique": "Velocity-reactive film-strip shader",
+   "why_it_works": "Scroll speed becomes a cinematic material: fast = projector smear and overexposure, still = crisp frame. Siena blurs the DOM overlays with the same speed value, so text and picture smear as one surface, and everything snaps back to crisp at rest.",
+   "how_to_build": "Render each frame image as a plane in OGL/three (sync to DOM rect each frame; keep <img> in the DOM at opacity 0 for layout and SEO). Frame shader: alpha = texture(u_mask, uv).r for a rounded film gate; color *= smoothstep(.5,.1,abs(uv.y-.5)); corner burns: g = smoothstep(.1,.4,distance(uv,vec2(.15)))*smoothstep(.1,.4,distance(uv,vec2(.85))); color = mix(mix(color*.2, colorDodge(color,vec3(1.,.86,0.))*.3,.2), color, g) (this darkens the two corners with an amber cast); parallax: shift uv.y by parallax*0.3. Wrap positions with a modulo for an infinite strip; each frame pull target .1 toward Math.round(target) (Siena's real snap: an always-on magnet, not a threshold) and lerp current toward target at .05 desktop / .09 mobile. Render to an FBO. Post pass: a 13-tap blur along u_blur_direction*10 (Siena: (0,1) vertical on the home strip, (1,0) horizontal on work pages); img = mix(img, blur, speed*.5); img += blur*speed*blurPower*.5 (blurPower 3 on home, 2 on work); img += hashNoise(uv,time)*.07 (additive only, so it lifts pure black toward ~#121212 speckle; subtract .035 first if you want a true black floor). Feed speed from the strip's lerped velocity. On desktop also set overlay.style.filter = blur(speed*10px) on each frame's DOM overlay. Cap speed so resting states stay readable. Skip the bulge (Siena's radius is 0)."
+  },
+  {
+   "technique": "Projector spin-up entrance",
+   "why_it_works": "The gate click pays off with motion that only a film reel makes: frames blur past, overexpose, then lock onto one still. It reuses the strip's own speed-to-blur system, so the entrance costs no extra assets.",
+   "how_to_build": "Verified (roll animateIn): park the looped strip 60 items from its start (current = target = -60) during load. On the gate's click event wait 200ms, then set current = 0 and speed = lspeed = 10 (the value that feeds the post blur and bloom) and let the normal loop finish the job: current lerps back to target at .05 per frame while speed decays by .85 per frame, so the blur dies well before the position settles and the last few frames arrive crisp. Fade the GL layer in over the first second (Siena: page alpha 0 -> 1, .4s delay, expo.out). Skip the speed kick on mobile, as Siena does, and cap the kick if your frames carry text that must stay readable."
+  },
+  {
+   "technique": "Slot-machine letter spins inside ruled bands (idle and entrance)",
+   "why_it_works": "The rules turn each line into a physical slot, and random spin counts make letters settle at different times like a split-flap board. Because it runs on arrival and on idle (not hover), the title keeps a little life while the film holds still. Motion, but the type never leaves its line.",
+   "how_to_build": "Verified values. Film titles: SplitText(el,{type:'lines', linesClass:'split-line-move'}) then SplitText(lines,{type:'chars'}); per char render <div class='o'>A</div><div class='c'>A</div> stacked, gsap.set(children,{y:'18%'}), tl = gsap.timeline({paused:true}).to(children,{yPercent:'-=100', ease:'none', duration:1, repeat:gsap.utils.random(8,14,1)}). Play: gsap.to(timelines,{progress:1, duration:2, stagger:{each:.04, from:'random'}, ease:'expo.out', onComplete:()=>gsap.set(timelines,{progress:0})}) 2s after the strip settles, then every 6s while idle; stop on scroll. Contact headline entrance: per char tl.to(char,{yPercent:0 from 115, duration:1, ease:'linear'}).to(children,{yPercent:'-=115', repeat:random(6,10), ease:'none'}); tween progress 0 -> 1 over 2s, stagger {each:.1, from:'random'}, expo.out, delay data-del+.5. Band: font-size 12vw, line-height .8em, a .7em-tall overflow:clip wrapper between 1px rules, letter-spacing -.3rem, black caps on a full-bleed #FF0F00."
+  },
+  {
+   "technique": "Poster billing-block overlay per project",
+   "why_it_works": "It borrows the film one-sheet's grammar (laurels, stars, pull-quotes, credit block) so every project looks like a release, and content hierarchy comes from genre convention, not UI cards.",
+   "how_to_build": "Absolutely position 4 corner groups inside each full-bleed frame. Top-left: year 26px + festival name 10px caps + laurel SVG (mix-blend-mode screen on the laurel images). Right column (about 150-180px, centred text): repeat [★★★★★ 14px, source 9.6px old-style roman caps letter-spacing .35em, quote 25.6px caps line-height .9]. Bottom-left: category 9.6px spaced caps, title 89.6px caps line-height .77 letter-spacing -0.03em (max-width 12ch), then a 2-column credits list on 1px rules where each row is a fixed-height grid (.linecallout-item: height 14px on home, 11px elsewhere, white-space nowrap, line-height .9em) holding text larger than the row (inferred: it inherits the 20px body size), so glyphs spill into the neighbouring rows and sit across the rules. The overlap comes from the fixed row height, not from a negative line-height. Bottom-right: EXPLORE ticket button on a blurred black glow. Keep everything as live text."
+  },
+  {
+   "technique": "Flip re-parenting of the title between browse and detail states",
+   "why_it_works": "The title physically travels into its case-study slot instead of cross-fading, which keeps continuity between the slider and the project page.",
+   "how_to_build": "const s = Flip.getState(title); detailSlot.appendChild(title); title.style.textAlign='left'; title.style.alignItems='start'; Flip.from(s,{duration:1.2, ease:'expo.out'}). For short titles (<10 chars) first gsap.to(title.children,{y:'2.5rem', duration:.8, ease:'expo.out'}), then on the detail step gsap.to(title.children,{xPercent:-(10-len)*10, duration:.8, ease:'expo.out'}) to rebalance the optical left edge. Reverse: re-centre and Flip.from(state,{duration:1.2, scale:true}). Set gsap.defaults({duration:1, ease:'expo.out'}) site-wide for one motion voice."
+  },
+  {
+   "technique": "Bars-and-difference logo intro",
+   "why_it_works": "A 3-second brand sting that reads as a film leader or shutter and hands off to black exactly where the site begins.",
+   "how_to_build": "Either pre-render it (mp4, about 3.2s, which is what Siena does) or build it live: cream full-screen, 20 vertical bars each with transform scaleX 0 -> 1 (origin center, 1.2s cubic-bezier(.77,0,.175,1), stagger {each:.04, from:'center'}), and the SVG logo above with mix-blend-mode:difference in white so it inverts across the bars. End on black with 1px bar edges at 10% opacity that fade out over .6s."
+  }
+ ],
+ "slop_risks": [
+  "Content hidden behind an interaction gate: at 6s and 12s settles the probe saw only the logo and ENTER (desktop_00-07 identical). Crawlers, screenshots and impatient users get nothing. Past the gate the page wrapper also sits at autoAlpha 0 until ENTER plus a 1.4s delay (home/work; 0s on contact), so with JS off or a stalled timeline nothing renders: the law's invisible-content trap. A copy should render the first film frame behind the gate, keep the wrapper visible by default, or skip the gate once audio is unlocked.",
+  "Instructions as a crutch: an overlay of 10px 'HOLD AND DRAG…/SCROLL TO UNLOCK…' hints. Navigation that needs a tutorial costs usability (7.61) and accessibility (6.6).",
+  "Grain on top of content: grain here is inside the WebGL post pass on imagery only. A naive copy that lays a full-page noise overlay over titles and quotes is the tell. (Motion blur is different: Siena does blur the DOM overlays with speed, on purpose.)",
+  "Cream #FAF7EF: fine as a ticket or paper object on black. Using it as the page background turns it into the cream 'editorial' tell.",
+  "Saturated accent: #FF0F00 works because it is a full-bleed floor used once. Sprinkling it on buttons, dots or a headline word would be the 'saturated accent pop'.",
+  "Testimonial-stack risk: stars + source + quote repeated down the side is close to the testimonial-card reflex. It only works because of the poster grammar and real press sources.",
+  "Cramped display type: 0.77 line-height caps and overlapping credit lines are intentional here, but read as collision if the face lacks tall caps or the rules are not the guide.",
+  "Speed effects that erase content: during fly-to, bloom plus the synced CSS blur on overlays make frames and titles unreadable (element 0 f04, f06). The effect only works because it collapses to crisp at rest; cap speed and never let a stalled scroll hold a blurred state.",
+  "One label treatment risk: the site separates roles (P22 spaced caps for sources, NB 10px for UI hints, Neue Brucke for titles). A copy collapsing them into one tracked-caps costume would read templated.",
+  "Weight and leftovers: 24MB of mp4, .ttf fonts, localhost script/style tags and a hidden lil-gui debug panel in production.",
+  "Palette misread risk: extracting colours from this build picks up the debug panel's #424242 / #1F1F1F / #EBEBEB / -apple-system. Its real palette is #000, #FAF7EF, #FF0F00 and the #D6D3CC hover tint.",
+  "Faked shadow and halo: the ticket's paper shadow is a blurred duplicate element (.nav-shadow: blur 2px, opacity .3, 2px down) and EXPLORE sits on a blurred, 2x-scaled black copy of itself (.explore-btn-bg: blur 5px, opacity .3; mobile adds a .mobile-shadow blur 5px square). At Siena's tight values they read as legibility aids, but they are the law's 'faked shadow' and 'bloom that is the element's shape, blurred' patterns. A copy should use filter: drop-shadow on an unclipped wrapper for the ticket and a directional gradient scrim along the frame's lower edge behind EXPLORE.",
+  "Active-state dot: a filled dot marks the current film in the ticket list (element 3 f01, element 0 f03). Inside the ticket it reads as a punch hole, but lifted out of this context it is the 'dot for you-are-here' reflex. Mark the active row with weight or the #D6D3CC tint instead."
+ ],
+ "confidence_notes": "The desktop screenshots are unusable for content. Both the original probe and the instructed re-run (--settle 12 --steps 7, 13.5s settle) captured only the ENTER gate on all 8 desktop steps and both mobile shots, because the site requires a click the probe never makes. All 8 original shots and both mobile shots were viewed; the re-run's desktop_00/04/07 were spot-checked and are identical. Layout, motion and imagery therefore rest on the jury element frames: all 8 frames of 'Film Strip Slider' (0) and 'Dynamic Menu' (3), and f00/f03/f06 of 'Brand Intro Animation' (1) and 'Contact Type Lettering' (2). 'About Us' and 'Procedural Slider Re-Arrangement' had no frames; the latter is described from bundle code (Flip). Measured values come from probe.json and still apply because the gate DOM loads the full page: fonts, sizes, colours incl. #FF0F00, radii, video URLs, webgl2 x2. Shader, uniform, post defaults, GSAP defaults, rollover timeline, sounds and CSS tokens come from curl of siena-film-foundation.vercel.app/app.js and styles/main.css. Pixel sizes of the logo and ticket are measured from screenshots or estimated from 1600x1200 frame captures. Inferred: audio unlock as the gate's purpose, the OGL attribution (class shape, not a named import), and drag via Observer. audit (2026-09-24, adversarial re-check against probe, all 8 identical desktop gate shots, mobile_00, all 8 frames of element 0, 5 frames each of elements 1-2, 4 of element 3, and a fresh fetch of app.js, main.css and the contact HTML): FIXED the slot-machine rollover (auto-plays on the settled film title and as the contact entrance; not hover; contact uses random(6,10) from yPercent 115) and rewrote steal_this 3; FIXED the ticket mechanics (CSS checkbox + :has() + grid-template-rows, SVG clipPath notches, 341x103 not ~280x85) and rewrote steal_this 1; FIXED 'DOM text stays crisp' (overlays get CSS blur(speed*10px) on desktop), the corner 'light leak' (it darkens), the bulge (radius 0, inactive), and split the conflated shader into roll / slider / post programs; FIXED palette: #424242/#1F1F1F/#111/#EBEBEB and -apple-system are lil-gui debug-panel colours; FIXED sounds (only cta_in and menu_IN fire), drag (custom, not Observer), media hosts (images Webflow CDN, not jsDelivr), frame-scale estimates (~1.8x, cursor ~100px, margins 3.8rem); ADDED Taxi.js, DrawSVGPlugin, lil-gui, OGL signature match, tutorial cookie timing, 800ms ticket debounce, strip scroll config, contact 12vw/48px type, .ttf fonts, duplicate clipPath ids, no h1. Still unverified: everything past the gate at 1440/390 (no screenshots), the intro mp4's real duration, the 'About Us' element (no frames). audit 2 (2026-09-25, independent re-check: probe.json, desktop_00/02/04/06/07 and mobile_00 viewed, all 8 desktop and both mobile shots confirmed pixel-identical by diff, all 8 frames of element 0, f01/f03/f06 of element 3, f02/f07 of element 2, f00/f02/f06/f07 of element 1, zoomed crops of the press stack and credits, and the locally cached app.js, main.css, Webflow CSS and home HTML): CONFIRMED gate geometry (logo 497-992 x 353-545, ticket 650-790 x 808-851), fonts and sizes, palette, OGL Renderer signature, roll shader burns, post defaults, rollover timelines, Flip re-parenting, Taxi, Howler sounds, tutorial timing, 1.4s page-in delay, 800ms ticket queue, clipPath duplication, no h1, ASCII &quot; quotes in the CMS. FIXED: strip snap (snapThreshold/snapFactor/lerp .1/touch 5.5 are dead config; the real snap is a per-frame .1 magnet to Math.round(target), wheel via the virtual-scroll library); ticket meta row is 7.2px not 9-10px; thumbnail 38.4px; the ticket lags the strip, so 'always tells you which film' was an overclaim; list row counts differ by capture (6 vs 7); steal_this told copiers to fake a shadow with a duplicate element, now drop-shadow on a wrapper; credits overlap comes from fixed 14px rows, not line-height. ADDED: projector spin-up entrance (60 frame-steps at speed 10 after ENTER) with its own steal_this, blur direction and power per page, additive grain lifting blacks, the var(----customEase) typo that drops [data-a=y] reveals to plain ease, contact headline vh/vw overrides, wrapper autoAlpha trap, faked-shadow/halo and active-dot slop risks. Still unverified: everything past the gate at 1440/390 in the live build (no post-gate screenshots), the intro mp4's own duration, the About Us and Procedural Slider elements (no frames), the credits font size (inherited 20px is inferred)."
+}

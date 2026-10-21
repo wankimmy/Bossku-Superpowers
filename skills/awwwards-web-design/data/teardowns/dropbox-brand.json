@@ -1,0 +1,286 @@
+{
+ "slug": "dropbox-brand",
+ "title": "Dropbox Brand",
+ "live_url": "https://brand.dropbox.com/",
+ "award": "Awwwards Site of the Day, Feb 12 2025 (Honors). Studio: Daybreak Studio with Dropbox Brand Studio (Jessica Lai, Ben Giannis, Denis Ish, Jenny Rudziensky, Kiran Patel, Taha Hossain). Corpus bucket portfolio-agency.",
+ "scores": {
+  "overall": 7.67,
+  "design": 7.67,
+  "usability": 7.56,
+  "creativity": 7.75,
+  "content": 7.88,
+  "dev": {
+   "overall": 7.8,
+   "semantics_seo": 7.0,
+   "animations": 8.4,
+   "accessibility": 7.0,
+   "wpo": 7.6,
+   "responsive": 8.6,
+   "markup": 8.0
+  }
+ },
+ "industry": "Brand guidelines / design-system microsite for Dropbox (design agencies, storytelling, navigation, microinteractions)",
+ "signature": "The homepage is the menu: eight chapter tiles start at 2x scale flung off-screen around a giant intro card, and scroll pulls them into a pinwheel color mosaic around a 90px blue logo button; each tile's icon demonstrates its chapter, and hover inverts the tile to near-black while the icon acts that chapter out (swatches swap, quote marks slide, the easing curve reshapes, the sun sets and the moon rises).",
+ "first_screen": {
+  "composition": "desktop_00: white page ruled by a blueprint of 1px hairlines (#5F9DFF at 40% alpha, sampled #cdd3e1) that are the enlarged tile gridlines. A central white card ~800x800 (min(800px, min(100vw,100vh) - 64px), spanning x 320-1119) holds the intro statement top-left in #0061FE, 4 lines at ~36px ('At Dropbox, our Brand Guidelines help us infuse everything we make with identity.'), and a blue double-chevron scroll cue bottom-right. No nav bar and no hero image; the card's blue Dropbox glyph sits bottom-left (visible in mobile_00 and in the blue state of desktop_01) but at 1440 it is hidden under the consent card. On load that glyph draws itself in: .home-logo path stroke-dasharray 1000, drawIn 1.25s cubic-bezier(.4,0,.3,1) after 0.5s. The Dropbox cookie consent card overlaps bottom-left (x 24-624, y 660-876). desktop_01-02: the card flips to a 500px solid #0061FE square (min(500px, min(100vw,100vh) - 64px)) with the second statement in white (29px) and a white logo bottom-left; desktop_03: the statement has faded and the square shrinks toward --button-size, while color tiles (orange, cyan, yellow with quote glyphs, plum 'Imagery') slide in from the edges and the gridlines tighten. desktop_04-07: final mosaic filling the viewport.",
+  "what_owns_it": "type",
+  "display_type_px": 36,
+  "evidence": [
+   "probes/dropbox-brand/desktop_00.jpg",
+   "probes/dropbox-brand/desktop_01.jpg",
+   "probes/dropbox-brand/desktop_02.jpg",
+   "probes/dropbox-brand/desktop_03.jpg",
+   "probes/dropbox-brand/desktop_04.jpg",
+   "probes/dropbox-brand/probe.json measure.type h3",
+   "index.html inline intro script (size = min(800px, ...) then min(500px, ...) then shrink to --button-size)"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Dbsharpgroteskvariable Vf (DB Sharp Grotesk Variable)",
+    "role": "display",
+    "classification": "variable grotesque with wght 250-900, wdth and ital axes; wide, squarish, slightly quirky terminals",
+    "foundry": "Sharp Type (custom cut for Dropbox, based on Sharp Grotesk, per the site's own copy)",
+    "source": "probe fonts_loaded 'Dbsharpgroteskvariable Vf 250 900'; inline CSS font-variation-settings"
+   },
+   {
+    "name": "Atlasgrotesk Web (Atlas Grotesk)",
+    "role": "body",
+    "classification": "neo-grotesque",
+    "foundry": "Commercial Type",
+    "source": "probe fonts_loaded 400/500; body family"
+   },
+   {
+    "name": "Noto Sans Mono",
+    "role": "mono",
+    "classification": "monospace for UI readouts (timecode, render time)",
+    "foundry": "Google",
+    "source": "probe fonts_loaded 400/500 + webfont.js WebFont.load families ['Noto Sans Mono:regular,500']; html class wf-notosansmono-n4-active"
+   }
+  ],
+  "display_size_px": 144,
+  "body_size_px": 14,
+  "scale_notes": "From inline CSS: .title clamp(0px,10vw,200px) (144px at 1440, so the 200px cap only applies at 2000px+; clamp(36px,12vw,96px) on small screens), chapter-page titles, h1 60px, h2 40px, h3 30px, h4 24px, all 'wght' 520 'wdth' 106; .title and nav headers 'wght' 500 'wdth' 100. Measured on home: intro statement 36px/43.2px, second statement 29px/34.8px, tile titles 33.6px/26.88px (line-height 0.8) weight 500, body 14px/22px #736C64, links 14px/20px #0061FE, credits 12px/20px weight 500. Home tops out at 36px; the big type lives on chapter pages.",
+  "tracking_leading": "letter-spacing -0.02em on all headings (measured -0.72px at 36px, -0.672px at 33.6px, -0.6px at 30px); line-height 120% on headings, 0.8 on tile titles, text-wrap: balance on headings (probe css_features text-wrap balance).",
+  "case_and_style": "Sentence case throughout, including tile titles and chapter titles; no all-caps labels. Italic appears only as a variable-axis demo in the typography widgets; numerals get their own specimen tile.",
+  "signature_moves": [
+   "Variable-axis specimen widgets: sliders for width, italic and weight bound to font-variation-settings, plus a 'Randomize' button that re-rolls axis values per character, word or line (frames/0; typo.html FeatureType character/word/multi)",
+   "Scroll-filled statement on /typography: 'So we partnered with esteemed foundry Sharp Type...' is split into per-char spans; each char's color runs from rgb(255,255,255) to rgb(0,0,0) while four 1px diagonal text-shadows in rgba(115,108,100,1-r) fade out, so the 'outline' is a faux text-shadow outline (not -webkit-text-stroke) that turns into solid ink; each char fills over 10% of the scroll range, staggered across 70% of it, eased easeOutQuad, with a live 'N% complete' readout (frames/2 f03 shows grey mid-fill chars in 'create'). On mobile the shadows are dropped and chars go grey (70%) to black.",
+   "Tile titles sized at 33.6px with 0.8 line-height, set top-left of every tile like file labels",
+   "Chapter page titles at 10vw white on #1E1919 after the tile-enlarge transition (frames/3 f07)",
+   "One variable family carries every voice by axis, not by font: chapter titles and nav headers at 'wght' 500 'wdth' 100, h1-h4 at 'wght' 520 'wdth' 106 (a touch wider), tile titles 'wght' 500, and specimen tiles ranging 'wdth' 29 to 108 and 'wght' 250 to 585 (site.css font-variation-settings)"
+  ],
+  "mobile": "mobile_00 (390): intro statement ~24px (mobile_measure largest 24px) in 4 lines inside a near-full-width card with logo and chevrons at its bottom; mobile_01 shows the card turned blue ~192px square mid-scroll with tiles flung on mobileTransformations. No horizontal overflow. .opening .tile-title scale drops from 4 to 2.5 under 991px."
+ },
+ "color": {
+  "mode": "section-shifting",
+  "base": "#FFFFFF white (--background-light) on home and light sections; chapter heroes on #1E1919 (--background-dark)",
+  "ink": "#1A1918 (--text--base) / #1E1919; subtle text #736C64 light, #BBB5AE dark",
+  "accents": [
+   "#0061FE Dropbox blue: intro text, logo button, links, selection color (--accent--tab)",
+   "Identity tokens (fill / on-ink): yellow #FAD24B / #684505, cyan #3DD3EE / #055463, red #FA551E / #4E0119, green #B4DC19 / #175641, purple #C8AFF0 / #682760, pink #FFAFA5 / #892055, cloud-blue #B4C8E1 / #283750. The Color tile does NOT use --color--identity--orange #F9A34B: it renders #FF8B19, which is --accent--tangerine #FF8C19, with the on-orange #6D2E09 title. A second accent set (azalea #CD2F7B for the Imagery hills, navy, plum #78286E, ocean, canopy, gold, crimson, rust, coconut #F7F5F2) supplies illustration colors",
+   "Inverted pairs where a tile needs weight: Framework is navy #283750 with #B4C8E1 title, Imagery is plum #892156 with #FFAFA5 title",
+   "#5F9DFF line color (--accent--line #5f9dff66 = 40% alpha for gridlines; --accent--line-solid #5f9dff for the 12px credit links)"
+  ],
+  "ratio": "Home intro: ~90% white, 8% blue type, 2% gridlines. Mosaic: 8 saturated fields ~95% of the viewport with 10px white gaps; each tile ~85% fill, 15% same-hue dark ink.",
+  "section_shifts": "Home goes white -> blue card -> full-color mosaic. Chapter pages alternate dark (#1E1919) hero sections and white content sections with visible gridlines; on overscroll the dark section fades (opacity 1 - p) and scales to 0.95 as the next state takes over.",
+  "texture": "None. Flat fills, 1px gridlines, no gradients except a functional conic-gradient progress fill on the menu button.",
+  "notes": "The loudness is disciplined by a tonal rule: every identity color ships with an 'on-' ink of the same hue at roughly 20% lightness, so tiles never carry an unrelated text color. Saturated fills are content (the brand palette is the subject), not decoration."
+ },
+ "layout": {
+  "grid": "12-column CSS-variable grid, three breakpoints: desktop (>991px) --body-margin-real 120px / --body-gutter 24px and --opening-margin 120px / --opening-gutter 24px; <=991px 60px / 12px; <=767px 32px / 12px. Grid width min(100vw - 2*margin, 1920px), spans computed as calc(n*col + (n-1)*gutter) and exposed as --body-col-N-left/right and --body-span-N tokens. (The probe's root_vars 32px/12px, 64px button and 5px gap are the small-screen values; desktop is 120/24, 90px, 10px. frames/3 f07 confirms: at 1440 the chapter title starts at x~220 CSS = --opening-col-2-left = 120 + 78 + 24.) Mosaic at 1440: 10px outer margin, 10px gaps (--nav-tile-gap 10px desktop, 5px under 991px), columns ~268 / 377-477 / 90 / 377-477 / 268px.",
+  "density": "balanced",
+  "alignment": "Pinwheel around a centered 90x90 logo button: Voice & Tone above-left, Logo right, Imagery below, Color left, with narrow Framework/Iconography and Typography/Motion columns at the edges. Tile content top-left title, illustration bottom-right.",
+  "composition_moves": [
+   "Visible structural gridlines that are the actual tile edges at 2x, counter-scaled to stay 1px while tiles scale",
+   "Pinwheel tiling around the brand mark so the logo is literally the hub of navigation",
+   "Only the outer corners of the mosaic are rounded (probe radius values '0 0 0 8px', '0 0 8px', '8px 0 0', '0 8px 0 0'): inner edges stay square",
+   "Chapter pages use a 60px left rail: the 90px menu button is scaled to 2/3 (transform: scale(calc(2 / 3))) and sits mid-height, with the vertical page title at the top and 'Partner info' with an (i) icon at the bottom; on the outro the whole rail slides to the right edge rotated 180deg (translateX(calc(100vw - 60px)) rotateZ(180deg))",
+   "Content blocks framed by hairline rules (line-horizontal-top/bot, line-vertical-left/right) like a spec sheet"
+  ],
+  "section_rhythm": "Home: sparse (one sentence on white) -> dense (full mosaic). Chapters: dark full-bleed hero with a single 10vw title -> white spec sections (headline 30-40px, 14px body, photos in 2-col) -> interactive demos (widgets, timeline) -> overscroll to next.",
+  "mobile_adaptation": "Separate mobileTransformations vectors, 64px button, 5px tile gaps, tile-title enlarge scale 2.5 instead of 4; intro card nearly full-width; grid lines persist."
+ },
+ "motion": {
+  "smooth_scroll": "Native scroll (no Lenis/Locomotive; probe libs only webflow). rAF-throttled scroll handler maps scrollY/(docHeight - innerHeight) through cubicBezier(1, 0.25, 0.85, 1); after 250ms idle it smooth-scrolls to the bottom if within 200px (snap-to-assembled). body overscroll-behavior: none; scrollbars hidden.",
+  "preloader": "None.",
+  "intro_sequence": "Three states from one scroll value. State 1: the nav button IS the intro card, 800px white with blue text (size min(800px, min(100vw,100vh) - 64px)); the Dropbox glyph draws in (stroke-dashoffset 1000 -> 0, 1.25s cubic-bezier(.4,0,.3,1), 0.5s delay). Past secondNavButtonBreakpoint = 0.05 + max(vw,vh)/5000 of eased progress it swaps to a 500px blue card with the second statement (sizes transition 0.6s cubic-bezier(.5,0,.2,1); title opacity 0.2s cubic-bezier(.2,.5,.5,1) 0.1s delay), then shrinks by navButtonShrinkProgress to the 90px logo button as the tiles converge.",
+  "scroll_techniques": [
+   "scrub (tile scale 2 -> 1 and translate to 0 tied to eased scroll progress)",
+   "counter-scaled gridlines",
+   "snap to end state",
+   "overscroll progress (--overscroll-progress 0..1) driving a conic fill and section fade",
+   "scroll-filled per-character heading",
+   "scroll-scrubbed faux timeline playhead"
+  ],
+  "text_animation": "Per-character fill on /typography: white fill with a 4-way 1px text-shadow outline -> solid black, per-char window of 10% of the scroll range staggered over 70%, easeOutQuad (see typography.signature_moves). The three collaborator cursor tags are not pinned to the fill frontier: each translates along a randomized sinusoidal path, translate(cos((1-ease)*r1)*r2 vw, sin((1-ease)*r2)*r1 vh) with r1, r2 random integers in -12..12 re-rolled per load, smoothed by transition 0.3s ease-out, and settles as progress reaches 1. Motion page: words appear as animated layers with bounding boxes and handles while the playhead crosses their track (frames/1). Title enlarge: .enlarge .tile-title top 50%, translateY(-50%) scale(4) over 0.6s cubic-bezier(.4,0,.2,1).",
+  "image_animation": "Only the Logo tile uses Lottie on the home page: two instances of DB_Master_Dropbox.json (fill .logo-visual-lottie and .logo-visual-outline-lottie, renderer svg, autoplay off, direction -1, driven by Webflow IX2). Every other tile illustration is inline SVG or CSS boxes whose fill/stroke swap on hover (probe svg 35, img 0). Rive is used on /motion (85 'rive' hits there, 1 CSS selector on home). The Framework hover sketches draw with stroke-dashoffset: path 1 over 0.75s cubic-bezier(.5,0,.3,1), path 2 over 0.7s cubic-bezier(.2,.1,0,1) after 0.3s, and both retract fast on mouse-out (0.2s / 0.3s cubic-bezier(.2,.1,0,1)); stroke-width clamp(1.5px, calc(4.5px - min(0.2vw, 0.2vh)), 5px) so the hand-drawn line thins on big screens.",
+  "page_transitions": "Click a menu tile: siblings fade out (.close .nav-tile opacity 0, 0.2s ease), the clicked tile gets .enlarge and grows to 100vw x 100vh over 0.6s cubic-bezier(.65,0,.15,1) while its title moves to vertical center and scales 4x over 0.6s cubic-bezier(.4,0,.2,1) (2.5x under 991px), the menu icon morphs between logo/hamburger/arrow/close SVGs (0.3s cubic-bezier(.25,0,.25,1)), and window.location changes at 600ms to a dark chapter page whose 10vw title matches the enlarged tile (frames/3 f07). Chapter-page nav moves use 0.7s cubic-bezier(.4,0,.1,1) with color 0.9s cubic-bezier(.2,.7,.45,1). Multi-page Webflow, no SPA; bfcache pages are force-reloaded on pageshow.",
+  "hover_micro": [
+   "All tiles: background -> #1A1918 and title -> white over --tile-transition 0.35s cubic-bezier(.4,0,.2,1), and the tile's illustration swaps from colored fill to a white stroke; hovers are wrapped in @media (any-hover: hover)",
+   "Each tile then acts out its own chapter: Framework's straight connector is replaced by two hand-drawn looping arrows drawn on with stroke-dashoffset (frames/3 f01); Voice & Tone's quote marks outline and slide 40% toward each other (the right one rotated 180deg); Color's two swatches swap diagonal places (translate(calc(100% - 1px), 1px) and the inverse); Motion's bezier handles stretch to 50% width so the curve itself changes shape (frames/3 f04); Imagery's sun and moon sit on one wheel that rotates +180deg over 0.7s cubic-bezier(.4,.2,.2,1) after a 100ms hover-intent delay, so the sun sets and the moon rises (frames/3 f03), and a day counter keeps it always turning forward; Logo crossfades its fill Lottie to an outline Lottie (0.1s delayed transform); Typography's SVG 'Aa' and Iconography's padlock turn to outline",
+   "The darker olive/teal tiles in frames/3 f05-f06 are hover color transitions caught mid-flight (yellow and cyan interpolating toward #1A1918), not a 'rest of the mosaic darkens on select' state",
+   "Color chips hover and iconography slot machine re-roll (jury element titles; not viewed)"
+  ],
+  "cursor": "Native cursor. Decorative 'multiplayer' cursor tags (name + monogram pill in an identity color pair with a pointer arrow) are placed on the page as content: randomized in a 5x2 cell layout on the outro, and drifting on random scroll-driven sine paths beside the text fill on /typography.",
+  "easing_curves": [
+   "cubic-bezier(.4,0,.2,1) --nav-easing and --tile-transition 0.35s",
+   "cubic-bezier(.6,0,0,1) --nav-easing-swoop (menu slide 0.5s, 0.05s delay)",
+   "cubic-bezier(.5,0,.2,1) 0.6s nav button resize",
+   "cubic-bezier(.5,0,.05,1) 1.5s width/height",
+   "cubic-bezier(.2,0,.3,1) 1.6s transform",
+   "cubic-bezier(.2,.1,0,1) stroke-dashoffset draws 0.2-0.7s",
+   "cubic-bezier(.15,.5,.05,1) 0.4s",
+   "cubic-bezier(.25,0,.25,1) 0.3s menu icon morph",
+   "cubic-bezier(.65,0,.15,1) 0.6s",
+   "cubic-bezier(.6,0,.6,1) 0.65s",
+   "cubicBezier(1,0.25,0.85,1) as the JS scroll-progress remap (slow start, fast finish)",
+   "cubic-bezier(.5,0,.3,1) 0.75s Framework sketch draw (most frequent in probe, x4)",
+   "cubic-bezier(.4,0,.3,1) 1.25s home logo draw-in",
+   "cubic-bezier(.4,.2,.2,1) 0.7s Imagery sun/moon wheel",
+   "cubic-bezier(.4,0,.1,1) 0.7s chapter-page nav transforms/opacity; cubic-bezier(.2,.7,.45,1) 0.9s nav color",
+   "cubic-bezier(.2,.5,.5,1) 0.2s intro title cross-fade"
+  ],
+  "duration_range_ms": "200-1600ms (probe durations: 0.7s x5, 0.3s x4, 1.5s x3, 0.75s x3, 1.25s x2, 0.2s x2, 0.35s, 0.4s, 0.8s, 1.6s)",
+  "stagger_ms": "Delay-based rather than staggered lists: 0.05s swoop, 0.1s title fade, 0.3s stroke draw, 0.75-1.25s intro opacity delays; tiles move simultaneously from one scroll value.",
+  "choreography_notes": "One scroll value drives everything on home, so tiles, gridlines and the center card move as one machine. Hovers are fast (0.35s) and tonal; navigation is a single 600ms grow-and-go. Demos (timeline, widgets) are user-driven rather than autoplaying.",
+  "evidence": [
+   "frames/dropbox-brand/3/f00-f07 (Nav Menu, 16.6s)",
+   "frames/dropbox-brand/1/f00-f07 (Motion Timeline, 18.3s)",
+   "frames/dropbox-brand/0/f00,f03,f06 (Typography Widgets)",
+   "frames/dropbox-brand/2/f00,f03,f06 (Typography Cursors)",
+   "index.html inline home-script (desktopTransformations, easeFunction, handleIntroScroll)",
+   "site.css brand-app-site.webflow.6721586f7.css tokens",
+   "typo.html heading-fill + randomize scripts",
+   "motion.html zoomValue/keyframe/performance.now",
+   "probes/dropbox-brand/probe.json easings, durations, root_vars",
+   "audit re-fetch 2026-09-25: index.html (23 inline <style>, 17 inline <script>, one commented-out <style>), site.css, typography.html, motion.html"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "illustration",
+  "art_direction": "Flat geometric vector icons per chapter (connector diagram, quote marks, logo diamonds, 'Aa', padlock, swatch squares, landscape frame, bezier curve) in the tile's own dark ink; hover versions are single-weight white line drawings, some deliberately hand-drawn (looping arrows). Chapter pages add real campaign photography (street billboards, product UI, sports sponsorship) cropped into 2-column blocks.",
+  "treatments": [
+   "color fill vs white-outline twin of every icon",
+   "inline SVG icons with CSS fill-to-stroke swaps; one Lottie pair (Logo tile, DB_Master_Dropbox.json fill + outline); Rive on /motion",
+   "photos in hairline-framed cells, no rounded corners",
+   "UI screenshots as real product artifacts"
+  ],
+  "crops_and_ratios": "Tiles are tall portrait (268x485) and landscape (477x385) rectangles; icons anchored bottom-right at ~40% of tile width. Chapter photos ~4:5 portrait next to stacked landscape crops (frames/2 f00).",
+  "formats": "Home: img 0, svg 35, lottie JSON, 1 iframe (consent). Chapter pages: webp with srcset 500w/814w (typo.html).",
+  "evidence": [
+   "probes/dropbox-brand/desktop_04.jpg",
+   "frames/dropbox-brand/3/f01-f04",
+   "frames/dropbox-brand/2/f00",
+   "probes/dropbox-brand/probe.json media"
+  ]
+ },
+ "three_d": {
+  "present": false,
+  "stack": "none (probe contexts 2d:2 but canvas [] and no WebGL; the home Lottie renders to SVG, so the 2d contexts are inferred to come from a script such as font measurement or the consent widget)",
+  "role": "",
+  "assets": [],
+  "materials_lighting_post": "",
+  "interaction": "",
+  "performance_tactics": "",
+  "fallback_mobile": "",
+  "evidence": [
+   "probes/dropbox-brand/probe.json contexts, assets_3d []"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Persistent square menu button (--button-size 90px desktop, 64px under 991px, #0061FE); on chapter pages it is scaled to 2/3 (60px) inside a 60px left rail with the vertical chapter name and a 'Partner info' link; the home page is the expanded state of this same menu.",
+  "menu": "Full-viewport pinwheel mosaic of 8 chapter tiles (Framework, Voice & Tone, Logo, Typography, Iconography, Color, Imagery, Motion) around the button, which turns into a close X (frames/3 f02). Menu slides with cubic-bezier(.6,0,0,1). The button fills with a conic-gradient ring as you overscroll a chapter: conic-gradient(from 0deg, color-mix(in srgb, #0061fe 60%, black) 0deg calc(p*360deg), #0061fe calc(p*360deg)).",
+  "buttons_links": "Links are plain #0061FE 14px text; tiles are the buttons (whole-tile hover invert); widget controls are white rounded-rectangle panels with a thin blue slider track and blue dot thumb.",
+  "unusual_interactions": [
+   "Scroll assembles the menu from flung tiles",
+   "Variable-font sliders (width, italic, weight) and a Randomize button remixing specimen tiles (frames/0)",
+   "Faux motion-editor timeline: layer bars in identity colors with keyframe diamonds, scroll-scrubbed playhead, timecode 'mm:ss/10:00' in mono, zoom slider, live 'Frame render time 16.8 ms' readout: real requestAnimationFrame delta from performance.now, repainted at 24fps and truncated to one decimal (frames/1 f05)",
+   "Collaborator cursor tags ('Type Director' purple, 'Sharp Type CEO' green, 'Designer' orange, 'F1 Driver' on a photo above) drifting on randomized scroll-driven sine paths beside a scroll-driven text fill with a '39% complete' progress label (frames/2 f03)",
+   "Logo breakdown with scroll snap and Rive; iconography slot machine; color chip hovers (jury element titles, not viewed)"
+  ],
+  "sound": "None observed.",
+  "footer": "No classic footer on home (doc height 2700 ends on the mosaic). Credits in 12px/500 #5F9DFF links ('Dropbox Brand Studio', 'Daybreak Studio') and an outro/partner-info panel with randomized cursor tags."
+ },
+ "content_voice": {
+  "headline_style": "Plain declarative sentences in first-person plural, set as mid-size headings rather than slogans.",
+  "copy_tone": "Warm, confident brand-manual voice with a bit of play ('Go use it to make things. Really cool, well-designed...').",
+  "examples": [
+   "At Dropbox, our Brand Guidelines help us infuse everything we make with identity."
+  ]
+ },
+ "tech_stack": {
+  "framework": "Webflow (meta generator Webflow, window.Webflow, html classes w-mod-js w-mod-ix) with custom vanilla JS embeds (w-embed w-script) per page",
+  "libraries": [
+   "Webflow IX2 + jQuery 3.5.1",
+   "Lottie via Webflow's lottie integration, home page Logo tile only (DB_Master_Dropbox.json x2, SVG renderer, IX2-driven)",
+   "Rive runtime (data-animation-type='rive')",
+   "WebFont Loader (Noto Sans Mono)",
+   "Dropbox privacy consent script",
+   "custom cubicBezier() easing helper"
+  ],
+  "evidence": "curl index.html (script tags, inline CSS/JS), typo.html, motion.html, site.css; probe globals {Webflow:true}, libs_from_requests ['webflow']"
+ },
+ "performance_accessibility": {
+  "requests": 57,
+  "weight_notes": "Light JS (182KB) and CSS (32KB); the heavy item is fonts: 1.86MB x-font-ttf (the variable Sharp Grotesk shipped as TTF) plus 177KB woff2 and 120KB woff.",
+  "reduced_motion": "probe reduced_motion_rules 0; the home assembly is scroll-scrubbed (user-controlled) and hovers are short, but nothing is disabled for prefers-reduced-motion.",
+  "contrast_issues": "Body #736C64 on white is 5.17:1 at 14px (passes AA). Tile titles use same-hue dark inks on bright fills (e.g. #684505 on #FAD24B = 5.9:1). Weak spots: 12px #5F9DFF credit links on white are 2.71:1 (fails AA), the small light-blue '39% complete' readout on /typography, and the 40%-alpha gridlines (decorative).",
+  "mobile_quality": "Dedicated mobile transform vectors and sizes; no overflow at 390; the consent banner covers the bottom ~22% of the first mobile screen (about 185 of 844 CSS px in mobile_00).",
+  "dev_scores": {
+   "semantics_seo": 7.0,
+   "animations": 8.4,
+   "accessibility": 7.0,
+   "wpo": 7.6,
+   "responsive": 8.6,
+   "markup": 8.0
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Home page that is the menu, assembled by scroll",
+   "why_it_works": "The first scroll teaches the navigation: the visitor watches the site's table of contents snap together around the logo, and the same object follows them as the menu button on every page.",
+   "how_to_build": "Position 8 tiles in their final mosaic (CSS grid, 10px gap). On scroll (rAF-throttled), p = ease(scrollY / (docH - innerH)) with ease = cubicBezier(1, 0.25, 0.85, 1). scale = 2 - p; yeet = (max(vw,vh) - 90)/2/2; for tile i with vector [x,y] (desktop: [4,2],[-0.1,1],[-1,-0.1],[-4,2],[4,-2],[1,0.1],[0.1,-1],[-4,-2]) set transform: scale(s) translate(((x>0 ? p-1 : 1-p)*|x|*yeet)px, ((y>0 ? p-1 : 1-p)*|y|*yeet)px). Page height ~3 viewports (2700px at 900). After 250ms idle, if within 200px of the bottom, window.scrollTo({top: max, behavior:'smooth'})."
+  },
+  {
+   "technique": "Counter-scaled structural gridlines",
+   "why_it_works": "The faint grid is not wallpaper; it is the tiles' own edges, so it moves, tightens and ends up as the 10px gaps. It reads as a blueprint that becomes the product.",
+   "how_to_build": "Duplicate each tile as an empty .gridlines twin with 4 absolutely positioned 1px lines (color #5F9DFF66); apply the same transform as the tile, then keep lines crisp by counter-scaling: horizontal lines transform: translateX(50%) scaleY(1/scale), vertical lines translateY(-50%) scaleX(1/scale)."
+  },
+  {
+   "technique": "Per-tile hover that acts out the chapter",
+   "why_it_works": "Every tile inverts to the same near-black with a white line version of its icon, which unifies the mosaic, and then each icon does something only its chapter would do (swatches swap, quote marks slide, the easing curve reshapes, the sun sets), so hover previews the content instead of a generic lift or glow.",
+   "how_to_build": "Inside @media (any-hover: hover): .tile:hover { background:#1A1918; color:#fff } over 0.35s cubic-bezier(.4,0,.2,1). Build icons as inline SVG and swap fill:transparent; stroke:#fff with vector-effect:non-scaling-stroke (no second asset needed; a Lottie pair only where the icon itself animates, as for the logo). Add one subject-specific move per tile: swap two swatches with transform translate(calc(100% - 1px), 1px) / the inverse; slide paired glyphs 40%; widen bezier tangents to 50%; rotate a sun/moon wheel +180deg over 0.7s cubic-bezier(.4,.2,.2,1) after a 100ms setTimeout hover-intent, incrementing a counter so it always turns forward. For hand-drawn overlays: stroke-dasharray = path length, dashoffset -> 0 over 0.75s cubic-bezier(.5,0,.3,1) on enter and back over 0.2s cubic-bezier(.2,.1,0,1) on leave (slow draw, fast retract). No translate or scale on the tile itself."
+  },
+  {
+   "technique": "Grow-and-go tile transition without an SPA",
+   "why_it_works": "A 600ms continuity bridge between static Webflow pages: the clicked tile becomes the next page's hero title, so a hard page load feels like a zoom.",
+   "how_to_build": "On click: preventDefault; add .close to the container so siblings fade (opacity 0, 0.2s ease); the clicked tile gets .enlarge: width 100vw, height 100vh, z-index 99, transition 0.6s cubic-bezier(.65,0,.15,1); its title top:50%, transform: translateY(-50%) scale(4) (2.5 under 991px), color #fff, transition top/transform 0.6s cubic-bezier(.4,0,.2,1); swap the menu icon to an arrow; setTimeout(() => location.href = href, 600). Destination page opens on #1E1919 with the title at font-size clamp(0px,10vw,200px), 'wght' 500 'wdth' 100, left-aligned to --opening-col-2-left. Force-reload on pageshow when event.persisted."
+  },
+  {
+   "technique": "Same-hue ink pairs for a loud palette",
+   "why_it_works": "Eight saturated fields in one viewport stay coherent because text is never a foreign color; each fill carries its own dark shade.",
+   "how_to_build": "Define --identity-X and --identity-on-X per hue (yellow #FAD24B/#684505, cyan #3DD3EE/#055463, red #FA551E/#4E0119, green #B4DC19/#175641, purple #C8AFF0/#682760, pink #FFAFA5/#892055, blue #B4C8E1/#283750; for orange the live Color tile uses tangerine #FF8C19 with #6D2E09 rather than the paler #F9A34B token). Use on-X for title and icon; invert (on-X as fill, X as text) for 1-2 tiles to vary weight (Framework, Imagery). Keep a single brand-blue hub (#0061FE) and white 10px gaps."
+  },
+  {
+   "technique": "Scroll-filled statement with collaborator cursors and overscroll progress ring",
+   "why_it_works": "Reading progress becomes a story about the people who made the typeface, and the end of a chapter is signaled by the menu button filling like a timer.",
+   "how_to_build": "Split the heading into char spans (keep an aria-label with the full sentence on a wrapper). On scroll (rAF-throttled): path = section.top - sectionHeight*0.5; limit = sectionHeight*0.8; progress = clamp(-path/limit); per char i: r = easeOutQuad(clamp((-path - limit*0.7*i/len) / (limit*0.1))); color = rgb(255*(1-r)) and text-shadow = 1px 1px 0, -1px -1px 0, 1px -1px 0, -1px 1px 0 in rgba(115,108,100,1-r) (the faux outline); on mobile skip the shadow and run grey 70% -> black. Update a '${round(progress*100)}% complete' label. Give 3 cursor tags (pill with monogram, identity color pair) transform: translate(cos((1-ease)*a)*b vw, sin((1-ease)*b)*a vh) with a, b random ints in -12..12, transition 0.3s ease-out. At page end, map overscroll to --overscroll-progress 0..1: menu button background conic-gradient(from 0deg, color-mix(in srgb, #0061fe 60%, black) 0deg calc(var(--overscroll-progress)*360deg), #0061fe calc(var(--overscroll-progress)*360deg)); .page-section.dark > * { opacity: calc(1 - p); transform: scale(calc(1 - p*0.05)) }."
+  }
+ ],
+ "slop_risks": [
+  "Faint grid / graph-paper background: the blueprint hairlines are exactly the deslop tell when static; they only work here because they are the moving tile edges. Copying a fixed #5F9DFF66 grid behind a hero is slop. Caveat: on chapter pages the hairlines stay static behind content (frames/2, frames/3 f00); they survive only because each line frames a real content block (line-horizontal-top/bot, line-vertical-left/right) rather than a uniform graph-paper sheet.",
+  "Bento/colored-tile mosaic plus saturated fills risks the 'saturated accent pop' and 'colliding colours' tells; without the same-hue on-ink rule and the functional pinwheel, it is a template bento.",
+  "Decorative giant quote marks (Voice & Tone tile) match the deslop 'decorative quote-mark glyph' tell; fine as a chapter icon, slop as testimonial decor.",
+  "Faux app UI: the motion timeline is a fake editor panel; it avoids the 'fake window mockup' and 'dead controls' tells only because the playhead, zoom slider and render-time readout actually work.",
+  "Multiplayer cursor name tags are becoming a trend prop; used as decoration without the collaboration story they are a gimmick (and a row of tinted pill chips).",
+  "Content held off-screen by transforms at scroll 0: tiles are translated away (not opacity 0), so they still render; a copy that hides tiles with opacity until scroll fires falls into the invisible-content trap.",
+  "Monospace readouts (Noto Sans Mono) are limited to timecode/render time; spreading mono into labels would hit the 'monospace as house voice' tell.",
+  "The consent card's filled black 'Accept All' next to an outlined 'Decline' is the filled-plus-outlined button pair (platform banner, not the site's design).",
+  "Oversized icon in a colored tile: each mosaic tile is a big colored rectangle holding one icon; it escapes the tell only because icons are bespoke, anchored off-center (bottom-right), titled like file labels and animate their subject on hover. Centered icons in rounded squares would be the slop version.",
+  "Logo with a box behind it: the 90px Dropbox glyph on a #0061FE square is the menu button and the brand's own app-icon convention; used as generic decoration it would read as the boxed-logo tell.",
+  "Text you cannot read: 12px #5F9DFF credits on white are 2.71:1 and the light-blue progress readout is similar; a copy should darken small blue text."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots and both mobile shots (cookie banner overlays bottom-left but the scroll assembly and mosaic are fully visible); element videos 3 (Nav Menu) and 1 (Motion Timeline) viewed frame by frame, 0 and 2 at f00/f03/f06; code read from live index.html inline scripts (transform vectors, easing, snap logic, menu transitions), site.css tokens, typo.html and motion.html greps. Probe numbers used for sizes, fonts, colors, easings and durations; tile colors pixel-sampled from desktop_04. Probe root_vars report --button-size 64px / --nav-tile-gap 5px (mobile values captured), while desktop screenshots and inline CSS show 90px / 10px at 1440. INFERRED: Rive usage on the logo page and the slot-machine/color-chip interactions (from jury element titles and 'rive' hits, not viewed); page-to-page continuity beyond frames/3. audit (2026-09-25): re-viewed desktop_00-05 (04, 06, 07 byte-identical), mobile_00/01, all 8 frames of frames/3 plus frames/1 f02/f05, frames/2 f03, frames/0 f03, and re-fetched index.html, site.css, /typography and /motion. Confirmed: transform vectors, cubicBezier(1,.25,.85,1), 250ms/200px snap, counter-scaled gridlines, 600ms grow-and-go, conic overscroll ring (chapter pages only), timeline readout, fonts, tokens, 36/29/33.6px sizes, pinwheel geometry. Fixed: tile illustrations are inline SVG with CSS fill/stroke swaps, not Lottie pairs (only the Logo tile uses two Lotties); the Typography 'ital'/-webkit-text-stroke hover is commented-out dead CSS; the scroll fill is a white-to-black color ramp with a 4-way text-shadow outline, not -webkit-text-stroke; cursor tags follow random sine paths, not the fill frontier; 'rest of mosaic darkens' was a mid-flight hover transition; desktop grid is 120px/24px (32/12 is <=767px); chapter rail/button is 60px (90 x 2/3), not ~36px; the intro has a 500px blue-card stage; the logo is in the first-screen card but hidden by the consent banner; Color tile is tangerine #FF8C19; enlarge easing is (.65,0,.15,1); credit contrast 2.71:1; consent banner ~22% of the mobile screen; display_size_px 200 -> 144 (10vw at 1440). Added per-tile hover choreography, draw-in logo, slow-draw/fast-retract timing, 24fps readout, and three slop risks."
+}

@@ -1,0 +1,276 @@
+{
+ "slug": "aim-ai-modernism-of-kharkiv",
+ "title": "AIM — AI Modernism of Kharkiv",
+ "live_url": "https://aim.obys.agency/",
+ "award": "Awwwards Site of the Day, Jan 29 2024 (Honors + SOTD); Obys agency (Viacheslav Olianishyn)",
+ "scores": {
+  "overall": 7.67,
+  "design": 8.0,
+  "usability": 7.29,
+  "creativity": 7.61,
+  "content": 7.67,
+  "dev": {
+   "overall": 7.51,
+   "semantics_seo": 7.0,
+   "animations": 8.4,
+   "accessibility": 7.2,
+   "wpo": 7.8,
+   "responsive": 7.6,
+   "markup": 7.0
+  }
+ },
+ "industry": "Art and culture: agency-made AI art experiment (Midjourney reinterpretation of 1910-1930 Kharkiv Modernism)",
+ "signature": "The AIM wordmark is built from flat #141414 constructivist slabs and those slabs are the whole motion system: three Lottie path-morphs (a 3.9s load, a 340-frame scroll-scrubbed piece that restacks the slabs behind the 79px manifesto, and a 2.8s footer build) grow a black square into the letters, rearrange them into blocks that the #202020 manifesto type stays on top of as a near-invisible ghost, then rebuild them from a row of rising rectangles at the end.",
+ "first_screen": {
+  "composition": "Page #e7e4df. Top ~415px: the AIM wordmark as solid black slab letterforms spanning x 14-1426 (A drawn as a tilted parallelogram, I a plain block, M two blocks and a V notch) plus a full-width 46px black bar under it. This is an SVG Lottie at 1440x860 with a small outline AIM logo lockup top-left. Then a 14.4px meta row in four positions ('AI Modernism of Kharkiv [Ukraine]' / 'Index / Experiment / About' / '[Gallery]' / 'Obys Agency ©2025') over a 1px rule. The lower half is split by a 1px vertical rule at x=475 (one third): bottom-left holds the 'Modernists:' index E01-E05 at 14px; the right two thirds hold h2 'AIM— / AI Modernism / Of Kharkiv' at 81.9px, bottom-aligned; 'Scroll to Explore ↓' sits bottom-right.",
+  "what_owns_it": "type",
+  "display_type_px": 81.9,
+  "evidence": [
+   "evidence/probes/aim-ai-modernism-of-kharkiv/desktop_00.jpg",
+   "evidence/frames/aim-ai-modernism-of-kharkiv/2/f01.jpg",
+   "evidence/probes/aim-ai-modernism-of-kharkiv/probe.json measure.type.h2"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Khtekatrial = KH Teka TRIAL, Medium 500 (KHTekaTRIAL-Medium.otf)",
+    "role": "display",
+    "classification": "neo-grotesque sans with tight apertures",
+    "foundry": "inferred: KH Type (Kharkiv-based foundry); files are the TRIAL cut",
+    "source": "Webflow CSS @font-face + probe fonts_loaded ['Khtekatrial 500','Khtekatrial 400']"
+   },
+   {
+    "name": "Khtekatrial Regular 400 (KHTekaTRIAL-Regular.otf)",
+    "role": "body",
+    "classification": "neo-grotesque sans",
+    "foundry": "inferred: KH Type",
+    "source": "Webflow CSS @font-face"
+   }
+  ],
+  "display_size_px": 136.8,
+  "body_size_px": 14.4,
+  "scale_notes": "Everything is in em on a 14.4px base (= 1vw at 1440, so the whole scale follows the viewport). 'Explore / Experiment' 9.5em = 136.8px; hero h2 ~5.69em = 81.9px; manifesto 5.5em = 79.2px; meta/nav/UI 1em = 14.4px (91 of 115 text nodes). Two tiers only, ~9.5 : 5.6 : 1, with nothing between 16px and 79px.",
+  "tracking_leading": "Display -0.035em (-4.788px at 136.8), line-height 0.85 (116.28px). h2/manifesto -0.03em (-2.458px at 81.9), lh 0.9146 (74.94px). Meta text normal tracking; body CSS is font-size:1vw; line-height:1, and the h3 meta items measure 13.68px on 12.7px leading (~0.93), set solid.",
+  "case_and_style": "Title and sentence case, no all-caps. Square brackets used as a label system ([Ukraine], [Gallery], [Close], [01]-[18], [06] Featured:). Superscript footnote markers [*] [**] [***] inside the 79px manifesto are resolved in a 3-column 14px footnote row. Episode numbering 'E01:'. The em dash is a display glyph ('AIM—', counter '2—6').",
+  "signature_moves": [
+   "Two-tier scale: huge Medium display against 14.4px Regular meta, no mid sizes",
+   "Footnote apparatus in display text: [*] Collective name 1910-30 Kharkiv's artists / [**] Main visual AI tool is Midjourney / [***] Experiment produced by Obys",
+   "Catalogue grammar: bracketed labels, E01-E05 index, 'n—6' counters, '18 Artworks', 1px rules under every meta row",
+   "The logo is drawn geometry, not a font: slab letters that can break apart",
+   "Manifesto ink is #202020 (rgb 32,32,32), a hair lighter than the #141414 slabs, and it sits above the scroll Lottie: where a slab passes behind a line the words turn into a tone-on-tone ghost instead of disappearing (desktop_01, 2/f02)",
+   "Every multi-line display block is hand-broken into one masked element per line and authored separately per breakpoint (desktop and mobile copies of the manifesto live side by side in the HTML) so the line-mask reveal controls each break"
+  ],
+  "mobile": "mobile_measure reports 62.4px as the largest node, but the visible type in the shots is smaller: the hero h2 'AIM— AI Modernism Of Kharkiv' and the manifesto both measure ~37-38px from their line pitch (~34-35px at lh .9146) in mobile_00/01, so 62.4px is inferred to be a hidden desktop variant or an off-screen heading. The hero reflows to logo on top, a very tall empty field, the Modernists index, then 'AIM— AI Modernism Of Kharkiv' beside 'Explore ↓' between 1px rules (mobile_00); the nav collapses to 'Menu'; footnote markers survive inline but detach from their words ('[**] intelligence', mobile_01)."
+ },
+ "color": {
+  "mode": "section-shifting",
+  "base": "#e7e4df (--page-color--white): warm light grey / unbleached paper",
+  "ink": "#141414 (--page-color--black); manifesto text rgb(32,32,32) #202020",
+  "accents": [
+   "#7b7b7b (--grey token); the inactive names in the Explore list read ~#7a7a7a in desktop_04 pixels but the probe finds no grey text colour, so the dimming is IX2 opacity (.modernist-wrapper .4 vs 1) on #141414 text",
+   "no UI accent: vermilion rgb(167,40,5) #a72805, cobalt and ochre appear only in the AI images and their placeholder background colours"
+  ],
+  "ratio": "light sections ~75% base / 20% ink / 5% image; image sections ~90% image",
+  "section_shifts": "Hard cuts from #e7e4df to #141414 for the artwork-reveal band (desktop_02), the About & Credits page (frames 1/f00) and the Gallery overlay (#0e0e0ec2 + blur 10px). No gradients between them.",
+  "texture": "Heavy film-like noise lives only inside the Midjourney images (desktop_05/06); no grain layer over UI or text.",
+  "notes": "The palette is the modernist poster: black slab on paper, with colour arriving only through the artworks, so they look printed onto the page."
+ },
+ "layout": {
+  "grid": "14px outer margins (.97em); a thirds-and-halves system: nav items at x=15 / 493 / 965 / right edge 1426; hero split by a vertical rule at x=475 (1fr 2fr); Explore section with text 0-720, a meta column from 728 and an image panel in the right third (965-1440); footnotes on the same three columns as the nav. CSS grid templates: 1fr 1fr, 1fr 1fr 1fr, 1fr 2fr.",
+  "density": "airy",
+  "alignment": "Flush left, corner-anchored: meta pinned to the top and bottom edges of each panel, display type bottom-aligned in the hero and top-aligned in Explore.",
+  "composition_moves": [
+   "Full-width graphic wordmark + bar as the hero instead of a picture",
+   "Catalogue meta row with 1px rules standing in for a nav bar",
+   "Manifesto as 79px running text with footnote superscripts",
+   "Gutterless 3-column mosaic of AI images on #141414 (frames 2/f04)",
+   "Pinned split index: sticky 100vh experiment wrapper with the giant heading left, counter + name list middle, and a right-third column where each next full-height artwork slides up one viewport over the current one on a single scrubbed timeline (desktop_04/05 catch the next panel entering at y=838)",
+   "Footer: a row of eight 183x340 black rectangles + a bar that the footer Lottie turns back into the wordmark (desktop_07)",
+   "Mosaic-to-index handoff: the left column of the gutterless 3-up mosaic is the Explore photo slider parked at x:-203%; it slides right into the right third while columns 2 and 3 are pushed out right (x 110% / 40%) and Explore rises on paper (desktop_03)"
+  ],
+  "section_rhythm": "Type-graphic hero -> manifesto (large text, blocks falling through it) -> 14px footnotes + empty field -> dark band where image columns rise -> pinned 'Explore Experiment' with image stack and counter -> footer wordmark rebuild. Huge empty fields alternate with dense typographic slabs.",
+  "mobile_adaptation": "Single column, same margins, full-width images, logo stays a solid slab at the top, meta row reduced to 'Menu'."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis 1.0.27 from jsDelivr, initialised as `new Lenis()` with default options (lerp 0.1) and a requestAnimationFrame loop (inline script, which also console.logs every scroll event); html classes 'lenis lenis-smooth'.",
+  "preloader": "Loading-new.json Lottie, 1440x860, 60fps, 235 frames = 3.92s, played once by a Webflow IX2 PAGE_FINISH action. A black square at the top centre (frames 2/f00 at 1.27s) grows and morphs into the AIM slab letters + bar (2/f01 at 3.8s). 11 layers: 7 'line Outlines' + 3 'n-Vector' + 1 shape layer; path morph on 5, position on 7, rotation on 3; fills #141414 and #f5f2ee.",
+  "intro_sequence": "IX2 PAGE_FINISH actions delayed 3200/3600/3700/3800/4400/4500ms so the UI lands on the tail of the 3.9s logo Lottie. The many 0ms/500ms items with an empty easing are the instant initial states (useFirstGroupAsInitialState) and, where they do animate, IX2's empty easing is linear (applyEasing returns t). The visible moves: display lines rise from translate3d(0,120%,0) to 0 inside overflow:hidden over 1200-1300ms with easeOutCubic [.215,.61,.355,1] and a 100ms stagger (H1-anim-in), .hero-text fades in over 400ms outQuad at +800ms, meta rows fade (STYLE_OPACITY), and rules grow from width 0% to 98-100% or height 0 (STYLE_SIZE).",
+  "scroll_techniques": [
+   "scrubbed Lottie (Scroll-new.json, three generations of slab layers at frames 338-440, 440-543, 543-677)",
+   "mask line reveals (one element per hand-set line)",
+   "staggered rising image columns",
+   "horizontal handoff: mosaic column slides from x:-203% into the right third",
+   "pin (sticky 100vh experiment wrapper)",
+   "one continuous IX2 scroll-progress timeline (EXPER_ANIM) stepping image panels, counter and name opacity with hold plateaus",
+   "footer Lottie played by IX2 on scroll-into-view and reset on scroll-out"
+  ],
+  "text_animation": "Line mask reveal: each line is a block inside overflow:hidden starting at translateY(110-120%) (desktop_03 caught 'Explore' mid-rise, sliced flat through its x-height, with rules still growing). Counter: .counter-item-wrapper steps y -1.6 / -3.15 / -4.74 / -6.28 / -7.86em (6 values, ~1.57em per step) with hold plateaus inside EXPER_ANIM, so the 'n—6' digit rolls one line at a time. Name list: .modernist-wrapper.anim-1...6 opacity 1 for the active artwork and .4 for the rest, scrubbed on the same timeline. About page hover: the artist name rolls vertically (duplicate line moving -100%/100%; frames 1/f06 shows ghost letters mid-roll) over a halftone portrait placed behind the names.",
+  "image_animation": "Artwork band: EXPER_ANIM keyframes 0/3/6 start three full-height columns rising from y:100vh to 0 on #141414 (desktop_02: left column top at y=474, middle at 632, right not yet in view); all land by keyframe 12 as a gutterless full-viewport 3-up mosaic (2/f04). Keyframes 13-30: the left column, which is the Explore photo slider parked at x:-203%, slides right to x:0 (the right third) while column 2 moves x 0->110% and column 3 x 0->40%; desktop_03 caught the model image at x 720-1195 mid-travel with slivers of columns 2 and 3 to its right, as 'Explore' rises on paper at left. In Explore each next .img-slider-item translates -100vh (from its in-flow slot one viewport below) to slide up over the current panel in ~10-keyframe steps with hold plateaus; the incoming .big-scroll-img fades 0->1 as it rises and the covered one scales 1->1.2 underneath; each panel carries an .img-bg-color placeholder in the artwork's dominant colour; the counter reads 1—6 ... 6—6 (desktop_04-06, 2/f05-f07).",
+  "page_transitions": "a.transition-trigger: preventDefault, IX2 MOUSE_CLICK animation plays, then window.location changes after a 700ms setTimeout.",
+  "hover_micro": [
+   "About page artist list: hovering a name shows a black-and-white halftone portrait behind it and rolls the name's letters (5 MOUSE_OVER / 5 MOUSE_OUT IX2 events, one per artist)",
+   "Link rules: on hover the 1px .link-line-anim slides out to x:140% and back (500ms, [.645,.045,.355,1]); line-in/out variants use a two-line relay (line 1 to 110%, line 2 from -100% to 0, 800ms easeOutCubic, 100ms offset); frames 1/f06 show Biography/Works rules mid-wipe",
+   "Arrow swap on 'Learn More' (Big-ctn-hover): the → exits x:+150% while a clone enters from -150%, 400ms easeInOutCubic",
+   "Nav/text links: opacity transition .2s",
+   "'Learn More' = 14px label on a 1px rule 344px wide with a → at the end; 'Biography ↗' / 'Works ↗' links over 1px rules"
+  ],
+  "cursor": "default system cursor",
+  "easing_curves": [
+   "Lottie Loading/Scroll: out tangent (0.578,0), in tangent (0.325,1) ≈ cubic-bezier(0.58,0,0.33,1), a strong ease-in-out",
+   "Lottie Footer: (0.537,0)/(0.405,1) ≈ cubic-bezier(0.54,0,0.41,1)",
+   "IX2 empty easing '' x268 (linear in IX2's applyEasing; 182 of them at 500ms, mostly instant initial states and the scroll-linked EXPER_ANIM)",
+   "IX2 cubic-bezier(.645,.045,.355,1) easeInOutCubic x47: link rules, arrow swaps, line out, loading, gallery",
+   "IX2 cubic-bezier(.215,.61,.355,1) easeOutCubic x15: heading line rises (1200-1300ms), line in, fixed header",
+   "IX2 cubic-bezier(.77,0,.175,1) easeInOutQuart x7: gallery in/out, page transition-in (500-1200ms)",
+   "IX2 outQuad x10 at 200/300/400ms",
+   "CSS: opacity .2s, all .3s"
+  ],
+  "duration_range_ms": "UI 200-1300 (500 dominant as a count, but the visible heading rises are 1200-1300); Lottie 2667 (footer file; IX2 plays it over 2800), 3917 (loader), 5667 (scroll piece, frames 338-678)",
+  "stagger_ms": "100 between heading lines (300/400ms delays); 100-500ms IX2 delay steps elsewhere; the intro cascade starts at 3200-4500ms; footer Lottie pieces 2 frames (33ms) apart",
+  "choreography_notes": "Logo first (0-3.9s), UI arrives in the last ~0.7s of it, then scroll takes over the same slabs: the scroll Lottie swaps three generations of slab layers (frames 338-440, 440-543, 543-677, driven by a 'move-mask' null) that restack behind the manifesto as a stepped pyramid of upright blocks (2/f02 at 6.3s) and as three slabs with canted tops (desktop_01), settle into three upright rectangles below the footnote row (2/f03 at 8.9s), and give way to the rising artwork columns. The text never goes under the slabs: the #202020 lines stay on top and read as a ghost where a black block passes. The mosaic then hands its first column to the Explore index by sliding it two columns right. IX2 SCROLLING_IN_VIEW uses smoothing 50-70 so scrubs lag slightly behind Lenis. Main-page element video: 20.3s, frames at 1.27-19.0s.",
+  "evidence": [
+   "evidence/frames/aim-ai-modernism-of-kharkiv/2/f00-f07.jpg",
+   "evidence/frames/aim-ai-modernism-of-kharkiv/0/f00-f07.jpg",
+   "evidence/frames/aim-ai-modernism-of-kharkiv/1/f00,f03,f06.jpg",
+   "evidence/probes/aim-ai-modernism-of-kharkiv/desktop_01.jpg",
+   "evidence/probes/aim-ai-modernism-of-kharkiv/desktop_02.jpg",
+   "evidence/probes/aim-ai-modernism-of-kharkiv/desktop_03.jpg",
+   "evidence/probes/aim-ai-modernism-of-kharkiv/desktop_07.jpg",
+   "HTML inline scripts + Lottie data-* attrs",
+   "Webflow IX2 data in webflow.schunk.1516315476b8a910.js (regex tallies)",
+   "Lottie JSON analysis (Loading-new, Scroll-new, footer-ex)",
+   "IX2 action decode: EXPER_ANIM (a-52) keyframes for .photo-slider-anim x:-203%->0, .big-img-item._2/_3, .img-slider-item.next._N, .counter-item-wrapper, .modernist-wrapper; H1-anim-in; Link-hover-in; Big-ctn-hover; Footer-json-anim",
+   "pixel check desktop_01: text over slab 19-38 luminance vs slab 19-20 (text on top)"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "mixed (AI-generated stills + vector Lottie graphics)",
+  "art_direction": "Midjourney images (stated in footnote [**]) art-directed as constructivist fashion portraits (a model in a striped dress in front of vermilion/black/cobalt pillars), suprematist sculpture and glass objects on seamless paper, and constructivist architecture on desert or sea horizons. Flat frontal studio light, muted paper backgrounds, visible noise, palette limited to vermilion, cobalt, ochre, black and bone, so everything looks like printed matter.",
+  "treatments": [
+   "edge-to-edge panels with no radius, border or shadow",
+   "gutterless 3-up mosaic",
+   "right-third full-height portrait panels that slide up over one another; the covered image zooms 1->1.2 underneath, the incoming one fades in over a colour placeholder",
+   "halftone dot-screen B/W portraits on the About hover",
+   "gallery overlay on backdrop-filter blur(10px) + #0e0e0ec2 over the page"
+  ],
+  "crops_and_ratios": "Mosaic columns 1/3 width x full viewport height (2/f04); Explore panels one third wide (965-1440) x ~800px visible under the nav; gallery tiles on a 3-column grid in the right half of the viewport, 1x1 squares (~224px) and 2x2 portrait/landscape tiles, ~1em (14px) gaps, captioned [01]-[18].",
+  "formats": "24 webp (~5.3MB declared), 0 video, 3 Lottie JSON (19-35KB each), 2 OTF fonts (~190KB); 38 img elements",
+  "evidence": [
+   "evidence/probes/aim-ai-modernism-of-kharkiv/desktop_02.jpg",
+   "evidence/probes/aim-ai-modernism-of-kharkiv/desktop_03.jpg",
+   "evidence/probes/aim-ai-modernism-of-kharkiv/desktop_04.jpg",
+   "evidence/probes/aim-ai-modernism-of-kharkiv/desktop_05.jpg",
+   "evidence/probes/aim-ai-modernism-of-kharkiv/desktop_06.jpg",
+   "evidence/frames/aim-ai-modernism-of-kharkiv/0/f01-f07.jpg",
+   "evidence/frames/aim-ai-modernism-of-kharkiv/2/f04.jpg",
+   "evidence/frames/aim-ai-modernism-of-kharkiv/1/f06.jpg"
+  ]
+ },
+ "three_d": {
+  "present": false,
+  "stack": "none (2D vector Lottie, svg renderer)",
+  "role": "none",
+  "assets": [],
+  "materials_lighting_post": "",
+  "interaction": "none",
+  "performance_tactics": "",
+  "fallback_mobile": "",
+  "evidence": [
+   "probe contexts {2d:2}, no webgl, no .glb/.hdr; Lottie divs declare data-renderer='svg'"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "A 14.4px meta row that works as the nav: site name | 'Index / Experiment / About' | '[Gallery]' | 'Obys Agency ©2025', with a 1px rule below. It becomes a fixed top bar once the hero logo scrolls away (desktop_01 onwards).",
+  "menu": "Mobile: a 'Menu' text trigger top-left (Webflow). Gallery: '[Gallery]' opens a full-screen overlay (.galley-blur-bg: backdrop-filter blur(10px), background #0e0e0ec2) whose panel starts about a quarter of the way across: a '[Close]' header over a 1px rule, a 'Gallery:' label column, then 18 artworks on a 3-column grid in the right half (1x1 and 2x2 spans, ~14px gaps) and an 'n of 18' progress row over a rule at the bottom (frames 0/f01-f07, scrolled over ~12s). Opening/closing uses easeInOutQuart [.77,0,.175,1].",
+  "buttons_links": "No filled buttons at all. Links are text on 1px rules with → or ↗; footnote link 'Obys' underlined on mobile; hover is an opacity change (.2s).",
+  "unusual_interactions": [
+   "Scroll-scrubbed Lottie that restacks the logo slabs behind the manifesto while the text stays on top as a ghost",
+   "Halftone portrait + letter-roll hover on artist names",
+   "Footnote markers inside display copy",
+   "Counter 'n—6' with an active-name list tied to the image stack",
+   "Links delayed 700ms so a click animation can play before navigation",
+   "Mosaic column that travels two columns right to become the first image of the pinned index"
+  ],
+  "sound": "none",
+  "footer": "A 14px row 'An AI Experiment Based on the Kharkiv Modernism' / 'Obys Agency ©2023', then a full-width 46px black bar and footer-ex.json (1440x368, 160 frames): 8 pieces (183x340 slabs; three are 383px-wide parallelograms pre-rotated ±57° so they read as upright slabs) rise from below the frame 2 frames apart over ~1.2s, hold, then slide right while the three rotate to 0° and become the A and M diagonals. IX2 'Footer-json-anim' plays it 0->99% over 2800ms when the footer scrolls into view and 'Footer-json-anim-out' resets it, so it rebuilds on every visit; desktop_07 caught the hold phase (row of rectangles, the eighth cut by the right edge)."
+ },
+ "content_voice": {
+  "headline_style": "Two-word imperatives and titles ('Explore Experiment', 'About & Credits Page—AIM', '05 Artists:')",
+  "copy_tone": "Curatorial and academic, museum-catalogue manner, with footnotes and credits; the AI tooling is disclosed rather than hyped",
+  "examples": [
+   "Explore Experiment"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Webflow (IX2 interactions, Lottie plugin, jQuery 3.5.1)",
+  "libraries": [
+   "Lenis 1.0.27 (jsDelivr)",
+   "lottie-web via Webflow (svg renderer)",
+   "Google Analytics 4"
+  ],
+  "evidence": "probe globals {Lenis, Webflow}, libs_from_requests ['lenis','webflow']; HTML script tags; IX2 tallies: 12 SCROLL_INTO_VIEW, 8 SCROLLING_IN_VIEW, 8 MOUSE_CLICK, 6 PAGE_FINISH, 5 MOUSE_OVER/OUT; actions 129 TRANSFORM_MOVE, 110 STYLE_OPACITY, 22 TRANSFORM_SCALE, 15 PLUGIN_LOTTIE, 14 STYLE_SIZE"
+ },
+ "performance_accessibility": {
+  "requests": 44,
+  "weight_notes": "Light: ~5.3MB webp, ~180KB JS declared, 3 small Lottie JSONs, but fonts ship as ~190KB trial .otf files rather than woff2.",
+  "reduced_motion": "0 prefers-reduced-motion rules; the Lottie loader and scroll scrubs always run.",
+  "contrast_issues": "Inactive Explore names are #141414 at opacity .4 on #e7e4df, which the pixels put at ~#7a7a7a-#939393 (about 2.5-3.4:1), low for 14px text. Mid-scroll, manifesto words that sit over a slab are #202020 on #141414 (about 1.1:1): deliberate, but those words are unreadable while the block passes. The About page is light #e7e4df text on #141414 (fine).",
+  "mobile_quality": "No horizontal overflow and the layout reflows, but: the hero leaves a very tall empty field between the logo and the index (mobile_00); the mobile manifesto is a separately hand-broken copy and it carries a copy bug, 'techniques to reinterpret and garde artists and revive their visionary ideas.' (a desktop line fragment pasted in; confirmed in the HTML's .mobile-view-wrapper variant, mobile_01); all variants also keep the typo 'we employs'.",
+  "dev_scores": {
+   "semantics_seo": 7.0,
+   "animations": 8.4,
+   "accessibility": 7.2,
+   "wpo": 7.8,
+   "responsive": 7.6,
+   "markup": 7.0
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Wordmark-as-motion-system (Lottie path morph, load + scrub + footer)",
+   "why_it_works": "The brand's geometry performs the concept (Constructivist slabs) before any content shows, and reusing the same shapes at load, mid-scroll and footer makes the page feel authored end to end.",
+   "how_to_build": "Draw the logo in After Effects as separate flat shape layers (no strokes, fill #141414). Export three Bodymovin JSONs: (1) loader 1440x860, 60fps, ~235 frames, square -> letters, keys eased ≈ cubic-bezier(0.58,0,0.33,1); (2) scroll piece 1440x860, ~340 frames, built as three successive generations of slab layers (~100 frames each) that split, rotate and scale into blocks; (3) footer 1440x368, ~160 frames, 8 slabs rising 2 frames apart then sliding and rotating into letters. lottie-web renderer:'svg', autoplay:false. Loader: anim.play() on load; start UI reveals at 3.2-3.8s. Scroll: ScrollTrigger({trigger:section, start:'top top', end:'bottom bottom', scrub:0.6, onUpdate:s=>anim.goToAndStop(s.progress*(anim.totalFrames-1),true)}) (scrub 0.6 matches Webflow smoothing 50-70). Put the Lottie BEHIND the manifesto (lower z-index, pointer-events:none) and set the manifesto ink one step lighter than the slabs (#202020 on #141414) so passing blocks ghost the words instead of hiding them. Footer: ScrollTrigger({trigger:footer, onEnter:()=>anim.goToAndPlay(0,true), onLeaveBack:()=>anim.goToAndStop(0,true)})."
+  },
+  {
+   "technique": "Two-tier em scale keyed to 1vw",
+   "why_it_works": "A 9.5:1 jump with no intermediate sizes gives a poster hierarchy, and em-on-vw keeps every ratio identical at any width.",
+   "how_to_build": "html{font-size:1vw} (clamp it on mobile), body 1em Regular with line-height ~0.93. Display 9.5em Medium, line-height .85, letter-spacing -0.035em; statements 5.5em, line-height .9146, -0.03em. Nothing between 1.2em and 5.5em. Use one licensed grotesk in two weights (500/400) and ship it as woff2."
+  },
+  {
+   "technique": "Catalogue meta grammar with footnotes",
+   "why_it_works": "Brackets, numbered indexes and footnotes make an AI art project read as an archive or exhibition, and 14px meta against 80-137px display is the whole hierarchy.",
+   "how_to_build": "Meta row: 4 items on a thirds grid with a 1px #141414 border-bottom, 14.4px. Labels in brackets ([Gallery], [01]). Inside display text: <sup>[*]</sup> at ~0.18em with vertical-align:super. Footnote row: grid-template-columns:repeat(3,1fr), items '[*] — note' aligned to the nav columns. Index lists as 'E01: Name' in a two-column definition grid (label col ~120px)."
+  },
+  {
+   "technique": "Pinned split index with counter and image stack",
+   "why_it_works": "Keeps a huge heading still while the artworks change, and the counter + greyed name list give orientation without any UI chrome.",
+   "how_to_build": "Section height ~N x 100vh with a sticky 100vh inner: grid-template-columns: 1fr .33fr .66fr (heading, meta, image column; image column overflow:hidden). Stack the panels absolutely in the image column, each (after the first) starting at y:'100vh'. Drive everything from one scrubbed timeline over the section: at step i, .to(panel[i],{y:0}) together with .fromTo(img[i],{opacity:0},{opacity:1}) and .to(img[i-1],{scale:1.2}) so the new artwork rises over the old one while the old one zooms under it; put a short empty tween between steps so each artwork parks full-height (a hold plateau). Give each panel a background in the artwork's dominant colour as a load placeholder. Counter: a column of digits in a one-line overflow:hidden box, .to(counter,{y:-i*1.57+'em'}) at each step. Names: .to(names,{opacity:.4}) and .to(names[i],{opacity:1}) at each step (keep the ink #141414; .4 is under 3:1, so consider .55 for 14px text). Easing none on the scrub."
+  },
+  {
+   "technique": "Rising offset columns that lock into a gutterless mosaic, then hand one column to the next section",
+   "why_it_works": "The images assemble like a poster grid instead of fading in, and the dark band makes the colour of the AI images hit hard.",
+   "how_to_build": "Band background #141414, three columns 33.333vw wide, full viewport height, no gap. The left column is actually the next section's image slider parked with x:'-203%' (two column widths left of its home in the right third). One scrubbed timeline over the band: col1 y:'100vh'->0 at 0, col2 at +0.25, col3 at +0.5 (all landed by ~1.0); then from ~1.1 to 2.5 move col1 x:'-203%'->0 while col2 x:0->'110%' and col3 x:0->'40%' push out right, and switch the background to paper as the heading lines rise from 120%. Images keep their natural portrait crop; no radius, no shadow."
+  },
+  {
+   "technique": "Blurred-page gallery overlay",
+   "why_it_works": "The page stays visible as a blurred context layer, so the gallery reads as a drawer of the same catalogue, not a modal.",
+   "how_to_build": "Fixed overlay: backdrop-filter:blur(10px); background:rgba(14,14,14,.76). A panel from ~26vw to the right edge with overflow:auto and data-lenis-prevent; header '[Close]' over a 1px rule; a 'Gallery:' label in its first column. Tiles: grid in the right half, grid-template-columns:repeat(3,1fr), gap 1em (~14px), tiles span 1x1 or 2x2 with grid-auto-flow:dense; caption '[NN]' centred under each tile at ~12px; a bottom progress row 'n of 18' with a 1px rule. Open/close with cubic-bezier(.77,0,.175,1)."
+  }
+ ],
+ "slop_risks": [
+  "Cream/beige editorial background: #e7e4df is exactly the warm bone default the law flags. Here it is earned by the paper-poster reference and the solid black slabs; copied onto another brief it reads as oat-milk slop, so pick the paper colour for the subject.",
+  "Content hidden until a reveal fires: Webflow IX2 initial states (html.w-mod-js:not(.w-mod-ix) ... opacity:0 / translate3d(0,110-120%,0) / width:0%) hide meta rows, headings and rules until IX2 runs. desktop_03 caught 'Explore' half-risen with rules still growing. The footer wordmark does not exist until IX2 plays its Lottie: frame 0 has every piece below the canvas, and desktop_07 caught it mid-play as a row of bare rectangles.",
+  "Content sliced by an edge: the mask reveal slices glyphs flat mid-animation, and the fixed meta bar shaves the ascenders of manifesto lines as they scroll under it (desktop_01).",
+  "Decorative shapes behind text: in the manifesto the slabs pass BEHIND the words, which stay on top in #202020 (desktop_01 pixels: text 19-38 over slab 19-20). The ghosting is on-concept here; a naive copy with blocks over body copy, or text a notch off the block colour without the concept, is the 'text you cannot read' tell.",
+  "Em dash as a typographic device ('AIM—', '2—6') and as the footnote separator in running copy ('[*] — Collective name…', '[**] — Main visual AI tool is…'): fine as a display glyph, but em dashes in text are a flagged AI-writing tell.",
+  "One label treatment everywhere: brackets on every label ([Gallery], [Close], [01], [06] Featured) risk becoming a tic if copied without the catalogue concept.",
+  "Multi-line display stacks: 'AIM— / AI Modernism / Of Kharkiv' (3 lines) and 4-6 line 79px manifesto paragraphs; acceptable as a text block, but not a template for headlines.",
+  "Default trailing arrow: 'Learn More →' and '↗' links are the generic arrow tell; here they are at least set on 1px rules at 14px.",
+  "Trial font (KHTekaTRIAL .otf) shipped in production: a licensing and craft risk, not something to copy.",
+  "Unrounded hairline rules everywhere: a 1px square rule under every meta row, the hero's vertical divider at x=475, rules under every link and the gallery progress row. They are the catalogue grid here, but the law flags bare hairlines as faked structure, so a copy needs the full catalogue system or real spacing instead.",
+  "Underline-fill hover: link rules slide out and back (x:140%, or a two-line relay) on hover; the law bans animated underlines. The arrow swap on 'Learn More' is the better half of the pair.",
+  "Hand-broken copy per breakpoint: each masked line is typed by hand in separate desktop and mobile copies, which is how the mobile manifesto shipped with a pasted fragment ('reinterpret and garde artists and revive'). Use a runtime line splitter (SplitText or similar, re-run on resize) instead."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots and both mobile shots were viewed one by one; all 8 frames of 'Main page storytelling' (2) and 'Gallery Mode' (0); f00/f03/f06 of 'Hover' (1). Type sizes, tracking, colours and counts come from probe.json. Font files and root tokens (--page-color--white #e7e4df, --page-color--black #141414, --grey #7b7b7b), the blur overlay CSS, the Lenis init and the 700ms transition script come from live HTML/CSS. Lottie specs (size, fps, frames, layers, animated props, bezier tangents) come from parsing the three JSONs. IX2 event/action/easing/duration/delay tallies come from regexes over the Webflow chunk (no full read). INFERRED: KH Type as the foundry, the em-step roll belonging to the counter, the contrast ratio of the grey list, and that the halftone portraits are pre-rendered images. The screenshots were usable (no preloader block); desktop_07 caught the footer Lottie before it played. | audit (2026-09-25, adversarial re-check against probe, all 8 desktop + both mobile shots, all 8 frames of 'Main page storytelling' (2), frames 0/f00,f01,f05,f07 and 1/f03,f06, the cached HTML/CSS/Webflow chunk and the three Lottie JSONs): REFUTED and fixed: slabs covering the manifesto (the text is on top; manifesto #202020 over #141414 slabs, pixel-checked); 'put the SVG above the text' in steal_this; 'tumbling tilted blocks' in 2/f02 (a stepped stack of upright blocks); IX2 empty easing is linear, not Webflow 'ease'; visible intro rises are 1200-1300ms easeOutCubic with 100ms stagger; 74 custom IX2 beziers were missing (easeInOutCubic x47, easeOutCubic x15, easeInOutQuart x7); inactive names are opacity .4, not #7b7b7b colour (probe text_colors has no grey); gallery is a 3-column grid in the right half with ~14px gaps, panel from ~26vw, not 4 columns/8px/right two thirds; desktop_07 is the footer Lottie mid-play (hold phase), not before it played; footer Lottie is played by IX2 over 2800ms and reset on leave; mobile 62.4px is not the visible manifesto (~37-38px). ADDED: the mosaic-to-index horizontal handoff (photo slider x:-203%->0, desktop_03), the stepped image stack with hold plateaus, counter steps to -7.86em, link-line wipe and arrow-swap hovers, footer piece choreography, the mobile manifesto copy bug and hand-broken per-breakpoint copies, hairline and underline-hover slop tells. Remaining inference: KH Type as foundry, exact Explore image heights, the purpose of the loader's early light-coloured n-Vector layers."
+}

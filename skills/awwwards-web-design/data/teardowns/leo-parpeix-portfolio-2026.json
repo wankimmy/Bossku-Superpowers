@@ -1,0 +1,304 @@
+{
+ "slug": "leo-parpeix-portfolio-2026",
+ "title": "Léo Parpeix - Portfolio 2026",
+ "live_url": "https://leoparpeix.com/",
+ "award": "Awwwards Site of the Day, Sep 14 2026 (Honors, SOTD). Credits: Thoma Lecornu, Léo Parpeix.",
+ "scores": {
+  "overall": 7.69,
+  "design": 7.79,
+  "usability": 7.34,
+  "creativity": 8.04,
+  "content": 7.63,
+  "dev": {
+   "overall": 7.47,
+   "semantics_seo": 7.0,
+   "animations": 8.4,
+   "accessibility": 7.0,
+   "wpo": 7.2,
+   "responsive": 7.8,
+   "markup": 7.4
+  }
+ },
+ "industry": "Personal portfolio: art director and interactive designer (ex-Immersive Garden, currently Locomotive + freelance).",
+ "signature": "A toy-like Blender atelier rendered in real-time three.js hands over to a stark 162px green-black type page where you carry a 3D fruit on your cursor, a steering-driven cartoon bee pursues it, and a click drops the fruit onto the letters with gravity, stretch, elastic squash, sound and a real shadow-mapped shadow cast across the DOM type, so the typography becomes a physical tabletop.",
+ "first_screen": {
+  "composition": "OBSERVED (settle12/desktop_00): full-bleed real-time 3D room owns 1440x900: a cream clay daisy character with a tiny sleepy face stands dead-centre on a faceted plinth in front of the middle of three arched mullioned windows with painted clouds; plaster sculptures on pedestals left and right, a ladder, sculptor stools, a workbench, herringbone floor, visible film grain across the render and a few light dust motes floating in the air. DOM layer is tiny: one 14px nav row at y=47 (Léo Parpeix at x=40, role line 'Art director, Interactive designer' at x=257, right cluster Work / About / Playground / '····' ending x=1400) and a bottom-left block at x=257 in 24px/28.8px: a three-line statement plus 'Scroll down' at 14px. No headline, no button. At the default 6.8s settle (desktop_00) the page is still in its intro: an empty #F7F7F7 field with a single rounded, tilted window (~300x210px) rising from the bottom centre and showing a slice of the room. Verified in the bundle (audit 2): this window is NOT a CSS element; it is a WebGL mask plane (loaderMaskMesh) that paints #F7F7F7 everywhere OUTSIDE a rounded-box SDF (box(), corner radius 0.05, mask = step(0, sdf)). The box starts as a small square rotated -0.3pi on Z and tilted -0.4pi on X with a perspective divide (that is why it reads as a skewed capsule), slides up from y=+1 to -0.13, and then grows to cover the screen. The 72.7px CSS radius in css_usage belongs to some other element. The mask plays after the DOM loader exits: LoaderBlock lines leave at ~3.75s (1.5s delay + 2.25s) and the navbar fades in on a 3.75s CSS transition-delay.",
+  "what_owns_it": "3d",
+  "display_type_px": 24,
+  "evidence": [
+   "probes/leo-parpeix-portfolio-2026__settle12/desktop_00.jpg",
+   "probes/leo-parpeix-portfolio-2026/desktop_00.jpg",
+   "probe measure.type p 24px/28.8px",
+   "bundle: assets/models/home/scene_v9.glb, flower_v2.glb",
+   "app.css .navbarBlock{opacity:0;transition:opacity 1s 3.75s ease}; bundle LoaderBlock timeline (uS=1.5, u5=2.25)",
+   "bundle index-BZFBO0Ol.js (audit 2 re-fetch): class p6 loaderMaskMesh, fragment shader with box() SDF, rotateZ(-PI*0.3)/rotateX(-PI*0.4), show() timeline"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Avantt (variable, served as avantt-variable.ttf, CSS alias 'title')",
+    "role": "display",
+    "classification": "geometric grotesque with round O/C/G bowls, set heavy via variation axis",
+    "foundry": "unverified (file name only)",
+    "source": "app.css @font-face + probe fonts_loaded 'title 400'; bundle/app.css: the same face at wght 622 also sets menu links (3.89vw, lh .85; 56px mobile), .webglSectionBlock__text (8.19vw, lh .8), flower-section titles (8.19vw) and about titles (3.61vw)"
+   },
+   {
+    "name": "Monument Grotesk Regular (monumentgrotesk-regular.woff/.woff2, CSS alias 'text')",
+    "role": "body",
+    "classification": "neo-grotesque",
+    "foundry": "Dinamo (ABC Monument Grotesk)",
+    "source": "app.css @font-face + probe fonts_loaded 'text 400'"
+   }
+  ],
+  "display_size_px": 162,
+  "body_size_px": 14,
+  "scale_notes": "Two families, one weight each. Display 162px = 11.25vw (CSS .title font-size:11.25vw) used only for the uppercase statement pages. Second display size 118px = 8.1944vw in #F7F7F7: CSS .webglSectionBlock__text{color:#f7f7f7; line-height:.8} set over the bookshelf render (the cut-off 'DESIGN.' at the top of desktop_04); the 80 nodes are a verified per-character split (each char wrapped in span.webglSection-char, inline-block, will-change opacity) used for a scroll-scrubbed ghost-to-solid fill: a base copy sits at opacity 0.15 and a stacked reveal copy fills char by char to 1. Section heads 34px/37.4px ('Selected projects', 'Archives'); intro statement 24px/28.8px; footer links 18px; everything else 14px (315 text nodes; 1rem = 14px = .9722vw at 1440). Ratio display:section:body = 162:34:14, roughly 11.6x between display and UI text with almost nothing in between.",
+  "tracking_leading": "Display line-height 0.9 (145.8px on 162px), letter-spacing normal, font-variation-settings 'wght' 622 (the computed weight reports 400 because weight comes from the axis); menu links lh .85, the white render-section line lh .8. Body 14px with line-height 1.0 (14px) for nav/meta and 1.2 (16.8px) for paragraphs; 24px copy at 1.2.",
+  "case_and_style": "Display strictly uppercase, centred, 3 lines per statement (e.g. FRENCH / INTERACTIVE / DESIGNER, then CREATIVE / PASSIONNATE / ART DIRECTOR, closing LET'S CREATE / A REMARKABLE / JOURNEY). Body is sentence case, no italics; project categories are the same 14px set in light grey beside the name ('Creandum  Finance'). Numerals plain (index 1-24, years).",
+  "signature_moves": [
+   "One heavy geometric display at 11.25vw, lh 0.9, wght 622, used as a full-screen stage that 3D objects land on",
+   "Everything else collapses to a single 14px neo-grotesque; hierarchy comes from position and value, not weight",
+   "Category/meta in the same size as the name but at 30% opacity of the ink (CSS .title__type{opacity:.3}; measures ~#A9A9A9 on #F7F7F7), inline after it",
+   "Each display line rises out of an overflow:hidden mask while drifting horizontally from alternating sides (+5% / -5% / +5%) into place",
+   "Statement blocks rotate through adjective triplets rather than one fixed headline"
+  ],
+  "mobile": "OBSERVED mobile_00/mobile_01 at 390px: the 3D room stays as the hero (camera reframed for portrait, a skylight shows above the arch) with the 24px statement overlaid bottom-left; about copy at ~24px sentence case ('Bonjour, ...') with a second indented column marked by an asterisk; no horizontal overflow. audit correction: the statement titles are 48px at <=427px and the render-section/flower titles 40px at <=488px (CSS media rules); the measured largest 56px is most likely the off-canvas mobile menu links (.links__link 56px), not the statements."
+ },
+ "color": {
+  "mode": "light with dark and image interludes (section-shifting)",
+  "base": "#F7F7F7 (rgb 247,247,247) near-white neutral page",
+  "ink": "#022016 (rgb 2,32,22) deep green-black; theme-color meta #083D2A",
+  "accents": [
+   "#F6E016 (rgb 246,224,22) yellow: cursor pills DRAG / DISCOVER MORE, the static WATCH REEL button on mobile, plus a yellow footer variant and the Credits popup fill (.footerBlock.yellow, .footerBlock__popup background #f6e016). The desktop showreel cursor is NOT yellow: .cursorIndication__text--showreel is #022016 on #F7F7F7 with a play/pause icon track",
+   "#EED6C8 (rgb 238,214,200) peach: About-page ink (.contentBlock/.flowersBlock color #eed6c8), text on the green footer variant, navbar on About (--navbar-fg), and the clipboard 'copied' pill (#083D2A text on #EED6C8)",
+   "#083D2A deep green (theme-color): green footer variant background and clipboard ink; also the page-transition disc colour when going to About (verified: disc colour is per destination, home #F7F7F7, about #083D2A, playground #F6E016)",
+   "#000000 archive section text; row separators are #000 at 10% opacity",
+   "orange 3D fruit (sampled #FF5D09) as the only saturated object on the type pages"
+  ],
+  "ratio": "approx 70% #F7F7F7 base / 22% green-black ink and dark project frames / <2% yellow; the 3D room and project imagery bring their own warm palette",
+  "section_shifts": "Hero is a warm lit 3D interior; statement pages are flat #F7F7F7 + #022016; project list sits on #F7F7F7 with full-colour screenshots; a full-bleed warm bookshelf render interrupts before the list continues (desktop_04); archive table on #F7F7F7 with black text; closing statement returns to the type page. The fixed nav follows via a CSS token: --navbar-fg #022016 by default, #F7F7F7 over the render break (white nav in desktop_04), #EED6C8 on About, each swapped with color .4s ease. It does NOT adapt over dark carousel slides (desktop_02/03).",
+  "texture": "Film grain is an explicit post pass inside the WebGL composer (hash21 noise, uNoiseStrength 0.07, animated by uTime, set to 0 when the viewport is narrower than 1025px: the bundle's gn() is window.innerWidth < 1025, not a touch check), so it never sits over the DOM type; flat pages carry no texture.",
+  "notes": "Green-black instead of pure black is the quiet brand decision: it ties the ink to the theme-color #083D2A and the clay/wood render. Yellow is functional, reserved for the cursor affordance."
+ },
+ "layout": {
+  "grid": "Inferred 12-column grid (CSS grid-column 1/13, 49 grid containers). Root font-size 14px (1rem = 14px from .4285714286rem = 6px). Nav margin 40px; project/archives tables use 20px margins and four data columns starting at x=20 / 375 / 730 / 1085 (355px pitch). Project carousel: centre slide 1045px wide (x=197-1242), 20px gutters, neighbour slides peek 177px each side, ~490px tall.",
+  "density": "airy on statement pages, dense (24-row table) in Archives",
+  "alignment": "Display type centred; everything else hard-left on grid columns; right cluster of nav right-aligned to 1400px.",
+  "composition_moves": [
+   "Hero is 100% render, DOM text reduced to a nav line and one 24px statement",
+   "Full-viewport statement pages with only the display triplet, a 14px instruction line and 3D objects",
+   "Carousel with asymmetric peeks: neighbours cut by the viewport edge so the row reads as endless",
+   "Project metadata as a four-column spec row (index + name + category / awards / year / team + roles) under each slide",
+   "Archives as a plain ruled table: 45px rows (3.214rem), 1px #000 separators at 10% opacity, a 7x5px down-chevron in grid column 12; rows expand accordion-style on click (height transition 1.4s cubic-bezier(.16,1,.1,1)) to a media poster that fades (.45s) to a looping mp4",
+   "Closing statement page with a one-line footer (Credits / Instagram • email • Linkedin / © 2026) pinned to the bottom edge"
+  ],
+  "section_rhythm": "Immersive 3D (hero) -> flat type stage -> image-dense carousel list -> full-bleed render break -> dense archive table -> flat type stage + footer. Alternates spectacle and quiet list roughly every screen.",
+  "mobile_adaptation": "3D hero kept on phones (portrait reframe); nav becomes 'Léo Parpeix' + two 40x40px #ECECEC radius-8 squares: '····' is the SOUND toggle (four 2px equalizer bars, .soundButton), '=' is the menu, which drops a #F4F4F4 sheet (radius 0 0 20px 20px) from translateY(-100%) with 56px Avantt links; showreel shown as a card with a static yellow WATCH REEL pill instead of the cursor pill; no x-overflow (mobile_measure.overflow_x false)."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis: html class 'lenis lenis-smooth'; bundle config new Lenis({lerp: gn() ? 1 : .085, smooth:true, mouseMultiplier:1, smoothTouch:false, syncTouch:true, infinite:false, autoResize:true, orientation:'vertical', gestureOrientation:'vertical'}), driven by gsap.ticker with lagSmoothing(0) and created stopped (e.stop()) until the intro releases it (verified: gn() = window.innerWidth < 1025, so smoothing is switched off below 1025px rather than on touch devices). The WebGL camera reads it every tick: camera.position.y = -window.scrollY.",
+  "preloader": "Bundle LoaderBlock (verified): a fixed #F7F7F7 layer (z-index 201) with a centred 14px title and info line plus an 8px SVG progress ring (stroke-dasharray 10.2 cycling 1s linear) and progress text. Each line sits in an overflow:hidden wrap at translateY(155%) rotate(5deg) and rises to 0/0deg over 1s CustomEase 'reveal' (0.4,0,0,1), 0.15s apart, starting at 1.5s. On APP_LOADED, 2.25s later the lines exit translateY(-100%) in .45s power2.out and the layer fades in .35s. OBSERVED at 6.8s (desktop_00): blank #F7F7F7 with a tilted, rounded window at bottom centre framing the room render. Verified (audit 2): that window is the WebGL loaderMaskMesh (see first_screen), and it expands to the full-screen room seen in settle12/desktop_00 at 12.7s. Body class 'awaiting-sound-click' means sound waits for the first click.",
+  "intro_sequence": "Verified from the bundle (audit 2): loader lines rise (1.5s, 5deg-rotated masks) -> exit at ~3.75s -> navbar fades in over 1s from 3.75s (CSS transition-delay) -> after a 500ms shader prewarm the WebGL loaderMaskMesh plays: uGlobalProgress 0->1 over 1.75s expo.out (the rounded box untilts from (-0.4pi X, -0.3pi Z) and slides up from y=+1 to -0.13), uScaleProgress 0->1 over 2.25s expo.out (box half-size 0 -> 0.25), uFinalProgress 0->1 over 1.4s power4.inOut starting at 0.45s (box grows to cover the screen and recentres). At the same time the Blender-authored camera (read from the GLB's 'camera' node) dollies in on x from +7 units to its authored position over 2.5s expo.inOut (later page entries: +5 over 2s expo.out; leaving: +6 over 0.5s sine.out). On LOADER_REVEAL_COMPLETE the bee scales up (uBeeRevealScale 0->1, 0.6s power2.out), then its shadow (+0.1s), then the fruit (+0.1s). The 24px statement lines rise out of masks (mobile_00 caught 'seamless motion.' and 'Scroll down' with their bottoms still sliced by the mask). Objects that enter use a shader-injected uRevealScale (transformed *= uRevealScale), so meshes scale up from 0 instead of fading.",
+  "scroll_techniques": [
+   "DOM-synced WebGL planes (camera y = -scrollY, fov = 2*atan(h/2/z) so 1 unit = 1px)",
+   "crossfade between header text sets on scroll (desktop_01 shows nav and 'Raised in France / Designing worldwide' mid-swap)",
+   "statement triplets swap per section via the two stacked title layers (--default / --reveal)",
+   "horizontal drag carousel per project (optional infiniteDrag wrap)",
+   "full-bleed render break (a 200dvh section) with a white 118px title filled char by char as it scrolls in, and the nav colour token flipped to #F7F7F7",
+   "cursor-driven stable-fluids velocity field feeding a brighten pass and a hash-blur pass (not scroll or drag velocity, see image_animation)",
+   "hero camera pointer parallax: rotation.x = degToRad(pointerY*0.2), rotation.y = degToRad(-pointerX*0.75), i.e. under 1 degree, damped 1-exp(-2*dt), off on coarse pointers (pointer range -1..1 inferred)"
+  ],
+  "text_animation": "Verified in bundle + CSS: each display line lives in an overflow:hidden wrapper; GSAP fromTo {y:'100%', x: i%2 ? '-5%' : '5%'} -> {y:'0%', x:'0%'}, duration 1, ease 'reveal' = CustomEase(0.4,0,0,1), stagger 0.115s after a 0.115s delay, so lines rise out of their masks while sliding in from alternating sides. Two copies of each triplet are stacked (.container__titles--default and --reveal) so the next statement can rise over the current one. Triplet swap (verified audit 2, Pl = 2): the current lines sink back down through the bottom of their masks (y 100%, alternating x +/-5%) over 1.5s power4.inOut, stagger 0.115s, while the next triplet rises in the same slots over 2s 'reveal', stagger 0.1s, starting 0.63s later. CustomEase 'hide' (0.86,0,0.07,1) is used for panel exits (Credits popup counter-translate, archive media fade, showreel/pill scale-outs), not for the titles. Project info lines stagger 0.075s. Cursor pill labels roll in overflow:hidden wraps (old yPercent -100 + fade, new from yPercent 100) in 0.25s power2.out while the pill width tweens. Header meta crossfades in place. Render-break title (verified audit 2): the base copy's chars sit at opacity 0.15; scroll progress p maps from (section top - 0.9*viewport) to (section top) (to 0.35*viewport below 1025px); char i of L starts filling at p = i/L*0.72 and reaches full opacity after another 8/L, so the white word fills left to right from ghost to solid as the render arrives.",
+  "image_animation": "Project slides are WebGL planes: cover-fit in shader, scaled by 1/uCoverBleed (1.05) and parallax-shifted inside the frame by 0.085 * progress on y and 0.085 * uParallaxX on x; while dragging, the vertex shader pushes planes back in z by smoothstep(0,5.5, screen distance) * uDragForce * uDragScaleStrengthZ (1.5 desktop, 0.5 touch), so the strip bows; uDragForce is the slider's smoothed drag force. Correction (audit 2): the post passes are NOT driven by drag or scroll velocity. tVelocity is the velocity texture of a GPU stable-fluids simulation pushed by the mouse (mouse_force 80, cursor_size 40, grid at 0.2x screen resolution, dt 0.015, dissipation 0.98, 1 Poisson iteration, BFECC off). Moving the pointer leaves a fading liquid trail: a 15-tap hash blur (uv displaced by velocity * 0.003, radius = velocity * 15 px, x1.5) smears the WebGL render along the trail, and a final pass brightens it (rgb * 1.25 by |velocity| * 0.75). The simulation is disabled on touch devices narrower than 1025px. Archive rows: click expands the 45px row (height 1.4s cubic-bezier(.16,1,.1,1)) to a poster that fades (.45s cubic-bezier(.19,1,.22,1)) to a muted looping mp4 (7-PortfolioGab.mp4 etc.); click-to-expand inferred from the onClick handler + height transition, not captured in a frame.",
+  "page_transitions": "Verified in bundle: a solid-colour disc plane (the About colour) and a spinning 3D flower. Cover: uTransition tweens 0 -> 0.5*sqrt(aspect^2+1)*1.08 over 0.75s expo.out while the flower scales 0 -> 1 and rotates from (pi/4, pi/2) to 0, then spins +2pi on a linear infinite loop. Every scene material gets getPageTransitionVisibility() injected via onBeforeCompile and DISCARDS fragments INSIDE the radius (visibility = step(uTransition, dist)), so the scene is eaten from the centre outward as the disc grows; shadows follow via uShadowReveal. Uncover: uTransition -> 0 and flower scale -> 0 over 0.65s power3.inOut, so the new page closes in from the edges. (Pre-audit text had the discard inverted.)",
+  "hover_micro": [
+   "Cursor pill label swaps per zone: DRAG (carousel), DISCOVER MORE (archive rows), a #F7F7F7 showreel pill with a play/pause icon track, clipboard 'copied' in peach #EED6C8; enters by scale 0 -> 1 in .65s elastic.out(0.75), leaves by scale -> 0 in .3s expo.out",
+   "Click on the pill zone: scale 1.12 in .08s power2.out then back to 1 over .85s elastic.out(1.6, 0.35)",
+   "Archive row hover: a full-width #00000006 (rgba 0,0,0,.024) mask parked at translateY(102%) slides up under the row; text colours shift .35s cubic-bezier(.16,1,.1,1) (desktop_06 row 15)",
+   "'Project link' underline-fill: the resting underline is a 1px line at 20% opacity; on hover it wipes out to the right while a full-opacity line wipes in from the left (scaleX, 1s cubic-bezier(.16,1,.1,1), .1s offset), and the ↗ arrow exits to the top-right as a second arrow enters from the bottom-left inside a 7px overflow box"
+  ],
+  "cursor": "Native cursor kept (cursor:none count 0). A fixed .cursorIndication element (pointer-events none, will-change transform) sits up and to the right of the pointer (offset {x:'10%', y:'-112%'}) and scales from its bottom-left corner (transform-origin 0% 100% on the label). Follow uses frame-rate independent damping 1-exp(-12*dt) on x/y and 1-exp(-6*dt) on a velocity tilt. Label: 11px uppercase Monument Grotesk, padding 6px 14px, radius 50px, #022016 on #F6E016. On the bee statement pages the native cursor switches to grab (in the zone) and grabbing (while holding the fruit); the zone is widened by padding 4.1667vw (60px at 1440) cancelled by an equal negative margin, so the hit area bleeds past the type without moving the layout (the arrow links use the same trick: padding 15px, margin -15px).",
+  "easing_curves": [
+   "cubic-bezier(0.16,1,0.1,1) x45 in CSS (dominant, hard expo-out)",
+   "cubic-bezier(0.4,0,0.2,1) x3, cubic-bezier(0.19,1,0.22,1) x2, cubic-bezier(0.45,0,0.2,1) x1 (CSS)",
+   "GSAP CustomEase 'reveal' = (0.4,0,0,1) x30 and 'hide' = (0.86,0,0.07,1) x9 (the two most used eases in the bundle)",
+   "GSAP: power2.out x21, expo.out x18, power3.out x5, sine.inOut x5, power2.in x4, sine.out x4, power4.inOut x3, power1.inOut x3, power3.inOut x3, 'none' x2",
+   "GSAP elastic family for the toys and pill: elastic.out(0.75) x4, elastic.out(1,0.55) x3, elastic.out(1.6,0.35) x2, elastic.out(1.25) x2, elastic.out(1,0.7) x2, elastic.in(1) x2",
+   "GSAP 3.14.1 (version string in bundle)"
+  ],
+  "duration_range_ms": "CSS 150-2400ms, mostly 1000 (x21) and 750 (x19), 400 (x10); GSAP 60-2500ms, mostly 750 (x12), 650 (x7), 500 and 1000 (x5 each), plus 1125/1250 (x2) and 1750 for the pill array layout",
+  "stagger_ms": "115 (display lines, after a 115 delay), 150 (loader lines), 75 (project info lines)",
+  "choreography_notes": "3D objects lead, DOM follows. On the type pages the FRUIT rides the cursor: it follows with damping 1-exp(-14*dt) at hover height z=0.48 and tilts/scales with pointer speed (h = clamp(signed delta * 0.02, -1, 1); rotation.z = h * 110deg; scale 1+|h|; both damped at 6/s and reset after 50ms idle). The BEE is a steering agent (Seek/Pursuit/Arrive behaviours: mass .2, maxSpeed 2.5, 7 after a click) that orbits its target (radius .75, 9 rad/s). A click drops the fruit: v -= 18*dt, z += v*dt, stretched along its fall axis by min(|v|*0.028, .35); on landing it snaps to (1.4, 1.4, 0.5) and springs back to 1 over 1.25s elastic.out(1.25), fires a Howler sound, and the bee chases it. The type never moves; it is the floor. The bee can also talk: a .beeTextIndication pill (16px text, #022016 on #F7F7F7, or beige #EED6C8 / yellow #F6E016 themes, and an inverted 'conversation' mode #F7F7F7 on #022016) is anchored top or bottom-left of the bee; its font-size, padding and radius are all multiplied by --bee-scale (the bee's on-screen size) and --reveal, and a text change collapses --reveal to 0 in 0.22s expo.in, swaps the label, then springs back in 0.65s elastic.out(0.75).",
+  "evidence": [
+   "probes/leo-parpeix-portfolio-2026/desktop_00-07.jpg",
+   "probes/leo-parpeix-portfolio-2026__settle12/desktop_00-07.jpg",
+   "probes/leo-parpeix-portfolio-2026/mobile_00.jpg (line masks caught mid-reveal)",
+   "no jury element videos for this site",
+   "bundle /assets/index-BZFBO0Ol.js (re-fetched in audit): Lenis options, CustomEase reveal/hide, title fromTo, LoaderBlock, CursorIndication, bee/fruit class constants, carousel shaders, page-transition shaders, post passes",
+   "app.css (typo/css/leo-parpeix-portfolio-2026.css): .cursorIndication*, .title, .navbarBlock tokens, .archivesBlock*, .arrowButton, .loaderBlock, .footerBlock*",
+   "audit 2 bundle re-fetch (index-BZFBO0Ol.js): G6 stable-fluids class options, M8/b8 post shaders, rX mouseMoveCamera, sX camera show/hide, p6 loader mask, x6 transition colours, webglSection-char fill constants (nS .15, eV .72, tV 8, nV .9, sV .35)"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "mixed: realtime-3d diorama + device-mockup screenshots + video",
+  "art_direction": "Soft, warm, baked daylight in a plaster-and-oak atelier; toy proportions (clay daisy with a face, cartoon bee, glossy orange). Project shots are laptop mockups photographed in hard sunlight on concrete/metal plinths (Creandum, Vélance) or full-bleed site captures (Mechachain, Dioriviera). Warm bookshelf render with ladder and terracotta/sage book spines as a mid-page break.",
+  "treatments": [
+   "film-grain post pass inside the canvas only (0.07, off below 1025px)",
+   "cover-fit with 1.05 bleed (1.155 below 1025px) so parallax never shows edges",
+   "cursor-fluid trail: brighten + hash-blur only where the mouse stirred the velocity field",
+   "the floor texture (TexFloor) is pre-blurred in its own shader (hash blur radius 3, desktop only) as a cheap depth-of-field so the herringbone does not compete with the flower",
+   "click-to-expand archive rows with poster -> muted looping video"
+  ],
+  "crops_and_ratios": "Carousel slide ~1045x490 (about 2.13:1) with 177px peeks; bookshelf break full-bleed 1440x~740; mobile hero portrait full-screen.",
+  "formats": "Probe: 24 webp, 7 png, 89 ktx2 (12 per project at 2048px), 6 glb, 2 mp4 requested at load (20 <video> tags, showreel.mp4 + archive clips), 1 aac-type audio stream (~0.8MB). Declared bytes: mp4 49.0MB, 3D 13.5MB, png 2.1MB, audio 0.8MB, webp 0.35MB.",
+  "evidence": [
+   "probes/leo-parpeix-portfolio-2026/desktop_02.jpg",
+   "probes/leo-parpeix-portfolio-2026/desktop_03.jpg",
+   "probes/leo-parpeix-portfolio-2026/desktop_04.jpg",
+   "probes/leo-parpeix-portfolio-2026/desktop_05.jpg",
+   "probe assets_3d / bytes_by_type_declared / videos"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r153 (globals.three_revision), Vite + Vue 3, GLTFLoader + DRACOLoader + KTX2Loader + RGBELoader, EffectComposer + ShaderPass, a bundled Yuka-style steering module (Vehicle, Seek/Pursuit/Arrive behaviours) for the bee, GSAP 3.14.1, Howler for audio, and a bundled stable-fluids solver (advection, external force, divergence, Poisson, pressure passes on ping-pong FBOs) that drives the post-processing",
+  "role": "hero world (atelier diorama) + interactive mascots over the type pages + DOM-synced image planes for the project carousel + a cursor-driven fluid velocity field that only the post passes read",
+  "assets": [
+   "assets/models/home/scene_v9.glb",
+   "assets/models/about/scene_v15.glb",
+   "assets/models/global/bee/bee_v4.glb",
+   "assets/models/global/flower/flower_v2.glb",
+   "assets/models/global/fruits/orange.glb",
+   "assets/models/global/fruits/raisin.glb",
+   "https://www.leoparpeix.com/assets/medias/home/projects/project1-ktx/2048/1.ktx2 ... 12.ktx2 (same for project2, project3)"
+  ],
+  "materials_lighting_post": "Verified (audit 2): the home room is unlit. Each object group uses a GLSL3 ShaderMaterial whose fragment is just fragColor = texture(uTexture, vUv), with 8 per-group colour atlases (TexFleur, TexProps, TexMobilier, TexDecor, TexTableaux, TexBibli, TexFloor, TexWalls) shipped as KTX2. All light and shadow is baked into the albedo (a full 'combined' bake, not a lightMap on a second UV set), and only the floor atlas gets an in-shader 15-tap hash blur (radius 3, desktop only). The About scene mixes in PBR ground maps (normal/roughness/AO). Clouds behind the windows are 6 PNG billboards; the dust motes are a 2000-particle drift system (colour #F4F1EB, scale 0.7, 0.49 below 1025px). Mascots: bee MeshPhong with a baked 'beeTex' map; wings MeshPhong transparent at 0.7 opacity. Bee-block lighting: ambient 0.5 + one DirectionalLight 0.5 at z=5 with castShadow and a 2048 shadow map (near .05, far 6); shadows land on a full-viewport plane with ShadowMaterial opacity 0.25 (receiveShadow), so they darken both the #F7F7F7 page and the type (sampled: #F7F7F7 -> #B5B9B8, #022016 -> #00170F). Instanced foliage uses a wind vertex shader (pos.z -= sin(height + uTime*0.002*speed + phase)*0.025, per-instance phase from a hash of _centerposition). Post chain, in order: main composite (scene + grain, hash21 noise, uNoiseStrength 0.07, 0 below 1025px) -> interface planes -> fluid hash-blur pass (tVelocity from the fluid sim, 15 taps, uv shift velocity*0.003, radius velocity*15) -> a second render of layer 1 so selected interface meshes stay sharp on top of the blur -> final pass brightening by fluid velocity (rgb*1.25 by |vel|*0.75) -> optional FXAA/SMAA (default 'none').",
+  "interaction": "Cursor-carried fruit with speed tilt, steering bee that pursues it (and talks through a scaled speech pill), click-to-drop with hand-rolled gravity and elastic squash, drag carousel with z-bow, cursor fluid trail that smears and brightens the render, sub-degree hero camera parallax, colour-disc page transition with a spinning flower.",
+  "performance_tactics": "Two fixed 1440x900 canvases (4 webgl2 contexts total); textures GPU-compressed as KTX2 at 2048; Draco geometry; unlit baked atlases instead of runtime lights for the room; the fluid solver runs at 0.2x screen resolution with a single Poisson iteration; videos load lazily (autoplay false, play on demand). Below 1025px viewport width (gn()): Lenis lerp 1, grain off, drag bow 0.5 instead of 1.5, cover bleed 1.155, floor blur off, smaller dust. On coarse pointers: no camera parallax; coarse pointer AND <1025px: the fluid sim is skipped and an empty 256x256 velocity texture is bound instead.",
+  "fallback_mobile": "3D hero still renders on a 390px phone (mobile_00 shows the full room); showreel becomes a tap card.",
+  "evidence": [
+   "probe globals/contexts/assets_3d/asset_extensions",
+   "bundle grep (audit re-fetch): .glb paths, KTX2Loader x16, _createDirectionalLight, ShadowMaterial opacity Nw=.25, SeekBehavior/PursuitBehavior, uWindStrength shader, post-pass shaders",
+   "audit 2 bundle greps: FI/hY unlit texture shader + Xf.home atlas list, HY/GY hash-blur table (TexFloor 3), $Y particles {particleCount 2000}, G6 fluid options, _createMainCompRenderPass / fluidHashBlurPass / interfaceSharpRenderPass / finalPass order, gn()/ti() definitions"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Fixed single text row, no background: name left, role line at the second grid column, Work / About / Playground + the '····' sound toggle on the right; 14px. Colour comes from a --navbar-fg token (#022016, #F7F7F7 over the render break, #EED6C8 on About, color .4s ease). Header meta sets crossfade in the same slots while scrolling (desktop_01). Over dark carousel slides the token does not switch, so 'Léo Parpeix' and 'Playground' vanish (desktop_02, desktop_03).",
+  "menu": "Desktop: no hamburger; the '····' at the far right is the sound toggle (four 1.5x12px bars scaled to dots when muted, .soundButton__line), not a menu (pre-audit text was wrong). Mobile: two 40x40px #ECECEC radius-8 squares, sound and '='; '=' drops a #F4F4F4 sheet from the top (translateY(-100%) -> 0 in .65s 'reveal') with 56px uppercase Avantt links, the current one at 50% opacity.",
+  "buttons_links": "Almost no buttons; the yellow cursor pill does the job of most CTAs. 'Project link ↗' is text with a 1px underline at 20% opacity that runs an underline-fill wipe and a diagonal arrow swap on hover (see motion.hover_micro). Footer links plain 18px text separated by 5px round bullets.",
+  "unusual_interactions": [
+   "Carry a fruit on the cursor and click to feed the bee: the GLB falls onto the type with gravity, elastic squash, sound and a real shadow",
+   "Stir the render: the pointer drives a stable-fluids velocity field, so the 3D room and project planes smear and brighten along the cursor path and settle back as it dissipates (0.98 per step)",
+   "The bee talks: a speech pill that follows the bee and scales with it (--bee-scale), swapping text with a collapse-then-elastic spring",
+   "Drag-to-browse per project carousel with WebGL bending",
+   "Archive rows open accordion-style (click) to a video preview under a DISCOVER MORE pill",
+   "Copy email to clipboard with a peach 'copied' pill state",
+   "Credits opens a popup that slides in from the bottom-left corner using a counter-translated inner wrapper (outer translate(-100%,100%), inner translate(100%,-100%)), radius 0 20px 0 0, 85-96dvh tall"
+  ],
+  "sound": "Howler.js SFX (fruit impact etc.); body.awaiting-sound-click indicates audio unlocks on first click; ~0.8MB audio.",
+  "footer": "No footer block: the closing statement page (LET'S CREATE / A REMARKABLE / JOURNEY, then YOUR GATEWAY / TO EXCITEMENT / STARTS HERE !) carries one baseline row at y=850: Credits left, Instagram • email • Linkedin centred, © 2026 right, ~18px. The footer block has green (#083D2A bg, peach text), white and yellow (#F6E016) variants; the popup close is a 61px circle whose dark fill wipes in with scaleY on hover."
+ },
+ "content_voice": {
+  "headline_style": "Uppercase adjective triplets as statements (nationality, role, trait), then an invitation triplet at the close.",
+  "copy_tone": "Warm, first person, a little playful ('Bonjour,' opener, a bee to feed), credits former studios by handle (@ImmersiveGarden, @Locomotive).",
+  "examples": [
+   "Driven by detail. Obsessed with seamless motion."
+  ]
+ },
+ "tech_stack": {
+  "framework": "Vue 3 + Vite (meta generator 'Vite + Vue 3', scoped data-v attributes)",
+  "libraries": [
+   "three.js r153",
+   "GSAP 3.14.1 + CustomEase",
+   "Lenis",
+   "Howler.js",
+   "KTX2/Basis transcoder",
+   "Draco"
+  ],
+  "evidence": "probe globals + libs_from_requests ['vite']; bundle /assets/index-BZFBO0Ol.js grep; app.css /assets/index-CLH3rn1-.css"
+ },
+ "performance_accessibility": {
+  "requests": 161,
+  "weight_notes": "Declared ~68MB total, dominated by mp4 (49MB) and 3D (13.5MB = 6 GLB + 89 KTX2). Fonts are small (woff 35KB + woff2 27KB) but the display face ships as an uncompressed variable TTF.",
+  "reduced_motion": "probe reduced_motion_rules 0 and no prefers-reduced-motion string in the bundle (re-checked: 0 hits) or CSS: no reduced-motion path. Other accessibility costs found in audit 2: the viewport meta sets maximum-scale=1.0, minimum-scale=1.0, user-scalable=no (pinch zoom disabled on phones), and the CSS hides the scrollbar everywhere (scrollbar-width:none; ::-webkit-scrollbar{display:none}) on a 13,231px-tall page.",
+  "contrast_issues": "Category labels at 30% ink opacity measure ~#A9A9A9 on #F7F7F7, about 2.2:1; the fixed nav keeps #022016 over dark carousel slides and becomes unreadable (desktop_02, desktop_03); 11px uppercase text on the yellow pill is fine; header text visibly overlaps during the scroll crossfade (desktop_01). The 34px 'Archives' heading scrolls straight under the fixed nav and collides with 'Léo Parpeix' (desktop_06).",
+  "mobile_quality": "No overflow; real 3D on mobile; distinct mobile nav (sound + menu squares); statements drop to 48px at <=427px; pinch zoom is disabled by the viewport meta (user-scalable=no); a separate orientationIndication overlay (z-index 11000) asks the visitor to rotate the device (trigger inferred).",
+  "dev_scores": {
+   "semantics_seo": 7.0,
+   "animations": 8.4,
+   "accessibility": 7.0,
+   "wpo": 7.2,
+   "responsive": 7.8,
+   "markup": 7.4
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Typography as a physical floor for 3D mascots",
+   "why_it_works": "A flat, strict type page suddenly has depth and consequence: objects cast offset shadows on the letters and land on them, so the visitor plays with the name instead of reading past it.",
+   "how_to_build": "Set the statement in one heavy display at font-size 11.25vw, line-height 0.9, uppercase, font-variation-settings 'wght' 622, colour #022016 on #F7F7F7. Put a fixed, transparent, pointer-events:none three.js canvas over it with a PerspectiveCamera whose fov = 2*atan(innerHeight/2/camZ) (1 unit = 1px). Carried fruit (orange.glb / raisin.glb): each frame move toward the pointer projected onto the plane z=0.48 with k = 1-exp(-14*dt); from the pointer delta compute h = clamp(signedDist*0.02, -1, 1), target rotation.z = h*110deg and scale 1+|h|, damp both with 1-exp(-6*dt), reset to 0/1 after 50ms without movement. Bee: a steering vehicle (Yuka Vehicle + Pursuit/Seek/Arrive, mass 0.2, maxSpeed 2.5, raised to 7 after a click) whose target orbits the pointer at radius 0.75, 9 rad/s. On click integrate v -= 18*dt; z += v*dt; while falling scale (1-i/4, 1-i/4, 1+i) with i = min(|v|*0.028, 0.35); at the ground snap to (1.4, 1.4, 0.5) scaled from the bottom and gsap.to(scale,{x:1,y:1,z:1,duration:1.25,ease:'elastic.out(1.25)'}); play a Howler sound unlocked on first click. Shadows: DirectionalLight(0xffffff, 0.5) at z=5, castShadow, 2048 map, plus a full-viewport plane with ShadowMaterial({opacity:0.25}) and receiveShadow, so the shadow darkens the letters and grows its offset as objects rise."
+  },
+  {
+   "technique": "Tilted SDF window intro mask",
+   "why_it_works": "Instead of a fade or a wipe, the world arrives through a small rounded window that swings upright from a steep 3D tilt and then opens to fill the screen, so the first sight of the room feels like looking through a door.",
+   "how_to_build": "Full-screen plane in front of the scene, transparent, depthWrite false, colour = page background (#F7F7F7). Fragment: vec2 p = vUv-0.5; p.y += mix(mix(1.,-0.13,uGlobal), mix(-0.13,0.,uFinal), uFinal); rotate p by rotateZ(mix(-PI*0.3,0.,uGlobal)) then rotateX(mix(-PI*0.4,0.,uGlobal)) as a vec3; project with z = max(p3.z+2.,1.); p = p3.xy/z*2.; p.x *= aspect; half = mix(vec2(mix(0.,0.5,uScale)*0.5), vec2(max(0.95, 0.5*max(aspect,1.)*1.02)), uFinal); sdf = box(p, half, 0.05) with box(p,h,r) = length(max(abs(p)-h+r,0.))+min(max(abs(p).x-h.x+r,abs(p).y-h.y+r),0.)-r; alpha = step(0., sdf). Timeline: uGlobal 0->1 1.75s expo.out; uScale 0->1 2.25s expo.out; uFinal 0->1 1.4s power4.inOut at +0.45s; hide the plane when done. Show real content under it with no JS (see slop_risks), because the mask starts fully closed."
+  },
+  {
+   "technique": "DOM-synced WebGL carousel that bows while dragged",
+   "why_it_works": "The slides feel like a flexible physical strip; peeks at both edges promise more without arrows.",
+   "how_to_build": "Measure each slide DOM rect and size a PlaneGeometry(1,1,32,1) to it; move camera.y = -lenis.scroll every tick. Vertex: vec4 clip = projectionMatrix*modelViewMatrix*vec4(position,1.); vec2 s = clip.xy/clip.w; float d = smoothstep(0.,5.5,length(vec2(s.x, position.y))); position.z -= d*uDragForce*uDragScaleStrengthZ; (1.5 at >=1025px, 0.5 below). Fragment: cover-fit with ratio = min((planeW/planeH)/(texW/texH),1.) per axis, uv = (uv-.5)/1.05+.5 (bleed; 1.155 below 1025px), uv.y += uParallaxProgress*0.085, uv.x += uParallaxX*0.085. Feed uDragForce from the slider's smoothed drag force (the decay curve is inferred); optionally wrap positions for infinite drag. Ship slides as KTX2 at 2048. Layout: centre slide 1045px, 20px gutters, 177px peeks at 1440."
+  },
+  {
+   "technique": "Cursor-fluid smear and brighten, with the UI kept sharp",
+   "why_it_works": "The render reacts to the hand like a liquid surface, so even a static room feels alive; because the blur only exists where the fluid moves, static text and images stay crisp, and a second render of the interface layer keeps chosen elements sharp above it.",
+   "how_to_build": "Run a small stable-fluids solver on half-float ping-pong render targets at 0.2x screen size (advect with dissipation 0.98, dt 0.015; add an external-force quad at the pointer: force = mouseDelta/2 * 80, radius 40 cells, falloff d*d with d = 1-min(length(uv*2-1),1); divergence; 1 Jacobi/Poisson iteration; subtract the pressure gradient). Bind the velocity texture as tVelocity. Composer order: scene render (+ grain 0.07) -> blur pass: vec2 vel = texture2D(tVelocity,vUv).xy; uv = vUv + vel*0.003; radius = (uBlurRadius + length(vel)*15.)/resolution.x*1.5; 15-tap hash blur with rand = fract(sin(mod(dot(uv,vec2(12.9898,78.233)),PI))*43758.5453) and mult(r) = sqrt(r.x+.001)*vec2(sin(r.y*TAU),cos(r.y*TAU)); early-out when radius <= 0 -> re-render the interface layer (camera.layers.set(1)) with clear=false so those meshes stay sharp -> final pass: rgb = mix(rgb, rgb*1.25, length(vel)*0.75). Skip the solver and bind an empty velocity texture on coarse pointers with a narrow viewport."
+  },
+  {
+   "technique": "Colour-disc page transition that eats the WebGL scene from the centre",
+   "why_it_works": "One uniform drives a solid disc and every material at once, including shadows, and a spinning mascot flower rides the disc, so page changes feel like a branded wipe rather than a DOM fade.",
+   "how_to_build": "In material.onBeforeCompile prepend: float vis(vec2 suv){vec2 uv=suv-.5; uv.x*=uRes.x/uRes.y; return step(uTransition, length(uv));} and before output_fragment: if(vis(gl_FragCoord.xy/uViewport)<.001) discard; (fragments INSIDE the circle vanish). Add a full-screen plane whose fragment outputs vec4(uColor, 1.-step(uTransition, dist)) (a disc in the next page's colour). For entering meshes also patch begin_vertex with transformed *= uRevealScale; set customProgramCacheKey so patched programs do not collide. Cover: tween uTransition 0 -> 0.5*sqrt(aspect*aspect+1.)*1.08 over 0.75s expo.out while a mascot mesh scales 0 -> 1 and rotates (pi/4, pi/2) -> 0 then spins +2pi linear forever; swap the page; uncover: uTransition -> 0 and mascot scale -> 0 over 0.65s power3.inOut."
+  },
+  {
+   "technique": "Scroll-scrubbed ghost-to-solid character fill over a render",
+   "why_it_works": "The big white title is readable as a 15% ghost before it fills, so the word is never missing, and the left-to-right fill is tied to the render entering the screen instead of a timer.",
+   "how_to_build": "Stack two copies of the title (base and reveal, position absolute on top). Split both into inline-block char spans (white-space:pre, will-change:opacity). Base chars opacity 0.15, reveal chars 0. On scroll: p = clamp(map(scrollY, sectionTop - 0.9*innerHeight, sectionTop - 0*innerHeight, 0, 1)) (end at 0.35*innerHeight below 1025px); for char i of L: start = i/L*0.72, end = start + 8/L, opacity = clamp(map(p, start, end, 0, 1)). Title: 8.1944vw (118px at 1440), line-height 0.8, uppercase, wght 622, #F7F7F7 over a 200dvh render section. Re-split after document.fonts 'loadingdone'."
+  },
+  {
+   "technique": "One contextual cursor pill instead of buttons",
+   "why_it_works": "A single yellow affordance (DRAG, DISCOVER MORE, WATCH REEL, copied) replaces CTA clutter and keeps the flat pages clean.",
+   "how_to_build": "position:fixed; pointer-events:none; will-change:transform; offset the pill up-right of the pointer (x +10%, y -112% of its size) and follow with k = 1-exp(-12*dt), plus a small velocity tilt damped at 6/s. Label: 11px uppercase body font, padding 6px 14px, border-radius 50px, color #022016 on #F6E016 (peach #EED6C8 variant for clipboard, #F7F7F7 with a play/pause icon for the reel). Labels live in overflow:hidden line wraps; on zone change tween the old line to yPercent -100 + opacity 0 and the new from yPercent 100 to 0 over 0.25s power2.out while tweening the pill width. Enter: scale 0 -> 1 over 0.65s elastic.out(0.75) from transform-origin 0% 100%; leave: scale -> 0 over 0.3s expo.out; click: 1.12 in 0.08s then 1 over 0.85s elastic.out(1.6, 0.35)."
+  },
+  {
+   "technique": "Baked Blender diorama rendered unlit, with a Blender-authored camera",
+   "why_it_works": "Soft global illumination and toy props give warmth and authorship that stock 3D lighting never does, and an unlit texture lookup costs almost nothing per pixel.",
+   "how_to_build": "Model the room in Blender, group objects by material family and bake the full lit colour (Cycles 'Combined' bake) into one atlas per group (here 8: flowers, props, furniture, decor, paintings, bookcase, floor, walls); export Draco GLB + KTX2 atlases. In three.js give every group a ShaderMaterial whose fragment is only fragColor = texture(uTexture, vUv) (no lights, no tone mapping work). Keep a camera object named 'camera' in the GLB and copy its position, rotation, fov (default 22.9, a long lens) at runtime; on first load tween camera.position.x from authored+7 to authored over 2.5s expo.inOut. Add sub-degree pointer parallax on a parent object: rotation.x = degToRad(py*0.2), rotation.y = degToRad(-px*0.75), damped 1-exp(-2*dt). Fake depth of field on the floor only with an in-shader hash blur (radius 3). Add 2000 slow dust particles (#F4F1EB), cloud billboards behind the windows, and the 0.07 grain pass inside the canvas; animate foliage with instanced wind (pos.z -= sin(h + t*0.002*speed + phase)*0.025)."
+  },
+  {
+   "technique": "Masked title lines that rise while drifting in from alternating sides",
+   "why_it_works": "A plain mask rise reads generic; the alternating +/-5% horizontal drift makes a three-line block assemble like interlocking pieces while staying readable at every frame.",
+   "how_to_build": "Wrap each line in overflow:hidden (a little vertical padding so descenders survive). Keep the visible copy in the DOM; animate a second stacked copy for the swap. gsap.fromTo(lines, {y:'100%', x:(i)=> i%2 ? '-5%' : '5%'}, {y:'0%', x:'0%', duration:1, ease:CustomEase.create('reveal','0.4,0,0,1'), stagger:0.115, delay:0.115}); exit with CustomEase 'hide' (0.86,0,0.07,1). Ship the resting state visible without JS (set the offset state from JS, not CSS), which this site does not do."
+  },
+  {
+   "technique": "Nav colour as a per-section CSS token",
+   "why_it_works": "A borderless text nav stays readable across light pages and full-bleed renders without blend-mode tricks, and the colour shift itself marks the section change.",
+   "how_to_build": "Declare --navbar-fg on the fixed nav (#022016) and point every nav text, icon and sound bar at it with transition: color .4s ease; flip the token with a class when a section enters (e.g. #F7F7F7 over the render, #EED6C8 on About). Unlike this site, also flip it for dark carousel slides, or the nav disappears (desktop_02/03)."
+  }
+ ],
+ "slop_risks": [
+  "Content hidden until an intro fires: at 6.8s the desktop is a blank #F7F7F7 field with one masked capsule (desktop_00); the navbar is opacity:0 in CSS until a 3.75s transition-delay, and the reveal copies of the titles and loader lines sit at translateY(100-155%) inside masks by default. If JS stalls the visitor sees nothing. Copy it only with a visible static first frame (the invisible-content trap).",
+  "Page base #F7F7F7 sits next to the default UI-kit neutral; the mobile sound/menu squares are #ECECEC, squarely the slop-gray family. The page is rescued by the green-black ink #022016 and the 3D; a copy with pure black ink on #F7F7F7 and gray-200 buttons reads as a wireframe.",
+  "The hero's warm plaster/oak render sits in the cream/beige 'editorial' family; it works because it is lit 3D with objects, but a flat cream CSS background imitating it is the cream-background tell.",
+  "Saturated accent: #F6E016 yellow appears on the cursor pill, the mobile WATCH REEL button and the yellow footer/popup variant; it stays functional here, but spraying it onto headings, dots or text is the saturated-accent tell.",
+  "Centred three-line uppercase statement is the multi-line headline tell once the bee and fruit are removed; without the interaction it is a tall stack of big bold type.",
+  "Header meta crossfades in the same slots and visibly overlaps mid-scroll (desktop_01: 'Léo Parpeix' on top of 'Raised in France'); a copy that swaps text in place without clearing it first looks broken.",
+  "Hard image seams: the bookshelf render break (desktop_04) is a full-bleed band that stops dead on a straight horizontal edge against #F7F7F7 top and bottom, with no feather; it works here as a deliberate stage change, but copied onto a calmer page it reads as a pasted band. Mask the image's own pixels with a long, many-stop fade if the section is not meant as a hard break.",
+  "Content collision under the fixed nav: the 34px 'Archives' heading scrolls into the transparent nav and overprints 'Léo Parpeix' (desktop_06), the same failure as the header crossfade overlap; a borderless fixed nav needs a clear zone or a colour/opacity hand-off for headings that pass under it.",
+  "Text you cannot read: the fixed nav keeps #022016 over dark carousel slides (desktop_02 name on the dark green Creandum panel, desktop_03 whole nav over the black Mechachain slide).",
+  "Laptop-on-plinth project mockups read as stock device mockups if the photography is not art-directed with real light like these are.",
+  "Underline-fill hover tell (correction): 'Project link ↗' already runs an underline wipe on hover (the 20% resting line scales out right while a solid line scales in left). The diagonal arrow swap is the defensible part; drop the underline wipe when borrowing it.",
+  "Grain done right (not a tell here): the 0.07 grain is a post pass inside the WebGL canvas only and never sits over DOM text.",
+  "Pinch zoom disabled and scrollbar hidden: viewport meta user-scalable=no, maximum-scale=1 and scrollbar-width:none on a 13k-px page remove two basic orientation aids; do not copy these defaults."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots and both mobile screenshots of the original probe, plus all 8 desktop screenshots of a re-probe with --settle 12 (saved separately as probes/leo-parpeix-portfolio-2026__settle12 so the original is untouched) because the 6.8s capture caught the intro mask instead of the hero. Probe numbers (type, colours, easings, durations, assets) are identical in both runs. Code: 3 fetches (HTML, main JS bundle, main CSS) with tight greps: Lenis options, GSAP ease counts, GLB paths, shader sources for the carousel, iris transition, velocity blur, wind; gravity/fruit logic; cursor pill CSS; title CSS. No jury element videos exist for this site, so motion timing is from code constants and screenshots, not from frames. INFERRED: the capsule-to-fullscreen intro, per-char split of the 118px 'DESIGN.' line, Blender-baked lightmaps (from lightMap references + Blender tag), foundry of Avantt, exact pixel values of the grey category text and orange fruit. audit (2026-09-24, adversarial re-check): re-viewed desktop_00-07, settle12 desktop_00/07, mobile_00/01 one at a time, sampled pixels, re-fetched the bundle index-BZFBO0Ol.js and grepped the cached app.css. Fixed: page transition was inverted (fragments INSIDE the radius are discarded; it is a colour disc + spinning flower, 0.75s expo.out cover / 0.65s power3.inOut uncover); the carried FRUIT, not the bee, uses pointerSpeedFactor .02 / 110deg (bee = steering pursuer); landing squash is (1.4,1.4,0.5) -> 1 over 1.25s elastic.out(1.25), not back.out 0.35s; fall stretch 0.028 capped 0.35; shadows are a real DirectionalLight shadow map on a ShadowMaterial(0.25) plane; '····' is the sound toggle, not a menu; desktop showreel pill is #F7F7F7 not yellow; GSAP 'none' x62 was a string count (real ease:'none' x2) and the top eases are CustomEase 'reveal' (0.4,0,0,1) x30 and 'hide' (0.86,0,0.07,1) x9; staggers found (115/150/75ms); cursor pill uses exp damping 12/s and a 0.25s power2.out label roll, not lerp 0.15 / 0.75s; category grey is 30% ink opacity (~#A9A9A9); mobile 56px is likely the menu links (statements are 48px); Project link HAS an underline-fill hover (false negative in slop_risks). Added: title line mask with alternating +/-5% drift, LoaderBlock timings, nav colour token + legibility failure over dark slides, grain/brighten/blur post chain, archive click-to-expand, Credits counter-translate popup. Still inferred: capsule-to-room intro mask, baked lightmaps, 118px per-char split, archive expand trigger, uDragForce decay curve. audit 2 (2026-09-25, second adversarial pass; re-viewed desktop_00-07, settle12 desktop_00-02, mobile_00/01 one at a time; re-fetched the live HTML and bundle index-BZFBO0Ol.js, grepped cached app.css): FIXED (1) the velocity post passes are driven by a mouse-forced stable-fluids simulation (mouse_force 80, cursor_size 40, 0.2x res, dissipation 0.98), not by drag/scroll velocity; the old steal 'Velocity-only motion blur pass' would not reproduce the effect and was rewritten, with the verified pass order including a sharp interface re-render after the blur; (2) the intro capsule is a WebGL rounded-box SDF mask (loaderMaskMesh) with verified timings, not the 72.7px CSS radius element; (3) gn() is window.innerWidth < 1025, so Lenis lerp 1, grain 0, drag bow 0.5 and bleed 1.155 are width switches, not touch switches; (4) baked lighting upgraded from inferred to verified: the home room renders with an unlit texture-only shader over 8 KTX2 atlases, floor pre-blurred in-shader; the lightMap-on-second-UV recipe was replaced; (5) page-transition disc colour is per destination (home #F7F7F7, about #083D2A, playground #F6E016); (6) the 118px render-break title is a verified per-char scrubbed fill (0.15 ghost -> 1); (7) triplet swap exit is power4.inOut 1.5s sinking down, 'hide' is for panels. ADDED: Blender-authored camera dolly (+7 over 2.5s expo.inOut) and sub-degree pointer parallax, bee speech pill scaled by --bee-scale, grab/grabbing cursor with a 60px bleed hit zone, 2000 dust particles and cloud billboards, orientation overlay, two new steals (SDF window mask, scrubbed char fill), three new slop risks (hard image seam on the render break, Archives heading colliding with the nav, disabled zoom + hidden scrollbar). STILL INFERRED: archive expand trigger (onClick + height transition, no frame), uDragForce decay curve, the pointer range feeding the camera parallax, what the 72.7px radius element is, Avantt foundry."
+}

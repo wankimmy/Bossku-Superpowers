@@ -1,0 +1,307 @@
+{
+ "slug": "odd-ritual",
+ "title": "Odd Ritual",
+ "live_url": "https://oddritualgolf.com/",
+ "award": "Site of the Day, Apr 11 2026 (Honors). Credits: Malvah, Geoff Dawes",
+ "scores": {
+  "overall": 7.55,
+  "design": 7.79,
+  "usability": 7.27,
+  "creativity": 7.39,
+  "content": 7.7,
+  "dev": {
+   "overall": 7.28,
+   "semantics_seo": 7.6,
+   "animations": 7.2,
+   "accessibility": 6.2,
+   "wpo": 7.6,
+   "responsive": 7.6,
+   "markup": 6.8
+  }
+ },
+ "industry": "Golf-lifestyle apparel brand with its own Shopify store (Cape Town, South Africa)",
+ "signature": "The shop is laid out like a golf-club broadsheet. Every surface change uses the same clip-path polygon wipe: the hero slider, the preloader, the staggered menu drop and the Barba page swap. The wipe runs with a ±10% counter-parallax on a custom long-tail ease. Tiny italic Instrument Serif numerals (01 02 03 Scroll) spread across the hero's centerline act as the only slider control.",
+ "first_screen": {
+  "composition": "A full-bleed 1440x900 studio photo: two models in front of a warm grey seamless backdrop, one reading an 'odd ritual' broadsheet. The top bar has the 'odd ritual.' wordmark at x=20, a two-line 108px hamburger starting at x=725 (the right-half axis), and SHOP NOW / CART at the right in PP Neue Montreal 14px 600 caps. A numeral rail sits on the vertical midline (y~450): '01' (active, 32px Instrument Serif italic) at x=20, '02' and '03' at 16px at x=725 and x=1077, and 'Scroll' right-aligned. At bottom-left is a stacked 42px uppercase two-tone headline: 'SHOP NOW' in white over 'EXPLORE OUR FIRST COLLECTION' in the same white at 50% opacity, wrapping to three lines. No card, gradient or CTA button.",
+  "what_owns_it": "image",
+  "display_type_px": 42,
+  "evidence": [
+   "probes/odd-ritual/desktop_00.jpg",
+   "frames/odd-ritual/3/f01.jpg",
+   "frames/odd-ritual/3/f02.jpg",
+   "probe measure.largest_text"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "PP Neue Montreal (variable, 100-700)",
+    "role": "display",
+    "classification": "neo-grotesque sans",
+    "foundry": "Pangram Pangram",
+    "source": "probe fonts_loaded 'Ppneuemontrealvariable 100 700', 294 rendered nodes"
+   },
+   {
+    "name": "PP Neue Montreal",
+    "role": "body",
+    "classification": "neo-grotesque sans",
+    "foundry": "Pangram Pangram",
+    "source": "probe body 16px; 14px/600 caps UI is 274 nodes"
+   },
+   {
+    "name": "Instrument Serif (400 italic + roman)",
+    "role": "accent",
+    "classification": "condensed display serif",
+    "foundry": "Instrument (Google Fonts via webfont.js)",
+    "source": "probe fonts_loaded; html class wf-instrumentserif-i4-active"
+   },
+   {
+    "name": "Custom condensed high-contrast serif lettering ('MORE THAN JUST GOLF')",
+    "role": "display",
+    "classification": "condensed didone-ish lettering with a star-cluster flourish",
+    "foundry": "unknown (brand artwork)",
+    "source": "inferred: outlined SVG artwork, because it does not appear in probe largest_text (which scans the whole document). The letterforms (condensed, hairline serifs, straight-legged R, J descending below the baseline) closely resemble Instrument Serif caps, so it is probably the site's own accent serif outlined at ~135px, not a separate face. Seen in desktop_nomodal_06/07."
+   },
+   {
+    "name": "PP (static 600)",
+    "role": "ui",
+    "classification": "same family (form fields)",
+    "foundry": "Pangram Pangram",
+    "source": "probe label/button 14px 700 'PP, Arial'"
+   }
+  ],
+  "display_size_px": 42,
+  "body_size_px": 14,
+  "scale_notes": "Deliberately flat. Live type is 42px (hero headline, menu links, manifesto) and 14px (all UI, product cards, footer). The in-between sizes are few: 32px active numeral, 22px serif '( FEATURED PRODUCTS )', 18px PP 600 'OUR GREATER COMMUNITY', 16px inactive numerals and body, 12px x2. Token --_typography---font-size--display is 7rem (112px), but only the SVG lettering (cap height ~95px, inferred ~135px outlined serif) reaches display scale. Ratio 42:14 = 3:1. Size counts: 14px x274, 16px x24, 42px x10.",
+  "tracking_leading": "42px uses -1.26px (-0.03em, token --_typography---letter-spacing--0-03em) and line-height 1 (42px). 14px caps use normal tracking and line-height 1.1. Serif numerals use line-height 1. Cap-trim tokens (--primary-trim-top .37em / bottom .38em, --secondary-trim-top .55em / bottom .31em) crop the line box to the caps so labels align exactly to image edges.",
+  "case_and_style": "All UI and headlines in caps. The manifesto (h3 42px 500) is sentence case. Serif italic is reserved for the hero rail ('01' '02' '03' 'Scroll', 'Next' on mobile). Upright serif caps carry the labels and the colophon: '( FEATURED PRODUCTS )' is Instrument Serif 22px caps rgb(104,96,96), and the gallery counter 'ORGC_26' and 'ORGC©2025 / DESIGNED AND MADE LOCALLY' are upright too. Product codes are '(OR_CRW_B)' in #818181 PP 600. CTAs use thin-bracket glyphs: '〔 VIEW ALL PRODUCTS 〕'.",
+  "signature_moves": [
+   "Two-tone stacked headline: line 1 white, lines 2-3 the same white at opacity .5 (Webflow CSS .hero-title{opacity:.5}). Emphasis comes from tone, not colour. Per styles-2026.css, hovering the SHOP NOW link (.orgc-detail) lifts the dim line to opacity 1 in 125ms while the link text rolls down (.45s cubic-bezier(0.32,0.72,0,1)); code-read, not captured.",
+   "Italic serif numerals as the only slider UI, set at x=20 / 50% / 75% / right on the hero midline. Each numeral has padding 1.25rem with margin -1.25rem, which gives a ~56px hit target without moving the type.",
+   "An archive-style product code under every product name, e.g. '(OR-HGP_B)'.",
+   "One size (42px) shared by the hero headline, menu links and the manifesto, so the hierarchy comes from layout and colour.",
+   "The manifesto is 7 lines of 42px set solid (line-height 1, -0.03em), a paragraph with headline density."
+  ],
+  "mobile": "The 390px probe keeps 42px as the largest size (mobile_measure largest [42,42,42]), so the hero headline still wraps to 3 lines at the bottom-left. The nav becomes MENU / centered wordmark / CART. The numeral rail becomes '01' plus a serif-italic 'Next'. Product cards stack full width, and the white spec card is shown at rest (no hover on touch) with the same 14px caps as desktop (mobile_01 is a 2x capture, so its type looks larger in pixels). No horizontal overflow."
+ },
+ "color": {
+  "mode": "section-shifting",
+  "base": "#FFFFFF page surface (.page-main, 89 bg nodes) over a #000 body (styles-2026.css body{background:#000}), plus #F4F4F4 (--swatch--light-grey, 81 nodes) for product-card wells and the footer floor. The black body is what the Barba transition and the preloader fade toward. The About page footer (site index plus product table) is #000.",
+  "ink": "#000000 (219 text nodes); secondary ink #818181 (--swatch--light-faded, 59 nodes); #CCC (--swatch--faded-text) only for menu links dimmed while a sibling is hovered",
+  "accents": [
+   "#050FFF brand ultramarine (--swatch--brand): the preloader's inner background (a blue band that wipes down just ahead of the image, 3/f00), the leading edge of the menu drop, the hovered menu link, the hovered row of the About-page product table, and the centered colophon monogram mid-page (desktop_nomodal_04/05). Per the bundle, the About page also floods the whole body to #050FFF when the pillars section is reached (body.theme-blue, 0.2s power2.inOut); code-read, not captured.",
+   "rgb(104,96,96) warm grey on the serif '( FEATURED PRODUCTS )' label"
+  ],
+  "ratio": "~65% white/#F4F4F4 surfaces, ~27% photography, ~7% black ink, <1% #050FFF",
+  "section_shifts": "Full-bleed photo hero, then white manifesto and carousel, white three-up grid, full-bleed photo gallery, white community rows, and the #F4F4F4 footer. The nav swaps light/dark via ScrollTrigger on [nav-dark]/[nav-light] sections (start 'top top').",
+  "texture": "none; all tone comes from the photo grading",
+  "notes": "The blue is used like a signal lamp. It never appears as a button fill. On the homepage it shows in motion (loader band, menu band), on hover (menu link, table row), once as a static monogram, and inside one partner photo (the 242 coffee cup on blue). The one large use is the About-page pillars flood, which is a single scroll event rather than a sprayed accent."
+ },
+ "layout": {
+  "grid": "12 columns (--site--column-count 12). Outer margin 20px as observed. Gutter .65rem (10.4px, --site--gutter). Container 90rem, max site width 150rem. A hard vertical axis at x=725 (the start of the right half) aligns the hamburger, the manifesto, 'GIVING BACK', community images and the footer's third column.",
+  "density": "airy",
+  "alignment": "Left-aligned to the 20px margin or to the x=725 half-axis. Centered elements are the exception: '( FEATURED PRODUCTS )', '〔 VIEW ALL PRODUCTS 〕' and the colophon block ('ORGC©2025 / DESIGNED AND MADE LOCALLY', CAPE TOWN / statement / SOUTH AFRICA, blue monogram).",
+  "composition_moves": [
+   "Right-half-only text blocks: the 42px manifesto starts at x=725, with an empty left half apart from the crest (desktop_nomodal_01)",
+   "Unequal three-up grid 'OUR PRODUCTS / OUR STORY / OUR COMMUNITY' at 695 / 343 / 342px widths with top-aligned 14px caps labels and staggered image heights (desktop_nomodal_03)",
+   "Product carousel of 460x575 cards with 10px gaps, running off both edges. The hovered card switches from packshot to on-model photo and shows a white spec card inset 10px at the bottom (name, code, price, arrow) (desktop_01, 3/f03-f04).",
+   "Partner rows: a 1px black rule across the left half, '〔 VISIT WEBSITE 〕' at x=20, a 14px description at x=372, and a full right-half photo (desktop_nomodal_09)",
+   "Condensed-serif SVG lettering 'MORE THAN JUST GOLF' bleeding off the section top at x=20 (desktop_nomodal_06/07)",
+   "Footer: an illustrated crest (star cluster, bird, oval monogram) top-left, then 4 equal columns with hairline rules and all-caps link stacks"
+  ],
+  "section_rhythm": "Loud full-bleed hero, then a quiet white manifesto with ~250px of air, then a dense product strip, then the three-up grid, then a centered colophon with the blue monogram, then a loud full-bleed gallery (~110vh), then the SVG lettering, then partner rows, then the #F4F4F4 footer. Every loud image section is followed by a near-empty white one.",
+  "mobile_adaptation": "The single column keeps the 42px caps. The carousel becomes one card at full width (mobile_01). The wordmark centers between MENU and CART."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis 1.2.3 (unpkg) with `new Lenis()` defaults (lerp 0.1). The html element carries the 'lenis' class. lenis.stop() runs while the preloader, the menu or a carousel drag is active.",
+  "preloader": "Black screen (.preloader_wrap, 100dvh, --swatch--dark) with a small centered image. A GSAP timeline uses defaults {duration: 2, ease 'ease-3' = cubic-bezier(0.65,0.01,0.05,0.99)}. Steps: logo opacity 0 to 1 (delay .5, 1s, sine.in); the #050FFF inner background (.preloader-inner_bg) wipes down with clip-path polygon(0 0,100% 0,100% 0,0 0) to full over 1s; the image wrap runs the same wipe at '<15%' while the images go yPercent -30 to 0, so a blue band leads the image down (3/f00; it is this lag, not a progress bar); then the inner collapses to its bottom edge with clip polygon(0 100%,100% 100%,100% 100%,0 100%) while the images drift yPercent to 10, and the whole loader collapses the same way at '<30%'. It runs only on the first visit per session (sessionStorage 'visited'). A CustomEase 'loaderEase' is defined but never referenced.",
+  "intro_sequence": "The loader wipes down and away to reveal the hero photo, which is already in place with slide 01 marked active by the markup/JS (not by a click). After every Barba navigation, the transition's onComplete clicks the first numeral 1ms later to reset the hero. On first visit, a timer clicks [sub-trigger] 10s after load and opens the signup modal.",
+  "scroll_techniques": [
+   "parallax: [img-scroll] images yPercent 0 to 20, scrub:true, ease linear, start 'clamp(top bottom)' to 'clamp(bottom top)'",
+   "scrub: floating crest SVG yPercent -30 to 15, scrub 1, end 'bottom -25%', only at (min-width:992px) and (pointer:fine)",
+   "flip-book: .floating-icon swaps between its .floating-svg variants (sequence doubled, e.g. 0,1,2,0,1,2) with autoAlpha sets spread along a scrubbed timeline, so the crest changes drawing as you scroll (code-read)",
+   "stacking rows: each partner row (.community-item[data-scroll-overlap], white bg, overflow hidden) goes yPercent 0 to 50 over the first 500px after its top hits the viewport top (power1.in, scrub), so the next row slides over a sinking one (code-read; desktop_nomodal_08/09 show the static rows)",
+   "nav theme swap: ScrollTrigger on [nav-dark]/[nav-light] from 'top top' to 'bottom top'",
+   "footer: nav gets class 'pull-up' at 'clamp(top 20%)', which slides it out with translateY(-100%) in 300ms ease-out",
+   "SplitType splits [split-it] and [split-rich] p into lines and words (classes s-l / s-w, s-l gets 0.1em bottom padding), but the custom bundle has no reveal tween for them; any reveal would be a Webflow interaction and was not observed"
+  ],
+  "text_animation": "Menu links sit in masked lines and go yPercent -140 to 0 (stagger .05, duration .575), so each word drops in from above; 1/f01 shows letters with their tops still cut off by the line mask. Hero headline lines slide to translateY(0) over 400ms cubic-bezier(0.32,0.72,0,1) with a 300ms delay when a slide becomes active (styles-2026.css). SplitType runs but no split-text reveal was found in the bundle.",
+  "image_animation": "Hero slide change in moveSlide(): timeline defaults {duration 1, ease 'ease-2'}. Forward: the next slide clip goes from polygon(0 0,100% 0,100% 0,0 0) to full (it grows down from the top edge), the previous slide clip goes to polygon(0 100%,100% 100%,100% 100%,0 100%) (it collapses toward the bottom), the previous image yPercent goes 0 to 10 and the next image -10 to 0, all at '<'. Backward mirrors the directions. Hovering a numeral adds .darken to the black .slide-overlay (opacity .2 to .6, transition all 400ms cubic-bezier(0.32,0.72,0,1)) and shows that slide's thumbnail (.slide-nav_img: one grid column wide, ~107px, aspect-ratio 4/5, top:100% plus a gutter) under the numeral (3/f02). The active numeral grows 16 to 32px and gets an underline that scales in from the left with a 400ms delay. Hover image reveals elsewhere ([solo-img_hov], .is-giving, [img-hover_wrap]) use the same top-down clip wipe (0.6s, ease-1 or expo.inOut) and collapse to the bottom edge on leave.",
+  "page_transitions": "Barba with sync:true. The next container is set position:fixed (top 0, left 0, width 100%) in hooks.enter and returned to relative in hooks.after. The current container goes opacity 1 to 0.4 and marginTop 0 to 20vh, so it sinks and dims toward the black body. The next container goes marginTop -20vh to 0 and clip polygon(0 0,100% 0,100% 0vh,0 0vh) to polygon(0 0,100% 0,100% 100vh,0 100vh). Duration 1, ease 'ease-3', then clearProps:'all'. Lenis is stopped in hooks.before.",
+  "hover_micro": [
+   "Menu link: black at rest. Hovering one turns it #050FFF (.menu-link:hover) and dims the siblings to #CCC (.menu-list-item.inactive, colour transition 100ms ease-out). The top-left thumbnail swaps to that page's image (1/f01-f05)",
+   "Hamburger: two thin lines; on desktop a 'MENU' label slides down from translateY(-100%) in 400ms cubic-bezier(0.32,0.72,0,1) on hover (1/f00)",
+   "Text roll [h-flip] on the menu CLOSE, the cart link and a signup text link (markup: .menu-close, .menu-cart, [sub-trigger].text-link): the label carries text-shadow 0 -1em 0 currentColor inside overflow:hidden and moves translateY(1em) in 400ms on hover, so a clone rolls in from above with no extra DOM (CSS and markup read; not captured)",
+   "Product card: packshot on #F4F4F4 swaps to an on-model photo and the white info card appears (3/f03-f04)",
+   "Three-up grid: hovering a tile fades in a label row across its middle, e.g. 'COLLECTION 01 & 02 ... 〔 SHOP NOW 〕', 'ABOUT US ... 〔 READ MORE 〕' (3/f05; inferred to be the .cta-block:hover .cta-hover_el rule, opacity 300ms ease-out)",
+   "About-page footer table (CODE / NAME / PRICE on black): the hovered row turns #050FFF, and a ~107x134 product thumbnail clips open from the top (0.6s expo.inOut) at the table's left edge and follows the cursor Y clamped to the list (quickTo y, .4s power3) (2/f00-f06)",
+   "[flickthrough-wrap] image stacks cycle every 300ms while hovered and auto-cycle every 500ms under 992px (code-read)",
+   "Carousel press: cards scale to .95 (0.3s linear, delay .1) and reverse on release"
+  ],
+  "cursor": "The native cursor is kept. On the full-bleed gallery the left and right halves are the prev/next buttons (.slider_btn with data-cursor='Prev'/'Next'); a label '〔 PREV 〕' / '〔 NEXT 〕' in 14px caps with thin SVG brackets follows the pointer (quickTo x/y, power3), offset xPercent/yPercent 60 below-right and flipped to -100 within 10% of the right or bottom edge. It shows via body.c-vis (opacity .3s) and only at ≥992px with a fine pointer (3/f06-f07, 0/f00). The gallery counters 'ORGC_26' and '01'-'04' sit at the left and right edges on the section's vertical centre line, echoing the hero rail (3/f06, desktop_nomodal_05/06).",
+  "easing_curves": [
+   "CustomEase ease-1: M0,0 C0.15,0 0.15,1 1,1 (global gsap.defaults, duration 1)",
+   "CustomEase ease-2: M0,0 C0.071,0.505 0.192,0.726 0.318,0.852 0.45,0.984 0.504,1 1,1 (hero wipe: fast start with a long settle)",
+   "CustomEase ease-3: 0.65,0.01,0.05,0.99 (preloader, Barba)",
+   "expo / expo.out / expo.inOut (menu, hover image wipes)",
+   "power3 (quickTo followers), power1.in (row overlap), sine.in/sine.out (loader logo, menu meta)",
+   "CSS house ease cubic-bezier(0.32,0.72,0,1): 400ms numerals, overlay, underlines, headline slide, MENU label and [h-flip]; 300ms signup close and arrows; .45s link roll. It lives in the cross-origin styles-2026.css, which the probe could not read (sheets blocked: 2)",
+   "Probe-mined CSS from the Webflow sheets: cubic-bezier(0.25,1,0.5,1) x3, cubic-bezier(0.65,0.05,0,1) x2 (.55s on unused .menu-link-heading/.menu-link-bg template rules), cubic-bezier(0.4,0,0.2,1) x2, cubic-bezier(0.5,0,0.5,1)"
+  ],
+  "duration_range_ms": "100-125 for colour/opacity hovers (menu links, dim headline line); 300 for nav pull-up and CTA fades; 400 for numerals, overlay and text rolls; 575 for menu panels and links; 600 for hover image wipes; 1000 for slide wipes and page transitions; 2000 per preloader phase (1000 per tween)",
+  "stagger_ms": "menu links 50; menu background panels 100 on open and 120 on close",
+  "choreography_notes": "Menu open (all tweens use the global ease-1 unless noted): the overlay autoAlpha 0 to 1 (expo) and the logo background yPercent -101 to 0 (expo) start together; at '<15%' the two 55%-high bgPanels (blue first, then white) drop yPercent -101 to 0 with stagger .1, duration .575, so for 0.1s the blue panel shows as a band below the white one, and it disappears when both settle (1/f01 band, 1/f02 none); at '<20%' the image column clips open from the top while moving yPercent -50 to 0; at the same moment the links drop in from above with stagger .05; then the footer meta fades in at '<70%' (.575s, sine.out). Close runs the panels, logo, image column and links back up on expo.out (panel stagger .12), and the page shows through from the top as they retract (1/f06). Everything travels downward on open and upward on close, so the menu reads as a blind being pulled.",
+  "evidence": [
+   "frames/odd-ritual/3/f00-f07",
+   "frames/odd-ritual/1/f00-f07",
+   "frames/odd-ritual/0/f00,f03,f06",
+   "frames/odd-ritual/2/f00,f03,f06",
+   "bundle grep: https://cty38f.csb.app/scripts-2026.js (moveSlide, initMenu, preloader, barba.init, Observer carousel, footerImgFollow, data-scroll-overlap, floating-icon)",
+   "https://cty38f.csb.app/styles-2026.css and odd-ritual-gc.webflow.css (.slide-overlay, .bg-panel, .menu-link:hover, .slide-nav_img, [h-flip])"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "photo",
+  "art_direction": "Editorial fashion-meets-clubhouse. Warm-grey seamless studio shots with soft window light and a slightly lifted, desaturated film grade. Dawn fairway lifestyle photos in golden haze. Black-and-white reportage for community partners (a charity, a running club). Packshots on flat #F4F4F4 with no shadow. Props such as a branded broadsheet, cigars and a rope cap make the brand world diegetic.",
+  "treatments": [
+   "full-bleed hero slider with clip-path wipes",
+   "B&W for community / partner photos next to full-colour product photos",
+   "packshot-to-lifestyle swap on hover (the info card is always visible on touch)",
+   "20% scroll parallax inside overflow-hidden frames",
+   "one saturated blue-background partner photo (242 coffee) reused as a brand-colour moment"
+  ],
+  "crops_and_ratios": "Hero 16:10 full viewport. Carousel cards 4:5 (460x575). Three-up grid at 695x~570 / 343x427 / 342x499. Partner photos 695x347 (2:1) in the right half.",
+  "formats": "probe: 155 <img>, 0 <video>, jpg x110 requests, declared jpeg 13.3MB plus webp 9.3MB; SVG x203 for crests, lettering and icons",
+  "evidence": [
+   "probes/odd-ritual/desktop_00.jpg",
+   "probes/odd-ritual/desktop_nomodal_02.jpg",
+   "probes/odd-ritual/desktop_nomodal_03.jpg",
+   "probes/odd-ritual/desktop_nomodal_09.jpg",
+   "frames/odd-ritual/0/f00.jpg"
+  ]
+ },
+ "three_d": {
+  "present": false,
+  "stack": "none observed",
+  "role": "none",
+  "assets": [],
+  "materials_lighting_post": "",
+  "interaction": "none",
+  "performance_tactics": "",
+  "fallback_mobile": "",
+  "evidence": [
+   "probe contexts {'2d': 3} with no webgl/webgl2, no THREE global and empty assets_3d, even though the Awwwards record is tagged Three.js (it may be used on a page the probe did not visit)"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Fixed top bar with no background: wordmark left, two-line hamburger on the x=725 axis, SHOP NOW / CART right. The colour flips black/white per section through ScrollTrigger, and the bar slides up out of view (translateY(-100%), 300ms ease-out) once the footer reaches 20% of the viewport. Content scrolls visibly under it (desktop_01).",
+  "menu": "A full-width overlay drops from the top in stacked panels. Two panels of equal height (55%): a #050FFF one first and a white one 0.1s behind it, so a blue band leads the drop and vanishes when the white one settles over it. The white sheet holds the 42px caps links OUR SHOP / HOME / ABOUT US / CONTACT at x=725 (black at rest, hovered link #050FFF, siblings dim to #CCC), a hover-swapped thumbnail at top-left, CLOSE at top-right, and MY CART / JOIN THE FAM / INSTAGRAM meta. The lower ~45% shows a full-bleed product photo with a crest and serif colophon ('SWING EASY, ODD RITUAL, ©2025' / 'CAPE TOWN, SOUTH AFRICA'). Lenis is stopped while the menu is open, and Escape closes it.",
+  "buttons_links": "No filled buttons in the observed pages. CTAs are text in thin brackets ('〔 VISIT WEBSITE 〕', '〔 VIEW ALL PRODUCTS 〕', '( SHOP NOW )'). The theme defines the primary button as a #050FFF fill that hovers to black, but it was not observed in use. Footer links are #818181 caps.",
+  "unusual_interactions": [
+   "Draggable, auto-drifting product carousel: ~50px/s via a gsap.ticker (total -= deltaTime/20), wrapped with gsap.utils.wrap(-half, 0), dragged with Observer pointer/touch, followed by quickTo x (.5s power3)",
+   "Hammer.js swipe left/right on sliders",
+   "About-page footer product table (CODE / NAME / PRICE on black) with a cursor-following, clip-revealed thumbnail",
+   "Partner rows that sink under the next row as you scroll (data-scroll-overlap)",
+   "Barba sink-and-wipe page transition"
+  ],
+  "sound": "none",
+  "footer": "A #F4F4F4 floor with the crest illustration (star cluster, raven, oval monogram), the tagline 'ODD RITUAL GOLF CLUB / A MODERN EXPRESSION OF HERITAGE', a newsletter form with underline inputs, 4 hairline-ruled columns (SITE INDEX / SOCIAL / GET IN TOUCH / LEGAL) after a ~450px empty band, 'ALL RIGHTS RESERVED _ ORGC©2025' and a near-invisible light-grey 'WEBSITE BY MALVAH'. On the About page the footer is black and carries the product table (element 'About Index')."
+ },
+ "content_voice": {
+  "headline_style": "Short caps imperatives and taglines ('SHOP NOW / EXPLORE OUR FIRST COLLECTION', 'ABOUT US / A MODERN EXPRESSION OF HERITAGE'). Club-archive codes (ORGC_26, OR_CRW_B), and an italic serif for numbering.",
+  "copy_tone": "Relaxed, culture-first golf. The manifesto is warm and plain ('the good times, on and off the course'). Local pride shows in 'DESIGNED AND MADE LOCALLY', and the community section credits partners by name.",
+  "examples": [
+   "MORE THAN JUST GOLF",
+   "SHOP NOW / EXPLORE OUR FIRST COLLECTION",
+   "ABOUT US / A MODERN EXPRESSION OF HERITAGE",
+   "ORGC©2025 DESIGNED AND MADE LOCALLY",
+   "MADE FOR US. BY US.",
+   "SWING EASY, ODD RITUAL, ©2025"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Webflow design exported to Shopify through Udesly (udesly-shopify.min.js), with content from Contentful according to the Awwwards tags",
+  "libraries": [
+   "GSAP 3.12.7 (jsDelivr)",
+   "ScrollTrigger",
+   "CustomEase",
+   "Observer",
+   "Flip (loaded; no Flip call in the custom bundle)",
+   "Lenis 1.2.3 (unpkg)",
+   "@barba/core",
+   "SplitType (served as split.txt from the Webflow CDN)",
+   "Hammer.js (served as hammer.txt from the Webflow CDN)",
+   "jQuery 3.5.1",
+   "webfont.js 1.6.26 (Instrument Serif)",
+   "lottie-web 5.12.2 (loaded, no lottie nodes observed)",
+   "Klaviyo"
+  ],
+  "evidence": "Script tags in the live HTML (re-checked in this audit). The custom code is served from CodeSandbox (cty38f.csb.app/scripts-2026.js, 39KB, unminified, plus styles-2026.css). Probe globals: gsap, ScrollTrigger, Lenis, barba, lottie, Webflow, Shopify."
+ },
+ "performance_accessibility": {
+  "requests": 368,
+  "weight_notes": "Declared bytes are heavy on photos: jpeg 13.3MB plus webp 9.3MB. JS 2.27MB comes from Shopify, Klaviyo and jQuery, with libraries pulled from six CDN hosts (jsDelivr, unpkg, cdnjs, the Webflow CDN, Google, CloudFront) plus CodeSandbox. The custom code on a CodeSandbox host is fragile for production. styles-2026.css also carries unused template rules (.director-*, .work-list_*, .project-*), which fits the 6.8 markup score.",
+  "reduced_motion": "probe reduced_motion_rules 0. No prefers-reduced-motion handling in any of the site's CSS or in the gsap.matchMedia blocks, which only gate on width and pointer. The carousel's ticker drift never stops.",
+  "contrast_issues": "Partner body copy and footer links are #818181 on white/#F4F4F4 (3.9:1 on white, 3.5:1 on #F4F4F4; fails AA for 14px text), and 'WEBSITE BY MALVAH' is lighter still. The dim headline line is white at 50% over a busy photo. styles-2026.css sets outline:none !important on a/button/[tabindex]:focus-visible, so keyboard focus is invisible. The homepage has no h1, and the hero numerals '01' '02' '03' 'Scroll' are marked up as h2. Without JS the hero is blank (.hero-slider_item{display:none} until the script shows slide 1). Escape does close the menu. Accessibility is the site's weakest sub-score (6.2).",
+  "mobile_quality": "Clean. No overflow, and the 42px caps hold. The carousel works by touch through Observer and Hammer.",
+  "dev_scores": {
+   "semantics_seo": 7.6,
+   "animations": 7.2,
+   "accessibility": 6.2,
+   "wpo": 7.6,
+   "responsive": 7.6,
+   "markup": 6.8
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Directional clip-path wipe slider with counter-parallax",
+   "why_it_works": "The new image appears to grow down over the old one, and the old one collapses away. The ±10% image drift inside each mask gives depth without any 3D.",
+   "how_to_build": "Stack slides absolutely with overflow:hidden and an inner img at height 120%. GSAP timeline defaults {duration:1, ease: CustomEase.create('ease-2','M0,0 C0.071,0.505 0.192,0.726 0.318,0.852 0.45,0.984 0.504,1 1,1')}. Forward: next.fromTo({clipPath:'polygon(0% 0%,100% 0%,100% 0%,0% 0%)'},{clipPath:'polygon(0% 0%,100% 0%,100% 100%,0% 100%)'}); prev.fromTo(full,{clipPath:'polygon(0% 100%,100% 100%,100% 100%,0% 100%)'},'<'); prevImg yPercent 0 to 10 and nextImg -10 to 0 at '<'. Mirror all of it for backwards. Keep the resting slide at a full polygon so content is visible without JS."
+  },
+  {
+   "technique": "Numeral rail as the slider UI",
+   "why_it_works": "Replacing dots and arrows with editorial numbers across the hero midline makes navigation part of the layout. Hover darkens the photo and previews the target slide, so the control teaches itself.",
+   "how_to_build": "Absolutely position a flex row at top:50% across the 20px margins with items at x=0, the 50% axis, the 75% axis, and right. Use an italic display serif at 16px, with the active item at 32px (transition all 400ms cubic-bezier(0.32,0.72,0,1)) and an underline pseudo-element that scales in from the left with a 400ms delay. Give each numeral padding 1.25rem and margin -1.25rem so the hit area grows without moving the type. On mouseenter add .darken to a full black overlay (opacity .2 at rest, .6 when darkened, same 400ms transition) and show a thumbnail one grid column wide (~107px) at aspect-ratio 4/5, positioned top:100% under the numeral. Clicking calls moveSlide(index, index > active). Unlike the original, ignore clicks while a wipe is running and do not un-set the active numeral when it is clicked again."
+  },
+  {
+   "technique": "Staggered panel menu drop with a brand-colour leading edge",
+   "why_it_works": "A single saturated band leading a white sheet puts the brand colour in motion only, so it reads as a signature without becoming a sprayed accent.",
+   "how_to_build": "Build two .bg-panel layers of the same height (55% of the viewport): a #050FFF panel first and a white panel second in DOM order, with the white one on top. Open timeline (gsap.defaults ease CustomEase 'M0,0 C0.15,0 0.15,1 1,1', duration 1): overlay autoAlpha 0 to 1 (ease 'expo') and logo background yPercent -101 to 0 (expo) together; panels yPercent -101 to 0 with stagger .1, duration .575, at '<15%', so the blue one leads as a moving band and is hidden once both land; image wrap clip polygon(0 0,100% 0,100% 0,0 0) to full plus yPercent -50 to 0 (.575) at '<20%'; links (each inside an overflow:hidden line) yPercent -140 to 0 (they drop from above) with stagger .05 at '<'; meta autoAlpha at '<70%' (.575, sine.out). Close uses the same tweens back to -101 / -140 on expo.out with panel stagger .12. Call lenis.stop() and lenis.start() around it, and close on Escape."
+  },
+  {
+   "technique": "Auto-drifting, draggable infinite product strip",
+   "why_it_works": "The strip reads as a live shop window instead of a static grid. Drag gives tactile control, and the .95 press-scale confirms the grab.",
+   "how_to_build": "Duplicate the cards once. const half = track.width()/2; const wrap = gsap.utils.wrap(-half, 0); const xTo = gsap.quickTo(track, 'x', {duration:.5, ease:'power3', modifiers:{x: gsap.utils.unitize(wrap)}}). In gsap.ticker.add((t,dt)=>{ total -= dt/20; xTo(total); }), that is ~50px/s. Observer.create({target:track, type:'pointer,touch', onPress: ()=>pressTl.play(), onDrag: s=>{ total += s.deltaX; xTo(total); lenis.stop(); }, onRelease: ()=>{ pressTl.reverse(); lenis.start(); }}), where pressTl = gsap.to(cards,{scale:.95,duration:.3,ease:'linear',delay:.1,paused:true})."
+  },
+  {
+   "technique": "Sink-and-wipe page transition",
+   "why_it_works": "The old page falls back and dims while the new one is cut in from the top edge, which makes the swap physical and matches the slider's wipe.",
+   "how_to_build": "Barba sync:true. In barba.hooks.enter set the next container to position:fixed, top:0, left:0, width:100%, and set it back to relative in hooks.after. Keep body background #000 behind a white page wrapper. enter(data): tl defaults {duration:1, ease: CustomEase '0.65,0.01,0.05,0.99'}; current.fromTo({opacity:1, marginTop:'0vh'},{opacity:.4, marginTop:'20vh'}); next.fromTo({marginTop:'-20vh', clipPath:'polygon(0% 0%,100% 0%,100% 0vh,0% 0vh)'},{marginTop:'0vh', clipPath:'polygon(0% 0%,100% 0%,100% 100vh,0% 100vh)', clearProps:'all'},'<'). Stop Lenis in hooks.before, and scroll to 0 and re-init page scripts in hooks.after."
+  },
+  {
+   "technique": "Cursor-tracking thumbnail on a data-table product index",
+   "why_it_works": "A dense CODE / NAME / PRICE list stays readable as type while still showing the product. The table becomes the gallery.",
+   "how_to_build": "Use a black footer with a 3-column list in the right half (code at x=725, name, price right-aligned) in 14px caps #818181. On row hover, colour the row #050FFF and swap the src of a single thumbnail (~107x134, one grid column at 4:5) that sits at the list's left edge. On list mouseenter clip it open from the top (clip-path polygon(0 0,100% 0,100% 0,0 0) to full, 0.6s expo.inOut) and on mouseleave collapse it to the bottom edge. Move it with gsap.quickTo(thumb,'y',{duration:.4, ease:'power3'}) from mousemove clientY relative to the list, clamped between 0 and listHeight - thumbHeight, and re-run on scroll while hovering."
+  },
+  {
+   "technique": "Partner rows that sink under the next row",
+   "why_it_works": "Plain text-plus-photo rows get a stacking-card feel without pinning: each row drifts down at half speed as the next one slides over it, and the 1px rule on the next row reads as the edge of a new sheet.",
+   "how_to_build": "Give each row position:relative, overflow:hidden and an opaque background so later rows paint over earlier ones. For each row: gsap.timeline({scrollTrigger:{trigger:row, start:'top top', end:'+500px', scrub:true}}).to(row,{yPercent:50, ease:'power1.in'}). Gate it behind (min-width:992px) and prefers-reduced-motion: no-preference (the original applies it everywhere)."
+  }
+ ],
+ "slop_risks": [
+  "Slop gray: #F4F4F4 (--swatch--light-grey) fills every packshot well and the whole footer band. That is the gray-100 family the law calls a non-decision. A copy should pick a tinted brand neutral.",
+  "Saturated accent: #050FFF is a poster-bright blue. It survives here only because it appears in motion (loader band, menu band), on hover (menu link, table row), once as a monogram and once as the About-page pillars flood. Spreading it to headline words, dots or button fills would be the saturated-accent tell.",
+  "One label treatment everywhere: 14px/600 uppercase PP carries the nav, product names, card prices, grid labels, footer headings, footer links, form fields and CTAs (274 of ~346 sized text nodes). It escapes the tell only because the tracking is normal rather than spaced, secondary strings drop to #818181, and numbering moves to the serif. Add the parenthesised labels, bracketed CTAs and parenthesised product codes on top of that and a copy tips into the repeated-label tic.",
+  "Multi-line headline: the hero headline stacks to three lines at 1440 and at 390 ('SHOP NOW / EXPLORE OUR FIRST / COLLECTION'), leaving 'COLLECTION' alone at the foot. The tonal two-tone is within the law, but a copy should hold the dim line to one line.",
+  "The site's own newsletter modal (.signup-popup) is opened by a scripted click 10s after a first-session load and covered desktop_02-07. It is a hostile overlay that hides the award-level content.",
+  "Text jammed against the edge: a 20px outer margin at 1440 with 42px caps and SVG lettering flush at x=20. It works as editorial bleed, but a copy with normal type sizes will look cramped.",
+  "Invisible content without JS: .hero-slider_item is display:none in CSS until the script shows slide 1, so the whole hero is blank if the CodeSandbox-hosted script fails. Keep the first slide visible in CSS. (The earlier SplitType reveal worry is not supported: the bundle splits text but has no reveal tween, and the manifesto renders visible.)",
+  "Keyboard focus removed: outline:none !important on :focus-visible. A copy must keep a visible focus style.",
+  "Content marooned at the edges: the footer puts the crest top-left and the tagline on the 50% axis, then leaves a ~450px empty band before the link columns. It holds only because every piece sits on the 12-column grid; the empty band without the grid reads as unplaced.",
+  "Contrast: #818181 body copy on white fails AA at 14px.",
+  "Instrument Serif is a free Google display serif. It works here as a numeral and label accent only; letting it carry the brand voice would drift into the default-Google-font rotation."
+ ],
+ "confidence_notes": "OBSERVED: probe.json; desktop_00-07 and mobile_00/01 viewed one by one. desktop_02-07 are mostly covered by the site's own signup popup, so I re-captured the scroll in a scratch run: the Klaviyo script was blocked and CSS `.signup-popup{display:none}` was injected. No clicks were made. The results are saved as probes/odd-ritual/desktop_nomodal_01-12.jpg (01-10 and 12 viewed). The Klaviyo block also removed the footer newsletter form from those captures; that form is visible in desktop_07. All 8 frames of elements 3 (hero slider) and 1 (menu) were viewed, plus f00/f03/f06 of elements 0 and 2. The easing, duration, stagger and clip-path values are verbatim from the unminified custom bundle (scripts-2026.js). INFERRED: the SVG nature and ~100px cap height of 'MORE THAN JUST GOLF'; the Lenis defaults (the constructor is called with no options); the SplitType reveal behaviour (the split was confirmed but the reveal tween was not read). NOT VERIFIED: the Three.js tag. No WebGL context appeared on the homepage. audit (2026-09-25): re-read probe.json, desktop_00/01/02/07, desktop_nomodal_01/03/04/05/06/07/08/09/10/11/12, mobile_00/01, all 8 frames of elements 3 and 1, and f00/f03/f06 of elements 0 and 2, one at a time. Re-fetched scripts-2026.js, styles-2026.css, odd-ritual-gc.webflow.css and the homepage HTML. Fixed: menu links drop from above (yPercent -140 to 0), they do not rise; menu links are black at rest with siblings dimmed to #CCC on hover; the blue menu band comes from the 0.1s stagger between two equal 55% panels, not a taller panel; the preloader's blue is the inner background wiping ahead of the image, not a progress bar; Barba does not click the first numeral on first load (it does so after each page transition) and only the next container is fixed; the signup modal opens on a 10s timer, not mid-scroll; the numeral transition is 400ms cubic-bezier(0.32,0.72,0,1), not .5s (0.25,1,0.5,1); the slide overlay is black at opacity .2 to .6; thumbnails are ~107x134 (one grid column at 4:5), not 60x75; the 'product index' is the About page's black footer; the blue monogram is the mid-page colophon, not the footer; 'ORGC_26' is upright serif; the cursor label uses thin brackets and flips near the viewport edge; gallery counters sit on the section's vertical centre; the mobile spec card is 14px; six CDN hosts, not four. Removed the SplitType invisible-content accusation (no reveal tween exists). Added: house CSS ease, dim-line opacity .5 and its hover lift, [h-flip] text roll, three-up hover labels, row-overlap scroll, crest flip-book, flickthrough, nav pull-up, pillars body flood (code-read), no-JS hero, removed focus outlines, no h1, multi-line-headline and label-treatment tells, and a new steal_this for the sinking rows."
+}

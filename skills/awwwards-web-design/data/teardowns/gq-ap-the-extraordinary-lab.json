@@ -1,0 +1,330 @@
+{
+ "slug": "gq-ap-the-extraordinary-lab",
+ "title": "GQ & AP The Extraordinary Lab",
+ "live_url": "https://www.gq.com/sponsored/story/the-extraordinary-lab",
+ "award": "Awwwards Site of the Day, Mar 26 2026 (Honors, SOTD; also listed in Sites of the Month). Credits: Immersive Garden",
+ "scores": {
+  "overall": 7.74,
+  "design": 7.85,
+  "usability": 7.24,
+  "creativity": 8.18,
+  "content": 7.96,
+  "dev": {
+   "overall": 7.18,
+   "semantics_seo": 6.8,
+   "animations": 8.6,
+   "accessibility": 6.0,
+   "wpo": 7.4,
+   "responsive": 7.0,
+   "markup": 7.0
+  }
+ },
+ "industry": "Luxury watchmaking branded content (GQ x Audemars Piguet RD series); tags Fashion, Experimental, WebGL, Blender",
+ "signature": "A sponsored watch story whose scroll is bound to the narration: the voiceover plays and drives the camera through a WebGL lab drawn as hand-jittered, overshooting white hairlines on black; wheel or drag and the voice fades so you scrub the film yourself, let go and it resumes from that exact moment, with Garamond subtitles lighting up character by character and one spectral chroma, grain and LUT lens pass over the whole frame.",
+ "first_screen": {
+  "composition": "Timed intro on #000 driven by Theatre.js sheets (SplashScreen [loading] -> [splash] -> [waitForClick] -> [out]). Step 00: only the GQ x AP lockup centered (y~450); the x is two SVG lines (0-160px) still lying nearly flat, which Theatre rotates to +-45deg, scales and thickens into a cross. Step 01: x resolved, lockup risen to y~277 (16px-tall logos at 1440), and a perspective wireframe room fades in: white hairline edges that deliberately overshoot their corners like drafting construction lines (e.g. the vertical at x~930 runs from y~130 to the bottom edge), curved display panels carrying handwritten letters and a building engraving, three wireframe display tables with objects, a pocket watch, star-shaped glints on vertices, dark vignette. Step 02 onward: lockup at y~180; the three-line title 'THE / EXTRAORDINARY / LAB' is NOT text: it is /video/title.mp4 (1150x394, white on black) played as a texture on a quad placed at the bounds of an invisible DOM placeholder (width 59.58vw = 858px at 1440; measured longest line 855px), so it picks up the scene's chroma fringe and grain. Below: an 11px/500 uppercase byline at y~657, a 1px rgba(255,255,255,.3)-bordered square CTA 'CLICK ANYWHERE TO ENABLE SOUND' (10px/400, padding 14px 24px, ~230x44px) at y~741, and a 20px headphone icon at rgba(255,255,255,.3) 30px below. Steps 02-07 differ only by the CTA label's gradient band drifting through it; the camera holds still because the experience waits for the click.",
+  "what_owns_it": "3d",
+  "display_type_px": 108,
+  "evidence": [
+   "probes/gq-ap-the-extraordinary-lab/desktop_00.jpg",
+   "probes/gq-ap-the-extraordinary-lab/desktop_01.jpg",
+   "probes/gq-ap-the-extraordinary-lab/desktop_02.jpg",
+   "probes/gq-ap-the-extraordinary-lab/desktop_03.jpg",
+   "probes/gq-ap-the-extraordinary-lab/desktop_07.jpg"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "GT America (Standard)",
+    "role": "display",
+    "classification": "American/European grotesque, standard width; Thin (200) for the splash title spec, Bold (700) for act titles",
+    "foundry": "Grilli Type",
+    "source": "@font-face rules inlined into the gq.com page from interactive.gq.com/audemars-piquet-gq-rd5/assets (Thin 200, Light 300, Regular 400, Medium 500, Bold 700, Black 900, woff+woff2); probe fonts_loaded only GT-America 400/500 at the gate. The visible splash title is baked into title.mp4 / title-narrow.mp4; its dead CSS twin .splashScreen__title specifies GT-America 200, 7.5vw, line-height .87, uppercase."
+   },
+   {
+    "name": "GT America (Standard)",
+    "role": "ui",
+    "classification": "grotesque",
+    "foundry": "Grilli Type",
+    "source": "probe: byline 11px/500 uppercase (line-height 1.3), CTA 10px/400 uppercase (line-height 1.4), BACK/SOUND 11px/500"
+   },
+   {
+    "name": "Adobe Garamond Pro",
+    "role": "body",
+    "classification": "Garalde serif",
+    "foundry": "Adobe",
+    "source": "GQ host page, not the experience: body 20px/30px, color #030303 on a white body behind the canvas (probe body + fonts_loaded 'Adobe Garamond Pro 400'). Served from gq.com /.design/fonts."
+   },
+   {
+    "name": "Garamond-Adobe (self-hosted Adobe Garamond cut)",
+    "role": "body",
+    "classification": "Garalde serif",
+    "foundry": "Adobe",
+    "source": "HomePage.Dqy6SVbs.css (external experience stylesheet, not the CSS inlined in gq.com): .subtitles__text {font-family: Garamond-Adobe, serif; font-size: 1.6667vw (24px at 1440, capped 26.4px at >=1584, 20px at <=1200); line-height 1.3; color #fff}. These narration subtitles are the experience's reading text and the probe's 54 Garamond-Adobe nodes at 24px (display:none at the gate, so the font had not loaded yet)."
+   },
+   {
+    "name": "Inter",
+    "role": "ui",
+    "classification": "neo-grotesque",
+    "foundry": "Rasmus Andersson",
+    "source": "probe font_families_rendered (29 nodes); root_vars --fides-overlay-font-family: Inter, i.e. the GQ Fides consent overlay, not the experience"
+   }
+  ],
+  "display_size_px": 108,
+  "body_size_px": 24,
+  "scale_notes": "The splash title is a video, sized by its placeholder box: 59.58vw wide (858px at 1440, capped 1029.6px at >=1728, 600px at <=1007, and a 340x240 'narrow' box with its own video at <=640); measured caps 75-78px and line pitch 92-96px on desktop_07, matching the dead CSS spec GT America 200 at 7.5vw = 108px/lh .87 (71px at <=947, 216px at >=2880). On the gate the largest live text is the 11px byline (the 20px serif nodes belong to the hidden GQ host page). Past the gate: narration subtitles in Garamond-Adobe 24px/1.3 (1.667vw) under an 11px uppercase GT America speaker label at #ffffff80; act, voiceover and end titles in GT America 700 uppercase at 3.33vw (48px at 1440, 28px at <=840) and transcript act titles at 4.44vw (64px), line-height .88. UI is set in vw with px floors at <=1440 (CTA 10px, labels 11-12px) and doubled caps at >=2880 (20-24px).",
+  "tracking_leading": "Title: line-height .87 in the spec (92-96px pitch measured). Byline 11px/14.3px with 0.05px tracking; CTA 10px/14px normal tracking; subtitles 24px/1.3 serif; act titles lh .88. Hidden host serif 20px/30px.",
+  "case_and_style": "Uppercase grotesque for title and all UI micro-labels (live content is lowercase, e.g. 'click anywhere to enable sound', uppercased by text-transform), against sentence-case Garamond subtitles for everything spoken: the serif carries the voice, the grotesque carries the interface. Thin 200 splash title versus bold 700 act titles; the act menu pairs each act name with a Roman numeral (title 'Innovation', subtitle 'III'); the three voiceover titles are 'Heritage meets innovation', 'Complexity made simple', 'Excellence without boundaries' (payload voiceover.titles ACT_1-3). On narrow screens the title becomes 'THE / EXTRA- / ORDINARY / LAB', baked into title-narrow.mp4.",
+  "signature_moves": [
+   "hero title shipped as a white-on-black type video (title.mp4, title-narrow.mp4) whose red channel is used as luminance on a quad at a DOM placeholder's bounds, so the typography animates like footage and gets the same chromatic fringe and grain as the 3D scene",
+   "extreme scale jump on the gate from a ~108px thin title to 10-11px uppercase labels; the bold 48-64px tier only appears inside the acts",
+   "vw-based UI type with px floors at 1440 and double-size caps at 2880",
+   "separate narrow title cut with the hyphen break 'EXTRA-' instead of shrinking one layout",
+   "narration subtitles in Garamond-Adobe split into characters (GSAP SplitText 3.2.4, class subtitles__char at opacity .5) that switch to opacity 1 (.3s ease) as audio progress passes i/n of the cue, a linear karaoke fill in a serif against an all-grotesque UI"
+  ],
+  "mobile": "mobile_01 (390px): the lockup is LARGER than on desktop (logos 24px tall at <=375, 16px at >=1440 via calc(26.8169px - .75117vw); ~113px wide vs ~90px), the title switches to title-narrow.mp4 in a 340x240 box with four lines 'THE / EXTRA- / ORDINARY / LAB' (caps ~45px, about 58% of desktop's ~78px), the byline wraps to two centered lines, the CTA box is ~230x43px. mobile_00 shows the CTA and icon before the title arrives. probe mobile_measure largest DOM text 20px (host page), no horizontal overflow. Subtitles drop to 20px below 1200px and re-center at bottom 100px on phones."
+ },
+ "color": {
+  "mode": "dark",
+  "base": "#000000 pure black (canvas scene; GQ page body behind is #fff but fully covered)",
+  "ink": "#ffffff; subtitle speaker labels #ffffff80 (the probe's 44 rgba(255,255,255,.5) nodes); secondary scroll CTA rgba(255,255,255,.5); CTA border rgba(255,255,255,.3) (.4 on hover), end buttons .2, deep-dive marker ring .4; headphone icon .3; the CTA label's dim band is rgba(255,255,255,.4)",
+  "accents": [
+   "none in UI; color exists only as spectral chroma fringes from the post pass and per-act halo tints (uTable1HaloColor..uTable3HaloColor) mixed toward the screen edges; the floor grid emissive is a faint blue-white vec3(0.8,0.8,1.0)"
+  ],
+  "ratio": "~92% black / ~8% white line work and type / 0% saturated accent on the first screen",
+  "section_shifts": "inferred from code: each of the three tables (Acts I-III) applies its own halo color mixed in by radial distance (uTableHaloStrength * uHaloIntensity), and a LUT (uLutStrength) grades the whole frame per scene.",
+  "texture": "Film grain (hash12 on gl_FragCoord + time, uGrainStrength) and blue-noise-jittered 4-step spectral chromatic aberration in the composite, stronger toward the sides. Two separate grids: (1) the floor/mirror material draws a 'pristine grid' + dot grid as emissive modulated by a slowly scrolling noise texture (tNoise, uTime*0.02) and multiplied by baked AO; (2) the composite adds a 20-cell screen grid ONLY where the pointer-driven fluid sim has velocity (grid * length(fluid)*0.2, *0.1, and only away from the center), so moving the cursor reveals a blueprint grid in its wake. A 'subtitleGradient' scrim darkens the top and bottom bands, weighted to the bottom (exp(-vUv.y*3)). All of this sits OVER the title video.",
+  "notes": "Monochrome blueprint palette lets the RD watches, videos and act halos carry color later; the black also hides the loading of 10.9MB of 3D. The #030303 serif text and white body in the probe are the GQ host page behind the canvas, not part of the design."
+ },
+ "layout": {
+  "grid": "Centered single axis for the intro (lockup, title, byline, button, icon all on x=720). No DOM grid (grid_containers 1, css_usage mostly fixed=9). The composition lives in 3D camera framing, authored in Theatre.js ('Scene Camera' sheet).",
+  "density": "airy",
+  "alignment": "Center-stacked UI over a perspective scene whose vanishing lines converge slightly right of center.",
+  "composition_moves": [
+   "UI stacked on the center axis while the 3D room recedes diagonally behind it",
+   "co-brand lockup as a timed title card before any content; the logos slide apart and the x is drawn by two lines",
+   "hero title as a video in a fixed-aspect placeholder (1150:394) that sits in normal flex layout, so DOM layout positions a WebGL element",
+   "three act 'tables' as physical stations in one room, doubling as the navigation",
+   "full-bleed canvas with only 10-11px uppercase chrome ('BACK', 'SOUND')",
+   "subtitle block anchored bottom-left of the frame (left 96px, bottom 82px, 450px wide at 1440, i.e. 6.67vw / 5.69vw / 31.25vw), so the spoken text reads like a caption on a film still rather than centered UI",
+   "deep-dive buttons are DOM labels tethered to a 3D point: the anchor position is projected through the camera each frame, a 10px ring marker sits on it and a 1px #fff -> #fff6 line runs to the button, which flips side (row / row-reverse) to stay on the near side"
+  ],
+  "section_rhythm": "A linear narrated spine with optional side rooms, not pure hub-and-spoke: intro (lockup, title video, 'Skip Intro' available) -> main layer: one continuous scroll/narration through the lab in three acts (voiceover titles ACT_1-3, act navigation I 'Audemars Piguet DNA', II 'Design & user experience', III 'Innovation') -> at each act a 'Click to explore' deep-dive button opens a sensorial layer (e.g. 'A tribute to AP’s Chronograph legacy', 'Engineering simplicity through complexity', 'Engineering the impossible') built from segments (3d, slider, flip, video, end) each tied to a narration track (e.g. 01_AP_Dna/01..05), ending on 'Back to the lab' / 'Click to continue' -> final 'The End' card with 'Continue the journey' to the AP RD#5 product page. The menu is a scrubbable transcript of the whole narration.",
+  "mobile_adaptation": "Same scene and gate at 390px with a tighter camera crop (mobile_00/01 show one table and the pocket watch); title re-breaks with a hyphen; Lenis lerp becomes 1 on touch (native feel); Hammer.js pan drives drag-to-scrub on mouse and touch (touchAction 'pan-x' is set only for non-touch); sketch line width x0.8 on mobile; subtitles re-center at bottom 100px."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis inside a three-mode controller (HomePage chunk BGl2_TTZ.js): mode 'audioDriven' lets the narration play and scrolls Lenis to match audio time within an interactive voiceover range; the first wheel event switches to 'scrollDriven' (voiceover fades out, Lenis lerp .2, wheelMultiplier 2.1, syncTouch, lerp 1 on touch), and 75ms after the last wheel (800ms on touch) it scrubs the voiceover to the scrolled position and switches back to 'audioDriven' so the voice resumes from there; a Hammer pan enters 'panDriven' (progress += deltaX/innerWidth*0.5, smoothed exp(-5*dt)) and resumes after 500ms. Progress is clamped 0-0.9999 and dispatched as MAIN_INTERACTION_UPDATE. Separately, the transcript Menu has its own Lenis (lerp .15) whose progress (clamped 0-0.951) sets the main experience progress, and the main bundle's scroll manager creates Lenis with lerp .05 (1 on touch) and GSAP ticker lagSmoothing(0). Sensorial layers use their own Lenis (lerp .2). Live UI copy: 'scroll to explore'.",
+  "preloader": "Black screen with the GQ x AP lockup (content__top fades in 0.7s after a 0.5s delay, starting at 50vh). Theatre sheet 'SplashScreen [loading]' drives objects GQ/AP (x offsets, opacity) and line1/line2 (lineThickness, scaleX, translateY, rotate +-45deg): the x is drawn from two near-flat strokes that rotate into a cross (desktop_00 vs 01) while the logos slide to their final gap.",
+  "intro_sequence": "Lockup centered -> x strokes cross -> wireframe lab fades up behind (scene renderer opacity 0 -> 1, 1s linear) -> lockup travels up -> title video starts, byline and CTA fade in -> idle gradient drift on the CTA label until a click anywhere. On click: SFX 'transition_1', AudioContext resumes, the title video's uAlpha fades to 0 over 2.18s sine.in (then the video is disposed), the Theatre 'out' sheet slides the top section up by 100vh and the bottom section down by 100vh, and scene.transition drives an aura blur into the main experience.",
+  "scroll_techniques": [
+   "narration-bound scroll: audio drives scroll when idle, scroll scrubs audio when touched (audioDriven / scrollDriven / panDriven)",
+   "scroll-driven camera and scene progress via Theatre.js sequences ('Section Timeline', 'Scene Camera', 'Time Lines')",
+   "horizontal drag-to-scrub with Hammer pan",
+   "transcript menu as a second scrubber: cue blocks sized by audio duration, scrolling them seeks the film",
+   "infinite drag slider and drag-to-orbit flip segments inside deep dives",
+   "400vh scroll-scrubbed video segments (sensorialLayerVideo: 130vh video with a linear-gradient mask-image)"
+  ],
+  "text_animation": "CTA label: background: linear-gradient(90deg, #fff, #fff 25%, rgba(255,255,255,.4) 50%, rgba(255,255,255,.4) 75%, #fff) clipped to text, background-size 500%; a JS ticker advances background-position-x by 30%/s so a dim band drifts through the white label forever (desktop_02 vs 03 vs 05); on hover it eases to the nearest 125% step (back if within 25%) with cubic-bezier(.35,0,.16,1) over 0.6-2s mapped from distance. Title: an animated type video, not live text; the faint per-letter tiles visible behind the glyphs (desktop_02 zoom) are baked into that footage (inferred). Subtitles: GSAP SplitText 3.2.4 (bundled in BGl2_TTZ.js) splits each cue into chars with class subtitles__char (opacity .5); progress = remap(audioTime, cue.startTime, cue.endTime, 0, 1) and char i gets subtitles__char--active (opacity 1, .3s ease) when progress > i/n; the split is reverted 1s after the cue completes.",
+  "image_animation": "From code: SensorialLayerSlider is an infinite drag slider (images tripled if fewer than 6) that auto-drifts at velocity -1, takes Hammer pan with velocityX*5 inertia, stops Lenis while dragging and uses custom beziers (.2,0,.66,1), (.2,0,1,.74), (.35,0,.26,1); SensorialLayerFlip is a drag-to-orbit image flip; SensorialLayerVideo pins a 130vh masked video in a 400vh section. In-scene video screens (uScreens[3], uScreenReveal) reveal with a uReveal mask; the sketch lines are wiped in/out by an angular sweep around a centre (atan-based mask on uProgress) or a spherical ring during watch transitions; watch transitions flagged by uIsWatchTransition; an audio waveform line strip animates through unwrap, progressOffset, rotation, edgeFade, zoom, vertical, clipPhase, outFade, tape.",
+  "page_transitions": "No page loads; acts are camera flights between tables authored in Theatre.js, with sequence.play() and sequence.play({direction:'reverse'}) to return to the lab.",
+  "hover_micro": [
+   "CTA label gradient drift, snapping to the next band on hover; CTA border .3 -> .4 alpha over 0.3s",
+   "SFX 'hover_4' on interactive hovers",
+   "pointer impulses feed a stable-fluids simulation ('Fluid Matter' sheet: uVelocity, uPressure, uCurl, uImpulses) rendered as a metallic dye (roughness .25, metalness 1, ambient .25, difference-of-Gaussians params .45/.6) and used by the composite to reveal the screen grid in the cursor's wake"
+  ],
+  "cursor": "Native cursor on the gate (cursor_none 0); the whole screen is the click target for the sound gate. Over draggable deep-dive segments a DraggingCursor appears: a zero-size fixed element at opacity .3 carrying left and right arrow glyphs, following the pointer with exp(-10*dt) smoothing (code, not observed).",
+  "easing_curves": [
+   "cubic-bezier(0.445,0.05,0.55,0.95) easeInOutSine x5 (most used CSS curve)",
+   "cubic-bezier(0.29,0,0.34,1) x2",
+   "cubic-bezier(.35,0,.16,1) (CTA hover snap, JS)",
+   "cubic-bezier(.37,0,.63,1) sine inOut",
+   "cubic-bezier(.61,1,.88,1) sine out",
+   "cubic-bezier(.12,0,.39,0) sine in",
+   "cubic-bezier(.65,0,.35,1) cubic inOut",
+   "cubic-bezier(.33,1,.68,1) cubic out",
+   "cubic-bezier(.83,0,.17,1) steep inOut",
+   "cubic-bezier(.64,0,.78,0) quint in",
+   "GSAP: linear x15, sine.inOut x12, power2.inOut x4, power1.in x2, power1.out x2, sine.in (title fade), quart.in, power2.in, expo.out"
+  ],
+  "duration_range_ms": "CSS 120ms-1.3s (0.3s x26, 0.2s x17, 1s x12); GSAP mostly 1s (x20) and 3s (x8), plus 2s, 2.18s (title fade on click), 2.8s for camera/scene moves. Slow, luxury pacing.",
+  "stagger_ms": "No GSAP staggers in use (stagger:0 only); sequencing is authored on Theatre.js timelines.",
+  "choreography_notes": "Everything is slow and symmetric (sine in-out, 1-3s). The UI never competes with the scene: it is tiny, centered and monochrome. Sound is required for the story (narration by GQ watch editor Cam Wolf and J Balvin, with timed subtitle cues), SFX mark transitions ('transition_1', 'transition_2') and hovers ('hover_4'), and the voice's frequency spectrum becomes an on-screen line in the post pass.",
+  "evidence": [
+   "probes/gq-ap-the-extraordinary-lab/desktop_00.jpg to desktop_07.jpg",
+   "probes/gq-ap-the-extraordinary-lab/mobile_00.jpg",
+   "probes/gq-ap-the-extraordinary-lab/mobile_01.jpg",
+   "bundle (re-fetched 2026-09-25): BIhX5qj-.js = entry (three.js r172 core, loaders, Lenis, Theatre core, scroll manager); BGl2_TTZ.js = HomePage UI chunk (23 Vue components incl. SplashScreen, CTA, SubtitlesBlock, Menu, DeepDiveButtons, DraggingCursor, SensorialLayer*, the audio/scroll mode controller, Hammer, GSAP SplitText 3.2.4); CROz8He7.js = WebGL chunk (composite, floor/mirror, title-video, sketch-line shaders, Theatre sheets, SMAA, Firestore); By59hpON.js = audio analyser (fftSize); C4irFK9B.js = dev-only Theatre studio",
+   "experience CSS: inlined in the gq.com page (splashScreen, cta, voiceover, textTrack) plus external HomePage.Dqy6SVbs.css (subtitles, sensorial layers, deep-dive, dragging cursor)",
+   "_payload.json (live US copy, titleVideo 1150x394, act structure, narration track ids, speakers)",
+   "probe easings/durations"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "realtime-3d",
+  "art_direction": "Blueprint-sketch lab: white hairline edges on black whose segments overshoot their vertices and wobble slightly (per-edge overshoot, jitter, thickness and opacity baked into the model), star-flare glints at line intersections, handwritten letters and a period engraving of the Manufacture mapped onto curved glass panels, wireframe plinths carrying small objects and a pocket watch. Later acts (from content JSON) mix archival and product stills (720x960 portrait and 1280x960 landscape webp) with 1920x1080 mp4 films.",
+  "treatments": [
+   "sketch lines: EdgesGeometry of each base mesh -> fat LineSegments2/LineMaterial (screen-space, 5px, 2px for 'watch_sketch' objects, x0.8 on mobile), each segment scaled about its midpoint by (1 + overshoot) and offset by hash33 noise * jitter * 0.005, width * thickness, brightness * 0.6, exp2 fog density 0.03, faded where the solid scene occludes it (depth + mask render target)",
+   "hero title as luma-keyed type video (title.mp4 wide, title-narrow.mp4 for <=640px renderer width)",
+   "spectral chromatic aberration (4 spectrum steps, blue-noise jitter, stronger at screen sides via uSideRgbShift)",
+   "fisheye lens distortion (uFishEyeStrength)",
+   "film grain",
+   "LUT grading",
+   "bottom-weighted subtitle scrim (subtitleGradient * exp(-vUv.y*3))",
+   "per-act radial halo tint",
+   "floor/mirror material: pristine grid + dot grid emissive under scrolling noise, baked AO multiply, reflections (tMirror) and in-scene video screens",
+   "composite: screen grid revealed only by the pointer fluid",
+   "SMAA anti-aliasing",
+   "difference-of-Gaussians texture (tDog) fed into the fluid plane for ink-like edges",
+   "lens-flare texture is sampled but multiplied by 0.0 in the composite (disabled)"
+  ],
+  "crops_and_ratios": "Full-bleed 16:10 canvas; slider media 3:4 portrait and 4:3 landscape; films 16:9.",
+  "formats": "Probe bytes: 3D 10.9MB, mp4 9.4MB (17 files, incl. title.mp4 and per-table video/mask/depth triplets), webp 8.2MB (27), png 6.0MB (25), audio mpeg 5.3MB, JS 6.1MB, wasm 286KB (decoders), woff2 128KB.",
+  "evidence": [
+   "probes/gq-ap-the-extraordinary-lab/desktop_01.jpg",
+   "probes/gq-ap-the-extraordinary-lab/desktop_02.jpg",
+   "probes/gq-ap-the-extraordinary-lab/probe.json bytes_by_type_declared",
+   "bundle content JSON (sensorial_layer image/video paths)"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r172 (probe three_revision 172) with a custom deferred-style pipeline (MRT FragColor[2]), glslify shaders, Theatre.js for authored animation, Blender-authored models (Awwwards tag)",
+  "role": "World: an explorable lab room with three display tables (chapters), in-scene video screens and the RD watch as hero product",
+  "assets": [
+   "https://interactive.gq.com/audemars-piquet-gq-rd5/webgl/global/models/scene_compressed.glb",
+   "https://interactive.gq.com/audemars-piquet-gq-rd5/webgl/global/models/watch_compressed.glb",
+   "https://interactive.gq.com/audemars-piquet-gq-rd5/webgl/geometry/sensoriallayerthreearms.glb",
+   "https://interactive.gq.com/audemars-piquet-gq-rd5/webgl/pbr/watch1.exr",
+   "https://interactive.gq.com/audemars-piquet-gq-rd5/webgl/pbr/watch2.exr",
+   "https://interactive.gq.com/audemars-piquet-gq-rd5/webgl/pbr/watch3.exr"
+  ],
+  "materials_lighting_post": "Sketch lines (CROz8He7.js 'Sketch Lines'): the base mesh is hidden and its EdgesGeometry is rendered as LineSegments2 with LineMaterial (linewidth 5, worldUnits false, custom blending, depthWrite false) whose vertex shader reads four per-edge attributes exported with the model (_overshoot, _jitter, _thickness, _opacity): newStart = center + (start - center)*(1 + overshoot) + jitter*0.005*(hash33 - 0.5), same for end, width = linewidth*thickness*0.5*dpr; the fragment multiplies by 0.6, a sweep reveal mask and a depth-tested scene mask, and writes black to the second MRT target. Custom PBR (uRoughness, uMetalness, uAlbedo, tEnvDiffuse/tEnvSpecular as RGBM lat-long atlases with 6 roughness LODs, tBRDFLUT, 9-coefficient spherical-harmonics ambient uShConstants[9]) with one EXR environment per watch; audio-reactive materials (tAudio, uAudioStrength); fog (uFogColor, uFogDensity). Floor/mirror shader: reflection texture, normal/bump, up to 4 billboarded video screens, grid+dot emissive x scrolling noise, AO multiply, writes emissive to the second MRT target. Composite pass (FragColor[0] = color, FragColor[1] = 0): fisheye -> 4-step spectral RGB shift with blue-noise offsets (side-weighted by 1 - sin(|len(uv-0.5) - 0.5|*PI)), mixed with the act menu texture by a radial mask around (0.5, 0.2) -> saturate 0.98 -> grain -> LUT -> per-act radial halo -> subtitle scrim -> audio line blended half add, half screen -> screen grid gated by fluid dye. Lens flare term is multiplied by 0.0.",
+  "interaction": "Narration/scroll/pan mode controller (see motion.smooth_scroll) sets the main progress, which scrubs Theatre.js section/camera timelines; click anywhere starts audio; act buttons and the transcript menu seek; 3D-anchored deep-dive buttons open sensorial layers (SFX 'transition_2'); Hammer.js pan (and tap) for scrubbing, sliders and flips (no pinch handlers are registered); pointer impulses drive a stable-fluids sim (velocity, pressure, curl) rendered as metallic dye.",
+  "performance_tactics": "Draco + Meshopt compressed GLBs, KTX2 (Basis) textures via KTX2Loader (22 refs) and wasm transcoders, EXR env maps per watch, SMAA instead of MSAA, vsync/refresh-rate detection (frame time history of 120 frames), Lenis lerp 1 on touch to avoid double smoothing.",
+  "fallback_mobile": "Same WebGL experience on mobile (mobile screenshots show the full scene); no static fallback observed.",
+  "evidence": [
+   "probes/gq-ap-the-extraordinary-lab/probe.json assets_3d/contexts (webgl 1, webgl2 2)",
+   "probes/gq-ap-the-extraordinary-lab/desktop_01.jpg",
+   "bundle GLSL: composite main(), floor/mirror shader, title video shader (tVideo red channel * uAlpha), AudioLine shader, PBR/SH billboard shader, Fluid Matter Theatre object",
+   "CROz8He7.js: Sketch Lines class (fromEdgesGeometry, _overshoot/_jitter/_thickness/_opacity attributes, computeSceneSketchMask), WireSocle Theatre sheet"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "No site nav in the experience: 11px uppercase 'BACK' and 'SOUND' buttons (GT America 500), plus an act menu with I / II / III (Audemars Piguet DNA, Design & user experience, Innovation). GQ global nav is suppressed.",
+  "menu": "The Menu is a DOM overlay that holds the full narration transcript as a scroll track: speaker-labelled cue blocks (subtitle component, 308px max width at 1440) and act titles (h2, GT America 700 at 4.44vw with a Roman-numeral subtitle), padded 40vh top and bottom. Each block's height is set to its cue duration times one px-per-second scale (the larger of the top two height/duration ratios, unless it is more than 2x the runner-up), so scroll distance equals narration time; its own Lenis (lerp .15) maps progress (clamped 0-0.951) to the experience. Act buttons scroll to their title with 'hover_4' SFX, and the active one shows a 2px bar that slides in from 5px (.4s cubic-bezier(.4,0,.3,1)). Behind it the composite crossfades an act menu texture (tMenu) by uOpacity with a radial mask centered at (0.5, 0.2) (from code).",
+  "buttons_links": "Square 1px rgba(255,255,255,.3)-bordered rectangle (hover .4, 0.3s), padding 14px 24px at 1440, 10px uppercase GT America 400 label with a gradient-clipped text band drifting through it; no radius, no fill, no glow. Headphone glyph 20px at .3 alpha, 30px below.",
+  "unusual_interactions": [
+   "narration and scroll bound both ways: idle = the voice drives the camera, wheel/drag = you scrub and the voice fades, release = it resumes from there",
+   "Garamond karaoke subtitles lit character by character from audio progress",
+   "transcript menu whose block heights equal cue durations, so scrolling the text seeks the film",
+   "DOM deep-dive buttons tethered to projected 3D anchors by a gradient leader line",
+   "click-anywhere sound gate with a 'Skip Intro' option later",
+   "hero title delivered as a type video inside the WebGL frame",
+   "audio line driven by an AnalyserNode (fftSize 256, getByteFrequencyData, 128 bins) that can unwrap, rotate, zoom and 'tape' between states",
+   "pointer-driven metallic fluid that also reveals a grid in its wake",
+   "copy for 10 GQ editions (US, UK, DE, FR, ES, IT, JP, KR, MX, HK) bundled in the JS; the live US copy arrives via _payload.json"
+  ],
+  "sound": "Required to get the story: narration tracks per segment (e.g. 01_AP_Dna/01..05) with timed subtitle cues, 5.3MB audio/mpeg; SFX 'transition_1', 'transition_2', 'hover_4'; headphone icon under the gate; 'SOUND' toggle.",
+  "footer": "No footer; the US experience ends on a 'The End' card (end.webp 1477x731) with 'Continue the journey' linking to the AP Royal Oak RD#5 product page with UTM tags; other edition variants in the bundle label that button 'Restart Experience'."
+ },
+ "content_voice": {
+  "headline_style": "Short uppercase declarative title; act titles are paradox couplets about engineering and the impossible, set with a manual line break.",
+  "copy_tone": "Editorial and reverent, magazine-narrated (credited storytellers), luxury restraint; UI copy is plain instruction ('Scroll to navigate', 'Click to continue', 'Back to the lab').",
+  "examples": [
+   "The Extraordinary Lab",
+   "Engineering the impossible",
+   "click anywhere to enable sound"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Nuxt (window.__NUXT__) app hosted at interactive.gq.com/audemars-piquet-gq-rd5, embedded in the gq.com sponsored story page",
+  "libraries": [
+   "three.js r172",
+   "Theatre.js core (sheets 'Scene Camera', 'Section Timeline', 'Fluid Matter', 'Optical Flow', 'Menu Environment', 'WireSocle', 'Time Lines', 'SplashScreen [loading|splash|waitForClick|out]'); @theatre/studio chunk loads only in development with ?debug",
+   "GSAP (+ ScrollTrigger, SplitText 3.2.4 for subtitle chars)",
+   "Lenis",
+   "Hammer.js (pan, tap)",
+   "KTX2Loader / DRACOLoader / MeshoptDecoder / EXRLoader / RGBELoader",
+   "SMAA",
+   "glslify",
+   "Firebase Firestore SDK (projectId 'config-versioning') in production chunk CROz8He7.js, inferred: config/versioning tooling"
+  ],
+  "evidence": "probe globals {__NUXT__, three_revision 172}, assets_3d; bundle grep counts: Theatre/theatre 223, lenis 85, gsap 47, KTX2Loader 22, EXRLoader 10, ScrollTrigger 7, DRACOLoader 7, Hammer 5, Firestore 81; experience CSS inlined in gq.com page; Awwwards tags Nuxt.js, WebGL, Blender; chunk roles: CROz8He7.js is the WebGL experience chunk (shaders, Theatre sheets, SMAA, Firestore), BGl2_TTZ.js the HomePage UI chunk (Hammer, SplitText, SubtitlesBlock, Menu), By59hpON.js the analyser; external HomePage.Dqy6SVbs.css holds the subtitle and deep-dive styles"
+ },
+ "performance_accessibility": {
+  "requests": 419,
+  "weight_notes": "Heavy: 419 requests (many are GQ ad-tech: pinterest 32, google 30, permutive 25, tiktok 11, doubleclick 11); experience assets ~11MB 3D + 9.4MB video + 8.2MB webp + 6MB png + 5.3MB audio + 6.1MB JS (the ~1MB CROz8He7.js carries a Firestore SDK, and copy for 10 editions ships in JS). Settles in ~7.8s.",
+  "reduced_motion": "probe reduced_motion_rules = 1 (GQ host chrome); zero prefers-reduced-motion strings in the experience JS chunks, the inlined experience CSS or HomePage.Dqy6SVbs.css.",
+  "contrast_issues": "The title is a video texture: no h1 or headings in DOM (probe headings []), and the .splashScreen__title twin is visibility:hidden !important, so screen readers get only the byline and CTA on the first screen. The only control is a 10px uppercase label whose drifting band drops it to rgba(255,255,255,.4) on black (about #666, roughly 3.7:1) for much of the cycle (desktop_03). Speaker labels sit at #ffffff80. Chromatic fringe and grain sit over the title. Subtitles are real DOM text above the canvas (good), but they are the only transcript of an audio-led story until the Menu is opened.",
+  "mobile_quality": "No horizontal overflow at 390px; hyphenated title re-break is handled; full WebGL load on phones is the cost.",
+  "dev_scores": {
+   "overall": 7.18,
+   "semantics_seo": 6.8,
+   "animations": 8.6,
+   "accessibility": 6.0,
+   "wpo": 7.4,
+   "responsive": 7.0,
+   "markup": 7.0
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Hand-drafted sketch lines from per-edge attributes",
+   "why_it_works": "Edges that overshoot their corners, wobble a little and vary in weight read as an engineer's pencil drawing rather than a CAD wireframe, which turns a luxury product story into process and research and keeps the first load visually calm.",
+   "how_to_build": "Code-confirmed recipe: in Blender, add per-edge float attributes (overshoot ~0.02-0.1, jitter 0-1, thickness 0.5-1.5, opacity) and export with the GLB. In three.js hide the mesh, build LineSegmentsGeometry.fromEdgesGeometry(geometry.toNonIndexed()) and set instanced attributes overshoot/jitter/thickness/opacity from the exported arrays (stride 2, start value). Use LineMaterial({color:0xffffff, linewidth:5 (2 for small objects, x0.8 on mobile), worldUnits:false, transparent:true, depthWrite:false}) and in onBeforeCompile replace the vertex start/end with: c = (s+e)*0.5; s' = c + (s-c)*(1.+overshoot) + jitter*0.005*(hash33(s*2.+e)-0.5); e' likewise; width = linewidth*thickness*0.5*dpr. Fragment: color*0.6, exp2 fog (density 0.03), multiply by a reveal mask (angular sweep around a centre driven by progress) and fade lines where a depth pre-pass says the solid scene is in front. Add 4-8 additive 4-point star sprites at key vertices."
+  },
+  {
+   "technique": "One composite pass: spectral chroma + grain + LUT + subtitle scrim",
+   "why_it_works": "A single post shader gives the whole frame (scene and canvas-rendered type) one optical signature, like a lens, so the brand world feels photographed.",
+   "how_to_build": "Fullscreen pass: uv = mix(vUv, lensDistort(vUv), fisheye) with k1 = p.x*r^2, k2 = p.y*r^4. Loop 4 steps: spectrum = texture(tSpectrum, vec2(step,0.5)); offset = blueNoise.xy * mix(-shift, shift, step + blueNoise.z*0.1); col += texture(tMap, uv+offset).rgb * spectrum; divide by the summed spectrum. shift = base + (1 - sin(abs(length(vUv-0.5)-0.5)*PI)) * sideShift so edges fringe more. Then col *= (1-g) + hash12(fragCoord+time)*g; col = mix(col, texture(lut3D, col).rgb, lutStrength); scrim: col = mix(col, mix(col, black, smoothstep(0,0.3,abs(vUv.y-0.5))), vignette*exp(-vUv.y*3)). Scroll blue noise by fract(time)*512 each frame. Optional: add grid(uv*20) * length(fluidVelocity)*0.02 so a grid appears only in the cursor's wake."
+  },
+  {
+   "technique": "Narration-bound scroll (audio drives, scroll scrubs, release resumes)",
+   "why_it_works": "The story plays itself like a film, but the moment the visitor wheels or drags they are holding the playhead; when they stop, the voice picks up exactly where they left the camera, so passive and active viewing never fight.",
+   "how_to_build": "Keep one progress value p in 0..1 and a voiceover Audio with a known time range [a,b]. Modes: audioDriven (p = remap(audio.currentTime, a, b, 0, 1); lenis.scrollTo(p*limit)), scrollDriven (p = lenis.progress; audio fades out), panDriven (p = p0 + smooth(deltaX/innerWidth*0.5), smoothing exp(-5*dt)). On Lenis 'virtual-scroll' switch audioDriven -> scrollDriven; restart a timeout on every wheel (75ms desktop, 800ms touch, 500ms after a pan) that, when it fires, sets audio.currentTime = remap(p, 0, 1, a, b) and plays. Lenis({lerp: isTouch ? 1 : .2, wheelMultiplier: 2.1, touchMultiplier: 1, syncTouch: true}); Hammer pan on the same container. Feed p to a Theatre.js sequence (sheet('Section Timeline').sequence.position = p*length) that owns camera and material states, and ship only @theatre/core with an exported state.json."
+  },
+  {
+   "technique": "Transcript menu where scroll length equals narration time",
+   "why_it_works": "The table of contents is the script itself: act titles and speaker-labelled lines, each block as tall as its audio is long, so skimming the text and seeking the film are the same gesture.",
+   "how_to_build": "Load the voiceover WebVTT as a TextTrack; merge consecutive cues with the same id; render act-title cues as h2 (bold uppercase, Roman-numeral subtitle) and the rest as speaker + text blocks. After layout compute ratio_k = (height_k + (title ? 10 : 0)) / duration_k, sort, take the top ratio unless it is more than 2x the second, then set each block's height = duration * ratio. Wrap it in its own Lenis (lerp .15) with 40vh padding top and bottom and map lenis.progress (clamp 0-0.951) to the experience progress; on open, scrollTo(currentProgress*limit, {immediate:true}). Act buttons scrollTo their title with an offset of -200px."
+  },
+  {
+   "technique": "Audio waveform as a UI line",
+   "why_it_works": "The voice you hear is drawn on screen as a living line, which doubles as a progress indicator and ties sound to picture.",
+   "how_to_build": "AnalyserNode with fftSize 256 on the narration source; each frame getByteFrequencyData into a Uint8Array(128) and upload as a 128x1 DataTexture. Strip mesh of N segments: in the vertex shader sample the texture at uv.x, fade by sin(uv.x*PI), build points (x, value*amplitude + offset) and extrude along the normal by a fixed pixel width (uWidth ~5, DPR-aware). Animate unwrap/rotation/zoom/clipPhase uniforms with sine.inOut over 1-3s between states; composite with mix(add, screen, 0.5)."
+  },
+  {
+   "technique": "Hero type as a video composited into the WebGL frame",
+   "why_it_works": "The title animates like motion-design footage (letter reveals, exact kerning, a baked hyphenated narrow cut) yet sits inside the 3D frame and gets the same lens, fringe and grain, which live DOM text over a canvas never would.",
+   "how_to_build": "Render the title animation white-on-black to MP4 at two aspect ratios (1150x394 wide, 340x240 narrow). In the DOM keep an empty, visibility:hidden placeholder with aspect-ratio 1150/394 and width 59.58vw (px caps at breakpoints) in the normal layout; on resize send its getBoundingClientRect to WebGL. Draw a PlaneGeometry(2,2) in clip space: pos.xy = position.xy * (w/W, h/H) + (2*(cx/W)-1, 2*(1-cy/H)-1); fragment: float v = texture(tVideo, vUv).r * uAlpha; out = vec4(v) (premultiplied white); renderOrder 1e6, depthTest off. Pick the narrow video below 640px. On exit tween uAlpha to 0 (2.18s sine.in) and dispose. Keep a real visually-hidden h1 for accessibility."
+  },
+  {
+   "technique": "Drifting gradient-clipped CTA label",
+   "why_it_works": "An idle band of dimness slides through the label forever, so the only interactive element on a still screen keeps asking to be clicked without any glow or motion of the box itself.",
+   "how_to_build": "CSS: background: linear-gradient(90deg,#fff,#fff 25%,rgba(255,255,255,.4) 50%,rgba(255,255,255,.4) 75%,#fff); background-size: 500% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase. JS ticker: pos += dt*30; el.style.backgroundPositionX = pos + '%'. On hover, stop drifting and gsap.to the next multiple of 125 with ease cubic-bezier(.35,0,.16,1), duration mapped 0.6-2s by distance. Frame it in a 1px rgba(255,255,255,.3) square border, padding 14px 24px."
+  },
+  {
+   "technique": "Serif karaoke subtitles against a grotesque UI",
+   "why_it_works": "Everything spoken is set in Garamond and fills in character by character as it is said, so the voice has its own typographic register, subtitles double as a progress cue, and the reading text stays crisp DOM above the lens effects.",
+   "how_to_build": "Subtitle block bottom-left (left 6.67vw, bottom 5.69vw, width 31.25vw; px floors 96/82/450 at 1440): an 11px uppercase GT America speaker label at #ffffff80 with a small speaker icon, then text in a Garamond at 1.667vw/1.3 (24px at 1440, 20px under 1200). SplitText(el, {type:'chars', charsClass:'subtitles__char'}); CSS .subtitles__char{opacity:.5; transition:opacity .3s ease} .subtitles__char--active{opacity:1}. On audio timeupdate: t = clamp(remap(time, cue.start, cue.end, 0, 1)); chars.forEach((c,i) => c.classList.toggle('subtitles__char--active', t > i/chars.length)); revert the split 1s after t reaches 0 or 1. On phones center it at bottom 100px, max-width 90%."
+  },
+  {
+   "technique": "DOM labels tethered to 3D anchors",
+   "why_it_works": "The deep-dive buttons stay real, accessible HTML while visibly belonging to an object in the scene: a ring sits on the projected point and a fading leader line connects it to the label.",
+   "how_to_build": "Each frame: v = anchor.position.clone().project(camera); x = (v.x*.5+.5)*innerWidth; y = (-v.y*.5+.5)*innerHeight. Place a 10px ring (1px rgba(255,255,255,.4) border, radius 50%) at translate(x-50%, y-50%). Position the button from a designer-authored screen position (Theatre prop uiPosition in 0..1), clamp the anchor to the button box to find the attachment point, then draw a 1px line (background linear-gradient(270deg,#fff,#fff6), transform-origin left) with width = distance and rotate(atan2(dy,dx)); flip the button to row-reverse when the anchor is on its right. Show it only when the section fade is fully settled (progress 0 or 1)."
+  }
+ ],
+ "slop_risks": [
+  "Grain over text: grain and chromatic aberration are applied in the composite on top of the title video (visible RGB fringing in desktop_02). It is intentional here; on a lesser build it makes type look blurry, so keep body copy and UI in DOM above the canvas.",
+  "Faint grid background: the site has two grids, one on the floor material under drifting noise and one in the composite that only appears in the cursor's fluid wake. A naive copy that shows a flat, always-on grid behind content is the graph-paper tell.",
+  "Hairline light border on boxes: the sound CTA is a 1px rgba(255,255,255,.3) square, and the same treatment returns on the end buttons (.2) and the deep-dive marker ring (.4). Centered once under a big title it works; as the default for every control it becomes the hairline-border tell.",
+  "Content hidden behind an entrance: the title, byline and CTA only appear after a timed intro, the story is locked until a click enables sound, and the title is a video (no h1, placeholder hidden). Always render a DOM h1 and let the page read without audio.",
+  "Glow and flare: star glints on vertices are scene elements; the lens-flare pass exists but is multiplied by 0.0. Flares are easy to overdo, and clipped by the viewport edge they turn into the cut-off glow tell.",
+  "Blueprint/wireframe sci-fi cliche: white-line-on-black 'tech' visuals are generic unless the drawn content is specific (here: the real Manufacture engraving, handwritten letters, watch plinths).",
+  "Weight: 419 requests and ~45MB of media for a sponsored story, plus a Firestore SDK and 10 editions of copy in production JS; copying the stack without KTX2/Draco/Meshopt and lazy per-act loading produces a slow, stuttering page.",
+  "Text you cannot read: the only control on the gate is a 10px uppercase label that the drifting band dims to 40% white on black (about 3.7:1) for much of its cycle (desktop_03). A copy should keep the band subtler (e.g. .7) or the label larger.",
+  "One label treatment, everywhere: every UI string (byline, CTA, BACK, SOUND, speaker labels, act subtitles) is 10-12px uppercase GT America. Here the Garamond subtitles and thin/bold title tiers break the monotony; a copy without that second voice lands in the law's single-label-costume tell."
+ ],
+ "confidence_notes": "All 8 desktop screenshots show only the timed intro and the click-anywhere sound gate (steps 02-07 identical except for the button shimmer), and both mobile shots show the same gate, because the probe never clicks; a longer settle would not pass a click gate, so the probe was not re-run. There are no jury element videos for this site. OBSERVED: intro choreography, wireframe art direction, title/byline/button layout, mobile hyphenation, probe measurements (fonts, colors, easings, durations, 3D asset URLs, request weight). CODE-CONFIRMED from the live bundle at interactive.gq.com (main + 8 lazy chunks): Lenis options, Theatre.js sheet names, composite post shader, AudioLine shader, PBR/SH billboard shader, fluid sim uniforms, content JSON with acts, segments and narration tracks. INFERRED: title font size (~105px from pixels), per-letter WebGL title planes, bloom from the second render target, how fluid and table selection feel in use, and all in-experience camera moves after the gate. audit (2026-09-24, adversarial re-check against all 8 desktop + 2 mobile screenshots, probe.json, a re-fetch of the gq.com page (inlined experience CSS), BIhX5qj-.js + lazy chunks and _payload.json): FIXED the title claim: it is not per-letter WebGL text but /video/title.mp4 (1150x394) and title-narrow.mp4 mapped by the red channel onto a clip-space quad at a hidden placeholder (59.58vw), display size now 108px from the dead CSS twin (GT America 200, 7.5vw, lh .87) instead of a ~105px pixel guess; mobile hyphenation is baked into the narrow video. FIXED fonts: Adobe Garamond Pro 20px/30px and #030303 are the GQ host page behind the canvas (removed as experience body/accent); Garamond-Adobe is declared but unreferenced; GT America weights are @font-face declarations (not preloads) and only 400/500 load at the gate. FIXED composite description: the noise-modulated grid + AO + emissive MRT belong to the floor/mirror material; the composite grid is gated by the pointer fluid; the 'vignette' is a bottom-weighted subtitle scrim; lens flare is multiplied by 0.0. FIXED shimmer: gradient-clipped text with a .4 alpha band drifting at 30%/s (not ~50%), hover snap bezier(.35,0,.16,1). FIXED audio line source: getByteFrequencyData with fftSize 256 (128 bins), not time-domain samples. FIXED languages: 10 GQ editions, not six languages; US end card is 'The End' / 'Continue the journey', 'Restart Experience' only in other editions. FIXED mobile: lockup is larger on mobile (24px vs 16px tall), title caps ~45px vs ~78px (not the same optical size). ADDED: Theatre splash sheets and click exit (2.18s title fade, split top/bottom slide, SFX), CTA/border/icon values, SFX list, dev-only Theatre studio chunk, Firestore in production, two new steal_this entries. Still inferred: how the wireframe lines are rendered, what the per-letter tiles in the title footage are, Garamond-Adobe usage, fluid feel in use, all camera moves after the gate. audit 2 (2026-09-25, adversarial re-check: probe.json, desktop_00/01/02/03/05/07 and mobile_00/01 at full size plus a brightened title crop, pixel measurements, and a fresh fetch of the gq.com page, _payload.json, BIhX5qj-.js, the 7 lazy chunks and the external HomePage.Dqy6SVbs.css that the first audit missed): FIXED Garamond-Adobe: it is the narration subtitle face (.subtitles__text, 1.667vw = 24px/1.3) in the external stylesheet, which explains the probe's 54 nodes at 24px; body_size_px 24. FIXED the interaction model: scroll is bound to the voiceover by a three-mode controller (audioDriven / scrollDriven / panDriven, 75ms/800ms/500ms resume timeouts), not a plain Lenis scrub; the .951 clamp belongs to the transcript Menu's Lenis (lerp .15). FIXED structure: a linear narrated spine with three optional deep-dive layers, not hub-and-spoke. FIXED sketch lines from inferred to code-confirmed (EdgesGeometry -> LineMaterial with baked per-edge overshoot/jitter/thickness/opacity; overshoot also visible in desktop_01). FIXED chunk roles (shaders live in CROz8He7.js, UI + Hammer + SplitText 3.2.4 in BGl2_TTZ.js, analyser in By59hpON.js). FIXED Hammer usage (pan and tap, no pinch; touchAction pan-x only on non-touch). FIXED cursor: a DraggingCursor exists for drag segments. ADDED karaoke subtitles, transcript menu, deep-dive tethered buttons, slider/flip/video segments, 3 new steal_this entries (2 replaced), 2 slop risks (low-contrast 10px CTA, single label costume) and a broader hairline-border note. Measured: title caps 75-78px, pitch 92-96px, EXTRAORDINARY 849px wide, CTA 230x44, mobile CTA 230x43, mobile lockup 24px tall. Still inferred: the per-letter tiles in title.mp4, fluid feel in use, all camera moves after the gate, and exact rendering of act titles since no element videos exist for this site."
+}

@@ -1,0 +1,290 @@
+{
+ "slug": "cartier-watches-wonders-2025",
+ "title": "Cartier Watches & Wonders 2025",
+ "live_url": "https://cartier-waw-0225.dev.60fps.fr/",
+ "award": "Awwwards SOTD Aug 18, 2025 + Honors; listed in Sites of the Month (bucket site-of-the-month, 2025). Credits: Immersive Garden, 60fps, mooders (music & sound design).",
+ "scores": {
+  "overall": 7.64,
+  "design": 7.84,
+  "usability": 7.17,
+  "creativity": 7.97,
+  "content": 7.56,
+  "dev": {
+   "overall": 7.55,
+   "semantics_seo": 7.0,
+   "animations": 9.0,
+   "accessibility": 6.8,
+   "wpo": 7.8,
+   "responsive": 7.4,
+   "markup": 7.2
+  }
+ },
+ "industry": "Luxury watchmaking / jewellery launch microsite (Watches & Wonders 2025 novelties), built as an embeddable module for cartier.com",
+ "signature": "Each watch lives in its own sculpted realtime universe built from the watch's own geometry (gold bracelet links become a tiled wall, the Tank case becomes nested gold frames, the Tressage braid becomes twisting ribbons), and scroll flies the camera through a niche or parting wall straight into the next universe.",
+ "first_screen": {
+  "composition": "Probe desktop_00/01 (after 6s settle) show a full-bleed beige field (#C6B5A3 centre, #908373 corners, sampled) with a few white dust points and a struck-through 'SON' toggle at top-left (x55,y61), no other UI. It is NOT a CSS radial gradient: the centre colour equals the loader's flat background #c6b6a3 (bundle CSS .bg-loader) and the darkening is the WebGL post vignette; inferred: this is the intro camera's start pose (introductionCamera z:80, rotation.x -70deg, i.e. looking down at the baked floor 'sol_baked') before the 7s intro timeline played, so the loader-to-WebGL handoff is colour-matched and seamless. The real hero, captured in element frame 0/f00: a pale 3D hall with three arched openings hung with translucent curtains ('Rideau' meshes whose uOpenProgress tweens 0->0.6), 'Cartier' script logo + tiny 'PRÉSENTE' caps top-centre, and 'WATCHES / & WONDERS' in a huge light high-contrast serif across two tightly-leaded lines. That type is WebGL MSDF text placed IN the scene (bundle: new PM({text:'WATCHES'...}) at position (0,-1.5,-12), '& WONDERS' at (0,-2.5,-12)), a transparent world-space material (white 0xFFFFFF with a warm 0xFFFDF1 noise tint in the dissolve); inferred: depth-sorted with the architecture (in 0/f00 it reads in front of every arch and pillar, no occlusion is visible). Both lines are centred at x=0 and the second is much wider: 'WATCHES' spans ~82% of the 4:3 frame (x85-870 of 960) while '& WONDERS' runs ~99% (the '&' touches the left edge at x~0 and the last 'S' fades out at the right), so the hero line is cut by the viewport on narrower ratios. Line gap ~38px between WATCHES baseline and WONDERS cap top in the 960 frame. 'DÉFILER' scroll cue bottom-centre with a short vertical tick. Everything on one central axis.",
+  "what_owns_it": "3d + type (mixed)",
+  "display_type_px": "inferred: not CSS px. The hero is world-space MSDF text; apparent cap height ~117px in the 960x720 frame 0/f00 (~16% of viewport height), i.e. ~145px cap / ~210-230px equivalent font-size at 1440x900 if the vertical FOV is constant. Largest DOM type is the single-page outro line: Brilliant Cut Pro 300 caps at calc(6*16px)=96px (>=1025px).",
+  "evidence": [
+   "probes/cartier-watches-wonders-2025/desktop_00.jpg",
+   "probes/cartier-watches-wonders-2025/desktop_01.jpg",
+   "frames/cartier-watches-wonders-2025/0/f00.jpg",
+   "probes/cartier-watches-wonders-2025/probe.json",
+   "bundle sixftyfps-waw-app.js: class with this.text1=new PM({text:'WATCHES'...}), introductionCamera tween",
+   "bundle App chunk: #sixtyfps-loader .bg-loader{background:#c6b6a3}"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Brilliant Cut Pro (300/400/600)",
+    "role": "ui + universe titles + outro display",
+    "classification": "wide geometric display sans with faceted/chiselled details (see N, R in mobile_00), always uppercase",
+    "foundry": "Cartier proprietary brand face",
+    "source": "probe fonts_loaded + bundle CSS stack 'Brilliant Cut Pro, Brilliant Cut, Almarai, Helvetica, Arial'; weight 600 = labels/CTAs/loader, 400 = universe h2, 300 = single-page outro line"
+   },
+   {
+    "name": "Fancy Cut Pro (300/400)",
+    "role": "content-page (single) serif heads and body copy; inferred also the glyph atlas of the WebGL hero 'WATCHES & WONDERS' (msdf/common.json, font not named in bundle)",
+    "classification": "light high-contrast book serif",
+    "foundry": "Cartier proprietary brand face",
+    "source": "probe fonts_loaded + bundle CSS (.single-intro-title, .single-collection-title, .single-join-us-description, all weight 300)"
+   },
+   {
+    "name": "Almarai",
+    "role": "Arabic fallback",
+    "classification": "sans",
+    "foundry": "Google Fonts",
+    "source": "bundle font stack (.isArabic sets letter-spacing 0)"
+   }
+  ],
+  "display_size_px": "48 for universe titles: .sixtyfps-univers h2 = Brilliant Cut Pro 400, calc(3 * var(--sixtyfps-fontsize)) at >=1025px (28px = 1.75x below), line-height 1.1 (1 on mobile), max-width 450px (280px below 1025px, so mobile titles wrap tighter), #fff, uppercase, centred. 60px (3.75x) is the content-page Fancy Cut Pro 300 serif head (line-height 1.1, #0d0d0d). 96px (6x) Brilliant Cut Pro 300 caps for the single-page outro. Hero serif is WebGL MSDF, see first_screen.",
+  "body_size_px": "16 base var (--sixtyfps-fontsize; 18px >=1700px; 13/15px in .hasLongTexts languages). Content serif body 18px (1.125x) Fancy Cut Pro 300 line-height 1.3; intro paragraph 24/28/32px (1.5/1.75/2x) line-height 1.2. Labels 11/12/14px (0.6875/0.75/0.875x) weight 600.",
+  "scale_notes": "All DOM sizes are multiples of --sixtyfps-fontsize: 0.6875, 0.75, 0.875, 1.125, 1.5, 1.75, 2, 2.25, 3, 3.75, 6. On the universe stage the jump is 12px CTA -> 48px title (4:1); the WebGL hero sits far above that (~210-230px equivalent). Content pages run 18px body -> 60px serif head (3.3:1) -> 96px caps outro.",
+  "tracking_leading": "Universe titles: no tracking (wrapper letter-spacing 0em), line-height 1.1 (measured 52-53px baseline gap on desktop_05 at 48px). Tracked caps are selective, not global: 0.08em only on the DÉFILER scroll label and back buttons, 0.1em on the cursor text label, 1.2px on the 'LA COLLECTION TANK' pill, 0.8px on the 8px loader percentage, 4.8px on the 24px 'stay informed' line; DÉCOUVRIR (12px/600) is untracked. Loader statement 11px (13px >=768) weight 600 line-height 1.8. WebGL hero MSDF params letterSpacing -2, lineHeight 100 units: tight, near-touching lines.",
+  "case_and_style": "All UI in uppercase Brilliant Cut (SON, DÉCOUVRIR, FERMER, LA COLLECTION TANK, DÉFILER); universe titles uppercase centred two-line stacks ('PANTHÈRE DE / CARTIER', 'TANK LOUIS / CARTIER', 'TANK À / GUICHETS'); editorial content pages switch to sentence-case Fancy Cut serif. The 'grey second line' seen in 2/f00 and 2/f06 is a line-by-line reveal caught mid-stagger, not a two-tone style: 2/f00 samples line 1 ~#3A3A3A and line 2 ~#808080, but 2/f01 (same heading, settled) samples both lines #000.",
+  "signature_moves": [
+   "Universe title stack sits low (container height calc(90.5*dvh), justify flex-end, gap 30-35px) over the 3D floor, centred under the product, with a DÉCOUVRIR CTA whose 1px underline rests at scale3d(0.45,1,1) of the word width and grows to full width on hover (0.7s cubic-bezier(0.4,0,0.1,1))",
+   "Hero serif is MSDF text living in the 3D hall (depth-sorted, translucent, noise-faded in via uFadeProgress), not a DOM overlay",
+   "Two different letter reveals: loader statement letters go 0.3 -> 1 (fadeIn 1.0s cubic-bezier(0.33,1,0.68,1), 12ms per char, never from 0); universe titles go opacity 0 -> 1 (0.5s linear) plus scale 0.8 -> 1 (2s power3.out) per char from transform-origin bottom center, 50ms stagger, starting 500ms after the universe becomes active (frames 0/f01 'PANTHÈRE DE / CART', 0/f05 'MONTRE / JOAIL'; desktop_04 'TA' and desktop_06 'TAN' are the next title typing in, not a dimmed title)",
+   "Content-page serif heads and body paragraphs reveal one line at a time (lines y:20->0 1.1s power2.out + opacity 0.7s, staggered), so for a moment the upper line is darker than the next (2/f00, 2/f06); settled they are one ink (2/f01 both lines #000). A copy should not freeze the transient as a permanent two-tone head."
+  ],
+  "mobile": "mobile_00 (390px, 2x capture): loader statement in white Brilliant Cut Pro 600 caps at 11px (bundle .intro-text 11px, 13px only >=768px), line-height 1.8 (measured ~20px line pitch), max-width 634px/90vw, 3 centred lines, over a FLAT #c6b6a3 field (sampled #C8B7A5 everywhere, no vignette yet); '100' counter (8px, 0.8px tracking) above a 184px x 1px rgba(255,255,255,.3) track with a white scaleX fill (caught mid-exit at ~71px). mobile_01 = the same beige vignetted intro field + dust, with SON ~29px wide (same ~12px caps label as desktop). Probe mobile_measure empty because of the custom element; no horizontal overflow."
+ },
+ "color": {
+  "mode": "section-shifting (each universe has its own palette; UI chrome colour flips with it)",
+  "base": "Loader: flat #c6b6a3 (bundle CSS; = centre of desktop_00 #C6B5A3, vignetted to #908373 corners). Panthère: warm bone floor #C2AD92-#DEC5A7 with gold tiles ~#D2A971 between translucent pleated curtains #DED4CA; Tank Louis: near-black #040404 room with lit leather panels #431E0B-#481E06 falling to #1D0A06; Guichets: greige #BCB2A8 wall, #C5B3A5 floor; Montre Joaillerie ('faunafine'): night #0D0B0C with gold dune light #483524; Tressage: warm chalk grey #C5C0BA; Icons/Ballon Bleu: dusk brown #2E231F with lit floor #977E5F; content pages: #FEFEFE (all sampled).",
+  "ink": "#FFFFFF for SON, logo, titles and DÉCOUVRIR on scenes; the pagination is per-universe (bundle navigationColor: panther black, tanklc white, tankguichet black, faunafine white, tressage black, icons white; intro transparent) and the CTA has a data-theme=dark #0d0d0d variant; content pages use #0d0d0d ink.",
+  "accents": [
+   "gold metal (rendered, not flat): tiles/frames/ribbons ~#CAA16B",
+   "leather brown #2C210B-#6B3A1E (Tank universe)",
+   "gem colours only inside product (Panthère multicolour stones)"
+  ],
+  "ratio": "inferred: ~85% scene tone / ~10% rendered gold-metal / <5% white UI type",
+  "section_shifts": "Hard alternation light -> dark verified in bundle config: ppFadeColor (post-process fade colour) alternates #FFFFFF/#000000 (panther white, tanklc black, tankguichet white, faunafine black, tressage white, icons black) with matching navigationColor and per-universe fogPlane colours. Shifts happen inside the 3D transition, never as a CSS background change.",
+  "texture": "Grain, vignette and afterimage are in the WebGL post pass (USE_NOISE, USE_VIGNETTING, USE_AFTER_IMAGE) so grain sits in the image, beneath DOM text. The vignette is authored, not default: its centre is pushed toward the pointer (vignetUv += uMouse*.3*smoothstep(.7,0,dist)), its edge is jittered by a noise texture (*0.02), it is tinted vec3(.9,1,.95), heavier toward bottom-left ((2-y)*(2-x)), scaled by pixel luminance, plus an extra 5% darkening at the bottom. It is computed in UV space (length(vUv-.5)), not aspect-corrected, so the falloff is an ellipse that follows the viewport: wide on desktop_00, tall and much lighter at the corners on mobile_01 (corner #B09F8D vs #908373 on desktop, same #C6B5A3 centre). Dust/star points from a 1024px 2D-canvas texture of 620 dots blurred 0.5px; intro dust = 800 particles #F2EEE9 at opacity .8.",
+  "notes": "Probe could not read colours: the Svelte custom element <sixtyfps-app> renders into an open shadow root (attachShadow({mode:'open'}) in the App chunk) that the probe did not traverse. Hex values are pixel samples from screenshots/frames, or quoted from bundle CSS/config where stated."
+ },
+ "layout": {
+  "grid": "No page grid: fixed full-viewport stage (html,body overflow hidden!important; height var(--sixtyfps-window-height)=100vh). UI pinned to anchors: SON top-left (55px inset), Cartier logo top-centre, pagination right:53px top:50% (8 SVG dots: intro + 6 universes + outro; active dot = r:4 ring with transparent fill), universe title + CTA bottom-centre inside a calc(90.5*dvh) flex-end column. Discover mode swaps in FERMER + circled × top-right.",
+  "density": "airy",
+  "alignment": "Strict central axis for product, logo, title and CTA; symmetrical architecture framing (corridors, niches).",
+  "composition_moves": [
+   "Product hero centred on the vertical axis at ~40-45% of viewport height and ~25-35% of viewport height tall at settled stops (desktop_03 Panthère ~27%, desktop_05 Tank ~35%, desktop_07 Guichets ~36%), smaller on approach (desktop_02 ~10%); architecture built around it in one-point perspective",
+   "Camera-as-layout: the next universe is framed inside a recessed niche in the current one (desktop_04), so composition does the transition",
+   "Editorial content pages (frame 2) switch to a white scroll page: centred 360° product turntable with a soft contact-shadow ellipse under it and a '360°' text label that belongs to the custom cursor (it trails the system arrow: 2/f00 arrow at 598,422, ring at 676,466, label at 784,527; 2/f01 label beside the arrow), two-tone serif head, scattered collage of rectangular photos at staggered heights, a narrow left-aligned serif body column under a 600-weight caps label, an Embla carousel 'Découvrir la collection' (inactive slides opacity .4 >=1025px), outlined pill 'LA COLLECTION TANK' (padding 18px 24px, 1px rgba(13,13,13,.3), radius 56px) fixed bottom-right, thin vertical scroll-progress rail on the right edge"
+  ],
+  "section_rhythm": "One universe per scroll stop (8 stops over one [0,1] progress, ~0.125 each). Verified bundle layout: total = 8 entries + 4 = 12 units; each universe's timeline spans 3/12 = 0.25 of progress (intro 2/12) and starts at the midpoint of the previous one, so neighbouring universes overlap by half; snap = start + 0.5*height (outro 0.75), giving snaps at 0, .125, .25, .375, .5, .625, .75, .9375. At any stop the previous universe sits at its end and the next at its start, which is why the next world already exists inside the current niche. Each stop = establish (camera settles, title chars rise in 500ms after arrival) -> dwell -> fly-through into the next. A single forward wheel nudge past the stop commits: 20ms after the last wheel event the target tweens linearly to the next universe (|Δ|*3+1 s, ~1.4s) and the dt*2 lerp adds the tail; there is no free-scroll between universes. Backwards only commits to the previous stop when velocity > .03; past 0.79 forward it jumps to the last universe.",
+  "mobile_adaptation": "Same single-stage model with separate lighter GLBs (manifest pathMobile: productsMobile.glb, scenesMobile.glb); post shader halves screen deformation on mobile (uScreenDeformation * (1. - uMobile * .5)); long-press ring 100px vs 220px at >=1025px; universe h2 28px line-height 1; snap waits 500ms after touch vs 20ms after wheel. SON stays a ~12px caps label (~29px wide at 390px). Scene itself not captured on mobile by the probe."
+ },
+ "motion": {
+  "smooth_scroll": "Custom virtual scroll (not Lenis): native scroll disabled; one normalised progress in [0,1] for the WHOLE journey (min 0, max 1). Config (bundle Pc): univers {wheelMultiplier:.1*.001, touchMultiplier:.25*.001, dragMultiplier:.25*.001, keyStep:120*.001, lerpMultiplier:2, mouseDrag:false}; single {wheel/touch/drag .05*50=2.5, lerpMultiplier:5}. Per tick: current -= (current - target) * dt * lerpMultiplier, clamped to [0,1]. Snap: 20ms after the last wheel event (500ms after touch) the target is tweened LINEARLY to the nearest universe snap point over |Δ|*3+1 s, direction-aware (moving forward past the current universe's snap commits to start+0.8*height, i.e. into the next universe). Pagination clicks call scrollToUniverse: 3s power1.inOut.",
+  "preloader": "Flat #c6b6a3 stage; white Brilliant Cut Pro 600 caps statement (11px / 13px >=768, line-height 1.8, max-width 634px) whose letters animate opacity 0.3 -> 1 over 1.0s cubic-bezier(0.33,1,0.68,1) with 12ms per-char delay; 8px '0'...'100' counter and a 184x1px rgba(255,255,255,.3) track with a white scale3d fill (transition 1s), both in a wrapper at bottom 8.2vh. The loader only exits once every universe scene is shader-precompiled (store PRECOMPILED_SCENE_COUNT >= universes-1): then wrapper scale -> 0 (1s power2.out), counter y+10 and fade (.5s), stage fade (.5s immg.cubicOut), LOADER_CANPLAY_INTRO fires, and scrolling unlocks 1500ms later.",
+  "intro_sequence": "Verified from bundle: one paused 7s GSAP timeline whose default ease is a BLEND of two eases, uM('power1.inOut','power4.out','power2.out') = power1.inOut(t)*(1-w) + power4.out(t)*w with w = power2.out(t). It animates a ghost 'introductionCamera' (rotation.x -70deg -> 0 while dollying z 80 -> 60) AND its influence 1 -> 0 over the same 7s; the rendered camera is the scroll-rig camera with position.lerp / quaternion.slerp toward the intro camera by that influence, so the intro hands off to the scroll rig with no cut; fades the MSDF 'WATCHES' then '& WONDERS' in via uFadeProgress 0->1 (power3.inOut 5s, second line +0.15s, noise-coloured dissolve); from 2.5s the curtains open (uOpenProgress 0->0.6, 3.3s, stagger .1, blended ease power2.inOut->power3.out). 800 dust particles drift in front. The 'DÉFILER' cue letters shimmer in a loop (keyframes 0% .3, 30-70% 1, 100% .3, linear, infinite, duration min(10,len)*0.5s, per-letter delay floor(i/len*10)*0.1s). Deep links (#panther, #tank-lc, ... plus aliases panthere/tanklouiscartier/cartierprive/pantherejewellerywatch) skip the intro, jump to the universe and open its page after 3s.",
+  "scroll_techniques": [
+   "scroll-as-camera-timeline (virtual, linear timelines scrubbed by a lerped [0,1] progress)",
+   "fly-through portal niche (next universe framed inside the current one, desktop_04, 0/f02)",
+   "wall-parting reveal (leather blocks slide apart like a sliding puzzle, 0/f03, desktop_06)",
+   "lens/porthole screen deformation + vignette during transit (0/f06 rounded dark corners)",
+   "direction-aware snap to universe stops (20ms idle on wheel), with right-edge pagination"
+  ],
+  "text_animation": "Universe titles: SplitText-style chars (.st-char) start at opacity 0 in CSS; on universe enter (+500ms) a paused timeline tweens to label 'middle': chars opacity 0->1 (0.5s, ease none, stagger .05) and scale 0.8->1 (2s power3.out, stagger .05, transform-origin bottom center), DÉCOUVRIR alpha 0->1 + scale .5->1 (.5s power3.out) and its underline --before-scale-multiplier 0->1. On leave scrolling forward it tweens to 'end' in 0.5s: lines fade 1->0 (stagger .1), CTA hides, underline retracts power3.in; scrolling back reverses to 0. Content pages: chars 0->1 over 0.8s stagger .08 or lines y:20->0 (1.1s power2.out) + opacity (0.7s) triggered at 60% viewport; outro caps chars scale .8/opacity 0 -> 1 (3s power3.out / 1.5s, stagger .08) as a cover shrinks scaleY 1->0 (1.7s immg.zoomOut). Loader: 0.3 -> 1 letters (see preloader).",
+  "image_animation": "Archival B&W photos in Tank à Guichets are bent 3D planes drifting and rotating around the watch (desktop_06/07); in content pages photos translate at different rates (collage parallax, frame 2/f03).",
+  "page_transitions": "Two modes beyond the universe stage. (1) 'discover': an in-world interaction moment (frames 1/*) entered by DÉCOUVRIR or by holding the pointer on the product (auto-discover progress starts after 300ms, 600ms on touch, opens at 95%); UI swaps to SON / Cartier / FERMER ×, camera FOV eases to 90 (1.5s power2.inOut) then back to 81.2 (2s at 3.3s); each universe has its own discover choreography (Tank à Guichets: 6-step 360deg camera orbit with matching product rotations; Icons: trigger 'hold' with a win window 0.9-1). (2) 'single': the white editorial content page, run after discover closes (CANRUN_SINGLE_OPEN); shader uniforms uOpeningSingle/uOpenProgress drive the wipe to white.",
+  "hover_micro": [
+   "Cursor ring states in CSS: .interaction ring scale(1) opacity .3 with 1px currentColor box-shadow; .down ring scale(.5) opacity 1; .longpress ring hides (opacity 0, scale(.16)) while a 220px (100px <1025px) SVG ring draws; canRotateProduct.down ring scale(.75) with .75px stroke",
+   "DÉCOUVRIR underline: 1px ::before bar at scale3d(calc(.45*var(--before-scale-multiplier)),1,1) with transform-origin center, so it grows symmetrically from the middle, not left to right; hover -> scale 1 over 0.7s cubic-bezier(0.4,0,0.1,1), out 0.5s cubic-bezier(0.25,0.46,0.45,0.94)",
+   "CSS transitions: transform 0.7s / 1s / 1.4s cubic-bezier(0.4,0,0.1,1); opacity 1s-1.5s cubic-bezier(0.32,0.94,0.6,1) or cubic-bezier(0.33,1,0.68,1); pagination arrows nudge translateY(-5px*dir) 0.5s ease-in-out",
+   "Pagination circles: r 0.4s ease-in-out, fill 0.2s linear; nav colour 0.4s linear 0.1s when the universe flips light/dark",
+   "Content-page carousel: Embla, inactive slides opacity .4 with 1s cubic-bezier(0.33,1,0.68,1)"
+  ],
+  "cursor": "Custom DOM cursor: small ring + system arrow/grab/grabbing; ring becomes a rotate indicator over products (1/f01-f03), a long-press progress ring in the Icons/Ballon Bleu discover (1/f07), and carries an uppercase text label at 0.1em (e.g. 'FERMER' beside the hand in content-page margins, frame 2/f04; '360°' over the content-page turntable, 2/f00-f01). The DOM ring and its label trail the system arrow with visible lag (2/f00: arrow 598,422 vs ring 676,466 vs label 784,527). In the Montre Joaillerie discover the pointer carves a dark trail through the glittering dust (1/f04-f05) via an FBO feedback (uFbo, uFboIntensity, per-universe fboColor). The post vignette also leans toward the pointer.",
+  "easing_curves": [
+   "Most-used overall: 'linear'/'none' x86 (scroll-scrubbed timelines; the lerp supplies the feel)",
+   "GSAP 3.12.7 (audit recount of ease:\"...\" literals across both bundles: 'linear' x76 + 'none' x10, 'power1.inOut' x30, 'power2.inOut' x24, 'immg.cubicOut' x21, 'power3.out' x13, 'power2.out' x9; the earlier counts included eases passed through helpers): 'power1.inOut', 'power2.inOut', 'power3.out', 'power2.out', 'power3.in' x7, 'power3.inOut' x6, 'sine.in' x2, 'sine.inOut', 'power4.out'",
+   "Immersive Garden CustomEase set 'immg.*': immg.cubicOut = 0.32,0.94,0.60,1.00 (x22), immg.zoomOut = 0.4,0,0.1,1 (x8), immg.cubicIn 0.40,0,0.68,0.06, immg.cubicInOut 0.66,0,0.34,1, immg.inOutQuart 0.75,0,0.25,1, immg.expoOut 0.14,1,0.34,1, immg.expoIn 0.66,0,0.86,0, immg.zoomIn 0.9,0,0.4,1",
+   "Blended ease helper uM(a,b,mix): a(t)*(1-mix(t)) + b(t)*mix(t), e.g. intro uM('power1.inOut','power4.out','power2.out')",
+   "CSS: cubic-bezier(0.4, 0, 0.1, 1) transforms (= immg.zoomOut), cubic-bezier(0.32, 0.94, 0.6, 1) opacity (= immg.cubicOut), cubic-bezier(0.33, 1, 0.68, 1) letters, cubic-bezier(0.86, 0, 0.07, 1), cubic-bezier(0.25, 0.46, 0.45, 0.94), cubic-bezier(0.215, 0.61, 0.355, 1)"
+  ],
+  "duration_range_ms": "GSAP durations: 1000 (x45), 500 (x37), 2000 (x18), 1500 (x15), 1200 (x13), 300 (x11), 700, 800, 1100, 1400, 3000; 120000 x12 and 55000 x2 are slow ambient loops; intro 7000. CSS 300-1500ms. Snap target tween |Δ|*3+1 s (~1.4s between neighbouring stops); pagination jump 3000ms.",
+  "stagger_ms": "GSAP stagger 80 (x5: content chars, outro), 50 (x3: universe title chars), 10 (x3), 100 (x2: title lines out, curtains), 150; loader letters 12ms",
+  "choreography_notes": "Camera leads, title follows: the old title fades out line by line (0.5s) as you commit forward, the camera travels (linear timeline under the lerp), and the new title only types in 500ms after the universe becomes active, chars rising from 80% scale at the baseline. UI chrome never animates during travel except the pagination colour flip. The camera also carries a slow pointer parallax (mouse lerped at dt*1; position.x += mx*.25, rotation.y += mx*.025, position.y += my*.15, rotation.x -= my*.015, off on touch) that fades to 0 over 2s power1.inOut when discover or a content page opens and back to 1 on close. Discover is modal: architecture recedes, the product's own parts (stones, frames, ribbons) become the animated ornament.",
+  "evidence": [
+   "frames/cartier-watches-wonders-2025/0/f00-f07 (all viewed in audit)",
+   "frames/cartier-watches-wonders-2025/1/f00-f07 (all viewed in audit)",
+   "frames/cartier-watches-wonders-2025/2/f00,f02,f04,f07",
+   "probes/cartier-watches-wonders-2025/desktop_00-07.jpg",
+   "bundle grep (re-fetched in audit): sixftyfps-waw-app.js 1,318,324 B + assets/App-4DPlE1Qi.js 237,306 B"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "realtime-3d (product glTF + sculpted environments), plus editorial photography and mp4 on content pages",
+  "art_direction": "Soft, diffuse gallery light; each universe abstracts one design element of the watch into architecture (Panthère gold links -> checkerboard of bevelled gold tiles between translucent pleated curtains; Tank case -> nested rounded-rect gold frames in a leather-panel room; Guichets jump-hour windows -> archival newspaper/photo prints on curved thick plates plus a sheet curling out of a floor slot; Montre Joaillerie -> night dunes with gold glitter; Tressage braid -> twisted gold/silver/white ribbons over chalk rock; Ballon Bleu 'icons' -> tree, butterfly, lit disc and concentric light rings). Products lit as jewellery with per-product EXR env maps.",
+  "treatments": [
+   "archival B&W photographs mapped onto curved planes",
+   "gem refraction via baked normal cube maps",
+   "dust/star sparkle points",
+   "post grain, vignette, temperature/saturation, RGB split, afterimage"
+  ],
+  "crops_and_ratios": "Product ~25-35% of viewport height at settled stops, centred; content-page photos in mixed landscape/portrait rectangles at ~200-260px wide in the 960 frame, offset vertically; a full-bleed-width landscape photo (~74% frame width) above a narrow body column (2/f04).",
+  "formats": "Probe declared bytes: mp4 25.0MB (6 files), 3D 19.5MB (products.glb + scenes.glb), jpeg 5.4MB, png 1.8MB, webp 1.5MB, woff2 118KB; 94 requests; video paths videos/tankguichet/tunel.mp4, videos/outro/*, per-product video-single-dk/mb.mp4 and video-preview.mp4",
+  "evidence": [
+   "probes/cartier-watches-wonders-2025/probe.json",
+   "probes/cartier-watches-wonders-2025/desktop_03-07.jpg",
+   "frames/cartier-watches-wonders-2025/2/f03.jpg",
+   "frames/cartier-watches-wonders-2025/2/f06.jpg"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r173 (probe globals) + pmndrs postprocessing v6.37.1 (EffectComposer/EffectPass; the uber post shader is a custom effect) inside a Svelte custom element <sixtyfps-app> (60fps studio engine), Vite bundle; 1 WebGL2 context + 2 2D canvases; GSAP 3.12.7 for tweens; MSDF text material for in-scene type",
+  "role": "world + hero product: 8 scroll stops (introduction hall, 6 product universes = Panthère, Tank Louis Cartier, Tank à Guichets, Montre Joaillerie 'faunafine', Tressage, Icons/Ballon Bleu, then outro) matching the 8 pagination dots; each universe scene is a 'CTRL_ROOM_0X_Tunnel' in one scenes.glb with a per-universe discover interaction",
+  "assets": [
+   "https://cartier-waw-0225.dev.60fps.fr/assets/manifest/models/products.glb",
+   "https://cartier-waw-0225.dev.60fps.fr/assets/manifest/models/scenes.glb",
+   "assets/textures/envmaps/brown_photostudio_02_1k.exr",
+   "assets/textures/envmaps/diamonds-256.exr",
+   "assets/textures/envmaps/guichet0001.exr",
+   "assets/textures/envmaps/leather.exr",
+   "assets/textures/envmaps/metal0001.exr",
+   "assets/textures/envmaps/studio0001.exr",
+   "assets/textures/envmaps/tressage0001.exr",
+   "assets/textures/envmaps/tresses0001.exr",
+   "bundle manifest (not in probe): assets/manifest/models/productsMobile.glb, assets/manifest/models/scenesMobile.glb, assets/msdf/common.json + common.png (MSDF glyph atlas), assets/textures/noise-solid.png, assets/textures/shadows-icon.jpg"
+  ],
+  "materials_lighting_post": "Per-universe EXR environment maps (leather, metal, tressage, guichet, studio). Diamond shader: uCubeMapNormals fed from uDiamondCubeMaps (baked normal cube maps) + EXR diamonds-256 for gem refraction. Custom shaders with uNightProgress, uGroundTransition, uFlicker, uFakeShadows + uShadowCameraV/P, uButterflyPosition1/2, uStarsColor/uStars (canvas-generated 620-dot texture). Loaders present: GLTFLoader, DRACOLoader, MeshoptDecoder, KTX2Loader, EXRLoader; CubeCamera x3. Post uber-shader with #ifdef toggles: USE_SCREEN_DEFORMATION (dUv = mix(uv, (uv-.5)*.6+.5, smoothstep(r.x,r.y,dist)*amount*(1-uMobile*.5))), USE_GAMMA, USE_CONTRAST, USE_BRIGHTNESS, USE_TEMPERATURE, USE_SATURATION, USE_RGB_SPLIT, USE_NOISE (hash grain), USE_VIGNETTING, USE_AFTER_IMAGE (previous frame sampled at noise-rotated 0.5px offset, remanence min(.95, intensity*(.9+corner*.05+noise*.05))), FXAA pass (uResolutionFxaa). Vignette is pointer-steered and noise-jittered (see color.texture). Per-universe config: fogPlane colour/size, ppFadeColor white/black, shadowsIntensity .2-1, product environmentInfluence .2-.4 + environmentColor. Named materials include CartierPbr, CartierProductMaterial, Diamond, Curtain/LongCurtains/CurtainShadow, PantherCubes/PantherGold/PantherFloor, FaunaFine, Icons*/IconsButterfly/IconsTree, BallonBleu_*. WebGL tutorial overlay: 8-cell gesture atlas (uTutorials, uTutorialIndex/8) animated with easeInOut in-shader.",
+  "interaction": "Scroll-driven camera through universes; one render camera blended from three rigs (scroll target, interactionCamera, introductionCamera) by influence weights, plus a pointer parallax that is switched off during discover/single; DÉCOUVRIR click or press-and-hold on the product (auto-discover progress, opens at 95%) enters discover; drag to rotate product (single multipliers 2.5, lerp 5; grab/grabbing cursor); pointer trail disturbs dust via FBO feedback; Icons discover is a hold-and-release game (win window 0.9-1).",
+  "performance_tactics": "Two consolidated GLBs (products, scenes) plus lighter mobile variants; manifest with critical flags and priorities (env maps priority 1, products 10, diamond EXR 20); every universe's shaders precompiled (compileAsync, PRECOMPILED_SCENE_COUNT) behind the loader so fly-throughs never hitch; Draco/Meshopt/KTX2 decoders; 1k/256px EXRs; single WebGL2 context; FXAA instead of MSAA; debug tooling (Stats, ObjectDebug, ConfigSaver, FileDropper, URLParams) split into lazy chunks.",
+  "fallback_mobile": "Same WebGL experience on mobile, but loads productsMobile.glb/scenesMobile.glb, halves screen deformation and shrinks the long-press ring; no static fallback observed.",
+  "evidence": [
+   "probes/cartier-watches-wonders-2025/probe.json (globals, contexts, assets_3d)",
+   "bundle grep: uniforms, post shader source, Pc scroll config",
+   "frames/cartier-watches-wonders-2025/1/f00-f07",
+   "bundle config object na{} (per-universe scene/navigationColor/ppFadeColor/fogPlane/product) and Jo{} (per-universe discover config)"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "No menu. Fixed marks: SON (sound toggle, struck through when muted) top-left, Cartier script logo top-centre, 8-dot vertical pagination on the right edge (right:53px; active = r:4 ring; colour flips black/white per universe, hidden during the intro and in discover mode, 1/f00-f07), universe title + DÉCOUVRIR CTA bottom-centre. Each universe is deep-linkable by hash (#panther, #tank-lc, #tankguichet, #faunafine, ...) via history.pushState.",
+  "menu": "none (pagination dots are the only index)",
+  "buttons_links": "DÉCOUVRIR: Brilliant Cut Pro 600 12px caps, untracked, padding-bottom 12px, 1px underline at 45% width growing to 100% on hover, invisible 10px hit-area padding (::after inset -10px); FERMER + circled ×; LA COLLECTION TANK outlined 1px rgba(13,13,13,.3) pill (18px 24px padding, 1.2px tracking, border-color 1s cubic-bezier(0.33,1,0.68,1)); transitions border-color 0.5s linear, color 0.3s linear.",
+  "unusual_interactions": [
+   "press-and-hold on the product fills an auto-discover progress and opens the discover moment; the Icons universe's discover is itself a hold-and-release timing game (win window 0.9-1)",
+   "drag-to-rotate 3D watch with gyroscopic gold frames rotating around it (1/f01-f02)",
+   "pointer carves a trail through glittering night dust (1/f04-f05) via FBO feedback",
+   "gesture tutorials rendered in WebGL from an 8-frame atlas",
+   "360° turntable product on content pages; cursor carries a text label (FERMER) in content-page margins",
+   "bundle-only, not seen in any frame or screenshot: an archives popin (#archives-popin) with two date CTAs (archive-dateleft/right, Brilliant Cut 400 at 48px desktop) and a 702x206px title box (rgba(0,0,0,.1)) holding a video layer that starts at opacity 0 / scale(1.5); treat as unverified"
+  ],
+  "sound": "Yes: an AudioContext is created on the first click (listener {once:true}), which also UNMUTES (SOUND_MUTED false); six state-based mp3 stems loaded from assets/audio/: intro, low, full, transition, discover, single (not per-universe loops); audio pauses on window blur and resumes on focus. Music & sound design by mooders; SON toggle top-left.",
+  "footer": "None inside the experience; host page header/footer are placeholders ('sixtyfps-fake-site-header/footer') because the module is embedded into cartier.com; its global CSS hides the host footer (footer,.footer-element{display:none}), fixes the host header at height 0 and adds a .sixtyfps-forcecollapsed state that slides the real cartier.com header up 74px and fades its logo and account icons (>=1280px)."
+ },
+ "content_voice": {
+  "headline_style": "Product names as titles (uppercase two-line stacks) plus a single French brand statement; editorial pages use sentence-case serif heads with a colon, revealed line by line (the grey second line is only mid-reveal).",
+  "copy_tone": "Hushed, ceremonial, French-first (SIXTYFPS_LANG fr-fr): 'the art of metamorphosis' framing; UI verbs are single words (Défiler, Découvrir, Fermer, Son).",
+  "examples": [
+   "Tank Louis Cartier : l'icône horlogère amplifie sa taille"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Svelte compiled to a custom element (<sixtyfps-app>, customElements.define) bundled with Vite; embeddable module",
+  "libraries": [
+   "three.js r173",
+   "pmndrs postprocessing v6.37.1",
+   "GSAP 3.12.7 (+CustomEase 'immg.*' set)",
+   "Embla Carousel (content-page collection slider)",
+   "custom virtual scroll + custom SplitText-like splitter (.st-line/.st-word/.st-char)",
+   "MSDF text material",
+   "WebAudio",
+   "Draco / Meshopt / KTX2 / EXR loaders"
+  ],
+  "evidence": "index.html (sixftyfps-waw-app.js module, <sixtyfps-app>, SIXTYFPS_LANG fr-fr, SIXTYFPS_ASSETS_PATH), 'svelte-' class hashes x1174 in the App chunk, 'postprocessing v6.37.1' banner, version '3.12.7' strings, .embla CSS, probe globals three_revision 173, libs_from_requests empty (everything bundled)."
+ },
+ "performance_accessibility": {
+  "requests": 94,
+  "weight_notes": "~53MB declared: mp4 25.0MB + 3D 19.5MB dominate; images ~8.7MB; JS ~1.55MB (main 1.32MB + App chunk 237KB); fonts 118KB. Load settled at 7.5s.",
+  "reduced_motion": "Probe reduced_motion_rules 0 and audit re-grep of both bundles for 'prefers-reduced-motion' = 0 matches: no reduced-motion path.",
+  "contrast_issues": "White 11-12px caps UI (SON, DÉCOUVRIR) over pale beige/white scenes (desktop_03, desktop_07, 0/f04) drops to low contrast; titles mid-reveal/fade are illegible by design; universe title chars are opacity:0 in CSS until JS runs. The wrapper also sets user-select:none and -webkit-touch-callout:none on every descendant, so no copy can be selected or long-pressed.",
+  "mobile_quality": "No horizontal overflow; loader and UI scale via --sixtyfps-fontsize; 3D scene not reached by the mobile probe so real-device performance unverified.",
+  "dev_scores": {
+   "semantics_seo": 7.0,
+   "animations": 9.0,
+   "accessibility": 6.8,
+   "wpo": 7.8,
+   "responsive": 7.4,
+   "markup": 7.2
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Portal niche transition between realtime scenes",
+   "why_it_works": "The next world is previewed inside the current one (a recessed frame in the gold-tile wall showing the Tank leather room), so the cut feels like a camera move, not a page change.",
+   "how_to_build": "Two routes. (a) Physically chained rooms (what the scene naming suggests: every universe is a 'CTRL_ROOM_0X_Tunnel' in ONE scenes.glb, with a 'WATCH_0X_Tunnel' empty for the product): model room B directly behind a recessed opening in room A's wall so the niche shows real geometry with correct parallax, and move one camera along a spline through the opening. (b) inferred alternative for disjoint scenes: render B into a WebGLRenderTarget and map it onto the recessed plane, swapping scenes when the niche fills the viewport (p ~0.95). Either way drive the camera from the scroll progress with a LINEAR timeline and let the lerp (current -= (current-target)*dt*2) supply easing; ramp uScreenDeformation 0->1->0 through the opening and switch the post fade colour to the destination's light/dark tone."
+  },
+  {
+   "technique": "Scroll as a damped universe timeline (virtual scroll)",
+   "why_it_works": "Wheel input becomes camera travel with inertia; universes act as stops and pagination is a truthful index.",
+   "how_to_build": "html,body{overflow:hidden}. One progress for the whole journey in [0,1]. On wheel: target += deltaY * 0.0001 (touch/drag 0.00025, arrow keys 0.12); every frame current -= (current - target) * dt * 2, clamp [0,1]; feed current into paused, LINEAR per-universe timelines. Lay them out overlapping: with N stops give each a span of 3/(N+4) and start it at the midpoint of the previous span, so at every stop the previous universe is finishing and the next is starting (that overlap is what lets the next room exist inside the current one); snap point = start + 0.5*span. Snap: 20ms after the last wheel event (500ms after touch) tween target linearly to the nearest stop over |Δ|*3+1 s; if moving forward and already past the current stop, snap to the next universe (start + 0.8*height) so a small nudge commits; backwards, only commit to the previous stop if |velocity| > .03. Pagination jumps: tween target over 3s power1.inOut. In a product focus mode swap to multipliers 2.5 and lerp 5 so drag-rotate feels direct. Vertical dot pagination whose active dot becomes an r:4 ring (circle r 0.4s ease-in-out) and whose colour flips with the scene."
+  },
+  {
+   "technique": "One uber post shader for lens feel: edge pinch + afterimage + grain + vignette",
+   "why_it_works": "Gives camera moves a physical lens and motion memory without bloom; grain lives in the image under the DOM text.",
+   "how_to_build": "Fullscreen pass with #define toggles. Screen deformation: dUv = mix(vUv, (vUv-.5)*.6+.5, smoothstep(r.x, r.y, length(vUv-.5)) * uAmount * (1. - uMobile*.5)), animate uAmount 0->1->0 with the transition. Afterimage: ping-pong target; old = texture(uLast, vUv + vec2(cos(t), sin(t)) / uResolution * .5) with t = noise * 2PI; mix(current, old, min(.95, uIntensity*(.9 + corner*.05 + noise*.05))). Grain: hash noise * 0.03-0.06. Add temperature/saturation per universe as uniforms tweened with power1.inOut 1s. Vignette: vUv shifted toward the pointer (uv += uMouse*.3*smoothstep(.7,0.,dist)) and jittered by a noise texture (*0.02); diffuse -= smoothstep(r, r*2., length(uv-.5)) * intensity * (2.-uv.y)*(2.-uv.x) * vec3(.9,1.,.95) * smoothstep(0.,1.,length(diffuse)). Build it as one custom Effect inside pmndrs postprocessing's EffectPass."
+  },
+  {
+   "technique": "Architecture made from the product's own geometry",
+   "why_it_works": "Every environment is a brand lesson: gold links become a tiled wall, the Tank's rectangle becomes nested frames, the braid becomes ribbons. No generic studio backdrop.",
+   "how_to_build": "Model one hero motif per product in Blender (instanced rounded-rect tiles for links, 4-6 concentric extruded rounded-rect frames for a case, swept tubes for a braid). Use InstancedMesh for repeated tiles, a per-scene EXR env map (1k) for metal reflections, MeshPhysicalMaterial metalness 1 roughness 0.15-0.3 for gold, and a baked-normal cube map (CubeCamera pre-pass) for gem refraction. Animate the motif, not the product: frames rotate gyroscopically around the watch on drag."
+  },
+  {
+   "technique": "Char reveal that rises from the baseline, plus a 0.3-floor shimmer for looping cues",
+   "why_it_works": "Opacity finishes in 0.5s but scale keeps settling for 2s from the baseline, so the title lands with weight instead of popping; the looping DÉFILER cue never drops below 30% so it always reads.",
+   "how_to_build": "Split title into chars (inline-block). Title: gsap.fromTo(chars,{opacity:0},{opacity:1,duration:.5,ease:'none',stagger:.05}) + gsap.fromTo(chars,{scale:.8},{scale:1,duration:2,ease:'power3.out',stagger:.05}) with transform-origin:bottom center, in a paused timeline tweened to a 'middle' label 500ms after arrival; on forward exit tween to 'end' (lines opacity 1->0, .5s, stagger .1). Unlike the site, leave chars visible in CSS and only set opacity 0 from JS so a failed script still shows the title. Loader text: spans at opacity .3, animation fadeIn 1s cubic-bezier(0.33,1,0.68,1) calc(i*12ms) forwards. Looping cue: keyframes 0% .3, 30-70% 1, 100% .3, linear infinite, duration min(10,len)*0.5s, delay floor(i/len*10)*0.1s."
+  },
+  {
+   "technique": "Press-and-hold on the product as the gateway to an in-world 'discover' moment",
+   "why_it_works": "Entering a product is a deliberate, tactile gesture; plain click/drag stay free for camera and rotation, and each universe gets its own reward (orbiting frames, orbit camera, dust trails, a hold-and-release game).",
+   "how_to_build": "On pointer hold over the product mesh wait 300ms (600ms touch), then accumulate a progress p (emit it to the cursor); open discover at p >= 0.95. Cursor classes: .interaction ring scale(1) opacity .3 box-shadow 0 0 0 1px currentColor; .down scale(.5) opacity 1; .longpress ring scale(.16) and show a 220px (100px under 1025px) SVG circle with stroke-dashoffset = (1 - p) * circumference (inferred link between auto-discover progress and the ring). On open: camera targetFov -> 90 (1.5s power2.inOut) then 81.2 (2s at 3.3s), swap UI to FERMER ×, enable drag-rotate."
+  },
+  {
+   "technique": "Blend two eases for a camera move",
+   "why_it_works": "The intro tilt starts like a symmetric inOut but lands with the long tail of an expo-ish out, so a 7s camera move never feels robotic or rushed.",
+   "how_to_build": "const blend=(a,b,m='linear')=>{const A=gsap.parseEase(a),B=gsap.parseEase(b),M=gsap.parseEase(m);return t=>A(t)*(1-M(t))+B(t)*M(t)}. Do not animate the render camera directly: keep a scroll-rig camera and a ghost introCam (Object3D with an influence value). Each frame: cam.position.copy(rig.position).lerp(introCam.position, introCam.influence); cam.quaternion.copy(rig.quaternion).slerp(introCam.quaternion, introCam.influence). Intro: gsap.timeline({paused:true, defaults:{duration:7, ease:blend('power1.inOut','power4.out','power2.out')}}).fromTo(introCam,{influence:1},{influence:0},0).fromTo(introCam.position,{z:80},{z:60},0).fromTo(introCam.rotation,{x:-70*DEG},{x:0},0), played when the loader fires 'can play intro'. Because influence reaches 0 as the pose lands, the hand-off to the scroll camera is seamless. Add pointer parallax on top (mouse lerped at dt*1; x offset .25, y .15, tiny rotations) and fade it to 0 over 2s when a modal mode opens. Start the WebGL scene on the exact loader background colour (#c6b6a3 here) so the loader fade reveals no seam."
+  }
+ ],
+ "slop_risks": [
+  "cream / beige editorial background: the loader and two universes sit on beige (#c6b6a3 loader, #C2AD92-#DEC5A7 Panthère floor); a copy without the sculpted 3D world is just oat-milk",
+  "radial glow halo behind an object: the real instance is the Icons/Ballon Bleu universe (1/f07) with a lit disc directly behind the watch and concentric glowing floor rings. The beige first screen (desktop_00) is NOT this tell on the site (it is a post vignette over the floor, pointer-steered and noise-jittered); rebuilding it as a CSS radial-gradient halo behind a product would be",
+  "underline-fill hover animation: DÉCOUVRIR's 1px underline grows from 45% to 100% width on hover, the exact template tic; in a copy change state tonally instead",
+  "unrounded hairline rules as ornament / eyebrow tick: the 45%-width rule under DÉCOUVRIR, the 184px loader line and the short tick under DÉFILER are lone decorative lines",
+  "content hidden at opacity 0 until a reveal fires: the whole experience is canvas behind a loader that waits for every scene to precompile; universe title chars are opacity:0 in CSS (.st-char) and only appear via GSAP; the DOM exposes no headings to the probe (headings []), semantics 7.0 / accessibility 6.8",
+  "Didone serif on autopilot: the hero works because Fancy Cut Pro-style serif is Cartier's licensed face rendered as MSDF in space; swapping in Playfair/Bodoni for 'luxury' is slop",
+  "one label treatment everywhere: most UI strings are 11-12px Brilliant Cut 600 caps (SON, DÉCOUVRIR, FERMER, LA COLLECTION TANK), though tracking varies (0.08em only on DÉFILER/back, DÉCOUVRIR untracked); in a brand system this is a voice, copied generically it is a costume",
+  "vertical dot pagination: here it maps to 8 real stops and flips colour with the scene; a dot rail that does not index real sections is the tell",
+  "hairline light border on boxes: outlined 1px rgba(13,13,13,.3) pill 'LA COLLECTION TANK' and circled ×",
+  "scroll-jacking: wheel is captured into a timeline (html overflow hidden) and a 20ms-idle direction-aware snap commits you to the next universe; usability 7.17 is the lowest jury score",
+  "text you cannot read: white 12px caps (DÉCOUVRIR, SON) on the pale Panthère/Guichets/Tressage scenes",
+  "grain over text: here the noise is inside the WebGL post pass beneath DOM text; a naive copy adding a CSS grain layer above the type would be the tell",
+  "content sliced by an edge: the WebGL '& WONDERS' line runs edge to edge (the '&' touches x=0 in the 4:3 capture 0/f00); world-space type does not reflow, so on narrow or square viewports the hero word is cut by the frame"
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots and both mobile screenshots viewed individually; element frames 0 and 1 all 8 frames, element 2 f00/f03/f06; probe.json; live index.html, main bundle sixftyfps-waw-app.js (1.32MB) and App chunk (237KB) grepped for easings, durations, staggers, uniforms, shader source, scroll config, cursor CSS, audio. Probe DOM measurement is empty (Times 16px, no headings, doc_height 900) because the UI renders inside the <sixtyfps-app> shadow DOM, so all type sizes come from bundle CSS tokens and all colours are pixel samples from screenshots. Probe desktop_00/01 show only the post-loader gradient; scenes appear from desktop_02 on, so no re-probe was needed, but the WATCHES & WONDERS hero exists only in element frame 0/f00. INFERRED (marked): hero serif size, universe count = 7 from dots, portal render-to-texture mechanism, long-press gating product focus, per-universe dwell timings. Three.js material feature strings (transmission, iridescence, dispersion) appear in the three core bundle and are NOT evidence that the site uses them; only uDiamondCubeMaps/uCubeMapNormals and the EXR list are site-specific. | audit (2026-09-24, adversarial): re-fetched index.html, sixftyfps-waw-app.js (1,318,324 B) and App-4DPlE1Qi.js (237,306 B) and re-viewed desktop_00-07, mobile_00/01, all 8 frames of elements 0 and 1, element 2 f00/f02/f04/f07. CORRECTED: universe titles are 48px Brilliant Cut Pro 400 line-height 1.1 (not 60px/0.88; 60px is the content-page serif head); title chars reveal from opacity 0 with scale .8->1 (not from 0.3; 0.3 is the loader and DÉFILER only) and exit by fading lines, not dimming to 30%; hero WATCHES & WONDERS is WebGL MSDF text in the scene; pagination has 8 dots (intro + 6 universes + outro), not 7, and its colour flips per universe; virtual scroll progress is [0,1] for the whole journey with a 20ms direction-aware linear snap (not integer snap after 300ms); sound is 6 state stems unmuted on first click, not per-universe loops; long-press belongs to the Icons discover and an auto-discover hold, not a general gateway to the content page; mobile loader text 11px/1.8 (not 13px/2.2); SON is not 28px on mobile; Tank leather hex; product scale. ADDED: blended-ease 7s intro camera tilt (-70deg->0, z80->60), curtains, loader colour = first WebGL frame, shader precompile gate, pointer-steered vignette, immg CustomEase set, ppFadeColor/navigationColor alternation, mobile GLBs, postprocessing v6.37.1, Embla, deep-link anchors, discover vs single modes, underline-grow and hairline slop tells. Still INFERRED: desktop_00 = intro camera start pose; MSDF atlas font = Fancy Cut; auto-discover progress drives the SVG ring; portal is chained geometry vs render target. | audit 2 (2026-09-25, adversarial): re-viewed desktop_00/02-07, mobile_00/01, all 8 frames of elements 0 and 1, element 2 f00/f01/f02/f04/f06/f07 one at a time; re-fetched index.html, sixftyfps-waw-app.js (1,318,324 B), App-4DPlE1Qi.js (237,306 B) and sixftyfps-waw-index.css and re-grepped the universe h2 CSS, CTA underline, loader CSS, Pc scroll config, universe span/snap maths, intro timeline, camera tick, vignette GLSL and per-universe config (all matched). CORRECTED: the 'two-tone' content head is a staggered line reveal (2/f01 settles both lines to #000), removed from signature/case/voice; hero MSDF depth-sorting downgraded to inferred and line widths fixed (line 2 ~99% of frame, not 82%); '360°' is a cursor label, not a fixed label; easing counts re-tallied. ADDED: overlapping universe spans (0.25 each, start at previous midpoint, snaps .125 apart) and backward-commit velocity rule; ghost intro camera with influence 1->0 (steal_this rewritten to use it); pointer camera parallax faded out in discover/single; UV-space vignette ellipse; centre-origin CTA underline; mobile title max-width 280px; pagination hidden in discover; cursor lag; user-select:none a11y note; host-header collapse CSS; bundle-only archives popin (unverified); edge-cut hero slop risk. Samples: desktop_00 centre #C6B5A3 / corner #908373, CTA underline 34px of ~83px word (~0.41)."
+}

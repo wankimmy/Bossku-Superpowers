@@ -1,0 +1,291 @@
+{
+ "slug": "iyo",
+ "title": "iyO",
+ "live_url": "https://www.iyo.ai/",
+ "award": "Awwwards Site of the Day, Apr 2 2026 (Honors, SOTD). Credits: Enrico Deiana, Federico, Matteo Donini.",
+ "scores": {
+  "overall": 7.68,
+  "design": 7.9,
+  "usability": 7.11,
+  "creativity": 7.98,
+  "content": 7.86,
+  "dev": {
+   "overall": 7.39,
+   "semantics_seo": 7.2,
+   "animations": 8.2,
+   "accessibility": 6.0,
+   "wpo": 7.2,
+   "responsive": 8.0,
+   "markup": 7.2
+  }
+ },
+ "industry": "Consumer hardware e-commerce: screenless 'audio computers' (iyO One, iyO yO, VAD Pro, Wand, Caps, App), Webflow + Shopify checkout.",
+ "signature": "The home page is one fixed viewport where about 1.6 million GPU particles trace the nodal lines of a Chladni plate that re-tunes itself on random timers (modes m,n drawn from 3/5/7 every 6-12s, with per-frame vibration jitter), while a varying 40-80% share of the particles condenses into lowercase haiku and dissolves again, so a product about talking to computers is introduced as visible sound. The page never scrolls, and nothing waits for the visitor's input.",
+ "first_screen": {
+  "composition": "OBSERVED (desktop_00): full-bleed #101010 field of white particle grain arranged in concentric Chladni rings with a bright, text-block-shaped cloud in the centre: the particles are seeded on the haiku's letter positions at load (audit 2, bundle), so the first frame is text-shaped grain being released onto the nodal lines, not a glow. Floating dark capsule nav 375x62px centred at y=32 (iyO wordmark left, round 9-dot grid button, a double-bar divider, round cart bubble with count 0). Bottom-left at x=48: the only headline, 33.6px Magnetik in two lines, first part #DDDEE3 and the tail 'you can talk to' in a span at opacity .5 (.info__text-last{opacity:.5}), so the two tones are one colour at two opacities. Bottom-right: 'SHOP NOW' in 11.2px tracked mono beside a 64x78px rounded glass tile holding a product render. Nothing else: no hero button, no section below (document height 900).",
+  "what_owns_it": "mixed: realtime particle field (canvas) with type formed by particles",
+  "display_type_px": 33.6,
+  "evidence": [
+   "probes/iyo/desktop_00.jpg",
+   "probe measure.type h1 Magnetik 33.6px/36.8px",
+   "probe doc_height 900",
+   "probe canvas 1440x900 static",
+   "live HTML: <h1 ...>We make agentic computers <span class=\"info__text-last\">...</span></h1>; Webflow CSS .info__text-last{opacity:.5}"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Magnetik",
+    "role": "display",
+    "classification": "neo-grotesque with soft terminals",
+    "foundry": "unverified",
+    "source": "probe fonts_loaded 'Magnetik 400' + h1 computed style; CSS .h-h4.is--configurator{font-size:2.1rem; line-height:2.3rem} = 33.6/36.8px"
+   },
+   {
+    "name": "Roobert Regular",
+    "role": "ui",
+    "classification": "geometric grotesque",
+    "foundry": "Displaay Type Foundry",
+    "source": "probe fonts_loaded + menu product names 16px"
+   },
+   {
+    "name": "NB Architekt Pro Neue (Nbarchitekproneue)",
+    "role": "mono",
+    "classification": "geometric sans with a technical, near-monospaced look in captures (whether it is truly monospaced is unverified)",
+    "foundry": "Neubau (NB International)",
+    "source": "probe fonts_loaded + 11.2px labels; Webflow CSS .paragraph.is--eyebrow{font-family:Nbarchitekproneue; letter-spacing:.07em; font-size:.7vw (.7rem in component variants)}"
+   },
+   {
+    "name": "Arial / Helvetica Neue fallback",
+    "role": "body",
+    "classification": "system sans (Webflow default body)",
+    "foundry": "system",
+    "source": "probe body family, links 14px"
+   }
+  ],
+  "display_size_px": 33.6,
+  "body_size_px": 14,
+  "scale_notes": "Deliberately small DOM type: h1 33.6px/36.8px (1.1), product names 16px/19.2px, labels 11.2px/17.6px, body 14px/20px. The real 'display' is the particle haiku in the canvas (~52px cap-height equivalent, desktop_02), which is a texture (words1-9.jpg), not DOM text. Ratio h1:ui:label = 3 : 1.43 : 1. The h1 is split into 34 character nodes (probe font_sizes_px [34 px, 34 nodes] = the 34 letters of the headline) by a SplitText blur-in module. The haiku size is approximate (read off desktop_02), because it is a particle field sampled from a JPG, not a font size.",
+  "tracking_leading": "h1 letter-spacing normal, lh 1.1; Roobert -0.16px (-0.01em); mono labels +0.784px (+0.07em), lh 1.57.",
+  "case_and_style": "Sentence case headline with a tonal tail (white words then grey words); all small labels uppercase tracked mono (SHOP NOW, DETAILS, YOUR CONFIGURATION, CONNECTIVITY, PICK UP A COLOR, OTHER PRODUCTS); haiku lines all lowercase; prices as US$99.00.",
+  "signature_moves": [
+   "Headline is small (33.6px) and parked bottom-left, letting the canvas carry scale",
+   "Two-tone headline done tonally with one colour: #DDDEE3 lead, the tail wrapped in a span at opacity .5",
+   "Lower-case haiku rendered by particles, blurred at the edges like sound on a plate",
+   "One tracked mono for every label and meta string"
+  ],
+  "mobile": "OBSERVED mobile_00/01: h1 stays bottom-left at ~19px (mobile_measure h1 19.2px, largest 25.35px), nav capsule stretches to ~358px (left/right 1rem), a horizontally swiping row of glass product cards (thumbnail, name, LEARN MORE outline pill, SHOP NOW light pill) sits under the headline with neighbours peeking, auto-advancing one card every 5s (Smooothy slider, snap, pauses on touch/wheel and resumes 2s after; mobile_00 shows iyO One, mobile_01 VAD Pro); particle haiku still renders but is barely legible."
+ },
+ "color": {
+  "mode": "dark home, light configurator (section-shifting by page)",
+  "base": "#101010 (--black) near-black, neutral not blue",
+  "ink": "#DDDEE3 (--pearl-white) for headline and labels; #F9F9FB (--white), #EDECED (--almost-white)",
+  "accents": [
+   "#303030 / #242426 / #151515 dark greys for capsules and cards (--dark-grey-lighter, --dark-grey, --light-black)",
+   "#DDDEE30D (--white-5) hairlines/fills",
+   "#00C261 (rgb 0,194,97) small status green",
+   "product finishes themselves (Dusk lilac-blue to pink, Night black, Dawn sand) as the only colour"
+  ],
+  "ratio": "approx 88% #101010 / 10% white particles and pearl ink / 2% grey UI chrome on the home screen",
+  "section_shifts": "Home is dark; the configurator (element 1) flips to a pale cool grey studio: the page-transition code sets body background #DDDEE3 (--pearl-white) for any /products URL and #101010 elsewhere (video frames sample ~#D6D9DE) with dark glass panels; the product page closes on a light editorial photo band then a #101010 footer (element 3).",
+  "texture": "The texture is the content: the particle field is grain. Glass (backdrop-filter on 13 elements): the nav capsule and configurator panel are blur(20px) over #38383899 (rgba 56,56,56,.6) with a faint cool tint gradient on top, linear-gradient(141deg, #a9c2f214, #62718c24) (light blue at 8% to slate at 14%); rgba(33,33,33,.69) fills the smaller cards.",
+  "notes": "CSS custom properties are the real token set (root_vars): --black #101010, --almost-white #edeced, --pearl-white #dddee3, --dark-grey-lighter #303030, --white-5 #dddee30d, --white #f9f9fb, --light-black #151515, --dark-grey #242426, --black-50 #10101080. The only chroma on the site comes from photographed/rendered product finishes."
+ },
+ "layout": {
+  "grid": "Single viewport app. 48px side margins (h1 at x=48, SHOP NOW tile ends ~x=1390). Nav capsule centred (x 532-907). No visible column grid on home; configurator uses a fixed glass panel 26rem (416px) wide, inset right 3rem / bottom 2rem, radius 2rem, blur(20px), with 3-up option tiles; it grows upward as accordion sections open.",
+  "density": "airy (home), dense (configurator panel)",
+  "alignment": "Canvas centre-weighted; DOM pinned to three anchors: top centre (nav), bottom-left (headline), bottom-right (shop tile).",
+  "composition_moves": [
+   "Corner-anchored DOM around a centre-weighted canvas",
+   "No page scroll on home (document height 900px): the canvas changes on its own randomized timers, and no wheel or scroll handler touches the particle uniforms (bundle)",
+   "Glass capsule nav as the only chrome",
+   "Commerce entry is a tiny product tile bottom-right that expands into a vertical stack of product thumbnails on hover (element 3 f06)",
+   "Configurator: huge product render centred, spec/price panel docked bottom-right, view toggle pill bottom centre, OTHER PRODUCTS tile bottom-left"
+  ],
+  "section_rhythm": "Home has no sections: the plate re-tunes every 6-12s and the haiku condense and dissolve on a separate 7-13s loop, independent of input (the probe's 8 wheel steps only let time pass: one haiku holds in desktop_01-04, is gone in 05-06 and the next forms in 07). Product pages scroll: exploded 3D view -> editorial campaign photo -> CTA -> dark footer with video cards and a cymatic shader.",
+  "mobile_adaptation": "Same fixed canvas; headline kept bottom-left; auto-advancing snap carousel of glass product cards above the bottom edge; nav capsule widened to the viewport minus 1rem each side; no horizontal overflow."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis 1.3.17 (unpkg lenis.css in the HTML; html class 'lenis'), verified config {infinite:false, lerp:0.125, smoothWheel:true, touchMultiplier:2, smoothTouch:false} driven by gsap.ticker. Correction (audit 2): the infinite:true block the first pass attributed to Lenis belongs to the product slider (virtual-scroll: infinite, snap, lerpFactor 0.3, dragSensitivity 0.005, snapStrength 0.1, speedDecay 0.85, mouseMultiplier 0.5, touchMultiplier 2). On home the document is 900px tall, so nothing scrolls and the wheel has no visible effect.",
+  "preloader": "None. The body fades from autoAlpha 0 to 1 once the app boots, and the particle layer fades in (visibility 0 -> 1 over 1s, 0.3s delay, power2.out) as soon as the 9 haiku JPGs have been sampled into position textures.",
+  "intro_sequence": "Verified (audit 2): at load every particle is seeded on a letter pixel of the last haiku texture (index min(10, count-1) = words9), so the field starts as a text-shaped cloud (desktop_00). The haiku loop then begins with texturePercent at 0, which releases those particles onto the Chladni lines, and condenses 40-80% of them back into the same haiku (desktop_01 blurry -> desktop_02 crisp). Each later cycle dissolves to 0, switches to the next texture, and condenses again (desktop_07 shows the next haiku forming).",
+  "scroll_techniques": [
+   "none on home: the plate and haiku run on randomized gsap.delayedCall / tween loops, independent of scroll or wheel",
+   "plate modes: m and n drawn from [3,5,7] every 6-12s; patternFrequency 20-45 every 5-10s; patternJitter 0-0.3 every 4-8s; chladniNoise tweened to 0-0.5 over 2-5s power2.inOut; Chladni distortion tweened to 0-5 over 1.2-3s power2.inOut; each frame adds +/-0.45-0.52 random jitter to m and n before the shader rounds them, so the plate occasionally flickers to a neighbouring mode for a frame",
+   "haiku cycle: N = 3-6s; texturePercent -> 0 over 0.4N (dissolve), next texture, -> 0.4-0.8 over 0.6N (condense), hold 2-4s, -> new 0.4-0.8 over N/2, repeat",
+   "product pages: scroll-scrubbed character fill (SplitText chars autoAlpha 0.2 -> 1, stagger 0.1, scrub, start 'top 90%', end 'center 40%')",
+   "product pages: scroll-TRIGGERED (not scrubbed) exploded view, ScrollTrigger start 'top 50%', end 'bottom 50%', toggleActions 'play reverse play reverse'"
+  ],
+  "text_animation": "Canvas haiku: particles are pulled to letter positions sampled from a word JPG, so text materialises from and dissolves into grain (desktop_01-04, element 0). DOM text, verified: GSAP SplitText {type:'words,chars', aria:'none'} blur-in: chars set to autoAlpha 0 + filter blur(2px), then autoAlpha 1 + blur(0) over 1.1s, ease linear, stagger each 0.02s from the start; triggered by an IntersectionObserver and reset to hidden when the element leaves, so it replays on every entry (element 3 f00 caught 'Say hel...' half-revealed). The h1 is one of these (34 char nodes). Product copy uses a separate scrubbed fill: SplitText {type:'words, chars', autoSplit:true} with autoAlpha 0.2 -> 1, stagger 0.1, ease linear, scrub from 'top 90%' to 'center 40%'. Reduced-motion users get the blur-in final state immediately.",
+  "image_animation": "Exploded view, verified (audit 2) against element 2 (3.48s clip): three GLB parts (outer disc, clear acoustic core, custom-fit tip) are offset along z by [0.6, 0.15, -0.6] x explodeProgress. A ScrollTrigger timeline (play at 'top 50%', reverse on leave) starts the group at ry = +pi/2, z 0.3, spins it to ry = -pi/2 and z 0 over 1s expo.inOut, and 0.5s into the spin runs explodeProgress 0 -> 1 over 1.8s with a CustomEase overshoot ('M0,0 C0,1.175 0.3,1.021 1,1'). That 180-degree spin is why f00-f07 go from 3/4 front to profile to rear (gold pogo pins) while the DETAILS label stays pinned at y=82 from f02 on. On top, the pointer tilts the group (rotation.x = mouseY*0.2, rotation.y = mouseX*0.2 rad) and an idle loop drifts y/rx/rz by a few hundredths over 3-5s sine.inOut. Hover (only once explodeProgress >= 0.4): the raycast part scales to 1.085-1.3 (disc 1.085, core 1.2, tip 1.2) and turns to a preset showcase angle while the other parts shrink to 0.8, all over 2.5s expo.out; a dark glass spec card (thumbnail, title, 3-4 line grey description: 'Audio computer disc', 'Acoustic system', 'Custom-fit tip') sits with its top-left at the pointer. Faint Chladni particles stay behind the model.",
+  "page_transitions": "Verified (audit 2): Taxi.js PJAX (data-taxi / data-taxi-view, links prefetched). Leave: [data-taxi] fades to autoAlpha 0 in 0.15s, body background switches to #DDDEE3 for /products or #101010 otherwise (so the swap never flashes the wrong colour), scroll resets to top. Enter: fade back to 1 over 0.2s after a 0.1s delay, then Shopyflow and Webflow IX are re-initialised. If the nav shell is missing it falls back to a hard navigation. The script also silences console.warn and console.error.",
+  "hover_micro": [
+   "Part hover on the exploded model: hovered part grows to 1.085-1.3 and turns to a showcase angle, others shrink to 0.8 (2.5s expo.out), glass spec card at the pointer",
+   "SHOP NOW tile fans out into a vertical stack of 4 product thumbnails with the hovered product name in the label font (element 3 f06)",
+   "Configurator swatches: the product does NOT recolour instantly; a ripple wipe in UV space spreads the new matcap from the centre over 1.2s power2.out (see steal_this)",
+   "Nav capsule -> menu: the 23.5rem capsule's radius eases 3em -> 2em and its content row opens with grid-template-rows 0fr -> 1fr over 0.6s cubic-bezier(.625,.05,0,1); on close the radius waits 0.45s so it rounds only after the panel has folded; hovering a product card in the open menu dims the others to 0.2 and scales the hovered image to 1.04 (0.4s)",
+   "Footer video cards collapse to one card or expand to three depending on where the pointer is (element 3 f03 vs f06; trigger inferred)"
+  ],
+  "cursor": "Home: native cursor (cursor:none 0); the pointer is a force in the particle sim (u_mouse, u_mouseVelocity). Configurator (verified audit 2, visible in element 1 f00/f01/f03/f06): a custom stage cursor is laid over the 3D viewport: a 3rem (48px) ring (.cursor_main) centred on the pointer plus a 0.45rem white ball (.cursor_ball) that trails on a second, slower follower, and side chevrons that slide out when the ring scales to 1.5 (0.5s expo.out) as a drag-to-rotate cue (horizontal chevrons only in image mode, both axes in 3D mode). It sits in a fixed, pointer-events:none layer, and the native arrow still shows alongside it.",
+  "easing_curves": [
+   "cubic-bezier(0.77,0,0.175,1) x7 (probe, Webflow CSS)",
+   "app.css: cubic-bezier(.625,.05,0,1) x12, cubic-bezier(.48,.01,0,1.08) x11 (slight overshoot), cubic-bezier(.65,0,.35,1) x7, cubic-bezier(.4,0,.2,1) x3, cubic-bezier(.65,0,0,1) x3, cubic-bezier(.48,.01,0,1.15) x2, cubic-bezier(.25,.46,.45,.94) x2, cubic-bezier(.77,0,.175,1) x2, cubic-bezier(.5,.5,0,1) x1",
+   "GSAP string counts (audit 2 recount): power2.out x13, expo.out x11, none x7, power2.inOut x6, linear x5, back.out(0.8) x2, then single uses of expo.inOut, sine.inOut, power1.inOut, expo, power3, power4 and 'custom'",
+   "gsap.defaults({ease:'expo.out', duration:1.2}): every tween without its own ease is expo.out 1.2s",
+   "CustomEase 'custom' = M0,0 C0,1.175 0.3,1.021 1,1 (fast overshoot, used for the explode)"
+  ],
+  "duration_range_ms": "CSS 100-800ms in the probe (mostly 250, 300, 200), app.css transitions 150-700ms (grid-rows 600-700ms); GSAP literals 150-2500ms, mostly 1000 (x8), 1200 (x7, and the global default), 800 (x7), 500 (x6); generative loops use random windows of 1.2-3s, 2-5s, 4-8s, 5-10s and 6-12s.",
+  "stagger_ms": "20 (blur-in chars), 50, 80, 100, 150, 200, 400",
+  "choreography_notes": "Element 0 (6.0s clip, frames at 0.37-5.61s): f00 haiku sits blurred inside a plus-shaped nodal outline; f01 (1.12s) a hollow ring has been punched through the middle column of letters while the cursor has already moved on to the upper right, so the disturbance outlives the pointer; f02 (1.87s) the plate mode flips to a square grid while the ring drifts right; f03 (2.62s) mode shifts to an H/plus figure, the third line smears into streaks where the cursor passed; f04-f05 (3.37-4.11s) letters spring back and re-sharpen; f06 (4.86s) crisp; f07 (5.61s) the haiku dims toward the next one. Four plate changes in 6s here are faster than the 6-12s mode timer, so the clip likely also catches frequency (5-10s) and distortion (1.2-3s) changes. Mechanism (verified): the pointer applies a RADIAL push only (home values: strength 0.0225, radius 0.16), scaled by a smoothed pointer speed (0.8/0.2 blend), so a still cursor does nothing; the hollow ring is what radial push plus friction leaves behind. Text particles are pulled back 5x harder than pattern particles (0.0025 vs 0.0005), velocity *= 0.985^(dt*60), so letters re-form in about 2.5-3s. u_patternSwirl (0.05) is a tangential shimmer ALONG the nodal lines, not a mouse swirl.",
+  "evidence": [
+   "frames/iyo/0/f00-f07.jpg",
+   "frames/iyo/2/f00-f07.jpg",
+   "frames/iyo/1/f00,f03,f06.jpg",
+   "frames/iyo/3/f00,f03,f06.jpg",
+   "probes/iyo/desktop_00-07.jpg",
+   "bundle iyo2.vercel.app/app.js grep: ease strings, durations, staggers, SplitText blur-in, fillText scrub, particle uniforms",
+   "audit 2: live HTML + iyo2.vercel.app/app.js and app.css + Webflow shared CSS re-fetched: HomeScene (wK) timers, GpgpuParticles (YW, QJ.TEXTURE_SIZE 1280), V3 text sampler, h3 exploded timeline, R9 hover table, matcap ripple shader, Taxi transition class KO, cursor module qM"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "mixed: realtime particles + realtime-3d product + editorial photography",
+  "art_direction": "Monochrome home (white grain on #101010). Product renders are clean studio 3D with soft reflections and a transmissive shell exposing orange/blue internals. Campaign photo: model in an olive technical jacket with lime piping against a pale grey sweep, shot low, earbud prominent (element 3 f00).",
+  "treatments": [
+   "particle-grain lettering",
+   "view-dependent matcap colourways (the Dusk face reads periwinkle face-on and yellow-pink-lilac when tilted, element 1 f00 vs f02) switched by a ripple wipe",
+   "glass cards over imagery",
+   "blur-in type"
+  ],
+  "crops_and_ratios": "Home canvas full 1440x900; product tiles ~64x78 rounded squares; configurator product fills roughly half the frame width, centred (about 520px of a 960px frame); campaign photo full-bleed.",
+  "formats": "Probe: 9 jpg (incl. words1-9 haiku textures), 7 webp (matcaps etc.), 4 png, 3 avif, 1 glb, no video tags (footer videos are YouTube iframes). Declared bytes: png 1.13MB, 3D 1.03MB, JS 0.92MB + 0.11MB, webp 0.86MB, jpeg 0.70MB, woff2 0.12MB.",
+  "evidence": [
+   "frames/iyo/1/f00.jpg",
+   "frames/iyo/3/f00.jpg",
+   "probe asset_extensions / bytes_by_type_declared",
+   "bundle asset list"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r178 (globals.three_revision) in a custom bundle hosted on iyo2.vercel.app and injected into Webflow; GLTFLoader + DRACOLoader + KTX2Loader + EXRLoader/RGBELoader, OrbitControls for the configurator, EffectComposer present in the bundle; hand-rolled GPGPU (two float render targets, no GPUComputationRenderer)",
+  "role": "background field (GPGPU particles) on home + hero product (exploded view, configurator)",
+  "assets": [
+   "https://iyo2.vercel.app/public/yo.glb",
+   "https://iyo2.vercel.app/public/hdr4.exr",
+   "https://iyo2.vercel.app/public/dusk-matcap1.webp",
+   "https://iyo2.vercel.app/public/night-matcap.webp",
+   "https://iyo2.vercel.app/public/matcap-dawn.webp",
+   "https://iyo2.vercel.app/public/homepage/words1.jpg ... words9.jpg"
+  ],
+  "materials_lighting_post": "Particles (verified audit 2): 1280x1280 float ping-pong targets = 1,638,400 particles drawn as 1px points (half-float fallback if float targets are unsupported). Word textures are NOT sampled in the sim shader: at load each JPG is drawn to a 400*dpr canvas, every dark pixel (red < 120) is collected, and each particle gets a random dark pixel as its text target in a float DataTexture (u_original). Sim fragment per particle: pickTexture = hash21(uv) < u_texturePercent (a stable random subset follows the text); target = mix(patternTarget, textTarget, pick); velocity *= pow(u_friction 0.985, dt*60); spring toward target (u_baseToShape 0.0005, x5 for text particles, pattern particles stop inside a 0.01 line-thickness band); random-direction noise (0.00035, x0.1 for text, x0.3 for pattern); radial mouse push within the radius, scaled by smoothed pointer speed (defaults 0.006 / 0.1, home overrides 0.0225 / 0.16); pos += velocity*dt*60; writes vec4(pos, velocity). Pattern targets come from computePatternPosition: a base pattern (8 presets) with nodal attraction 0.45, line push 0.12, a tangential shimmer along the lines (u_patternSwirl 0.05), frequency 35 (randomised 20-45), blended with a Chladni field sin(m*PI*x/a)*sin(n*PI*y/b), a=b=2, m and n rounded in-shader, plus one Newton step along the gradient (step = -field/|grad|, scaled 0.3*distortion). u_audioVolume / u_audioFrequency uniforms exist but stay 0. Product: MeshStandard/Physical presets from a table, e.g. glass {transmission 1, roughness 0.05, thickness 0.018, ior 1.6}, silicone tip {transmission 0.62, thickness 0.2, attenuationDistance 0.1, roughness 0.53, ior 1.42, #C7C7C7}, metals that swap colour per finish (changingDarkMetal variations #5A5A5A / #3F3F3F / #CDBEA7, changingLightMetal #868383 / #464646 / #FDF5EC; index-to-finish mapping inferred as Dusk / Night / Dawn); face colourways by an onBeforeCompile matcap patch over the PBR result (3 matcaps, uMatcapIntensity 0.82) lit by an EXR environment (hdr4.exr).",
+  "interaction": "Pointer is a speed-scaled radial force in the particle sim; the plate re-tunes and the haiku cycle on timers (not on wheel); the exploded product spins on a scroll trigger, tilts with the pointer and responds to part hover; the configurator uses OrbitControls drag-to-rotate with a custom ring cursor, ripple-wipes matcaps per swatch and switches products.",
+  "performance_tactics": "Two webgl2 contexts plus nine 2D canvases (probe contexts); the home canvas is 1440x900. 1.6M particles cost one full-screen sim pass per frame (no CPU physics), drawn as 1px points; pointer updates throttled to 16ms; text targets pre-sampled once on the CPU; whole 3D payload ~1MB (single GLB + EXR); colourways as matcap images rather than extra PBR maps; haiku as small JPGs.",
+  "fallback_mobile": "Particles still run at 390px (mobile_00/01) with the same fixed composition; product browsing moves into a swipe row of cards.",
+  "evidence": [
+   "probe globals/contexts/assets_3d",
+   "bundle grep: chladni x92, uniform list, uniform defaults block, GLTFLoader, MeshPhysicalMaterial, matcap URLs",
+   "frames/iyo/0/",
+   "frames/iyo/2/",
+   "frames/iyo/1/",
+   "audit 2 bundle greps: QJ {TEXTURE_SIZE:1280, POINT_SIZE:1, STRAY_RATE:0, POINTER_UPDATE_THROTTLE:16}, V3 sampler (G[E]<120), sim shader pickTexture/friction/mouse block, Q8 material presets, matcap onBeforeCompile uniforms"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Floating glass capsule, 375x62px, centred 32px from the top: wordmark, round 9-dot grid button (menu), vertical double-bar divider, round cart bubble with a count badge. On product pages a white 'Pre-order' pill appears inside the capsule (element 2/3).",
+  "menu": "The 9-dot button opens the product grid and the same capsule morphs into the cart (Awwwards element 'Multi-State Adaptive Menu & Cart', not in frames). CSS mechanics verified: .centered-nav is 23.5rem wide at top 2rem; [data-navigation-status=active] eases the radius 3em -> 2em and opens .centered-nav__content with grid-template-rows 0fr -> 1fr (0.6s cubic-bezier(.625,.05,0,1), 0.125s delay); hovering a menu card dims the rest to 0.2 and scales its image 1.04; Escape and outside clicks close it.",
+  "buttons_links": "Pill buttons: dark filled 'Pre Order Now' with a separate round arrow button (element 3 f03), black full-width 'Reserve · US$99.00' in the configurator, outline LEARN MORE + filled light SHOP NOW pills on mobile cards.",
+  "unusual_interactions": [
+   "The plate re-tunes itself: Chladni modes, frequency, jitter and noise change on random timers while the visitor just watches",
+   "Pointer tears hollow rings through particle lettering, but only while moving (force scaled by pointer speed)",
+   "Scroll-triggered 180-degree spin + explode of the product, then hover-to-annotate parts",
+   "SHOP NOW tile fans into a product stack",
+   "Configurator colour change as a ripple spreading across the product face",
+   "Custom 404 with kinetic radial SVG lines (Awwwards element, not probed visually; the bundle rotates six line groups .iyo-line-1..6 at speeds 0.49, 0.392, 0.294, 0.196, 0.147, 0.098 with alternating direction)"
+  ],
+  "sound": "Tagged Sound-Audio by Awwwards, but the bundle has no AudioContext, getUserMedia, Howler or audio file; HomeScene carries an audioAnalyzer field that stays null and micStarted false, and the u_audioVolume / u_audioFrequency uniforms stay 0. Treat the site as silent (verified by grep, audit 2).",
+  "footer": "Dark #101010 footer (element 3): large iyO wordmark top-left with address and social icons, three link columns (Products / Developers / Legal) at 11px caps headers, a centred stack of YouTube video cards, a procedural cymatic dot pattern behind them (Awwwards tags it 'fragment shader'; bluish-lavender dots in element 3 f06), and a tonal two-tone mission sentence bottom-left."
+ },
+ "content_voice": {
+  "headline_style": "One short plain-language promise on the home screen; haiku (5-7-5, lower case) as brand manifesto in the canvas.",
+  "copy_tone": "Calm, human, anti-surveillance; product copy is concrete spec (triple-driver acoustics, custom-fit tips).",
+  "examples": [
+   "We make agentic computers you can talk to",
+   "haiku line observed in desktop_01-04: 'the future is free'"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Webflow (w-mod-js, webflow chunks, jQuery 3.5.1) + Shopify cart via Shopyflow; a custom three.js app loaded from iyo2.vercel.app (app.js + app.css + out.css) by an inline loader that switches to https://localhost:6545 only on *.webflow.io staging hosts; Taxi.js keeps navigation in-page",
+  "libraries": [
+   "three.js r178",
+   "GSAP 3 + ScrollTrigger + SplitText + CustomEase",
+   "Lenis 1.3.17",
+   "Taxi.js (PJAX page transitions)",
+   "virtual-scroll + Smooothy (snap/infinite sliders)",
+   "OrbitControls",
+   "jQuery 3.5.1 (Webflow)",
+   "Shopyflow",
+   "Cloudflare Turnstile (challenges.cloudflare.com)"
+  ],
+  "evidence": "probe globals {Webflow, Shopify, three_revision 178}, libs_from_requests [lenis, shopify, webflow], live HTML script loader and data-taxi attributes, app.js grep (Taxi class, Smooothy, virtual-scroll options, OrbitControls handlers)"
+ },
+ "performance_accessibility": {
+  "requests": 91,
+  "weight_notes": "Light for a 3D site: ~5.8MB declared total; 3D 1.03MB, JS ~1.03MB, images ~2.7MB.",
+  "reduced_motion": "probe reduced_motion_rules 0 in CSS; the JS reads matchMedia('(prefers-reduced-motion: reduce)') once, sets blur-in text to its final state and skips two SVG line animations; the particle field, the plate timers and the exploded spin have no reduced path.",
+  "contrast_issues": "Brand manifesto lives only in canvas particles (haiku are JPG-sampled positions), blurred and partly unreadable (desktop_01, mobile_01) and invisible to assistive tech; the headline tail is #DDDEE3 at opacity .5 on #101010 and the 11.2px labels on #101010 are low contrast; SplitText runs with aria:'none', so split headings get no aria-label and may be read character by character. Accessibility dev score 6.0 reflects this.",
+  "mobile_quality": "No overflow, consistent composition, dedicated product carousel; particle text weak at 390px.",
+  "dev_scores": {
+   "semantics_seo": 7.2,
+   "animations": 8.2,
+   "accessibility": 6.0,
+   "wpo": 7.2,
+   "responsive": 8.0,
+   "markup": 7.2
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "GPGPU particles that settle on Chladni nodal lines and into words",
+   "why_it_works": "Physics of sound made visible is the product story; the pattern is generative, so every visit and every cursor pass looks different.",
+   "how_to_build": "Two ping-pong float RGBA render targets (here 1280x1280 = 1.64M particles; start at 512x512 on weaker GPUs) storing xy position + xy velocity. Text targets: draw each word JPG (dark text on light) to a 400*dpr canvas, collect pixels with red < 120, give every particle a random one as a vec2 target in a float DataTexture (u_original). Sim fragment: pick = hash21(uv) < u_texturePercent ? 1. : 0.; pattern target = the particle's grid position pulled onto nodal lines (Chladni f = sin(m*PI*x/2.)*sin(n*PI*y/2.) on plate coords 0..2, numeric gradient eps 0.01, one Newton step pos += normalize(g)*(-f/length(g))*0.3*distortion, attraction 0.45, line push 0.12, tangential shimmer 0.05 along the line); target = mix(patternTarget, textTarget, pick); vel *= pow(0.985, dt*60); vel += dir(target)*0.0005*(pick>0.5 ? 5. : 1.)*dt60 (pattern particles stop within 0.01 of the line); vel += randomDir*0.00035*(pick>0.5 ? 0.1 : 0.3)*dt60; vel += radial push from the pointer * (1-smoothstep(0,1,dist/0.16)) * 0.0225 * smoothedPointerSpeed * dt60; pos += vel*dt60. Render THREE.Points at 1px, white at low alpha on #101010. Drive it with timers, not input: m,n from [3,5,7] every 6-12s, frequency 20-45 every 5-10s, noise and distortion tweened on 2-5s / 1.2-3s power2.inOut loops, and per frame add +/-0.5 random jitter to m,n before the shader rounds them. Haiku loop: texturePercent -> 0 over 0.4N (N = 3-6s), swap u_original, -> 0.4-0.8 over 0.6N, hold 2-4s, repeat. Seed the initial positions on the first text so the first frame is already a word-shaped cloud."
+  },
+  {
+   "technique": "A self-retuning instrument instead of a scroll story",
+   "why_it_works": "The page never moves, so the corner-anchored headline, nav and shop tile stay composed, while the canvas keeps changing on its own like a plate being played; the visitor's only role is to disturb it with the pointer. (The first-pass 'wheel as a state machine' reading was wrong: the bundle has no wheel handler on the home canvas.)",
+   "how_to_build": "Keep document height = 100vh and give the canvas several independent gsap.delayedCall loops with randomised periods (6-12s modes, 5-10s frequency, 4-8s jitter) plus tweened loops for continuous values (noise 2-5s, distortion 1.2-3s, power2.inOut), so the state rarely repeats and the changes overlap instead of stepping in sync. Set discrete values instantly (the particle physics smooths them) and tween continuous ones. Keep text in a separate, slower loop (7-13s per haiku) so words and pattern drift in and out of phase. Kill every loop on page leave."
+  },
+  {
+   "technique": "Exploded product with hover-annotated parts",
+   "why_it_works": "Spec sheet becomes exploration; the clear shell with visible internals makes 'computer inside an earbud' believable.",
+   "how_to_build": "GLB with parts as separate meshes; offset each along the device axis: z = [0.6, 0.15, -0.6][i] * explodeProgress. ScrollTrigger({trigger: section, start:'top 50%', end:'bottom 50%', toggleActions:'play reverse play reverse'}) on a timeline: set {ry: PI/2, z: 0.3, explodeProgress: 0}; to {ry: -PI/2, z: 0} 1s expo.inOut ('spin'); to {explodeProgress: 1} 1.8s CustomEase('M0,0 C0,1.175 0.3,1.021 1,1') at 'spin+=0.5'. Each frame: group.rotation.x = pointerY*0.2 + ctrl.rx, rotation.y = pointerX*0.2 + ctrl.ry, plus an idle loop tweening y/rx/rz by +/-0.05-0.09 over 3-5s sine.inOut. Raycast on pointermove only when explodeProgress >= 0.4: hovered part scale 1.085-1.3 and rotate to a per-part showcase angle, others scale 0.8, 2.5s expo.out. DOM card with its top-left at the pointer: dark glass (rgba(33,33,33,.69) + blur), thumbnail, ~14px title, ~11px 3-4 line grey description (card crossfade timing inferred). Clear core: MeshPhysicalMaterial {transmission:1, roughness:0.05, thickness:0.018, ior:1.6}; silicone tip {transmission:0.62, thickness:0.2, attenuationDistance:0.1, roughness:0.53, ior:1.42, color:#C7C7C7}; EXR environment."
+  },
+  {
+   "technique": "View-dependent matcap colourways with a ripple wipe",
+   "why_it_works": "A matcap computed from the view vector gives the face an iridescent shift as it turns (periwinkle face-on, yellow-pink-lilac tilted) for the price of one small image per finish, and switching finishes as a ripple spreading across the face ties the configurator back to the site's sound/cymatics idea.",
+   "how_to_build": "Patch the product's PBR material with onBeforeCompile. Vertex: vView = normalize(-(modelViewMatrix*vec4(position,1.)).xyz); vN = normalize((modelViewMatrix*vec4(normal,0.)).xyz). Fragment (after dithering_fragment): vec3 x = normalize(vec3(vView.z, 0., -vView.x)); vec3 y = cross(vView, x); vec2 muv = vec2(dot(x, vN), dot(y, vN))*0.495 + 0.5 (view-corrected matcap, the bundle's exact lines; the ripple below runs on the mesh's own vUv, not on the matcap UV); colour = mix(pbrColor, matcap, 0.82). Keep three matcaps (dusk/night/dawn webp) and a target index. Swatch click: tween uTransitionProgress 0 -> 1 over 1.2s power2.out; in the shader d = length(vUv - 0.5); eased = 1 - pow(1 - p, 2.5); radius = eased*0.707*1.2; wobble d with three sines of d*8 - p*8 (amps 0.15, 0.08, 0.04, x0.3) plus small uv noise; mask = 1 - smoothstep(radius - w, radius + w, d) with w = 0.15 + 0.1p; blend current -> target matcap by mask; on complete set current = target. Swap metal colours per finish on the same click. Dock options in a fixed glass panel (26rem, radius 2rem, blur 20px, #38383899 + a 141deg #a9c2f214 -> #62718c24 tint) with accordion rows opened by grid-template-rows 0fr -> 1fr."
+  },
+  {
+   "technique": "Blur-in and scrub-fill text with a reduced-motion exit",
+   "why_it_works": "Copy arrives like focus pulling, echoing the grain on the canvas, and still degrades to static text.",
+   "how_to_build": "GSAP SplitText {type:'words,chars'} (use the default aria mode, not aria:'none' as the site does). Blur-in: set chars {autoAlpha:0, filter:'blur(2px)'} from JS (so no-JS shows text), then on IntersectionObserver entry gsap.to(chars,{autoAlpha:1, filter:'blur(0px)', duration:1.1, ease:'linear', stagger:{each:0.02, from:0}}); on exit kill and reset so it replays. Scrub fill: SplitText {type:'words, chars', autoSplit:true, onSplit} -> timeline with scrollTrigger {trigger, start:'top 90%', end:'center 40%', scrub:true} .fromTo(chars,{autoAlpha:0.2},{autoAlpha:1, stagger:0.1, ease:'linear'}). If matchMedia('(prefers-reduced-motion: reduce)') set final values and skip."
+  },
+  {
+   "technique": "Capsule nav that grows into the menu",
+   "why_it_works": "One glass object carries the wordmark, menu and cart, and opening it reads as the same object changing shape rather than a new panel arriving.",
+   "how_to_build": "Fixed capsule 23.5rem wide, top 2rem, centred, border-radius 3em, glass = backdrop-filter blur(20px) + background #38383899 + linear-gradient(141deg, #a9c2f214, #62718c24). Inside, a content row with display:grid; grid-template-rows:0fr and an inner wrapper with overflow:hidden. Open state (data-navigation-status=active): grid-template-rows:1fr over 0.6s cubic-bezier(.625,.05,0,1) with a 0.125s delay, border-radius 2em immediately; closed state delays the radius change 0.45s so the corners round only after the panel has folded. Menu cards: on hover set siblings to opacity 0.2 (0.15s) and scale the hovered image 1.04 over 0.4s cubic-bezier(.25,.46,.45,.94). Close on Escape and outside click."
+  }
+ ],
+ "slop_risks": [
+  "Botched glass: the capsule nav and panels are blur(20px) over #38383899 with a 141deg cool-tint gradient, but on home they sit on a near-black particle field with little to refract, so the blur reads as a flat grey capsule; on the pale configurator it works better. A copy over a plain dark fill is the botched-glass tell.",
+  "One label treatment everywhere: SHOP NOW, DETAILS, YOUR CONFIGURATION, CONNECTIVITY, PICK UP A COLOR and OTHER PRODUCTS all wear the same 11.2px tracked uppercase mono. The eyebrow face (NB Architekt) looks near-monospaced in captures, so this also edges toward mono as the house voice for every label.",
+  "Grain over text: the haiku is grain by design and often unreadable (desktop_01, mobile_01); fine as one deliberate display element, slop if copied as a noise sheet over body copy.",
+  "Radial glow halo, partly a false accusation: the bright central ellipse in desktop_00/07 is not a glow blob but particles gathered on the haiku's letter positions (desktop_00 = the seeded start, desktop_07 = the next haiku condensing). The risk is real only for a copy: without legible words forming out of it, a soft centred particle cloud behind nothing reads as the halo tell.",
+  "Fixed background that trails the scroll: a full-screen fixed particle canvas copied without the state changes and cursor physics is exactly this tell.",
+  "Purple/blue gradient: the Dusk finish is a lilac-blue to pink gradient disc; it is the real product colour here, but lifting it as a UI gradient is the blue-purple tell.",
+  "Filled-button-next-to-outlined-button pair: the mobile product cards pair an outlined LEARN MORE pill with a filled light SHOP NOW pill (mobile_00/01), the stock fill-versus-outline couplet; pick one action per card or differentiate them another way.",
+  "Default CTA pair: 'Pre Order Now' dark pill plus a detached round arrow button (element 3) sits close to the pill-plus-arrow preset.",
+  "Content that exists only in the canvas: the manifesto haiku are JPG textures, invisible to screen readers and search."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots and both mobiles (home only; the document is a single 900px viewport, so all 8 steps show state changes rather than new sections); all 8 frames of element 0 (Chladni haiku) and element 2 (exploded view); f00/f03/f06 of element 1 (configurator) and element 3 (footer shader). Code: 3 fetches (Webflow HTML, iyo2.vercel.app/app.js, app.css) with tight greps; the particle uniforms, their defaults and the Chladni GLSL are quoted from the bundle. INFERRED: particle count, the exact wheel-to-scene quantisation, which Lenis options belong to Lenis rather than other lerps, foundry of Magnetik, the configurator background hex, sound behaviour (uniforms exist, no audio code found). Menu/cart and 404 elements were not in the frame set. audit 2 (2026-09-25, adversarial pass; re-viewed desktop_00-07, mobile_00/01, element 0 f00-f07, element 2 f00/f02/f04/f06/f07, element 1 f00-f03/f06, element 3 f00/f03/f06 one at a time; re-fetched the live HTML, iyo2.vercel.app/app.js, app.css and the Webflow shared CSS): FIXED (1) the signature and steal #2 claimed wheel ticks change the Chladni mode; the bundle drives modes, frequency, jitter, noise, distortion and the haiku cycle with randomized gsap timers, the probe's wheel steps only passed time (same haiku in desktop_01-04), and steal #2 was replaced; (2) infinite:true is the product slider's virtual-scroll config, Lenis is {lerp .125, infinite false}; (3) particle count 1280x1280 = 1.64M (not the guessed 512x512), text targets are CPU-sampled dark pixels (red < 120) of the JPGs, not a white-on-black mask read in the sim; (4) the mouse is a radial push scaled by pointer speed, not a swirl; home strength/radius 0.0225/0.16; text particles pull 5x harder; (5) the exploded view is a scroll-triggered 180-degree spin + 1.8s overshoot explode with a small pointer tilt, not pointer-following; hover scales parts 1.085-1.3 / others 0.8 over 2.5s; material values in the steal were invented (thickness 0.5, clearcoat 1) and are replaced by the bundle's presets; (6) configurator recolour is a 1.2s ripple wipe between view-dependent matcaps, not instant; panel is 26rem not 250px; bg is #DDDEE3; (7) page transitions are Taxi.js PJAX fades (0.15s out / 0.2s in) with a body-colour swap, not separate page loads; (8) headline tail is opacity .5, not a separate grey; webgl2 contexts are 2, not 1; GSAP ease counts recounted; the 'radial glow halo' accusation was mostly false. ADDED: configurator ring + trailing ball cursor with drag chevrons, grid-rows capsule-to-menu morph (new steal), mobile card auto-advance (5s), 404 line speeds, silent-site verification (no audio code), filled+outlined button pair slop risk, SplitText aria:'none'. STILL INFERRED: Magnetik foundry, whether NB Architekt is monospaced, the spec-card crossfade timing, the footer card collapse trigger, the finish-to-metal-colour index mapping."
+}

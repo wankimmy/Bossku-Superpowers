@@ -46,7 +46,7 @@ Simplest thing that works: YAGNI → stdlib → native → installed dep → min
 
 ## Anti-slop (always on)
 
-Use `antislop` as the final delivery gate when output quality is a material concern. Add only the relevant specialist: `antislop-ui` for generic visual patterns, `antislop-layoutmobile` for small-screen reflow, `antislop-copywriting` for prose, `antislop-human` for contrast, keyboard, focus, and states, or `antislop-code` for code comments. Use `bosskuai-taste` or a design-direction skill before UI generation; Anti-Slop audits the result. For motion, use `emil-design-eng` or `animate` (`animate-expo` in React Native).
+Use `antislop` as the final delivery gate when output quality is a material concern. Add only the relevant specialist: `antislop-ui` for generic visual patterns, `antislop-layoutmobile` for small-screen reflow, `antislop-copywriting` for prose, `antislop-human` for contrast, keyboard, focus, and states, or `antislop-code` for code comments. Design default is Awwwards style: load `bosskuai-taste` (the house rule) before UI generation; Anti-Slop audits the result. For motion, use `emil-design-eng` or `animate` (`animate-expo` in React Native).
 
 ## Superpowers process
 
@@ -102,12 +102,12 @@ Vendored packs are reviewed on a 180-day window — run `bossku skills stocktake
 
 | Task | Primary skill(s) |
 |---|---|
-| Landing / marketing UI that must not look AI-generated | one of `bosskuai-taste` (lean), `taste-skill` (full), or `hallmark`, never several; gate with `antislop` + `antislop-ui` |
+| Any website, landing page, portfolio or marketing UI (default: Awwwards style) | `bosskuai-taste` house rule (depth: `awwwards-web-design` or `awwwards`; `taste-skill`/`hallmark` only by name); score with `jury`; gate `antislop` + `antislop-ui` |
 | Final anti-AI-slop audit for UI, mobile, copy, comments, or code | antislop — `antislop` plus only the relevant specialist skill(s) |
 | Large logs, files, searches, or tool output exhausting context | `bosskuai-headroom` (runtime installed/configured separately) |
 | Soft / minimal / brutalist UI direction | taste-skill — `soft-skill`, `minimalist-skill`, or `brutalist-skill` |
-| Redesign existing UI | `taste-skill` (marketing sites) or `redesign-skill` (app UI) |
-| Screenshot / mockup / Figma → code; dashboards and app screens | `bosskuai-ui-ux-design-to-code` (`image-to-code-skill` and `imagegen-*` only when an image-generation tool is available) |
+| Redesign existing UI | `bosskuai-taste` (marketing sites) or `redesign-skill` (app UI) |
+| Screenshot / mockup / Figma → code; dashboards and app screens | `bosskuai-ui-ux-design-to-code` with the Awwwards craft bar (`image-to-code-skill` and `imagegen-*` only when an image-generation tool is available) |
 | Marketing, CRO, SEO, copy, GTM | marketingskills: start with `product-marketing`; primary by request: `seo-audit` (fix SEO), `ai-seo` (AI citations), `ads` / `ad-creative` (paid), `analytics` (tracking), `ab-testing`, `launch`, `competitor-profiling`, `antislop-copywriting` (de-AI copy); `bosskuai-*` marketing skills are one-pass strategy and readiness gates |
 | Brainstorm → plan → execute → verify process | superpowers — `brainstorming`, `writing-plans`, `subagent-driven-development` / `executing-plans`, `verification-before-completion` (TDD: `bosskuai-tdd-loop`; debugging: `bosskuai-diagnose-loop`) |
 | Codebase map, call tracing, where-does-X-live (source code) | `graft` (requires `@nanonets/graft` CLI + `graft build`) |
@@ -120,6 +120,7 @@ Vendored packs are reviewed on a 180-day window — run `bossku skills stocktake
 | Agent loops: CI/PR/issue sweeps, budgeted triage | loop-engineering — `loop-triage`, `loop-verifier`, `minimal-fix` (+ pattern skills: `ci-triage`, `pr-review-triage`, etc.); release notes: `draft-release-notes` has no local contract, so follow `bosskuai-github-workflow` (Releases and dependencies) |
 | Interactive isometric SVG explainer figure (a concept drawn as a physical machine, optional WebGL/3D) | `anatomy` (library-only; needs Node 20.10+ and Chrome for its checks) |
 | Logo, wordmark, monogram, app icon or favicon design, critique or redesign (SVG, brief to kit) | `logo-design` (library-only; Python 3 scripts; image-generated brand boards: `brandkit`) |
+| One web technique (reveal, scroll scene, shader, mood system) | `mengto` library skills via `bossku skills find` |
 | Scroll-scrub fly-through / diorama cinematic landing | `scroll-world` (Higgsfield + portable scrub engine; not generic GSAP-only heroes) |
 | Agent shell/git safety / destructive command hooks | `dcg` (Destructive Command Guard; install upstream binary separately) |
 | Motion craft / easing / gesture / UI polish | emil-skills — `animate` to build (`animate-expo` in Expo), `apple-design` for drag/sheet/momentum physics, `/review-animations` to critique (user-invoked; a model-run critique uses `emil-design-eng`'s Before/After/Why table), `improve-animations` to audit a codebase; never load `animate` and `emil-design-eng` together |

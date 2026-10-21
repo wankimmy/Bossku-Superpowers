@@ -1,0 +1,301 @@
+{
+ "slug": "floema",
+ "title": "Floema",
+ "live_url": "https://www.floema.com/en",
+ "award": "Site of the Day May 13 2026 (Honors, SOTD), also listed in Sites of the Month; credits Bürocratik (footer: 'Made by Büro')",
+ "scores": {
+  "overall": 7.65,
+  "design": 7.77,
+  "usability": 7.38,
+  "creativity": 7.82,
+  "content": 7.64,
+  "dev": {
+   "overall": 7.67,
+   "semantics_seo": 7.8,
+   "animations": 8.2,
+   "accessibility": 7.0,
+   "wpo": 7.6,
+   "responsive": 7.6,
+   "markup": 7.6
+  }
+ },
+ "industry": "Portuguese manufacturer of sustainable urban furniture, signage and equipment (recycled plastic, HPL, steel); B2B catalogue e-commerce",
+ "signature": "A B2B furniture catalogue treated as a calm physical place: product cut-outs stream out of an ivory fog tunnel in the hero, baked foliage shadows sway across the sections and follow the cursor, and every product can be spun as a real-time PBR model, with all three scenes rendered in Web Workers so the page stays light.",
+ "first_screen": {
+  "composition": "OBSERVED (nobanner/intro_a at 1.2s, intro_b at 3.2s, desktop_00 at 8s): flat #f2efea ivory field. Two-line centred headline 'Spaces for people, made for / life.' (Zimula at wght 500 via font-variation-settings, 57.2px, lines at about y 375-490). At 1440 the second line is the single word 'life.'. Header row: Floema wordmark + (R) top-left at x 32, a thin vertical divider and a search glyph; top-right four white rounded-rect tabs (PRODUCTS / ABOUT / SUSTAINABILITY / JOURNAL, uppercase ~12px, 36px tall, radius ~12px, 6px gap) that are drawn as one SVG shape with metaball necks between neighbours, so at rest they read as a fused strip (zoom of desktop_00); 'EN' + chevron at the far right. At 1.2s only the headline shows. By 3.2s about 46 image planes (the plane count the worker computes; the image set repeats) sit on a ring around the vanishing point: product cut-outs and small photos on flat collection colours (coral, celadon, white), tiny and fog-faded near the centre, larger and full-opacity toward the edges. The h1 stays on top of the canvas: planes pass BEHIND the letters (zoom of intro_b, the bin behind 'for'). They keep drifting toward the camera.",
+  "what_owns_it": "mixed",
+  "display_type_px": 57.2,
+  "evidence": [
+   "probes/floema/nobanner/intro_a.jpg",
+   "probes/floema/nobanner/intro_b.jpg",
+   "probes/floema/nobanner/desktop_00.jpg",
+   "probes/floema/desktop_00.jpg (Cookiebot modal covers the centre)",
+   "bundle: Images.worker-DJGdEiMP.js config FE={...}",
+   "zoom of nobanner/intro_b headline (text drawn over the bin plane)"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Zimula",
+    "role": "display",
+    "classification": "geometric grotesque with a double-storey 'a' (zoom of intro_a 'Spaces'), round i-dots, tight apertures. Variable font (Zimula-Variable.ttf) with a wght axis and a custom 'cnct' axis pinned at 1000 (purpose not verified)",
+    "foundry": "unknown (not verified)",
+    "source": "probe fonts_loaded ['Zimula normal normal'], font_families_rendered Zimula x171; CSS @font-face Zimula-Variable.ttf; font-variation-settings \"cnct\" 1000, \"wght\" 400/500/600/700 in the type classes"
+   },
+   {
+    "name": "Zimula",
+    "role": "body",
+    "classification": "same variable family at 14-18px; body classes use wght 500-600 through font-variation-settings",
+    "foundry": "unknown",
+    "source": "CSS .-body-* classes (14px / clamp 14-16px / clamp 16-18px); probe p 'Made to Last' 14px"
+   },
+   {
+    "name": "Zimula uppercase",
+    "role": "ui",
+    "classification": "nav, CTA pill labels, 'CHARACTERISTICS' labels",
+    "foundry": "unknown",
+    "source": "screenshots + probe p 'EN' 12px uppercase"
+   }
+  ],
+  "display_size_px": 57.2,
+  "body_size_px": 16,
+  "scale_notes": "One variable family. Weight is set with font-variation-settings (\"wght\" 500 for the '-medium' display classes, 600 semibold, 700 bold), so the probe's computed font-weight of 400 is misleading: display type is a medium, not a regular. Fluid sizes from clamp(): title-2 clamp(32px, 22.64px + 2.4vw, 64px) = 57.2px at 1440 (h1, collection rows, quote); title-3 = 51px (statement paragraph); title-4 = 44px (slider headlines); title-8 = 19px (journal titles, footer headings); body 16px, body-small 14px, smaller 12px, caption 11px. The probe's 15px mode (x93) is mostly Cookiebot's sans-serif text, not the site's body. The top of the scale is a flat 57/51/44, so display type stays about 3.5x body. It never shouts.",
+  "tracking_leading": "Tracking tightens with size at a fixed -0.04em on display (-2.288px at 57.2px, -2.04px at 51px) and -0.02em on small text (-0.28px at 14px, -0.24px at 12px). Line-height is 1.05 on h1 (60.06/57.2), 1.1 on h2 (56.1/51) and 1.4 on small text (19.6/14).",
+  "case_and_style": "Sentence case for all display copy, with a full stop on the h1. Uppercase is kept for nav pills, CTA labels and 'CHARACTERISTICS'-type labels. Counts are set in parentheses at display size: 'Urban (51)', 'Nature (41)', 'RePlastic (73)'. The (R) mark is set as a superscript in 'Floema(R) Est. 2007'.",
+  "signature_moves": [
+   "Images set inline inside display type: the 51px statement paragraph starts with a 149x206px photo block, so the first line indents around it (desktop_05, nobanner/desktop_09). Collection rows put a pictogram, the word, a product thumbnail and the count on one 57px baseline, and the thumbnail changes side from row to row (nobanner/desktop_10).",
+   "A label set inside the first-line indent: on product pages the tiny 'What is it' label sits at the start of the paragraph's first line and the 20px description begins after a wide indent (frames/floema/0 f00), the text-only sibling of the inline-image move.",
+   "Quote lines on #042d2b arrive one line at a time: SplitText lines go from yPercent 50 / opacity 0 to 0 / 1 (0.8s circ.out, stagger .06) once the block hits 'top 70%', while the green floor itself unrolls with scaleY 0 to 1 (0.7s power1.out). nobanner/desktop_11 caught the stagger mid-way (line 1 about 50% yellow, line 3 about 15%). It is time-based, not scroll-scrubbed.",
+   "The material list uses a typographic active state: the active row gets a '->' arrow and full ink, the others drop to about 40% ink (frames/floema/2)."
+  ],
+  "mobile": "OBSERVED nobanner/mobile_00, mobile_01 (390px): h1 is 32px (probe mobile_measure) and wraps to 'Spaces for people, / made for life.' in the same fog-tunnel field. Nav collapses to one white rounded-rect button with a hamburger and search glyph (~118x76 at 2x). Category slider headline ~31px, with the chip on the counter row and the CTA pair below. The catalogue card moves inline. No horizontal overflow (probe)."
+ },
+ "color": {
+  "mode": "section-shifting (light ivory base, then forest-green and flour-yellow floors)",
+  "base": "#f2efea brightIvory50 (body bg rgb(242,239,234)); hero fog colour 15986666 = #f3efea, matched to the page so planes emerge from the background",
+  "ink": "#241f21 stoneBrown800 (text rgb(36,31,33) x203)",
+  "accents": [
+   "#e9e778 flourYellow: footer floor, sustainability page type and nav fill (.fluor variant fills the nav SVG paths #e9e778), cookie CTA, loader/curtain bars (text x19, bg x9)",
+   "#042d2b forestGreen600: dark sustainability/testimonial floor",
+   "#f76c46 urbanCoral, #c6af88 natureKraft, #85a1c5 replasticVistaBlue, #bacfa3 golfCeladon: one colour per product collection, used on chips and product backdrops",
+   "#988f8b stoneBrown500: muted meta text (dates, secondary copy)"
+  ],
+  "ratio": "~70% ivory/greige neutrals (#f2efea, #ebe7df panels) / ~15% photography / ~8% ink / ~7% yellow+green floors, plus small collection-colour chips",
+  "section_shifts": "Hard, intentional floor changes: ivory hero, then a full-bleed photo slider (sticky, 900vh track), ivory statement/journal, #ebe7df product panels, ivory collections, a #042d2b leadership/quote block whose floor unrolls with scaleY, ivory newsletter, and a #e9e778 footer. The sustainability page runs entirely on #042d2b with #e9e778 line art. inferred: the material-configurator section is flourYellow #e9e778; it samples as #dde764 in frames/floema/2, but the same clips shift #042d2b to #062621, so the video grade, not a new token, likely explains the greener cast (no such token exists in the CSS).",
+  "texture": "No grain. The only texture is the WebGL foliage-shadow layer: soft, noise-broken leaf silhouettes drawn in black at 0.85 alpha x noise, sitting behind the content on the collections and newsletter sections (nobanner/desktop_10, desktop_12).",
+  "notes": "Tokens verified in the CSS: --color-flourYellow #e9e778, --color-forestGreen600 #042d2b, --color-brightIvory25/50/100/200/300/400 (#f9f8f6, #f2efea, #ebe7df, #e4ded3, #d2cdc4, #beb9b0), --color-stoneBrown100/300/500/600/700/800 (#e2dede to #241f21), --color-creme #f4efd7, --color-red #ff004d, plus the four collection colours. Contrast: ink on ivory 14.16:1, yellow on forest 11.42:1, ink on the #f76c46 Urban chip 5.56:1 (the chip labels are ink, not white), but #988f8b meta on ivory is only 2.76:1."
+ },
+ "layout": {
+  "grid": "24-column grid (--grid-columns 24), gap 1.4vw (20px at 1440), outer margin 1.8vw (26px; logo and text sit at x 32), --grid-padding = margin - gap/2. Modal widths are derived from the grid (--modal-row-width).",
+  "density": "airy",
+  "alignment": "Mixed. The hero and collections are centred. The statement, journal and footer are left-aligned on the 24-col grid. Journal cards sit in the right third.",
+  "composition_moves": [
+   "Centred two-line h1 floating in a depth field of product planes",
+   "Category slider: a 900vh section with two sticky layers. The rail layer holds a 1px track (#fff at 20%) whose white .progress child grows in width with scroll, the '01' index and a 'Made to Last' label. The panel layer stacks five full-bleed photos. The chip, headline and CTA pair sit at x 369 (a quarter of the grid) and a white catalogue card is docked bottom-right (radius ~15px)",
+   "Inline image blocks inside 51-57px type",
+   "Product cut-outs on #ebe7df panels, two to a row, with a category chip and a name top-left ('Byside bench Plaza', 'Palmer tee sign')",
+   "The footer puts the whole brand glyph (the arrow-F mark with its (R) roundel, ~488px wide, flush to the 32px margin and ~90px below the footer's top edge in nobanner/desktop_12) against SVG line drawings of products standing on the 1px rules that also divide the footer rows"
+  ],
+  "section_rhythm": "Very long page (doc_height 14312px, 7 sections). The quiet ivory hero runs into a loud full-bleed photo run (5 sticky clip-wipe slides over a 900vh track), then quiet type-led ivory, product grid, centred collections, then a dark green block and the yellow footer, so loud and quiet sections alternate every 1-2 screens.",
+  "mobile_adaptation": "Single column. The slider keeps full-bleed photos, with the chip moved next to the counter and the CTA pair stacked under the headline. The catalogue card goes inline. The tunnel hero is kept."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis 1.3.8, bundled (html class 'lenis'). The bundle only shows Lenis's constructor defaults (lerp .1, smoothWheel true); the site's own options were not isolated. GSAP 3.13.0 ScrollTrigger drives the scenes (Images.vue creates a trigger from 'top top' to 'bottom top' and posts progress to the worker).",
+  "preloader": "No visible preloader in the captures (the h1 paints on ivory by 1.2s, nobanner/intro_a), but the markup ships one: a fixed #f2efea [data-component=loading] cover (200svh tall, z 10000) that is hidden once loaded, and a second loading layer with a #e9e778 top progress bar (0.4vw tall) over a 90%-alpha yellow panel that scales from the top (transform-origin top). In these runs it was gone before the first capture.",
+  "intro_sequence": "Warp-in, then drift. The Images worker starts the plane stream at SPEED_START 300 units/s and eases it to SPEED_IDLE 10 over SLOWDOWN_DURATION 1.1s with an exponential out-curve (1 - 2^(-6t)). Planes spawn at z = -78 (FOG_FAR), spaced 2 units apart, recycle behind the last plane once they pass the camera at z 5, and fade out of linear fog (near 0, far 78, colour #f3efea). Scrolling adds up to +40 units/s (expo-out of scroll progress), so the tunnel speeds up as you leave the hero.",
+  "scroll_techniques": [
+   "sticky",
+   "clip-path wipe",
+   "scrub",
+   "parallax",
+   "reveal",
+   "pin"
+  ],
+  "text_animation": "GSAP 3.13.0 SplitText (type 'lines, words', autoSplit true; bundle chunk CHE2-zLL.js), not a custom splitter. Section lines usually enter from yPercent -100 (dropping in from above) or +50 with opacity 0 to 1, 0.8-1s circ.out, stagger .06-.1, fired once at 'top 70%'. There is no overflow mask on the lines: it is a fade plus shift. Slider headlines split into words that rise from yPercent 20 with opacity (0.8s expo.out, stagger .02) when the active panel changes. The inline photo in the statement paragraph pops from scale 0, xPercent 60, yPercent 60 (0.6s circ.out) just before its lines. The green quote is the same once-only line stagger, not a scroll-scrubbed fill.",
+  "image_animation": "Category slider (code in BWYdwkRp.js + collections-cta CSS): each panel's .media has clip-path: inset(var(--reveal) 0 0 0). One scrubbed ScrollTrigger (top top to bottom bottom) sets --reveal from 100% to 0% across a window of 1.3 slots per panel, so the next photo is uncovered from the bottom edge upward while the photo itself stays put; the hard horizontal seam in nobanner/desktop_02 and 05 is that inset edge. Each .media-inner bleeds 10vh top and bottom and drifts y 0 to -180px with scale 1 to 1.03 across the span from the previous slot to the next, which is why the outgoing photo appears to move up more slowly. Text is not scrubbed: when round(progress / slot) changes, the old title fades out (0.25s power1.out) and the new panel's index (autoAlpha, yPercent -100 to 0, scaleY 1.5 to 1, 0.7s expo.out), words, CTA (0.4s power1.out, +0.3s) and catalogue card (0.3s) play. On the sustainability page a registered product photo slides up from below to replace the line drawing of the same object (frames/floema/1 f06-f07).",
+  "page_transitions": "inferred from CSS, not captured: a fixed [data-component=curtain] with a #e9e778 bar (0.6vw tall, scaleX) at the top of the screen plus the yellow loading panel that scales down from the top, used around Nuxt route changes.",
+  "hover_micro": [
+   "Gooey nav (MetaRow component, CegNqfpt.js): the tabs are real links in a flex row (gap 6px); behind them one SVG draws a rounded-rect path per tab (radius 0.34 x height) and a 'bridges' path of metaball necks between neighbours, recomputed from getBoundingClientRect. There is no SVG blur filter. At rest the tabs read as one fused strip. Hovering a tab pushes it apart from its neighbours, the necks stretch thin, the strip grows leftward (left edge x 470 to 437 in the 960px frames, f00 to f03) and a faint yellow tint appears inside the hovered tab. The search opens as a rounded-square 'x' tile fused to an input pill (f04), then a white results sheet (radius ~15px) with Blog rows and a product grid with collection chips (f05)",
+   "CTA pairs: a blank white rounded-square tile fused to a white label pill by the same metaball bridge ('SEE URBAN PRODUCTS'; dark variant 'REQUEST INFORMATION' with a bookmark icon in the tile, frames/floema/0). inferred: the blank tile gains its icon on hover (.special-button .icon-side in CSS); CSS overshoot eases cubic-bezier(0.12,1.2,0.16,2.35) and (0.34,1.56,0.64,1) are present",
+   "Foliage shadows follow the cursor's direction of travel (the move vector is normalised, so speed does not matter; see three_d)"
+  ],
+  "cursor": "Native cursor (probe cursor_none 0). The product viewer switches to a grab hand.",
+  "easing_curves": [
+   "cubic-bezier(0.19,1,0.22,1) expo-out: CSS x70, the house transition",
+   "cubic-bezier(0.175,0.885,0.32,1.275) back-out x9",
+   "cubic-bezier(0.34,1.56,0.64,1) x6 and cubic-bezier(0.12,1.2,0.16,2.35) x6: overshoot curves for pills and blobs",
+   "cubic-bezier(0.075,0.82,0.165,1) circ-out x6; cubic-bezier(1,0,0,1) x2",
+   "GSAP (counts over the bundle): circ.out x72, power2.out x42, expo.out x32, expo.inOut x15, power4.out x11, power1.out x9",
+   "Worker tweens: 1 - 2^(-6t) (tunnel slowdown); n*(2-n) quad-out for the product model's enter rotation"
+  ],
+  "duration_range_ms": "150-1300 for UI (CSS 0.5s x52, 1s x10, 0.3s x9; GSAP duration 1 x40, .7 x30, .8 x29, .6/.5 x19); 1100 tunnel slowdown; 60s and 3.4s CSS loops (marquee/label)",
+  "stagger_ms": "GSAP stagger .1 (x11), .05 (x10), .06 (x5), .03 (x4)",
+  "choreography_notes": "Photography and 3D do the heavy motion while type mostly stays still, so one thing moves at a time: the tunnel in the hero, the clip wipe in the slider, the cube or the drawing on the sustainability page. Motion is slow and continuous rather than punchy. Type enters once (line stagger with circ.out) and then stays. The only overshoot is in small UI (tabs, blobs).",
+  "evidence": [
+   "probes/floema/nobanner/intro_a.jpg",
+   "probes/floema/nobanner/intro_b.jpg",
+   "probes/floema/nobanner/desktop_01.jpg - desktop_08.jpg",
+   "frames/floema/1/f00-f07",
+   "frames/floema/2/f00-f07",
+   "frames/floema/3/f00, f01, f03, f05, f06",
+   "bundle grep ease/duration/stagger over 94 Nuxt chunks",
+   "Images.worker-DJGdEiMP.js",
+   "Shadows.worker-C5dCWLRm.js",
+   "saved bundle: BWYdwkRp.js (collections slider), CegNqfpt.js (MetaRow metaball bridges, Lenis 1.3.8), CHE2-zLL.js (SplitText 3.13.0)",
+   "index.html CSS: [data-component=collections-cta|curtain|loading]"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "mixed",
+  "art_direction": "Documentary installation photography in daylight: Lisbon squares, Serra da Estrela moorland signage, forest boardwalks, a golf clubhouse with a corten wall. Grading is natural and slightly warm, and the slider photos read darkened under white type (inferred: baked into the images; the slider CSS has no veil or overlay rule). Product shots are clean cut-outs or studio renders on flat collection-coloured backdrops (coral, celadon, kraft, white). Technical line drawings with dimension callouts sit next to 3D models on product pages.",
+  "treatments": [
+   "Cut-out product planes floating in fog (hero)",
+   "Flat collection-colour backdrop per product thumbnail",
+   "Monoline SVG wireframes of products (footer /imgs/wireframes/table.svg, bike-station.svg, chair.svg; sustainability page)",
+   "Wireframe-to-photo registration reveal",
+   "Hotspot dots (white dot in a translucent grey rounded square) on product photos (frames/floema/1 f06-f07)",
+   "Pre-rendered alpha videos of a kingfisher and an owl for the About header (bird-entrada/idle/idle2/saida.webm, owl-*.webm: enter, idle loop, exit)"
+  ],
+  "crops_and_ratios": "Full-bleed 16:10 photo panels; portrait ~3:4 inline blocks in type; square-ish product panels; journal cards ~4:5",
+  "formats": "probe: 63 img, 52 svg, 0 video on home; bytes png 2.5MB, avif 1.5MB, 'mpeg' 14.7MB (inferred: slider/video media); images via Vercel image optimizer (/_vercel/image?url=...) and cdn.sanity.io",
+  "evidence": [
+   "probes/floema/nobanner/desktop_01.jpg - desktop_12.jpg",
+   "frames/floema/0/f00, f03, f06",
+   "frames/floema/1/f06, f07",
+   "bundle: webm names in chunks",
+   "index.html footer <img src=/_vercel/image?url=/imgs/wireframes/*.svg>"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r181 (probe globals three_revision 181) behind an in-house R3F-like wrapper ('BüroGL': createApp, useFrame, useThree, proxy). Each scene runs in its own module Web Worker on an OffscreenCanvas (Images.worker, Shadows.worker, ModelView.worker).",
+  "role": "Three separate jobs. (1) Hero image-plane tunnel. (2) Background field of baked foliage shadows. (3) Product viewer and material cube (PBR models with OrbitControls).",
+  "assets": [
+   "/3d/shadows/packed_texture_3.png",
+   "/3d/shadows/noiseTexture.png",
+   "/3d/envmaps/HDR_Light_Studio_Free_HDRI_Design_13.exr",
+   "product .glb not captured (home page probe assets_3d empty; models load on product pages)"
+  ],
+  "materials_lighting_post": "Tunnel: MeshBasicMaterial({map, transparent, depthWrite:false}) on a shared 1x1 PlaneGeometry, textures without mipmaps. Scale is IMAGE_SIZE 1.5 + random*0.5, corrected for aspect ratio. Every plane sits on the same radius-10 ring at a golden-angle step (i * PI*(3-sqrt5)); CENTER_OFFSET_X/Y (1, 1) and SPIRAL_TWIST are declared in the config but never read. Linear fog 0-78 in #f3efea, camera fov 45 at z 5, renderer alpha, dpr min(devicePixelRatio,2), antialias false, no tone mapping. Shadows: one ShaderMaterial on a 6x3-segment plane scaled 1.2, orthographic camera. uTime advances 3x real time and the vertex shader uses time = uTime*0.8 to sway each vertex with a hash-randomised sin/cos (amplitude 0.005-0.015, plus a small y bob). The fragment shader reads R for most presets, G for 'collections', and 1-A for layers 3/4 (layer 4 composites three rotated copies), then outputs black at alpha tex*0.85*(noise(uv*0.6+offset).r+0.1)*uFade*uAlpha. The noise(uv*0.2) sample cancels out algebraically (n*uFade + (1-n)*uFade = uFade). Layers 0/1 get a soft radial mask and layers 3/4 an extra x0.6. ModelView: ACESFilmic tone mapping (toneMapping 4), HDR Light Studio EXR environment at intensity 0.4, map anisotropy 16, PCSS-style soft shadows (findBlocker in the shader chunk), shadowMap.autoUpdate false (re-rendered on change).",
+  "interaction": "Tunnel: scroll progress adds speed. Shadows: pointer movement, normalised to a direction (magnitude is ignored), drives a damped spring (impulse 0.008, damping 8, decay exp(-6t)) that nudges the shadow UVs; mousemove is only listened to while the section intersects. ModelView: drag to orbit (dampingFactor .04, polar angle 0.5 to PI/2, pan off) plus +/- zoom buttons; the enter animation starts from rotation.y PI/4. Material cube (frames/floema/2): the cube tumbles on several axes (the cursor sits on it in f01-f06, so some of that may be drag) while a scroll-driven ring stroke fills clockwise from the top swatch; when it reaches each swatch node (12, 4 and 8 o'clock) the cube swaps texture sets (recycled plastic, HPL kraft, steel), the debossed logo disc changes finish, and the active swatch gets an ink outline.",
+  "performance_tactics": "OffscreenCanvas plus a worker per scene keeps the main thread free for Lenis and GSAP. dpr is capped at 2 and antialias is off. The shadow map is only re-rendered on change. Workers are terminated 600ms after unmount. The tunnel plane count is derived from fog distance / spacing + buffer rather than fixed. Textures skip mipmaps. The cost is that each worker ships its own copy of three.js (~1.04-1.17MB per worker file).",
+  "fallback_mobile": "OBSERVED: the tunnel still runs at 390px (nobanner/mobile_00). inferred: the shadows and viewer run too (no mobile gating found in the snippets read).",
+  "evidence": [
+   "probe contexts webgl2 x3; canvas 1440x900, 1440x1049, 1440x450",
+   "bundle: BexC3U7L.js (Images.vue), BO0nspL1.js (ShadowsPortal.vue)",
+   "Images.worker-DJGdEiMP.js FE config",
+   "Shadows.worker-C5dCWLRm.js shader + spring",
+   "ModelView.worker-ChHUB9To.js",
+   "frames/floema/0/f00, f03",
+   "frames/floema/2/f00-f07",
+   "saved Images.worker / Shadows.worker / ModelView.worker source re-read in this audit"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Fixed header with no background: wordmark and search on the left; four white rounded-rect tabs (one SVG MetaRow shape with metaball necks) plus a language dropdown on the right. The wordmark inverts to white over photos (data-section-intersect; nobanner/desktop_01). On the sustainability page the tabs fill #e9e778 on green (.fluor). The current page gets a small dot under its label (frames 1-3).",
+  "menu": "Desktop has no hamburger; the pills are the menu. Mobile has one white rounded-rect button combining the hamburger and search.",
+  "buttons_links": "White label pills paired with a blank rounded-square tile, fused by a metaball bridge. Dark pairs with an icon tile (REQUEST INFORMATION + bookmark). Dark filled LEARN MORE pills. Text links with a trailing arrow ('More on sustainability ->', 'Download Now'). The newsletter input is a full-radius outline pill with a round consent checkbox.",
+  "unusual_interactions": [
+   "Scroll-driven material configurator ring with a live 3D cube",
+   "Draggable PBR product model next to orthographic line drawings with dimensions",
+   "Cursor-reactive baked foliage shadows",
+   "Wireframe-to-photo product reveal with hotspots",
+   "Per-collection catalogue download card that swaps with the slider",
+   "Metaball-bridged nav and CTA pairs drawn as live SVG paths (no filter)",
+   "Rive pictogram for the wishlist (/rive/floema-picto-wishlist.riv)"
+  ],
+  "sound": "None found.",
+  "footer": "#e9e778 floor. The whole #241f21 brand glyph (the arrow-F with the (R) roundel) sits top-left, flush to the margin with clear space above; it is not cropped by the footer edge. Headquarters/Production/Spain addresses in 19px headings with 14px body. Large sitemap links, SVG product wireframes standing on the 1px ink rules that divide the rows, round social icons, 'Made by Büro' and an EU-funding logo strip on a darker yellow band."
+ },
+ "content_voice": {
+  "headline_style": "Short, declarative sentence-case statements with a full stop, mixing purpose and durability ('made for life', 'Made to last, designed to endure.'). Category headlines are descriptive ('Signage and equipment for all facets of the great outdoors').",
+  "copy_tone": "Calm, civic and practical. It leans on sustainability, but specifically (recycled plastic, HPL, steel, maintenance, weather).",
+  "examples": [
+   "Spaces for people, made for life."
+  ]
+ },
+ "tech_stack": {
+  "framework": "Nuxt (Vue 3, probe libs nuxt; /_nuxt/ chunks) on Vercel (/_vercel/image) with a Sanity CMS (cdn.sanity.io, groq CSS chunk)",
+  "libraries": [
+   "three.js r181",
+   "GSAP 3.13.0 + ScrollTrigger + SplitText + CustomEase + Draggable (bundled)",
+   "Lenis 1.3.8 (bundled)",
+   "in-house BüroGL worker renderer (OffscreenCanvas)",
+   "in-house MetaRow SVG metaball component",
+   "OrbitControls",
+   "EXRLoader",
+   "Rive runtime (wishlist pictogram)",
+   "Cookiebot",
+   "Plausible + Umami + GTM + Meta pixel"
+  ],
+  "evidence": "probe libs_from_requests, globals three_revision 181, html.lenis; curl of index.html + 94 chunks + 3 worker files; string '🍀 BüroGL: Context already defined'; audit: GSAP version string 3.13.0 and SplitText source in CHE2-zLL.js, lenisVersion 1.3.8, registerPlugin(CustomEase|Draggable), /rive/floema-picto-wishlist.riv, connect.facebook.net in probe top_hosts"
+ },
+ "performance_accessibility": {
+  "requests": 147,
+  "weight_notes": "Declared ~19MB, dominated by 'mpeg' 14.7MB. JS ~480KB declared for main chunks, but the three worker bundles add ~3.2MB (three.js duplicated in each). Images are AVIF via the Vercel optimizer.",
+  "reduced_motion": "Probe found 5 reduced_motion_rules. index.html shows prefers-reduced-motion rules that turn off the collections-cta scroll-label animation, the collections-overview media transition and the wishlist timer. No reduced-motion gating was seen in the worker scenes (unverified).",
+  "contrast_issues": "#988f8b stoneBrown500 meta text on #f2efea is 2.76:1 (journal dates, faded 'We design/We build' copy). Hero planes pass behind the 57px h1, so dark cut-outs sit under dark letters (intro_b). White 44px slider headlines lose contrast when a bright photo is mid-wipe behind them (nobanner/desktop_05, 'crafted out of 100% recyclable plastic' over a pale path). The fixed header has no background, so scrolled 51px copy runs under the wordmark and tabs (nobanner/desktop_09, 12). The collection chips are fine: ink on #f76c46 is 5.56:1.",
+  "mobile_quality": "Good. No overflow, the h1 drops to 32px, the tunnel is kept, and the slider reflows with the chip beside the counter. The Cookiebot sheet covers the whole mobile screen until dismissed (probe mobile_00/01).",
+  "dev_scores": {
+   "overall": 7.67,
+   "semantics_seo": 7.8,
+   "animations": 8.2,
+   "accessibility": 7.0,
+   "wpo": 7.6,
+   "responsive": 7.6,
+   "markup": 7.6
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Fog-tunnel product stream hero",
+   "why_it_works": "It shows the whole catalogue in the first screen without a grid. The fog colour matches the page, so products seem to condense out of the background, and the warp-then-drift start gives the page an entrance without a preloader.",
+   "how_to_build": "three.js with one PlaneGeometry(1,1) and N MeshBasicMaterial({map, transparent:true, depthWrite:false}) meshes (textures: generateMipmaps false). N = ceil((fogFar + camZ + 2*spacing)/spacing) + 2 = 46 for fogFar 78, spacing 2, camZ 5; cycle a smaller image set with images[i % images.length]. Lane i on one fixed ring: angle = i*Math.PI*(3-Math.sqrt(5)), x = cos(angle)*10, y = sin(angle)*10. Scale 1.5 + random*0.5, corrected for texture aspect. scene.fog = new THREE.Fog(pageBg, 0, 78); PerspectiveCamera fov 45 at z 5. Spawn z = -78 - i*2. Each frame: t += dt; speed = lerp(300, 10, easeOut(min(t/1.1,1))) + easeOut(scrollProgress)*40 with easeOut = x => x === 1 ? 1 : 1 - 2**(-6*x); z += speed*dt; when z > camera.z, set z = (min z of all planes) - spacing. Feed scrollProgress from a ScrollTrigger (start 'top top', end 'bottom top'). Keep the h1 in the DOM stacked above the canvas and visible from first paint, so planes pass behind the letters."
+  },
+  {
+   "technique": "Baked foliage-shadow layer that follows the cursor",
+   "why_it_works": "It gives flat ivory sections the feel of sunlight through trees, which suits outdoor furniture, and costs one textured quad instead of real shadow maps.",
+   "how_to_build": "Pack 3-4 leaf/branch silhouettes into the channels of one PNG plus a tiling noise PNG. Draw a PlaneGeometry(1,1,6,3) scaled 1.2 with an orthographic camera and ShaderMaterial({transparent:true, depthWrite:false}). Advance uTime by dt*3 per frame. Vertex: t = uTime*0.8; rand = fract(sin(dot(pos.xy, vec2(127.1,311.7)))*43758.55); pos.x += (sin(pos.y*2.5 + t*(1.+rand*.4))*(.007+rand*.008) + .3*cos(pos.x*2. + t*(.9+rand*.6))*(.005+rand*.006))*.5; pos.y += sin(t*.6 + rand*3.14)*.005; vUv = uv - uMouse. Fragment: pick a channel per preset, apply rotation + offset to the UVs, then alpha = tex*0.85*(texture2D(noise, vUv*0.6 + vec2(cos(.25),sin(.25))*.091).r + 0.1)*uFade*uAlpha, output vec4(0.,0.,0.,alpha). Ease uFade toward 1 by 1% per frame. Mouse: dir = normalize(pointer - lastPointer) (zero if the move is under .002); vel += dir*0.008 - vel*8*dt; off += vel*dt; off *= exp(-6*dt); uMouse = off. Listen to mousemove only while the section intersects (IntersectionObserver). Keep the layer behind the text (pointer-events none)."
+  },
+  {
+   "technique": "One Web Worker per WebGL scene (OffscreenCanvas)",
+   "why_it_works": "Three live scenes run next to Lenis smooth scroll without main-thread jank, which likely helped the 8.2 animation dev score.",
+   "how_to_build": "canvas.transferControlToOffscreen(). new Worker(new URL('./scene.worker.js', import.meta.url), {type:'module'}). Post {type:'init', canvas, dpr:Math.min(devicePixelRatio,2), size} as a transferable. Forward 'resize', 'scroll' ({progress}) and 'mouseMove' ({x,y} in -1..1) messages. The worker runs its own requestAnimationFrame loop with a WebGLRenderer({canvas, alpha:true, antialias:false}). On unmount, kill the ScrollTrigger and call worker.terminate() after 600ms so fade-outs finish. Share one three build via a worker-shared chunk to avoid Floema's ~1MB duplicate per worker."
+  },
+  {
+   "technique": "Scroll-ring material configurator",
+   "why_it_works": "It explains three materials in one pinned view: the ring shows progress, the swatch nodes act as stops, and the 3D cube shows texture and weight that a photo swatch cannot.",
+   "how_to_build": "Pin or sticky the section for ~300vh. A thin SVG ring in ink at ~30% carries three rounded-square swatch buttons at 12, 4 and 8 o'clock; a second circle traces progress via strokeDashoffset scrubbed by ScrollTrigger (scrub true), starting at the top swatch and running clockwise. At each third, swap the cube's material maps (albedo, roughness, normal from baked PBR scans; MeshStandardMaterial with a debossed logo decal disc on one face) and give the active swatch an ink outline. The list item gets a '->' prefix and full ink; the others drop to ~40% opacity. The characteristics copy swaps. Let the cube tumble slowly on two axes and allow drag. inferred (not verified in code): the crossfade length (~0.6s power2.out), the copy swap (0.5s circ.out y-slide) and the ~300vh pin length."
+  },
+  {
+   "technique": "Blueprint-to-reality product reveal",
+   "why_it_works": "It ties the brand's technical drawings to the real installed object, so the sustainability story reads as engineering, not stock imagery.",
+   "how_to_build": "A pinned stage on #042d2b with a monoline drawing of the product (stroke #e9e778 at ~0.4 opacity, 1px, vector-effect non-scaling-stroke). A scrubbed timeline scales and translates the drawing so the camera walks into the sign panel, switches to the side-view drawing (frames/floema/1 f03 to f04), and alternates left/right copy blocks (icon + 24px text). The panel's frame is drawn as nested rounded rectangles, and at full zoom the panel holds a quote (f05). Then a photo whose sign panel is pixel-registered to the drawing slides up from below with a hard horizontal edge, and hotspot dots plus a product card fade in. Keep the drawing visible above the photo's edge until the photo covers it. inferred (not in the fetched chunks): the scale range (~1 to 3 over ~200vh), whether the drawing is SVG or WebGL edges, and the card ease (~0.7s circ.out)."
+  },
+  {
+   "technique": "Sticky clip-wipe category stack with a counter rail",
+   "why_it_works": "Five collections get full-bleed hero moments without a carousel UI. The photo is uncovered in place rather than moved, so the seam reads as a wipe across a still image, and the snapped text changes keep the headline readable while the picture scrubs.",
+   "how_to_build": "Section height 900vh (5 collections). Layer 1: a sticky 100vh .line-wrapper (z 100, pointer-events none) with a 1px track (rgba(255,255,255,.2), bottom 50%) whose .progress child gets width = progress*100% from a ScrollTrigger (top top, bottom bottom, scrub true), plus the index and a label. Layer 2: a sticky 101vh .collections-wrapper (margin-top -100vh, overflow hidden) with absolutely stacked .collection panels. Each .media has clip-path: inset(var(--reveal) 0 0 0). With n = 1/(count-1), panel r (r > 0) gets --reveal = 100 - 100*clamp(normalize(n*(r-1.15), n*(r+0.15), progress)), so the next photo is uncovered from the bottom edge upward. Each .media-inner bleeds 10vh top and bottom and gets scale 1 + 0.03*p and y = -180px*p, with p = normalize(n*(r-1), n*(r+1), progress), for drift. Do not scrub the text: when round(progress/n) changes, fade the old title out (0.25s power1.out) and play the new panel's timelines: index autoAlpha 0 to 1, yPercent -100 to 0, scaleY 1.5 to 1 (0.7s expo.out); SplitText words yPercent 20 to 0 with opacity (0.8s expo.out, stagger .02); CTA yPercent 35 to 0 (0.4s power1.out, +0.3s); catalogue card autoAlpha (0.3s at 0.2s). The chip uses the collection token (#f76c46 / #c6af88 / #85a1c5 / #bacfa3) with ink text."
+  },
+  {
+   "technique": "Metaball-bridged tab row drawn as SVG paths (no filter)",
+   "why_it_works": "The gooey join makes a plain row of links feel like one soft object, and because it is geometry rather than a blur filter the edges stay crisp, the labels stay real text, and it costs almost nothing.",
+   "how_to_build": "Render the links in a flex row (gap 6px) and put an absolutely positioned SVG behind them whose viewBox matches the container's pixel size. Give it one <path> per item and one 'bridges' <path>, all filled white (or #e9e778 on a green page). On layout change and during hover transitions (requestAnimationFrame while anything animates), read each item's rect relative to the container and write a rounded-rect path with r = 0.34*height using M/L/A commands. For each neighbouring pair, treat the facing ends as circles (r = h/2, centres at the left item's right end and the right item's left end). Skip the pair if the centre distance d > 30 + r1 + r2. With spread v = 0.3, a = atan of the centre line, s = acos((r1-r2)/d), and u1, u2 = the overlap angles from the law of cosines when d < r1 + r2 (else 0): attach points p1a/p1b on circle 1 at a +/- (u1 + (s - u1)*v) and p2a/p2b on circle 2 at a + PI -/+ (u2 + (PI - u2 - s)*v); handle length = r*min(v, dist(p1a, p2a)/(r1+r2))*min(1, 2d/(r1+r2)), pointing +/- PI/2 from each attach angle; path = M p1a C h1a h2a p2a L p2b C h2b h1b p1b Z. inferred from frames/floema/3 (not isolated in code): on hover, widen the hovered item's padding and margin with the house ease so it pulls away from its neighbours and the necks stretch and thin. This is the standard SVG metaball construction; Floema's version is the MetaRow component (gap 6, detachDistance 30)."
+  }
+ ],
+ "slop_risks": [
+  "Dot under the active nav item: the current page is marked with a small dot under the pill label ('SUSTAINABILITY', 'JOURNAL' in frames/floema/1 and /3). Use a weight or fill change instead.",
+  "Cream background: the base is #f2efea brightIvory50, the law's oat-milk default. Floema gets away with it because the palette is carried by #e9e778, #042d2b and four collection colours; a copy that keeps only the ivory reads as generic premium.",
+  "Pill with icon pinned to an image: the collection chips (pictogram + 'Urban' on #f76c46) sit on photos and product panels. They work here because they are a real taxonomy system with fixed colours; used decoratively they are the floating-tag tell.",
+  "Testimonial and quote card: on the sustainability page the Jane Jacobs quote gets a big curly-quote glyph, a round avatar and a name/role line (frames/floema/1 f05). It is framed as the content of the drawn sign panel the camera zooms into, which helps, but the block itself is the prefab quote-card pattern. The home page's leadership block (square portrait, name/role, quote in straight quotes) is a milder version.",
+  "Footer glyph done right, easy to copy wrong: Floema's giant arrow-F mark is whole, flush to the 32px margin and ~90px clear of the footer's top edge (nobanner/desktop_12); it only leaves the viewport as you scroll. A copy that lets the section edge shave the top of the mark (or of letters) falls into the clipped-footer-wordmark tell.",
+  "Blank tile CTA: in stills the white rounded-square tile fused to each CTA pill reads as an empty icon slot (nobanner/desktop_01, 02). Without its hover icon it looks broken or like a dead control.",
+  "Low-contrast meta: #988f8b on #f2efea is 2.76:1 for dates and secondary copy.",
+  "Invisible-content trap: the quote lines, section headlines and slider titles are set to opacity 0 by JS and only appear through once-only ScrollTriggers ('top 70%') or snapped timelines. nobanner/desktop_11 caught the quote with its last line still at ~15%. If a trigger does not fire, the text stays invisible. Keep type visible in CSS and animate from visible.",
+  "Eyebrow ticks: short hairlines sit above the 'Floema(R) Est. 2007' and 'Recent News' labels (~160px and ~40px, nobanner/desktop_08). They animate in, but they are still the rule-beside-a-label tell; drop them or give the label its presence through type.",
+  "Header collision: the fixed header has no background, so the 51px statement and body copy scroll straight under the wordmark and tabs (nobanner/desktop_09, 12).",
+  "Widow in the h1: at 1440 'Spaces for people, made for / life.' leaves one word on the second line. Mobile breaks it better ('Spaces for people, / made for life.'). Set the break deliberately."
+ ],
+ "confidence_notes": "The original probe screenshots (desktop_00-07, mobile_00/01) are all covered by a Cookiebot consent modal. Per the re-run instruction I made a supplementary passive capture that hides #CybotCookiebotDialog with injected CSS. It does not click or give consent and uses the same wheel scrolling, 7x150px per step, at 1440x900 and 390x844. Files are in evidence/probes/floema/nobanner/ (intro_a, intro_b, desktop_00-14, mobile_00-01); the probe.json numbers are from the original run. OBSERVED from code: the tunnel config, shadow shader, spring constants, ModelView settings, eases, durations and staggers (bundle greps over locally saved chunks). OBSERVED from frames: the sustainability wireframe, material cube, product viewer and gooey search. NOT verified: how the sustainability wireframe is rendered (its chunk was not among the files fetched; the Awwwards tag says webgl, and the front-to-side view change in frames/floema/1 f03-f04 suggests 3D edges or swapped SVG views); where the gooey nav is implemented (no feGaussianBlur/feColorMatrix filter in the HTML or chunks, so it may be SVG path morphing or canvas); the product .glb URLs; and the Zimula foundry. The 'Homepage Header', 'About Page Header' and 'Scroll video zooming' elements had no downloaded frames. | audit (adversarial re-check, 2026-09-25): re-viewed desktop_00 and 05 (original), nobanner intro_a/b and desktop_00, 01, 02, 05, 08-14, mobile_00 (both), all 8 frames of frames/floema/2 plus f00-f07 of 1 and f00, 02-05 of 3 and f00/f03 of 0, and re-read the saved bundle (workers, BWYdwkRp.js, CegNqfpt.js, CHE2-zLL.js, index.html CSS). Fixed: the 'a' is double-storey, and Zimula is variable (wght set by font-variation-settings, display at 500, plus a custom 'cnct' axis), so 'one weight 400' was wrong; body is 16/14px (the 15px mode is Cookiebot); planes pass behind the h1, not in front; the tunnel ring has a fixed radius and the centre offset is unused; N is 46, not 44; SplitText IS used (GSAP 3.13.0); the green quote is a once-only line stagger, not a scroll-scrubbed fill; the slider is a clip-path inset wipe with inner drift, not slide-up panels under a veil (how_to_build rewritten); the gooey nav is an SVG metaball MetaRow, fused at rest (new steal added); CTA tiles are rounded squares; the chip text is ink (5.56:1), so the 'white on coral 2.92:1' accusation was removed; the footer glyph is not clipped (slop claim reversed); shadow shader alpha formula and uTime rate corrected; loader/curtain components added from CSS; material-section colour and several configurator/blueprint numbers downgraded to inferred. Added eyebrow-tick, header collision, widow and invisible-content risks."
+}

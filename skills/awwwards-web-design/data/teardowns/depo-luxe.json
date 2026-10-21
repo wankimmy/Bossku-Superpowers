@@ -1,0 +1,286 @@
+{
+ "slug": "depo-luxe",
+ "title": "Depo Luxe",
+ "live_url": "https://depoluxe.xyz/",
+ "award": "Site of the Day - Jul 7, 2026 (Honors, SOTD) - credits: Cuchillo",
+ "scores": {
+  "overall": 7.62,
+  "design": 7.81,
+  "usability": 7.16,
+  "creativity": 7.8,
+  "content": 7.84,
+  "dev": {
+   "overall": 7.53,
+   "semantics_seo": 7.0,
+   "animations": 8.4,
+   "accessibility": 6.8,
+   "wpo": 7.8,
+   "responsive": 7.6,
+   "markup": 7.4
+  }
+ },
+ "industry": "Film & TV production company (fashion films, music videos, luxury brand content)",
+ "signature": "An infinite, lerped virtual scroll where each project is one viewport of full-bleed film under a flat 14% black veil, and the only UI is a centred italic EB Garamond credit (title in curly quotes, director below, client flush right on the same line) plus a left rail of per-project roman numerals and 1px progress lines that scroll past it, with a soft 'tac' click on every reel change, so the reel reads like a projection-booth index rather than a portfolio grid.",
+ "first_screen": {
+  "composition": "Full-bleed 1440x900 music-video frame (Anitta 'Romeo', teal night interior) under a flat rgba(0,0,0,.14) ::after veil, with no other chrome except: a centred masthead block 304px wide (x 568-872) with 'Depo' flush left and 'Luxe' flush right on one line at y~31, the italic tagline h1 below at y~58 spanning exactly that width, and the five nav links (Featured underlined, Archive, Talent, Approach, Contact) at y~86; the project title '“Romeo”' dead centre at y~441 in 39.6px italic; director 'Turbo' ~17.6px centred 62px below (CSS top:3em); client 'Anitta' pinned to the right edge (ink ends x~1416, 24px gutter) on the title's line (y~450). The left rail is not a single line: each project owns a 1px line at x~24 that starts just below its own numeral and runs one viewport down to the next numeral, so the numeral 'II' sits in a travelling gap (desktop_00: line breaks y 452-538 around 'II' at y~495, i.e. below the title line, not on it). A frosted cookie panel (serif text, three square-cornered 1px-bordered buttons) covers the bottom-right corner in every capture because the probe does not click it.",
+  "what_owns_it": "video",
+  "display_type_px": 39.6,
+  "evidence": [
+   "desktop_00.jpg",
+   "desktop_01.jpg",
+   "probe measure.largest_text[0]",
+   "probe measure.type.h1",
+   "main.css .visor-videos:after / .widget-home__project .info .progress .line"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "EB Garamond",
+    "role": "display",
+    "classification": "Garalde old-style serif, 400 italic for titles and tagline",
+    "foundry": "Georg Duffner / Octavio Pardo (open source, Google Fonts v32, self-hosted woff2)",
+    "source": "probe fonts_loaded ['EB Garamond 400 normal','EB Garamond 400 italic'] + HTML @font-face /assets/fonts/eb-garamond-v32-latin-{regular,italic}.woff2"
+   },
+   {
+    "name": "EB Garamond",
+    "role": "body",
+    "classification": "same face, 400 roman for nav, director, client, numerals, cookie copy (director/client width-fit to ~17-17.6px against the downloaded woff2)",
+    "foundry": "Georg Duffner / Octavio Pardo",
+    "source": "probe measure.type (nav a, p, button all EB Garamond)"
+   },
+   {
+    "name": "Times",
+    "role": "ui",
+    "classification": "browser default serif",
+    "foundry": "system",
+    "source": "probe largest_text: 17.6px spans ('“Número France”', 'Gus and Lo', '“Romeo”', 'Turbo', 'Anitta') compute to Times. Confirmed in main.css: they are the per-item copies inside each reel <li> (.widget-home__project .info .title/.director/.client {opacity:0}) with no font-family, so they inherit body Times; the visible credit is a separate .widget-home__article set in EB Garamond. Not visible type."
+   }
+  ],
+  "display_size_px": 39.6,
+  "body_size_px": 14.3,
+  "scale_notes": "Only three live sizes: 39.6px italic project title (var(--font-size-title)), ~17.6px director/client/numerals, 14.3px masthead, tagline and nav (probe font_sizes_px rounded: 18px x56, 14px x31, 40px x1). Ratio ~2.8 : 1.23 : 1. Root tokens are fluid: --font-size-l 46.8px, --font-size-base 20.8px, --font-size-s 16.9px, --min-font-size 12px, --max-font-size 48px, credit sizes use clamp(12px, 1.1111vw, 48px). The h1 is the 14.3px tagline, not the big title.",
+  "tracking_leading": "Uniform -0.01em tracking on every size (-0.396px at 39.6, -0.176px at 17.6, -0.143px at 14.3). Line-height 1.0 (lh equals size) on display, numerals and nav; --line-height 1.375 token for running copy.",
+  "case_and_style": "Sentence/title case throughout, no caps in the reel. Project titles always italic, wrapped in curly double quotes and forced to Title Case by CSS (text-transform: capitalize: '“Otoño / Invierno 2023”', '“Summers Lovers”'); names and clients roman. Project index as roman numerals: Featured has 14 projects (HTML counters I-XIV; the May 2026 jury recording labels 14 items I-XV and skips VIII); Archive runs to at least LXXXI (jury clip 2 f00 shows LXXIX-LXXXI wrapping to I). Two Featured items have an empty client field, so their index labels show a bare numeral ('I', 'IX' in clip 0). Contact page sets LUXE as four capitals in a 2x2 grid.",
+  "signature_moves": [
+   "One serif family at one weight (400) doing every job; hierarchy comes only from size, italic vs roman and position.",
+   "Title in curly quotes like a film credit, director below, client parked on the far right edge on the title's line: a three-part credit block split across the width.",
+   "Masthead justified to the exact width of the italic tagline ('Depo' left, 'Luxe' right) so the logo is typeset, not drawn; the same text-align-last: justify trick sets the Contact copyright line (.copyright>.text).",
+   "Roman numerals as the project index, sized like body text (~17.6px), never enlarged, each riding its own progress line.",
+   "Nav hover/active is a 0.5px currentColor rule 0.8em under the word that fades in (opacity .1s in, .2s out) and stays on aria-current: a fade, not a wipe."
+  ],
+  "mobile": "390px (mobile_00/01): masthead keeps the same justified Depo/Luxe line but stays a centred column ~276px wide (x ~57-333), not edge to edge; the five nav links spread across that column (no underline shown on Featured in these captures); type steps DOWN slightly (probe mobile h1/nav 13px vs 14.3px, largest 36px title vs 39.6px); the credit block restacks centred as client ('Anitta', CSS .client top:-4em) above title ('“Romeo”') above director ('Turbo'); the numeral rail stays at left x~12 with 'II' in its gap. No horizontal overflow (probe mobile_measure.overflow_x false)."
+ },
+ "color": {
+  "mode": "dark (footage-owned); the Contact page inverts to white",
+  "base": "#000 (body bg rgb(0,0,0); --black), almost never seen because full-bleed video covers it",
+  "ink": "#fff (rgb(255,255,255), 87 of 88 measured text nodes)",
+  "accents": [
+   "#999 --grey (1 text node, disabled/secondary)",
+   "#0000fe --blue (token also aliased as --yellow; not observed on screen)",
+   "#ff4f23 --red (token, not observed)",
+   "#f0f --focus / --assertive (focus ring token)",
+   "rgba(255,255,255,0.4) = #fff6: the 14 per-project rail tracks (.progress .line background; probe bg x14 = 14 Featured items); the solid part of each line is an ::after in currentColor scaled by scaleY(var(--progress))"
+  ],
+  "ratio": "~95% footage / black, ~3% white type, 0% UI accent on screen; all colour is supplied by the films (teal night, tungsten brown, overcast blue-grey, amber).",
+  "section_shifts": "No sections in the DOM sense (doc_height 900, one section); colour shifts per project as the video changes. In the Featured index view (jury clip 0) the backdrop is the focused film itself pushed to blur(100px) scale(2) under a 25% black veil (visor tween), so only its colour survives (slate, brown, maroon, olive, teal) and it re-tints with every item. Contact flips to white ground, black type (palette-secondary).",
+  "texture": "None as an overlay on type. The films sit under .visor-videos:after {background: rgba(0,0,0,var(--overlay))} (--overlay .24 in CSS, tweened to .14 in the film view and .25 in the index), and a second ambient #BGVideo layer runs at opacity .5 with filter blur(var(--blur)) grayscale(var(--grayscale)) and scale3d(var(--scale)). CSS also carries filter blur(40px) x8 / backdrop-filter blur(40px) x6 and blur(30px) (header blur band, column-end fogs; which element uses which is inferred).",
+  "notes": "There IS a scrim, but it is a flat 14% black veil over the whole film, not a local gradient behind the 14.3px nav; legibility still depends on the footage (weak over the overcast sky in desktop_03 and desktop_05). A #Header__blur band exists in CSS (backdrop-filter blur(40px), rgba(0,0,0,.05), 10vw tall desktop / 30vw mobile, masked children hidden by default); it is not distinguishable in the captures."
+ },
+ "layout": {
+  "grid": "12-column tokens (--cols 12, --col-size calc((100vw - 2*gap - 11*gap)/12)) and repeat(12,...) grids exist in main.css (one declaration is a typo, 'reapeat(12,1fr)'), but the probe found 0 grid containers in the reel view and --gap points at --padding-xxs, which is undefined at desktop width. Padding tokens xl 8rem, l 3rem, m 1.5rem, s/xs .75rem; header height 7.5rem. The observed composition is axial: masthead and credit hang on x=720, the title and client share the horizontal centre line (y~441-450), and the numeral rail is a moving left edge anchor at x~24.",
+  "density": "airy",
+  "alignment": "Centred axis for masthead and title; edge anchors left and right on the same baseline as the title.",
+  "composition_moves": [
+   "Masthead is a narrow centred column (304px) instead of a full-width header bar.",
+   "Credit block split across the full width: title centre, client flush right on the same line; the numeral does not lock to that line, it travels up the left rail (II at y 495 then 150; III at 729, 425, 105; IV at 681, 45 across desktop_00-07).",
+   "Featured index (jury clip 0; code _drawSquare): square thumbnails in an L. The focused square (side = max(.3*innerWidth, .35*innerHeight), 432px at 1440x900) sits in the bottom-left corner; earlier items stack above it flush-left, each exactly half the size of the one below and touching it; later items run along the bottom edge, bottom-aligned, each half the previous and starting at its right edge. During transit the squares stretch to close the gap. Label = numeral + nine spaces + client, 16-17px white, top-aligned 24px right of each square.",
+   "Archive (jury clip 2): masthead and tagline disappear, only the nav stays at top; a centred two-column list (numeral right-aligned | client left-aligned, gutter on x=720) parts around the centre into a ~0.35-0.4-viewport window (~355px at 900); rows entering the window spread toward the viewport edges (numeral to x~12, client to the right gutter) while the centred italic title and director sit inside the window.",
+   "Talent (jury clip 1) and Contact (jury clip 3): two drifting columns at the left and right thirds with a fixed centrepiece (Talent: artist first name / ~48px portrait / surname, ~165px apart; Contact: the same stacks ~100px apart in the side columns around a LUXE 2x2)."
+  ],
+  "section_rhythm": "No vertical page rhythm: every view is exactly one viewport (doc_height 900) and content cycles through it. Rhythm is temporal: one film per viewport of wheel travel (numerals ~900px apart in scroll units, ~320-345px per probe wheel step).",
+  "mobile_adaptation": "Same single-viewport model at 390x844; masthead stays a ~276px centred column, credit block restacks vertically (client above title), rail kept at x~12. Portrait crops of the same 16:9 footage (object-fit cover)."
+ },
+ "motion": {
+  "smooth_scroll": "Custom Cuchillo virtual scroll engine, not Lenis (verified in main.js): options {easing: .08 (lerp per frame), maxSpeed: 400, multiplicator: 1, infinity} with VScrollInfinity / VScrollHInfinity classes; items are li[scroll-infinity-item]. doc_height 900 so the whole reel is transform-scrolled and wraps (XV back to I in jury clip 0).",
+  "preloader": "Not observed; page settled in 6.6s with the first film already playing (a #Preloader element exists in the HTML).",
+  "intro_sequence": "Not captured (probe lands after settle). Nav links carry the scramble component (data-shffl x7, all data-origin=\"right\", data-text-to x4), inferred to type in on load.",
+  "scroll_techniques": [
+   "infinite virtual scroll (lerp .08, maxSpeed 400)",
+   "one full-bleed film per viewport of travel, swapped when the next numeral crosses the centre",
+   "per-project progress lines + numerals scroll up the left rail ~320-345px per wheel step while title and client stay pinned",
+   "lens list that parts around the centre and spreads the focus row to the edges (Archive)",
+   "halving-square L-cascade drawn in a 2D canvas (Featured index); a thumbnail's video only starts once scroll speed drops below 100 (absSpeed gate); unloaded items and mobile draw the poster",
+   "opposite-direction twin-column drift (Talent, Contact)",
+   "Talent artist list: once scrolled past its end, the ambient #BGVideo layer blurs and zooms with scroll: blur = 50*(progressTop-1) px, scale = max(1, progressTop + 2*(progressTop-1))"
+  ],
+  "text_animation": "Scramble/shuffle swap (class verified in main.js): default duration .8s, frameSkip 2 (writes innerText every 3rd tick), stepsTotal = round(duration/(frameSkip+1)*60). Each character gets its own series: it holds the old glyph until a start index (i/(len*1.4) of the run for origin left, mirrored for origin right), then cycles up to 8 frames of symbol pools (#$%&/()=?, bars |/\\, underscores .__), then random glyphs of the same class as the target (upper, lower, digit, symbol), and lands on the new glyph at a random end index between 80% and 100%, so the finish is ragged. The nav links use data-origin=\"right\". Artist list: each name's parent alpha 0 to 1 over .2s, placed 20ms apart on one timeline.",
+  "image_animation": "Films crossfade in place (verified): the incoming figure tweens alpha 0 to 1 in .2s Power2.easeIn while the outgoing fades to 0 in .3s Power2.easeIn and pauses on complete; the visor preloads the next two films and cancels any other pending loads. desktop_02 to desktop_03 swaps 'Romeo' to 'Blue Voyage' between two wheel steps with numeral III passing the centre. Entering the index: visor blur 0 to 100px, scale 1 to 2, veil .14 to .25 in .2s Power2.easeIn (reverse after a .2s delay). Artist bio page (page-bio): #BGVideo is set to blur 120px, grayscale 1, scale 4 on beforeShow and reset on afterHide; helpers goBlur (20px, scale 1.5, .8s Power3.easeOut), goGrayscale (.8s) and goNormal (.4s Power2.easeOut) exist.",
+  "page_transitions": "Nav views (Featured/Archive/Talent/Approach/Contact) swap inside the same fixed viewport; Contact inverts to white. Transition itself not captured in frames.",
+  "hover_micro": [
+   "Canvas-drawn cursor follower (#Interface__Canvas, 2D): a dot whose ring fills to 90% over 10s linear while active and snaps to full in .4s Power4.easeOut on hide, resizing over 1s Expo easing (inferred: a hold/loading ring)",
+   "Drag-axis arrows: left/right icons grow in .2s Power4.easeOut and spread to posL -20 / posR 20 over .8s Power4.easeOut",
+   "Nav: 0.5px currentColor underline fades in on hover (.1s) and out (.2s); stays on the active link (aria-current=page)",
+   "Talent hover: artist images drawn into the 2D canvas at .92 alpha with small random float offsets"
+  ],
+  "cursor": "Custom 2D-canvas cursor (#Interface__Canvas, fixed, z-index 11, pointer-events none; body classes __cursor __mouse-down __mouse-right). CSS has cursor:none x3 for some states, but the probe computed 0 and the Archive jury clip shows the native arrow, so the canvas follower usually draws alongside the pointer.",
+  "easing_curves": [
+   "GSAP 3.14.2 (aliases Bi=Power2, Gi=Power3, Vi=Power4, Xi=Expo): Power2.easeIn x61, the house hide/exit ease",
+   "Power4.easeOut x18",
+   "Power3.easeOut x16",
+   "Power2.easeOut x13",
+   "Power4.easeInOut x6",
+   "Power3.easeIn x5",
+   "Expo.easeInOut x3 / Expo.easeOut x3",
+   "CSS opacity .2s/.4s var(--ease-in-quad) cubic-bezier(.55,.085,.68,.53)",
+   "CSS transform .5s cubic-bezier(.165,.84,.44,1) (ease-out-quart)",
+   "CSS transform .4s var(--ease-out-quad) cubic-bezier(.25,.46,.45,.94)",
+   "Full Penner token set on :root (--ease-in-quad ... --ease-in-out-circ)"
+  ],
+  "duration_range_ms": "100-1000 (GSAP duration .4 x22, .2 x16, .3 x15, .8 x14, .6 x11, .5 x8, 1 x7); CSS 100-500ms; one 8s CSS loop",
+  "stagger_ms": "20 (artist list alpha, manual timeline offsets); GSAP stagger otherwise 0",
+  "choreography_notes": "Very little moves at once: the film plays, the numeral rail scrolls, and a single credit swap happens at the centre. Exits use ease-in (Power2.easeIn) and entries ease-out (Power4/Power3), so things leave fast and arrive soft; the film crossfade itself is ease-in both ways (.2s in, .3s out). Jury clip 0: focus runs IV to XV, wraps, then I to XI (about 22 items in 4.9s) at an uneven 2.5 to ~10 items/s, i.e. wheel bursts, not a constant autoplay; the ambient backdrop re-tints per item. Jury clip 2: focus runs from III to XXIV (about 21 rows in 5.1s, ~4 rows/s), so each of the 8 sampled frames shows a new title; rows within ~1-2 of the centre are part-spread (XXIII/Penti at x~390/568 vs list x~460/487 in the 960px frame). Jury clip 1 (Talent): columns drift opposite ways at ~18px/s in 1440px terms (43 frame px in 4.4s at 0.527 scale). Jury clip 3 (Contact): ~37px/s (80 frame px in 4.85s at 0.447 scale); both estimates include any wheel input in the recording.",
+  "evidence": [
+   "frames/0/f00-f07 (Main navigation)",
+   "frames/2/f00-f07 (Archive)",
+   "frames/1/f00,f04,f07 (Artist)",
+   "frames/3/f00,f07 (Contact)",
+   "desktop_00-07",
+   "main.d4f10deae0b58c57225e.js (re-fetched in audit): VScroll options, scramble class, visor dm show/hide, _drawSquare, page-bio Fs values, Howl('tac.m4a')",
+   "main.b0b97476d709cb690ddf.css: .visor-videos, #BGVideo, #Header__blur, .widget-home__project .info, .link-underline, transitions"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "video",
+  "art_direction": "Real commissioned fashion films and music videos (Anitta, Koton, Kenzo, Dior, Madonna, Lanvin, Alexander McQueen): cinematic grades left intact (teal night, tungsten amber, overcast daylight, candlelit baroque), subjects centred, shallow depth of field. No retouch overlay, no duotone; the site never tints or crops for design reasons beyond cover.",
+  "treatments": [
+   "full-bleed object-fit cover 16:9 on 1440x900, DOM <video> in .visor-videos figures",
+   "flat rgba(0,0,0,.14) ::after veil over the film (.25 in the index view)",
+   "crossfade between films (.2s in / .3s out)",
+   "focused film as blurred ambient backdrop under the Featured index (blur 100px, scale 2, 25% veil); artist bio page uses #BGVideo at blur 120px, grayscale 1, scale 4",
+   "Talent: ~16:9 video cards in drifting columns, numeral top-centre and client bottom-centre set inside each card, column ends dissolving into dark fog",
+   "Featured index: square cover-cropped thumbnails halving per step (432px focus down to ~27px four steps out) drawn with drawImage into a 2D canvas",
+   "~48px square portraits between first name and surname (Talent, Contact)"
+  ],
+  "crops_and_ratios": "Cover crops of 16:9 footage at 1.6:1 desktop and ~0.46:1 mobile (heavy centre crop on faces in mobile_00/01); index thumbnails are 1:1 cover crops (computeCrop); talent cards ~16:9.",
+  "formats": "6 Vimeo progressive MP4 renditions at 1080p (42.3MB declared mp4 bytes), 16 <video> elements, 21 webp posters/thumbs (1.26MB), 14 img, 2 woff2 (43.9KB), 1 svg.",
+  "evidence": [
+   "desktop_00-07",
+   "mobile_00",
+   "mobile_01",
+   "frames/0",
+   "frames/1",
+   "frames/3",
+   "probe videos + bytes_by_type_declared",
+   "main.js _computeCrop/_drawSquare"
+  ]
+ },
+ "three_d": {
+  "present": false,
+  "stack": "three.js r158 is bundled (window three_revision 158) and the probe saw 2 webgl2 contexts, but no WebGLRenderer set-up, custom material or VideoTexture instantiation was found in the app code (the 10 VideoTexture hits appear to be library code); where the webgl2 contexts come from was not found. The films are plain DOM <video> elements (.visor-videos figure video, object-fit cover; #BGVideo front/preloader pair) styled with CSS filter and scale3d. The fixed 1440x900 z-index 11 canvases are interface canvases: the HTML ships <canvas id=\"Interface__Canvas\"> and the JS creates a 2D canvas with the same id and appends it to body; it draws the cursor, the Featured index squares and the Talent hover images.",
+  "role": "none (three.js shipped but unused on the observed views)",
+  "assets": [],
+  "materials_lighting_post": "None. All treatments are CSS (blur, grayscale, scale3d, rgba veil) and 2D canvas drawImage.",
+  "interaction": "n/a",
+  "performance_tactics": "Next-two preload and cancel-the-rest on the film visor; the canvas index draws the poster (webp) for items whose video is not loaded and on mobile, starts a thumbnail video only once scroll speed drops below 100, and pauses videos outside the -4..+5 item window (-3..+2 on narrow screens); webp posters with tiny 20px LQIP srcs in the HTML.",
+  "fallback_mobile": "n/a (no WebGL content); mobile draws poster images in the canvas index instead of video.",
+  "evidence": [
+   "probe globals three_revision 158",
+   "probe contexts webgl2 2 / 2d 3",
+   "probe canvas [1440x900 fixed z 11 x2]",
+   "main.css #Interface__Canvas z-index 11, body>canvas fixed",
+   "main.js wo class: document.createElement('canvas').getContext('2d') appended as #Interface__Canvas"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Five text links in the centred masthead (Featured, Archive, Talent, Approach, Contact), active link underlined; always visible over the film. In Archive and Talent the masthead logo and tagline drop away and the nav sits alone at the top centre.",
+  "menu": "No hamburger; the same five links at 390px, spread edge to edge.",
+  "buttons_links": "Text-only links, 14.3px EB Garamond; a 0.5px underline marks hover and the active view; cookie buttons are square-cornered with 1px light borders on a frosted translucent dark fill (the probe's 16px radius x3 belongs to other var(--radius)/var(--height) pill elements, not these).",
+  "unusual_interactions": [
+   "Wheel drives an infinite loop of films; no end to the page.",
+   "Archive lens list: scrolling moves a focus through 80+ rows; the list parts around the centre and the focused row splits to the viewport edges while its film plays behind.",
+   "Featured index as a scrolling L of halving squares over the focused film's blurred colour; thumbnail video only starts once the scroll slows.",
+   "Talent: artist name fixed centre, two columns of their films drifting in opposite directions.",
+   "Drag-axis canvas cursor with left/right arrow glyphs.",
+   "Every reel change after the first plays a short 'tac' click (Howler, /assets/audio/tac.m4a, volume .4)."
+  ],
+  "sound": "A UI click: Howler.js plays /assets/audio/tac.m4a at volume .4 on every project change except the first (subject to browser autoplay policy; not audible in the silent probe). All films muted (probe videos muted true).",
+  "footer": "Contact view carries the footer: Instagram, Vimeo, Linkedin and Privacy Policy, Legal Notice, Cookies Policy as two centred 11-12px link groups at the bottom, plus '© DEPO LUXE (and respective owners), 2026' italic under the nav."
+ },
+ "content_voice": {
+  "headline_style": "No marketing headline; the page title is the brand line set small (14.3px italic). Everything else is credits: title in quotes, director, client, roman numeral.",
+  "copy_tone": "Film-credit terse, luxury-understated; lets client names (Kenzo, Dior, Madonna) do the persuading.",
+  "examples": [
+   "A strategic and cinematic approach to contemporary luxury"
+  ]
+ },
+ "tech_stack": {
+  "framework": "11ty static site (Awwwards tag) with an inline fetch('/api/videos-data') preload; canonical points at a Cuchillo staging host (depoluxe.cuchillo-pink.xyz); media come from WordPress uploads on CloudFront (43 wp-content/uploads URLs in the HTML), so a headless WordPress is the CMS.",
+  "libraries": [
+   "GSAP 3.14.2 core + ScrollToPlugin (ScrollTrigger appears only as core hook references, not used)",
+   "Howler.js (UI click sound)",
+   "three.js r158 (bundled; no app usage found)",
+   "Cuchillo in-house framework: VScroll/VScrollInfinity smooth scroll, scramble text, 2D interface canvas and cursor, visor/video manager, page manager",
+   "Vimeo progressive MP4 hosting",
+   "CloudFront CDN (d334na6pvq9xwq.cloudfront.net, 21 requests)"
+  ],
+  "evidence": "HTML curl (script main.d4f10deae0b58c57225e.js, 796KB raw; CSS main.b0b97476d709cb690ddf.css, 76KB), re-fetched and grepped in the audit for version strings, VScroll options, ease aliases and counts, scramble class, visor, _drawSquare, Howl, #Interface__Canvas; probe globals and top_hosts."
+ },
+ "performance_accessibility": {
+  "requests": 56,
+  "weight_notes": "Dominated by video: 42.3MB declared MP4 across 6 Vimeo 1080p files; everything else is light (webp 1.26MB, fonts 43.9KB, HTML 9.3KB). Main JS is heavy for what it does (796KB raw including three.js and GSAP).",
+  "reduced_motion": "0 prefers-reduced-motion rules (probe). Autoplaying loops, infinite drift and scramble text are not gated.",
+  "contrast_issues": "White 14.3px nav and ~17.6px credits sit on footage with only a flat 14% black veil; fine on dark films, weak on the overcast bridge and airport frames (desktop_03, desktop_05). Contact view is black on white and fine. aria-labels are in Spanish ('Proyectos destacados', 'Textos legales') on a lang=\"en\" page.",
+  "mobile_quality": "Good: no overflow, credit block restacks, type steps down slightly (title 36px, nav 13px). Heavy centre crops of 16:9 films on a 390px portrait screen.",
+  "dev_scores": {
+   "overall": 7.53,
+   "semantics_seo": 7.0,
+   "animations": 8.4,
+   "accessibility": 6.8,
+   "wpo": 7.8,
+   "responsive": 7.6,
+   "markup": 7.4
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Centre-line credit block over an infinite film reel",
+   "why_it_works": "Each project gets the full screen and one second of attention; the pinned title/client and the moving numeral give orientation without any chrome, and the loop never dead-ends.",
+   "how_to_build": "Virtual scroll: on wheel, target += deltaY * 1; each rAF current += (target - current) * 0.08, clamp |target - current| to 400px; total = N * innerHeight, wrap current with ((current % total) + total) % total. Active index = Math.round(current / innerHeight) % N. Films: stacked <figure><video muted loop playsinline></figure> full-bleed object-fit:cover, plus a ::after {background: rgba(0,0,0,.14)} veil; on index change fade the new figure to opacity 1 in .2s and the old to 0 in .3s (both power2.in), pause the old on complete, preload the next two and cancel other loads. Credit (one fixed article): title EB-Garamond-class serif italic 39.6px (2.75vw), line-height 1, letter-spacing -0.01em, text-transform capitalize, wrapped in “ ”, centred on y=50%; director ~17.6px at top:3em; client ~17.6px justify-content:flex-end with 24px padding on the same line (mobile: centred at top:-4em). Swap the strings with the scramble below. Rail: each reel item (one viewport tall, translated by the scroll) holds its numeral vertically centred at left:24px and a 1px line starting just under the numeral and running to the next item, background #fff6 with an ::after in currentColor transform: scaleY(var(--progress)); transform-origin: top, so the gaps travel with the numerals. Optional: a quiet click sample (Howler, volume .4) on each change after the first. Keep the first film's title in the HTML so nothing depends on JS."
+  },
+  {
+   "technique": "Scramble-swap for titles and nav",
+   "why_it_works": "A title change that flickers through random glyphs reads like a projector/teletype change of reel and hides the fact that the text is simply replaced.",
+   "how_to_build": "Component with {duration: .8, frameSkip: 2, origin: 'left'|'right', textFrom, textTo}. stepsTotal = Math.round(duration / (frameSkip + 1) * 60). Precompute per character i: start = i/(len*1.4) (mirror for origin right), end = random(.8, 1); series[k] = old char while k < start*steps; the first up to 8 in-between frames cycle symbol pools ('#$%&/()=?', '|/\\\\', '.__'), later frames pick a random glyph of the target's class (A-Z for capitals, a-z for lowercase, 0-9, symbols); from end*steps on, the new char. Join the columns into stepsTotal strings, tick on gsap.ticker and write innerText only every (frameSkip+1)th frame. Put the final string in the DOM as the default so the scramble is decoration only."
+  },
+  {
+   "technique": "Lens list with focus-row explode (Archive)",
+   "why_it_works": "A 30-row client list becomes a scanning instrument: the focused row physically spans the screen, neighbours bulge, and ends fade, so the list has a centre of gravity instead of being a flat table.",
+   "how_to_build": "Render rows as '<numeral> <client>' at ~16-17px, centred on x=720 (numeral right-aligned in a 40px column, client left-aligned). Each frame compute d = (rowCenterY - innerHeight/2) / rowHeight from the lerped scroll. Part the list: rows with d<0 translateY(-gap/2), rows with d>0 translateY(+gap/2), gap ~0.38*innerHeight, easing the offset in over |d| 0..1 so rows slide into the window. Inferred spread (fits the frames, not read from code): spread = Math.pow(Math.max(0, 1 - Math.abs(d)/2.5), 3); numeralX = lerp(listX, 12, spread); clientX = lerp(listX, innerWidth - 12 - clientWidth, spread) via translateX. Fade the list ends with mask-image: linear-gradient(180deg,#0000,#000 20%,#000 80%,#0000). Hide the masthead in this view. When |d| < .5 swap the centred title (italic 39.6px in quotes) and director with the scramble and crossfade its film behind the 14% veil."
+  },
+  {
+   "technique": "Halving-square L index over the focused film's own blurred colour",
+   "why_it_works": "Size encodes proximity to focus, so a flat list of 15 projects gets depth and pace without 3D; the ambient backdrop is free art direction because it is the film itself.",
+   "how_to_build": "From main.js _drawSquare: S = max(.3*innerWidth, .35*innerHeight). For item offset e = progress - 1 (fractional, lerped): r = S * 0.5^|e|. If e <= 0 (focus and later items): x = 2*(S - r), y = innerHeight - r, so they sit bottom-aligned in a row, each starting at the previous one's right edge. If e > 0 (earlier items): x = 0, y = innerHeight - 2*S + r, so they stack flush-left above the focus, each touching the one below. For -1<e<0 and 0<e<1 stretch the rect to close the gap. Draw in one 2D canvas: drawImage(video or poster, cover crop) and fillText(numeral + '         ' + client) at (x + r + 24, y), 16-17px EB Garamond white; skip items outside -4..+5 and pause their videos; play thumb video only when scroll speed < 100. Backdrop: the focused film full-bleed with filter: blur(var(--blur)); transform: scale3d(var(--scale)...) and an ::after rgba(0,0,0,var(--overlay)), tweened to blur 100px, scale 2, overlay .25 in .2s power2.in when the index opens."
+  },
+  {
+   "technique": "Opposite-drift twin columns around a fixed centrepiece (Talent, Contact)",
+   "why_it_works": "Constant slow counter-motion makes a static bio or contact page feel alive without hiding anything, and the fixed centre name stays readable.",
+   "how_to_build": "Two columns of cards (~16:9 video cards ~435px wide with numeral top-centre and client bottom-centre inside the card for Talent; role / italic first name / ~48px portrait / italic surname / email stacks for Contact) at the left and right thirds. gsap.ticker: yL -= v*dt, yR += v*dt with v ~18px/s (Talent) to ~37px/s (Contact, estimated from the jury clips), plus wheel delta * .5 with opposite signs; wrap each column by duplicating its content once and modulo its height. Fade both column ends with a real mask-image: linear-gradient(180deg,#0000,#000 30%,#000 70%,#0000) rather than a blurred fog. Centre (Talent): first name italic ~40px, ~48px portrait, surname, spaced ~165px apart on the centre axis (Contact stacks run ~100px apart); Contact sets LUXE as a 2x2 grid of capitals and inverts the page to #fff/#000. Respect prefers-reduced-motion by setting v to 0."
+  }
+ ],
+ "slop_risks": [
+  "EB Garamond (a free Google serif) carries the entire brand at one weight; the law's 'default Google fonts' and 'premium type usually means licensed type' rules say the signature face should be a deliberate, ideally licensed choice. A copy set in Cormorant Garamond would hit an explicitly listed tell.",
+  "Titles wrapped in curly quotes: here a real credit convention for song and film titles, but the law names decorative smart quotes as a sibling of the testimonial-card tell; do not carry the quotes over to non-title text.",
+  "Italic serif title over dark fashion footage is the stock 'luxury' look; without real commissioned films it collapses into a template.",
+  "LUXE set as spaced serif capitals in a 2x2 grid on white is close to the 'letterspaced serif wordmark' tell.",
+  "Roman numerals on a vertical line down the left edge is the shape of 'numbered steps beside a vertical line' and 'unrounded hairline rules': functional here because each line is that project's progress bar with a travelling gap, but copied as decoration it is a preset.",
+  "Client hard right on the title's line is 'content flung to the far edges'; it works only because the title holds the exact centre and the Archive spread is driven by distance from centre.",
+  "White 14.3px nav text on bright video with only a flat 14% veil ('text you cannot read' on the overcast frames, desktop_03 and desktop_05).",
+  "Talent/Contact column ends fade into grey or dark smudges (visible as blurred blobs at the column ends in clips 1 and 3): reads as 'the bloom that is just the element's shape, blurred'; use a clean mask instead.",
+  "The nav underline fades in on hover; the law says not to animate underlines at all (this one is a fade, not a wipe, which is the milder case).",
+  "No prefers-reduced-motion handling (0 rules in probe and CSS) for infinite drift, autoplay loops and scramble text.",
+  "Stock cookie panel with 1px light-bordered boxes ('hairline light border on boxes') parked over the content bottom-right."
+ ],
+ "confidence_notes": "Observed: 8 desktop and 2 mobile probe captures (all show the full-bleed film view with the numeral rail and a cookie panel that was not clicked); all 8 frames of jury clips 0 (Main navigation) and 2 (Archive); f00/f03/f06 of clips 1 (Artist) and 3 (Contact); probe numbers for type, colour tokens, easings, media; 4 bounded code fetches (HTML, main JS, main CSS, then python greps) giving GSAP 3.14.2 ease aliases, VScroll options (easing .08, maxSpeed 400, infinity), scramble parameters, blur/scale/grayscale values and mask-image gradients. Inferred: that three.js is only a video compositor (no custom shaders or 3D assets found); that the Times-rendered 17.6px spans are hidden data nodes; the WordPress CMS behind /api. Gap: the Featured staircase cascade in jury clip 0 was not reproduced by the probe, which only reached the single-film view; either it is a separate index state or the site changed after the May 2026 recording. Drift speeds and per-item timings are estimated from frame positions and meta.json timestamps, not measured in code. audit (2026-09-25, adversarial re-check against probe, all desktop/mobile captures, all 8 frames of clips 0 and 2, 3 frames of clip 1, 2 of clip 3, and a re-fetch of main.js/main.css/HTML): FIXED the rail: not one masked line with a fixed 45-55% gap (that mask belongs to the full-screen player .plaver-video__progress) but per-project #fff6 lines with a scaleY progress fill, gaps travelling with the numerals, which do not sit on the title line; FIXED 'no scrim' (films carry a rgba(0,0,0,.14) ::after veil, .25 in the index); FIXED three_d: films are DOM <video> + CSS filters, the z-11 canvases are 2D, three.js r158 is shipped but unused; FIXED sound: Howler 'tac.m4a' click at volume .4 on each reel change; FIXED staircase geometry from _drawSquare (squares halve at 0.5 per step, not 0.55; bottom-left focus, flush-left column, bottom-aligned row); FIXED crossfade timings (.2s in/.3s out power2.in, preload next two) and blur values (index 100px/scale 2; 120px/grayscale/scale 4 is the artist bio page; the 50*(progressTop-1) blur is the Talent list end, not a top overscroll); FIXED scramble details (per-character series, symbol pools then case-matched letters, ragged end; nav origin is right, not left); FIXED Archive length (80+ rows, not 30), jury-clip speeds (about 22 items/4.9s and 21 rows/5.1s, not 13 and 8), portrait size (~48px, not 26px), mobile type (steps down, masthead stays ~276px), ScrollTrigger (not used; ScrollToPlugin is), ease counts, mask-image attributions (the 30%/80% and 10% masks belong to a fake scrollbar and the header blur, not the drifting columns), cookie radius claim, rgba(255,255,255,.4) attribution (rail tracks). CONFIRMED: Times spans are the hidden opacity:0 per-item copies. ADDED slop tells: decorative curly quotes, numbered-steps-on-a-rail, fading nav underline, column-end blur blobs, hairline-bordered cookie boxes. Still inferred: the Archive spread/part function (fitted to frames), drift speeds, whether #Header__blur is visible, what the cursor's 10s ring fill signals."
+}

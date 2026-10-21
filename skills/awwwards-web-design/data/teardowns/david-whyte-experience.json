@@ -1,0 +1,307 @@
+{
+ "slug": "david-whyte-experience",
+ "title": "David Whyte Experience",
+ "live_url": "https://davidwhyte.com/experience/",
+ "award": "Awwwards Site of the Day, Dec 31 2024 (Honors, SOTD); the site's footer also claims Awwwards Site of the Month plus CSSDA and FWA SOTD. Credits: Immersive Garden",
+ "scores": {
+  "overall": 7.63,
+  "design": 7.69,
+  "usability": 7.39,
+  "creativity": 8.01,
+  "content": 7.4,
+  "dev": {
+   "overall": 7.29,
+   "semantics_seo": 7.2,
+   "animations": 8.0,
+   "accessibility": 6.8,
+   "wpo": 7.4,
+   "responsive": 7.2,
+   "markup": 7.0
+  }
+ },
+ "industry": "Culture & Education: a poet's paid subscription portal ('Companion'), WordPress + WooCommerce + Stripe",
+ "signature": "A misty 3D walk through the Yorkshire places behind the poems, driven by a camera path baked in Blender and scrubbed by scroll: every object is a watercolor cutout that paints itself in under a fluid-simulated brush, while the poem, drawn from real DOM text into a canvas texture, surfaces and dissolves through a noisy focus band.",
+ "first_screen": {
+  "composition": "OBSERVED: desktop_00 / mobile_00 are the loader: flat #E6E7E2, a 165px circle with a ~2px black stroke, 'Loading' 12px Roobert centred, and a two-line Canela tagline ('Access David's library to discover his poems, essays, courses and short films') below. The settled first view (frames/0/f00, a 4:3 jury capture): slim top bar with the 'David Whyte' serif wordmark, Home | Three Sundays | Companion Portal (thin vertical separators, active item underlined) at left, and a black 'Coming soon' rectangle button with cart and account icons at right; the bar hides once scrolling starts (frames/0/f02). A left column at x≈10% holds the poem ('You start / with a painter's hand ...', ~26-30px at 1440, pixel estimate) with a soft focus band: middle lines sharp, top and bottom lines blurred in noisy patches. Centre-right, a large watercolor oak cutout (~60% of viewport height) stands on a white paper ground patch with a soft skewed shadow; part of its canopy is still grey/unpainted and fills with green as the cursor passes (f00 -> f01). The scene sits in a fog gradient (#EBEBE9 centre to #E6E7E2 edges). A floating '• Open the landscape' label is anchored in 3D; 'Scroll to explore' (12px, underlined) sits bottom-left; a short horizontal line bottom-right is the sound toggle. Custom cursor: ~6-7px grey dot plus a hairline ring (~89px in the SVG spec, desktop_02). desktop_01 shows the probe's cursor dot at centre, the poem's focus band, no paintings yet, and a black cookie card bottom-right.",
+  "what_owns_it": "3d",
+  "display_type_px": 30,
+  "evidence": [
+   "probes/david-whyte-experience/desktop_00.jpg",
+   "probes/david-whyte-experience/desktop_01.jpg",
+   "probes/david-whyte-experience/desktop_02.jpg",
+   "frames/david-whyte-experience/0/f00.jpg",
+   "frames/david-whyte-experience/0/f01.jpg",
+   "frames/david-whyte-experience/0/f02.jpg",
+   "index.html cursor/sound markup",
+   "note: the 86px wordmark is the closing lockup, not the first screen"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Canela Text",
+    "role": "display",
+    "classification": "contemporary serif; Thin 100 at display, 400 for links; the header wordmark is 20px at weight 250 with -0.5px tracking",
+    "foundry": "Commercial Type",
+    "source": "probe fonts_loaded 'Canela Text 100 normal', 'Canela Text 400 normal'"
+   },
+   {
+    "name": "Canela Text Italic",
+    "role": "accent",
+    "classification": "serif italic, Thin 100",
+    "foundry": "Commercial Type",
+    "source": "probe fonts_loaded (3 rendered nodes)"
+   },
+   {
+    "name": "Roobert",
+    "role": "body",
+    "classification": "geometric grotesk, 300/400",
+    "foundry": "Displaay",
+    "source": "probe fonts_loaded, 101 rendered nodes"
+   },
+   {
+    "name": "Canela Text Light (MSDF atlas)",
+    "role": "accent",
+    "classification": "serif rendered as MSDF glyphs in WebGL for the 3D-anchored 'Open the landscape' labels; glyphs dissolve with noise (frames/0/f04 'Op he landscape')",
+    "foundry": "Commercial Type",
+    "source": "bundle asset list /xp/msdf/CanelaText-Light/CanelaText-Light.json + .png; msdf() median(r,g,b) shader with uMouseNdc/uBlurInputRange"
+   }
+  ],
+  "display_size_px": 86,
+  "body_size_px": 16,
+  "scale_notes": "86px closing wordmark (Canela Text 100, lh 86px) : 52px H2 (lh 64.48px) : 32px H3 (lh 40px) : 16px Roobert lead : 14px body : 12px UI : 10px meta, so roughly 1.65 / 1.63 / 2.0 steps. Most-used sizes: 14px x46, 12px x24, 18px x21, 24px x13. The poem is DOM text (.xp-text, Canela Text 100) rasterised into a 2D canvas and shown in WebGL at ~30px with a ~47px pitch in desktop_01 (pixel estimate). body computes to 1px (Times) as a base-size trick; every visible element sets its own size.",
+  "tracking_leading": "Tracking is normal everywhere except the 20px header wordmark (-0.5px). The closing wordmark is solid at line-height 1.0, H2/H3 at 1.2-1.25, and the poem airy at ~1.55 (pixel estimate).",
+  "case_and_style": "Sentence case throughout; hairline 100 serif for every heading; poem attributions in parentheses with curly quotes, placed after the stanza ('(from \"Despair\")', '(from \"The Painter's Hand\")'); UI in Roobert sentence case; only the cookie buttons are uppercase.",
+  "signature_moves": [
+   "Hairline (100) serif at display sizes on a pale fog: whisper, not shout",
+   "Poem drawn from DOM into a canvas texture with a noisy focus band (sharp centre, pre-blurred copies toward the top and bottom, a ring of disturbance around the cursor)",
+   "3D labels in MSDF Canela Light whose glyphs dissolve in and out",
+   "SplitText titles: lines staggered 80ms, pretitle chars 15ms, via CSS transition-delay",
+   "Closing lockup pairs 'Companion Portal' (42px) with a right-aligned 86px 'David Whyte'"
+  ],
+  "mobile": "At 390px, H2s stay 52px (mobile_measure largest 52, 52, 49.14) and break into three or more lines of 2-3 words; the poem canvas text is ~24-26 css px on a ~36px pitch with a ~44px left margin (mobile_01); the custom cursor is hidden on mobile and tablet (hide-mobile hide-tablet); no horizontal overflow."
+ },
+ "color": {
+  "mode": "light",
+  "base": "#E6E7E2 misty warm grey (sampled; CSS rgb(231,231,226) #E7E7E2 on the loader), centre fog lifts to #EBEBE9; html background rgb(239,234,226) #EFEAE2; Awwwards palette #E1E1E1",
+  "ink": "#000000",
+  "accents": [
+   "#A94C21 terracotta, rgb(169,76,33), 12 text nodes including the cursor's 'See the poems' hover label",
+   "#AC4F27 terracotta fill, rgb(172,79,39)",
+   "#D8914C ochre: the 15px Canela announcement link 'Join the Three Sundays Series ...' (~2.1:1 on the fog)",
+   "#B4A985 khaki",
+   "#8BA167 sage: the tint of painted ground patches under objects (scene config)",
+   "watercolor pigments only inside the paintings: sap green, moss, slate blue-grey, heather rust"
+  ],
+  "ratio": "~85% fog grey / ~10% watercolor / ~5% black type and UI",
+  "section_shifts": "No hard section colours. The camera passes five titled landscapes from the scene config (Dales with Cows, Nidderdale Farm, North York Moors, Dales near Aysgarth, Dales with Sheep) and ends on the viaduct; paintings and fog density change along the way. Six base/over video sets back the long-press full paintings. The DOM sections (Benefits, pricing, FAQ, footer) sit on a transparent background over the fixed canvas.",
+  "texture": "Paper texture and normal-map lighting on the paintings (uNormalMapStrength 13, uNormalMapScale 3, uPaperShadowIntensity 1.7), plus distance and height fog in the shader. Texture stays on the images; text stays crisp except for the poem's intentional blur.",
+  "notes": "The whole palette is fog plus pigment. UI stays black and white: white subscribe buttons, a black top-bar button, black cookie card."
+ },
+ "layout": {
+  "grid": "6 CSS grid containers. Intro and poem column at x≈144 (10% of 1440); Benefits column starts at x≈641 (44.5%); pricing rows are 656px-wide 1px-outline boxes (x 641-1297) with a white button right; FAQ rows run full-width between x≈89 and 1350 with 1px rules, question text x 204-600 and a 'View' link at x≈777.",
+  "density": "airy",
+  "alignment": "Left-aligned and asymmetric; the heading column jumps to the right half for Benefits; the closing wordmark is right-aligned",
+  "composition_moves": [
+   "Poem in a narrow left column while the 3D scene fills the right two-thirds",
+   "Offset second column for the benefits list",
+   "Outline-box pricing rows instead of pricing cards",
+   "Huge FAQ questions (~32px serif) with tiny underlined 'View' links",
+   "Closing lockup on one horizontal axis: 'Share the experience' + icons | 'Companion Portal' 42px | 'David Whyte' 86px, right edge aligned with the pricing boxes (x≈1297)"
+  ],
+  "section_rhythm": "A scroll-scrubbed 3D experience whose length is the poem column's height (26 painted objects keyed to times on the camera clip) -> 'Become a companion to David Whyte's work' 52px -> one Roobert paragraph -> Subscriber Benefits (3 items: Poetry and essays, Video and talks, Maps; 32px H3 + 16px copy) -> 2 offer rows -> FAQ (5 rows) -> closing lockup + centred 12px credits and 'Restart the experience'. doc_height 5894px.",
+  "mobile_adaptation": "One column over the same fixed canvas, H2 kept at 52px, the cookie banner becomes a floating black card."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis: html class 'lenis', 49 hits in app.js.",
+  "preloader": "A 165px outline circle with 'Loading' and a serif tagline on #E6E7E2. The probe (8.6s settle) still captured it at shot 00 on desktop and mobile.",
+  "intro_sequence": "Loader circle until assets are ready ('start-watercolor-scene' event), then the loader leaves after 0.5s. DOM text reveals are class toggles fired by ScrollTrigger at 'top 92%' ('top 100%' for hero elements): [data-animation=pretitle] splits into chars with transition-delay .015s*i, [data-animation=title] into lines with .08s*i, revealItems children .1s*i. The +2.4s in that code marks when a split element is handed off after its transitions finish, not a delay after the loader. From frames/0: the oak is partly painted when the clip starts and fills as the cursor passes; the poem lines resolve out of blur.",
+  "scroll_techniques": [
+   "camera path baked in the GLB ('Camera_Action_Baked' AnimationClip) and scrubbed by scroll: progress = min(1, sectionProgress)*(duration - 10); the last 10s of the clip keep playing under the DOM sections after the poem",
+   "no pinned section: the poem column scrolls natively under Lenis and its height sets the length of the experience",
+   "26 painted objects each reveal at their own startAt time on the clip (0 to 40.5s; 23 'default' paint reveals, 1 'fade')",
+   "mouse position adds a small camera rotation (rotateForceX/Y)",
+   "fog and paint density change between landscapes; billboards slide past at different depths"
+  ],
+  "text_animation": "Poem: the DOM .xp-text column is drawn into a 2D canvas (Canela Text 100) and uploaded as an atlas holding a sharp, a low-blur and a high-blur copy (uSharpUvs, uLowBlurUvs, uHighBlurUvs). The fragment picks between them per pixel: blur rises with distance from the vertical centre band (uVisibleArea .95, edge wobbled by noise, cubicIn), with a scrolling noise pattern (quarticInOut) so words dissolve in patches, and with a noisy ring of radius 0.15 around the cursor; noise also displaces the UVs (0.15 x fade) and drives 'write' and 'fade' progress for entrances and exits (desktop_01, desktop_02, frames/0/f03-f05). 3D labels ('Open the landscape') are MSDF meshes whose blur is remapped by ndcVisibility = abs(-ndc.x*0.7 + 0.3) and by mouse distance (mouse noise input .82 -> .33 maps to .68 -> .93; global input 0 -> .35 maps to 1.3 -> 2.6; alpha input .08 -> .653 maps to 1.5 -> 2; noiseScale .05; mouse smoothed with cursorDamping 2.5). DOM headings use GSAP SplitText by lines.",
+  "image_animation": "Per-object paint-in: instanced billboards sample paint, mask and SDF atlases; a GPU fluid sim writes the paint mask. Hover: mouseForce 50, cursorSize 400, deceleration .98, attenuation .96, dt .008. Mousedown: mouseForce .3, cursorSize 500, attenuation .98. Advection: randomDirection .8, noise scales 1 and 2, gapVelocityBoost 3, gapAmount .468-.51, pressure iterations 1. Brush: depthInfluence 20, sizeMultiplier .5, intensityVariation .06, damping 8. Painting uses uPaintIntensity .8-1.4 with scripted reveal points per instance (uRevealPoints). Frames/0/f00-f01 show grey unpainted leaf blobs filling with green as the cursor passes; frames/0/f07 shows stray grey droplets near the cursor. The mp4s at wp-content/themes/davidwhyte/resources/assets/xp/videos/{desktop|mobile}/{base|over}/1-6.mp4 belong to the long-press full-paint component (.xp-videoTexture-base / -over), not to the hover paint-in. Trees carry leaf animation settings (colour, size, amplitude, duration).",
+  "page_transitions": "Long-press on '• Open the landscape' (frames/1, ~2.5s from f01 to f03): hovering first paints the viaduct in and the cursor ring grows around the label (f01); holding spreads a watercolor bleed with noisy, feathered edges from the hotspot, erasing the poem letter by letter (f02); the separate cutouts merge into a full-bleed painting of the viaduct, steam train and moor with drifting clouds (video), and a small underlined 'Back' link appears top-centre (f03). Hovering Back opens a brighter circular disc in the sky around it and plays a hover sound (f04, 'over-cta-back'). On Back it reverses to the cutout scene, but the sky and viaduct stay painted (f07).",
+  "hover_micro": [
+   "Ring cursor trails the dot (frames/0/f07) and grows around interactive labels (frames/1/f01)",
+   "Cursor carries a 'See the poems' text label (hover-text markup) whose characters animate in and out (opacity, stagger .02); its exact trigger was not traced",
+   "'Open the landscape' gains an underline on hover (frames/1/f01); frames/0/f07 catches it part-drawn under 'landscape'",
+   "Nav items reveal a 10px sub-label on hover ('Join David live', \"David's complete archive\")",
+   "Static underlined text links: 'View', 'Scroll to explore', 'Restart the experience'",
+   "Colour blooms into billboards under the cursor; hovering the 'Open the landscape' CTA sets a pointer cursor and plays 'over-cta-painting'"
+  ],
+  "cursor": "Custom SVG cursor (desktop only): a ~6-7px grey dot (r=1.2 in a 34-unit viewBox at 95px) and a hairline ring (r=16 of 34 at 95px, ~89px) that trails it and scales by state; a second 'in-circle-down' dot for the pressed state; a hover-text label. Hidden on mobile and tablet. (cursorDamping 2.5 in the code smooths the mouse for the label shader, not the ring.)",
+  "easing_curves": [
+   "CSS cubic-bezier(0.19,1,0.22,1) x83 (expo-out)",
+   "cubic-bezier(0.455,0.03,0.515,0.955) x25",
+   "cubic-bezier(0.25,0.46,0.45,0.94) x23",
+   "cubic-bezier(0.23,1,0.32,1) x13",
+   "cubic-bezier(0.165,0.84,0.44,1) x9",
+   "cubic-bezier(0.215,0.61,0.355,1) x7",
+   "cubic-bezier(0.4,0,0.1,1) x6 (= immg.posIn)",
+   "cubic-bezier(0.77,0,0.175,1) x6",
+   "cubic-bezier(0.175,0.885,0.32,1.275) x4 (back-out overshoot)",
+   "GSAP CustomEase house set: immg.zoomIn (0.9,0,0.4,1), immg.zoomOut (0.4,0,0.1,1), immg.posIn (0.4,0,0.1,1), immg.posOut (0.9,0,0.4,1), immg.expoOut (0.14,1,0.34,1), immg.expoIn (0.66,0,0.86,0)",
+   "GSAP (ease:\"...\" literals): none x114 (scrubs), power2.out x42, power3.out x33, sine.inOut x25, linear x21, power4.out x17, immg.posIn x13, power2.in x10, expo.out x8, power1.inOut x7"
+  ],
+  "duration_range_ms": "CSS 200-3000 (0.8s x44, 0.3s x43, 1s x40, 0.6s x27, 1.2s x17, 3s x12, 1.8s x9); GSAP .6s x49, .8s x41, .4s x35, 1.2s x32, 1s x29; paint reveal ~2.5s (frames/1)",
+  "stagger_ms": "15 per char (pretitles), 80 per line (titles), 100 per revealItems child; GSAP stagger .1 x10, .02 x9, {each:.2, from:'center'} x4, {each:.1, from:'end'} x4",
+  "choreography_notes": "Scene first, words second: the camera and the paint move, and the poem sharpens a beat later as it enters the focus band. Nothing snaps; motion runs on expo-out, sine.inOut or the immg house curves, and scroll-linked tweens use ease 'none' (x114). The one deliberate gesture (long-press) is the only strong motion and it is user-controlled.",
+  "evidence": [
+   "frames/david-whyte-experience/0/f00-f07",
+   "frames/david-whyte-experience/1/f00-f07",
+   "probes/david-whyte-experience/desktop_01-07.jpg",
+   "app.js grep: fluid config object, text-canvas shader (uSharpUvs/uLowBlurUvs/uHighBlurUvs), MSDF label shader, Camera_Action_Baked + onScroll, scene object config (startAt, titles), SplitText transition-delay code, video/sound paths, CustomEase definitions",
+   "index.html: cursor SVG, sound toggle, audio elements, .xp-text poem"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "mixed",
+  "art_direction": "Commissioned loose English watercolor of the Yorkshire places behind the poems (scene titles: Dales with Cows, Nidderdale Farm, North York Moors, Dales near Aysgarth, Dales with Sheep): a stone railway viaduct with a steam train over the moor, a lone oak, Friesian calves, a stone manor with a walking figure, sheep. Every object is isolated on white paper with torn, feathered edges, stands on its own painted ground patch, and throws a soft blue-grey skewed shadow (uShadowSkew .4, uShadowColor #b6b6b6, uLightColor #ececec), then is swallowed by fog with distance.",
+  "treatments": [
+   "cutout billboards with paint/mask/SDF atlases",
+   "fluid-sim paint-in reveal",
+   "paper normal-map lighting",
+   "fake skewed cast shadows",
+   "per-object painted ground patches",
+   "distance and height fog",
+   "EffectComposer blur passes + LUT/exposure grading",
+   "full-bleed painted video (base + over mp4) with drifting clouds on long-press"
+  ],
+  "crops_and_ratios": "Billboards are irregular silhouettes, never rectangles; the long-press painting is full-bleed ~16:10; there are no framed images anywhere in the experience.",
+  "formats": "probe: png 13 (3.92MB), jpg/jpeg 6 (2.81MB), glb 1 + ktx2 1 (1.60MB), woff2 9 (307KB); 2 <video> elements (loop, muted) feeding 6 base + 6 over mp4 textures, with separate desktop/ and mobile/ sets",
+  "evidence": [
+   "frames/david-whyte-experience/0/f00.jpg",
+   "frames/david-whyte-experience/0/f04.jpg",
+   "frames/david-whyte-experience/0/f05.jpg",
+   "frames/david-whyte-experience/1/f03.jpg",
+   "probes/david-whyte-experience/desktop_03.jpg",
+   "probe bytes_by_type_declared, asset_extensions"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r149 (probe three_revision 149) + EffectComposer + custom glslify ShaderMaterials; AnimationMixer playing the baked 'Camera_Action_Baked' clip from scene.glb; Draco and KTX2/Basis loaders; lil-gui, Tweakpane and stats.js debug tools shipped in the bundle",
+  "role": "world: a fogged 3D landscape of instanced painted billboards the camera travels through on a baked, scroll-scrubbed path",
+  "assets": [
+   "https://davidwhyte.com/wp-content/themes/davidwhyte/resources/assets/xp/models/scene.glb",
+   "https://davidwhyte.com/wp-content/themes/davidwhyte/resources/assets/xp/textures/grounds/atlas.ktx2",
+   "(bundle) /xp/msdf/CanelaText-Light/CanelaText-Light.json + .png (MSDF font atlas)",
+   "(bundle) wp-content/themes/davidwhyte/resources/assets/xp/videos/{desktop|mobile}/{base|over}/1-6.mp4",
+   "(HTML) wp-content/themes/davidwhyte/resources/assets/xp/sounds/loop-main.mp3, loop-poem.mp3, loop-painting.mp3, over-cta-back.mp3, over-cta-painting.mp3"
+  ],
+  "materials_lighting_post": "Instanced billboard shader with per-instance uniform arrays (INSTANCE_COUNT x45): uPaintAtlasTexture + uMaskAtlasTexture + uSdfAtlasTexture with per-instance atlas remaps; paper normal map (strength 13, scale 3, displacement .01, lighter colour #e4e4ea); fog by Z and Y ranges (uFogAmountRangeZ/Y, uFogDensityRangeZ/Y, uFogState x63); ground shadow with spread 3, attenuation 15, skew .4, cutout shadow .4, paper shadow 1.7, depth .03. Post: EffectComposer with separable horizontal/vertical blur passes and a LUT pass with exposure (luminosityThreshold strings are present; their use was not traced).",
+  "interaction": "Scroll scrubs the baked camera clip; mouse adds slight camera rotation; the cursor is a fluid brush that paints colour into objects; raycast proxies make the MSDF labels clickable; long-press opens the full painting",
+  "performance_tactics": "Instancing with uniform arrays, texture atlases (KTX2/Basis), Draco-compressed GLB, video textures instead of large image sequences, gpu.isMobile branch that loads mobile/ video sets, audio preload='none' until the first click",
+  "fallback_mobile": "The same experience with mobile video sets and no custom cursor; mobile_01 caught the poem before the paintings streamed in. No reduced-WebGL path observed.",
+  "evidence": [
+   "probe globals/assets_3d/contexts (webgl2 5, webgl 1, 2d 4: the 2D contexts likely include the poem text canvas)",
+   "app.js grep: uniforms, shader source, Camera_Action_Baked, video path builder, e9 font asset list",
+   "index.html .xp-assets"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Thin top bar that hides on scroll: serif wordmark left, small Roobert links Home | Three Sundays | Companion Portal (active underlined, each with a 10px hover sub-label), black rectangular 'Coming soon'/Store button + cart + account icons right; an announcement link above ('Join the Three Sundays Series: ...', Canela 15px, #D8914C).",
+  "menu": "Context-swapped link sets in the markup (dynamic-pages): the Companion page shows the Store/'Coming soon' button, other page contexts show Poetry & Prose, Walking Tours, Events & Retreats, Speaking, Invitas, plus 'Back to ...' links for course/talk/film pages; a two-bar cta-menu button handles mobile.",
+  "buttons_links": "White filled rectangles with 2px radius and black Roobert ~16px ('Subscribe - $75 / year', 'Gift - $75 / year') inside 1px outline rows; underlined 'View' links in the FAQ; no fills or lifts on hover observed.",
+  "unusual_interactions": [
+   "Long-press to open a scene as a full painting",
+   "Cursor paints watercolor into the objects (fluid sim)",
+   "Poem lines focus and blur by position, scroll-driven noise and cursor proximity",
+   "3D-anchored MSDF '• Open the landscape' labels picked by raycast",
+   "Fullscreen poem view (.xp-fulltext; the jury's 'Poem - Full screen' element)",
+   "'Restart the experience' link at the end"
+  ],
+  "sound": "Yes, muted by default. Three ambient loops (loop-main, loop-poem, loop-painting mp3) crossfade by theme, and two hover SFX (over-cta-painting, over-cta-back). The first click anywhere loads and unmutes them; a sine-wave SVG toggle bottom-right (flat line in frames/0, wave in frames/1/f02-f06) mutes; audio mutes when the tab is hidden.",
+  "footer": "Closing lockup ('Share the experience' + Facebook/X icons, 'Companion Portal' 42px, 'David Whyte' 86px) over the fixed painting, then a centred 12px credits line about the awards (it reads 'David Whyte Experience by received the Site of the Month ...', a live typo) and a 'Restart the experience' link bottom-left (desktop_07)."
+ },
+ "content_voice": {
+  "headline_style": "Quiet sentence-case invitations in a hairline serif",
+  "copy_tone": "Contemplative and spare: poem excerpts with attributions carry the emotion, sales copy stays plain ('Annual Offer with One Week Free Trial')",
+  "examples": [
+   "Become a companion to David Whyte's work",
+   "What you can plan / is too small / for you to live."
+  ]
+ },
+ "tech_stack": {
+  "framework": "WordPress custom theme 'davidwhyte' (single webpack app.js, 3.97MB)",
+  "libraries": [
+   "three.js r149",
+   "GSAP 3.14.2 + ScrollTrigger + SplitText + ScrollToPlugin + InertiaPlugin + CustomEase (immg.* house eases)",
+   "Lenis",
+   "EffectComposer",
+   "dash.js (video streaming)",
+   "Mapbox GL v3.14.0 (Maps feature)",
+   "WooCommerce + Stripe",
+   "tarteaucitron (cookies)",
+   "reCAPTCHA",
+   "native <audio> ambient loops",
+   "lil-gui / Tweakpane / stats.js (debug, shipped)"
+  ],
+  "evidence": "probe libs_from_requests ['wordpress'], globals three_revision 149, top_hosts (js.stripe.com, api.mapbox.com, cdn.jsdelivr.net, reference.dashif.org); index.html script/link tags (mapbox-gl-js/v3.14.0) and .xp-assets; app.js version strings (3.14.2) and CustomEase.create calls"
+ },
+ "performance_accessibility": {
+  "requests": 79,
+  "weight_notes": "~11MB declared: png 3.92MB, jpeg 2.81MB, JS 1.61MB transferred (app.js 3.97MB raw, including dash.js, three.js and debug GUIs), 3D 1.60MB, other 0.54MB, woff2 0.31MB, plus streamed mp4 textures. Loader shown ~8s on the probe.",
+  "reduced_motion": "None: probe reduced_motion_rules 0 and no prefers-reduced-motion in app.js.",
+  "contrast_issues": "Black on #E6E7E2 passes for DOM text (~16.9:1). The ochre #D8914C announcement link is ~2.1:1 and fails. The poem IS in the DOM (.xp-text divs, with pasted 'gmail_default' wrappers) but is displayed through WebGL with deliberate blur outside the focus band, so sighted legibility depends on scroll position; the 3D 'Open the landscape' labels exist only in WebGL. The Thin 100 serif at 32px on fog is fragile. In desktop_05/06 the viaduct painting runs behind FAQ questions and lowers legibility. Accessibility dev score 6.8 is the lowest sub-score.",
+  "mobile_quality": "No horizontal overflow; H2 52px at 390px; the same WebGL experience with mobile videos; the cookie card covers the lower third of mobile_01.",
+  "dev_scores": {
+   "overall": 7.29,
+   "semantics_seo": 7.2,
+   "animations": 8.0,
+   "accessibility": 6.8,
+   "wpo": 7.4,
+   "responsive": 7.2,
+   "markup": 7.0
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Fluid-sim watercolor paint-in",
+   "why_it_works": "The cursor becomes the painter's brush, which is the poem's own metaphor, and the noisy threshold gives real watercolor bloom edges instead of a soft circle reveal.",
+   "how_to_build": "Per object: a base (unpainted cutout on paper) and a paint layer in atlases, plus a mask. Run a small GPU fluid sim (256x256 ping-pong FBOs: advect, 1 pressure iteration, splat) where pointer velocity injects force and dye. Hover: force 50, radius ~400px, dt .008, attenuation .96, deceleration .98. Mousedown: force .3, radius 500. Object fragment: float m = texture2D(uSimulation, gl_FragCoord.xy/uResolution).r; m += (texture2D(uNoise, vUv*0.4).r - 0.5)*1.31*0.3; float paint = smoothstep(0.468, 0.51, m); vec3 c = mix(base.rgb, over.rgb, paint) * mix(0.8, 1.4, paint); c *= 1.0 - 0.15*(smoothstep(0.45,0.48,m) - smoothstep(0.48,0.51,m)); the last line darkens the edge like pooled pigment. The site uses paint/mask/SDF atlases for this; its base/over mp4s serve the long-press painting instead."
+  },
+  {
+   "technique": "Poem as a canvas texture with a noisy focus band",
+   "why_it_works": "Depth of field on type makes reading feel like remembering: lines surface and recede, so the poem paces itself without scroll-jacking, and the source text stays real DOM.",
+   "how_to_build": "Keep the poem as DOM text (the site uses .xp-text divs). Draw it into a 2D canvas with the webfont three times: sharp, lightly blurred (ctx.filter = 'blur(2px)') and heavily blurred (6px), packed into one atlas; upload as a texture on a screen-aligned quad that scrolls with the column. Fragment: float band = cubicIn(abs(vUv.y + (noise(uv*0.7) - 0.5)*0.4 - 0.5)*2.0/0.95); float n = quarticInOut(texture2D(uNoise, (uv - vec2(0.3, uScroll))*0.44).g); float ring = smoothstep(0., 1., cremap(abs(0.15 - length((vUv - uCursor)/vec2(1., aspect))), 0., 0.025 + n*0.2, 1., 0.)); float blur = max(band*0.7, smoothstep(mix(0.5, 0.3, band*band), 1., n)*mix(band, 0.7, ring)); alpha = mix(mix(sharp, low, smoothstep(0., .5, blur)), high, smoothstep(.5, 1., blur)). Displace UVs by (noise.br - 0.5)*2*0.15*max(band*0.4, ring*0.2) for the drift. Let the DOM copy stay readable to screen readers (visually hidden rather than display:none)."
+  },
+  {
+   "technique": "Painted cutout billboards with skewed shadows in fog",
+   "why_it_works": "Flat paintings gain believable depth from three cheap cues (skewed contact shadow, fog, parallax) without modelling anything.",
+   "how_to_build": "InstancedMesh of planes; per-instance atlas remap vec4 for paint, mask and SDF textures. Shadow: a second instanced plane lying on the ground, sampling the mask alpha with uv.x += uv.y*0.4 (skew), colour #b6b6b6, alpha = mask * exp(-dist*15.0) * 0.4. Give each object its own painted ground patch. Fog: c = mix(c, vec3(0.902,0.906,0.886), smoothstep(fogNear, fogFar, -mvPosition.z)) plus height fog on world Y. Camera: animate it in Blender, bake it into the GLB as one clip ('Camera_Action_Baked' here) and set mixer time = min(1, scrollProgress)*(duration - 10) from Lenis; keep the last 10s for the sections after the story. Key each object's reveal to a clip time (startAt 0-40.5s here)."
+  },
+  {
+   "technique": "Long-press to open the full painting",
+   "why_it_works": "A deliberate, held gesture turns 'see more' into a small ritual that fits a poetry brand, and the ring cursor can teach it.",
+   "how_to_build": "pointerdown on the hotspot: tl = gsap.to(u.uReveal, {value:1, duration:2.5, ease:'sine.inOut'}); pointerup before completion: tl.reverse() at timeScale 3. Mask: float r = uReveal*1.6; float d = length((uv - uHotspot)*vec2(aspect,1.0)) + (fbm(uv*3.0) - 0.5)*0.35; float m = 1.0 - smoothstep(r - 0.06, r, d). Composite the looping painted video (a base wash mp4 plus an 'over' detail mp4 per scene, as here) over the cutout scene; erase the poem under the same mask; show a small underlined 'Back' link top-centre. Fill the cursor ring as progress with stroke-dashoffset (the site's ring only scales)."
+  },
+  {
+   "technique": "Hairline serif display on a fog field with line-staggered reveals",
+   "why_it_works": "Thin 100 serif at 52-86px reads as quiet authority; the sizes are big but the weight keeps the tone soft.",
+   "how_to_build": "Canela Text 100 (or another licensed hairline serif): wordmark 86px/1.0, H2 52px/1.24, H3 32px/1.25; Roobert (or a licensed geometric grotesk) 14-16px body. SplitText({type:'lines', linesClass:'line'}) with a mask wrapper; .line {transform: translateY(100%); transition: transform 1.2s cubic-bezier(0.19,1,0.22,1); transition-delay: calc(var(--i)*80ms)}; add the active class from a ScrollTrigger at 'top 92%'. Pretitles by chars at 15ms each. Keep the lines' resting state visible when JS is absent (set the hidden state only after JS adds a class). Do not reuse this serif + grotesk pairing on another site."
+  },
+  {
+   "technique": "3D-anchored hotspot labels that dissolve like the poem",
+   "why_it_works": "The labels belong to the landscape (they recede with it and dissolve in the same noise as the poem), so the call to action feels like part of the painting.",
+   "how_to_build": "The site renders them as MSDF text meshes (Canela Light atlas) placed at 'titles' empties exported in the GLB, rotated 90 degrees on Y, and picked with raycast proxies. Fragment: vec3 t = texture2D(map, vUv).rgb; float sd = median(t.r, t.g, t.b) - 0.5; float n = texture2D(uNoise, vLayoutUv*0.05).r; float blur = mix(1.3, 2.6, smoothstep(0.0, 0.35, n)) * mix(0.68, 0.93, smoothstep(0.82, 0.33, distance(uMouseNdc, vNdc))) * abs(-vNdc.x*0.7 + 0.3); alpha = smoothstep(-fwidth(sd)*blur, fwidth(sd)*blur, sd); smooth uMouseNdc with lerp factor 1 - exp(-2.5*dt). For accessibility, mirror each label as a real <button> projected to screen (v.copy(anchor).project(camera)) and keep a static underline on hover, never an animated one."
+  }
+ ],
+ "slop_risks": [
+  "Cream background / slop gray: the base #E6E7E2 (html #EFEAE2) is a warm bone-grey neutral. It works only because it is literally the fog and paper of the paintings. Copied without the painted world, it is the unchosen neutral.",
+  "Content hidden until a reveal fires: the landscape exists only in WebGL; until it loads the page is a 'Loading' circle (desktop_00, mobile_00). The poem is DOM text but is shown only through the canvas and deliberately blurred outside the focus band, and titles wait on ScrollTrigger class toggles. A copy must keep DOM text visible by default.",
+  "Underline-fill hover: '• Open the landscape' sprouts an underline on hover (frames/1/f01), caught part-drawn in frames/0/f07; the law bans animated underlines. Keep underlines static.",
+  "Fixed background that just follows the scroll: the canvas is position:fixed under every DOM section. It does move for a while (the last 10s of the camera clip play under Benefits, and the sky paints in between desktop_03 and desktop_04), but from desktop_05 to 07 it is one static viaduct painting running through the FAQ text (desktop_05). A copy should either keep it moving with the content or fade it back behind the reading sections.",
+  "Blur on text as decoration: per-glyph blur is the whole point in the poem, but copied onto UI copy or headings it becomes illegible haze (accessibility dev score 6.8).",
+  "Italic accent word: Canela Text Italic is loaded and renders in 3 nodes (location not identified). Using it for one emphasised word in a serif headline is the italic-accent tell.",
+  "Custom dot-and-ring cursor: a common template move. It is justified here only because it doubles as the brush, carries a label and grows around hotspots; it is also correctly hidden on touch devices.",
+  "Hairline light border on boxes and bare hairline rules: the pricing offers are 1px light-outline boxes and the FAQ rows are divided by full-width 1px square-capped rules; both are law tells when copied without the painted world behind them.",
+  "Serif-headline-plus-clean-sans house pairing: Canela Text 100 headings over Roobert body is exactly the pairing the law says not to reuse across sites; 'Become a companion to David Whyte's work' at 52px also brushes the big-serif-statement block."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop and both mobile shots viewed individually. desktop_00 and mobile_00 are the loader; desktop_01-02 show the experience's last scene (poem focus band, viaduct billboards); 03-07 show the DOM sections over the fixed canvas. Both jury videos viewed frame by frame (8 each); they show the site scaled inside a presentation frame, so pixel sizes from them are approximate. Code: index.html + app.js (3.97MB) grepped locally for eases, durations, staggers, uniforms, fluid config, MSDF shader, SplitText delays, video paths. Measured type, colours and assets come from the probe and pixel samples. INFERRED: the poem MSDF face is Canela; the poem is not in the DOM; the hidden overlay menu; the poem's px size. The mobile paintings did not appear within the probe window. audit (2026-09-25): re-viewed desktop_00/01/02/03/04/05/07, mobile_00/01 and all 8 frames of both jury clips, and re-grepped the cached app.js and index.html. Fixed: the poem is NOT MSDF and IS in the DOM (.xp-text rasterised to a 2D canvas atlas with sharp/low/high-blur copies); MSDF (CanelaText-Light atlas) is used for the 3D 'Open the landscape' labels, which are WebGL meshes rather than DOM links; the camera is a baked GLB clip scrubbed by scroll, not a pinned ScrollTrigger dolly; base/over mp4s belong to the long-press painting, not the hover paint-in; sound 'none' -> muted ambient loops + hover SFX with a sine-wave toggle; 'tracking never tightened' -> header wordmark -0.5px; ring ~70px -> ~89px (SVG spec) and cursorDamping re-attributed to the label shader; SplitText '+2.4s after the loader' re-read as a post-transition hand-off; 'Back' is top-centre; power1.inOut x15 -> x7, power2.out x45 -> x42; first_screen display 86 -> ~30 (86 is the closing lockup); closing lockup is on one axis, not one baseline. Added: Yorkshire scene titles and per-object startAt times, immg CustomEase set, #D8914C link and its contrast, hover sub-labels, footer typo, law tells for hairline boxes/rules and the serif + grotesk pairing. Still inferred: poem and label px sizes (pixel estimates), the 'See the poems' cursor label's exact trigger, luminosityThreshold usage."
+}

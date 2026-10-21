@@ -1,0 +1,308 @@
+{
+ "slug": "era-residence",
+ "title": "ERA Residence",
+ "live_url": "https://www.era-residence.com/",
+ "award": "Awwwards Site of the Day, Aug 31 2026 (+ Honors). Credits: Ivan Chopei, Maksym Stepenko, The First The Last",
+ "scores": {
+  "overall": 7.61,
+  "design": 7.81,
+  "usability": 7.3,
+  "creativity": 7.73,
+  "content": 7.53,
+  "dev": {
+   "semantics_seo": 7.4,
+   "animations": 8.0,
+   "accessibility": 7.2,
+   "wpo": 7.0,
+   "responsive": 7.0,
+   "markup": 7.4
+  }
+ },
+ "industry": "Real estate / boutique residential development (25 residences, Estepona, Costa del Sol)",
+ "signature": "The Mediterranean arch is the whole motion system: the preloader is a plum CSS mask with an arch-shaped window that rises from below the fold, widens and then dives through into the pool render, and the same doorway/disc geometry carries the scroll story, all set in a compressed Didone (Ambroise François) wordmark crossed by a Sloop Script signature.",
+ "first_screen": {
+  "composition": "OBSERVED in sequence. desktop_00 (preloader): flat velvet-plum #340C24 field inside a 1px hairline frame with 45-degree chamfered corners, inset about 22px. A white four-petal flower mark (~44px) sits top-centre. Centre lockup: 'ERA / RESIDENCE' in condensed high-contrast caps with 'Estepona' in a looping script crossing the bottom of RESIDENCE. 'C O S T A' and 'D E L  S O L' in tracked serif caps flank it at the same baseline (x~245 and x~1040). A 1px vertical progress line sits at bottom centre above two lines of 10px bold extended caps ('ERA RESIDENCE / A PLACE TO RETURN TO.'). A giant script 'Estepona' watermark sits behind everything at 5% opacity (code: .preloader_bg_a tweened to opacity .05; inferred: it is the 349px x12 bucket in font_sizes, family not measured). desktop_01: an arch window (about 485px wide, round top, double hairline outline) has risen from the bottom and shows the daytime pool render through the plum. The ERA/RESIDENCE lockup has already gone while COSTA / DEL SOL stay. The chamfered frame's bottom hairline breaks where the arch's two concentric rims cross it (the line stops at x~437 and resumes at x~1003), so the frame and the arch read as one drawing. desktop_02 (hero settled): full-bleed daytime architectural render (blue sky, white cubic villas, bougainvillea, pool, lifestyle figures). White wordmark 'ERA / RESIDENCE' at 172.8px centred at the top (cap tops ~y55, RESIDENCE baseline ~y325), script 'Estepona' 108px overlapping it. 'A PLACE' (left, x~318) and 'TO RETURN TO' (right, x~980) at 36px on one baseline y~475 bracket a tiny 'BY DAY ---- BY NIGHT' toggle. Chrome: a rotating circular text-ring logo top-left (~105px), a two-line underlined serif CTA 'SELECT AN APARTMENT' plus 'BOOK A CALL / CONTACT' in 8px tracked caps top-right, a left rail with a scroll-percent readout ('00') over a hairline and a vertical 'SCROLL' + arrow at the bottom-left, and pulsing ring hotspots pinned on the render. A cookie card (bottom-right, ~275x338) with a huge navy script 'Cookies' bleeding off its right edge sits over the page in every desktop shot after the preloader (desktop_02-07). It repeats the preloader's chamfered hairline frame inside the card.",
+  "what_owns_it": "image",
+  "display_type_px": 172.8,
+  "evidence": [
+   "probes/era-residence/desktop_00.jpg",
+   "probes/era-residence/desktop_01.jpg",
+   "probes/era-residence/desktop_02.jpg",
+   "probes/era-residence/probe.json measure.type.h1 / font_sizes_px / bg_colors",
+   "frames/era-residence/2/f00.jpg"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "ambroise-francois-std",
+    "role": "display",
+    "classification": "compressed high-contrast Didone-derived serif (Ambroise, the 'François' condensed width)",
+    "foundry": "Typofonderie (Jean François Porchez), served by Adobe Fonts",
+    "source": "probe fonts_loaded + root_vars --_fonts---font-display; Typekit kit pig8glj in HTML"
+   },
+   {
+    "name": "sloop-script-three",
+    "role": "accent",
+    "classification": "formal connecting script",
+    "foundry": "Font Bureau (Sloop), served by Adobe Fonts",
+    "source": "probe fonts_loaded + root_vars --_fonts---font-accent"
+   },
+   {
+    "name": "Maison Neue Extended",
+    "role": "body",
+    "classification": "extended neo-grotesk (400 body, 700 labels)",
+    "foundry": "Milieu Grotesque",
+    "source": "probe fonts_loaded + root_vars --_fonts---font-body"
+   }
+  ],
+  "display_size_px": 172.8,
+  "body_size_px": 11.7,
+  "scale_notes": "Tokens are authored in px at a 1600px design width as calc(Nrem/16) with html font-size = 1vw (14.4px at 1440), so everything scales fluidly by 0.9 at 1440. Measured at 1440: h1 172.8 (token 192), h2 122.4 (136), h3 86.4 (96), h4 56.7 (63), h5 36 (40), h6 25.2 (28), p1 11.7 (13), l1/p2 9.9 (11), l2 8.1 (9). Script accents a1 172.8 and a2 108. Display-to-body ratio about 14.8:1, a very steep poster scale with almost no middle.",
+  "tracking_leading": "Display: letter-spacing -0.024em (-4.15px at 172.8), line-height token 87.5% but measured 150.3px (87.0%). h2 88.2%, h3 91.7%, h4 -0.016em/88.9%. Body p1 -0.024em / 138.5%. Labels l1 +0.048em (0.475px), l2 +0.32em. Spaced-caps token c1 25rem/16 with +0.8em tracking ('C O S T A', 'S P A I N').",
+  "case_and_style": "Display is always uppercase compressed serif; the script is sentence case and overlaps the caps as a signature ('Estepona', 'yours'). Body copy is sentence case, labels are bold extended caps. Numerals are set in the same condensed caps inside statements ('ONLY 25 RESIDENCES', desktop_06). They also appear as the 2-digit scroll percentage, as drive times in 10px bold caps ('50 MIN') and as area ranges in HTML ('178 — 202 m²'). Source text is sentence case, and the caps come from CSS text-transform.",
+  "signature_moves": [
+   "Condensed Didone caps crossed by a looping script word that overlaps the cap baseline (lockup 'ERA RESIDENCE Estepona', 'THE COAST YOU WANTED yours THIS YEAR')",
+   "Words split across the viewport on one baseline: 'A PLACE' left, 'TO RETURN TO' right, the hero between them",
+   "Stepped multi-line display with ragged indents ('NEW / GOLDEN / MILE' with GOLDEN pushed right so it runs across the photo edge)",
+   "Type set on the rim of a circle ('THREE REASONS TO CHOOSE ERA' on the top arc of a powder-sky disc) whose word-spacing scrubs from 0 to 10rem",
+   "Chars reveal with a 3D hinge (rotateX 90 from the bottom plus a 10rem x offset) so letters seem to stand up and slide in"
+  ],
+  "mobile": "mobile_measure: h1 90px (lockup) and 67.5px, no horizontal overflow. mobile_00 keeps the centred preloader lockup with the script under it and drops the COSTA / DEL SOL flankers. Measured from the 2x screenshot, the caps are about 37px tall with a 48.5px baseline pitch, so roughly 55px font-size. The 90px in mobile_measure belongs to an h1 that this shot does not show (inferred: the hero wordmark). mobile_01 was captured while the first-visit preloader was still running: the arch is about 178px (46vw) wide. The page behind had already been scrolled programmatically to the 'reasons' disc, so the arched 'REASONS TO CHOOS...' is clipped by the arch (arch widths switch from 24vw/36vw to 40vw/50vw under 992px, code). It is not the settled mobile layout."
+ },
+ "color": {
+  "mode": "section-shifting",
+  "base": "#F3F3EC bone off-white (html background, token base-0) under most content sections",
+  "ink": "#17233B deep navy (token base-1000), with alpha steps #17233B99/4d/1a/0d for grey text, disabled, lines and fills",
+  "accents": [
+   "#340C24 velvet plum: observed only on the preloader field. bg_colors counts it on 11 elements. The plum matte behind the Gallery and Horizontal-scroll element videos is the Awwwards presentation background, not evidence of a plum gallery.",
+   "#B5CEDB powder sky: 'reasons' disc, REAL-LIFE LOCATION section, the wash between sections, and the flat sky behind cutout renders (frames 0/f05 sky pixels are rgb(181,208,217) with stdev 0.3, identical to the f04 section field)",
+   "#F8BBCB blush bloom: brand token only. It is not in the measured bg or text colour lists, and the pink on screen comes from the bougainvillea footage.",
+   "#FFFFFF: type over photography",
+   "#E23D3D / #FFA800 / #1BA64B: form states only"
+  ],
+  "ratio": "inferred: about 45% photography, 35% bone, 10% powder sky, 5% plum, 5% navy ink",
+  "section_shifts": "Yes. Plum preloader, then the full-bleed render, then a powder-sky disc rises over the photo and fills the screen (frames 0/f02-f04), then a golden-hour pool render cut out and composited on the same powder-sky field with an architecture pull quote (its sky is the flat section colour, frames 0/f05), then a powder-sky wash fades over that image as the transition to the next section (frames 0/f06), then bone for the concept and horizontal location track, with cloud layers opening onto an aerial photo. Header items recolour one by one: initThemeChange gives each [data-theme] element theme_on-light/dark/color depending on which [data-bg] section is under that element's own centre.",
+  "texture": "None as a grain layer. The texture is organic: magenta bougainvillea shot as looping webm with alpha (6 videos, assets.era-residence.com/flowers/bougainvillea-flowers_0N.webm) hanging into corners over the bone, and a 5%-opacity giant script watermark on the plum preloader.",
+  "notes": "The palette is taken from the render itself (sky blue, bougainvillea pink, stone, navy shadow) and then toned down: powder sky and blush are the sky and flowers pushed toward pastel. Plum is observed only on arrival. The bone #F3F3EC is a warm, faintly yellow off-white (R=G>B), close to the 'cream editorial' default. The strongest colour idea is that the powder-sky field doubles as the sky: architecture renders are cut out and set on it (desktop_05 bottom-left rooftop cutout, frames 0/f05), so the brand swatch reads as the real sky and the flat section never feels like an empty fill."
+ },
+ "layout": {
+  "grid": "Side offsets --offset-l/r 48 token = 43.2px at 1440, grid gap 16 token = 14.4px, 58 grid containers. Cell units 1-cell-h 136 / 1-cell-v 96 tokens (122.4 x 86.4px) set the vertical rhythm. Fixed chrome: logo ring at ~(55,55), CTA stack top-right to x~1396, scroll rail at x~104.",
+  "density": "airy",
+  "alignment": "Centred axis for lockups, statements and body blocks (desktop_05, desktop_06). Asymmetric in the horizontal track: stepped display left, tall portrait photo centre-right, text column far right (desktop_07).",
+  "composition_moves": [
+   "Arch window as the reveal shape (preloader). inferred from code only: a second, desktop-only .arch-scroll-area scrubs polygon clip-paths on two panels to open a window around an .arch-w image. It was not captured, and the Gallery element video shows no arch.",
+   "Cutout architecture on the flat powder-sky field, so the section colour becomes the sky (desktop_05 bottom-left rooftop cutout rising in; frames 0/f05 pool render whose sky is the section fill)",
+   "Half-disc rising over a full-bleed photo with type on its rim, growing to fill the screen as the next section's background",
+   "Display word crossing a photo edge ('GOLDEN' overlaps the portrait terrace render in desktop_07)",
+   "Photo-cutout foliage (alpha webm bougainvillea) hanging into the top-left and bottom corners, cropped by the viewport",
+   "Tiny centred 2-slide carousel (372x187px) floating in a big powder-sky field under a 172px headline (desktop_05)",
+   "Hand-drawn route line joining place names with drive times across the width (frames 3/f03-f04, in a vertical section after the horizontal track: the route moves up about 400px with unchanged x between f03 and f04)",
+   "Chamfered-corner hairline frame shared by the preloader (inset ~22px, 45-degree corners) and the cookie card, a bespoke silhouette instead of a rounded rectangle"
+  ],
+  "section_rhythm": "Arrival (plum, arch) > immersive full-bleed hero with hotspots > disc transition > centred statement on powder sky > cutout render on the powder-sky field with a pull quote > wash transition > bone concept statement framed by flowers > pinned horizontal location track (stepped title, portrait image, 'BETWEEN MARBELLA AND ESTEPONA' column, circular CTA) > vertical 'THE COAST YOU WANTED yours THIS YEAR' with the drawn route > cloud cutouts rising over a drone aerial > apartment-type carousel ('Drag to see more' in HTML) and listings. Scale alternates between full-bleed photo and small centred islands of text on flat colour, so each photo reads as an event.",
+  "mobile_adaptation": "breakPoint 992px. Below it the arch uses 40vw/50vw, the hero-image start scale becomes 1.15 instead of 0.75, parallax can be disabled per wrapper (data-mob='off'), the horizontal track, magnetic buttons, section snap and custom scrollbar are desktop-only (gsap.matchMedia min-width 992). No horizontal overflow at 390px (probe)."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis 1.3.21 (unpkg): new Lenis({duration:1.2, smoothWheel:true, touchMultiplier:2, easing:t=>Math.min(1,1.001-2**(-10*t))}); a second Lenis per inner scroll area with duration 0.6. Section snap on desktop: 40ms after Lenis scroll stops, any [data-snap] section more than 50% in view is scrolled to with duration 1.2 and ease 'Ease'. html class 'lenis' in probe.",
+  "preloader": "Code (animatePreloaederIntro): scroll locked. A plum layer [data-preloader] is cut by a four-layer CSS mask: three linear-gradient(white,white) slabs (left, centre-above-arch, right) plus an arch SVG (preloader_arch-l.svg), all sized from custom properties --arch-w, --arch-h = arch-w/(560/2592) and --arch-y. Timeline: text parts reveal (chars A/H, lines P, containers, clip-path line), wait 1.2s, watermark to opacity .05 and decor in over 1.2s, progress track yPercent -100 to 0 over 4s on a stuttering CustomEase 'loaderEase', then --arch-w 24vw to 36vw and --arch-y 104vh to 15vh over 1.5s ease InOut(.75,0,.25,1), then at 90% of that --arch-w to 125 and --arch-y to -100vh over 2.4s ease diveIn(.6,0,0,1) while the hero image scales .75 to 1 from centre-top over 1.5s. Returning visitors (sessionStorage hasVisited) get a short version with no text and no progress bar. Computed first-visit length: 1.2s hold + 1.2s watermark fade + 4.0s progress + 1.35s arch rise (to the 90% overlap) + 2.4s dive, about 10.2s before unlockScroll(). Observed in desktop_00 and desktop_01.",
+  "intro_sequence": "After the arch dive, hero chars resolve with reveal A (frames 0/f07 shows RESIDENCE and 'Estepona' mid-reveal: right-hand letters still translucent and spread along x).",
+  "scroll_techniques": [
+   "pin",
+   "scrub",
+   "parallax",
+   "horizontal",
+   "reveal",
+   "snap",
+   "colour-wash transition",
+   "circle-text word-spacing scrub",
+   "clip-path draw"
+  ],
+  "text_animation": "Six reusable reveal types, each with reveal / hide / initial states and SplitText 3.15. A (display chars): from opacity 0, rotateX 90, x 10rem, transformOrigin centre bottom to 0, 1.2s, stagger .1, ease Out(.25,1,.5,1). H (heading chars): from opacity 0, yPercent 50, rotateY 90, 1.2s, stagger .05. P (paragraphs): SplitText lines with mask:'lines', yPercent 110 to 0, 1.2s, stagger .1. ctn: opacity 0, y 3.333rem to 0. line: clipPath inset(0 0 100% 0) to inset(0). slide: clip polygon(100% 0,100% 0,101% 100%,125% 100%) to a full rectangle while the inner image goes scale 1.5, xPercent 25 to 1/0, 1.2s InOut. Every reveal waits delayReveal .3s plus .1s per element index. Hides are faster and mirrored: 0.4s, ease In(.5,0,.75,0), half the stagger (a quarter for H chars), exiting the opposite way (rotateX -90, x -10rem, origin centre top). Scroll reveals fire once at 'top bottom' (or 'left bottom' inside the horizontal containerAnimation).",
+  "image_animation": "Parallax wrappers: data-parallax='img' yPercent -15 to 15, scrub .5; 'img-out' 0 to 20; 'img-in' -20 to 0. Hero scroll area (initTranistionFlow): hero text moves up 1.25x the image height while the image moves up 1x (differential parallax), then the image scales 1 to 2 from origin 50% 75% with ease In, so you 'dive' into the pool. This is from code: frames 0/f00-f02 show the pan, but the left building keeps the same size, so the zoom is not visible in the frames. Other scrubbed moves in code: .amen-cms scales 1 to 2 while .amen-w fades out, the .loc-w background eases from scale 1.15 to 1 from centre bottom, and the footer's [data-footer-clip] goes from clip-path inset(0) to inset(8% 22%) (4% 32% on mobile) while the footer content scales from .75 to 1. None of these were captured. Day/Night: two renders from the same camera, the incoming one fades opacity 0 to 1 over .8s InOut on top (frames 2/f00, f05, f06).",
+  "page_transitions": "Barba core: beforeLeave runs the hide state on every visible reveal element, leave fades the container to 0 (.8s In), afterLeave kills all ScrollTriggers and local Lenis instances, enter fades the new container 0 to 1 (.8s InOut) and re-inits scripts.",
+  "hover_micro": [
+   "Link hover (initLinkHover): the label's chars flip out (opacity 0, x .4em, yPercent -25, rotateY -90, .8s Out, stagger .025) while a duplicate set flips in from x -.4em, yPercent 25, rotateY 90 after .2s; the underline scaleX 1 to 0 from the right, and grows back from the left on leave",
+   "Magnetic buttons: offset = (pointer-0.5)*strength/16 em with default strength 25, power4.out 1.6s, inner label 2s; release elastic.out(1,0.3) 1.6s",
+   "Hotspot pins: 1px rings pulse from 1x to 1.6x size and opacity 1 to 0, 1.2s In, stagger .2, repeat -1; the plus icon rotates -90 on enter and -180 on leave (.8s Out)",
+   "Property cards ([hover-card]): on hover the heading, paragraph and line run the H/P/line reveals, and hide on leave. The site's only Lottie (0.77MB json) is the 'The First The Last' agency credit logo (initTFTLjson on .credits), not a card: hover scrubs it to 50% over 1s and leave scrubs it to 100%.",
+   "Circular logo ring spins 30deg/s on gsap.ticker; Lenis velocity boosts it to 30+10*|v| deg/s and flips direction with scroll direction, easing back over 1.2s after 100ms idle",
+   "Modal CTA card flips in from scale 0, rotateX -90, yPercent -100, rotate -25 to rest, 1.2s Out, with the overlay fading in (initModalCta, code only)"
+  ],
+  "cursor": "Native cursor. A custom scroll rail thumb sets cursor grab/grabbing and drives lenis.scrollTo(progress*max, {duration:3.2}). cursor:none count 0 in probe.",
+  "easing_curves": [
+   "cubic-bezier(0.76,0,0.24,1) --ease-in-out (CustomEase 'InOut' 0.75,0,0.25,1)",
+   "cubic-bezier(0.25,1,0.5,1) --ease-out ('Out', 50 uses)",
+   "cubic-bezier(0.5,0,0.75,0) --ease-in ('In')",
+   "cubic-bezier(0.25,0.1,0.25,1) --ease ('Ease')",
+   "cubic-bezier(0.333,0,0.667,1) --ease-write ('Write')",
+   "CustomEase diveIn 0.6,0,0,1",
+   "CustomEase horScroll 0.25,0,0.75,1",
+   "CustomEase loaderEase: stepped path with plateaus for a fake-loading progress bar",
+   "elastic.out(1, 0.3) magnetic release",
+   "power4.out magnetic follow"
+  ],
+  "duration_range_ms": "400 (S, hides) / 800 (M, hovers, fades) / 1200 (L, reveals); 1500-2400 for the arch; 3200 scrollbar drag; 4000 fake progress; 32s CSS animation (inline CSS defines @keyframes marquee; which element uses it was not captured)",
+  "stagger_ms": "100 base (chars A, lines P); 50 for H chars; 25 for link-hover chars; hides at half the enter stagger; 200 between pulse rings",
+  "choreography_notes": "One token set drives everything (durS .4, durM .8, durL 1.2, stagger .1, 5 named eases), so every reveal on the site shares a tempo. Enters are slow and hinged in 3D; exits are three times faster with the mirrored ease. Big transitions are shape-led (arch rises, then dives; disc rises, then fills; wash fades over photo; clouds part), and text reveals ride on top of them rather than competing. From frames 0 (16s clip, 2s spacing): hero at 1s, panned down to the pool by 3s (no visible zoom yet), disc with rim type rising by 5s, disc fills the screen with 'REA...' hinging in by 7s, REAL-LIFE LOCATION settled by 9s. Frames 3 (17s, ~2.1s spacing): f00 1.1s the concept statement exits left while 'NEW' hinges in char by char; f01 3.2s 'NEW / GOLDEN / MILE' with GOLDEN crossing the portrait (lines slide against each other, xPercent wrap [-5,25,-15] to [5,-25,25]); f02 5.3s the track reaches 'BETWEEN MARBELLA AND ESTEPONA' and the circular CTA. By f03 (7.4s) the page is vertical again: 'THE COAST YOU WANTED yours THIS YEAR' is mid-reveal and the route line is half drawn (clip-path inset(0 100% 0 0) to inset(0), 2.4s Out after a .8s delay, fired once, not scrubbed). At f04 (9.6s) the route has moved up with unchanged x and cloud cutouts rise over the aerial, which is fully clear at f05 (11.7s). f06 is a blank bone frame (a cut), and f07 shows the concept lines masked mid-reveal.",
+  "evidence": [
+   "frames/era-residence/0/f00-f07",
+   "frames/era-residence/3/f00-f07",
+   "frames/era-residence/2/f00, f03, f05, f06",
+   "frames/era-residence/1/f00, f03, f06",
+   "probes/era-residence/desktop_00-07",
+   "bundle grep: assets.slater.app/slater/20164/60900.js (59KB) and inline CSS in the HTML"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "mixed",
+  "art_direction": "Photoreal architectural CGI of the development in hard Mediterranean midday light: saturated cobalt sky, white cubic volumes, travertine stone, pergolas covered in magenta bougainvillea, staged lifestyle figures (orange swimsuit, waiter with drinks). A dusk twin of the hero render (warm window light, deep blue sky) for the Day/Night toggle. It is re-staged as well as relit: the daytime crowd (orange swimsuit, waiter with drinks) is replaced by one couple on the left terrace (frames 2/f00 vs f06). A golden-hour pool render is cut out along the skyline and set on the powder-sky field. Real drone aerial of the Estepona coastline with mountains, and cloud cutouts for a transition. Alpha-channel bougainvillea footage as the recurring organic frame.",
+  "treatments": [
+   "cutout render composited on the flat section colour so the brand swatch is the sky (frames 0/f05)",
+   "arch-shaped window reveal",
+   "full-bleed with pulsing hotspot pins that open info cards ('CRAFTED TO ENDURE')",
+   "day/night crossfade of identical camera renders",
+   "scroll zoom (scale 1 to 2) into the hero",
+   "colour wash (powder sky) faded over a photo as a section bridge",
+   "cloud layers parting to reveal an aerial",
+   "clip-path slide reveal with inner scale 1.5 to 1",
+   "parallax yPercent -15 to 15",
+   "cutout flowers as looping alpha webm cropped by the viewport",
+   "footer image shrinking into an inset frame via clip-path inset(8% 22%), code only"
+  ],
+  "crops_and_ratios": "Full-bleed 16:9+ for hero and quote sections; tall portrait (~533x813, about 2:3) in the horizontal track; small 2:1 landscape (372x187) in the location slider; arch top (semicircle over a tall rectangle) for the arrival.",
+  "formats": "Probe: 41 img, 8 video, 86 svg, 0 picture. Extensions: 22 webp, 10 avif, 16 webm, 3 png, 1 gif, 1 json (Lottie). Declared bytes: webm 41.1MB, webp 11.7MB, png 3.9MB, json 0.77MB, avif 0.76MB. The code strips .webm sources on Safari and reloads the videos.",
+  "evidence": [
+   "probes/era-residence/desktop_02.jpg",
+   "probes/era-residence/desktop_04.jpg",
+   "probes/era-residence/desktop_06.jpg",
+   "probes/era-residence/desktop_07.jpg",
+   "frames/era-residence/2/f06.jpg",
+   "frames/era-residence/3/f04.jpg",
+   "frames/era-residence/3/f05.jpg",
+   "probe.json videos / asset_extensions / bytes_by_type_declared",
+   "frames/era-residence/0/f04.jpg + f05.jpg (sky pixel match)"
+  ]
+ },
+ "three_d": {
+  "present": false,
+  "stack": "none (pre-rendered CGI stills and video; 3D feel from CSS rotateX/rotateY char flips and translateZ(10) on parallax layers)",
+  "role": "none",
+  "assets": [],
+  "materials_lighting_post": "n/a. Probe contexts show only 2 2D canvases, no WebGL, and assets_3d is empty.",
+  "interaction": "none",
+  "performance_tactics": "n/a",
+  "fallback_mobile": "n/a",
+  "evidence": [
+   "probe.json contexts {2d:2}, assets_3d []"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "No nav bar. Four fixed corner elements: a rotating circular text-ring logo top-left, a stacked two-line underlined serif CTA 'SELECT AN APARTMENT' plus 'BOOK A CALL / CONTACT' top-right, and a custom scroll rail on the left (2-digit percentage label, hairline track, draggable thumb) with a vertical 'SCROLL' and arrow at the bottom-left. Each element recolours independently according to the section under it.",
+  "menu": "Not observed in screenshots. From code: initModalMenu locks scroll, forces the header items to theme_on-dark, rotates the two burger lines -45 and 45 (.8s InOut), fades the overlay (.8s Out) and runs the A/H/P/ctn reveals on the menu content. initModalCta flips a card in (see hover_micro).",
+  "buttons_links": "Primary CTA is a text link, not a button: Ambroise caps with an underline, and on hover the chars flip in 3D while the underline wipes out and back. 'VIEW AVAILABLE APARTMENTS' is a circular outline button (~190px) with small caps inside and a partial ring stroke (desktop_07, frames 3/f02). Accept / Decline in the cookie card are underlined serif caps.",
+  "unusual_interactions": [
+   "Day/Night toggle crossfades the hero between identical-camera day and dusk renders",
+   "The Day/Night divider line re-anchors to the active label (.hero-s_tabs_divider gets is-day / is-night), and BY NIGHT drops to about 40% white when inactive",
+   "Hotspots on the hero render open tip content. The HTML carries copy such as 'Crafted to Endure' and 'Light & Flow', but the card styling was not captured.",
+   "Scroll rail thumb is draggable and seeks with a 3.2s Lenis glide",
+   "Logo ring speed reacts to scroll velocity and direction",
+   "Section snap after scroll idles (desktop)",
+   "Masterplan listing and filter/sort UI (initFilter, initSort; Awwwards element 'Listing page')"
+  ],
+  "sound": "none observed",
+  "footer": "Not captured in the 8 desktop steps (doc height 24605px). Awwwards elements list a contact page with a map and a 404."
+ },
+ "content_voice": {
+  "headline_style": "Short uppercase declaratives in the compressed serif, often split across the layout or completed by a script word: 'A PLACE ... TO RETURN TO', 'THE SPACE TO / Live in', 'THE COAST YOU WANTED yours THIS YEAR'. Statement paragraphs in 56.7px caps carry the facts.",
+  "copy_tone": "Calm, aspirational resort voice anchored by hard specifics: 25 residences, 104 to 244 sq.m, drive times (Estepona 10 min, Marbella 25 min, Malaga Airport 45 min), 'designed as a community, not a complex'. Flaws: the architecture pull quote ends mid-phrase ('...than a standard' with no noun, in both HTML and frames 0/f05), the name alternates between 'ERA Residence' and 'ERA Residences', and the copy leans on em dashes (14 in the page text).",
+  "examples": [
+   "A PLACE TO RETURN TO.",
+   "THE COAST YOU WANTED yours THIS YEAR",
+   "DESIGNED AS A COMMUNITY, NOT A COMPLEX"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Webflow (jQuery 3.5.1, webflow.js) with custom code loaded as an ES module from Slater (assets.slater.app/slater/20164/60900.js, about 59KB unminified-ish)",
+  "libraries": [
+   "GSAP 3.15.0 (jsDelivr)",
+   "ScrollTrigger",
+   "SplitText",
+   "CustomEase",
+   "Lenis 1.3.21",
+   "@barba/core",
+   "lottie-web 5.12.2",
+   "Adobe Fonts / Typekit"
+  ],
+  "evidence": "HTML script tags, probe globals (gsap 3.15.0, ScrollTrigger, Lenis, barba, lottie, Webflow), libs_from_requests, and bundle grep (function names initPreloader, initTranistionFlow, initThemeChange, initLogo, initScrollBar, initMagneticEffect; CustomEase.create calls). Audit re-fetched the HTML and 60900.js?v=567206 and confirmed the CustomEase set, both Lenis configs, the preloader timeline, the mask CSS, the reveal functions, initThemeChange, snap, the logo ring, the scrollbar and the Safari webm strip."
+ },
+ "performance_accessibility": {
+  "requests": 90,
+  "weight_notes": "Heavy on video: 41.1MB of webm declared (16 webm files, mostly alpha-channel bougainvillea loops), plus 11.7MB webp and 3.9MB png. Scripts about 0.6MB. Videos are autoplay=false in markup and play/pause on scroll (initPlayPauseVideoScroll). WPO sub-score 7.0 is the lowest of the dev scores.",
+  "reduced_motion": "None. probe reduced_motion_rules 0, and the bundle and inline CSS contain no prefers-reduced-motion check. On a first visit the preloader locks scroll for about 10.2s, computed from its timeline.",
+  "contrast_issues": "Small type is very small: 9.9px bold caps and 11.7px body at 1440 (about 8.1px for l2). White 36px caps over sky are fine, but the 8px 'BOOK A CALL / CONTACT' caps and the BY NIGHT label (about 40% white) are marginal. The [data-prevent-flicker]{visibility:hidden} rule hides content until JS runs.",
+  "mobile_quality": "No horizontal overflow at 390px, fluid 1vw root scaling, and heavy effects gated by gsap.matchMedia at 992px. In mobile_01 the cookie card shows only through the arch window (roughly the bottom 15% of the screen) because the preloader mask is still on top.",
+  "dev_scores": {
+   "semantics_seo": 7.4,
+   "animations": 8.0,
+   "accessibility": 7.2,
+   "wpo": 7.0,
+   "responsive": 7.0,
+   "markup": 7.4
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Arch-window preloader built from a CSS mask driven by custom properties",
+   "why_it_works": "The brand's architectural motif (a Mediterranean arch) becomes the literal doorway into the site. Arriving feels like walking through it, and nothing is a generic fade or counter.",
+   "how_to_build": "Full-screen overlay in the arrival colour with --arch-w:24vw; --arch-h:calc(var(--arch-w)/(560/2592)); --arch-y:104vh. mask-image: linear-gradient(#fff,#fff), linear-gradient(#fff,#fff), linear-gradient(#fff,#fff), url(arch-inverse.svg); mask-size: calc(50% - var(--arch-w)/2 + 2px) 100%, calc(var(--arch-w) + 4px) calc(var(--arch-y) + 2px), calc(50% - var(--arch-w)/2 + 2px) 100%, var(--arch-w) var(--arch-h); mask-position: left top, center top, right top, center var(--arch-y); mask-repeat:no-repeat; mask-composite:add (-webkit-mask-composite:source-over), as in ERA's inline CSS (inferred: the SVG is the opaque area around an arch-shaped hole). GSAP: tl.to(el,{'--arch-w':'36vw','--arch-y':'15vh',duration:1.5,ease:CustomEase.create('io','.75,0,.25,1')}).to(el,{'--arch-w':'125vw','--arch-y':'-100vh',duration:2.4,ease:CustomEase.create('dive','.6,0,0,1')},'<90%'), and in parallel scale the hero image from .75 to 1 (origin centre top, 1.5s). For the rim seen in desktop_01, draw two concentric 1px arch strokes about 20px and 40px outside the hole, sized from the same --arch-w/--arch-y (an SVG path, or elements with border-radius:999px 999px 0 0 and a 1px border), and break the page frame's bottom line where they cross it. Use sessionStorage to play a shortened version for repeat visits."
+  },
+  {
+   "technique": "Section colour as the sky of cutout renders",
+   "why_it_works": "The flat powder-sky field is the brand swatch and the literal sky at once. Architecture cut out along its skyline and set on that field ties photography to the palette, so a flat section never reads as an empty fill, and the next wash or disc in the same colour joins without a seam.",
+   "how_to_build": "Pick the section colour from the render's own sky, pushed pale (ERA: #B5CEDB). Mask the render along the roofline and treeline and export a transparent PNG/WebP. Place it bottom-anchored inside a section whose background is that exact colour, so the cutout's top edge meets flat colour. Let a rooftop corner rise into the previous section first (ERA desktop_05, bottom-left), then parallax the cutout yPercent -15 to 15. Check at 1x that no halo shows along the cut, and reuse the same colour for the disc and the wash transitions."
+  },
+  {
+   "technique": "One motion token set with asymmetric enter and exit",
+   "why_it_works": "Every reveal, hover and transition shares one tempo (0.4/0.8/1.2s, stagger .1, five named curves), so the site feels composed rather than assembled. Slow hinged entrances with quick mirrored exits make scroll-back and page leave feel responsive.",
+   "how_to_build": "Define CSS vars and GSAP CustomEases once: InOut .75,0,.25,1; Out .25,1,.5,1; In .5,0,.75,0; Ease .25,.1,.25,1; Write .333,0,.667,1. Write each text effect as fn(targets, 'reveal'|'hide'|'initial', delay). For example, display chars reveal: fromTo(chars,{opacity:0,rotateX:90,x:'10rem',transformOrigin:'center bottom'},{opacity:1,rotateX:0,x:0,duration:1.2,stagger:.1,ease:'Out'}); hide: to(chars,{opacity:0,rotateX:-90,x:'-10rem',transformOrigin:'center top',duration:.4,stagger:.05,ease:'In'}). Paragraphs: SplitText({type:'lines',mask:'lines'}), yPercent 110 to 0. Put perspective on the parent (e.g. 800px) so rotateX reads."
+  },
+  {
+   "technique": "Rising disc with type on its rim as a section transition",
+   "why_it_works": "A powder-sky half-circle climbing over the hero photo turns a plain section boundary into a horizon or sun rising. The arced headline makes the shape carry meaning, and the disc then becomes the next section's background, so there is no seam.",
+   "how_to_build": "Pinned or overlapping section with a circle (width about 130vw, aspect 1) translated from y:100vh up to cover, scrubbed by ScrollTrigger. Set the headline on an SVG <textPath> along the circle's top arc, or split into words positioned with rotate(angle) translateY(-R). Scrub word-spacing from 0 to 10rem ('fromTo(words,{wordSpacing:\"0rem\"},{wordSpacing:\"10rem\",ease:\"none\",scrollTrigger:{scrub:true}})') so the arc opens as you scroll. Hand off to a centred statement once the disc fills the viewport."
+  },
+  {
+   "technique": "Horizontal location track with lines sliding against each other and a drawn route",
+   "why_it_works": "Location is the selling point, so it gets its own spatial move: a stepped three-line title where each line drifts a different amount, a portrait render overlapping the type, and a hand-drawn route line that literally connects the place names with drive times.",
+   "how_to_build": "Outer height = track.scrollWidth; gsap.to(track,{x:-(track.scrollWidth-outer.offsetWidth),ease:CustomEase('.25,0,.75,1'),scrollTrigger:{trigger:outer,start:'2.5% top',end:'97.5% bottom',scrub:.25}}). Store that tween and pass it as containerAnimation to inner triggers ('left bottom'). Title lines: fromTo(lines,{xPercent:gsap.utils.wrap([-5,25,-15])},{xPercent:gsap.utils.wrap([5,-25,25]),ease:'none',scrub:.25}). Route: one image line (.img.loc-path) revealed with clip-path inset(0 100% 0 0) to inset(0), 2.4s ease Out after a .8s delay, fired once when it enters. It is not scrubbed. Pass containerAnimation only if it sits inside the track; on ERA it sits in the vertical section after the track (frames 3/f03-f04). Dots and 10px bold caps labels ('ESTEPONA / 10 MIN') are positioned on it, and cloud cutouts then rise over a drone aerial."
+  },
+  {
+   "technique": "Per-element header recolouring against the section beneath it",
+   "why_it_works": "Fixed chrome stays legible over photo, bone, powder sky and plum without a header bar or blend-mode hacks, and elements can differ (logo white over photo while the CTA is navy over a bone band).",
+   "how_to_build": "Mark sections data-bg='light'|'dark'|'color' and fixed items data-theme. For each item x each section, ScrollTrigger.create({trigger:section,start:()=>`top top+=${itemCenterY}`,end:()=>`bottom top+=${itemCenterY}`,onEnter/onEnterBack:()=>item.className swap}), skipping sections whose horizontal span does not include the item's centre x. Transition color and fill with .4s var(--ease-out)."
+  },
+  {
+   "technique": "Alpha-video foliage as a living frame",
+   "why_it_works": "Looping bougainvillea cutouts hanging into corners bring the render's colour and movement into flat bone sections, so the atmosphere carries past the hero.",
+   "how_to_build": "Export plant loops as VP9 webm with alpha (HEVC-with-alpha .mov for Safari, since the site strips webm on Safari). Use muted loop playsinline, absolutely positioned and bleeding off the viewport corner, with parallax xPercent 0 to -25 or yPercent 0 to 25 scrubbed. Play and pause through ScrollTrigger enter and leave. Keep each clip under about 1.5MB; ERA ships 41MB of webm, so budget better."
+  }
+ ],
+ "slop_risks": [
+  "Invisible-content trap: [data-prevent-flicker]{visibility:hidden} plus 'initial' states at opacity 0 (rotateX -90, yPercent 110) mean headings and paragraphs are missing if JS or ScrollTrigger fails. Scroll reveals fire once at 'top bottom', but a stalled script leaves blank sections.",
+  "High-contrast Didone as the reflexive luxury face: Ambroise is a Didone family. It works here only because the compressed François width, the -0.024em tracking and the script crossing make it a lockup. A naive copy with Bodoni or Playfair caps is the stock real-estate look.",
+  "Letterspaced serif caps: 'C O S T A  D E L  S O L' and 'S P A I N' with +0.8em tracking are exactly the tracked-out luxury wordmark tell when used without the surrounding composition.",
+  "One label treatment everywhere: 9.9px bold extended caps at +0.048em for eyebrows ('THE CONCEPT'), taglines, 'BOOK A CALL / CONTACT', map labels and cookie text.",
+  "Kicker-plus-serif statement block: desktop_06 is a tiny 'THE CONCEPT' label over a three-line centred serif-caps statement over a centred paragraph over the logo mark, a textbook slop section head that is rescued only by the flower video framing.",
+  "Underline hover: the primary CTA's underline wipes out (scaleX 1 to 0 from the right) and back in. Per the law, animating underlines is a template tic even when paired with the char flip.",
+  "Pulsing ring hotspots (1px rings expanding to 1.6x and fading, repeat -1): the law names 'the pulsing \"live\" dot with an expanding glow ring' as a reflex. These are strokes, not glows, but the looping pulse is the same tic.",
+  "Magnetic buttons with elastic.out release drift toward a hover boop: the button moves on hover.",
+  "Cream background: bone #F3F3EC under most sections sits close to the cream/bone editorial default. A copy should pick a tone derived from the brand's own material (stone, sky), as the powder sky does.",
+  "Multi-line stacked display: 'NEW / GOLDEN / MILE' and 'THE / SPACE / TO' are three-line stacks. They work only because of the stepped indents and the photo overlap, and a plain left-aligned stack reads as slop.",
+  "Content sliced by an edge, borderline: the cookie card's 172.8px 'Cookies' script is cropped by the card's right edge. That is a deliberate oversized crop (the law's exception), but on a functional consent card it can read as overflow. On mobile it only shows through the preloader arch (mobile_01), not over the lower third.",
+  "Em dashes in the copy ('A place to live — to return year after year', 'not around movement — but around returning', area ranges '178 — 202 m²'), an AI-writing tell under the law.",
+  "Decorative quote glyph: the architecture pull quote has a large opening quote mark over the caps and a 'ARCHITECTURE TEAM / ERA RESIDENCE' attribution (frames 0/f05), which is the testimonial-quote sibling tell.",
+  "Unrounded hairlines used as ornament: a lone vertical 1px rule above the small-caps 'A PLACE TO LIVE — ...' line in the reasons disc (frames 0/f03), plus rules above labels. The preloader progress line and the scroll rail are functional; the others are decoration."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop steps and 2 mobile shots were viewed individually. desktop_00-01 are the preloader and arch reveal, and 02-07 are hero, hero zoom, location (powder sky), concept (bone) and the horizontal location track. All 8 frames of element 0 (Main page) and element 3 (Horizontal scroll), plus f00/f03/f06 of 1 (Gallery, an Awwwards presentation mockup) and f00/f03/f05/f06 of 2 (Day Night). MEASURED: fonts, sizes, tracking, colours, tokens and asset bytes come from probe.json. CODE: the Slater module 60900.js and inline CSS were fetched and grepped for eases, durations, stagger, Lenis options, preloader mask vars, reveal functions, horizontal scroll, theme change, logo velocity, link hover and magnetic values. INFERRED: the colour ratio, the foundry attribution for Ambroise François (Typofonderie) and Sloop Script (Font Bureau), and that '--arch-w:125' means 125vw. Not captured: the footer, the menu modal and the listing page. The cookie banner was left unclicked, per the rules. audit (2026-09-25): re-viewed desktop_00-07, mobile_00-01 and all 8 frames of elements 0 and 3, plus 1/f00,f03,f06,f07 and 2/f00,f02,f05,f06, one at a time. Re-fetched the HTML and the Slater module to check code claims; the eases, Lenis, mask CSS, reveals, theme change, snap, logo, scrollbar and horizontal track all held. Fixed: the plum 'gallery backdrop' and 'arch as gallery frame' (both came from the Awwwards presentation matte; the arch-scroll-area is code only); the mobile preloader lockup size (~55px, not 90px); mobile_01 is a mid-preloader capture; bone is faintly yellow, not green; the h1 line-height measures 87%; the Lottie is the agency credit logo, not property cards; the preloader lock is ~10.2s, not 4-6s; the hero 'zoom' is code-only (frames show a pan); the element-3 timings; the route is in a vertical section, time-based and fired once. Added: the powder-sky-as-sky cutout trick (pixel-matched), the chamfer motif shared with the cookie card, the re-staged night render, the Day/Night divider, the footer clip and modal flip (code only), the copy flaws, and slop tells for em dashes, the quote glyph and decorative hairlines. Still inferred: the foundries, the 349px watermark bucket, 125vw, and the colour ratio."
+}

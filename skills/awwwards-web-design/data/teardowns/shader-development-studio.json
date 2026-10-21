@@ -1,0 +1,338 @@
+{
+ "slug": "shader-development-studio",
+ "title": "Shader Development Studio",
+ "live_url": "https://www.shader.se/",
+ "award": "Awwwards Site of the Day, Apr 20, 2026 (Honors + SOTD)",
+ "scores": {
+  "overall": 7.73,
+  "design": 7.65,
+  "usability": 7.42,
+  "creativity": 8.33,
+  "content": 7.81,
+  "dev": {
+   "overall": 8.12,
+   "semantics_seo": 7.6,
+   "animations": 9.4,
+   "accessibility": 7.4,
+   "wpo": 8.0,
+   "responsive": 8.4,
+   "markup": 7.8
+  }
+ },
+ "industry": "Creative development studio portfolio (real-time 3D / WebGL agency, Norrkoping, Sweden)",
+ "signature": "The whole site, UI included, is one WebGPU scene pushed through a per-section 'CRT film' grade (bloom, sepia, chromatic aberration, lens distortion, luminance-masked grain), and the first section change flies the camera into the screen of a 3D Commodore SuperPET-style computer. Later changes are graded crossfades, a newspaper overlay and a burn-through. The result plays as a straight-faced 1980s corporate satire world, not as pages.",
+ "first_screen": {
+  "composition": "Observed: at 1440x900 the first screen (desktop_00, still loading at 6.4s settle) is a full-bleed curved CRT monitor face with a rounded bezel, barrel distortion and a dark vignette at the corners. On it sits a BIOS-style boot screen on saturated CRT blue (measured median ~#3d3896 in desktop_00, range #3a3593-#45409c after the sepia grade): a striped-sphere emblem plus the italic serif SHADER wordmark centred at ~y 220, 'Shader Development Studio, Website / Version 1.02' in a pixel DOS font, a segmented 21-cell progress bar, and a copyright line at ~y 770. RGB fringes show on every glyph. Once loaded (element frames 1/f03, 2/f00), the hero is a dark smoke-filled void. A 4-line glowing serif headline sits left-aligned at ~x 80-490 (in the 960 frame). It is not a single plane: the text is rendered to a texture and mapped onto one face of a long box sliced into up to 24 vertical strips, and each strip flips up about the horizontal axis on its own spring. In 1/f02 (2.1s) the strips are mid-flip, so the headline reads as a dim, twisted sheet that is more upright on the left than on the right; by 1/f03 (2.98s) every strip is face-on and bloomed. At 1440 the bundle sets it at 108px (0.075 x viewport width) with a 118px line-height. A beige SuperPET-style computer (computer.glb) is cropped off the bottom-right edge, and its screen plays project videos that throw coloured light onto its own keyboard. A thin top bar carries the italic SHADER logo left, 4 underlined serif links centred, and a phone icon with 'Book a call' right. A 1px hairline rule runs under the top bar across the full width (desktop_03).",
+  "what_owns_it": "3d",
+  "display_type_px": 108,
+  "evidence": [
+   "probes/shader-development-studio/desktop_00.jpg",
+   "probes/shader-development-studio/desktop_01.jpg",
+   "probes/shader-development-studio/desktop_02.jpg",
+   "frames/shader-development-studio/1/f00.jpg",
+   "frames/shader-development-studio/1/f03.jpg",
+   "frames/shader-development-studio/2/f00.jpg",
+   "bundle 0-08uz4-c8z20.js: hero text component (fontSize .075*width, lineHeight +10px) and the 24-strip flip mesh"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "STIX Two Text",
+    "role": "display",
+    "classification": "transitional serif (text cut used at display size)",
+    "foundry": "STI Pub / Tiro Typeworks (OFL)",
+    "source": "probe fonts_loaded 'STIX Two Text 400 700'; bundle loads /fonts/stix_regular.json, stix_medium.json, stix_bold.json as WebGL glyph atlases. Three uikit glyph atlases exist (regular, medium, bold); scene titles such as 'Check Out This Golden Tie', '“Hello”', 'Good buy.' and 'Still Not Convinced We're Serious About Business?' are set fontWeight 'medium' in the bundle, the project title uses the regular cut (uikit fontSize 180, lineHeight .9). The hero headline is fontWeight 400. Nav links are fontWeight 'medium'. 'About Us' asks for 'light', but no light atlas ships, so it can only render with one of the three shipped cuts."
+   },
+   {
+    "name": "STIX Two Text",
+    "role": "body",
+    "classification": "transitional serif",
+    "foundry": "STI Pub / Tiro",
+    "source": "probe measure.type: every DOM node is 16px/24px 400, color rgb(252,249,243)"
+   },
+   {
+    "name": "pixel DOS-style bitmap face (baked into /textures/boot_screen.png)",
+    "role": "accent",
+    "classification": "bitmap monospace",
+    "foundry": "unknown (raster texture, not a font file)",
+    "source": "desktop_00 + bundle string /textures/boot_screen.png, boot_screen_mobile.png"
+   },
+   {
+    "name": "italic bold serif SHADER wordmark",
+    "role": "ui",
+    "classification": "bold italic serif logotype",
+    "foundry": "custom / raster",
+    "source": "screenshots; inferred to be a texture, not live text"
+   }
+  ],
+  "display_size_px": 108,
+  "body_size_px": 16,
+  "scale_notes": "The measured DOM is an accessibility mirror: all 56 text nodes are STIX Two Text 16px/24px (probe font_sizes_px [[16,56]]). Visible type is drawn in WebGL with pmndrs uikit (yoga flexbox, 42 bundle hits), so sizes were measured from pixels instead. Measured in desktop_03 at 1440: project title 'eHealth Arena' cap height 49px and x-height 36px, so ~75px STIX; its subline '3D Showroom • View project →' ~20px; nav links cap height 13px, so the rendered nav is ~20px, not the 16px of the DOM mirror. 'About Us' grows from ~90px cap height (desktop_05) to ~145px (desktop_07), roughly 138px to 222px type, because it's a 3D plane moving toward the camera. Bundle uikit sizes (layout units, not screen px; rendered size depends on the ortho camera): 'Check Out This Golden Tie' 46 / 72 / 80 / 96 across breakpoints; '“Hello”' and 'Good buy.' 80 / 100 / 140 / 200; 'Still Not Convinced We're Serious About Business?' 42 to 144 with lineHeight ~1.08; 'About Us' 100 light; project title 180 at lineHeight .9. Hero headline from the bundle: fontSize = 0.075 x viewport width with lineHeight = size + 10px between 1024 and 1499px wide (108/118px at 1440), 0.065w from 1500px, 0.062w x (0.8 if height < 900, 0.9 if < 1100) from 1700px, and a fixed 46/64/72px, centred, below 1024. Its subline ('Scroll to Inspect Our Closed Deals') is 22/24/28px. The text texture is mapped onto a box face sized so that face-on it fills the frustum exactly (s = 2tan(fov/2)r / (1+tan(fov/2))), so the texture lands 1:1 on screen pixels. Check: in 1/f03 the headline cap height is ~5.7x the nav cap height, which matches 0.062w at a ~1920px recording viewport against 20px nav. Nav links are STIX medium 18px, 20px at the lg breakpoint, with a separate 2px bar as the underline. The result is ~5.4:1 display to the 20px UI text, with almost no middle sizes.",
+  "tracking_leading": "DOM mirror letter-spacing is normal, line-height 1.5 (24/16). Display is also at normal tracking (inferred from renders). Hero leading is size + 10px from the bundle, so 118/108 = 1.09 at 1440 and tighter as the viewport grows. The project title is lineHeight .9.",
+  "case_and_style": "Title Case for every heading ('A Creative Development Studio, Plugged into the Future', 'Check Out This Golden Tie'). Sentence-case puns in the sublines. The logo is bold italic caps. The boot screen uses DOS-style mixed case. There are no uppercase eyebrows.",
+  "signature_moves": [
+   "One serif family carries the entire brand. The glow comes from post-processing bloom, which is screen-blended over the scene plus 10% of the bloom tinted amber (1, .8, 0), so white type gets a warm orange halo (visible around 'eHealth Arena' in desktop_03). It is not a CSS text-shadow.",
+   "Display type lives on 3D planes: the tilted hero headline and the 'About Us' title that scales toward the camera as you scroll (desktop_05 -> 07).",
+   "Chromatic aberration runs on all text, including the ~20px rendered nav, because the UI layer is composited inside the CA and lens-distortion node.",
+   "The hero headline enters as a sliced sign, not a fade: up to 24 vertical strips (min(round(width/20), 24)) each flip from -90 degrees to face-on on their own spring, with stiffness falling 96 -> 54 and damping rising 13.5 -> 18 from left to right, so the headline twists up into place left first (strip 0 is the left edge; 1/f02 -> 1/f03). Each strip's opacity is (1 - angle/90deg)^2, and once settled the strips keep a tiny idle wobble. There is no per-letter reveal."
+  ],
+  "mobile": "mobile_00/01 never got past the boot screen (progress stalled at 17/21 cells in both mobile shots (pixel count)). The portrait variant boot_screen_mobile.png restacks the copy ('Shader Development Studio / Version 1.02', copyright wrapped onto 2 lines) and centres the emblem and wordmark vertically in a rounded CRT frame. probe mobile_measure: h1 16px (a11y mirror), overflow_x false. The mobile boot copy is not a crop of the desktop one: it drops ', Website' and the copyright reads 'Shader Sweden AB', not 'Shader Development Studio AB'."
+ },
+ "color": {
+  "mode": "section-shifting",
+  "base": "#0a0a0a (root --background) / body rgb(0,0,0): near-black void behind the 3D scenes",
+  "ink": "#fcf9f3 (root --foreground, measured rgb(252,249,243)): a warm paper white",
+  "accents": [
+   "CRT BIOS blue, measured median ~#3d3896 (desktop_00; mobile ~#363190): loader only",
+   "gold/brass: the golden tie PBR material",
+   "navy-to-steel-blue gradient behind Selected Work. Authored in the bundle as a 3-stop gradient on a plane at z -300: rgb(33,25,35) #211923 at .2 -> rgb(51,54,115) #333673 at .6 -> rgb(69,148,197) #4594c5 at 1, rotated 0.1 rad. After the grade it measures #0d0a1f-#14121f at the top to #426491-#456a96 at the bottom (desktop_03).",
+   "red-below / blue-above chromatic-aberration split on the white nav underlines and glyph edges (desktop_03 underline rows read #eed2ff, #ffd0e3, #7b2c32). This is a by-product of the effect, not a swatch."
+  ],
+  "ratio": "~80% black or dark scene, ~12% warm-white type and highlights, ~8% section colour (CRT blue, office greys, gold)",
+  "section_shifts": "Yes. Every scene has its own grading preset, interpolated as you scroll. Values from the pages config: Loading: sepia .55, brightness .65, saturation .6, bloom .24 at threshold 0, lensDistortion .25, CA 1.5, vignette .52/.27/.3. Hero: sepia .22, pow 1.92, brightness 1.2, bloom 2 at threshold .54, motionBlur .3, lens distortion 0. Projects: sepia .28, bloom .77, saturation .92, lensDistortion .16 with borders on, motionBlur .4. Office: sepia .81, saturation .56, CA 2.5, vignette .5/.83/.45, noiseIntensity 1.48, motionBlur .5. About-us (the newspaper): sepia .4, bloom .1, CA .8, noiseVelocity .05 (near-static grain for reading), uiMode 'dark'. Golden-tie-reveal: sepia .17, bloom 1.3. Golden tie: sepia .45, saturation .7, bloom 2. Contact: sepia .5, noiseVelocity 3.5. The palette comes from the grade, not from swapping CSS background colours.",
+  "texture": "Film grain from a TSL node: hash fract(sin(dot(uv, vec2(12.9898,78.233)))*43758.5453 + time*velocity), multiplied by (1 - color.rgb), so it collects in the darks and mostly skips bright type. The preset noiseIntensity is not the shader amount: the uniform is .037 x preset x (0.7 at DPR 1, 1 at DPR 2-3) x (0.65 on mobile), so the effective grain is ~.026-.055. Plus /textures/dirt.jpg, grunge.webp and smoke.png for screen dirt and hero fog. The grain is applied after the UI composite, so technically it sits over text, masked by luminance.",
+  "notes": "Probe bg_colors is empty and css_usage shows 0 shadows, 0 blend modes, 0 clip-paths. All the colour work happens in the shader pipeline. The one authored gradient (the projects backdrop) is a dark plum-navy-to-steel ramp, not the purple-to-blue SaaS gradient: the grade pushes it toward desaturated navy."
+ },
+ "layout": {
+  "grid": "There's no CSS grid (grid_containers 0). The layout is uikit flexbox inside WebGL. From the screenshots: a ~40px outer margin inside the CRT bezel and a 3-part top bar (logo left at x~40, links centred, CTA right at x~1390). The hero headline is left-aligned at ~x 120 at 1440: a 24px root padding, 40px lg padding, then a container with marginLeft 3vw, padding 1vw and maxWidth 60vw (48vw from 1500px). The object is pushed off the right edge. The contact section is a centred 3-column info block ('General Enquiries / Visit us / Social') with a dashed-border 'New business' card. A 1px hairline under the top bar separates the UI band from the scene.",
+  "density": "airy",
+  "alignment": "Each scene uses centred axial symmetry (golden tie aisle, film-strip carousel, 'Good buy.' contact). The exception is the hero, which is a left headline against a right-cropped object.",
+  "composition_moves": [
+   "Whole viewport framed as a curved CRT tube with rounded bezel and barrel distortion (lensDistortion .16-.25, lensDistortionBorders 1 on the monitor-interior scenes)",
+   "Film-strip ribbon carousel (desktop_03/04, 2/f02): a CatmullRom curve through 7 control points that winds from lower-left, passes in front of the camera and loops up and away behind itself, extruded +/-3.75 units into a 160-segment ribbon. That loop is why ghosted frames show above the strip in desktop_03 (the far side of the same ribbon).",
+   "Receding cubicle farm shot from a high 3/4 angle as the About backdrop, with the title hanging in the space (desktop_05-07)",
+   "Symmetric gauntlet: cutout 80s office workers clapping along both sides of an aisle converging on a spinning gold tie (frames 0/f00-f07)",
+   "A newspaper page curls in diagonally from the bottom-left over the office scene, its underside showing a mirrored 'SHADER' masthead and a large 'Storyte…' headline on the front (desktop_07). It is the about-us page entering with transition type 'overlay' (transitionLength 2): the new page is composited over the old one by its own alpha."
+  ],
+  "section_rhythm": "Scroll snaps between full-screen scenes. The snap is a custom magnetic class on top of Lenis (snapForce, inputMultiplier, snapLockedUntil), not Lenis's own snap: points start 0, projects 1, about 3.4, footer 5, with asymmetric capture ranges (projects: forward [-.9,.3], backward [-.22,.6] with multiplier [3,.3]) and keyboard values autoSnapToNext 2000 (start) / 3000 (projects) and autoSnapToPrevious 2000. Those are not delays: they are the durations of the arrow-key scroll to the next or previous snap point (default 1000ms). Scene lengths in the pages config, in viewport units: hero 1, projects 1, office 1.8, about-us 7.34, golden-tie-reveal 1.7, golden-tie 6, contact 3.32. The transition types are 'fade' (smoothstep crossfade), 'direct', 'overlay' (new page over old by its alpha) and 'below' (new page under the old one, revealed where the old page's alpha drops), with lengths 0-4.1. So the pattern is short punchy scenes, then two long set pieces: the newspaper/shredder about page (7.34, the longest) and the golden tie (6).",
+  "mobile_adaptation": "There are separate mobile assets: boot_screen_mobile.png, handshake_avif_mobile sprite sheets, and 720p HLS below 700px wide / 480p in reducedMemoryMode. Springs use different constants when width < 1024 (stiffness 130->100, damping 14->18). Motion blur is disabled on mobile or reduced-memory devices. The probe never saw loaded mobile content because it stalled on the boot screen. Lens distortion is halved on mobile (lensDistortions x .5 when isMobileDevice), and the canvas DPR is clamped to [1, 1.5]."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis 1.3.3 with a custom magnetic snap layer. The body is overflow-hidden and the document is only 900px tall (probe doc_height 900); the 1440x900 canvas is measured position static, and scroll drives scene progress. Navbar clicks branch: hero <-> projects (the screen dive) use lenis.scrollTo(target, {duration:.8, easing: bezier(.48,.09,.22,1), lock:true}). Every other nav jump stops Lenis, sets the target page's lensDistortion and borders, animates a transition value 0->1 over 1.25s (motion's default ease), and then teleports with scrollTo(target, {immediate:true}), so it never scrubs through the scenes in between.",
+  "preloader": "A BIOS boot screen on a curved CRT: a segmented bar fills cell by cell. Frames 1/f00 at 0.43s show 5 cells, desktop_00-02 show 16 -> 17 -> 21 cells across the probe steps. Grade preset: sepia .55, brightness .65, lensDistortion .25, CA 1.5, vignette radius .52. Loading progress also tracks video and sprite-sheet loading (setVideoProgress(15) before the handshake manifest fetch). The bar value is 0.8 x content progress + 0.2 x video progress, clamped 0-100.",
+  "intro_sequence": "From element 1 frames (6.8s clip): the boot screen at 0.43s shows 5 of 21 cells and all 21 by 1.28s. By 2.13s (f02) the hero is up with the SuperPET, but the headline's strips are still mid-flip, so it reads as a dim sheet twisted away on the right. By 2.98s (f03) every strip has sprung face-on and bloomed. The same flip plays in reverse (to +90deg below 1024px, -90deg above) when you leave the hero. The screen content cycles project footage (yellow-green island f02, green/white f03, cyan f06) and relights the keyboard and the fog around it each time. Two pointing-hand icons follow 'Scroll to Inspect Our Closed Deals'. In code they bob between +5 and -5 over 0.5s easeInOut on a reverse repeat. In the frames the count reads 0, 2, 1 across f03, f04 and f06, so they also appear in sequence (inferred).",
+  "scroll_techniques": [
+   "snap (custom magnetic snap on top of Lenis)",
+   "camera dolly into a 3D screen (portal transition)",
+   "3D title plane advancing toward camera",
+   "scrubbed prebaked image-sequence (handshake AVIF sprite sheets)",
+   "camera track down a symmetric aisle (golden tie)",
+   "per-scene post-processing preset interpolation",
+   "newspaper page-curl overlay (transition 'overlay', about-us)",
+   "burn-through reveal: the handshake shot burns away from the centre with a white-hot ember rim to reveal the 'Hello' phones scene (3/f01, 0/f04)",
+   "bidirectional scrub of the prebaked handshake (0/f05 shows the hands apart again after the 'Hello' scene when scrolling back)",
+   "film ribbon that unspools along a CatmullRom curve (fragment discard by arc length) and scrolls by a uniform offset"
+  ],
+  "text_animation": "There's no per-letter split. Titles are whole uikit meshes that move in z and scale with the camera ('About Us' grows ~1.6x over two scroll steps), and the hero headline flips up strip by strip (24 sprung slices of one text texture). Project titles change the same way on a 4-sided sliced prism (see image_animation). Emphasis comes from bloom and a frame-blend smear during fast moves: in the 2/f07 pull-back, 'eHealth Arena' ghosts into three stacked copies. The motion-blur node is mix(current, previous, strength) with strength = 1.3 x preset (.3-.5), frame-rate compensated, and skipped on mobile or reducedMemory devices.",
+  "image_animation": "Film strip (bundle): not a sliced box but a custom ribbon mesh along a chordal CatmullRom curve (7 points, scaled .2, z x.8), 160 segments, +/-3.75 units tall, uv.x = arc length. Frames are laid out in the fragment shader: position d = uv.x x curveLength - reelOffset, frame = floor(d / frameWidth) mod count, frameWidth = 4/3 x 7.36 + .06, sprocket margins borderX .03 / borderY .07. Changing project only moves the reelOffset uniform, which springs to index x frameWidth (stiffness 90, damping 14), plus a small pointer nudge of (x - .5) x .04. The strip can also be dragged (dragOffset / isDragging in the store). The intro unspools the strip by discarding fragments where uv.x x curveLength < initialReelOffset, which springs (stiffness 95, damping 23) from half the curve length (2/f02 shows a short segment flying in), and a flexAnimation uniform bows it with a (y - .5)^2 term. Up to 20 projects; two HLS video slots (current and previous) crossfade into the frames, and slot switches are debounced 300ms. Project thumbnails crossfade to Mux HLS video in-shader (uImageOpacity 1->0, uVideoOpacity 0->1). Project titles ('eHealth Arena / 3D Showroom - View project') sit on a separate 4-faced prism sliced into min(round(width/40), 24) segments: each project change rotates it -90deg with direction-aware springs (stiffness 30 -> 120 left to right when you go forward, so the right end flips first, and 120 -> 30 when you go back; damping mirrors it between 7 and 13 on desktop; 50-120 / 10-14 below 1024px), segment rotations are blended with a quintic smootherstep, face opacities animate 0.4s in / 0.15s out, and hover scales the prism 1 -> 1.03 on a spring (stiffness 120, damping 20) and lifts its alpha by 60%. The 24-strip hero headline uses stiffness 96 -> 54 and damping 13.5 -> 18 (130 -> 100 / 14 -> 18 below 1024px) and fades 0.5s in / 0.2s out with easeInOut.",
+  "page_transitions": "Home -> Projects (element 2, 6.7s clip): at 1.26s (f01) the camera is still on the hero. By 2.09s (f02) it has pushed into the monitor: the viewport is the CRT glass with a rounded bezel, and the film ring flies in from the distance showing its mirrored back ('Design is Funny' reversed) as the segments flip. By 2.93s (f03) the carousel has settled, so the dive takes at most ~1.7s in the recording. The nav-click version is the 0.8s bezier(.48,.09,.22,1) scrollTo. The exit (f07 at 6.28s) pulls back out of the tube and shows the beige monitor frame again. Projects -> office (desktop_04) is a 'fade': the strip flies toward the camera while the cubicle farm double-exposes through the frames, and the enlarged 'eHealth Arena' title rises into the nav band. Golden tie -> contact (element 0 and element 3): the crowd-aisle track, then a cut to the prebaked handshake, in which the 3D gold tie stays in frame dangling between the hands (0/f03, 0/f05, 3/f00). Then the handshake burns through from the centre: an irregular hole with a crackling white ember rim grows outward and reveals the '“Hello”' phones scene underneath (3/f01). 0/f04 shows the last burning corners. The burn is a real-time shader on the full-screen handshake quad (bundle, component with handShakeSheet / sparklePosition / transitionProgress / flashFadeProgress / contactSceneTexture / rgba_noise.png). The hole starts at sparklePosition, a per-frame keyframed point at about where the hands meet (e.g. frame 69 -> [.54,.478], drifting to [.544,.388] by frame 85), not the screen centre. Its radius is length(uv - sparkle) scaled by (1, .5625), with an angular wobble of .08 x progress x [1.5 sin(3a + 1.5t) + sin(7a + 2.5t) + .5 sin(13a + .8t)], times 1.3. It is pushed out by five fbm noise bands (frequencies 12/32/160/240/320, weights .5/1/.5/.2/.5, sampled from rgba_noise.png and drifting with time). Inside the hole the shader shows an HDR white flash, vec3(2), that fades to the contact scene by flashFadeProgress. The rim is smoothstep(-.15 x progress, 0, c) in warm white (1, .95, .9) x 1.5. The handshake footage itself is luma-keyed (alpha = smoothstep(.05, .15, length(rgb))) and edge-feathered, which is why the real-time 3D gold tie shows between the hands. It is letterboxed to 16:9 (max 2250px wide), and scroll scrubs only the first 80% of its frames.",
+  "hover_micro": [
+   "Logo and 'Book a call' hover are shader-side: hovering sets logoHoverTransition / pageActionHoverTransition, and the final composite multiplies the UI by (1 + .25 x transition) inside fixed screen rects, the top-left 240x96px for the logo and the top-right 220x96px for the CTA. The CTA's tween is 0.1s easeInOut.",
+   "Nav links: hovering a non-active link sets its colour to #fff and opacity 1.5, an over-unity boost so it reads brighter than its resting colour. The active link's 2px underline bar fades out on a spring (stiffness 200, damping 25) when the page changes, so 'Home' is plain in 2/f00 and 'Selected Work' is plain in desktop_03. It is not static, and it never fills or slides.",
+   "Keyboard focus is mirrored into WebGL. When the hidden DOM mirror's element is focused (useA11yStore focusedElement, e.g. 'nav-book-call'), the matching uikit container shows a 2px, radius-4 border in white (black in dark UI mode). That border is the focus ring, not a hover state.",
+   "Carousel arrows: square black buttons with white arrow SVGs (/textures/icons/arrow_right_white.svg)",
+   "The phone icon swaps between old_phone.svg and old_phone_dark.svg with the UI mode."
+  ],
+  "cursor": "The native cursor is kept (cursor_none 0). A shared SpringMouseProvider smooths the pointer with a spring (stiffness 60, damping 30) and feeds camera parallax in 7 scene components (e.g. the golden-tie camera looks at 0.25 x mouse offset). A mouse-influence uniform also feeds the shredder paper-strip cloth sim (mousePositionX/Y, mouseInfluence).",
+  "easing_curves": [
+   "lenis scrollTo: cubic-bezier(.48,.09,.22,1), 0.8s, hero <-> projects nav clicks only (bundle)",
+   "hero headline strips: spring stiffness 96->54, damping 13.5->18 across up to 24 strips on desktop; 130->100 / 14->18 below 1024px (bundle)",
+   "hero headline opacity: motion 'easeInOut', 0.5s in / 0.2s out",
+   "project-title prism: spring stiffness 30<->120 and damping 13<->7 across the segments, with the stiff end on the side you navigate toward (right end first going forward); 120->50 / 10->14 below 1024px; face opacity 0.4s in / 0.15s out",
+   "nav active underline: spring stiffness 200, damping 25; project-title hover scale spring stiffness 120, damping 20 (1 -> 1.03)",
+   "pointer smoothing: spring stiffness 60, damping 30 (camera parallax)",
+   "motion default transform spring {stiffness:500, damping:25} and keyframes ease [.25,.1,.35,1] 0.3s (framer-motion library defaults, not art direction)",
+   "CSS: cubic-bezier(0.4,0,0.2,1) 0.15s (probe, Tailwind default)",
+   "section-jump transition: motion animate 0->1 over 1.25s with the default ease, then an immediate scroll teleport (bundle)",
+   "bloom flicker: intensity = 1.5 x preset + preset x .03 x [sin(2.65t) + sin(5.85t + 1.2 sin(1.05t)) + sin(11.95t + .65 cos(3.55t))] + bloomBoost (bundle)"
+  ],
+  "duration_range_ms": "150 (CSS) to 1250 (section-jump tween). Hero <-> projects nav scrollTo is 800. Boot is ~2.5s. The dive observed in element 2 takes at most ~1700.",
+  "stagger_ms": "No time-based stagger. The staggering comes from per-segment spring constants: the hero headline's up-to-24 strips and the project-title prism's segments each get linearly interpolated stiffness and damping, which is an organic cascade without delays. On the prism the stiff end flips to match the direction you navigate.",
+  "choreography_notes": "The camera moves first and the grade follows. Each scene's effect preset starts interpolating before the scene arrives (effectOffset -0.2 to -2 viewport units, effectTransitionLength 0.4-2), so the colour 'mood' leads the geometry. UI mode (light/dark UI texture) crossfades on its own uiModeTransition. Big objects enter from depth, never from the sides. The bloom never sits still: three detuned sines modulate it by about +/-9% of the preset, a phosphor-style flicker.",
+  "evidence": [
+   "frames/shader-development-studio/0/f00-f07.jpg",
+   "frames/shader-development-studio/2/f00-f07.jpg",
+   "frames/shader-development-studio/1/f00,f03,f06.jpg",
+   "frames/shader-development-studio/3/f00,f03,f06.jpg",
+   "probes/shader-development-studio/desktop_03-07.jpg",
+   "bundle grep: 0-08uz4-c8z20.js (post chain, springs, cloth sim, lenis), 003qcun9_z40b.js (per-page effects presets), 0x4j-.xiizxj9.js (scrollTo easing)"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "realtime-3d",
+  "art_direction": "1980s corporate-satire photography rendered in real time: beige CRT hardware, cubicle farms, cordless phones, a gold tie, retro-suited office workers clapping, a manicured handshake with a wedding ring. The lighting is low-key and single-source, with smoke and fog floors, and everything is graded through sepia and bloom so the photographic cutouts and 3D models sit in the same world.",
+  "treatments": [
+   "sepia mix 0.1-0.81 per scene",
+   "bloom (7 mip levels, threshold 0-.67 across presets), screen-blended with an extra 10% amber (1,.8,0) tint and a 3-sine flicker",
+   "chromatic aberration 0.5-2.5",
+   "barrel lens distortion with rounded CRT bezel",
+   "luminance-masked animated grain",
+   "vignette per preset",
+   "motion-blur ghosting on fast camera moves",
+   "screen-dirt/grunge texture overlays",
+   "burn-through scene transition from a hand-tracked point, with a warm-white HDR rim and an HDR white flash inside the hole (3/f01; shader read from the bundle)"
+  ],
+  "crops_and_ratios": "Full-bleed scenes at the viewport ratio (16:10 in the 1440x900 probe; the Awwwards element videos are 4:3 recordings). The hero object is cropped hard off the bottom-right. Project frames on the film strip are 4:3 by construction (frameWidth = 4/3 x 7.36 + .06 in the bundle). The face-on centre frame measures ~562x357px in desktop_03 only because the ribbon is tilted, and frames near the ends look portrait because the curve foreshortens them.",
+  "formats": "probe: png 16, webp 13, svg 12, avif 3, m3u8 9 (Mux HLS), glb 7, woff2 1. Bytes: mp4 3.74MB, webp 1.48MB, avif 0.87MB, png 0.46MB. The handshake footage is prebaked AVIF sprite sheets with a manifest.json rather than a <video>.",
+  "evidence": [
+   "probes/shader-development-studio/desktop_03.jpg",
+   "probes/shader-development-studio/desktop_05.jpg",
+   "frames/shader-development-studio/0/f00.jpg",
+   "frames/shader-development-studio/0/f03.jpg",
+   "frames/shader-development-studio/0/f04.jpg",
+   "probe asset_extensions / bytes_by_type_declared",
+   "frames/shader-development-studio/3/f01.jpg"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r183 WebGPURenderer + TSL node materials (NodeMaterial 38 hits, MeshPhysicalNodeMaterial), React Three Fiber, pmndrs uikit for in-canvas UI, framer-motion 'motion' values bound to uniforms, Lenis, hls.js via Mux",
+  "role": "world: each section is a staged 3D set (monitor, film-strip carousel, office, gold tie aisle, bank vault 404, shredder)",
+  "assets": [
+   "https://www.shader.se/models/bank.glb",
+   "https://www.shader.se/models/computer.glb",
+   "https://www.shader.se/models/deskbox.glb",
+   "https://www.shader.se/models/phones.glb",
+   "https://www.shader.se/models/shredder.glb",
+   "https://www.shader.se/models/tie.glb",
+   "https://www.shader.se/models/trophy2.glb",
+   "/textures/boot_screen.png",
+   "/textures/dirt.jpg",
+   "/textures/smoke.png",
+   "/textures/grunge.webp",
+   "/textures/rgba_noise.png",
+   "/videos/prebaked/handshake_avif/handshake.manifest.json"
+  ],
+  "materials_lighting_post": "Post chain, read from the bundle in this order: scene pass -> bloom (levels 7), composited as blendScreen(bloom, scene) + bloom x (1,.8,0) x .1, with intensity uniform = 1.5 x preset + 3-sine flicker + bloomBoost -> motion blur as a frame blend mix(current, previous, 1.3 x preset), dt-compensated, skipped on mobile or reducedMemory -> pow(gamma 1.05-1.92) -> sepia via the classic matrix (.393,.769,.189 / .349,.686,.168 / .272,.534,.131) mixed by sepiaIntensity -> brightness, clamp, contrast -> 'ChromaticAberrationNode2', which takes the scene plus the light UI texture, the aspect ratio and the UI lens distortion/border -> a final pass that samples the light and dark UI textures at lens-distorted UVs, crossfades them by uiModeTransition, lays them over the scene with mix(scene, ui, ui.a x clamp(uiTransition)), and adds the grain. The gold tie is a physical material (metalness .9, roughness .2, clearcoat .1, transparent). Its vertices follow a simulated hanging chain (simulationSegments points, with a frame rebuilt from tangents), so it swings like a real tie, plus a 3-octave sin/cos field (weights .5/.3/.2) for the liquid wobble in 0/f01. The CRT screen is emissive video and appears to light the keyboard and fog with its current colour (1/f03 green, 1/f06 cyan).",
+  "interaction": "Scroll-driven camera per scene with snap. Hover drives shader uniforms. The mouse pushes the shredded-paper strip cloth (a GPU verlet-style sim: stiffness 1.2, timestep .016, restDistance from strip count, topConstraint). Arrow buttons and dots drive the carousel. Seven scene components add spring-smoothed mouse parallax to the camera (stiffness 60, damping 30).",
+  "performance_tactics": "The settings store flags isMobileDevice and reducedMemoryMode. HLS resolution is picked per device (480p reduced / 720p <700px / 1080p). Motion blur is skipped on mobile or reduced memory. Heavy live-action is prebaked into AVIF sprite sheets (6 cols x 9 rows = 54 frames suggested by refs 6/9/54). Scenes only render inside renderOffset windows (beforeStart/afterEnd), and textures use mipmaps off with linear filtering for the boot screen. The canvas DPR is clamped to [1, 1.5], lens distortion is halved on mobile, and grain strength is scaled by DPR (x0.7 at DPR 1) and by device (x0.65 on mobile). Text is rasterised to render targets and cached: the hero text FBO re-renders on its first 4 frames and then at most once every 400ms, and project-title textures render for the first 50 frames and afterwards only on resize. Carousel video uses just two HLS texture slots, switched on a 300ms debounce.",
+  "fallback_mobile": "Same WebGPU/WebGL2 path with mobile texture variants and smaller video; the probe shows a webgl2 context alongside webgpu. No static fallback observed.",
+  "evidence": [
+   "probe globals three_revision 183, contexts {webgpu:1, webgl2:1, 2d:21}, assets_3d",
+   "bundle grep 0-08uz4-c8z20.js",
+   "frames/shader-development-studio/0/f01.jpg",
+   "frames/shader-development-studio/1/f03.jpg",
+   "frames/shader-development-studio/2/f02.jpg",
+   "frames/shader-development-studio/3/f01.jpg"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Persistent top bar drawn in WebGL: italic SHADER logo with a rainbow-striped pill emblem on the left, 4 serif links centred (Home, Selected Work, About Us, Contact) that jump-scroll to snap points, and a phone icon with 'Book a call' on the right. There's a DOM 'Skip to content' button in the a11y mirror.",
+  "menu": "No hamburger on desktop. Bundle ships menu.svg / menu_dark.svg / close_icon.svg for a mobile menu (not observed).",
+  "buttons_links": "Links are underlined serif text (STIX medium, 20px at lg) with no fill animation. The underline is a separate 2px bar that fades out on a spring for the active page ('Home' plain in 2/f00, 'Selected Work' plain in desktop_03). Hover pushes the link to #fff at over-unity opacity. Carousel controls are square black buttons with white arrows plus an 11-dot pager with the active dot ringed (counted in desktop_03 and 2/f03). The CTA is a text link beside an old-phone icon. Its hover brightens the top-right corner of the composite, and its 2px radius-4 box is the keyboard focus ring. Subline separators are 16px white dots (uikit radius 8) and the 'View project' arrow icon is 42px.",
+  "unusual_interactions": [
+   "Camera dive into a computer screen as the section transition",
+   "Film-strip carousel of project frames with sprung segment flips",
+   "Project titles flip on a sliced 4-faced prism, like a tri-vision billboard, each time the carousel changes project",
+   "Shredder: the About newspaper ('Why Shader Will Never Win an Award') is cut into cloth-simulated strips you can push with the mouse",
+   "404 page is a bank vault with a 'line busy' gag (bank.glb, element 'Not found - 404')",
+   "Golden tie finale: a gauntlet of applauding office workers, then a prebaked handshake and a 'Good buy.' contact",
+   "Nav jumps teleport: a 1.25s transition plays, then the scroll position jumps with immediate:true instead of flying through every scene in between",
+   "Keyboard focus rings drawn inside the WebGL UI, driven by focus on the hidden DOM mirror"
+  ],
+  "sound": "None observed (no audio assets in probe or bundle paths).",
+  "footer": "Centred logo lockup 'SHADER / A High Tech Business Solutions Company / (c) Shader Sweden AB', flanked by a 'Worldwide Business Certified Company' globe seal (left) and a laurel 'Read our Accessibility Statement' badge (right). All parody corporate seals, drawn from footer_certificate.png / copyright_footer.png / a11y.png."
+ },
+ "content_voice": {
+  "headline_style": "Title Case corporate-brochure headlines that are really puns ('Good buy.', 'Check Out This Golden Tie' with the subline 'You made it this far. You deserve a tie-break.'). Business-speak turned into jokes: 'Scroll to Inspect Our Closed Deals'.",
+  "copy_tone": "Deadpan 80s enterprise satire. It's self-aware about awards ('# Why Shader Will Never Win an Award' is the shredder newspaper). It talks about clients as 'deals' and 'handshakes', which makes the sales pitch the joke. The bundle also ships a gag 'Shader wins FWA Site of the Day' page (fwaPage) and an accessibility-statement page.",
+  "examples": [
+   "A Creative Development Studio, Plugged into the Future",
+   "Scroll to Inspect Our Closed Deals",
+   "Check Out This Golden Tie / You made it this far. You deserve a tie-break.",
+   "Good buy.",
+   "Had Enough Reading? Let's Shred This Thing.",
+   "Still Not Convinced We're Serious About Business?",
+   "404: Line Busy"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Next.js (Turbopack chunks) + React",
+  "libraries": [
+   "three r183 (WebGPURenderer, TSL)",
+   "@react-three/fiber",
+   "pmndrs uikit (yoga flexbox in WebGL)",
+   "framer-motion / motion",
+   "lenis 1.3.3 (with snap)",
+   "hls.js + Mux video",
+   "zustand-style stores (useScrollStore, usePagesStore, useSettingsStore)",
+   "Umami analytics, self-hosted (analytics.shader.build; window.umami.track on nav clicks, project opens and 'Book a call')"
+  ],
+  "evidence": "probe libs_from_requests ['next.js'], globals three_revision 183; bundle strings: WebGPURenderer 34, TSL 54, NodeMaterial 38, lenisVersion '1.3.3', yoga 42, uikit 1, Hls 9, @react-three/fiber 1; analytics.shader.build host; 29 'umami' references incl. window.umami.track calls"
+ },
+ "performance_accessibility": {
+  "requests": 153,
+  "weight_notes": "~7.8MB declared: mp4 3.74MB (Mux HLS chunks), webp 1.48MB, avif 0.87MB, png 0.46MB, wasm 88KB (likely a decoder), one 28KB woff2. JS is split across 14 Turbopack chunks (largest chunk 2.37MB uncompressed; probe declares only 12.9KB javascript, so most JS transfer is compressed or cached). The probe needed a 6.4s settle and the boot bar was still filling at every desktop step 00-02.",
+  "reduced_motion": "probe reduced_motion_rules 0. The only prefers-reduced-motion code in the bundle is framer-motion's internal matchMedia listener, and the R3F motion context defaults to reducedMotion 'never'. reducedMemoryMode only lowers video resolution and drops motion blur. So there's no site-level reduced-motion path.",
+  "contrast_issues": "Warm-white #fcf9f3 on near-black passes easily. However, chromatic aberration (strength up to 2.5 in the office scene) plus grain split the ~20px rendered nav and body copy into red-below / blue-above fringes, and the 'About Us' title over the bright cubicle render loses contrast (desktop_06). Display title planes also collide with the fixed nav during transitions: in desktop_04 the enlarged 'eHealth Arena' rises into the nav band and the links overprint it; in desktop_05 'About Us' sits under the links; in 3/f06-f07 'Check Out This Golden Tie' runs through 'Home / Selected Work / About Us / Contact'.",
+  "mobile_quality": "No horizontal overflow (probe). The probe's mobile run stalled on the boot screen, so mobile rendering is unverified. Responsive dev score is 8.4.",
+  "dev_scores": {
+   "semantics_seo": 7.6,
+   "animations": 9.4,
+   "accessibility": 7.4,
+   "wpo": 8.0,
+   "responsive": 8.4,
+   "markup": 7.8
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Grade presets per scene, interpolated on scroll",
+   "why_it_works": "Colour mood leads the geometry, so every section feels like a different reel of the same film without changing any CSS backgrounds. It's also art-directable from one table.",
+   "how_to_build": "Keep an array of scenes {id, length (in viewport units), transition:'fade'|'direct'|'overlay'|'below', transitionLength, effectOffset, effectTransitionLength, uiMode:'light'|'dark', effects:{bloomIntensity, bloomThreshold, bloomRadius, bloomSmoothing, sepiaIntensity, saturation, contrast, brightness, pow, chromaticAberration, lensDistortion, lensDistortionBorders, vignetteRadius/Smoothness/Intensity, noiseIntensity, noiseVelocity, motionBlur}}. Each frame, find the active scene from scroll progress, compute t = clamp((progress - (start + effectOffset)) / effectTransitionLength) and lerp every uniform between the previous and next presets. Composite scenes by type: fade = mix(old, new, smoothstep(start - len, start, scroll)); overlay = mix(old, new, new.a); below = mix(new, old, old.a). Shader's values: hero bloom 2 / threshold .54 / sepia .22 / pow 1.92 / brightness 1.2. Office sepia .81 / saturation .56 / CA 2.5 / vignette .5,.83,.45. About-us sepia .4 / bloom .1 / noiseVelocity .05 / dark UI. Contact noiseVelocity 3.5 / sepia .5. Post order: bloom (screen blend + 10% amber) -> frame-blend motion blur -> pow -> sepia matrix mix -> brightness/contrast -> CA + lens distortion -> UI composite -> grain. Feed the bloom uniform 1.5 x preset plus a small 3-sine flicker (amplitude .03 x preset each) so the glow breathes like a phosphor."
+  },
+  {
+   "technique": "UI composited inside the lens, with a DOM mirror for accessibility",
+   "why_it_works": "The nav and titles bend, fringe and glow with the CRT, which sells the illusion that the whole site is a screen. A plain HTML nav on top would break the spell.",
+   "how_to_build": "Render the UI layer (pmndrs uikit in R3F, or an offscreen DOM-to-texture pass) into a light and a dark render target. In the final pass, sample it at distorted UVs: d = uv - .5; uv2 = .5 + d * (1 + k*dot(d,d)) with k ~ .16-.25. Offset R/B by .001*strength*length(d)*2 for aberration, and mask outside the rounded-rect bezel (lensDistortionBorders 0|1). Keep light and dark UI textures, crossfade them with a uiMode uniform, and lay them over the scene with mix(scene, ui, ui.a * uiTransition) before the grain. Keep a visually-hidden semantic DOM (h1/h2/nav/links at 16px) for screen readers and SEO, plus a real 'Skip to content' button."
+  },
+  {
+   "technique": "Screen-dive transition into a 3D monitor",
+   "why_it_works": "The transition is also the metaphor: the next section literally lives inside the studio's machine. It turns navigation into a camera move.",
+   "how_to_build": "Render the next scene into a render target and map it onto the monitor's screen mesh (emissive). On scroll, or on a nav click, move the camera from the hero pose to a pose where the screen quad fills the frustum. Shader's nav click uses a 0.8s lenis.scrollTo with cubic-bezier(.48,.09,.22,1) and lock:true; scroll-driven, it took at most ~1.7s in the recording. Once the quad covers the viewport, swap to rendering the inner scene full-screen and keep a rounded bezel mask plus barrel distortion (lensDistortion .16, borders on) so the viewer still feels inside the tube. Reverse it for the exit, with a frame-blend motion blur (mix(current, previous, ~.4-.5)) to get the ghosted-title pull-back."
+  },
+  {
+   "technique": "Sprung strip cascade for display type (hero headline and project-title prism)",
+   "why_it_works": "Varying spring constants across slices gives a physical twist, where the headline winds up into place, that never reads as a mechanical 60ms stagger. It also reads as a real sign or billboard, which suits the 80s-hardware world.",
+   "how_to_build": "Render the headline into a render target at canvas resolution. Make a BoxGeometry(s, s*aspect, s, 12, N, 12) with N = min(round(width/20), 24), drop the top and bottom caps (faces with |normal.y| > .9), and remap uv.x to .25*uv.x + faceOffset so each side face owns a quarter of the atlas. Show only face 0 and leave the others transparent. Rotate the mesh [0,0,PI/2] so the sliced long axis runs across the screen, and size s = 2tan(fov/2)r / (1+tan(fov/2)) so the front face fills the frustum 1:1. In the vertex node, pick the segment from the along-axis coordinate, blend the rotations of segments i and i+1 by smoothstep(fract) (Shader's title prism uses a quintic smootherstep instead), and rotate x/z by that angle. Drive 24 rotation uniforms from framer-motion springs: animate(r_i, show ? 0 : -PI/2, {type:'spring', stiffness: lerp(96,54,i/(N-1)) with i = 0 at the left edge, damping: lerp(13.5,18,i/(N-1)), restDelta:1e-5}); below 1024px use +PI/2 and 130->100 / 14->18. Fade the whole mesh 0.5s in / 0.2s out (easeInOut), set per-strip alpha = (1 - clamp(angle/(-PI/2)))^2, and add an idle wobble: z += sin(u*10 + 4t)*.007, y += sin(u*8 + 3t)*.005. For a multi-state title, use all 4 faces with a texture per face and rotate by -PI/2 per item, with stiffness running 30->120 (damping 13->7) toward the side you navigate to."
+  },
+  {
+   "technique": "Film ribbon on a spline, frames laid out in the shader",
+   "why_it_works": "One mesh and one uniform give an endless, physically curved carousel. Nothing is re-instanced when you scroll, the strip can unspool in and snake behind itself, and the frames stay evenly spaced along the curve at any bend.",
+   "how_to_build": "Build a CatmullRomCurve3 (chordal) through a handful of points that pass in front of the camera and loop away behind it. Sample 160 points with getPointAt, and at each one push two vertices at y +/- 3.75 along the curve's normal (cross of the tangent with world up), with uv = (t, 0|1). In the fragment shader: d = uv.x*curveLength - reelOffset + count*frameWidth + 3*frameWidth; idx = mod(floor(d/frameWidth), count); local = fract(d/frameWidth). Inset the image by borderX .03 / borderY .07 and draw sprocket holes in the margin. frameWidth = 4/3 * H + gap for 4:3 frames. Move between projects by springing reelOffset to index*frameWidth (Shader: stiffness 90, damping 14), unspool on entry with discard where uv.x*curveLength < initialReelOffset (sprung, 95/23), and bow the strip with x -= flex*(y-.5)^2. Keep two video textures (current and previous), assign them to the frames by index, and debounce slot changes by ~300ms."
+  },
+  {
+   "technique": "Prebaked AVIF sprite-sheet sequences for live-action beats",
+   "why_it_works": "The handshake can be scrubbed frame-accurately by scroll and graded by the same post chain, with none of <video> seeking jank, and it loads with progress reporting.",
+   "how_to_build": "Export the clip as N frames and pack them into AVIF sheets (e.g. 6x9 = 54 frames per sheet). Write manifest.json {fps, cols, rows, frameCount, sheets:[...]} and a mobile variant at lower resolution. Load the sheets as textures and in the shader pick frame = floor(progress*frameCount): uv = (uv + vec2(col,row)) / vec2(cols,rows). Report load progress to the preloader. Pick the manifest by width (Shader loads handshake_avif_mobile below 700px). The 6x9 grid is inferred from the numbers 6, 9 and 54 in the bundle."
+  },
+  {
+   "technique": "Luminance-masked film grain",
+   "why_it_works": "You get tactile, moving grain in the shadows while bright type stays mostly clean. It's the premium-noise version of a grain overlay.",
+   "how_to_build": "As the last node: n = smoothstep(0., .49, fract(sin(dot(uv, vec2(12.9898,78.233))) * 43758.5453 + time*velocity)); g = n * (1. - color.rgb); out = color.rgb + g*intensity. Keep intensity small: Shader's uniform is .037 x preset (.7-1.48), so ~.026-.055, then x0.7 at DPR 1 and x0.65 on mobile. Using the preset numbers directly would bury the image in noise. Velocity 1 is the default, 3.5 for jittery 'live' scenes and .05 for near-static reading pages."
+  },
+  {
+   "technique": "Teleporting nav jumps",
+   "why_it_works": "A nav click to a far section plays one short, art-directed transition instead of fast-forwarding through five 3D scenes. It's quicker and it hides the geometry in between.",
+   "how_to_build": "On click: lenis.stop(); set the destination's lens distortion/border uniforms; animate a transition uniform 0->1 over 1.25s; onComplete lenis.start() and lenis.scrollTo(targetY, {immediate:true}), then reset the uniform. Keep a smooth scrollTo (0.8s, cubic-bezier(.48,.09,.22,1)) only for adjacent sections where the in-between motion is the point, as with Shader's hero <-> projects dive."
+  },
+  {
+   "technique": "Burn-through reveal between scenes",
+   "why_it_works": "The previous shot is destroyed rather than faded, and the white-hot rim reads as heat and energy. Because it starts from the point where the hands meet, the handshake itself seems to ignite the next scene. It hands off from live-action (the handshake) to 3D (the phones) without a visible cut.",
+   "how_to_build": "From the bundle. Draw the outgoing footage as a full-screen quad (depthTest off, high renderOrder) and pass the incoming scene as a texture. uv0 = (uv - sparklePos) * vec2(1., .5625); a = atan(uv0.y, uv0.x); wobble = (1.5*sin(3a + 1.5t) + sin(7a + 2.5t) + .5*sin(13a + .8t)) * .08 * p; r = (length(uv0) + wobble) * 1.3. n = sum of five fbm bands (each 4 octaves of a tiling RGBA noise texture, drifting slowly with time) at uv*aspect*{12, 32, 160, 240, 320} with weights {.5, 1, .5, .2, .5}. c = p*1.3 - r + n*.7*p. Inside (c > 0): mix(vec3(2.), incoming.rgb, flashFade) at alpha 1, an HDR white flash that settles into the new scene. Else rim: g = smoothstep(-.15*p, 0., c) * (1. - step(0., c)), colour vec3(1., .95, .9) * g * 1.5 at alpha g. Output mix(outgoing, burn, burn.a). Animate sparklePos per frame to follow the point of contact in the footage, and let the bloom pass pick up the >1 values. To let a 3D object show through black footage, key the footage by luma: alpha = smoothstep(.05, .15, length(rgb))."
+  }
+ ],
+ "slop_risks": [
+  "Grain over text: the noise node runs after the UI composite, so grain sits on top of the nav and body type. It's only saved by the (1 - color) luminance mask. A naive copy with a flat overlay is the 'grain over text' tell.",
+  "Chromatic aberration on ~20px UI text: strength 1-2.5 splits the nav underlines red/blue and hurts legibility (desktop_05-07). If you copy it, keep the CA amount near zero at the UI sample or cap it by distance from the centre.",
+  "Bloomed headline type: the glowing serif relies on scene bloom (intensity 2). Done with CSS text-shadow it becomes 'the bloom that is just the element's shape, blurred'.",
+  "Sepia as a costume: a sepia filter without Shader's props, lighting and satire would just read as a lazy 'retro' Instagram filter.",
+  "Preloader gate: the boot screen was still filling after 6.4s plus three probe steps, and mobile never got past it. A copy without progressive rendering hides everything behind a loader, which is the invisible-content trap at page scale.",
+  "Canvas-only UI: all visible text is WebGL, and the DOM is a hidden mirror. Skipping the mirror makes the site unreadable to screen readers and search engines.",
+  "Retro stock-people cutouts: the clapping crowd works because it's knowingly absurd. Copied straight, it's uncanny clip-art.",
+  "The underline on the nav is a 2px bar that fades out on a spring for the active page, and hover only brightens the link (to #fff at over-unity opacity). Keep it that way. An underline-fill or growing-line hover would be the tell.",
+  "Text-on-text collisions: 3D title planes pass under the fixed nav with no safe zone (desktop_04, desktop_05, 3/f06). Reserve a top band or fade the nav while a title plane crosses it."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots and 2 mobile screenshots. Desktop 00-02 and both mobile shots are the loading boot screen. Desktop 03-07 show Selected Work and About Us, because the probe's wheel steps snapped past the hero. The hero, golden tie, handshake and contact were observed only in element frames: all 8 frames of 0 (Golden Tie) and 2 (Home->Projects transition), f00/f03/f06 of 1 (Loading) and 3 (Contact). Code facts come from 3 network fetches (HTML, the 14 chunk files in one loop) and local greps: the effects presets, post order, springs, Lenis version and easing, cloth sim uniforms, HLS resolution logic, and the prebaked handshake manifest. INFERRED: display px sizes (the DOM mirror is 16px only), CRT blue and gradient hex values, the screen-as-light-source mechanism, the sprite-sheet grid size, and the missing reduced-motion path. The probe re-run was not attempted because screenshots weren't blank. The boot screen is a legitimate loading state, and the element frames cover the loaded site. audit (2026-09-24): re-viewed desktop_00, 02, 03, 04, 05, 06, 07 and mobile_00 at full size, all 8 frames of elements 0 and 2, and 1/f00-f04, f06 plus 3/f00-f07. Re-grepped the saved bundle chunks. Fixed: BIOS blue (#3d3896 measured, not #3b33a8), gradient hexes (measured), pager 11 dots not 12, nav rendered ~20px not 16px, project title ~75px measured, film-strip frames landscape ~3:2 not 4:5 portrait. Fixed the scene table: it omitted about-us (7.34, the longest) and the 'overlay' type; the newspaper is an overlay page-curl, not 'below'; office and about presets were conflated. Fixed: the 0.8s bezier scrollTo is only for hero <-> projects; other nav jumps are a 1.25s transition plus an immediate teleport. Snap is a custom magnetic class. The canvas measures static, not fixed. Fixed: grain effective intensity is .037 x preset (the old steal_this would over-noise by ~27x). The pointing-hand bob is +/-5, not -5. Added: bloom screen blend with amber tint and 3-sine flicker; the frame-blend motion blur formula; the headline hinging up from the floor (1/f02); the burn-through handshake -> 'Hello' transition (3/f01; it was misread as an edge vignette); the tie persisting in the handshake; the bidirectional scrub; the tie rope-sim material; the CTA hover box; title/nav collisions; mobile boot copy differences; DPR clamp [1,1.5]; mobile lens distortion x.5; the loading-progress weighting. Still inferred: hero headline px, burn mechanism, sprite-sheet grid, screen-as-light-source. audit 2 (2026-09-25): re-viewed desktop_00, 02, 03, 04, 05, 06, 07 and mobile_00 at full size, all 8 frames of element 1 plus 2/f02, 2/f07, 3/f00 and 3/f01, and re-read the saved bundle. Fixed: the 24-segment sprung-rotation mesh (stiffness 96->54, 0.5s/0.2s fade) is the HERO HEADLINE, not the film strip. The headline flips up strip by strip; it does not 'lie flat on the fog floor and hinge'. The film strip is a CatmullRom ribbon with shader-laid 4:3 frames (not ~3:2). Added the project-title 4-faced sliced prism (springs 120->30, direction-aware). Hero headline is measured from the bundle at 108px/118px at 1440 (0.075w), so display_type_px is set and the old ~88-96px guess is gone. The 2px radius-4 'Book a call' box is the keyboard focus ring mirrored from the DOM a11y layer, not hover. Hover brightens fixed top-left/top-right screen rects by x1.25, and nav links go #fff at opacity 1.5 with a spring-faded active underline, so they are not 'static'. autoSnapToNext 2000/3000 is the arrow-key scroll duration, not a delay. The burn-through is now read from the bundle: it starts from a hand-tracked point, uses 5-band texture noise, and puts a warm-white HDR rim and an HDR white flash in the hole; the handshake footage is luma-keyed, which is why the 3D tie shows through. Also fixed: mobile boot bar 17/21 cells (pixel count), not ~16; effectTransitionLength range 0.4-2. Added: authored projects gradient #211923 -> #333673 -> #4594c5; spring-smoothed mouse parallax (60/30) in 7 scenes; text FBO throttling (4 frames, then every 400ms or more); 2-slot HLS debounced 300ms; self-hosted Umami analytics. Still inferred: the screen-as-light-source effect, 'About Us' rendered weight, and the exact recording viewport (~1920px wide by the nav ratio)."
+}

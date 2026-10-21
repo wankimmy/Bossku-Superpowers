@@ -1,0 +1,283 @@
+{
+ "slug": "artefakt",
+ "title": "Artefakt",
+ "live_url": "https://artefakt.mov/",
+ "award": "Site of the Day - Apr 3, 2026 (Honors, SOTD) - credits: Greg Lallé, Thomas Monavon",
+ "scores": {
+  "overall": 7.63,
+  "design": 7.63,
+  "usability": 7.38,
+  "creativity": 7.99,
+  "content": 7.74,
+  "dev": {
+   "overall": 8.11,
+   "semantics_seo": 8.0,
+   "animations": 8.8,
+   "accessibility": 7.6,
+   "wpo": 8.0,
+   "responsive": 8.0,
+   "markup": 8.2
+  }
+ },
+ "industry": "Hybrid film / commercial production company (Frankfurt): commercials, music videos, own experimental 'Artelab' films",
+ "signature": "A strictly black-and-white terminal interface where every image passes through the same ASCII shader grammar: the 3D logo is GPGPU particles rendered as brand-seeded glyphs (' .:-=+*#%@4RT3F') that scatter from the cursor, and full-bleed client films hand off to each other through a noisy, flattening-diagonal band of 13px ASCII cells (desktop 1200px and wider only).",
+ "first_screen": {
+  "composition": "Black #000 body under a fixed CSS screen-door texture: .scanline::after, two crossed linear-gradients giving 4px white dots on a 5px pitch at opacity .07 (2px/3px below 80rem). This lifts the black to about rgb(8-18) in the screenshot. It is not part of the WebGL ASCII pass, whose ' ' glyph renders nothing. Header on a 12-column grid with 20px margins: the custom 'artefakt' wordmark (about 165px wide) top-left; WORKS/ABOUT stacked at column 5 (x 491); INSTAGRAM/INFO@ARTEFAKT.MOV at column 8 (x 843); 'PRODUCTION STUDIO / FRANKFURT, GERMANY' right-aligned to x 1420, all 12px TronicaMono caps. Center: the 3D 'artefakt' logo about 1080px wide (x 178-1262, y 340-530), rendered only as white ASCII glyphs with loose particle debris. Bottom-left 'FILM PRODUCTION. REIMAGINED.'; bottom-right at column 8 a two-line company description, which is the page's h1 set at 12px mono (probe type.h1). Nothing else: no display type, no CTA. The largest live text on this screen is 12px; the 84px Druk Wide appears further down the page.",
+  "what_owns_it": "3d",
+  "display_type_px": 12,
+  "evidence": [
+   "desktop_00.jpg",
+   "frames/0/f00-f07",
+   "probe measure.type.h1",
+   "app.css .scanline:after"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Druk Wide",
+    "role": "display",
+    "classification": "ultra-wide heavy grotesque, caps",
+    "foundry": "Commercial Type (Berton Hasebe)",
+    "source": "probe fonts_loaded 'DrukWide 700 normal', 21 rendered nodes"
+   },
+   {
+    "name": "Tronica Mono",
+    "role": "body",
+    "classification": "techno monospace with slashed/dotted glyph details (0 with dot, V drawn as U)",
+    "foundry": "unverified",
+    "source": "probe fonts_loaded 'TronicaMono 400 normal', 875 rendered nodes, body font-family"
+   },
+   {
+    "name": "'artefakt' wordmark",
+    "role": "accent",
+    "classification": "custom heavy, wide lowercase wordmark that switches from upright 'arte' to italic 'fakt' mid-word (desktop_00 crop, desktop_05 lockup). Delivered as an inline 166x24 SVG in the header (w-150 on mobile, w-165 from md) and as artefakt.glb for the particle logo.",
+    "foundry": "custom",
+    "source": "desktop_00.jpg, desktop_05.jpg, index.html header-logo SVG, artefakt.glb"
+   }
+  ],
+  "display_size_px": 84,
+  "body_size_px": 12,
+  "scale_notes": "Measured sizes are 84px (DrukWide spans 'A HYBRID FILM PRODUCTION', 6 nodes), 48px (h2 marquee 'WE SHOOT. WE PRODUCE. WE FINISH...', 11 nodes), 36px (3 nodes: the case titles like 'NIGHTOGRAPHY' bottom-left of each case, 3.6rem; the measured cap height is 18px on desktop_04 and about 19px on mobile_01, consistent with 36px Druk Wide), 24px and 14px. 871 of about 900 text nodes are 12px mono. Display to body is 7:1 at the top and 3:1 at project-title level. The root rem is fluid and stepped: html { font-size: calc(10 * (100vw / var(--size))) } with --size 390 / 768 / 1024 / 1440 per breakpoint, so 1rem = 10px at each breakpoint's design width. The type scale is tokenised as --text-12 ... --text-84, --text-120 and --text-180.",
+  "tracking_leading": "DrukWide -2px tracking at 84px (-0.024em) and at 48px (-0.042em), leading 1.0 (84/84, 48/48). Mono 12px on 13.2px (1.1) leading, normal tracking.",
+  "case_and_style": "Everything uppercase. Brand punctuation motifs are ':/ ' prefixes (':/ MENU', ':/ BACK TO TOP'), '>' for contact ('> Contact us'), a filled square bullet before section labels ('SELECTED WORKS') and footer columns, and zero-padded counters ('02', '/ 05').",
+  "signature_moves": [
+   "Two voices only: an ultra-wide heavy display for film titles and one 12px mono for literally everything else, so the films carry the color and the type stays quiet.",
+   "Text scramble/shuffle decode on every label (custom Shuffle class, ScrollTrigger start 'top 80%', once): nav strings pass through noise like 'INFO@ARKPGYFRIB!$' before resolving (frames/0/f01-f03).",
+   "CRT title reveal (GSAP registerEffect 'revealTitle'): each line starts at yPercent 50 and scaleY 3 from the top and settles in 0.8s with the custom ease 'gl.fastInOut' and a 0.1s stagger, plus an opacity flicker (on at 10%, off +0.1s, on +0.07s).",
+   "The ASCII glyph ramp ends in brand letters (4, R, T, 3, F), so the brightest cells literally spell fragments of ARTEFAKT in leetspeak."
+  ],
+  "mobile": "Probe mobile largest is 36px (the case titles); the h1 is 12px. The mobile_* screenshots are 2x (780px wide), so halve the pixels you read off them. The wordmark is 150px wide (class w-150), the nav becomes a ':/ MENU' button (12px mono on a #292929 block), the ASCII logo is about 340px wide (scale 0.08*vw, 90 ASCII columns vs 180 on desktop, composer at 0.9x resolution), and the bottom copy stays 12px mono (1.2rem at --size 390) in two blocks."
+ },
+ "color": {
+  "mode": "dark monochrome shell, full-color film cases",
+  "base": "#000000 (body bg rgb(0,0,0))",
+  "ink": "#ffffff (500 text nodes)",
+  "accents": [
+   "white at 52% alpha for secondary labels (396 nodes: CLIENTS/TYPE/DATE captions; a --color-grey-light #858585 token also exists)",
+   "#292929 --color-grey utility bars (':/ BACK TO TOP', ':/ MENU')",
+   "white 16% fills (active/hover rows)",
+   "black 80% overlay (image focus lightbox)",
+   "#0000ff --color-blue token, and pure blue vec3(0,0,1) as the background of the plane shader's uBlueWhiteMode (white glyphs on blue). inferred: used for the 404/alternate state"
+  ],
+  "ratio": "Shell sections are about 97% black and 3% white glyphs. Case sections are 100% client film color with white mono overlaid.",
+  "section_shifts": "Hard cuts from black hero to full-bleed sticky film cases (lavender Samsung, yellow comdirect, dark McDonald's, floral Nina Chuba), each handed off through the ASCII cell wipe, then back to black for the studio photo, scattered particles and footer.",
+  "texture": "A fixed, full-screen CSS screen-door texture sits behind the content (z-index -1): .scanline::after with two crossed linear-gradients (4px white dots on a 5px pitch at 80rem and up, 2px/3px below) at opacity .07. It is visible on the black hero, the void and the footer (desktop_00, desktop_07, mobile_00; the 5px period was measured in a desktop_00 crop). No grain overlays text. The ASCII glyph cells come only from the WebGL canvas.",
+  "notes": "The header gets mix-blend-mode: difference through a JS toggle (setBlendMode adds the xl:mix-blend-difference class, so only at 80rem and up and only over media sections). The white wordmark turns khaki on the lavender Samsung case and pure blue on the comdirect yellow (desktop_01, desktop_02). The case HUD labels are not blended and stay white. CSS also defines a color-burn utility (usage unconfirmed). Awwwards palette #ffffff / #000000."
+ },
+ "layout": {
+  "grid": "12 columns from root tokens: --margin 2rem (20px at 1440), --gutter 1rem (10px), --column calc((var(--vw) - var(--margin)*2)/12) = 116.7px. Measured anchors: column 1 (x 20), column 5 (x 491), column 8 (x 843), column 10 (x 1078), right edge 1420. --header-height 8rem.",
+  "density": "airy shell around dense, full-bleed media",
+  "alignment": "Strict column anchoring. Text blocks hang from the top of their columns, and case metadata is spread across columns 8/10/12 on the bottom row.",
+  "composition_moves": [
+   "Four-corner frame: the header row and footer row pin information to the corners, the center is reserved for the WebGL object or the film.",
+   "Case HUD over sticky full-bleed video: a square-bullet 'SELECTED WORKS' label left at mid-height (y 469), the counter '02' at dead center, '/ 05' at the right edge, the title bottom-left, and CLIENTS/TYPE/DATE label-over-value pairs bottom-right.",
+   "An inset photo panel with 20px side margins (desktop_05 v2) holding the brand lockup (globe line art, 'HYBRID PRODUCTION STUDIO', coordinates) over a studio still.",
+   "Footer: three columns (address, get in touch, legals/credits) with square bullets and a full-width #292929 ':/ BACK TO TOP' bar."
+  ],
+  "section_rhythm": "Hero (object) -> 5 sticky full-bleed film cases, one screen each (01 is a 4:3 film, P0073_EA_DC_12s_07_4x3.mp4, then Samsung, comdirect, McDonald's and Nina Chuba; the jury recording showed '/ 06') -> studio photo panel -> black void with drifting particle clusters -> footer where the particles reform into the logo. The measured 84px 'A HYBRID FILM PRODUCTION' and the 48px repeating 'WE SHOOT. WE PRODUCE. WE FINISH.' h2 (inferred marquee, the text is duplicated) sit in sections the wheel steps skipped (doc height 10569px).",
+  "mobile_adaptation": "Below 1200px the site sets isMobile = true and never initialises the WebGL plane manager. The cases are plain sticky <video> panels with no ASCII wipe, pixelation or UV distortion. mobile_01 shows the previous case (about 288 CSS px tall) with the next one sliding over it. The HUD row stays (square label, counter), titles sit at the bottom, and the menu collapses to ':/ MENU'. No horizontal overflow (probe)."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis 1.3.17 (probe globals lenis true, html.lenis; bundle options wheelMultiplier 1, touchMultiplier 1, syncTouch false) with GSAP 3.13 ScrollTrigger. Pages are routed by Taxi.js (@unseenco/taxi Core, data-taxi-view).",
+  "preloader": "A Loader class waits for the GL resources, then emits 'ready' and hides a .loader layer (z-index 120). inferred: the loader screen itself was not captured. The jury clip starts at the boot: sparse ASCII glyphs densify into the logo while the header items shuffle-decode with a .01 stagger and the square block cursor (frames/0/f00 0.25s -> f03 1.75s).",
+  "intro_sequence": "t=0.25s: only the particle logo, dim and sparse. t=0.75s: the logo is denser, the wordmark top-left has appeared, and the nav/footer strings are still scrambled ('FRXYC', 'FILM PRGM>UWE8KP'). t=1.25s: the nav is decoded and the email is still shuffling. t=1.75s: every label is resolved. The decode resolves in about 1s, staggered from logo to nav to the right-hand and bottom blocks.",
+  "scroll_techniques": [
+   "sticky full-bleed case stack",
+   "ASCII diagonal cell wipe between cases (shader, triggered per case)",
+   "the particle logo in the hero reappears, reformed, in the footer; stray glyph clusters drift through the black void between them (the orbiter mode that would scatter them is disabled in the shipped shader)",
+   "scramble-decode labels on enter (ScrollTrigger 'top 80%' once)",
+   "media lazy-load trigger at 'top 200%'"
+  ],
+  "text_animation": "Shuffle effect (gsap.registerEffect 'shuffle'): all chars start at opacity 0. Each char cycles 4 random glyphs from a-z plus !@#$%^&*-_+=;:<>, (.03s each with .025s gaps, about .2s per char) before settling, and chars are distributed over stagger*n (default .03, .01 for the header). When the square option is on, a CSS var --opa shows a white block behind the char during its first cycle, which is the block cursor seen in frames/3/f03. After the settle, 3 random chars glitch again: even ones flash the block, odd ones scaleY 2 -> 1 (expo.out, .3s). Square bullets use 'stretchBlink': scaleY 3 -> 1 over .6s 'gl.fastInOut' with an opacity flicker. revealTitle CRT effect: yPercent 50 -> 0 and scaleY 3 -> 1 from the top, .8s 'gl.fastInOut', .1s line stagger, then an opacity flicker (on at 10%, off +.1s, on +.07s). 'lightBlink' steps opacity 0/1 at 0, .06, .12 and .23s. The works page runs title, views, grid title, square, list title and number in overlapping offsets of .1-.4s.",
+  "image_animation": "Shader planes replace DOM images. The plane fragment shader holds two textures (uTexture/uTexture2, aspect-cover in the shader) with pixelation ladders (uPixels = [.01,7,7.5,8,8.5,9,9.5,10,30,50,100] in mode 0, or [.01,5,10,25,...,60]). A revealMask band (uRevealHeight .3) sweeps top to bottom: its position is (1+h) - prog*(1+2h), it is tilted by uv.x*(1-prog)*.5, and it is edged by value noise(uv*6)*(1-prog)*.05 with per-cell random thresholds. Inside the band the image is rendered as 13px ASCII cells in greyscale: glyph colour = white * (luma + .01) on black, or white on pure blue in uBlueWhiteMode. It is not tinted by the image colour; the coloured cells scattered at the band edge are pixelated image cells let through by the per-cell random threshold (frames/3/f01 crop). uProgress tweens 0->1 over 2s with 'gl.fastInOut'. A mouse DistortionTexture (grid 13, mouse 10, strength .08, relaxation .85) offsets UVs on hover. Planes exist only at 1200px and up. On enter/leave, ScrollTrigger toggles mesh.visible and play()/pause() on the source video.",
+  "page_transitions": "Taxi.js transitions. GlobalTransition fades a black .fade overlay in over .2s with the custom 'alpha' ease (.25,.46,.45,.9), jumps Lenis to the top, swaps the view and fades back out over .2s after a .075s delay, then the page's appear() choreography runs. WorkTransition (work to work) has no fade: it only stops and restarts Lenis, so the WebGL planes carry continuity. Works 3D gallery (frames/1): from a project player, the breadcrumb 'WORKS / MIRAGE' opens a list of all project names in 12px mono, and the player gives way to a perspective field of about 20 project thumbnails at varied depth on black that drift toward the camera. Choosing a name (white highlight bar, black text) flies into that project's full player while the breadcrumb scrambles ('0IX=0 / C0' at 5.12s). inferred: WebGL planes sharing the plane shader.",
+  "hover_micro": [
+   "Cursor repulsion on the particle logo: mouse speed drives the repel strength (clamped to .1), with force = strength/(d*(d+1)). Particles blow out of the letters and flow back through the noise field (frames/0/f02-f07).",
+   "Nav links: .link-highlight:hover inverts the link to a white block with black text (only at 80rem and up on hover-capable devices; verified in CSS). The label sits in a <c-shuffle-chars> element, which accounts for the doubled text in the probe. inferred: it re-scrambles on hover (its chunk was not fetched).",
+   "Image focus (frames/2): hovering a gallery still pulls it into a centred focus (about 82vw, 16:9) over an 80% black layer with a backdrop-filter blur(20px) or blur(50px) utility. The filename ('04.JPG', '08.JPG') sits above it in mono, and a hollow white rectangle viewfinder, taller than wide, surrounds the pointer.",
+   "Active list rows invert to a white bar with black text; breadcrumb crumbs invert the same way."
+  ],
+  "cursor": "System arrow/hand. On gallery stills a thin hollow white rectangle frames the pointer like a camera focus box. It measures 46x53px in the 960-wide jury frame, about 85x98px at a 1440 viewport (frames/2/f06). cursor:none is not used (probe 0).",
+  "easing_curves": [
+   "CustomEase 'gl.fastInOut' = M0,0 C0.094,0.026 0.124,0.127 0.157,0.29 0.197,0.486 0.254,0.8 0.348,0.884 0.42,0.949 0.374,1 1,1 (reaches about 88% at 35% of the time)",
+   "CustomEase 'gl.quicky' = M0,0 C0.094,0.026 0.124,0.127 0.157,0.29 0.197,0.486 0.245,0.831 0.348,0.906 0.431,0.966 0.374,1 1,1",
+   "CustomEase 'gl.inOut' = M0,0 C0.2,0 0,1 1,1",
+   "CustomEase 'alpha' = .25,.46,.45,.9 (page fade)",
+   "GSAP power4, power2.out, expo.out (shuffle post-glitch), expo",
+   "CSS cubic-bezier(.4,0,.2,1), (.4,0,1,1), (0,0,.2,1), (.4,0,.6,1), (.8,0,1,1) are Tailwind v4 defaults (ease-in-out, ease-in, ease-out, pulse, bounce), not bespoke; (.23,1,.32,1) is the one custom CSS curve"
+  ],
+  "duration_range_ms": "30-800 for UI (GSAP .03/.2/.25/.3/.4/.5/.6/.8; CSS .15/.35/.5/.7/1s), 2000 for the shader reveals",
+  "stagger_ms": "10-100 (.01 for the header shuffle during load, .03 per char for the default shuffle, .1 per title line in revealTitle, .05 for the post-glitch chars)",
+  "choreography_notes": "The WebGL layer always moves first (particles, planes); text arrives as decoded noise a beat later, and chrome labels blink on last. Because 'gl.fastInOut' puts about 88% of the change in the first third, a 2s wipe reads as roughly 0.7s of action and a long settle. In the case stack (frames/3) one hand-off roughly every 1.6s of scroll: the band enters from the top edge with the next film already visible above it, the old film stays below, and the CLIENTS/TYPE/DATE values scramble ('M', '.C-') while the counter shows a block cursor. The band's tilt is (1-progress)*.5, so it enters strongly diagonal and flattens to horizontal as it finishes.",
+  "evidence": [
+   "frames/0/f00,f01,f04 (ASCII particles)",
+   "frames/3/f00-f07 (ASCII image reveal)",
+   "frames/1/f04 (3D gallery)",
+   "frames/2/f06 (image focus)",
+   "bundle app.js (CustomEase paths, registerEffect shuffle/revealTitle/stretchBlink/lightBlink, revealMask GLSL, GPGPU uniforms, ASCII pass, Taxi transitions, isMobile < 1200)",
+   "TemplateWorks-CCE0ETrL.js, Shuffle-rNbPUDS8.js",
+   "app.css (.scanline, .link-highlight, xl:mix-blend-difference, fluid rem)",
+   "probe easings/durations"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "video",
+  "art_direction": "Client commercial and music-video stills at full bleed: saturated, lens-heavy, wide-angle close-ups (face-in-lens McDonald's, fisheye flowers for Nina Chuba, lavender studio for Samsung, flat pop-yellow for comdirect). No uniform grade: each case keeps its own look, and the shell's black and white holds them together.",
+  "treatments": [
+   "ASCII cell rendering (13px cells, greyscale glyphs) inside the transition band",
+   "pixelation ladders on plane textures",
+   "mouse-driven UV distortion data-texture",
+   "backdrop-blurred focus lightbox",
+   "difference-blend header over media"
+  ],
+  "crops_and_ratios": "Cases are 100vw x 100vh cover crops (the shader does aspect-cover). The studio photo panel is full-width minus 20px margins at about 2:1. Gallery focus is about 16:9, the project player 16:9 or pillarboxed 4:3.",
+  "formats": "6 <video> elements (5 case films muted/loop with autoplay false, so the GL planes control playback, plus 1 autoplay element with an empty src at measure time). mp4 184.9MB across 23 files on the first run (179.0MB / 20 on the re-run), jpg 23 files at 5.4MB, webp 237KB, 2 woff2 (10KB total).",
+  "evidence": [
+   "desktop_01-05.jpg",
+   "frames/3",
+   "probe videos, bytes_by_type_declared"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r180 (vanilla, custom 'GL' class) + EffectComposer (RenderPass + ShaderPass) + GPUComputationRenderer + GLTFLoader",
+  "role": "Hero/footer particle logo with an ASCII post-process, plus shader image planes for every case, still and gallery item.",
+  "assets": [
+   "https://artefakt.mov/wp-content/themes/gl/resources/js/GL/sources/artefakt.glb",
+   "https://artefakt.mov/wp-content/themes/gl/resources/js/GL/sources/artefakt-low-poly.glb"
+  ],
+  "materials_lighting_post": "Particles: GPGPU position texture sized max(256, ceil(sqrt(vertexCount))), seeded from the high-poly logo's vertices and normals (about 1% of particles start with alpha 0). The simulation is a 4D simplex flow field (influence .43, strength 1.09, frequency .53) with life-based respawn to the base position, plus mouse repulsion. The 'orbiter' uniforms (spread/radius/speed/vertical/jitter/blend) exist, but the shipped shader hard-codes isOrbiter = false, so that mode is dead code. Points use size 4 and light direction (.1,1,1). The mesh is scaled 0.07 x viewport width (0.08 when narrower than 1200px) and 200 in z. Lights: a directional main light (10) at (0,0,5), two .5 fills and .3 ambient. ASCII pass: the EffectComposer renders at 0.3x the window size on desktop (0.9x on mobile) with 180 columns (90 on mobile), so each cell is 1/180 of the width (8px at 1440). Luma (Rec.709) is remapped with contrast 1.09 and indexes a 15-glyph atlas ' .:-=+*#%@4RT3F' drawn at 16px monospace into a 240x16 CanvasTexture. Output = glyph * (luma + .9), white only, alpha = texColor.a * glyph. Easter egg: pressing 'A' shuffles the effect mode (0 = particles; 1-3 hide the particles, show a metallic MeshStandardMaterial logo (metalness 1, roughness .5) and switch the post pass's uEffectMode to that mode; mode 2 also switches the lights off).",
+  "interaction": "The mouse is projected onto an invisible low-poly logo mesh (MeshBasicMaterial opacity 0, raycast target), and mouse speed, clamped to .1, drives the repulsion. The logo sits in the hero and reforms in the footer (desktop_06/07). inferred: the scattered glyph clusters in the black void mid-page (first-run desktop_05) are stray or respawning particles. They are not the orbiter mode, which is disabled in the shader. swapObject/registerFace suggest other shapes (faces) can be fed to the same particle system on other pages.",
+  "performance_tactics": "Separate low-poly GLB for raycasting. One fixed full-screen canvas (probe canvas fixed 1440x900). DPR capped at 1.5. The ASCII composer renders at 0.3x resolution on desktop, which is enough because each 8px cell needs only one sample. Planes toggle mesh.visible and video play/pause on enter/leave. The whole plane system is skipped below 1200px. Video/image textures load at ScrollTrigger 'top 200%', and textures are cached and disposed.",
+  "fallback_mobile": "Below 1200px only the particle logo runs through the ASCII pass (90 columns, composer at 0.9x, logo scale 0.08 x vw). The case films are plain sticky DOM videos with no shader wipe. mobile_00 shows it rendering after a 12s settle; the first probe run was black at 6s.",
+  "evidence": [
+   "probe assets_3d, globals three_revision 180, contexts webgl2 2",
+   "bundle app.js: asciiChars, setupPostProcessing (composer scale .3/.9), GPGPU shader (isOrbiter = false), uniforms and defaults, onKey 'a' shuffleEffect, isMobile = innerWidth < 1200",
+   "frames/0",
+   "desktop_05 (first run), desktop_06, desktop_07"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Flat header on the 12-column grid (WORKS, ABOUT, INSTAGRAM, email, location). A difference blend is toggled on over media at 80rem and up. Mobile uses a ':/ MENU' toggle.",
+  "menu": "Mobile ':/ MENU' button (12px mono on a #292929 block, square corners). On project pages a breadcrumb dropdown lists every project over the 3D thumbnail field.",
+  "buttons_links": "Square-cornered utility bars in #292929. Link labels are wrapped in <c-shuffle-chars>. Hovered links and active items invert to a white fill with black text (.link-highlight). No pills or shadows (probe box_shadows 0, radius_top empty), although the CSS defines a --radius-2 (.2rem) token.",
+  "unusual_interactions": [
+   "Particle logo you can blow apart with the cursor",
+   "Case-to-case ASCII wipe",
+   "3D depth-field project switcher from the breadcrumb",
+   "Image focus with a viewfinder-square cursor",
+   "Custom video player with a white control bar and 'SCROLL DOWN FOR MORE INFO' hint"
+  ],
+  "sound": "none observed",
+  "footer": "The ASCII particle logo reforms center-screen, above three square-bulleted columns ('ARTEFAKT.MOV GMBH' address / 'GET IN TOUCH' email / 'LEGALS', 'WEBSITE BY T. MONAVON & G. LALLE') and a full-width #292929 ':/ BACK TO TOP' bar. The mirror of the hero makes the page loop."
+ },
+ "content_voice": {
+  "headline_style": "Almost no headlines. Clipped declaratives in mono ('Film production. Reimagined.') and a wide-type manifesto line ('We shoot. We produce. We finish.'). Case titles are the film names.",
+  "copy_tone": "Terse production-house confidence with terminal syntax (':/', '>', square bullets, zero-padded counters) and a brand lockup line 'RAW VISION NO FILTERS.'. The work carries the pitch.",
+  "examples": [
+   "Film production. Reimagined."
+  ]
+ },
+ "tech_stack": {
+  "framework": "WordPress custom theme 'gl' built with Vite (hashed assets), front end made of Custom Elements (c-shuffle, c-template-works, c-gallery, c-works-list ...) loaded through dynamic imports",
+  "libraries": [
+   "three r180",
+   "EffectComposer / RenderPass / ShaderPass",
+   "GPUComputationRenderer",
+   "GLTFLoader",
+   "GSAP 3.13 + CustomEase + ScrollTrigger (registerEffect for shuffle/revealTitle/blink/stretchBlink)",
+   "Lenis 1.3.17",
+   "Taxi.js (@unseenco/taxi) page router with GlobalTransition/WorkTransition",
+   "custom text splitter (lines/words/chars, wrapLines)",
+   "Tailwind CSS v4 (--spacing calc utilities, backdrop-blur-[20px]/[50px])",
+   "tarteaucitron cookie consent"
+  ],
+  "evidence": "probe libs_from_requests wordpress, globals lenis + three_revision 180; bundle: 'CustomEase 3.13.0' banner, CustomEase.create('gl.fastInOut'/'gl.quicky'/'alpha'), class GPUComputationRenderer, customElements.define in chunks (c-shuffle, c-template-works, plus lazily imported c-shuffle-chars, c-card-work, c-image-trail and Team chunks that were not fetched), initTaxi() new Core({transitions:{default, work}}), Lenis version string 1.3.17, theme path /wp-content/themes/gl/"
+ },
+ "performance_accessibility": {
+  "requests": 73,
+  "weight_notes": "mp4 184.9MB declared across 23 files on the first run (179.0MB / 20 on the re-run; the dominant cost), 3D 7.6MB (two logo GLBs), jpeg 5.4MB, JS about 195KB declared (the app bundle is 913KB on disk including three.js), fonts only 10KB. Requests 73 on the first run and 70 on the re-run. Settle 7.3s on the first run and 14.2s with --settle 12.",
+  "reduced_motion": "probe reduced_motion_rules 0, and no 'prefers-reduced-motion' in the JS or CSS grep: particles, scramble and flicker always run.",
+  "contrast_issues": "12px white mono labels over bright film frames fail (for example 'SELECTED WORKS' and the DATE values on the comdirect yellow case, desktop_02). 52%-alpha captions are fine on black and weak on video. The title flicker (opacity 1/0/1 within 0.17s) is a mild photosensitivity concern with no reduced-motion override.",
+  "mobile_quality": "Good once rendered: sticky stacked cases, wordmark and menu at a sensible size, no overflow. The first probe pass at a 6s settle captured pure black, so the WebGL boot is slow on mobile.",
+  "dev_scores": {
+   "overall": 8.11,
+   "semantics_seo": 8.0,
+   "animations": 8.8,
+   "accessibility": 7.6,
+   "wpo": 8.0,
+   "responsive": 8.0,
+   "markup": 8.2
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "ASCII post-process with a brand-seeded glyph ramp",
+   "why_it_works": "One shader turns any 3D object into on-brand type texture. Ending the ramp in the brand's own letters makes the effect ownable instead of a generic ASCII filter.",
+   "how_to_build": "three EffectComposer: RenderPass then ShaderPass, with composer.setSize(innerWidth*0.3, innerHeight*0.3) on desktop (0.9 on mobile). Low resolution is fine because each cell samples one pixel. Build the atlas by drawing the ramp (' .:-=+*#%@' plus 4-5 brand glyphs) with fillText in 16px monospace, centred in one 16x16 cell per glyph, on a canvas turned into a CanvasTexture (inferred: Nearest filtering). Pixel size = composerWidth/180 (90 on mobile), so the grid is always 180 columns. In the fragment shader: cell = pixelSize/resolution; uvPixel = cell*floor(vUv/cell); luma = dot(vec3(.2126,.7152,.0722), tex(uvPixel)); luma = clamp((luma-.5)*1.09+.5, 0, 1); index = floor(luma*(N-1)); sample the atlas at ((index + fract(vUv/cell).x)/N, fract.y); out = glyph*(luma+.9) in white with alpha = tex.a*glyph."
+  },
+  {
+   "technique": "GPGPU particle logo with flow field and cursor repulsion",
+   "why_it_works": "The logo is alive and touchable yet always returns to legible form. Through the ASCII pass the debris reads as scattered characters, not generic dots.",
+   "how_to_build": "GPUComputationRenderer with size = max(256, ceil(sqrt(vertexCount))), and a base texture filled from the logo GLB's position attribute. Each tick: flow = 4D simplex noise of (base.xyz*freq .53, t) scaled by strength 1.09, gated by influence .43; life in the alpha channel, and particles respawn to base when life >= 1. Mouse: raycast an invisible low-poly copy (MeshBasicMaterial, opacity 0) to get a 3D point, strength = clamp(mouseSpeed, 0, .1), pos += normalize(p-m) * strength/(d*(d+1)) * 2 * strength. Render THREE.Points with size 4, mesh scale 0.07*innerWidth, and feed the result into the ASCII pass."
+  },
+  {
+   "technique": "Noisy diagonal ASCII-cell wipe between full-bleed films",
+   "why_it_works": "A case-to-case hand-off that looks like a signal rebuilding. It keeps the terminal grammar consistent across the site and hides video decode or first-frame jank inside the band.",
+   "how_to_build": "One plane per case with a ShaderMaterial holding uTexture (current) and uTexture2 (next), both aspect-covered in the shader. mask(prog): p = (1+h) - prog*(1+2h) with h = .3; d = uv.y - uv.x*(1-prog)*.5 + valueNoise(uv*6)*(1-prog)*.05; band = step(1 - h*rand(cell), 1 - abs(d - p)). Above the band show texture2 and below it texture1. Inside it, render 13px ASCII cells in greyscale (glyph * white * (luma + .01) on black), not tinted by the image. Optionally pixelate both textures from a ladder such as [.01,7,7.5,8,8.5,9,9.5,10,30,50,100] indexed by progress. gsap.to(u.uProgress, {value:1, duration:2, ease:'gl.fastInOut'}) using CustomEase.create('gl.fastInOut','M0,0 C0.094,0.026 0.124,0.127 0.157,0.29 0.197,0.486 0.254,0.8 0.348,0.884 0.42,0.949 0.374,1 1,1'). Scramble the case metadata during the same second. Keep a plain DOM <video> fallback for narrow or low-power screens, as Artefakt does below 1200px."
+  },
+  {
+   "technique": "CRT title reveal plus scramble-decode labels as a GSAP effect",
+   "why_it_works": "Registering the reveal once gives the whole site one consistent 'signal acquiring' entrance for every title, with no one-off tweens.",
+   "how_to_build": "gsap.registerEffect({name:'revealTitle', extendTimeline:true, effect: lines => { const tl = gsap.timeline(); gsap.set(lines, {yPercent:50, scaleY:3, transformOrigin:'top'}); lines.forEach((l,i) => tl.to(l, {yPercent:0, scaleY:1, duration:.8, ease:'gl.fastInOut'}, i*.1).set(l,{opacity:1},'<10%').set(l,{opacity:0},'<0.1').set(l,{opacity:1},'<0.07')); return tl; }}). For labels, register a 'shuffle' effect: per char, 4 random glyphs at .03s with .025s gaps (repeat 3, repeatRefresh) and chars distributed over .03*n from 'start'. Toggle a --opa var that paints a white block behind the char on its first cycle, then re-glitch 3 random chars (block flash or scaleY 2 -> 1 expo.out). Trigger it with ScrollTrigger {start:'top 80%', once:true}. Keep the resolved text in the HTML so no-JS shows it."
+  },
+  {
+   "technique": "Grid-anchored terminal HUD over sticky full-bleed video",
+   "why_it_works": "Tiny, column-locked mono metadata gives a raw commercial reel an editorial frame without covering the footage.",
+   "how_to_build": "Tokens: --margin: 2rem; --gutter: 1rem; --column: calc((100vw - var(--margin)*2)/12), with a fluid rem (html font-size so that 1rem = 10px at 1440). Each case is position: sticky; top: 0; height: 100svh. HUD: a square-bullet label at column 1 mid-height, the zero-padded index centered, '/ NN' right; the title (wide display at about 36px, -2px tracking) bottom-left; CLIENTS/TYPE/DATE at columns 8/10/12 with the caption at 52% white. Header with mix-blend-mode: difference so the logo survives any frame. Add a text-shadow or scrim for light footage (Artefakt does not)."
+  },
+  {
+   "technique": "Viewfinder image focus",
+   "why_it_works": "It borrows camera language (focus box, filename) for a lightbox that feels native to a production company.",
+   "how_to_build": "On hover or click, move the still to a centred 16:9 box (about 80vw) above a fixed overlay (background rgba(0,0,0,.8); backdrop-filter: blur(20px)). Put the filename ('04.JPG') above the top-left corner in 12px mono. Replace the pointer area with a thin hollow white rectangle, taller than wide (about 85x98px at 1440), that lerps to the mouse at about 0.2 per frame."
+  },
+  {
+   "technique": "CSS screen-door texture instead of a shader grain",
+   "why_it_works": "A 7% dot mask makes flat black read as an emissive screen, which sets up the terminal and ASCII language for free and costs no GPU time.",
+   "how_to_build": ".scanline { position: fixed; inset: 0; z-index: -1; pointer-events: none } .scanline::after { content: ''; position: absolute; inset: 0; opacity: .07; background: linear-gradient(90deg, #000 calc(5px - 4px), transparent 1%) center / 5px 5px, linear-gradient(#000 calc(5px - 4px), transparent 1%) center / 5px 5px, #fff } (2px dots on a 3px pitch below 1280px). Keep it behind the content and only on dark surfaces; per the law, a full-page grid that just trails behind every section is its own tell, so tie it to the screen/signal concept or drop it."
+  }
+ ],
+ "slop_risks": [
+  "Monospace as the house voice: TronicaMono 12px caps carries 871 of about 900 text nodes (nav, labels, captions, body, colophon). The terminal concept earns it here; copied onto a normal brand it is the mono-costume tell.",
+  "One label treatment everywhere: identical 12px uppercase mono for eyebrow, nav, button (':/ BACK TO TOP'), counter and colophon. If copying, vary roles (size, weight, alpha) as Artefakt partly does with the 52% captions.",
+  "Faint grid background plus fixed background: the dim dot grid over the whole black page is a fixed CSS .scanline::after layer (5px pitch, 7% opacity, z-index -1), not an ASCII-pass artefact. It is exactly the law's faint full-page grid laid under everything, and it follows the scroll as a fixed sheet. The CRT/terminal concept is the only thing excusing it; a copy without that concept is slop.",
+  "Trend risk: ASCII shaders and text scramble are the 2025-26 default 'creative dev' effects. Druk Wide caps is not on the law's named font list, but it is the same reflex edgy display pick as the Syne/Archivo tell. Without a reason (brand glyph ramp, film-signal metaphor), a copy is instantly generic.",
+  "Invisible-content trap: TemplateWorks sets titles, squares and filters to opacity 0 in JS (gsap.set in initAnimations) and relies on appear() to reveal them, and the shader planes start hidden until uProgress runs. If the timeline stalls, the works header is blank.",
+  "Contrast and flicker: white 12px mono on bright video (the yellow comdirect case) is unreadable, and the opacity 1/0/1 flicker has no prefers-reduced-motion path.",
+  "Botched glass risk: the image-focus layer uses backdrop blur(20-50px) over dark video, which is fine here, but over flat low-contrast fields it bands.",
+  "185MB of mp4 declared: fine for a showreel only if loading is lazy (Artefakt uses a 'top 200%' trigger and GL-controlled playback). Autoplaying all of it is a performance failure.",
+  "Standard footer, partly: three square-bulleted mono columns (address / get in touch / legals and credits) above a full-width copyright-style ':/ BACK TO TOP' bar is close to the law's standard-footer tell. The reformed particle logo above it is what gives it an idea. Do not copy the columns without that."
+ ],
+ "confidence_notes": "OBSERVED: desktop_00-07 from the first probe, re-run desktop_01/02/05 (new frames of the same sections plus the studio photo panel), mobile_00/01 from the re-run, all 8 frames of elements 0 and 3, f00/f03/f04/f05/f06 of element 1 and f00/f03/f06 of element 2. Also the bundle code: CustomEase paths, revealTitle and blink effects, the ASCII pass, the plane revealMask, GPGPU uniforms with defaults, asciiChars, pixel ladders and DistortionTexture settings. The first probe's mobile screenshots were pure black (WebGL not booted by 6s); the re-run with --settle 12 --steps 7 rendered them and overwrote the probe folder (the original is backed up in the session scratchpad). INFERRED: the 84px/48px Druk Wide blocks were measured but not seen in any screenshot (sections skipped by the wheel steps); nav hover behavior comes from duplicated DOM text; the 3D works gallery implementation is from frames only (Gallery chunk not fetched); Tronica Mono's foundry is unverified; the 36px project-title size is matched from font_sizes_px rather than measured per element. The 404 element video was not in the frames set. audit (adversarial pass 3, re-read app.js/app.css/index.html): the black-page grid texture is a fixed CSS .scanline::after screen-door (5px pitch, 7% opacity), not the ASCII pass, so the texture note and slop risk were corrected. first_screen.display_type_px 84 -> 12, because no display type is on the first screen and the h1 is the 12px description. Mobile sizes were read off 2x screenshots: the wordmark is 150px (w-150), not about 300px, and the bottom copy is 12px, not 16px. Below 1200px the WebGL planes never initialise, so the mobile cases are plain videos. The orbiter mode is dead code (isOrbiter = false). The ASCII band glyphs are greyscale, not image-tinted. The ASCII composer runs at 0.3x resolution (a missed performance tactic), and pressing 'A' cycles render modes. Page transitions are Taxi.js (.2s black fade / no-fade work transition). The shuffle mechanics came from the registered effect. Nav hover is a white-block invert. The viewfinder is about 85x98px, not 45px. The header difference blend is a JS toggle at xl. The CSS cubic-beziers are Tailwind defaults. The wordmark switches from upright 'arte' to italic 'fakt'. The first case (4:3 P0073 film) was added. The credit spelling is now Lallé. Evidence re-viewed: desktop_00/01/02/03/04/05/06/07 (current) plus first-run desktop_05, mobile_00/01, all 8 frames of frames/3, frames/0 f00/f01/f04, frames/1 f04 and frames/2 f06."
+}

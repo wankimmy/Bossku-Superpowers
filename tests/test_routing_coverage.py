@@ -35,7 +35,7 @@ class RoutingCoverageTests(unittest.TestCase):
             ('Explain this React hook in one sentence', {'bosskuai-react-development'}),
             ('What is causing this Python error? Explain in one line', {'python-patterns'}),
             ('Build a responsive landing page for my SaaS with a pricing section and signup form',
-             {'taste-skill', 'signup'}),
+             {'bosskuai-taste', 'signup'}),
         )
         for prompt, expected in cases:
             for mode in ('v1', 'v2'):
@@ -65,7 +65,7 @@ class RoutingCoverageTests(unittest.TestCase):
     def test_bm_rojak_and_equivalent_requests(self):
         for prompt, expected in (
             ('Tolong audit SEO website saya, check title tags dan meta descriptions yang missing', {'seo-audit'}),
-            ('Buat landing page untuk bisnes saya, kena cantik dan senang guna kat phone', {'taste-skill'}),
+            ('Buat landing page untuk bisnes saya, kena cantik dan senang guna kat phone', {'bosskuai-taste'}),
             ('Baiki fungsi Python yang rosak dan tulis ujian pytest', {'python-patterns', 'python-testing'}),
         ):
             with self.subTest(prompt=prompt):

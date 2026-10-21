@@ -1,0 +1,334 @@
+{
+ "slug": "lando-norris",
+ "title": "Lando Norris",
+ "live_url": "https://landonorris.com/",
+ "award": "Awwwards Site of the Day, Nov 17 2025 (Honors); corpus bucket site-of-the-year 2025 (also sites_of_the_month). Agency: OFF+BRAND.",
+ "scores": {
+  "overall": 8.18,
+  "design": 8.12,
+  "usability": 7.9,
+  "creativity": 8.71,
+  "content": 8.18,
+  "dev": {
+   "overall": 7.58,
+   "semantics_seo": 7.4,
+   "animations": 8.6,
+   "accessibility": 7.0,
+   "wpo": 7.6,
+   "responsive": 7.4,
+   "markup": 7.4
+  }
+ },
+ "industry": "Sports / athlete personal brand (McLaren F1 driver): promotional hub with store, results, helmets, partners",
+ "signature": "The hero is a WebGL composite where a fluid-sim cursor trail paints Lando's real race helmet (helmet-21.glb rendered to a render target) onto a displacement-mapped relief of his studio portrait (a 128x128-segment plane driven by depth, normal, roughness and alpha maps, so it tilts with the mouse like a head, not a flat photo), over a live noise-contour 'track map' field, so the visitor literally puts the helmet on him.",
+ "first_screen": {
+  "composition": "1440x900, no live headline. Full-bleed, centered head-and-shoulders portrait on an off-white GL field (#F8F8F3 declared, rendered #fcfcfa because the bundle passes every headScene colour through convertLinearToSRGB()), cropped at the chest so the face owns the center third. The portrait is not a flat image: it is a PlaneGeometry(1,1,128,128) displaced by head/depth.webp and lit with normal/roughness maps. A faint animated wireframe helmet dome wraps the head; where the cursor has passed, a blob-edged band of the helmet livery is revealed across the mouth (it reads warm yellow-gold in the capture, noticeably warmer than the #d2ff00 UI lime), and the trail also leaves a slightly darker off-white smear on the background (#e9eae5 sampled, the COLOR_CURSOR_* palette). Pale topographic contour lines fill the background (#CBCBB9 declared, about #e5e5e3 on screen after the sRGB conversion). Chrome: stacked wordmark top-left ('LANDO' in a light high-contrast serif over 'NORRIS' in heavy grotesque) that is an inline SVG (div.nav-brand, 138x63 viewBox) recoloured per theme, NOT live text; the probe's h1 'LANDO NORRIS' (Mona Sans 38px/44px) is a visually hidden .screen-reader element. LN monogram top-center, lime STORE button (#d2ff00, bag icon) plus an outlined square menu button top-right (the brand and button groups are set to scale 1.2 above 991px at the top of the page: STORE measures 118x60 in desktop_00 vs 99x50 in every later capture), and a portrait 'NEXT RACE' ticket card bottom-left whose outline is an inline SVG path with a stepped tab at the top edge (Baku GP track outline, laurel helmet emblem, 'MCLAREN F1 SINCE 2019'). The card's emblem row carries data-gl-helmet='hover': hovering it puts the whole helmet on the portrait (see motion.hover_micro). The card is hidden once the page scrolls 1px.",
+  "what_owns_it": "mixed",
+  "display_type_px": null,
+  "evidence": [
+   "probes/lando-norris/desktop_00.jpg",
+   "probes/lando-norris/probe.json (measure.type.h1 is the .screen-reader h1, assets_3d, contexts webgl2)",
+   "evidence/probe/landonorris.com.txt (live HTML + bundle dump): window.landoGL.params.headScene, AX head class (displacementMap head.depth, displacementScale 0.25), nav-brand inline SVG, .screen-reader CSS",
+   "awwwards element thumbnail 68eb99a32907c372585217.jpg (helmet fully revealed over face; seen by the first author, not re-viewed in audit)",
+   "shared CSS lando-offbrand.shared.6e09a725a.css (fetched in audit pass 3) + bundle: data-nav-group scale 1.2 -> 1 scrub, .home-hero-next-race-w 'hidden' at 1px, [data-gl-helmet='hover'] on .home-hero-next-race-row.is-2"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Mona Sans Variable (200-900)",
+    "role": "display|body|ui",
+    "classification": "variable grotesque used across its WIDTH axis, not just weight: impact/manifesto lines 'wght' 660 'wdth' 93 (slightly condensed), button labels 'wght' 800 'wdth' 86 (condensed caps), eyebrows 'wght' 700 'wdth' 100, section heads bold caps, body 400",
+    "foundry": "GitHub with Degarism Studio (open source, SIL OFL; also distributed on Google Fonts)",
+    "source": "probe fonts_loaded 'Mona Sans Variable 200 900 normal', font_families_rendered 411 elements, css_features variable-font-axes x26; shared CSS .text-impact-lg-mona / .btn-text / .text-eyebrow font-variation-settings; MSDF atlas MonaSans-Bold-msdf.json for GL text"
+   },
+   {
+    "name": "Brier 700",
+    "role": "accent",
+    "classification": "inferred: sharp high-contrast display serif with wedge serifs and normal-width caps (not condensed: 'REDEFINING' at 110px spans about 590px, about 0.54em per letter)",
+    "foundry": "unknown (not identified)",
+    "source": "probe fonts_loaded 'Brier 700 normal', largest_text; shared CSS .text-impact-lg-brier 8.25rem / 83% / -.1875rem; WebGL carousel also uses an MSDF atlas Brier-Bold-msdf.json"
+   },
+   {
+    "name": "Rive-animated handwriting (signature.riv, phrases.riv)",
+    "role": "accent",
+    "classification": "vector marker script drawn on (autograph + 'Collabs' scribble)",
+    "foundry": "custom Rive files",
+    "source": "bundle grep: p6={signature:'signature.riv', phrases:'phrases.riv', logo:'ln4.riv', ...}; desktop_06/07"
+   }
+  ],
+  "display_size_px": 110,
+  "body_size_px": 16.67,
+  "scale_notes": "Measured at 1440: manifesto grotesque .text-impact-lg-mona = --text--impact 7.9375rem = 105.8px on 90.6% (line pitch 97px measured in desktop_01); Brier accent words 8.25rem = 110px (set about 4% larger so the cap heights match: serif and grotesque caps both span rows 208-286, 78px, in desktop_01; the same ~1.04 ratio holds for the reg pair 7 / 7.3125rem and the small pair 5.25 / 5.4375rem), 93.3px ('CHAMPION'), 97.5px ('ON'), 72.5px ('BRINGING/FIGHT'); visible section heads about 60px (HELMETS / HALL OF FAME cap height 44px in desktop_04, matching --text--h2 4.5rem); body p 16.67px/20.83px; captions h3 12px/15px 600; button labels .btn-text 1rem = 13.3px (nav 1.25rem = 16.7px, footer 1.875rem) at line-height 1; eyebrows .text-eyebrow .625rem = 8.33px caps, the '8px x39' bucket ('MONACO, 2023', 'MCLAREN F1 SINCE 2019'). The probe's 32px/36px h2s ('2025 MCLAREN FORMULA 1 DRIVER', duplicate 'ON'/'TRACK') are visually hidden .screen-reader headings and split-text screen-reader clones, not visible type. Ratio display:section:body:meta about 6.6 : 3.6 : 1 : 0.72. Fluid rem: html font-size = clamp(992px, 100vw, 1920px) / 1728 * 16, so 1rem = 13.33px at 1440 (tablet unit 20, mobile-portrait unit 48 with clamp(320px, 100vw, 479px); the probe's root_vars captured those mobile overrides, not the desktop values). Tokens: --text--impact 7.9375rem (105.8px at 1440), --text--h2 4.5rem (60px), --text--h1 4rem, --text--eyebrow .578rem, --grid-col 25.4375rem (339px = the helmet card width).",
+  "tracking_leading": "Display serif runs tight: 110px on 91.3px (83%) with -.1875rem = -2.5px (-0.023em); 93.3px on 75.6px (0.81) with -3.33px (-0.036em); 72.5px on 62.06px (0.856) with -1.67px. Manifesto grotesque 105.8px on 90.6% with -.0625rem (-0.83px, about -0.008em); the heavier reg grotesque (wght 750, wdth 93) 7rem on 0.816 with -.25rem (-3.3px). Body 16.67px on 20.83px (1.25) with -0.1667px (-0.01em). Small serif quotes in the photo track go the other way: Brier 1.5rem (20px) with POSITIVE tracking +.05rem (+0.67px) on a 0.946 line-height, in #b4b8a5. Buttons and eyebrows line-height 1.",
+  "case_and_style": "All-caps display. One word per clause swaps from Mona Sans 700 to Brier serif at the same cap height inside one centered line; on dark olive the serif words take the tonal lime-off #b2c73a ('REDEFINING', 'WINS', 'LEGACY'), on the light partners section the serif stays dark ink ('&CAMPAIGNS', desktop_06), so the serif is a voice change first and a colour change only on dark. Section heads pair a grotesque caps line with a serif caps line at equal size ('HELMETS' / 'HALL OF FAME', 'PARTNERS' / '&CAMPAIGNS'). Year numerals set in lime next to white labels on helmet cards. In the photo-track quote two words are tinted a step lighter with static spans ('It doesn't matter where you start, it's how you progress from there': 'where' and 'how' in #dde1d2 against #b4b8a5, desktop_02), a tonal emphasis rather than a colour pop. Long-form quotes and CTAs in the serif at small size, sentence case ('Since I was 7 years old...', 'See more helmets and highlights from Lando on the track').",
+  "signature_moves": [
+   "Same-size serif/grotesque word swap inside one all-caps manifesto line (desktop_01)",
+   "Serif swapped in at +4% size (8.25rem vs 7.9375rem) so its caps land exactly on the grotesque's cap height, and the grotesque runs on its width axis (wdth 93) so both voices share one colour of line",
+   "Colour block wipes each line open: the manifesto uses lime-off #b2c73a blocks (data-anim-high='right, lime-off'), paragraphs, eyebrows and captions use bright #d2ff00 (desktop_01, desktop_04, desktop_02 'BATTERSEA, 2024' caret)",
+   "Handwritten Rive signature and 'Collabs' marker scribble layered behind/over caps headings (desktop_06, desktop_07)",
+   "Char-roll labels with no duplicate DOM: each split char carries text-shadow: 0 var(--text-offset) currentColor (offset = the label's font-size token, e.g. 1rem), so the second copy is the char's own shadow one line below; hover moves chars y -100% (audit pass 3: the earlier 'label exists twice in the DOM' reading was wrong)",
+   "Real h1/h2 kept for assistive tech as .screen-reader elements (clip-path inset(50%), 1px box) while the visible wordmark is SVG and the visible heads are split for animation"
+  ],
+  "mobile": "mobile_00: the hero shows 'LANDO NORRIS' as one centered line (light serif + heavy grotesque; an SVG image ln4-lando-norris-text-mobile.svg, not live text and not the screen-reader h1) under the LN mark with 'MCLAREN F1 SINCE 2019'; STORE moves to top-left, menu top-right. mobile_01: manifesto reflows to 7 centered lines (largest measured 43.3px; desktop is also 7 lines), preceded by a 2-row WebGL MSDF-text marquee ('WE DID IT AT HOME...' Brier lime-off over Mona Sans off-white, carouselScene directions 'left' and 'right', so the rows run in opposite directions). The hero portrait at the top of mobile_01 is already in its grey-olive scroll-out state. No horizontal overflow at 390px."
+ },
+ "color": {
+  "mode": "section-shifting",
+  "base": "#f4f4ed (--color--white, body bg) / #F8F8F3 declared GL hero field, rendered #fcfcfa (headScene colours go through convertLinearToSRGB, so they appear lighter than their hex): a cool, faintly green off-white",
+  "ink": "#282c20 (--color--dark-green) and #111112 (--color--black)",
+  "accents": [
+   "#d2ff00 lime (--color--lime): STORE/CTA fills, helmet-card years, reveal blocks, 'Collabs' scribble, footer gradient",
+   "#b2c73a lime-off: serif accent words on dark olive, GL cursor tint",
+   "#ff6b00 orange (--color--orange token, not seen in captures)",
+   "#dde1d2 / #b4b8a5 green off-whites for text on dark"
+  ],
+  "ratio": "about 55% neutrals (off-white, olive #282c20, black #111112), 38% photography/3D, 7% lime",
+  "section_shifts": "Continuous, not hard seams: sections carry data-gl-change-track plus data-gl-change-from / data-gl-change-to token pairs (e.g. 'white, dark-green-tint-1-low' = background, contour colour) and optional data-gl-change-trigger-start/-end (default 'top top' / 'bottom bottom'). A scrubbed gsap.fromTo({progress:0},{progress:1}) interpolates the backgroundScene colours and ALSO writes document.body.style.backgroundColor, so DOM and canvas stay in sync. The code puts ease:'cubic-bezier(1, 0, 0.37, 1)' inside the scrollTrigger vars object, where GSAP ignores it, so the mapping actually runs on the tween's default ease (power1.out); the curve is declared but inert. Captured sequence: off-white hero (00) -> olive #282c20 manifesto (01) -> grey-olive #9c9d95 in the horizontal photo track (02; that section declares data-h-color-from='dark-green' data-h-color-to='white', so the grey is a mid-morph value) -> off-white #f4f4ec (03) -> black #111111 helmets (04/05) -> off-white partners (06) -> lime-to-white gradient behind an olive #282b20 footer card (07).",
+  "texture": "No grain. A procedural topographic contour field is drawn in WebGL behind all content: lines #CBCBB9 on #F8F8F3 in the hero (rendered about #e5e5e3 on #fcfcfa), #363B25 on #282C20 in dark sections (backgroundScene, no sRGB conversion, sampled #282b20). Inside the fluid cursor mask the hero swaps to COLOR_CURSOR_FOREGROUND #CFD2C5 and COLOR_CURSOR_BACKGROUND/OUTLINE #E8E8DF (a slightly darker off-white smear, desktop_00). #b2c73a is the carousel top-row text colour and the manifesto accent, not a cursor tint.",
+  "notes": "Palette is the helmet livery itself (lime + black squiggle), so the loud accent is brand-owned. COLOR_FILTER #50593F belongs to the hero head shader: as the hero scrolls away (uFilter 0->1 over the first viewport, scrubbed) the portrait goes grayscale, contrast 0.8, x0.75, then hardLight-blended with #50593F into an olive duotone (visible at the top of mobile_01). Some photos in the horizontal track read muted olive (golf 'MONACO, 2023', 'US, 2024'): OBSERVED as baked into the asset (audit pass 3 fetched ln-home-horiz-10-p-500.webp, the 'US, 2024' image: an olive duotone file, mean HSV saturation 0.13), no runtime filter. The nav menu tones its images live instead with two blend layers over each img: .menu-img-blend-1 (#000, mix-blend-mode: saturation) desaturates and .menu-img-blend-2 (#282c20, mix-blend-mode: plus-lighter) lifts the blacks to olive, a pure-CSS duotone."
+ },
+ "layout": {
+  "grid": "Container padding and gap both 1.25rem (--padding--container, --gap) = 16.7px at 1440 (content starts at x=17-18 in the captures). Helmet hall: 4 columns of about 338px cards (--grid-col 25.4375rem = 339px) with about 17px gutters, alternate columns offset vertically by about 52px (desktop_05). Split section heads: title at x=18, paragraph column starting at x=712 (the midline). --grid-spacer 31.51vh.",
+  "density": "balanced",
+  "alignment": "Centered for hero, manifesto and footer; left-anchored title + midline paragraph for section heads; a pinned horizontal photo track between them (content deliberately cut by the viewport edges while it travels).",
+  "composition_moves": [
+   "Portrait centered and cropped at chest so the head is the hero, chrome pushed to the four corners",
+   "Pinned horizontal track (not a static collage): photos at 3-4 sizes with tiny 'PLACE, YEAR' eyebrows ('MONACO, 2023', 'BRITAIN, 2025', 'BATTERSEA, 2024') slide right-to-left while you scroll down, with a serif quote and generous empty field between (desktop_02/03). Track items are sized in vh, not px or %, so the strip composes to the viewport height (e.g. the large frame 65.48vh x 59.48vh, small ones 20.96-29.3vh), and each img is oversized to calc(100% + 4rem) with transform-origin 0 inside an overflow:clip frame so the 4rem drift never exposes an edge",
+   "One tab silhouette reused as a shape system: the NEXT RACE card outline (inline SVG), the helmet cards (CSS mask-image ln4-2-helm-mask-fill.svg, separate mobile SVG under 479px) and the footer card (mask-image ln4-footer-mask-desktop.svg) all carry the same stepped tab",
+   "Helmet cards: 1px outline with the name/year label sitting in a tab that steps down at the bottom-right (desktop_05)",
+   "Footer as an inset olive card whose top edge rises into a central tab/bump silhouette, lime gradient behind it (desktop_07)",
+   "3D helmet and head crops bleed in from the section edges as scroll companions (desktop_03 bottom corners)",
+   "Real partner logo wall as a marquee (quadrant, TUMI, Hilton, Uber, LNKART, BELL, PURE ELECTRIC, Google), dark on off-white in the partners section and lime on olive along the footer base"
+  ],
+  "section_rhythm": "Full-screen interactive hero (sticky, scrolls out into an olive duotone) -> WebGL MSDF text marquee -> full-screen type manifesto -> pinned horizontal photo track -> full-bleed editorial photo -> dense 4-column helmet grid -> airy partners section with scribble -> footer card. Alternates dense/airy and light/dark on nearly every step.",
+  "mobile_adaptation": "Single column; hover reveal replaced by a lime 'TAP TO LOCK' hand-icon switch bottom-right (mobile_00; it locks page scroll so touch drags paint the helmet, see three_d.interaction); the desktop wordmark link is display:none and STORE moves top-left; menu button grows to 4.7rem under 480px; manifesto reflows to 7 lines. The GL MSDF marquee is not mobile-only: it sits in the home hero at every width ([data-gl='carousel'] inside the hero section) and the desktop captures simply scrolled past it. Element thumbnail shows mobile 'ON TRACK' page with lime scribble 'ON' over grotesque 'TRACK'."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis, instantiated with {infinite:false, lerp:0.1, smoothWheel:true, touchMultiplier:2, autoResize:true, syncTouch:true} (not pure defaults: touch is smoothed too); desktop wraps documentElement/body. html class 'lenis', probe globals.lenis true.",
+  "preloader": "Rive-driven: page-transition.riv (artboard/state machine 'page-transition', Fit.Cover) on canvas[data-rive-primary] inside .transition-w, with a lime char-roll button 'Load Norris' in .transition-btn (opacity 300ms; on its trigger it fades at +100ms and is hidden at +500ms); window.loadingComplete gate. Whether the button must be clicked to enter was not verified. A custom .scroll-indicator replaces the native scrollbar: fixed 0.4em x 80vh track at the right edge (inset 10vh), bar #ffffffbf at 30% height with a 0.2s height transition, mix-blend-mode: difference, so it inverts over every section (it reads violet over the lime footer glow in desktop_07).",
+  "intro_sequence": "headScene uniform uReveal tweens 0->1 over REVEAL_DURATION 1.1s: the contour field UVs are offset/scaled by REVEAL_SIZE 25*(1-uReveal) so the topography zooms and settles in, and the background mixes toward the foreground colour as uReveal grows. Wireframe helmet runs its own animation (IS_WIREFRAME_ANIMATING true). Scroll-out (scrubbed over the first viewport, power1.inOut): uFilter 0->1 turns the portrait into the olive duotone, the head plane pushes back to z -1 and the camera group rises y +0.1.",
+  "scroll_techniques": [
+   "scrub (WebGL background colour per section, also mirrored to body background)",
+   "reveal (line clip + colour cover block)",
+   "clip-path ellipse image reveal",
+   "pinned horizontal track: section height set to trackWidth - innerWidth; gsap.to(track,{x:-(W-innerWidth), ease:'none', scrollTrigger:{start:'top bottom', end:'bottom bottom', scrub:1}})",
+   "per-image drift inside the track: containerAnimation, start 'left right', end 'right left', x 0 -> 4rem",
+   "hero scroll-out duotone + push-back (uFilter, z -1)",
+   "marquee (WebGL MSDF text carousel, CSS 30s/100s loops)",
+   "sticky (4 sticky elements, sticky hero track)",
+   "3D helmet scroll companion (landoGL.bounds.helmetScroll)",
+   "zero-padded number counters ([data-car-counter], 1s power1.out, 'top 90%' once)",
+   "nav chrome scale scrub: [data-nav-group='brand'|'btns'] set to scale 1.2 above 991px, then gsap.to(scale 1, power2.out) scrubbed over a 10vh .top-marker at the top of the page",
+   "scroll-scrubbed Rive: [data-rive-scrolltrigger-*] canvases (the hero signature, state machine 'signature_scroll') get a ScrollTrigger (scrub 0.5) that writes progress*1000 into the state machine's number input 'scroll'; play on enter, pause 50ms after leave"
+  ],
+  "text_animation": "Home manifesto and rich text ([data-anim-high], [split-rich-text]): SplitText lines; per line gsap.set clipPath 'inset(0 100% 0 0)' (set in JS, so no-JS shows text) plus an absolutely positioned colour block (transform-origin right, scaleX 1); timeline: line clip -> 'inset(0 0% 0 0)' 0.6s power2.out, block scaleX -> 0 0.6s power2.inOut starting 0.3s after that line's clip starts, lines staggered 0.15s; ScrollTrigger 'top 90%', once. The 0.5s / stagger 0.015 / '-=0.2' variant exists only for the On Track calendar/track label swap. Oval headline ([data-oval-scroll]): each line gets its own wrapper clipped from 'ellipse(20% 0% at 50% 0%)' to 'ellipse(100% 120% at 50% 0%)' 1.5s power2.inOut, wrappers staggered 0.15s; lines and chars start at y -40% and settle to 0% (line delay 0.15 + 0.1*i, chars stagger {amount: 0.015*chars, from:'center'}); trigger 'top 95%' once.",
+  "image_animation": "[data-img-highlight='top, lime, 0']: image wrapped; wrapper clip 'ellipse(120% 0% at 50% 0%)' -> 'ellipse(120% 120% at 50% 0%)' 0.8s power2.out while an inner colour layer (token colour) goes from 'ellipse(120% 120% at 50% 100%)' to 'ellipse(120% 0% at 50% 100%)' 0.6s power2.out, overlapping by 0.4s; 'top 80%' once. Helmet cards (pure CSS, 0.75s cubic-bezier(0.65, 0.05, 0, 1)): on hover a reveal image opens with clip-path ellipse(100% 120% at 50% 0%), the helmet scales 1.1, overlay frame fades in and the tab graphic turns lime.",
+  "page_transitions": "taxi.js router (links a[href]:not([target]):not([href^=#]):not([data-taxi-ignore]), prefetch on) with a Rive page-transition.riv overlay.",
+  "hover_micro": [
+   "Next-race card emblem row ([data-gl-helmet='hover']): mouseenter tweens uHelmetHover 0 -> 1 over 1.5s expo.inOut (mouseleave back over 1s): the full helmet (and the pre-shadowed face) wipes up the portrait along a threshold of cameraUv.y + sin(x*PI)*sin(uHelmetHover*PI)*0.2, so the wipe edge bulges into an arch mid-move and flattens as it lands; [data-gl-hover] elements also tint the GL field (uColorHover lerp 0.25s, uHover 0.5s power4.inOut)",
+   "[data-anim='text-hover']: chars y to -100% (menu links -5.25rem, -4.3rem under 480px) 0.6s stagger 0.02 power3.out, reverse on mouseleave; the incoming copy is each char's own text-shadow (0 var(--text-offset) currentColor), not a duplicated text node",
+   "Card fan: hovered card y -2.5rem, scale x1.08; neighbours pushed x +/-8rem*(1-|i-c|/c)*(1+0.2*max(0,3-d)) and rotated +/-3deg/(d+1); elastic.out(1, 0.75) 0.5s overwrite auto; each card starts 0.02s*distance later",
+   "Helmet card hover: ellipse clip reveal + helmet scale 1.1 + lime tab, 0.75s --cubic-default",
+   "Helmet 3D mesh tilts: rotation.x = mouse.y * -intensity (desktop >768px only)",
+   "Contour lines recolour under the cursor (COLOR_CURSOR_BACKGROUND/FOREGROUND)",
+   "Nav menu button flips from outlined (light sections) to filled off-white #f4f4ec (dark sections); wordmark SVG paths recolour via [data-theme] fill: currentColor"
+  ],
+  "cursor": "No DOM cursor (cursor_none 0). The cursor is expressed in WebGL: a fluid-sim trail (world.fluidCursor.sourceTarget) sampled as tCursorEffect, cursorEffect = step(0.1, 1.0 - trail.r); mouse eased with a 'pace' (velocity) uniform; CURSOR_INTENSITY 0.15, CURSOR_SCALE 3, CURSOR_BOUNCE -0.75. Menu: the hamburger glyph is a Rive state machine (hover input), and opening the menu draws the current-page marker SVG paths in via strokeDashoffset (0.6s, stagger 0.05).",
+  "easing_curves": [
+   "cubic-bezier(0.65, 0.05, 0, 1) (--cubic-default with --duration-default 0.75s; helmet card hovers)",
+   "cubic-bezier(0.19, 1, 0.22, 1) (CSS, expo-out)",
+   "cubic-bezier(1, 0, 0.37, 1) declared on the GL colour scrub but placed inside scrollTrigger vars, so inert (effective: GSAP default power1.out)",
+   "expo.inOut 1.5s in / 1s out (full-helmet hover wipe); power4.inOut 0.5s (GL hover tint)",
+   "GSAP power2.out x36",
+   "power2.inOut x15",
+   "expo.inOut x12 (e.g. disco helmet transition 2s)",
+   "power1.inOut x11 (hero scroll-out)",
+   "power3.out x10 (char-roll hovers)",
+   "expo.out / expo.in x5",
+   "elastic.out(1, 0.75) x5 (card fan only)",
+   "back.inOut x2",
+   "back.out(1.2) x1",
+   "none (horizontal track, scrub:1)"
+  ],
+  "duration_range_ms": "GSAP 200-2500 (most common 500 x21, 2000 x19, 600 x14, 300 x11); CSS 100-800 plus 750 default; marquees 30s and 100s linear; GL reveal 1100; oval headline 1500; horizontal track scrub 1 (1s catch-up)",
+  "stagger_ms": "150 per line (home line reveals, oval wrappers), 20 (hover chars), 20 per distance step (card fan), 15 (calendar label swap), 50 (stat lists); amount-based 0.015s x char count from center",
+  "choreography_notes": "Clip opens first and the colour block starts leaving at half the clip duration (+0.3s of 0.6s), so the slab reads as a cursor travelling ahead of the text; lines follow each other 150ms apart, a readable sweep, not a simultaneous flash. Headline chars ripple from the center outward. Heavy moves 1.1-1.5s with inOut curves; hovers 0.5-0.75s; only the card fan is springy.",
+  "evidence": [
+   "probes/lando-norris/desktop_01.jpg",
+   "probes/lando-norris/desktop_02.jpg (horizontal track mid-travel)",
+   "probes/lando-norris/desktop_04.jpg",
+   "probes/lando-norris/desktop_05.jpg",
+   "probes/lando-norris/mobile_01.jpg (hero duotone scroll-out)",
+   "probes/lando-norris/probe.json easings/durations/root_vars",
+   "evidence/probe/landonorris.com.txt bundle: D7 [data-anim-high] (0.6/0.6/0.15), HP [split-rich-text], E7 [data-oval-scroll], rW [data-img-highlight], qp [data-horizontal-section], k7 text-hover, card fan, data-gl-change-track scrub, headScene uFilter scroll-out, Lenis options",
+   "no jury element videos exist for this site; 2 static element thumbnails viewed by the first author"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "mixed",
+  "art_direction": "Bright, flat-lit studio portrait on off-white (hero, delivered as a texture set: diffuse, depth, normal, roughness, alpha, pre-shadowed diffuse), warm-graded trackside candids (orange cap, podium, helmet close-ups) in the horizontal track, helmet product shots isolated on black outlined cards, and a helmeted figure rising out of the footer card (inferred: the GL head plus helmet, not a flat cut-out). The livery pattern (black squiggles on lime) repeats in helmet, jacket and background contours so image and graphic system share one motif.",
+  "treatments": [
+   "hero portrait scroll-out: grayscale + contrast 0.8 + hardLight #50593F olive duotone (uFilter)",
+   "some track photos pre-toned muted olive (inferred, no runtime filter found)",
+   "ellipse clip-path wipe with a colour layer",
+   "SVG mask-image tab silhouettes on helmet cards and the footer card",
+   "figure breaking the footer card edge",
+   "portrait relief composited with 3D helmet through a fluid mask, with a pre-shadowed face swapped in under the mask"
+  ],
+  "crops_and_ratios": "Hero portrait cropped at chest, full-bleed; collage mixes landscape (about 4:3) and square-ish crops at 200-550px widths; helmet cards about 338x340 with notched base; full-width 1440x570 editorial photo above the helmets section.",
+  "formats": "img 198, svg 109, video 0; requests: webp 68 (4.70MB declared), svg 24, riv 8, glb 3, hdr 2, woff2 2",
+  "evidence": [
+   "probes/lando-norris/desktop_02.jpg",
+   "probes/lando-norris/desktop_03.jpg",
+   "probes/lando-norris/desktop_04.jpg",
+   "probes/lando-norris/desktop_05.jpg",
+   "probes/lando-norris/desktop_07.jpg",
+   "probes/lando-norris/mobile_01.jpg",
+   "probes/lando-norris/probe.json media/asset_extensions/bytes_by_type_declared",
+   "landonorris.com.txt: landoGL.assets.textures.head.*, css-home [data-helmet-item] mask-image, .footer-layout-clip mask-image"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r174 (custom window.landoGL framework, scenes selected by [data-gl='head'|'tracks'|'background'|'carousel'|'helmet-scroll']) + Rive runtime (8 .riv files, rive.wasm from unpkg) for 2D vector animation; MSDF text for GL marquees",
+  "role": "hero object (helmet revealed over a displaced portrait relief), background field (noise contour lines on every section), WebGL MSDF text marquee (carouselScene 'WE DID IT AT HOME...'), tracks scene on On Track, disco-ball helmet variant",
+  "assets": [
+   "https://lando.itsoffbrand.io/gl/models/helmet-21.glb",
+   "https://lando.itsoffbrand.io/gl/models/disco-02.glb",
+   "https://lando.itsoffbrand.io/gl/models/tracks/tracks-06-test.glb",
+   "https://lando.itsoffbrand.io/gl/hdri/studio_small_08_1k--light.hdr",
+   "https://lando.itsoffbrand.io/gl/hdri/studio_small_08_1k--faded.hdr",
+   "bundle-declared (host assets.itsoffbrand.io/lando/gl in the Sep 2026 dump): textures/head/webp/{diffuse,depth,alpha,normal,roughness,shadow-softer-edit}.webp",
+   "bundle-declared: fonts/Brier-Bold-msdf.json + Brier-Bold-02.webp, fonts/MonaSans-Bold-msdf.json + MonaSans-Bold-02.webp (MSDF atlases)",
+   "bundle-declared: helmet diffuse variants lime / dark / grid / disco, glass and plastic matcap, noise-03.webp, studio_small_08_1k--dark.hdr"
+  ],
+  "materials_lighting_post": "Head: PlaneGeometry(1,1,128,128) with a lit standard-type material: displacementMap head/depth.webp at displacementScale 0.25, normalMap, roughnessMap (reused as metalnessMap), alphaMap; diffuse projected through uProjectorMatrix/uProjectorViewMatrix so the photo stays registered while the relief tilts; camera PerspectiveCamera(15) (long lens, low distortion); mouse movement eased (intensity 0.075, ease 0.025). The head material itself (onBeforeCompile on the relief, not the final composite, whose own shadow swap is commented out) mixes tDefaultDiffuse to tShadowDiffuse (shadow-softer-edit.webp, the face pre-shaded as if under a helmet) by min(cursorEffect + step(1.0 - hoverTransition, uHelmetHover), 1.0), so wherever the helmet is shown the face underneath is already shaded; the composite then lays tHelmet over it. Helmet: standard material patched in onBeforeCompile; darkEdges = clamp(1.0 - abs(vLocalPosition.x)*30.0, 0.2, 1.0) mixed by uDarkEdges; separate 'plastic' visor mesh renderOrder 1; rendered to a WebGLRenderTarget with samples:2 (MSAA) and composited as tHelmet. Wireframe hint: all helmet geometries merged into one mesh drawn with a wireframe ShaderMaterial in pure black whose alpha is pow(fract(-vPosition.y*10.0 - uTime), 4.0) * 0.1, i.e. thin scan bands sweeping down the dome at most 10% opacity (IS_WIREFRAME_ANIMATING). Variants by texture swap: 'Lime' 06:00-18:00 local time, 'Dark' otherwise (getVariantAccordingToTime() is called in both helmet constructors and written into headScene.VARIANT, so the live helmet does follow the visitor's clock), plus 'Disco' (2s expo.inOut uHelmetTransition) and 'Grid'. Disco variant: metalness 0.9, roughness 0, envMap studio_small_08_1k--light.hdr at envMapIntensity 1.5, plus matcap + mask textures; instanced lens-flare sprites fade by facing (smoothstep(0.9,0.95, dot(n, z))). Contour outline: 4-neighbour sample of a stepped noise target at THICKNESS 0.000005; if any neighbour differs, draw COLOR_OUTLINE. All headScene colours are converted with convertLinearToSRGB, so declared hexes render lighter. Loaders for KTX2, Draco and meshopt present; UnrealBloom referenced.",
+  "interaction": "fluid-sim cursor reveal of the helmet; hover the next-race card's emblem row for a full-helmet arch wipe (uHelmetHover 1.5s expo.inOut); mouse tilt on the head relief and helmet (desktop only); scroll-following helmet between sections; cursor recolours the contour field. Touch (<992px): 'TAP TO LOCK' is a role='switch' button that calls lenisStop() and scrolls to 0, so finger drags paint the helmet instead of scrolling the page; tapping again ('Back to scroll') restarts Lenis; the two eyebrow labels swap with y 0% <-> 100% in 0.3s power2.out and the control fades out once the hero's top marker scrolls away.",
+  "performance_tactics": "Pixel ratio clamped to min(devicePixelRatio, 1.25) above 768px wide and min(dpr, 2) below; frame delta clamped to 1/30 s (then scaled x100 as the tick unit); helmet rendered once into an offscreen RT then composited; 1k HDRIs; 1.54MB total 3D payload; WebGL2 feature check adds html.gl-fallback when unavailable.",
+  "fallback_mobile": "Same WebGL hero on phones with a scroll-lock switch replacing hover (mobile_00, 'tap to lock' / 'Back to scroll' states; aria-pressed and aria-label update); tilt disabled at 768px and below per code guard; if WebGL2 is missing the bundle logs 'initializing fallback' and adds html.gl-fallback (fallback design not captured).",
+  "evidence": [
+   "probes/lando-norris/desktop_00.jpg",
+   "probes/lando-norris/mobile_00.jpg",
+   "probes/lando-norris/probe.json globals three_revision 174, assets_3d, contexts webgl2 24",
+   "landonorris.com.txt bundle: AX head class, uHoverReveal/uDarkEdges shader patch, tHelmet/tCursorEffect/tShadowDiffuse composite, uFilter scroll-out, pixelRatio clamp, tick delta clamp, isWebGL2Available/gl-fallback, setVariant",
+   "landonorris.com.txt bundle (audit pass 3): head material shadow mix + hoverTransition arch, wireframe scanEffect shader, helmetHover()/hoverAnimation(), Lp() swipe-toggle scroll lock, getVariantAccordingToTime() call sites"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Fixed corner chrome with no visible link row: SVG wordmark top-left, lime STORE button + square menu button top-right, LN monogram center on the hero only. Measured radii from the shared CSS: menu button .nav-ham 3.75rem square with .74rem (9.9px) radius; lime buttons .btn-w .54rem (7.2px). The menu button is outlined on light sections and filled #f4f4ec on dark ones; data-nav-theme / [data-nav-theme-target] drive the recolour. Above 991px the brand and button groups start at scale 1.2 and scrub down to 1 over the first 10vh of scroll (118x60 -> 99x50 measured), and the next-race card hides after 1px.",
+  "menu": "Full-screen overlay menu (class nav-menu-link-w) with big caps links rolling chars by -5.25rem on hover; menu images columns duotoned live with saturation + plus-lighter blend layers (#000 / #282c20); nav-menu-bg fades to autoAlpha 0.12; current-page marker paths draw on via strokeDashoffset; close reverses the timeline at timeScale 1.5. Exact overlay design not captured.",
+  "buttons_links": "Primary .btn-w: #d2ff00 fill and 1px lime border, #282c20 ink, 3rem tall, 1rem side padding, .54rem radius; label .btn-text Mona Sans 'wght' 800 'wdth' 86 (condensed) caps at 1rem (13.3px; nav 1.25rem = 16.7px) line-height 1; small bag/arrow glyph; char-roll hover through a text-shadow copy (the button itself does not move). Secondary: 1px outlined square icon button. In-page CTA 'VIEW ON TRACK' lime with circular-arrow glyph (desktop_05).",
+  "unusual_interactions": [
+   "Cursor paints the helmet onto the face (fluid trail mask)",
+   "Hover the next-race card's emblem row to put the whole helmet on (arched wipe up the face)",
+   "TAP TO LOCK on touch: a scroll-lock switch so drags paint the helmet instead of scrolling",
+   "Contour field reacts to cursor",
+   "Elastic fan of 7 portrait social cards (.callout-socials-card-w 20rem x 35rem, 3.3rem = 44px radius)",
+   "Rive autograph scrubbed by scroll (state machine input 'scroll' = progress*1000)",
+   "Next-race ticket card in hero corner"
+  ],
+  "sound": "None observed (one AudioContext reference in bundle, likely Rive runtime).",
+  "footer": "Inset #282c20 card (CSS mask-image SVG) with a raised center tab silhouette on a lime-to-white gradient; 'ALWAYS BRINGING THE FIGHT.' (grotesque white + Brier lime-off) with a lime Rive signature above; helmeted figure rising from the bottom edge between 'PAGES' (HOME / ON TRACK / OFF TRACK / CALENDAR in white, STORE alone in lime) and 'FOLLOW ON' (TIKTOK / INSTAGRAM / YOUTUBE / TWITCH in white) columns; lime partner logo marquee along the base."
+ },
+ "content_voice": {
+  "headline_style": "All-caps declarative manifesto sentences; one serif accent verb or noun per clause; short section heads built as grotesque + serif pairs.",
+  "copy_tone": "Confident, first-person racer voice mixed with fan-hub utility ('Most recent results, career stats and photos from trackside.'); personal asides in the serif quote ('Since I was 7 years old...').",
+  "examples": [
+   "ALWAYS BRINGING THE FIGHT."
+  ]
+ },
+ "tech_stack": {
+  "framework": "Webflow (html class w-mod-js, cdn.prod.website-files.com, jQuery 3.5.1) with a custom OFF+BRAND bundle (lando-by-OFF+BRAND.05.js, 1.32MB, served from lando.itsoffbrand.io with referrer check)",
+  "libraries": [
+   "GSAP + ScrollTrigger + SplitText (bundled, no window.gsap global; Awwwards tags GSAP)",
+   "Lenis",
+   "three.js r174",
+   "Rive (@rive-app, 8 .riv files, wasm from unpkg.com)",
+   "taxi.js page transitions (links a[href]:not([target]):not([href^=#]):not([data-taxi-ignore]), enablePrefetch true)",
+   "Google Tag Manager / GA4 (probe requests to googletagmanager.com and google-analytics.com)",
+   "iubenda consent and Klaviyo onsite script tags are present in the HTML but commented out; the probe logged no request to either host"
+  ],
+  "evidence": "probe globals {lenis, Webflow, rive, three_revision 174} and top_hosts (website-files CDN, lando.itsoffbrand.io, assets.itsoffbrand.io, cloudfront jQuery, googletagmanager, google-analytics, unpkg); landonorris.com.txt (HTML with commented-out iubenda/klaviyo/dev bundles; bundle grep ScrollTrigger 22, SplitText 3, taxi constructor, rive file map)"
+ },
+ "performance_accessibility": {
+  "requests": 128,
+  "weight_notes": "Declared: webp 4.70MB, 3D 1.54MB, other 0.52MB, woff2 191KB, js 169KB (the main 1.32MB bundle comes from a third-party host, likely not counted). Top hosts: website-files CDN 74, lando.itsoffbrand.io 35.",
+  "reduced_motion": "None in the site's own code: 0 prefers-reduced-motion CSS rules and no check in the OFF+BRAND bundle; the only matchMedia('(prefers-reduced-motion: reduce)') is inside Webflow's runtime (its IX/anchor handling). Lenis, marquees, fluid cursor and reveals always run.",
+  "contrast_issues": "8px text appears 39 times (font_sizes): these are the .text-eyebrow labels, .625rem = 8.33px caps. Over the grey-olive mid-morph of the photo track they are nearly invisible: 'MONACO, 2023' samples #b8baad on #9c9d95, about 1.5:1, with a 7px cap height (desktop_02). Lime #d2ff00 buttons with #282c20 ink are strong.",
+  "mobile_quality": "No horizontal overflow at 390px; hover mechanics replaced by tap-to-lock; responsive dev score 7.4. Semantics: real h1/h2 retained as .screen-reader elements and SplitText lines get screen-reader clones, a good pattern for animated split type. The touch scroll-lock is exposed as role='switch' with aria-pressed and a changing aria-label.",
+  "dev_scores": {
+   "overall": 7.58,
+   "semantics_seo": 7.4,
+   "animations": 8.6,
+   "accessibility": 7.0,
+   "wpo": 7.6,
+   "responsive": 7.4,
+   "markup": 7.4
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Cursor-painted object reveal over a portrait",
+   "why_it_works": "It turns the brand's defining object (the helmet) into the interaction: the visitor completes the portrait, so the hero is played, not just viewed.",
+   "how_to_build": "three.js: build the portrait as a relief, not a flat quad: PlaneGeometry(1,1,128,128) + MeshStandardMaterial({map: diffuse, displacementMap: depth, displacementScale: 0.25, normalMap, roughnessMap, alphaMap, transparent:true}) under a long-lens PerspectiveCamera(15), eased mouse tilt (intensity 0.075, ease 0.025). Render the GLB (helmet) with the same camera into a WebGLRenderTarget(w*dpr, h*dpr, {samples:2}) aligned to the head. Run a half-res ping-pong trail FBO: each frame draw a soft splat at the eased mouse (radius scaled by pointer velocity), multiply the previous frame by about 0.96 to decay (or a full stable-fluids sim). In the head material (onBeforeCompile) sample the trail in screen space: mask = step(0.1, 1.0 - trail.r); also add a full-reveal uniform: hoverT = screenUv.y + sin(screenUv.x*PI)*sin(uFull*PI)*0.2; mask = min(mask + step(1.0 - hoverT, uFull), 1.0); diffuse = mix(tDiffuse, tShadowDiffuse /* face pre-shaded as if under a helmet */, mask). Composite: col = mix(face, helmet.rgb, helmet.a * mask). Tween uFull 0 -> 1 in 1.5s expo.inOut from a DOM hover target (back in 1s) so the whole helmet slides up the face on an arched edge. Hint layer: merge the helmet's geometries into one wireframe mesh, black, alpha = pow(fract(-pos.y*10.0 - uTime), 4.0) * 0.1 so scan bands sweep down it. On touch, do NOT keep hover logic: add a 'tap to lock' role='switch' that stops smooth scroll (lenis.stop(), scroll to 0) so drags paint instead of scroll, and restores scrolling on the second tap. Clamp DPR to 1.25 on desktop. If you pass colours through convertLinearToSRGB like the original, pick hexes darker than you want them to appear."
+  },
+  {
+   "technique": "Live topographic contour field from stepped noise",
+   "why_it_works": "A track-map / livery motif that moves, reacts to the cursor and recolours per section, so the background is part of the identity rather than a static pattern.",
+   "how_to_build": "Pass 1 into an RT: n = 0.5 + 0.5*snoise(vec3(uv*SCALE(1.0) + distort*DISTORT_INTENSITY(0.5), uTime*SPEED(0.1))); band = floor(fract(n*NOISE_DETAIL(3.0))*2.0). Pass 2 composite: sample RT at uv +/- THICKNESS in x and y; edge = any neighbour != center ? 1 : 0; color = mix(BG, LINE, edge). On-screen palettes to match the captures: light bg #fcfcfa / lines about #e6e6de (the site declares #F8F8F3 / #CBCBB9 and converts linear->sRGB); dark bg #282C20 / lines #363B25 (no conversion); inside the cursor mask swap to #E8E8DF / #CFD2C5. Keep lines 1 device px and low contrast so text above stays crisp."
+  },
+  {
+   "technique": "Same-cap-height serif/grotesque word swap in an all-caps manifesto",
+   "why_it_works": "Two voices in one line (engineered grotesque, emotional serif) give rhythm without a second size or a decorative element.",
+   "how_to_build": "Grotesque: Mona Sans Variable (or any variable grotesque with a width axis) at font-variation-settings 'wght' 660, 'wdth' 93, caps, 105.8px at 1440 (7.9375rem of a 13.33px fluid rem; clamp(42px, 7.35vw, 106px)), line-height 0.906, letter-spacing -0.0625rem. Serif: one word per clause in a sharp display serif (Brier 700) set about 4% LARGER than the grotesque (8.25rem = 110px) so the two cap heights coincide (check by measuring, the ratio depends on the pair), line-height 0.83, letter-spacing -0.1875rem. On dark olive #282c20: grotesque in #dde1d2, serif words in the tonal lime-off #b2c73a (not the bright #d2ff00); on light grounds keep the serif in the ink colour. Center-align, text-wrap: balance. The original runs 7 lines at both 1440 and 390; for a copy, cut the copy to 3-4 lines so it does not become a tall staircase."
+  },
+  {
+   "technique": "Lime block line-reveal (a cursor that wipes text open)",
+   "why_it_works": "Reads like a typing cursor sweeping each line, ties the accent colour to motion, and is cheap (clip-path + scaleX).",
+   "how_to_build": "GSAP SplitText type 'lines'; for each line set position:relative and, in JS only, clipPath 'inset(0 100% 0 0)'; append an absolutely positioned block (inset 0, background var(--color--lime-off), transform-origin right center, scaleX 1, z-index 5). Timeline (paused, played by ScrollTrigger {start:'top 90%', once:true}): for line i at t = i*0.15: .to(line,{clipPath:'inset(0 0% 0 0)', duration:0.6, ease:'power2.out'}, t) and .to(block,{scaleX:0, duration:0.6, ease:'power2.inOut'}, t + 0.3). Because the clip is applied by JS, text stays visible without JS; still add a safety timeout that plays the timeline if the trigger has not fired."
+  },
+  {
+   "technique": "Scroll-scrubbed WebGL background colour hand-off",
+   "why_it_works": "Sections change mood (off-white, olive, black) without hard seams because the canvas colour morphs with scroll.",
+   "how_to_build": "Mark sections with data-gl-change-track, data-gl-change-from='dark-green, dark-green-tint-1' and data-gl-change-to='white, dark-green-tint-1-low' (background, contour tokens) plus optional trigger start/end ('top top' / 'bottom bottom'). For each: gsap.fromTo({p:0},{p:1, ease: CustomEase.create('scrub','1,0,0.37,1') /* the curve the original intended */, scrollTrigger:{trigger, start, end, scrub:true, invalidateOnRefresh:true}, onUpdate: set uniforms.uBg = interpolate(from,to,p), uLine likewise, and document.body.style.backgroundColor = the same value}). Put the ease on the tween, not inside scrollTrigger vars: the original does the latter, so its cubic-bezier(1, 0, 0.37, 1) never applies."
+  },
+  {
+   "technique": "Char-roll hover labels and elastic card fan",
+   "why_it_works": "State change without the button moving; the only spring on the site is reserved for a playful card stack.",
+   "how_to_build": "Labels: split the label into chars (SplitText 'chars'), give the label line-height 1 and clip its line box, and set text-shadow: 0 1em currentColor on the chars (the original: 0 var(--text-offset) where the offset token equals the label's font-size), so every char already has its twin one line below without a second DOM copy. On mouseenter gsap.to(chars,{y:'-100%', duration:0.6, stagger:0.02, ease:'power3.out', overwrite:true}), reverse on leave; the button box never moves. Fan: on card hover, hovered y:'-2.5rem', scale 1.08; others x +/- 8rem*(1-|i-center|/center)*(1+0.2*max(0,3-distance)), rotation +/- 3/(distance+1) deg; duration 0.5, ease 'elastic.out(1, 0.75)', overwrite 'auto', each card offset 0.02s*distance in the timeline."
+  },
+  {
+   "technique": "Pinned horizontal photo track with per-image drift",
+   "why_it_works": "Turns a photo dump into a paced, film-strip reading: vertical scroll becomes lateral travel, each image drifts slightly against the track so it feels layered, and the background colour morphs from olive to off-white across the pass.",
+   "how_to_build": "Markup: section[data-horizontal-section] > .horizontal-pin-sticky (position:sticky; top:0; height:100vh; overflow:hidden) > .horizontal-track (display:flex, width = sum of columns). JS: section.style.height = (track.offsetWidth - innerWidth) + 'px'; main = gsap.to(track,{x:() => -(track.offsetWidth - innerWidth), ease:'none', scrollTrigger:{trigger:section, start:'top bottom', end:'bottom bottom', scrub:1, invalidateOnRefresh:true}}). Per image: ScrollTrigger {trigger:item, containerAnimation:main, start:'left right', end:'right left', scrub:true, onUpdate:(s)=>gsap.set(img,{x: 4*s.progress + 'rem'})}. Give each item a tiny 'PLACE, YEAR' eyebrow and reveal it with the colour-block line wipe, triggered through the same containerAnimation. Mix 3-4 image sizes and let columns use negative margins so rows do not align. Size items in vh (e.g. a 65vh x 59vh hero frame, 21-29vh small ones) so the strip keeps its proportions at any window height, and make each img calc(100% + 4rem) wide and tall with transform-origin 0 inside an overflow:clip frame so the 4rem drift never shows an edge. If some photos should sit back, tone them as olive duotones in the asset itself (the original bakes it into the webp)."
+  },
+  {
+   "technique": "One tab silhouette as the shape system",
+   "why_it_works": "A single bespoke outline (a card with a stepped tab) repeated on the next-race ticket, every helmet card and the footer card gives the site its own geometry instead of default rounded rectangles.",
+   "how_to_build": "Draw the silhouette once in SVG (rounded rect whose top or bottom edge steps through a smooth S-curve into a tab). Use it as mask-image on the card wrapper: -webkit-mask-image: var(--mask-url); mask-image: var(--mask-url); mask-size: cover; mask-repeat: no-repeat; mask-position: center; swap --mask-url to a mobile-proportioned SVG under 480px. For outlined versions (ticket, helmet cards) inline the same path as an SVG with stroke: currentColor, 1px, and place the label inside the tab with padding larger than the step so the cut never clips text."
+  },
+  {
+   "technique": "Scroll-scrubbed Rive autograph",
+   "why_it_works": "A signature that writes itself exactly as far as you have scrolled feels hand-made and personal, costs a few KB of vector animation, and reverses cleanly when you scroll back.",
+   "how_to_build": "Author the signature in Rive with a state machine that exposes one Number input named 'scroll' (0-1000 mapped to the stroke draw-on). In the page: const input = rive.stateMachineInputs('signature_scroll').find(i => i.name === 'scroll'); const tl = gsap.timeline({paused:true, onUpdate(){ input.value = gsap.utils.clamp(0,1,this.progress()) * 1000; }}).to({}, {duration:1}); ScrollTrigger.create({trigger: el, start: el.dataset.start || 'top bottom', end: el.dataset.end || 'bottom top', scrub: 0.5, onUpdate: s => { tl.progress(s.progress); if(!rive.isPlaying) rive.play(); }, onEnter(){ rive.play(); input.value = 0; }, onLeave(){ input.value = 1000; setTimeout(() => rive.pause(), 50); }, onLeaveBack(){ input.value = 0; setTimeout(() => rive.pause(), 50); }}). Pausing off-screen keeps the Rive render loop from running for nothing."
+  }
+ ],
+ "slop_risks": [
+  "Content hidden until a reveal fires: manifesto lines are clipped to inset(0 100% 0 0) under colour blocks and only open on ScrollTrigger. The clip is applied from JS (so no-JS is safe), but a trigger that has not fired leaves text covered: the probe caught the last 1.5 manifesto lines still covered (desktop_01) and a paragraph half-hidden (desktop_04). A copy needs a play-anyway fallback.",
+  "Saturated accent pop: #d2ff00 is a poster-bright accent on buttons, years, reveal blocks and the scribble. It works here only because it is the helmet livery; a copy with an arbitrary neon is exactly the saturated-accent tell. The site's own on-dark accent uses the tonal #b2c73a, which is the safer move.",
+  "Multi-line headline with scattered accent words: the manifesto is a 7-line centered stack at 1440 and 7 lines at 390, with three coloured serif words. The type quality carries it; a generic copy becomes the tall staircase with dangling accent words.",
+  "Small label over big heading: the manifesto opens with a laurel emblem plus the 'MCLAREN F1 SINCE 2019' eyebrow above the big statement (desktop_01), the kicker-plus-statement pattern; fine once as a brand mark, a template if repeated per section.",
+  "Hard image seam: the full-bleed 1440x570 helmet/jacket photo stops on a straight edge against the #111111 helmets section (desktop_04) with no feather or mask.",
+  "High-contrast display serif as the 'emotional' voice sits close to the Didone/Cormorant reflex; it works here because Brier is an uncommon licensed face set in caps at matching cap height. Swapping in Playfair or Bodoni Moda would make the pairing read as default.",
+  "Cream background: #f4f4ed base and a literal --color--cream #efefe5 token sit near the cream/bone editorial tell; the cool green tint and live contour field keep it from reading as oat milk.",
+  "Fixed background that trails the scroll: the contour canvas sits behind every section. It passes because it reacts to the cursor and changes colour per section; a static SVG topo pattern behind everything would be the fixed-background / faint-grid tell.",
+  "Filled button next to outlined button: lime STORE fill beside an outlined square menu button in the top-right is close to the filled-plus-outlined pair.",
+  "Bouncy hover: elastic.out on the card fan is the 'never bouncy' hover-lift risk if used on ordinary buttons or cards.",
+  "Muddy wash: the olive duotone on inactive photos plus grey-olive mid-morph background (desktop_02) reads as a dim grey-beige envelope in a still frame.",
+  "No prefers-reduced-motion handling at all.",
+  "Free grotesque carrying the brand: Mona Sans is a free open-source face (also on Google Fonts), which the law treats as the generic default once it carries identity. It escapes here only through its axes (wdth 93 / wght 660 impact, wdth 86 / wght 800 buttons) and the licensed Brier pairing; a copy that sets Mona Sans at default width and 700 reads as the free-grotesque default.",
+  "Hairline light border on boxes: the helmet cards are 1px grey outlines on #111111 (desktop_05). The stepped tab silhouette and lime year labels are what keep this from being default card styling; plain rectangular outlined cards would be the tell.",
+  "Text you cannot read: the 8.33px .text-eyebrow place/year labels drop to about 1.5:1 (#b8baad on #9c9d95) during the track's colour morph (desktop_02)."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots and both mobile screenshots viewed individually; probe.json numbers (type sizes, fonts, colours, easings, root vars, 3D assets); live HTML and the live bundle lando-by-OFF+BRAND.05.js (fetched with a landonorris.com referrer; direct fetch returned 'Access denied - Invalid referrer') grepped for eases, durations, staggers, shader params and uniforms; 2 Awwwards element thumbnails (static JPGs). No jury element videos exist for this site, so hover and reveal timings come from code, not frames. INFERRED: Brier classification and foundry; that the olive filter marks inactive collage photos; parallax in the collage; menu overlay design; getVariantAccordingToTime() returns 'Lime' 06:00-18:00 else 'Dark' and (audit pass 3) is called in both helmet constructors, so it does drive the live variant. desktop_02 background (#9c9d95) is likely a mid-scrub colour, not a designed section colour. audit (adversarial pass 2): re-viewed desktop_00-07 and mobile_00/01 individually, re-sampled colours, and re-grepped the saved HTML + bundle dump (evidence/probe/landonorris.com.txt). Corrected: h1 38px is a .screen-reader element and the wordmark is an inline SVG (display_type_px set to null); visible section heads are about 60px, not 32px; the fluid rem is 13.33px at 1440 (design-unit 16, not 48); manifesto is 7 lines on desktop, not 6; home line reveal is 0.6s/0.6s/0.15s stagger with the block at +0.3s (0.5/0.015 is the calendar variant); the GL colour-scrub cubic-bezier sits in scrollTrigger vars and is inert; COLOR_FILTER #50593F is the hero scroll-out duotone, not a collage-photo filter; the 'collage' is a pinned horizontal track with a 4rem per-image drift (replacing the parallax inference); cursor palette is #E8E8DF/#CFD2C5, not #b2c73a; hero colours render lighter than declared because of convertLinearToSRGB; Lenis is not on defaults (touchMultiplier 2, syncTouch true); iubenda and Klaviyo are commented out (GA4/GTM added); footer links are white with only STORE lime; the Brier caps are not condensed; the Webflow runtime holds the only reduced-motion check. Added: displaced relief portrait + pre-shadowed face swap, MSDF text atlases, time-of-day helmet variant, tab-silhouette mask system, oval headline start state, image-highlight exact values, helmet-card CSS hover, counters, gl-fallback, 2 new steal_this entries and 3 new slop risks (hard image seam, label-over-heading, Didone-adjacent serif). Still inferred: footer figure being the GL head, whether 'Load Norris' is a click gate. audit (adversarial pass 3): re-viewed desktop_00-07 and mobile_00/01 one at a time, measured pixels (STORE bbox per shot, manifesto cap heights, eyebrow contrast), fetched the live shared CSS lando-offbrand.shared.6e09a725a.css and one track image, and re-grepped the bundle dump. Corrected: the char-roll twin is a text-shadow, not duplicated DOM text; TAP TO LOCK is a scroll-lock switch (lenisStop + scroll to 0 so drags paint), not a 'stop the decay' toggle; the tShadowDiffuse swap lives in the head material (the composite's copy is commented out); the wireframe hint is black scan bands at max 10% alpha, not a flat 0.15 opacity; eyebrows are 8.33px (.625rem), not 12px, and sit near 1.5:1 in desktop_02; menu button radius is 9.9px (.74rem), 7.2px is the lime .btn-w; the GL marquee is in the hero at all widths, not mobile-only; manifesto grotesque is 105.8px 'wght' 660 'wdth' 93 at -.0625rem, not 'letter-spacing normal', and the serif is sized +4% to match cap heights (both measured 78px); buttons are Mona Sans 800 at wdth 86; track photos are pre-toned in the asset (now observed, not inferred); the time-of-day variant is live. Added: nav scale 1.2 -> 1 scrub over the first 10vh (measured 118x60 -> 99x50), next-race card hover that puts the full helmet on with an arched wipe, scroll-scrubbed Rive signature (new steal_this), CSS blend-layer duotone on menu images, vh-sized track items oversized by 4rem for the drift, the difference-blend scroll indicator, the 7-card social fan, and 3 slop risks (free grotesque carrying the brand, hairline card borders, unreadable eyebrows). No jury element videos exist for this site, so hover and reveal motion is still from code and stills, not frames."
+}

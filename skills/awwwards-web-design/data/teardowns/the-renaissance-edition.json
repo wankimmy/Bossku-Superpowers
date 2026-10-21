@@ -1,0 +1,325 @@
+{
+ "slug": "the-renaissance-edition",
+ "title": "The Renaissance Edition",
+ "live_url": "https://www.shopify.com/editions/winter2026",
+ "award": "Awwwards SOTD Feb 9, 2026 + Honors; listed in Sites of the Month (bucket site-of-the-month, 2026). Credits: Shopify Design, Anton Kolisnyk, Andy Thelander, Damien Mortini, Danetag, Nikki Stephens.",
+ "scores": {
+  "overall": 7.92,
+  "design": 8.03,
+  "usability": 7.51,
+  "creativity": 8.24,
+  "content": 8.09,
+  "dev": {
+   "overall": 8.05,
+   "semantics_seo": 7.8,
+   "animations": 9.4,
+   "accessibility": 7.0,
+   "wpo": 8.4,
+   "responsive": 7.8,
+   "markup": 7.6
+  }
+ },
+ "industry": "Commerce SaaS product-release catalogue (Shopify Editions Winter '26, 150+ updates) with a real merch store inside",
+ "signature": "Every product chapter is a generative Renaissance painting rebuilt as a live 3D diorama (modern props like sneakers, skateboards, beanies and phones painted into the scene), and chapters dissolve into each other through a painterly shader whose noisy, glowing edge turns canvas into line-drawing before revealing the next scene.",
+ "first_screen": {
+  "composition": "Full-bleed painted landscape (cumulus sky, stone pines, cypresses, blossom shrubs) with two painted figures flying in from left and right in a Creation-of-Adam pointing pose; left holds a hot-pink coffee cup, right a hot-pink shopping bag, left in white sneakers, right in cream ones, a pink-script skateboard tumbling bottom-centre. Dead centre a 340x464 hairline-framed panel (x550-890, y218-682 measured; the 'davinci-lines' SVG uses viewBox '550 208 340 464', i.e. it is authored in 1440x900 page coordinates) holds the wordmark 'The Ren(ai)ssance Edition', a two-line serif lede and the 12-chapter index with Roman numerals I-XII right-aligned. The wordmark is not live type: it is an aria-hidden SVG (viewBox 2927x1269, path groups title__word--the/ren/ai/ssance/edition) sized w-[55%] of the panel (~165px wide, ~21px caps) inside an h2 whose computed font is 32px Neue Montreal. Faint hairline construction lines (arcs, diagonals, verticals extending the panel edges) cross the painting; they are the same 'davinci-lines' SVG (fixed, overflow visible, stroke currentColor, rects/paths with pathLength=1 plus a 1x4 dotted pattern at 20% opacity) that doubles as the preloader. (The #D7D7CF / 0.8 / x1-y2 300ms lines in the route bundle belong to the skill-tag connection graph in another chapter, not to this hero.) Header (transparent on desktop, content scrolls under it; solid black bar on mobile): Shopify bag + 'Shopify Editions Winter '26', Editions dropdown, Search; right 'Shopify.com' and a white pill 'Start for free'.",
+  "what_owns_it": "image + 3d (painted diorama) with a type panel",
+  "display_type_px": 32,
+  "evidence": [
+   "probes/the-renaissance-edition/desktop_00.jpg",
+   "frames/the-renaissance-edition/1/f04.jpg",
+   "probes/the-renaissance-edition/probe.json"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "NeueMontreal (PP Neue Montreal) 700",
+    "role": "display (chapter titles headline-1, section/feature heads, index headline-6) AND the page's own body copy (bodycopy-1/2: Neue Montreal Bold 16px mobile / 14px desktop, line-height 1.1, grey descriptions are also bold)",
+    "classification": "neo-grotesk",
+    "foundry": "Pangram Pangram",
+    "source": "probe fonts_loaded ('NeueMontreal 700') + font_families_rendered (NeueMontreal x50, 'PP Neue Montreal' x12) + measure.type; tailwind CSS classes headline-1..6 and bodycopy-1/2 (fonts-latin CSS: 700 only, liga+kern)"
+   },
+   {
+    "name": "HWCigars 400",
+    "role": "serif ledes and section heads (narrative-1/2/3/4), index numerals (11px), drawer quantity numeral",
+    "classification": "sharp contemporary text serif, tight",
+    "foundry": "inferred: Heavyweight Type (HW prefix)",
+    "source": "probe fonts_loaded + measure.type h3"
+   },
+   {
+    "name": "ImperialScript 400",
+    "role": "swash initials only: .drop-cap::first-letter on ledes/section heads (and merch drop caps). The script 'ai' in the wordmark is SVG artwork (title__word--ai path group), not ImperialScript text; inferred that its outlines were drawn from this face",
+    "classification": "formal copperplate script",
+    "foundry": "Imperial Script (Google Fonts, TypeSETit)",
+    "source": "probe fonts_loaded + tailwind CSS .drop-cap:first-letter{font-family:ImperialScript}"
+   },
+   {
+    "name": "Inter-Variable",
+    "role": "global Shopify header chrome only (nav links/buttons 14px/500, -1% tracking; search overlay CLEAR 11px); not the page body",
+    "classification": "grotesk UI sans",
+    "foundry": "Rasmus Andersson",
+    "source": "probe measure.type button/nav a (Inter-Variable x14 vs NeueMontreal x50 rendered)"
+   }
+  ],
+  "display_size_px": 193.684,
+  "body_size_px": 14,
+  "scale_notes": "Measured: chapter h2 193.684px (Neue Montreal 700, lh 174.316px = 0.9, ls -5.81px = -0.03em); section serif h3 43.79px (HWCigars 400, lh 42.04px = 0.96, ls -2.19px = -0.05em); wordmark h2 32px (700, lh 30.4px = 0.95, ls -0.96px = -0.03em); feature ledes ~28px serif at 1440 (24px mobile); feature labels 18px bold; index items ~18px; card captions 14px bold label + 14px grey description; body 14px/1.1 Neue Montreal Bold (Inter 14px/16.8 is only the global header and hidden overlay text); meta 12px/12 rgb(140,140,140); 11px x18 nodes (numerals/legal/CLEAR). Probe size histogram: 14px x22, 11 x18, 24 x12, 18 x12, 194 x12, 44 x12, 12 x7, 32 x6. Ratio display:section:body = 13.8 : 3.1 : 1. Verified in tailwind-G-N6aznT.css (Tailwind v4.2.2): .headline-1 = 72px below 769px, then clamp(7.5rem, 35.7895px + 10.9649vw, 13.75rem) i.e. 120-220px, which resolves to exactly 193.684px at 1440; lh .9, -.03em. Serif heads .narrative-1 = 28px mobile, clamp(2rem, 18.5263px + 1.75439vw, 3rem) = 43.79px at 1440, lh .96, -.05em. Feature ledes .narrative-2 = 24px mobile, clamp(1.5625rem, 21.6316px + .438597vw, 1.8125rem) = 27.95px at 1440 (desktop_02 ascender-to-baseline ~20px, pitch 27px), lh .97, -.05em, so 'feature ledes 24px' is the mobile value only. Wordmark .headline-4 32px/.95/-.03em; index .headline-6 18px/.95/-.02em; body .bodycopy-2 14px/1.1 bold.",
+  "tracking_leading": "Everything tight: display -0.03em / 0.9, serif -0.05em / 0.96, wordmark -0.03em / 0.95; body leading 1.2; index items 18px at line-height .95, -.02em with 2px vertical padding, so the 12 chapter names stack like a single block (17px pitch measured). Every headline and bodycopy class also sets text-box: trim-both cap alphabetic (plus text-wrap: pretty), so line boxes are cropped to cap height and baseline and spacing is optical rather than padded by half-leading.",
+  "case_and_style": "Sentence case throughout; Roman numerals I-XII as small serif numbers (~11px) in the index; serif ledes and section heads start with an ImperialScript swash capital set as ::first-letter (70px mobile, clamp(6rem, 75.79px + 2.63vw, 7.5rem) = ~114px at 1440 against the 43.8px head, ~2.6x; .narrative-2 variant ~89px) with line-height 0, and the whole paragraph is hung left by the grid gutter via negative text-indent plus translate, so the swash overhangs the column (T, C, D, V, S, M, I, B); the rest of the word stays HWCigars roman (e.g. drawer title 'Beanie', 3/f02). The wordmark swaps 'ai' into Renaissance as a separate SVG word group in script.",
+  "signature_moves": [
+   "194px bold grotesk chapter word ('Sidekick', 'Agentic', 'Online', 'Checkout') in bone #F7F7EE placed over the painting, sometimes crossing the figure",
+   "Grotesk + calligraphic swash + sharp serif triad: Neue Montreal for names, Imperial Script for one initial, HWCigars for the sentence",
+   "Ren(ai)ssance wordmark: the brand thesis encoded in one italic swap",
+   "Left rail index with a dotted leader from the active chapter to its Roman numeral (desktop_02: 'Sidekick ........ I'). Verified CSS: the leader is an ::after 1px tall with background-image linear-gradient(270deg, currentColor 1px, transparent 1px) at background-size 3px (a dot every 3px), revealed by clip-path inset(0 100% 0 0) -> inset(0) in .3s ease-in-out after .15s. On light sections (html[data-sidebar-theme=light]) inactive items are text-grey-mid #909083 (sampled ~#858579) and the active one #292919; on dark paintings all items sampled pure white, only the leader marks the active one.",
+   "Numbers as Roman numerals by pure CSS counters: the index numerals are aside li a::after{counter-increment:nav-item; content:counters(nav-item,'.',upper-roman)} in HWCigars 11px at 60% white, trimmed with text-box so they sit on the label's cap line; the merch drawer quantity renders counter(quantity, upper-roman) ('− I +' in 3/f02) and merch prices render '$' + counter(dollars, upper-roman) + '.' + counter(cents, upper-roman) via inline counter-reset, sliding up on hover (300ms ease-in-out)"
+  ],
+  "mobile": "mobile_measure: largest 72px, h1 14px, no overflow. mobile_00 (2x capture): hero panel keeps a full-width hairline frame (x50-730 in 2x = 25-365 CSS px), wordmark ~29px CSS (cap ~21px), index ~18px with numerals right; mobile_01: solid black header bar (two-line 'Shopify Editions / Winter '26', white pill, hamburger), 'Sidekick' 72px left-aligned over the portrait, serif lede ~26-28px with swash T, video card full width with a play button, the painting ends in a ragged torn edge into greige, then swash 'Insights, proactively delivered'."
+ },
+ "color": {
+  "mode": "section-shifting (dark painted chapters alternate with light greige product sections)",
+  "base": "Product sections #DCDCD0 rgb(220,220,208) (probe bg x30, pixel #DDDDD1); bone #F7F7EE rgb(247,247,238) most common bg (133 nodes: drawers, tags, cards) and display ink on paintings; rgb(41,41,25) #292919 is also a background on 87 nodes (dark buttons/cards, e.g. the drawer Checkout button); painting chapters are full-bleed imagery (night #050C1C sampled in Sidekick, umber #181715 Agentic, #2A1711-#714133 Online)",
+  "ink": "#292919 rgb(41,41,25) olive-black (serif heads, index), secondary rgb(92,92,78), grey #8C8C8C meta",
+  "accents": [
+   "hot pink/magenta #ED1E92 (bag) to #FF34D7 (skate wheel), #CC3F9B cup (sampled) on merch props: cup, bag, skate wheels, beanie, credit card",
+   "Sidekick purple #5433EB rgb(84,51,235) and #8051FF rgb(128,81,255) in product UI (send buttons, mask)",
+   "black #000 / white #FFF pill CTA that flips with section"
+  ],
+  "ratio": "inferred: ~60% painting imagery / ~30% greige+bone surfaces / ~8% olive-black type / ~2% pink and purple accents",
+  "section_shifts": "Chapter painting -> torn-paper shader wipe -> #DCDCD0 product grid -> next painting. Header text and the 'Start for free' pill flip white-on-dark to black pill on light (desktop_00 vs desktop_02).",
+  "texture": "Paintings carry their own brushwork; hairline construction lines (the davinci-lines SVG: 1px stroke in currentColor, white on paintings, with a dotted 1x4 pattern at 20% opacity; #D7D7CF/0.8 is the skill-graph line colour elsewhere) sit over paintings; painted/plaster textures behind product UI cards (oil-dark foliage, green fresco, verdigris, bronze, gilt). A pmndrs Bloom pass (store defaults luminanceThreshold .9, smoothing .025, intensity 1, radius .85) lifts highlights inside the WebGL layer. No global grain overlay.",
+  "notes": "Awwwards palette ['#F7F7EE', '#292919'] matches probe bg/text counts."
+ },
+ "layout": {
+  "grid": "12px outer margins; fixed left rail ~276px (wordmark top at y62, chapter index bottom y615-820, legal footer y855-890); content column starts at x288 (= 20% of 1440) and runs to x1428. Cards: two-up 563px + 14px gutter + 563px; three-up 563 + 274 + 274 with 14px gutters (matches probe canvases 563x465/432/442). Feature table: 2 columns of label (bold 14px ink) + grey description rows.",
+  "density": "balanced (airy painted chapters, dense product sections)",
+  "alignment": "Left-aligned content column against the fixed left rail; painted chapters are centred compositions with the display word left-aligned at x288.",
+  "composition_moves": [
+   "Chapter opener = full-viewport painting diorama + 194px word + 44px serif lede with swash initial, anchored to the content column",
+   "Modern product artefacts (laptop, phone in a painted hand, beanie, credit card) painted into Renaissance scenes as 3D props",
+   "Product UI screenshots float on painted/fresco texture backgrounds inside cards, not on flat grey",
+   "Persistent left-rail table of contents doubles as progress indicator",
+   "Sidekick apps card cloud (section 'generate-admin-apps', md and up): 5 interactive app cards (buttons, w-340) positioned in container-query units inside a container-type:inline-size wrapper with base scale/opacity .8/.4, .65/.4, .75/.7, .8/.9, 1/1 (the 5th is active), plus 2 decoy parallax cards (scale .4/.5, opacity .4, lg only, pointer-events none, empty) at left-[-6cqi] top-[8cqi] and left-[45cqi] top-[-16cqi]. The blurred 'Conversion rate 3.63%' card in desktop_02 is NOT part of this cloud: it sits in the 'sidekick-pulse' section, which renders a single productMedia asset, so its depth-of-field blur is baked into the media (probe css filters 0)."
+  ],
+  "section_rhythm": "Loud painted chapter (1-2 viewports, sticky scene) -> quiet greige catalogue (serif section head with swash, 2-up/3-up cards, 4-row feature table) -> torn-edge back into the next painting. 12 chapters, doc height 54,129px.",
+  "mobile_adaptation": "Left rail collapses into a hamburger; header becomes a solid black bar; hero panel becomes a full-width framed card; chapter display drops to 72px left-aligned; Lenis is not initialised on mobile (native scroll, route bundle: if(isMobile) return). Verified in the route bundle: detect-gpu reporting isMobile switches the renderer to 'fallback' (FallbackImageScene with the same transition shader, fixed centre 0.5/0.65, 10% vertical easeInOutCubic slide), which is why mobile_01 shows flat painting crops ending in the torn edge."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis on desktop only (probe globals lenis:true, html.lenis): new Lenis({duration:1, easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)), orientation:'vertical', smoothWheel:true, wheelMultiplier:1}) from the route bundle, skipped when isMobile. Programmatic section jumps use lenis.scrollTo(el,{duration:1, same expo-out easing}).",
+  "preloader": "No percentage loader. The 'davinci-lines' SVG is the load indicator: rects/paths with pathLength=1 and stroke-dasharray 1 draw via stroke-dashoffset (load-lines keyframe to .2, i.e. 80% drawn, over --lines-duration 3s cubic-bezier(.34,.22,.47,.84) while assets stream), then [data-sidebar-loaded=true] draws the 'complete' layer to 0 over 1s and hides the Terms line; #main-content and the side list stay at opacity 0 until then. The canvas wrapper also sits at opacity 0 until the renderer reports ready. Frames 1/f00-f01: black screen, grey then white 'The ai Edition', line fragments, a large arc and panel rectangles drawing.",
+  "intro_sequence": "Element 'Intro animation' (4.9s), matching the bundle: after a 100ms delay an intro offset runs -1 -> 0 over 5000ms with ease-out-cubic (1-(1-t)^3) and drives the Hero Theatre sequence position. Frames: 0.3s black, grey 'The ai Edition' wordmark with 'Ren'/'ssance' missing and line fragments (verified CSS: the 'ai' word group slides in from translate(-898) in SVG user units (the wordmark viewBox is 2927 wide, so ~30% of its width) over .6s cubic-bezier(.72,.16,.19,.96) after the initial fade, and 'Ren'/'ssance' fade in once the slide ends, .52s cubic-bezier(.25,.46,.45,.94)); 0.9s wordmark white, header in, hairline verticals, an arc and frame rectangles drawn; 1.5s painting revealed in an expanding circle with a glowing, frayed sparkler edge, 'Ren' and 'ssance' filled in; 2.1s the wordmark slides from the panel centre (h2 translated calc(235px - 50%) before sidebar-ready) up to the panel top while figures fly in from the left and right edges and index items stagger in top to bottom (Sidekick-Retail visible, rest fading; verified CSS: stagger-fade-in .6s cubic-bezier(.41,.19,.13,.95) with --index*75ms delay and --index*20ms slide delay); 2.8s figures land in the pointing pose, index complete; 3.4-4.6s settled with a slow idle float of figures and skateboard.",
+  "scroll_techniques": [
+   "fixed full-viewport canvas (1440x900) with DOM copy scrolling normally over it",
+   "scroll-scrubbed shader scene-to-scene dissolve (CrossFade effect, tCurrent -> tNext)",
+   "torn-paper colour wipe into product section (Overlay effect, uPosition -1..0..1)",
+   "Theatre.js sequence position bound to each chapter's scroll progress (lerped 0.5 per frame, only chapters within ±1 of the active one update)",
+   "3D props flying out of a rigged animated book toward a phone (Agentic, 0/f00-f02)",
+   "video/panel cards sliding up over the painting (0/f03)",
+   "hero panel morphs into the fixed left rail: the centred panel is the same <aside> as the sidebar; on first scroll ([data-scrolled=true]) the lede and panel border fade, the title scales and the list translates/resizes into the rail (.6s cubic-bezier(.41,.19,.13,.95), items 20ms apart); verified in CSS state selectors, the motion itself was not in any extracted frame",
+   "scene camera drifts with scroll: between 0/f00 and 0/f01 the DOM lede travels ~410px while the painted figure moves only ~45px, so the Theatre-scrubbed camera reads as slow parallax under normally scrolling copy"
+  ],
+  "text_animation": "The 194px chapter word is ordinary DOM that scrolls with the page; only the canvas is fixed (0/f00 -> 0/f01: 'Agentic' leaves the viewport while the lede travels ~410px up; 0/f04 -> f06: 'Online' rises from y~650 to y~150 of the 720 frame). Index entries stagger in during the intro (75ms apart, CSS); section heads and ledes have no per-letter effects observed.",
+  "image_animation": "Paintings do not crossfade: in the CrossFade effect both scenes are pushed toward fwidth(luma) line drawings (x5-10) while a noisy, mud-displaced threshold sweeps across with a glowing edge, then the next painting burns in. On Checkout, clicking the beanie turns the painting into an inverted-Sobel pencil underdrawing radiating from the click point while the product stays in colour (3/f00 -> 3/f02/f03), and paints back in with a brushy white noise edge (3/f06). Evidence limits: the line-drawing intermediate is quoted from shader source; in the jury's section-transition video the Agentic -> Online hand-off happens underneath a full-width purple admin panel (0/f03-f04), with the Agentic painting darkening first (uDarken, 0/f02-f03), so no line-art frame is visible there. The glowing frayed edge is visible in the intro reveal (1/f02) and the brushy white paint-back edge in 3/f06.",
+  "page_transitions": "Remix client routes (manifest: ($locale).editions.winter2026 plus .cart, .merch, .video.$handle, .test-500 and the popup-only _.key) without full reloads; product drawer opens over the sketch state (3/f02).",
+  "hover_micro": [
+   "Beanie hover: white outline drawn around the product from a Sobel pass on the hat-mask alpha (2px texel, pow 2, smoothstep), gated by uHatHover",
+   "Sidekick apps cloud: on pointermove each interactive card within 300px is pushed away up to 20px (falloff f = 1-(d/300)^2) and its scale/opacity grow from its base toward 1 by f, so the approached card comes into focus; the 2 decoy cards only parallax -15px against the mouse; on mouseleave everything snaps back to base. Hover/focus marks a card active; click opens its Rive demo popup (scale-80 -> 100 and opacity, 300ms ease-out-back, 200ms delay; Esc closes, focus returns)",
+   "Skill-tag cloud (top-skills chapter, not captured in frames): tags scale from 2.1 near the pointer to .7 at 400px and fade 1 -> .4, push neighbours apart by 80*(scale-1) within 400px, carry per-tag jitter, are joined by SVG connection lines (#D7D7CF, opacity .8, 1px) whose x1/y1/x2/y2 transition 300ms ease-out, and count-up numbers ease-out-cubic over 1000ms",
+   "'Read help doc ↗' / 'Get notified +' tags: 2-3px radius (probe radius histogram 3px x125, 2px x60), 12px bold on bone",
+   "Wordmark hover/focus: 'Ren' and 'ssance' slide -465 and fade while 'ai' slides -898 (SVG user units of the 2927-wide viewBox), collapsing 'The Renaissance Edition' into 'The ai Edition' (.3s cubic-bezier(.215,.61,.355,1); ai .3s cubic-bezier(.25,.46,.45,.94)); only under prefers-reduced-motion: no-preference",
+   "Merch price hover: price in Roman numerals ($ + counter(dollars, upper-roman) . counter(cents, upper-roman)) slides up -100% in 300ms ease-in-out"
+  ],
+  "cursor": "System cursor (probe cursor_none 0); hand cursor over interactive 3D props.",
+  "easing_curves": [
+   "Lenis expo-out: 1.001 - 2^(-10t), duration 1s",
+   "cubic-bezier(0.34, 1.56, 0.64, 1) ease-out-back for card intro scale (named 'ease-out-back' in the route's easing map)",
+   "cubic-bezier(0.33, 1, 0.68, 1) ease-out-cubic",
+   "intro offset ease-out-cubic 1-(1-t)^3 over 5000ms",
+   "GLSL: easeInOutCubic for the fallback slide; smoothstep(0.0, 1.5, uProgress) in the hero-mode crossfade; section mode eases progress as mix(smoothstep(p), p, 0.25)",
+   "Theatre.js keyframed curves per scene (state files)",
+   "CSS tokens (tailwind CSS): lines cubic-bezier(.34,.22,.47,.84) 3s; fade-out cubic-bezier(.25,.46,.45,.94) .52s; wordmark slide cubic-bezier(.72,.16,.19,.96) .6s; hero->rail state cubic-bezier(.41,.19,.13,.95) .6s; wordmark hover cubic-bezier(.215,.61,.355,1) .3s; nav items in cubic-bezier(.13,.46,.15,.92) 1s"
+  ],
+  "duration_range_ms": "300 (line endpoints) - 1000 (card intro, cloud background fade, Lenis) ; intro 5000 (+100 delay), element 4.9s; chapter crossfades are scroll-scrubbed, not timed (~0.7-1.4s of scroll per frame spacing in element 0)",
+  "stagger_ms": "Card intro random delay 0-800ms (delayRange [0,800], Math.random per card); index items 75ms fade-in stagger + 20ms slide stagger (verified CSS --stagger-fade-in-delay / --stagger-slide-delay)",
+  "choreography_notes": "Scene first, type second: the painting burns in, then figures arrive, then the index. In chapters the 3D props animate on authored Theatre.js sequences (objects 'camera', 'effects', 'particles', 'butterflies', 'light-1', 'light-2', 'asset-N' per CMS asset) scrubbed by scroll while DOM copy scrolls normally over the fixed canvas. The #ff0000/#0000ff light colours in the scene code are placeholder defaults (Checkout sets intensity 0); the real values live in the Theatre state files.",
+  "evidence": [
+   "frames/the-renaissance-edition/1/f00-f07 (audit re-viewed f00-f05, f07)",
+   "frames/the-renaissance-edition/0/f00-f07 (audit re-viewed all 8)",
+   "frames/the-renaissance-edition/2/f00,f04",
+   "frames/the-renaissance-edition/3/f00,f02,f03,f06",
+   "probes/the-renaissance-edition/desktop_00-07.jpg",
+   "bundle grep (re-fetched in audit): (_locale).editions.winter2026-DhFtUF58.js 243KB, Background-CGKUhMwd.js 1.05MB, HeroScene/CheckoutScene/Effects/PopupChannel chunks, manifest-40e0f26c.js",
+   "audit 2 re-fetch: page HTML, route chunk (243,259 B), Background chunk (1,045,525 B), HeroScene chunk, tailwind-G-N6aznT.css (129,725 B), fonts-latin CSS"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "mixed: generative Renaissance-style paintings rebuilt as realtime 3D dioramas + product UI screenshots + video",
+  "art_direction": "Old-master oil look (Titian/Raphael/Ingres pastiche: velvet, silk, chiaroscuro, landscape backgrounds) with anachronistic modern commerce props in saturated pink/purple: sneakers, skateboard, takeaway cup, shopping bag, masked portrait for Sidekick, cheetah carrying a shipping box, laptop and phone in painted hands. Figures are cut out and layered in depth; each chapter scene is data-driven: a Theatre state file (data.backgroundAnimation.url) plus a CMS list of backgroundAssets (glb/ktx2) mapped to Theatre objects asset-1..N, so the 13 Scene chunks are thin wrappers (HeroScene 1.2KB).",
+  "treatments": [
+   "painterly noise-edge dissolve",
+   "inverted Sobel pencil underdrawing",
+   "torn-paper glowing edge",
+   "hairline perspective construction lines",
+   "product UI on fresco/oil texture panels"
+  ],
+  "crops_and_ratios": "Chapter scenes full-bleed 16:10; product cards ~1.21:1 (563x465) and portrait ~0.58:1 (274x474); UI screenshot inset with ~50px margin inside textured card.",
+  "formats": "Probe: 62 webp, 20 png, 12 glb, 8 riv, 5 ktx2, 3 mp4, 1 webm, 1 gif; 345 img, 13 video, 124 svg; bytes mp4 7.96MB, 3D 6.8MB, webp 2.8MB, png 2.2MB, ktx2 1.7MB",
+  "evidence": [
+   "probes/the-renaissance-edition/desktop_01-07.jpg",
+   "probes/the-renaissance-edition/probe.json",
+   "frames/the-renaissance-edition/3/f00.jpg",
+   "frames/the-renaissance-edition/2/f00.jpg"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r181 (probe globals) via @react-three/fiber, pmndrs postprocessing Effects (mainImage signature), Theatre.js sheets per scene, detect-gpu (getGPUTier) with a FallbackImageScene",
+  "role": "per-chapter painted diorama (13 lazy scene chunks: Hero + Sidekick, Agentic, Online, Retail, Marketing, Checkout, Operations, ShopApp, B2B, Finance, Shipping, Developer; plus FallbackImageScene) + full-screen transition compositor",
+  "assets": [
+   "editions-winter-2026.myshopify.com/cdn/shop/3d/models/.../EW26_Hero_251207v3_compressed-optimized.glb",
+   ".../EW26_Sidekick_251208_compressed-optimized.glb",
+   ".../EW26_Agentic_Props_251209v5_compressed-optimized.glb",
+   ".../Agentic_fg_251209_compressed-optimized.glb",
+   ".../EW26_Online_251209v3_compressed-optimized.glb",
+   ".../Rigged_Book_CS_Animated_V5_compressed-optimized.glb",
+   "cdn.shopify.com/.../Hero-bg-hires-optimized.ktx2",
+   ".../EW26_Sidekick_bg_stars-optimized.ktx2",
+   ".../Agentic_Bg_windowscene-optimized.ktx2",
+   ".../Online_bg-brighter_251201v2-optimized.ktx2",
+   ".../studio_small_09_1k.pmrem.ktx2 (pre-baked PMREM env)"
+  ],
+  "materials_lighting_post": "Background paintings as KTX2 textures; props/figures as compressed glTF; rigged animated book (SkinnedMesh + AnimationMixer); Points for particles, butterflies; env from a pre-baked PMREM KTX2. Transition ('CrossFade' Effect) samples tCurrent/tNext render targets; hero mode (only for the section 0 -> 1 transition) threshold = aspect-correct distance from the projected 3D fade point (uProjectionView * uFadeCenterPoint) mixed 10% toward uMouse, section mode = mix(uv.y, uv.x, smoothstep(.6,-.4,abs(uv.x-.5))*.5) diagonal sweep with progress eased as mix(smoothstep(p), p, .25); a uDarken mode pushes the current scene to near-black with 10% edges; threshold += noise*0.2 + mud normal offset (amplitude 0.2-0.4 hero / 0.3-0.6 sections, modulated by sin(uTime - uv.x*10)); edge = progress - threshold, aa = fwidth(edge)*10; both scenes blend toward fwidth(luma)*5-10 edge images during transit; current UV zooms in 10%, next zooms out 10%; edge glow multiplier 40 -> 8 (hero) / 2-10 (sections) with glow width 0.003-0.04. Overlay wipe Effect: uPosition -1..0..1, same noise/mud threshold, colour = pow(uColor,2.2), edge brightened x2-4 (torn-paper fibre). Checkout Effect: Sobel on scene luminance, inverted to pencil lines, circular reveal from uInvertedSobelFadeCenter with noise*0.2 + mud, product excluded via tHatMask, hover outline via Sobel on mask alpha. Checkout sketch detail: Sobel on luminance at 1.2px, sketch = pow(uInvertedSobelColor,2.2) * (1 - smoothstep(0,.4,edges)*.7), reveal mask = smoothstep(p*1.5+.02, p*1.5-.02, dist - noise*.2 - mud) with p = smoothstep(0,1.5,uModalAnimation). Bloom pass from pmndrs postprocessing (store defaults threshold .9, radius .85).",
+  "interaction": "Scroll-scrubbed Theatre sequences per chapter (sequence.position = mapped section progress, lerped 0.5/frame); click product (beanie) -> sketch mode + drawer; mouse pulls the hero reveal centre 10% toward the pointer; pointer repulsion/focus on floating cards; a draggable globe exists in the store (isGlobeDragging/globeDragVelocity, chapter not captured).",
+  "performance_tactics": "Lazy per-chapter scene chunks; detect-gpu (lazy-loaded) maps GPU tier to quality: tier 0 or any mobile -> 'fallback' (FallbackImageScene: KTX2/webp images through the same transition shader, uIsFallback, fixed centre 0.5/0.65, 10% vertical easeInOutCubic slide), tier 1 -> 'low', 2 -> 'medium', 3 -> 'high', detection failure -> 'high'. Runtime guard: average FPS (lerp .01) measured after 5s; below 45fps (25 in low) it steps quality high -> medium -> low, and 'low' caps the loop at 30fps. DPR = max(1, min(devicePixelRatio, 2, budget/width, budget/height)) with a 1280/1920/3840px budget for low/medium/high. Canvas antialias:false, alpha:false, powerPreference high-performance; KTX2 textures and 'compressed-optimized' glTF; precomputed noise texture; edge detection only while 0.01 < progress < 0.99; single shared compositor; FPS reported to Shopify analytics with a CMS kill-switch.",
+  "fallback_mobile": "Verified: mobile devices (detect-gpu isMobile) and GPU tier 0 get FallbackImageScene, not WebGL dioramas; Lenis is also off on mobile. mobile_01 shows flat painting crops with the ragged torn edge from the same shader family.",
+  "evidence": [
+   "probes/the-renaissance-edition/probe.json (globals three_revision 181, contexts webgl2 x6, assets_3d)",
+   "bundle grep: shader sources, Theatre keys, Lenis init, dynamic imports",
+   "frames/the-renaissance-edition/1/f02.jpg",
+   "frames/the-renaissance-edition/0/f07.jpg",
+   "frames/the-renaissance-edition/3/f03.jpg",
+   "route bundle: detect-gpu tier mapping, Lenis init; Background bundle: dI renderer (fps guard, dpr budget), CrossFade/Overlay/InvertedSobel sources; HeroScene/CheckoutScene chunks (theatreKeys)"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Global Shopify Editions top bar (transparent over paintings and greige on desktop, text flips white/black; solid black bar on mobile) + fixed left-rail chapter index I-XII with a dotted leader on the active chapter; the hero panel is not a second menu: it is the same <aside> (wordmark h2, lede, ul, legal) in its unscrolled state, and it collapses into the left rail on scroll. Theme flips via html[data-sidebar-theme=light].",
+  "menu": "Editions dropdown (Spring '26, Summer '25, Winter '25, View all Editions) and Search; mobile hamburger.",
+  "buttons_links": "'Start for free' pill (Tailwind v4 rounded-full = 3.40282e38px in CSS, computed 33554432px per probe) white on dark, black on light; 'Read help doc ↗' / 'Get notified +' small 12px bold tags with 2-3px radius on bone; inline underlined product links (Shopify mobile, Shopify Balance). Merch drawer (3/f02): 'Renaissance Person' bold label over a swash 'Beanie', engraved spot icons ('Fine knit +', 'Free shipping +' with a cheetah engraving), a bordered quantity stepper whose value is a Roman numeral, a full-width #292919 Checkout bar.",
+  "unusual_interactions": [
+   "Hidden Layer easter egg: a real browser popup window at /editions/winter2026/key (its own Remix route) acts as an X-ray lens showing a neon graffiti version of whatever part of the page sits behind it (2/f00, 2/f04). Verified sync: PopupChannel uses a BroadcastChannel 'shop-popup-sync' with a localStorage ('popup-channel-msg') fallback, exchanging canvas-rect, main-window and popup positions, active-section, ripples, forwarded wheel events, navigate-to-section, webrtc-ready, and a key-to-keyhole unlock sequence (key-near-keyhole, key-insert-start/complete, switch-to-graffiti).",
+   "Buy a real beanie ($14.52) inside the Checkout chapter: painting flips to pencil underdrawing and a product drawer opens (3/f03)",
+   "Rigged book whose pages fly out as product cards toward a phone (Agentic)",
+   "Floating cards with pointer repulsion",
+   "404 page is its own art piece (element listed)",
+   "Roman-numeral commerce: quantity and prices rendered with CSS counter(…, upper-roman), so the Beanie stepper reads '− I +' (3/f02)"
+  ],
+  "sound": "none observed",
+  "footer": "Legal micro-footer pinned in the left rail (© Shopify Inc, Terms of Service, Privacy Policy at ~10-11px)."
+ },
+ "content_voice": {
+  "headline_style": "One-word chapter names as monumental display; ledes are playful full sentences ('...getting that coin', 'cheetah-fast'); section heads are two-word inversions ('Complexity, delegated', 'Insights, proactively delivered', 'Designs refined').",
+  "copy_tone": "Confident, witty, product-literal; historical pastiche in visuals, plain SaaS clarity in the feature copy.",
+  "examples": [
+   "A new world of commerce. 150+ product updates."
+  ]
+ },
+ "tech_stack": {
+  "framework": "Remix / Hydrogen on Shopify Oxygen (manifest routes ($locale).editions.winter2026 with /key, /merch, /video/:handle, /test-500), Vite, React, Tailwind (tailwind-*.css)",
+  "libraries": [
+   "three.js r181",
+   "@react-three/fiber",
+   "postprocessing (pmndrs: custom CrossFade/Overlay/InvertedSobel Effects + Bloom)",
+   "Theatre.js (per-scene project-state files)",
+   "Lenis (desktop only)",
+   "Rive (8 .riv, RiveInner chunk)",
+   "detect-gpu",
+   "zustand (create + subscribeWithSelector API shape)",
+   "Web Animations API",
+   "BroadcastChannel (popup sync)",
+   "Tailwind CSS v4.2.2 (container-query units, custom px spacing scale e.g. w-340/h-300, text-box trim utilities, oklab colour-mix opacity)",
+   "modern CSS: text-box-trim, text-wrap: pretty, @starting-style (merch modal), View Transitions (::view-transition-*(video-container)), offset-path orbit animation (.orbital-ring, orbit-path keyframes), CSS counters upper-roman"
+  ],
+  "evidence": "probe libs_from_requests [rive, shopify, theatre.js, three.js, vite]; globals lenis + three 181; Remix manifest-40e0f26c.js (routes incl. cart/merch/video/test-500/_.key); Background-CGKUhMwd.js (1.05MB) imports 13 *Scene chunks + FallbackImageScene; page HTML references 13 *Scene.theatre-project-state*.js files on cdn.shopify.com/s/files. Tailwind version from the CSS banner '/*! tailwindcss v4.2.2 */'; probe bg oklab(0 0 0 / 0.05) x11 is Tailwind v4's colour-mix output."
+ },
+ "performance_accessibility": {
+  "requests": 293,
+  "weight_notes": "Declared: mp4 7.96MB, 3D 6.8MB, text/plain 5.4MB (likely the 13 Theatre project-state files, which the page HTML loads as .js from cdn.shopify.com/s/files), webp 2.8MB, png 2.2MB, ktx2 1.7MB, JS 1.05MB, octet-stream 0.8MB, webm 0.4MB, wasm 334KB, woff2 67KB. 6 WebGL2 + 2 WebGL + 11 2D contexts. Settled 7.1s.",
+  "reduced_motion": "Handled in CSS as well as JS. The probe saw 0 rules only because both stylesheets were cross-origin blocked; the re-fetched tailwind CSS has 9 prefers-reduced-motion blocks: the davinci-lines drawing, the hero->rail transitions and the wordmark hover only run under no-preference; the orbital ring is paused at offset 0; ::view-transition animations are disabled; the merch modal drops its 40px slide. JS also reads matchMedia('(prefers-reduced-motion: reduce)') / window.REDUCE_MOTION into a store (pointer-follow lerp becomes 1). Still unverified whether the WebGL intro/transitions are skipped.",
+  "contrast_issues": "Bone display type over busy paintings is fine at 194px but the 14px nav and serif ledes over mid-tone painting areas (desktop_07 lede over white sleeve) lose contrast; grey #8C8C8C feature descriptions on #DCDCD0 are low contrast. Semantics: the only h1 is the 14px header 'Shopify Editions Winter '26'; the probe read 16 of 19 h3 elements as empty text (probe headings list).",
+  "mobile_quality": "No overflow at 390px; display 72px; layout reflows to single column with hamburger.",
+  "dev_scores": {
+   "semantics_seo": 7.8,
+   "animations": 9.4,
+   "accessibility": 7.0,
+   "wpo": 8.4,
+   "responsive": 7.8,
+   "markup": 7.6
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Painterly scene-to-scene dissolve (noise + mud threshold, glowing edge, line-art intermediate)",
+   "why_it_works": "Transitions look like paint burning/scraping away rather than a crossfade, and the brief line-drawing state ties every chapter to the Renaissance underdrawing idea.",
+   "how_to_build": "pmndrs postprocessing custom Effect with tCurrent/tNext render targets (render both chapter scenes each frame only while a transition is live). Hero mode (first transition only): threshold = length((uv-center)*vec2(aspect,1))*0.8 with center = mix(projected 3D point, mouse, 0.1); sections: threshold = mix(uv.y, uv.x, smoothstep(.6,-.4,abs(uv.x-.5))*.5) and progress eased as mix(smoothstep(p), p, .25). Then threshold = (threshold*2-1)/1.2 + noiseTex(aspectUv*.25 - t*speed*.125)*0.2 (speed .07 hero/.05 sections) + (mudNormal.r-.5)*mix(.2,.4 hero | .3,.6 sections, .5+.5*sin(t-uv.x*10)); threshold = threshold*.5+.5; edge = progress - threshold; blend = smoothstep(-fwidth(edge)*10, fwidth(edge)*10, edge). Mix each scene toward vec3(fwidth(luma)*mix(5,10,progress)) as it leaves/enters. Glow: out = mix(out, out*glowMult, 1 - smoothstep(0, w, abs(edge))) with hero glowStrength 40 -> 8 over progress .05-.25 (w = strength*0.001) and sections w = 0.003, mult 2-10 modulated by noise*sin(t+uv.x*10). Zoom currentUV in 10% and start nextUV 10% out around the projected centre. Drive progress by scroll, not time: next.progress = clamp((scrollY - (nextTop - vh - early)) / (nextHeight + vh + early)); transitionProgress = min(1, progress*(nextHeight+vh)/heroHeight)."
+  },
+  {
+   "technique": "Torn-paper colour wipe between image chapter and flat content section",
+   "why_it_works": "Kills the hard image seam: the painting ends in a bright fibrous deckled edge like torn canvas, then hands off to a quiet greige catalogue.",
+   "how_to_build": "Second Effect with uPosition in [-1,1] (-1 in, 0 covering, 1 out) mapped from the section boundary's scroll position, and pushed out by the next chapter's transitionProgress (pos + (1-pos)*tp). threshold = mix(uv.y, uv.x, smoothstep(.6,-.4,abs(uv.x-.4))*.5), (t*2-1)/1.2 + noise(aspectUv*.375 - t*.00625)*0.2 + mud*0.1 (mud strength .3-.6); reversed threshold on the way out; alpha = smoothstep(-aa, aa, progress - threshold) with aa = fwidth*10; colour = pow(sectionBg,2.2) (default overlay colour [.9,.9,.9]; here the greige #DCDCD0); brighten the edge band: color *= mix(2.0, 4.0, .5+.5*sin(t + uv.x*10)) where abs(edge) < 0.005. For no-WebGL, bake the same ragged edge into a mask-image PNG on the painting's bottom edge."
+  },
+  {
+   "technique": "Painting -> inverted Sobel underdrawing to spotlight a product",
+   "why_it_works": "Selecting the beanie drains the scene to pencil lines while only the product stays in colour: an instant, on-theme focus state for commerce.",
+   "how_to_build": "Render a product mask (alpha) target. In the Effect: sobel = length(vec2(luma(r)-luma(l), luma(t)-luma(b))) at 1.2px texel offsets; sketch = pow(uInvertedSobelColor, 2.2) * (1 - smoothstep(0, .4, sobel) * .7) (dark lines on the paper colour); reveal circularly from the click point: p = smoothstep(0,1.5,uModalAnimation); mask = smoothstep(p*1.5 + .02, p*1.5 - .02, dist - noise(uv*.25 + t*.1)*.2 - mud*.5); output = mix(input, mix(sketch, input, productMask.a), mask) so only the product keeps its colour. Tween uModalAnimation ~1s and reverse to paint back in. Hover outline: add smoothstep(0,1,pow(sobelAlpha(mask, 2px),2)) * (1-mask.a) * uHover."
+  },
+  {
+   "technique": "Monumental grotesk + swash initial + tight serif chapter opener",
+   "why_it_works": "Three voices with clear jobs: a 194px bold name for wayfinding, one calligraphic capital for period flavour, a tight serif sentence for the pitch.",
+   "how_to_build": "h2 (.headline-1): Neue Montreal 700, font-size 72px below 769px, then clamp(7.5rem, 35.79px + 10.965vw, 13.75rem) (193.7px at 1440), line-height .9, letter-spacing -.03em, text-box: trim-both cap alphabetic, text-wrap: pretty, color #F7F7EE, plain DOM that scrolls over a fixed canvas. Lede (.narrative-1): HWCigars 400, 28px -> clamp(2rem, 18.53px + 1.754vw, 3rem), line-height .96, -.05em. Swash: .drop-cap::first-letter{font-family:ImperialScript; font-size:70px -> clamp(6rem, 75.79px + 2.63vw, 7.5rem); line-height:0} (line-height 0 keeps the giant letter from opening the leading) and hang the paragraph with text-indent:-gutter plus transform:translateX(-gutter) so the swash overhangs the column. No wrapping span, no float. Sentence case only."
+  },
+  {
+   "technique": "Authored 3D dioramas per chapter with Theatre.js + GPU-tier fallback",
+   "why_it_works": "Designers keyframe camera, lights, particles and props visually per chapter; weak devices get an image version without breaking the story.",
+   "how_to_build": "R3F Canvas fixed behind the page (dpr = max(1, min(devicePixelRatio, 2, budget/w, budget/h)), antialias off, alpha off); per chapter lazy-load a thin Scene chunk that reads a Theatre state URL and a CMS asset list, binding theatreKeys camera, effects, particles, butterflies, light-1, light-2, asset-N. Map chapter scroll progress to sheet.sequence.position with a 0.5 per-frame lerp and only update chapters within ±1 of the active one. Gate with detect-gpu getGPUTier() (lazy import): mobile or tier 0 -> FallbackImageScene using the same transition shader with fixed centre (0.5, 0.65); tier 1/2/3 -> low/medium/high (resolution budget 1280/1920/3840, low capped at 30fps); at runtime average FPS with a 0.01 lerp and step quality down when it stays under 45 (25 in low). Textures as KTX2, env as pre-baked PMREM KTX2, glTF through gltf-transform (meshopt/draco)."
+  },
+  {
+   "technique": "Persistent left-rail chapter index with Roman numerals",
+   "why_it_works": "A 12-chapter, 54k-px page stays navigable; the index is also the progress bar and part of the period costume.",
+   "how_to_build": "One <aside> for both states: centred 340x464 panel on load, fixed rail after first scroll (toggle a data-scrolled attribute; transition the ul's translate/width, the title's scale and the lede's opacity over .6s cubic-bezier(.41,.19,.13,.95), items delayed index*20ms). Links: Neue Montreal 700 18px, line-height .95, -.02em, text-box trim, 2px vertical padding. Numerals without JS: li a::after{counter-increment:nav; content:counters(nav, '.', upper-roman); font:11px HWCigars; color:rgb(255 255 255 / .6)}. Leader: a 1px-tall ::after on the label span with background:linear-gradient(270deg, currentColor 1px, transparent 1px) 50%/3px 30% repeat-x, clip-path:inset(0 100% 0 0), transition clip-path .3s ease-in-out .15s; active item sets clip-path:inset(0). Theme: set html[data-sidebar-theme=light] from an IntersectionObserver per section; on light, inactive #909083 and active #292919; on dark, white."
+  },
+  {
+   "technique": "Pointer-focused card cloud (depth without blur filters)",
+   "why_it_works": "Secondary stat/app cards sit small and translucent like background depth, and the one you approach scales and brightens into focus while its neighbours drift away, so a busy cluster stays calm until touched.",
+   "how_to_build": "Position cards with container-query units inside a container-type:inline-size wrapper. Give each interactive card data-base-scale / data-base-opacity (here .8/.4, .65/.4, .75/.7, .8/.9, 1/1) and add 1-2 decoy cards at scale .4-.5, opacity .4, pointer-events none. On pointermove (rAF-throttled), for each interactive card within 300px: f = 1 - (d/300)^2; scale = base + (1-base)*f; opacity = baseO + (1-baseO)*f; translate = -dir * f * 20px; decoys only translate (mouse - .5) * -15px. Reset to base on mouseleave. Intro with WAAPI scale(base*.5)->scale(base), opacity 0->base, 1000ms, random 0-800ms delay, cubic-bezier(0.34,1.56,0.64,1), fill forwards, then commitStyles(). Unlike the site, keep cards visible in CSS so a missed IntersectionObserver never leaves them at opacity 0. For real depth-of-field like the Pulse visual, bake the blur into the asset rather than filtering live DOM."
+  },
+  {
+   "technique": "Construction-line preloader that becomes the frame",
+   "why_it_works": "Loading is shown as a Renaissance underdrawing being ruled onto black (lines, arcs, the panel rectangle), so the wait is already the art direction; when assets land the same lines finish, frame the index and later fade as the panel collapses into the nav.",
+   "how_to_build": "One fixed SVG with viewBox set to the panel's page rect ('550 208 340 464' at 1440x900) and overflow:visible so lines can run to the viewport edges. Draw each rect/path twice (a loader layer and a complete layer) with pathLength=1, stroke-dasharray:1, stroke-dashoffset:1px, stroke:currentColor, 1px. While loading animate the loader layer to stroke-dashoffset:.2px (80%) over 3s cubic-bezier(.34,.22,.47,.84); on the loaded flag transition the complete layer to 0 over 1s, then fade content in (.52s cubic-bezier(.25,.46,.45,.94)). Add a patternUnits=userSpaceOnUse 1x4 pattern with a 1x1 rect at 20% opacity for the dotted guide lines. Gate every transition behind prefers-reduced-motion: no-preference."
+  },
+  {
+   "technique": "Roman numerals with CSS counters",
+   "why_it_works": "The period costume reaches the commerce details (index, quantity, price) without any number-formatting JS, and the real value stays in the DOM/aria-label.",
+   "how_to_build": "<span style=\"counter-reset: qty 3\" aria-label=\"Quantity: 3\" class=\"after:content-[counter(qty,upper-roman)]\"></span> renders III. Price: '$' + <span style=\"counter-reset:d 14\"> ::after counter(d, upper-roman) + '.' + <span style=\"counter-reset:c 52\"> ::after counter(c, upper-roman) gives $XIV.LII. Lists: li::after{counter-increment:item; content:counters(item, '.', upper-roman)}. Set the numerals in a small serif (HWCigars 11px here) with text-box trim so they align to the cap line of the bold labels."
+  }
+ ],
+ "slop_risks": [
+  "purple, and blue-to-purple gradients: Sidekick UI purple #5433EB/#8051FF and the pink-purple-blue concentric 'Pulse' card (desktop_02) are the most generic moments on the page",
+  "fake macOS / app window mockup: the Agentic demo shows the Shopify admin inside traffic-light browser chrome (0/f03); the Key easter egg earns it because it is a real OS popup window",
+  "floating tag pinned to an image + floating cards: in the Sidekick Pulse visual (desktop_02) a yellow 'Unfulfilled' chip is stuck on the 3D skate wheel and blurred stat cards ('Conversion rate 3.63%') hang around a Pulse card; that composite is a single productMedia asset, so these do not react to anything and are closest to the default tell on the page. The separate Sidekick apps cloud is the earned version: its cards react to the pointer (repel, scale and brighten into focus) and open real demos",
+  "Inter everywhere: false accusation in the first pass. Inter-Variable is only the global Shopify header chrome (14px/500 nav, search overlay); the page's own body and captions use Neue Montreal Bold 14px (bodycopy-2) and HWCigars. The risk is only for a copy that drops the triad and falls back to Inter body",
+  "faint grid background: hairline 'davinci-lines' (1px currentColor strokes plus a 20%-opacity dotted pattern) over paintings; here they are perspective construction that also serves as the loader and the hero frame, but copied as generic graph-paper they are slop",
+  "content hidden at opacity 0 until a reveal fires: verified, the cloud cards and their background image are rendered with inline style opacity:0 and only animated in (WAAPI, random 0-800ms delay) when an IntersectionObserver (threshold .1) fires; if it never fires they stay invisible. The WebGL canvas wrapper also sits at opacity 0 until the renderer is ready.",
+  "small-label-over-big-heading / kicker-plus-serif head: every feature repeats a bold 14px label over a serif lede ('Custom app generation' / 'Get Sidekick to build...')",
+  "cream / beige editorial background: the #DCDCD0 greige product sections sit close to the default tasteful neutral; they only work as the quiet counterweight to the paintings",
+  "swash-initial gimmick: Imperial Script initials on every lede are a system here; a random decorative script drop cap in a copy is slop",
+  "hard image seams avoided: the torn-edge shader is the fix; a copy using a PNG torn-paper divider or straight crop would reintroduce the seam",
+  "text you cannot read: serif ledes set directly over mid-tone painting areas (desktop_07 'Validate store changes...' over the white sleeve, 0/f00 lede over the book) and grey feature descriptions on #DCDCD0",
+  "hairline light border on boxes: the hero index panel is a 1px light frame (#B6B6B4 over the sky); it earns its place only as part of the construction-line drawing system, a copied lone outlined box would be the tell",
+  "the default all-around shadow: floating UI cards (Pulse, 'Explore your Pulse') carry generic soft drop shadows on greige (probe box_shadows 14)",
+  "the multi-line headline with an accent word: the wordmark stacks three lines ('The / Ren(ai)ssance / Edition') with a script 'ai' in the middle; it works because it is a fixed SVG lockup where the accent is the pun (and the hover collapses it to 'The ai Edition'). A copy that lets a headline wrap to three lines with a random italic word is the tell",
+  "the fixed background that just follows the scroll: the WebGL canvas is fixed behind all DOM, but every chapter re-stages it (Theatre-scrubbed props, painterly dissolves, torn-paper wipes into greige), so it relates to the content; a fixed painting that only trails the scroll would be the tell",
+  "fake code-snippet window / labels as chips: the ShopifyQL editor card (desktop_03) and the Rollouts timeline with white date chips on a hairline rail (0/f07) are real product UI captures, and 'Read help doc ↗' / 'Get notified +' bone tags repeat under every feature; in a copy without a real product these read as kit filler"
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots and both mobile screenshots viewed individually; element frames 1 (Intro) and 0 (Section transition) all 8 frames each, elements 2 (Hidden Layer) and 3 (E-commerce) f00/f03/f06; probe.json (measured type, colours, canvases, assets, requests); live HTML, Remix manifest, route chunk (243KB), Background chunk (1.05MB) and Hero/Checkout/Online scene chunks grepped: GLSL for the transition, overlay and Sobel Effects quoted from source; Lenis init; Theatre keys; card intro WAAPI params; construction-line constants; reduced-motion handling. The '404 Page' and 'Hero transition' elements had no extracted frames and were not reviewed. INFERRED (marked): HWCigars foundry, Imperial Script roles, vw-based display sizing, Theatre sequence bound to scroll, popup sync mechanism for the Key window, mobile image fallback, text/plain payload = Theatre state. Stylesheets were cross-origin blocked for the probe, so no CSS easing/duration mining; values come from JS bundles. | audit (2026-09-24, adversarial): re-fetched page HTML, route chunk (243,259 B), Background chunk (1,045,525 B), HeroScene, CheckoutScene, Effects, PopupChannel and the Remix manifest; re-viewed desktop_00-07, mobile_00/01, all 8 frames of element 0, element 1 f00-f05/f07, element 2 f00/f04, element 3 f00/f02/f03/f06. CORRECTED: the chapter word is not pinned (it scrolls with the DOM; only the canvas is fixed); 13 scene chunks + fallback, not 12; mobile always gets FallbackImageScene and no Lenis (was 'inferred'); GPU gating is tier 0 -> fallback, 1/2/3 -> low/medium/high (not 'tier < 2 -> fallback'); Theatre light colours #ff0000/#0000ff are placeholder defaults; Sobel sketch formula, noise speeds and progress mapping replaced with the verified source; display size is a clamp with a ~72px floor, not pure vw; mobile wordmark ~29px CSS not 45px (that was 2x pixels); feature labels are 18px. ADDED: scroll-scrubbed transition math, 0.5-lerp Theatre scrubbing limited to ±1 chapters, FPS guard + DPR budget + 30fps low mode, Bloom, uDarken, BroadcastChannel/localStorage popup sync with key-to-keyhole unlock, pointer-focus card cloud (cqi positioning), routes incl. /cart, CMS-driven thin scene wrappers, extra slop tells (legibility over paintings, hairline box, default shadows). Still INFERRED: HWCigars foundry, 'ai' glyph font, display clamp formula, index stagger timing, the draggable globe's chapter, whether reduced motion disables WebGL transitions. | audit 2 (2026-09-25, adversarial): re-viewed desktop_00-07, mobile_00/01, all 8 frames of element 0, element 1 f00-f04/f07, element 3 f00/f02/f06 one at a time; re-fetched page HTML, route chunk (243,259 B), Background (1,045,525 B), HeroScene and, new in this pass, the two stylesheets the probe could not read (tailwind-G-N6aznT.css, fonts-latin). CORRECTED: construction lines are the davinci-lines SVG loader/frame (currentColor, pathLength dash drawing), the #D7D7CF/0.8/300ms lines belong to the skill-tag graph; wordmark is an aria-hidden SVG at 55% panel width, and the script 'ai' is SVG art, not ImperialScript text; display clamp replaced with the verified CSS (72px -> clamp(120px, 35.79px + 10.965vw, 220px)); feature ledes ~28px at 1440 (24px is mobile); swash is ::first-letter with line-height 0 and a hung paragraph, not a floated span; index leader is a clip-path-revealed gradient-dot ::after and inactive light colour is #909083; the apps cloud has 5 interactive cards (.65-1 scale) + 2 decoys, and the blurred 'Conversion rate' card is baked Pulse media; 'Inter everywhere' was a false accusation; hero panel is the same aside as the rail; reduced-motion is handled in CSS (9 blocks). ADDED: Roman numerals via CSS counters (index, quantity, prices) as a signature; text-box-trim on the headline/bodycopy classes; wordmark hover collapse to 'The ai Edition'; intro CSS timings (ai slide, 75ms index stagger); hero->rail morph; scene parallax vs DOM scroll; skill-tag cloud; Tailwind v4.2.2 and modern CSS features; two new steal_this entries; three slop risks. Still INFERRED: HWCigars foundry, 'ai' outlines drawn from ImperialScript, the hero->rail motion (no frames of the 'Hero transition' element), WebGL behaviour under reduced motion."
+}

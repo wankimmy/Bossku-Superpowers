@@ -1,0 +1,296 @@
+{
+ "slug": "zentry",
+ "title": "Zentry",
+ "live_url": "https://zentry.com/",
+ "award": "Awwwards Site of the Day, Aug 28 2024 (Honors); corpus bucket category-mix (also sites_of_the_month). Agency: Resn. NOTE: the live site probed 2026-09 is a relaunch ('Human-Agentic OS', ZENT token) built on the same Nuxt component system; the awarded 2024 'metagame' version is reconstructed from the jury element videos.",
+ "scores": {
+  "overall": 7.67,
+  "design": 7.7,
+  "usability": 7.31,
+  "creativity": 8.09,
+  "content": 7.78,
+  "dev": {
+   "overall": 7.5,
+   "semantics_seo": 7.2,
+   "animations": 8.2,
+   "accessibility": 6.6,
+   "wpo": 8.2,
+   "responsive": 7.4,
+   "markup": 7.0
+  }
+ },
+ "industry": "Web3 gaming / 'metagame layer' platform (2024), repositioned in 2026 as a crypto + AI 'Human-Agentic OS' with the ZENT token",
+ "signature": "Every image lives inside a JS-computed, perspective-projected rounded quad (four corners rotated in 3D, projected with fl/(fl+z), written every frame to clip-path: path() plus a matching SVG stroke), so flat video and art tilt, float and unfold to full-bleed like physical cards, while an ultra-condensed display face with wedge-cut alternates swings in on a 3D hinge, and even the pill buttons tilt as projected quads.",
+ "first_screen": {
+  "composition": "OBSERVED live (desktop_01): pure #000 viewport. 'REDEFINE' top-left in ZentryScreamer 180px (x~36, y~108-245) with a 4-line Roboto Mono paragraph under it at 16.2px / weight 500 (class textBody1 = 1.8rem; 45 mono chars span 437px = 0.6em advance at 16.2px, line pitch ~19.4px = 1.2); 'REALITY' bottom-right at the same 180px, flush to the right margin (~1405px), baseline ~855. On the diagonal between the two words sits an iridescent violet/cyan/magenta wireframe flower (Spline scene A1_update_p8uuko.spline, loaded by the Hero chunk) spanning roughly x 340-965, y 130-745; it only grazes the last E of REDEFINE and stays clear of REALITY. Nav: ZENTRY wordmark top-left, two lavender #DFDFF2 pills (PRODUCTS with caret, WHITEPAPER; 9px bold mono caps), right-hand links ZTERMINAL / ABOUT / CONTACT with a small arrow glyph, 10.8px bold mono caps. desktop_00 (6s) is still the preloader: a #5542FF two-shard Z mark (~207px wide) centred on black. AWARDED 2024 version (frames/zentry/2 f00-f01, frames/zentry/3 f06): the same diagonal REDEFINE / <word> split over a full-bleed looping video of painted game key art; the bottom-right word swaps (GAMING, IDENTITY, LIFESTYLE...) and is caught mid-hinge in f00 ('NTITY' leaning in perspective); a small preview square of the next clip sits at screen centre (it stays centred in f01 while the cursor is far bottom-right, so it does not follow the pointer's position); a lime #EDFF66 'WATCH TRAILER' pill sits under a geometric-sans subtitle. The 2024 nav was the Z mark (no wordmark), a PRODUCTS pill, and NEXUS / VAULT dropdowns + PROLOGUE / ABOUT / CONTACT with a 4-bar audio glyph at the far right.",
+  "what_owns_it": "mixed",
+  "display_type_px": 180,
+  "evidence": [
+   "probes/zentry/desktop_00.jpg",
+   "probes/zentry/desktop_01.jpg",
+   "probes/zentry/probe.json measure.largest_text",
+   "frames/zentry/2/f00.jpg",
+   "frames/zentry/2/f01.jpg",
+   "frames/zentry/3/f06.jpg"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "ZentryScreamer",
+    "role": "display",
+    "classification": "ultra-condensed heavy grotesque with sharp wedge-cut stylistic alternates on roughly one letter per word (checked in the jury frames: crossbar-less notched A in RADIANT / ADVENTURE / PILLAR, notched M in ZIGMA, notched U in AZUL, notched W in AWAITS, notched C in GLANCE); the cuts echo the shards of the Z logo rather than being print ink traps, even though the component is called InkTrapText",
+    "foundry": "inferred: bespoke brand face",
+    "source": "probe fonts_loaded 'ZentryScreamer 500 normal'; computed weight 900 in measure.type; Hero CSS '.hero__bTitle b { font-feature-settings: \"ss01\" on }'; InkTrapText CSS resets <b> to font-style normal / font-weight 400; html has font-synthesis:none, so the 900 request is never faux-bolded"
+   },
+   {
+    "name": "Roboto Mono",
+    "role": "body",
+    "classification": "monospace grotesque",
+    "foundry": "Google (open source)",
+    "source": "probe fonts_loaded 400/500/700; 154 of 226 measured text nodes; body and textBody2-4 classes also set font-feature-settings 'ss02' on"
+   },
+   {
+    "name": "inferred: geometric grotesque (General Sans-like)",
+    "role": "body",
+    "classification": "geometric sans used for 2024 subtitles and product blurbs",
+    "foundry": "unknown",
+    "source": "guess from frames/zentry/2/f01 and frames/zentry/1/f00; replaced by Roboto Mono in the 2026 relaunch"
+   }
+  ],
+  "display_size_px": 180,
+  "body_size_px": 16.2,
+  "scale_notes": "Everything is in rem on a viewport-width root: html { font-size: .625vw } at >=769px (1rem = 9px at 1440, capped at 12px from 2000px) and 2.6667vw below (1rem = 10.4px at 390), so the whole type scale scales with width. Classes: textTitleBig1 20rem (180px) / 10rem mobile (104px); textTitleSection 12rem (108px, statements and product-menu names) / 4.8rem; textTitleSection2 10rem (90px) lh .85; textBody1 1.8rem (16.2px, weight 500; hero and section copy) / 1.4rem mobile (14.56px); textCaptionBtn 1.2rem (10.8px bold, +0.02em); textCaption 1rem (9px). Measured sizes: 180 / 162 ('$20M') / 144 and 137 / 126 (24B+) / 108 (25 nodes) / 90 / 55 / 20 / 16.2 / 14.4 (body default) / 10.8 / 9 (43 nodes). Display to body 180:16.2 = 11:1; display to micro-label 20:1.",
+  "tracking_leading": "Display letter-spacing -0.01em (-1.8px at 180px, Hero CSS letter-spacing:-.01em), line-height 0.82 (147.6/180). Stats even tighter: 162px on 116.64px (0.72). Section statements 108px on 88.56px (0.82), -1.08px. Micro labels 9px mono with +0.02em (0.18px) and line-height 1.0.",
+  "case_and_style": "All display text uppercase. The wedge-cut alternates are switched on per glyph by wrapping a letter in <b> styled font-feature-settings:'ss01' on (Hero CSS .hero__bTitle b; InkTrapText component), so only one or two letters per word carry the notch. Stats use the display face numerals with a '+' suffix (24B+, 970GB+, 100M+, 500K+).",
+  "signature_moves": [
+   "Diagonal split headline: word 1 top-left, word 2 bottom-right, the hero object on the diagonal between them (desktop_01, mobile_00).",
+   "Per-glyph stylistic-set accents: <b> inside the heading switches ss01 on one letter per word (A, M, U, W or C gets a wedge cut), so the logo's shard language spreads into every headline.",
+   "Headlines hinge in 3D rather than fade: the whole block rotates from rotateY(-50deg) rotateX(-20deg), pivoting 150px behind the text, to flat, while words snap on (Title component).",
+   "Stat numerals corner-pinned into perspective: a 4-point homography (usePerspectiveTransform -> matrix3d) pulls the numeral block's bottom-left corner down to 1.3-1.5x its height and the bottom-right up to 0.5-0.6x, so '500K+' and '970GB+' lean at rest (desktop_07) and straighten when hovered.",
+   "Inline media chips inside a centred stacked statement: 'A NEW [square] REALITY', 'USER [diamond] AND' (desktop_06; the WhoWeAre dot grows into an image card on hover)."
+  ],
+  "mobile": "mobile_00: REDEFINE ~300 css px wide at 104px (textTitleBig1 10rem at 1rem = 10.4px; probe mobile largest 104px; the 81.12px h1 in the probe is another heading), left-aligned; the Roboto Mono paragraph (14.56px = 1.4rem) runs over the wireframe flower, which now fills the full width; REALITY right-aligned at the bottom. No horizontal overflow (probe overflow_x false)."
+ },
+ "color": {
+  "mode": "section-shifting",
+  "base": "#000000 (body bg rgb(0,0,0)); light sections flip to #DFDFF2, a blue-tinted lavender off-white (not cream)",
+  "ink": "#DFDFF2 on dark (101 text nodes), #000000 on light (80 nodes); pure #FFFFFF only on nav links",
+  "accents": [
+   "#5542FF violet-blue (--rui-colors-purple): logomark, inactive product names in the menu, 'MORE COMING SOON' and Treasury cards",
+   "#EDFF66 lime: WATCH TRAILER pill, the 'LAUNCH SITE' outline pill in the product menu and the full-bleed 2024 vault section",
+   "Product menu background: radial-gradient(circle at 65%, #100731 20%, #080315 60%) with 60% black fades at top and bottom; #240E4B / #130728 are only the mask and content placeholder fills of its 5 ring cards (probe counts 5 of each)",
+   "24B+ card: black with two #3427AC at 50% alpha linear gradients (top-down and left-right) fading to transparent, which makes the violet corner glow",
+   "#D3D3E5 / #CDCDE0 lavender greys: card fills on the light sections"
+  ],
+  "ratio": "inferred from the screenshots: ~55% black, ~35% lavender #DFDFF2, ~10% accent (violet + lime)",
+  "section_shifts": "Hard cuts, carried by imagery rather than gradients. 2026: black hero -> the dark image quad expands over a lavender field (desktop_02) -> lavender product grid and statements (desktop_03-06) -> black stats bento (desktop_07). 2024: the unfolded painting handed straight into a BLACK product section (frames/zentry/2 f03-f04), then a full-bleed lime #EDFF66 'THE UNIVERSE POWERED BY ZENT' vault section (f05-f06), a black stats bento (f07), and dark teal cinematic Prologue pages (frames/zentry/0).",
+  "texture": "None in CSS (0 blend modes, 0 backdrop filters, 1 filter). Texture comes only from the painted art, the video and the Spline wireframe glow, all behind the type.",
+  "notes": "The palette works because the neutral pair is tinted blue (#DFDFF2 / #000), matching the violet accent instead of fighting it. The lime is used as a whole-section field or one pill, never as scattered highlights."
+ },
+ "layout": {
+  "grid": "Hero and nav gutter 36px at 1440 (= --sideMargin 4rem at 9px/rem; REDEFINE and the logo sit at x~36). Content sections sit on a 9rem (~81px) gutter: the first native-product card (zDATA) is full-width, 81-1359 with ~14.4px radius (desktop_03); the integrated-app cards below pair up at 622px with a ~34px gutter (desktop_04: 81-703 and 737-1359). Root tokens: --sideMargin 4rem, --edgeMargin calc(50vw - 65rem), --headerMargin 12rem. 7 grid containers, 5 sticky elements.",
+  "density": "balanced",
+  "alignment": "Diagonal (hero), left-aligned statements (desktop_05), centred stacked statement (desktop_06), staggered asymmetric bento (desktop_07).",
+  "composition_moves": [
+   "Diagonal corner-to-corner type around a central object.",
+   "Every image is a tilted rounded quad with a hairline stroke; neighbouring quads sit at different angles.",
+   "Stats bento with deliberately mismatched card sizes and fills: purple-gradient 24B+, white 970GB+, #5542FF 100M+, tall black 500K+, black backers list (desktop_07).",
+   "A character layered in front of the '500K+' numerals inside its violet card (frames/zentry/2 f07; a contained video, object-fit contain, 40rem tall per Bento CSS). It covers the type but stays within the card edge.",
+   "Numbered 01/02/03 accordion pinned bottom-left with a vertical progress rule (desktop_05).",
+   "Product titles set as a tiny lowercase 'z' prefix against the ultra-condensed caps word ('zDATA', desktop_03)."
+  ],
+  "section_rhythm": "100lvh hero -> pinned scroll section in which the tilted frame unfolds to full-bleed -> airy lavender product grid -> left statement plus pinned accordion -> centred giant statement -> dense dark bento -> backers and partners -> join CTA (from probe headings). Scale alternates between one huge object and a grid of small ones.",
+  "mobile_adaptation": "Single column. Hero keeps the diagonal (REDEFINE left, REALITY right). The tilted frame keeps its perspective outline (mobile_01 shows the stroked quad; its image was not loaded at capture). The centred mono paragraph under the frame gets a bold lead line."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis (html classes 'lenis lenis-smooth'). SmoothScrollLenis component defaults: duration 0.6, wheelMultiplier 1, touchMultiplier 2, smoothTouch false; driven from gsap.ticker with lagSmoothing(0) so ScrollTrigger and Lenis share one clock.",
+  "preloader": "desktop_00: #5542FF Z mark centred on black. 2024 Branding element (frames/zentry/3, 4.1s clip): black triangles cut into a #5542FF rectangle (f00), collapse into the two-shard Z on black (f02), then a tilted rounded quad (the same clip-mask shape) opens from the centre of the violet field onto the hero art (f04) before the full hero lands (f06).",
+  "intro_sequence": "Hero (bundle Hero chunk): the top block's children fade in from y 50 over 0.8s power3.out with stagger 0.1 at 0.45s (+0.65s when entering from another page), and BigTitle plays alongside: words are set to opacity 1 one by one with stagger 0.1s (a snap, not a fade) while the h1 rotates from rotateX 40 (-20 on mobile) / rotateY -20 / rotateZ -10 / z -100 to 0 over 1s power4.out. transform-origin is 'center 100% -150px' under perspective(1000px), so the word swings up from a hinge behind its baseline. Slide exit: rotateX -20 / rotateY 60 / z 100 over 1s power4.out, with the words blanked from +0.1s at stagger 0.1. Each slide change plays a random whoosh SFX, with a 1.2s lock between slides. The hero Spline (A1) starts on the Preload / PreloadRiveReady page event; the Intro Spline (B1) starts 300ms after it reports loaded.",
+  "scroll_techniques": [
+   "pin (Intro: ScrollTrigger start 'top top', end 'bottom bottom')",
+   "scrub (the frame unfolds while scroll progress runs 0.2-0.85)",
+   "3D-projected clip-path expansion",
+   "perspective fade entry (usePerspectiveFadeEntry at 'top 95%')",
+   "scroll-scrubbed video (ScrollyVideo component, Prologue page)",
+   "scroll-to-select product carousel (products menu)",
+   "reveal"
+  ],
+  "text_animation": "Title component: the container goes from rotateY -50deg / rotateX -20deg (pivot z -150px, perspective 1000px) to 0 in 1.5s power3.out; the words inside go opacity 0->1 in 0.01s each with stagger 0.07s. Hide: rotateY +50deg in 0.5s power2.in, words blanked from the end, 0.055s each. usePerspectiveFadeEntry (transform-origin center top, perspective 1000px, trigger 'top 95%'): y 120 / rotateX -40 / alpha 0 -> 0 in 1.3s power4.out; reverse y 100 / rotateX -40 in 0.5s power2.in. Buttons: the label rolls (see hover_micro). There are no per-character effects; the 3D hinge carries the motion (frames/zentry/2 f04 catches 'THE STORY' mid-hinge).",
+  "image_animation": "useCssClipMask: a unit quad [.5,-.5],[.5,.5],[-.5,.5],[-.5,-.5] is scaled to the element size, rotated by an Euler vector, projected with t = fl/(fl + z) (fl 800 default, 3000 on product-menu cards), its corners rounded with Q curves (the radius passed to the path is borderRadius/2, default 5 -> 2.5px), and written to a reactive path used as clip-path: path() plus an SVG <path> stroke (#000 2px default; rgba(255,255,255,.3) 1px on product-menu cards). Intro unfold: frame size lerps from 0.66*min(vw,vh)*(0.7, 1.0) on desktop (1.0*min*(0.7, 1.2) on mobile) to max(vw,vh)+2 as scroll progress runs 0.2->0.85 (0.3->0.85 on mobile). The entry tween takes rotation from (x 1, y -0.2) to (x -0.4, y -0.4, z -0.1) over 1.2s power4.out at +0.2s, and z from -100 to 0 over 1.6s power4.out; scroll adds (0.4t, -0.4t) rad; the summed position and rotation are multiplied by a factor that reaches 0 at t = 0.75, so the frame is flat before it goes full-bleed. The content scales 1.2->1 (1.4s power3.out), plus a scroll term of +0.2 that decays to 0. Mouse parallax (desktop): rotation +/-0.06*PI damped with lambda 6, position width*0.02 with lambda 4. Trailer open (PlayerWrapper): z 500->0 over 1s power4.out, content scale 1.1->1 over 1s power3.out, frame scale 0->1.01 over 0.9s power3.out, rotation x -0.8 / y -0.4 -> 0 over 1.2s power4.out.",
+  "page_transitions": "inferred: a Nuxt PageTransiton component exists in the bundle; not observed in the frames.",
+  "hover_micro": [
+   "Pill buttons are clip-mask quads too (BtnMain): the pill is an SVG path from useCssClipMask. On pointerenter it rotates (x -0.1, y -0.8, z -0.06 rad) over 0.4s expo.out and pushes back (z -100, x +2% of width) over 0.8s expo.out, while its corner radius lerps from ~h/1.8 to 4, so the capsule squares off and swings into perspective. Desktop only.",
+   "Label roll (verified in BtnMain): each label is rendered twice ('WHITEPAPER\\nWHITEPAPER' in the probe). On hover the main label and icon fade out in 0.15s (stagger 0.04) and the rollover copy slides up from y 100% to 0 over 0.8s expo.out (stagger 0.04); on leave the main copy drops back in from -100%. A Howler ui.mp3 rollover sprite plays; a click plays 'UI_generic_click'.",
+   "Bento stat numerals: at rest rolloverPr = 1 keeps the corner-pinned lean; hovering the card tweens rolloverPr to 0 over 1s expo.out and the numeral straightens (Bento + BentoCard chunks).",
+   "Product card tilt (ProductGrid): the pointer maps to rotateX/rotateY clamped to +/-3deg (rotMax 3) under perspective(500px).",
+   "WhoWeAre dot: pointerenter expands a small inline dot into an image card (showPr 0->1 over 1.2s power4.out; idle pulse 1 + sin(t*0.003)*0.15).",
+   "2024 hero: the preview square of the next clip holds screen centre. The Hero code feeds the normalised window pointer to each slide's media (setPointer); inferred: this drives a tilt or parallax, not position-following. Clicking grows the preview to full-bleed (frames/zentry/2 f00 caught mid-expansion)."
+  ],
+  "cursor": "Native cursor (cursor_none 0). Pointer response is expressed through tilt: buttons, product cards, the intro frame and the product-menu ring all rotate toward the pointer.",
+  "easing_curves": [
+   "GSAP power4.out (22 uses)",
+   "GSAP expo.out (11)",
+   "GSAP power3.out (9)",
+   "GSAP sine.out (6)",
+   "GSAP power2.in (6, exits only)",
+   "CSS cubic-bezier(0.165,0.84,0.44,1) (easeOutQuart, x3)",
+   "CSS cubic-bezier(0.19,1,0.22,1) (easeOutExpo, x2)",
+   "CSS cubic-bezier(0.215,0.61,0.355,1) (easeOutCubic, x2)",
+   "CSS cubic-bezier(0.39,0.575,0.565,1) (easeOutSine, x2)"
+  ],
+  "duration_range_ms": "10-2000 (GSAP word snaps 10ms, fades 150ms, typical 500-1200ms, the longest GSAP move 1.6s; CSS durations from 40ms to 2s with 0.5s most common)",
+  "stagger_ms": "70 (Title words), 100 (BigTitle words, product-menu titles), 55 (Title hide, from end), 40 (button label roll), 80 (product-menu blurb)",
+  "choreography_notes": "The container moves in 3D first; words snap on inside it, so the eye tracks one rigid slab rather than a cascade. Entrances are slow and decelerating (1-1.6s, power3/4.out); exits are fast and accelerating (0.5s, power2.in). Image frames always lead the text: frame z/scale starts at t=0 and the text fades in at +0.4s (Intro timeline).",
+  "evidence": [
+   "frames/zentry/2/f00-f07 (Homepage, 20.6s)",
+   "frames/zentry/0/f00-f07 (Prologue, 18.6s)",
+   "frames/zentry/1/f00,f03,f06 (Products menu)",
+   "frames/zentry/3/f00,f03,f06 (Branding)",
+   "probes/zentry/desktop_01..07.jpg",
+   "probes/zentry/probe.json easings/durations/css_usage",
+   "bundle grep /_nuxt/*.js: useCssClipMask, Frame, Title, Hero (BigTitle), Intro, usePerspectiveFadeEntry, usePerspectiveTransform, PlayerWrapper, WhoWeAre, SmoothScrollLenis",
+   "scratchpad bundle re-grep 2026-09-25: Hero, Intro, Title, BtnMain, Bento, getAssetSrc (BentoCard), usePerspectiveTransform, useCssClipMask, index (productNav) chunks and entry CSS"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "mixed",
+  "art_direction": "2024: saturated painterly anime / game key art (violet, magenta and teal rim light, fantasy cityscapes) as looping video, plus a dark teal cinematic matte-painting world for the Prologue (caves, hooded 'Zentinels', a carved stone door). 2026: a realtime iridescent wireframe flower (desktop_01) and a contour-lined 3D hand under a violet orb inside a tilted frame (desktop_02).",
+  "treatments": [
+   "Tilted rounded-quad clip with a 1-2px stroke on every image",
+   "Frames fly at independent angles around a floating 3D gem (frames/zentry/0 f04-f05)",
+   "A character layered in front of the stat numerals inside its card (frames/zentry/2 f07)",
+   "Triptych: a wide centre panel flanked by two narrow slivers with mono captions ('HIDDEN DEPTHS OF THE PILLAR' / 'FLOWING TO THE SOURCE' / 'THE CENTER OF IT ALL'), and the centre widens into one full-bleed scene (frames/zentry/0 f00-f01)",
+   "Nested planes: the product-menu cards hold further tilted image planes inside them (frames/zentry/1 f00, f07)",
+   "Floating energy-wrapped rocks orbit outside the tilted frame (frames/zentry/2 f02)",
+   "Video everywhere: 15 <video> nodes, looping muted clips per product"
+  ],
+  "crops_and_ratios": "Full-bleed 100lvh hero; tall ~3:4 quads in about/prologue; ~16:10 product cards; Prologue triptych = a ~0.9:1 centre panel with ~1:4.4 side slivers (frames/zentry/0 f00).",
+  "formats": "Probe: mp4 x8 (18.6MB declared), png x10 (3.1MB), webp x3, jpg x1, webm x1, riv x1, .splinecode (1.9MB octet-stream); media counts img 15, video 15, svg 65.",
+  "evidence": [
+   "probes/zentry/desktop_01.jpg",
+   "probes/zentry/desktop_02.jpg",
+   "frames/zentry/0/f00-f07",
+   "frames/zentry/2/f00-f07",
+   "probes/zentry/probe.json bytes_by_type_declared"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "Spline runtime (SplineComponent chunk, three r163 global) for the hero and intro scenes; Rive for vector brand animation; the card '3D' is CSS/JS perspective projection, not WebGL",
+  "role": "hero object (Spline A1 wireframe flower), intro object (Spline B1 hand + orb inside the tilted frame), plus 2.5D image planes projected in the DOM",
+  "assets": [
+   "https://cdn.zentry.com/raw/upload/v1756113028/zentry/spline/A1_update_p8uuko.spline (hero flower, Hero chunk)",
+   "https://cdn.zentry.com/raw/upload/v1754382313/zentry/spline/B1.splinecode (Intro scene: hand + violet orb, desktop only)",
+   "https://cdn.zentry.com/video/upload/v1754397631/zentry/B1.mp4 and .../v1754642473/zentry/Vertical_B1.mp4 (the Intro's mobile video replacement for B1, per the Intro chunk)"
+  ],
+  "materials_lighting_post": "Observed: additive-looking iridescent wireframe (violet, cyan, magenta) with a soft glow on black (desktop_01); a dark satin hand with violet contour lines and a soft violet orb (desktop_02). Spline internals not inspected.",
+  "interaction": "Mouse parallax on the intro frame (+/-0.06*PI rotation, damped). The Spline scenes start only after preload events (PreloadRiveReady / Preload).",
+  "performance_tactics": "Only the Intro Spline scene (B1) is skipped on mobile: the Intro chunk's isMobile guard swaps it for a looping B1.mp4 / Vertical_B1.mp4 played on viewport. The hero Spline (A1) has no mobile guard. Videos are not autoplay-flagged (probe: autoplay false) and are played by the component; 6 webgl2 contexts counted on desktop.",
+  "fallback_mobile": "The hero flower (A1) still renders in realtime on mobile (mobile_00). The intro hand/orb scene becomes a vertical video (Vertical_B1.mp4); mobile_01 shows its stroked frame still empty at capture.",
+  "evidence": [
+   "probes/zentry/probe.json globals three_revision 163, contexts webgl2 6, libs spline/rive",
+   "bundle: Hero chunk (A1_update_p8uuko.spline, no isMobile guard), Intro chunk (isMobile ? Video B1.mp4/Vertical_B1.mp4 : Spline B1.splinecode), SplineComponent, useSplineLoader"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Wordmark left + two lavender pill dropdowns (PRODUCTS with caret, WHITEPAPER; radius 7.2px, 9px bold mono caps, black text) + right text links with a small arrow glyph (10.8px bold mono caps, +0.02em). Mobile: wordmark, PRODUCTS pill, two-line hamburger.",
+  "menu": "PRODUCTS opens a full-screen overlay (frames/zentry/1) on radial-gradient(circle at 65%, #100731 20%, #080315 60%), with black fades top and bottom. A 'SCROLL TO SELECT' mono label hides once scrolling starts. Product names are set at 12rem (108px at 1440) in ZentryScreamer (RADIANT, ZIGMA, NEXUS, AZUL), each under a tiny mono category label; the focused or hovered name is #fff and the rest #5542FF. The overlay is its own scroller (data-lenis-prevent, with a nested Lenis instance of duration 0.6). The index is floor(progress * n), and the name list translates by -progress * listHeight, so the active name holds one band on screen (f00/f02/f04/f06). On the right, 5 clip-mask cards (focalLength 3000, 1px rgba(255,255,255,.3) stroke) sit on a ring (2*PI/5 per step) whose rotation.y is damped (damping 8) toward 2*PI*index/5, with a pointer tilt of +/-0.1*PI. A 'Name - Category' blurb and a ghost 'COMING SOON' or lime-outlined 'LAUNCH SITE' pill sit underneath (f02). Each step ticks a ui.mp3 sprite; Escape closes it; clicking a name scrolls to it.",
+  "buttons_links": "Black pill 'ENTER VAULT' on lavender; lime 'WATCH TRAILER' pill with a play triangle (2024); lime-outline 'LAUNCH SITE' and a disabled ghost 'COMING SOON' in the product menu. Every BtnMain pill tilts in 3D, squares its corners and rolls its duplicated label upward on hover (verified in bundle). Hover on plain nav links not captured.",
+  "unusual_interactions": [
+   "Video-in-video hero: click the centre preview to grow the next clip to full-bleed (2024)",
+   "Scroll-to-select product menu with a 5-card 3D ring",
+   "Inline dot inside a sentence that expands into an image card (WhoWeAre)",
+   "2024 vault section: the 01/02/03 accordion drives a black geometric Rive shape that morphs from a nested diamond (f05) into a rotating pinwheel (f06) on the lime field",
+   "Prologue chapter page: triptych panels -> scrubbed video -> captioned carousel with a progress-ring dot pager (frames/zentry/0 f02-f03), side labels with arrow glyphs ('Z. 04 THE POWER TO CREATE' / 'THE POWER TO UNITE', f05) and vertical rotated edge captions ('A PERPETUAL STATE OF EXPANSION', f06-f07)"
+  ],
+  "sound": "Verified in the live bundle: Howler audio sprites. /audio/sfx/ui.mp3 plays on button rollover ('UI_generic_button_1'), click ('UI_generic_click') and each product-menu step ('UI_product_scroll'); /audio/sfx/whoosh.mp3 (random whoosh_1..3) plays on every hero slide change. Awwwards tags include Sound-Audio. inferred: the 4-bar glyph at top-right in 2024 (frames/zentry/2 f00) is the sound toggle.",
+  "footer": "Not reached by the 8 probe steps (doc height 14155px). Probe headings show a 'JOIN ZENTRY' pre-footer statement, then EXPLORE / PRODUCTS / FOLLOW US / RESOURCES link groups and a PRIVACY POLICY link."
+ },
+ "content_voice": {
+  "headline_style": "Two-word imperative split across the hero ('REDEFINE' + a swapping noun), then all-caps manifesto statements of 5-10 words.",
+  "copy_tone": "Grand and world-building: game-lore naming (Zentinels, The Pillar, Nexus, Vault) in 2024; civilisation-scale crypto/AI claims in 2026. Body copy is short, 2-4 lines, in mono.",
+  "examples": [
+   "THE SYMBIOTIC WORLD POWERED BY ZENT"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Nuxt 3 (Vue) with Storyblok CMS",
+  "libraries": [
+   "GSAP 3 + ScrollTrigger",
+   "GSAP SplitText 3.13.0 (useSplitText)",
+   "Lenis (page instance plus a nested instance in the product menu)",
+   "Spline runtime (three r163)",
+   "Rive (.riv + wasm)",
+   "Howler.js (audio sprites)",
+   "GrowthBook (A/B)",
+   "Google Fonts (Roboto Mono)"
+  ],
+  "evidence": "probe globals __NUXT__, ScrollTrigger, three_revision 163; libs_from_requests lenis/nuxt/rive/scrolltrigger/spline/splittext; top_hosts growthbook-api.zentry.com; /_nuxt/ chunk names (StoryblokContentPreview, useStoryblok*, SmoothScrollLenis, SplineComponent, useSplitText header 'SplitText 3.13.0'); entry chunk contains howler + sprite playback"
+ },
+ "performance_accessibility": {
+  "requests": 194,
+  "weight_notes": "Declared: mp4 18.6MB, png 3.1MB, Spline octet-stream 1.9MB, other 1.9MB, JS 0.5MB, Rive wasm 87KB, woff2 41KB + ttf 23KB. Video dominates the weight. Settled in 6.6s.",
+  "reduced_motion": "Probe found 1 prefers-reduced-motion CSS rule; no JS-level handling seen in the chunks grepped. inferred: the 3D hinges and unfolds play regardless.",
+  "contrast_issues": "Pre-reveal product titles and blurbs on the lavender cards are near-invisible (desktop_04: RADIANT / ZIGMA in a lavender tint on #CDCDE0). The 'Special zAI Parameters' label on the 24B+ card is dark ink on a near-black violet (desktop_07). 9px mono labels throughout; grey body copy (rgba(0,0,0,.5)) on #DFDFF2 in desktop_03. Duplicated button labels are likely read 2-3 times by screen readers.",
+  "mobile_quality": "No horizontal overflow; the hero diagonal survives at 390px; the mono paragraph runs over the busy wireframe (legibility hit, mobile_00); frame art not yet loaded at capture (mobile_01).",
+  "dev_scores": {
+   "overall": 7.5,
+   "semantics_seo": 7.2,
+   "animations": 8.2,
+   "accessibility": 6.6,
+   "wpo": 8.2,
+   "responsive": 7.4,
+   "markup": 7.0
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "3D-projected rounded-quad clip mask (DOM images that behave like cards in space)",
+   "why_it_works": "You get perspective, tilt and fly-in on real <img>/<video> elements, with crisp edges, a matching stroke and no WebGL, so every image on the page shares one physical language.",
+   "how_to_build": "Per element keep {position:Vector3, rotation:Euler, scale:[w,h], borderRadius}. Each rAF: corners = [[.5,-.5,0],[.5,.5,0],[-.5,.5,0],[-.5,-.5,0]].map(c => c.multiply(scale).applyEuler(rotation)); project each: t = fl/(fl + c.z + pos.z) with fl=800 (3000 for a flatter look); p = pos.xy + c.xy*t. Build the path: for each corner, step back r along both edges (the site passes borderRadius/2, clamped so it never exceeds half an edge), 'L' to the first point, then 'Q corner, secondPoint'; close with Z. Apply el.style.clipPath = `path('${d}')` and set the same d on an absolutely positioned <svg><path stroke='#000' stroke-width='2' fill='none'/></svg> for the hairline. Drive rotation/position with GSAP (e.g. rotation (1,-0.2) -> (-0.4,-0.4,-0.1) over 1.2s power4.out, z -100->0 over 1.6s power4.out) plus a damped mouse term (+/-0.06*PI, lambda 6). Recompute only while animating or hovered (useRafBool)."
+  },
+  {
+   "technique": "Hinged headline entrance (rigid 3D swing + word snap)",
+   "why_it_works": "The block moves as one heavy object that lands; words snapping on at 70-100ms reads like type being stamped, not the generic per-letter fade.",
+   "how_to_build": "Wrapper: perspective:1000px; inner: transform-origin: center 100% -150px, will-change: transform. Split into words (SplitText type:'words') and set them to opacity 0 only in the split's onReady, right before the play. Entrance (BigTitle): tl.set(words,{opacity:1, stagger:0.1}, 0).fromTo(inner,{rotateX:40 (use -20 on mobile), rotateY:-20, rotateZ:-10, z:-100},{rotateX:0, rotateY:0, rotateZ:0, z:0, duration:1, ease:'power4.out'},0). Exit (BigTitle): to(inner,{rotateX:-20, rotateY:60, z:100, duration:1, ease:'power4.out'}) with words set back to opacity 0 from +0.1s at stagger 0.1. For section titles use the Title variant: rotateY -50 / rotateX -20 (pivot z -150px) -> 0 over 1.5s power3.out, words at 0.07s; hide = rotateY +50 over 0.5s power2.in, words blanked from the end at 0.055s."
+  },
+  {
+   "technique": "Scroll-scrubbed frame unfold: tilted portrait card -> full-bleed scene",
+   "why_it_works": "The section change happens inside an image the user already sees, so the scroll feels like walking into the picture instead of paging.",
+   "how_to_build": "Pin a 200-300vh section (ScrollTrigger start 'top top', end 'bottom bottom', onUpdate gives p). t = clamp(map(p, 0.2, 0.85, 0, 1)) (0.3 on mobile). Frame size = lerp(0.66*min(vw,vh)*[0.7, 1.0], [max(vw,vh)+2, max(vw,vh)+2], t) (use 1.0*min*[0.7,1.2] on mobile). Rotation = entryRotation + (0.4t, -0.4t) + mouseRotation, and position = offsetY + entryZ + mouseOffset; multiply both by clamp(map(1-t, 1, 0.25, 1, 0)) so the tilt is gone by t = 0.75 and the last stretch is a flat zoom to full-bleed. Content scale = entryScale(1.2->1) + 0.2*(1-t). Feed these into the clip-mask routine above. A ThemeTrigger at 'top bottom-=1px' switches the page theme (#000 -> #DFDFF2), so the unfolding image carries the section seam."
+  },
+  {
+   "technique": "Per-glyph stylistic-set accent in display headlines",
+   "why_it_works": "One notched letter per word carries the logo DNA into every headline without a custom lettering job per heading.",
+   "how_to_build": "Ship the display font with an ss01 alternate for the accent glyphs (the site cuts a wedge into A, M, U, W and C). In the CMS rich text allow <b> as a 'glyph accent' mark; CSS: h1 b { font-weight: inherit; font-feature-settings: 'ss01' on; } (Zentry resets b to 400 because it loads a single face). Set html { font-synthesis: none } as the site does, because the face loads as one 500 file while CSS asks for 900. Display at 20rem on a .625vw root (12.5vw), line-height 0.82, letter-spacing -0.01em, uppercase. Use one accent per word at most."
+  },
+  {
+   "technique": "Scroll-to-select product menu with a rotating 3D card stack",
+   "why_it_works": "A 4-item menu becomes a showcase: giant names give scannable hierarchy, and the tilted card stack previews each product without leaving the page.",
+   "how_to_build": "Full-screen overlay on radial-gradient(circle at 65%, #100731 20%, #080315 60%) with black fades top and bottom. Make it its own scroller (data-lenis-prevent + a nested Lenis instance, duration 0.6) over a tall inner track with a sticky stage. progress = scrollTop / (innerH - vh); index = min(floor(progress*n), n-1); translate the name list by -progress*listHeight so the active name stays on one band. Names are 12rem display caps, #5542FF, turning #fff on focus or hover. Right: 5 clip-mask cards (fl 3000, 1px rgba(255,255,255,.3) stroke) placed around a ring at 2*PI/5 intervals. Damp ring.rotation.y (damping 8) toward 2*PI*index/5, add a pointer tilt of +/-0.1*PI (damping 6), and render only cards within index+/-3. Open timeline: overlay opacity 0->1 in 0.3s sine.out; list y 40vh->0 in 0.8s expo.out; card group z -1200->0 and rz 0.1*PI->-0.04*PI in 1s power3.out; ring y -0.7*PI->0 in 1.2s power4.out; names play the Title hinge at 0.1s stagger; the blurb enters y 20->0 over 0.6s power3.out, stagger 0.08. Play a short tick per index change; Escape closes it; clicking a name scrolls to its slot."
+  },
+  {
+   "technique": "Corner-pinned stat numerals that straighten on hover",
+   "why_it_works": "A plain metric card gets a physical, poster-like lean without images or WebGL, and the hover rewards the pointer by 'squaring up' the number, so the bento stops reading as a template.",
+   "how_to_build": "Measure the numeral element (w,h). Keep four points tl(0,0), tr(w,0), bl(0, lerp(k, h, 1.5h)), br(w, lerp(k, h, 0.5h)) with k = rolloverPr (1 at rest). Solve the 8x8 homography from the unit rect to those points and write it as transform: matrix3d(...) (perspective-transform.js style; skip frames where the quad degenerates). Tween k to 0 on pointerenter and back to 1 on leave over 1s expo.out. Vary the pin per card (1.3/0.6 vs 1.5/0.5) so neighbours lean differently."
+  },
+  {
+   "technique": "3D clip-mask pill buttons that square off on hover",
+   "why_it_works": "The button shares the site's physical-card language: on hover the capsule swings into perspective and its corners sharpen while the label rolls, so it changes state without the default lift-and-glow.",
+   "how_to_build": "Draw the button background as an SVG path from the clip-mask routine (fl 800). State: rotation, position, lerpBorder. pointerenter: rotation -> (x -0.1, y -0.8, z -0.06) over 0.4s expo.out, position -> (x +2% of width, z -100) over 0.8s expo.out, lerpBorder 0->1 over 0.8s expo.out with radius = lerp(lerpBorder, h/1.8, 4). Label: two stacked copies in overflow-clipped spans; the main copy fades out in 0.15s while the rollover copy rises from y 100% to 0 over 0.8s expo.out (stagger 0.04 across text and icon). Reverse on leave. Skip the tilt on touch."
+  }
+ ],
+ "slop_risks": [
+  "Purple / blue-to-purple palette: #5542FF, the #100731 -> #080315 radial menu field, the #3427AC glow on the 24B+ card and a violet iridescent hero object together are the default crypto-AI purple. The logomark earns it here; a copy without a brand reason reads as slop, and the #3427AC corner glow on the 24B+ card is the 'background glow' tell in miniature.",
+  "Monospace as the house voice + one label treatment everywhere: the 2026 relaunch sets all body copy, nav, buttons and eyebrows in Roboto Mono (154 of 226 text nodes), with 9px uppercase mono labels on every section. The 2024 site used a sans for body copy; copy that instead.",
+  "Content hidden until a reveal fires: Title / BigTitle words start at opacity 0 and depend on JS; desktop_04 shows the Radiant/Zigma card titles and blurbs still near-invisible with empty media, and desktop_05's right half is an empty field where the vault art should be. Keep headings visible in CSS and only arm the hide when the timeline is about to play.",
+  "Numbered steps beside a vertical line: the 01/02/03 accordion with a vertical rule (desktop_05) is exactly the 'numbered steps on a rail' preset.",
+  "Saturated accent pop: poster-bright lime #EDFF66 pill + #5542FF card fills. They work as whole-section fields; sprinkled as dots/labels they would be the saturated-accent tell.",
+  "Metrics bento: '24B+ / 970GB+ / 100M+ / 500K+' number cards are a startup-template move. What rescues it is the corner-pinned lean of the numerals that straightens on hover and, in 2024, a character layered over the numerals; a flat copy is slop.",
+  "Hairline light border on boxes: the black bento cards (24B+, 500K+, WORLD-CLASS BACKERS) each wear a faint 1px grey outline on black (desktop_07). Separate them with tone or spacing instead.",
+  "Small label over big heading, repeated: 'WHO WE ARE' over the giant statement (desktop_06), 'OUR UNIVERSE IN A NUTSHELL' over 'ZENTRY AT A GLANCE' (frames/zentry/2 f07), 'THE MULTIVERSAL IP' over 'THE STORY' (f04). The 3D hinge makes each one move well, but the skeleton is the kicker-plus-heading preset used on every section.",
+  "Hard colour seam: in the 2026 build the intro frame's flat bottom edge cuts straight across the lavender section (desktop_03). The unfold hides it while moving, but a static copy keeps the dark-to-lavender wall."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots, both mobile screenshots, all 8 frames of Homepage (2) and Prologue (0), f00/f03/f06 of Products (1) and Branding (3); probe.json numbers; code from the live Nuxt chunks (useCssClipMask, Frame, Title, Hero, Intro, PlayerWrapper, WhoWeAre, usePerspective*, SmoothScrollLenis). CAVEAT: the live site is a 2025-26 relaunch, so the hero is now a Spline flower rather than the awarded video swap, and copy/colour emphasis differ. The 2024 behaviour comes from the jury frames only, and its exact 2024 easing values are assumed to match the reused component library. desktop_04/05 show lazily loaded media and Rive art not rendered at capture. The 2024 body font is a guess. The ZentryScreamer weight mismatch (face 500, CSS 900) was measured, but whether the browser synthesises bold is inferred. Spline scene materials were not inspected. Sound not verified. audit (2026-09-25, adversarial re-check against probe, screenshots, all 8 frames of elements 0 and 2, five frames of element 1, five of element 3, and a fresh grep of the live Nuxt chunks): FIXED the hero Spline asset (the flower is A1_update_p8uuko.spline; B1.splinecode is the Intro hand/orb scene, and B1.mp4 / Vertical_B1.mp4 are that Intro's mobile video, not a hero fallback); hero paragraph 14.4 -> 16.2px weight 500 (textBody1 1.8rem); mobile hero words 81.12 -> 104px; the rem-on-vw root (.625vw / 2.667vw) is now confirmed rather than inferred; #240E4B/#130728 re-attributed to the product-menu card fills (the menu bg is #100731 -> #080315 and the 24B+ glow is #3427AC); the notched alternates are not only A (M in ZIGMA, U in AZUL, W in AWAITS, C in GLANCE); the BigTitle exit is 1s power4.out, not 0.5s power2.in; intro frame start size 0.66*min*(0.7,1.0) on desktop; the 2024 preview square does not follow the cursor; the character does not break out of its card; the triptych is a wide centre panel plus slivers; sound is verified (Howler ui/whoosh sprites); the product-menu recipe is rewritten from the real productNav code (nested Lenis, floor(progress*n) index, 5-card ring damped to 2*PI*i/5). ADDED: 3D clip-mask pill buttons, the corner-pin numeral hover, the 2024 black product section, the Rive vault morph, the full-width zDATA card, three new slop risks (hairline card borders, label-over-heading, hard seam). Still unverified: the 2024 body sans, the 2024 easing values (component library assumed reused) and Spline materials."
+}

@@ -405,6 +405,7 @@ ALTERNATIVE_SKILLS = (
     frozenset({"bosskuai-diagnose-loop", "systematic-debugging"}),
     frozenset({"bosskuai-tdd-loop", "test-driven-development"}),
     frozenset({"animate", "emil-design-eng"}),
+    frozenset({"awwwards", "awwwards-web-design"}),    # two full Awwwards build loops; bosskuai-taste routes to either
 )
 
 
@@ -504,7 +505,8 @@ def skill_has_task_evidence(row: dict, task: str, data: dict) -> bool:
     if sid in contexts and not re.search(contexts[sid], text):
         return False
     if sid in DIRECTION_SKILLS and not re.search(
-        r"\b(?:ui|ux|design|landing|page|frontend|interface|dashboard|website|layout|screen|visual)\b", text
+        r"\b(?:ui|ux|design|landing|page|frontend|interface|dashboard|website|layout|screen|visual|portfolio|"
+        r"homepage|site|hero|laman|halaman|awwwards)\b", text
     ):
         return False
     if not strong:   # description keywords alone match follow-ups; soft wording needs the skill's own words twice

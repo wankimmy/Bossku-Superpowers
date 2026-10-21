@@ -1,0 +1,310 @@
+{
+ "slug": "san-rita",
+ "title": "San Rita",
+ "live_url": "https://sanrita.ca/",
+ "award": "Site of the Day - Mar 31, 2026 (Honors, SOTD) - credits: San Rita, Alexis Malin, Benoît Delorme, sebastien-lempens, Julien Sister, Valentin PY",
+ "scores": {
+  "overall": 7.66,
+  "design": 7.79,
+  "usability": 7.38,
+  "creativity": 7.86,
+  "content": 7.6,
+  "dev": {
+   "overall": 7.46,
+   "semantics_seo": 7.0,
+   "animations": 8.2,
+   "accessibility": 6.4,
+   "wpo": 8.0,
+   "responsive": 7.4,
+   "markup": 7.4
+  }
+ },
+ "industry": "Creative studio / design agency (Canada, bilingual EN/FR): branding, web design, full-stack development, content",
+ "signature": "The whole studio is a real-time 3D topographic map (Blender terrain in three.js, KTX2 textures) where the nav is a trail legend, projects are hotspots, and a shader-drawn surveyor's lens with a terrain-draped grid follows the cursor across the landscape.",
+ "first_screen": {
+  "composition": "Printed-map-sheet layout on #dde2e4 icy blue-grey. Left column (x 40-370): 'THE TRAILS OF SAN RITA' h2 (10px Centra Mono 700, uppercase) at top, then a legend-style nav with pictograms (MAP underlined as active, PROJECTS, ABOUT, PLAYGROUND, CONTACT, INSTAGRAM, LINKEDIN) followed by real map legend keys (Road, Trail, Fishing spot, Viewpoint) and EN/FR; the h1 sits bottom-left in three lines of 56px F37 Stout compressed, with '(c)2026 - ATELIER SAN RITA INC.' under it. Right: a framed WebGL terrain map (x 390-1385, y 40-860) of ochre ridges, forest and a lake, with the hand-lettered lime 'SAN RITA' wordmark top-left inside the frame. Thin graticule lines split the sheet into a 4x3 grid and run past the frame edge: the verticals sit at quarters of the frame (x 650/895/1140) and the horizontals at thirds of the viewport (y 300/600). Marginalia: live clock '04:44:32 GMT', 'EST.2024', sun and compass glyphs along the top; rotated vertical taglines on both sides; scale bars along the bottom ('72PX | 54PT', '16.1KM | 10MI') between labels. Center: 'SCROLL TO ENTER OUR WORLD' (56px F37 Stout, #e2ffcc; it uses the same text-h1-like class as the h1 and its cap height matches the h1 in desktop_00, so it is not the 48px size) over a dashed/solid trail with node dots. Bottom-right: a dark forest-green card with a chamfered corner ('VIEW MORE', 'LATEST HOT SPOT ADDED', 'PODIUM GLOBAL' at 48px, photo). Zoom +/- control on the right edge.",
+  "what_owns_it": "3d",
+  "display_type_px": 56,
+  "evidence": [
+   "desktop_00.jpg",
+   "probe measure.largest_text",
+   "CSS .text-h1-like",
+   "frames/0/f00.jpg",
+   "frames/2/f06.jpg"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "F37 Stout (compressed black / bold compressed cuts)",
+    "role": "display",
+    "classification": "condensed/compressed grotesque, all caps, with octagonal chamfered bowls (C, O, S and D have cut corners instead of curves; desktop_00 crop). The cut corners match the 10px chamfered corners on the UI cards and bars.",
+    "foundry": "F37 Foundry",
+    "source": "probe fonts_loaded ['F37stout 900','F37stout-black-compressed-webfont','F37stout-bold-compressed-webfont'], font_families_rendered F37stout 28 nodes"
+   },
+   {
+    "name": "Centra Mono (loaded as next/font 'mono', book + bold)",
+    "role": "ui",
+    "classification": "monospace grotesque",
+    "foundry": "unverified (the webfont files are named centramono-book / centramono-bold)",
+    "source": "probe fonts_loaded ['mono 400','mono 700','centramono-book-webfont','centramono-bold-webfont']; 50 rendered nodes"
+   },
+   {
+    "name": "Hand-drawn 'SAN RITA' wordmark",
+    "role": "accent",
+    "classification": "brush/marker lettering, drawn as SVG",
+    "foundry": "custom",
+    "source": "desktop_00.jpg, mobile_00.jpg"
+   },
+   {
+    "name": "Place-name lettering baked into sanrita-labels.glb (unidentified wide geometric sans)",
+    "role": "accent",
+    "classification": "wide geometric sans caps, modelled as geometry lying on the terrain, off-white and semi-transparent",
+    "foundry": "unknown (the text is baked into the mesh, so no webfont is loaded for it)",
+    "source": "desktop_01.jpg ('ADRIAN PROVINCIAL PARK', brightest pixels about rgb(250,235,210), not the lime accent), frames/1/f06.jpg, bundle node names adrian-provincial-park / delorme-peak / lempens-creek / leonard-canyon / malin-wilderness-range / morell-forest / purple-rain-desert / py-valley"
+   }
+  ],
+  "display_size_px": 56,
+  "body_size_px": 12,
+  "scale_notes": "Two webfont families and few steps. Display is fluid: .text-h1-like = clamp(2.5rem, 2.5rem*100vw/799.98px, 3.5rem) with line-height .9, so it is 40px at 390 and caps at 56px from about 1120px. It covers the h1 lines and the 'SCROLL TO ENTER' CTA. The only 48px node is the hotspot card h3. Mono sizes: 12px (24 nodes; this includes the visible nav labels, which are 12px uppercase divs inside 16px anchors), 10px (22 nodes: the h2, marginalia and legend keys) and 8px (2 nodes). The 16px count (16 nodes) is mostly the anchor wrappers and the 14 text nodes that fall back to Times. Display to label is 5.6:1 (56/10) with nothing in between, so every string reads as either a headline or a map annotation.",
+  "tracking_leading": "Display leading 0.9 (50.4/56 and 43.2/48). Tracking is normal (probe ls 'normal' on every sampled node) because the compressed cut is already tight. In the mono, only the taglines are letterspaced wide: the vertical 'DESIGN & DEVELOPMENT PURVEYORS' / 'DIGITAL DESIGN REFUGE HAND-CRAFTED' and the bottom 'GOLD IDEAS SEEKERS' / 'REPUBLIC OF COLLABORATIVE MINDS' (visibly about +0.3em). The scale-bar captions ('72PX | 54PT', '16.1KM | 10MI'), the clock and the copyright line use default mono spacing (desktop_00 crops).",
+  "case_and_style": "All-caps display. The nav items are uppercase mono (MAP, PROJECTS ... LINKEDIN), and the legend keys under them switch to smaller mixed-case mono ('Road', 'Trail', 'Fishing spot', 'Viewpoint'), the way a printed legend is set. The h2 'THE TRAILS OF SAN RITA' is the only bold mono. Map place names ('ADRIAN PROVINCIAL PARK', 'LEMPENS CREEK', 'MORELL FOREST', 'DELORME PEAK') are named after team members and set as off-white 3D geometry lying on the terrain.",
+  "signature_moves": [
+   "Dual-color headline swap: two stacked copies of the h1 in the same grid cell. The forest-green copy is clipped with inset(0 var(--scroll-aside-title) 0 0) and the lime copy with inset(0 0 0 calc(var(--scroll-aside-width) - var(--scroll-aside-title))). --scroll-aside-title is rewritten every Tempus frame as (390*zoom - 10)px, so the colour changes exactly where the collapsing 350px rail edge crosses the text (bundle; frames/0/f02-f03).",
+   "Chamfered letterforms: the F37 Stout bowls are octagonal and rhyme with the 10px chamfered card and bar corners, so the type and the UI share one cut-corner trail-sign geometry.",
+   "Cartographic marginalia as a type layer: rotated vertical taglines (the left one reads bottom-up and the right one top-down), scale bars that mix type units with distance ('72PX | 54PT' next to '16.1KM | 10MI') and a live GMT clock.",
+   "Place names are baked 3D text meshes in sanrita-labels.glb that foreshorten with the camera instead of being flat HTML overlays. Their opacity is set to zoom - 0.3, so they fade in as you enter. The @fr variant exists for the trails file (sanrita-trails@fr.glb), not for the labels.",
+   "Scroll-scrubbed per-letter collapse on the CTA, not a typewriter: each character is an inline-block span with transform-origin center bottom. r = clamp((zoom - 0.85*i/(n-1)) / 0.15, 0, 1) and o = r^4, then scaleX(1-o) scaleY(1-0.6o) and opacity 1-o. Letters squash down one after another from the left as the wheel moves (frames/0/f01-f03)."
+  ],
+  "mobile": "At 390px the framed intro is skipped: the aside grid track is 0px, the loader leaves zoom at 1, and the map is full-bleed from the first screen. The h1 drops to 40px (the clamp minimum), reflows to two lines and sits in a dark gradient band at the bottom with the copyright. A #e2ffcc top bar holds the hand-drawn logo (switched to forest green at 100px wide), 'SHOW TRAILS' and a trail glyph, with a chamfered top-right corner. Hotspot titles ('ABOUT', 'CONTACT') stay visible at scale 1 on mobile instead of popping on hover (bundle isMobile branch, mobile_00). A compass glyph sits bottom-right. No horizontal overflow."
+ },
+ "color": {
+  "mode": "mixed: a light chrome frame around a photographic 3D terrain, then full-bleed terrain",
+  "base": "#dde2e4 --color-icy-blue (map sheet chrome, loader)",
+  "ink": "#2d3329 --color-forest-green (text on chrome, card fills; 35 text nodes)",
+  "accents": [
+   "#e2ffcc --color-adventure-yellow (trails, on-map type, lens ring, top bar; 26 text nodes)",
+   "#84907f --color-terrain-grey (secondary mono labels, 15 nodes)",
+   "#161b13 --color-deep-green (deepest shade)",
+   "terrain texture palette: rust/ochre ridges, olive forest, near-black water"
+  ],
+  "ratio": "inferred: first screen about 30% icy chrome / 65% terrain photo / 5% green and lime type; after entering, about 90% terrain / 10% #e2ffcc lines and type.",
+  "section_shifts": "No document sections (probe doc_height 900). Shifts happen as state changes: loader (icy field) -> framed map -> full-bleed map. Project pages switch to dark forest-green gutters around the photo grid (frames/3/f00).",
+  "texture": "None as an overlay. All texture comes from the terrain itself (KTX2 diffuse and normal maps), soft drei <Clouds> sprites at the frame edges (texture /pictures/cloud.webp, not drei's default cloud.png), and the lens grid, which is drawn in the terrain shader.",
+  "notes": "One pale, desaturated lime (#e2ffcc) does all the highlighting against earth tones, so the UI reads as an overprint on a survey map rather than a neon accent. Awwwards palette lists #2C3328 / #DCFFC7."
+ },
+ "layout": {
+  "grid": "First screen: the home grid is literally grid-template-columns: calc(350px - var(--scroll-normalized)*350px) 1fr, so the left rail is a 350px track at x 40-390. The inner content grid is var(--scroll-wrapper-padding) 1fr calc(55px - 55px*var(--scroll-normalized)), which puts the map frame at about 995x820 (x 390-1385, y 40-860) with a 55px right margin. Graticule verticals sit at quarters of the frame (x 650/895/1140) and horizontals at thirds of the viewport (y 300/600), overshooting the frame. After entering, both side tracks reach 0, giving a full-bleed 1440x900 with 24px insets (logo top-left, a 'SHOW TRAILS' bar about 190x40 top-right, the h1 bottom-left, a hotspot card about 190x200 bottom-right and the zoom control right-middle). CSS uses 16 grid containers, subgrid, :has() and clamp().",
+  "density": "balanced (sparse chrome around a dense, detailed image)",
+  "alignment": "Edge-anchored corners (four-corner HUD) around a centered world; the h1 is bottom-left aligned, and the marginalia is centered on the graticule cells.",
+  "composition_moves": [
+   "Map-sheet framing: the canvas is presented as a printed map with margin notes, then the frame dissolves to full-bleed on scroll.",
+   "The legend doubles as the nav: pictogram and label pairs, followed by genuine legend keys (Road, Trail, Fishing spot, Viewpoint) in the same list.",
+   "Four-corner HUD after entry: logo, 'SHOW TRAILS' toggle, headline and the latest-hotspot card pinned to the corners with the terrain in between.",
+   "Chamfered corners as a trail-sign motif: Tailwind [clip-path:polygon(0% 0%, calc(100%-10px) 0%, 100% 10px, 100% 100%, 0% 100%)] on cards and bars (15px and 70%-edge variants also exist). The same cut appears in the display letterforms. There is no border radius and no box shadow anywhere (probe box_shadows 0, radius_top empty)."
+  ],
+  "section_rhythm": "No scroll rhythm: it is a single-screen app. Wheel input drives the camera (enter, then zoom), drag pans, and navigating to a hotspot opens a project page with a photo grid and a 'next trail' footer.",
+  "mobile_adaptation": "The frame is dropped (the aside track is 0px below 800px) and the map starts full-bleed. inferred: the legend nav moves behind the top bar (not captured). Touch has its own lens behaviour: pointerdown tweens uTouchFadeProgress to 1 over .3s on mobile, and a long press raises uLongPressProgress (.15s back.out(2)), which barrel-distorts the grid."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis is present (html.lenis) with darkroom Tempus as the RAF, but the homepage does not scroll. A custom hook calls preventDefault on wheel and touchmove and accumulates deltaY into a 200px virtual track. Every Tempus frame that value is eased with THREE.MathUtils.damp(current, target, 6, dt) into a 0-1 'zoom' store and written to the CSS var --scroll-normalized. Drag panning uses camera-controls through drei <CameraControls>. The site config is smoothTime .2 and draggingSmoothTime .125 (not the library's .25 default), truckSpeed 4, azimuthRotateSpeed 0 (pan only, no orbit), maxPolarAngle PI/5 and a distance range of 4 to 2.",
+  "preloader": "'Terraforming' loader (frames/2): an #dde2e4 field with a line drawing of the trail network and node dots in the center. The left column holds 'TERRAFORMING ACTIVATED' plus a mono checklist (DATA CALCULATION, ATMOSPHERE DEPLOYMENT, ECOSYSTEM MODELING ... METADATA PROCESSING), and the right column holds a poetic mirror list, right-aligned. Both lists start with [&>li]:opacity-0 and fade up (y 20 -> 0, .5s power2.out, delay .5, stagger .1). The '_NN%' counter is textContent = round(100*progress), where progress is tweened linearly over .5s toward each new load value (frames/2/f00 shows '_88%'). The terrain then appears through an irregular 11-point polygon blob that grows into the map frame.",
+  "intro_sequence": "Loader timeline (delay .6): clip-path starts at inset(100%), then an 11-point polygon built from CSS vars --point-0..--point-10 (43.5% 45.2%, 46.7% 40.9% ...) is tweened with scale .8 over .8s 'cubic.out', then to the full rectangle with scale 1 over .7s 'expo.inOut' at '>=-0.3' (a 0.3s overlap) (bundle, verified). onStart sets zoom to 1, which is the fully entered state. onComplete on desktop calls animateZoomTo(0, 800): the whole enter transition plays backwards over 800ms. The rail grows back from 0 to 350px, the h1 swaps back from lime to green right to left, and the CTA letters un-collapse from the right end first. frames/2/f06 (3.09s) shows 'ROLL TO ENTER OUR WORLD' with a half-faded R, and frames/2/f07 shows the full string. On mobile the zoom stays at 1, so the intro ends full-bleed.",
+  "scroll_techniques": [
+   "wheel/touch -> 200px virtual track -> damped (lambda 6) 0-1 zoom store; no document scroll",
+   "frame-to-full-bleed expansion by interpolating grid-template-columns tracks (350px aside and 55px right margin -> 0) from --scroll-normalized",
+   "dual-layer clip-path headline colour swap driven by --scroll-aside-title",
+   "scrubbed per-letter CTA collapse (quartic, staggered across 85% of the zoom range)",
+   "hotspot and trail-node pop-ins at zoom offsets (.1 + i/n*.8, scale 0 -> 1, .5s back.out(2), reversed when scrolling back)",
+   "CSS scroll-driven reveals on project/about pages (animation-timeline: view(), animation-range entry calc(var(--stagger-index,1)*15%) contain 75%)",
+   "drag-to-pan map"
+  ],
+  "text_animation": "Hero CTA: scrubbed per-letter collapse (squash toward the baseline plus fade) tied to the wheel, played in reverse as the intro. Loader, h2 and marginalia strings also appear from the right end first during the rewind (frames/2/f06: 'TRAILS OF SAN RITA' is missing 'THE'). The h1 uses a complementary clip swap. Hotspot titles are 3D meshes that scale-pop (scale 0 -> 1, .3s back.out(2)) above the icon while the icon grows to 1.3x (frames/1/f04). They are not typed. On project pages the title letters resolve with the edge letters still missing and partly transparent (frames/3/f05 at 4.77s shows 'RICULTURE DU CO'); inferred: a centre-out stagger. Bundle staggers by owner: .1 = loader lists; .05 = the logo hover hop; .03 = the legend menu drop-in (y -20 -> 0, opacity 0 -> 1, .2s power1.out, delay .25).",
+  "image_animation": "Project gallery (frames/3): 4-column photo grid with dark green gutters, then a footer where the next project's video plays in a soft radial-feathered window, which scales to full-bleed as the new hero. CSS keyframes main-transition-scale-in (opacity .6 scale .9 -> 1) and transition-scale-in/out (scale 1 -> 1.1).",
+  "page_transitions": "The same 11-point terraform polygon is used for routes. A transition-in class runs 'animation: .5s ease-out forwards transition-mask-in' on a wrapper, and a JS setTimeout of 500ms then sets clip-path to inset(50%). The keyframes go from all points at 50% 50%, to the blob at 60-70%, to the full rectangle. mask-out reverses that, and transition-scale-in/out scale the page 1 -> 1.1. inferred: the native View Transitions API. main-transition-* keyframes also sit inside an '@layer view-transition' block, but the shipped CSS contains no ::view-transition-* selectors, and the startViewTransition hits are React/R3F internals. The probe's 'view-transitions' flag is therefore unconfirmed.",
+  "hover_micro": [
+   "Cursor lens drawn in the terrain shader: radius 0.03 UV with a 120-per-UV grid, visible only after entering (opacity uZoomProgress*0.18). The inside is tinted multiplicatively, mix(col, col*#e2ffcc, .25). The noisy border ring and the grid lines are added on top in #e2ffcc at that same low opacity. The lens trails the pointer with visible lag (desktop_01 vs desktop_03).",
+   "Hotspot hover (uActiveProgress): the lens radius shrinks by 0.018 UV around the icon, the grid fades out (pow(1-active,1.5)), and the lens opacity pulses on mix(.4,.5,sin(uTime*2)) (about .3-.5). The 3D title mesh scale-pops 0 -> 1 and the icon grows to 1.3x (.3s back.out(2)). The cursor becomes 'pointer' (frames/1/f04).",
+   "Press/long-press (uLongPressProgress 0 -> 1, .15s back.out(2)): the grid barrel-distorts around the pointer (uv scaled by 1 - dot(d,d)*press*400), the smoke noise speeds up, and a glow ring (accent * press * .28) appears at the lens edge.",
+   "Logo hover: the hand-drawn SAN RITA SVG letters hop in a right-to-left wave. The paths are reversed, then y -12 with scaleY 1.2 and opacity .75 (.35s power1.in), then back to y 0, scaleY 1 and opacity 1 (.4s power1.out, overlap -.2), with a .05 stagger. The timeline restarts on each hover.",
+   "'SHOW TRAILS' panel: the lime box unrolls downward from clip-path inset(0% 0% 100% 0%) to inset(0%) over 150ms ease-out with a 150ms delay.",
+   "Zoom control: children at opacity .5 go to 1 on hover (transition-opacity). The '+' is disabled at max zoom with a terrain-grey/20 fill.",
+   "'Next trail' arrow: keyframes next-trail-arrow rotate(0 -> -25deg) with opacity 1 -> 0, then snap to +25deg and return to 0 with opacity back to 1 (verified in CSS). A mirrored copy also exists."
+  ],
+  "cursor": "The body cursor is set in JS: 'default' while zoom < .5 (the framed sheet), 'grab' after entering, 'grabbing' while the pointer is down, and 'pointer' over hotspots (bundle; frames/1/f00 grab hand). The real cursor treatment is the shader lens drawn on the terrain surface, so it foreshortens over ridges (frames/1/f06: the grid bends over a ridge).",
+  "easing_curves": [
+   "cubic-bezier(0,.55,.45,1) (CSS, circ-out)",
+   "cubic-bezier(0,.57,.46,2) (CSS, strong overshoot)",
+   "cubic-bezier(0.18,0.89,0.32,1.28) (CSS, back-out)",
+   "GSAP back.out(2) x5 (lens press, hotspot pop, trail-node pop)",
+   "GSAP power2.out x2 (loader lists)",
+   "GSAP power1.in/out (logo hop, legend drop-in)",
+   "GSAP expo.inOut (terraform blob -> rect)",
+   "GSAP cubic.out (blob grow .8s)",
+   "THREE.MathUtils.damp lambda 6 (wheel -> zoom smoothing, frame-rate independent)",
+   "linear .5s (loader counter)",
+   "CSS ease-out .5s (route mask-in)"
+  ],
+  "duration_range_ms": "150-1000 for UI (CSS .15/.2/.25/.3/.35/.5/.6/.8/1s; GSAP .15-.8). The intro rewind is 800ms (animateZoomTo(0, 800)). The enter transition is scrubbed rather than timed: 200px of wheel delta damped at lambda 6 (about 0.5s to settle after the last wheel event); the jury clip settles about 2.3s after the first wheel (frames/0). There is one 8s CSS loop.",
+  "stagger_ms": "30-100 in GSAP (.03 legend drop-in, .05 logo hop, .1 loader lists). CSS scroll-driven stagger through --stagger-index x 15% of the view range. The CTA's per-letter offset is positional (0.85*i/(n-1) of the zoom range), not time-based.",
+  "choreography_notes": "Enter (frames/0, 4.0s clip): at about 0.5s the first wheel starts collapsing the 350px rail (the frame's left edge sweeps over the sidebar) while the camera dollies in and tilts. The CTA letters squash away from the left, and the h1 swaps from green to lime exactly where the edge passes. Trails thicken, hotspot icons pop in at staggered zoom offsets, labels fade in (opacity = zoom - .3), and the 'SHOW TRAILS' bar arrives top-right. It settles by about 2.3s. Clouds drift at the frame edges throughout. Because one damped scalar drives all of it, scrolling back reverses everything exactly, and the intro is the same timeline played backwards.",
+  "evidence": [
+   "frames/0/f00-f07 (Homepage Header)",
+   "frames/1/f00-f07 (Maps)",
+   "frames/2/f00,f04,f05,f06,f07 (Loading)",
+   "frames/3/f00,f03,f05 (Transition)",
+   "bundle 00a4eae2b524cbe1.js (lens onBeforeCompile, CTA per-letter collapse, wheel virtual track + damp, dual-h1 clip, hotspot pop tweens, labels opacity)",
+   "bundle 6d694427e76d83bf.js (terraform tween, animateZoomTo(0,800), loader lists), 8d8a0fa3824ee40a.js (logo hop, TrailsBox clip, legend drop-in), 23ba460edc7e6836.js (camera config)",
+   "CSS 8161b5f2ade44c11.css (--scroll-home-grid tracks), transition module keyframes, reveal-scroll-content-*",
+   "probe easings/durations"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "realtime-3d",
+  "art_direction": "Low-sun survey look: warm rust/ochre ridges with raking light, olive forest, near-black rivers and lake, drawn as a DEM-style terrain (tags say Blender). The overlay graphics are hand-drawn: wobbly trail lines (solid and dashed), inked node blobs and pictogram hotspot badges in forest green with #e2ffcc outlines. Project photography is warm natural-light lifestyle and product.",
+  "treatments": [
+   "KTX2 diffuse + normal maps on a single terrain mesh",
+   "drei <Clouds> sprites (texture /pictures/cloud.webp) at the frame edges",
+   "shader lens: 25% tint toward #e2ffcc plus a grid decal",
+   "feathered radial video window in the next-project footer",
+   "no grain, no duotone on photos"
+  ],
+  "crops_and_ratios": "Map frame about 1.21:1 (995x820) inside a 16:10 viewport. The project grid is 4 columns of about 2:3 portrait tiles (about 196x300 in the jury frame) with dark gutters and slightly ragged row ends (frames/3/f00). Project heroes are full-bleed 16:9.",
+  "formats": "img 4, svg 34, video 0 on the homepage; avif 1.28MB and webp 120KB declared; photos from DatoCMS (www.datocms-assets.com).",
+  "evidence": [
+   "desktop_00-07.jpg",
+   "frames/1",
+   "frames/3",
+   "probe bytes_by_type_declared"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r182 through @react-three/fiber 9.5.0 (rendererVersion in the bundle) and drei: <Clouds>, <CameraControls>/camera-controls, and a ground-projected env skybox on IcosahedronGeometry(1,16). drei Html code is present in the bundle but is not used for the place names. Loaders: KTX2Loader + DRACOLoader + MeshoptDecoder (332KB wasm) and RGBELoader/HDRLoader.",
+  "role": "world: the entire site is a navigable terrain map; hotspots are the navigation",
+  "assets": [
+   "https://sanrita.ca/webgl/sanrita-3d-map.glb",
+   "https://sanrita.ca/webgl/sanrita-3d-map-texture@diffuse.ktx2",
+   "https://sanrita.ca/webgl/sanrita-3d-map-texture@normal.ktx2",
+   "https://sanrita.ca/webgl/environment.hdr",
+   "https://sanrita.ca/webgl/sanrita-hotspots.glb",
+   "https://sanrita.ca/webgl/sanrita-labels.glb",
+   "https://sanrita.ca/webgl/sanrita-trails.glb",
+   "https://sanrita.ca/webgl/sanrita-trails@fr.glb"
+  ],
+  "materials_lighting_post": "Terrain: meshStandardMaterial with map + normalMap (normalScale [.6,-.6], NoColorSpace, anisotropy set), metalness 0 and roughness 1, lit by environment.hdr. No postprocessing was found. The lens is injected through onBeforeCompile after #include <dithering_fragment>, with uniforms uMouse (UV), uTime, uLongPressProgress, uZoomProgress, uActiveProgress, uTouchFadeProgress, uRingWidth, uMagnifyZoom, uAdventureYellowColor and simplex noise. Its stages are: noisy distance to uMouse; grid = step(.95, fract(barrelUV*120)) on both axes; smoothstep inner/outer circle with a border; a 25% multiplicative tint inside; and a press glow ring. Lens opacity scales with uZoomProgress*0.18, so it only shows after entering. Labels use the GLB's own 'label' material, forced transparent, with opacity = zoom - 0.3 through a zoom-store subscription. Main hotspot groups are tilted rotation.x = PI/6 toward the camera and raised 0.05.",
+  "interaction": "Wheel scrubs the zoom store from the framed overview to close range. Each frame the camera calls zoomTo(1 + zoom) and rotatePolarTo(zoom/4), so entering both magnifies and tilts the view, and the +/- control lerps zoom by 0.1 per frame. Drag pans (camera-controls truck only; azimuth rotation is disabled and polar angle is capped at PI/5), the lens follows the pointer in UV space, hotspots respond to hover (lens snap, 3D title pop, icon 1.3x) and to click (project page), and 'SHOW TRAILS' toggles the trail layers. Idle camera drift is visible between desktop_05 and desktop_07 (labels shift slightly).",
+  "performance_tactics": "GPU-compressed KTX2 textures, Draco/Meshopt meshes, separate GLBs per layer (map, hotspots, labels, trails and a localized @fr trails file) so a language switch only swaps one file. Uniforms live in a ref and are tweened directly with gsap.to(uniform, {value}) so React does not re-render.",
+  "fallback_mobile": "Same 3D on mobile (full-bleed from the start) with touch-specific lens uniforms. No static fallback observed. 3D payload about 12.7MB declared.",
+  "evidence": [
+   "probe assets_3d",
+   "probe contexts webgl2 4",
+   "probe globals three_revision 182",
+   "bundle 00a4eae2b524cbe1.js onBeforeCompile block, labels component (oG '/webgl/sanrita-labels.glb', material.opacity = zoom - .3)",
+   "bundle 23ba460edc7e6836.js mapConfig camera block",
+   "frames/1/f04-f06"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Map legend as primary nav (left rail on the framed screen), then hotspots in the world plus the 'SHOW TRAILS' toggle after entering. Links: MAP / PROJECTS / ABOUT / PLAYGROUND / CONTACT / INSTAGRAM / LINKEDIN, each with a pictogram (map, campfire, cabin, mushroom, flag).",
+  "menu": "After entering, the rail is gone (its grid track has collapsed to 0). 'SHOW TRAILS' (a #e2ffcc bar with a chamfered corner and a trail glyph) opens a lime panel that unrolls downward through a clip-path inset transition (150ms ease-out after a 150ms delay) and reveals trail routes and their nodes. On mobile the same bar is the header.",
+  "buttons_links": "Active nav item underlined in mono (MAP). Zoom +/- goes from .5 to 1 opacity on hover. The 'View more' card has a small arrow glyph. There are no pill buttons, no radii and no shadows.",
+  "unusual_interactions": [
+   "Long-press magnify with barrel distortion on the terrain",
+   "Hotspot snap-lens with a scale-popping 3D title (back.out(2)) and a 1.3x icon",
+   "Scroll to enter: the wheel converts a framed print into an explorable world",
+   "Language switch EN/FR also swaps the localized trail GLB"
+  ],
+  "sound": "none observed",
+  "footer": "Project pages end in a 'next trail' footer: four huge F37 Stout words in the corners ('YOUR' / 'STARTS' left, 'NEXT' / 'HERE' right, 'TRAIL' center) around a feathered window of the next project's video, with an animated hand-drawn arrow. Clicking the window scales it into the next project's full-bleed hero (frames/3/f03-f06)."
+ },
+ "content_voice": {
+  "headline_style": "Short all-caps declarative statement set in three stacked lines. The trail metaphor runs through everything: projects are hot spots, the footer CTA is a next trail, the loader is terraforming.",
+  "copy_tone": "Playful expedition voice: loader checklist items read like mission logs paired with mock-mystical mirror phrases, marginal taglines ('Gold ideas seekers', 'Republic of collaborative minds', 'Digital design refuge hand-crafted'), and map place names that nod to team members (Delorme Peak, Lempens Creek).",
+  "examples": [
+   "A creative studio where brands and stories move off-trails"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Next.js (App Router, Turbopack chunks, React Compiler memo-cache sentinels) + DatoCMS",
+  "libraries": [
+   "three r182",
+   "@react-three/fiber 9.5.0",
+   "@react-three/drei (Clouds, CameraControls, ground-projected env)",
+   "camera-controls",
+   "GSAP + ScrollTrigger (useGSAP)",
+   "Lenis + Tempus",
+   "KTX2Loader / DRACOLoader / MeshoptDecoder",
+   "RGBELoader/HDRLoader",
+   "Tailwind CSS (arbitrary clip-path and translate values driven by CSS vars)",
+   "next/font local fonts",
+   "CSS scroll-driven animations",
+   "custom wheel/touch virtual-scroll hook (200px track, MathUtils.damp)"
+  ],
+  "evidence": "probe libs_from_requests next.js, html class 'lenis', globals three_revision 182; bundle grep: KTX2Loader 39, DRACOLoader 14, ScrollTrigger 8, MeshoptDecoder 5, rendererPackageName '@react-three/fiber' rendererVersion '9.5.0', useTempus, useGSAP; CSS animation-timeline:view() and the transition-module keyframes. The earlier 'Flip 9' count was a false positive: the hits are ScrollTrigger's _isFlipped, gsap core's isFlip and a gain-map needsFlip, so the GSAP Flip plugin is not confirmed."
+ },
+ "performance_accessibility": {
+  "requests": 98,
+  "weight_notes": "3D 12.7MB declared (GLB + KTX2 + HDR), avif 1.28MB, wasm 332KB (transcoders), JS about 298KB declared (the main 3D chunk alone is 866KB unzipped on disk), woff2 223KB across 7 files. Settles in 7.9s.",
+  "reduced_motion": "probe reduced_motion_rules 0: no prefers-reduced-motion handling found in CSS or JS grep.",
+  "contrast_issues": "8-10px mono in #84907f on #dde2e4 measures 2.56:1 (computed from the root tokens), which fails WCAG AA for any text size. Small #e2ffcc labels over bright ridges can wash out. The duplicated h1 (two identical h1 elements for the colour swap) is announced twice unless one copy is aria-hidden. The probe counts 14 text nodes computing to Times, likely unstyled wrappers.",
+  "mobile_quality": "Full-bleed map from the first screen, 40px h1, touch-specific lens, no horizontal overflow (probe). Usability relies on the user understanding drag and hotspots.",
+  "dev_scores": {
+   "overall": 7.46,
+   "semantics_seo": 7.0,
+   "animations": 8.2,
+   "accessibility": 6.4,
+   "wpo": 8.0,
+   "responsive": 7.4,
+   "markup": 7.4
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Terrain-draped cursor lens via onBeforeCompile",
+   "why_it_works": "The cursor becomes an instrument that belongs to the world. Because it is drawn in the surface's UV space, it bends over ridges and never looks like a DOM circle pasted on top.",
+   "how_to_build": "R3F meshStandardMaterial with onBeforeCompile. Add a vUv varying. After #include <dithering_fragment>, compute dist = distance(vUv, uMouse), with uMouse taken from the raycast hit UV and lerped so the lens trails the pointer. Radius r = 0.03 - press*0.0085 - active*0.018. Barrel-warp around the mouse: d = vUv - uMouse; barrelUV = uMouse + d*(1 - dot(d,d)*press*400). Jitter it by snoise(barrelUV*8 + t*speed)*0.01*smoke*0.22, where smoke = .4 + press*.6. grid = clamp(step(.95, fract(uv.x*120.)) + step(.95, fract(uv.y*120.)), 0., 1.) * pow(1.-active, 1.5). inner = 1 - smoothstep(r, r+.0025, dist+noise+grid); outer = smoothstep(r+.001, r+.009, dist); border = 1 - inner - outer. Add (border + inner*a)*accent*a with a = zoomProgress*.18. Tint inside with mix(col, col*accent, .25). Add ringGlow*accent*press*.28 on press (not on hover). Tween uniforms directly: gsap.to(u.uLongPressProgress, {value:1, duration:.15, ease:'back.out(2)'}), and on touch gsap.to(u.uTouchFadeProgress, {value:1, duration:.3})."
+  },
+  {
+   "technique": "Complementary clip-path color swap on a headline",
+   "why_it_works": "The type visibly reacts to the world passing behind it, so a headline can sit on both a light panel and a photo without a scrim.",
+   "how_to_build": "Stack two copies of the heading in the same grid cell (col-1 row-1). The dark copy gets clip-path: inset(0 var(--cut) 0 0), and the light copy gets inset(0 0 0 calc(var(--rail) - var(--cut))). Each RAF, set --cut from the same normalized progress p that collapses the canvas rail (San Rita uses (390*p - 10)px with a 350px rail plus a 40px margin), so the colour boundary tracks the moving canvas edge with no measuring. Give the duplicate aria-hidden='true' and the real one the accessible name. Both copies are fully visible by default, and the clip only chooses the colour."
+  },
+  {
+   "technique": "11-point 'terraform' polygon mask for loader and page transitions",
+   "why_it_works": "An organic, land-shaped reveal replaces the usual circle/rect wipe and reinforces the map concept. One shape reused across loader and route changes makes the brand feel systemic.",
+   "how_to_build": "Put --point-0 ... --point-10 on the element and set clip-path: polygon(var(--point-0), ..., var(--point-10)). Tween the vars with GSAP: from an initial inset(100%) to the blob (43.5% 45.2%, 46.7% 40.9%, 51.4% 39.9%, 55.7% 44.3%, 56.8% 48%, 56.7% 51.4%, 57.4% 54.9%, 55.2% 60%, 50% 61.9%, 47.3% 59.2%, 44.3% 54.8%) with scale .8 over .8s cubic.out, then to the full rect (0 0, 50% 0, 60% 0, 100% 0, 100% 35%, 100% 50%, 100% 70%, 100% 100%, 50% 100%, 0 100%, 0 100%) with scale 1 over .7s expo.inOut at '>=-0.3'. For routes, San Rita adds a class that runs a CSS keyframe on the incoming wrapper: 0% all eleven points at 50% 50%, 60-70% the blob, 100% the rect, '.5s ease-out forwards', while the outgoing page scales 1 -> 1.1. The same keyframe can be attached to ::view-transition-new(root) if you use native View Transitions (San Rita's use of them is unconfirmed). Keep the point count identical in every state so the polygon interpolates."
+  },
+  {
+   "technique": "Map-sheet chrome around a WebGL canvas",
+   "why_it_works": "The marginalia gives a full-screen 3D scene a readable edge and turns navigation into a legend. It sets the world up as an artifact before the user enters it.",
+   "how_to_build": "Put the canvas in a CSS grid whose tracks are driven by one var: grid-template-columns: calc(350px - var(--p)*350px) 1fr, with an inner grid of 40px 1fr calc(55px - var(--p)*55px). Draw 1px graticule lines at quarters of the frame width and thirds of the viewport height, overshooting the frame by about 20px. Add a live clock (Intl.DateTimeFormat, timeZone 'GMT', updated each second), 'EST.YYYY', vertical taglines (writing-mode: vertical-rl; add rotate(180deg) only on the left one so it reads bottom-up) and scale bars with tick ends, each centred on a graticule cell. Capture wheel/touch with preventDefault, accumulate deltaY into a 200px virtual track, and each RAF set p = MathUtils.damp(p, track/200, 6, dt). Write p to --p and to the camera zoom target. The logo slides by translate(calc((1-var(--p))*40px)) so it lands in the corner. Scrolling back reverses the expansion exactly, and the intro can be the same state animated from 1 to 0 over 800ms."
+  },
+  {
+   "technique": "Next-project footer with a feathered video window",
+   "why_it_works": "The end of a case study becomes a doorway. The next project is already playing, and clicking it keeps continuity because the window itself becomes the next hero.",
+   "how_to_build": "Place the footer words in the four corners in a compressed display face at about 20-24vh cap height (San Rita: YOUR / STARTS left, NEXT / HERE right, TRAIL centre, plus a hand-drawn arrow). Centre the next project's muted loop video under a soft feathered mask, for example mask-image: radial-gradient(closest-side, #000 60%, transparent), with small mono 'NEXT PROJECT / <name>' and discipline lines above and below it. On click, scale the window to full-bleed; a Flip or a shared view-transition-name are options, and San Rita's exact mechanism is not confirmed. Then resolve the title letters from the centre outward (inferred from frames/3/f05; gsap stagger {from:'center'}, about .03-.05s each). Keep the title in the DOM at full opacity when no JS runs."
+  },
+  {
+   "technique": "3D labels baked as geometry (and localized per file)",
+   "why_it_works": "Place names that foreshorten with the terrain read as part of the map, not as a UI layer, and they cost nothing at runtime compared with dozens of projected HTML labels.",
+   "how_to_build": "In Blender, convert text to curves and then meshes, lay it on the terrain with a shrinkwrap modifier, and export labels.glb and a localized trails.glb (San Rita ships sanrita-trails@fr.glb) with Draco/Meshopt. Colour the labels off-white rather than the accent, as San Rita does, so they read as print on the map and the lime stays reserved for trails and UI. Force the material transparent with opacity = clamp(zoom - 0.3, 0, 1) so the names only appear once the user has entered. Swap the localized GLB on locale change."
+  },
+  {
+   "technique": "One damped scalar drives the whole enter transition, and the intro is that scalar run backwards",
+   "why_it_works": "Grid tracks, headline clip, logo offset, per-letter CTA collapse, lens opacity, label opacity, hotspot pop-ins and camera zoom all read the same 0-1 value. They stay in sync at any wheel speed, scrolling back reverses everything exactly, and the entrance animation costs nothing extra.",
+   "how_to_build": "Keep a tiny store (Zustand in San Rita) with zoom 0-1. Wheel/touch handlers call preventDefault and add deltaY to a clamped 0-200 track. A single RAF (Tempus) damps zoom toward track/200 with MathUtils.damp(lambda 6), snaps when within 8.5e-4, and writes it to a CSS var. Every visual derives from it: the grid tracks, clip insets, translate calc, per-letter r = clamp((zoom - .85*i/(n-1))/.15, 0, 1)^4, material.opacity = zoom - .3, the lens uniform, and pop-in tweens played or reversed when zoom crosses .1 + i/n*.8. For the intro, set zoom to 1 when the loader reveal starts, then tween it to 0 over 800ms when it completes."
+  }
+ ],
+ "slop_risks": [
+  "Monospace as the house voice: Centra Mono carries the nav, legend, marginalia, loader logs and copyright (50 mono nodes vs 28 display). The cartographic concept justifies it here, but a copy without a map concept is pure costume.",
+  "Tracked-caps colophon risk, partly avoided: the widely tracked uppercase mono is reserved for the taglines, while the scale bars, the clock and the copyright line ('(c)2026 - ATELIER SAN RITA INC.') use default mono spacing, and the legend switches to mixed case. A copy that letterspaces every small string, the colophon included, turns this into the tracked-caps colophon tell.",
+  "Grid overlay: the graticule lines and the lens grid pass only because they are specific (a map sheet's grid, a surveyor's reticle). A naive copy that lays a faint grid under a hero is the faint-grid-background tell.",
+  "Invisible-content trap: the whole site starts behind clip-path inset(100%) until the GSAP loader runs, and inner pages use CSS scroll-driven reveals from opacity 0 and translateY(40px) (reveal-scroll-content-y with animation-timeline: view()). If JS or the timeline fails, content is gone. Ship the visible state as the default.",
+  "Clear the cut: the 10px chamfered corners on the 'SHOW TRAILS' bar and cards sit close to icons and labels, so pad content clear of the notch.",
+  "Duplicated h1 for the color swap and no prefers-reduced-motion handling (accessibility score 6.4): copy the effect with aria-hidden on the duplicate and a static reduced-motion path.",
+  "12.7MB of 3D for a studio homepage: without KTX2/Meshopt and layer-split GLBs, a copy becomes a slow blank canvas behind a loader.",
+  "Small-label-over-big-heading: the hotspot card stacks 'LATEST HOT SPOT ADDED' in 10-12px mono over 'PODIUM GLOBAL' at 48px, which is the kicker-plus-heading shape. It passes here as a map-legend card inside a four-corner HUD. Do not promote it to a section-opening pattern."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots and both mobile screenshots (mobile_00/01 are identical), all 8 frames of Homepage Header and Maps, f00/f03/f04/f06 of Loading, and f00/f03/f05/f06 of Transition. Also the bundle code: lens GLSL, the terraform tween values, the dual-h1 clip classes, the chamfer clip-path classes and the CSS keyframes. desktop_01-07 are nearly identical because the homepage has no document scroll (doc_height 900): the first wheel enters the world and later wheels hit the zoom limit, so the probe did not capture project, about or playground pages. Those come only from the jury element videos, whose dark topographic background is Awwwards submission framing, not the site. Centra Mono identification and its foundry are inferred from webfont filenames. The 'rive'/'spline' substring hits in the bundle were not confirmed as Rive or Spline runtimes and are not claimed. Durations of the enter and transition sequences are estimated from frame timestamps (about 0.5s spacing). audit (adversarial pass 3, re-read the shipped bundles and CSS): CTA corrected from ~48px to 56px (text-h1-like), and from a typewriter to a scrubbed quartic per-letter collapse whose reverse is the intro (animateZoomTo(0,800)). The intro types in right to left, not left to right (frames/2/f06). The frame expansion is grid-track interpolation driven by a damped 200px virtual wheel track, not a timed camera-controls tween; the camera smoothTime is .2, not .25. Hotspot labels are 3D title meshes that scale-pop; they are not typed. The .05/.35s/scaleY 1.2 stagger values belong to the logo hover hop, not the footer title. GSAP Flip was a false positive and was removed. Native View Transitions were downgraded to inferred (no ::view-transition selectors ship). Place-name labels are off-white GLB-material meshes with opacity zoom - .3, not the lime accent. Scale-bar and copyright text is not letterspaced. The legend keys, not the nav, are mixed case. Graticule verticals sit at quarters of the frame. Project tiles are 2:3, not 3:4. The clouds texture is cloud.webp. Grey-on-icy contrast was computed at 2.56:1. Added: chamfered F37 Stout letterforms, logo hop, TrailsBox clip reveal, JS cursor states, camera config and the one-scalar steal. Centra Mono's foundry is now marked unverified. Evidence re-viewed: desktop_00/01/03/05/07, mobile_00, all 8 frames of frames/0, frames/1 f04/f06, frames/2 f00/f04/f05/f06/f07 and frames/3 f00/f03/f05."
+}

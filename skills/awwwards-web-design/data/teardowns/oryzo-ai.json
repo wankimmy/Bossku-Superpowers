@@ -1,0 +1,404 @@
+{
+ "slug": "oryzo-ai",
+ "title": "Oryzo AI",
+ "live_url": "https://oryzo.ai",
+ "award": "SOTD Apr 13, 2026 + Honors (corpus award_heading/badges); the corpus also lists it in its Sites of the Month source, month not recorded - by Lusion",
+ "scores": {
+  "overall": 7.86,
+  "design": 7.9,
+  "usability": 7.51,
+  "creativity": 8.35,
+  "content": 7.76,
+  "dev": {
+   "overall": 7.87,
+   "semantics_seo": 7.6,
+   "animations": 8.6,
+   "accessibility": 7.0,
+   "wpo": 8.6,
+   "responsive": 7.8,
+   "markup": 7.2
+  }
+ },
+ "industry": "Design agency self-promo disguised as a fake AI product launch (cork coaster)",
+ "signature": "A deadpan parody of an AI product launch for a cork coaster, told as one continuous realtime WebGL camera that hands the same physically lit coaster between photoreal 3D, 2D vector construction drawings and back, so almost every section boundary is a transition rather than a page cut.",
+ "first_screen": {
+  "composition": "Top-down desk still-life fills the 1440x900 viewport: green cutting mat with ruler numerals, wooden desk, pencils, paper clips, eraser, utility knife, and the cork coaster dead-center (~376px). Dappled window-light shadows fall across the mat (gobo projection). The desk is a pre-rendered plate composited in a shader with the realtime coaster; the props are alpha-textured cards that wobble to the cursor (bundle: hero/${id}_color.webp + _alpha.webp with spring physics). Oversized cream ORYZO wordmark top-left (~610x131px, bleeding over the mat edge): it is the header SVG logo (viewBox 94x21) transformed into the #hero-logo-ref rect (7 grid spans wide), not live type. Small uppercase tagline 'MADE FOR MUGS. BUILT FOR TABLES.' sits right-aligned on the wordmark's top edge; 4-link uppercase nav top-right with a dashed underline under INTRO; the 60x200px cream scroll-indicator bar at the right edge shows a rotated 15px 'ORYZO-1 MODEL' label in the hero only (the nav sits ~24px further left until it collapses). Right-middle: 3-line intro paragraph (#hero-copy .body1 = 38u = 28.5px at 1440, weight 400, line-height 1.263 = 36px; the 36px line pitch is measurable in desktop_00). Behind it the plate shader blurs a soft SDF patch of the desk (u_blurRect = the paragraph's rect at 1.5x its height, corner radius .75x) tinted 80% toward #546743: an invisible legibility scrim, which is why the mat grid under 'Designed to lift...' looks softened. Bottom-left: a frosted card (a BlurBox post pass: 16 blue-noise taps of the finished frame inside the card's rect, radius .08 x viewport height, 1px #FFEDD6 outline, 15% cream wash, no backdrop-filter; the pencil passing under it is blurred with the desk) with uppercase 'DESIGNED BY LUSION, THE AWARD-WINNING DESIGN STUDIO.' + dashed rule + right-aligned small copy. Bottom-right: 16:9 video thumbnail with an orange glow (box-shadow 0 0 10px 3px #ff8c0099) and PLAY. Bottom-center: dashed-circle chevron + 'SCROLL TO CONTINUE'. A small cream dot marks the top-left logo slot.",
+  "what_owns_it": "3d",
+  "display_type_px": 180,
+  "evidence": [
+   "desktop_00.jpg",
+   "frames/2/f00.jpg",
+   "probe/oryzo.ai.txt (saved HTML: #hero-logo-ref, #site-header-logo svg viewBox 0 0 94 21; bundle: HeroSection, prop physics)",
+   "live index.TL6TuoJb.css (#hero-logo-ref width, #scroll-indicator__bar 60x200, .hero-video__glow)",
+   "note: probe h1 123px is #ai-title 'Powered by AI*', not the wordmark",
+   "bundle HeroSection.resize(): u_blurRect/u_blurRectRadius are set from #hero-copy; update(): blurBox.anchor(#hero-card), outline 1, #FFEDD6 at .15, blurRadius .08"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "halyard-display-variable",
+    "role": "display",
+    "classification": "geometric-humanist grotesque, variable 100-900; also carries ALL body copy (html font-family var(--display-font))",
+    "foundry": "Darden Studio (Halyard) via Adobe Fonts/Typekit",
+    "source": "probe fonts_loaded + font_families_rendered (163 nodes) + @import use.typekit.net/pmn6ngx.css in live CSS; Lusion BTS part 3: about 99 percent of the site's type is one family"
+   },
+   {
+    "name": "halyard-text-variable",
+    "role": "body",
+    "classification": "declared as the --text-font token only: NOT loaded (absent from fonts_loaded) and NOT rendered (font_families_rendered = halyard-display-variable 163 + Arial 8). Body copy actually renders in the display cut.",
+    "foundry": "Darden Studio",
+    "source": "probe root_vars --text-font vs fonts_loaded"
+   },
+   {
+    "name": "Literata",
+    "role": "accent",
+    "classification": "serif, weight 300 (400 for issue line and 'Cooked!') for the DOM text of the fake 'RISE' magazine cover: 'ISSUE NO. 00124', the '25 AI SLOP IDEAS FOR THIS WINTER' box, 'We Are So / Cooked!', the corner blurb. The RISE masthead itself is NOT DOM text (#wearable-magazine-title is an empty box); it is a higher-contrast serif composited behind the coffee cup (the lid overlaps the I and S in frames/3/f04), inferred to be a texture in the WebGL magazine layer. The faux formulas (p(T)=, C=4piA/P^2, dh~t) are outlined SVG paths filled #FFEDD6, not Literata text (earlier 'inferred' claim removed).",
+    "foundry": "TypeTogether / Google (self-hosted /fonts/Literata.woff2)",
+    "source": "live CSS #wearable-magazine{font-family:Literata;font-weight:300}; saved HTML (#wearable-magazine-title empty, .features-extra-item__equation <svg><path fill=#FFEDD6>); frames/3/f04; Lusion BTS part 3: the magazine transition 'uses a completely different set of typefaces'"
+   },
+   {
+    "name": "DM Mono",
+    "role": "mono",
+    "classification": "monospace, only in the BibTeX block of the fake open-weight paper section",
+    "foundry": "Colophon / Google (self-hosted)",
+    "source": "live CSS #open-weight-bibtex{font-family:DM Mono}"
+   },
+   {
+    "name": "Inter (MSDF atlas)",
+    "role": "ui",
+    "classification": "SDF texture font for WebGL-rendered text; inferred: the Smart Flip Encryption message drawn on the coaster (updateMsdfMessage)",
+    "foundry": "Rasmus Andersson",
+    "source": "bundle fonts/msdf/Inter.webp + new MSDFTextGeometry"
+   },
+   {
+    "name": "Arial (fallback)",
+    "role": "ui",
+    "classification": "UA fallback on 8 <button> nodes: buttons do not inherit font-family and the CSS has no font:inherit reset",
+    "foundry": "-",
+    "source": "probe font_families_rendered Arial 8 + measure.type.button family Arial"
+   }
+  ],
+  "display_size_px": 216,
+  "body_size_px": 13.5,
+  "scale_notes": "Desktop tokens (live CSS :root): --screen-unit = min(inner-width/(1920-120), 100vh/1024*1.25), i.e. a 1920-based design scale clamped by viewport HEIGHT; --h1 164u, --h2 68u, --h3 45u, --h4 32u, --h5 20u, --sub1 24u, --sub2 16u, --body1 38u, --body2 24u, --body3 18u, --link-header 16u, --quote 30u, --default 18u, --btn 16u. At u=.75: body default 13.5px (the '14px' bucket, 80 nodes), .body1 paragraphs 28.5px (hero copy and 'Oryzo isn't just a coaster...', the 28px bucket), .body2 18px (card description), sub1 labels 18px. At 1440x900 u = min(0.75, 1.10) = 0.75, so h1 123px, h2 51px, h3 33.75px, links 12px: exactly the measured values. The 375-based scale in probe root_vars (h1 96u, h2 38u) is only the <768px override (mobile h1 96 x 1.04 = 99.84px). Measured: h1 #ai-title 'Powered by AI*' 123px/500 (-0.018em); 'ISN'T JUST A COASTER.' h2 51px uppercase; h3 33.75px uppercase; footer statement spans 40.8px uppercase; labels/nav 12px uppercase. The 216px/600 uppercase h2 is #sustainability-title-main {font-size:15vw; letter-spacing:.018em; visibility:hidden}: an invisible DOM proxy (uppercase comes from the global h2 rule). The visible 'sustainability' is lowercase WebGL text (sustainability_text.buf + _outline.buf) at ~15vw. 'it's wearable' in DOM is h4 span 2 at 1.5em = 36px, but on desktop that span stays at opacity 0 (fit(r,3.25,4.75,0, mobile?1:0)); every visible state, including the ~250px one in desktop_05 and the 36px end state in desktop_07, is a single WebGL quad sampling an SDF texture of the phrase (wearable/wearable_text.webp, u_pixelRange, #ffedd7, glow/pulse uniforms) that slides in from one viewport-width right and lerps from the #wearable-title-2-dummy rect to the span's rect (rectFrom/rectTo, shrinkRatio). Not a CSS transform. Most common measured buckets: 14 (80 nodes, really 13.5px), 12 (62), 24 (11), 28 (4, really 28.5).",
+  "tracking_leading": "h1 line-height .9 (.802 on mobile) with letter-spacing -.018em (live CSS #ai-title); h2 lh .9, h3 lh 1; .sub1/.sub2 lh 1.09; uppercase statements lh 0.9 (36.72/40.8) at normal tracking. The hidden 216px sustainability proxy is tracked OUT +.018em; inferred that the visible WebGL word mirrors it. Labels 12px lh 1.1.",
+  "case_and_style": "Sentence-case giant display ('Powered by AI', 'it's wearable', lowercase 'sustainability') against ALL-CAPS mid-size statements ('ISN'T JUST A COASTER.') and ALL-CAPS 12px labels (global rule h2,h3,h4{text-transform:uppercase}). Asterisk footnote gag: the '*' of 'AI*' is a <sup> at .4em and resolves to '* ADOBE ILLUSTRATOR' bottom-right. Pre-titles in a muted second ink #bbac97 ('SO PORTABLE,'). Numerals as big stat lines ('NOW 37.9% MORE CIRCULAR', giant '25' on a green card).",
+  "signature_moves": [
+   "'Powered by AI*' resolves char by char left-to-right (desktop_02, frames/2/f04-f05). Bundle: for char k=N/(U-1), opacity = expoOut window [k*.3, k*.3+.4], blur .1em->0 on the same window, translateX .25ex->0 on [k*.3, k*.3+.6]; the last char (the '*' sup) instead scales 0->1 with backOut over [.6,1], so the asterisk pops after the word lands. The orange ORYZO-1 tagline chars rise 1em->0 inside a mask.",
+   "Hero wordmark ORYZO scales and translates into the nav logo slot on first scroll (frames/2/f00->f01): siteHeader.setLogoTransform() writes translate3d + scale on the header SVG measured against #hero-logo-ref.",
+   "Headline broken by the product: 'it's w[coaster]able' at ~250px, the coaster sealed in an orange ORYZO-printed foil sachet (a condom-wrapper gag for 'SO PORTABLE, it's wearable'; Lusion BTS: Vellum-simulated two-layer film that later tears) inside a dashed viewfinder square with crosshair ticks, a dashed circle and a REC-style dot (desktop_05). Because the giant word is WebGL SDF text, not DOM, the sachet can sit in front of it in the same render.",
+   "'sustainability': a photogrammetry-scanned cork-bark macro (BARK.buf; BTS: ~180 RAW photos of real bark through RealityScan) cracks along a horizontal seam and splits (frames/1/f00-f02); the lowercase word, a triangulated glyph mesh with analytic AA, brightens RIGHT-TO-LEFT: fragment colour *= clamp(pealRatio*2 - 1 + screenX), so the right edge reaches full cream first and the left end last (frames/1/f02 shows 'sust' still grey while 'ility' is cream); bloom peaks (f03); then the scene flips to a cream #ffedd7 ground with dark type under a palm-leaf gobo (f04).",
+   "Opacity (not weight) reading-fill: lines of 'PEOPLE ALL AROUND THE WORLD LOVE ORYZO' step from full cream to ~50% (frames/1/f06); feature-panel copy dims word by word on exit (frames/0/f02 'SERIOUSLY', 'just because we could.').",
+   "Muted second ink #bbac97 for pre-titles ('SO PORTABLE,' over 'it's wearable'), so hierarchy comes from value as well as size.",
+   "Mirrored flank reveal around the object ('ISN'T JUST A COASTER.', desktop_01): the left h2's chars fade in last-char-first (right-to-left, toward the coaster) while the right paragraph fades first-char-first (left-to-right, away from it), so both blocks grow out of the object; they also counter-move vertically (h2 from -1em above, paragraph from +1em below; on exit h2 keeps sinking and the paragraph keeps rising), horizontal instead on mobile (bundle AiSection _domPreText1 G=1-U/(k-1) vs _domPreText2 G=U/(k-1))."
+  ],
+  "mobile": "At 390px the SVG wordmark spans the inner width (~75px CSS cap height, about 150 device px in the 2x mobile_00 capture), the tagline sits above it right-aligned, and the intro copy is a left-aligned block in the right ~60% at ~18px (= --body1 18u = 18.7px). The measured mobile h1 99.84px is #ai-title at 96u. 'ISN'T JUST A COASTER.' is 39.52px (= --h2 38u) above a larger, tilted coaster (mobile_01). No horizontal overflow (probe overflow_x false). Menu collapses to a 1px dashed pill '• MENU' (radius 3em, dot drawn by ::before)."
+ },
+ "color": {
+  "mode": "section-shifting (mostly dark warm, with a cream light interlude and a photoreal full-color desk scene)",
+  "base": "#100904 near-black warm brown (--color-black, html bg)",
+  "ink": "#ffedd7 warm cream (--color-white; 157 text nodes)",
+  "accents": [
+   "#dc5000 burnt orange (--color-orange: ORYZO-1 tagline, LUSION link, highlighted review words, active-tier button inner glow, ::selection background)",
+   "#FF8539 light orange (the corpus palette colour): bezier handles, handle lines and circle/square nodes of the construction canvas and the preloader; the construction curves themselves are white, dashed [3,3]",
+   "#bbac97 muted cream (11 text nodes: pre-titles such as 'SO PORTABLE,')",
+   "#445231 / #5d6c49 olive green (--color-green tokens: DOM cards in the cream sustainability section, e.g. the '25' card). The cutting mat is a texture, not this token: mid-green in the hero plate, bright jade in the top-down table scene (frames/0/f06)",
+   "#546743 green-grey: 80% tint of the legibility scrim the plate shader blurs behind the hero paragraph (u_blurColor), not the frosted card",
+   "#ff8c00 at 60% alpha: hero video card glow (box-shadow 0 0 10px 3px #ff8c0099)",
+   "#382416 brown and #6c5f51 grey-brown (surfaces)",
+   "#f6e0c6 (--color-green-lightest, light section cards)",
+   "AppleEfx edge glow (the post pass is literally named AppleEfx: an Apple Intelligence / Siri edge-glow parody): four stops #ff9cff pink, #ff9638 orange, #ffff22 yellow, #54ffff cyan, bilinearly blended across the frame and rotated (angle = time * -5), pushed into a rounded-SDF border band (padding min(50px, 10% of the short side)); the greens and violets seen in desktop_03 are blends of these stops",
+   "#0f0804 -> #6d3916: the two stops of the dark-screen background pass (Bg) that paints the warm corner pool"
+  ],
+  "ratio": "inferred: ~75% dark brown base, ~15% cream ink, ~5% cork orange (the product itself is the accent), <5% burnt orange UI accent",
+  "section_shifts": "Hero is the full-color desk plate; on first scroll the plate is mixed toward the dark background (u_activeRatio) so the desk 'lights out' rather than cutting. Intro/feature beats sit on #100904 with a warm pool bottom-left; feature panels switch to thermal false color (frames/0/f00); sustainability flips in place from dark glowing type to a cream #ffedd7 ground with dark type and a leaf gobo shadow (frames/1/f03->f04), then cream cards on #f6e0c6/olive, then a hard cut back to dark for the testimonials (frames/1/f06). The header flips to dark ink on light sections (#site-header.is-light).",
+  "texture": "No CSS grain. Texture comes from rendered materials (cork DIFF/HEIGHT maps, bark, desk wood) and blue-noise dithering in the shaders (getBlueNoise). The warm pool bottom-left of every dark screen is the Bg full-screen pass: mix(#0f0804, #6d3916, pow(1-d, 4)) with d = distance from u_bgOffset (default screen UV 0,0, the bottom-left corner) over u_bgSize, plus blue-noise dither so the long falloff never bands. It is a radial gradient drawn in a shader, not a light (the 1/(1+0.3d^2) term in the hero plate shader only fades the plate's screen-space shadow toward that corner; the earlier attribution was wrong).",
+  "notes": "The product (cork #c87a3a-ish) is the only saturated object on dark screens, so the palette reads as 'lit object in a dark studio'. The one loud multi-hue moment (rainbow viewport-edge glow in desktop_03 / frames/2/f06-f07) is a deliberate joke on AI-product glow UI; the bundle names the pass AppleEfx, and the same 4-colour LUT tints the hand and coaster rims during that beat. Lusion BTS part 3: the colour system is four values (a cream, a near black, a muted olive, an orange)."
+ },
+ "layout": {
+  "grid": "Desktop (live CSS): 16 columns, --site-padding-x 3.125vw (45px at 1440), gutter = 24/90 of a column, --site-row-height = padding*8/60; span tokens --grid-span-1..16. Mobile (<768px, the block the probe read): 4 columns, padding 16*100vw/375, row 5px. Observed: nav right-aligned to x=1395, left statement at x~130, right copy at x~1060, hero wordmark 7 spans + half a column wide.",
+  "density": "airy",
+  "alignment": "Asymmetric but anchored: centered product object with left statement + right paragraph flanking it on the horizontal midline (desktop_01); right-aligned small copy blocks; centered display headlines above the object (desktop_02).",
+  "composition_moves": [
+   "Object-centered triptych: statement left, 3D object center, body right, all on one horizontal axis (desktop_01).",
+   "Headline behind/around the object: the foil-wrapped coaster interrupts 'wearable' inside a dashed viewfinder square (desktop_05).",
+   "The viewfinder square from the 3D beat grows into the 570x734 portrait gallery frame (desktop_05 -> 06 -> 07), so the frame persists across the 3D-to-photo handoff. It is drawn on a 2D canvas (#wearable-main-canvas), not CSS borders: a 1px #ffedd7 [3,3]-dashed rectangle 6px outside the content whose four sides draw themselves corner to corner, 10px crosshair ticks 8px inside the edge, a dashed circle drawn as two half-arcs growing from 3 and 9 o'clock at 30% alpha, and a 5px dot that pops in (backOut) at the top-right corner like a camera REC light; the rectangle lerps between the small square and the 570x734 frame (scaleRatio, cubicInOut).",
+   "Magnifier gallery: a strip of thumbs at .35 scale (~200x257, 50% opacity, 8% gaps) runs through the fixed frame, and the frame shows the same sequence at ~2.86x, hard-clipped at its edge (frames/3/f00-f03). Section pinned for 1325vh (inner position:fixed).",
+   "The gallery's last item, a fake 'RISE' magazine cover whose photo is the live table render (tableScene.clipScissor follows the frame), puts the masthead behind the coffee cup and 'We Are So Cooked!' in front of it, rolls its '25' through an odometer (spans 5/6/7/8), then the masthead slides up and out and the clip widens into the next feature section's 70% WebGL viewport (frames/3/f04-f07).",
+   "Left sidebar feature panel (~30% width) with number badge, heading, copy, dashed rule and stat; right 70% WebGL viewport with a faux-scientific caption + formula bottom-right (frames/0/f00-f02, frames/3/f07).",
+   "Review table: three columns under hairline rules (quote / live 3D coaster / 'ORYZO IN USE' photo); the active row is full opacity, the next row ~30% (frames/1/f07).",
+   "Footnote corner: dashed rule + '* ADOBE ILLUSTRATOR' fixed bottom-right."
+  ],
+  "section_rhythm": "One fullscreen beat per scroll step on a 56,691px document (order from saved HTML ids/headings): photoreal desk hero -> dark object beats (ISN'T JUST A COASTER; Powered by AI + hand) -> wearable viewfinder + magnifier gallery -> feature panels (lift 'Elevate your coffee experience', thermal, circularity) -> 3D->2D->3D construction into the Smart Flip Encryption desk -> grip zoom box -> bark reveal + sustainability -> cream info cards -> dark reviews ('People all around the world love Oryzo') with social-post gags ('Runs on the edge / Refuses the cloud', 'Runs on RTX 3090', 'Drop-Tested') -> product tiers ORYZO / Pro / Pro Max -> fake research-paper page ('Our SOTA Open Weight model': Abstract, BibTeX in DM Mono, paper.pdf and GitHub links) -> particle footer. Scale alternates between one giant word and one object.",
+  "mobile_adaptation": "Same scene order; overlays stack vertically (tagline, wordmark, copy, object, panel), 3D camera reframes (u_useMobileLayout uniform in bundle), video thumb becomes a portrait card."
+ },
+ "motion": {
+  "smooth_scroll": "Custom Lusion scrollManager (not Lenis): velocity + friction model (frictionCoeffFrom 2.1, frictionCoeffTo 1.9, frictionCoeffWeightDivisor 5, wheelEaseCoeff 12), drag fling from a 0.1s drag history, history.scrollRestoration='manual', body height set to the content size and window.scrollTo from its own targetScrollPixel, so the native scroll position stays real. Keyboard: ArrowUp/Down move 100px, PageUp/PageDown one viewport. It also carries a snapList, but addToSnapList is never called (the list is only reset), so there is NO section snapping; beats land because of the friction and long scroll ranges. body has touch-action:none: touch scrolling is fully custom. Evidence: bundle grep.",
+  "preloader": "Canvas-2D preloader (#preloader-canvas) drawn as the coaster's construction drawing: two concentric circles (outer radius 21% of viewport height, 72% of that on mobile) whose ring fills clockwise from 12 o'clock with the load percent in #ffedd7, rotating dashed circles, eight full-screen tangent guide lines faded by a radial mask, and #FF8539 bezier handles with circle + square nodes (5px / 3px at 1080p). It pops in with backOut, then on start the inner radius opens (239/520 -> 466/536, sineOut) and it fades. The same drawing returns as the features construction canvas and the O counters of the wordmark. Probe settled at 6.7s; html gets is-ready.",
+  "intro_sequence": "Load-in is time-based, not scroll-based (bundle HeroSection: _ = properties.startTime): hero copy chars fade in left-to-right while sliding from translateX(1em) over 0.5->1.5s plus a 0.2s spread across the string (cubicOut); tagline words fade in on the same clock; the frosted card slides in from -paddingX with cubicOut while its tint (15%) and blur ramp up, its header and description lines slide in from -1em (top line first) and its dashed rule grows to 100% width; the seven desk props (pencil, pen, eraser, cutter, three paperclips) fly in from offsets of up to 780px and 5 rad and settle over 1s (t .5-1.5s plus a random 0-.3s each, cubicOut) before their spring physics take over. On first scroll (frames/2) the whole hero exit runs on one ratio l = fit(hideScreenOffset, -1, -.5) (half a screen of scroll): the wordmark shrinks into the nav slot over the back half of it (l .5 -> 0, cubicInOut); tagline words rise -1em out of word masks, first word first; the card's lines DROP +1em inside line masks with the bottom line leading (frames/2/f01 crop: 'DESIGN STUDIO.' already gone, 'BY LUSION,' clipped at its baseline, 'DESIGNED' still whole) and the card's dashed rule retracts to 0 width toward its left end (f00->f01); the desk plate is mixed toward the dark background while the coaster lifts toward camera (f01), then rotates in space for 'ISN'T JUST A COASTER.' (f02-f03). The hero copy's scroll exit blurs chars out first-char-first (the code inverts the index, I = 1-i/(N-1), but applies it to a DEcreasing ratio, so the order comes out left-to-right) and pushes lines 2em right (up on mobile), first line leading. The coaster flips flat, 'Powered by AI*' resolves (f04-f05), the hand rises to hold it, then the rainbow edge glow cycles around the viewport (f06-f07).",
+  "scroll_techniques": [
+   "pin (gallery section 1325vh with a fixed inner)",
+   "scrub (every DOM text and WebGL uniform written per frame from section progress via math.fit windows)",
+   "3D camera paths and object animations baked in .buf and scrubbed",
+   "3D -> 2D -> 3D handoff",
+   "magnifier strip through a fixed frame",
+   "split-reveal (bark cracks open)",
+   "opacity reading-fill on lines and words",
+   "plate-to-background mix (u_activeRatio) as a lights-out transition",
+   "mirrored flank reveal (left block reveals toward the object, right block away from it, counter-moving vertically)"
+  ],
+  "text_animation": "GSAP SplitText 3.14.2 only splits (types 'lines', 'words', 'lines,chars'; masks on lines/words; autoSplit false). There are 0 gsap.to calls: every piece is styled per frame from progress. Verified loops: (1) hero copy: opacity = fit(startTime, .5+E*.2, 1.5+E*.2) x (1-k), translateX 1em->0 cubicOut on the same time window (entrance L->R); k = fit(heroActiveRatio, I*.2, I*.2+.8, 1, 0) with I = 1-i/(N-1), blur fit(k,.25,.75,0,.3)em (scroll exit, first char first; blur skipped on mobile). (2) #ai-title: opacity/blur(.1em)/translateX(.25ex) windows [k*.3, k*.3+.4/.6] expoOut L->R, last char scale backOut. (3) grip/encryption titles: blur .3em->0 on [.15+M*.3, M*.3+.7], opacity [M*.3, M*.3+.6] cubicOut; tagline words rise 1em in word masks on [M*.15, .45+M*.15]; description lines on [.4+M*.3, .7+M*.3]. Lines also exit sideways through masks: #ai-desc lines slide 80% of their width right (100% left on mobile, sineOut) with the bottom line leading (desktop_04: line 1 clipped to 'AI FILL', line 2 to 'W', line 3 gone). (4) 'ISN'T JUST A COASTER.' flank: see typography.signature_moves (mirrored reveal). (5) The giant 'it's wearable' is WebGL SDF text, not DOM.",
+  "image_animation": "Magnifier gallery: the thumb strip and the frame content move together, the frame at 1/.35 scale, so each photo appears to swell as it enters the frame (frames/3); yoga.mp4 and bite.mp4 are muted loops inside it; each item carries a UI gag overlay (chat bar 'HEY @ORYZO, CAN YOU PUT ON A BIKINI?' with an orange SEND pill that exits with cubic-bezier(.3,0,.66,-.3); a dashed 'WARNING' stunt box). Bark texture splits along a horizontal crack; thermal false-color remap on the coffee cup (u_thermalRatio + thermal_gradient.webp).",
+  "page_transitions": "Single page; section changes are WebGL/scene transitions. 3D->2D->3D (frames/0): thermal render with a softmax-temperature legend -> dark construction view where a white [3,3]-dashed circle with 8 bezier handles and nodes in #FF8539, drawn on a Canvas 2D (#features-curve-canvas: one quarter-arc cached offscreen and mirrored four times), morphs into a squircle by lengthening the handles past the circle constant 0.5523 while the copy claims 'NOW 37.9% MORE CIRCULAR' (f01->f02), over red hand-drawn pencil sketches of the coaster (f02) -> two concentric construction circles become the O's of a grey ~20%-opacity ORYZO wordmark (f03-f05) -> top-down photoreal desk with ORYZO engraved on the coaster (f06; inferred: the 2D wordmark lands as the engraving) -> camera tilts to perspective and the coaster floats over its own shadow for Smart Flip Encryption (f07). ~8s clip, each beat ~1s.",
+  "hover_micro": [
+   "Nav, .btn and footer buttons are 'is-flipper' letter flippers (LetterFlippers class): each char sits in a char mask with a duplicate absolutely placed at top:100% (hence the doubled letters 'I I N N T T R R O O' in the probe); on hover chars translate 0 -> -100% (roll up, the copy rises from below) with backOut over staggered windows (.4 spread, .6 wide). The stagger runs left-to-right or right-to-left depending on which way the pointer entered (sign of input deltaX), and speed is 2 + 4/charCount per second (about .36s for INTRO).",
+   "Active nav: one dashed #site-header-line (.o-dashline: repeating-linear-gradient 2px on / 2px off, 1px tall). Its left and right edges both lerp toward the active item at the same rate (1-exp(-dt*10)), so it slides and resizes to the new item's width in lockstep; it does not stretch (earlier 'stretches as it slides' claim was wrong).",
+   "Hero video card: #hero-video-wrapper:hover scales the thumbnail to 1.2 (.3s ease) and lifts the orange glow/border from .4 to 1 opacity with saturate/brightness 1 (live CSS).",
+   "'TRY TO HOVER HAND': four fingers each run SecondOrderDynamics(0, 1.5, .5, 3) toward weights derived from mouse position, blended over a baked bone animation (hand_animation.buf uploaded as a data texture). The screen-paint FBO (u_screenPaintTexture) feeds a Distortion post effect (amount 20, rgbShift) and a colour pass, not the hand itself.",
+   "Hero desk props (pencils, clips, knife, eraser) react to mouse velocity with spring rotation/oscillation (maxRotation .1*PI); some use 'angular RGB' textures holding 4 pre-lit angles blended by rotation. Inferred: this is the jury element 'Intro Interaction' (no frames captured).",
+   "Grip section: a draggable zoom box (#grip-zoom-box, 'Friction coefficient (est): 0.80') follows horizontal drag deltas.",
+   "Footer copy button: on 'copied' the orange fill appears instantly and fades over 3s (the one 3s duration in the CSS).",
+   "Nav hover dims the page: #site-header-nav:hover ~ #site-header-blocker fades a #201914bf (75% brown) overlay over everything in .18s, so the four links read as a spotlight menu.",
+   "Camera look: the WebGL camera eases toward the pointer (+/-0.05 rad, ease factor 5) with a small Brownian handheld drift; on phones the same look follows device orientation (DeviceOrientationEvent.requestPermission on iOS).",
+   "'sustainability' contours: a second mesh of the letter outlines (sustainability_text_outline.buf) shows running stroke segments only where the cursor's screen-paint trail passes (outline alpha from screenPaint z+w), so wiping the pointer across the word traces its letterforms."
+  ],
+  "cursor": "Only #video-overlay (the fullscreen founder video) sets cursor:none on desktop; it is replaced by #video-overlay-cursor, a follower holding play / pause / close SVG icons, and mobile reverts to cursor:auto. The 14 cursor_none nodes in the probe are descendants of that overlay.",
+  "easing_curves": [
+   "CSS cubic-bezier(.3,0,.66,-.3) on #wearable-gallery-bikini-message transform .5s: a back-in style anticipation dip for the gallery chat bar",
+   "JS custom ease table (call sites, bundle grep): cubicOut 51, backOut 13, cubicInOut 11, expoOut 9, cubicIn 6, quartInOut 4, expoInOut 3, sineOut 2, sineInOut 2, sineIn 2",
+   "expoOut on the 'Powered by AI*' char windows, backOut on its asterisk",
+   "exponential damping 1-exp(-dt*10) on the nav indicator; scroll friction 2.1->1.9",
+   "custom math.fit(value, inMin, inMax, outMin, outMax, ease): ~460 'fit(' calls; smoothstep 66"
+  ],
+  "duration_range_ms": "CSS 150-1000ms (0.18s x5, 0.3s x5, 0.2s x4, 1s x4, 0.5s x3); the single 3s is the footer copy-button fade. Hero load-in runs ~0.5-1.7s on the clock; scroll-scrubbed beats have no fixed duration (~1 viewport of scroll each).",
+  "stagger_ms": "Mostly expressed as progress offsets, not ms: #ai-title chars spread over .3 of the window with .4-.6-wide windows; hero tagline words spread .3, .67 wide; section titles .3 spread; the only clock-based stagger is the hero copy load-in (0.2s spread across all characters).",
+  "choreography_notes": "Camera leads, type follows: the 3D move starts first and the DOM text resolves into the settled composition (windows overlap heavily, so it reads as a wave). Entrances mostly run left-to-right, and so does the hero copy's scroll exit. Exits that lead with the LAST element are the hero card lines (bottom line first, dropping down) and the 'AI fills in the gaps' lines (bottom line first, sliding right); the 'isn't just a coaster' pair reveals toward and away from the object (mirrored). Only one idea per beat, and each beat ends on a static, readable frame.",
+  "evidence": [
+   "frames/0/f00-f07",
+   "frames/1/f00-f07",
+   "frames/2/f00-f07",
+   "frames/3/f00-f07",
+   "desktop_00-07",
+   "mobile_00-01",
+   "probe/oryzo.ai.txt (saved HTML + hoisted bundle: HeroSection, ai-title loop, scrollManager, SiteHeader, Particles, hero plate shader)",
+   "live index.TL6TuoJb.css (re-fetched 2026-09-24)",
+   "probe easings/durations",
+   "bundle AiSection / HeroSection / WearableSectionCanvas / FeaturesCurveCanvas / LetterFlippers / Preloader / AppleEfx / Bg read in full (evidence/probe/oryzo.ai.txt)"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "realtime-3d",
+  "art_direction": "Warm, low-key product studio light: single raking warm key from lower-left, deep brown falloff, cork rendered with height-mapped pores. The desk hero is daylight with window gobo shadows. Lifestyle photos (gallery) are warm-graded, shallow depth of field, cork coaster worn as a badge, cap patch, bikini top, eye covers, in-pocket - comedic product-misuse shots. Production (Lusion BTS parts 2-3): scenes built in SideFX Houdini and rendered in Redshift; the six-finger hand is a purchased 3D Scan Store scan given an extra finger and rigged with KineFX; the sachet is a Vellum simulation (stiff metallic back, soft clear front, vacuum-seal attraction, weld constraints that break for the tear); the bark is photogrammetry; the red technical sketches and da Vinci-style studies are hand-drawn in Procreate; Google Flow images were used only for the AI-joke visuals over their own renders (e.g. the 'ORYZO IN USE' astronaut).",
+  "treatments": [
+   "pre-rendered desk plate + realtime coaster composite",
+   "thermal-camera false color",
+   "red pencil sketch + construction-line overlay",
+   "bloom glow on type",
+   "dashed viewfinder frame with crosshair ticks",
+   "foil-sachet product-packaging gag",
+   "fake magazine cover set in Literata",
+   "depth-of-field bokeh",
+   "tree-bark macro split",
+   "masthead behind the subject (RISE behind the cup lid)",
+   "hand-drawn Procreate construction sketches"
+  ],
+  "crops_and_ratios": "Gallery main frame 570x734 (a canvas; mobile main aspect 85:110); thumbs are the frame at .35 scale (~200x257, 50% opacity, gaps 8% of thumb width), 7 per strip; feature viewport ~70/30 split; hero video card 16:9 on desktop, 9:16 on mobile; photos cropped tight on the coaster.",
+  "formats": "80 webp, 8 avif, 9 png, 3 mp4 (yoga.mp4, bite.mp4 muted loop, not autoplay) + 1 Vimeo HLS stream; 4 .riv; 2 Gaussian-splat .sog files (/splats/props.sog, /splats/table_reflection.sog); bytes: mp4 7.19MB, webp 6.61MB, custom binary 'other' 7.44MB (.buf geometry/animation).",
+  "evidence": [
+   "desktop_05.jpg",
+   "desktop_06.jpg",
+   "desktop_07.jpg",
+   "frames/3/f00-f07",
+   "live CSS #wearable (--thumb-scale .35, height 1325vh)",
+   "probe canvas list (570x734)",
+   "probe asset_extensions + bytes_by_type_declared",
+   "evidence/imagery/oryzo-bts-part-2-7-3d-design-and-motion-graphics.html + part-3-7-website-ux-ui-and-illustrations.html (first-party Lusion BTS)"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r178 'modified by Lusion' (probe globals.three_revision) with a custom renderer/post stack; 8 webgl2 contexts; Rive runtime (4 .riv) for small 2D pieces; a Gaussian-splat worker (SplatsWorker-*.js with SH textures). The hero desk is NOT a full 3D scene: it is a pre-rendered plate on a screen-aligned plane with the realtime coaster, textured-card props and shader shadows composited over it. The perspective table scene (pegboard desk, frames/0/f06-f07 and frames/3/f06-f07) is a hybrid: the desk, pinboard and wall are textured meshes (2048/1024/512 maps) while only the props (/splats/props.sog) and the desk reflection (/splats/table_reflection.sog at 50% opacity and colour) are Gaussian splats. BTS: full-scene splats at ~900k still showed flaws in the wood and sketch lines, so they kept ~78,233 splats on desktop and ~44,683 on mobile.",
+  "role": "hero object + world: the coaster, a 3D hand, coffee cup with smoke, desk still-life, water-bear microscopy, particle footer",
+  "assets": [
+   "coaster.buf",
+   "coaster_hero_animation.buf",
+   "hero_camera.buf",
+   "stack_camera.buf",
+   "hand.buf",
+   "hand_animation.buf",
+   "featuresAnimations/CAMERA_ANIM.buf",
+   "featuresAnimations/COASTER_ANIM.buf",
+   "featuresAnimations/COFFEE_ANIM.buf",
+   "table/TRAY_COVERS.buf",
+   "table/water_bear.buf",
+   "COFFEE_BEAN.buf",
+   "sustainability_text.buf",
+   "sustainability_text_outline.buf",
+   "wearable/coaster_first.buf",
+   "coaster/DIFF.webp",
+   "coaster/HEIGHT.webp",
+   "coaster/STACK.webp",
+   "hero/env_hero.webp",
+   "hero/env_hand.webp",
+   "hero/env_hand_spec_20.webp",
+   "table/env_table.webp",
+   "table/env_grip.webp",
+   "coffee/smoke/harmonics_0.webp",
+   "coffee/smoke/harmonics_1.webp",
+   "thermal_gradient.webp",
+   "fonts/msdf/Inter.webp",
+   "/rive/oryzo.riv",
+   "BARK.buf",
+   "COASTER_FLIP_ANIM.buf",
+   "/splats/props.sog",
+   "/splats/table_reflection.sog",
+   "wearable/wearable_text.webp",
+   "coffeeBean/DIFF.webp + HEIGHT.webp",
+   "table/WATERBEAR.webp"
+  ],
+  "materials_lighting_post": "25 ShaderMaterial + 12 RawShaderMaterial (all custom). Hero plate shader: samples the plate with a screen-space shadow map, an analytic ellipsoid soft shadow for the coaster (eliSoftShadow, radii .045/.01/.045, light dir (1.2,.8,-1.2)), a gobo (u_goboTexture through u_goboMatrix, sampled with depth-dependent blur, shade *= .5+.5*gobo), HSB darkening, blue-noise dithering, and a screen-space shadow map whose strength is attenuated by 1/(1+0.3d^2) with d measured from screen UV (0,0) (a shadow falloff, not an additive light). The plate shader's SDF blur box (u_blurRect/u_blurRectRadius, radius ~ blurRatio^3 * h/50, tinted 80% toward #546743) sits behind the hero paragraph as a legibility scrim; the frosted card is a separate BlurBox post pass (16 taps, radius .08 x viewport height, blur and tint interpolated between two points A and B across the box, 1px outline, 15% #FFEDD6). Post chain order (Postprocessing.addQueue): TAA -> FXAA -> SMAA -> Bokeh (quality 0 on mobile) -> AppleEfx -> magazine layer -> Bloom (convolution off, optional lens dirt) -> BlurBox -> ScreenPaintDistortion -> final. Elsewhere: env maps as webp + BRDF LUT, TAA (TAAPerspectiveCamera), bokeh DoF (u_bokehTexture, u_maxCoC), SMAA, bloom (u_bloomWeights), thermal remap, screen-paint distortion with RGB shift, light-field grid, smoke from harmonic textures, scene cache + zoom blur (|camera2D.zoom-1|*100), MSDF text with stroke inset/outset. Footer particles are 1024 instanced coffee beans (COFFEE_BEAN.buf with DIFF/HEIGHT maps) streaming along a diagonal spiral path from (-.5,.25) to (.5,-.25), lit by a sliced light-field volume, CPU-simulated in JS (not GPGPU): 32x32 = 1024 (24x24 = 576 on mobile), O(n^2) pairwise contact resolution, spiral path attraction, mouse push radius .1 force .25, then positions/rotations uploaded to DataTextures each frame.",
+  "interaction": "Scroll-driven baked camera paths and object animations (.buf); hover: desk props spring to the cursor, hand fingers follow the mouse, screen-paint distortion; drag: the grip zoom box; text input: the encryption message written onto the coaster; footer particles pushed by the mouse. The camera also eases toward the pointer (+/-0.05 rad) with Brownian drift, and follows device orientation on phones.",
+  "performance_tactics": "Pre-rendered desk plate + alpha-card props instead of a full desk scene; compact custom .buf binaries instead of glb; env maps as small webp; scene rendered once to a cache target and blurred during 2D zooms; low-res paint target; TAA accumulation instead of heavy MSAA; per-char CSS blur disabled on the mobile path; particle count cut to 576 on mobile; loader 'autoMobile' texture flags (inferred: mobile variants). Awwwards WPO 8.6. Splats only where they help (props + reflection, ~78k desktop / ~44k mobile, per BTS); desk and mat baked from orthographic top and front Redshift passes stitched into one texture, with a shader that distorts coverage so the centre 50% of the surface gets ~90% of the texels (BTS); bokeh quality 0 on mobile; bloom convolution disabled.",
+  "fallback_mobile": "Same WebGL scene on mobile with u_useMobileLayout reframing (mobile_00/01 show full 3D). No reduced-motion or static fallback found (0 prefers-reduced-motion in CSS and JS).",
+  "evidence": [
+   "probe globals/contexts/canvas",
+   "probe/oryzo.ai.txt: baseFrag hero plate shader, Particles class, FINGER_DYNAMICS, hero prop physics",
+   "desktop_00.jpg gobo shadows",
+   "frames/0/f06-f07",
+   "Lusion BTS part 2 (splat hybrid, splat counts, texture-coverage distortion, hand scan, Vellum sachet, bark photogrammetry)",
+   "bundle: new Splats('/splats/props.sog'), new Splats('/splats/table_reflection.sog'), Postprocessing.addQueue, class Particles constants"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Fixed top: ORYZO SVG logo left (arrives from the hero wordmark), four 12px uppercase links right (INTRO / FEATURES / PRODUCT / CONTACT) with one sliding dashed indicator; the header flips to dark ink on light sections. The native scrollbar is hidden (scrollbar-width:none, ::-webkit-scrollbar display:none) and replaced by #scroll-indicator__bar, a 60x200px cream bar (100px tall on mobile) at the right edge that shows a rotated 'ORYZO-1 MODEL' label in the hero and then sits as a sliver that moves down with progress (desktop_01-07). Hovering the link group dims the whole page under a 75% brown blocker (.18s).",
+  "menu": "Mobile: dashed-outline rounded pill '• MENU' top-right.",
+  "buttons_links": "Uppercase 12px text links; dashed-circle chevron + 'SCROLL TO CONTINUE' cue; 'DECODE MESSAGE' dark pill in the flip-encryption beat (frames/0/f07).",
+  "unusual_interactions": [
+   "Hover the six-fingered hand ('TRY TO HOVER HAND'; six fingers confirmed by Lusion BTS: a scanned hand given an extra finger): per-finger spring dynamics, active only in the scroll window that also shows the AppleEfx rainbow edge",
+   "Desk props in the hero wobble when the cursor sweeps over them",
+   "Smart Flip Encryption gag: type into a field (default 'ORYZO', max 10 chars), flip the coaster, decode (ENCODE/DECODE flipper button)",
+   "Grip-locked Antislip: drag a zoom box to read a fake friction coefficient",
+   "Footer interactive particles (jury element)",
+   "Hero video card (Vimeo) opens a fullscreen overlay with its own play/pause/close cursor",
+   "Open-weight parody: a real 'MODEL (.OBJ)' download and a GitHub link (lusionltd/ORYZO-1, 'Code coming soon')",
+   "Water-bear easter egg: drag and shake the microscopic cork view rapidly and a tardigrade appears (Lusion BTS part 2; table/water_bear.buf + WATERBEAR.webp in the bundle; trigger code not traced)",
+   "Wipe the pointer over 'sustainability' to reveal running outline strokes of its letters (screen-paint driven)"
+  ],
+  "sound": "none observed",
+  "footer": "Jury-highlighted interactive particle field; newsletter label 'SUBSCRIBE TO LUSION'S NEWSLETTER:'; closing statement in 40.8px uppercase (two spans, the second right-aligned); 'SHARE WITH FRIENDS / IF YOU LIKE IT' micro labels; a dashed copy button that flashes orange and fades over 3s; hello@lusion.co; a disclaimer that the whole site is a fictional Lusion project."
+ },
+ "content_voice": {
+  "headline_style": "Deadpan hype-parody: short claims undercut by footnotes and asides; sentence-case giant words for the big gags, uppercase for the setups.",
+  "copy_tone": "Satirical AI-launch copy built from LLM-jargon puns: sampling temperature becomes thermal stability (a softmax p(T) legend: CREATIVE T=10 / BALANCED T=1 / DETERMINISTIC T=0.1), RoPE becomes 'Roundness Optimization & Perimeter Engineering', 'Runs on the edge / Refuses the cloud', product tiers ORYZO / Pro / Pro Max, an 'open weight' model released as an OBJ with a fake paper. Fake science captions with formulas, then a self-aware agency pitch at the end.",
+  "examples": [
+   "Powered by AI*  ->  * ADOBE ILLUSTRATOR",
+   "AI FILLS IN THE GAPS. WE SAID HIGH FIVE. IT HEARD SIX.",
+   "NOW 37.9% MORE CIRCULAR",
+   "THERMAL DIFFUSION MODEL (TDM) - A visualization, not a warranty",
+   "No compute. No tokens. So you can say \"please\" and \"thank you\" as much as you want, guilt free.",
+   "WE CAUGHT YOUR ATTENTION WITH A NON-EXISTENT PRODUCT."
+  ]
+ },
+ "tech_stack": {
+  "framework": "Astro (static, /_astro/hoisted.*.js single 1.1MB bundle)",
+  "libraries": [
+   "three.js r178 (Lusion fork)",
+   "GSAP SplitText 3.14.2 (split only; 0 gsap.to calls)",
+   "custom scrollManager (friction + keyboard; snap list present but unused)",
+   "custom math.fit/ease library",
+   "SecondOrderDynamics springs",
+   "@rive-app (rive.wasm)",
+   "Gaussian splats (.sog via a SplatsWorker)",
+   "MSDF text",
+   "Vimeo player",
+   "Adobe Fonts (Typekit)",
+   "Cloudflare analytics"
+  ],
+  "evidence": "probe libs_from_requests [astro, rive] + globals three_revision; saved HTML + /_astro/hoisted.CRsATKbF.js text at evidence/probe/oryzo.ai.txt (grep-verified: frictionCoeffFrom=2.1, frictionCoeffTo=1.9, wheelEaseCoeff=12, 25 new ShaderMaterial, 12 new RawShaderMaterial, 3.14.2, prefers-reduced-motion 0); /_astro/index.TL6TuoJb.css (69,220 bytes) re-fetched for the audit. Production tools per Lusion BTS parts 2-3: Houdini (KineFX, Vellum, GSOPs), Redshift, Postshot (splats), RealityScan, ZBrush, Figma, Rive, Procreate, Midjourney (concepts), Google Flow (AI-joke images)."
+ },
+ "performance_accessibility": {
+  "requests": 190,
+  "weight_notes": "~23MB declared (binary 'other' 7.44MB, mp4 7.19MB, webp 6.61MB, avif 0.59MB, png 0.58MB, JS 0.50MB, fonts 0.35MB). Heavy but streamed per section; 56,691px document.",
+  "reduced_motion": "0 reduced_motion_rules in CSS (probe) and 0 'prefers-reduced-motion' strings in the JS bundle: no reduced-motion path.",
+  "contrast_issues": "Cream #ffedd7 on #100904 is strong. Weak spots: small cream copy over the busy desk plate in the hero (desktop_00 intro paragraph over the grid mat), the frosted card copy, ~50%-opacity lines in the reading-fill titles, and the ~30% inactive review rows. Craft slip: the 8 <button> nodes fall back to Arial because buttons do not inherit font-family. The 12px 50%-opacity '* ADOBE ILLUSTRATOR' disclaimer (#ai-disclaimer opacity .5 on desktop) is a low-contrast footnote.",
+  "mobile_quality": "Good: no horizontal overflow, full WebGL retained and reframed (u_useMobileLayout), type rescaled on the 375-based unit (h1 99.84px), per-char blur and CPU particle count reduced on mobile. Caveat: body touch-action:none means phones get the custom drag-and-friction scroller instead of native momentum scrolling.",
+  "dev_scores": {
+   "semantics_seo": 7.6,
+   "animations": 8.6,
+   "accessibility": 7.0,
+   "wpo": 8.6,
+   "responsive": 7.8,
+   "markup": 7.2
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Progress-window char reveal (blur + slide) with a popped asterisk",
+   "why_it_works": "Text resolves exactly in sync with the camera move, reverses perfectly on scroll-up and never desyncs; overlapping windows read as a smooth wave rather than a stagger.",
+   "how_to_build": "Split with GSAP SplitText {type:'lines,chars', autoSplit:false} and never tween: each frame compute the section's local progress p (0..1). For char i of N, k = i/(N-1); a = expoOut(clamp((p - k*.3)/.4)); b = expoOut(clamp((p - k*.3)/.6)); opacity = a; filter = blur(${(1-a)*.1}em); transform = translate3d(${(1-b)*.25}ex,0,0). For the final char (a '*' <sup> at .4em) skip the slide and set scale = backOut(clamp((p-.6)/.4)). For the exit, multiply opacity by 1 - clamp((q - k*.2)/.8) with exit progress q. Skip the blur on mobile. Leave the final state in the HTML and only apply the start state once JS runs and the block is below the fold, so a stalled loop never leaves the headline invisible."
+  },
+  {
+   "technique": "Hero wordmark -> nav logo morph with masked line exits",
+   "why_it_works": "The brand name is the hero composition and then becomes the persistent logo, so the fold hands off instead of scrolling away.",
+   "how_to_build": "Drive the whole hero exit from one ratio l that goes 1 -> 0 over half a screen of scroll (the site: l = fit(hideScreenOffset, -1, -.5, 1, 0)). Measure the hero wordmark box (#hero-logo-ref: 7 spans + half a column wide, height = width*174/809) and the nav logo box; over the back half (t = cubicInOut(fit(l, .5, 0, 0, 1))) set transform: translate(dx*t, dy*t) scale(1 + (s-1)*t) with transform-origin top left on ONE logo element, so the wordmark literally becomes the nav logo. In parallel: SplitText {type:'words', mask:'words'} on the tagline and move each word translateY(0 -> -1em), first word first (windows [k*.3, k*.3+.67]); SplitText {type:'lines', mask:'lines'} on the card copy and move each line translateY(0 -> +1em), bottom line first (windows [k*.2, k*.2+.8]); shrink the card's dashed rule width to 0. Plate the desk toward the page background colour on the same ratio so the scene 'lights out' (frames/2 f00->f01)."
+  },
+  {
+   "technique": "3D -> 2D -> 3D scene handoff via cached frame + vector construction",
+   "why_it_works": "Switching rendering modes mid-scroll (render, blueprint, typography, render) makes a single object feel engineered and keeps the story continuous.",
+   "how_to_build": "three.js: render the 3D scene once into a WebGLRenderTarget (scene cache) and draw it as a full-screen quad; as a 2D orthographic camera zooms, blur the cached texture by |zoom-1|*100. Overlay a Canvas 2D construction layer at the projected screen position of the coaster, as the site does (#features-curve-canvas): draw ONE quarter circle as a cubic bezier with handle length r*0.5523 (4/3*(sqrt2-1)) into an offscreen canvas, stroke it white with setLineDash([3,3]) and blit it four times rotated; draw handle lines and nodes in #FF8539 (circle r=3px, squares 4px/3px half-size). Morph to a squircle by raising the handle factor above 0.5523 while the copy claims it got 'more circular'; fade in hand-drawn red pencil sketches behind it; then tween two concentric circles onto the O counters of the wordmark (inner/outer ratio 96/174) set in the display face at ~20% opacity. Cross-fade to a top-down 3D scene with the wordmark engraved on the object and animate a baked camera path into perspective. Each beat ~1 viewport of scroll."
+  },
+  {
+   "technique": "Magnifier filmstrip through a viewfinder frame",
+   "why_it_works": "A fixed dashed frame gives the eye an anchor while two synchronized strips (small outside, large inside) pass through it, so a lifestyle gallery reads as a camera loupe, not a carousel.",
+   "how_to_build": "Pin the section (height: calc(var(--vh)*1325) with a position:fixed inner). Frame: --main-height 80vh, --main-width 80vh*85/110 (570x734 at 900px tall). Draw the frame on a 2D canvas sized to the frame + 2*(1px border + 6px gap): a 1px #ffedd7 rectangle with setLineDash([3,3]) whose four sides draw from corner to corner as the section enters, 10px crosshair ticks 8px inside the edge, a 30%-alpha circle drawn as two half-arcs, and a 5px dot in the top-right corner that pops with backOut. Strip: thumbs at s = .35 of the frame (~200x257), opacity .5, gap = 8% of thumb width; gallery index = unClampedFit(progress, 5.5, 10.75, 0, 7) with each step eased sineInOut between .1 and .9 so items dwell. Inside the frame render the same sequence at 1/s and clip it to the frame (canvas or overflow:hidden), aligned so the item under the frame's centre matches, and hide the small thumbs behind the frame. For the headline that shrinks as the frame opens, keep the DOM span as the accessible text and animate a FLIP transform on it (or, like the site, draw it as one WebGL SDF quad lerping from a large dummy rect to the span's rect so the frame can overlap it). Give each item a small UI gag overlay pinned to its bottom edge."
+  },
+  {
+   "technique": "Pre-rendered plate + realtime object composite (gobo, contact shadow, bokeh)",
+   "why_it_works": "The desk, window shadows and props look photoreal because they are baked; only the hero object is live, so it costs little and the shadows still react when the object moves.",
+   "how_to_build": "Render the set (desk, mat, props) offline to one plate texture and draw it on a screen-aligned plane. In its fragment shader, for each pixel's world position: multiply by an analytic soft shadow of the realtime object (ray vs ellipsoid, radii matching the coaster), by a screen-space shadow map, and by a gobo (grayscale leaf/window texture projected through a light matrix, sampled with blur that grows with depth, applied as .5+.5*gobo so it never goes black); add blue-noise dithering. Put props that must move on alpha-textured cards with spring physics. Use a jittered projection with temporal accumulation (TAA) while the camera is still, a CoC-based bokeh pass, and prefiltered env maps as small .webp with a BRDF LUT for the live object."
+  },
+  {
+   "technique": "Friction scroll manager that keeps native scroll truthful",
+   "why_it_works": "Heavy, damped scrolling paces a 56k-px story so each beat lands, while the real document height and scroll position keep anchors, restoration and keyboard paging working.",
+   "how_to_build": "Set document.body.style.height to the content size and keep native scrolling as the source of truth (listen to 'scroll' and reset your target to window.scrollY). Intercept wheel and touch drags: accumulate delta into velocity, integrate with a friction coefficient interpolated 2.1 -> 1.9 by speed (weight divisor 5), ease toward the target with coefficient 12/s, derive fling velocity from the last 0.1s of drag history, clamp to the content range, then window.scrollTo({top, behavior:'instant'}). Map ArrowUp/Down to +/-100px and PageUp/PageDown to +/-one viewport; set history.scrollRestoration='manual'. The site ships no snapping (its snapList is never filled), so beats land on friction alone. Avoid its body touch-action:none on content pages, or approximate with Lenis {lerp:0.08}."
+  },
+  {
+   "technique": "Frosted card without backdrop-filter",
+   "why_it_works": "The blur is computed from the scene texture itself, so there is no banding, no halo and no pop, which is exactly where CSS glass over WebGL fails.",
+   "how_to_build": "Two different tricks, do not merge them. (1) Frosted card = a post pass after the scene is composed: each frame read the DOM card's getBoundingClientRect, draw a quad over it that takes 16 blue-noise-jittered taps of the finished frame with radius .08 x viewport height, and interpolate blur radius and tint alpha between two points A and B along a direction across the box (the hero uses A at the left edge and B at the right, so the frost can wipe in from one side); add a 1px #FFEDD6 outline and a 15% #FFEDD6 wash; the DOM card itself stays transparent. (2) Legibility scrim for text sitting directly on the scene: in the background shader compute d = sdBox(fragPx - rectCenter, rectHalf - r) for the paragraph's rect (1.5x its height, r = .75x height), blurRatio = linearstep(-r, 0, -d) * u_blurRatio, sample the background with radius blurRatio^3 * height/50, and mix 80% toward a colour already in the scene (#546743 green on the mat). Disable it on mobile like the site does."
+  },
+  {
+   "technique": "Height-clamped fluid type unit",
+   "why_it_works": "Display sizes follow width on ordinary screens but stop growing on short, wide ones, so a 164-unit headline never overflows a laptop's height.",
+   "how_to_build": ":root{--site-padding-x:3.125vw; --inner-width:calc(100vw - var(--site-padding-x)*2); --screen-unit:min(var(--inner-width)/1800, calc(var(--vh)*100)/1024*1.25); --h1:calc(164*var(--screen-unit)); --h2:calc(68*var(--screen-unit)); --link-header:calc(16*var(--screen-unit))} with --vh written from JS (innerHeight*.01); under 768px swap to a 375-based unit: --screen-unit:calc(var(--inner-width)/343); --h1:calc(96*var(--screen-unit))."
+  },
+  {
+   "technique": "Mirrored flank reveal around a centred object",
+   "why_it_works": "When a statement and its paragraph flank an object, revealing both from the object outward makes the object the source of the words, and the counter-motion keeps the composition balanced instead of reading as two unrelated fades.",
+   "how_to_build": "SplitText {type:'lines,chars'} on the left block (A) and the right block (B). With local progress p: for A use k = 1 - i/(N-1) (last char first, i.e. toward the object), for B use k = i/(N-1) (first char first, away from the object); opacity = fit(p, k*.3, k*.3+.6, 0, 1) for both, and the reverse window on exit. Move the blocks in opposite directions on one value n = fit(p, .5, 2, -1, 0, cubicOut) + fit(p, 2, 3.5, 0, 1, cubicIn): A translateY(n em), B translateY(-n em); on phones swap to translateX. Leave the text at full opacity in the markup and only apply the start state once JS runs."
+  },
+  {
+   "technique": "Direction-aware letter flipper",
+   "why_it_works": "The roll follows the hand: entering a link from the left rolls letters left-to-right, from the right the other way, so a tiny hover feels physically caused rather than canned.",
+   "how_to_build": "SplitText {type:'chars', mask:'chars'}; append a copy of each char absolutely positioned at top:100% inside it. On pointerenter record dir = sign(pointer deltaX). Each frame move ratio r toward 1 (hovered) or 0 at speed 2 + 4/charCount per second; for char i use b = i/(n-1) (or 1-b when dir < 0) and set translateY(-100% * backOut(clamp((r - b*.4)/.6))). Use it on nav and buttons only, not body links."
+  }
+ ],
+ "slop_risks": [
+  "Content hidden until a reveal fires: headline chars start at opacity 0 + blur and only resolve with progress (desktop_02 shows 'AI' still blurred), and the hero copy's load-in runs on a JS clock. With no reduced-motion path at all (0 rules), a stalled rAF leaves copy invisible. Copy must default to visible.",
+  "Rainbow viewport-edge glow (desktop_03, frames/2/f06-f07): works only as a parody of AI-assistant glow UI; a straight copy is the glowy multi-hue gradient and background-glow tell.",
+  "Background glow: a warm orange pool bleeds from the bottom-left corner of every dark screen (desktop_01-07). It is exactly the law's corner-glow tell, a radial gradient mix(#0f0804, #6d3916, pow(1-d,4)) from the bottom-left corner, drawn in a shader with blue-noise dither; it reads as motivated here only because it sits on the same side as the raking key light on the coaster. Copied as a CSS radial blob it is slop.",
+  "Bloom around the 'sustainability' word (frames/1/f03) is the law's 'bloom that is just the element's shape, blurred'. It survives as a one-beat transition into the cream flip; as a resting state it is slop.",
+  "One label treatment everywhere: 12px uppercase Halyard carries nav, footnotes, scroll cue, panel headings and share labels. Display sizes vary a lot, which saves it, but it is the tracked-caps-costume risk.",
+  "Dashed hairlines beside small labels (the ~65px rule above '* ADOBE ILLUSTRATOR', under the panel headlines): close to the eyebrow-tick tell without the footnote gag. The sliding dashed nav indicator is the law's accepted 'genuine sliding tab-indicator', not the nav-dot tell.",
+  "Frosted hero card: backdrop_filter count is 0; the glass is a BlurBox post pass over the finished frame (16 taps, radius .08vh, 1px cream outline, 15% wash). A CSS backdrop-filter copy over a busy WebGL canvas risks botched glass (banding, halo, pop), and the 1px cream outline on a translucent box is the hairline-light-border tell.",
+  "Cream #ffedd7/#f6e0c6 light section (frames/1/f04-f06) is the cream editorial background tell; it works only as a short contrast beat between dark scenes.",
+  "Hidden native scrollbar replaced by a custom 60x200 thumb, plus body touch-action:none and a friction wheel: the native scroll position stays real and ArrowUp/Down and PageUp/PageDown are handled, but the visible scrollbar and native touch momentum are gone (usability 7.51).",
+  "Buttons render in Arial (8 nodes) for lack of a font-family inherit reset: a small craft slip that breaks the single-typeface voice.",
+  "Glow around the hero video thumbnail: box-shadow 0 0 10px 3px #ff8c0099 plus inset #ffa000/#e07010 rings trace the card's own rounded shape, the law's 'bloom that is just the element's shape, blurred'; here it is part of the AI-product parody, copied straight it is slop.",
+  "Glowy pill buttons: .btn is radius 3em and the active product tier (ORYZO / Pro / Pro Max) gets an inner orange glow (box-shadow inset 0 0 .75em rgba(220,80,0,1)).",
+  "Testimonial prefab: the review rows are star rating + quote + NAME / ROLE ('EDAN K., NASA ASTRONAUT WANNABE' is Lusion co-founder Edan Kwan; 'GOL D. ROGER, OLD-SCHOOL PIRATE') under 'CUSTOM REVIEWS [364] 4.9/5'. The satire saves it; the structure is the law's testimonial card.",
+  "False-positive guard: the full-bleed grid in the hero is a rendered cutting mat, a physical prop lit by the gobo, not a CSS graph-paper background. Re-creating it as a CSS grid behind content would be the grid-background tell."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots + 2 mobile viewed individually; frames/0 and frames/2 all 8 frames; frames/1 and frames/3 f00/f03/f06; probe.json numbers; bundle and CSS grep (hoisted.CRsATKbF.js, index.TL6TuoJb.css). INFERRED: nav char-roll hover (from duplicated letters in DOM text), custom cursor behavior, preloader length, the ~180px first-screen wordmark size and ~250px 'it's wearable' size (estimated from screenshot glyph heights; measured h1 is 123px after scroll and the wearable span 36px end state), Literata used for formula captions, desktop override of the 375-based root tokens (root_vars show the mobile-first declarations). Clip durations are ~8s each at 60fps; beat timings are estimated from 1s frame spacing. | audit 2026-09-24 (adversarial): re-viewed desktop_00-07, mobile_00-01 and all 8 frames of frames/0, 1, 2 and 3 one at a time; grep-verified the saved HTML+bundle (evidence/probe/oryzo.ai.txt) and re-fetched the live CSS. Fixed: the measured char-reveal code belongs to the hero copy (time-based entrance, scroll exit), not 'Powered by AI'; the real ai-title values are blur .1em / .25ex / expoOut with a backOut asterisk, and the old how_to_build would have revealed right-to-left. Root tokens are desktop 1920-based and height-clamped, not mobile-first (the probe read the <768px block). The 216px h2 is a visibility:hidden proxy for WebGL text. halyard-text-variable is never loaded; buttons fall back to Arial. The hero ORYZO is the header SVG, not the h1. Mobile cap height corrected (~75px CSS, not 160); mobile intro ~18px left-aligned, not 24px right-aligned. Footer particles are CPU/JS (O(n^2)), not GPGPU. cursor:none is only the video overlay, which has a replacement cursor (false accusation removed). The hand uses per-finger springs, not the screen-paint FBO. 'drag-free' was wrong (grip zoom box). 'Mixed-weight' fill is an opacity fill. Gallery thumbs corrected (.35 x frame = ~200x257, not 4:5 150x250) and the steal rebuilt as a two-strip magnifier. Added missed signatures: pre-rendered desk plate + analytic ellipsoid shadow + gobo composite, desk props with spring physics, foil-sachet gag, viewfinder-to-gallery frame morph, magazine cover expanding into the next section, circle-to-squircle morph with sketches, sustainability cream flip with leaf gobo, sliding stretchy nav indicator, hidden native scrollbar, #bbac97 second ink, and LLM-pun copy. Still inferred: nav flip direction, construction-layer technology, wordmark-to-engraving match cut, preloader length, the 'Intro Interaction' element content. | audit 2 2026-09-25 (adversarial re-run): re-viewed desktop_00-07, mobile_00-01, all 8 frames of frames/0 and frames/2 and f00-f07 of frames/1 and frames/3 one at a time (plus a zoomed crop of frames/2/f01 and frames/3/f04); re-read AiSection, HeroSection, WearableSectionCanvas, WearableText, SustainabilityText, FeaturesCurveCanvas, LetterFlippers, SiteHeader, Preloader, AppleEfx, Bg, BlurBox, Particles and scrollManager in the saved bundle, the saved CSS, and the two first-party Lusion BTS posts in evidence/imagery/. Fixed: the frosted card is a BlurBox post pass, and the #546743 SDF blur sits behind the hero paragraph as a scrim (they were merged); hero copy is .body1 28.5px, not 24px, and body is 13.5px; the hero copy's scroll exit runs first-char-first (the 'reversed index' reading was a double inversion); card lines drop DOWN inside masks, bottom line first (the steal said -100%); 'it's wearable' is a WebGL SDF quad and the DOM span stays invisible on desktop (not a transform scale); the construction curves are white with #FF8539 handles on a Canvas 2D (not #dc5000, not WebGL/Rive); the sustainability fill runs right-to-left; the warm corner pool is the Bg radial gradient, not the plate shader's light term; the nav line does not stretch (both edges share one lerp rate); snapList is dead code, so no section snapping and the snap steal was rewritten; keyboard scrolling exists; formulas are SVG paths, not Literata; RISE masthead is not DOM text. Added: mirrored flank reveal, direction-aware letter flipper (verified, replaces 'inferred direction'), props fly-in on load, construction-drawing preloader, canvas-drawn viewfinder with self-drawing border and REC dot, masthead-behind-cup and odometer, AppleEfx stops and pulse from the scroll bar, nav-hover page dimming, pointer/gyro camera look, screen-paint outline on 'sustainability', Gaussian-splat hybrid for the table scene with BTS splat counts, post-chain order, coffee-bean footer particles, #FF8539 accent, four new slop checks (thumbnail bloom, glowy pill tiers, testimonial prefab, cutting-mat grid false positive). Still inferred: RISE masthead render path, water-bear trigger code, exact frame timing of the clips (1s spacing)."
+}

@@ -1,0 +1,329 @@
+{
+ "slug": "ponpon-mania",
+ "title": "Ponpon Mania",
+ "live_url": "https://ponpon-mania.com/",
+ "award": "Awwwards Site of the Day, Oct 22 2025 (Honors, SOTD). Credits: Justine Soulié (illustration), Patrick Heng (creative development)",
+ "scores": {
+  "overall": 7.64,
+  "design": 7.76,
+  "usability": 7.12,
+  "creativity": 8.12,
+  "content": 7.78,
+  "dev": {
+   "overall": 7.72,
+   "semantics_seo": 7.2,
+   "animations": 9.0,
+   "accessibility": 7.2,
+   "wpo": 8.2,
+   "responsive": 7.6,
+   "markup": 7.0
+  }
+ },
+ "industry": "Art & Illustration / Games & Entertainment: self-published interactive web comic (bande dessinée) about a megalomaniac sheep",
+ "signature": "A hand-drawn comic rebuilt as an OGL (WebGL) engine: every panel is its own little scene with its own perspective camera, rendered to a texture and laid on a paper 'board', with the illustrator's line work kept alive by a stepped-time boil, so reading means a camera flying from cover to page to panel instead of scrolling a document.",
+ "first_screen": {
+  "composition": "OBSERVED: desktop_00 is the preloader: flat #FFF6F0 (CSS rgb(255,246,240); JPEG sample #FFF6EF), a 180px black circular sheep-head badge dead centre and a pale-ochre (#EED9AE sampled) hand-drawn squiggle progress line (~310px wide, y≈765); the black #171717 cookie bar is already docked at the bottom. desktop_01-07 (home, doc_height 900, no scroll): one full-viewport canvas. An illustrated party scene (sheep with arms up on an orange podium, grey wolf waiter with beers, green dinosaur with a phone and a frying pan, teal skyscrapers, speakers, orange sky #FFAD13, pink clouds #FA93C0, red floor #F01E29) is seen through a huge sheep-head silhouette (a dome plus two horizontal ear lobes, the same shape as the logo on the podium) outlined in ~2px black, on flat periwinkle #7E7EFF (the shader's uBackgroundColor; JPEG samples read #807FFF). A band of pink clouds crops the bottom edge. Top-centre nav cluster: 'chapters' (x≈538) · SVG wordmark 'ponpon mania' in cream #FEECE3 (~140x50px) · 'about' (x≈890), 15px Libre Franklin 700. EN | FR top-right in 10px. A black #171717 pill CTA 'read now' (35px Arial 600, ~200x60px) sits bottom centre over the art. A ~145px rotating circular text badge ('TA BD INTERACTIVE ! YOUR INTERACTIVE COMIC !') with the flower mark sits top-right. Fullscreen-toggle icon bottom-left. Across 01-07 the silhouette breathes in scale (01 and 05 spill past the top and side edges, 02/03/07 sit inside the frame) and its ears flap; characters blink and change expression; small face balloons (blue, pink, red, orange, ~50-80px) rise on black strings.",
+  "what_owns_it": "image",
+  "display_type_px": 35,
+  "evidence": [
+   "probes/ponpon-mania/desktop_00.jpg",
+   "probes/ponpon-mania/desktop_01.jpg",
+   "probes/ponpon-mania/desktop_02.jpg",
+   "probes/ponpon-mania/desktop_03.jpg",
+   "probes/ponpon-mania/desktop_05.jpg",
+   "probes/ponpon-mania/desktop_07.jpg",
+   "probe measure.largest_text, bg_colors",
+   "probe measure.doc_height=900",
+   "bundle: home portal shader uBackgroundColor #7E7EFF"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Libre Franklin",
+    "role": "ui",
+    "classification": "grotesque sans (variable 100-900)",
+    "foundry": "Impallari Type (Google Fonts)",
+    "source": "probe fonts_loaded 'Libre Franklin 100 900 normal', font_families_rendered (10 nodes); carries only 9-15px UI text"
+   },
+   {
+    "name": "Arial",
+    "role": "ui",
+    "classification": "system grotesque",
+    "foundry": "system",
+    "source": "probe: every <button> (read now, EN/FR, accept/decline) renders Arial because buttons do not inherit font-family"
+   },
+   {
+    "name": "ponpon mania wordmark",
+    "role": "display",
+    "classification": "custom hand-lettered heavy rounded grotesque with an italic swash 'n'",
+    "foundry": "custom SVG",
+    "source": "screenshots + probe media.svg=6"
+   },
+   {
+    "name": "comic lettering",
+    "role": "accent",
+    "classification": "hand-lettered caps baked into panel textures (PONPON!, LET'S GOOO!, A WHILE LATER)",
+    "foundry": "illustrator",
+    "source": "element frames 1/f00-f07 (raster in .basis textures)"
+   }
+  ],
+  "display_size_px": 35,
+  "body_size_px": 13,
+  "scale_notes": "HTML type is deliberately tiny and utilitarian: probe font sizes 9px x5, 13px x3, 15px x2, 10px x2, 12px x1, 7px x1, 35px x1. The body computes to 9px, but only hidden SEO copy (both H1s) uses it; the visible reading sizes are 13px (cookie line) and 15px (nav), so 13 is recorded as body. The display voice lives in the SVG wordmark and in the illustrators' lettering inside the textures; the only large HTML text is the 35px CTA pill. On About (frames/2/f06) the sentence 'the interactive adventure of a megalomaniac sheep' is set word by word in a heavy grotesque that shrinks along the sentence (≈35-40px for 'the'/'interactive' down to ≈9px for 'sheep' in the 960px jury frame) and steps downward, as if the words recede in depth.",
+  "tracking_leading": "No negative tracking: nav letter-spacing 0.015px (~0.001em), line-height normal throughout.",
+  "case_and_style": "All-lowercase UI ('chapters', 'about', 'read now', 'accept'/'decline' via text-transform:lowercase); only EN/FR uppercase. Chapters are titled like track listings with a zero-padded number glued to the title: '01.welcome to Marny', '03.sheep don't sleep', '04.scratch that !'.",
+  "signature_moves": [
+   "Lettering lives inside the art, the HTML layer stays quiet and small",
+   "Sound-effect lettering escapes the panel and the page edge onto the backdrop ('PONPON' letters in frames/1/f00)",
+   "Lowercase pop-record voice for every label",
+   "About sentence exploded word by word, shrinking as it recedes",
+   "Chapter names formatted as numbered tracks; titles over 20 characters become a duplicated marquee ('title _ title')"
+  ],
+  "mobile": "mobile_00/01 (390px): no silhouette is visible because the portal shader multiplies the mask scale by 1.5 when aspect < 0.9, pushing the outline off a portrait screen; the art reads full-bleed, cropped to the sheep. The wordmark grows into the headline (~180 css px wide) with the byline 'by Justine Soulié and Patrick Heng' in bold cream beneath it; 'chapters' and 'about' pin to the top corners; EN | FR moves to the bottom-left; the rotating badge and fullscreen icon are absent; 'read now' pill ~140px wide. mobile_measure largest text 20px, no horizontal overflow."
+ },
+ "color": {
+  "mode": "section-shifting",
+  "base": "#7E7EFF flat periwinkle field around the home mask (portal shader uBackgroundColor, identical to the Awwwards palette; JPEG samples read #807FFF); html/body #171717; preloader #FFF6F0",
+  "ink": "#171717 (pills, cookie bar, badge) plus black illustration line work; cream #FEECE3 for text on colour",
+  "accents": [
+   "#FFAD13 sunset sky (home)",
+   "#FA93C0 cloud pink (Awwwards #F894C0)",
+   "#F01E29 red floor",
+   "balloon palette from code: #7E7EFF, #EB8DB7, #ED1C25, #F87800",
+   "#E5B58C tan: the home mask outline shifts from black toward it where the mouse fluid trail is strong (uOutlineColor)",
+   "#E76505 orange + #DF76AE pink fluid bands (chapter 1 reader, sampled)",
+   "#F1DCD7 comic paper cards (sampled); page-board edge tint vec3(1, .9, .92) ≈ #FFE6EB in the board shader",
+   "chapter menu backdrop = a per-chapter two-colour shader field plus a huge disc (uColor/uColor2/uMask): ch.1 orange disc on pink-orange, ch.2 periwinkle disc on pink-violet, ch.4 red disc with yellow rings, ch.5 periwinkle disc on red"
+  ],
+  "ratio": "home: ~35% periwinkle / ~58% illustration / ~7% black UI (pill, badge, cookie bar)",
+  "section_shifts": "Yes, per route and per chapter: home = periwinkle field; chapter menu = a huge disc over a two-colour shader field, paired per chapter but not simply the cover colour (ch.1's green cover sits on an orange disc, frames/0/f00; ch.4 red/yellow, f03; ch.5 periwinkle on red, f05); reader = two-colour warped fluid bands that drift from orange-dominant to pink-dominant as you progress (frames/1/f00 -> f07); transitions pass through flat periwinkle and orange (frames/2/f02-f03); About = flat pale pink. The chrome flips with the route: wordmark and nav are cream over the home art, black #171717 on chapters, reader and About (frames/2/f00-f06).",
+  "texture": "Speckle grain in the backdrop shaders, visible at colour boundaries (frames/1/f00, f03), re-seeded at 10 steps per second (hash2(uv + floor(uTime*10)/10)) so it crawls like film grain; it sits BEHIND the comic cards. Page boards carry a paper normal map (paper-normals-map) that both refracts (±0.02 UV) and lights the art. Twinkle/sparkle particles in the home sky. No texture over UI text.",
+  "notes": "Poster-saturated, but every colour belongs to the illustration palette; UI chrome stays strictly black and cream."
+ },
+ "layout": {
+  "grid": "No column grid. One absolutely positioned full-viewport canvas (probe canvas 1440x900, position absolute; 13 fixed DOM elements for the chrome) with a thin HTML overlay: nav trio on the central axis (items ±175px from centre, y≈35), lang switch 30px from right, fullscreen icon 20px from bottom-left, CTA centred at y≈775, 'legal notice & terms of use' 9px bottom-right.",
+  "density": "balanced on home; dense inside comic pages",
+  "alignment": "strict central-axis symmetry for chrome; illustration composed symmetrically around the sheep",
+  "composition_moves": [
+   "Whole scene seen through a mascot-silhouette portal on a flat field",
+   "Comic page as a physical card ~55% of viewport width (2x2 panels or 2 + 1 wide) with the neighbouring pages peeking at both edges and bending away in depth",
+   "Click-zoom from page to a single panel filling the card",
+   "Chapter covers in a coverflow: centre cover ~48-54% width, side covers ~25%, turned about ±8-10deg",
+   "inferred: a faint mirrored reflection of the cover under the player pill (frames/0/f00, f03 bottom edge)",
+   "Panels that break out of the page frame with depth offset (frames/1/f07 bus panel)",
+   "About sentence scattered in receding sizes with ragdoll sheep sprites and a vertical 4-dot progress rail at the right edge (frames/2/f06)"
+  ],
+  "section_rhythm": "Route-based, not scroll sections: home (one frozen screen) -> chapters (coverflow + player pill) -> reader (horizontal page carousel, panel zoom) -> about (vertical scroll with physics).",
+  "mobile_adaptation": "Mask scaled 1.5x on portrait so its outline leaves the screen and the art reads full-bleed around the hero character; wordmark enlarged into the headline with byline; EN | FR drops to bottom-left; cookie bar becomes a two-line fixed footer."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis in the bundle (41 hits; options smoothWheel:true, wheelMultiplier/touchMultiplier 1 with a Firefox-specific wheelMultiplier), used on About; home does not scroll (doc_height 900).",
+  "preloader": "#FFF6F0 screen, 180px black circle sheep-head badge centred, pale-ochre hand-drawn squiggle progress line below (desktop_00). Probe settled at 6.6s and still caught the loader at shot 00.",
+  "intro_sequence": "From the portal shader: uIntro 0 -> 1 scales the silhouette up from nothing (s *= uIntro*1.05), slides it up from a +0.15 UV offset, and fades the scene in from black (texel mixed to black while uIntro is low). Balloons pop in with scale 0 -> 1 on elastic.out(1.7, 1) over 2s after a random 0.5-1s delay while their strings thicken 0 -> 7px linearly over 2s. From frames/3 f00 -> f01 (~1.2s): 'read now' grows from a ~70px label into the full pill and the rotating badge appears. The wordmark does NOT shrink in the jury clip: frames/3 keeps a large wordmark (~230px wide in the 960 frame) plus byline for the whole clip, while the live probe at 1440x900 shows a ~140px nav-slot wordmark without byline. Whether that is aspect-dependent (the jury capture is 4:3) or a later revision is unverified.",
+  "scroll_techniques": [
+   "route-based camera moves instead of document scroll",
+   "horizontal page carousel (drag/arrows) whose off-centre pages bend back in depth and squash/stretch with drag velocity",
+   "camera dolly from page into a single panel",
+   "scroll-linked physics and kinetic words on About",
+   "breathing, ear-flapping silhouette mask (time-driven, not scroll)"
+  ],
+  "text_animation": "About: the sentence 'the interactive adventure of a megalomaniac sheep' is split into words at receding sizes and animated on scroll (frames/2/f06). GSAP SplitText 3.13.0 and ScrollTrigger 3.13.0 are bundled (license headers in the main chunk); which views call SplitText was not traced. The chapter pill enters from {autoAlpha:0, y:100, scale:0, rotationX:-100}; titles over 20 characters render twice ('title _ title') as a marquee. Word staggers use .02-.06.",
+  "image_animation": "Illustrated elements are OGL planes driven by sprite-sheet uniforms (uIndexX/uIndexY/uSpriteWidth/uSpriteHeight/uFrame; uSpriteWidth defaults mostly 4 or 2 columns). The 'breathing' is a fragment-shader line boil, not vertex displacement: uDisplacement/uDisplacementY appear in 37 fragment shaders and 0 vertex shaders, as sTime = floor(uLocalTime*uFrame*uSpeed)/uFrame; dispX = sin(sTime*4 + uv.x*50 + uv.y*50)*0.0015*uDisplacement, so UVs jitter in steps (floor(uLocalTime*5.) x21, *12. x10, *10. x6) like redrawn animation. Some rigs weight the offset by painted masks (hair sways, face bobs). Each panel is its own scene with a perspective camera (fov 43-45, parallaxX .1-3, cameraLook/Pan coefficients) rendered to a texture. 15 named per-panel fragment programs: panel-fisheye, panel-dream, panel-glow, panel-kebab, magic-woosh(-deco), golden-bagel, bagel-letter, bagel-character(-bg), bagel-screen-logo, bg-pink-screen, overlay-screen, roof-floor, scroll-screen-packer; one B/W panel shader keys pure-blue and pure-green areas of the art and replaces them with animated greys. Home balloons are OGL sphere meshes (not Matter.js): a face sprite, an inverted-hull outline (#171717 sphere scaled 1.04, cullFace FRONT) and a 20-segment spring-chain string. A 2048-particle GPGPU firework system (gravity -0.01) is also in the bundle.",
+  "page_transitions": "home -> chapters: the camera dollies onto the sheep while pink clouds rise from the bottom and the chrome flips from cream to black (frames/2/f00 -> f01). chapters -> reader: a flat periwinkle field with the first page card sliding in from the right and a pink blob (f02), then a cream scalloped cloud carrying the page over orange/periwinkle fluid bands (f03). In the reader, cream wool-cloud shapes drift across the screen and over the nav between pages (frames/1/f06). The active nav item gets a 1.5px black rounded outline pill (CSS border:1.5px solid; frames/2/f00, f01, f06); the same pill shows on hover (f05, cursor on 'about').",
+  "hover_micro": [
+   "Grab/pointing-hand cursor over comic pages",
+   "< and > arrows appear at the card edges when zoomed into a panel (frames/1/f01, f04)",
+   "Active/hovered route = 1.5px outline pill around 'chapters'/'about'",
+   "Rotating circular badge",
+   "Cursor repels the balloons (repulsion radius 1-2 world units, strength .05; the balloon tilts 30x the push) and parallaxes the layered home scene",
+   "A mouse-driven fluid sim (OGL fluid: velocityDissipation .9, pressureDissipation .95, curl 1, radius .15) nudges the home render and offsets its green channel, giving magenta/green fringes along the cursor path (frames/3/f02, f05)",
+   "Page boards dent toward the cursor (z up to -0.3) and their paper edge thickens slightly on hover",
+   "uHovered scales the silhouette up to 1.1x (hover target inferred: the CTA)"
+  ],
+  "cursor": "Native cursor, switching to a grab hand over pages; probe cursor_none = 0.",
+  "easing_curves": [
+   "CSS cubic-bezier(0.4,0,0.2,1) x2 (probe)",
+   "GSAP (counted as ease:\"...\" literals in the bundle): power2.out x87",
+   "power2.in x66",
+   "cubic.out x61",
+   "power2.inOut x46",
+   "linear x45",
+   "cubic.in x40",
+   "expo.out x37",
+   "elastic.out(1.1, 0.8) x30",
+   "back.out x25",
+   "expo.inOut x12",
+   "back.in x12",
+   "power4.out x10",
+   "elastic.out(2, 0.7) / elastic.out(1.3, 0.4) / elastic.out(1, 1) x8 each",
+   "elastic.out(1.7, 1) on balloon spawn"
+  ],
+  "duration_range_ms": "CSS 100-3000 (0.4s x13, 0.2s x8, 0.1s x7); GSAP duration 1s x123, .3s x91, .2s x42, .4s x36, .5s x35, 2s x32, .6s x31, .24s x31, 1.2s x28, 1.3s x26, 3s x12",
+  "stagger_ms": "20-150 (stagger .05 x5, .06 x4, .15 x3, {each:.03}, {stagger:.04}, .02)",
+  "choreography_notes": "The world moves, the chrome never does: nav, pill and lang switch stay locked while camera, mask and sprites animate. Springy elastic/back eases are reserved for character-scale pops (balloons, badges, stickers); expo/cubic handle camera and page moves. Time is deliberately quantised: line boil at 5/10/12 steps per second, page-edge jitter at 5 steps per second, grain at 10, so the motion reads drawn rather than tweened. Sprite loops run continuously, so the screen is never still.",
+  "evidence": [
+   "frames/ponpon-mania/1/f00-f07",
+   "frames/ponpon-mania/2/f00-f07",
+   "frames/ponpon-mania/3/f00-f07",
+   "frames/ponpon-mania/0/f00,f03,f05",
+   "probes/ponpon-mania/desktop_01-07.jpg",
+   "bundle grep: /_nuxt/CfE0pqJa.js + 9 lazy chunks (ease literals, uniforms, portal shader, board shader Pw/$F, balloon class, Matter ragdolls, Lenis, detect-gpu)"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "illustration",
+  "art_direction": "Flat-colour cartoon with 2-3px black ink outlines. The home is a saturated sunset (orange/pink/red/teal); inside the comic, panels are mostly black-and-white ink on cream paper with one spot colour (pink/red) for chapter 1, pure B/W for later scenes. Chapter covers are mock vinyl sleeves with shrink-wrap plastic glare, round printed stickers and a 'PARENTAL ADVISORY' parody label.",
+  "treatments": [
+   "mascot-silhouette portal (RGBA mask texture: R = fill, G = outline) that breathes and flaps its ears",
+   "sprite-sheet frame animation on WebGL planes",
+   "stepped-time UV line boil (5/10/12 steps per second)",
+   "page boards with paper normal-map lighting and refraction, 5-step-per-second edge jitter",
+   "plastic-sleeve sheen on covers (plastic-normal-map.jpg + stickers.png in the texture manifest)",
+   "inverted-hull toon outlines on 3D balloon spheres",
+   "sparkle particles",
+   "wavy hand-drawn panel borders",
+   "panels popping out of the page with depth",
+   "chroma-key regions in B/W panels replaced by animated greys",
+   "10fps grain in the backdrop shaders"
+  ],
+  "crops_and_ratios": "Comic pages near-square cards (~530x530 in a 960 frame, ~795px at 1440); panels 2x2 or 2 top + 1 wide bottom; album covers 1:1; home art bleeds off every edge inside the mask.",
+  "formats": "probe media: img 0, video 0, svg 6; 25 Basis Universal .basis texture URLs from r2.ponpon-mania.com (3D bytes 6.95MB) + 2.78MB wasm transcoder; JS 177KB; woff2 29KB. The texture manifest is authored as .png/.jpg ids and rewritten at load to .basis, or -small.basis on small/low-tier devices.",
+  "evidence": [
+   "probes/ponpon-mania/desktop_03.jpg",
+   "frames/ponpon-mania/0/f00.jpg",
+   "frames/ponpon-mania/0/f03.jpg",
+   "frames/ponpon-mania/1/f00.jpg",
+   "frames/ponpon-mania/1/f06.jpg",
+   "frames/ponpon-mania/1/f07.jpg",
+   "probe assets_3d, bytes_by_type_declared",
+   "bundle texture manifest (home, albums, chapter1-3)"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "OGL (verified from its source strings in the main chunk: 'gl not passed as first argument to Geometry', 'active attribute ... not being supplied', Renderer isWebgl2 / gl.renderer, a GPGPU helper with addPass({textureUniform:'tMap'}), Polyline for ropes, and OGL's post-fluid solver). No THREE global. (The earlier '5 ogl string hits' were false positives inside 'google'.) Probe contexts: webgl 5, webgl2 2.",
+  "role": "2.5D illustrated world: layered sprite planes in per-panel perspective scenes rendered to textures, composited onto paper page boards, plus a fullscreen fluid-gradient backdrop per chapter and a masked portal on home",
+  "assets": [
+   "https://r2.ponpon-mania.com/textures/about/ktx/ponpon-sprite-1.basis",
+   "https://r2.ponpon-mania.com/textures/about/ktx/ponpon-parachute-sprite.basis",
+   "https://r2.ponpon-mania.com/textures/about/ktx/about-ballons.basis",
+   "https://r2.ponpon-mania.com/textures/chapters/1/ktx/c1b1p2-ponpon.basis",
+   "https://r2.ponpon-mania.com/textures/chapters/1/ktx/c1b1p4-stage-depth.basis",
+   "https://r2.ponpon-mania.com/textures/chapters/1/ktx/c1b10p1-big-sprite.basis",
+   "(25 .basis URLs total, named c<chapter>b<page>p<panel>-<layer>)"
+  ],
+  "materials_lighting_post": "Mostly unlit textured planes. Home: the scene renders to a target, then a portal plane samples it through ponpon-mask.png (R = inside, G = outline) over #7E7EFF; mask scale = aspect term + sin(uTime*.9)*.05, x uIntro*1.05, x1.1 on hover, x1.5 on portrait; ears wobble maskUv.y += sin(uTime*3)*.04; the fluid texture shifts UVs and samples green at an offset (a one-channel chromatic split). Page boards (vertex Pw): hover dent, sin float 0.02, off-centre pages pushed back by easeIn(|screenX|/8)*(.5 - velocity*.05), squash/stretch by velocity; fragment $F: paper normal-map refraction and diffuse light, edge band 0.012 (+0.003 on hover) jittered with time stepped at 5 per second. Shader stats: 264 GLSL strings; uLocalTime x806, fract(sin()) hash x180, smoothstep x173, snoise x42, fbm x6. Balloons get a fake light (0.7 + 0.3*diffuse) and an inverted-hull outline. No post stack found.",
+  "interaction": "Mouse parallax, fluid distortion and balloon repulsion on home; click-to-zoom camera into panels with per-panel camera pan/look; arrow/drag navigation across bending pages; chapter coverflow; Matter.js ragdolls on About",
+  "performance_tactics": "detect-gpu getGPUTier (html class 'is-gpu-3'); DPR capped by tier (tier 3: 1.5-2, tier 2 Firefox 1.25, tier < 2 1.15, otherwise 1.5); -small.basis textures when the short side is under 770px on mobile or the tier is < 1; Basis Universal transcoded per device (17 WEBGL_compressed_texture_* strings); sprite atlases; per-chapter lazy texture sets on Cloudflare R2; per-route loading delays tuned by tier; blobby geometry and auto-scroll disabled below tier 1; one shared canvas.",
+  "fallback_mobile": "Same canvas at 390px; the portal mask is scaled 1.5x on portrait so the art reads full-bleed (mobile_00/01); small texture set and lower DPR on weak devices (from the performance class).",
+  "evidence": [
+   "probe globals/contexts/assets_3d",
+   "bundle grep: OGL source strings, portal shader XJ, board shaders Pw/$F, balloon class, GPGPU fireworks, performance getters (DPR, useSmallTexture), detect-gpu",
+   "probes/ponpon-mania/mobile_00.jpg"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Fixed centred trio 'chapters' · wordmark · 'about' (cream over the home art, black on every other route); the active route gets a 1.5px black rounded outline pill; EN|FR top-right; fullscreen toggle bottom-left.",
+  "menu": "'chapters' opens a coverflow of album-sleeve covers over a big disc, with a black player pill (play button, '01.welcome to Marny', 'PonponMania Vol. I', a timecode, prev/next); locked chapters show a padlock in place of play (frames/0/f03, f05); 'support us on ko-fi' outline pill bottom-right. The timecode is fake: the component builds it as `${NN}:06`, so '01:06', '02:06', '05:06' are chapter numbers dressed as track lengths.",
+  "buttons_links": "Black #171717 pills (radius 25-42px) with cream text; the active nav pill is a 1.5px black outline; 'support us on ko-fi' is a thin white/cream outline pill with cream text over the coloured chapter backdrop (frames/0/f00); no fills or lifts observed on hover.",
+  "unusual_interactions": [
+   "Click a comic page to fly into a panel, arrows to step panel by panel, reading-progress bar inside the bottom pill",
+   "Face balloons on home: 3D spheres with inverted-hull outlines on spring-chain strings, pushed away by the cursor and recycled when they float off the top (max 8)",
+   "Matter.js ragdoll sheep on About (box bodies joined by constraints) that you can grab",
+   "Coverflow chapter picker styled as a record shelf",
+   "Fullscreen mode toggle"
+  ],
+  "sound": "None found: no AudioContext, Howler, <audio> element or audio URL in the bundle or HTML. The 'player' is a skeuomorphic chapter picker; its timecodes are generated labels, not track lengths.",
+  "footer": "No footer; 'legal notice & terms of use' 9px fixed bottom-right."
+ },
+ "content_voice": {
+  "headline_style": "all-lowercase, playful, pop-record parody",
+  "copy_tone": "cheeky and self-aware ('Hey you ✨' cookie line, parental-advisory stickers, chapter names as song titles)",
+  "examples": [
+   "the interactive adventure of a megalomaniac sheep",
+   "01.welcome to Marny",
+   "Hey you ✨ This site uses cookies to measure the traffic."
+  ]
+ },
+ "tech_stack": {
+  "framework": "Nuxt (window.__NUXT__, /_nuxt/ hashed chunks)",
+  "libraries": [
+   "OGL (renderer, GPGPU, Polyline, post-fluid solver)",
+   "GSAP 3.13.0 + ScrollTrigger 3.13.0 + SplitText 3.13.0 (bundled; 72 'gsap' hits)",
+   "Lenis-style scroller (41 'lenis' hits; wheel/touchMultiplier 1)",
+   "Matter.js 0.20.0 (About ragdolls: rectangle bodies + Constraints stiffness .4/.5/1, constraintIterations 3, sleeping, MouseConstraint stiffness .1 damping .01)",
+   "detect-gpu",
+   "Basis Universal transcoder (wasm)",
+   "Tweakpane 4.0.5 (debug panel shipped in the bundle)",
+   "Libre Franklin via Google Fonts",
+   "Cloudflare R2 texture CDN",
+   "nuxt-gtag (Google Analytics)"
+  ],
+  "evidence": "probe libs_from_requests ['nuxt'], globals __NUXT__, top_hosts r2.ponpon-mania.com x177; bundle grep of CfE0pqJa.js (2.3MB) + BRU4-Z4F, Bg17DEuf, C3591o4d, DXexkJEA, FKj1pruU, WxOdUsO3, kRp8jEf0, demhRTyb, koeOL3k0 (license headers, OGL error strings, matter-js version string, new $w(\"4.0.5\"))"
+ },
+ "performance_accessibility": {
+  "requests": 242,
+  "weight_notes": "~10MB first load: 6.95MB .basis textures + 2.78MB wasm + 177KB JS + 29KB woff2; textures are GPU-compressed so VRAM stays low. Loader holds the screen ~6s.",
+  "reduced_motion": "None: probe reduced_motion_rules 0; 'prefers-reduced-motion' absent from JS and CSS. Sprite loops, wobble and physics never stop.",
+  "contrast_issues": "Cream #FEECE3 15px nav text over the orange sky #FFAD13 computes to ~1.6:1 (fails badly); cream over periwinkle #7E7EFF is ~2.9:1. H1s exist only as 9px SEO text; <html lang> empty (probe lang ''); buttons fall back to Arial. The comic itself is canvas-only, so its text is invisible to assistive tech.",
+  "mobile_quality": "Good: dedicated crop and type scale at 390px, no horizontal overflow (mobile_measure), same WebGL experience.",
+  "dev_scores": {
+   "overall": 7.72,
+   "semantics_seo": 7.2,
+   "animations": 9.0,
+   "accessibility": 7.2,
+   "wpo": 8.2,
+   "responsive": 7.6,
+   "markup": 7.0
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Mascot-silhouette portal over a flat field",
+   "why_it_works": "The brand mark becomes the window onto the world, so the logo is felt rather than stamped on, and a slow breath plus flapping ears keep a still screen alive.",
+   "how_to_build": "Render the scene to a render target. Author the silhouette as one RGBA texture: R = inside, G = the ink outline band, drawn by hand so the line keeps its wobble. Fullscreen quad fragment: s = mix(0.99, 1.1, aspectTerm) + sin(uTime*0.9)*0.05; s *= uIntro*1.05 * mix(1.0, 1.1, uHover); if (aspect < 0.9) s *= 1.5; maskUv = scaleUV(fitUv(uv, 2:1 texture), s); weight regions by UV: earL = cmap(maskUv.x, 0., .35, 1., 0.)*cmap(maskUv.y, .5, .9, 0., 1.) (mirror for earR); maskUv.y += (earL + earR)*sin(uTime*3.0)*0.04; maskUv.y += (1.0 - uIntro)*0.15; m = texture2D(uMask, maskUv); col = mix(scene, #7E7EFF, 1.0 - m.r); col = mix(col, ink, m.g). Intro: tween uIntro 0 -> 1 (the scene also fades up from black while uIntro is low). Optional: offset the green channel by a mouse fluid texture (uv + fluid.xy*tiny) for a one-channel chromatic smear along the cursor path."
+  },
+  {
+   "technique": "Sprite sheets plus a stepped line boil on WebGL planes",
+   "why_it_works": "The illustrator's hand-drawn frames stay hand-drawn (no tweened puppet look), and a jitter that updates only a few times per second makes still art feel redrawn, like classic animation boil.",
+   "how_to_build": "Pack each character loop into an atlas (Basis/KTX2). Per-plane uniforms uIndexX, uIndexY, uSpriteWidth = cols (usually 4 or 2), uSpriteHeight = rows; vUv = (uv + vec2(uIndexX, uIndexY)) / vec2(cols, rows); advance frames from a clock at 8-12fps, not per rAF. Boil in the FRAGMENT shader: float sTime = floor(uLocalTime*uFrame*uSpeed)/uFrame (uFrame 5, 10 or 12); vec2 d = vec2(sin(sTime*4. + vUv.x*50. + vUv.y*50.), cos(sTime*4. + vUv.x*50. + vUv.y*50.))*0.0015*uDisplacement; sample the atlas at uv + d and discard outside the frame rect. Multiply d by a painted mask channel (hair, face) when only part of a character should move. Name textures by chapter/page/panel/layer (c1b1p4-stage) so lazy-loading per page is trivial."
+  },
+  {
+   "technique": "Page -> panel camera zoom reader",
+   "why_it_works": "It keeps the comic grammar (read a page, then a panel) while turning page turns into cinematic camera moves.",
+   "how_to_build": "Give each panel its own small scene and perspective camera (fov ~45, parallaxX .1-3, cameraLook/Pan coefficients that follow the mouse), render it to a texture, and place those textures on the page 'board'. On click compute the camera position/zoom that fits the panel rect into the card with ~8% margin; gsap.to(camera, {x, y, zoom, duration:1.0, ease:'expo.inOut'}). Show < > arrows at the card edges; step through a flat panel list; neighbour pages sit at x = ±(pageW + 60px) so ~15% peeks in. Bottom pill: 300x48px, radius 30px, chapter thumbnail + '01.title' + a 2px progress bar = panelIndex/total, tweened .4s power2.out."
+  },
+  {
+   "technique": "Toon balloons on spring-chain strings",
+   "why_it_works": "Real 3D spheres read as flat cartoon because of the inverted-hull ink outline, and a cheap spring rope gives the strings a physical lag that makes the whole scene feel toy-like and reactive.",
+   "how_to_build": "Each balloon: a sphere mesh with a face sprite and fake light (0.7 + 0.3*diffuse), plus a child sphere scaled 1.04 with cullFace FRONT and flat #171717 as the outline. Rise at a constant speed, sway x with sin(t*speed + seed)*0.2, recycle below the frame when y > top (max 8 alive). Mouse repulsion: project the cursor to the balloon's depth; if dist < radius (1-2 units) push by (1 - dist/radius)*0.05 and tilt rotation.z by push.x*30. String: 20 points, rest length .34, each point pulled toward its neighbours with spring 10 (x25 toward the previous point), gravity -2, damping .2, integrated with dt/deltaFactor (250); draw it as a screen-space polyline 7px thick. Spawn: scale 0 -> target with elastic.out(1.7, 1) over 2s after a random 0.5-1s delay; string thickness 0 -> 7 linear over 2s. Keep Matter.js for things that must collide, as About does: ragdolls built from rectangle bodies joined by Constraints (stiffness .4-1), MouseConstraint stiffness .1."
+  },
+  {
+   "technique": "Chapters as a record shelf with a player pill",
+   "why_it_works": "A menu becomes a collectible object and sets the pop tone; locked chapters read as 'coming soon' without a banner.",
+   "how_to_build": "Coverflow of square planes: active x 0, scale 1; neighbours x ±62vw, scale .5, turned ±8deg; tween 1.0s expo.out on swipe/arrow. Sleeve shader: a moving glare band g = pow(max(0.0, 1.0 - abs(uv.x + uv.y - uHover*2.0)*4.0), 3.0)*0.25 over a crinkled normal map (the site ships plastic-normal-map.jpg and a stickers.png layer). Backdrop: a two-colour shader field plus a huge disc per chapter, crossfaded .8s, with hash grain re-seeded at 10fps. Black pill 320x72px radius 42px: play icon, '01.title' (marquee it when longer than ~20 characters), album line, a label like '01:06'; padlock replaces play for locked items; the pill enters from {y:100, scale:0, rotationX:-100}."
+  },
+  {
+   "technique": "Wool-cloud blob page transition",
+   "why_it_works": "The wipe edge is drawn in the story's own material (sheep wool/cloud), so a route change feels like part of the comic.",
+   "how_to_build": "Visual evidence only (frames/2/f03, frames/1/f06); the transition shader itself was not traced in the bundle. Fullscreen quad with two textures (current, next). Scalloped mask: d = length(uv - c) - r; d -= 0.04*sin(atan(uv.y-c.y, uv.x-c.x)*10.0); d += fbm(uv*4.0)*0.05; m = 1.0 - smoothstep(0.0, 0.003, d); tween r 0 -> 1.6 over 1.2s power2.inOut; outline the edge with a 2px ink band like the home mask."
+  },
+  {
+   "technique": "Paper page boards that bend with the carousel and boil at the edges",
+   "why_it_works": "Pages behave like physical sheets: they curl away as they leave centre, stretch when flung, and their hand-cut edge never sits perfectly still.",
+   "how_to_build": "Render each page to a texture and show it on a subdivided plane. Vertex: pos.z += cmap(distance(uv, mouseUv), 0., .5, 1., 0.)*-0.3*uHover*centerWeight; pos.z += sin(uTime + uv.x*4. + uv.y*4. + seed)*0.02; pos.z -= easeIn(clamp(abs(screenPos.x)/8., 0., 1.))*(0.5 - uVelocity*0.05); pos.x *= 1. + abs(uVelocity)*0.0003*curve; pos.y *= 1. - abs(uVelocity)*0.002*curve. Fragment: offset the UV by (paperNormal.rg*2.-1.)*0.02, light it with diffuse = max(dot(paperNormal, normalize(vec3(.5 - progress*.4, .5, 1.))), 0.), and draw a 0.012-wide edge band (0.015 on hover) whose UV is jittered by sin(sTime + uv.x*150. + uv.y*53.)*0.001 with sTime = floor(mod(uTime, 30.)*5.)/5."
+  }
+ ],
+ "slop_risks": [
+  "Saturated accent pop: #FFAD13, #F01E29 and #FA93C0 on #7E7EFF are poster-bright. They work only because every colour sits inside a hand-drawn illustration. Lifted as flat UI colour, periwinkle on a cool dark base becomes the law's 'blue-charcoal + periwinkle accent' tell, and periwinkle blended into pink becomes the blue-purple/candy gradient tell.",
+  "Content hidden at opacity 0 until a reveal fires: the whole site is one canvas. Until WebGL and ~10MB of textures load there is only the preloader (desktop_00); with no JS or WebGL there is no comic, and the H1s are 9px SEO text.",
+  "Cream background: the preloader #FFF6EF and paper cards are cream. As a page base without the illustration around them, that is the oat-milk default.",
+  "Hover boop lift: elastic.out(2, 0.5) and back.out springs are everywhere on characters. Moving those springs onto buttons and cards turns them into jumping boop hovers.",
+  "Spinning circular text badge: not a law tell (the law explicitly allows 'a spinning mark' as motion on visible content); the risk is only that it is a stock sticker move. It earns its place here because it carries the ponpon flower mark and the comic's tagline.",
+  "Text you cannot read: cream 15px nav labels over the orange sky compute to ~1.6:1, and CTAs render in Arial because button font-family is not inherited. Unforced defaults a copy should fix (font: inherit on buttons, a darker or outlined chrome over bright art).",
+  "No reduced-motion path at all: endless sprite loops, wobble and physics.",
+  "Default Google font: Libre Franklin is fine here only because it carries 9-15px UI while the identity rests on custom SVG lettering. Making it the voice of a copy (headlines, wordmark) would be the law's default-Google-font tell."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop shots and both mobile shots viewed individually. Shot 00 is the preloader; 01-07 are the home screen (no document scroll, so the wheel steps show idle animation only). Element frames: 'Panel navigation' (1) and 'Page transitions' (2), all 8 frames each; 'Chapter selection' (0) and 'Home mouse interactions' (3), f00/f03/f06. Code: HTML + 10 Nuxt chunks grepped (eases, durations, staggers, uniforms, named shaders, Lenis, Matter, detect-gpu). Measured values come from the probe; hexes were sampled from screenshot pixels. INFERRED: OGL-style custom renderer (no three.js found), the soundtrack (no audio paths found), the depth-map parallax from '-depth' texture names, and contrast ratios. The About and reader views were seen only in the Awwwards element videos, not probed live. audit (2026-09-25): re-viewed desktop_00/01/02/03/05/07, mobile_00/01, all 8 frames of elements 1, 2 and 3 and f00/f03/f05 of element 0, and re-grepped the cached bundle. Fixed: field hex #807FFF -> #7E7EFF (shader constant), preloader #FFF6F0 (CSS); stack 'custom, OGL-style inferred' -> OGL verified from source strings (the 'ogl' hits were 'google'); 'no SplitText' -> SplitText/ScrollTrigger 3.13.0 bundled; uDisplacement is a fragment-shader stepped UV boil, not vertex breathing; home balloons are OGL spheres with inverted-hull outlines on custom spring ropes, not Matter.js (Matter drives About ragdolls); intro claim that the wordmark shrinks into the nav slot was not supported by frames/3 (wordmark stays large all clip); sound 'inferred soundtrack' -> none, timecodes are generated `${NN}:06`; mobile 'mask dropped' -> mask scaled 1.5x on portrait; contrast ~1.3:1 -> computed ~1.6:1; chapter disc is not the cover colour; body_size 9 -> 13 (9px is hidden SEO copy); ease counts recounted. Added: portal shader and board shader numbers, fluid chromatic fringe, page bend with velocity, 5/10/12-step boil, tier-based DPR caps and -small textures, fake timecode, Tweakpane shipped, new steal (paper boards), Libre Franklin slop note. Still unverified: the wool-cloud transition shader, the use of '-depth' textures, the About view beyond jury frames."
+}

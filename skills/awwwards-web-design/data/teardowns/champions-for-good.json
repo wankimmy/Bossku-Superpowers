@@ -1,0 +1,268 @@
+{
+ "slug": "champions-for-good",
+ "title": "Champions For Good",
+ "live_url": "https://www.champions4good.club/",
+ "award": "Site of the Day - Apr 6, 2026 (SOTD, Honors) - credits: PaulAdolphs, Shareli Sanchez, Double Play, Eduard Bodak, Pol O'Callaghan, Samuel Siebler",
+ "scores": {
+  "overall": 7.69,
+  "design": 7.69,
+  "usability": 7.38,
+  "creativity": 8.19,
+  "content": 7.69,
+  "dev": {
+   "overall": 7.25,
+   "semantics_seo": 7.2,
+   "animations": 8.4,
+   "accessibility": 7.4,
+   "wpo": 7.2,
+   "responsive": 7.2,
+   "markup": 6.2
+  }
+ },
+ "industry": "Sports-business networking club / membership startup (Germany)",
+ "signature": "Every section is a two-colour sport poster: a screen-sized Lottie athlete built from angular Olympic-pictogram polygons, set against Druk Condensed Super caps up to 22vw. The type 'sprints' in (chars skid in from 80px with a 14-degree skew that straightens last), section edges double as the ground the athletes stand on, and on desktop each sport can make its own opt-in sound.",
+ "first_screen": {
+  "composition": "Dark aubergine #23002b field. A centred slab headline in lilac #e894ff Druk Condensed Super: 'NETWORK' on line 1 with tiny 'YOUR' and 'OF' set inline at its baseline on either side, and 'GAME' (leaning via a CSS skew(-10deg) that is applied 0.85s after the letters land) plus 'CHANGERS' on line 2, filling about 79% of the width (x 150-1282). Above it sit two 150x100 pill 'stickers', one solid lilac and one lilac outline, each holding a looping fencer Lottie; the two fencers face each other. The nav is a minimal row: italic Druk logo lockup with a running pictogram at left, Members/Events/FAQ/'Sounds' toggle centred, a lilac 'Join' button at right. Moving the mouse over the hero spawns an image trail of lilac-bordered athlete photos on top of the headline (frame 0/f00).",
+  "what_owns_it": "type",
+  "display_type_px": 316.8,
+  "evidence": [
+   "probes/champions-for-good/desktop_00.jpg",
+   "frames/champions-for-good/0/f00",
+   "frames/champions-for-good/1/f00",
+   "probe measure.type h1"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Druk Condensed Super",
+    "role": "display",
+    "classification": "ultra-condensed heavy grotesque, caps; upright and a real italic",
+    "foundry": "Commercial Type",
+    "source": "Webflow CSS @font-face 'Druk Condensed Super Desktop': Druk Condensed-Super-Desktop.otf (normal) and Druk Condensed-Super Italic-Desktop.otf (italic). The probe's fonts_loaded lists only the upright because the italic loads lazily with the one .is-cursive word further down."
+   },
+   {
+    "name": "PP Neue Montreal",
+    "role": "body",
+    "classification": "neo-grotesque 400/500/600 (300 also declared)",
+    "foundry": "Pangram Pangram",
+    "source": "probe fonts_loaded 'Neue Montreal' 400/500/600; Webflow CSS PPNeueMontreal-Light/Regular/Medium/SemiBold.otf"
+   }
+  ],
+  "display_size_px": 316.8,
+  "body_size_px": 16,
+  "scale_notes": "All display sizes are set in vw: h1 316.8px = 22vw, section h2 151.2px = 10.5vw, mission block 187.2px = 13vw, inline small words and sublines 43.2px = 3vw, card h3 28.8px = 2vw. Body is fixed at 16px/17.6 (1.1), nav at 15px/500. Tokens --font-size--l 80px / m 64 / s 48 / xs 32. The extreme ratio is roughly 20:1 display to body, and about 7:1 inside a single line (316.8 vs 43.2).",
+  "tracking_leading": "Druk at letter-spacing normal with very tight leading: the h1 line-height is 162.36px (0.51), set explicitly by .custom-headline-01 {line-height:.51}; the small inline words are separate spans (.custom-headline-01-span, 3vw, top -2px) tucked towards NETWORK by -0.5rem after the intro. h2 117.9px (0.78em via .global-headline-xl/xxl); the mission block 146px (0.78). Small caps labels get +0.2px. Neue Montreal body has normal tracking and line-height 1.1.",
+  "case_and_style": "Druk is always uppercase. The slanted words are three different things: 'GAME' is a deliberate CSS skew(-10deg) on the second-to-last intro word, transitioned in at 0.85s; 'CHANCEN' (in NEUE CHANCEN FUER ATHLETEN, desktop_05) is the real Druk Condensed Super Italic via .is-cursive; 'VERDIENT' in desktop_07 is only caught mid-scrub by the line-item skew-in (x 32, skewX -10 to 0). German body copy is also set in all-caps Druk at 3vw as a 'subline' (desktop_02). Umlauts are written out (FUER, ATMOSPHAERE), apparently so the caps render cleanly. The source contains a typo, 'innnen' (INNNEN in the mission wall, desktop_07 and 0/f04).",
+  "signature_moves": [
+   "Scale jumps inside one line: 43px 'YOUR' and 'OF' sit on the baseline beside 317px 'NETWORK' (desktop_00).",
+   "A centred mission paragraph set entirely at 13vw Druk (187px), with small connector words (UND, DEN, ZU, DIE) and inline rounded 'sticker' tiles carrying Lottie athletes in place of words (desktop_06/07).",
+   "Leaning emphasis inside upright caps, done two honest ways: 'GAME' via an animated CSS skew(-10deg), 'CHANCEN' via the licensed italic.",
+   "The 58px Neue Montreal testimonial slides sideways (xPercent 45 to 0 over the first 62% of the section, scrubbed) behind a giant black 'g/o' glyph sticker, with line-end chars still fading in (desktop_03)."
+  ],
+  "mobile": "At 390px the probe measures h1 72px and the largest text 90px. The headline stays centred on 2 lines with the tiny inline words kept and GAME still leaning. A lilac all-caps Druk subline appears under it, and below that a tilted photo-card stack (the flick cards) replaces the desktop hover trail. The nav collapses to a 'Menu' text link. No horizontal overflow (mobile_00.jpg, mobile_01.jpg)."
+ },
+ "color": {
+  "mode": "section-shifting",
+  "base": "Duotone pairs per section: #23002b dark purple with #e894ff lilac; #fbfbfb off-white with #121212 black; #002629 dark green with #94ffe4 mint; #291900 brown with #ffac47 yellow-orange.",
+  "ink": "#121212 on white sections, and the pair's light colour on dark sections (lilac #e894ff is the most used text colour: 217 nodes).",
+  "accents": [
+   "#e894ff lilac: brand colour, Join button, stickers",
+   "#94ffe4 mint",
+   "#ffac47 yellow",
+   "#9b9b9b grey (rare)"
+  ],
+  "ratio": "Each section is about 85% ground and 15% single ink. Across the page, dark grounds and white alternate roughly 50/50.",
+  "section_shifts": "Hard full-bleed switches between duotone pairs. Order seen in desktop_00-07 and frames 0/f00-f07: purple hero, white (volleyball), dark green (horse, SONDERN), white (testimonial), brown (archer, UNSER ZIEL), white (mission wall), purple (cycling), white (club memberships), dark green (benefits, tennis), white (golf CTA), purple footer. Two seams are used as ground lines: the bike's wheels are cut by the white section edge (0/f05) and the golfer stands on the footer's top edge (0/f07). The page transition balls take the colours of the destination's theme class (is-dark-purple / is-dark-green / is-brown / is-white).",
+  "texture": "None: flat fills, no grain, no gradients (filters 1, box_shadows 0).",
+  "notes": "The discipline is strict: never more than 2 colours on screen at once (plus photos), so four quite loud hues never collide. Pictograms always use the section's ink colour."
+ },
+ "layout": {
+  "grid": "32px side margins at 1440 (the headline and pictograms sit about 32px in). 49 CSS grid containers (Webflow). Width tokens run 15-80rem in 5rem steps.",
+  "density": "airy",
+  "alignment": "Hero and mission are centred. Section titles anchor bottom-left with a short caps subline bottom-right, in the style of a poster caption (desktop_01, desktop_02, desktop_05).",
+  "composition_moves": [
+   "Screen-sized pictogram athlete cropped by an edge: the archer's bow off the top (desktop_04), the target bleeding off the right (desktop_05), the horse running out of frame (desktop_02, 0/f01), the volleyball player cropped at the right on mobile (mobile_01).",
+   "Headline pinned bottom-left, with the athlete occupying the other 60% of the screen.",
+   "Archer sequence spanning two screens: the bow draws on one (desktop_04), the arrow flies into a huge target that bleeds off the right edge on the next (desktop_05).",
+   "Section seam as ground line: the cyclist's wheels are cut by the next section's top edge (0/f05) and the golfer and club rest exactly on the footer's top edge (0/f07).",
+   "Depth by scale: the tennis benefits section draws a court in perspective lines with a big foreground player and a tiny far player (0/f06).",
+   "Inline sticker tiles (radius 14px) as words inside the giant mission paragraph.",
+   "Two small cards (160px squares, radius 1em = about 14px) docked bottom-right in the testimonial: a looping sled video and a portrait photo."
+  ],
+  "section_rhythm": "Alternates between 'poster' sections (one athlete plus a bottom-left title, 1-2 screens tall, often pinned while the Lottie scrubs) and 'type wall' sections (the centred 13vw mission, the testimonial). Page height 19,734px.",
+  "mobile_adaptation": "Same section order. Pictograms switch to dedicated mobile Lotties (archer_mobile.json, horse_mobile.json) recomposed for portrait, and these autoplay on a loop instead of scrubbing. The hover trail becomes flick cards. All GSAP text and sticker entrances are skipped below 992px (gated by gsap.matchMedia), so mobile shows the content statically, and sound is forced off below 992px."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis bundled in app.js: new Lenis({lerp:0.18, autoRaf:true}), snappier than the 0.1 default. (An older unpkg @studio-freight/lenis 1.0.34 tag sits inside a large HTML comment together with old jsDelivr GSAP/Draggable/InertiaPlugin tags, an inline flick-card script and a Swiper 8 tag; none of them load.)",
+  "preloader": "None. The first paint is gated by CSS: [data-intro-title] is visibility:hidden until html gets .fonts-loaded; its chars rest at translate 15rem (3.5rem below 991px), skew(-22deg), scale .95, opacity 0 until html has .fonts-loaded.is-ready.",
+  "intro_sequence": "Pure CSS transitions keyed on html.fonts-loaded.is-ready. Hero title chars skid in from the right with a -22-degree skew that straightens as they land: translate and scale 0.9s, skew 0.95s, both --ease-out-expo (cubic-bezier(.19,1,.22,1)), opacity 0.15s, each char delayed (var(--char)-1)*22ms. The small words 'YOUR' and 'OF' enter separately (scale .85, skew(-14deg), translate 1rem to -0.5rem, 0.7-0.8s, delays 0.48s and 0.545s). Then 'GAME' leans to skew(-10deg) with a 0.6s expo-out transition after 0.85s. The fencer Lottie stickers loop above.",
+  "scroll_techniques": [
+   "scrub: only 3 of the 17 Lotties are Webflow IX2 scroll targets (volleyball_desktop, horse, archer_desktop: data-is-ix2-target=1, autoplay 0, loop 0); the other 14 (stickers, golf, bike, tennis, lifters, runners, basketball, fencing, mobile athletes, 4 of them .lottie) autoplay on a loop",
+   "pin (inferred: poster sections appear held while the athlete animates; css sticky=2; the IX2 JSON was not inspected)",
+   "horizontal text drift (testimonial lines xPercent 45 to 0 over 0-62% of the section, ease none, scrub 0)",
+   "reveal (split chars/words skid in with skew)",
+   "line items: each mission line scrubs x 32, skewX -10, scaleY .95 to 0 between 'top bottom' and 'top 20%'",
+   "sticker pop-in",
+   "scroll-position-driven audio volume"
+  ],
+  "text_animation": "The 'sprint skid' keyframe pattern is used everywhere. Chars (or words) start at x:+/-80 (words 60), skewX:+/-14, scaleY:.95, opacity 0; keyframes 40% opacity 1, 90% x 0 and scaleY 1, 100% skewX 0; ease expo.out. The skew is the last thing to settle, so each letter seems to brake like a sprinter. Chars 0.016s apart (from 'end' or 'start' depending on direction, duration .3, scrubbed); section titles 0.022s apart over 1s (scrub .5, once); words 0.037s apart over 1.15s (once at top 90%). Line items get x:32 and skewX -10 to 0.",
+  "image_animation": "Hero image trail: every time the pointer has travelled innerWidth/3 px (Manhattan distance), an <img> (15vw square, radius 1.5rem, 6px lilac border, z-index 5, so it covers the headline) spawns at the cursor with xPercent random in -90..-10, scale 1.2 to 1 (expo.out 0.3s) and a random rotation within +/-12 degrees, drifts by 3x the last pointer delta (clamped to +/-90px) over 0.9s expo.out, shrinks to 0.6 with back.in(1.25) over 0.3s, then is removed. The testimonial has one autoplay/loop/muted sled mp4 card next to a portrait photo; a second mp4 (c4g_2) is a full-bleed parallax background behind a 'COMMUNITY VOICES' badge (mobile_01). Inline stickers enter from x:+/-160, y:-40, rotate +/-14, scale 1.2, opacity 0; keyframes 40% opacity 1, 90% scale 1, 100% x/y/rotate 0 over 1.1s expo.out.",
+  "page_transitions": "Three concentric 'transition-ball' circles are fixed at the centre, CSS scale 0 to 1. When an internal link is clicked, [data-transition] gets .is-animating plus .is-<theme> from data-transition-link. The balls run keyframes ball01, ball02 (starts at 4%) and ball03 (starts at 18%) over 1.75s with cubic-bezier(.4,.15,0,1) (--ease-in-out-soft). Colours follow the destination theme: for dark-purple, mint outer, then lilac, then #23002b core; dark-green: lilac, mint, #002629; brown: lilac, #ffac47, #291900; white core for is-white. Clicks are blocked with html:has(.transition.is-animating){cursor:wait;pointer-events:none}. gsap.delayedCall(1.5) then does a hard window.location navigation (multi-page Webflow, no barba); a pageshow with persisted=true reloads. In the frames, rings are mid-expansion at 1.55s (1/f02, with the wait cursor), the screen is fully covered at 2.17s (1/f03), the new title ghosts in skewed at 2.79s (1/f04) and has settled at 3.41s (1/f05). The effect reads as an archery target or a ball blowing up to fill the screen.",
+  "hover_micro": [
+   "Nav and default buttons contain two stacked copies of the label ('Members\\nMembers'). On hover, the first copy's chars slide out (translate -18px, skew(-14deg), opacity 0) and the second copy's slide in, each char delayed by (var(--char)-1)*22ms, with translate .6s expo-out and skew .25s. Gated by @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference). Seen mid-swap in 1/f00.",
+   "Default buttons also grow their background layer on hover (.default-btn-bg scale 1.065 x 1.095) and squash on press (:active scale .935 x .905). Every 'Join' button carries .has-ball: on hover a small currentColor dot (0.8ch) rolls in from 32px right and 26px below and settles beside the label.",
+   "Button hover plays sound-button-hover.mp3 when sound is on, throttled to one play per 40ms.",
+   "Stacked membership cards alternate rotate(6deg) and rotate(-6deg), with 0.2s Power2 and 0.5s Power3 swaps."
+  ],
+  "cursor": "Native cursor, plus a custom 'sticker cursor' follower: a white SVG label badge ([data-sticker-cursor]) trails the pointer through gsap.quickTo (power4) offset 15%/15%, fades and scales in (0.35s expo.out) over the 9 [data-sticker] sections, squashes to 0.9 on mousedown and springs back with elastic.out on mouseup. cursor:wait during page transitions.",
+  "easing_curves": [
+   "expo.out (15 GSAP uses)",
+   "power4 (4, incl. the sticker-cursor quickTo)",
+   "elastic.out(1,1) (2): flick-card slot tweens, 0.6s",
+   "back.in(1.25): image-trail shrink-out",
+   "--ease-in-out-soft cubic-bezier(.4,.15,0,1) for the transition balls",
+   "--ease-out-expo cubic-bezier(.19,1,.22,1) for the CSS intro chars; --ease-expo-out is a linear() spring-like curve used on hover chars",
+   "The CSS also contains the full Penner cubic-bezier set, e.g. cubic-bezier(.19,1,.22,1), (.23,1,.32,1), (.77,0,.175,1), (1,0,0,1)"
+  ],
+  "duration_range_ms": "150-600ms for hover chars; 300ms-1.15s for GSAP text; 1.1s stickers; 1.75s transition; 100s loop (CSS duration).",
+  "stagger_ms": "16ms for chars, 22ms for title chars and hover chars, 37ms for words.",
+  "choreography_notes": "Athlete Lotties are scrubbed with scroll, so the sport plays at the reader's speed. Headline chars finish skidding at about 36-60% of section progress, and at that point data-sticker-active is set, which fires the sticker Lottie and its sound. Transition order: outer ring, second ring 70ms later, core 315ms later, navigation at 1.5s, then the title skids in on the new page. Everything shares one verb, the sprint and brake.",
+  "evidence": [
+   "frames/champions-for-good/0/f00-f07",
+   "frames/champions-for-good/1/f00-f07",
+   "bundle re-read (audit): champions4good.vercel.app/scripts/app.js (Lenis lerp .18, split skid keyframes, line items, image trail, flick/stacked cards, sticker stamping + sticker cursor, logo proximity sound, sound modules, data-transition delayedCall)",
+   "main.css (transition-ball keyframes, --ease-in-out-soft, intro title transitions incl. GAME skew, hover char/bg/ball rules, image-trail-img)",
+   "Webflow shared CSS (@font-face incl. Druk italic, .is-cursive, .custom-headline-01 line-height .51)",
+   "HTML: Webflow lottie data-src list with IX2 flags, 15 <audio preload=auto>, commented-out legacy script block"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "illustration",
+  "art_direction": "Custom 'pictogram' athletes in the spirit of Olympic pictograms, built only from hard-edged polygons: square heads, trapezoid limbs and no curves except balls, bow and target. Each is animated in Lottie as a single flat colour in the section's ink. Sports: fencing, volleyball, horse riding, archery, basketball, weightlifting, cycling, tennis, golf, bobsled, running. Real athlete photography (members, events) is used sparingly in radius-14px cards and in the hover trail.",
+  "treatments": [
+   "Screen-scale single-colour pictogram cropped by the viewport edge",
+   "Pictograms inside rounded 'sticker' tiles (lilac, mint, brown, dark green) used inline with type",
+   "Photo cards with a 6px (.375rem) lilac border and radius 1.5rem: the desktop hover trail, and a rotated flick stack on mobile",
+   "One autoplay muted loop sled video card in the testimonial, and one full-bleed parallax background video behind a 'COMMUNITY VOICES' badge",
+   "Pictograms that step out of their sticker tile (the runner leaves the inline tile on the Members page, 1/f05-f07)"
+  ],
+  "crops_and_ratios": "Stickers are about 3:2 pills and tiles; photo cards are square, 160px on desktop (aspect-ratio 1); the hover-trail photos are 15vw squares; full-bleed community video on mobile (mobile_01).",
+  "formats": "mp4 5.46MB (2 videos), audio 'mpeg' 2.0MB (14 mp3 SFX), jpeg 1.27MB, webp 475KB, png 227KB; 19 json + 4 .lottie; 4 otf fonts.",
+  "evidence": [
+   "probes/champions-for-good/desktop_01.jpg",
+   "probes/champions-for-good/desktop_04.jpg",
+   "probes/champions-for-good/desktop_05.jpg",
+   "probes/champions-for-good/desktop_07.jpg",
+   "probes/champions-for-good/mobile_00.jpg",
+   "frames/champions-for-good/0/f05-f07"
+  ]
+ },
+ "three_d": {
+  "present": false,
+  "stack": "none",
+  "role": "",
+  "assets": [],
+  "materials_lighting_post": "",
+  "interaction": "none",
+  "performance_tactics": "",
+  "fallback_mobile": "",
+  "evidence": [
+   "probe assets_3d []; webgl2 1 context counted but no WebGL code in app.js"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Minimal inline bar, not sticky-heavy: logo lockup left (running pictogram plus italic Druk 'CHAMPIONS FOR GOOD CLUB' in lilac), centred text links Members / Events / FAQ (15px Neue Montreal 500) followed by 'Sounds' and a pill toggle switch (off by default), and a filled lilac 'Join' button (radius 6px) at right.",
+  "menu": "Mobile: a 'Menu' text link top right (mobile_00).",
+  "buttons_links": "Text-swap char skid on hover (two stacked label copies, 22ms per char). The Join button is a flat lilac fill with dark text (9.1:1); on hover its background layer grows about 7-10% and a small ball rolls in beside the label; on press it squashes. No shadow.",
+  "unusual_interactions": [
+   "Sound design: 15 <audio preload='auto'> SFX (archer, basketball, bike-ride, button-hover, fencing, golf, gym, horse, logo-running, running, sled, sticker, swiping-card, tennis, volleyball) behind an opt-in 'Sounds' toggle that is off by default, desktop-only (forced off below 992px) and not persisted. Section loops crossfade by scroll progress with 12% ramps; the sled and bike loops' volume = 1 - |2p - 1|, peaking at the section's centre.",
+   "Logo proximity foley: as the pointer approaches the running-man logo (within 0.65 x its size), a footsteps loop fades up with a power2.out falloff (sound on, fine pointers only).",
+   "Click-to-stamp stickers: in the 9 [data-sticker] sections, once a section is active a click stamps a random sticker at the cursor (jitter +/-10px, rotation +/-40deg) that flips in (rotationY +/-40 to 0, scale 1.35 to 1, perspective 1000, 0.4s expo.out), plays a sticker SFX and flips out after 3s.",
+   "Hover image trail in the hero",
+   "Mobile flick-card photo stack (GSAP Draggable bundled in app.js; InertiaPlugin is not loaded): slots in xPercent, 0 {x0 rot0 s1}, +/-1 {x+/-35 y4 rot+/-10 s.925}, +/-2 {x+/-60 y10 rot+/-18 s.85}, tweened with elastic.out(1,1) 0.6s, plus a compact slot set (+/-12, +/-24; rot +/-6, +/-10); swipe sound throttled to 50ms",
+   "Stickers become 'active' at 36% of their title's scroll progress, triggering their Lottie and SFX",
+   "Swiper sliders for members and in-view sliders"
+  ],
+  "sound": "Yes: opt-in (off by default), desktop-only per-sport foley, a logo proximity loop and UI SFX tied to scroll position, hover and clicks (see above). All 15 files preload even while sound is off.",
+  "footer": "Dark purple #23002b band under the golf CTA scene: big italic Druk logo lockup with a running pictogram at left, three small link columns (Menu, Links, Legal) at right. The golf pictogram on white sits directly above it, with the ball rolling toward the flag (frame 0/f07)."
+ },
+ "content_voice": {
+  "headline_style": "Punchy, sporty, English-German mix: English hooks for the big lines (NETWORK OF GAME CHANGERS, NO BORING NETWORKING, READY TO JOIN?) and German for the explanations ('UNSER ZIEL: NEUE CHANCEN FUER ATHLETEN').",
+  "copy_tone": "Confident, anti-corporate, community-first ('Finally no boring networking'); membership tiers named after sports roles (ATHLETE, BOOSTER, BUSINESS, CORPORATE, PARTNER).",
+  "examples": [
+   "FINALLY NO BORING NETWORKING",
+   "NEUE CHANCEN FUER ATHLETEN"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Webflow (IX2 interactions drive the Lottie scrubbing) plus a custom bundle hosted on Vercel (champions4good.vercel.app/scripts/app.js and styles/main.css)",
+  "libraries": [
+   "GSAP 3.13.0 bundled in app.js (core, CSSPlugin, ScrollTrigger, SplitText, CustomEase, Observer, Draggable, MorphSVGPlugin; no Flip, no InertiaPlugin)",
+   "Lenis (bundled, lerp .18)",
+   "Lottie via Webflow (17 players: 3 IX2 scroll-scrubbed, 14 autoplay loops, incl. 4 .lottie)",
+   "Swiper (bundled in app.js; the unpkg swiper@8 tag is commented out)",
+   "Finsweet Attributes and Cookie Consent (jsDelivr)",
+   "jQuery 3.5.1 (Webflow)",
+   "Umami analytics"
+  ],
+  "evidence": "probe globals {Webflow:true}, libs [lottie, webflow], top_hosts (no unpkg requests); HTML script list (the jsDelivr gsap/Draggable/InertiaPlugin and unpkg Lenis/Swiper tags sit inside one HTML comment); app.js licence banners (GSAP/CSSPlugin/CustomEase/Draggable/MorphSVGPlugin/Observer/ScrollTrigger/SplitText 3.13.0). MorphSVGPlugin is bundled but no morphSVG tween was found."
+ },
+ "performance_accessibility": {
+  "requests": 102,
+  "weight_notes": "Heavy on media: 5.46MB of mp4 and 2.0MB of mp3 SFX (15 <audio preload='auto'>) that load even while sound is off, plus 1.27MB jpeg. JS is only about 125KB declared plus app.js (302KB uncompressed). Dev wpo 7.2 and markup 6.2 are the weakest sub-scores; the markup still ships a large commented-out legacy script block and a localhost app.js fallback comment.",
+  "reduced_motion": "The probe counted 0 rules because 2 cross-origin sheets were blocked. In the code, the GSAP scroll entrances (titles, words, line items, stickers) sit inside gsap.matchMedia('(prefers-reduced-motion: no-preference) and (min-width: 992px)'), and the CSS hover skids, button-bg scale and ball sit inside @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference). Not gated: the CSS intro title skid and GAME lean, the 1.75s transition balls, the hover image trail, Lottie autoplay/scrub and Lenis. Sound is opt-in.",
+  "contrast_issues": "The duotone pairs have high contrast (computed: lilac #e894ff on #23002b 9.1:1, mint on #002629 13.5:1, #ffac47 on #291900 9.1:1, #121212 on #fbfbfb 18.1:1). Mid-scrub, testimonial chars sit at partial opacity (grey fringes at line ends in desktop_03), which is briefly low contrast, and hover-trail photos land on top of the hero headline.",
+  "mobile_quality": "No overflow. Dedicated mobile Lotties, and the entrances are disabled below 992px, so mobile is more static but robust. Responsive score 7.2.",
+  "dev_scores": {
+   "semantics_seo": 7.2,
+   "animations": 8.4,
+   "accessibility": 7.4,
+   "wpo": 7.2,
+   "responsive": 7.2,
+   "markup": 6.2
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Sprint-skid text reveal (skew settles last)",
+   "why_it_works": "The straightening skew is a motion that means 'athlete braking', so the type carries the brand's sport metaphor without any illustration.",
+   "how_to_build": "SplitText(el,{type:'chars,lines',charsClass:'split-char'}). Per line: gsap.set(chars,{display:'inline-block',x:80,skewX:-14,scaleY:.95,opacity:0,transformOrigin:'center bottom'}). Then gsap.to(chars,{keyframes:{'40%':{opacity:1},'90%':{x:0,scaleY:1},'100%':{skewX:0}},duration:1,ease:'expo.out',stagger:{each:.022,from:'start'},scrollTrigger:{trigger:line,start:'top bottom',end:'top top-=35%',scrub:.5,once:true}}). Mirror it (x:-80, skewX:14, from:'end') for right-to-left lines. Words: x 60, 37ms stagger, 1.15s. Wrap it all in gsap.matchMedia('(prefers-reduced-motion: no-preference) and (min-width: 992px)') so the text stays static and visible elsewhere."
+  },
+  {
+   "technique": "Concentric-ball page transition coloured by destination",
+   "why_it_works": "Three staggered discs read as a ball or target and hand off the next section's duotone before the page loads, which masks a hard MPA navigation.",
+   "how_to_build": "Add a fixed overlay with 3 absolutely centred circles (width and height 150vmax, border-radius 50%, scale:0 0). On an internal link click: preventDefault, add .is-animating and .is-{theme} (from data-transition-link), then gsap.delayedCall(1.5, ()=>location.href=href). CSS: @keyframes ball01{0%{scale:0 0}to{scale:1 1}}, ball02 starts at 4%, ball03 at 18%; animation 1.75s cubic-bezier(.4,.15,0,1) forwards. Theme classes set the ball colours (outer ring = accent, middle = brand, core = the destination's ground). html:has(.transition.is-animating){cursor:wait;pointer-events:none}. Handle pageshow with persisted=true by reloading. On the new page, skid the title chars in on the same ground colour. Gate the balls behind prefers-reduced-motion (the site does not)."
+  },
+  {
+   "technique": "Screen-scale single-colour Lottie pictogram scrubbed by scroll",
+   "why_it_works": "One huge flat figure per section gives a poster-grade focal point at a few KB of vector, and scrubbing puts the reader in control of the athlete.",
+   "how_to_build": "Draw pictograms from hard polygons only (square head, trapezoid limbs) in After Effects, one fill, and export with Bodymovin; make a separate portrait comp for mobile and let that one autoplay on a loop (the site scrubs only the 3 desktop hero athletes, via Webflow IX2 'Lottie scroll'). Outside Webflow: lottie.loadAnimation({renderer:'svg',autoplay:false,loop:false}); ScrollTrigger({trigger:section,start:'top top',end:'+=150%',pin:true,scrub:0,onUpdate:s=>anim.goToAndStop(s.progress*(anim.totalFrames-1),true)}). Fill the section with the duotone ground, set the SVG fill to the ink colour, crop the figure off one edge or stand it on the next section's top edge, and anchor the title at bottom-left in 10.5vw condensed caps."
+  },
+  {
+   "technique": "Scroll-positional sport foley (opt-in)",
+   "why_it_works": "Sound that swells as a section centres on screen makes the page feel like passing through a stadium, and the opt-in toggle keeps it respectful.",
+   "how_to_build": "Preload <audio loop> elements at volume 0 (better: create them only after the toggle is switched on). Keep a tiny store {enabled:false, subscribers} and force it off below 992px. Nav toggle 'Sounds' flips enabled and pauses everything when off. Per section: ScrollTrigger({trigger,start:'top bottom',end:'bottom top',onUpdate:s=>{audio.volume=enabled?1-Math.abs(2*s.progress-1):0; if(enabled&&audio.paused)audio.play().catch(()=>{})},onLeave/onLeaveBack:()=>{audio.volume=0;audio.pause()}}). For multi-sound sections, use a trapezoid ramp: 0 outside [t0,t1], linear up over the first 12%, 1 in the middle, down over the last 12%. For one-shot UI SFX: currentTime=0 then play(), throttled with performance.now() at 40-50ms. For a logo, map pointer distance d to volume with power2.out between 0 and 0.65 x the logo size."
+  },
+  {
+   "technique": "Mixed-scale type wall with inline stickers",
+   "why_it_works": "Connector words shrunk to 2vw next to 13vw keywords make a sentence that reads at a glance, and inline tiles turn the paragraph into a layout.",
+   "how_to_build": "A centred block of Druk-style condensed caps at font-size 13vw, line-height .78. Wrap connector words in <span class='tiny'> at 2vw with vertical-align baseline. Insert <span class='sticker'> inline-blocks (about 14vw x 9vw, radius 14px, dark ground, Lottie inside) between words. Sticker entrance: gsap.set({x:+/-160,y:-40,rotate:+/-14,scale:1.2,opacity:0,transformOrigin:'center bottom'}), then keyframes 40% opacity 1, 90% scale 1, 100% x/y/rotate 0, 1.1s expo.out, once at 'top bottom'."
+  },
+  {
+   "technique": "Click-to-stamp stickers with a label cursor",
+   "why_it_works": "Visitors can decorate a section with the brand's own sport stickers; each stamp flips in with a sound and peels away after 3s, so the page stays clean while feeling like a sticker book.",
+   "how_to_build": "Per section, pre-render N absolutely positioned sticker elements at autoAlpha 0, rotationY +/-40, scale 1.35, transformPerspective 1000. On click (only once the section is 'active'), pick a random hidden sticker, set x/y to the click point minus half its size plus +/-10px jitter and rotation to a random +/-40deg, raise its z-index, then gsap.to(it,{keyframes:{'40%':{autoAlpha:1},'90%':{rotationY:0},'100%':{scale:1}},duration:.4,ease:'expo.out'}) and gsap.delayedCall(3, hide) where hide tweens back to autoAlpha 0, rotationY +/-40, scale 1.35 over 0.3s. Add a cursor badge: a fixed element moved with gsap.quickTo(el,'x',{ease:'power4'}) / quickTo y, offset xPercent/yPercent 15, shown (opacity 1, scale 1, 0.35s expo.out) on section mouseenter and squashed to 0.9 on mousedown."
+  }
+ ],
+ "slop_risks": [
+  "Content hidden until a class lands: [data-intro-title] is visibility:hidden until html gets .fonts-loaded, and its chars stay at opacity 0 until .is-ready. If that class never lands, the H1 is invisible. A copy needs a no-JS fallback (for example, apply the hidden state only under html.js).",
+  "Purple: the hero is dark purple #23002b with lilac #e894ff, a colour family the law flags. It survives because it is a flat, disciplined duotone with no blue-to-purple gradient; a copy that adds a gradient or glow falls straight into the tell.",
+  "Hard colour seams between sections: every section changes duotone at a dead edge (for example brown into white at the Goal/Mission border, desktop_06). It is a deliberate poster rhythm, and twice the seam is the ground an athlete stands on (0/f05, 0/f07); copied without the huge pictograms and type it reads as disconnected blocks.",
+  "Hover boop, mild form: default buttons grow their background layer 6.5-9.5% on hover (.default-btn-bg scale 1.065 x 1.095). The label itself stays put and the change is gated to fine pointers, but a copy that scales the whole button trips the law's 'button that jumps' tell; keep the char swap and ball, drop the grow.",
+  "Sticker cliche risk: rounded pill 'stickers' with icons can slide into the 'pill / eyebrow badge' tell if they carry text labels instead of animated content.",
+  "Hover trail over the headline: trail photos spawn at z-index 5 on top of the H1, briefly covering the words they sit over (0/f00).",
+  "Performance: 7.5MB of video and SFX preload whether or not sound is on (15 audio elements with preload='auto'); lazy-load the audio after the toggle is switched on."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots plus 2 mobile, all 8 frames of both jury videos (Page Scrolling 37.9s, Page Transition 4.96s). Measurements come from probe.json. Motion numbers come from app.js and main.css on champions4good.vercel.app (skid keyframes, staggers, Lenis lerp .18, transition-ball CSS, image-trail, flick-card slots, sound volume maths). INFERRED: that Webflow IX2 scrubs the Lottie athletes (from the data-is-ix2-target attributes on the lottie divs; the IX2 JSON was not inspected); synthetic italic (only Druk 400 normal in fonts_loaded); that the 'g/o' black glyph pair in the testimonial belongs to the data-bob (bobsled) module. The probe's reduced_motion_rules=0 undercounts because 2 stylesheets were cross-origin and blocked; the code shows matchMedia gating. The 11 Awwwards element JPGs (values, memberships, benefits) were not viewed; only the 2 MP4 elements had frames. | audit (2026-09-25): re-viewed desktop_00-07, mobile_00-01, all 8 frames of both elements, and re-fetched index.html, app.js, main.css and the Webflow shared CSS. Fixed: 'faux oblique' was a false accusation (GAME is a deliberate CSS skew(-10deg) animated in at 0.85s; CHANCEN, misread as 'CHANGEN', uses a real Druk Condensed Super Italic via .is-cursive; VERDIENT was only mid-scrub); h1 line-height .51 is authored, not caused by the inline words; the jsDelivr GSAP/Draggable/InertiaPlugin tags are commented out (GSAP 3.13.0 with Draggable and MorphSVG is bundled; there is no InertiaPlugin and no Flip); only 3 of 17 Lotties are IX2-scrubbed; the testimonial has one video card, the other mp4 is a full-bleed parallax background; trail rotation is +/-12, border 6px; 15 audio files (not 14), sound off by default, desktop-only, not persisted; buttons do move (bg grow + press squash + ball). Added: click-to-stamp stickers, sticker cursor, logo proximity foley, seam-as-ground-line, section order, un-gated motion list, contrast ratios, the 'innnen' typo. Still inferred: pinning during IX2 scrub (IX2 JSON not inspected) and the meaning of the 'g/o' glyph; the 11 Awwwards element JPGs were not viewed."
+}

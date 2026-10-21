@@ -1,0 +1,302 @@
+{
+ "slug": "the-watch",
+ "title": "The Watch",
+ "live_url": "https://thewatch.60fps.fr/",
+ "award": "Site of the Day - Aug 17, 2026 (Honors, SOTD) - credits: 60fps",
+ "scores": {
+  "overall": 7.59,
+  "design": 7.51,
+  "usability": 7.48,
+  "creativity": 7.74,
+  "content": 7.9,
+  "dev": {
+   "overall": 7.07,
+   "semantics_seo": 6.8,
+   "animations": 8.0,
+   "accessibility": 6.2,
+   "wpo": 7.4,
+   "responsive": 6.8,
+   "markup": 7.0
+  }
+ },
+ "industry": "Luxury product showcase (self-initiated studio piece for a concept automatic watch, FS 60P)",
+ "signature": "One real-time chrome watch (three.js r162, a single GLB lit by EXR environments) sits in the gap of giant 350px Nekst type and physically occludes it, shows the visitor's own local time and date on its hands and date wheel, then scroll turns, dismantles, relights and reassembles it while the type, copy and particle fields are staged around the object like a studio shoot.",
+ "first_screen": {
+  "composition": "Settled state (jury clip 0 f02-f07, mobile_00): a silvery grey field (#ebebeb DOM ground under a translucent shader shade that darkens toward the top-right corner); 'FS 60P' in Nekst 350px black (line-height 280px) runs across the full width, split so the watch, seen dead-on and centred, fills the gap between 'FS' and '60P' and overlaps the '6'. Behind the watch a hairline circle (~0.65 of viewport height) cut by six radial lines (vertical top and bottom plus four diagonals): four config sectors (top-left, top-right, bottom-right, bottom-left) whose rim arcs are tinted with their colourway (silver, black, pale gold, warm grey) and two open side sectors that hold 'FS' and '60P'; the active Silver Steel sector (top-left) is filled a shade darker. Bottom-left: 'Color / Silver Steel' 12px Inter at the far left, then 'MODEL' 60px at rgba(0,0,0,.4) over '146GR' 60px black. The date window shows the real date ('24' in desktop_02/mobile_00, captured on Sep 24). No nav, no CTA. desktop_00 is not the settled hero: it caught the preloader fading out, the #EBEBEB #loader (z-index 1000) still washing the whole frame, its own 700-unit hairline circle (max-height 80%, ~710px) visible, the camera still close on the bracelet, and 'FS' (Nekst's squared S reads like a 5) plus the top of the '6' sliding in.",
+  "what_owns_it": "3d",
+  "display_type_px": 350,
+  "evidence": [
+   "frames/0/f00-f07",
+   "mobile_00.jpg",
+   "desktop_00.jpg",
+   "desktop_02.jpg",
+   "probe measure.type.h1 (FS 60P, Nekst 350px, lh 280px)",
+   "index.html inline #loader CSS"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Nekst",
+    "role": "display",
+    "classification": "geometric grotesque with squared-off rounds and a single-storey a, used at 400 only; carries display type and the exploded-view part labels",
+    "foundry": "served via Adobe Fonts (use.typekit.net); foundry not verified",
+    "source": "probe fonts_loaded 'Nekst 400 normal', top_hosts use.typekit.net"
+   },
+   {
+    "name": "Inter",
+    "role": "body",
+    "classification": "neo-grotesque UI sans",
+    "foundry": "Rasmus Andersson (open source)",
+    "source": "probe fonts_loaded 'Inter 400 normal'; 12px body and labels (105 nodes)"
+   },
+   {
+    "name": "Times",
+    "role": "ui",
+    "classification": "browser default serif",
+    "foundry": "system",
+    "source": "probe type.li: parts list 'Dial 01 Mechanism 11 Gr' at 11px Times; inferred unstyled or hidden data list for the exploded view"
+   }
+  ],
+  "display_size_px": 350,
+  "body_size_px": 12,
+  "scale_notes": "Extreme two-tier scale with nothing in the middle: 350px h1 (FS 60P), 360px x10 and 270px x4 (rotated vertical '60P' / 'FS -60P' stacks, inferred), 192px statement lines and h3 ('THE' in probe largest_text, 'MODEL 146GR' h3), 190px x2 (the thin '17′' counter, inferred), 80px x35 (unidentified), 60px (MODEL label), 17px x8 (exploded-view labels, inferred), 12px (body, 105 nodes), 9px ('SWAP'). Display to body is ~29:1. html font-size is stepped per breakpoint so px values are design pixels: <768 .3125vw (320 design), 768-1024 .1302vw (768), 1025-1440 .09765625vw (1024 design; at the 1440 probe 1rem = 1.40625px, matching the probe body size), >=1441 .0694vw (1440), >=1600 .0625vw.",
+  "tracking_leading": "Letter-spacing normal everywhere; display line-height 0.8 (280/350, 48/60) and 0.78 (149.76/192), so stacked caps nearly touch. Body copy 12px set tight: 12px leading (1.0) in most blocks (desktop_02, mobile_01 'Chronograph'), ~15px (1.25) in others (desktop_01 'Automatic Movement', desktop_07 'Reliability').",
+  "case_and_style": "Display all caps (FS 60P, 60MM WATCH, MECHANICAL HEART, AUTOMATIC MOVEMENT); body sentence case; section labels title case at 40% opacity ('Chronograph', 'Case & Finishes'). Numerals with a prime mark as a counter (05′, 17′). Type rotated 90 degrees for vertical '60P' and 'FS -60P' and for exploded-view part labels.",
+  "signature_moves": [
+   "Type as a stage set the object stands in: the watch occupies the letter gap and renders over the glyphs (FS [watch] 60P; side-view watch over vertical 60P in desktop_03).",
+   "Stacked statement lines at 0.78 leading, individually indented ('THE' pushed right toward the object), where one line at a time lights up as it crosses the viewport centre (scroll-scrubbed colour, jury clip 1 f04-f07).",
+   "Ghost-weight display: the same caps repeated at rgba(0,0,0,.4) or rgb(50,50,50) behind the active line, so hierarchy is value, not size.",
+   "Vertical 90 degree type columns (FS -60P at right in desktop_02) used as a second axis next to the centred object.",
+   "The slash is drawn, not typed: the last statement line ends in an inline 18x37 SVG slash path ('60MM WATCH /' shows the same stroke).",
+   "Two-tone micro labels: the first word at 40% black, the rest solid ('Click to explore', and 'Now loading' in the preloader)."
+  ],
+  "mobile": "390px (mobile_00/01): h1 100px ('FS' and '0P' cut by both viewport edges with the watch covering the '6'), largest measured 160px, 'MODEL 146GR' ~40px bottom-left, 12px Inter copy blocks at left with the dial pictogram above; the watch keeps its size and overlaps the body copy in mobile_01 ('Automatic Moveme...' cut by the bracelet). No horizontal overflow."
+ },
+ "color": {
+  "mode": "section-shifting (light grey studio to near-black)",
+  "base": "#ebebeb (rgb(235,235,235)) light studio grey with shader-lit falloff to #bcbcbc / #a1a1a1; mid scenes around #a0a0a0 (desktop_03/04); dark scenes #0a0a0a (rgb(10,10,10))",
+  "ink": "#000 on light (120 nodes); #fff and rgb(188,188,188) on dark",
+  "accents": [
+   "rgba(0,0,0,0.4) secondary labels and ghost display lines",
+   "rgb(50,50,50) and rgb(221,221,221) alternate tones of the kinetic caps",
+   "Colourway swatches are 5-stop mirrored ramps (dark, light, white, light, dark) fed to CSS vars --first-color/--second-color: silver #2B282E/#B9B6BD/#fff, deep black #000/#2B2B2B/#fff, gold #B3A07C/#FFFFE1/#fff, warm grey #D7CFC8/#B3A99F with #333 at the centre",
+   "gold gears, blue screws and ruby jewels inside the movement model (the only saturated colour, all from the 3D materials)"
+  ],
+  "ratio": "Light scenes ~75% grey field, ~20% black type and steel, <5% colour (only in the movement parts); dark scenes ~85% black, ~12% grey particles and steel, ~3% white type.",
+  "section_shifts": "Scroll-scrubbed: grey studio (hero, 60MM WATCH, case and finishes) darkens to mid-grey for the side profile and exploded view, then cuts to near-black for MECHANICAL HEART and MOVEMENT, where the watch itself is switched to the Deep Black config and its IBL is dimmed to 15% via uDarknessProgress.",
+  "texture": "Post-process pass (one full-screen shader): the scene render gets CONTRAST 1.15 and GAMMA 1.6; a background value is built from a mouse-offset sine field (sUv = uv*.8 + uMouse*.2, t = uTime*.3) faded at the borders plus a fixed corner term smoothstep(.7,.3,length(uv-1.)) that produces the dark top-right falloff in desktop_01-04, scaled by .2 and uBackgroundMultiplier*1.5 (at most ~.5), then composited only where scene alpha < 1 as vec3(bg) with alpha bg, i.e. a translucent dark grey over the DOM. NOISE .05 is defined and a noise texture is sampled, but neither is applied, so there is no grain. The canvas sits over the DOM, so this shade lies over the type as well as behind the object. Dark scenes add curl-noise particle ribbons over everything, type included.",
+  "notes": "Monochrome by design: the colour story is the config palette of the product, not a UI accent. The grey is authored shade (animated, mouse-reactive, darkening the #ebebeb ground), not a flat UI-kit neutral."
+ },
+ "layout": {
+  "grid": "Object always on the vertical centre axis (x=720). Copy blocks on two side columns: left block at x~259, ~190px wide (desktop_02); right block at x~1050, ~250px wide (desktop_01, desktop_07). 10 CSS grid containers. doc_height 34,625px across 14 sections (~38 viewports, ~2.5 viewports of scroll per scene).",
+  "density": "airy",
+  "alignment": "Centred object, flush-left 12px copy blocks at the side thirds, display type bleeding past the viewport edges.",
+  "composition_moves": [
+   "Object in the gap of a single display line (FS [watch] 60P) with a config ring whose side sectors are left open for the two words.",
+   "Display type cropped by the top edge or both side edges (60MM cut at the top in desktop_01; mobile FS/0P cut both sides).",
+   "Rotated vertical type column paired with the centred object (desktop_02 FS -60P at right, desktop_03 60P behind the side view).",
+   "Exploded view on one horizontal axis: 6 parts spread across the full width on a hairline through their centres, each with a vertical leader line down to a rotated Nekst label (Dial, Tourbillon, Mainplate, Barrel, Backplate, Weight) and 'Click to explore' with a circle-dot icon at top centre (desktop_04).",
+   "Dark scene: object small and centred inside a swirl of particle ribbons, two-line title at the left third ('MECHANICAL' grey / 'HEART' white) and a huge thin counter '17′' bottom-right (desktop_05).",
+   "Spec scenes pair side copy with small flat pictograms: a grey dial diagram (12 ticks, two sub-dial holes; dialSvg) and two round colour swatches above 'Case & Finishes' (desktop_01/02/07)."
+  ],
+  "section_rhythm": "Alternates full-width display type scenes (hero, 60MM WATCH, AUTOMATIC MOVEMENT) with quiet spec scenes (small side copy + object), then a technical scene (exploded view), then the dark atmospheric scenes. Light to dark is a single switch around two thirds down.",
+  "mobile_adaptation": "Same WebGL scene and scroll story at 390px; display type shrinks to 100-160px and is allowed to overflow the edges (clipped, no scroll); copy blocks go full-width left-aligned and the watch is not moved out of their way (mobile_01 overlap)."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis (html classes 'lenis lenis-smooth lenis-scrolling'; 'lenis' referenced 28x in the project chunk) driving GSAP 3.15.0 ScrollTrigger (scrub:true x4, scrub:2 x3); CustomEase present in the core bundle (3 refs).",
+  "preloader": "Inline in index.html: a full-screen #EBEBEB #loader (z-index 1000) with a 700-unit SVG circle, 1px #DCDCDC track plus a 3px #D3D3D3 arc that draws on over 1.2s ease-in-out (stroke-dashoffset 2168 to 0), max 80% of the viewport, and 'Now loading' in 11px Inter with 'Now' at #0006. desktop_00 caught it fading out over the intro.",
+  "intro_sequence": "Code (hero openAnimation on OPEN_PROJECT): after a 1s delay the title's characters slide x -100% to 0 inside a second per-char wrapper that masks them (1.2s power3.out, stagger .12s per char); [data-fade] elements go to opacity 1 over 1.5s power3.inOut, stagger .4s, from .8s; the config-ring SVG gets class 'active'. Jury clip 0: at 0.28s the camera is inside an extreme close-up of the bracelet with only letter fragments showing (chars mid-slide); by 0.83s it has dollied out to the full front view in the letter gap with the ring behind; 0.83-1.39s a small settle (watch shrinks slightly, '60P' comes clear, 'Color / Silver Steel' in); by 1.94s 'MODEL 146GR' is in; after that only the hands and the background shade move.",
+  "scroll_techniques": [
+   "scroll-scrubbed object choreography (rotate front to 3/4 to side, bracelet loop view, crown and screws floating off)",
+   "exploded view along one axis with leader-line labels",
+   "relight/darken of the PBR material by scroll (uDarknessProgress)",
+   "environment map rotation by scroll (uGlobalEnvmapRotation)",
+   "config swap to Deep Black inside the dark scene (between jury clip 1 f04 and f05)",
+   "scroll-scrubbed per-line colour on stacked giant caps (scrub 2)",
+   "fade-in/out of copy with scroll-pixel staggers",
+   "particle field changing from streaked fibres to discrete dots: frame-feedback trails fade out as uProgress passes .5-.6 while point size grows up to 3x"
+  ],
+  "text_animation": "Stacked caps (FS-60P / THE / HIGHLY / PRECISE / AUTOMATIC / MOVEMENT) scroll upward past the object; each .grey-line has its own ScrollTrigger (start '-100% (50+r[i])%', end '100% (50-r[i])%', scrub 2) with from(color: grey[i]) then to(color: grey[i]) around the line's CSS colour, power3.inOut, so each line brightens to its lit colour only while it crosses the centre (jury clip 1 f04-f07). The last line ends in an inline SVG slash. Hero title: per-char mask slide (see intro). Copy: fadeElements opacity 0 to 1 with duration = innerHeight and stagger innerHeight*.1 (scroll pixels), reversed from:'end' on exit. The '05′ 06′ 07′' counter updates on the watch's UPDATE_ROTATIONS event (~1 per second in jury clip 1).",
+  "image_animation": "No images animate; all motion is the 3D object, particles and type. A black overlay shader (uOpenProgress) opens a rectangle with a wavy edge (sin(x*8 + t*2)*.1) for a reveal; another (uScreenX) sweeps a soft black band across the screen (band .03 + zoom*.1 wide, 0.05 gradient).",
+  "page_transitions": "Single page; no route transitions (other chunks page1/page2/sample-project belong to the studio's framework).",
+  "hover_micro": [
+   "Config wheel: mouseenter sets a custom cursor icon for that colourway; click emits CONFIG_CHANGE with a 1s transition of the watch materials",
+   "'Click to explore' circle-dot cursor cue on the exploded view",
+   "Mouse moves the shader background (uMouse lerped, *.2 offset)",
+   "Press and hold (verified): after a 500ms activation delay a 2s power3.inOut ramp drives uLongpress, stops Lenis (scroll locked), adds html class 'longpress' and emits LONGPRESS_TOGGLE; releasing restarts Lenis. uLongpress is declared in the post shader but unused in its main(), so the visible effect lives elsewhere (not captured)."
+  ],
+  "cursor": "Custom cursor icons driven by state events (SET_CURSOR_ICON, 16 refs); probe cursor_none 0, so inferred the native pointer stays with an attached icon.",
+  "easing_curves": [
+   "GSAP power3.inOut (97 uses in the project chunk, the house ease)",
+   "power3.out (13)",
+   "power2.in (10)",
+   "power2.out (8)",
+   "power4.out (5)",
+   "power3.in (5)",
+   "power2.inOut (4) / power1.inOut (4)",
+   "power4.in (2), sine.out (1), power1.in (1)",
+   "linear/none for scrubbed tracks",
+   "CSS cubic-bezier(0.215,0.61,0.355,1) (ease-out-cubic) x4",
+   "CSS cubic-bezier(0.645,0.045,0.355,1) (ease-in-out-cubic)",
+   "preloader arc: CSS ease-in-out 1.2s"
+  ],
+  "duration_range_ms": "50-2000 for time-based tweens (project chunk: .2 x27, .1 x17, .5 x11, 1 x9, .8 x9, .15 x9, .25 x9, 2 x7, 1.6 x6); scroll tracks measured in pixels (duration = innerHeight, x9); CSS .3-1.2s plus 3-4s and 22s/24s/28s ambient loops",
+  "stagger_ms": "Scroll-based: innerHeight*.1 (90px at 900px viewport) per copy element, innerHeight*.2 in places; time-based .15s, tlD*.005 and tlD*.05",
+  "choreography_notes": "The object always moves first and alone; type and copy are subordinate and scrub with the scroll around it. Big transitions (light to dark, config swap, explode) are separated by quiet stretches where only the hands tick. Jury clip 1 (9.28s): 0.58-2.9s the bare movement floats in the fibre field while the counter ticks 05-07; ~4.06s the movement tilts flat and the text clears; 5.22s the full watch, still in Silver Steel, rises under 'FS-60P / THE / HIGHLY' with 'THE' lit; by 6.38s it has switched to Deep Black, 'AUTOMATIC' is lit and the particles are now dots; 7.54-8.7s the watch settles lower as 'MOVEMENT' scrolls up and side copy fades in. Jury clip 2 (4.92s): side-view watch before vertical '60P' (0.31s), case slides off right while parts spread on the axis (2.15s), labelled exploded view with 'Click to explore' (3.99s).",
+  "evidence": [
+   "frames/0/f00-f07",
+   "frames/1/f00,f03,f04,f05,f07",
+   "frames/2/f03",
+   "desktop_00-07",
+   "the-watch.D6O26wKS.js (re-fetched in audit): eases, durations, staggers, grey-line ScrollTrigger, openAnimation, longpress, An()/Cn() clock, particle and post GLSL",
+   "index-Ck-pEZ8v.js (GSAP 3.15.0, CustomEase, three r162, Svelte 4)",
+   "index.html inline #loader",
+   "index-DSKOTUpi.css html font-size breakpoints"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "realtime-3d",
+  "art_direction": "Studio product photography recreated in real time: brushed and polished steel lit by two EXR maps (envmap + metal), grey seamless backdrop, no hard shadows, chrome reflections that sweep as the environment rotates. The hands and date wheel are set from the visitor's clock (new Date(); ?debugTime=HH:MM and ?debugDay=N overrides), so every visit is a live product shot. Monochrome except the movement's gold wheels, blue screws and ruby jewels. Dark scenes read as a macro shoot on black with smoke-like particle trails.",
+  "treatments": [
+   "object occluding display type",
+   "exploded technical view with leader-line callouts",
+   "material relight to 15% IBL for the dark scenes",
+   "colourway swap (silver steel, deep black, gold, a warm-grey fourth) in 1s",
+   "curl-noise particle ribbons with frame-feedback trails as atmosphere",
+   "post contrast 1.15 / gamma 1.6 (NOISE .05 defined but not applied)",
+   "live local time and date on the hands and date wheel"
+  ],
+  "crops_and_ratios": "Full-viewport canvas 1440x900; the object is framed from extreme macro (bracelet fills the screen) to ~35% of viewport height (exploded parts).",
+  "formats": "watch-DXFPNOEl.glb + envmap-kW4EmG7W.exr + metal-B47qzO42.exr (10.84MB declared 3D bytes); 10 jpg (0.86MB), 5 webp (0.52MB), 2 png (0.92MB), 14 <picture>, 64 inline svg; no video.",
+  "evidence": [
+   "desktop_01-07",
+   "mobile_00",
+   "probe assets_3d",
+   "probe bytes_by_type_declared"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r162 inside 60fps's own WebGL framework (Vite chunks the-watch / page1 / page2 / sample-project / gsapAnimation / hotReplace; shader chunk system with '#define SIXTY_*_AREA' and '/// #replace' injection).",
+  "role": "hero object / product (plus particle atmosphere)",
+  "assets": [
+   "https://thewatch.60fps.fr/assets/watch-DXFPNOEl.glb",
+   "https://thewatch.60fps.fr/assets/envmap-kW4EmG7W.exr",
+   "https://thewatch.60fps.fr/assets/metal-B47qzO42.exr"
+  ],
+  "materials_lighting_post": "Custom PBR material built from injected chunks ('#define SIXTY_*_AREA', '/// #replace'): uniforms uColor, uOpacity, uMetalness, uRoughness (+ map intensities), uEnvMapIntensity, uEnvMapRotation, uAdditiveEnvMapIntensity/Rotation (second additive EXR for highlights), uGlobalEnvmapRotation (mat3, rotates reflections with scroll), uDarknessProgress (iblIrradiance and radiance mixed to 0.15x), uInvertProgress, uGoldMetalColor / uBlueMetalColor for colourways. AO comes from a packed ARM texture: occlusion = (arm.r - 1) * uAoMapIntensity + 1, applied to indirect diffuse; indirectSpecular *= smoothstep(0,.6,sqrt(computeSpecularOcclusion(dotNV, occlusion, roughness))). Post pass: CONTRAST 1.15, GAMMA 1.6, FISHEYE 0 (NOISE .05 declared, unused), animated sine-field + top-right corner shade offset by uMouse, composited where alpha < 1. Particles: THREE.Points with 20,000 vertices (aIndex/aSeed), AdditiveBlending, depthTest and depthWrite off, radius .6 (up to 4x as uProgress falls to 0 for high indices), curl noise, gl_PointSize mix(3, 2+4*seed, 1+z) * (1 + 2*smoothstep(.45,.8,uProgress)), grey value sin(index*20 + seed*2 + uTime*2). The fibres come from a ping-pong feedback pass: two render targets, a full-screen plane redraws the previous frame with rgb*1.04, alpha-.001, alpha *= mix(.6, .99*(1-smoothstep(.5,.6,uProgress)), uPass) * smoothstep(.1,.2,uProgress), so trails persist early and vanish past progress .6, leaving dots. Also InstancedMesh (17 refs), LineSegments (axis and leader lines), DataTexture, WebGLRenderTarget in the framework bundle.",
+  "interaction": "scroll-driven camera and part transforms; mouse offsets the background shading; click to explore parts (camera lookAt the clicked mesh, a uScreenX overlay band follows it); colourway wheel click/hover; press-and-hold 500ms locks scroll and drives uLongpress (effect not captured)",
+  "performance_tactics": "One GLB for all states (parts animated rather than swapped); EXR-based IBL instead of real lights; uDPR uniform (DPR-aware); post pass does background, grade and noise in one full-screen draw. Declared 3D payload is still ~10.8MB.",
+  "fallback_mobile": "No fallback: the full scene renders at 390px (mobile_00/01) with the same model and scroll story.",
+  "evidence": [
+   "probe globals three_revision 162",
+   "probe assets_3d",
+   "probe contexts webgl2 x2",
+   "watch_chunk grep: uniforms (uDarknessProgress x12, uProgress x22, uMouse x12, uTime x24), gl_PointSize, curlNoise, post shader defines, particle feedback pass, blending constant resolved to 2 (AdditiveBlending), PARTICLES_COUNT 2e4"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "No navigation (probe nav [] and a []). A single linear scroll story.",
+  "menu": "None.",
+  "buttons_links": "Two unlabeled buttons (probe type.button, Arial 13.3px white, likely icon buttons); config wheel quadrants labelled 'SWAP' (9px); 'Click to explore' text + circle-dot icon.",
+  "unusual_interactions": [
+   "Colourway swap on a circular wheel around the hero watch (4 configs, 1s material transition).",
+   "Exploded view parts clickable to explore.",
+   "Watch hands and date wheel show the visitor's real local time and date.",
+   "Seconds counter tied to the watch's own rotation events.",
+   "Background shade follows the mouse.",
+   "Press and hold for 500ms locks scrolling and ramps a long-press state over 2s (verified in code; visual effect not captured)."
+  ],
+  "sound": "None observed.",
+  "footer": "Not captured by the probe (last capture desktop_07 is the MOVEMENT scene)."
+ },
+ "content_voice": {
+  "headline_style": "Product-name and spec headlines in giant caps (FS 60P, 60MM WATCH, MODEL 146GR, MECHANICAL HEART), then one stacked statement line read one word at a time.",
+  "copy_tone": "Catalogue-precise, short spec paragraphs under title-case labels ('Case & Finishes', 'Dial & Complications', 'Reliability'); parts listed with numbers and weights.",
+  "examples": [
+   "THE HIGHLY PRECISE AUTOMATIC MOVEMENT"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Vite build of 60fps's in-house framework: Svelte 4 for the DOM layer (svelte-* classes, window.__svelte v4) plus a three.js r162 WebGL core with a custom shader-chunk system and a state/event bus (CONFIG_CHANGE, SET_CURSOR_ICON, UPDATE_ROTATIONS, LONGPRESS_TOGGLE, XPLOD_ALL).",
+  "libraries": [
+   "three.js r162",
+   "GSAP 3.15.0 + ScrollTrigger + CustomEase",
+   "Lenis",
+   "Svelte 4",
+   "custom char splitter (words/chars with a second mask wrapper)",
+   "Adobe Fonts (Nekst)",
+   "Inter",
+   "Cloudflare Web Analytics + Cloudflare challenge script (the probe's 1 iframe)"
+  ],
+  "evidence": "probe globals/libs_from_requests/top_hosts; HTML curl (index-Ck-pEZ8v.js 680KB raw, index-DSKOTUpi.css 19KB, inline #loader); project chunk the-watch.D6O26wKS.js (200KB raw) re-fetched and grepped in the audit; CSS canvas-wrapper rule (position fixed, full viewport, z-index 0, touch-action none) placed before #root."
+ },
+ "performance_accessibility": {
+  "requests": 55,
+  "weight_notes": "3D dominates: 10.84MB declared for GLB + 2 EXR; images ~2.3MB (png 0.92MB, jpeg 0.86MB, webp 0.52MB); fonts 141KB; JS ~880KB raw across index + project chunk.",
+  "reduced_motion": "0 prefers-reduced-motion rules (probe). Scroll-driven 3D and particles are not gated.",
+  "contrast_issues": "12px section labels at rgba(0,0,0,.4) on #ebebeb (~2.8:1, lower where the shader shade darkens the ground); rgba(255,255,255,.4) 12px labels on #0a0a0a in the dark scenes are barely readable ('Automatic Movement' in desktop_05); particles and dots cross the body copy and the MECHANICAL title in desktop_05 and desktop_07; the canvas's post shade also lies over DOM type. Accessibility dev score 6.2 is the site's lowest.",
+  "mobile_quality": "Runs the full WebGL scene at 390px with no overflow, but the watch covers body copy (mobile_01) and display type is cut on both sides; responsive dev score 6.8.",
+  "dev_scores": {
+   "overall": 7.07,
+   "semantics_seo": 6.8,
+   "animations": 8.0,
+   "accessibility": 6.2,
+   "wpo": 7.4,
+   "responsive": 6.8,
+   "markup": 7.0
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Object in the letter gap, rendered over real DOM type",
+   "why_it_works": "The product is literally part of the wordmark, and the occlusion proves it is a real object in space rather than a picture pasted beside a headline.",
+   "how_to_build": "Keep the h1 in HTML ('FS 60P', geometric grotesque 24.3vw / 350px at 1440, line-height .8, uppercase) with a word gap sized to the object's projected width: gap = objectWidthWorld / (2 * dist * tan(fov/2)) * innerHeight px. Put the WebGL canvas above it: position:fixed; inset:0 (the site lets it take pointer events and uses html{pointer-events:none}); renderer with alpha:true, clearAlpha 0. The object renders opaque; do any backdrop shading in a post pass only where scene alpha < 1 (color.rgb = mix(color.rgb, vec3(bg), 1.-color.a); color.a = mix(color.a, 1., bg*(1.-color.a))) and keep bg low (<= .3) so the black type stays legible through it. Intro: fade a ground-coloured loader out, dolly the camera from macro (object 6-8x) to hero framing in ~1s power3.inOut, slide the title chars from x:-100% inside per-char overflow masks (1.2s power3.out, stagger .12s), then fade labels (1.5s, stagger .4s). Render the title visible in the no-JS state."
+  },
+  {
+   "technique": "Scroll-pixel timelines per scene",
+   "why_it_works": "Durations in viewport units make every scene last the same physical scroll on any screen, and the object, copy and type stay in lockstep.",
+   "how_to_build": "One gsap.timeline per scene with scrollTrigger {trigger: section, start:'top top', end:'+=' + 2.5*innerHeight, scrub:true}; inside it use duration = innerHeight for tweens so positions are pixels: tl.fromTo(copy, {opacity:0}, {opacity:1, duration:innerHeight, stagger:innerHeight*.1}, innerHeight).to(copy, {opacity:0, duration:innerHeight, stagger:{each:innerHeight*.1, from:'end'}}, total - 2.5*innerHeight). Object tweens (rotation.y, position, camera fov) in the same timeline with ease 'power3.inOut'. Lenis for input smoothing; rebuild timelines on resize. Leave copy visible without JS (apply the from-state only under html.js)."
+  },
+  {
+   "technique": "Exploded view on one axis with projected leader labels",
+   "why_it_works": "It turns the product's complexity into a readable diagram in one scroll gesture and makes the craftsmanship the content.",
+   "how_to_build": "Name the GLB nodes (dial, tourbillon, mainplate, barrel, backplate, weight, case). Scrubbed tween of each node's x to fractions of the visible width, roughly [-.38,-.27,-.16,0,.17,.29] (measured from desktop_04, not code), case exits +x; rotate the group so parts face the camera edge-on (side view). Draw one THREE.LineSegments hairline through the centres. Each frame project part centres with vector.project(camera) and place DOM labels: a 1px vertical line from the part's lower edge to y=870 and a label rotated -90deg at its foot, ~17px in the display face. Hover/click a part: camera lookAt dolly 1s power3.inOut and fade others to .3 opacity."
+  },
+  {
+   "technique": "Relight the material for mood instead of recolouring the page",
+   "why_it_works": "The dark chapter feels like the lights were cut in the studio; reflections stay physically plausible while the whole mood flips.",
+   "how_to_build": "In MeshStandardMaterial.onBeforeCompile inject uniforms uDarknessProgress and uGlobalEnvmapRotation (mat3). After the IBL lookup: irradiance = mix(irradiance, .15*irradiance, uDarknessProgress); radiance = mix(radiance, .15*radiance, uDarknessProgress). Rotate the env lookup vector by uGlobalEnvmapRotation and tween its angle with scroll (e.g. 0 to PI over the scene) so highlights sweep across the chrome. Tween uDarknessProgress 0 to 1 with power3.inOut in the same ScrollTrigger that fades the DOM background #ebebeb to #0a0a0a; swap to a darker colourway (base #000, #2B2B2B) over 1s at the midpoint."
+  },
+  {
+   "technique": "Curl-noise particle ribbons around the object",
+   "why_it_works": "Gives the dark scenes depth and motion without competing with the product, and the particle style (fibres to dots) marks progress through the chapter.",
+   "how_to_build": "THREE.Points with 20,000 vertices, attributes aIndex, aSeed; material with blending: THREE.AdditiveBlending, depthTest:false, depthWrite:false. Vertex: n = aIndex/COUNT; t = uTime*.2 + n*10.; t += sin01(t)*.2; r = .6 * (1. + 3.*smoothstepPow3(.3, 0., uProgress)*n); base = vec3(sin(t*1.5)*r, cos(t*1.5)*r, sin(t*2.)); pos = base + curlNoise(base*.1, aSeed*.5, uTime*.04)*.2*(.8 + sin01(t)); gl_PointSize = mix(3., 2.+4.*aSeed, 1.+pos.z) * (1. + 2.*smoothstep(.45, .8, uProgress)); grey = sin(n*20.+aSeed*2.+uTime*2.)*.5+.5. The fibre look is a feedback trail: render the points into render target A over a full-screen plane that samples last frame's target B with rgb*=1.04, a-=.001, a*=mix(.6, .99*(1.-smoothstep(.5,.6,uProgress)), 1.)*smoothstep(.1,.2,uProgress), then swap A/B; past progress .6 the trail dies and the points read as dots. Keep it behind or around the object and away from body copy."
+  },
+  {
+   "technique": "Scroll-lit stacked statement in giant caps",
+   "why_it_works": "A six-word sentence becomes a slow read with a moving spotlight, and the object passing in front of the lines ties type and product together.",
+   "how_to_build": "One line per word/phrase, 80-192px caps, line-height .78-.8, each line indented on its own (push the short word toward the object). Set the lit colour (#fff on black) as the CSS colour and a per-line grey (rgb(50,50,50) or rgba(0,0,0,.4) on light) as the tween value: gsap.timeline({scrollTrigger:{trigger:line, start:'-100% ' + (50 + r) + '%', end:'100% ' + (50 - r) + '%', scrub:2}}).from(line, {color:grey, ease:'power3.inOut'}).to(line, {color:grey, ease:'power3.inOut'}); with r around 5-10 so only the line at the centre is lit. End the last line with an inline SVG slash (18x37 path) instead of a font glyph. Render the WebGL object above the text layer so it cuts through the letters as it rises."
+  },
+  {
+   "technique": "Product that tells the visitor's real time",
+   "why_it_works": "A watch showing the actual current time and date turns a render into a live object and quietly proves the scene is real-time, not a video.",
+   "how_to_build": "On load: d = new Date(); h = (d.getHours()%12 + d.getMinutes()/60 + d.getSeconds()/3600)/12; m = (d.getMinutes() + d.getSeconds()/60)/60; hourHand.rotation.z = -2*PI*h; minuteHand.rotation.z = -2*PI*m (apply the same to the hand-shadow meshes and the exploded copies); dateWheel.rotation.z = -2*PI*(d.getDate() - 8)/31, where 8 is the date the modelled wheel shows at rest. Support ?debugTime=10:08 and ?debugDay=24 for marketing stills, fall back to the classic ~10:10 pose on error (the site's default: minute -PI/3, hour -61PI/36), and tick a seconds counter from the same clock."
+  }
+ ],
+ "slop_risks": [
+  "Inter carries every body and label string (105 nodes at 12px). The law's 'premium type usually means licensed type' section endorses exactly this pairing (licensed display, here Nekst via Adobe Fonts, over a neutral Inter workhorse), so this is not a tell as built; it becomes 'Inter everywhere' only if a copy lets Inter take the display or brand lines.",
+  "Light scenes sit on cool greys (#ebebeb, #bcbcbc, #a1a1a1): as flat CSS this is 'the slop gray'; here it only works because a shader shades and animates it.",
+  "A copy that fakes the backdrop with CSS radial gradients behind the product becomes the 'radial glow halo behind an object' / drifting-blob tell.",
+  "Copy and labels start at opacity 0 and the hero title chars start at x:-100% inside masks, all revealed by JS timelines (fadeElements, openAnimation after a 1s delay); desktop_00 shows the page still washed by the loader. That is the invisible-content trap if JS or WebGL fails.",
+  "The six-line stacked statement (FS-60P / THE / HIGHLY / PRECISE / AUTOMATIC / MOVEMENT) with one lit line is the 'multi-line headline' and two-tone accent tell as a static layout; it survives here only because it is read one line at a time by scroll with the object passing through it.",
+  "Text you cannot read: rgba(0,0,0,.4) 12px labels on grey, rgba(255,255,255,.4) 12px on black, and particles running over body copy and the MECHANICAL title (desktop_05, desktop_07).",
+  "The canvas composites its shade and particles over the DOM type: the 'grain sitting on top of the content' failure in shader form.",
+  "Unrounded 1px hairlines (config ring spokes, loader circle, exploded-view axis and leader lines) are functional here; used as decoration elsewhere they are the hairline-rule tell.",
+  "Display type deliberately cut by the viewport edges (60MM at the top, FS/0P on mobile) would read as the cut-off tell without the object anchoring it.",
+  "Particle smoke around a product is a WebGL cliche when it is not tied to the story; here it marks the movement chapter only.",
+  "About 10.8MB of GLB+EXR with no reduced-motion or low-power fallback (0 prefers-reduced-motion rules)."
+ ],
+ "confidence_notes": "Observed: 8 desktop and 2 mobile probe captures (desktop_00 caught mid-intro; mobile_00 shows the settled hero); all 8 frames of jury clips 0 (intro/hero) and 1 (Mechanical Heart to Movement); f00/f03/f06 of clip 2 (exploded view); probe numbers for fonts, sizes, colours, easings, 3D assets; 4 bounded fetches (HTML, index JS, index CSS, project chunk the-watch.D6O26wKS.js) with greps for eases, durations, staggers, ScrollTrigger ranges, uniforms and GLSL. Inferred: the purpose of the long-press uniform and the two unlabeled buttons, the rotated 360px/270px sizes being the vertical type, the Times 11px parts list being unstyled data, the colourway wheel mapping to the four palette arrays in code, and pixel positions of exploded parts in the recipe. Nekst foundry not verified. Footer not captured. audit (2026-09-25, adversarial re-check against probe, all 8 desktop and 2 mobile captures, all 8 frames of clip 0, 5 frames of clip 1, clip 2 f03, and a re-fetch of index.html, index JS/CSS and the-watch chunk): FIXED desktop_00 reading (it is the #EBEBEB preloader fading out with its own 80%-height circle, letters 'FS' not 'F5'); FIXED ring (six radial lines, four colour-tinted config sectors, side sectors hold the words, not four spokes); FIXED html font-size claim (stepped rem, 1rem = 1.40625px at 1440, the .0694vw rule starts at 1441px); FIXED post texture (noise sampled but unused, so no grain; added the top-right corner shade term; the shade darkens rather than lights); FIXED particle recipe (AdditiveBlending is ON, 20,000 points) and ADDED the ping-pong feedback trail that makes fibres and turns them into dots; FIXED occlusion (packed ARM AO, not a normal.z hack); FIXED clip 1 timeline (watch still silver at 5.22s, black by 6.38s); FIXED grey-line tween semantics; UPGRADED long-press from inferred to verified (500ms activation, 2s ramp, locks Lenis; its visual effect is still uncaptured); ADDED: inline preloader spec, hero char-mask intro, live local time/date on the hands and date wheel (new steal_this), Svelte 4, SVG slash glyph, two-tone micro labels, dial pictogram and swatches, Nekst exploded labels. REFUTED the Inter slop accusation as stated (the law endorses licensed display + Inter workhorse); ADDED multi-line-headline and content-under-shader tells. Still inferred: 360/270/190/80px node mapping, exploded-part x fractions (from desktop_04), what LONGPRESS_TOGGLE changes on screen, the two unlabeled buttons."
+}

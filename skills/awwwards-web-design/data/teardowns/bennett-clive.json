@@ -1,0 +1,274 @@
+{
+ "slug": "bennett-clive",
+ "title": "Bennett & Clive",
+ "live_url": "https://bennettandclive.com",
+ "award": "Awwwards Site of the Day, Mar 12 2024 (Honors + SOTD); credits Daniel Spatzek / Spatzek Studio, Thomas Aufresne",
+ "scores": {
+  "overall": 7.71,
+  "design": 7.79,
+  "usability": 7.33,
+  "creativity": 8.13,
+  "content": 7.67,
+  "dev": {
+   "overall": 7.57,
+   "semantics_seo": 6.8,
+   "animations": 8.0,
+   "accessibility": 7.0,
+   "wpo": 8.4,
+   "responsive": 7.6,
+   "markup": 7.4
+  }
+ },
+ "industry": "Creative production company (fashion, beauty, film/TV commercials)",
+ "signature": "A single fixed BENNETT & CLIVE row (one SVG wordmark, scaled down to ~16px-tall placeholders) pinned at 50vh is the axis of the whole page: client names relay from a right-flush queue below it into the top-left slot while each new client film is uncovered by a scrubbed counter-slide wipe, services flip across it (right copy shrinks to its top-right corner while a left copy grows from its bottom-left corner at the 52% line) in mix-blend difference over a sticky reel, and at the footer the same row slides down 50vh and scales up into the full-bleed wordmark.",
+ "first_screen": {
+  "composition": "Full-bleed autoplay muted Vimeo loop (1080p mp4) of the active client film (Adidas ski footage) under a flat rgba(0,0,0,.2) ::after overlay (.home-hero-assets:after), so footage highlights cap at ~211/255 while the type is pure #fff. Active client name 'ADIDAS' top-left at 150px InterWeb white caps. The queue of other clients (CALVIN KLEIN / HOURGLASS / NIKE / EILISH...) is stacked right-aligned starting just under the midline (y~465) and bleeds off the bottom edge (EILISH sliced at y=900). A row 'BENNETT' (x=6) / '&' (x=719, centred) / 'CLIVE' (right edge), drawn as SVG at ~16px cap height, sits fixed at y=450 = 50vh. Nav HOME WORK ABOUT CONTACT 21.75px bold caps top-right, a 3px bar under the active HOME. No gradient; the only scrim is the uniform 20% black layer.",
+  "what_owns_it": "mixed (video + type)",
+  "display_type_px": 150,
+  "evidence": [
+   "evidence/probes/bennett-clive/desktop_00.jpg",
+   "evidence/probes/bennett-clive/desktop_01.jpg",
+   "evidence/probes/bennett-clive/probe.json measure.largest_text",
+   "bundle CSS .home-hero-assets:after{background-color:rgba(0,0,0,.2)}; pixel check: max hero-footage luminance 211 (d00), 210 (d01), 184 (d02), 201 (d03) vs 255 text"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "InterWeb (Inter Bold 700, self-hosted Inter-Bold.woff/.woff2)",
+    "role": "display",
+    "classification": "neo-grotesque sans",
+    "foundry": "Rasmus Andersson (Inter, open source)",
+    "source": "probe fonts_loaded ['InterWeb 700 normal'] + bundle @font-face"
+   },
+   {
+    "name": "InterWeb (same single 700 file)",
+    "role": "body",
+    "classification": "neo-grotesque sans",
+    "foundry": "Rasmus Andersson",
+    "source": "probe body family; weight-400 requests (client links) render with the only loaded 700 face"
+   },
+   {
+    "name": "Arial",
+    "role": "ui",
+    "classification": "system fallback",
+    "foundry": "Monotype",
+    "source": "probe measure.type.button (CONTACT button renders in Arial, an unstyled font-family leak)"
+   }
+  ],
+  "display_size_px": 150,
+  "body_size_px": 14,
+  "scale_notes": "CSS: h1 10.41667vw (150px @1440, 13.54vw at 768-1023), h2--l 5.20833vw (75px, services), h3 3.125vw (45px, clients, lh .95), nav 21.75px, footer labels 1.04167vw (15px, lh 1), body 1.4rem = 14px (html 62.5%). Measured frequency: 15px x42, 75px x22, 45px x21, 150px x18, 22px x4, 30px x1 (about copy), 16px x1 (About pill). Rendered ratio 150:75:45:22:15 = 10 : 5 : 3 : 1.5 : 1. Hierarchy is carried by size alone; one weight on the whole site. The midline/footer BENNETT & CLIVE is not text: it is three SVG components (fill currentColor) scaled from 54vw wide down to 6.56vw x 1.146vw placeholders.",
+  "tracking_leading": "h1 letter-spacing -0.07em (-10.5px at 150px), line-height 0.77 at >=1024px (115.5px), 0.73 at >=1920px, 0.85 on mobile. h2/h3 -0.05em, lh 0.9-1. Nav -0.03em (-0.65px at 21.75px), lh 1.",
+  "case_and_style": "Client names ALL CAPS (text-transform uppercase); the manifesto 'Let's raise your idea.' is sentence case with one word per line; services in Title Case; about copy is ~30px ALL CAPS bold paragraph ('GLOBAL PRODUCTION FOR BRANDS AND AGENCIES. THOUGHTFUL. PRECISE. THE OPPOSITE OF CHAOTIC.'); footer city clocks use time numerals '06 42'.",
+  "signature_moves": [
+   "One family, one weight (Inter Bold 700) with hierarchy only through size jumps of 2x",
+   "Last word pushed to the opposite edge and scrubbed: '.home-about__title-line:last-child .home-about__title-word:last-child{margin-left:auto}' puts 'idea.' flush right below the midline while 'Let's / raise / your' stack flush left above it, and on >=1024px a ScrollTrigger ('top 65%' to 'bottom top', scrub) lifts that one word from y:45vh to 0 (power1.out), so it trails the other three and docks against the CLIVE end of the axis (desktop_04)",
+   "Client list set as a centred two-column spine where typeset names (brands AND photographers: Mert & Marcus, Juergen Teller, Steven Klein) alternate with the brands' real logos (PRADA, ZARA, COACH, SHISEIDO, DIOR, VOGUE, adidas, MAC, TBWA\\, CLINIQUE, GRAFF), logos held at .55em of the 45px names, so logos read as type specimens (desktop_06/07)",
+   "Services list color #fff with mix-blend-mode:difference over the reel video: black-on-white off the video, orange/tan where it crosses blue sky (desktop_05, frames f00-f04)",
+   "Pure-white type + mix-blend-mode:difference on the services list, the header logo and the nav: one colour value reads black on paper, orange over blue sky and blue where it crosses the skier's orange suit (desktop_05 'Casting' C), and a single word changes colour mid-glyph at the reel's edge ('Line Product|ion')"
+  ],
+  "mobile": "At 390px h1 = 6rem (60px) lh 0.85; the client queue keeps right alignment and, unlike desktop, all six names fit above the fold without bleeding off the bottom (mobile_00, MAC ends ~y720 of 844); the 50vh row stays and minifies from 'BENNETT & CLIVE' to 'B & C' after 5px of scroll (HeaderLogo minifyThreshold:5; CSS drops BENNETT's letters translateY(110%) in reverse order with .03-.21s delays and slides the C of CLIVE translateX(73.4%) at .24s; mobile_00 vs mobile_01); nav becomes a two-bar hamburger (always mix-blend difference). No horizontal overflow."
+ },
+ "color": {
+  "mode": "mixed",
+  "base": "#ffffff pure white page body (probe body bg rgb(255,255,255)); the hero is full-bleed video",
+  "ink": "#000000",
+  "accents": [
+   "none in the UI: every hue comes from client footage or from difference-blend inversion (white text over blue sky reads orange #f0955a-ish in desktop_05)",
+   "rgb(255,0,0) is only a debug spacer at opacity 0 (.home-services__list-item-spacer)"
+  ],
+  "ratio": "after the hero ~70% white / 30% black type; the hero and the reel are 100% footage",
+  "section_shifts": "No background colour changes. The shift is medium: footage hero (white type, no blend) then flat white page. A ScrollTrigger on .home-hero ('top top' to 'bottom 50%' for the logo, 'bottom 2%' for the nav) flips isBlended from false to true on leave, so after the hero the white logo and nav render through mix-blend difference: black on paper, orange over the services reel (desktop_06).",
+  "texture": "none added; film grain exists only inside the footage. The hero footage is dimmed by a flat 20% black overlay, not a gradient.",
+  "notes": "Strict black/white; colour is borrowed from the work. That keeps the brand neutral next to Adidas/MAC/Nike footage."
+ },
+ "layout": {
+  "grid": ">=1024px: 4 columns, padding 0 7.8125vw (112.5px @1440), column gap 7.8125vw; <1024px: 2 columns, padding 3rem, gap 3rem (bundle .grid rules). Display type ignores the grid and bleeds to 0.52vw (7.5px) side padding. Footer info row sits on the 4 columns (x=112, 444, 776, 1108 in desktop_07).",
+  "density": "airy with dense bursts (the client list block)",
+  "alignment": "Axis-based: horizontal axis at 50vh (the fixed name row) and a vertical spine at 50vw for clients. Things below the axis sit flush right, things above flush left.",
+  "composition_moves": [
+   "Persistent horizon row at 50vh that doubles as the logo",
+   "Right-flush queue below the axis, left-flush 'current' item above it",
+   "Reel inset to the grid (x 113-1328, grid-column 1/span 4, height 80% of a sticky 100dvh wrapper) that stays pinned while the difference-blended services type scrolls over it and bleeds past it to both viewport edges",
+   "Centered two-column client spine (left column text-align right, right column left)",
+   "Footer: 15px info row on the 4 grid columns, then the wordmark full-bleed flush to the bottom edge"
+  ],
+  "section_rhythm": "Hero (pinned video relay, one 50lvh trigger per client) -> about (white, 150px four-word manifesto + small caps paragraph in col 3, pill 'About' button) -> services (min-height 75vw, padding-top 20.83vw, inset reel + crossing list) -> clients (dense centered list) -> footer (tiny info row + giant wordmark). Big/empty alternates with dense/small.",
+  "mobile_adaptation": "Same axis logic kept; grid collapses to 2 columns; about copy centred; hero list still right-aligned; logo minifies to initials."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis 1.0.34 (window.lenisVersion in the Nuxt bundle; html classes 'lenis lenis-smooth'), created as new Lenis({duration:.8, easing:t=>1-Math.pow(1-t,4)}) (easeOutQuart), driven from gsap.ticker (scroll.raf(time*1000)), ScrollTrigger defaults scroller:document.body, and scroll.stop() until the loader resolves.",
+  "preloader": "From code (HeaderLogo.initLoaderTl): timeline delay 0.5s; at start+=2s the two loader labels are set yPercent -130/+130; then the header BENNETT / & / CLIVE (the large wordmark) scales down to the bounds of the small midline placeholders (scale = placeholder.width / header.width, transformOrigin 'left center' for BENNETT, 'center right' for CLIVE, & also moves x), 1.2s power2.inOut. Not visible in the screenshots (the probe settles for 6s).",
+  "intro_sequence": "Hero assets: .home-hero-assets starts opacity 0 on #000 and fades to 1 (.6s) when isVisible, while its ::before backdrop-filter:blur(6rem) fades out with a .8s delay, so the first film arrives blurred and then sharpens. Hero titles: the first active title scales 0->1 from 'bottom left', 1s power2.out; the inactive queue scales 0->1 from 'top right', stagger 0.15s, duration 1s, delay 0.3s, power2.out, then the scroll timeline is built onComplete.",
+  "scroll_techniques": [
+   "pin (13 sticky, 16 fixed elements per probe; hero sticky 100lvh, services reel sticky 100dvh)",
+   "scrub (every ScrollTrigger is scrub:true or scrub:0)",
+   "relay list (hero) with idle snap: 0.5s after scrolling stops, Lenis scrollTo() the active client's trigger",
+   "counter-slide wipe between hero films (wrapper yPercent 100->0 while inner figure yPercent -100->0)",
+   "axis-crossing list (services)",
+   "mix-blend difference over video",
+   "travelling part-and-close wave through two columns (clients)",
+   "FLIP-by-scale logo into footer wordmark"
+  ],
+  "text_animation": "Hero relay: each .home-hero-trigger (50lvh tall; start 'top center', end 'bottom top', scrub 0) plays title scale 0->1 (origin bottom left, 0.5) then yPercent -110 (0.5), so a name grows in at top-left and exits upward; currentActive updates when that trigger's progress is between 0.25 and 0.75 and is the index the idle-snap scrolls back to. Queue: over .home-hero ('top top' to 'bottom bottom', scrub) each queue item in turn scales to 0 from 'top right' while every item after it moves yPercent -100*(i+1). Services: per row, trigger 'top 52%' to 'bottom 52%': right clone (position:sticky; top:52dvh, aria-hidden) scale 1->0 (origin top right) and left copy scale 0->1 (origin bottom left), ease none; then 'bottom 52%' to 'bottom top': left copy y 0 -> -52vh. The left list is position:fixed bottom:52% with every item absolute at bottom:0 and scale(0), so crossed services pile up above the axis. Clients: timeline start 'top 55%' end 'bottom 40%' scrub: left names x -100, right names x +100 (stagger 0.2, duration 0.6, sine.out), then back to x 0 from start+=0.6; because each row returns 0.6 after it parts, the opening travels down the list as a bulge (f05 mid-list, desktop_07 bottom rows) rather than both columns opening at once. About: last word 'idea.' y 45vh -> 0 (power1.out, 'top 65%' to 'bottom top'). CSS .anim-line: opacity 0 + translateY(2rem) -> visible, 0.6s cubic-bezier(.32,.94,.6,1); .anim-line-scale: scale 0 -> 1 from bottom left, 0.8s.",
+  "image_animation": "Hero films are not cut: each non-first HomeHeroAsset is set to wrapper yPercent:100 / inner figure yPercent:-100 and scrubbed back to 0/0 (ease none, force3D) between its trigger's 'top center' and 'bottom center', a counter-slide wipe that uncovers the next film from the bottom edge upward while the picture itself stays put; each video plays only while its trigger is active (onEnter/onLeave toggles isPlaying). Services reel: a sticky looping video (mountain range, then the orange-suited skier on blue sky in f03-f04) that stays pinned while the blended list scrolls over it.",
+  "page_transitions": "Vue <transition name='page' mode='out-in'>: opacity 0.2s cubic-bezier(.32,.94,.6,1); leave has transition-delay 0.4s; on leave .about-titles get color #000 and mixBlendMode unset; old page removed after gsap.delayedCall(0.6) and page-scoped ScrollTriggers are killed.",
+  "hover_micro": [
+   "Nav: 3px (.3rem) currentColor bar 8px under the active route, scaleX 0->1 from the left and out to the right, .8s cubic-bezier(.32,.94,.6,1); it marks route state, not hover",
+   "Footer links: 2px underline drawn as a ::before bar that retracts to the right on hover (scaleX 1->0, origin right, .4s house curve)",
+   "Desktop nav items enter with transition-delay 0.06/0.12/0.18/0.24s; mobile menu links are 60px (6rem, -0.07em) and grow scale 0->1 from bottom left, .8s, delays 0.26/0.32/0.38s",
+   "'About' button: bordered pill (radius 500px), 16px bold sentence-case label; no hover lift observed"
+  ],
+  "cursor": "default system cursor (cursor:none count 0)",
+  "easing_curves": [
+   "cubic-bezier(0.32,0.94,0.6,1) x35 (CSS house curve: near-instant attack, long settle)",
+   "cubic-bezier(0.22,1,0.36,1) x1",
+   "GSAP 'none' x17 (all scrubbed tweens)",
+   "power2.out x6",
+   "sine.out x4",
+   "power2.inOut x3",
+   "power4 x1, expo x1, power1.out x1"
+  ],
+  "duration_range_ms": "CSS 300-800 (0.6s x15, 0.8s x12, 0.4s x11, 0.3s x10); GSAP 500-1200 (1s x12, 0.5s x7, 0.6s x5, 1.2s x3); scrubbed tweens last as long as their scroll range",
+  "stagger_ms": "150 (hero intro), 200 (clients wave), 60 per desktop nav item, 30 per letter in the mobile logo minify",
+  "choreography_notes": "The midline row never moves until the footer, so everything else reads relative to it. Direction encodes state: below the axis = queued (right-aligned), above = current or past (left-aligned). Scale and counter-slide wipes are the transitions; opacity is used only for the first hero fade-in, the .anim-line reveals and page leave. Items shrink into one corner and grow from the opposite corner. The page is 2024-award footage recaptured live in 2026 with edited copy: the element video (3.94s, frames 0.25-3.69s) shows the older services list (Brand Development, Strategy, Concept Development, Global Production, Art Buying, Motion, Photography, Post Production, Activations, Experiential) and about copy ending 'TELL THEIR STORIES TO THE WORLD.'. f00-f02 services cross the axis, f03-f05 clients arrive and part at the spine, f06-f07 the row drops to the bottom and scales into the full-width wordmark.",
+  "evidence": [
+   "evidence/frames/bennett-clive/0/f00-f07.jpg",
+   "evidence/probes/bennett-clive/desktop_04.jpg",
+   "evidence/probes/bennett-clive/desktop_05.jpg",
+   "evidence/probes/bennett-clive/desktop_06.jpg",
+   "evidence/probes/bennett-clive/desktop_07.jpg",
+   "bundle grep /_nuxt/*.js (HomeHeroActiveTitles, HomeHeroInactiveTitles, HomeServices, HomeClients, HeaderLogo.initLogoTl/initLoaderTl)",
+   "bundle: HomeHeroAsset.initTl (figWrapper/fig yPercent wipe), HomeHero.onScrollThrottle (0.5s idle snap), Nav/HeaderLogo isBlended watchers, CSS .clock__colon blink, .footer-content__item a:before"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "video",
+  "art_direction": "The clients' own commercial footage, uncropped: Adidas alpine ski wide shot, Hourglass beauty close-up on black, Billie Eilish warm amber two-shot, MAC skin close-up on pale grey, a Nike top-down shoe pile on mobile (mobile_01). Faces and products fill the frame; the site's only intervention is a uniform 20% black dim and the type.",
+  "treatments": [
+   "full-bleed object-fit cover video behind white type",
+   "uniform rgba(0,0,0,.2) overlay on every hero film (no gradient)",
+   "blur(6rem) backdrop layer that clears .8s after the first reveal",
+   "scrubbed counter-slide wipe between films",
+   "mix-blend-mode difference type over the sticky inset reel",
+   "brand logos (SVG/PNG from Storyblok) inline with typeset names in the client list"
+  ],
+  "crops_and_ratios": "Hero 100vw x 100lvh cover (asset boxes 101% tall to hide seams); reel inset ~1215px wide inside the grid, 80% of the viewport tall, landscape; logos at .55em of the 45px names (max-width 8vw).",
+  "formats": "8 mp4 (Vimeo progressive, 360p-1080p, ~96.7MB declared), 13 img/picture, 11 svg, 3 png, 1 jpg; hero video autoplay, others autoplay=false until active",
+  "evidence": [
+   "evidence/probes/bennett-clive/desktop_00.jpg",
+   "evidence/probes/bennett-clive/desktop_01.jpg",
+   "evidence/probes/bennett-clive/desktop_02.jpg",
+   "evidence/probes/bennett-clive/desktop_03.jpg",
+   "evidence/probes/bennett-clive/probe.json videos/media"
+  ]
+ },
+ "three_d": {
+  "present": false,
+  "stack": "none",
+  "role": "none",
+  "assets": [],
+  "materials_lighting_post": "",
+  "interaction": "none",
+  "performance_tactics": "",
+  "fallback_mobile": "",
+  "evidence": [
+   "probe.json contexts {webgl:1, 2d:1} but canvas list is empty, no THREE global and 0 THREE matches in the bundle; inferred: a third-party feature-detection context (HubSpot/Vimeo), not a visual layer"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Fixed text nav top-right: HOME WORK ABOUT CONTACT, 21.75px InterWeb 700 caps, -0.03em, white; plain over the hero, then mix-blend difference after it (black on paper, orange over the reel in desktop_06 where CONTACT, outside the video, stays black); a 3px bar under the active route.",
+  "menu": "Mobile: two-bar hamburger opens a list with items staggered 0.26/0.32/0.38s. CONTACT opens a contact modal (store getIsContactModalVisible), which also shortens the loader.",
+  "buttons_links": "'About' is a bordered pill with a small bold label; footer links are 15px bold with a 2px underline bar that retracts to the right on hover; no hover lift.",
+  "unusual_interactions": [
+   "The header logo, the 50vh row and the footer wordmark are one set of three SVGs: gsap.set scales them from 54vw-wide originals down to placeholder bounds, and the footer ScrollTrigger ('top bottom' to 'bottom bottom', scrub) first moves the fixed parents y:'50vh' (marginTop -10) while the inner SVGs shift yPercent -50, then scales them back to 1",
+   "Hero idle snap: 0.5s after the last scroll event (gsap.delayedCall debounce) Lenis scrolls to the active client's trigger, so the relay always rests on a whole client",
+   "Logo minifies to 'B & C' after 5px of scroll on small screens, letter by letter",
+   "Blend state inverts at the hero boundary: header logo and nav are plain white over the hero films and switch to mix-blend difference once .home-hero leaves (onLeave/onEnterBack toggle)",
+   "Footer clocks with a blinking colon (CSS animation blink 1s step-start infinite; f06 '06:42' vs f07 '06 42')"
+  ],
+  "sound": "none",
+  "footer": "4-column info row on the grid (x=112, 444, 776, 1108): live city clocks (2026 live site: 'New York 00 42 / Los Angeles 21 42 / Miami 00 42' in desktop_07; award-era video: 'Brooklyn, New York 06:42 / Santa Monica, Los Angeles 03:42 / Brickell, Miami 06:42'), 'Work with us:' + email, 'CEO, Founder: Sara Mouzayanni', Instagram/LinkedIn, Privacy/Terms, all 15px (1.04167vw, lh 1) bold with 2px underlines; items fade in with .2/.3/.4/.5s delays. Below it the BENNETT & CLIVE wordmark runs 100vw, flush to the bottom edge (frames f07)."
+ },
+ "content_voice": {
+  "headline_style": "Short imperative manifesto split one word per line; client names as headlines; services as a plain noun list",
+  "copy_tone": "Confident production-house shorthand, no adjectives beyond 'Thoughtful. Precise.', name-dropping as proof",
+  "examples": [
+   "Let's raise your idea.",
+   "GLOBAL PRODUCTION FOR BRANDS AND AGENCIES. THOUGHTFUL. PRECISE. THE OPPOSITE OF CHAOTIC."
+  ]
+ },
+ "tech_stack": {
+  "framework": "Nuxt 2 (Vue 2, vuex 3.6.2), statically generated (_nuxt/static payload)",
+  "libraries": [
+   "GSAP 3 + ScrollTrigger + gsap.matchMedia",
+   "Lenis 1.0.34 (bundled; duration .8, easeOutQuart)",
+   "Storyblok CMS (a.storyblok.com assets)",
+   "Vimeo progressive mp4",
+   "HubSpot tracking/forms"
+  ],
+  "evidence": "probe globals {__NUXT__}, libs_from_requests ['nuxt'], html class 'lenis lenis-smooth', top_hosts (vimeocdn, storyblok, hubspot), bundle grep: gsap x59, ScrollTrigger x6, Lenis x20"
+ },
+ "performance_accessibility": {
+  "requests": 74,
+  "weight_notes": "Video-dominated: ~96.7MB of mp4 declared across 8 Vimeo renditions (1080p hero); JS ~724KB across 7 Nuxt chunks; one font file (Inter Bold). inferred: WPO still scored 8.4 because only the first film autoplays and the others play only while their trigger is active.",
+  "reduced_motion": "0 prefers-reduced-motion rules (probe). All scale/relay/wipe scrubs and the idle snap run unconditionally; only a (min-width:1024px) matchMedia gates the clients wave and the 'idea.' scrub.",
+  "contrast_issues": "White 150px type over footage behind only a flat 20% black layer: ADIDAS over snow (desktop_00) sits on ~#d3d3d3 highlights (about 1.5:1) and MAC over pale skin/grey (desktop_03) is similar; difference-blended services produce unpredictable hues over the reel (orange on sky, blue on the orange suit).",
+  "mobile_quality": "Good: no horizontal overflow, h1 60px, axis logic preserved, whole queue fits the first screen, logo minifies to initials, hamburger nav.",
+  "dev_scores": {
+   "semantics_seo": 6.8,
+   "animations": 8.0,
+   "accessibility": 7.0,
+   "wpo": 8.4,
+   "responsive": 7.6,
+   "markup": 7.4
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Horizon logo row that becomes the footer wordmark (FLIP by scale)",
+   "why_it_works": "One brand element stays on screen for the whole page and the finale grows out of it, so the page reads as a single composition instead of stacked sections.",
+   "how_to_build": "Draw the wordmark as three SVGs (BENNETT / & / CLIVE, fill:currentColor) in position:fixed boxes at top:50%, BENNETT left:.52vw width 54vw, CLIVE right:.52vw width 33vw, & near centre (translateY(-50%) via top:calc(50% - half height)); pointer-events:none. Add fixed invisible placeholders where the small row should sit (e.g. 6.56vw x 1.15vw at left, 4.01vw at right, 0.94vw centred). On load and resize: gsap.set(bennett,{scale: ph.width/el.width, transformOrigin:'left center'}); gsap.set(clive,{scale:..., transformOrigin:'center right'}); gsap.set(amp,{scale:..., x: ph.left-el.left, transformOrigin:'left center'}). Footer: gsap.timeline({scrollTrigger:{trigger:'.footer', start:'top bottom', end:'bottom bottom', scrub:true}}).to(parts,{y:'50vh', marginTop:-10, ease:'none', duration:1},0).to(innerSvgs,{y:'-50%', ease:'none', duration:1},0).to(parts,{scale:1, x:0, ease:'none'},1). Rebuild the timeline on resize (kill, clearProps, re-measure)."
+  },
+  {
+   "technique": "Relay list hero (current item top-left, queue right-flush under the axis)",
+   "why_it_works": "The client roster is navigation, content and background video selector at once; scale from opposite corners reads as physical handoff with zero fades.",
+   "how_to_build": "Sticky hero (height 100lvh, overflow hidden) inside a wrapper with padding-bottom 50lvh and one 50lvh .trigger per client. Active titles: per trigger ScrollTrigger({start:'top center', end:'bottom top', scrub:0, animation: tl.fromTo(title,{scale:0,transformOrigin:'bottom left'},{scale:1,duration:.5,ease:'none'}).to(title,{yPercent:-110,duration:.5,ease:'none'},.5), onUpdate: p => p.progress>.25 && p.progress<.75 && setActive(i)}). Queue: one timeline over the hero ('top top','bottom bottom', scrub) where item i scales to 0 from 'top right' at label i and items after it move yPercent -100*(i+1). Films: stack one absolutely positioned wrapper per client (overflow hidden, height 101%); for i>0 gsap.set(wrapper,{yPercent:100}); gsap.set(figure,{yPercent:-100}) and scrub both to 0 between that trigger's 'top center' and 'bottom center' (ease none). Play a video only while its trigger is active. Add a 20% black ::after over the films. Snap: on every Lenis scroll event restart gsap.delayedCall(.5, () => lenis.scrollTo(triggers[active])). Type: 10.41667vw / -0.07em / lh .77 (queue .79)."
+  },
+  {
+   "technique": "Axis-crossing list in mix-blend difference",
+   "why_it_works": "Each service visibly passes a threshold and changes side, which turns a boring list into a scroll-scrubbed physical process; difference blend lets one white list read black on paper and inverted over footage.",
+   "how_to_build": "Two copies of the list: the real one (left) is position:fixed; bottom:52% with every <li> absolute at bottom:0 and scale(0); the clone (right, aria-hidden) is position:absolute; right:.52vw; text-align:right, and each clone <li> is position:sticky; top:52dvh so it parks on the axis while it shrinks. Both color:#fff; mix-blend-mode:difference over an inset <video> whose wrapper is sticky top:0, height 100dvh (reel 80% tall, grid-column 1/span 4). Per clone row, an absolutely positioned full-size trigger child: ScrollTrigger.create({trigger, start:'top 52%', end:'bottom 52%', scrub:true, animation: gsap.timeline().fromTo(cloneInner,{scale:1,transformOrigin:'top right'},{scale:0,ease:'none',duration:.5},0).fromTo(leftItem,{scale:0,transformOrigin:'bottom left'},{scale:1,ease:'none',duration:.5},0)}) plus a second trigger start:'bottom 52%', end:'bottom top' moving leftItem y 0 -> '-52vh'. Section min-height 75vw, padding-top 20.83vw, margin-bottom 25.5vw."
+  },
+  {
+   "technique": "Breathing two-column client spine with real logos",
+   "why_it_works": "Mixing typeset names with actual brand logos on one spine is honest social proof that looks like typography, and the scrubbed part-and-close keeps a dense list alive.",
+   "how_to_build": "Rows of two flex:0 0 50% cells meeting at 50vw (column-gap .52vw): left cell justify-content:flex-end, right cell flex-start, 3.125vw (45px, lh .95) names alternating with logo images held at height .55em (max-width 8vw). gsap.matchMedia('(min-width:1024px)'): timeline({scrollTrigger:{trigger:list, start:'top 55%', end:'bottom 40%', scrub:true}}).to(leftRows,{x:-100,stagger:.2,duration:.6,ease:'sine.out'},'start').to(rightRows,{x:100,stagger:.2,duration:.6,ease:'sine.out'},'start').to(leftRows,{x:0,stagger:.2,duration:.6,ease:'sine.out'},'start+=0.6').to(rightRows,{x:0,...},'start+=0.6'). The overlapping staggers make the gap travel down the list as a bulge; set overflow:hidden on the section and clearProps on revert."
+  },
+  {
+   "technique": "One weight, size-only hierarchy with a single house curve",
+   "why_it_works": "With a 10:5:3.5:1.5:1 size ladder and -0.07em display tracking, a single bold weight carries every level; motion consistency comes from one curve.",
+   "how_to_build": "Load exactly one bold grotesk file (use a licensed one instead of Inter). h1 10.41667vw, lh .77, ls -0.07em; services 5.20833vw, lh .9; list names 3.125vw, lh .95, ls -0.05em; nav ~1.5vw caps, ls -0.03em, lh 1; body 14px, footer labels 1.04vw. Every CSS transition uses cubic-bezier(.32,.94,.6,1) at 0.3/0.4/0.6/0.8s; all scrubbed GSAP tweens use ease:'none'. Give buttons the font-family explicitly (the site's CONTACT <button> falls back to Arial)."
+  },
+  {
+   "technique": "Blend state that flips at the hero boundary",
+   "why_it_works": "Over footage the logo and nav stay honest white; after the hero one white value becomes black on paper and colour-inverted over any video, so a single header serves both worlds without per-section colour logic.",
+   "how_to_build": "Header logo and nav color:#fff. On the home route start with isBlended=false; ScrollTrigger.create({trigger:'.home-hero', start:'top top', end:'bottom 50%', onLeave:toggle, onEnterBack:toggle}) where toggle adds/removes a class setting mix-blend-mode:difference on the logo SVGs (nav uses end:'bottom 2%'). On every other route set it blended from mount. The mobile hamburger is always difference."
+  }
+ ],
+ "slop_risks": [
+  "Inter everywhere: the only typeface is Inter Bold, which the anti-slop law names as the most common slop font. The site gets away with it through scale, -0.07em tracking and choreography; a copy should put a licensed grotesk in the display role.",
+  "Content hidden until a reveal fires: .anim-line starts at opacity:0 + translateY(2rem), hero titles and queue start at scale(0) in CSS, the hero film layer starts at opacity 0 on #000 under a blur(6rem), and Lenis is stopped until the loader timeline resolves; if GSAP/ScrollTrigger or the .is-visible class never arrives, the about copy, the client queue and the hero video are invisible and the page cannot scroll smoothly.",
+  "Multi-line headline staircase: 'Let's / raise / your / idea.' is a four-line 150px stack; it only works because 'idea.' jumps to the far right under the midline. Without that composed break it is the four-line wrap the law bans.",
+  "Cramped display type: -0.07em tracking with line-height 0.77 at 150px nearly fuses caps ('CALVIN KLEIN', 'HOURGLASS') and lets lines touch; copying the numbers onto a wider face will collide.",
+  "Content sliced by an edge: the client queue bleeds off the viewport bottom (EILISH in desktop_00, MAC in desktop_01). Here it is a scroll cue inside a pinned relay; in a static layout it reads as the cut-off tell.",
+  "White type over footage behind only a uniform 20% black layer (ADIDAS over snow, ~1.5:1): the overlay is there but too light for the brightest clips; contrast depends on the clip.",
+  "Small outlined pill 'About' button (radius 500px) is the one generic component on the page.",
+  "Oversized footer wordmark: done right here (same element grows, full-bleed, flush to the bottom). A copy that just pastes a static giant wordmark, or leaves a gap under it, is the slop version.",
+  "No prefers-reduced-motion handling at all.",
+  "Underline-fill hover: footer links retract their 2px underline bar to the right on hover and the nav's active bar wipes in with scaleX; the law bans animated underlines. On a copy, change the state quietly instead.",
+  "Content flung to the far edges: BENNETT at the left rim, CLIVE at the right rim, & centred. Here it is the axis concept; a copy without the relay/blend system is the default edge-to-edge asymmetry tell."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots, both mobile shots and all 8 frames of the only element video (Services & Clients) were viewed one by one. Type sizes, tracking, colours, easings, durations, request counts and video list come from probe.json. The GSAP timelines, trigger start/end values, scales, transform origins, staggers, the Lenis presence, the page transition and the grid/type CSS were read from the live Nuxt bundle (7 chunks, targeted regex only). NOT RECOVERED: Lenis lerp/wheelMultiplier values (minified variables), the exact look of the preloader (the probe settles 6s, so it was never captured), whether the hero video swap crossfades. INFERRED: WebGL context comes from a third party; live clocks tick; the Arial CONTACT button is a font-family omission. | audit (2026-09-25, adversarial re-check against probe, 8 desktop + 2 mobile screenshots, all 8 element frames, and the cached live bundle all.js/site.css): REFUTED and fixed: 'no scrim' (CSS .home-hero-assets:after rgba(0,0,0,.2); footage never exceeds luminance ~211 in any clip); 'hard cut or short opacity' between hero films (scrubbed counter-slide wipe, figWrapper yPercent 100->0 with figure -100->0); blend direction (logo/nav are plain over the hero and difference AFTER it, not the reverse; nav is blended too, desktop_06); midline row is SVG, not 22px text; hero triggers are 50lvh, not 100vh; footer text 15px not 13px; footer clocks were award-era neighbourhood labels, live site shows 'New York 00 42'; mobile queue does not bleed off the bottom; type ratio 10:5:3:1.5:1 not 3.5; body CSS 14px. RECOVERED: Lenis 1.0.34 options {duration:.8, easeOutQuart}; 0.5s idle snap to the active client; blur(6rem) hero intro; sticky services reel and sticky right-list items (top:52dvh); 'idea.' 45vh scrub; blinking clock colon; underline-retract hover; mobile letter-by-letter minify; clients part travels as a wave. Noted that the element video predates the live copy (different services list and about text). Remaining inference: WPO cause, vuex version, preloader look (never captured)."
+}

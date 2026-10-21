@@ -1,0 +1,99 @@
+{
+  "slug": "",
+  "title": "",
+  "live_url": "",
+  "award": "",
+  "scores": {"overall": null, "design": null, "usability": null, "creativity": null, "content": null, "dev": {}},
+  "industry": "",
+  "signature": "One sentence: the single move that makes this site award-level.",
+  "first_screen": {
+    "composition": "What the 1440x900 first viewport shows and how it is arranged.",
+    "what_owns_it": "type | image | 3d | video | product | mixed",
+    "display_type_px": null,
+    "evidence": ["desktop_00.jpg"]
+  },
+  "typography": {
+    "families": [{"name": "", "role": "display|body|mono|accent|ui", "classification": "", "foundry": "", "source": "probe fonts_loaded / CSS / guess"}],
+    "display_size_px": null,
+    "body_size_px": null,
+    "scale_notes": "ratio between display, section heads, body, meta",
+    "tracking_leading": "negative tracking on display? line-height values",
+    "case_and_style": "caps / sentence / italic mixing / numerals",
+    "signature_moves": [],
+    "mobile": "how type adapts at 390px (mobile_00.jpg)"
+  },
+  "color": {
+    "mode": "light | dark | mixed | section-shifting",
+    "base": "#hex + description",
+    "ink": "#hex",
+    "accents": ["#hex role"],
+    "ratio": "approx % base / ink / accent",
+    "section_shifts": "does the background change between sections, how",
+    "texture": "grain / gradient / none, and where it sits (behind or over content)",
+    "notes": ""
+  },
+  "layout": {
+    "grid": "columns, margins, gutters as observed",
+    "density": "airy | balanced | dense",
+    "alignment": "",
+    "composition_moves": [],
+    "section_rhythm": "how sections alternate in scale/density",
+    "mobile_adaptation": ""
+  },
+  "motion": {
+    "smooth_scroll": "lenis / locomotive / native / unknown + evidence",
+    "preloader": "",
+    "intro_sequence": "",
+    "scroll_techniques": ["pin", "scrub", "parallax", "horizontal", "stacking", "reveal", "..."],
+    "text_animation": "",
+    "image_animation": "",
+    "page_transitions": "",
+    "hover_micro": [],
+    "cursor": "",
+    "easing_curves": ["cubic-bezier(...) from probe or GSAP ease strings from bundle"],
+    "duration_range_ms": "",
+    "stagger_ms": "",
+    "choreography_notes": "hierarchy, overlap, what moves first",
+    "evidence": ["frames/<i>/f00-f07", "bundle grep"]
+  },
+  "imagery": {
+    "primary_medium": "photo | product-still | 3d-render | realtime-3d | illustration | video | type-only | mixed",
+    "art_direction": "lighting, grading, cropping, subject treatment",
+    "treatments": [],
+    "crops_and_ratios": "",
+    "formats": "avif/webp/mp4 counts from probe",
+    "evidence": []
+  },
+  "three_d": {
+    "present": false,
+    "stack": "three.js / r3f / ogl / spline / unicorn / pre-rendered video / none",
+    "role": "hero object / world / product / image-plane shader / particles / globe / background field",
+    "assets": [".glb/.ktx2/.hdr urls from probe"],
+    "materials_lighting_post": "",
+    "interaction": "scroll-driven camera / mouse parallax / drag / none",
+    "performance_tactics": "",
+    "fallback_mobile": "",
+    "evidence": []
+  },
+  "navigation_interaction": {
+    "nav_pattern": "",
+    "menu": "",
+    "buttons_links": "hover states as observed",
+    "unusual_interactions": [],
+    "sound": "",
+    "footer": ""
+  },
+  "content_voice": {"headline_style": "", "copy_tone": "", "examples": ["verbatim short headline, <15 words"]},
+  "tech_stack": {"framework": "", "libraries": [], "evidence": ""},
+  "performance_accessibility": {
+    "requests": null,
+    "weight_notes": "",
+    "reduced_motion": "probe reduced_motion_rules + observation",
+    "contrast_issues": "",
+    "mobile_quality": "",
+    "dev_scores": {}
+  },
+  "steal_this": [{"technique": "", "why_it_works": "", "how_to_build": "concrete: CSS/GSAP/Three approach, numbers"}],
+  "slop_risks": ["where the site flirts with a deslop-law tell, or what would look cheap if copied badly"],
+  "confidence_notes": "what was observed directly vs inferred; probe failures"
+}

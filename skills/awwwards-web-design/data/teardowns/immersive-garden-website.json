@@ -1,0 +1,301 @@
+{
+ "slug": "immersive-garden-website",
+ "title": "Immersive Garden website",
+ "live_url": "https://immersive-g.com/",
+ "award": "Awwwards Site of the Day, Jan 7 2025 (Honors); listed in Sites of the Month; award year 2025",
+ "scores": {
+  "overall": 8.0,
+  "design": 8.09,
+  "usability": 7.51,
+  "creativity": 8.4,
+  "content": 8.34,
+  "dev": {
+   "overall": 7.5,
+   "semantics_seo": 7.0,
+   "animations": 8.8,
+   "accessibility": 6.6,
+   "wpo": 8.0,
+   "responsive": 7.2,
+   "markup": 7.2
+  }
+ },
+ "industry": "Digital experience studio / agency portfolio (luxury clients: Cartier, Louis Vuitton, Dior, Omega, Longines)",
+ "signature": "The whole site is carved into one realtime plaster bas-relief (a glTF relief under a mouse flowmap and noise extrusion) so birds, faces and flowers rise out of and sink back into the page as you scroll, and the menu floods that same relief to black with an iridescent cursor-lit sheen.",
+ "first_screen": {
+  "composition": "OBSERVED: a loader-that-becomes-the-hero. On a flat #e8e8e8 field, three items sit on one horizontal axis at y=449 of 900, each on a column line of a 12-column grid (CSS .gridWrapper repeat(12,1fr), 16px gutter, 16px outer padding at 1440, so columns are ~102.7px): the shield monogram + letterspaced serif-caps wordmark starts at column 2 (x=135), the tagline 'Innovative digital experiences studio' (PSTimes 28px = 1.944vw, #030303) at column 5 (x=491), and a 14px HelveticaNeue counter at column 10 (x=1084, inner opacity .6 so it reads grey) that runs 0 -> 100 (desktop_00, desktop_01). Fixed chrome then fades in: 'Menu' top-right (40px padding), 'See all projects' + a tiny lottie glyph bottom-left, the sound toggle dot bottom-right (desktop_02). The counter swaps to 'Scroll down' and a white plaster bas-relief of birds and leaves fades up behind the same row (desktop_03). The pale 'Click to enable sound' seen under the tagline in desktop_01-04 is NOT a fixed hint: it is the contextual cursor label (12px Helvetica in the .cursor__ease layer, left 35px / top 15px from the pointer, whole cursor at its .isLowOpacity 0.3 state), parked where the probe's pointer rested at the viewport centre (720,450). The tiny dot at ~736,451 in desktop_04-07 is not a pointer dot: it is the home HomeScrollCursor, three stacked 3px #030303 dots placed 15px right of the pointer, which later spreads into a scroll-velocity gauge (see motion.hover_micro). The first scroll reveals a 4-line left-aligned 56px serif H1 over a relief bird and face profile (desktop_04).",
+  "what_owns_it": "3d",
+  "display_type_px": 28,
+  "evidence": [
+   "probes/immersive-garden-website/desktop_00.jpg",
+   "probes/immersive-garden-website/desktop_01.jpg",
+   "probes/immersive-garden-website/desktop_02.jpg",
+   "probes/immersive-garden-website/desktop_03.jpg",
+   "probes/immersive-garden-website/desktop_04.jpg",
+   "probe.json measure.type.h1 / font_sizes_px",
+   "typo/css/immersive-garden-website.html (.gridWrapper, .introLoader__*, .cursor__text)",
+   "HomePage.ClaPmn7U.js (HomeScrollCursor: pointer clientX+15, 3 default dots + 120 fast-mode dots)"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "PSTimes",
+    "role": "display",
+    "classification": "transitional/Times-model serif, regular 400 only",
+    "foundry": "unknown (self-hosted PSTimes-Regular.woff2; licensed, not Google)",
+    "source": "probe fonts_loaded 'PSTimes 400 normal' + entry CSS @font-face"
+   },
+   {
+    "name": "PSTimes",
+    "role": "body",
+    "classification": "same serif at 36px for project captions and 44px for statements",
+    "foundry": "unknown",
+    "source": "probe measure.type.p"
+   },
+   {
+    "name": "HelveticaNeueRegular",
+    "role": "ui",
+    "classification": "neo-grotesque, 14px, for Menu / See all projects / counter / cursor labels",
+    "foundry": "Linotype Helvetica Neue (self-hosted)",
+    "source": "probe fonts_loaded + CSS @font-face (HelveticaNeueLight also declared)"
+   }
+  ],
+  "display_size_px": 56,
+  "body_size_px": 36,
+  "scale_notes": "Measured: H1 56px/61.6px (lh 1.1); approach statement 44px/48.4px (1.1); project captions 36px/43.2px (1.2) and the dominant size (54 nodes at 36px); 28px loader tagline (8 nodes); 22px section label 'Our approach'; UI 14px/15.4px; cursor label 12px. Every size is a vw unit authored off a 1440 artboard (3.8889vw=56, 3.0556vw=44, 2.5vw=36, 1.9444vw=28, 1.5278vw=22, .9722vw=14, .8333vw=12) and frozen to fixed px above 1915.2px (e.g. the 28px tagline caps at 37.24px). It is clamped at the low end too, per element: the H1 falls to a fixed 44px below 1131px, captions to 28px below 1120px, the approach statement and footer CTA to 34px below 1113px, while the loader tagline (28px), UI (14px) and cursor label (12px) are pinned to px at 1440 and below and only grow above it. So the composition scales as one picture roughly between 1131px and 1915px and switches to fixed sizes outside that band (CSS media queries in the cached stylesheet). Ratio display:UI is 4:1 but display:body only 1.55:1, so hierarchy comes from position and whitespace, not from a giant display size. The truly large type lives in WebGL: fast-scroll titles (globalScale 2.6, fastScale 2.5) and the about-page Roman numerals, ~356px tall in a 720px-tall element frame (about half the viewport height).",
+  "tracking_leading": "letter-spacing 'normal' on every measured node; tight 1.1 leading on display serif, 1.2 on captions/tagline, 1.5 on the 16px copy class (letter-spacing .01em there only). No negative tracking. Only the logo wordmark is widely tracked caps.",
+  "case_and_style": "Sentence case everywhere, no italics, no uppercase labels except the brand wordmark. Serif regular 400 is the only display weight.",
+  "signature_moves": [
+   "Single-weight serif (400) carries everything from 56px H1 to 36px captions: hierarchy by size and placement only",
+   "Hero H1 is a WebGL SDF title: the DOM h1 (.hero__text1) is visibility:hidden and the canvas draws it with noise-driven thickness, fade and mask passes over 6s (bundle config title.thickness/fade/mask, eases cubic-bezier(0,0.016,0.578,0.972), (0,0.208,0.334,0.968), (0,0.316,0.406,0.959)); desktop_04 catches 'seen or' half-dissolved",
+   "Menu items rewrite themselves on hover: words are inserted before, inside and after the label in dimmer grey ('Our approach' -> 'Our singular approach to craftsmanship', 'Services' -> 'Services driven by purpose and vision'), fading in while the whole line re-centres (element 0 f04-f07)",
+   "Fast-scroll index: project names become centred serif rows, the row nearest centre darker (~#575757) and the rest ~#8c8c8c (element 2 f03)",
+   "Captions are held to 3 of 12 columns (grid-column-end: span 3) so a 36px serif sentence wraps into a narrow 3-line block under the image's left edge"
+  ],
+  "mobile": "OBSERVED mobile_00/01 (390px): the tagline stays 28px (the .introLoader__progressWrapper rule pins it to 28px at 1440 and below) and breaks to 2 lines because .introLoader__baseline gets max-width 200px at 560px and below; the pitch measures ~33.5px = 28px x 1.2. The probe's mobile 'largest 34' is the approach statement / footer CTA (.textBlock__text.fontSize--large and .footer__projectsCta drop to 34px below 1113px), not the tagline. Logo lockup stacks above it, the counter / 'Scroll down' drops below it at full opacity (the .6 opacity is reset to 1 at 560px and below), 32px left margin (gridWrapper padding 32px at 1024px and below). H1 measured 44px (WebGL). Chrome keeps 'Menu' top-right and 'See all projects' / 'Off' sound toggle along the bottom. No horizontal overflow. The viewport meta sets maximum-scale=1, user-scalable=0, so pinch zoom is blocked."
+ },
+ "color": {
+  "mode": "section-shifting (light plaster home, black menu and about pages)",
+  "base": "#e8e8e8 flat neutral grey on the loader (probe body bg rgb(232,232,232)); once the relief renders the lit plaster reads #bdbdbd-#c2c2c2 (pixel samples desktop_04; corpus palette #c2c2c2); WebGL clearColor #ffffff",
+  "ink": "#030303 (probe rgb(3,3,3), 39 text nodes)",
+  "accents": [
+   "#7abfc5 teal base of the chromatic fluid sheen (bundle relief.fluidEffect.baseColor r122 g191 b197, hueShift -0.52); in the evidence it only shows on the dark menu relief, as red/blue/violet iridescence along the cursor's recent path",
+   "#030303 dark token: the menu/about stage and the dark variants (CSS .introLoader.darkBg / .footer.darkBg background #030303; rendered menu relief ~#0d0d0d in element 0)",
+   "grey text is opacity, not a new hex: counter/'Scroll down' are #030303 at .6, which computes to #5f5f5f on #e8e8e8 (sampled core #656565 in desktop_01); the whole cursor drops to .3 (.isLowOpacity), so its label computes to #a3a3a3"
+  ],
+  "ratio": "about 90% grey plaster / 8% black ink / under 2% colour, which arrives only through client imagery and the cursor sheen",
+  "section_shifts": "The home never changes background colour. Colour and weight come from the embedded client media (dark LV/Cartier/Omega stills). The menu turns the whole relief black through an ink-like wash (element 0 f00), and the about page is a pure black stage.",
+  "texture": "Material, not grain: a plaster.jpg texture and rgb-noise.jpg on the relief mesh, lit in 3D and bloomed (strength 2.2, radius 0.15, threshold 0.38). It sits behind the text because it is the scene, not an overlay.",
+  "notes": "The palette is literally a two-token inversion pair, #030303 ink and #e8e8e8 paper: on dark sections the CSS swaps them (cursor --cursor-color, sound --sound-color, footer.darkBg), so the UI almost never uses pure black or white (exceptions: the sound-button ring canvas lerps between #e8e8e8 and 'black', the probe finds 2 text nodes and 1 background at rgb(0,0,0), and the WebGL clearColor is #ffffff). Monochrome on purpose, so client work supplies the colour. It stays premium only because the grey is a lit, shadowed material (rendered #bcbcbc-#c4c4c4); the same #e8e8e8 as a flat CSS fill would read as the default UI-kit grey."
+ },
+ "layout": {
+  "grid": "OBSERVED in CSS: .gridWrapper is display:grid, grid-template-columns repeat(12,1fr), 16px column gap, 16px side padding (32px at the mobile breakpoint), max-width 2088px. At 1440 each column is ~102.7px, so the loader anchors x=135 / 491 / 1084 are exactly the starts of columns 2, 5 and 10 (.introLoader__logo grid-column 2/4; at 1440 and below the tagline wrapper is 5/10 and the counter 10/12; above 1440 they shift to 4/10 and 10/13, so wider screens pull the tagline one column left; at 1024 and below everything stacks in 1/12 with the logo in 1/5). Fixed chrome sits outside the grid in a 40px safe zone (.headerBlock__menu padding 40px; 'See all projects' left 40px / bottom 48px). The showreel window is 912px wide, centred (x 264-1176). Project cards alternate sides AND sizes: a landscape card ~48% of the frame width on the left (element 2 f00/f06, ~1.79:1) and a narrower portrait-leaning card ~31-33% wide on the right (f07), each with a 3-column caption under its left edge.",
+  "density": "airy",
+  "alignment": "left-aligned hero H1 on the logo's axis (x=135); centred statement block ('Our approach' 22px label over a 44px paragraph, max ~700px); project captions left under images",
+  "composition_moves": [
+   "Loader row = hero row: brand, tagline and progress share one baseline on three column lines, so the load state is already a finished composition",
+   "Text over sculpture: the H1 holds the left columns (x 135-685) while the relief figure sits on the viewport's centre axis (x ~510-880), overlapping the H1's right end (desktop_04, desktop_05)",
+   "Media as windows cut into plaster: WebGL image planes float over the relief with slight perspective bend (trapezoid edges in desktop_05)",
+   "Fixed four-corner chrome (Menu + monogram, See all projects, sound toggle) frames an otherwise edge-free canvas",
+   "Asymmetric card pairs: big landscape left, smaller portrait right, so the project list zig-zags in both position and scale"
+  ],
+  "section_rhythm": "Hero statement (4 lines) -> 912px showreel window -> 'Our approach' 22px label over a centred 4-line 44px statement over relief -> alternating project cards, each one image plus a 36px caption, with long relief gaps between (CSS .projectBlock + .projectBlock margin-top 36.11vw = 520px at 1440, 156px on mobile). One idea per screen with plaster breathing room between.",
+  "mobile_adaptation": "Same single-column stack with a 32px margin; relief keeps rendering (low-tier glb fallback reliefs_low_compressed.glb for mobile_or_lowTier); chrome moves to the bottom with a sound 'Off' toggle"
+ },
+ "motion": {
+  "smooth_scroll": "Custom virtual scroll driving WebGL (doc_height 900, so the page never scrolls natively): the bundle's own scroll class defaults {wheelMultiplier 1, deltaMultiplier .1, touchMultiplier .5, speedMultiplier .1, smoothAmount .035} and the home config overrides it to smoothAmount .035, speedMultiplier .95, deltaMultiplier .3 (fastDeltaMultiplier .3). Lenis source is also bundled (data-lenis-prevent handlers) but the home scene uses the custom class. Evidence: entry.DyxL_KXi.js.",
+  "preloader": "Counter 0 -> 100 in 14px HelveticaNeue at 60% opacity on the hero baseline (desktop_00 -> 01). CSS also defines .introLoader__progressBar: a 1px currentColor line at 20% opacity, positioned at top .5em across the tagline column and scaled from transform-origin 0 0 (a hairline striking through the tagline). It is not visible in the captures (desktop_00 is at 0, desktop_01 already at 100), so treat it as inferred. The logo SVG is revealed through an SVG mask rect (defs>mask>rect will-change transform). No spinner.",
+  "intro_sequence": "At 100: chrome fades in (CSS .headerBlock opacity 1.5s linear after a 1s delay; bundle ui fade 1s sine.inOut) -> relief fades up (over.show relief.fade 0.5s sine.inOut; view fade 1.75s sine.inOut) with camera zoom 2s power1.out -> counter replaced by 'Scroll down' (desktop_02 -> 03). The 'Click to enable sound' text visible from desktop_01 is the cursor label, not a step of the sequence.",
+  "scroll_techniques": [
+   "relief scrolls at 0.25x speed (relief.scroll.speed .25), a depth parallax against the DOM layer",
+   "scrollExtrude: relief motifs emerge and sink through noise while scrolling (noiseSize 7.77, speed 2, strength 1.02), so different birds, faces, leaves and fish appear per screen (desktop_03 -> 07)",
+   "media planes: parallax (parallaxPositionFactor .6, parallaxMaskFactor .13, CustomEase 'mediaBlockParallax' .5,0,1,.4) plus velocity-driven bend and stretch (uStretchFactor, uDeformationProgress; trapezoid edges visible in desktop_05)",
+   "fast mode (desktop only, the trigger returns early unless Pt.device.desktop): a leaky integrator runs on every smoothed scroll tick, progress += (speed - offset x deltaCoeff) x factor (offset .05 and speed-up .6 while slow, offset .025 and speed-up .9 while fast, x .3 when the term is negative), clamped 0..1. At >= .99 it enters fast mode, at <= .75 it leaves (hysteresis). Entering fires a fixed 1.5s GSAP timeline on CustomEase 'fast' = (.2,0,0,1): camera UI scale 1 -> 4, DOM text blocks scale(.5) and fade out in .5s, media, titles and relief run their own goFast tweens, camera zoom mixes toward fastModeZoom .6, and the scroll delta switches to fastDeltaMultiplier and is clamped to the media range. Leaving runs 1.3s on 'slow' = (.4,0,0,1). Hitting either end of the list while fast auto-exits after 1s",
+   "hold-to-open: 'Click and hold' cursor on project media (uPressure, uDragScaleProgress)"
+  ],
+  "text_animation": "WebGL SDF hero title with noise-thickness, fade and mask reveal over 6s (see typography). Cursor labels are split into chars (GSAP SplitText 3.2.4, Club licence header in the bundle) and fade opacity 0->1 over 0.8s with the stagger spread so the whole word takes 0.4s (stagger .4/chars.length, default.CxpTjDRZ.js); they leave with a 0.5s fade. Menu insertions fade in the same char-by-char way (inferred: the menu component was lazy-loaded and not captured). SRT subtitle files attached to timed 'sections' data are split with SplitText into absolutely positioned caption lines (fade offsets .2 / in .1 / out .5s), i.e. narrated sections get synced captions; which page uses them is not in the evidence (the teardown previously said 'showreel', which the code does not support). Hovering a WebGL link title slides each text line in from x -0.015 while its alpha rises, 2s on the 'fast' ease with a 75ms per-line stagger.",
+  "image_animation": "Media are textured planes in the WebGL scene: bend with scroll velocity, parallax inside their mask, zoom on hover (uZoomProgress), and open the video player with power2.inOut 1s then 1.5s. Thumbnails are KTX2 (40 small_*.ktx2).",
+  "page_transitions": "Menu: a dark smoky front floods the white relief starting from the top-right corner where 'Menu' was clicked and sweeps diagonally to the bottom-left (element 0 f00 at 0.52s shows only a white remnant bottom-left), leaving the same relief in black by f01 (1.56s). Nav items fade up centred; the cursor leaves a lingering iridescent chromatic trail on the black relief (sheen still visible where the pointer was in f02, at the new position in f03; chromaticMask fresnelSharpness 35, fresnelOpacity .98; fluidEffect amplitude .57, hueShift -.52). In f05-f07 bright white fractured light shards break through the black relief in the bottom-right corner (observed; cause not identified). Home -> About: view fade 2s sine.in, ui fade 1s sine.in, camera zoom 6s cubic-bezier(0.425,0.031875,0,0.971875) to 1.05. About chapters cut to a full black frame with a 'Loading...' cursor label between numerals (element 1 f04).",
+  "hover_micro": [
+   "Menu item hover: grey words are inserted around and after the label while the whole line re-centres; the hovered head brightens to ~#e2e2e2, the inserted words sit at ~#818181, and the other items stay at their ~#d6d6d6 rest tone (sampled element 0 f03/f06, they do not dim)",
+   "Word cursor: the native pointer stays (cursor_none 0) and gains a 12px Helvetica label ('Play', 'Click and hold', 'Click to explore', 'Discover', 'Loading...') in a .cursor__ease layer at left 35px / top 15px that lerps toward the pointer at 0.1 per frame (default.CxpTjDRZ.js). A second .cursor__follow layer tracks 1:1 but is an empty box. The label flips to #e8e8e8 over dark media as well as dark sections ('Play' renders light on the showreel, desktop_06). In the 'Click and hold' state a thin ~30px ring circles a small dot beside the label (desktop_07, over the showreel plane), so it is not ring-free",
+   "Scroll cursor as a velocity gauge (HomeScrollCursor, home only, desktop only, hidden at 1024px and below and over the footer/UI/canvas links): three 3px #030303 dots sit 15px right of the pointer and ease to it with a frame-rate-independent lerp (1 - exp(-0.1 x dt x 60)). As scroll speed builds, the dots spread apart vertically, alternating above and below, by (fastScrollBarProgress + fastScrollProgress x 40) x 2px, where the bar progress is fed through an easeOutElastic helper, so a flick visibly stretches the cursor (element 2 f00-f02: three dots ~145-190px apart on the pointer's x in the 960 frame). When fast mode engages the three dots scale away (mix 0 -> 1 over 1s power1.inOut) and a column of 120 dots fades in (opacity 1 over 1s) and shifts with scroll % (x 50), a dotted scrollbar at the cursor (element 2 f03/f04). The probe's 124 round #030303 nodes are these 123 dots plus the sound dot",
+   "Mouse flowmap presses and extrudes the plaster under the cursor (flowmap mouseEase .4, dissipation .953, falloff .38; extrude gradientStrength .17)",
+   "Lottie micro-glyph beside 'See all projects' morphs between a colon and a small bird (desktop_02 vs 03)"
+  ],
+  "cursor": "Native pointer kept (probe cursor_none 0) plus two layers. The word label (CSS .cursor__text font-size .8333vw, 12px at 1440 and below, left 35px, top 15px) lives in .cursor__ease, which lerps at .1 per frame; .cursor__follow follows 1:1 and is empty. Colour comes from --cursor-color, #030303 on light and #e8e8e8 when .isDark (dark sections and dark media); .isLowOpacity drops the whole cursor to 0.3, which is why 'Click to enable sound' computes to #a3a3a3. The dot seen next to the pointer on the home is the separate HomeScrollCursor gauge (pointer + 15px), not part of this cursor.",
+  "easing_curves": [
+   "CSS cubic-bezier(0.445,0.05,0.55,0.95) x28 (easeInOutSine; also the cursor opacity transition)",
+   "CSS cubic-bezier(0.39,0.575,0.565,1) x6 (easeOutSine)",
+   "CSS cubic-bezier(0.165,0.84,0.44,1) x4 (easeOutQuart)",
+   "CSS cubic-bezier(0.77,0,0.175,1) x2 (menu button 'all .4s')",
+   "CSS cubic-bezier(0.2,0,0,1) x2 and cubic-bezier(0.4,0,0,1) x1: the same curves are registered in GSAP as CustomEase 'fast' (.2,0,0,1, the 1.5s fast-mode switch and WebGL link hovers) and 'slow' (.4,0,0,1, the 1.3s return), plus 'circleDraw' (.4,0,0,1) for the sound ring",
+   "GSAP sine.inOut is the house ease (~75-81 string hits), plus sine.out, power3.inOut, power2.inOut, power3.out",
+   "custom: cubic-bezier(0,0.016,0.578,0.972), cubic-bezier(0.425,0.031875,0,0.971875), cubic-bezier(0,0.316,0.406,0.959) for 2-6s camera/title moves",
+   "CustomEase 'mediaBlockParallax' .5,0,1,.4; fast-mode scroll uses an easeOutElastic helper"
+  ],
+  "duration_range_ms": "CSS 100-3000ms (0.5s dominant with 77 rules; 0.3s x8, 1s x8, 1.5s x4, 3s x2, 0.1s x2); GSAP 400ms-6000ms (1s, .5s, 1.2s, 2s common; 6s for title reveals and the about camera zoom)",
+  "stagger_ms": "Cursor-label chars: total 400ms spread across the word (stagger .4/chars.length, so ~20-40ms per char), each char 800ms (measured in bundle). WebGL link-title hover: 75ms per line (delay o*.075, 2s each). GSAP stagger .1 appears in HeroBlock.js. Menu insertions look similar in frames (inferred).",
+  "choreography_notes": "Slow and liquid rather than snappy: the house curve is a symmetric sine.inOut and the big moves last 2-6s. What moves first is the material (the relief fades or floods), then the UI at 1s, then the type resolves last via noise. Scroll velocity is a design input: slow scrolling reads projects, fast scrolling switches to an index.",
+  "evidence": [
+   "frames/immersive-garden-website/0/f00-f07 (menu transition)",
+   "frames/immersive-garden-website/2/f00,f01,f03,f06,f07 (rapid scroll)",
+   "frames/immersive-garden-website/1/f00,f04,f06 (sections)",
+   "probes/immersive-garden-website/desktop_00-07",
+   "entry.DyxL_KXi.js (k_e home config: relief / title / fastMode / flowmap / bloom), default.CxpTjDRZ.js (cursor), HeroBlock.DoznkBHg.js",
+   "typo/css/immersive-garden-website.html (inline CSS)",
+   "HomePage.ClaPmn7U.js (HomeScrollCursor), default.CxpTjDRZ.js (cursor__ease / cursor__follow, SoundButton canvas ring)"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "realtime-3d",
+  "art_direction": "House medium = monochrome plaster bas-relief (birds, human profile, poppies, tulips, leaves, fish) lit softly from the upper left with deep ambient occlusion, like a museum cast. Client work is shown as dark, cinematic, desaturated stills and video (misty greenhouse studio with monitor, LV trunk on a salt flat, Cartier ring in pink clouds, Omega planet), so colour appears only inside project windows. About pages switch to black-stage still-life: giant serif numerals as lit monoliths wrapped in pressed flowers, a bird or a butterfly, reflected in rippling water.",
+  "treatments": [
+   "plaster relief as page substrate",
+   "WebGL image planes with velocity bend",
+   "iridescent chromatic fresnel sheen under the cursor (menu)",
+   "bloom on the whole composer",
+   "water-reflection plane under about-page numerals"
+  ],
+  "crops_and_ratios": "showreel 912x500 (~1.82:1, desktop_06); left project cards ~48% of frame width at ~1.79:1, right cards ~31-33% wide and taller than wide (element 2 f06/f07); fast-mode thumbnails ~115x65 to ~150x85 in the 960px frame, scattered left and right of the centred titles and overlapping them",
+  "formats": "probe: 40 ktx2, 6 glb, 15 png, 6 jpg, 2 webp, 1 mp4, 14 json (lottie/config); declared bytes 3d 8.0MB, webp 7.5MB, mp4 3.6MB, png 2.8MB, jpeg 1.2MB, mpeg 1.1MB (Howler audio). img tags 39, video tags 0 (video is decoded into WebGL textures)",
+  "evidence": [
+   "probes/immersive-garden-website/desktop_04.jpg",
+   "probes/immersive-garden-website/desktop_05.jpg",
+   "probes/immersive-garden-website/desktop_06.jpg",
+   "probes/immersive-garden-website/desktop_07.jpg",
+   "frames/immersive-garden-website/1/f00.jpg",
+   "frames/immersive-garden-website/2/f00.jpg",
+   "probe asset_extensions"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r151 (probe globals three_revision 151) inside Nuxt 3; GLTFLoader + DRACOLoader + KTX2Loader; EffectComposer with bloom; ShaderMaterial x20, RawShaderMaterial x9, MeshStandardMaterial, MeshMatcapMaterial, InstancedMesh",
+  "role": "world: one relief sculpture is the page substrate; media planes, WebGL titles and per-project GLB scenes sit in the same scene",
+  "assets": [
+   "/webgl/home/reliefs_high_compressed.glb (low-tier fallback /webgl/home/reliefs_low_compressed.glb)",
+   "/webgl/home/plaster.jpg",
+   "/webgl/global/noises/rgb-noise.jpg",
+   "https://ig-medias-prod.ams3.digitaloceanspaces.com/CARTIER_EOY_v3_79b0f89b22.glb",
+   "https://ig-medias-prod.ams3.digitaloceanspaces.com/CARTIER_WW_24_v3_974a09cb82.glb",
+   "https://ig-medias-prod.ams3.digitaloceanspaces.com/ktx2/small_LV_01_v2_a5bfaad79e.ktx2 (one of 40 KTX2 thumbnails)"
+  ],
+  "materials_lighting_post": "Relief: custom ShaderMaterial with uMap, uNormalMap, uLightMap, uNoise (rgb-noise) plus a flowmap render target (tFlow) for cursor extrusion. Camera fov 30, distance 15, near 5, far 20 (narrow lens, flattened sculpture look). Post: bloom strength 2.2, radius 0.15, threshold 0.38, smoothWidth .5; motion blur disabled. The chromaticMask (fresnelSharpness 35, shadowRange 0.2-0.42, shadowOpacity .25) and fluidEffect (baseColor #7abfc5, R/G/B coefs 2/1/1.5, amplitude .57) sit in the same home relief config; in the evidence the rainbow oil-slick edge only shows on the dark menu relief (element 0 f01-f04), so the light-mode role is inferred.",
+  "interaction": "scroll-driven relief (0.25x) + noise emergence; mouse flowmap press; velocity-driven fast/slow mode camera zoom (0.6 / 1); raycast hover on media planes; click-and-hold to open",
+  "performance_tactics": "KTX2 GPU-compressed thumbnails, Draco glTF, high/low glb per device tier (mobile_or_lowTier), video textures only updated when visible and not in fast mode (bundle: _videoTexture.update gated by !_fastMode && _isRendering)",
+  "fallback_mobile": "Same scene with reliefs_low_compressed.glb; mobile_01 shows the relief rendering at 390px",
+  "evidence": [
+   "probe globals/contexts (webgl2 x14)",
+   "bundle grep: reliefs_high/low glb, k_e config",
+   "probe assets_3d",
+   "probes/immersive-garden-website/mobile_01.jpg"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Four fixed corner items instead of a bar: 'Menu' (top-right, 14px Helvetica, 40px padding, 32px at 1024 and below) joined by the monogram after scroll, 'See all projects' + lottie glyph (bottom-left), and a sound toggle bottom-right. In the Dec-2024 jury captures of the home (element 2 f00/f06) the top-right slot read 'About' where the Sep-2026 probe reads 'Menu', so the label changed between builds (the old note that 'About' belongs to project listing pages is not supported: element 2 is the home with relief and captions). The sound toggle is a 3px dot plus a canvas-drawn ring (60px canvas shown at 30px, line width 2) that draws in on CustomEase 'circleDraw' (.4,0,0,1) and turns 360 degrees every 35s while sound plays, its colour lerped between #e8e8e8 and black over 1s on dark backgrounds (the ring is visible bottom-right in element 0 f01-f07); the CSS also carries SVG circles with stroke-dasharray 226.2. The 'On/Off' word only shows on phone-sized viewports (CSS media query), as in mobile_00.",
+  "menu": "Full-screen black relief takeover. Five centred serif items (The Studio, Our approach, Services, Awards, Clients) on a ~38px line pitch in the 960px frame (inferred ~52-58px type at 1440-1600), resting at ~#d6d6d6 (the #adadad-ish tone in f02 is mid-fade), 'Contact us' 14px below, 'Close' + monogram top-right. Hover inserts words into the item. In element 0 f05-f07 a 'Click to explore' label sits ~50px (frame) past the right end of whichever row is expanded (x 777 / 767 / 666 in the 960 frame) while the recorded pointer glyph stays still at (237,420), and the rows expand one after another without the pointer moving. So either the label is anchored to the row or the capture's pointer is stale; unresolved, since the menu component is not in the cached bundles.",
+  "buttons_links": "No boxed buttons anywhere; every action is a word. Hover state is a tone/opacity shift on the word plus a contextual cursor label. No underline animation observed.",
+  "unusual_interactions": [
+   "Rapid Scroll: flick fast and the project list turns into an index of names with thumbnails and the fixed chrome fades out (.isFastMode .5s); slow down and it lands back on a full project card (element 2)",
+   "Click-and-hold on media to open a project",
+   "Cursor presses dents into the plaster (flowmap)",
+   "About 'Sections' are chaptered with centred Back / Next, each chapter separated by a black 'Loading...' cut, and the chapter copy swaps sides (I left, II right)"
+  ],
+  "sound": "Howler.js ambient/UI sound, opt-in: 'Click to enable sound' after load; 'Off' toggle on mobile",
+  "footer": "Not reached in the probe (virtual scroll stopped at the approach block). From CSS: .footer holds a 3.0556vw (44px at 1440, 34px below 1113px) serif 'See all projects' CTA (the measured 44px <a>) with a 1.111vw (16px) ::after fed by data-after (a small superscript, probably a project count, inferred), a centred email line (.footer__email, same size, 24px below 785px, children #e8e8e8) and a newsletter input. The .darkBg variant is not a #030303 fill: its background is transparent (the black WebGL relief shows through) with #e8e8e8 text; only .onlyDom paints a flat #e8e8e8."
+ },
+ "content_voice": {
+  "headline_style": "Measured, grand, agency-manifesto sentences in sentence case; project captions are one-sentence 'Discover/Explore/Step into ...' invitations",
+  "copy_tone": "Luxury-house formal, slightly lofty ('unparalleled', 'ambitious brands', 'craftsmanship'); short UI verbs for chrome ('Play', 'Discover', 'Click and hold')",
+  "examples": [
+   "Innovative digital experiences studio",
+   "Transcend anything seen or felt before by crafting unparalleled experiences for ambitious brands.",
+   "Our singular approach to craftsmanship"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Nuxt 3 (Vue) with a __NUXT__ payload; Contentful CMS (Awwwards tag)",
+  "libraries": [
+   "three.js r151",
+   "GSAP (+CustomEase, ScrollTrigger present in bundle)",
+   "GSAP SplitText 3.2.4 (Club plugin, licence header in bundle)",
+   "custom virtual-scroll class (Lenis source also bundled)",
+   "Howler.js v2.2.4",
+   "vue3-lottie / lottie-web",
+   "Draco + KTX2/Basis decoders",
+   "Tweakpane 3.1.10 debug GUI bundled (addFolder x151) but only instantiated when Bi.isDevelopment is true, so production ships it as dead code, not a live panel"
+  ],
+  "evidence": "probe globals (__NUXT__, three_revision 151), libs_from_requests ['lottie'], asset list /assets/vue3-lottie.es.*.js, entry.DyxL_KXi.js (2.44MB; 'SplitText: 3.2.4' and 'howler.js v2.2.4' headers, Howl 55, KTX2Loader 12, DRACOLoader 6, CustomEase 2, data-lenis-prevent); Tweakpane licence header 3.1.10 and 'Bi.isDevelopment&&(m8=new Cde)' gate"
+ },
+ "performance_accessibility": {
+  "requests": 178,
+  "weight_notes": "Heavy but tiered: 3D 8.0MB, webp 7.5MB, mp4 3.6MB, png 2.8MB, jpeg 1.2MB, audio 1.1MB, JS ~297KB declared (main entry 2.44MB uncompressed), fonts 60KB. Settled in 6.4s on a Metal GPU.",
+  "reduced_motion": "0 prefers-reduced-motion rules (probe). Nothing observed stops the 6s title reveals, the relief motion or the flood transition.",
+  "contrast_issues": "Computed from the CSS opacities (JPEG pixel samples of 12-14px anti-aliased text read lighter, which is why earlier figures were too harsh): the counter / 'Scroll down' at .6 of #030303 compute to #5f5f5f on #e8e8e8 = ~5.2:1 and pass AA; 'Scroll down' samples lighter in desktop_03 only because it is mid-fade, settling near #585858 on the ~#d7d7d7 lit relief (~4.9:1). The real failure is the low-opacity cursor: at .3 the label computes to #a3a3a3 on #e8e8e8 = ~2.1:1 for 12px text. In the menu, items (~#c4-#d6 on ~#111) are fine and the inserted words (~#787878-#818181) are ~4.5-5:1, borderline. The DOM H1 is visibility:hidden (drawn in WebGL), which also removes it from the accessibility tree unless the .domOnly / .debugDom class is set, and the viewport meta blocks zoom (maximum-scale=1, user-scalable=0). Markup: 36 text nodes compute to the UA link blue rgb(0,0,238) (unstyled anchors; invisible in every capture, presumably DOM mirrors of WebGL titles, inferred).",
+  "mobile_quality": "Holds up: no overflow, relief renders, type re-flows to a 44px H1, 34px approach statement and a 28px two-line tagline; dev responsive score 7.2",
+  "dev_scores": {
+   "semantics_seo": 7.0,
+   "animations": 8.8,
+   "accessibility": 6.6,
+   "wpo": 8.0,
+   "responsive": 7.2,
+   "markup": 7.2
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Material substrate instead of a background colour (the plaster relief)",
+   "why_it_works": "The page surface itself is the brand artifact: a lit, occluded sculpture gives a monochrome palette depth and luxury without any accent colour, and client work reads as windows set into stone.",
+   "how_to_build": "Model or sculpt a relief (ZBrush/Blender), bake a height/normal + AO map, export a Draco glTF at 2 tiers. three.js: PerspectiveCamera fov 30 at distance 15 (narrow lens flattens depth); ShaderMaterial with uMap (plaster albedo), uNormalMap, uLightMap and a single warm-white directional term from the upper left. Move the relief group at 0.25x of scroll offset. Post: UnrealBloomPass(strength 2.2, radius .15, threshold .38) only if your highlights stay under the threshold on text. Keep the DOM text on top and crisp."
+  },
+  {
+   "technique": "Scroll-emergent relief (motifs rise and sink with noise)",
+   "why_it_works": "Each screen gets a new sculptural motif without cuts or section seams, so the page feels like one continuous surface being carved as you move.",
+   "how_to_build": "In the vertex or fragment stage, compute mask = smoothstep(-1., 1., snoise(uv*7.77 + vec2(0., uScroll*2.)) - uProgress) and multiply displacement/normal strength by it (strength ~1.02). Drive uScroll from your smoothed virtual scroll (lerp ~0.035 per frame). Store several motifs in one relief mesh and reveal them with the noise mask, not by swapping meshes."
+  },
+  {
+   "technique": "Cursor flowmap that presses the material",
+   "why_it_works": "The hover response lives in the page material rather than in a UI bubble, which makes it quiet, tactile and hard to copy.",
+   "how_to_build": "OGL/three Flowmap pattern: a 128-256px ping-pong render target; each frame fade it (dissipation 0.953), splat the mouse velocity with falloff 0.38 and ease the mouse position (0.4). In the relief shader sample tFlow and add flow.xy * 0.17 (gradientStrength) to the normal/extrusion, so dents appear and relax over ~1s."
+  },
+  {
+   "technique": "Velocity-switched fast index (Rapid Scroll)",
+   "why_it_works": "It rewards power users with an overview at no layout cost: flick to scan every project name, slow down to land on a full card.",
+   "how_to_build": "Keep a leaky integrator, not a threshold on raw speed: on every smoothed scroll tick do progress += (speed - offset) * (speed > offset ? speedUp : 0.3) and clamp to 0..1 (their values: offset .05 / speed-up .6 to get in, offset .025 / speed-up .9 once in). Enter fast mode at >= .99 and leave at <= .75 (hysteresis, so it never flickers), and only on desktop. The switch itself is a fixed timeline, not a lerp: 1.5s on cubic-bezier(.2,0,0,1) going in (camera zoom 1 -> .6, WebGL title scale 1 -> 2.5, DOM caption blocks scale(.5) + fade out in .5s, cards shrink into ~16:9 thumbnails scattered left and right of a centred title column, chrome fades out .5s), 1.3s on cubic-bezier(.4,0,0,1) coming back. While fast, clamp the scroll range to the list and auto-exit 1s after hitting either end. Their titles are WebGL SDF text; a DOM version works too: serif ~40px, rest ~#8c8c8c-#969696, the row nearest centre darkening to #030303 as it lands, on a lightened ~#dcdcdc veil over the relief. Pair it with the scroll-cursor gauge (the 'Scroll cursor that becomes a velocity gauge' steal below) so the user sees the mode coming."
+  },
+  {
+   "technique": "Menu as a material inversion plus sentence-completing items",
+   "why_it_works": "Opening the menu turns the same sculpture from white plaster to black bronze, so navigation feels like the site changing light, not a panel sliding in. Items that finish their own sentence on hover do the copywriting inside the nav.",
+   "how_to_build": "Transition: render a fullscreen quad whose alpha = smoothstep(edge-0.1, edge, fbm(uv*3.) + distance(uv, menuCorner)) with edge tweened 0->1.4 over ~1.2s sine.inOut, so the ink starts at the corner the user clicked (top-right) and smokes out diagonally; swap the relief to a dark matcap underneath. Hover: author each item as segments, e.g. <span class=add>Our </span><span class=add>singular </span><span class=head>approach</span><span class=add> to craftsmanship</span>; inserted segments start at width 0 / opacity 0, open their width, then fade chars 0->1 over 0.8s with the stagger spread across 0.4s total, while the line stays centred (text-align:center on the row does it for free). Head #e8e8e8-ish, inserted words ~50% grey. In a no-JS fallback show the full sentence."
+  },
+  {
+   "technique": "Loader row that is already the hero",
+   "why_it_works": "There is no dead preloader screen: brand, promise and progress sit on one baseline, so the wait already reads as the first frame of the page.",
+   "how_to_build": "12-column grid (repeat(12,1fr), 16px gap, 16px side padding) with one row centred at 50vh: logo in grid-column 2/4, tagline (serif 1.944vw = 28px at 1440) in 5/10 (4/10 above 1440), counter (14px grotesk, tabular-nums, opacity .6, which still computes to ~5.2:1 on #e8e8e8) in 10/12. Optional: a 1px currentColor rule at 20% opacity across the tagline column, scaleX from 0 with transform-origin left, as the progress bar, and put it on the tagline's x-height centre, not at a guessed .5em, or it becomes the off-centre strike tell. Count 0->100 from real asset progress (GLTF/KTX2 loading manager). At 100, cross-fade the counter to 'Scroll down' and fade the scene opacity 0->1 over 1.75s sine.inOut with a 2s camera dolly (power1.out). Size the type in vw off a 1440 artboard and freeze it in px above ~1915px."
+  },
+  {
+   "technique": "Word cursor (native pointer + lagging label)",
+   "why_it_works": "The pointer never gets a blob: the real cursor stays exact while a small word trails it, so the cursor speaks ('Play', 'Click and hold', 'Loading...') without covering content, and the lag gives it weight.",
+   "how_to_build": "Keep the native cursor. Add one fixed, pointer-events:none layer holding a 12px grotesk label at left:35px / top:15px that lerps toward the mouse at 0.1 per frame (translate3d only while moving). Swap the label by splitting it into chars and fading opacity 0->1 over 0.8s with stagger .4/chars.length; leave with a 0.5s fade. Drive colour from one variable (--cursor-color) that flips on dark sections and over dark media, and drop the whole cursor to opacity .3 for passive hints (but that lands near 2:1, so keep passive hints non-essential). For press-and-hold targets add a thin ~30px ring around a small dot beside the label. Hide it on touch."
+  },
+  {
+   "technique": "Scroll cursor that becomes a velocity gauge",
+   "why_it_works": "The hidden Rapid Scroll mode announces itself before it fires: the little dot beside the pointer stretches into a dotted column as you flick, so speed becomes visible feedback and the mode switch feels caused, not random.",
+   "how_to_build": "Desktop only. A fixed layer at (mouseX + 15, mouseY), eased with lerp alpha 1 - exp(-0.1 * dt * 60). Inside it: 3 default 3px dots (#030303, border-radius 100%) and N=120 more at opacity 0. Each frame compute spread = (barProgress + fastProgress * 40) * 2px, where barProgress accumulates easeOutElastic(speed - .005) each tick (multiplied by 100 when that term goes negative, so it collapses fast once you slow down) and clamps 0..40; place dot i at +/- spread * i, alternating above and below, so the centre dot stays on the pointer. The 3 default dots show the stretch while you are still slow; when fast mode fires, scale them to 0 (1s power1.inOut) and fade the 120 dots to opacity 1 (1s) with an extra y offset of -scrollPct * 50, so the column becomes a scrollbar riding the cursor. Hide it over links, UI and the footer."
+  }
+ ],
+ "slop_risks": [
+  "Flat light-grey base: #e8e8e8 sits next to the neutral 'slop gray' family; it only works because the lit plaster relief (#bcbcbc-#c4c4c4 rendered) sits on it. A copy with a flat #e8e8e8 or #f3f4f6 fill and no material reads as a wireframe default",
+  "Letterspaced serif caps wordmark ('IMMERSIVE GARDEN' in tracked serif caps) is the named luxury-wordmark tell if lifted as a style rather than an owned logo",
+  "Times-model serif at one weight for everything: with a free Times/Google serif (Cormorant, Fraunces, Playfair) it becomes the default 'editorial serif' voice; their licensed PSTimes plus restraint is what carries it",
+  "Content hidden until a reveal fires: the DOM H1 is visibility:hidden and only the WebGL SDF title shows it after a 6s noise reveal, so a stalled RAF or failed WebGL leaves no headline unless the app sets its .domOnly class (the CSS has a .hero.domOnly / .debugDom fallback that restores visibility, so it is a switchable fallback, not an automatic one); screen readers skip the visibility:hidden node; menu insertion chars start at opacity 0. Also 0 reduced-motion rules",
+  "Multi-line headline: the hero H1 wraps to a 4-line stack ('Transcend anything seen or / felt before by crafting / ...') and the centred 44px approach statement is also 4 lines with a lone 'growth.' on the last line, both tall wrapped stacks the law flags",
+  "Low-contrast grey micro-text: the .3-opacity cursor hint computes to ~2.1:1 (#a3a3a3 on #e8e8e8). The .6 counter / 'Scroll down' actually pass (~5.2:1 computed); the earlier 3.27:1 and 2.93:1 figures were anti-aliased or mid-fade samples, a false accusation",
+  "The 'Our approach' 22px label over a 44px serif paragraph is the small-label-over-big-heading section head; it is softened (same serif, sentence case, no uppercase accent kicker, no italic accent word) but still the template. The 44px centred 4-line serif sentence under it is also the law's 'big serif statement block' beat (no italic accent word, which helps)",
+  "Iridescent rainbow sheen (menu) drifts toward the chromatic/holographic cliche if applied to flat UI instead of being lit on sculpted geometry",
+  "Bloom at strength 2.2 on a light scene can blow out plaster highlights and haze text edges if the threshold is lowered",
+  "Line through the tagline: the CSS progress hairline sits at top .5em across the tagline (after a -.2em baseline shift); if it does not land on the x-height centre it is the off-centre strike tell. Not captured (desktop_00 is at 0, desktop_01 at 100), so unverified"
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots, mobile_00/01, all 8 frames of Menu Transition (0) and Rapid Scroll (2), and f00/f03/f06 of Sections (1). Probe numbers are used for type sizes, colours, easings, request counts and assets. Code: index.html + entry.DyxL_KXi.js grep (config objects k_e, relief, title, fastMode, flowmap and bloom are verbatim numbers). INFERRED: the menu item px at 1440 (scaled from a 1600px capture shown at 960), the char stagger, the ink-flood implementation (only the result is seen in f00), and the PSTimes foundry (unknown). The virtual scroll stopped at the approach block, so the footer was not observed. desktop_00 is the preloader at 0 by design, not a failure. audit (2026-09-24, adversarial re-check against probe.json, all 8 desktop shots, mobile_00/01, element 0 f00-f07, element 2 f00/f01/f03/f06/f07, element 1 f00/f04/f06, the cached inline CSS and entry/default/HeroBlock bundles): corrected 'Click to enable sound' from a fixed hint to the low-opacity cursor label; replaced the inferred grid with the CSS 12-col grid (anchors = columns 2/5/10); first_screen.display_type_px 56 -> 28 (the H1 arrives on the first scroll); fixed project cards '~64% wide' (actually ~48% landscape left / ~32% portrait right); relief placement is centre-axis, not right of centre; menu flood starts at the top-right Menu corner, not a right-to-left sweep; hovered menu items insert words in several positions and the other items do not dim; menu resting tone #d6d6d6 not #adadad; menu-dark token is #030303 not #000; numerals ~356px not ~300px; CSS duration range 100ms-3s and two missed cubic-beziers; 'No bar' downgraded (CSS defines a hairline progress bar, not captured); SplitText is real GSAP SplitText 3.2.4, Howler 2.2.4, Lenis bundled but home scroll is a custom class; fast-mode how_to_build now lerp-driven with sampled title tones; contrast figures re-sampled. Added: vw-from-1440 fluid type with 1915px freeze, two-token #030303/#e8e8e8 inversion palette, two-layer cursor (dot + lerped label, 0.4s char stagger) as a new steal, black 'Loading...' chapter cuts, footer contents from CSS, zoom-blocking viewport meta, visibility:hidden H1 a11y cost, 4-line headline slop tell. Still inferred: menu type px, the menu insertion stagger, card thumbnail scale, the white light shards in menu f05-f07, and the progress hairline. audit2 (2026-09-25, second adversarial pass: probe.json, desktop_00-07 each at full size, mobile_00/01, element 2 f00-f07 and element 0 f00-f07 frame by frame, element 1 f00/f04, the cached stylesheet and entry/default/HomePage/HeroBlock bundles): found the missed HomeScrollCursor (the dot beside the pointer is a 3+120-dot scroll-velocity gauge offset 15px right, visible spreading in element 2 f00-f04; added a steal and fixed the cursor text, which wrongly called it a 1:1 pointer dot) and the thin ring in the 'Click and hold' state (desktop_07), so 'no ring' was wrong; mobile tagline is 28px forced to 2 lines by max-width 200px, not 34px; contrast recomputed from CSS opacities (counter passes at ~5.2:1, the .3 cursor hint fails at ~2.1:1); fast-mode how_to_build rewritten to the real integrator plus fixed 1.5s/1.3s CustomEase 'fast'/'slow' timelines, desktop-only; the fluid vw type is clamped below 1131-1440px as well as above 1915px; the loader tagline shifts to column 4 above 1440; 'About' in element 2 is an older build of the home, not a listing page; the menu 'Click to explore' label is row-anchored in the frames (pointer still), cause unresolved; footer .darkBg is transparent, not #030303; SRT captions belong to timed sections, not the showreel; Tweakpane is dev-only; .domOnly fallback softens the hidden-H1 accusation; sound toggle is a canvas ring on a 35s rotation. Added the off-centre-strike check for the loader hairline and the big-serif-statement note."
+}

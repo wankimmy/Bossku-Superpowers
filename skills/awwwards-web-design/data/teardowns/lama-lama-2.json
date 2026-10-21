@@ -1,0 +1,287 @@
+{
+ "slug": "lama-lama-2",
+ "title": "Lama Lama",
+ "live_url": "https://lamalama.com/",
+ "award": "Site of the Day, Jul 20 2026 (Honors); also listed in the Sites of the Month source. Credits: Lama Lama (self-built)",
+ "scores": {
+  "overall": 7.51,
+  "design": 7.64,
+  "usability": 7.36,
+  "creativity": 7.52,
+  "content": 7.39,
+  "dev": {
+   "overall": 7.37,
+   "semantics_seo": 7.2,
+   "animations": 7.8,
+   "accessibility": 6.6,
+   "wpo": 7.6,
+   "responsive": 7.2,
+   "markup": 7.6
+  }
+ },
+ "industry": "Creative digital agency, Amsterdam (branding, websites, e-commerce, marketing)",
+ "signature": "A custom WebGL2 grid shader re-renders the page as an ordered dither whose first seven sub-pixels spell the agency's 4x4 'LL' mark: dim cells show fragments of the logo, mid cells the whole logo, bright cells a solid square. The preloader zooms one 160px logo down to a 16px lattice of logos, and the same dither then turns hero video, work images, section edges, a webcam feed and a cursor-velocity trail into off-white matter, so the logo is the rendering primitive of the site.",
+ "first_screen": {
+  "composition": "At the 6s probe settle (desktop_00) the viewport is #1A1C1C filled with a dim off-white dither of a reaction-diffusion 'DNA' blob video while the intro is still running, with no text yet. Settled first viewport (frame 0/f07): the dither field fills the whole screen; the 72px caps h1 'A CREATIVE DIGITAL / AGENCY THAT GOES / ALL IN OR NOT AT ALL.' sits in the lower third at x=40 under a '[ WE ARE LAMA LAMA ]' mono eyebrow, with a 20px lead paragraph at x~1078; a bottom meta row above a 1px rule reads 20+ DIGITAL FREAKS / AMSTERDAM BASED / [ live clock with red dot ] / FOLLOW US / INSTAGRAM + / LINKEDIN + / NL EN. A floating 438x50 dark translucent nav pill is centered at the top (pixel LL logo, contextual mono tagline, hamburger). A fixed widget stack is top-right: a light 'GET IN TOUCH' card with an avatar, and a 'THIS IS US ( - )' card with a B&W portrait video. After one scroll step (desktop_01) the h1 has moved up to y~160, the meta row has scrolled away, and the field ends with a dithered edge at y~550.",
+  "what_owns_it": "mixed",
+  "display_type_px": 72,
+  "evidence": [
+   "probes/lama-lama-2/desktop_00.jpg",
+   "frames/lama-lama-2/0/f07.jpg",
+   "probes/lama-lama-2/desktop_01.jpg",
+   "probe measure.type.h1"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Suisse BP Int'l (SuisseBPIntl 700 + 400)",
+    "role": "display",
+    "classification": "Swiss neo-grotesque",
+    "foundry": "Swiss Typefaces",
+    "source": "probe fonts_loaded; 607 rendered nodes"
+   },
+   {
+    "name": "Suisse BP Int'l 400",
+    "role": "body",
+    "classification": "Swiss neo-grotesque",
+    "foundry": "Swiss Typefaces",
+    "source": "probe p 20.04px/24.048px, h2 48px 400"
+   },
+   {
+    "name": "Sometype Mono (Sometype 400-700 variable)",
+    "role": "mono",
+    "classification": "monospace",
+    "foundry": "Sometype / Google Fonts",
+    "source": "probe fonts_loaded 'Sometype 400 700'; body default family; 259 nodes; 10px caps labels (253 nodes at 10px)"
+   }
+  ],
+  "display_size_px": 80,
+  "body_size_px": 16,
+  "scale_notes": "80px (h2 'WHAT WE DO.', 'BRIEF US SOMETHING.'), 72px (h1), 48px statement h2, 40/32px mid heads, 20px lead, 16px lists/links (423 nodes), 10px mono labels (253 nodes). Display to label is 8:1. The statement at 48px is 2.4x the lead. Spacing tokens are fluid max(rem, px/1440*100vw).",
+  "tracking_leading": "Display caps -0.02em (-1.6px at 80, -1.44px at 72) with line-height 0.8 (64/80, 57.6/72), so the lines nearly touch. Statement 48px -0.02em, line-height 0.9. Lead 20px -0.02em, line-height 1.2. Mono 10px -0.02em, line-height 1.8, weight 500.",
+  "case_and_style": "Display in uppercase with a terminal period ('WHAT WE DO.'). Statements and lead in sentence case. Mono labels in uppercase inside square brackets ('[ FEATURED WORK ]', '[ BRANDING ]'). Parenthesised toggles ('( + )', '( - )', '( VIEW + )'). Tags are black boxed mono chips.",
+  "signature_moves": [
+   "Text scramble type-on: the target is emptied, a run of random glyphs from a '#'-weighted pool ('#' x5, '$', '*', '@', '(', '0', '%', '1', '>'; spaces become '_', brackets are kept) types on left to right, and the real characters overwrite it 0.2s behind. Both passes are power2.out over (0.25 + 0.005 x length) s, triggered at ScrollTrigger 'top bottom'. Seen mid-run in the eyebrow at 0/f07.",
+   "Masked line rise for headings and paragraphs: split into lines, each from yPercent 80, scale .96, opacity 0 and clip inset(-10% -10% 110% -10%) to rest, expo.out .85s. Line 3 of the h1 is still translucent at 4.56s (0/f07).",
+   "First-line indent of exactly one grid column plus gutter (~115px, class lg:ml-ll-1/12 on the first split line) on the 48px statement (desktop_02), a book-typography move",
+   "Line-height 0.8 on caps display so the headline reads as a single block",
+   "Mono meta everywhere: the nav tagline, the clock '[ 13 : 30 : 16 ]', the counts '20+ DIGITAL FREAKS'"
+  ],
+  "mobile": "The h1 drops to 40px (mobile_measure h1 40px; largest text 52px) and wraps to 4 caps lines at the bottom of a full-colour pink-sky video (mobile_01). mobile_00 (first mobile screen at settle) shows only the raw full-colour DNA blob video with no text. The mono eyebrow sits above the h1 and a two-item meta row ('20+ DIGITAL FREAKS' / 'AMSTERDAM BASED') below a rule. The nav pill spans the full width minus 32px and drops the tagline (logo and burger only). No horizontal overflow."
+ },
+ "color": {
+  "mode": "dark",
+  "base": "#1A1C1C (--dark 26 28 28), a near-black with a faint green-cyan cast, on html and body",
+  "ink": "#F9F4EB (--offWhite 249 244 235) on 809 text nodes; also the shader's glyph colour",
+  "accents": [
+   "#000000 for the tag chips and phone chip; the nav pill is a dark translucent panel with backdrop blur (text reads blurred behind it in desktop_03, and the pink video tints it on mobile_01)",
+   "rgba(249,244,235,0.1) translucent panels and widgets (60 nodes)",
+   "#E75D60 (--red), #D0FF7E (--green), #FFC6DA (--pink), #DCF2F4 (--blue) are defined tokens but barely used (1 bg node each for red and green)",
+   "rgb(255,0,0) on the live-clock dot (2 nodes)"
+  ],
+  "ratio": "~85% #1A1C1C, ~10% off-white type and glyphs, ~5% full-colour work thumbnails, <1% token accents",
+  "section_shifts": "The page background stays #1A1C1C. Each section is a 'backdrop_theme' block that swaps the shader field's source: the DNA blob video behind the hero, flat dark behind the work index, then a dithered people/office photo behind 'WHAT WE DO.'. Section edges are not hard lines: the field fades in and out through a noisy, logo-dithered wipe scrubbed with scroll (desktop_01 bottom edge, desktop_05 top edge). The same block sets the nav logo (logo / smile / heart) and the nav tagline pool. The pitch-deck overlay flips to #F9F4EB panels with black type (2/f03, 2/f06), and page transitions can switch the whole theme to light.",
+  "texture": "The dither matrix is the texture. On the homepage it sits on a fixed full-viewport WebGL2 canvas behind the content; a second fixed canvas (z-index 8, 'upperCanvas') sits above the content for the intro and page transitions. Background and image cells are 8px (4x4 sub-pixels of 2px); the intro and page transition use 16px cells. There is no grain.",
+  "notes": "Full-colour media is mostly reserved for the client work strips. Brand imagery (DNA video, office photos) is shown monochrome through the shader on desktop, and in full colour on touch devices, where the WebGL layers are switched off (IS_WEBGL = !device.hasTouch in webgl_image/webgl_video)."
+ },
+ "layout": {
+  "grid": "12 columns desktop (--ll-cols-desktop 12), margin 2.5rem (40px), gutter 1.5rem (24px); 6 columns mobile, margin 1rem, gutter .625rem",
+  "density": "balanced",
+  "alignment": "Left-aligned to the 40px margin, with a right-side column at x~1078 and a fixed 160px widget rail at x=1264. The nav is centered.",
+  "composition_moves": [
+   "Floating centered nav pill (438x50, dark translucent with backdrop blur, radius 4px) whose mono tagline comes from the current section's pool of 3-5 cheeky lines (hero: 'YOU MADE IT' / 'LET'S DO DAMAGE' / 'LOOKING SHARP TODAY' / 'NICE ENTRANCE'; work: 'PROOF WE WEREN'T ON HOLIDAY' / 'OUR GREATEST HITS' / 'CASES WITH TEETH' / 'BIG PROJECT ENERGY'; services: 'WHERE THE MAGIC HAPPENS' and two more; contact page: 'LAST STOP BEFORE CHANGES THINGS' (1/f00)). The '#' seen in desktop_01 is the scramble placeholder, not a tagline.",
+   "Fixed right-rail widget stack of accordion cards (GET IN TOUCH, THIS IS US, PITCHDECK) with dark translucent fills, each with a '( + )/( - )' toggle and a media preview. The rail is contextual: THIS IS US is open in the hero and collapsed after it, and PITCHDECK slides into the stack when 'WHAT WE DO.' arrives (desktop_05 mid-move, desktop_06 docked).",
+   "Work index as 168px full-width rows with a 1px top rule: client name 20px at x=40, black mono tag chips at x=271, '( + )' toggle at x=617, and a right-aligned strip of 3-5 thumbnails (96-180px wide, 120px tall) bleeding off the right edge",
+   "Floating light-grey 'WORK ( + )' chip (96x50) pinned at bottom center while the work section is in view",
+   "Services as three 16px list columns (x=732 / 963 / 1193) under mono bracket heads, next to a 'TLDR; we do a lot. Just give us a call:' line with a black phone chip"
+  ],
+  "section_rhythm": "Sparse hero, then a 48px statement with a large gap, then a dense work index of 7 rows, then an 80px heading over the dither field, then paragraph and service lists, then an 80px contact heading. The 80px caps section heads act as resets between the dense lists. Per the HTML, the homepage continues past the probe's last capture with clients ('CLIENTS WE DIDN'T SCARE OFF'), team ('BLAME THESE PEOPLE') and footer ('FUTURE COLLAB STARTS HERE') sections; these were not captured.",
+  "mobile_adaptation": "The hero becomes a full-bleed colour video with type at the bottom. The widget rail and clock are hidden in the first mobile viewport. The nav pill goes full width and drops the tagline."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis is bundled (constructor defaults seen: lerp .1, wheelMultiplier 1, syncTouch false; call-site options not isolated). The probe measured doc_height 900 while content scrolled, which suggests a wrapper scroller (inferred). swup handles page transitions (html.swup-enabled; containers #swup / #page; SwupPreloadPlugin is bundled).",
+  "preloader": "A percentage counter (.js-progress, 90% weighted to component instances) runs while assets load. Then hideLoader() runs one GSAP timeline on the upper canvas: the counter exits (yPercent -100 plus clip inset(100% 0 0 0), .45s power4.in); showLogo 0 to 1 (.35s); the logo cell size tweens 160 to 16 (LOGO_START_GRID_SIZE to LOGO_GRID_SIZE) over 3.75s power3.in; logoProgress 2.75s power3.in; colorProgress 4.25s power4.inOut; fullProgress 3.25s power4.in from 0.5s; hideProgress 1.45s power4.in from 2.35s; and the loader element fades out (.65s power4.out). Seen in frames: one 160px off-white LL mark on black (0/f00-f02), a sparse dot lattice as the cells shrink (f03), an inverted lattice of LL glyphs (f04), large letterforms thresholded out of the lattice (f05), then the DNA field (f06). The thin line at bottom-left in f06 is the hero's meta-row rule drawing in from the left, not a progress bar (it sits at the same y as the full rule in f07). UI is in place at ~4.5s.",
+  "intro_sequence": "DOM text waits for the intro: elements already in view start at introDelay (3.2s, or 3.8s with the extended hero) plus 350ms for line reveals and 620ms for scrambles. The h1 lines rise out of their masks (line 3 still translucent at 4.56s, 0/f07), the eyebrow scrambles, and the lead paragraph's last line is still masked. The nav pill and widgets are present from the first UI frame; the meta-row rule draws in. After the intro, the hero backdrop settles from scale 2 to 1 over 3.15s (power4.out) (code-read).",
+  "scroll_techniques": [
+   "dithered section edges: each backdrop section scrubs u_topProgress as it enters (end 'top top') and u_bottomProgress as it leaves ('bottom bottom' to 'bottom -10%'), and the edge is drawn through the logo dither over a noisy row offset, so fields appear and disappear with a ragged pixel edge",
+   "shader field parallax (u_scroll, u_parallax_progress; WebGL images use SCALE 1.25 for parallax room)",
+   "WebGL image planes with u_reveal_progress: the texture fades in from a flat 0.4 grey",
+   "u_nogrid_progress: a noise-dithered dissolve between the pixel grid and the clean image",
+   "section-driven source swap for the background field, plus per-section nav tagline and logo swap",
+   "sticky: 2 elements (the WORK chip, the widget rail)"
+  ],
+  "text_animation": "Two classes. (1) Line reveal for headings and paragraphs: a splitter with type 'lines, words' and aria:'none' (the GSAP 3.13 SplitText API) sets each line to yPercent 100 with clip inset(-10% -10% 120% -10%), then tweens from yPercent 80, scale .96, opacity 0 to rest with clip inset(-10%), expo.out .85s, line i starting at i x (.135 + .03 x lines)/(lines - 1) + .15s. (2) Scramble for mono labels: the text is emptied, random glyphs type on left to right and the real characters overwrite them 0.2s behind, both power2.out over (0.25 + 0.005 x length) s; hide reverses in .15 + .005 x shown chars. Both start at ScrollTrigger 'top bottom', and both elements start with class opacity-0, removed onStart.",
+  "image_animation": "Cursor dissolve (element 3). A 'NO SUITS' mono pill follows the pointer over a full-colour office photo. Along the pointer's recent path the photo is cut by the logo dither: the velocity field's magnitude is drawn with the 7-pixel LL pattern in the cursor colour and subtracted from the image, and the image UV is pushed along the velocity (0.02 + 0.08 x edge falloff) where distortion is on, so the trail reads as a warped dark smear with a dotted halo (3/f01, f04, f05). Separately, the whole image switches to the dim grid render and back (3/f02-f03 at 1.9-3.2s, clean by f06), which is the u_nogrid_progress dissolve rather than trail decay; its trigger was not isolated.",
+  "page_transitions": "swup with a WebGL cover on the upper canvas (code-read, not captured): 16px cells, DURATION_IN .65s, PAUSE_DURATION .25s, DURATION_OUT .65s, a counter element, and the cover takes the next page's theme (dark or light). The transition shader dissolves by noise (u_show / u_in_progress / u_middle_progress / u_out_progress).",
+  "hover_micro": [
+   "Accordion toggles '( + )' / '( - )' on the widget cards",
+   "Work rows show '( VIEW + )' on hover (desktop_03, desktop_04)",
+   "CTA and button labels contain three stacked copies of the text (newline-separated in innerText, e.g. 'OUR PITCHDECK' x3); inferred: a vertical text roll on hover, not a marquee",
+   "Hovering elements that carry data-text or data-label sets the cursor pill's text ('No suits', 'Not just pretty', 'No small talk', 'In good company'); disabled on touch",
+   "Outline service chips 'BRANDING ↗' with a 1px light border and 4px radius (desktop_06)"
+  ],
+  "cursor": "The native pointer is kept. A WebGL cursor layer draws the velocity-field trail (u_cursor_theme colour) through the logo dither. A mono label pill follows the pointer via gsap.quickTo on left and y (expo.out, .45s), shifted left when it would overflow the right edge; its text comes from data-text/data-label and reveals with the scramble.",
+  "easing_curves": [
+   "power4.out (62 occurrences in the app bundle)",
+   "expo.out (58: line reveals .85s, cursor label .45s, deck progress .4s)",
+   "power4.in / power4.inOut (intro counter exit, full/hide progress, colour progress 4.25s)",
+   "power3.in (intro cell-size zoom 3.75s, logo progress 2.75s)",
+   "power3.out (4)",
+   "power2.out (scramble)",
+   "sine.out (.65s webcam room show/hide)",
+   "CSS: cubic-bezier(0.4,0,0.2,1) only"
+  ],
+  "duration_range_ms": "350-850 for UI tweens (.65s x40, .45s x20, .35s x17, .55s x16, .75/.85s x7); 1000-1150 for large moves; 3750 for the intro grid zoom",
+  "stagger_ms": "Line reveals: line i starts at i x (135 + 30 x lines)/(lines - 1) ms + 150ms, so a 3-line heading spreads its lines over ~225ms. Other staggers use amount-based objects; values not isolated.",
+  "choreography_notes": "The shader always leads and the DOM follows. The grid resolves first, then the type rises and the labels scramble, then the paragraphs unmask. The nav pill and widget rail are present from the first UI frame so the page never looks empty once the intro ends; the smaller chrome still moves (the meta-row rule draws in, widgets collapse after the hero, PITCHDECK docks into the rail later).",
+  "evidence": [
+   "frames/lama-lama-2/0/f00-f07",
+   "frames/lama-lama-2/3/f00-f07",
+   "frames/lama-lama-2/1/f00,f03,f06",
+   "frames/lama-lama-2/2/f00,f03,f06",
+   "bundle grep: wp-content/themes/lamalama2025/dist/assets/app-DjHRamTc.js (GLSL literals, intro timeline, scramble and line-reveal classes, cursor label)",
+   "lazy chunks: backdrop_theme-DR-7dYLM.js (section edges, label pools), webgl_image-QK5VM4ci.js / webgl_video-DyrhIrdj.js (touch gating, 8px cells), video_room-CRMH3LDk.js (getUserMedia), transition-DtIM7HVZ.js"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "video",
+  "art_direction": "Two registers. Brand imagery is macro glittery reaction-diffusion blobs (icy blue and amber on black), a dreamy pink sky and candid office shots. On desktop it is always passed through the monochrome off-white dot/glyph grid. Client work is shown untouched in full colour as small thumbnail strips, so the work is the only full-colour content on the desktop page. Team portraits are high-contrast B&W.",
+  "treatments": [
+   "ordered 4x4 logo dither of video and images via fragment shader (8px cells on the page, 16px in the intro)",
+   "cursor trail cut into the image with the LL dither plus UV displacement",
+   "noise dissolve from grid to clean image",
+   "grey placeholder (0.4) to texture reveal",
+   "B&W portrait loops in widgets"
+  ],
+  "crops_and_ratios": "Work thumbnails 120px tall, mixed widths of 96 / 180px (4:5 to 3:2) in horizontal strips. The contact visual in element 3 is portrait, about 3:5 in the recording. The hero field is full viewport.",
+  "formats": "probe: 24 <video> (blob src through hls.js), m3u8 x33 from Bunny Stream (vz-f76b55f9-7b8.b-cdn.net), declared mp2t 26.4MB; jpg x55, png x13; declared jpeg 0.9MB, webp 0.65MB",
+  "evidence": [
+   "probes/lama-lama-2/desktop_03.jpg",
+   "probes/lama-lama-2/desktop_06.jpg",
+   "probes/lama-lama-2/mobile_00.jpg",
+   "probes/lama-lama-2/mobile_01.jpg",
+   "frames/lama-lama-2/3/f00.jpg",
+   "frames/lama-lama-2/3/f02.jpg"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "Custom raw WebGL2 (#version 300 es) fragment shaders on a small in-house composer (layers, ping-pong buffers), with no three.js / ogl / regl. Probe: 5 webgl2 contexts plus 1 2d context; canvases are two fixed 1440x900 layers (one at z-index 8) and a 36x36 static canvas (inferred: the nav's pixel logo).",
+  "role": "background field + image-plane shader + cursor fluid trail + preloader (2D shader work, no 3D models)",
+  "assets": [],
+  "materials_lighting_post": "8 GLSL literals in app-DjHRamTc.js plus more in lazy chunks (section edges, page transition, video room). (1) Logo dither, drawLLLogo(cell, value, full, inverted): each cell is a 4x4 bitmap whose 16 sub-pixels switch on in a fixed order as the value rises; the first 7 in that order are the LL mark (sub-pixels (0,0),(0,2),(2,1),(3,3),(1,3),(0,1),(2,0)) and, when full=1, the other 9 fill the square, so brightness maps to 'partial logo, logo, solid'. 'inverted' runs the order backwards. (2) Intro: quantizes UV by u_logo_pixel_size and gates the dither with tex.r/g/b masks, colour mix(u_theme, u_theme_second, u_color_progress). (3) Content: imageCover() fits video/image to the cell grid (8px cells, u_scale), brightness = (r+g+b)/3 through the full dither in u_content_theme; texture UV = mix(snapped grid UV, raw UV, u_nogrid) - cursorOffset*u_distort_content; reveal from vec4(0.4) via u_reveal_progress; noise dissolve with rand = fract(sin(dot(n, vec2(12.989, 4.1376)))*43758.54). (4) Velocity inject: Gaussian falloff exp(-d^2/r^2) with radius 0.04 and strength 0.04 adds the cursor vector into an RG texture. (5) Decay: previous * (1 - min(0.5, delta/250)) per frame (ping-pong). (6) Section edges: opacity from u_topProgress/u_bottomProgress over a noisy row offset, drawn through the dither. (7) Page transition: noise-dissolve cover with in/middle/out progress.",
+  "interaction": "Cursor velocity field and scroll progress uniforms on every page. On the contact page the 'video room' asks for the visitor's webcam (navigator.mediaDevices.getUserMedia({video:{facingMode:'user'}})), mirrors it (u_mirror 1) and renders it through the same grid; a 'GRID SETTINGS' slider changes the cell size live and a DARK / LIGHT toggle swaps the theme (element 1, 'step inside it yourself'; the 'JOIN IN OUR DNA' widget, inferred to start the stream). The stream fades in and out over .65s sine.out and its tracks are stopped on exit; on error the page shows a message and falls back to the contact view.",
+  "performance_tactics": "HLS adaptive streaming for video textures. Fixed full-viewport canvases instead of per-element canvases for the field. The trail decay is frame-time normalised (delta/250). Everything is 2D quads, so no geometry load.",
+  "fallback_mobile": "Confirmed in code: webgl_image and webgl_video set IS_WEBGL = !device.hasTouch && ..., so touch devices get the plain media. mobile_00/01 show the raw full-colour video with no glyph grid.",
+  "evidence": [
+   "probe contexts {'webgl2':5,'2d':1}",
+   "probe canvas list",
+   "frames/lama-lama-2/0/f03-f06",
+   "frames/lama-lama-2/3/f01-f05",
+   "frames/lama-lama-2/1/f00,f03,f06",
+   "GLSL literals in app-DjHRamTc.js; video_room-CRMH3LDk.js; backdrop_theme-DR-7dYLM.js"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Floating centered dark pill (pixel LL logo that swaps per section to a smiley or heart, contextual mono tagline, hamburger) with a translucent, blurred background (backdrop_filter on 17 nodes). A fixed right widget rail. The meta row with the live Amsterdam clock and language switch belongs to the hero (and the contact page) and scrolls away; it is not persistent (desktop_01).",
+  "menu": "Hamburger opens the list Work, Branding, Websites, E-commerce, Marketing, About us, Careers, Contact (from probe nav), with CTAs SCHEDULE A CALL / START A PROJECT / GET IN TOUCH. Their repeated-text markup suggests a text-roll hover.",
+  "buttons_links": "Outline mono chips with an ↗ arrow ('BRANDING ↗'). Black filled mono tag chips. A light-grey filled 'GET IN TOUCH' card with an avatar. A phone number in a black chip with an avatar. Toggles as '( + )'.",
+  "unusual_interactions": [
+   "An in-site pitch deck modal (element 2) with a left rail of 10 thumbnail chapters (Welcome, Who we are, What we do, Our vibe, Core values, What we believe, The work, Awards, Clients, Let's talk), a collapsible chapter list, and #F9F4EB slides with bold caps heads ('SAY NO MORE. IT'S A MATCH') and '[ CORE VALUE 01 ]' mono labels over hairline-ruled rows",
+   "A contact-page webcam room: the visitor's own camera rendered through the logo dither, with a live cell-size slider and a DARK / LIGHT toggle (element 1)",
+   "A cursor 'NO SUITS' label with a dithered trail",
+   "A nav tagline picked from each section's pool of jokes, and a logo that changes per section (pixel smiley in 'What we do')",
+   "A live clock in the hero meta row"
+  ],
+  "sound": "none observed",
+  "footer": "Not captured by the desktop probe (desktop_07 ends in the services section). The HTML has a footer block whose nav-tagline pool includes 'FUTURE COLLAB STARTS HERE' and 'BRING SNACKS'."
+ },
+ "content_voice": {
+  "headline_style": "Uppercase declaratives with a terminal period ('WHAT WE DO.', 'BRIEF US SOMETHING.'). Mono bracket meta. Cheeky nav taglines.",
+  "copy_tone": "Confident and self-mocking agency voice: '20+ DIGITAL FREAKS', 'PROOF WE WEREN'T ON HOLIDAY', 'CLIENTS WE DIDN'T SCARE OFF', 'BLAME THESE PEOPLE', 'TLDR; we do a lot. Just give us a call:', 'SMALL TEAM. BIG ENERGY. NO FLUFF.', and the cursor label 'NO SUITS'. Lead copy stays plain and benefit-led.",
+  "examples": [
+   "A CREATIVE DIGITAL AGENCY THAT GOES ALL IN OR NOT AT ALL.",
+   "PROOF WE WEREN'T ON HOLIDAY",
+   "CLIENTS WE DIDN'T SCARE OFF",
+   "SMALL TEAM. BIG ENERGY. NO FLUFF.",
+   "SAY NO MORE. IT'S A MATCH",
+   "TLDR; we do a lot. Just give us a call:"
+  ]
+ },
+ "tech_stack": {
+  "framework": "WordPress (custom theme 'lamalama2025', WPML) with a Vite build (dist/assets hashed ES chunks)",
+  "libraries": [
+   "GSAP (bundled) + ScrollTrigger; a line splitter with the GSAP 3.13 SplitText API (type 'lines, words', aria:'none')",
+   "Lenis (bundled)",
+   "swup + SwupPreloadPlugin",
+   "hls.js (Bunny Stream HLS)",
+   "custom raw WebGL2 shaders on an in-house layer composer",
+   "Cal.com embed",
+   "Fathom + GA4 (+ Google Ads tags)"
+  ],
+  "evidence": "main-cs47UqvV.js imports scripts-BrbCwfCd.js, which imports app-DjHRamTc.js (853KB) plus ~50 lazily loaded component chunks (backdrop_theme, webgl_image, webgl_video, video_room, transition, clock, stacking_cards...). The app bundle contains swup (126 refs), Hls, the Lenis class and 8 GLSL literals; getUserMedia is in video_room-CRMH3LDk.js. No gsap/THREE globals are exposed (probe globals {})."
+ },
+ "performance_accessibility": {
+  "requests": 228,
+  "weight_notes": "Video dominates: declared mp2t segments total 26.4MB over the probe session. JS ~0.73MB declared. Images are light (~1.6MB). 5 woff2 files at 133KB.",
+  "reduced_motion": "probe reduced_motion_rules 0, and neither the CSS nor the app bundle mentions prefers-reduced-motion. The intro runs ~4.6s before the headline is readable, and the cursor trail and shader field never pause for motion-sensitive users.",
+  "contrast_issues": "The off-white on #1A1C1C body text is strong (~15:1). The 10px mono labels at weight 500 are small. The dot field behind the 'WHAT WE DO.' copy lowers local contrast. Scrambled text is unreadable mid-run, and the splitter is set to aria:'none'. The THIS IS US widget covers the end of the hero lead paragraph at 1440 (desktop_01). Accessibility is the lowest sub-score (6.6).",
+  "mobile_quality": "Good. 40px h1, no overflow, video hero. The WebGL image/video layers are switched off on touch devices (code-confirmed), so mobile gets plain full-colour media.",
+  "dev_scores": {
+   "semantics_seo": 7.2,
+   "animations": 7.8,
+   "accessibility": 6.6,
+   "wpo": 7.6,
+   "responsive": 7.2,
+   "markup": 7.6
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "The logo as the pixel of a full-screen grid shader",
+   "why_it_works": "Every frame of the intro and background is visibly made of the brand mark. The loader becomes identity, not filler, and any video can be 'branded' by rendering it through the grid.",
+   "how_to_build": "Fullscreen WebGL2 quad. Per fragment: cols = u_resolution.x / u_cell; cellUV = uv*vec2(cols, rows); sub = ivec2(floor(fract(cellUV)*4.)) (a 4x4 sub-pixel inside the cell); v = luminance of texture(u_input, (floor(cellUV)+.5)/vec2(cols,rows)). Define a fixed 16-entry order of sub-pixels where the first 7 are your logo's pixels and the last 9 fill the rest; light sub-pixel k when k/16 < v (or k/7 < v for logo-only mode). Output u_ink * lit, over u_bg. Use NEAREST filtering and 8px cells for content. Intro: tween the cell size 160 to 16 over 3.75s on power3.in while a progress uniform switches from 'logo only' to 'full' (power4.in, 3.25s) and a colour mix runs over 4.25s power4.inOut. Colours: ink #F9F4EB on #1A1C1C."
+  },
+  {
+   "technique": "Cursor velocity field that brushes images into halftone",
+   "why_it_works": "Hovering leaves a fading stroke of the site's texture on real photos, which is tactile and on-brand, and the image returns to full colour within ~2s.",
+   "how_to_build": "Two RG float ping-pong textures for velocity. Inject pass: vel += exp(-d*d/(0.04*0.04)) * u_mouseDelta * 0.04 (aspect-correct d). Decay pass: vel = prev * (1.0 - min(0.5, dt_ms/250.0)). In the image shader: trail = logoDither(cell, length(vel), logoOnly) (the same ordered dither, logo pixels only); image = max(imageDither - trail, 0) plus trail * u_cursorColour; and offset the texture UV by vel * (0.02 + 0.08 * edgeFalloff) when distortion is on. Add a mono label pill that follows the pointer with gsap.quickTo on left and y (.45s expo.out), clamped to the viewport's right edge, and set its text from data-label on hover. Skip the whole layer on touch devices."
+  },
+  {
+   "technique": "Length-scaled text scramble decode",
+   "why_it_works": "Short labels resolve almost instantly and long headlines take proportionally longer, so every string finishes at a similar reading pace. The random glyphs echo the pixel-grid look.",
+   "how_to_build": "Store the original text, empty the node, and precompute a same-length random string from a '#'-weighted pool ('#####$*@(0%1>'), mapping spaces to '_' and keeping brackets. Timeline at ScrollTrigger 'top bottom': tween A on {n:0} to {n:len}, duration 0.25 + 0.005*len, ease power2.out, writes random chars up to n; tween B, identical but starting 0.2s later, overwrites chars up to its n with the real text. Hide by reversing in 0.15 + 0.005*shown. Put the real string in an aria-label on the element (the original splits with aria:'none'), and do not ship it at opacity-0 without a no-JS fallback."
+  },
+  {
+   "technique": "Work index rows with bleeding thumbnail strips",
+   "why_it_works": "One row per client reads like a table of contents, while the right-edge strip previews 3-5 real deliverables without a card grid.",
+   "how_to_build": "Each row is a 12-column grid at min-height 168px with border-top 1px rgba(249,244,235,.2). Name 20px Suisse at col 1. Tag chips (black bg, 10px mono caps, padding 4px 8px, radius 4px, gap 2px) at col 4. '( + )' mono at col 8. The strip is display:flex with gap 8px, height 120px, justify-content:end, overflow visible, and margin-right negative to the viewport edge. On hover the toggle text becomes '( VIEW + )'."
+  },
+  {
+   "technique": "Floating nav pill with a per-section tagline",
+   "why_it_works": "The persistent chrome speaks in context ('PROOF WE WEREN'T ON HOLIDAY' over the work), so the nav adds to the voice rather than only navigating.",
+   "how_to_build": "Fixed pill: top 16px, centered, 438x50, background rgba(0,0,0,.85) with backdrop-filter blur(12px), radius 4px, logo left, 10px mono caps tagline centered, burger right. Give each section a data-labels list of 3-5 lines (joined with a separator) and a data-logo key; when the section becomes active, pick one line and run the scramble on the tagline element, and swap the logo bitmap. Drop the tagline on phones (the 390px capture shows logo and burger only)."
+  },
+  {
+   "technique": "Visitor webcam through the brand grid",
+   "why_it_works": "Putting the visitor's own face into the logo dither, with the cell size in their hands ('GRID SETTINGS'), turns the brand system into a toy and holds attention on the contact page.",
+   "how_to_build": "On a button press call navigator.mediaDevices.getUserMedia({video:{width:{ideal:W}, height:{ideal:H}, facingMode:'user'}}), set it as a hidden <video>'s srcObject, upload it as a texture every frame, mirror x, and render it through the same dither shader. Fade the layer in and out with a noise dissolve over .65s sine.out. Bind an <input type=range> styled as a tick ruler to the cell-size uniform (e.g. 4-48px, tweened .45s expo.out) and a DARK / LIGHT segmented control to the theme colours. Stop every track on exit, and on error show a message and fall back to the normal contact view. Keep a 'BACK TO CONTACT' chip fixed bottom-left."
+  },
+  {
+   "technique": "Section edges that dissolve through the dither",
+   "why_it_works": "A full-bleed field never ends on a hard line: its top and bottom break into a ragged, noise-offset edge of logo pixels that is scrubbed by scroll, so sections seem to materialise out of the grid.",
+   "how_to_build": "Per section, scrub two uniforms with ScrollTrigger (ease none): top 0 to 1 from the section entering to 'top top', bottom 0 to 1 from 'bottom bottom' to 'bottom -10%'. In the section shader: y = cellRowUV.y*(1.-2.*.15) + .15 + .15*noise(cellUV*8.); opacity = smoothstep(y*(1.-gap)-gap, y*(1.-gap), top-gap) - smoothstep(y*(1.-gap)-gap, y*(1.-gap), bottom-gap) with gap .2; then run opacity through the same logo dither (reverse order for the bottom edge) and use it as the layer's alpha."
+  }
+ ],
+ "slop_risks": [
+  "Fixed-background / ASCII-grid tell: the law names a flat ASCII grid that twinkles behind everything. Lama Lama avoids it because the field renders real video, reacts to the cursor, changes source per section, breaks at section edges and is built from the logo. A naive copy (a static ASCII texture on a fixed canvas behind the nav) is exactly that tell.",
+  "Invisible-content trap: both text classes ship with class opacity-0 and only become visible when their ScrollTrigger timeline starts. If JS or the trigger fails, the labels and headings stay invisible. The hero is also unreadable for ~4.6s behind the intro, and desktop_00 at 6s shows no text on desktop or mobile.",
+  "Monospace as the house voice plus one label treatment everywhere: Sometype Mono is the body default, and every meta string is bracketed caps mono ('[ ... ]', '( + )'). A copy that uses a free Google mono for everything reads as template dev-brand.",
+  "Cream background: #F9F4EB is fine as ink, but the pitch-deck slides use it as a full panel background. That is the cream/oat 'editorial' surface the law flags.",
+  "Content sliced by an edge: in desktop_01 the fixed 'THIS IS US' widget covers the right-column lead paragraph ('We craft brands, product…' is cut mid-word). Fixed rails need a reserved gutter.",
+  "Hairline light borders on boxes: the outline service chips ('BRANDING ↗') use a 1px light border on dark. The widget cards do not (they use translucent fills).",
+  "Tiny 10px mono labels at weight 500 on a noisy dot field are a legibility risk."
+ ],
+ "confidence_notes": "OBSERVED: probe.json; desktop_00-07 and mobile_00/01 viewed one by one. desktop_00 was captured mid-intro (text not yet visible); the hero state comes from desktop_01 and frame 0/f07. All 8 frames of element 0 (intro) and element 3 (cursor morph) were viewed, plus f00/f03/f06 of elements 1 (grid playground) and 2 (pitch deck). Code facts are from app-DjHRamTc.js: the GLSL uniforms and snippets, the GRID_SIZE constants (160 to 16 over 3.75s power3.in), the ease and duration counts and the scramble class. INFERRED: that the transition shader drives swup page changes; that mobile drops the grid; the text-roll hover from repeated CTA strings; the exact halftone mapping inside the 11.6KB content shader, which was read only partially. The bundle has no getUserMedia, so 'step inside it yourself' (element 1) is the grid-size playground over site video, not a webcam. The Lenis constructor options at the call site were not isolated, so only the defaults were confirmed. The footer was not reached by the probe. audit (2026-09-25): re-read probe.json, desktop_00-07, mobile_00/01, all 8 frames of elements 0 and 3, and f00/f03/f06 of elements 1 and 2, one at a time. Re-fetched the homepage HTML, app-DjHRamTc.js and the lazy chunks backdrop_theme, webgl_image, webgl_video, video_room, transition. Fixed: element 1 IS a webcam feature (getUserMedia with facingMode 'user' lives in the lazy video_room chunk, which the original grep missed); the mobile fallback is code-confirmed (IS_WEBGL = !hasTouch); the LL mark is an ordered 4x4 dither (7 logo sub-pixels, then 9 fill), not a per-cell on/off bitmap, and both steal_this recipes were rewritten to match; the scramble empties the node, types random glyphs on first and writes the real text 0.2s behind, from a '#'-weighted pool (the original recipe gave the same look but a different glyph pool and no fixed lag); the h1 uses a masked line rise, not a scramble; '#' in the nav is the scramble placeholder, and taglines come from per-section pools in the HTML; the f06 'progress line' is the hero rule drawing in; the meta row belongs to the hero, not persistent chrome; the settled first screen has the h1 in the lower third (0/f07), not at y~160 (that is desktop_01 after a scroll step); page content cells are 8px, not 16; the cursor label uses expo.out .45s, not power4.out; the nav pill is translucent with blur, not solid black; widget cards have fills, not hairline borders; the contact visual is ~3:5, not 9:16; repeated CTA strings are three stacked copies (vertical roll), not a marquee. Added: intro timeline values, line-reveal stagger formula, dithered section edges (new steal_this), contextual widget rail, section label pools and logo keys, the unseen clients/team/footer sections, and no reduced-motion handling in the JS either. Still inferred: Lenis call-site options, the wrapper scroller, what triggers the u_nogrid switch in element 3, and the page transition, which was read in code but not captured."
+}

@@ -1,0 +1,9086 @@
+{
+ "sites_checked": 575,
+ "sites_ok": 554,
+ "sites_with_families": 525,
+ "families_by_site_count": [
+  [
+   "Inter",
+   60
+  ],
+  [
+   "Geist Mono",
+   27
+  ],
+  [
+   "PP Neue Montreal",
+   24
+  ],
+  [
+   "Geist",
+   20
+  ],
+  [
+   "Fragment Mono",
+   13
+  ],
+  [
+   "Neue Montreal",
+   13
+  ],
+  [
+   "IBM Plex Mono",
+   12
+  ],
+  [
+   "Poppins",
+   12
+  ],
+  [
+   "Archivo",
+   11
+  ],
+  [
+   "Instrument Sans",
+   10
+  ],
+  [
+   "DM Sans",
+   10
+  ],
+  [
+   "Playfair Display",
+   9
+  ],
+  [
+   "Suisse Int\\'l",
+   9
+  ],
+  [
+   "JetBrains Mono",
+   9
+  ],
+  [
+   "Manrope",
+   9
+  ],
+  [
+   "Space Mono",
+   8
+  ],
+  [
+   "Instrument Serif",
+   8
+  ],
+  [
+   "Montserrat",
+   8
+  ],
+  [
+   "DM Mono",
+   7
+  ],
+  [
+   "Switzer",
+   7
+  ],
+  [
+   "Inter Display",
+   6
+  ],
+  [
+   "Helvetica Now Display",
+   6
+  ],
+  [
+   "Founders Grotesk",
+   5
+  ],
+  [
+   "Hanken Grotesk",
+   5
+  ],
+  [
+   "Work Sans",
+   5
+  ],
+  [
+   "Satoshi",
+   5
+  ],
+  [
+   "IBM Plex Sans",
+   5
+  ],
+  [
+   "PP Mori",
+   5
+  ],
+  [
+   "Anton",
+   5
+  ],
+  [
+   "Cormorant Garamond",
+   5
+  ],
+  [
+   "Open Sans",
+   5
+  ],
+  [
+   "Aeonik",
+   5
+  ],
+  [
+   "Bebas Neue",
+   5
+  ],
+  [
+   "Roboto Mono",
+   4
+  ],
+  [
+   "Space Grotesk",
+   4
+  ],
+  [
+   "Outfit",
+   4
+  ],
+  [
+   "icomoon",
+   4
+  ],
+  [
+   "General Sans",
+   4
+  ],
+  [
+   "Helvetica Neue Bold",
+   3
+  ],
+  [
+   "Sora",
+   3
+  ],
+  [
+   "DotGothic16",
+   3
+  ],
+  [
+   "Marcellus",
+   3
+  ],
+  [
+   "PP Neue Montreal Mono",
+   3
+  ],
+  [
+   "Figtree",
+   3
+  ],
+  [
+   "GeistSans",
+   3
+  ],
+  [
+   "Suisse Int\\'l Mono",
+   3
+  ],
+  [
+   "Caveat",
+   3
+  ],
+  [
+   "Roobert",
+   3
+  ],
+  [
+   "EB Garamond",
+   3
+  ],
+  [
+   "Graphik",
+   3
+  ],
+  [
+   "martianMono",
+   3
+  ],
+  [
+   "Die Grotesk C",
+   3
+  ],
+  [
+   "Bricolage Grotesque",
+   3
+  ],
+  [
+   "LayGrotesk",
+   3
+  ],
+  [
+   "Gilroy-",
+   3
+  ],
+  [
+   "Neue Haas Display",
+   3
+  ],
+  [
+   "PP Supply Mono",
+   3
+  ],
+  [
+   "Inter Tight",
+   3
+  ],
+  [
+   "PPFrama",
+   3
+  ],
+  [
+   "Archivo Black",
+   2
+  ],
+  [
+   "Cormorant",
+   2
+  ],
+  [
+   "PP Editorial Old",
+   2
+  ],
+  [
+   "Founders Grotesk X-Condensed",
+   2
+  ],
+  [
+   "Ppeiko",
+   2
+  ],
+  [
+   "Ppmuseum",
+   2
+  ],
+  [
+   "Onest",
+   2
+  ],
+  [
+   "proxima-nova",
+   2
+  ],
+  [
+   "Orbitron",
+   2
+  ],
+  [
+   "Noto Sans JP",
+   2
+  ],
+  [
+   "Be Vietnam Pro",
+   2
+  ],
+  [
+   "Gambetta",
+   2
+  ],
+  [
+   "DrukWide",
+   2
+  ],
+  [
+   "Arial Narrow",
+   2
+  ],
+  [
+   "Söhne",
+   2
+  ],
+  [
+   "Merriweather",
+   2
+  ],
+  [
+   "Helvetica Now",
+   2
+  ],
+  [
+   "Big Caslon FB",
+   2
+  ],
+  [
+   "Favorit",
+   2
+  ],
+  [
+   "Reckless Neue",
+   2
+  ],
+  [
+   "H",
+   2
+  ],
+  [
+   "Thunder",
+   2
+  ],
+  [
+   "Canela Text",
+   2
+  ],
+  [
+   "PP Fraktion Mono",
+   2
+  ],
+  [
+   "Tobias",
+   2
+  ],
+  [
+   "The Seasons",
+   2
+  ],
+  [
+   "Aeonik Pro",
+   2
+  ],
+  [
+   "Lato",
+   2
+  ],
+  [
+   "Noto Sans",
+   2
+  ],
+  [
+   "Google Sans",
+   2
+  ],
+  [
+   "PP Pangaia",
+   2
+  ],
+  [
+   "CabinetGrotesk",
+   2
+  ],
+  [
+   "BT Grotesk",
+   2
+  ],
+  [
+   "HelveticaNeueLight",
+   2
+  ],
+  [
+   "SometypeMono",
+   2
+  ],
+  [
+   "Cinzel",
+   2
+  ],
+  [
+   "Syne",
+   2
+  ],
+  [
+   "Mona Sans",
+   2
+  ],
+  [
+   "GT America",
+   2
+  ],
+  [
+   "DieGroteskB",
+   2
+  ],
+  [
+   "Gochi Hand",
+   2
+  ],
+  [
+   "Clash Grotesk",
+   2
+  ],
+  [
+   "neue-haas-grotesk-text",
+   2
+  ],
+  [
+   "Rock Salt",
+   2
+  ],
+  [
+   "Futura PT",
+   2
+  ],
+  [
+   "tiemposHeadline",
+   2
+  ],
+  [
+   "Century Gothic",
+   2
+  ],
+  [
+   "GothamMedium",
+   2
+  ],
+  [
+   "PP Neue Montreal Semibold",
+   2
+  ],
+  [
+   "futura",
+   2
+  ],
+  [
+   "font",
+   2
+  ],
+  [
+   "Teodor",
+   2
+  ],
+  [
+   "GT America Standard",
+   2
+  ],
+  [
+   "ppEditorial",
+   2
+  ],
+  [
+   "ABC Favorit",
+   2
+  ],
+  [
+   "KMR Apparat",
+   2
+  ],
+  [
+   "TT Commons Pro",
+   2
+  ],
+  [
+   "neue-haas-grotesk-display",
+   2
+  ],
+  [
+   "Beausite Classic",
+   2
+  ],
+  [
+   "Heading Font",
+   2
+  ],
+  [
+   "Chivo Mono",
+   2
+  ],
+  [
+   "Oswald",
+   2
+  ],
+  [
+   "STK Bureau Serif",
+   2
+  ],
+  [
+   "Inriaserif",
+   2
+  ],
+  [
+   "Perfectly Nineties",
+   2
+  ],
+  [
+   "ABC Diatype Mono",
+   2
+  ],
+  [
+   "ABC Diatype",
+   2
+  ],
+  [
+   "seasonSans",
+   2
+  ],
+  [
+   "PP Editorial New",
+   2
+  ],
+  [
+   "Doner",
+   2
+  ],
+  [
+   "articulat-cf",
+   2
+  ],
+  [
+   "tenby-six",
+   2
+  ],
+  [
+   "kallisto",
+   2
+  ],
+  [
+   "nbarchitekt",
+   1
+  ],
+  [
+   "Press Start 2P",
+   1
+  ],
+  [
+   "DT Getai Grotesk Display",
+   1
+  ],
+  [
+   "Test Founders Grotesk",
+   1
+  ],
+  [
+   "Sackler sE",
+   1
+  ],
+  [
+   "orpheuspro",
+   1
+  ],
+  [
+   "Pinyon Script",
+   1
+  ],
+  [
+   "Italiana",
+   1
+  ],
+  [
+   "goldenbook",
+   1
+  ],
+  [
+   "diamond",
+   1
+  ],
+  [
+   "Liu Jian Mao Cao",
+   1
+  ],
+  [
+   "Neue Montreal Safari",
+   1
+  ],
+  [
+   "Source Serif 4",
+   1
+  ],
+  [
+   "Major Mono Display",
+   1
+  ],
+  [
+   "Mulish-9c8e18cc8744f1a9",
+   1
+  ],
+  [
+   "Artifex Hand CF-046c0ff99cd55ef3",
+   1
+  ],
+  [
+   "StabilGrotesk",
+   1
+  ],
+  [
+   "Helvetica Neue Bold Italic",
+   1
+  ],
+  [
+   "Helvetica Neue Black",
+   1
+  ],
+  [
+   "Helvetica Neue Medium Italic",
+   1
+  ],
+  [
+   "Helvetica Neue Italic",
+   1
+  ],
+  [
+   "La Belle Aurore",
+   1
+  ],
+  [
+   "Bootzy Condensed TM",
+   1
+  ],
+  [
+   "2XAMONOVF",
+   1
+  ],
+  [
+   "HelveticaProRoman",
+   1
+  ],
+  [
+   "hatton",
+   1
+  ],
+  [
+   "neue",
+   1
+  ],
+  [
+   "Champ",
+   1
+  ]
+ ],
+ "google_fonts_by_site_count": [
+  [
+   "Inter",
+   12
+  ],
+  [
+   "DM Sans",
+   5
+  ],
+  [
+   "Caveat",
+   5
+  ],
+  [
+   "Figtree",
+   4
+  ],
+  [
+   "Cormorant Garamond",
+   4
+  ],
+  [
+   "Poppins",
+   4
+  ],
+  [
+   "Montserrat",
+   4
+  ],
+  [
+   "Fraunces",
+   3
+  ],
+  [
+   "Playfair Display",
+   3
+  ],
+  [
+   "JetBrains Mono",
+   3
+  ],
+  [
+   "Roboto Mono",
+   3
+  ],
+  [
+   "Press Start 2P",
+   2
+  ],
+  [
+   "DM Mono",
+   2
+  ],
+  [
+   "Bebas Neue",
+   2
+  ],
+  [
+   "Google Sans",
+   2
+  ],
+  [
+   "Instrument Serif",
+   2
+  ],
+  [
+   "Syne",
+   2
+  ],
+  [
+   "Marcellus",
+   2
+  ],
+  [
+   "IBM Plex Mono",
+   2
+  ],
+  [
+   "Archivo",
+   2
+  ],
+  [
+   "Archivo Black",
+   1
+  ],
+  [
+   "Work Sans",
+   1
+  ],
+  [
+   "Atkinson Hyperlegible",
+   1
+  ],
+  [
+   "Nunito",
+   1
+  ],
+  [
+   "Amatic SC",
+   1
+  ],
+  [
+   "Shippori Mincho",
+   1
+  ],
+  [
+   "Zen Kaku Gothic New",
+   1
+  ],
+  [
+   "Stack Sans Headline",
+   1
+  ],
+  [
+   "Libre Baskerville",
+   1
+  ],
+  [
+   "Lato",
+   1
+  ],
+  [
+   "ZCOOL QingKe HuangYou",
+   1
+  ],
+  [
+   "Anonymous Pro",
+   1
+  ],
+  [
+   "Noto Sans Symbols",
+   1
+  ],
+  [
+   "Noto Sans Symbols 2",
+   1
+  ],
+  [
+   "Kode Mono",
+   1
+  ],
+  [
+   "Cossette Titre",
+   1
+  ],
+  [
+   "Open Sans",
+   1
+  ],
+  [
+   "Roboto",
+   1
+  ],
+  [
+   "Roboto Slab",
+   1
+  ],
+  [
+   "Space Grotesk",
+   1
+  ]
+ ],
+ "sites_using_google_fonts": 58,
+ "sites_using_adobe_fonts": 37,
+ "sites_on_framer_font_pipeline": 32,
+ "font_hosts": [
+  [
+   "cdn.prod.website-files.com",
+   72
+  ],
+  [
+   "framerusercontent.com",
+   32
+  ],
+  [
+   "fonts.gstatic.com",
+   25
+  ],
+  [
+   "cdn.shopify.com",
+   4
+  ],
+  [
+   "d3hw6dc1ow8pp2.cloudfront.net",
+   2
+  ],
+  [
+   "members-play.lacoste.com",
+   2
+  ],
+  [
+   "www.selkirk.com",
+   2
+  ],
+  [
+   "cdn-static.okendo.io",
+   2
+  ],
+  [
+   "activetheory.net",
+   1
+  ],
+  [
+   "bande.digital",
+   1
+  ],
+  [
+   "ethanwong.photography",
+   1
+  ],
+  [
+   "www.jcubhow.com",
+   1
+  ],
+  [
+   "jesperlandberg.com",
+   1
+  ],
+  [
+   "moneyincheck.org",
+   1
+  ],
+  [
+   "www.offmenu.design",
+   1
+  ],
+  [
+   "therobotand.me",
+   1
+  ],
+  [
+   "www.thorgal.com",
+   1
+  ],
+  [
+   "wearebou.com",
+   1
+  ],
+  [
+   "www.laurens.art",
+   1
+  ],
+  [
+   "11moissanstoit.com",
+   1
+  ],
+  [
+   "2025.unseen.co",
+   1
+  ],
+  [
+   "2xa.studio",
+   1
+  ],
+  [
+   "375.studio",
+   1
+  ],
+  [
+   "a24.raviklaassens.com",
+   1
+  ],
+  [
+   "adammount.org",
+   1
+  ]
+ ],
+ "families_per_site_distribution": [
+  [
+   0,
+   46
+  ],
+  [
+   1,
+   126
+  ],
+  [
+   2,
+   172
+  ],
+  [
+   3,
+   99
+  ],
+  [
+   4,
+   38
+  ],
+  [
+   5,
+   17
+  ],
+  [
+   6,
+   18
+  ],
+  [
+   7,
+   5
+  ],
+  [
+   8,
+   9
+  ],
+  [
+   9,
+   7
+  ],
+  [
+   11,
+   1
+  ],
+  [
+   12,
+   4
+  ],
+  [
+   13,
+   1
+  ],
+  [
+   14,
+   4
+  ],
+  [
+   15,
+   1
+  ],
+  [
+   16,
+   2
+  ],
+  [
+   18,
+   1
+  ],
+  [
+   22,
+   2
+  ],
+  [
+   44,
+   1
+  ]
+ ],
+ "per_site": [
+  {
+   "url": "http://activetheory.net",
+   "families": [
+    "nbarchitekt"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "activetheory.net"
+   ],
+   "error": null
+  },
+  {
+   "url": "http://bande.digital",
+   "families": [
+    "Press Start 2P"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "bande.digital"
+   ],
+   "error": null
+  },
+  {
+   "url": "http://clubathletic.co/",
+   "families": [
+    "Archivo",
+    "Archivo Black Placeholder",
+    "DM Mono",
+    "DT Getai Grotesk Display",
+    "Founders Grotesk",
+    "Founders Grotesk Regular Placeholder",
+    "Fragment Mono",
+    "Geist",
+    "Geist Placeholder",
+    "Inter",
+    "Inter Placeholder",
+    "Roboto Mono",
+    "Sackler sE",
+    "Sackler sE Regular Placeholder",
+    "Test Founders Grotesk",
+    "Test Founders Grotesk Regular Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "http://ethanwong.photography",
+   "families": [
+    "Cormorant",
+    "Hanken Grotesk",
+    "Italiana",
+    "Pinyon Script",
+    "goldenbook",
+    "orpheuspro"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [
+    "ethanwong.photography"
+   ],
+   "error": null
+  },
+  {
+   "url": "http://jcubhow.com",
+   "families": [
+    "diamond"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.jcubhow.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "http://jesperlandberg.com",
+   "families": [
+    "sans"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "jesperlandberg.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "http://moneyincheck.org",
+   "families": [
+    "Liu Jian Mao Cao",
+    "PP Editorial Old",
+    "Playfair Display"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "moneyincheck.org"
+   ],
+   "error": null
+  },
+  {
+   "url": "http://offmenu.design",
+   "families": [
+    "Neue Montreal",
+    "Neue Montreal Safari"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.offmenu.design"
+   ],
+   "error": null
+  },
+  {
+   "url": "http://therobotand.me",
+   "families": [
+    "Hanken Grotesk",
+    "Major Mono Display",
+    "Source Serif 4",
+    "Space Grotesk",
+    "Space Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "therobotand.me"
+   ],
+   "error": null
+  },
+  {
+   "url": "http://thorgal.com",
+   "families": [
+    "Artifex Hand CF-046c0ff99cd55ef3",
+    "Mulish-9c8e18cc8744f1a9"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.thorgal.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "http://wearebou.com",
+   "families": [
+    "StabilGrotesk"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "wearebou.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "http://www.blackshard.com.au",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+  },
+  {
+   "url": "http://www.donut-studio.com",
+   "families": [
+    "Helvetica Neue Black",
+    "Helvetica Neue Bold",
+    "Helvetica Neue Bold Italic Placeholder",
+    "Helvetica Neue Bold Placeholder",
+    "Helvetica Neue Italic Placeholder",
+    "Helvetica Neue Medium",
+    "Helvetica Neue Medium Italic Placeholder",
+    "Helvetica Neue Medium Placeholder",
+    "Helvetica Neue Regular Placeholder",
+    "Inter",
+    "Inter Display",
+    "Inter Display Placeholder",
+    "Inter Placeholder",
+    "La Belle Aurore"
+   ],
+   "google": [
+    "Press Start 2P"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "http://www.laurens.art",
+   "families": [
+    "Neue Montreal",
+    "PP Neue Montreal"
+   ],
+   "google": [
+    "Archivo Black",
+    "Archivo Black"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "www.laurens.art"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://11moissanstoit.com/",
+   "families": [
+    "Founders Grotesk",
+    "Founders Grotesk X-Condensed"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "11moissanstoit.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://2025.unseen.co/",
+   "families": [
+    "Bootzy Condensed TM",
+    "DM Mono",
+    "Neue Montreal",
+    "New Icon Script",
+    "New Icon Serif"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "2025.unseen.co"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://2xa.studio/",
+   "families": [
+    "2XAMONOVF",
+    "Geist",
+    "GeistMono",
+    "HelveticaProRoman",
+    "swiper-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "2xa.studio"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://360lexingtonave.com",
+   "families": [
+    "Instrument Sans",
+    "Instrument Sans Placeholder",
+    "Inter",
+    "Inter Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://375.studio/en",
+   "families": [
+    "hatton",
+    "neue"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "375.studio"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://a24.raviklaassens.com/",
+   "families": [
+    "Ppeiko",
+    "Ppmuseum",
+    "Ppneuemontreal"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "a24.raviklaassens.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://aardvarkbookclub.com",
+   "families": [
+    "Champ",
+    "Degular",
+    "Hello Organichand Webfont",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://adammount.org",
+   "families": [
+    "AnonymousPro",
+    "PPtalisman",
+    "Wetware"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "adammount.org"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://adcker.com/",
+   "families": [
+    "nhm",
+    "psl",
+    "psr",
+    "swiper-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "adcker.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://agencetheo.com/",
+   "families": [
+    "Bagoss Condensed",
+    "Necto Mono",
+    "Porpora",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://ai-dubbing.app",
+   "families": [
+    "Outfit",
+    "Sora"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "ai-dubbing.app"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://ai-robots.apps.mdxpreview.xyz/unitree-go2",
+   "families": [
+    "Work Sans"
+   ],
+   "google": [
+    "Work Sans"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://aim.obys.agency/",
+   "families": [
+    "Khtekatrial",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://aimees-papercraft-world.com/",
+   "families": [
+    "Slime Box"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "aimees-papercraft-world.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://aino.agency",
+   "families": [
+    "abc",
+    "abcplus",
+    "mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "aino.agency"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://aircenter.space/",
+   "families": [
+    "Onest"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "aircenter.space"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://akaru.fr/",
+   "families": [
+    "Alliance Neue",
+    "Alliance Platt"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.akaru.fr"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://alejandroha.com/",
+   "families": [
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://altamedfoundation.org/",
+   "families": [
+    "proxima-nova"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://altitude101.com/",
+   "families": [
+    "IvyPrestoDisplayLight",
+    "NeueHaasGrotDisp-55Roman-Trial",
+    "NeueHaasGrotDisp-65Roman-Trial",
+    "NeueHaasGrotDisp-75Roman-Trial"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "altitude101.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://amix-design.com/tl/web-g-threejs/",
+   "families": [
+    "DotGothic16",
+    "Noto Sans JP",
+    "Orbitron",
+    "Outfit",
+    "Space Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "amix-design.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://animejs.com",
+   "families": [
+    "DIN",
+    "Digital-7",
+    "Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "animejs.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://anveril.com/",
+   "families": [
+    "BB Manual Mono Pro Original",
+    "BB Manual Mono Pro Original Medium Placeholder",
+    "BB Manual Mono Pro Original Regular Placeholder",
+    "Inter",
+    "Inter Placeholder",
+    "Saans TRIAL",
+    "Saans TRIAL Bold Placeholder",
+    "Saans TRIAL Heavy",
+    "Saans TRIAL Light Placeholder",
+    "Saans TRIAL Medium Placeholder",
+    "Saans TRIAL Regular Placeholder",
+    "Saans TRIAL SemiBold Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://aoiofficial.com/",
+   "families": [
+    "Alex Brush",
+    "Archivo",
+    "Saol Display",
+    "Trio Grotesk"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.sanity.io"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://apechain.com/",
+   "families": [
+    "DM Mono",
+    "dmSans",
+    "manuka"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "apechain.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://apinistudio.com",
+   "families": [
+    "Be Vietnam Pro",
+    "Gambetta",
+    "Instrument Sans",
+    "Playfair Display"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "apinistudio.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://apocalypsecoffee.com/",
+   "families": [
+    "Akzidenz Grotesk BE",
+    "Arnel",
+    "Arnel Drawn",
+    "Arnel Stamp",
+    "JudgemeIcons",
+    "JudgemeStar",
+    "Lovely Mess",
+    "Makking"
+   ],
+   "google": [
+    "Bebas Neue",
+    "DM Mono",
+    "DM Sans"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "apocalypsecoffee.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://aptransit.co",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": "HTTP Error 403: Forbidden"
+  },
+  {
+   "url": "https://aquirin.com/",
+   "families": [
+    "Inconsolata"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "aquirin.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://arcoglobal.com",
+   "families": [
+    "Arco Century Gothic"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "arcoglobal.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://arstraumur.music/",
+   "families": [
+    "IBM Plex Mono",
+    "Inter",
+    "Marcellus"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "arstraumur.music"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://art.appstate.edu/",
+   "families": [],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://artefakt.mov/",
+   "families": [
+    "DrukWide",
+    "TronicaMono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "artefakt.mov"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://artemartemartem.com/",
+   "families": [
+    "Arial Narrow",
+    "EaseDouble",
+    "Great Rebellion"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "artemartemartem.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://artemshcherban.com",
+   "families": [
+    "PP Neue Montreal",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://ascension.pegassi.be/",
+   "families": [
+    "mono",
+    "sans"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "ascension.pegassi.be"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://ashleybrookecs.com/",
+   "families": [
+    "Mosvita",
+    "The Patience",
+    "Universo",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://astrodither.robertborghesi.is/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://austensor.com",
+   "families": [
+    "Geist",
+    "Geist Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.austensor.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://austinwerner.io",
+   "families": [
+    "Neue Machina",
+    "Space Grotesk",
+    "slick"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "austinwerner.io"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://awards.racing",
+   "families": [
+    "Druk Wide Cy TT"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "awards.racing"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://axiom-power-template.webflow.io/",
+   "families": [
+    "Archivo Variablefont Wdth Wght",
+    "Ibmplexmono",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://ballance.framer.website/",
+   "families": [
+    "BDO Grotesk",
+    "Geist",
+    "Geist Mono",
+    "Geist Placeholder",
+    "Geist Variable Placeholder",
+    "Inter",
+    "Inter Display",
+    "Inter Display Placeholder",
+    "Inter Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://bb-b.net",
+   "families": [
+    "Söhne",
+    "Söhne Buch",
+    "Söhne Dreiviertelfett",
+    "Söhne Kraftig",
+    "Söhne Leicht",
+    "Söhne Leicht Kursiv"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://beautytools.dolcegabbana.com/gift-finder",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://beblessed.io/",
+   "families": [
+    "Sifonn"
+   ],
+   "google": [
+    "Atkinson Hyperlegible",
+    "Caveat",
+    "Figtree",
+    "Fraunces"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "beblessed.io"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://beetogreen.com/",
+   "families": [
+    "Instrument Sans",
+    "Parkinsans"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "beetogreen.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://behfar.dev/",
+   "families": [
+    "Audiowide",
+    "Monoton"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "behfar.dev"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://bellussi.com/",
+   "families": [
+    "Cormorant",
+    "Font Awesome\\ 6 Brands",
+    "Hippos",
+    "Muli",
+    "WooCommerce",
+    "seafont",
+    "themify"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "bellussi.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://benjamincreative.me/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+  },
+  {
+   "url": "https://bennettandclive.com",
+   "families": [
+    "InterWeb"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "bennettandclive.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://bestbeanbestcup.com.au",
+   "families": [
+    "Helvetica Now Display"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "bestbeanbestcup.com.au"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://biipmk.com",
+   "families": [
+    "IBM Plex Mono",
+    "Inter",
+    "Inter Placeholder",
+    "Satoshi",
+    "Satoshi Placeholder",
+    "Satoshi Variable Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://bitnomial.com/",
+   "families": [
+    "IBM Plex Sans",
+    "IBM Plex Sans Condensed",
+    "IBM Plex Sans Semi Condensed",
+    "PP Neue Machina",
+    "PP Neue Machina Inktrap",
+    "PP Neue Montreal Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "bitnomial.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://bleibtgleich.dev",
+   "families": [
+    "Akzidenz Grotesk Pro",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://boc.studio/",
+   "families": [
+    "ppMori"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "boc.studio"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://bodicine.com/",
+   "families": [
+    "Figtree",
+    "Haas",
+    "JudgemeStar",
+    "Merriweather",
+    "icomoon",
+    "swiper-icons-v7"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "bodicine.com",
+    "cdn.shopify.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://botblox.com/",
+   "families": [
+    "Fragment Mono",
+    "IBM Plex Mono",
+    "IBM Plex Sans",
+    "IBM Plex Sans Placeholder",
+    "Inter",
+    "Inter Placeholder",
+    "Space Grotesk",
+    "Space Grotesk Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://brand.dropbox.com/",
+   "families": [
+    "Atlasgrotesk",
+    "Dbsharpgroteskvariable",
+    "Sharpgroteskdbbook 20",
+    "Sharpgroteskdbbook 23",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://brand.ivress.co.jp/",
+   "families": [
+    "Basilia Compress D"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [
+    "brand.ivress.co.jp"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://brand.squarespace.com/",
+   "families": [
+    "Clarkson",
+    "ClarksonCondensed",
+    "ClarksonSerifLight",
+    "ClarksonSerifLightItalic",
+    "ClarksonSerifMedium",
+    "ClarksonSerifMediumItalic",
+    "ClarksonSerifRegular",
+    "ClarksonSerifRegularItalic"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "brand.squarespace.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://brandonyasin.com",
+   "families": [
+    "Helvetica Now",
+    "Neue Haas Unica Pro"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "brandonyasin.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://breadandboxers.com/se",
+   "families": [
+    "Heldane Display",
+    "helvetica-lt-pro"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [
+    "breadandboxers.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://brigadeoverland.com/",
+   "families": [
+    "Geist",
+    "Special Gothic Condensed One"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "brigadeoverland.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://bruno-simon.com",
+   "families": [
+    "Pally"
+   ],
+   "google": [
+    "Amatic SC",
+    "Nunito"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "bruno-simon.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://bryangarage.dev/",
+   "families": [
+    "Chicago Kare",
+    "Departure Mono",
+    "Gaegu",
+    "GeistMono",
+    "GeistSans",
+    "Instrument Serif",
+    "Nanum Brush Script",
+    "Nanum Gothic Coding",
+    "Nanum Pen Script"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "bryangarage.dev"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://buckssauce.com/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": "HTTP Error 429: Too Many Requests"
+  },
+  {
+   "url": "https://builtenvirons.com.au/",
+   "families": [
+    "Suisse Int\\'l",
+    "Suisse Int\\'l Condensed",
+    "Suisse Int\\'l Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "builtenvirons.com.au"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://bulbs.simondupety.com/",
+   "families": [
+    "Big Caslon FB",
+    "Special Gothic"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "bulbs.simondupety.com",
+    "fonts.gstatic.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://business.nrg.com/campaigns/build-your-data-center/",
+   "families": [
+    "Riegla"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "nrgcdn.b-cdn.net"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://bymonolog.com/",
+   "families": [
+    "Animo",
+    "Khteka",
+    "Suisse Mono",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://byotone.com",
+   "families": [
+    "General Sans",
+    "Montiac Mono",
+    "Space Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "byotone.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://cartier-waw-0225.dev.60fps.fr/",
+   "families": [
+    "Brilliant Cut Pro"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://catskills-showcase.pages.dev/",
+   "families": [
+    "Instrument Sans",
+    "Instrument Serif"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "catskills-showcase.pages.dev"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://ceciliebahnsen.com",
+   "families": [
+    "Neue Haas Unica"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "ceciliebahnsen.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://cerebrium.ai/",
+   "families": [
+    "ABC Favorit Trial",
+    "Suisse Int\\'l",
+    "Suisse Int\\'l Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cerebrium.ai"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://charmling.app",
+   "families": [
+    "Clash Display",
+    "General Sans",
+    "Instrument Serif"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "charmling.app"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://chasing-the-moment.byholm.co/",
+   "families": [
+    "Anton",
+    "Archivo",
+    "Caveat"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "chasing-the-moment.byholm.co"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://cipher.tv/",
+   "families": [
+    "Arizona",
+    "Favorit"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cipher.tv"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://clubcharlestown.com.au/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+  },
+  {
+   "url": "https://cocktailtheory.github.io/3DCC-core/",
+   "families": [],
+   "google": [
+    "Cormorant Garamond",
+    "Shippori Mincho",
+    "Zen Kaku Gothic New",
+    "Playfair Display"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://codeprecision.com",
+   "families": [
+    "JetBrains Mono",
+    "Poppins"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "codeprecision.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://coffee-tech.com/",
+   "families": [
+    "webflow-icons"
+   ],
+   "google": [
+    "Inter",
+    "Google Sans",
+    "Inter",
+    "Google Sans"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://coloniazacamil.com/",
+   "families": [
+    "Heathergreen",
+    "Reckless Neue",
+    "Roboto Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "coloniazacamil.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://coquelicots.nl",
+   "families": [
+    "Cormorant Garamond",
+    "Laca",
+    "Poppins"
+   ],
+   "google": [
+    "Cormorant Garamond"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "coquelicots.nl"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://corentinbernadou.com/",
+   "families": [
+    "H"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "corentinbernadou.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://crency.agency/",
+   "families": [
+    "IBMPlexSans",
+    "Nauryzredkeds",
+    "Thunder",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "crency.agency"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://cue-onebranding.webflow.io/",
+   "families": [
+    "Poppins",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://curtisdesignr.me/",
+   "families": [
+    "DM Mono",
+    "DM Sans",
+    "Rajdhani"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "curtisdesignr.me"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://cyber-prime.pl",
+   "families": [
+    "Inter"
+   ],
+   "google": [
+    "Inter",
+    "Instrument Serif",
+    "JetBrains Mono",
+    "Inter",
+    "Instrument Serif",
+    "JetBrains Mono",
+    "Inter",
+    "Instrument Serif",
+    "JetBrains Mono",
+    "Inter",
+    "Instrument Serif",
+    "JetBrains Mono"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://danielkiss.hu/",
+   "families": [
+    "Anton",
+    "Higher Jump",
+    "Satoshi"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "danielkiss.hu"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://daqconsulting.com",
+   "families": [
+    "Inter"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "daqconsulting.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://davidspaeth.com",
+   "families": [
+    "Chroma",
+    "UN11"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "davidspaeth.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://davidwhyte.com/experience/",
+   "families": [
+    "Canela Text",
+    "Roobert",
+    "WooCommerce",
+    "icons",
+    "star"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "davidwhyte.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://db-longbow.webflow.io/",
+   "families": [
+    "BebasNeueBold",
+    "Ebgaramond Variablefont Wght 0",
+    "Geist Mono V4",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://deadstockcoffee.com/",
+   "families": [
+    "Custom Display",
+    "Custom Display Air",
+    "Custom Display Chrome",
+    "Inter"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "deadstockcoffee.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://decathlonyestalgia.com/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+  },
+  {
+   "url": "https://delice.ca/",
+   "families": [
+    "Filson Soft",
+    "Ivy Mode",
+    "Miller Banner"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "delice.ca"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://denmu.com/",
+   "families": [
+    "Helvetica Now Display",
+    "Helvetica Now Display Bold Placeholder",
+    "Helvetica Now Display Medium",
+    "Helvetica Now Display Medium Italic Placeholder",
+    "Helvetica Now Display Medium Placeholder",
+    "Helvetica Now Display Regular Placeholder",
+    "Inter",
+    "Inter Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://depoluxe.xyz/",
+   "families": [
+    "EB Garamond"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "depoluxe.xyz"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://digitalists.at/",
+   "families": [
+    "PP Fraktion Mono",
+    "PP Neue Montreal",
+    "wasted"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "digitalists.at"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://digitalmeadow.studio",
+   "families": [
+    "Iosevka Term NF"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "digitalmeadow.studio"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://dineshrevunuru.com",
+   "families": [
+    "Playfair Display",
+    "Poppins"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "dineshrevunuru.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://disko.media",
+   "families": [
+    "Archivo",
+    "Archivo Black",
+    "Courier Prime",
+    "IBM Plex Mono",
+    "Outfit",
+    "Space Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "disko.media"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://dkton.at/",
+   "families": [
+    "Geistmono",
+    "Gt Walsheim Condensed",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://dontboardme.com",
+   "families": [
+    "Bayon",
+    "Neue Montreal",
+    "swiper-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "dontboardme.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://draniki.studio/",
+   "families": [],
+   "google": [
+    "Stack Sans Headline",
+    "Stack Sans Headline",
+    "Stack Sans Headline",
+    "Stack Sans Headline"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://drasa.uk",
+   "families": [
+    "Geist",
+    "Geist Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "drasa.uk"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://driessenarchitectuur.nl",
+   "families": [
+    "Extenda 60 Giga",
+    "icomoon",
+    "sizmo"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [
+    "www.driessenarchitectuur.nl"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://drinkjoyrush.com",
+   "families": [
+    "Fedro",
+    "PPNeueMontreal"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "drinkjoyrush.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://drone.riotters.com/",
+   "families": [
+    "protoMono",
+    "switzer"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "drone.riotters.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://dsgninterior.se",
+   "families": [
+    "Cera Pro"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "dsgninterior.se"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://dviga.marketing/masters-en",
+   "families": [
+    "Inter",
+    "halvar-breitschrift"
+   ],
+   "google": [
+    "Inter"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "static.tildacdn.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://ecolinearstudio.com/",
+   "families": [
+    "Montserrat"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "ecolinearstudio.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://electronicmaterialsoffice.com",
+   "families": [
+    "GT Flexa",
+    "GT Flexa Mono",
+    "GT Flexa Text",
+    "Tobias"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "electronicmaterialsoffice.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://elva-labs.com/",
+   "families": [
+    "Neue Haas Grotesk Display Pro"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "elvalabs.ai"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://emotion-agency.com/",
+   "families": [
+    "Emotion Serif",
+    "IBM Plex Mono",
+    "PP Neue Montreal"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "emotion-agency.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://emotionalerhunger.de",
+   "families": [
+    "The Seasons",
+    "dashicons",
+    "the-seasons"
+   ],
+   "google": [
+    "Libre Baskerville"
+   ],
+   "typekit": true,
+   "font_hosts": [
+    "emotionalerhunger.de"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://enerblock.net/en/",
+   "families": [
+    "Neue Corp",
+    "swiper-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "enerblock.net"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://evebcn.com/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+  },
+  {
+   "url": "https://everswap.com/",
+   "families": [
+    "Britti Sans",
+    "Feature Display"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "everswap.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://experiment.obys.agency/",
+   "families": [
+    "OTF Obys NG",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://explorajourneys.com/int/en/explora-journal",
+   "families": [
+    "FontAwesome",
+    "Sangbleu",
+    "Shapiro",
+    "VideoJS",
+    "WT Monarch Nova",
+    "explora",
+    "explora-icons",
+    "password",
+    "swiper-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "explorajourneys.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://faers.tech",
+   "families": [
+    "Fragment Mono",
+    "Inter",
+    "Inter Placeholder",
+    "PP Monument Normal",
+    "PP Monument Normal Regular Placeholder",
+    "PP Monument Wide",
+    "PP Monument Wide Regular Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://fai.amirbattal.com/",
+   "families": [
+    "Dahlia",
+    "Naskh"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fai.amirbattal.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://faunarobotics.com",
+   "families": [
+    "ABC Maxi",
+    "Matter",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://fermliving.com",
+   "families": [
+    "canela",
+    "teka"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fermliving.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://filmbot.com/",
+   "families": [
+    "Font Mono",
+    "Font Sans",
+    "arial narrow",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://fluid.glass/",
+   "families": [
+    "Aeonik Mono",
+    "Aeonik Pro"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fluid.glass"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://fmrg.studio/",
+   "families": [
+    "Founders Grotesk",
+    "Founders Grotesk Light Placeholder",
+    "Founders Grotesk Regular Placeholder",
+    "Inter",
+    "Inter Placeholder",
+    "PP Eiko"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://fondation.canadiens.com/",
+   "families": [
+    "bauhausvole",
+    "swiper-icons"
+   ],
+   "google": [
+    "Poppins"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "fondation.canadiens.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://fontwidget.com/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://foodnia.co.jp/",
+   "families": [
+    "mfw-yugopr6n",
+    "mfw-yugopr6n-demi"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [
+    "foodnia.co.jp"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://forgeautomotive.co.uk/",
+   "families": [
+    "GeistSans",
+    "editorial"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "forgeautomotive.co.uk"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://format.obys.agency/",
+   "families": [
+    "Obys Sans"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "format.obys.agency"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://fourmula.ai",
+   "families": [
+    "Sf Pro Display",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://fresque.ruinart.com",
+   "families": [
+    "Caveat",
+    "Montserrat",
+    "Version C"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fresque.ruinart.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://g.ieffe.dev",
+   "families": [
+    "&#39",
+    "Google Sans",
+    "Google Symbols",
+    "Lato",
+    "Material Icons Extended",
+    "Montserrat",
+    "Noto Sans",
+    "Open Sans",
+    "Roboto Mono",
+    "Source Code Pro"
+   ],
+   "google": [
+    "Google Sans",
+    "DM Mono",
+    "Lato",
+    "Montserrat"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://gather.ai",
+   "families": [
+    "Fragment Mono",
+    "Geist",
+    "Geist Placeholder",
+    "Inter",
+    "Inter Placeholder",
+    "Montserrat",
+    "Montserrat Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://gethapply.com",
+   "families": [
+    "JudgemeIcons",
+    "JudgemeStar"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://getminds.ai",
+   "families": [
+    "Selecta"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "getminds.ai",
+    "minds-assets.fra1.cdn.digitaloceanspaces.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://gilhuybrecht.com/",
+   "families": [
+    "sans"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "gilhuybrecht.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://glitchandgrit.com/",
+   "families": [
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://global.honda/jp/wingmark/",
+   "families": [
+    "HondaGlobalFontENJP-ExBold",
+    "HondaGlobalFontJP",
+    "HondaGlobalFontJP-SBold"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "global.honda"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://goats.com.pl/",
+   "families": [
+    "Poppins"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "goats.com.pl"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://gobold.live/",
+   "families": [
+    "font2159",
+    "p--l"
+   ],
+   "google": [
+    "Kode Mono",
+    "Anonymous Pro",
+    "ZCOOL QingKe HuangYou",
+    "Cossette Titre",
+    "Noto Sans Symbols",
+    "Noto Sans Symbols 2"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "www.gobold.live"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://grafik.co.nz/",
+   "families": [
+    "Die Grotesk A",
+    "Founders Grotesk X Condensed"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "grafik.co.nz"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://grail-app.com/",
+   "families": [
+    "PP Pangaia",
+    "Switzer"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "grail-app.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://grigoletti.ch",
+   "families": [
+    "Inter",
+    "Inter Placeholder",
+    "Inter Variable Placeholder",
+    "PP Neue Corp Tight Ultrabold",
+    "PP Neue Corp Tight Ultrabold Placeholder",
+    "PP Neue Montreal",
+    "PP Neue Montreal Medium Placeholder",
+    "PP Neue Montreal Mono",
+    "PP Neue Montreal Mono Medium Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://guillaumecolombel.fr/",
+   "families": [
+    "Neue Montreal"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "guillaumecolombel.fr"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://guillaumezhu.com/",
+   "families": [
+    "CabinetGrotesk",
+    "Satoshi",
+    "Satoshi-VariableItalic"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "guillaumezhu.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://haoqi.design",
+   "families": [
+    "&quot"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://hashgraphvc.com/",
+   "families": [
+    "HashgraphWeb",
+    "NeueMontrealWeb",
+    "ParaboleWeb"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "hashgraphvc.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://hello-world-kosa.squarespace.com/",
+   "families": [
+    "DotGothic16",
+    "gt-standard-trial-6sp7f5",
+    "malamocco-unlicensed-trial-bl0cl3",
+    "orbit-gr53kz",
+    "that-that-new-pixel-test-yjfnzj"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "file.squarespace-cdn.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://helmetverse.ai/",
+   "families": [
+    "G42 Sans"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "helmetverse.ai"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://heronaiapp.com/",
+   "families": [
+    "BT Grotesk",
+    "Geistmono",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://hobro.digital",
+   "families": [
+    "AkkuratMonoLLWeb",
+    "FreigBigProLigIta",
+    "Kamerik205",
+    "PPNeueMontreal"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "hobro.digital"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://hubtown.co.in/",
+   "families": [
+    "Commit Mono",
+    "Grotesk"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "hubtown.co.in"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://humanz.net.au",
+   "families": [
+    "Open Sans"
+   ],
+   "google": [
+    "Open Sans"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://huyml.co/",
+   "families": [
+    "BT Glyphius",
+    "BT Glyphius Bold Placeholder",
+    "BT Glyphius Regular Placeholder",
+    "BT Grotesk",
+    "BT Grotesk Bold",
+    "BT Grotesk Bold Italic Placeholder",
+    "BT Grotesk Bold Placeholder",
+    "BT Grotesk Medium Placeholder",
+    "BT Grotesk Regular Placeholder",
+    "F37 Bolton Trial",
+    "F37 Bolton Trial Bold Placeholder",
+    "F37 Bolton Trial Regular Placeholder",
+    "Inter",
+    "Inter Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://hydradb.com/",
+   "families": [
+    "Aeonik",
+    "Aeonik Medium Placeholder",
+    "Aeonik TRIAL",
+    "Aeonik TRIAL Regular Placeholder",
+    "Fragment Mono",
+    "Geist Pixel",
+    "Geist Pixel Square",
+    "Geist Pixel Square Placeholder",
+    "Inter",
+    "Inter Display",
+    "Inter Display Placeholder",
+    "Inter Placeholder",
+    "JetBrains Mono",
+    "JetBrains Mono Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://igel.ua/en/",
+   "families": [
+    "Montserrat",
+    "Roboto Slab",
+    "eicons"
+   ],
+   "google": [
+    "Roboto",
+    "Roboto Slab",
+    "Montserrat"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://illoca.unseen.co/",
+   "families": [
+    "Architect Pro",
+    "Architect Pro Symbols",
+    "F37 Analog",
+    "Graphik"
+   ],
+   "google": [
+    "Geist Mono",
+    "Space Grotesk",
+    "Syne",
+    "DM Sans",
+    "Space Mono",
+    "Caveat"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "illoca.unseen.co"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://immersive-g.com/",
+   "families": [
+    "HelveticaNeueLight",
+    "HelveticaNeueRegular",
+    "PSTimes"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "immersive-g.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://immersivebags.miumiu.com/",
+   "families": [
+    "BiroScript",
+    "SometypeMono",
+    "WorkSans"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "immersivebags.miumiu.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://incredibles.dev",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+  },
+  {
+   "url": "https://indevelopment.studio/",
+   "families": [
+    "Manrope",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://indigo-laboratory.it/",
+   "families": [
+    "Hanken Grotesk",
+    "IBM Plex Mono",
+    "Palette Mosaic"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "indigo-laboratory.it"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://indisea.com",
+   "families": [
+    "IBM Plex Mono",
+    "IBM Plex Sans"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "indisea.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://inherited.band/",
+   "families": [
+    "Founders Grotesk"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "inherited.band"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://inkfishnyc.com/",
+   "families": [
+    "Martian Mono",
+    "NT Dapper"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "inkfishnyc.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://inspiring.nk.studio/es",
+   "families": [
+    "DM Sans",
+    "Instrument Serif"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "inspiring.nk.studio"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://izanami-official.com/",
+   "families": [
+    "Cinzel",
+    "Playfair Display",
+    "Shippori Mincho"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://jamiemckaye.com",
+   "families": [
+    "GeistMono",
+    "GeistSans"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "jamiemckaye.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://jasminegunarto.com/",
+   "families": [
+    "Manrope",
+    "mg"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "jasminegunarto.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://juanmora.co/",
+   "families": [
+    "Goga",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "juanmora.co"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://jumpingmax.cdiscount.com/",
+   "families": [
+    "MrDodo"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "jumpingmax.cdiscount.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://k95.it",
+   "families": [
+    "adaptive"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "k95.it"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://kardev.com.tr/",
+   "families": [
+    "Maven",
+    "icon",
+    "iconfont",
+    "kardev",
+    "swiper-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "kardev.com.tr"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://katietong.studio/collections/written-in-the-stars/demo/",
+   "families": [
+    "WITS Display",
+    "WITS Sans",
+    "WITS Script",
+    "WITS Serif",
+    "WITS Sign"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "katietong.studio"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://khanhnguyen.design/",
+   "families": [
+    "PP Editorial Old",
+    "PP Neue Montreal"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "khanhnguyen.design"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://khasiyev.com/",
+   "families": [
+    "Fragment Mono",
+    "Inter",
+    "accent",
+    "body",
+    "heading",
+    "label"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "khasiyev.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://klausen.com/",
+   "families": [
+    "HelveticaNowDisplay"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "klausen.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://kononenkogroup.com",
+   "families": [
+    "h",
+    "n"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "kononenkogroup.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://kott.studio",
+   "families": [
+    "Instrument Sans",
+    "Space Grotesk",
+    "Syne",
+    "fiveYears",
+    "martianMono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "kott.studio"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://krakenindustries.co/",
+   "families": [
+    "config-mono",
+    "ellograph-cf",
+    "hwt-artz"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://kriss.ai/",
+   "families": [
+    "Krissai"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "kriss.ai"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://ladolfinajumping.com/",
+   "families": [
+    "Alpine Script",
+    "swiper-icons"
+   ],
+   "google": [
+    "Noto Sans Display",
+    "Marcellus"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "ladolfinajumping.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://lafamigliamysteryunfolds.gucci.com/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://lamalama.com/",
+   "families": [
+    "Sometype",
+    "SuisseBPIntl"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "lamalama.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://landonorris.com/",
+   "families": [
+    "Brier",
+    "Mona Sans",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://larevoltosa.es/",
+   "families": [
+    "GT America",
+    "Teko",
+    "Vulf Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "larevoltosa.es"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://lemansclassic.richardmille.com/",
+   "families": [
+    "Arges-Condensed",
+    "DieGroteskB",
+    "DieGroteskC"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "lemansclassic.richardmille.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://leonardomoreira.com.br/",
+   "families": [
+    "IBM Plex Mono",
+    "Px437"
+   ],
+   "google": [
+    "Fraunces",
+    "IBM Plex Mono",
+    "Press Start 2P",
+    "VT323"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://leoparpeix.com/",
+   "families": [
+    "text",
+    "title"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.leoparpeix.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://lesaintgeorges.ch/",
+   "families": [
+    "Avenir Next",
+    "Avenir Next Demi",
+    "Lora",
+    "swiper-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "lesaintgeorges.ch"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://likova.space",
+   "families": [
+    "TT Norms Pro"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "likova.space"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://lircle.co/",
+   "families": [
+    "Archivo"
+   ],
+   "google": [
+    "Archivo"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://lisa.locomotive.ca/en",
+   "families": [
+    "HelveticaNowDisplay",
+    "LocomotiveNew",
+    "swiper-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "lisa.locomotive.ca"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://loehx.com/",
+   "families": [
+    "Barlow Condensed",
+    "JetBrains Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "loehx.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://loloagency.com/",
+   "families": [
+    "Neue-Haas-Grotesk-Display-Pro-27bd2fc2af3ca6a5",
+    "VictorNarrow-5004b2c769ce72c4",
+    "VictorNarrowMono-cb690499b31725cb"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "loloagency.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://loop-agency.framer.website/",
+   "families": [
+    "Anton",
+    "Anton Placeholder",
+    "Bebas Neue",
+    "Bebas Neue Placeholder",
+    "Fragment Mono",
+    "Geist Mono",
+    "Inter",
+    "Inter Placeholder"
+   ],
+   "google": [
+    "Material Symbols Outlined",
+    "Material Symbols Outlined",
+    "Material Symbols Outlined",
+    "Material Symbols Outlined",
+    "Material Symbols Outlined",
+    "Material Symbols Outlined",
+    "Material Symbols Outlined",
+    "Material Symbols Outlined"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://lpas.com/",
+   "families": [
+    "Aeonik"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "lpas.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://lulaoil.com/",
+   "families": [
+    "Inter",
+    "OracleLight",
+    "OracleRegular",
+    "OracleThin",
+    "PeachOne",
+    "PeachThree",
+    "PeachTwo",
+    "ROMMonoRegular",
+    "oke-widget-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.shopify.com",
+    "d3hw6dc1ow8pp2.cloudfront.net",
+    "lulaoil.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://lunchlinepartners.com/",
+   "families": [
+    "Non Sans",
+    "Reenie Beanie"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "lunchlinepartners.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://m3-pg.de",
+   "families": [
+    "Inter"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "m3-pg.de"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://madamepolare.com",
+   "families": [
+    "MaisonNeueBook",
+    "MaisonNeueDemi",
+    "MaisonNeueMedium"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "madamepolare.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://maddogs.cosmos.studio/",
+   "families": [
+    "Bricolage Grotesque",
+    "Caveat",
+    "Clash Grotesk",
+    "Gochi Hand",
+    "OffBit",
+    "Overbite"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "maddogs.cosmos.studio"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://madeinevolve.com/",
+   "families": [
+    "Bull 5 Typewriter",
+    "neue-haas-grotesk-text",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [
+    "offportercdn.fra1.cdn.digitaloceanspaces.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://madewithgsap.com/",
+   "families": [
+    "LayGrotesk",
+    "PPNeueMontrealMono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "madewithgsap.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://maisonauge.com/",
+   "families": [
+    "neueMontreal"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "maisonauge.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://marina-zakharova.netlify.app/",
+   "families": [
+    "Bebas Neue",
+    "Mr De Haviland",
+    "Pixelify Sans",
+    "Roboto Flex",
+    "Rock Salt",
+    "Share Tech Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "marina-zakharova.netlify.app"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://married.gr/",
+   "families": [
+    "Inter",
+    "Playfair Display"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "married.gr"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://marryandbride.com/",
+   "families": [
+    "DM Sans",
+    "Tobias",
+    "WooCommerce",
+    "swiper-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "marryandbride.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://mattjinn.com/",
+   "families": [
+    "big-caslon-fb",
+    "omnes-pro"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://maximatherapy.com/",
+   "families": [
+    "ABC Diatype Rounded",
+    "ABC Diatype Rounded Mono",
+    "ABC Diatype Rounded Plus",
+    "Robuck",
+    "Robuck Rounded"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "maximatherapy.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://mdebeauty.com/",
+   "families": [
+    "Anstery Script",
+    "Bourbon St",
+    "Futura PT",
+    "JudgemeStar",
+    "PP Monument Extended",
+    "swiper-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "mdebeauty.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://members-play.lacoste.com/ace-breaker-rg",
+   "families": [
+    "MonaSans"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "members-play.lacoste.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://members-play.lacoste.com/polo-factory-experience",
+   "families": [
+    "Lacoste"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "members-play.lacoste.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://mercury.com/command",
+   "families": [
+    "arcadia",
+    "arcadiaDisplay",
+    "tiemposHeadline"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "mercury.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://mesh3d.gallery/the-state-of-the-gallery",
+   "families": [
+    "Geist",
+    "Geist Mono",
+    "overusedGrotesk"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "mesh3d.gallery"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://messenger.abeto.co",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://michaelgatt.com/",
+   "families": [
+    "Zapf-Humanist-Demi"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "michaelgatt.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://mimosaagency.com/",
+   "families": [
+    "Inter",
+    "Inter Placeholder",
+    "PP Mori",
+    "PP Mori Regular Placeholder",
+    "PP Mori Semibold Placeholder",
+    "Sequel 100 Wide 65"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://mindmarket.com/",
+   "families": [
+    "Inter"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "mindmarket.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://miralife.app/",
+   "families": [
+    "Gilroy-",
+    "Inter-"
+   ],
+   "google": [
+    "Inter",
+    "Inter",
+    "Inter"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://mj.kevinlagier.com",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://mont-fort.com/",
+   "families": [
+    "Century Gothic",
+    "Josefin Sans"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "mont-fort.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://mont-rural.emblematica.agency",
+   "families": [],
+   "google": [
+    "Playfair"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://mwdtinc.com/",
+   "families": [],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://nabilissa.com",
+   "families": [
+    "GothamBook",
+    "GothamConThin",
+    "GothamLight",
+    "GothamMedium",
+    "GothamThin",
+    "HelveticaNeueBold",
+    "HelveticaNeueLight",
+    "HelveticaNeueThin"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "nabilissa.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://naughtyduk.com",
+   "families": [
+    "Neue Haas Display",
+    "PP Supply Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "naughtyduk.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://neuemontreal.com/",
+   "families": [
+    "Inter",
+    "Inter Placeholder",
+    "PP Neue Montreal",
+    "PP Neue Montreal Black",
+    "PP Neue Montreal Bold",
+    "PP Neue Montreal Bold Italic Placeholder",
+    "PP Neue Montreal Bold Placeholder",
+    "PP Neue Montreal Book",
+    "PP Neue Montreal Extrabold",
+    "PP Neue Montreal Extrabold Italic Placeholder",
+    "PP Neue Montreal Extrabold Placeholder",
+    "PP Neue Montreal Extralight",
+    "PP Neue Montreal Hairline",
+    "PP Neue Montreal Italic Placeholder",
+    "PP Neue Montreal Light",
+    "PP Neue Montreal Light Italic Placeholder",
+    "PP Neue Montreal Light Placeholder",
+    "PP Neue Montreal Medium",
+    "PP Neue Montreal Medium Italic Placeholder",
+    "PP Neue Montreal Medium Placeholder",
+    "PP Neue Montreal Regular Placeholder",
+    "PP Neue Montreal Semibold",
+    "PP Neue Montreal Semibold Italic Placeholder",
+    "PP Neue Montreal Semibold Placeholder",
+    "PP Neue Montreal Text",
+    "PP Neue Montreal Text Bold",
+    "PP Neue Montreal Text Bold Italic Placeholder",
+    "PP Neue Montreal Text Bold Placeholder",
+    "PP Neue Montreal Text Book",
+    "PP Neue Montreal Text Italic Placeholder",
+    "PP Neue Montreal Text Light",
+    "PP Neue Montreal Text Light Italic Placeholder",
+    "PP Neue Montreal Text Light Placeholder",
+    "PP Neue Montreal Text Medium",
+    "PP Neue Montreal Text Medium Italic Placeholder",
+    "PP Neue Montreal Text Medium Placeholder",
+    "PP Neue Montreal Text Regular Placeholder",
+    "PP Neue Montreal Text Semibold",
+    "PP Neue Montreal Text Semibold Italic Placeholder",
+    "PP Neue Montreal Text Semibold Placeholder",
+    "PP Neue Montreal Text Thin",
+    "PP Neue Montreal Text Variable Variable",
+    "PP Neue Montreal Thin",
+    "PP Neue Montreal Variable Variable"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://newcastleartgallery.nsw.gov.au/",
+   "families": [
+    "futura",
+    "gilroy"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "newcastleartgallery.nsw.gov.au"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://nexstudio.tech",
+   "families": [
+    "Inter Tight"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "nexstudio.tech"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://nickho-motorsports.nl/",
+   "families": [
+    "Anton",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://noahlesage.com/",
+   "families": [
+    "PPMori"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "noahlesage.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://noho.ink",
+   "families": [
+    "Switzer",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "noho.ink"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://nomu.store/",
+   "families": [
+    "Inter",
+    "nomnom"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "nomu.store"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://noravale.framer.website/",
+   "families": [
+    "Geist",
+    "Geist Placeholder",
+    "Geist Variable Placeholder",
+    "Hedvig Letters Serif",
+    "Hedvig Letters Serif Placeholder",
+    "Inter",
+    "Inter Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://normalisboring.es/",
+   "families": [
+    "Editorialnew",
+    "Editorialnew-Ultralight",
+    "Editorialnew-UltralightItalic",
+    "Izmir",
+    "Juana",
+    "swiper-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "normalisboring.es"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://nothingonpurpose.com/",
+   "families": [
+    "WooCommerce",
+    "star"
+   ],
+   "google": [
+    "Caveat",
+    "Patrick Hand",
+    "Special Elite",
+    "Caveat",
+    "Patrick Hand",
+    "Special Elite",
+    "Caveat",
+    "Patrick Hand",
+    "Special Elite",
+    "Caveat",
+    "Patrick Hand",
+    "Special Elite"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "nothingonpurpose.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://nowpottery.co.il/",
+   "families": [
+    "Heebo"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "nowpottery.co.il"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://numa.uprock.pro/",
+   "families": [
+    "Figtree",
+    "Inter"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://nvg8.io/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": "HTTP Error 525: <none>"
+  },
+  {
+   "url": "https://nymphaicosmetics.com",
+   "families": [
+    "quasimoda"
+   ],
+   "google": [
+    "Tenor Sans",
+    "Tenor Sans"
+   ],
+   "typekit": true,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://objectandarchive.com/",
+   "families": [
+    "Abril Fatface",
+    "CustomCaptionFont",
+    "CustomHeadingFont",
+    "CustomItalicFont",
+    "CustomLinksFont",
+    "CustomNumbersFont",
+    "CustomParagraphFont",
+    "mono",
+    "script",
+    "xl"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.shopify.com",
+    "objectandarchive.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://obsidianassembly.com/",
+   "families": [
+    "OTJubilee-Platinum",
+    "Switzer",
+    "Voyage"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "obsidianassembly.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://obys.agency/",
+   "families": [
+    "Obys"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "obys.agency"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://oddritualgolf.com/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+  },
+  {
+   "url": "https://office.graffico.it/",
+   "families": [
+    "Shrikhand",
+    "Work Sans"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "office.graffico.it"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://offporter.com/",
+   "families": [
+    "Lusitana"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "offporter.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://okc.media/en/",
+   "families": [
+    "Involve"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "okc.media"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://oryzo.ai",
+   "families": [
+    "DM Mono",
+    "Literata"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "oryzo.ai"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://otsuka-air.jp/",
+   "families": [
+    "HelveticaNowDisplay",
+    "HelveticaNowDisplay-Bd",
+    "HelveticaNowDisplay-Md",
+    "IwaOGoPro-Db",
+    "TazuganeGothicStdN"
+   ],
+   "google": [
+    "Zen Kaku Gothic Antique"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://oumahi.art/",
+   "families": [
+    "Eurostile MN Extended"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "oumahi.art"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://outfit.hellohello.is/",
+   "families": [
+    "font"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "outfit.hellohello.is"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://overworldaudio.com/",
+   "families": [
+    "IvarHeadline",
+    "PPFrama"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "overworldaudio.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://pacomepertant.com/",
+   "families": [
+    "Indivisible",
+    "indivisible"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [
+    "pacomepertant.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://paodao.fr/",
+   "families": [
+    "Lato",
+    "Montserrat",
+    "Orbitron",
+    "Playfair",
+    "indie flowerregular"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "paodao.fr"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://param.design/abdulkalam/",
+   "families": [
+    "Cormorant Garamond",
+    "DM Sans",
+    "Dawning of a New Day",
+    "Sans",
+    "neuropol"
+   ],
+   "google": [
+    "Cormorant Garamond",
+    "Cormorant Garamond"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "param.design"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://partakefoods.com/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+  },
+  {
+   "url": "https://partizan.com/",
+   "families": [
+    "GT America Standard",
+    "Teodor"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "partizan.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://penguin.music/",
+   "families": [
+    "Varela Round"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "penguin.music"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://pensatori-irrazionali.com/",
+   "families": [
+    "ballet",
+    "helveticaNow",
+    "novela",
+    "ppEditorial",
+    "someTypeMono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "pensatori-irrazionali.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://performeurope.eu/",
+   "families": [
+    "ABC Favorit",
+    "Favorit",
+    "swiper-icons",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "performeurope.eu"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://persona-studio.com",
+   "families": [
+    "Bricolage Grotesque",
+    "Instrument Sans",
+    "Space Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "persona-studio.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://personaal.studio/",
+   "families": [
+    "Inter",
+    "Inter Placeholder",
+    "Neue Haas Grotesk Display Pro 55",
+    "PP Neue Montreal",
+    "PP Neue Montreal Regular Placeholder",
+    "Space Mono",
+    "Space Mono Regular Placeholder",
+    "Switzer",
+    "Switzer Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "app.framerstatic.com",
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://pieterkoopt.nl/",
+   "families": [
+    "Basic Grotesque",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://pinnacl.co/",
+   "families": [
+    "KMR Apparat",
+    "Tempel Grotesk"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "pinnacl.co"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://plnty.app/",
+   "families": [
+    "KMR Apparat",
+    "Suisse Intl",
+    "Suisse Works"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "plnty.app"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://podium.global/",
+   "families": [
+    "Futura",
+    "Univers Condensed"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "podium.global"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://ponpon-mania.com/",
+   "families": [
+    "Libre Franklin"
+   ],
+   "google": [
+    "Libre Franklin"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://portfolio-zxc.com",
+   "families": [
+    "Edwardian Script ITC",
+    "Montserrat",
+    "TT Commons Pro"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "portfolio-zxc.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://portfolio.widehue.co/rezonbio/",
+   "families": [
+    "Stolzl"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "portfolio.widehue.co"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://project-cult.digital/",
+   "families": [
+    "Geist Mono",
+    "Trade Gothic Next LT Pro Cn"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "project-cult.digital"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://proteinbolaget.se",
+   "families": [
+    "Geist"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "proteinbolaget.se"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://pxpush.com/",
+   "families": [
+    "GeistMono",
+    "Graphik",
+    "Mono",
+    "SemiSqueezed"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "pxpush.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://rabbit.tech",
+   "families": [
+    "archivoFont",
+    "powerGroteskFont"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.rabbit.tech"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://rapideyachtgroup.com/",
+   "families": [
+    "Denim",
+    "Denim WD",
+    "swiper-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "rapideyachtgroup.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://rapidkert.com",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://razorpay.com/sprint/26",
+   "families": [
+    "Geist mono",
+    "Inter tight",
+    "Tasa",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://readymag.com/websites-of-the-year/?utm_source=awwwards&amp;utm_medium=partnership_submission&amp;utm_campaign=woty",
+   "families": [
+    "Charter",
+    "Nobel-RM",
+    "Source Sans Pro"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://redesigned.pro/eng/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+  },
+  {
+   "url": "https://ref.digital/",
+   "families": [
+    "Aeonik",
+    "Habitus"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "ref.digital"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://residences.loamhouse.com.au",
+   "families": [
+    "Cormorant Garamond",
+    "DM Sans"
+   ],
+   "google": [
+    "Cormorant Garamond",
+    "DM Sans"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://revelatio.studio/",
+   "families": [
+    "Neue Haas Grotesk Text Pro 55",
+    "swiper-icons",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://rewordsai.app/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://riascuremandesigns.com",
+   "families": [
+    "B612 Mono",
+    "Fragment Mono",
+    "Inter",
+    "Inter Placeholder",
+    "LT Superior",
+    "LT Superior Black",
+    "LT Superior Bold",
+    "LT Superior Bold Italic Placeholder",
+    "LT Superior Bold Placeholder",
+    "LT Superior Italic Placeholder",
+    "LT Superior Medium Placeholder",
+    "LT Superior Regular Placeholder",
+    "LT Superior SemiBold",
+    "LT Superior SemiBold Italic Placeholder",
+    "LT Superior SemiBold Placeholder",
+    "Manrope",
+    "Manrope Placeholder",
+    "PP Neue Montreal",
+    "PP Neue Montreal Medium Placeholder",
+    "PP Pangaia",
+    "PP Pangaia Bold Placeholder",
+    "PP Pangaia Medium Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://ronnsquare.fr",
+   "families": [
+    "Gambetta",
+    "N27"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "ronnsquare.fr"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://rozaliabomawrites.com/",
+   "families": [
+    "Gochi Hand"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://rpacomunicacion.com/",
+   "families": [
+    "Exat",
+    "swiper-icons"
+   ],
+   "google": [
+    "Inter"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "rpacomunicacion.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://sakazuki.io/",
+   "families": [
+    "futura-pt",
+    "hagrid",
+    "hagrid-text",
+    "neue-haas-grotesk-display",
+    "neue-haas-grotesk-text"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://sanrita.ca/",
+   "families": [
+    "F37stout",
+    "mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "sanrita.ca"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://santionispirits.com/",
+   "families": [
+    "Charles Rosie",
+    "GT-Era-Text",
+    "PPNikkeiMaru",
+    "PPNikkeiMaru-Ultrabold"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "santionispirits.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://sarahzaheer.site/",
+   "families": [
+    "Archivo",
+    "Archivo Bold",
+    "Archivo Bold Placeholder",
+    "Archivo ExtraLight",
+    "Archivo Italic Placeholder",
+    "Archivo Light",
+    "Archivo Light Italic Placeholder",
+    "Archivo Light Placeholder",
+    "Archivo Medium Placeholder",
+    "Archivo Regular Placeholder",
+    "Archivo Thin",
+    "FFF Acid Grotesk",
+    "FFF Acid Grotesk Light",
+    "FFF Acid Grotesk Light Italic Placeholder",
+    "FFF Acid Grotesk Light Placeholder",
+    "FFF Acid Grotesk Normal",
+    "FFF Acid Grotesk Normal Placeholder",
+    "FFF Acid Grotesk Regular Placeholder",
+    "HelveticaNeueCyr",
+    "HelveticaNeueCyr Roman Placeholder",
+    "Inter",
+    "Inter Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://sedlecky-kaolin.com",
+   "families": [
+    "Bison",
+    "Poppins",
+    "slick"
+   ],
+   "google": [
+    "Poppins"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "sedlecky-kaolin.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://seemecreative.com/",
+   "families": [
+    "ABC Favorit",
+    "ABC Favorit Mono",
+    "Cardinal Fruit"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "seemecreative.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://senawastudio.com",
+   "families": [
+    "Inter",
+    "Sora"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "senawastudio.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://serotoninn.com/",
+   "families": [
+    "PP Fraktion Mono",
+    "Thunder",
+    "swiper-icons"
+   ],
+   "google": [
+    "Inter"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "serotoninn.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://shed.design/",
+   "families": [
+    "OwnersWeb",
+    "RecklessWeb",
+    "SequelWeb"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "shed.design"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://shop.brunellocucinelli.com/en-gb/ai",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": "HTTP Error 403: Forbidden"
+  },
+  {
+   "url": "https://shortprintpromo.com",
+   "families": [
+    "Ackbar",
+    "Bebas",
+    "Bestermind",
+    "Gameboy",
+    "Genius",
+    "Gill Sans",
+    "Speeday",
+    "Symphony",
+    "Windsor"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "shortprintpromo.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://showcase.noomoagency.com",
+   "families": [
+    "GTAmericaMonoRegular",
+    "ppneuemontreal"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "showcase.noomoagency.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://showcase.studiothis.co.uk/jealous",
+   "families": [
+    "BrownRegular"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "showcase.studiothis.co.uk"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://sibaldesign.com/",
+   "families": [],
+   "google": [
+    "Chakra Petch",
+    "JetBrains Mono"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://sidewave.it/",
+   "families": [
+    "Bigger Display",
+    "Fraktion Mono",
+    "Fraktion Sans"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "sidewave.it"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://siena.film",
+   "families": [
+    "NB International",
+    "Neue Brucke",
+    "P22 Parrish",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://silent-house.com/",
+   "families": [
+    "aktiv grotesk",
+    "swiper-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "silent-house.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://skanvi.com",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://sloshseltzer.com/",
+   "families": [
+    "FKGrotesk",
+    "steelfish-eb"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "sloshseltzer.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://sobha-privy-collection.com/",
+   "families": [
+    "TT Commons Pro",
+    "TT Ramillas",
+    "altesse-std-24pt",
+    "altesse-std-64pt"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [
+    "sobha-privy-collection.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://sohub.digital",
+   "families": [
+    "Inter",
+    "publicaPlay"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "sohub.digital"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://sondaven.com/en",
+   "families": [
+    "KTF Metro",
+    "KTF Metro Blueline",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://southernlifts.com.au",
+   "families": [
+    "PPTelegraf"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "southernlifts.com.au"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://sowieso.wero-wallet.eu/nl-en/merchant",
+   "families": [
+    "GT Walsheim Wero"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "sowieso.wero-wallet.eu"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://sstr.tech/en/",
+   "families": [
+    "Abc Monument Grotesk"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "sstr.tech"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://stanzza.design/awards",
+   "families": [
+    "Helioscond",
+    "Instrument Serif",
+    "Katherine Plus",
+    "swiper-icons",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://stateofaidesign.com/",
+   "families": [
+    "Beausite Classic",
+    "Beausite Classic Bold Placeholder",
+    "Beausite Classic Medium Placeholder",
+    "Beausite Classic Regular Placeholder",
+    "Fragment Mono",
+    "Geist Mono",
+    "Inter",
+    "Inter Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://stediconsulting.fr/",
+   "families": [
+    "Cinzel",
+    "Fraunces"
+   ],
+   "google": [
+    "Bangers",
+    "Fraunces",
+    "Quicksand",
+    "Cinzel",
+    "Cinzel Decorative"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://steven.com",
+   "families": [
+    "Field Gothic",
+    "Field Gothic Trimmed",
+    "Host Grotesk",
+    "Summertime Stories",
+    "Summertime Stories Doodles",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://storytelling.noomoagency.com",
+   "families": [
+    "TTNeoris",
+    "TheSeasons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "storytelling.noomoagency.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://stroms.com/",
+   "families": [
+    "Button Font",
+    "Heading Font",
+    "Paragraph Primary Font",
+    "Paragraph Secondary Font"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "stroms.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://studio-foundry.sujen.co/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://studioloop.com.br",
+   "families": [
+    "lateCinemaScript",
+    "neoFormaIcons",
+    "neoFormaSans",
+    "neoFormaSerif"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.studioloop.com.br"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://studionamma.com",
+   "families": [
+    "Gt Pressura Mono",
+    "Mixtape",
+    "Mixtape Extra Condensed",
+    "Neue Montreal",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://studiors.be/",
+   "families": [
+    "Cabinet Grotesk",
+    "General Sans",
+    "Zodiak"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://subscrr.app/",
+   "families": [],
+   "google": [
+    "Inter",
+    "Inter Tight"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://superlogica.com/",
+   "families": [
+    "argumentum",
+    "paralucent",
+    "proxima-nova"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://tamasolajos.com/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://tarot.meetyourpsychic.com/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+  },
+  {
+   "url": "https://tej.as/story",
+   "families": [
+    "Geist Mono",
+    "Instrument Serif",
+    "Jost",
+    "Switzer"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "tej.as"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://ten.375.studio/en",
+   "families": [
+    "valve"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "ten.375.studio"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://terminal-industries.com",
+   "families": [
+    "Geist Mono",
+    "SuisseIntl"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "terminal-industries.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://terraunits.com/",
+   "families": [
+    "Geist",
+    "Geist Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "terraunits.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://terryhoproducts.com/",
+   "families": [
+    "Inter",
+    "Mosafin",
+    "Prompt",
+    "Romic",
+    "adobe-handwriting-ernie"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [
+    "terryhoproducts.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://thecassandravale.com/",
+   "families": [
+    "Monument",
+    "dashicons",
+    "icomoon"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "thecassandravale.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://thejacketcirclegame.maxmara.com/",
+   "families": [
+    "Inter",
+    "Libre Baskerville"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://thelinestudio.com/",
+   "families": [
+    "DenimWeb"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "thelinestudio.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://thenest.pl/en",
+   "families": [
+    "Bodoni Moda"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "thenest.pl"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://thestudiobyjuliegranger.com/",
+   "families": [
+    "Newsreader",
+    "Newsreader Hero",
+    "Open Sans",
+    "Open Sans Hero"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "thestudiobyjuliegranger.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://thetiebreak.merci-michel.com/",
+   "families": [
+    "Instrument",
+    "WorkSans"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "thetiebreak.merci-michel.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://thewatch.60fps.fr/",
+   "families": [
+    "Inter",
+    "Nekst"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "thewatch.60fps.fr"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://thirdway.com",
+   "families": [
+    "marist",
+    "swiper-icons",
+    "waldenburg"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.thirdway.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://tillysveaas.co.uk/",
+   "families": [
+    "Gaisyr",
+    "Gaisyr Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "tillysveaas.co.uk"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://tlb.betteroff.studio/",
+   "families": [
+    "mono",
+    "sans"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "tlb.betteroff.studio"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://tomoro-sugawara.studio.site/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://tour-kyrgyzstan.com/",
+   "families": [
+    "Archivo",
+    "Fragment Mono"
+   ],
+   "google": [
+    "Fragment Mono",
+    "Archivo"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://trionn.com",
+   "families": [
+    "familjen",
+    "martianMono",
+    "neueHaas",
+    "ppEditorial"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "trionn.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://trucknroll.com/",
+   "families": [
+    "Helvetica Now Display",
+    "National 2 Condensed"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "trucknroll.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://tryclico.com/",
+   "families": [
+    "DM Mono",
+    "DM Sans"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://twofoldny.com/",
+   "families": [
+    "GT-America-Standard",
+    "GT-Super-Text"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "twofoldny.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://tyo.co.jp/recruit/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+  },
+  {
+   "url": "https://ukft.org/",
+   "families": [
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://ultragrid.studio/",
+   "families": [
+    "Fhlecturis",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://unitedcarriers.com/",
+   "families": [
+    "BT Steinhart",
+    "BT Steinhart Mono",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://units.gr/en/homepage/",
+   "families": [
+    "Aeonik Pro",
+    "Alfabet",
+    "Bunch"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "units.gr"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://untitledfilm.framer.website/",
+   "families": [
+    "Inter",
+    "Inter Display",
+    "Inter Display Placeholder",
+    "Inter Placeholder",
+    "Spline Sans Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://useguidely.co/",
+   "families": [
+    "Apfel Grotezk",
+    "BN Carrol St",
+    "Brockmann",
+    "Geist",
+    "General Sans",
+    "Google Sans",
+    "Hanken Grotesk",
+    "Manrope",
+    "NaN Rage Poly",
+    "PP Mori",
+    "Satoshi",
+    "Switzer Sans"
+   ],
+   "google": [
+    "Inter",
+    "Inter"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "useguidely.co"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://usul.kr",
+   "families": [
+    "SUIT",
+    "swiper-icons",
+    "xeicon"
+   ],
+   "google": [
+    "Poppins"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "usul.kr"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://vastspace.com",
+   "families": [
+    "Owners",
+    "Owners Text",
+    "Phonic",
+    "Vast Numbers",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://vaulk.com/",
+   "families": [
+    "Chivo Mono",
+    "Telegraf"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "vaulk.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://vectorelements.net/",
+   "families": [
+    "Proxima Nova Bl",
+    "Proxima Nova Cn Bl",
+    "Proxima Nova Cn Lt",
+    "Proxima Nova Cn Rg",
+    "Proxima Nova Cn Th",
+    "Proxima Nova ExCn Bl",
+    "Proxima Nova ExCn Lt",
+    "Proxima Nova ExCn Rg",
+    "Proxima Nova ExCn Th",
+    "Proxima Nova Lt",
+    "Proxima Nova Rg",
+    "Proxima Nova Th",
+    "bb-editor-font",
+    "bobjoll"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "vectorelements.net"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://vectrfl.com/",
+   "families": [
+    "Soehne Buch"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.vectrfl.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://velourproductions.com/",
+   "families": [
+    "Velour Display",
+    "Velour Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "velourproductions.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://verostudio.com/",
+   "families": [
+    "Beausite Classic",
+    "Louize Display"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.verostudio.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://vita-travel.webflow.io/",
+   "families": [
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://vizz.fm",
+   "families": [
+    "Geist",
+    "Geist Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "vizz.fm"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://void.sbs/",
+   "families": [
+    "Gilroy",
+    "QB One"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "void.sbs"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://wama.com.br",
+   "families": [
+    "Fragment Mono",
+    "Inter",
+    "Inter Placeholder",
+    "Lexend",
+    "Lexend Placeholder",
+    "TWK Lausanne 200",
+    "TWK Lausanne 400",
+    "TWK Lausanne 400 Regular Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://watson.la/",
+   "families": [
+    "ba",
+    "bu",
+    "ca"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "watson.la"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://web.meetcleo.com/",
+   "families": [
+    "PPNeueMontreal",
+    "SimplonMono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "web.meetcleo.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://webtactics.org/",
+   "families": [],
+   "google": [
+    "Orbitron",
+    "Rajdhani",
+    "Syncopate"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://week.wild.plus/athens-26",
+   "families": [
+    "ABC Stefan Bubble Tight",
+    "ABC Stefan Bubble Tight Placeholder",
+    "ABC Stefan Simple",
+    "ABC Stefan Simple Placeholder",
+    "Albert Sans",
+    "Albert Sans Placeholder",
+    "Albertus Nova",
+    "Albertus Nova Light Placeholder",
+    "Albertus Nova Regular Placeholder",
+    "IBM Plex Mono",
+    "Inter",
+    "Inter Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://weekend-mm-2026-pasticcino-bag-master.monogrid.io/en/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://weevolveit.com/",
+   "families": [
+    "Geist Mono",
+    "JetBrains Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "weevolveit.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://white-desert.com/",
+   "families": [
+    "Cardinal Classic Long",
+    "Inter Tight",
+    "Oswald"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "white-desert.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://whiteout.overvac.com",
+   "families": [
+    "Archivo",
+    "JetBrains Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "whiteout.overvac.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://why.zero.university/",
+   "families": [
+    "Bethany Elingston",
+    "PP Supply Mono",
+    "STK Bureau Serif",
+    "Supply Sans"
+   ],
+   "google": [
+    "Caveat",
+    "Google Sans Code",
+    "Google Sans Flex",
+    "Inter",
+    "Newsreader"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "why.zero.university"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://wild-ag.ch/",
+   "families": [
+    "Inriaserif",
+    "Inter",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://wisprflow.ai/",
+   "families": [
+    "Eb garamond",
+    "Figtree",
+    "IBM Plex Mono",
+    "Inter",
+    "Jetbrainsmono",
+    "Monaspace Neon",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://wndws.space",
+   "families": [
+    "Inter",
+    "Times New"
+   ],
+   "google": [
+    "Inter"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://wpkoi.com/",
+   "families": [
+    "Avant Garde"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "wpkoi.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://wrapped-party.activetheory.dev",
+   "families": [
+    "CircularSp-Arab",
+    "CircularSp-Cyrl",
+    "CircularSp-Grek",
+    "CircularSp-Hebr",
+    "KoreanSWGI",
+    "Noto Sans SC",
+    "Noto Sans TC",
+    "NotoSansThai",
+    "SpotifyMix",
+    "SpotifyMixNarrow",
+    "SpotifyMixWide",
+    "UDShinGoPro"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "wrapped-party.activetheory.dev"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.197historiasilustradas.com/",
+   "families": [
+    "font"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.197historiasilustradas.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.21hrs.space/",
+   "families": [
+    "AkkuratMonoLL",
+    "FuturaStd"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.21hrs.space"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.250broadway.com",
+   "families": [
+    "EB Garamond",
+    "EB Garamond Placeholder",
+    "Inter",
+    "Inter Placeholder",
+    "PP Editorial New Ultralight",
+    "PP Neue York Normal",
+    "PP Neue York Normal Medium Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.9to5studio.it/",
+   "families": [
+    "PPNeueMontreal"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.9to5studio.it"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.abhaysingh.in/",
+   "families": [
+    "Gabarito",
+    "Geist Mono",
+    "Hanken Grotesk",
+    "Hanken Grotesk Placeholder",
+    "Inter",
+    "Inter Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.achillesheel.co.uk/",
+   "families": [
+    "Bourrasque",
+    "Bricolage Grotesque",
+    "Instrument Sans",
+    "Poppins",
+    "Reckless",
+    "Suisse-Cond",
+    "Sulphur Point"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.achillesheel.co.uk"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.agencejacquesparis.fr/",
+   "families": [
+    "ClashGrotesk"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.agencejacquesparis.fr"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.alcove.com.au/",
+   "families": [
+    "Dmsans",
+    "swiper-icons",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.alethia.earth/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+  },
+  {
+   "url": "https://www.apc-pallets.nl/",
+   "families": [
+    "Aspekta",
+    "swiper-icons",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.aralesk.es",
+   "families": [
+    "Anton",
+    "MontserratLight",
+    "MontserratLocal",
+    "MontserratThin",
+    "bebasneue"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.aralesk.es"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.arresteddevelopmentmusic.com/",
+   "families": [
+    "Archivo",
+    "Hepta Slab",
+    "Inria Serif",
+    "Oswald"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.ploy.ai",
+    "www.arresteddevelopmentmusic.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.arturospatino.com/",
+   "families": [
+    "Geist"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.arturospatino.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.arunnm.com/",
+   "families": [
+    "HomeMenuBlack",
+    "New"
+   ],
+   "google": [
+    "Inter"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "www.arunnm.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.aspensearch.com/",
+   "families": [
+    "suisseIntl",
+    "suisseIntlMono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.aspensearch.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.balmoralrunning.com",
+   "families": [
+    "ABCArizonaMix",
+    "FTKunstGrotesk",
+    "Neue Montreal",
+    "swiper-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.balmoralrunning.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.basepowercompany.com/core",
+   "families": [
+    "Clarendon Wide",
+    "Dahlia Blues",
+    "PP Neue Montreal"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.basepowercompany.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.benxrun.com",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://www.boonglobal.io/",
+   "families": [
+    "MSCHN",
+    "Suisse Int\\'l"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.boonglobal.io"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.brilean.com/",
+   "families": [
+    "Ease Semi Display",
+    "Tt Hoves Pro",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.brookebeswick.com/",
+   "families": [
+    "Perfectly Nineties"
+   ],
+   "google": [
+    "Figtree",
+    "Caveat"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "www.brookebeswick.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.cartier.com/en-fr/lechoeurdespierres",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": "HTTP Error 403: Forbidden"
+  },
+  {
+   "url": "https://www.cartier.com/en-fr/watchesandwonders",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": "HTTP Error 403: Forbidden"
+  },
+  {
+   "url": "https://www.champions4good.club/",
+   "families": [
+    "Druk Condensed Super Desktop",
+    "Neue Montreal",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.checkpointresearch.ca",
+   "families": [
+    "Doto",
+    "Inter",
+    "Jet Brains Mono",
+    "Unbounded",
+    "swiper-icons",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.ciaoenergy.com/",
+   "families": [
+    "Franklin Gothic Atf",
+    "Geist",
+    "Geistmono",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.clarvos.com/",
+   "families": [
+    "Inter 18 Pt",
+    "Material Symbols Rounded",
+    "PPFrama",
+    "Ppframa",
+    "swiper-icons",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com",
+    "webflow-files-prod.global.ssl.fastly.net"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.cocoonblanket.com/",
+   "families": [
+    "Maison Neue",
+    "Marcellus"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.cocoonblanket.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.collabcapitolium.fr",
+   "families": [
+    "Edwardian Script",
+    "Times",
+    "gin"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [
+    "www.collabcapitolium.fr"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.coutumes.com",
+   "families": [
+    "Exposure",
+    "Exposure Var",
+    "Plaak 3",
+    "Plaak 6",
+    "oke-widget-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "coutumes.com",
+    "d3hw6dc1ow8pp2.cloudfront.net"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.cravburgers.shop/",
+   "families": [
+    "Modak",
+    "Mouse Memoirs"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.cravburgers.shop"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.crealo.app/",
+   "families": [
+    "Manrope",
+    "Ratio",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.creativeans.com/",
+   "families": [
+    "memogram"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.creativeans.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.crechetank.com/",
+   "families": [
+    "Glasset Demo",
+    "Quedami"
+   ],
+   "google": [
+    "IBM Plex Mono",
+    "Crimson Text"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "www.crechetank.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.crispmtl.com/",
+   "families": [
+    "Helveticaneueltstd Bdex",
+    "Perfectly Nineties",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.designbomb.it/",
+   "families": [
+    "Inter",
+    "Inter Placeholder",
+    "PP Frama",
+    "PP Frama Black",
+    "PP Frama Bold",
+    "PP Frama Bold Italic Placeholder",
+    "PP Frama Bold Placeholder",
+    "PP Frama Extrabold",
+    "PP Frama Extrabold Italic Placeholder",
+    "PP Frama Medium Placeholder",
+    "PP Frama Regular",
+    "PP Frama Regular Italic Placeholder",
+    "PP Frama Regular Placeholder",
+    "PP Frama Semibold Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.detroit.paris/",
+   "families": [
+    "Mangogrotesque",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.digitaldarts.com.au",
+   "families": [
+    "DotGothic16",
+    "Font Awesome 5 Brands",
+    "Merriweather",
+    "Open Sans",
+    "fontawesome"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.digitaldarts.com.au"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.donmolinico.es/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://www.dontlookup.app/",
+   "families": [
+    "Luckiest Guy",
+    "Marsipan",
+    "Nunito"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.dontlookup.app"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.doordennis.nl",
+   "families": [
+    "icomoon"
+   ],
+   "google": [
+    "Figtree",
+    "Instrument Serif",
+    "Inter",
+    "Roboto Mono"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "www.doordennis.nl"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.doronsupply.com/",
+   "families": [
+    "Fragment Mono",
+    "Fuck",
+    "Fuck Regular Placeholder",
+    "Inter",
+    "Inter Placeholder",
+    "Inter Variable Placeholder",
+    "ModelStandard Mono Trial",
+    "ModelStandard Mono Trial Medium Placeholder",
+    "Nordique Pro",
+    "Nordique Pro Regular Placeholder",
+    "OT Brut",
+    "OT Brut Regular Placeholder",
+    "Space Mono",
+    "TASA Orbiter",
+    "TASA Orbiter Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.dragonfly.xyz/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": "HTTP Error 404: Not Found"
+  },
+  {
+   "url": "https://www.drinksom.eu/",
+   "families": [
+    "ABC Diatype",
+    "ABC Diatype Mono",
+    "Druk",
+    "Druk Wide"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.drinksom.eu"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.drinkstill.nz",
+   "families": [
+    "Söhne",
+    "Söhne Breit",
+    "Tiempos Headline",
+    "Tiempos Text"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.drinkstill.nz"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.era-residence.com/",
+   "families": [
+    "Maison Neue Extended",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.esrbespoke.au/",
+   "families": [
+    "bodyFont",
+    "headingFont"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.esrbespoke.au"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.finseo.ai",
+   "families": [
+    "seasonSans",
+    "seasonSansMono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.finseo.ai"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.floema.com/en",
+   "families": [
+    "Zimula"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "floema.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.fmi-industries.com/",
+   "families": [
+    "Manrope",
+    "Space Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.fmi-industries.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.fplus.ai/",
+   "families": [
+    "IBM Plex Sans",
+    "Onest"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fplus.ai"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.fromanother.love/",
+   "families": [
+    "herbikFont",
+    "ivoryFont",
+    "twkFont"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.fromanother.love"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.getty.edu/tracingart/",
+   "families": [
+    "Bardford",
+    "Graphik"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.getty.edu"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.gionatannese.com/",
+   "families": [
+    "LayGrotesk",
+    "Teodor"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.gionatannese.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.gomadmonkey.com/",
+   "families": [
+    "Bueno",
+    "Fa 100",
+    "Fa 300",
+    "Fa 400",
+    "Fa Brands 400",
+    "Fa Duotone 900",
+    "Fa Sharp 400",
+    "Fa Sharp Solid 900",
+    "Fa Solid 900",
+    "Fa V 4 Compatibility",
+    "PP Neue Montreal",
+    "Ppneuemontreal",
+    "Roslindale",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "uploads-ssl.webflow.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.governorsmansion.org/",
+   "families": [
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://www.gq.com/sponsored/story/the-extraordinary-lab",
+   "families": [
+    "Adobe Garamond Pro",
+    "GQ Sans",
+    "GQSans",
+    "GT-America",
+    "Garamond-Adobe",
+    "GaramondPremierPro"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "interactive.gq.com",
+    "www.gq.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.grounded2026.com/",
+   "families": [
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://www.havu.cc/en",
+   "families": [
+    "Noto Sans JP"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.havu.cc"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.hildenkaira.fi/",
+   "families": [
+    "PP Editorial New",
+    "PP Neue Montreal",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.hirotos.com",
+   "families": [
+    "gazzetta",
+    "helvetica-neue-lt-pro",
+    "helvetica-neue-lt-pro-cond"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://www.hollywoodexhibit2026.com",
+   "families": [
+    "Instrument Sans",
+    "abcArizona",
+    "haigrast",
+    "ivyPrestoHeadline",
+    "ivyPrestoText",
+    "safiraMarch"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [
+    "www.hollywoodexhibit2026.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.houseofhoney.com/",
+   "families": [
+    "canora",
+    "neueHaasGrotesk",
+    "noeText"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.houseofhoney.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.icomat.co.uk/",
+   "families": [
+    "AkkuratMono",
+    "Doto-VariableFont-opti",
+    "LayGrotesk"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.icomat.co.uk"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.igloo.inc/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://www.ilcapoproduction.com/",
+   "families": [
+    "HelveticaNeue",
+    "IvarDisplay"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://www.insta360.com/product/insta360-luna-ultra",
+   "families": [
+    "MiSans",
+    "OSP-DIN",
+    "Poppins Num",
+    "Poppins Old"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "static.insta360.com",
+    "wassets.insta360.com",
+    "www.insta360.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.iyo.ai/",
+   "families": [
+    "Magnetik",
+    "Nbarchitekproneue",
+    "Roobert",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.jeffmilanes.com/",
+   "families": [
+    "Archivo",
+    "Geist Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.jeffmilanes.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.joinswsh.com",
+   "families": [
+    "diatypeMono",
+    "gerstnerProgramm"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.joinswsh.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.juanmoraromero.com/",
+   "families": [
+    "Geist",
+    "Geist Mono",
+    "neue-haas-grotesk-display"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [
+    "www.juanmoraromero.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.juliencalot.com",
+   "families": [
+    "Doner",
+    "FFDINProBold",
+    "FFDINProCondensedBlack",
+    "FFDINProRegular",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com",
+    "www.juliencalot.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.kaviengcreative.com/",
+   "families": [
+    "Heros",
+    "Junicode"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.kaviengcreative.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.kvs.services/",
+   "families": [
+    "SF Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.kvs.services"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.lialive.ai/",
+   "families": [
+    "Cormorant Garamond",
+    "Geist",
+    "Geist Mono",
+    "Glacial Indifference"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.lialive.ai"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.linusbio.com/",
+   "families": [
+    "IBMPlexSerif",
+    "SuisseIntl"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.linusbio.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.lxlcreative.co.uk/",
+   "families": [
+    "Manrope",
+    "Owners Wide",
+    "Scribo",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.mariavasilyeva.com/",
+   "families": [
+    "feat",
+    "suo",
+    "synt"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.mariavasilyeva.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.marinelayer.com/",
+   "families": [
+    "Seriously Nostalgic"
+   ],
+   "google": [
+    "Outfit",
+    "Roboto Mono",
+    "Outfit",
+    "Roboto Mono"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "www.marinelayer.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.marvellco.com.au/",
+   "families": [
+    "Geist",
+    "neueMontreal",
+    "swiper-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.marvellco.com.au"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.mathis-biabiany.fr",
+   "families": [
+    "Fustat"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.mathis-biabiany.fr"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.matteovincenti.com/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": "HTTP Error 429: Too Many Requests"
+  },
+  {
+   "url": "https://www.meech213.com/",
+   "families": [
+    "Ceraph",
+    "articulat-cf",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [
+    "www.meech213.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.melius.com/?ref=awwwards",
+   "families": [
+    "Geist Mono",
+    "easeStandard",
+    "futurist",
+    "recklessStandard"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.melius.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.mensch.club/",
+   "families": [
+    "Be Vietnam Pro",
+    "Greed Narrow",
+    "UnifrakturCook"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.mensch.club"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.mersi-architecture.com",
+   "families": [
+    "Doner",
+    "Switzer",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.mikes.cv/",
+   "families": [
+    "MB LCD",
+    "MB Mono",
+    "MB Sans"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.mikes.cv"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.milancompain.com",
+   "families": [
+    "Instrument Serif",
+    "Manrope"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "milancompain.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.mindrobotics.com/",
+   "families": [
+    "CentraNo2"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.mindrobotics.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.moremedia.at",
+   "families": [
+    "Scto Grotesk A",
+    "moremedia"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.moremedia.at"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.mosbyfiles.com/",
+   "families": [
+    "Founders Grotesk",
+    "Signifier"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.mosbyfiles.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.moto-card.com/",
+   "families": [
+    "Neuemontreal",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.mountstreetprinters.com/",
+   "families": [
+    "CFAtypic",
+    "forma",
+    "swiper-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.mountstreetprinters.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.nalakun.com/",
+   "families": [
+    "Nympha",
+    "Questrial",
+    "Sanchez",
+    "swiper-icons",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.newzealanderliveryservice.co.nz/",
+   "families": [
+    "GothamBold",
+    "GothamMedium",
+    "MDThermochromeSemibold",
+    "NotoSans ExtraCondensed",
+    "NotoSansMono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.newzealanderliveryservice.co.nz"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.nightkidz.shop",
+   "families": [
+    "Zen Maru Gothic"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.nightkidz.shop"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.noartmusic.com/",
+   "families": [
+    "Chivomono",
+    "Nue Haas Grotesk Text Pro",
+    "Rock salt",
+    "webflow-icons"
+   ],
+   "google": [
+    "JetBrains Mono"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.nominal.so/",
+   "families": [
+    "Retorika",
+    "STK Bureau Serif"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "nominal.so"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.not-found.tv/",
+   "families": [
+    "mina"
+   ],
+   "google": [
+    "Noto Sans JP",
+    "Oswald"
+   ],
+   "typekit": true,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://www.notar.tirol/",
+   "families": [
+    "Spline Sans",
+    "century-gothic"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [
+    "www.notar.tirol"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.noth.in",
+   "families": [
+    "Ppneuemontreal",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.offforum.com/",
+   "families": [
+    "Baikal",
+    "Forvm"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.offforum.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.oimachi.co",
+   "families": [
+    "Aeonik",
+    "Feature Deck",
+    "webflow-icons"
+   ],
+   "google": [
+    "Material Symbols Rounded",
+    "Material Symbols Rounded"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.ondastudio.co/",
+   "families": [
+    "ABC Daily Scotch",
+    "ABS Synt Trial",
+    "Aeonik Fono",
+    "Denim Ink",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.opalcamera.com/opal-tadpole",
+   "families": [
+    "Die Grotesk C"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "op.al"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.orchid.security/",
+   "families": [
+    "Aeonik",
+    "inter",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.oxigen.sa",
+   "families": [
+    "articulat-cf",
+    "articulat-heavy-cf",
+    "iowan-old-style-bt",
+    "iowan-old-style-bt-pro"
+   ],
+   "google": [
+    "Roboto Mono"
+   ],
+   "typekit": true,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://www.palmo.co.in/",
+   "families": [
+    "Inter",
+    "Khand",
+    "Patrick Hand"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.palmo.co.in"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.paradigmfestival.com/",
+   "families": [
+    "Panchang",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.paulkalkbrenner.net/",
+   "families": [
+    "ABC Diatype Plus",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.peryton-film.com/",
+   "families": [
+    "Bbhbartle",
+    "Instrumentsans",
+    "Ppmuseum",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.photiu.ai",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://www.produx.design",
+   "families": [
+    "At Aero",
+    "DM Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.produx.design"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.projectone.website",
+   "families": [
+    "Inter",
+    "Inter Placeholder",
+    "Satoshi",
+    "Satoshi Placeholder",
+    "Satoshi Variable Placeholder",
+    "Sedgwick Ave"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.quakerschool.org/",
+   "families": [
+    "fontSeasonMix",
+    "fontSeasonSans"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.quakerschool.org"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.quintadamalia.com/",
+   "families": [
+    "Aladin",
+    "Big Shoulders Display",
+    "Marcellus",
+    "Syne"
+   ],
+   "google": [
+    "Big Shoulders Display",
+    "Marcellus",
+    "Syne",
+    "Aladin"
+   ],
+   "typekit": false,
+   "font_hosts": [
+    "www.quintadamalia.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.rafaelkurosawa.com",
+   "families": [],
+   "google": [
+    "Montserrat",
+    "DM Sans"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://www.raviklaassens.com/",
+   "families": [
+    "Reckless Neue",
+    "ReplicaLL",
+    "Suisse Intl",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.remyshoots.co.za/",
+   "families": [
+    "Inter",
+    "Roboto Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.remyshoots.co.za"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.rideradian.com/",
+   "families": [
+    "Ibmplexmono",
+    "Instrumentsans",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.risk.film",
+   "families": [
+    "Redhatdisplay",
+    "Redhatdisplay Variablefont Wght",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.robertocollina.it/",
+   "families": [
+    "Folio Std"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.shopify.com",
+    "www.robertocollina.it"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.rudeingenierie.com",
+   "families": [
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://www.s0animation.com/",
+   "families": [
+    "Impact",
+    "Montserrat",
+    "Playfair Display",
+    "Poppins"
+   ],
+   "google": [
+    "Anton",
+    "Montserrat",
+    "Playfair Display",
+    "Poppins"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://www.samuclima.com/en",
+   "families": [
+    "Bebas Neue",
+    "Bernard MT Condensed",
+    "Clarika Geometric",
+    "DM Sans",
+    "Monotype Corsiva",
+    "Playfair Display"
+   ],
+   "google": [
+    "DM Sans",
+    "Playfair Display",
+    "Bebas Neue"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://www.sandeep.design/",
+   "families": [
+    "Fragment Mono",
+    "Inter",
+    "Inter Display",
+    "Inter Display Placeholder",
+    "Inter Placeholder",
+    "Inter Variable Placeholder",
+    "JetBrains Mono",
+    "JetBrains Mono Placeholder",
+    "Neue Montreal",
+    "Neue Montreal Regular Placeholder",
+    "PP Neue Montreal",
+    "PP Neue Montreal Bold Placeholder",
+    "PP Neue Montreal Book Placeholder",
+    "PP Neue Montreal Medium Placeholder",
+    "PP Neue Montreal Regular Placeholder",
+    "PP Neue Montreal SemiBold Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.sashamartynchuk.com/",
+   "families": [
+    "Arges",
+    "Neue Montreal",
+    "Signature"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.sashamartynchuk.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.schyns.de",
+   "families": [
+    "AnotherPassion",
+    "AspektaVariable",
+    "HelveticaNeue"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.schyns.de"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.seasats.com/",
+   "families": [
+    "seasonMix",
+    "seasonSans",
+    "supplyMono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.seasats.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.see-for-yourself.com/",
+   "families": [
+    "Inter",
+    "Inter Display",
+    "Inter Display Placeholder",
+    "Inter Placeholder",
+    "Karla",
+    "Karla Placeholder",
+    "PP Neue Montreal",
+    "PP Neue Montreal Regular Placeholder"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "fonts.gstatic.com",
+    "framerusercontent.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.seewhateyesee.org",
+   "families": [
+    "brush-up-too",
+    "exo-2"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://www.selkirk.com/collections/courtstrike-pickleball-shoes",
+   "families": [
+    "Poppins",
+    "fontawesome",
+    "kallisto",
+    "oke-widget-icons",
+    "tenby-six"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [
+    "cdn-static.okendo.io",
+    "www.selkirk.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.selkirk.com/pages/omni-pickleball-paddle",
+   "families": [
+    "Poppins",
+    "fontawesome",
+    "kallisto",
+    "oke-widget-icons",
+    "tenby-six"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [
+    "cdn-static.okendo.io",
+    "www.selkirk.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.sentientx.com",
+   "families": [
+    "din-next-w01",
+    "wf 2751996ff9224fc486a0c6fe1"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "static.parastorage.com",
+    "static.wixstatic.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.serverobotics.com/",
+   "families": [
+    "Roobert"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.serverobotics.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.shader.se/",
+   "families": [
+    "STIX Two Text"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.shader.se"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.sharplink.com/",
+   "families": [
+    "Archivo",
+    "Archivo Narrow"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.sharplink.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.shopify.com/editions/winter2026",
+   "families": [
+    "&quot"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://www.sigma-imaging.se/",
+   "families": [
+    "Sigma Sans",
+    "Sigma Serif",
+    "Sigma Serif Headline",
+    "swiper-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.sigma-imaging.se"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.silviamalavasi.com",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://www.simonholm.studio",
+   "families": [
+    "Ppneuemontrealtt",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.slight-twist.co.nz/",
+   "families": [
+    "Nanjaune",
+    "swiper-icons",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.specialproduction.agency/",
+   "families": [
+    "displayBlack",
+    "fontB"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.specialproduction.agency"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.spragadheeshraj.com",
+   "families": [
+    "PPEditorialNew",
+    "PPNeueMontreal"
+   ],
+   "google": [
+    "Host Grotesk"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://www.spykercars.com",
+   "families": [
+    "PT Serif",
+    "swiss721"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [
+    "spykercars.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.storeyarchitecture.co.uk/",
+   "families": [
+    "Biro",
+    "New Grotesk",
+    "New Grotesk Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.storeyarchitecture.co.uk"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.studio-nikita.com/",
+   "families": [
+    "Inter",
+    "Inter:Bold",
+    "Inter:Italic",
+    "Inter:Medium",
+    "Inter:Regular",
+    "Inter:Semi",
+    "Manrope",
+    "Manrope:Bold",
+    "Manrope:Regular",
+    "Open Sans",
+    "Open Sans:Bold",
+    "Open Sans:ExtraBold",
+    "Open Sans:Regular",
+    "Outfit",
+    "Outfit:Bold",
+    "Outfit:Regular",
+    "Playfair Display",
+    "Playfair Display:Regular"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.studio-nikita.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.sui.io/",
+   "families": [
+    "TWK Everett",
+    "TWK Everett Mono",
+    "Twkeverett",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.superhuge.net/",
+   "families": [
+    "selfsoSans"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.superhuge.net"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.sutera.ch/",
+   "families": [
+    "Bitter",
+    "BrunoAce",
+    "NeueHaas",
+    "PPNeueMontreal"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.sutera.ch"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.theirnibs.com/",
+   "families": [
+    "Instrument Serif",
+    "Poppins",
+    "Work Sans",
+    "swiper-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.theirnibs.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.thelasttango.com/",
+   "families": [
+    "Cormorant Garamond",
+    "DM Sans",
+    "Darker Grotesque"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.thelasttango.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.thewoodetfils.com/a-propos#notre-monde",
+   "families": [
+    "Font Awesome 5 Brands",
+    "Font Awesome 5 Duotone",
+    "Font Awesome 5 Pro",
+    "antique-olive",
+    "antique-olive-compact",
+    "antique-olive-condensed",
+    "antique-olive-nord",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": true,
+   "font_hosts": [
+    "www.thewoodetfils.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.thisisstudiox.com",
+   "families": [
+    "Noto Sans",
+    "Saans",
+    "Serrif Compressed",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.tokonoma.xyz/",
+   "families": [
+    "AmstradPC",
+    "EurostileMNExtendedBold"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.tokonoma.xyz"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.tresmarescapital.com/",
+   "families": [
+    "Font Awesome\\ 5 Brands",
+    "Font Awesome\\ 5 Duotone",
+    "Font Awesome\\ 5 Pro",
+    "Font Awesome\\ 6 Brands",
+    "Font Awesome\\ 6 Duotone",
+    "Font Awesome\\ 6 Pro",
+    "FontAwesome",
+    "PP Fragment Serif",
+    "PP Neue Montreal"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.tresmarescapital.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.trevornoah.com/",
+   "families": [
+    "Die Grotesk B",
+    "Die Grotesk C",
+    "Die Grotesk D",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.tricks.de",
+   "families": [
+    "Alfa Slab One",
+    "Castoro",
+    "Sora"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.tricks.de"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.unbelievablycrap.com/",
+   "families": [
+    "PP Supply Mono",
+    "PP Supply Sans"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.unbelievablycrap.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.unimaticwatches.com/?srsltid=AfmBOor1S-k1GXW2WUlgmQd-YbKuDQWHeKBxyRjTFNyURmTvXoeNJXHD",
+   "families": [
+    "JetBrains Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.unimaticwatches.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.usavionix.com/",
+   "families": [
+    "Geist",
+    "Geist Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.usavionix.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.utopiatokyo.com/",
+   "families": [
+    "Neopixel",
+    "PPMori",
+    "Zpix",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.vanderhotel.com",
+   "families": [
+    "Sohne Buch",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.vanmotion.es",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://www.vilendesign.com/",
+   "families": [],
+   "google": [
+    "Figtree"
+   ],
+   "typekit": false,
+   "font_hosts": [],
+   "error": null
+  },
+  {
+   "url": "https://www.warmnfuzzy.tv/",
+   "families": [
+    "SuisseIntl"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.warmnfuzzy.tv"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.wembi.ai/",
+   "families": [
+    "HaasUnicaSH",
+    "ductile"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.wembi.ai"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.whpcreative.com/",
+   "families": [
+    "Mori",
+    "NewFontVF",
+    "arsone",
+    "noise"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.whpcreative.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.williamsgptech.com/",
+   "families": [
+    "Material Symbols Sharp",
+    "Materialsymbolssharp Subset",
+    "Williams Grotesk",
+    "swiper-icons",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.wolverineworldwide.com/",
+   "families": [
+    "ABCDiatype",
+    "ABCDiatype-Mono"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "wolverineworldwide.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.zeynapp.co.uk/",
+   "families": [
+    "Bebas Neue"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "www.zeynapp.co.uk"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://www.zoumboulakis.gr/en/",
+   "families": [],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [],
+   "error": "HTTP Error 403: Forbidden"
+  },
+  {
+   "url": "https://www.zrk.technology/",
+   "families": [
+    "Geist mono",
+    "Inter display",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://xox.makemepulse.com/",
+   "families": [
+    "Bangers",
+    "Poppins",
+    "a aksi mosiregular"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "xox.makemepulse.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://ylem.watch/",
+   "families": [
+    "WooCommerce",
+    "star"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "ylem.watch"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://zentry.com/",
+   "families": [
+    "ZentryScreamer"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "zentry.com"
+   ],
+   "error": null
+  },
+  {
+   "url": "https://zetta-joule.com/",
+   "families": [
+    "Geist",
+    "Inter",
+    "webflow-icons"
+   ],
+   "google": [],
+   "typekit": false,
+   "font_hosts": [
+    "cdn.prod.website-files.com"
+   ],
+   "error": null
+  }
+ ]
+}

@@ -1,0 +1,285 @@
+{
+ "slug": "lacoste-polo-factory",
+ "title": "Lacoste — Polo Factory",
+ "live_url": "https://members-play.lacoste.com/polo-factory-experience",
+ "award": "Awwwards Site of the Day, Jul 21 2026 (Honors + SOTD). Credits: Merci Michel. Live site now titled 'The Lacoste Polo Atelier Experience' (final URL /us/en/).",
+ "scores": {
+  "overall": 7.49,
+  "design": 7.56,
+  "usability": 7.09,
+  "creativity": 8.13,
+  "content": 7.13,
+  "dev": {
+   "overall": 7.31,
+   "semantics_seo": 6.6,
+   "animations": 9.2,
+   "accessibility": 6.0,
+   "wpo": 7.6,
+   "responsive": 7.2,
+   "markup": 7.0
+  }
+ },
+ "industry": "Fashion / e-commerce brand activation (loyalty-member game + prize draw)",
+ "signature": "Two engines behind one brand world: the landing is a cheap Canvas-2D loop of pre-rendered 3D sprites (crocs and polos) spiralling out from a glossy pre-rendered 'candy' plaque over a slowly rotating SVG swirl, and the tour behind it is a three.js toy-clay factory where each machine sits in a monochrome pastel room lit with hue-tinted AO ramps, and every press drives springs, a custom shader effect (sloshing dye, spiralling stitch particles) and a matching sound cue.",
+ "first_screen": {
+  "composition": "desktop_00 is the preloader: flat dark-olive #4a4938 field (sampled #4b4837), a centred yellow #fcf383 oval 'Polo Atelier / Lacoste' croc badge (~205x135px) and, ~70px from the bottom, 'Welcome to the Lacoste Polo Atelier Experience' plus a tiny 'LOADING...' in caps. desktop_01 is the landing. It is NOT a WebGL scene: a Vue component (HomeBg) paints a full-screen 2D canvas every frame: fill #c9e2ad (sampled #c7deaa), a 1110px SVG swirl of curved blades in #c4dda5 scaled to the viewport diagonal and rotated around the centre, a soft-light gradient image, then pre-rendered PNG/AVIF sprites (5 croc colours: white, blush, tan, butter, green; 5 polo colours: green, yellow, brown, white, pink) each with its own shadow sprite, and a pre-rendered glossy oval plaque ('home-candy', drawn 418px wide incl. its glow) in the centre. Over it sits a centred DOM stack (.home-container, 72.5vw, max-width 400px): 'Welcome to the' (24px/400), a 3-line 48px/700 headline at line-height .83, a 13px blurb, then a white 14px-radius card 'START THE TOUR' (18px/700 caps) with a dark-green pill arrow. A white burger pill (57x40 CSS) sits top-left and a sound pill top-right, both at a 24px inset. A butter-yellow promo card (~232x198px, bottom/right 24px) has an oval product photo with a white arrow chip pinned to its top-right, a 'Sign up for a chance to win' line (18px) and a white hand-drawn spark doodle at its top-left corner.",
+  "what_owns_it": "image",
+  "display_type_px": 48,
+  "evidence": [
+   "desktop_00.jpg",
+   "desktop_01.jpg",
+   "desktop_02.jpg",
+   "probe.json measure.largest_text / contexts (2d x1)",
+   "vendor.Df5mzA-w39bbc020.js HomeBg component (Canvas2D drawImage loop)",
+   "vendor.nCiXhccW39bbc020.css .home-container/.title rules"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Lacoste",
+    "role": "display",
+    "classification": "proprietary geometric sans, round bowls, single weight pair",
+    "foundry": "Lacoste brand typeface (proprietary)",
+    "source": "probe fonts_loaded: Lacoste 400 normal, 400 italic, 700 normal; font_families_rendered Lacoste x300. index.html @font-face also declares Lacoste Black 900 (not loaded on the landing)."
+   },
+   {
+    "name": "Lacoste",
+    "role": "body",
+    "classification": "same family at 400",
+    "foundry": "Lacoste",
+    "source": "probe measure.type p"
+   },
+   {
+    "name": "system-ui",
+    "role": "ui",
+    "classification": "system sans, used only in the Didomi cookie CMP",
+    "foundry": "OS",
+    "source": "probe font_families_rendered system-ui x9"
+   }
+  ],
+  "display_size_px": 48,
+  "body_size_px": 13,
+  "scale_notes": "Small, breakpoint-stepped scale because the world is the hero. Home CSS: .intro-title 13px (<1024) / 24px / 36px (>=1600); .title 24px / 48px / 72px, weight 700, line-height .83; .description 13px/1.23 (19px >=1600). Also h2 26px/700 (prize-draw modal), CTA 18px/700 caps (16px on mobile), legal 12-13px. Display-to-body is about 3.7. The root token --base-text is calc(40px * var(--h-demult, 1)) (the body computes to 40px) and --padding is max(6px, base*.15); these drive viewport-height-scaled UI, but the home headline uses the fixed breakpoint sizes above, not --base-text.",
+  "tracking_leading": "Tracking is normal everywhere; there is no negative display tracking. The h1 line-height is .83 (39.84px on 48px) and .home-container is capped at 400px, so at 1440 the headline is forced onto 3 lines that nearly touch (desktop_01: 'Atelier' is crammed between 'Lacoste Polo' and 'Experience'). The kicker is 24/36 (1.5). The blurb is 13/15.99 (1.23).",
+  "case_and_style": "Sentence case for the headline and blurb. Bold caps for CTAs ('START THE TOUR') and machine titles. A Black 900 face is declared but not loaded on the landing; inferred: the heavy caps in the jury stills ('KNITTING MACHINE') use it, or are submission-card overlays. An italic 400 is loaded, and the 'Sign up' <em> is set as an inline chip: yellow #fcf383 text on a dark-olive #4a4938 pill.",
+  "signature_moves": [
+   "Brand typeface everywhere, so the type reads as Lacoste rather than as a web font",
+   "The headline sits directly over canvas sprites that spiral out beneath it (canvas z-index 0, DOM z-index 1)",
+   "'Sign up' emphasis rendered as an inline dark highlight chip inside the sentence (desktop_01, bottom-right card)"
+  ],
+  "mobile": "mobile_00: .title drops to 24px and .intro-title to 13px (CSS; probe mobile_measure h1 24px); the headline wraps to 2 lines. 'START THE TOUR' becomes a full-width white card (~334px, 16px text, 16px vertical padding) low on the screen, and the promo becomes a full-width yellow strip under it. The burger and sound pills move to top 14px / side 10px. The canvas is lifted 90px (bottom:90px) and a mint gradient overlay (#e1ffc21f -> #c0d5ac) fades its lower part. There is no horizontal overflow. Both mobile shots are washed out by the Didomi CMP's white veil."
+ },
+ "color": {
+  "mode": "section-shifting",
+  "base": "#c9e2ad canvas fill on the landing (HomeBg fillStyle; sampled #c7deaa-#cce3af), with a rotating SVG swirl in #c4dda5 and a soft-light gradient image over it. Each machine room gets its own monochrome pastel world: blue (#98d9ea baby-blue, machine-blue #eff9fb, Awwwards palette #A4E7FE), green (#e1ffc2 mint-green, machine-green #f5ffea, light-green #d0dfbe) and yellow (#fcf383, machine-yellow #fffde3). The logo board uses #f7ece8 pink.",
+  "ink": "#0b4221 (--ui-color-brand-green; h1, kicker, blurb)",
+  "accents": [
+   "#fcf383 yellow: promo card, preloader logo, 'Sign up' text",
+   "#4a4938 dark-olive: preloader field, 'Sign up' chip, promo body text",
+   "#b70606 red / #19527f denim / #496646 green: small colored props (spools, polos) inside monochrome rooms",
+   "#e1ffc2 mint: CTA label color on hover (--secondary-color on the home view)"
+  ],
+  "ratio": "Landing (desktop_01, measured by pixel class): ~84% mint field / ~10% sprites (crocs, polos, plaque) / ~2% brand-green ink (text + green polos) / ~2% white UI / ~2% yellow promo. inferred for the rooms: one pastel hue dominates with 2-3 saturated props.",
+  "section_shifts": "The whole world recolors per machine. Blue knitting, yellow dyeing and green embroidering rooms are each built tone-on-tone: machine, floor, props and background share one hue at different values (jury stills, not re-verified here). The preloader is a dark-olive and yellow inversion. The root_vars expose 27 named colors as tokens; per-room CSS variants exist for the close button, CTA and promo card (.view-machines--dyeing / --embroidering / --knitting).",
+  "texture": "None on the landing apart from the flat SVG swirl. The rooms are clean, matte, clay-like 3D. The white spark next to the promo card is a DOM SVG. inferred: the white speed lines and sparks around machines in the jury stills are drawn in-canvas by the loader's SpriteBatcher/TrailBatcher (atlas texCoords, rotationTrails), not as DOM overlays.",
+  "notes": "Tinted AO is confirmed in code: the patched standard material samples texture2D(uAoColorRamp, vec2(ao, .5)) and multiplies reflectedLight.indirectDiffuse by it (clearcoat and sheen still use the scalar AO), so occlusion shifts to a darker step of the room hue, not to black. BackgroundPlaneMaterial carries the same uniform."
+ },
+ "layout": {
+  "grid": "No page grid. It is a single fixed 1440x900 app (probe doc_height 900, sections 1, 8 fixed elements). Everything sits on the centre axis: .view-home is a centred flex column (justify-content:center on >=1024), .home-container 72.5vw / max 400px (800px >=1600). UI chrome is pinned into the corners at a 24px inset (menu top/left, sound top/right, promo bottom/right).",
+  "density": "balanced",
+  "alignment": "Centred stack over a centred 3D focal object. The corners hold utility pills, and the bottom-right holds the promo card.",
+  "composition_moves": [
+   "A canvas spiral of pre-rendered brand sprites emitted from behind a centred plaque. Sprites pass under the DOM headline and CTA, which ties text and canvas into one plane.",
+   "A rotating SVG swirl behind everything pulls the eye to the centre",
+   "Corner-anchored pill controls (burger, sound) keep the scene uncluttered",
+   "In the machine rooms (jury stills, not re-verified): the machine sits off-centre with the title in the opposite negative space. A '+' speech-bubble hotspot and an oval 'Polo Factory' signpost read as in-world UI."
+  ],
+  "section_rhythm": "Scene-based, not scroll-based: preloader, landing spiral, 'Start the tour', then machine rooms (knitting, dyeing, embroidering). Router: '/' HomeView (enter 1200ms, leave 500ms) and '/machines' MachinesView; the camera flies in from a home offset (0,10,30) over 3000ms outCubic (fromHome), and machine-to-machine swaps play sfx_Transition_Machine.",
+  "mobile_adaptation": "Same scene. DOM UI reflows into full-width bottom cards, the canvas is raised 90px with a gradient fade, sprites shrink (80px instead of 150/120px wide below 1024px), and a rotate-device overlay exists (rotate-wrapper / rotate-background in app.js)."
+ },
+ "motion": {
+  "smooth_scroll": "none: no scroll at all; fixed full-screen app (doc_height 900, no Lenis or GSAP found in the bundles)",
+  "preloader": "Dark-olive #4a4938 screen with the yellow croc badge and 'LOADING...'. It lasts about 6s on the probe (load_seconds_to_settle 6.4). inferred: most of the ~12.3MB of .glb/.ktx2 is fetched during it (the probe only totals bytes per run).",
+  "intro_sequence": "From the HomeBg code (vendor.js): every 1.2s it spawns a wave of 6 sprites at radius 0, 60 degrees apart, alternating croc waves and polo waves, each wave rotated -7 degrees from the last. Per 60fps frame each sprite moves +3.5px outward (~210px/s) and +0.15 degrees around (~9 degrees/s), so it traces an outward spiral. Once its radius passes 10% of the canvas width it pops in: scale 0 -> 1 over 500ms with back.out(2). Sprites are culled 50px outside the viewport and capped at 42. Crocs never rotate (always side profile, facing right); polos are rotated by a function of their angle. Shadow sprites are offset by 1% of the vector from a light point at (57% w, 4% h). The swirl rotates -0.1 degrees per frame (~6 degrees/s). desktop_01 -> desktop_02 shows the polos moved from beside the plaque to mid-screen and grown. There is no depth: it is draw order on a 2D canvas.",
+  "scroll_techniques": [
+   "none (click-driven scene transitions)"
+  ],
+  "text_animation": "Not observed. The DOM text is static over the moving 3D.",
+  "image_animation": "Landing: 2D canvas sprites (above). Machine rooms, realtime 3D, from the shader code in the loader chunk (visual not seen): (1) Liquid slosh in the dyeing machine. Vertex: tilt = sin(uLiquidTiltX/Z) plus a gravity correction from uLocalUp so the surface stays level when the drum rotates; three summed sines (x*3, z*2.5, (x+z)*2 at uWaveSpeed*2/1.7/1.3) times uWaveAmplitude*uWaveIntensity, stronger toward the walls (edgeFactor 0.5+0.5*r^2); vertices clamped to the box; normal re-tilted. Fragment: mix toward uDepthColor by (1-vNormalizedY)*uDepthIntensity, and a fresnel term that darkens the rim toward uDepthColor ('edges look denser'), plus uSpecularBoost. (2) Helix stitch particles for embroidery. Each instanced particle has aVerticalProgress, aSeed and aPoloIndex; the reveal frontier is 1-aVerticalProgress + sin(progress*2pi*uStitchCount)*.005, age ramps over .15 past it, radius comes from a tShapeProfile texture (polo silhouette), it spirals uSpiralRevolutions times and rises uHelixRise, with 3D Perlin noise from a sampler3D, for up to 5 polos (uPoloFX[5]). (3) Diagonal gloss bands on machines (values in steal_this). (4) DyeingPortalMaterial: a spiral-vortex portal shader (spiral = angle - radius*4 + time*1.4) with rotating bands, streaks and a centre glow, tinted from the material colour.",
+  "page_transitions": "HomeView -> MachinesView route transition (enter 1200ms, leave 500ms). The camera tweens homeProgress 1 -> 0 over 3000ms outCubic from a (0,10,30) offset. Machine swaps use a machineSwapReverse uniform and sfx_Transition_Machine. inferred: the visual is a camera move plus recolor between rooms (not captured).",
+  "hover_micro": [
+   "CTA 'pill flood' (hover on hover:hover devices, :active on touch): .button-cta__icon-bg scales to scale(10) with cubic-bezier(.86,0,.07,1); the label turns #e1ffc2 after a .2s delay; the white bg layer fades out and a #0b4221 bg-below fades in (opacity .2s .2s).",
+   "Burger pill: its icon background scales from scale3d(0,0,0) to 1 with transform .2s cubic-bezier(.175,.885,.32,1.275) (back-out overshoot)",
+   "Promo card arrow: on hover/press the arrow loops moveArrow (translate3d(3px,-3px,0) at 50%) every .3s with cubic-bezier(.645,.045,.355,1). It does not idle.",
+   "Hotspot bounce-in (0.4s ease forwards): scale 0 -> 1.15 at 60% -> .95 at 80% -> 1; bounce-out scales to 1.1 then 0",
+   "Promo card 'tilt-n-move-shaking-home', 3s infinite: in the first 25% of each loop it rotates 3deg then -1.5deg then -.5deg, scales up to 1.03, and flickers its background #fcf383 -> #fdf59a -> #fdf8b0 -> #fffde6 -> back. It then rests for 75% of the loop. Per-machine colour variants exist for dyeing, embroidering and knitting.",
+   "spark-cycle: three spark SVGs (31x32, top/left -25px) share a 1.2s steps(1,end) loop with delays 0 / -.4s / -.8s, each visible for a third, so the doodle boils at ~2.5 frames/s. Desktop (>=1024px) only."
+  ],
+  "cursor": "Default cursor. The code exposes tokens --cursor-auto, crosshair, pointer, grab and grabbing, so it switches to grab/grabbing over draggable 3D.",
+  "easing_curves": [
+   "cubic-bezier(0.175,0.885,0.32,1.275) back-out, 13 uses: UI pills, transform .2s/.3s",
+   "cubic-bezier(0.215,0.61,0.355,1) easeOutCubic, 9: color/opacity .3s",
+   "cubic-bezier(0.86,0,0.07,1) easeInOutQuint, 9: CTA flood",
+   "cubic-bezier(0.645,0.045,0.355,1) easeInOutCubic, 9: incl. moveArrow",
+   "cubic-bezier(0.24,1,0.24,1), 5",
+   "cubic-bezier(0.55,0,0.1,1), 5: transform 1s",
+   "cubic-bezier(0.865,-0.005,0,1.64), 2: extreme overshoot, transform .2s .05s delay",
+   "JS: back.out(2) for sprite pop-in (HomeBg); springX/Y/Z, springCentrifugal, springBone, springPhi (camera), damp/dampIn/dampOut, lerp, outCubic, inOutQuart, outExpo, outBack (loader)"
+  ],
+  "duration_range_ms": "150-1200ms for UI (0.3s x29, 0.2s x28 dominate). 3s loops for attention wiggles.",
+  "stagger_ms": "n/a (not observed)",
+  "choreography_notes": "Two motion languages. The DOM UI is snappy and bouncy (200-300ms back-out overshoot). The 3D is physical: springs, damped lerps for camera and color (lerpedColorChangeProgress, lerpBloomFactor) and shader uniforms for effects. Code-verified: hanging clothes and croc charms on the machines carry springCentrifugal + springX + springBone (tension .02-.13, friction .03-.15); their swing is fed by gesture.angularVelocityX when the user drags the machine round and clamped with tanh, and clicking a cloth pushes it. Every interaction is paired with an SFX (sfx_Amb_Loop, button press/release, motor and needle loops, colour-flash beeps, polo reveal, success spin, hanged-polo hit, UI click/appear/notification).",
+  "evidence": [
+   "desktop_01.jpg-desktop_07.jpg (sprite positions)",
+   "probe easings/durations",
+   "vendor.css keyframes and transitions grep",
+   "vendor.js HomeBg Canvas2D loop",
+   "loader.BJqWuyny39bbc020.js uniform and GLSL extraction",
+   "sfx_* cue list (app.js, vendor.js, loader.js)"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "mixed",
+  "art_direction": "Toy-like clay 3D, like a Playmobil factory. Soft rounded boxes, capsule and oval forms, a satin plastic sheen from fake diagonal gloss bands, soft contact shadows. On the landing the same look is delivered as pre-rendered sprites with separate shadow sprites (croc_0..4, polo_0..4, a region-specific 'candy' plaque: candy_na for US/CA). Each machine room is monochrome in its own pastel, with small saturated props (yarn spools, coloured polos), in-world signage (oval 'Polo Factory' signpost, hang tags) and white sketchy strokes (jury stills).",
+  "treatments": [
+   "hue-tinted AO ramp on indirect light",
+   "fake diagonal specular bands",
+   "fresnel rim darkening and depth absorption on the dye liquid",
+   "mip-chain bloom composited additively (uBloomIntensity)",
+   "pre-rendered 3D sprites with offset shadow sprites on a 2D canvas",
+   "stepped 3-frame boil on the promo spark doodle",
+   "product photo in an oval mask on the promo card"
+  ],
+  "crops_and_ratios": "Full-bleed canvases at 1440x900 (one 2D landing canvas, WebGL for the tour). The promo card uses an oval-masked image (~200x105).",
+  "formats": "avif x30 (357KB), webp x1, ktx2 x16, glb x4, exr x1, mp4 2.88MB declared, wasm 271KB. No <video> elements in the DOM, so the mp4 is inferred to be used as a texture or sound.",
+  "evidence": [
+   "desktop_01.jpg",
+   "desktop_02.jpg",
+   "desktop_03/05/07 (pink polos, green crocs)",
+   "vendor.js HomeBg asset list (home-bg/*)",
+   "el0-el4 jury stills (seen by the first pass; not available locally for re-check)",
+   "probe bytes_by_type_declared / asset_extensions"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js bundled in the Vite vendor chunk (constructor strings: MeshStandardMaterial x13, MeshPhysicalMaterial, MeshMatcapMaterial, MeshToonMaterial, ShaderMaterial, RawShaderMaterial; InstancedMesh appears 16x in the library code), mounted in a Vue 3 app, with custom materials in the lazy loader chunk (BackgroundPlaneMaterial, MachineMaterial, MachineGlassMaterial, LiquidMaterial, DyeingPortalMaterial, PoloKnittingMaterial, DisplayMaterial). Probe contexts: webgl2 x4, webgl x2, 2d x1 (the landing canvas).",
+  "role": "The tour: three interactive machine dioramas. The landing 'vortex' is not three.js; it is the HomeBg Canvas-2D sprite loop.",
+  "assets": [
+   "https://members-play.lacoste.com/polo-factory-experience/b/CBLrAT4ljZNr.glb",
+   "https://members-play.lacoste.com/polo-factory-experience/b/IKyUusCLkCzh.glb",
+   "https://members-play.lacoste.com/polo-factory-experience/b/JR_JQavJnb9q.glb",
+   "https://members-play.lacoste.com/polo-factory-experience/b/TJXc111LVSA-.glb",
+   "16 x .ktx2 under /polo-factory-experience/b/ (e.g. 21MiLAVmvEzI.ktx2)",
+   "https://members-play.lacoste.com/polo-factory-experience/b/yM2IxOx34RBR.exr"
+  ],
+  "materials_lighting_post": "Custom material families: AO-ramp tinting on the standard lighting path, liquid ink (depth absorption + fresnel rim darkening), helix stitch particles, machine glass (uGlassColor, uGlassBlend, uWindowOpacity), fake shadows (uShadowColor, uShadowOpacity), diagonal reflection bands, and a spiral portal shader in the dyeing machine. Lighting is mostly baked (uvLightmap setter present) plus one EXR environment. Post: a mip-chain bloom (bloomFactors, lerpBloomFactor, bloomTintColors) added in a custom composite pass; the ACESFilmic call in that pass is commented out, so output goes straight to sRGB. The same composite draws an SDF white frame over the canvas: a rounded rect (uFrameRadius, uFrameWidth, uFrameMarginBottom) with a circular notch smooth-subtracted at the bottom centre (uFrameCircleRadius, uFrameBlend). inferred: that notch cradles the machine's push button.",
+  "interaction": "Click or tap hotspots ('+' speech bubbles) and machine buttons via raycaster hitboxes (hitzone_lollipop, hitbox_croco_01/02, hitbox_label). Dragging rotates the machine (gesture.angularVelocityX), which swings hanging clothes and croc charms on springs. Button press and release drive spring-animated parts, liquid slosh, polo colour flash and the stitch reveal. Camera orbits an orbitCenter with a springPhi and supports timed shake.",
+  "performance_tactics": "KTX2 GPU-compressed textures (KTX2 loader in the loader chunk; the 271KB wasm is inferred to be the Basis transcoder), baked lightmaps instead of realtime shadows, a device quality tier on the <html> class ('desktop chrome macos ultra'), route-level code split (app.js 23KB; loader chunk 531KB, lazy), and a landing that avoids WebGL entirely: a 2D canvas (alpha:false) drawing pre-rendered sprites, capped at 42, culled off-screen.",
+  "fallback_mobile": "Same WebGL scene on mobile (mobile_00/01 show 3D polos behind the UI), plus a rotate-device overlay.",
+  "evidence": [
+   "probe.json contexts/assets_3d",
+   "vendor.Df5mzA-w39bbc020.js constructor grep + HomeBg",
+   "loader.BJqWuyny39bbc020.js GLSL extraction (material names, composite pass)",
+   "el0/el2/el3 stills (first pass only)"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "No top nav. A white burger pill (57x40 CSS) sits top-left and a sound-toggle pill top-right, 24px from the edges (14px/10px on mobile). Probe nav links (LACOSTE.COM, TERMS & CONDITIONS, LEGAL NOTICE) live inside the burger menu.",
+  "menu": "Not captured (the burger was not opened).",
+  "buttons_links": "Primary CTA: a white 14px-radius card (padding 21px 23px, gap 20px, 18px/700 caps) with a dark-green (#0b4221) pill holding a diagonal arrow. On hover (or :active on touch) the pill scales x10 to flood the card green and the label turns mint #e1ffc2. The promo card's own arrow nudges diagonally on hover/press only.",
+  "unusual_interactions": [
+   "Pressable machines with per-part spring physics",
+   "Drag the machine round and the hanging polos and croc charms swing out centrifugally (springs fed by angular velocity, tanh-clamped)",
+   "A dye liquid that sloshes with the drum's tilt and stays level under gravity",
+   "Embroidery revealed by particles spiralling into stitches",
+   "In-world '+' speech-bubble hotspots with bounce-in",
+   "The sign-up promo card wiggles and flickers every 3s"
+  ],
+  "sound": "Full SFX design with a sound toggle top-right; the ambient loop and cart loop start only after the audio context is unlocked by a user gesture. Cues include sfx_Amb_Loop, sfx_Machine_Blue_Turn_Up_Loop, sfx_Machine_Green_Needle_Work_Loop_Hum, sfx_Machine_Green_Cart_Loop, sfx_Machine_Yellow_InsideLiquid_Loop, sfx_Machine_Yellow_Interaction_ColorFlash_BeepA/B, sfx_Machine_Green_PoloReveal, sfx_Machine_Blue_Success_Spin, sfx_Machine_Shared_Hit_HangedPolo, sfx_Transition_Machine, sfx_UI_Buttons_Appear_Start and sfx_UI_Click_Close.",
+  "footer": "none (app). Legal links sit in the menu. The prize-draw register modal ('ENTER THE PRIZE DRAW') carries the form."
+ },
+ "content_voice": {
+  "headline_style": "Short, invitational brand-museum phrasing: 'Welcome to the' kicker plus the proper name of the experience. Machines are named literally.",
+  "copy_tone": "Warm, heritage-craft storytelling in one line ('uncover the secrets behind the iconic Lacoste polo shirt in the workshop where it all began...'), then gamified prize-draw copy.",
+  "examples": [
+   "Lacoste Polo Atelier Experience"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Vue 3 SPA built with Vite (__vue_app__, createApp, data-v scoped CSS, hashed /assets/app.*.js + vendor.*.js + lazy loader.*.js; route guards views/home, views/machines, views/ui)",
+  "libraries": [
+   "three.js (bundled)",
+   "KTX2 loader + Basis transcoder (inferred from the 271KB wasm + .ktx2)",
+   "EXRLoader (EXR environment)",
+   "Canvas 2D for the landing sprite loop (Vue HomeBg component)",
+   "custom spring/damp animation (no GSAP, no Lenis)",
+   "Didomi CMP (sdk.privacy-center.org)"
+  ],
+  "evidence": "Bundle greps of app.CVtcvtz339bbc020.js, vendor.Df5mzA-w39bbc020.js (+ vendor.nCiXhccW39bbc020.css) and loader.BJqWuyny39bbc020.js, re-fetched and re-checked by the audit; probe libs_from_requests empty, globals empty."
+ },
+ "performance_accessibility": {
+  "requests": 89,
+  "weight_notes": "About 18.9MB declared: 3D 12.35MB, mp4 2.88MB, octet-stream 2.0MB, JS ~0.4MB (plus the 531KB lazy loader), avif 357KB, wasm 271KB, fonts 103KB. The probe took 6.4s to settle behind the preloader.",
+  "reduced_motion": "probe reduced_motion_rules: 0, and no 'reduced-motion' string in any JS bundle. The sprite spiral, swirl rotation, 3s shake loops and machine loops run regardless.",
+  "contrast_issues": "The 13px brand-green blurb sits directly over moving sprites (desktop_02: a white croc and a brown croc pass under 'Signature knit...' and 'secrets'). The 3-line 48px headline at .83 line-height nearly collides at 1440. The Didomi cookie wall does not dim the scene: it washes it out under a white 80% veil (rgba(255,255,255,.8)), which also drops the CTA's green pill to a pale grey.",
+  "mobile_quality": "Responsive 7.2. The scene runs on mobile, UI reflows to full-width cards, and there is no horizontal overflow. Accessibility 6.0 is the weakest dev score.",
+  "dev_scores": {
+   "semantics_seo": 6.6,
+   "animations": 9.2,
+   "accessibility": 6.0,
+   "wpo": 7.6,
+   "responsive": 7.2,
+   "markup": 7.0
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Monochrome rooms with hue-tinted ambient occlusion",
+   "why_it_works": "Tone-on-tone worlds read as designed objects, like colored clay, instead of generic grey-shaded 3D. One saturated prop per room then pops without any UI accent color.",
+   "how_to_build": "Bake AO (and optionally a lightmap) into uv2 in Blender. Patch MeshStandardMaterial with onBeforeCompile: after lights_fragment_end, replace the aomap block with float ao = (texture2D(aoMap, vAoMapUv).r - 1.) * aoMapIntensity + 1.; vec3 tint = texture2D(uAoColorRamp, vec2(ao, .5)).rgb; reflectedLight.indirectDiffuse *= tint; (keep clearcoat/sheen multiplied by the scalar ao). Author the ramp as a 256x1 texture from the room hue at L~35% (ao=0) up to white-ish room hue at L~96% (ao=1), e.g. #3f8fa6 -> #eff9fb for the blue room. Use the same ramp on the background plane and floor so objects melt into the room. Keep machine albedo at one hue and let only 2-3 props carry saturated color. To switch rooms, lerp between two ramps with a damped progress value over ~0.8s."
+  },
+  {
+   "technique": "Fake diagonal gloss bands instead of real reflections",
+   "why_it_works": "It gives a toy-plastic sheen that reads instantly and costs one dot product. It avoids env-map, SSR or transmission costs on mobile.",
+   "how_to_build": "This is the site's own code. Vertex: vec2 ndc = gl_Position.xy / gl_Position.w; float phase = dot(ndc, uDir) * uFreq + dot(normal.xy, uDir) * 3. + uOffset; float k = smoothstep(10., 100., length(worldPos.xyz - cameraPosition)) * 0.2; pass vec2(phase, k). Fragment: float b = smoothstep(.99, .995, cos(p.x)) + smoothstep(0., .94, cos(p.x)) * .03 + smoothstep(.8, .81, cos(p.x - 1.9)) + smoothstep(0., .94, cos(p.x - 1.9)) * .1; color += b * p.y * uIntensity. Defaults on the site: uDir = (0.8, -0.3), uFreq = 25.5, uOffset = 1.3, uIntensity = 18. Objects nearer than 10 units get no bands. inferred extension: tween uOffset by about +2pi over 600ms on press so a sheen sweeps across."
+  },
+  {
+   "technique": "Liquid-in-a-window slosh shader",
+   "why_it_works": "A tiny physical detail (dye tilting and rippling inside the drum) makes the machine feel alive and responds to the user's press.",
+   "how_to_build": "Site code, simplified. Vertex (on vertices weighted by an 'influence' top mask): vec3 up = normalize(uLocalUp); vec2 grav = -up.xz / max(up.y, .1); vec2 tilt = sin(vec2(uLiquidTiltX, uLiquidTiltZ)) + grav; y += (x*tilt.x + z*tilt.y) * influence; float edge = .5 + .5*((x/uHalfWidth)^2 + (z/uHalfDepth)^2); y += (sin(x*3. + t*uWaveSpeed*2.)*.6 + cos(z*2.5 + t*uWaveSpeed*1.7)*.4 + sin((x+z)*2. + t*uWaveSpeed*1.3)*.3) * uWaveAmplitude * uWaveIntensity * edge * influence; clamp the position to the box half-extents; normal = mix(normal, normalize(vec3(-tilt.x, 1., -tilt.y)), influence). Fragment: outgoingLight = mix(outgoingLight, uDepthColor, (1.-vNormalizedY)*uDepthIntensity); then mix toward uDepthColor again by pow(1.-abs(dot(N,V)), uFresnelPower)*uFresnelIntensity so the rim reads denser. inferred driver: feed uLiquidTiltX/Z from a spring on the drum's angular velocity and bump uWaveIntensity on press, damping back."
+  },
+  {
+   "technique": "Canvas-2D sprite spiral behind a centred DOM headline",
+   "why_it_works": "It looks like a live 3D brand vortex but costs a few drawImage calls per frame: pre-rendered 3D sprites with their own shadow sprites, no WebGL, no model loading on the landing. Sprites passing under the text bind the DOM and the canvas into one composition.",
+   "how_to_build": "Values from the site's HomeBg component. One <canvas> (getContext('2d',{alpha:false})) behind the DOM (canvas z 0, text z 1). Each frame (dt normalised to 60fps): fillRect #c9e2ad; translate to centre, rotate(swirlAngle) with swirlAngle -= 0.1deg, drawImage the 1110px swirl SVG scaled to the viewport diagonal; drawImage a gradient image with globalCompositeOperation='soft-light'. Every 1200ms spawn a wave of 6 items {radius:0, angle: waveIndex*-7 + i*60, scale:0}, alternating croc and polo waves; colour id cycles through 5 variants. Per frame: radius += 3.5, angle += 0.15; once radius >= 10% of canvas width, tween scale 0 -> 1 over 500ms with back.out(2). Draw a shadow sprite first, offset by 1% of the vector from a light point at (0.57w, 0.04h), then the sprite (crocs 150px wide, polos 120px, 80px under 1024px); polos get a rotation derived from their angle. Remove items 50px off-screen and cap the list at 42. Draw the pre-rendered plaque last in the centre."
+  },
+  {
+   "technique": "Pill-flood CTA hover",
+   "why_it_works": "The small icon chip grows to become the button fill, which reads as tactile without lifting the button (no hover boop).",
+   "how_to_build": "Site CSS. .button-cta{position:relative; display:inline-flex; gap:20px; padding:21px 23px; overflow:hidden; border-radius:14px; font:700 18px Lacoste; transform:translateZ(0)}. Layers: .bg (#fff) and .bg-below (#0b4221, opacity 0) fill the card; .icon-bg is the small #0b4221 pill behind the arrow (label and arrow above it). @media(hover:hover){.button-cta:hover .icon-bg{transform:scale(10); transition-timing-function:cubic-bezier(.86,0,.07,1)} .button-cta:hover .text{color:#e1ffc2; transition-delay:.2s} .button-cta:hover .bg-below{opacity:1; transition:opacity .2s .2s} .button-cta:hover .bg{opacity:0; transition:opacity .2s .2s}}; repeat the same rules under @media(hover:none) and (pointer:coarse) with :active. Set the icon-bg's transform-origin at its own centre so the flood radiates from the arrow."
+  },
+  {
+   "technique": "Boiling hand-drawn spark and sound on every action",
+   "why_it_works": "A 3-frame hand-drawn spark stepped at a slow ~2.5 fps adds a human, illustrated layer to clean CG. Paired SFX make every press feel like a physical machine.",
+   "how_to_build": "Site CSS. Draw 3 variants of the spark (31x32 SVG) and stack them at top:-25px; left:-25px of the card. .spark{opacity:0; animation:spark-cycle 1.2s steps(1,end) infinite} .spark--1{animation-delay:-.4s} .spark--2{animation-delay:-.8s} @keyframes spark-cycle{0%,33.333%{opacity:1} 33.334%,to{opacity:0}}. Show it only >=1024px. For sound, use a sprite map (WebAudio) keyed by event (press, release, loop start/stop, reveal stinger, transition); start the ambient loop only after the first user gesture unlocks audio, with a persistent mute pill."
+  },
+  {
+   "technique": "Shader-drawn viewport frame with a smooth notch",
+   "why_it_works": "A white rounded frame drawn in the final composite makes the WebGL canvas read as a framed diorama window, and a circular notch smooth-subtracted into its bottom edge gives a physical seat for the main control without any DOM chrome.",
+   "how_to_build": "From the site's composite shader (visual not captured, so treat the look as inferred). In the final pass: vec2 p = pxCoord - frameCenter; float dRect = sdRoundedBox(p, halfSize, uFrameRadius*dpr); float dCircle = length(p - vec2(0., halfSize.y + 5. + uFrameCirclePosition)) - uFrameCircleRadius*dpr; float h = max(k - abs(-dCircle - dRect), 0.)/k; float d = max(dRect, -dCircle) + h*h*h*k/6.; (k = uFrameBlend*dpr). stroke = smoothstep(fw+1., fw-1., abs(d)); fill = max(step(dCircle, 0.), step(0., d)); color = mix(color, vec3(1.), max(stroke, fill) * uFrameOpacity). Leave uFrameMarginBottom of canvas below the frame for the DOM button."
+  }
+ ],
+ "slop_risks": [
+  "Pastel candy palette: mint #e1ffc2, baby-blue #98d9ea, butter #fcf383 and blush #f7ece8 are the 'pastel candy gradient background' family. Here each is justified as a monochrome 3D room with tinted AO; lifted onto a flat page as background washes, it is slop.",
+  "Radial composition around a centred plaque: a rotating spiral swirl emanating from a glossy pre-rendered 'candy' plaque that has a soft pale halo baked into the image (desktop_01). It flirts with 'radial glow halo behind an object' and 'the bloom that is just the element's shape, blurred'. The sprites' shadows, by contrast, are cast from one light point, which is the right way.",
+  "The DOM landing is the default hero stack: kicker ('Welcome to the'), headline, blurb and one CTA, centred down the middle. Only the 3D vortex rescues it.",
+  "Cramped display type: the 48px headline at line-height 0.83 wraps to 3 lines at 1440, and 'Atelier' is jammed between the other two lines (desktop_01).",
+  "Back-out overshoot cubic-bezier(.175,.885,.32,1.275) on UI pill transforms: copied onto buttons as scale or translate on hover, it becomes the 'hover boop'.",
+  "The promo card shakes and flickers every 3s (tilt-n-move-shaking): the 'floating cards' tell (a small card over the hero with a looping decorative motion) and a nagging ad-banner tic. Its white arrow chip pinned to the photo's top-right corner is the 'floating tag pinned to an image' tell, and the arrow sits in a box (pill) on both the CTA and the promo. A saturated yellow card on a mint field is also a 'colliding colours' moment.",
+  "Legibility: 13px text sits over objects moving beneath it with no scrim or plate.",
+  "No prefers-reduced-motion handling anywhere (0 CSS rules, no JS check) for a permanently moving scene."
+ ],
+ "confidence_notes": "OBSERVED: desktop_00 (preloader), desktop_01-02 (clean landing), desktop_03-07 (the same landing behind the Didomi cookie wall; orbit positions still visible), mobile_00/01 (landing behind the cookie wall). The page is a fixed single-screen app, so the wheel-scroll steps only show orbit motion over time. The machine rooms are behind 'Start the tour' and were not entered, per the no-interaction rule. A re-probe would hit the same cookie wall and landing, so it was not re-run. There are no element videos for this site. Instead I viewed the 5 jury element stills (PNG, 1600x1200) from the corpus record: Knitting, Logos, Embrodering, Dyeing, Start the tour. They show the 'Polo Factory' naming and white heavy-caps titles that may be submission-card overlays (inferred). Machine behaviour (liquid slosh, helix stitches, gloss bands, springs, SFX) comes from uniform names, GLSL comments and sfx_* strings in the loader chunk (code-observed, visual not seen). Colors come from probe root_vars plus pixel samples; the easings, keyframes and hover rules come from vendor.css. Six bounded fetches: stills, HTML, app.js+css, vendor.js, loader.js. | audit (2026-09-25): re-viewed desktop_00/01/02/03/05/07, mobile_00/01 at full size and re-fetched app.js, vendor.js, vendor.css and loader.js. Fixed: the landing 'vortex' is a Vue HomeBg Canvas-2D loop of pre-rendered sprites (not InstancedMesh 3D, no depth), with real spawn/speed/pop-in/cap numbers; the plaque is a pre-rendered image and the 'sunburst' is a rotating SVG swirl; orbitCenter is a camera property and spiralDir/vortex belong to DyeingPortalMaterial, not the landing; springCentrifugal swings hanging clothes/crocs fed by drag angular velocity (not a knitting carousel); moveArrow is a .3s promo-card hover loop, not an idle CTA arrow; spark boil is 1.2s steps with -.4/-.8s delays (not .375s); gloss-band how_to_build replaced with the real cos-based code and defaults (freq 25.5, dir (.8,-.3)); liquid fresnel darkens the rim; AO ramp multiplies indirectDiffuse; tone mapping (ACES commented out) and the SDF frame composite added; Didomi veil is white, not dimming; burger is 57x40; headline size is breakpoint-stepped (24/48/72) with a 400px box; ratio re-measured (ink ~2%, not 8%); Black 900 face noted; pink polos and green crocs added. what_owns_it changed 3d -> image. Element stills were not available locally, so the room descriptions remain first-pass/jury-still based."
+}

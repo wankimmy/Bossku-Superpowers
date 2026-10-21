@@ -1,0 +1,287 @@
+{
+ "slug": "tracing-art",
+ "title": "Tracing Art",
+ "live_url": "https://www.getty.edu/tracingart/",
+ "award": "Awwwards Site of the Day, Jul 22 2025 (Honors); listed in Sites of the Month; credits Getty + Resn; award year 2025",
+ "scores": {
+  "overall": 7.68,
+  "design": 7.83,
+  "usability": 7.25,
+  "creativity": 7.83,
+  "content": 8.09,
+  "dev": {
+   "overall": 7.69,
+   "semantics_seo": 7.6,
+   "animations": 8.0,
+   "accessibility": 7.4,
+   "wpo": 7.8,
+   "responsive": 7.8,
+   "markup": 7.4
+  }
+ },
+ "industry": "Cultural institution / museum research: interactive scrollytelling for the Getty Provenance Index (art ownership histories)",
+ "signature": "A paper-white page where real collection images float as individual WebGL planes on two depth layers: the back layer is washed to 97% white and, because far planes ignore their alpha, cut-out objects collapse into pale ghost rectangles, while the front layer stays in full colour and parts around the headline (a repel point plus 50% dimming of the centre column). Scroll moves the whole field; a fixed DOM layer tells one painting's ownership history over it; hover restores colour with a provenance toast; and the dataset view switches to ~1,000 instanced, tone-tinted sprite-sheet thumbnails falling into donor clusters.",
+ "first_screen": {
+  "composition": "OBSERVED (desktop_00): pure white canvas. Centred 'Getty' wordmark at top (y~42); a 36px black rounded-square menu button top-right (x1386-1422); a vertical chapter-progress pill on the right edge (x1386-1422, y410-490). Dead centre: Graphik 12.6px/500 eyebrow 'Millions of Resources, Spanning Five Centuries' over a 54px Bardford headline set in 3 centred lines (~600px measure), captured mid-fade in pale grey, then a grey 'Scroll down' pill (124x42) with a down arrow. Around it ~20 artwork planes on two z-layers (code: Collage zColumns 2, random scale 0.7-1): front-layer planes in full colour (Géricault's Study of the Model Joseph, a celadon ewer, a Fayum mummy portrait, an illuminated manuscript page, a Venice view, the Parthian Stag Rhyton), back-layer planes washed almost to white and flattened to opaque ghost rectangles (the fogged ewer at left keeps only a faint silhouette inside its box). Planes near the centre column are dimmed toward 50% white (the half-faded Schiele self-portrait at x480-583) and a repel point keeps a clear zone around the headline.",
+  "what_owns_it": "mixed",
+  "display_type_px": 54,
+  "evidence": [
+   "probes/tracing-art/desktop_00.jpg",
+   "probes/tracing-art/mobile_00.jpg",
+   "frames/tracing-art/0/f02.jpg",
+   "frames/tracing-art/0/f03.jpg",
+   "probe measure.type.h2 54px Bardford"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Bradford LL (declared in CSS as 'Bardford')",
+    "role": "display",
+    "classification": "text serif; roman from BradfordLLSub-Regular.woff2 (subset) and the italic from BradfordLL-LightItalic.otf mapped to font-style italic 400, so every italic is the lighter Light Italic cut; used for the headline, narrative sentences, owner names and the 'Tracing Art' title",
+    "foundry": "Lineto (Bradford LL); family name aliased/misspelled as 'Bardford' in @font-face",
+    "source": "style.BLbxF1pr.css @font-face src URLs /tracingart/fonts/bradford/BradfordLLSub-Regular.woff2 and BradfordLL-LightItalic.otf; probe fonts_loaded 'Bardford 400 normal/italic'"
+   },
+   {
+    "name": "Graphik",
+    "role": "ui",
+    "classification": "grotesque sans, 400/500/600, for eyebrows, captions, credits, timeline years, toasts, data-viz labels",
+    "foundry": "Commercial Type",
+    "source": "@font-face in style.BLbxF1pr.css: Graphik-Regular/Medium/Semibold-Web.woff2 (400/500/600); probe font_families_rendered Graphik 22 nodes. The probe's fonts_loaded list omitted Graphik, but asset_extensions (4 woff2 + 1 otf) matches exactly Bradford Regular + 3 Graphik woff2 + the Bradford italic otf. Fallbacks Roboto, Helvetica Neue."
+   }
+  ],
+  "display_size_px": 207,
+  "body_size_px": 30,
+  "scale_notes": "207 / 135 giant transaction titles (AssetTransaction h1 pair; 'Paulus Potter', 'Adolphe Schloss' in element 1) / 72 'Tracing Art' title / 54 hero h2 / ~50 owner-name list in the Piebald Horse chapter (estimated from element 1 frames, not measured) / 30.15 narrative sentences / 18 Bradford white paragraph (measured, empty at probe time) / 14.4 data-viz names / 12.6 UI eyebrow and years / 12 captions / 10 credit lines. The system is two-level: Bradford big (30-207) for story, Graphik tiny (10-14.4) for metadata; almost nothing in between.",
+  "tracking_leading": "Negative tracking at every size: 207px -6.21px (-0.03em) lh 1.0; 135px -4.05px (-0.03em) lh 1.0; 72px -2.16px (-0.03em) lh 1.0; 54px -1.08px (-0.02em) lh 1.2 (64.8px); narrative 30.15px -0.603px (-0.02em) lh 1.12 (33.77px); Graphik 12.6px -0.126px (-0.01em); captions 12px -0.24px (-0.02em); credits 10px -0.2px.",
+  "case_and_style": "Sentence case throughout; roman/italic mixing inside one headline ('the World of the GPI' with 'the' and 'of the' in italic, nouns roman); years as bold Graphik 600 numerals on the timeline; artwork titles underlined as links in captions.",
+  "signature_moves": [
+   "OBSERVED (element 1 f04-f07) + code (BGfcuG2n.js AssetTransaction/TransactionTitle): two kinds of name type. (1) An owner list at ~50px Bradford in two columns flanking the small pinned Piebald Horse ('Jean-Baptiste Pierre Lebrun', 'André Coquille', 'Chevalier Lambert', 'William Norton', 'Baron Hastings', 'Charles Sedelmeyer') moving vertically past it. (2) Giant 135/207px transaction titles cropped by the top edge ('Paulus Potter' f04, 'Adolphe Schloss' in grey f07). In AssetTransaction the top and bottom titles and the media fly in from y 100lvh -> 0 (1.5s power2.out, stagger 0.15), then the top title scales 1 -> 0.25 while the bottom scales 0.25 -> 1 (1.5s power2.inOut): the seller's name shrinks as the buyer's grows, then everything exits to -100lvh (power2.in, stagger 0.1). Correction: Schloss names the collection the painting was looted from, not a looter; the narrative in f07 names the Vichy government as the looter.",
+   "OBSERVED: italic articles + roman nouns at the same size ('the World of the GPI', element 2 f00).",
+   "OBSERVED: intro title 'Tracing' and 'Art' start pale grey close together, then spread apart and darken to black as a ribbon of artworks grows between them (element 0 f00 -> f01).",
+   "OBSERVED: narrative sentences are 1-5 lines centred in a ~525-580px measure under the pinned artwork, with a year label riding the timeline below (desktop_02-06; element 1 f02 has a 5-line paragraph); in the immersive AssetZoom chapter they move to a left column (x~128-457, desktop_07). Code (TextBlock): default entrance autoAlpha 0->1 (1s power3.inOut, 0.1s delay) plus a slow scale 0.85->1 over 4s power3.out; optional letter mode splits words+chars and fades chars 0->1 (3s, stagger 0.05) with the timeline progress driven by scroll."
+  ],
+  "mobile": "OBSERVED (mobile_measure, mobile_00/01): the largest mobile type is the 'Tracing'/'Art' title at 41.6px (h1s 41.6 and 66.56px); the hero headline drops to ~29px (mobile_measure 29.12px; 4-line wrap in mobile_00), not 41.6. Captions ~12px; no horizontal overflow; eyebrow and headline centred with the field still floating around; the Getty wordmark stays centred on mobile and collides with planes passing behind it (mobile_01)."
+ },
+ "color": {
+  "mode": "light, with chapter shifts",
+  "base": "#ffffff pure white (no cream)",
+  "ink": "#000000",
+  "accents": [
+   "#DAE2E8 cool blue-grey chapter background (Awwwards palette; element 1 f03-f07)",
+   "vec3(0.97) near-white depth-fog colour in the shader",
+   "#9d9d9d grey for credit lines",
+   "rgba(186,186,186,0.2) / rgba(13,13,13,0.05) translucent fills with backdrop-filter blur (5 elements) for the 'Scroll down' pill, chapter pill and toast: frosted glass over the field (desktop_05 shows the paintings blurred behind the pill and toast)",
+   "the artworks themselves supply all saturated colour",
+   "uColorOverlay tint on the data-viz thumbnails (mix 10% + overlay blend at 50%) grades thousands of mixed thumbnails into one warm brown mass (element 3)"
+  ],
+  "ratio": "approx 85% white / 10% artwork colour / 5% black ink",
+  "section_shifts": "Background shifts white -> #DAE2E8 for the provenance-owners chapter (element 1 f03-f07). The immersive dark chapter (desktop_07) is a DOM AssetZoom, not a WebGL push: a large <picture> of the Kalf is scaled 1.2 -> 1 (1s power2.inOut), panned vertically across its height with scroll, then scaled back; the UI theme flips light -> dark at the start and back at the end, so the Getty wordmark and menu invert.",
+  "texture": "none; depth fog toward white replaces texture",
+  "notes": "Restraint makes the collection the palette: UI never adds a colour, so a Van Gogh or a blue-and-white jar is always the most saturated thing on screen."
+ },
+ "layout": {
+  "grid": "No CSS grid containers (probe grid_containers 0), no position:sticky (0) and 9 position:fixed elements: the story runs on a fixed stage while the 81,450px document only supplies scroll distance (inferred from those counts and the scroll-window code: AssetTransaction takes start/end in scroll units). Pinned artwork 378x450 at x531-909, y82-531; caption block centred beneath; narrative centred in a ~525-580px measure (x458-983 in desktop_02, x432-1010 in desktop_05) at y~680-760; timeline track x513-927 at y868; right chapter pill; bottom-right toast x1165-1422, y824-882. Everything else is the WebGL field (a transparent canvas: renderer clear alpha 0).",
+  "density": "airy",
+  "alignment": "Centred for the hero, the pinned artifact and most story text; the immersive AssetZoom chapter and the data-viz switch to a left text column (desktop_07; element 3 f00). Peripheral UI pinned to corners/edges.",
+  "composition_moves": [
+   "One pinned hero artifact at centre, a depth cloud of related works orbiting it",
+   "Timeline scrub bar whose year label rides the fill (1669 -> 1700 -> 1936 -> 1940)",
+   "Full-bleed DOM zoom into the painting surface as a chapter background, with narrative in a left column and an archival ledger thumbnail bottom-right (desktop_07)",
+   "Radial data visualisation: ~10 donor clusters on a ring around a centre pile, text block left (element 3)",
+   "Provenance type: a two-column list of ~50px owner names scrolling past a small pinned painting, punctuated by giant 135/207px transaction titles cropped at the top edge (element 1 f04-f07)",
+   "Primary-source cameo: a Ledger card (scan of an archival stock book) that expands with GSAP Flip (0.8s power2.out), then zooms to a focus point (scale 2, 1.2s power2.inOut) with top/bottom overlays sliding in; Escape closes (code, desktop_07 thumbnail)",
+   "Husband-and-wife pair: side portraits slide behind the centre portrait and re-emerge as a captioned pair above a 5-line paragraph (element 1 f00-f02)"
+  ],
+  "section_rhythm": "A single 81,450px scroll narrative on a fixed stage: intro morph -> hero field -> Kalf painting timeline (1669 -> 1940) -> immersive Kalf zoom with ledger (desktop_00-07). inferred order after that, from the element clips: husband-and-wife pair -> owners chapter on #DAE2E8 around the Piebald Horse -> 'the World of the GPI' field -> donor clusters. Rhythm comes from swapping the field state, not from stacked sections.",
+  "mobile_adaptation": "Same WebGL field and pinned artwork at 390px (Kalf 242px wide, 484px in the 2x capture); wave layout switches to a vertical sine (x = sin(u*2PI)*0.35); centre-column dimming narrows to |x|<0.5 (same flag that switches the wave to vertical); inferred: BlankCanvases use 8 rows instead of 12; menu becomes a larger black rounded square; chapter pill stays on the right edge; the Getty wordmark stays centred instead of moving to the top-left."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis 1.1.9 (window.lenisVersion; html classes 'lenis lenis-scrolling lenis-smooth'; wheelMultiplier/touchMultiplier options in DPLBeim1.js) with GSAP (core version strings 3.10.4) and ScrollTrigger present; chapters also run on a custom scroll-window helper (start/end in scroll units).",
+  "preloader": "OBSERVED (element 0 f00-f01, ~1.5s apart): 'Getty' wordmark centre; 'Tracing' and 'Art' in pale grey with a small squiggle of stacked thumbnails between them; the squiggle grows into a full sine-wave ribbon of overlapping artwork cards while the two words slide apart and turn black. Code (BGfcuG2n.js Collage/CollageImage): every card starts at one point just right of centre (0.5,0,0; 0,0,0 on mobile) at scale 0. Wave target: u = i/n; x = map(u,-1.5..1.5)+0.5, y = sin(u*2PI)*0.7 (portrait: x = sin(u*2PI)*0.35, y = map(u,-1..1)+0.05); z = gridZ*0.01 - (I - |i - I|)*0.005 with I = n/2, so the ribbon's two ends sit in front and its middle recedes (the end cards read largest in f01). show(): startPr 0->1, scale 0->0.5 (0.4 mobile), alpha 0->1 over 1.5s power2.inOut, delay 0.2s + 8ms x (I - |i - I|) so the ends lead and the middle arrives last.",
+  "intro_sequence": "OBSERVED (element 0 f01 -> f02 -> f03, ~3s): the ribbon disperses into the scattered field (code: at 2s + 3ms x shuffled index each card tweens endPr 0->1 and scale -> 1 over 2s power2.inOut into its brick-offset grid slot), the wordmark moves to the top bar, the eyebrow and 54px headline fade from pale grey to black as a block (no per-char effect in f02/f03) and the 'Scroll down' pill appears.",
+  "scroll_techniques": [
+   "fixed stage: central artwork held on a fixed DOM layer while narrative lines swap and the timeline advances (no sticky; inferred from 0 sticky / 9 fixed)",
+   "field scroll: the whole collage moves in y with progress (0-0.7 of its window mapped to one viewport height, smoothed 0.3 per frame); perspective gives front and back layers different rates (desktop_00 -> desktop_01)",
+   "card shuffle: side portraits slide behind the centre card and re-emerge as a captioned pair (element 1 f00 -> f02)",
+   "background colour shift white -> #DAE2E8 at a chapter boundary (element 1 f03)",
+   "transaction titles: seller/buyer names fly in from 100lvh, scale-swap 1 -> 0.25 / 0.25 -> 1, exit to -100lvh (AssetTransaction)",
+   "owner-name columns scrolling past the small pinned Piebald Horse (element 1 f04-f07)",
+   "DOM zoom: AssetZoom scales a large <picture> 1.2 -> 1, pans it vertically with scroll, flips UI theme to dark (desktop_07)",
+   "morph: the dataset view re-forms thumbnails into radial donor clusters (element 3)"
+  ],
+  "text_animation": "Mostly block fades: headline pale grey -> black as a whole; narrative TextBlocks fade in (autoAlpha 1s power3.inOut) while scaling 0.85 -> 1 over 4s power3.out. Code also has a scrubbed letter mode (SplitText words,chars; chars alpha 0->1 over 3s, stagger 0.05, timeline.progress = scroll) whose use is inferred for the grey, part-revealed sentences in desktop_07 and element 1 f07.",
+  "image_animation": "Hero field: one Mesh per artwork (CollageImage -> own webp texture, ShaderMaterial, depthWrite false), each tweening startPr/endPr/scale/alpha with ms-level staggers; depth fog in the fragment shader; uRolloverPr on hover; uDimmed for the centre column. Instanced paths: BlankCanvases (20 x 12 x 4 = 960 outline rects, or 20 x 8 x 4 = 640 when a breakpoint flag is set) and the donor data-viz (default 1,000 billboarded sprite-sheet instances) with sub-millisecond staggers (0.001, 2e-4, 25e-5 in bundle).",
+  "page_transitions": "none observed; single long page (inferred from 81,450px doc height and no route changes in probe)",
+  "hover_micro": [
+   "Artwork hover: pointer move raycasts the registered planes; the hit plane scales up ~10% and uRolloverPr brings its colour from fogged to full; a frosted toast in the bottom-right swaps to a 30px thumbnail, title, artist + date and credit line with licence link, cross-fading between items (element 0 f04-f07). Back-layer planes are not raycast targets (setInteractive false at z = -depth).",
+   "Mouse parallax: the scene camera sits on a spring (stiffness 100, damping 30) and pans in x/y within +/-cameraMotion as the pointer moves, so the whole field drifts opposite the cursor (element 0 f03 -> f04: cursor moves left, planes shift ~30px right with no scroll)",
+   "Donor label hover: the other clusters dim to ~10% opacity and a stream of thumbnails flows from the centre pile to the hovered donor's cluster (element 3 f03, f06)",
+   "Menu and chapter pill: CSS transitions 200-500ms"
+  ],
+  "cursor": "Native cursor with pointer hand over artworks (element 0 f04); no custom cursor (probe cursor_none 0); the pointer drives a spring camera pan.",
+  "easing_curves": [
+   "GSAP power2.inOut (23 uses)",
+   "GSAP none (19, scrubbed tweens)",
+   "GSAP power2.out (15), power3.out (13), power2.in (9), sine.out (9), power3.inOut (8)",
+   "CSS cubic-bezier(0.25,0.46,0.45,0.94) x8 (easeOutQuad)",
+   "CSS cubic-bezier(0.215,0.61,0.355,1) x4 (easeOutCubic)",
+   "CSS cubic-bezier(0.39,0.575,0.565,1) x4 (easeOutSine)",
+   "CSS cubic-bezier(0.455,0.03,0.515,0.955) x2"
+  ],
+  "duration_range_ms": "CSS 200-800ms (0.5s x16, 0.2s x14, 0.8s x12); GSAP 1000-1500ms dominate (duration 1 x30, 1.5 x28), 2000-4500ms for field morphs and ambient loops, one 10s loop.",
+  "stagger_ms": "UI 10-50ms (stagger .01/.02/.03/.05); instance fields use sub-millisecond per-item staggers (0.001s, 0.0002s, 0.00025s) so thousands of cards ripple over ~0.5-2s.",
+  "choreography_notes": "Slow and even: most tweens are 1-1.5s power2/power3, nothing snaps. The field always moves as one organism with per-instance offsets; the pinned artwork and the serif line are the only still points, so the eye knows where to read. Hover is the only fast motion.",
+  "evidence": [
+   "frames/tracing-art/0/f00.jpg ... f07.jpg (Main Scroll, 12.2s clip)",
+   "frames/tracing-art/1/f00.jpg ... f07.jpg (Scroll Animations, 8.5s clip)",
+   "frames/tracing-art/2/f00.jpg, f03.jpg, f06.jpg (Hover Effects)",
+   "frames/tracing-art/3/f00.jpg, f03.jpg, f06.jpg (Data Visualisation)",
+   "probes/tracing-art/desktop_00.jpg ... desktop_07.jpg",
+   "bundle grep: BBSPXiNi.js (instanced shaders), BQjU4dwZ.js (artwork plane material), BGfcuG2n.js (wave layout), VbIHlcLE.js (camera), DPLBeim1.js (GSAP/Lenis)",
+   "bundle BQjU4dwZ.js (Scene spring camera, raycaster provider, artwork plane material), BGfcuG2n.js (Collage, CollageImage, TextBlock, AssetTransaction, AssetZoom, Ledger), BBSPXiNi.js (donor and BlankCanvases shaders), style.BLbxF1pr.css (@font-face)"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "realtime-3d",
+  "art_direction": "Museum collection photography used untouched: true colour, even studio light, objects (ewers, goblets, statuettes, mummy portrait) cut out on alpha so they float without a frame; paintings as flat rectangles. Distance washes images toward white rather than darkening them, so the page stays paper-bright. The immersive chapter uses a macro crop of the painting surface (craquelure visible) as a dark backdrop.",
+  "treatments": [
+   "depth fog to 97% white with a 5% colour tint; far planes also become fully opaque (alpha = mix(1, texAlpha, depthFactor)), so cut-out objects turn into pale rectangles until they come forward",
+   "hover restores full colour",
+   "alpha cutouts for 3D objects",
+   "blank-canvas placeholder rectangles (outline-only instanced rects, base alpha 0.2) mixed into the field for density",
+   "macro zoom of a painting as chapter background",
+   "sine-wave ribbon of overlapping thumbnails",
+   "radial clusters of thumbnails as data points",
+   "centre-column planes dimmed to a 50% white mix behind the headline",
+   "overlay-tinted thumbnails in the data-viz (one warm grade over thousands of images)"
+  ],
+  "crops_and_ratios": "Each hero-field plane keeps the artwork's native aspect (the mesh is scaled from the loaded texture: landscape scale(1, 1/aspect), portrait scale(aspect, 1)); BlankCanvases carry a per-instance aAspect. Pinned hero painting ~0.84:1 (378x450 at 1440).",
+  "formats": "probe: 265 webp (9.07MB declared), 4 woff2 + 1 otf (fonts), 5 json, 0 video, 0 glb. The hero field loads one webp per artwork; sprite-sheet atlases are code-confirmed for the data-viz only: images/getty-spritesheets/generated/data-viz/metadata.json + spritesheet_0 and spritesheet_1 @sm/@lg.webp (2 sheets in use, shader allows 3 via uSpriteSheet[3]).",
+  "evidence": [
+   "probes/tracing-art/desktop_00.jpg",
+   "probes/tracing-art/desktop_02.jpg",
+   "probes/tracing-art/desktop_07.jpg",
+   "frames/tracing-art/0/f01.jpg",
+   "frames/tracing-art/3/f00.jpg",
+   "probe asset_extensions + bytes_by_type_declared"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r167 (probe three_revision 167) inside Nuxt 3. WebGLRenderer antialias false, clear alpha 0 (transparent canvas over the white page), autoClear false, DPR clamped to [1,2]; each frame renders an orthographic layer 1 (background), the perspective scene, clearDepth, then orthographic layer 2 (foreground). Hero field = one Mesh + ShaderMaterial per artwork; InstancedBufferAttributes for BlankCanvases and the sprite-sheet data-viz; RawShaderMaterial/ShaderMaterial throughout; ImageBitmapLoader (7 refs); KTX2Loader bundled (27 refs) but no .ktx2 requested; 2 webgl2 contexts.",
+  "role": "image-plane field (individual artwork meshes on two depth layers) + instanced particles/data-viz (donor clusters, blank-canvas rects) + intro wave morph",
+  "assets": [
+   "per-artwork webp textures from www.getty.edu/tracingart/ (265 webp requests)",
+   "images/getty-spritesheets/generated/data-viz/metadata.json + spritesheet_0/1@{sm,lg}.webp for the data-viz (from code)",
+   "no .glb/.ktx2/.hdr observed"
+  ],
+  "materials_lighting_post": "Unlit. Artwork plane (BQjU4dwZ.js): vertex vDepthFactor = smoothstep(-uDepth, -0.5, worldPosition.z). Fragment: tex = texture2D(uTexture, vUv); cDimmed = mix(vec3(1.0), tex.rgb, 0.5); cBack = mix(vec3(0.97), tex.rgb, 0.05); color = tex; color = mix(color, cDimmed, uDimmed); color = mix(cBack, color, vDepthFactor); color = mix(color, tex.rgb, uRolloverPr); color = mix(cBack, color, tex.a); alpha = mix(1.0, tex.a, clamp(vDepthFactor + uRolloverPr, 0, 1)) (far = opaque pale box, near/hovered = true cut-out). Instanced atlas path: MAX_TEXTURES 3 sampler array, per-instance aSprite frame remapped by uSheetSize. BlankCanvases: instanced outline rects, uBaseAlpha 0.2, z-scaled alpha, uRepelRadius push. Donor clusters: per-instance aAngleRadius (angle, startRadius, minRadius) and aProps (alpha, progress, inProgress, rolloverScale); radius = mod(radius - time, repeatRadius) makes inner thumbnails fall into the centre on a loop (vLoopAlpha = smoothstep(0, 0.05, loopProgress)); translation mixes startPos*1.2 -> pos -> pos*0.1; z = mix(-0.3, 0.0, random); quads are camera-facing billboards (offset added in view space); colour = overlay-tinted sprite, alpha = sprite.a * radial fade * aProps.x * loop alpha (a fog term is computed but unused). tonemapping + colorspace includes.",
+  "interaction": "scroll-driven layout/camera morphs; spring camera pan from the pointer (stiffness 100, damping 30, amplitude cameraMotion per scene); raycast hover per plane on pointermove (registerHitObject -> onRollover) and click via pointerdown -> onClick to open artwork info; repel point + radius pushing collage cards (CPU) and blank rects (uRepelRadius) away from the text.",
+  "performance_tactics": "Instancing + up to 3 atlas textures keep the ~1,000 data-viz thumbnails and 640-960 blank rects to a few draw calls; the hero field stays at a few dozen individual meshes with their own textures; depthWrite false on planes; back layer excluded from raycasting; antialias off with DPR clamped to [1,2]; PerspectiveCamera fov 45, near 0.1, far 100 at z=5; ImageBitmapLoader decoding off the main thread (inferred benefit).",
+  "fallback_mobile": "Same realtime field on mobile (mobile_00/01) with portrait/mobile branches in code (vertical wave, narrower dim band, smaller card spacing 1.7 vs 2.8; fewer blank-canvas rows inferred); no static fallback observed.",
+  "evidence": [
+   "probe globals three_revision 167, contexts {webgl2: 2}",
+   "bundle BBSPXiNi.js, BQjU4dwZ.js, BGfcuG2n.js, VbIHlcLE.js",
+   "frames/tracing-art/0/f01.jpg",
+   "frames/tracing-art/3/f03.jpg",
+   "bundle BQjU4dwZ.js (Scene/Renderer passes, spring camera), BBSPXiNi.js (BlankCanvases, donor shader, sprite-sheet loader)"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Minimal: centred 'Getty' wordmark (moves to top-left once scrolling, desktop_01+) and a black rounded-square hamburger top-right; a right-edge vertical chapter pill whose active dot stretches into a bar.",
+  "menu": "Overlay menu (hidden h2/h3 Graphik 12.6px white nodes in probe); not opened by the probe.",
+  "buttons_links": "'Scroll down' frosted pill (rgba(186,186,186,0.2) + backdrop blur) with arrow; artwork titles underlined in captions; inline underlined links inside narrative sentences ('research', desktop_05); 'No copyright' / licence links underlined grey 10px; toast close 'x'.",
+  "unusual_interactions": [
+   "hover any floating artwork to bring it into full colour with a provenance toast",
+   "timeline scrubber showing the year of the story beat",
+   "donor labels that isolate their cluster and animate a flow of works from the centre",
+   "'Click on an artwork to learn more.' persistent hint toast",
+   "archival Ledger card: click to expand (Flip) and zoom to a focus point on the scanned stock-book page; Escape closes"
+  ],
+  "sound": "none observed",
+  "footer": "not reached in the captured scroll (81,450px document); code contains Footer and FooterResources components (contents unverified)"
+ },
+ "content_voice": {
+  "headline_style": "Museum-register sentences, calm and specific, delivered one short beat per scroll step; section titles mix italic and roman.",
+  "copy_tone": "Narrative non-fiction: each beat is one plain sentence carrying a date, an owner, a city or an event; lets the Nazi-looting turn land without adjectives.",
+  "examples": [
+   "the World of the GPI"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Nuxt 3 (Vue 3), statically served under getty.edu/tracingart/; built by Resn",
+  "libraries": [
+   "three.js r167 with custom GLSL (per-artwork plane shader, instanced sprite-sheet and blank-canvas shaders)",
+   "GSAP 3 (core version strings 3.10.4; ScrollTrigger, Flip, SplitText)",
+   "Lenis 1.1.9",
+   "in-house debug control panels bundled (panels titled 'Scene', 'Collage', 'Featured Asset' with sliders for repelRadius, progress, cameraMotion; inferred to be hidden in production)"
+  ],
+  "evidence": "probe globals __NUXT__, ScrollTrigger, three_revision 167; html classes lenis-smooth; window.lenisVersion='1.1.9'; bundle grep counts (InstancedMesh 20, ShaderMaterial 9, RawShaderMaterial 7, KTX2Loader 27, ImageBitmapLoader 7, Flip 9, SplitText 2); @font-face in style.BLbxF1pr.css."
+ },
+ "performance_accessibility": {
+  "requests": 305,
+  "weight_notes": "Light for its ambition: ~9.1MB webp, 57KB woff2, tiny HTML; 305 requests total, all first-party (www.getty.edu 304, static.getty.edu 1). Hero-field artworks load as individual webp files (not atlases); only the data-viz thumbnails come from sprite sheets.",
+  "reduced_motion": "probe: 0 prefers-reduced-motion rules on an 81,450px scroll-driven narrative; a grep of the 25 fetched first-party chunks finds no 'reduced' string, so no JS branch either.",
+  "contrast_issues": "Headline sits in pale grey during the intro fade (desktop_00); credit lines are 10px rgb(157,157,157) on white (~2.7:1); fogged ghost images are intentionally low contrast; narrative text sometimes sits over a fogged plane (desktop_02); the part-revealed grey-white serif over the dark painting zoom is low (desktop_07); planes pass over the Getty wordmark (desktop_01 top-left, mobile_01).",
+  "mobile_quality": "Good: no overflow, headline ~29px (title 41.6px), the realtime field still runs; hover-based discovery must fall back to tap; the centred Getty wordmark collides with passing planes (mobile_01).",
+  "dev_scores": {
+   "overall": 7.69,
+   "semantics_seo": 7.6,
+   "animations": 8.0,
+   "accessibility": 7.4,
+   "wpo": 7.8,
+   "responsive": 7.8,
+   "markup": 7.4
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Depth fog to paper for an image cloud",
+   "why_it_works": "Fading distant images toward the page colour (not toward black, not with blur) keeps a light editorial page while giving real z-depth, and makes the few near, full-colour works the hierarchy.",
+   "how_to_build": "Theirs: one three.js Mesh(PlaneGeometry(1,1) scaled to the image aspect) per artwork with its own webp texture and a ShaderMaterial (depthWrite:false); instance it with an atlas only if you need hundreds. PerspectiveCamera(45, w/h, 0.1, 100) at z=5; lay cards on a brick-offset grid with TWO z-layers (z=0 and z=-uDepth, uDepth=1) and random scale 0.7-1. Vertex: vDepth = smoothstep(-uDepth, -0.5, worldPos.z). Fragment: vec4 t = texture2D(uTexture, vUv); vec3 back = mix(vec3(0.97), t.rgb, 0.05); vec3 c = mix(back, t.rgb, vDepth); c = mix(c, t.rgb, uRollover); c = mix(back, c, t.a); float a = mix(1.0, t.a, clamp(vDepth + uRollover, 0.0, 1.0)); gl_FragColor = vec4(c, a). Far cut-outs therefore render as opaque pale rectangles and only show their silhouette when near or hovered. Dim planes whose grid x is within +/-1 (+/-0.5 mobile) to a 50% white mix behind the headline, and push cards away from a repel point placed on the text block. Move the whole group in y with scroll (lerp 0.3 per frame toward target) and set the renderer clear alpha to 0 over a white page. Clamp DPR to 2; leave back-layer planes out of raycasting."
+  },
+  {
+   "technique": "Hover-to-truth rollover with a provenance toast",
+   "why_it_works": "Every fogged image is a promise; hover pays it off with full colour plus who/when/where, turning decoration into data.",
+   "how_to_build": "Raycast on pointermove against the front-layer meshes only. On enter: gsap.to(mesh.scale, {x:1.1, y:1.1, duration:0.5, ease:'power2.out'}) and gsap.to(material.uniforms.uRolloverPr, {value:1, duration:0.5}). Toast bottom-right, frosted (rgba(186,186,186,0.2) + backdrop-filter blur), cross-fading content between items (inferred: ~0.3-0.5s, cubic-bezier(0.25,0.46,0.45,0.94) is the most-used CSS curve): 30px thumbnail, title Graphik 12.6px/500, artist + date, credit 10px grey with licence link. Keep the toast in the DOM with default text for touch devices ('Click on an artwork to learn more.') and open details on click."
+  },
+  {
+   "technique": "Layout-morph intro: sine-wave ribbon of the whole collection",
+   "why_it_works": "Showing hundreds of works as one continuous line literally 'traces' the title before exploding into the explorable field; the logo becomes the dataset.",
+   "how_to_build": "Give each card three positions: start (one shared point just right of centre), wave, grid. Wave: u = i/n; x = map(u, 0..1, -1.5..1.5) + 0.5; y = sin(u*2PI)*0.7; z = gridZ*0.01 - (n/2 - |i - n/2|)*0.005 so the ends sit in front (portrait: x = sin(u*2PI)*0.35, y = map(u, -1..1) + 0.05). position = start.lerp(wave, startPr).lerp(grid, endPr). Timeline per card: startPr 0->1, scale 0->0.5, alpha 0->1 over 1.5s power2.inOut at 0.2s + 8ms*(n/2 - |i - n/2|); then endPr 0->1, scale -> 1 over 2s power2.inOut at 2s + 3ms*(shuffled index). Meanwhile move the two title words apart and tween their colour #bbb -> #000; the wordmark flies to the top bar."
+  },
+  {
+   "technique": "Radial cluster data-viz with hover isolation",
+   "why_it_works": "Each patron's collection becomes a visible pile of real thumbnails, and hover isolation reads instantly without charts or legends.",
+   "how_to_build": "Place K labels on a ring (angle = k/K*2PI, radius ~0.42 of min(w,h)); one instanced billboard mesh (~1,000) with per-instance aAngleRadius (angle, startRadius, minRadius), aProps (alpha, progress, inProgress, rolloverScale), aSprite (atlas rect) and aTextureIndex (up to 3 sheets). Vertex: repeatRadius = minRadius + (edge - minRadius)*0.5; members inside it fall: radius = mod(radius - (uTime*0.08 + offset), repeatRadius), vLoopAlpha = smoothstep(0.0, 0.05, 1.0 - radius/repeatRadius); pos = vec3(cos(angle), sin(angle), 0)*radius*rolloverScale, z = mix(-0.3, 0.0, rand); translation = mix(mix(pos*1.2, pos, inProgress), pos*0.1, progress); add the quad corner in view space so sprites face the camera. Fragment: tint the sprite toward one brand colour (mix 10% + overlay blend 50%) so thousands of thumbnails read as one tone. Hover isolation: the shader has no group uniform; its only dimming input is the per-instance alpha aProps.x, so (inferred) tween that attribute on the CPU, ~0.1 for other groups and 1 for the hovered group, and fade the other labels (element 3 f03)."
+  },
+  {
+   "technique": "Pinned artifact + timeline scrubber narrative",
+   "why_it_works": "One object stays still while its history moves around it; the year label gives a sense of place in a very long scroll.",
+   "how_to_build": "Hold a centred 378x450 image and its caption on a fixed layer (their stage uses position:fixed, not sticky or a ScrollTrigger pin) and give the story its scroll length separately. Below, one serif sentence per beat (30px, line-height 1.12, -0.02em, max-width ~530px, centred) entering with autoAlpha 1s power3.inOut plus scale 0.85 -> 1 over 4s power3.out. Bottom-centre a 414px 1px track; the fill width = progress; a Graphik 12.6px/600 year label rides at the fill end, updating 1669 -> 1700 -> 1936 -> 1940 at beat thresholds. Chapter change: tween background #fff -> #DAE2E8 (inferred ~1s power2.inOut)."
+  },
+  {
+   "technique": "Roman/italic mixed serif headings",
+   "why_it_works": "Setting function words in italic and nouns in roman gives a literary, curatorial voice with one family and no colour.",
+   "how_to_build": "Same size and weight (e.g. 72px, lh 1.0, -0.03em); wrap articles/prepositions in <em> with font-style: italic from the same family's true italic; stagger line indents (second line offset ~1.5em) as in 'the World / of the GPI'."
+  },
+  {
+   "technique": "Transaction title swap for ownership changes",
+   "why_it_works": "A sale is shown as type physics: the seller's name shrinks while the buyer's grows around the same object, so a provenance chain reads without a diagram.",
+   "how_to_build": "Two h1s (Bradford-like serif at 135-207px, line-height 1.0, -0.03em) above and below a media block. Timeline on a scroll window: both titles and the media from y:100lvh -> 0 (1.5s power2.out, titles stagger 0.15); at 1.2s top title scale 1 -> 0.25 and bottom 0.25 -> 1 (1.5s power2.inOut, 0.45 on mobile) while the media inner drifts y 7lvh -> -7lvh (10lvh mobile); at 2.0s titles exit to -100lvh (1.5s power2.in, stagger 0.1) and the media follows (1.8s). Let the giant names crop at the viewport edge only while they move, and keep the full name readable at rest."
+  }
+ ],
+ "slop_risks": [
+  "Invisible-content trap: the thesis headline is still pale grey at load (desktop_00) and only reaches black after the intro timeline; if WebGL or the intro stalls, the key line stays near-unreadable.",
+  "Floating cards: scattering DOM image cards with drop shadows around a headline is the slop version; theirs works only because of real collection imagery, depth fog toward the page colour, and one pinned subject that sets hierarchy.",
+  "Ghost planes at 97% white can read as images that failed to load if the field is static; keep them moving and mix in some full-colour near planes.",
+  "Content sliced by an edge: the giant transaction titles ('Paulus Potter', 'Adolphe Schloss') are cropped by the viewport top (element 1 f04, f07) and read as intentional only while moving; a frozen or copied static crop is the cut-off tell.",
+  "Icon in a box / default chrome: the hamburger is an icon inside a filled black rounded square (the 'icon with a box behind it' tell) and the hero is the default stack (small eyebrow, centred headline, one 'Scroll down' pill). The frosted pill and toast are clean glass here; the field around the stack is what rescues it, so a copy without the field is plain slop.",
+  "Text you cannot read: 10px rgb(157,157,157) credit lines on white.",
+  "No prefers-reduced-motion rules (probe 0) on a fully scroll-driven 81,450px story.",
+  "Cream background temptation: the site stays pure #fff with a cool #DAE2E8 shift; copying it on beige turns it into editorial-cream slop.",
+  "Text collision with the field: planes pass over the Getty wordmark (desktop_01, mobile_01) and fogged planes sit behind narrative sentences (desktop_02); nothing keeps UI text clear except the repel point near the headline."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop and 2 mobile screenshots viewed one by one; element videos 0 (Main Scroll) and 1 (Scroll Animations) viewed frame by frame (f00-f07), elements 2 (Hover Effects) and 3 (Data Visualisation) at f00/f03/f06; element frames are shown inside the Awwwards presentation frame (the Van Gogh/Potter paintings around the white window are the presentation background, not the site). Probe numbers quoted as measured; shader code, uniforms, camera and wave-layout math read from the first-party Nuxt bundles. INFERRED: durations of intro phases from clip timestamps (1.5s spacing), menu overlay contents, no page transitions, and footer contents (not reached). (Sprite-sheet and foundry questions resolved in the audit below.) audit (adversarial re-check, 2026-09-25): re-viewed desktop_00/01/02/04/05/06/07, mobile_00/01, all 8 frames of element 0, element 1 f00-f07 (7 of 8), element 2 f00/f03, element 3 f00/f03/f06; re-read the cached first-party chunks and CSS. Fixed: the hero field is individual meshes per artwork (instanced sprite sheets are only the donor data-viz and blank rects), with two z-layers, centre-column dimming, a repel point and far planes turning opaque; the display face is Lineto's Bradford LL misspelled 'Bardford' (italic = Light Italic otf), Graphik @font-face confirmed; owner-list names are ~50px (only the transaction titles are 135/207px) and Adolphe Schloss was the dispossessed collector, not the looter; mobile headline is ~29px, not 41.6; the dark chapter is a DOM AssetZoom with a UI theme flip, not a WebGL push; the intro z formula (ends in front) and timings corrected; the data-viz shader has no group uniform (dimming can only come from per-instance alpha aProps.x; the CPU tween itself was not traced). Added: spring mouse-parallax camera, 3-pass ortho/perspective rendering, frosted glass controls, TextBlock scale 0.85->1 and scrubbed letter mode, AssetTransaction scale-swap, the archival Ledger viewer, Lenis 1.1.9. Pinned-artifact mechanism (fixed stage) remains inferred from 0 sticky / 9 fixed; owner-list size is estimated from video frames."
+}

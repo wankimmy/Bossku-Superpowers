@@ -1,0 +1,299 @@
+{
+ "slug": "son-daven",
+ "title": "Son Daven",
+ "live_url": "https://sondaven.com/en",
+ "award": "Site of the Day Jun 5 2026 (Honors, SOTD), also listed in Sites of the Month; credits Ivan Chopei, Maksym Stepenko, The First The Last",
+ "scores": {
+  "overall": 7.62,
+  "design": 7.7,
+  "usability": 7.16,
+  "creativity": 8.15,
+  "content": 7.59,
+  "dev": {
+   "overall": 8.09,
+   "semantics_seo": 8.2,
+   "animations": 8.2,
+   "accessibility": 7.4,
+   "wpo": 8.0,
+   "responsive": 8.4,
+   "markup": 8.0
+  }
+ },
+ "industry": "Hospitality real-estate investment: a design resort hotel in Yaremche, Carpathians, Ukraine (Hutsul culture), selling apartments and dividend returns",
+ "signature": "Every illustration on the page is live footage and photography pushed through one WebGL shader that redraws it as vertical line-screen bars in two brand colours, so sheep, pines, skiers and waterfalls read like Hutsul weaving or woodcut. The hero is a scroll-scrubbed 120-frame render sequence (a night set is served between midnight and 7am) that shrinks into a window inside a line-screen landscape, and a 20x12 grid of cells turns every page change into rising stepped 'spires'.",
+ "first_screen": {
+  "composition": "OBSERVED desktop_01 (final state) and desktop_00 (6s, mid-handoff). A full-bleed architectural render of the courtyard (dark timber louvres, arcades, one lit tree): frame 000 of a 120-frame WebP sequence drawn on a 2D canvas, from hero-video/ between 07:00 and 23:59 local time and hero-video-dark/ otherwise. Centred on it is the serrated 'SON DAVEN' wordmark, an inline SVG (viewBox 224x24) built from stepped rectangles, in sand #a89474, about 1000x95px at rest (desktop_01). In desktop_00 it is still flying in from the preloader, about 1180px wide, with nothing else on screen. Above it sits 'İNVESTMENT PROJECT' (an h1: 20px Blueline caps, +0.08em; a 10px '(?)' is the other h1 the probe found). Below, three meta columns on one baseline whose outer edges line up with the wordmark's ends: 'DEVELOPMENT / BY BLAGO' (with a small Y mark), 'DESIGN / RESORT HOTEL', 'YAREMCHE, / İVANO-FRANKİVSK' (12px caps). A ~150px thin-ring CTA 'İNVEST İN SON DAVEN' sits bottom-right with its label set flush-left inside the ring. The header (hamburger + MENU, AEROTOUR, a clean 'SON DAVEN' logotype centred, UA, a sand 'CONSULTATİON' pill) arrives last (element 0 f05 to f06). A tiny equaliser-bar sound toggle sits bottom-left, and a sand Finsweet cookie card covers x 240-600 at the bottom.",
+  "what_owns_it": "image",
+  "display_type_px": 95,
+  "evidence": [
+   "probes/son-daven/desktop_00.jpg",
+   "probes/son-daven/desktop_01.jpg",
+   "frames/son-daven/0/f04-f06",
+   "probes/son-daven/mobile_00.jpg",
+   "index.html: hero logo inline <svg viewBox='0 0 224 24'> (stepped path)",
+   "main.js: framesPromise (120 frames, isDayTime = hour 7-23), initScrollVideo"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "KTF Metro Roman",
+    "role": "display",
+    "classification": "flared, glyphic serif capitals with old-style figures (the '3' in '31 MIN.' drops below the baseline)",
+    "foundry": "inferred: Kyiv Type Foundry (KTF prefix)",
+    "source": "probe fonts_loaded 'KTF Metro Roman 400'; root var --_fonts---font-display"
+   },
+   {
+    "name": "KTF Metro Blueline",
+    "role": "body",
+    "classification": "extended geometric sans caps with a dotted capital I (renders as 'İNVESTMENT', 'CONSULTATİON')",
+    "foundry": "inferred: Kyiv Type Foundry",
+    "source": "probe fonts_loaded 'KTF Metro Blueline 400'; --_fonts---font-body"
+   },
+   {
+    "name": "serrated 'SON DAVEN' wordmark",
+    "role": "accent",
+    "classification": "custom woven/stitched logotype whose letter edges step like pixels or thread, not live text",
+    "foundry": "bespoke; OBSERVED as an inline SVG logotype (viewBox 0 0 224 24) drawn from stepped rectangles",
+    "source": "index.html hero and preloader logo markup; not among the measured text nodes"
+   }
+  ],
+  "display_size_px": 144,
+  "body_size_px": 16,
+  "scale_notes": "Tokenised Webflow scale on a viewport-fluid root: an embedded style sets html { font-size: 1vw }, and every token is calc(Nrem / 14.4), so N px at 1440 and linear with viewport width (no clamp). Display h1 144 / h2 96 / h3 72 / h4 56 / h5 40 / h6 24; body p1 32 / p2 24 / p3 20 / p4 16 / p5 12 / p6 10. Body copy is p4 16px (the probe's 14.4px 'body' is the 1vw root). Rendered counts are dominated by 40px (429 nodes: the split prologue quote words) and 10px (364: micro labels). The display-to-micro ratio is 14:1, so the page swings between huge serif caps and tiny wide-set sans caps with almost nothing in between.",
+  "tracking_leading": "All display sizes use -0.064em tracking (-9.216px at 144px) with sub-1 line-heights: 83.333% at 144, 91.667% at 96, 88.889% at 72, 100% at 56 and 40. All body sizes use +0.08em tracking with line-heights of 160% at 10px, 166.667% at 12, 150% at 16, 120% at 20, 116.667% at 24 and 100% at 32.",
+  "case_and_style": "Everything is uppercase: display serif caps, body sans caps. Section labels are flanked by triple four-point stars ('+++ PROLOGUE +++', '+++ UNIQUENESS +++'). Big numerals ('31 MIN.', '35 KM') pair a 144px old-style figure with a 40-56px unit. Quotes use curly marks.",
+  "signature_moves": [
+   "A tight negative-tracked serif display against a wide positive-tracked sans, both in caps, in two colours only",
+   "The dotted capital I in Blueline is a Turkic/Ukrainian-feeling glyph that makes the whole UI feel of this place",
+   "The prologue quote (a 40px h3 with data-scroll-reveal='h' and data-highlight-text) is split into words that pop in once, in random order, from scale 0 with alternating offsets (yPercent -150/75/-75/150 to 0, 1.2s 'Out', stagger .025 from random, fired at 'top bottom'), while each character's opacity is scrubbed from .1 to 1 between 'top 75%' and 'bottom 50%'. The scattered 'mixed sizes' in mobile_01 are words caught mid-scale plus dim, unscrubbed characters, not designed sizes. It settles into a centred, ragged block (desktop_03), not a justified one.",
+   "Nav labels are doubled ('MENU MENU' in the DOM) for a char-shuffle hover",
+   "Stacked display lines shear against each other on scroll: [parallax='h1'] children go from xPercent 5/-1/-5 to -5/1/5 (scrub 1), so a four-line 144px stack like 'WHERE / THE / MOUNTAINS / SPEAK' slides line against line."
+  ],
+  "mobile": "OBSERVED mobile_00/01: the serrated wordmark spans ~720px of a 780px 2x frame over a static portrait crop of the render (mobile gets a day/night [data-hero-img], not the frame sequence). The prologue word pop and char dimming still run at 390px, with words from ~20 to 40px mid-animation. Probe mobile h1 16.25px and 48.75px, largest text 97.5px, no horizontal overflow."
+ },
+ "color": {
+  "mode": "section-shifting (strict duotone)",
+  "base": "#a89474 sand/khaki (--_colors---base-0--100; body bg; bg x442)",
+  "ink": "#2c2824 warm near-black (--_colors---base-1000--100; bg x88, text x504)",
+  "accents": [
+   "#2c282480 (ink at 50%) exists as a token, but the rendered secondary text is the inverse: rgba(168,148,116,.5), sand at 50% on ink (x8, e.g. the footer's LOCATİON / SALES DEPARTMENTS labels)",
+   "White only over photography (text x37)",
+   "Functional-only: #1ba64b success, #ffa800 alert, #e23d3d error"
+  ],
+  "ratio": "~55% sand / ~35% ink / ~10% full-colour photography. Every illustration is drawn in these same two colours.",
+  "section_shifts": "Sections swap sand and ink roles. .theme_on-dark redefines the tokens (base-0 becomes ink, base-1000 becomes sand), so one class flips a whole section, and header items pick up theme_on-dark / theme_on-light as sections pass under them (initThemeChange). The boundary is not a hard cut: a line-screen 'fringe' whose bars grow and taper forms a comb-like horizon between the two colours (desktop_03, footer frames).",
+  "texture": "A fixed .noise layer (tiled noise.avif at background-size 10%, opacity .1, mix-blend-mode soft-light, z-index 2147483647, pointer-events none) sits over the whole page, type included. It is very faint: a 120x80 patch of flat sand in desktop_07 measures a std-dev of about 0.9 levels. The real texture is the line-screen: bar width follows image brightness.",
+  "notes": "The line-screen shader reads its two colours from :root CSS variables (--_colors---base-0--100 as bg, --_colors---base-1000--100 as fill) once, when each canvas initialises, so a palette change in CSS recolours every canvas on the next load; section theme classes do not reach it. Scenes pick which colour is drawn with bgOpacity/fillOpacity (fillOpacity 0 draws only sand bars, letting an ink section show through). Contrast between sand and ink is 4.98:1 either way: just AA for body text, tight for the 10px micro labels."
+ },
+ "layout": {
+  "grid": "Webflow grid (70 grid containers) on an 88px '1-cell' unit (--_special-units---1-cell) with a spacing scale of 2/4/6/8/12/16/20/24/28/32/40/48/72/104/136. Desktop breakpoint 992px in JS.",
+  "density": "balanced",
+  "alignment": "Symmetric and centred for statements and section titles. Asymmetric editorial for info blocks (map left, stat panel right).",
+  "composition_moves": [
+   "Full-bleed dusky render with a centred woven wordmark and a three-column meta row",
+   "The hero shrinks into a window: while the 120-frame sequence scrubs, .hero-s scales to 0.5 (yPercent 12, scrub .25) and then .hero-w scales to 0.3 as .hero-s fades, leaving a small photo card floating in a full-screen line-screen landscape of mountain, tree, hay and rocks (desktop_02)",
+   "Split screen: a dark vector map with pins and serif labels on the left, a sand stat panel on the right with a 1px progress ring around '31 MIN.' (desktop_05)",
+   "Scrubbed horizontal gallery (desktop only): the card list moves xPercent 0 to -100 over the pinned section, and each card starts rotated 5-10 deg (random sign), offset xPercent 20-30 and yPercent about 75 +/- 15 (alternating), then ends mirrored, so cards arc through and tilt the other way as they leave, over a line-screen strip (frames/son-daven/1)",
+   "Footer stacks three halftoned sheep and a tree into a totem, with a phone number and email set as large link text either side (frames/son-daven/2)",
+   "Sky-cut architecture: renders with the sky masked out so the building stands straight on the flat sand field, shot looking up at the balconies (desktop_04)"
+  ],
+  "section_rhythm": "Very long page (doc_height 33371px, 17 sections). Scenes alternate between full-bleed photographic moments and full-bleed line-screen illustration moments, each separated by a large-type statement on a flat field (desktop_07 'WHY SON DAVEN CAPTIVATE').",
+  "mobile_adaptation": "Single column. Under 992px seven of the sixteen scene initialisers return early (HeroBg, Prolog, About, Seasons, BenefitsOutro, DevOver, DevBg) and HeroOver skips its tree and cloud layers. The hero frame sequence is not loaded (a static day/night image replaces it). Magnetic buttons, nav-hover shuffle, map-pin magnify and the horizontal gallery are desktop-only (ScrollTrigger.matchMedia min-width 992). The wordmark and prologue text reveal are kept, and the cookie bar goes full width."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis 1.3.15 (jsDelivr): new Lenis({wrapper:window, duration:1.2, smoothWheel:true, touchMultiplier:2, easing: t => Math.min(1, 1.001 - 2**(-10*t))}). It is driven by gsap.ticker (lenis.raf(time*1000), lagSmoothing(0)) and lenis.on('scroll', ScrollTrigger.update). Each nested [data-lenis-scroll] container (info panels, modals) gets its own Lenis with duration .6.",
+  "preloader": "frames/son-daven/0 (11.1s clip; the striped sand border is Awwwards' presentation matte, the inner rectangle is the viewport). 0.7s (f00): ink stepped spires in the bottom-right over sand with woven letters inside them, the transition grid mid-pass. ~2.1-3.5s (f01, f02): a full-viewport ink preloader: a line-screen sheep walking (preloader_sheep.mp4, a pre-rendered clip with the look baked in, since the WebGL scenes are still loading), 'I AM A VALLEY OF PEACE / SEE YOU IN THE DREAMS' top-left under a small castle glyph, 'RESORT / DESIGN - HOTEL' at both sides, and the woven wordmark along the bottom edge. The timeline pauses (scroll locked) until the 120 hero frames, every halftone scene and the fonts have loaded; a '0%...100% loaded' label (data-preloader-percent, class b-mob, likely mobile-only) tracks the scene manager. Then the text hides, the ink bg fades (0.8s), the grid runs its 'out' pass (the black spires in f03), and the wordmark is handed to the hero with GSAP Flip (f03 to f04). Return visits (sessionStorage hasVisited) skip the sheep screen: the ink grid covers the page while frames, scenes and fonts load, then runs its 'out' pass.",
+  "intro_sequence": "Flip handoff: the preloader's bottom-edge wordmark is re-parented into the hero slot and Flip.from animates it to the centre (1.8s 'InOut') while the hero layer scales from 1.5 to 1 (2.4s 'Out'), so the logo flies up and shrinks as the render settles (f03 to f05; desktop_00 caught it at ~1180px). At +1.2s the 'İNVESTMENT PROJECT' line rises (yPercent 250 to 0 with opacity, 1.2s 'Out') and the meta columns and ring CTA rise from yPercent 100 (f05, ~6.3s). The header is last (f06, ~7.7s). About 7.5s from load to full UI on a first visit.",
+  "scroll_techniques": [
+   "pin",
+   "scrub",
+   "horizontal",
+   "image-sequence",
+   "parallax",
+   "reveal",
+   "sticky",
+   "scale"
+  ],
+  "text_animation": "GSAP SplitText 3.13. Headings ([data-scroll-reveal='h']) split into words that start at yPercent gsap.utils.wrap([-150,75,-75,150]), scale 0 and opacity 0, and return to 0/1/1 once on enter at 'top bottom' (1.2s 'Out', stagger .025 from random, plus a per-element delay of index*0.05s). Paragraphs ([data-scroll-reveal='p']) split into lines that rise from yPercent 250 with opacity (1.2s 'Out', stagger .05). Containers rise from yPercent 100. Hairline rules wipe in left to right with clip-path inset(0 100% -1px 0) to inset(0 0 -1px 0). data-highlight-text splits into chars that go from opacity .1 to 1, scrubbed from 'top 75%' to 'bottom 50%'. Nav hover: the label exists twice. On enter, copy 1's chars go to opacity 0, yPercent -75, scale 0 while copy 2's chars come from yPercent 75, scale 0, over 0.8s 'Out' with stagger each .025 from 'random' and a .2s delay.",
+  "image_animation": "Hero: a 120-frame WebP sequence drawn to a 2D canvas (cover-fit with drawImage), with the frame index scrubbed from 'top top' to '75% bottom' (scrub .25, snap to whole frames), plus the shrink-to-window described in layout. Halftone scenes animate their layer configs, not CSS: levels are scrubbed (hero mountain 25/200 to 45/175 and hay to 75/150 between '50% bottom' and 'bottom top'; benefits-outro layers to 150/0, 200/55, 55/200); layer rects are tweened for fly-throughs (a layer grows to width 240%, height 288%, x -204% with ease 'In', so the camera seems to push through the picture; desktop_06); ambient birds cross the canvas on loops (x to 100% over 5s, repeat -1, repeatDelay 5, paused by an IntersectionObserver when off screen); the season switch crossfades two layers through levels over 1.2s. The About image scales 1 to 1.25 from centre-bottom, scrubbed at 1. The benefits title grows from scale 0 to 1 ('InOut', scrubbed) across a spacer section.",
+  "page_transitions": "Barba.js with one transition named 'dither'. .transition holds 20 flex columns of 12 .transition_cell elements (margin -1px to hide seams), each coloured with the base token var(--_colors---base-0--100), so they are ink while .transition carries theme_on-dark (the preloader; the jury clips 0/f00 and 1/f07) and sand otherwise (0/f07). Under them a #000 .transition_over layer fades 0 to 1 over 1.2s. On leave, cells scaleX 0 to 1 (0.4s 'InOut', stagger {each:.03, from:'end', grid:[20,12]}); on enter the same runs back to 0. Because the stagger starts at the bottom-right cell, lower-right columns are fully wide while upper-left ones are still thin, which reads as stepped pagoda spires sweeping across. Scroll position is saved to sessionStorage per path on leave but restored (lenis.scrollTo(y, {immediate:true})) only on back/forward (popstate); normal navigation starts at 0. ScrollTriggers and WebGL scenes are killed and rebuilt on each navigation.",
+  "hover_micro": [
+   "Char-shuffle nav labels (described above)",
+   "Magnetic CTAs at 992px and up: offset = ((pointer/size) - 0.5) * (strength/16) em, where strength comes from data-magnetic-strength (default 25), animated with power4.out over 1.6s. On leave they spring back with elastic.out(1, 0.3) over 1.6s",
+   "Gallery card '+' opens an ink info panel over the photo with serif title and hairline-separated list; the button becomes '-' (frames 1 f04 to f05)",
+   "Sound toggle: a row of small bars. When playing each bar goes to scaleY (100 - 15*distanceFromCentre)%, then yoyos to 60% of that with random 0.3-0.6s durations and random delays",
+   "Map pins magnify by cursor proximity (desktop): each pin scales up to 1.5 within 240px of the pointer (linear falloff, 1.2s 'Out'), like a dock",
+   "Menu modal items: hovering one dims its siblings to opacity 0.2 (0.8s 'Out')"
+  ],
+  "cursor": "Native cursor (probe cursor_none 0). The season knob switches to grab/grabbing.",
+  "easing_curves": [
+   "CustomEase 'InOut' 0.76,0,0.24,1 (quart-like in-out: transitions, menu)",
+   "CustomEase 'Out' 0.25,1,0.5,1 (quart-like out: reveals, 42 uses)",
+   "CustomEase 'In' 0.5,0,0.75,0",
+   "CustomEase 'Ease' 0.25,0.1,0.25,1 (CSS ease: knob snap, equaliser)",
+   "CustomEase 'Write' 0.333,0,0.667,1",
+   "elastic.out(1, 0.3) for magnetic release; power4.out for magnetic follow; 'none' for scrubs (39)",
+   "Lenis: 1.001 - 2^(-10t) (expo-out)"
+  ],
+  "duration_range_ms": "400 (durS) / 800 (durM) / 1200 (durL) core. 1600 magnetic. 5000-24000 for ambient loops and marquees (duration:5 x10, 10, 24)",
+  "stagger_ms": "Global stagger 100ms. Word and nav-char reveals 25ms from random. Paragraph lines 50ms. Transition cells 30ms on a 20x12 grid from end. Per-heading delay 50ms x index. delayReveal 200ms.",
+  "choreography_notes": "Each scene is one piece of halftone footage that assembles as you arrive, so the site paces like a slideshow of living prints. The transition grid, preloader spires and section fringes all reuse the same vertical-bar vocabulary as the illustrations, which is why the motion reads as one system. The UI arrives last and small.",
+  "evidence": [
+   "frames/son-daven/0/f00-f07",
+   "frames/son-daven/1/f00-f07",
+   "frames/son-daven/2/f00, f03, f06",
+   "frames/son-daven/3/f00, f03, f06",
+   "probes/son-daven/desktop_00-07",
+   "probes/son-daven/mobile_01.jpg",
+   "bundle: assets.slater.app/slater/18883/55210.js (CustomEase, durS/M/L, Lenis, SplitText, Barba, animateTransition, initNavItemHover, initMagneticEffect, initHighlightText, initHeaderHide)",
+   "audit: main.js re-read (initScrollVideo, framesPromise/isDayTime, animatePreloaederIntro with Flip, animateTextH/P, animateLine, initSectionTransition, initAllParallax, initMapPins, initSceneSeasons, scene level/rect tweens)",
+   "typo/css/son-daven.css (.noise, .transition_cell, .theme_on-dark tokens)"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "mixed",
+  "art_direction": "Two registers. (1) Warm, low-sun architectural renders and lifestyle photography: dark timber louvres, arched glazing, spa interiors, a bonfire at night, kids on boulders, all graded amber and low-key; some renders have the sky cut out so the building sits straight on the sand. The hero render is a 120-frame camera move with a day set and a night set picked by the visitor's clock. (2) Pre-rendered clips and cut-outs on pure black (sheep, birds, pines, skier, waterfall, mountain, hay) that are never shown raw: the shader keys out black and converts the rest in real time into vertical line-screen bars in sand/ink, with stair-stepped cell edges.",
+  "treatments": [
+   "Real-time vertical line-screen halftone (bar width follows darkness) over layered image and video sources",
+   "Levels-driven reveal and crossfade: animate blackPoint/whitePoint so a scene condenses, inverts or drops out",
+   "Stepped edges: each cell samples one texel at its centre, so silhouettes come out pixel-stepped; a neighbour test also discards cells whose nearby texels (1-2 texels, not cells) are black or transparent, trimming the outline",
+   "Luma key: source clips are rendered on pure black, and the shader discards near-black and transparent texels",
+   "Comb/fringe horizons where a halftoned gradient forms the section boundary",
+   "Scroll-scrubbed 120-frame image sequence for the hero (day and night sets)",
+   "Sky-cut architecture renders on the flat sand field (desktop_04)",
+   "Framed photo card with a double hairline border around a video ('SEE YOU IN A DREAM', desktop_04)",
+   "Stacked-animal totem in the footer (the top figure swaps between a front-facing sheep and a tree, frames/son-daven/2 f03 vs f06)"
+  ],
+  "crops_and_ratios": "Full-bleed 16:10 renders; portrait ~3:4 and landscape ~4:3 gallery cards; halftone layers placed by % within a canvas (e.g. hero tree at x 70%, y 42%, w 43.5%, h 52%)",
+  "formats": "probe: webp 19.6MB (132 files; 120 of them are the desktop hero sequence hero-video/000-119.webp or hero-video-dark/), mp4 5.6MB (48 files: scene clips like hero_tree-c.mp4, hero_sheeps-c.mp4, prolog-l-c.mp4, prolog-r-c.mp4, birds_02-c.mp4, some with .hevc.mp4 variants), avif stills for halftone sources (intro_mauntain.avif, hero_hay.avif), 3 <video> (preloader_sheep.mp4, son-daven_short.mp4), Vimeo embeds",
+  "evidence": [
+   "probes/son-daven/desktop_02, 03, 04, 06",
+   "frames/son-daven/0/f01",
+   "frames/son-daven/1/f02-f06",
+   "frames/son-daven/2/f03",
+   "frames/son-daven/3/f00, f03",
+   "bundle: assets.slater.app/slater/18883/55210.js scene configs",
+   "main.js framesPromise URLs; probe bytes_by_type_declared"
+  ]
+ },
+ "three_d": {
+  "present": false,
+  "stack": "none (no three.js). Raw WebGL1 2D image processing: one fullscreen quad per canvas with a custom fragment shader. The home page has 15 <canvas class='scene'> elements, which matches the probe's webgl x15; the hero sequence uses the single 2d context. The probe's webgl2 x16 does not come from this code (inferred: Turnstile, Vimeo or other third-party feature probes).",
+  "role": "background field / image-plane shader: halftone renderer for image and video layers",
+  "assets": [],
+  "materials_lighting_post": "Fragment shader (per canvas): cell = floor(localUV * gridSize) with gridSize = (xSquares, ySquares), defaults 100x100 (hero tree 150x100, hero sheep 200x150, prologue 125x150, benefits persons 136x136). Sample the texture at the cell centre; discard if alpha < .01 or pure black (a luma key), and discard if any texel within radius r of the centre sample (in texel units) is empty. rgb = pow(rgb, gamma), then levels: clamp((rgb*255 - blackPoint)/(whitePoint - blackPoint), 0, 1), so blackPoint > whitePoint inverts. br = mean(rgb)*alpha. If br > threshold/255, output the bg colour. Otherwise bar width lw = ((1 - br)*(maxWidth - minWidth) + minWidth) in cell units (defaults minSquareWidth -2%, maxSquareWidth 102%), and the output is fill (at fillOpacity) where abs(cellLocal.x - .5) < lw/2, else bg (at bgOpacity). Colours come from :root CSS vars at init. Context options: {alpha:true, antialias:false, premultipliedAlpha:false, preserveDrawingBuffer:false, powerPreference:'high-performance'}, SRC_ALPHA blending, fps cap 60 by default, devicePixelRatio capped at 1.5.",
+  "interaction": "Scroll-scrubbed levels and layer rects (fly-throughs); looping ambient layers (birds) that pause off screen; video playback paused and resumed on scroll (initPlayPauseVideoScroll and a per-canvas IntersectionObserver); the season switcher crossfades a summer and a winter layer through levels.",
+  "performance_tactics": "Sources are pre-rendered short mp4 clips and stills instead of 3D. Each canvas caps dpr at 1.5 and frame rate at 60, skips antialias (the output is hard bars anyway), pauses its videos when off screen, and gives each video a 5s load timeout. Scenes are destroyed and recreated on each Barba navigation (globalSceneManager.destroy). Seven scenes and several layers are skipped under 992px. The cost: 15 live WebGL contexts on one page, one short of Chrome's usual 16-context limit, and the desktop preloader waits for all 120 hero frames (~19MB of WebP) before unlocking scroll.",
+  "fallback_mobile": "Under 992px, HeroBg, Prolog, About, Seasons, BenefitsOutro, DevOver and DevBg return early, HeroOver drops its tree and cloud layers, and the hero frame sequence is replaced by a static image; the remaining scenes (HeroOver sheep/mountain, BenefitsIntro, Fin, Factoid, FAQ, Footer) still render.",
+  "evidence": [
+   "bundle: assets.slater.app/slater/18883/55210.js createCanvasInstance + fragment source + initScene* configs",
+   "probe contexts",
+   "probes/son-daven/desktop_02, 03, 06, 07",
+   "index.html: 15 <canvas class='scene'> + 1 <canvas data-scroll-video>",
+   "main.js createCanvasInstance defaults and ResizeObserver dpr cap"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Header: hamburger + MENU and AEROTOUR on the left, a clean wide 'SON DAVEN' logotype centred, UA and a sand filled 'CONSULTATION' pill (radius 40px) on the right. It hides with yPercent -100 over 0.8s 'Out' when scrolling down past 1000px (ignoring deltas under 40px), comes back on scroll up or within 160px of the bottom, and fades in a background after 1000px.",
+  "menu": "Full-screen menu modal (initModalMenu), not the cell grid: it opens with a feathered mask wipe. .modal.menu carries a linear-gradient mask (opaque to 50%, then a dozen eased stops down to transparent) at mask-size 100% 400%, and its y position is tweened from 200% to 0% over 1.8s 'Out', so the dark panel rises with a soft leading edge. The header switches to theme_on-dark, the two hamburger lines rotate to an X (0.8s 'InOut'), the menu headlines use the random word pop at +0.4s, siblings dim to 0.2 on item hover, and scroll locks. Nested scroll areas use a per-container Lenis (duration .6). The media modal and the preloader container use the same mask.",
+  "buttons_links": "Sand or ink filled pills (radius 40px) with 10-12px caps; a thin 1px ring circle CTA ('INVEST IN SON DAVEN'); '+/-' round info toggles on cards; large underlined phone/email links in the footer.",
+  "unusual_interactions": [
+   "'HOLD AND MOVE' season switcher: drag a knob along a dotted SVG arc between a sun node and a snowflake node. The code finds the nearest of 101 samples via getPointAtLength, switches season below .4 or above .5, and snaps to 0 or 1 on release with a 0.8s 'Ease' tween; clicking either end node animates there too. It works by clicking hidden summer/winter buttons, which crossfade the halftone skier and waterfall layers through levels (1.2s) and swap the stat text ('35 KM TO BUKOVEL...'; frames/son-daven/3). The whole seasons scene is desktop-only.",
+   "Opt-in ambient sound (carpathian-whispers-hutsul-ambient.mp3, loop, fades 0 to 0.25 over 0.8s) with a live equaliser toggle",
+   "Map with serif-labelled pins and a distance readout ('DOVBUCHA ROCKS 1200 M'); pins magnify as the cursor approaches (up to 1.5x within 240px)",
+   "Stat ring: a 1px circle drawing around '31 MIN.' as a progress arc"
+  ],
+  "sound": "Yes, opt-in ambient Hutsul soundscape (off by default, preload none).",
+  "footer": "Dark ink floor with the header repeated. Location and sales office addresses in 10-12px caps on both sides, round social icons, and a big phone number and email. Centred is a halftone totem of three sheep and a tree standing on a comb horizon that fades into a sand strip carrying '(c) 2026 SON DAVEN' and 'PRIVACY POLICY'."
+ },
+ "content_voice": {
+  "headline_style": "Mythic, place-rooted all-caps lines ('WHERE THE MOUNTAINS SPEAK', 'WHY SON DAVEN CAPTIVATE'). The legend-like prologue quote runs next to hard investment facts (timeline, UAH per m2, dividends, minutes and km to landmarks).",
+  "copy_tone": "Folkloric and dreamlike ('I AM A VALLEY OF PEACE / SEE YOU IN THE DREAMS') set against precise sales data. Cards carry one-line captions ('A SPACE WHERE IDEAS ARE BORN').",
+  "examples": [
+   "Where the mountains speak"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Webflow (probe globals Webflow; w-mod-js) with custom code hosted on Slater (assets.slater.app/slater/18883/55210.js, 80KB)",
+  "libraries": [
+   "GSAP 3.13.0 + ScrollTrigger + SplitText + CustomEase (jsDelivr)",
+   "GSAP Flip 3.14.1 (preloader logo handoff)",
+   "Lenis 1.3.15",
+   "Barba.js core (unpkg)",
+   "Swiper 11",
+   "jQuery 3.5.1 (Webflow)",
+   "Finsweet cookie consent (fs-cc)",
+   "Vimeo player",
+   "Cloudflare Turnstile (forms)",
+   "custom raw-WebGL1 line-screen renderer + 2D-canvas image-sequence player (Slater main.js)"
+  ],
+  "evidence": "probe libs_from_requests + globals (gsap_version 3.13.0, Lenis, barba); script tags in index.html; main.js grep; audit: script tags in the saved index.html, gsap.registerPlugin(ScrollTrigger,CustomEase,SplitText,Flip)"
+ },
+ "performance_accessibility": {
+  "requests": 299,
+  "weight_notes": "Declared ~27MB: webp 19.6MB (132 files, of which 120 are the desktop hero frame sequence) and mp4 5.6MB (48 files) dominate. JS ~0.9MB (GSAP, Swiper, jQuery, Webflow, 80KB custom). The first-visit preloader locks scroll until all 120 frames, every halftone scene and the fonts resolve, so a slow connection waits on ~19MB before it can scroll. Each halftone canvas is its own WebGL1 context: 15 on the home page, one short of Chrome's usual 16 live-context limit, so a single extra context (an embed, a devtools overlay) can start evicting them.",
+  "reduced_motion": "None. The probe found 0 reduced_motion_rules and main.js contains no prefers-reduced-motion check. Lenis, the preloader, scrubbed halftones and page transitions all run unconditionally.",
+  "contrast_issues": "Sand #a89474 on ink #2c2824 is 4.98:1, fine for display but tight for the 10px p6 micro caps with 0.08em tracking. The rendered secondary text is sand at 50% on ink (about 2.3:1), well below AA. White 10-12px meta over the dusky hero relies on dark image areas. The .noise overlay sits over type, though at 10% soft-light it barely moves contrast.",
+  "mobile_quality": "Strong for a WebGL-heavy build (responsive dev score 8.4): no overflow, the wordmark and prologue text reveal survive, the hero frame sequence is swapped for a static image, and seven scenes plus the pointer effects are gated off under 992px.",
+  "dev_scores": {
+   "overall": 8.09,
+   "semantics_seo": 8.2,
+   "animations": 8.2,
+   "accessibility": 7.4,
+   "wpo": 8.0,
+   "responsive": 8.4,
+   "markup": 8.0
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Live vertical line-screen halftone for any image or video",
+   "why_it_works": "It gives photography and cheap stock-like clips a single ownable graphic language (weaving, woodcut, barcode) in exactly two brand colours, with no illustrator and no 3D.",
+   "how_to_build": "WebGL1 fullscreen quad, texture = <video> or <img> updated each frame (gl.texImage2D from the video element; cap at 60fps and dpr at 1.5). Render source clips on pure black so black can act as a key. Uniforms: u_gridSize (x 100-200, y 50-150), u_minWidth/u_maxWidth (-2% and 102% of the cell, converted to px), u_blackPoint/u_whitePoint (0-255; black > white inverts), u_threshold 255, u_gamma 1, u_bgColor/u_fillColor read once from :root custom properties, u_bgOpacity/u_fillOpacity to choose which colour is drawn. Fragment: ci = floor(lc*grid); cc = (ci+.5)/grid; tc = texture2D(tex, cc) (one sample per cell is what makes the stepped edges); discard if tc is transparent or near-black, and optionally if any texel within 1-2 texels of cc is (a small erosion); rgb = clamp((rgb*255 - black)/(white - black), 0, 1); br = dot(rgb, vec3(.333))*tc.a; lw = ((1.-br)*(maxW-minW)+minW)/cellW; out = abs(fract(lc.x*grid.x) - .5) < lw*.5 ? fill : bg. Layer several sources per canvas with % rects (x, y, w, h) via u_bounds and animate those rects for fly-throughs. Pause videos with an IntersectionObserver when the canvas is off screen, share contexts or cap the count well under 16, and keep a static <img> poster plus a reduced-motion path that renders one frame."
+  },
+  {
+   "technique": "Stepped 'spire' page transition from a staggered cell grid",
+   "why_it_works": "It is a DOM-only transition that looks bespoke and extends the halftone bar language to navigation.",
+   "how_to_build": "A fixed .transition overlay (display none until used) with 20 flex columns, each a flex column of 12 .transition_cell divs (flex 1, margin -1px so no hairline seams show, transform scaleX(0)), coloured with the page's base token (var(--base-0)), so the spires come out in whichever colour the current theme makes the base. Under the cells, a #000 .transition_over layer. Leave: gsap.fromTo(cells, {scaleX:0}, {scaleX:1, duration:.4, ease:CustomEase.create('InOut','0.76,0,0.24,1'), stagger:{each:.03, from:'end', grid:[20,12]}}) plus the overlay opacity 0 to 1 over 1.2s. Enter: the same back to scaleX 0 and opacity 0. The grid-distance stagger from the last cell makes columns widen bottom-right first, producing the pagoda-step silhouette. Wire it to Barba leave/enter, save scroll per path in sessionStorage and restore it with lenis.scrollTo(y, {immediate:true}) only on popstate, and kill and re-init ScrollTriggers and WebGL scenes between pages."
+  },
+  {
+   "technique": "Levels-scrub reveal instead of opacity fade",
+   "why_it_works": "The image appears by thresholding: the darkest bars show first and the midtones fill in, so it feels printed rather than faded, and the content is never truly hidden once the canvas has drawn.",
+   "how_to_build": "Tween the layer's config {blackPoint, whitePoint} and let the render loop push it to the uniforms. Scroll-in: a ScrollTrigger scrub (ease 'none'), e.g. Son Daven's hero mountain goes from 25/200 to 45/175 and the hay layer to 75/150 between '50% bottom' and 'bottom top'. Crossfade (the season switch): send the outgoing layer to 254/255, which pushes every cell to full 'fill' (invisible there because that scene draws fill at opacity 0), and bring the incoming one to 0/255 or 25/150, both over 1.2s. For an idle scene, yoyo between 55/150 on a 4s 'InOut' loop so it breathes (Son Daven does this on its 404 scene). Never let whitePoint equal blackPoint (the shader skips levels when the range is 0). Pair with a slow scale (1 to 1.25, transform-origin center bottom, scrub 1) on the card holding the photo."
+  },
+  {
+   "technique": "Random-order char shuffle for nav hover",
+   "why_it_works": "It replaces the underline-fill tell with a type-native hover that suits wide-set caps.",
+   "how_to_build": "Render the label twice in a 1-line overflow-hidden box, the second absolutely positioned. SplitText both into chars. Enter: copy A chars to {opacity:0, yPercent:-75, scale:0}; copy B chars from {opacity:0, yPercent:75, scale:0} to {1, 0, 1}; duration .8, ease CustomEase 0.25,1,0.5,1, stagger {each:.025, from:'random'}, delay .2 on B, overwrite true. Leave: reverse. Use aria-hidden on the duplicate. Gate to (hover:hover) and min-width 992px."
+  },
+  {
+   "technique": "Drag-along-a-path mode switcher (summer/winter)",
+   "why_it_works": "It turns a binary tab into a small ritual that fits the seasonal story and stays readable (two icon nodes plus a dotted arc).",
+   "how_to_build": "An SVG <path> arc with a dotted stroke and a <circle> knob. On pointermove, sample path.getPointAtLength(t*L) for t in 0..1 (101 steps), take the nearest to the pointer, and set the knob cx/cy. If t < .4 activate A, if t > .5 activate B (the hysteresis stops flicker). On pointerup, tween t to Math.round(t) over 0.8s with ease 0.25,0.1,0.25,1. Mirror the result to real tab buttons (click them) so keyboard users get the same switch. Son Daven drives the real state by clicking hidden [data-summer-btn]/[data-winter-btn] buttons, so the tabs remain the source of truth."
+  },
+  {
+   "technique": "Scroll-scrubbed image-sequence hero that shrinks into a window",
+   "why_it_works": "A pre-rendered camera move through the building feels like 3D without shipping a model, and shrinking the finished shot into a small card inside the illustrated landscape turns the hero into a 'window' onto the real place.",
+   "how_to_build": "Export the render as 120 WebP frames (000-119). On desktop only, preload them into Image objects (resolve null on error so one bad frame cannot block), and draw the current one to a 2D canvas with cover-fit (scale = max(cw/iw, ch/ih), centre the offset). gsap.to({frame:0}, {frame:119, snap:'frame', ease:'none', scrollTrigger:{trigger:heroArea, start:'top top', end:'75% bottom', scrub:.25}, onUpdate(){ draw(frames[Math.round(this.targets()[0].frame)]) }}). Over nearly the same range ('top top' to '70% bottom') scale the hero block to 0.5 (yPercent 12, scrub .25), then from '70% bottom' to 'bottom bottom' scale its wrapper to 0.3 while the block fades, so it ends as a card in the next scene. Optional: pick a night frame set by local hour, as Son Daven does (hero-video-dark before 7am). Mobile gets a single still. Show the first frame as a static <img> until the frames load instead of gating scroll on them."
+  },
+  {
+   "technique": "Preloader wordmark handed to the hero with Flip",
+   "why_it_works": "The logo the visitor watched while waiting becomes the hero title, so the loading screen and the first screen read as one continuous shot.",
+   "how_to_build": "Put the wordmark at the bottom of the preloader and an empty slot in the hero. When loading resolves: fade the preloader's copy and background (0.8s), run the exit transition, then const state = Flip.getState(logo); heroSlot.appendChild(logo); hide the hero's static copy; Flip.from(state, {duration:1.8, ease:'InOut'}) while the hero media scales from 1.5 to 1 over 2.4s ('Out'), and at +1.2s reveal the kicker line and meta. Store a sessionStorage flag so return visits skip the loading screen and go straight to the exit transition once assets are ready."
+  }
+ ],
+ "slop_risks": [
+  "Invisible-content trap: heading and paragraph reveals ([data-scroll-reveal]) are hidden by default (JS sets visibility visible, then an 'initial' state of words at scale 0 / opacity 0) and play once on enter at 'top bottom'. There is no reduced-motion path. If the script fails, every statement heading stays hidden. Keep the text visible in CSS and animate from visible.",
+  "Beige/khaki base: #a89474 sits close to the law's cream/beige editorial default. It works because it is darker, paired with a strict warm ink and justified by wool and hay; a lighter copy becomes oat milk.",
+  "Grain on top of the content: the .noise layer is a fixed overlay at z-index 2147483647 (opacity .1, soft-light) over everything, type and the 10px micro caps included, which is the law's grain-over-content tell. It is faint enough here to pass, but a copy that raises the opacity muddies every label. Put grain on the substrate, under the text.",
+  "Hover boop risk: magnetic buttons spring back with elastic.out(1, 0.3) over 1.6s. With higher data-magnetic-strength the wobble reads as a bouncing button. Keep strength at 25 or below and elasticity low.",
+  "One label treatment everywhere: '+++ LABEL +++' star-flanked micro caps head every section (PROLOGUE, UNIQUENESS...), and the same 10-12px wide Blueline caps with +0.08em tracking also carry the nav, buttons, meta, captions, cookie copy and footer. The same costume on every small string reads as a stamp rather than a decision.",
+  "Micro type contrast: 10px Blueline caps in sand on ink (4.98:1) and 50%-ink on sand fall below comfortable legibility.",
+  "Effect monotony and cost: halftoning every scene makes the page one-note, and with 31 WebGL contexts the browser's context limit is a real risk. Vary it (keep some photography raw, as they do in the gallery) and share one GL context across scenes.",
+  "Small-label-over-big-heading: '+++ UNIQUENESS +++' over a large serif 'WHY SON DAVEN CAPTIVATE' (desktop_07) is the kicker-plus-serif-H2 section head, repeated section after section.",
+  "Four-line stacked headline: 'WHERE / THE / MOUNTAINS / SPEAK' at 144px is a tall stack of short lines. It earns its place only through the line-shear parallax; a static copy is the multi-line headline tell.",
+  "Blocking preloader: scroll stays locked until 120 hero frames (~19MB), every scene and the fonts have loaded, with no timeout on the frame set as a whole. Show the first frame immediately and stream the rest."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop and 2 mobile probe shots (a Finsweet cookie card covers the bottom-left ~360x170px from desktop_01 on, and the header hides after the first screen, but content is otherwise readable), all 8 frames of elements 0 (Preloader) and 1 (Scroll Animation), and f00/f03/f06 of 2 (Footer) and 3 (Microinteractions). Code facts (shader source, scene configs, CustomEase values, durS/M/L, Lenis options, Barba 'dither' grid transition, magnetic and nav-hover params, header hide, season switcher, sound) come from grepping the 80KB Slater custom bundle. Frames show the site inside Awwwards' presentation frame, so pixel sizes read from frames are scaled. INFERRED: the serrated hero wordmark is an SVG logotype (it is not among the measured text nodes); KTF = Kyiv Type Foundry; the menu modal reusing the grid transition. The probe's 31 WebGL contexts include Turnstile/Vimeo/feature probes, so the count of halftone canvases alone is lower (6 large canvases measured in probe.canvas). | audit (adversarial re-check, 2026-09-25): re-viewed desktop_00-07 and mobile_00/01 one at a time, all 8 frames of element 0 (Preloader), f01/f03/f05/f07 of 1, f03/f06 of 2, f00/f03 of 3, and re-read the saved main.js, index.html and typo/css/son-daven.css. Confirmed: Lenis options, CustomEases, durS/M/L, shader source, magnetic/nav-hover/header-hide/sound/season-switcher parameters, library versions. Fixed: the hero is a 120-frame WebP sequence on a 2D canvas with day/night sets by local hour, and it shrinks into a window (this was missing and misattributed the 19.6MB of WebP); the preloader is full-viewport ink (the sand stripes are Awwwards' matte) and hands the wordmark to the hero with GSAP Flip; the wordmark is a verified inline SVG; the grain is a max-z-index soft-light overlay over the type, so the 'correctly behind the type' claim was reversed; transition cells use the base token over a #000 layer (not fixed ink), and scroll restore is popstate-only; the prologue settle is a once-only random word pop plus scrubbed char opacity, centred not justified; WebGL count is 15 scene canvases (matches webgl x15), dpr cap 1.5; mobile gating now lists all seven early-return scenes; levels numbers in the steal replaced with values from the code. Added: image-sequence and Flip-handoff steals, line-shear parallax, gallery arc values, map-pin magnify, sky-cut renders, kicker/4-line/preloader-gate risks. first_screen.display_type_px set to 95 (the SVG wordmark; the 144px live text appears further down). Menu: the earlier 'inferred: opens with the cell grid' was wrong; initModalMenu and the MASKS CSS show a feathered gradient-mask wipe (replaced)."
+}

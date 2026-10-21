@@ -1,0 +1,310 @@
+{
+ "slug": "terminal-industries",
+ "title": "Terminal Industries",
+ "live_url": "https://terminal-industries.com",
+ "award": "Awwwards Site of the Day, Sep 3 2025 (Honors); listed in Sites of the Month; credits PROPAGANDE + REJOUICE; award year 2025",
+ "scores": {
+  "overall": 7.68,
+  "design": 7.95,
+  "usability": 7.36,
+  "creativity": 7.65,
+  "content": 7.57,
+  "dev": {
+   "overall": 7.89,
+   "semantics_seo": 7.8,
+   "animations": 8.8,
+   "accessibility": 7.0,
+   "wpo": 8.2,
+   "responsive": 7.8,
+   "markup": 7.4
+  }
+ },
+ "industry": "B2B logistics SaaS: AI-native yard operating system (gate, yard, dock automation) for freight yards",
+ "signature": "A 410-frame, 60fps pre-rendered 3D film (sunset truck, camera through a container yard, crane-up into an X-ray wireframe and point-cloud 'computer vision' view, a particle void, then a dark grid) scrubbed frame-by-frame on a 2D canvas by scroll, with three 82.5px headlines typing on in lime and dissolving over it, so the product claim ('the yard becomes self-aware') is told as one continuous camera move before any UI appears.",
+ "first_screen": {
+  "composition": "OBSERVED (desktop_00): full-bleed frame 0 of the scroll sequence. A tractor-trailer in strict side profile sits on a flat horizon at y~515 (57% of 900): the long trailer is a near-silhouetted dark brown box, only the cab (x~1070-1410) catches pale golden light, with a headlight cone spilling off the right edge; sky is a lavender-to-amber gradient, the lower 43% is near-black ground. No headline on the first frame: the three hero h2s are per-character opacity 0 until scroll progress reaches them (code CCGV33ln.js ScrollContent). A floating inset nav island (x139-1301, y46-124, ~8px radius, translucent grey with backdrop blur) carries logo, 4 dropdown triggers + About, an 'Ask Terminal' AI input, a phone icon button and three stacked-caps CTA chips (lime / white / light grey). The 'Scroll to explore' label is not in the frame because it only appears after the first mouse move (hasMoved -> autoAlpha 1, 1.4s expo.out; the probe never moved the mouse). On pointer:fine devices it rides the damped mouse position offset by 1/5 of its own width, its chars loop grey->white (0.8s, 20ms stagger, repeat -1) and fade out char by char over the first 500px of scroll; touch devices get a static scroll-indicator-mobile (CCGV33ln.js).",
+  "what_owns_it": "video",
+  "display_type_px": 82.5,
+  "evidence": [
+   "probes/terminal-industries/desktop_00.jpg",
+   "probes/terminal-industries/mobile_00.jpg",
+   "probe measure.type.h2 (82.4976px SuisseIntl)",
+   "bundle CCGV33ln.js (VideoCarousel / ScrollContent / ScrollIndicator)"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "SuisseIntl (Suisse Int'l)",
+    "role": "display",
+    "classification": "neo-grotesque sans, weights 400/450/500/600 loaded. Hero and section display (82.5/70px) are 400; the FeaturesSteps scroll copy is 450 (scoped CSS font-weight:450, line-height 1.2) and its lead-in line ('Build System You Need', desktop_04) is visibly heavier (500-600, weight not measured)",
+    "foundry": "Swiss Typefaces (licensed, self-hosted woff2)",
+    "source": "probe fonts_loaded + font_families_rendered (1148 nodes)"
+   },
+   {
+    "name": "SuisseIntl",
+    "role": "body",
+    "classification": "same family, 18px/1.4 body at 70% ink, nav 14px weight 450",
+    "foundry": "Swiss Typefaces",
+    "source": "probe measure.type.p / nav a"
+   },
+   {
+    "name": "Geist Mono",
+    "role": "ui",
+    "classification": "monospace, 400/600, uppercase with 0.18em tracking for step numbers, every CTA chip, full-width card buttons, the AI input placeholder, the scroll label and HUD callouts. Correction: the section eyebrows ('Why Terminal', 'Platform', 'Built by the Industry') are grey Suisse in sentence case, not mono (desktop_03/05/06).",
+    "foundry": "Vercel (served from fonts.gstatic.com)",
+    "source": "probe fonts_loaded + top_hosts fonts.gstatic.com"
+   },
+   {
+    "name": "Poppins",
+    "role": "accent",
+    "classification": "geometric sans, 1 rendered node",
+    "foundry": "Google Fonts",
+    "source": "probe font_families_rendered (1 node) + fonts_loaded Poppins 400/500/700; root var --salespeak-font-family: 'Poppins' confirms it belongs to the third-party Salespeak chat widget, not the design system"
+   }
+  ],
+  "display_size_px": 82.5,
+  "body_size_px": 18,
+  "scale_notes": "82.5 hero h2 (over film) / 70 section h2 and h1 / 48 (42 nodes, element not identified) / 46 feature titles / 44 calculator numerals / 38 form h2 / 35 FeaturesSteps scroll copy (the single largest tier by node count: 530 SplitText char nodes, weight 450, lh 1.2; desktop_04) / 22.5 card h3 / 18 body / 15 form labels / 14 nav / 13 mono step labels / 11 mono scroll label. Steps: 82.5:70 = 1.18, 70:46 = 1.52, 46:35 = 1.31, 35:22.5 = 1.56, 22.5:18 = 1.25. Big jumps between tiers, few tiers; the 35px reading copy sits between display and body, which is what makes the steps section read like a statement rather than a paragraph.",
+  "tracking_leading": "Hero h2 82.5px, line-height 78.37px (0.95), letter-spacing -1.467px (-0.018em). Section h2/h1 70px, line-height 70px (1.0) / 66.5px (0.95), letter-spacing -3.6px (-0.051em, very tight). Feature h3 46px/55.2px (1.2), -0.46px (-0.01em). Card h3 22.5px/32.86px (1.46), -0.4px. Body 18px/25.2px (1.4), +0.36px (+0.02em), color rgba(5,36,36,0.7). Mono 13px +2.34px (0.18em) uppercase; 11px weight 600, 18% tracking, line-height 0.85.",
+  "case_and_style": "Sentence case for display statements; Title Case on card and feature titles ('I Run a Network of Yards', 'One Modular Platform Infinite Possibilities'); uppercase mono for step labels, HUD chips and all button text (eyebrows stay grotesk sentence case); trademark glyphs in nav ('What is YOS™', 'SmartYard™ YMS'); odometer digits in the ROI result ('641,626') are fixed-height 0-9 stacks, so figures cannot jitter (font-variant tabular-nums itself not verified).",
+  "signature_moves": [
+   "OBSERVED in code: hero titles use SplitText 'lines, chars'; section scroll progress is split into thirds (one title each). Inside a third, chars reveal left-to-right with opacity pow2.out while colored var(--c-lime) and switch to #fff once fully revealed; past the 0.6 threshold they fade out with pow2.in at 2x speed (CCGV33ln.js).",
+   "OBSERVED + code (CK0VoJrz.js FeaturesSteps, scoped CSS in index.html): scroll-read fill on the 35px steps copy. SplitText 'chars'; each char gets --v-delay = 14ms x index; a ScrollTrigger (top 50% -> bottom 50%, scrub 0) maps progress to a char count and toggles class .show on every char below it; .show runs a 0.5s CSS keyframe #ddd -> (30%) lime -> #052424. So read text is ink, unread is #ddd, and the 1-2 chars at the leading edge are caught mid-keyframe (desktop_04 'y' samples rgb(84,124,38), a lime/ink midpoint, not pure lime). <u> spans get two underline layers (dark green over lime, min(.156vw,4px) tall) scaled on X with the same progress. Correction: desktop_05 (46px h3 with 'One Modular Platform' in pale #eee and 'Infinite Possibilities' in ink) and desktop_07 (contact heading) are NOT this mechanism; see the next two moves.",
+   "OBSERVED in code: timed 'lime pass' on rich-text <strong> chars. Contact form headline (KAt1aMJ3.js) and the shared helper dgyuHScH.js (called from Boai3ucj.js TabbedAccordion with startColor lime, endColor dark green): SplitText 'words, chars', timeline triggered at 'top 40%': chars -> var(--c-lime) 0.4s stagger 0.05 power2.inOut, then -> final ink 0.5s stagger 0.05 starting at t=0.25. desktop_07 captures it mid-flight: 'Contact us' dark green -> green -> lime -> grey across one line. In TabbedAccordion the strong text rests at var(--c-light-gray) until triggered. desktop_05's two-tone h3 (pale #eee lead, ink tail) is a related resting state; which element carries the pale colour was not isolated.",
+   "OBSERVED in code: ButtonTilt decode reveal (CPTZehg3.js). SplitText 'chars, lines'; on 'top 85%' (toggleActions play none none reverse) chars autoAlpha 0->1 at i*0.05s; every even char first flashes a solid block (background and colour both = the tempColor prop) and clears to transparent + finalColor in 0.02s at i*0.05 + random 0.1-0.6s. On mouseenter it replays faster: even chars set to tempColor at i*25ms and cleared 0.2s later. Lime as tempColor is inferred (it is a prop; footer link use not verified).",
+   "OBSERVED: grotesk display vs uppercase mono micro-labels as the only pairing; the numbered step label ('01 FAST START') in #7f7f7f mono sits above each card title."
+  ],
+  "mobile": "OBSERVED (mobile_measure, mobile_00/01): h1 drops to 30px, largest text 58px, no horizontal overflow. Nav becomes a rounded island with logo and a two-line hamburger; hero uses a separate 409-frame portrait render (hero_anim_mobile_60_{i}.webp) cropped on the cab."
+ },
+ "color": {
+  "mode": "section-shifting",
+  "base": "#ffffff (html bg) for content sections; near-black film frames for the hero and footer; #052424 dark-green panels for forms and the calculator CTA",
+  "ink": "#052424 (--c-dark-green, 807 text nodes); white on film and dark panels",
+  "accents": [
+   "#abff02 lime (--c-lime): primary CTA fill 'EXPLORE PRODUCT', char sweeps, reading-fill leading edge, bullet dots, HUD callout 'ASSIGN TO SPOT 11', lime logo SVG in footer (116 text nodes, 14 bg nodes)",
+   "#fb6b3c orange (--c-orange token, not seen in captured viewports)",
+   "#f0f0f0 --c-dirty-white card fill",
+   "#dddddd / #c2c2c2 / #7f7f7f greys for unread text, labels, step numbers",
+   "rgba(5,36,36,0.05-0.2) tinted fills and hairlines"
+  ],
+  "ratio": "approx 55% white / 30% near-black film / 12% dark-green ink and panels / 3% lime",
+  "section_shifts": "Yes: black film -> white -> dark-green panels -> white -> black film still -> white contact. Seams are drawn by a reusable SVGMask component (CGyjR-Nh.js): a notches array {direction, position, size, offset, radius, notchWidth} is turned into one path with arc corners and applied as an SVG <clipPath> (or <mask>). NotchSection (Bgz4xD1E.js) puts a centred notch 65% of width (size .65, notchWidth .95, radius 20) on top and/or bottom, depth 40px desktop / 20px mobile, and scrubs offset from -1 to +1 x depth ('top bottom' -> 'top top' for the top edge, 'bottom bottom' -> 'bottom top' for the bottom). inferred from the sign flip: the edge morphs from a protruding tab through flat into an inset notch as the section scrolls in (desktop_01 bottom and desktop_07 show the tab state).",
+  "texture": "No grain. Texture comes from the baked film (golden-hour light, point clouds) and from the BackgroundCanvas grid component in intro sections (2D canvas, animated mask; themes dark: lines rgb(75,75,75)/dots rgb(132,132,132), green: rgb(38,80,29)/rgb(105,166,16), white: rgb(222,222,222)/rgb(173,173,173)). The film's last frames end on the same grid grammar (desktop_01: segment lines broken at intersections with square dots, ~94px pitch at 1440 vs the canvas component's 77px), so the baked film hands off to a live 2D motif.",
+  "notes": "Hairlines and tinted fills lean toward the dark green (#052424 at 5/15/20% alpha), but the big neutral surfaces are stock greys: card fill #f0f0f0 (--c-dirty-white), full-width card buttons in a light cool grey, nav island a flat mid grey over white. So the 'tinted neutrals' idea only holds for lines, not surfaces. Lime is rationed: CTA fill, motion leading edges and HUD callouts only."
+ },
+ "layout": {
+  "grid": "OBSERVED 1440 viewport: card row spans x70-1370 (3 columns ~414px, 24px gutters, cards radius ~20px, #f0f0f0 fill, 40px inner padding). Nav island inset 139px each side. Token --spacing: min(3.646vw, 93.33px) = 52.5px at 1440. Centered intros use ~870px text measure. Feature split: text column x165-590, dark media panel x728-1423 (695x830) that bleeds to the right edge.",
+  "density": "balanced",
+  "alignment": "Centered stacks for section intros (eyebrow, 70px h2, 18px body); left-aligned text in splits and cards.",
+  "composition_moves": [
+   "Floating inset nav island that never touches the viewport edges",
+   "Dark media panel whose left-edge notch is a scroll pointer (FeaturesSteps, CK0VoJrz.js): notch size 0.4 of the edge, 30px inset, notchWidth 0.9, position scrubbed lerp(0.3, 0.7, progress) so the cut slides down the panel as you read the steps (desktop_04 notch mid-panel y~230-610, desktop_05 near the bottom). The panel holds prerendered wireframe yard loops with a lime mono HUD chip; the active step's video is restarted (startoverVideo) when the step changes. On mobile the notch moves to the bottom edge (20px) and tweens to the active item (1s power2.out).",
+   "Investor logo wall: 5 cells with hairline dividers and '+' crosshair marks at intersections that flicker (desktop_06, CrossFlicker)",
+   "ROI calculator split: white slider/labels left, dark-green email form card right (desktop_03)",
+   "Centered eyebrow in grey sentence case ('Why Terminal', 'Platform', 'Built by the Industry') instead of caps",
+   "Odometer step counter in the left margin ('02' beside the copy, desktop_04): a PaddedCounter from 1 to N whose progress tweens to the active step in 1s expo.out; the steps header also slides in from translateY(-10rem) with pow2.out as the section enters."
+  ],
+  "section_rhythm": "Tall pinned dark film -> white centered intro + logo marquee -> 3-card row -> calculator split -> centered intro -> sticky text + dark notched media -> centered intro + tabbed product grid -> logo wall -> dark footer film with notch -> contact split. Dark/white alternation every 1-2 sections, each seam notched.",
+  "mobile_adaptation": "Single column, portrait film render, nav collapses to island + two-line hamburger opening HeaderDrawer (its chunk animates with CSS transitions; the 'menuEase' CustomEase is registered globally but no call site was found in the 63 fetched chunks). A third-party chat bubble and 'Asked on this page' teaser occupy ~15% of the bottom of the mobile viewport (mobile_00/01)."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis 1.3.1 (window.lenisVersion; html class 'lenis'; bundled in CGyjR-Nh.js with library defaults lerp 0.1, smoothWheel true; project override not isolated). GSAP 3.13.0 with ticker lagSmoothing(0); ScrollTrigger.config({ignoreMobileResize:true}).",
+  "preloader": "AppLoader (code, CGyjR-Nh.js): timeline delay 0.2s; two halves of the SVG logo play; background wrappers tween from scale 2, opacity 0, rotate 20deg to 1/1/0 over 2s expo.out; then the top panel slides yPercent 0->-100 and the bottom 0->100 (1.2s expo.inOut) while an inner wrapper goes yPercent 0->50 and another 0->-50 (counter-parallax); panel edges carry notches (radius 40, size 0.75, notchWidth 0.95); overlay opacity->0 0.8s power1.in, Lenis scrollTo(0) immediate.",
+  "intro_sequence": "After the loader split the page rests on frame 0 of the film with the nav visible; nothing else animates until scroll.",
+  "scroll_techniques": [
+   "scrub: 410-frame image sequence tied to progress of a tall section (start 'top top', end 'bottom bottom')",
+   "parallax exit: sequence wrapper yPercent 0->50 (ease none) from 'bottom bottom' to 'bottom top'",
+   "scrubbed per-char title reveal and dissolve over the film",
+   "scroll-driven char class toggle with a CSS keyframe (#ddd -> lime -> ink, 14ms per-char delay) on the FeaturesSteps copy",
+   "notch pointer scrubbed along the media panel edge (lerp 0.3-0.7 of progress)",
+   "scrubbed SVG notch offset on section seams (tab -> flat -> notch)",
+   "sticky steps layout (.inner position:sticky; top:0) beside the dark media (desktop_04)",
+   "toggleActions reveals at 'top 85%' (play none none reverse); form reveal autoAlpha 0, y 24 -> 0 (0.7s power3.out) then fields y 12 (0.5s, stagger 0.06)"
+  ],
+  "text_animation": "SplitText everywhere (types 'chars', 'words, chars', 'lines, chars', 'chars, lines'). Four treatments: hero title lime-sweep in/out (scrubbed, per-char maths), FeaturesSteps read fill (scroll toggles a class, CSS keyframe does the colour, 14ms per-char delay), rich-text <strong> lime pass (timed, stagger 50ms at 'top 40%'), link decode flash (timed, 50ms per char + random 0.1-0.6s blocks; faster replay on hover).",
+  "image_animation": "VideoSequence draws frame floor(progress*(n-1)) onto a DPR-scaled 2D canvas using object-fit:cover math (fitAndPosition); it redraws only when the frame index changes and the image is complete (an unloaded frame leaves the last drawn one on screen). Card images static; feature media are looped muted mp4s (vid_3-x_prerender_1.mp4, autoplay false) restarted by FeaturesSteps when their step becomes active; images cross-fade (opacity 0.5s var(--ease-out)).",
+  "page_transitions": "AppTransition (code): panels yPercent tweens 1.2s expo.inOut; notch offset/size animate from {offset 0, size 0.5} to {offset w, size 0.9} with custom.fastInOut (cubic .52,0,0,1) 0.6s, then offset -> -w expo.out 0.6s; overlay autoAlpha 0.",
+  "hover_micro": [
+   "BorderHover (code): four layers inside the card (border-bg-v, border-bg-h, a border-holder and a background-gradient); on mouse move the border-holder and background-gradient are translated to the cursor (translate3d(calc(Xpx - 50%), calc(Ypx - 50%), 0), X/Y rounded to 0.1px, Lenis scroll offset added to the cached rect)",
+   "ButtonTilt: char-level colour-block flash on links, replayed on hover at 25ms per char",
+   "CrossFlicker: '+' marks scale their vertical stroke Y 1->0->1 and horizontal stroke X 1->0->1, 2.5s each leg, expo.inOut, infinite, random 0-2s delay",
+   "AnimatedNumber: odometer digit stacks tween y = -digit*28px, 0.6s power2.out, overwrite true",
+   "CSS hovers 150-300ms on chips and nav"
+  ],
+  "cursor": "Native cursor. The 'Scroll to explore' label is a damped mouse-follower on pointer:fine devices (window.matchMedia('(pointer: fine)')), offset by 1/5 of its width, hidden until the mouse first moves, chars looping grey<->white.",
+  "easing_curves": [
+   "GSAP expo.out (15 uses in the first-party chunks)",
+   "GSAP expo.inOut (14)",
+   "GSAP power2.out (9), power2.inOut (8), power1.in (6)",
+   "CustomEase custom.fastInOut = cubic-bezier(0.52,0,0,1) (page transition notch, logo assembly)",
+   "CustomEase easeCustomNotch = cubic-bezier(0.67,0.05,0.43,1) (registered; call site not found in fetched chunks)",
+   "CustomEase menuEase = 15-point path 'M0,0 L0.009,0.012 L0.02,0.049 L0.093,0.409 L0.119,0.513 L0.147,0.606 L0.179,0.691 L0.213,0.762 L0.25,0.82 L0.291,0.868 L0.336,0.907 L0.387,0.937 L0.513,0.976 L0.688,0.994 L1,1' (slow first 2%, then steep ease-out; registered, call site not found)",
+   "CSS cubic-bezier(0.39,0.575,0.565,1) x59 (easeOutSine)",
+   "CSS cubic-bezier(0.19,1,0.22,1) x39 (easeOutExpo)",
+   "CSS cubic-bezier(0.4,0,0.2,1) x30",
+   "CSS cubic-bezier(0.42,0,0.58,1) x16 (ease-in-out)",
+   "CSS cubic-bezier(0.215,0.61,0.355,1) x12 (easeOutCubic)",
+   "CSS cubic-bezier(0.16,1,0.3,1) x8",
+   "root var --ease-out: cubic-bezier(0,0,.58,1)"
+  ],
+  "duration_range_ms": "CSS hovers 150-300ms (0.2s x72, 0.3s x51, 0.15s x38); CSS 1s x20, 0.5s x18, 0.7s x15, 0.6s x11; GSAP reveals and transitions 500-1200ms (bundle: duration 1 x12, 1.2 x11, 0.5 x10); loader and ambient loops 2000-3500ms.",
+  "stagger_ms": "GSAP: 50ms per char (stagger .05 x6), 20ms (x3), 60ms (x2, form fields), 120ms (x1). CSS: 14ms per char on the FeaturesSteps fill (--v-delay).",
+  "choreography_notes": "The film is the conductor: the hero section is a pure scrub with no timed animation, and titles are slaved to the same progress value so text and camera never drift apart. Everything timed elsewhere uses expo curves at ~1.2s for structure (loader, transitions, notches) and power2 at 0.4-0.6s for type. Lime is the motion colour: it only appears on the leading edge of something in motion, then settles to ink or white.",
+  "evidence": [
+   "probes/terminal-industries/desktop_00.jpg",
+   "probes/terminal-industries/desktop_01.jpg",
+   "probes/terminal-industries/desktop_04.jpg",
+   "probes/terminal-industries/desktop_05.jpg",
+   "probes/terminal-industries/desktop_07.jpg",
+   "bundle grep: CGyjR-Nh.js (plugins, CustomEase, AppLoader, AppTransition, BorderHover), CCGV33ln.js (VideoCarousel, ScrollContent), DjtQlGfq.js (VideoSequence loader/drawer), Bgz4xD1E.js (NotchSection), CPTZehg3.js (ButtonTilt), Cf_IIphD.js (CrossFlicker), ClKxST8W.js (AnimatedNumber), KAt1aMJ3.js",
+   "frames 90/180/270/380 of hero_anim_desktop_60 fetched and viewed",
+   "no Awwwards element videos exist for this site",
+   "bundle CK0VoJrz.js (FeaturesSteps) + scoped CSS data-v-1f873f9c in index.html (color-transition keyframe)",
+   "bundle dgyuHScH.js (strong lime-pass helper), _4g4zwRg.js (BackgroundCanvas)"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "3d-render",
+  "art_direction": "Pre-rendered photoreal CG at golden hour: low sun, lavender-to-amber sky, long shadows, a near-silhouetted trailer with only the cab catching light; motion-blurred foreground containers (frame 90). Then a 'sensor' grade: the same trucks turn into glowing white/cyan wireframe X-rays with point-cloud dust (frame 180), a lone wireframe trailer in a black starfield (frame 270), and comet-like light tendrils converging over a dark grid (frame 380 / desktop_01). Supporting imagery: saturated top-down drone photos of truck yards in cards (desktop_02), a dusk truck-in-snow still for the footer (desktop_07).",
+  "treatments": [
+   "scroll-scrubbed image sequence on canvas",
+   "wireframe + point-cloud 'computer vision' look baked into the render",
+   "lime mono HUD callouts over wireframe loops ('ASSIGN TO SPOT 11', spot numbers 8-14 in thin sans)",
+   "~8px image radius inside 20px-radius cards",
+   "notched dark panel edges"
+  ],
+  "crops_and_ratios": "Film frames 1920x1080 (16:9) cover-fit to 1440x900; mobile frames portrait. Card photos ~333x207 (1.6:1). Feature media panel ~695x830 (0.84:1).",
+  "formats": "probe: 410 webp (50.4MB declared, the desktop frame set), 4 mp4 (10.3MB, Storyblok vid_3-1/3-2/3-3/3-5_prerender_1.mp4, loop muted), 34 <picture>, 6 png, 21 svg. Frames average ~50-150KB each (fetched samples 14-153KB).",
+  "evidence": [
+   "probes/terminal-industries/desktop_00.jpg",
+   "probes/terminal-industries/desktop_01.jpg",
+   "probes/terminal-industries/desktop_02.jpg",
+   "probes/terminal-industries/desktop_04.jpg",
+   "probes/terminal-industries/desktop_07.jpg",
+   "probes/terminal-industries/mobile_01.jpg",
+   "frames hero_anim_desktop_60_90/180/270/380.webp",
+   "probe videos + asset_extensions"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "pre-rendered 3D delivered as a 410-frame webp image sequence drawn on a 2D canvas, plus prerendered wireframe mp4 loops; no three.js / OGL / shaders in the first-party bundles. The probe counted 1 webgl2 context whose origin is not in the first-party chunks (inferred: third-party widget).",
+  "role": "world / camera flight that doubles as the hero and the product explainer",
+  "assets": [
+   "https://terminal-industries.com/static/frames/home/desktop/webp/hero_anim_desktop_60_{0..409}.webp (410 frames, 1920x1080)",
+   "https://terminal-industries.com/static/frames/home/mobile/webp/hero_anim_mobile_60_{0..408}.webp (409 frames)",
+   "https://a.storyblok.com/f/337048/x/f0f51ea10f/vid_3-1_prerender_1.mp4 (+3 sibling prerender loops)"
+  ],
+  "materials_lighting_post": "Baked: physically lit golden-hour truck and yard, motion blur on foreground, then a stylised wireframe/edge render with additive white-cyan lines and point sprites on black; final frames use soft volumetric streaks over a grid.",
+  "interaction": "scroll-driven camera (scrub), no mouse interaction on the film",
+  "performance_tactics": "Frames fetched inside a Web Worker (video-sequence.worker) and returned as Blobs -> object URLs -> Image (the probe's 410 requests with an empty host are these blob: URLs). Frame 0 is requested first; then every 50ms Arr.spliceNth(remaining, 8) removes every 8th remaining frame and posts it as one batch, so the first batch (~52 frames) spans the whole film at 1/8 density and later passes fill the gaps (coarse-to-fine). Optional lazyLoad starts on ScrollTrigger enter; draw only on frame change; canvas sized offsetWidth x devicePixelRatio with ctx.scale(DPR); separate 409-frame portrait set on mobile.",
+  "fallback_mobile": "Dedicated 409-frame portrait render (mobile_00 shows the cab-centred crop, mobile_01 shows blue light tendrils from later frames).",
+  "evidence": [
+   "bundle DjtQlGfq.js (VideoSequence), CCGV33ln.js (frame URL builder g(pattern, 410/409))",
+   "probe contexts {2d:1, webgl2:1}, canvas 1440x900 absolute",
+   "probe assets_3d [] (no glb/ktx2/hdr)"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Floating inset island bar (1162x78 at 1440, ~8px radius, translucent grey + backdrop-filter): logo left; dropdown triggers System / Markets / Featured / Resources + About at 14px weight 450; an 'Ask Terminal' AI search input with lime sparkle and mono placeholder; phone icon button; three stacked two-line mono caps chips (lime 'EXPLORE PRODUCT', white 'REQUEST DEMO', light grey 'CONTACT US').",
+  "menu": "Desktop dropdowns built on Reka/Radix-Vue NavigationMenu primitives (NavigationMenuViewport, Popper, DismissableLayer in bundle). Mobile: HeaderDrawer opened from a two-line hamburger (CSS transitions in its chunk; the registered 'menuEase' was not found wired to it).",
+  "buttons_links": "CTA chips are flat fills with mono uppercase labels, no icons; card buttons are full-width #e3e6e6-ish grey bars with mono caps ('FIX NOW', 'LEARN MORE', 'ONE SYSTEM FOR ALL'). Links reveal via ButtonTilt char flash. Cards carry a cursor-following border/gradient highlight (BorderHover).",
+  "unusual_interactions": [
+   "AI 'Ask Terminal' query field in the global nav",
+   "ROI calculator with sliders (1-LOW / 5-MEDIUM / 10-HIGH) and odometer-rolling currency result",
+   "PhonePopdown from the phone icon",
+   "damped mouse-following 'SCROLL TO EXPLORE' label"
+  ],
+  "sound": "none",
+  "footer": "Dark film still (truck on a snowy road at dusk) with a white notch rising into the contact section; SiteFooter with lime Terminal logo SVG, Gartner badge, and a ButtonTilt link whose chars flash lime."
+ },
+ "content_voice": {
+  "headline_style": "Declarative reframing statements, sentence case, 6-12 words, delivered in three beats across the film (claim, mechanism, outcome), the second ending in an ellipsis that the third completes.",
+  "copy_tone": "Confident enterprise B2B with operational specifics (gate, dock, spotters per shift, live in 5 days, low IT lift); persona-based card titles in first person ('I Run a Network of Yards').",
+  "examples": [
+   "We have reinvented the future of logistics through the yard."
+  ]
+ },
+ "tech_stack": {
+  "framework": "Nuxt 3 (bundle version strings 3.17.2 / Vue 3.5.13), Storyblok headless CMS, Vercel (Awwwards tag)",
+  "libraries": [
+   "GSAP 3.13.0 (ScrollTrigger, SplitText, Flip, CustomEase + 4 more registered plugins)",
+   "Lenis 1.3.1",
+   "Reka UI / Radix-Vue primitives",
+   "@vuepic/vue-datepicker",
+   "Web Worker frame loader (custom)",
+   "Salespeak AI chat widget (third-party)",
+   "GTM, LinkedIn Insight, Contentsquare, factors.ai, Cloudflare Insights"
+  ],
+  "evidence": "probe globals __NUXT__, html class 'lenis', top_hosts a.storyblok.com / brain.salespeak.ai; bundle: gsap.registerPlugin(...) with CustomEase.create calls in CGyjR-Nh.js; component names StoryblokComponent, NavigationMenuRoot, VueDatePicker; Awwwards tags Vue.js + Vercel."
+ },
+ "performance_accessibility": {
+  "requests": 1016,
+  "weight_notes": "Declared bytes: webp 50.4MB (the 410 desktop frames dominate), mp4 10.3MB, JS 344KB, woff2 246KB. Heavy by bytes but progressive: worker-loaded, coarse-to-fine frame order, first frame first; dev WPO score 8.2 despite the weight.",
+  "reduced_motion": "probe: 4 prefers-reduced-motion CSS rules. The JS sequence scrub and char animations were not observed to branch on reduced motion (not verified).",
+  "contrast_issues": "Unread text in the steps fill is #ddd on white (~1.4:1) until scrolled; the nav island over white sections renders as a flat grey (sampled rgb(178,178,178) in desktop_06) behind 14px white text, ~2.1:1 (the probe's 200 rgb(151,151,151) bg nodes are not all the nav; element not isolated); hero titles white on a bright amber sky would be weak if they sat over frame 0 (they appear over darker frames). Accessibility is the lowest dev sub-score (7.0).",
+  "mobile_quality": "No horizontal overflow; dedicated portrait film; h1 30px. The third-party chat bubble + teaser covers the lower hero on mobile.",
+  "dev_scores": {
+   "overall": 7.89,
+   "semantics_seo": 7.8,
+   "animations": 8.8,
+   "accessibility": 7.0,
+   "wpo": 8.2,
+   "responsive": 7.8,
+   "markup": 7.4
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Pre-rendered 3D film scrubbed by scroll (image sequence on canvas)",
+   "why_it_works": "Gets offline-render quality (GI, motion blur, stylised wireframe passes) with zero realtime GPU cost, and ties story beats to thumb distance so the viewer directs the camera.",
+   "how_to_build": "Render the shot at 60fps, 1920x1080 for desktop (410 frames) and a separate portrait set for mobile (409); export webp (their sampled frames are 14-153KB). inferred: hero section several viewports tall with a sticky 100vh canvas (hero length not measured; whole page is 15,896px). Load in a Web Worker: fetch -> Blob -> postMessage; main thread makes object URLs. Request frame 0 first, then every 50ms post one batch = every 8th frame of what is still unloaded (spliceNth(remaining, 8)), so the whole film becomes coarsely scrubbable after the first batch and fills in on later passes. ScrollTrigger.create({trigger, start:'top top', end:'bottom bottom', onUpdate:s=>p=s.progress}); index = Math.floor(p*(n-1)); if index changed and img.complete, ctx.clearRect + ctx.drawImage with cover-fit math (otherwise keep the last frame); canvas.width = offsetWidth*devicePixelRatio and ctx.scale(DPR,DPR). On exit tween the wrapper yPercent 0->50 (ease none) with scrub:true from 'bottom bottom' to 'bottom top'. Provide a static poster (frame 0 plus visible headline) for reduced motion."
+  },
+  {
+   "technique": "Lime leading-edge char sweep for titles over the film",
+   "why_it_works": "The accent colour only exists at the moving edge, so it reads as a scanner/cursor rather than decoration, and text is locked to the same progress as the camera.",
+   "how_to_build": "SplitText(el,{type:'lines, chars'}). Offset the section progress by -0.03, then split it into k equal slots (k = 3 titles): slot = floor(t*k), local C = t*k - slot. reveal = min(C/0.5,1); dissolve = clamp((C-0.6)/0.4*2,0,1) (finishes at C=0.8, leaving a blank beat before the next title). For char i of N: a = clamp((reveal - i/N)*N,0,1); d = clamp((dissolve - i/N)*N,0,1); opacity = pow2.out(a)*(1-pow2.in(d)); color = a<1 ? var(--c-lime) : '#fff'. Titles in inactive slots: opacity 0, colour lime. Type: 82.5px grotesk 400, line-height 0.95, -0.018em. Keep an SSR-visible fallback (no-JS or reduced motion shows the first title at full opacity)."
+  },
+  {
+   "technique": "Scroll-scrubbed notched section seams",
+   "why_it_works": "One bespoke silhouette (a trapezoid tab with rounded shoulders) repeated on loader, page transitions and every dark/white seam gives the brand a signature edge, and animating its depth makes seams feel mechanical like a dock door.",
+   "how_to_build": "Build one SVGMask component: props notches[] of {direction, position (0-1 along the edge), size (fraction of edge), offset (px, sign = in/out), radius, notchWidth (taper)}; compute a single path with arc corners and render it into <svg><defs><clipPath clipPathUnits='userSpaceOnUse'> (or <mask>) sized to the element, applied with clip-path:url(#id). Seams: centred notch size 0.65, notchWidth 0.95, radius 20px, depth 40px desktop / 20px mobile. ScrollTrigger({trigger:section, start:'top bottom', end:'top top', scrub:true, onUpdate:({progress})=> notch.offset = lerp(-1, 1, progress)*depth}) (mirror with 'bottom bottom' -> 'bottom top' for the bottom edge). For page transitions tween {offset:0,size:0.5} -> {offset:w,size:0.9} with CustomEase (.52,0,0,1) 0.6s, then offset -> -w expo.out 0.6s. Pad text at least depth+16px clear of the notch."
+  },
+  {
+   "technique": "Masked 2D grid field that actually moves (BackgroundCanvas)",
+   "why_it_works": "A grid alone is slop; a grid whose visibility is driven by an animated low-res alpha field plus streaks travelling along its lanes reads as a live yard/network diagram.",
+   "how_to_build": "Grid pitch 77px = 48px line segment + 2x13px gaps + 3px square dot. Pre-build offscreen canvases: dots layer and lines layer (themes: dark lines rgb(75,75,75) / dots rgb(132,132,132); green rgb(38,80,29) / rgb(105,166,16); white rgb(222,222,222) / rgb(173,173,173)). Each frame fill a 15x15 ImageData alpha mask using ONE mode chosen per instance: 'pulse' = easeInQuad((sin(dist/15*5*PI - t*1.8*2)+1)/2); 'wave' = 3 radial blobs orbiting at (cos(t+c*0.6)*0.2w+0.5w, sin(t+c*0.6)*0.35h+0.5h) with linear falloff 1-d/r; default 'spiral' = log-spiral distance falloff (pow4.in). putImageData to a 15x15 canvas, then layer.globalCompositeOperation='destination-in'; layer.drawImage(mask,0,0,W,H) (bilinear upscale = soft falloff), draw onto the visible canvas. If blobsAnimation is on, every 1.25-2.5s spawn a blurred streak sprite (115x65 png with a 1px dark-green head tick) on a random lane: opacity 0->1 1s power1.in, travel 800px in 3.5s power1.in, fade 0.5s expo.out. Use it behind one or two intro sections only, never page-wide."
+  },
+  {
+   "technique": "Odometer numbers for live calculators",
+   "why_it_works": "Rolling digit columns make a computed ROI feel mechanical and trustworthy rather than a text swap.",
+   "how_to_build": "Render each digit as an overflow:hidden 28px-tall cell containing a vertical stack 0-9 (line-height 28px); commas are static cells. On value change: gsap.to(stack,{y:-digit*28, duration:0.6, ease:'power2.out', overwrite:true}) per digit; also tween a proxy number for aria-live text. Grotesk 44px, line-height 1.2, -0.6px tracking, tabular figures."
+  },
+  {
+   "technique": "Cursor-following border light on cards",
+   "why_it_works": "Makes flat #f0f0f0 cards respond to the pointer without lifting or bouncing.",
+   "how_to_build": "Code shows the layer stack: card wrapper with border-bg-v, border-bg-h, a border-holder and a background-gradient, plus the slot. On pointer move (plus Lenis scroll offset added to the cached rect) set transform: translate3d(calc(Xpx - 50%), calc(Ypx - 50%), 0) on border-holder and background-gradient, X/Y rounded to 0.1px, no transition. inferred implementation of the ring: a radial-gradient spot on the border-holder revealed only inside the 1px border (mask-composite: exclude or a padding-box/border-box mask), and a ~300px radial gradient at 10-15% ink for the background spot."
+  },
+  {
+   "technique": "Scroll-read steps with a travelling notch pointer",
+   "why_it_works": "Reading progress is shown three ways at once and all are functional: ink fills the copy you have read, the counter ticks the step, and the notch on the media panel slides to point at where you are, so the dark panel feels mechanically linked to the text.",
+   "how_to_build": "Sticky two-column section (.inner position:sticky; top:0). Left: steps as <li> with 35px grotesk copy, weight 450, line-height 1.2; SplitText 'chars', set --v-delay = (0.014*i)s on each char; CSS: .char{color:#ddd} .item.show .char.show{color:ink; animation:fill .5s var(--v-delay); transition:color 0s var(--v-delay)} @keyframes fill{0%{color:#ddd}30%{color:lime}to{color:ink}}. ScrollTrigger({trigger:list, start:'top 50%', end:'bottom 50%', scrub:0, onUpdate}) -> compute which item and how far through it (from item offsetTop/offsetHeight) and toggle .show on chars with index < progress*N. Right: media panel clipped by an SVG notch {direction:left, size:0.4, offset:30, notchWidth:0.9}; set notch.position = lerp(0.3, 0.7, progress) in the same onUpdate. Margin counter: odometer from 1 to N tweened to the active index (1s expo.out). Restart the active step's looping video on change. Keep all copy readable without JS (default colour ink, add the grey only when the script has run)."
+  }
+ ],
+ "slop_risks": [
+  "Invisible-content trap: the three hero statements are opacity 0 per character until scroll progress reaches them, so the first screen is a stock-looking truck photo with no message; if ScrollTrigger or SplitText fails the hero never speaks.",
+  "Monospace as the house voice / one label treatment everywhere: Geist Mono (a free Google Fonts mono) uppercase at 0.18em on every CTA chip, card button, step number, the AI input placeholder and HUD callouts. The section eyebrows escape it (grey Suisse sentence case), which is what keeps it from being total; a copy that also moves the eyebrows into mono completes the tell.",
+  "Saturated accent pop: #abff02 lime on the primary CTA and text sweeps; a copy that uses lime as a static fill or on large areas becomes neon-SaaS cliché.",
+  "Grid / graph-paper background: the BackgroundCanvas grid and the film's final grid frame are the classic tell; it only survives here because the mask moves and streaks travel the lanes. A faint static grid copy is pure slop.",
+  "Botched glass: the nav island reads as a flat muddy grey slab over white sections (desktop_02, 05, 06) and picks up a dark smear on its right half over the dark panel (desktop_03, 04).",
+  "Misaligned parallel columns (not kitchen-sink): the three persona cards (desktop_02) are equal-width with photo + full-width grey mono button, but the third card's image runs to y~540 vs ~533 and its button sits ~7px lower (y~573 vs ~566) with the card ending at ~679 vs ~671, so the button row is ragged. Anchor buttons to the card bottom and give the image slot a fixed ratio.",
+  "Logo wall with hairline cells and '+' crosshair ticks (desktop_06) drifts toward blueprint decoration if copied without the flicker and real logos.",
+  "Clear the cut: the chamfered notch on the dark media panel and every notched seam must keep text padded past the notch depth.",
+  "Reading-fill grey (#ddd on white, ~1.4:1) is unreadable text until scrolled; a naive copy that sets the grey in CSS before the script runs leaves whole paragraphs unreadable.",
+  "Third-party chat bubble and teaser sitting over the mobile hero.",
+  "The slop gray: the card fill #f0f0f0 and the light cool-grey full-width card buttons are stock UI-kit neutrals; only the hairlines are tinted toward the brand green. Copying the cards as-is imports the default gray.",
+  "Floating tag pinned to an image: the 'ASSIGN TO SPOT 11' lime mono chip on the wireframe panel is a pill over media. It works here because it is diegetic yard-software UI tied to spot numbers in the render; a decorative chip on a photo is the tell."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots and both mobile screenshots viewed individually; probe numbers (type, colours, easings, durations, requests) quoted as measured; code read from 63 first-party Nuxt chunks (GSAP plugin registration, CustomEase definitions, VideoSequence worker loader, ScrollContent char math, NotchSection, BackgroundCanvas, ButtonTilt, CrossFlicker, AnimatedNumber); 4 film frames (90/180/270/380) fetched and viewed to identify the sequence content. No Awwwards element videos exist for this site, so no hover/interaction frames were available. INFERRED: which viewport desktop_01 corresponds to (it matches the film's final grid frames), the origin of the single webgl2 context (not in first-party code), (Poppins ownership and mp4 restart were later confirmed in code; see audit). Lenis lerp 0.1 is the library default found in the bundle; the project's own override value was not isolated. audit (adversarial re-check, 2026-09-25): re-viewed desktop_00-07 and mobile_00/01 one at a time; re-read the cached first-party chunks and index.html scoped CSS. Verified as written: film URLs and 410/409 counts, ScrollContent char maths, AppLoader/AppTransition timings, NotchSection values, CrossFlicker, AnimatedNumber, BackgroundCanvas geometry, BorderHover transform, probe type/colour/easing numbers. Fixed: spliceNth loads every 8th remaining frame per batch (not 8 frames per batch); reading-fill mechanism is FeaturesSteps' class toggle + CSS keyframe with 14ms per-char delay, and desktop_05/desktop_07 were misattributed to it (desktop_07 is the timed strong lime pass); added the missed 35px/450 steps tier, the travelling notch pointer and odometer step counter, the first-mouse-move gating of the scroll label, Lenis 1.3.1 / GSAP 3.13.0 / Nuxt 3.17.2 versions, full menuEase path; downgraded menuEase/easeCustomNotch wiring (no call site found) and ButtonTilt's lime colour (prop); corrected 'white tractor-trailer' (dark trailer, pale cab) and 'display always 400'; Poppins now confirmed via --salespeak-font-family. Slop: replaced the kitchen-sink accusation with the observed ragged card row, added slop-gray surfaces and the diegetic pinned chip, and noted the 'tinted neutrals' claim holds only for lines."
+}

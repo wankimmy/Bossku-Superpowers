@@ -1,0 +1,280 @@
+{
+ "slug": "fluid-glass",
+ "title": "Fluid Glass",
+ "live_url": "https://fluid.glass/",
+ "award": "Awwwards Site of the Day, Mar 30 2026 (Honors + SOTD). Credits: Exo Ape, Ronald Gijezen, Robbert Schefman, Rob Smittenaar.",
+ "scores": {
+  "overall": 7.77,
+  "design": 7.96,
+  "usability": 7.6,
+  "creativity": 7.63,
+  "content": 7.88,
+  "dev": {
+   "overall": 8.0,
+   "semantics_seo": 7.8,
+   "animations": 8.2,
+   "accessibility": 7.6,
+   "wpo": 8.2,
+   "responsive": 8.2,
+   "markup": 7.8
+  }
+ },
+ "industry": "Architecture / B2B manufacturer (UK structural and architectural glazing)",
+ "signature": "The story from drawing to finished build is told as one scrubbed mask: a hairline architectural line drawing is wiped away bottom-up with clip-path inset to reveal the exactly registered photograph of the same building, framed by a single frosted near-black nav bar docked bottom-centre that ticks over to the current page name, shrinks into a back-to-top square and opens the menu by itself when you reach the end of the page.",
+ "first_screen": {
+  "composition": "A full-bleed autoplaying muted Vimeo loop (2160p progressive MP4) of a timber-clad house with a frameless corner window. It is dimmed by rendering the video at opacity .8 over the #212325 page floor plus a transparent-to-black linear gradient. A centred 2-line statement in 57.6px Aeonik Pro 400 white sits in the lower third (lines at y≈655-765); it is a <p> split into lines, while the real h1 is visually hidden. The small 'Fluid Glass' wordmark is top-centre and '↳ GET A QUOTE' in mono caps is top-right; both scroll away with the page. A near-black frosted nav bar (27.6rem x 5rem = 248x45px at 1440, 4rem = 36px from the bottom) is docked bottom-centre with the hex brandmark left, 'HOME' mono label centre and a burger right. The cookie card (cream #f3f0ec) sits bottom-right. There is no eyebrow, subline or button stack, just one sentence over footage.",
+  "what_owns_it": "video",
+  "display_type_px": 57.6,
+  "evidence": [
+   "desktop_00.jpg",
+   "probe.json measure.largest_text",
+   "probe videos[0] 2160p"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Aeonik Pro",
+    "role": "display",
+    "classification": "neo-grotesque with geometric construction",
+    "foundry": "CoType Foundry",
+    "source": "probe fonts_loaded Aeonik Pro 400/700; root var --font-f-aeonik-pro"
+   },
+   {
+    "name": "Aeonik Pro",
+    "role": "body",
+    "classification": "same family 400, bold 700 for inline emphasis ('glazing collection')",
+    "foundry": "CoType Foundry",
+    "source": "probe measure.type p; desktop_04"
+   },
+   {
+    "name": "Aeonik Mono",
+    "role": "ui",
+    "classification": "monospace companion, 500/600, uppercase tracked",
+    "foundry": "CoType Foundry",
+    "source": "probe fonts_loaded Aeonik Mono 500/600; rendered on 273 elements"
+   }
+  ],
+  "display_size_px": 57.6,
+  "body_size_px": 16.2,
+  "scale_notes": "Everything is in rem with html font-size calc((100vw/1600)*10), so 1rem = 10px at a 1600 artboard and 9px at 1440. Scale at 1440: display 6.4rem = 57.6px; showroom statement 4.8rem = 43.2px; card titles and h3 4rem = 36px; menu links 3.2rem = 28.8px; body 1.8rem = 16.2px; mono eyebrow 1.4rem = 12.6px; mono button 1.2rem = 10.8px. Display to body is 3.56. One weight (400) carries all hierarchy by size alone.",
+  "tracking_leading": "Display -0.03em (-1.728px) with line-height 1.0 (57.6/57.6). h3 36px is -0.02em at lh 1.0. Nav links 28.8px are -0.02em at lh 1.125. Body is 16.2/21.06 (1.3) with normal tracking. Mono eyebrow is +0.1em (1.26px) with lh 1.3, 600, uppercase. Mono button is +0.08em, 500, uppercase.",
+  "case_and_style": "Sentence case for all Aeonik Pro statements, which read like manifesto sentences. All-caps mono for every label, eyebrow, button and nav state. No italics. Section labels are prefixed with a ◆ diamond glyph.",
+  "signature_moves": [
+   "Regular (400) weight at display size with tight -0.03em tracking and solid 1.0 leading: quiet rather than shouty",
+   "Headings split with GSAP SplitText (type:'lines', mask:'lines') after document.fonts.ready; lines rise yPercent 200 -> 0, stagger .1, 1.5s power3.out; the masks are padded (.line-mask{margin:-2rem 0; padding:1rem 0}) so descenders are not clipped at rest",
+   "Hook-arrow glyph '↳' before most button labels (the menu's centred 'GET A QUOTE' block has none)",
+   "The page title inside the nav bar swaps with a vertical ticker"
+  ],
+  "mobile": "At 390px the rem is recomputed from a 375 artboard (--size:375 under 600px, so 1rem = 10.4px): the display is 4rem = 41.6px (probe mobile_measure; the 20.8px h1 is the visually hidden one). mobile_00 shows 'Exceptional glazing' as the first line with ~25px side margins, cut off vertically by the cookie sheet, not overflowing the width. The wordmark is ~147px wide top-centre (127px on desktop). There is no horizontal overflow."
+ },
+ "color": {
+  "mode": "section-shifting",
+  "base": "#f3f0ec (--color-cream; sampled #f5f0ed) for light sections",
+  "ink": "#212325 (--color-grey) text and dark section floor; #0b1012 (--color-black, a green-teal near-black) for buttons and glass",
+  "accents": [
+   "#d4cec6 taupe: next-case band (PDP f06)",
+   "#f1a400 yellow: token defined, not observed in captures",
+   "white at 60-80% alpha for secondary text on dark",
+   "ink at 80%/40% alpha via color(srgb ... / .8) for body on cream"
+  ],
+  "ratio": "rough estimate over the homepage captures: ~55% cream / ~30% photography and video / ~15% #212325 dark floors. The accent is effectively zero; hierarchy comes from value, not hue.",
+  "section_shifts": "The hero video gives way to cream (about and product collection), then hard-cuts to a #212325 floor for the showroom (desktop_06/07), then back to cream. On the approach page the process runs on #212325 panels inside cream. The PDP ends on a taupe #d4cec6 next-case band, and the footer is full-bleed video. The edges are hard seams, with no gradient hand-off.",
+  "texture": "None. The glass effect is real backdrop-filter blur(2rem) only on overlays (nav, cursor chip, menu).",
+  "notes": "Modern color functions are used heavily (104 color-mix/oklch uses), e.g. background color-mix(in srgb, var(--color-black) 80%, transparent) for the glass nav and menu, color-mix(currentcolor 40%) for dimmed menu siblings, and a main:before overlay of color-mix(black 40%) that fades in (1s) behind an open menu except at the footer."
+ },
+ "layout": {
+  "grid": "24-column grid with 2rem gutters and 4rem outer margins on desktop (the site's own Ctrl/Cmd+G debug Grid component: repeat(24,1fr), gap 2rem, inset 0 4rem; mobile 6 columns, 1.5rem gap, 2rem margins). At 1440 that is 36px margins and 18px gutters. Full-width 1px hairlines (36-1404) sit above most section labels (Product collection, Showroom, Services); the hero outro rule starts at the centre-left (x≈625) and the centred About manifesto has none. Two-column editorial: label or rule at x≈625 and the body column right (x 1133-1400, ~267px) in the hero outro (desktop_01). Product collection is a broken grid of 4 portrait cards at different sizes and x positions: Doors 387x477 at x440, Windows 328x405 at x1018, Structural 271x334 at x671, Additional 329x405 at x36 (desktop_04/05).",
+  "density": "airy",
+  "alignment": "Centred statements for manifesto sections (about, hero), asymmetric scatter for product cards, left-label/right-copy for supporting text.",
+  "composition_moves": [
+   "One sentence per screen, centred, with 150-200px of air above and below",
+   "A hairline rule plus '◆ LABEL' opens most sections (desktop_03, desktop_04, desktop_06); the centred About manifesto uses the label alone",
+   "Scattered portrait cards drifting at different parallax speeds form a mood-board collage",
+   "Inset media inside a framed panel with a cream margin of ~2% of viewport width (16px in the 800px-wide jury frame, ≈3.2rem ≈ 29px at 1440; approach mask wipe, element 3 f02-f04)",
+   "Horizontal process strip alternating dark text panels and full-bleed photo or video panels (element 2)",
+   "Statement text overlapping the edge of an inset video on a dark floor (showroom, desktop_07: the video starts 792px wide = .55 x 1440)"
+  ],
+  "section_rhythm": "Loud video hero, then quiet cream manifesto (text only), then an image-dense collage, then a dark cinematic showroom, then featured projects and client stories, then a pre-footer CTA box, then a video footer. Dense and sparse sections alternate, as do light and dark.",
+  "mobile_adaptation": "Full-bleed hero video with the statement at 41.6px. The rem system switches to a 375 artboard under 600px (--size:375), so type and spacing stay legible (mobile wordmark mask 67.6rem x 11.4rem at opacity .5). Many scroll scenes are desktop-only (ProductCollection parallax, BannerShowroom, Process horizontal track all skip on isMobile). The cursor chip is hidden under 600px and when the store's isTouch flag is set, which also disables hover zoom."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis 1.3.x (globals.lenis) with default options, run in wrapper mode: html/body are position:fixed and overflow:hidden, and Lenis scrolls a .scroll wrapper around .content. It is driven by gsap.ticker (lenis.raf(time*1000), lagSmoothing(0)), ScrollTrigger.defaults({scroller: wrapper}), and it stays stopped until the intro finishes. Every scroll event closes an open menu, and progress hitting 1.000 fires scroll:onScrollEnd (see menu).",
+  "preloader": "No blocking loader. An intro timeline (code) replaces it.",
+  "intro_sequence": "From the Intro component (the jury 'Intro Animation' video was not in the frames): on a cream full-screen layer, a solid 3rem CSS 3D cube (six divs, preserve-3d, perspective 1000px) rises yPercent 100 -> 0 and scales 0 -> .95 (1.5s power3.inOut) while a keyframe spins it rotateX(-30deg) rotateY(0 -> -315deg) scaleY(.78) over 1.5s, ending corner-on so its silhouette is a hexagon. At 1.5s the logo gets a hexagon SVG mask-image and the flat hex brandmark SVG appears in place of the cube. From 1.3s the whole lockup slides xPercent 41 -> 0 (1s power3.inOut) while the wordmark's letter paths rise yPercent 150 -> 0 (stagger .05, 1s power3.out). At 2.2s a grey overlay fades to .5 (1.2s) and <main> rises yPercent 100 -> 0 (1.2s power3.inOut); at 2.3s the logo lifts by innerHeight/3 and fades; at 2.6s <main> scales .8 (.9 mobile) -> 1 and its first child 1.1 -> 1 (1.2s power3.inOut). The nav bar then enters with a 3s delay: yPercent 200 -> 0, width 5rem -> 27.6rem at +.3s, brandmark x 11.3rem -> 0 and label yPercent 100 -> 0 at +1s, and the burger's three lines draw on with DrawSVG (0% -> 100%, stagger .05), all 1s power3.inOut. Headings flagged 'delay' wait 3s during the intro (else .5s).",
+  "scroll_techniques": [
+   "scrub",
+   "parallax",
+   "clip-path wipe",
+   "horizontal (sticky track)",
+   "scale-on-scroll",
+   "line-mask reveal",
+   "counter-drift collage",
+   "footer curtain"
+  ],
+  "text_animation": "BaseHeading waits for document.fonts.ready, splits lines with GSAP SplitText (type 'lines', mask 'lines'), sets them to yPercent 200, then tweens to 0 with stagger .1, duration 1.5, power3.out, fired once by a ScrollTrigger at 'top bottom' (kills itself on complete). desktop_02 caught it mid-flight, with descenders of 'Trusted by' and 'beauty, and care.' clipped by the masks. In the process (element 2 f04) and FAQ (f06) frames, body copy and FAQ questions are also caught clipped mid-rise; the mechanism for those is not in the Process/Faq component code, so treat it as inferred.",
+  "image_animation": "Hero media parallax yPercent 0 -> 50 across the hero (HomeHeader scrub, 'top top' to 'bottom top'); the same timeline fades a mobile-only 'Scroll to explore' indicator. Product cards (desktop only): card[1] yPercent 50 -> 0 and card[2] yPercent -50 -> 0 while the section passes ('top bottom' to 'bottom top'), measured as ~0.91x/1.0x/1.09x relative speeds between desktop_05 and desktop_06. Hover: inner image scale 1.1 over 1s power3.out, back to 1 over 2s power3.out. Showroom (desktop only): video scale .55 -> 1 while opacity .7 -> .3, columns x ±65*(vw/1600) -> 0, top border scaleX 0 -> 1, scrubbed 'top top' to 'bottom bottom'; clicking the video opens a Player modal. Approach header (jury 'Mask wipe', element 3): the line drawing (the top image) goes clipPath inset(0 0 0% 0) -> inset(0 0 100% 0) while the .mask wrapper holding BOTH images scales 1 -> 1.1, so drawing and photo zoom together and stay registered; scrubbed 'top top' -> 'bottom bottom' on the wrapper (mobile: section, 'bottom center'). A second desktop-only timeline moves the wrapper yPercent 0 -> 50 from 'bottom bottom' to 'bottom top' as the section leaves (element 3 f05-f06: the photo drifts inside its frame). The wipe edge is a hard horizontal line climbing up the frame (f02-f04). Duo images (AssetsDuo): the shorter image drifts y 0 -> (container height - its height) across the section.",
+  "page_transitions": "Custom Nuxt page transition. Leaving page: class page-leave (z-index -1), cursor hidden, fades to autoAlpha .5 over 1.3s. Entering page: yPercent 100 -> 0 (1s power3.inOut) and scale .8 (.9 mobile) -> 1 starting .3s later (1s power3.inOut), so the new page arrives like a card rising over the old one and settling. Project-to-project moves skip it (transition === 'project'). Observed in element 1 f05-f07: the next-case band's image shrinks from full-bleed to an inset frame on a taupe floor as you scroll, the nav label reads 'NEXT CASE' and then '100', and the next case page renders with the image already in place while its heading line-masks rise. inferred: the '100' is a load counter and the image hand-off is a shared-element swap.",
+  "hover_micro": [
+   "Nav/menu links: two stacked copies of the label; hover sets children yPercent -100 (power3.out) to roll to the second copy. Buttons also carry doubled labels ('ACCEPT\\nACCEPT' in probe), so the roll hover is inferred there too.",
+   "Menu main links: siblings dim to color-mix(currentcolor 40%, transparent) while one is hovered",
+   "Image cards: scale 1.1 (1s in / 2s out, power3.out) plus a cursor chip",
+   "Close buttons rotate 0 -> 90deg on hover (power3.inOut)",
+   "Cursor chip labels: 'View' (rendered uppercase) on product cards (desktop_04/05), 'Play' on the showroom video, '↳ SCROLL' on the next-case image (element 1 f06)"
+  ],
+  "cursor": "The native cursor stays. A separate fixed 10rem x 4.4rem chip follows it, offset by margin 2rem 0 0 2rem: backdrop-filter blur(2rem), background linear-gradient(#ffffff26, #fff3), white Aeonik Mono 1.2rem/500 caps at +.08em, opacity transition .2s linear. Position is lerped each rAF with factor .1 (c = lerp(c, mouse, .1)) via translate3d. It runs only on desktop, not on touch, and is hidden under 600px.",
+  "easing_curves": [
+   "GSAP power3.inOut (25 uses): structural moves, transitions, menu, intro",
+   "GSAP power3.out (18): reveals, hovers, lines",
+   "GSAP none (scrubs)",
+   "power3.in (ticker exit)",
+   "linear (nav title marquee)",
+   "CSS cubic-bezier(1,0,0,1) x12 (hard expo-in-out snap)",
+   "CSS keyframe var(--ease-in-out-quad) cubic-bezier(.455,.03,.515,.955) for the intro cube spin",
+   "root tokens: --ease-in-out-quart cubic-bezier(.77,0,.175,1), --ease-out-quart (.165,.84,.44,1), --ease-out-cubic (.215,.61,.355,1), --ease-in-out-cubic (.645,.045,.355,1)"
+  ],
+  "duration_range_ms": "600-1500ms for choreographed moves (duration:1 x21, 1.2 x5, .6 x6, 1.5 x3). CSS UI .2-.5s (0.5s x20).",
+  "stagger_ms": "20ms menu links, 50ms intro wordmark letters and burger line draw, 100ms heading lines and process-outro thumbnails",
+  "choreography_notes": "One easing family (power3) everywhere gives the whole site a single weight: inOut for things that travel, out for things that arrive. Scroll-linked motion is always linear (ease none) and physical (parallax, clip, scale), while triggered motion is eased. Big surfaces move before their contents: the entering page rises, then scales .3s later; the menu background scales up while links stagger in and the MENU label and button fade in after .3s.",
+  "evidence": [
+   "frames/3/f00-f07 (mask wipe, all 8 viewed)",
+   "frames/0/f00-f07 (menu, all 8 viewed)",
+   "frames/2/f00,f02,f04,f06 (process)",
+   "frames/1/f00,f03,f05,f06,f07 (PDP, next case)",
+   "desktop_00-07",
+   "audit re-fetch: 69 _nuxt chunks from / and /approach (Intro, Header, Menu, Cursor, Scroll, Footer, BaseHeading, HomeHeader, ProductCollection, BannerShowroom, ApproachHeader, Process*, AssetsDuo, QuotePanel, GoogleReviews) + CSS"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "mixed",
+  "art_direction": "Real UK residential architecture photographed in soft overcast daylight: slim black-framed glazing, timber cladding, brick, striped lawns, planted gardens. Natural, ungraded, lightly desaturated colour, with people in candid working moments (engineers, designers drawing). It is paired with hairline black line drawings traced from the same viewpoint as the photos, so drawing and photo register exactly.",
+  "treatments": [
+   "dimmed full-bleed video hero (video at .8 over #212325 + transparent-to-black gradient)",
+   "drawing-to-photo clip wipe with both layers zooming together",
+   "inner-parallax images inside horizontal panels (scale 1.1, xPercent -25 -> 25)",
+   "grow-and-dim showroom video",
+   "hover zoom inside a fixed crop",
+   "overlapping duo images at offset parallax (process 'Site survey', AssetsDuo)",
+   "frosted-glass footer wordmark: a letter-masked layer holding a magnified copy of the footer image over white"
+  ],
+  "crops_and_ratios": "Portrait ~4:5 product cards (430x530 source); full-bleed 16:9 video; the approach wipe frame is the viewport minus a ~2% cream margin (1.85:1 in the 16:9 jury capture); landscape thumbnail strip in the process outro.",
+  "formats": "mp4 x2 (36.3MB declared: Vimeo progressive 2160p hero + 1080p), webp 1.34MB via Storyblok CDN/NuxtImg, png 221KB, 127 <img>, 836 inline svg",
+  "evidence": [
+   "desktop_00-07",
+   "frames/3/f00-f07",
+   "frames/2/f00-f06",
+   "frames/0/f00",
+   "frames/1/f05-f07",
+   "probe videos/bytes_by_type_declared"
+  ]
+ },
+ "three_d": {
+  "present": false,
+  "stack": "none",
+  "role": "none; the 'from wireframe to photograph' effect is 2D (line-art layer plus clip-path), not WebGL. The only 3D is a CSS preserve-3d cube in the intro.",
+  "assets": [],
+  "materials_lighting_post": "",
+  "interaction": "none",
+  "performance_tactics": "No canvas (probe contexts {}); all motion is DOM transforms, clip-path, CSS masks and one CSS 3D cube.",
+  "fallback_mobile": "n/a",
+  "evidence": [
+   "probe.json contexts {}, assets_3d []"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "A single frosted nav bar, position:fixed, left 50%, bottom 4rem (3rem under 600px), 27.6rem x 5rem (248x45 at 1440): 5rem hex brandmark | current page label in mono caps | burger. Background: color-mix(#0b1012 80%, transparent) plus backdrop-filter blur(2rem) on its own layer. Clicking the label or burger opens the menu. The top header ('Fluid Glass' wordmark centre, '↳ GET A QUOTE' right) is part of the page and simply scrolls away; the HomeHeader autoAlpha fade targets a mobile-only 'Scroll to explore' indicator, not this header.",
+  "menu": "Opening: the bar's background tweens width 27.6rem -> 5rem (.6s power3.inOut), its label exits yPercent -100, logo and burger fade (.3s) and slide ±10rem, and a close (or back-to-top) icon rises into the 5rem square. Above it, a separate 40rem-wide panel (padding 6rem, bottom 10rem; 32rem on mobile) has its own frosted background (same color-mix + blur 2rem) that scales 0 -> 1 from transform-origin bottom (power3.inOut); links rise yPercent 150 -> 0 (stagger .02, .8s power3.inOut) and the 'MENU' label and 'GET A QUOTE' button fade in after .3s. Contents: About / Products / Case studies / Approach / Contact at 28.8px, a two-column News / Showroom + phone / email block, a full-width black 'GET A QUOTE'. Closing: links drop to yPercent 150 (power3.out), label and button fade, background scales to 0. Measured in frames/0 f00: ~357x475px at 1440 scale. The page behind dims under a 40% black overlay. Signature behaviour (code + frames/0 f00-f07): when Lenis progress hits 1 at the bottom of any non-project page the menu opens by itself over the footer video and the bar becomes a ↑ back-to-top square; any scroll closes it again (f01 closing, f06 re-opening with the 'HOME' label rolling out). Clicking the page also closes it.",
+  "buttons_links": "Square-cornered (radius 0) #0b1012 blocks with the '↳' hook glyph plus Aeonik Mono 10.8px/500 caps at +.08em. The ghost variant is the same without fill, with an underline ('↳ DENY', '↳ GET IN TOUCH'). The menu's 'GET A QUOTE' is a centred full-width block without the glyph. inferred: the hover is the same vertical label roll as the links (doubled label text in the probe); no lift or shadow (probe box_shadows 0).",
+  "unusual_interactions": [
+   "The nav label is a live ticker of the current page (HOME / APPROACH / RUSTY HOUSE / NEXT CASE). It swaps with yPercent -100 (.6s power3.in), set, then yPercent 100 -> 0 (.6s power3.out). Titles that overflow the bar marquee with x yoyo at 15px/s linear. In element 1 f07 it shows '100' during the next-case load.",
+   "Reaching the end of a page auto-opens the menu over the footer and turns the bar into a back-to-top button",
+   "'Get a quote' opens a side QuotePanel that slides in from the right (xPercent 100 -> 0, 1s power3.inOut) while the whole <main> is pushed xPercent -50; a Formspree form sits inside",
+   "The cursor chip label changes per context (VIEW / Play / SCROLL)",
+   "Next-case band (element 1 f05-f07): the next project's image shrinks from full-bleed to an inset frame on a taupe floor with its title and a 'SCROLL' chip, then the next case page takes over with the image in place"
+  ],
+  "sound": "none",
+  "footer": "Full-bleed footage per page (footerAssets matched by route; the homepage uses the showroom's street frontage: brick wall, glazed box above, a passing runner). The giant 'Fluid Glass' wordmark is a .wordmark layer (white fill, opacity .3; .5 on mobile) masked by an SVG of the letterforms (mask-size 152.3rem x 25.4rem ≈ 1370x229px at 1440, mask-position left 50% bottom 11rem; mobile 67.6rem x 11.4rem centred). Inside the mask sits a second copy of the footer image at opacity .8 that GSAP scales 1 -> 1.1 (2 on mobile) while the footer scrolls in, so the letters show a slightly magnified, shifted view of the scene: they read like thick glass refracting the brick, whole and uncropped. The footer container is revealed as a curtain (yPercent -50 -> 0, 'top bottom' to 'bottom bottom'); the brandmark fades in at 95% of that scrub; on mobile only the mask-position also sweeps 0% -> 80%. The bottom row is small sentence-case text: '© 2025, Fluid Glass', Instagram / Youtube / LinkedIn / X, Privacy Policy, Terms & conditions, 'Crafted by' + Exo Ape mark, over a transparent-to-black gradient. A pre-footer 'Every great build begins with understanding' CTA box with a hairline border sits above (frames/0 f03)."
+ },
+ "content_voice": {
+  "headline_style": "Declarative one-sentence manifestos set as display type ('We bring architecture to life through craft and innovation...'). The process steps pair a number, a label and a short promise.",
+  "copy_tone": "Calm, confident, architect-facing: precision, craft, collaboration. Emphasis comes from inline bold rather than colour.",
+  "examples": [
+   "Exceptional glazing for those who build with vision."
+  ]
+ },
+ "tech_stack": {
+  "framework": "Nuxt 3 (Vue) on Vercel, Storyblok headless CMS (a.storyblok.com, StoryblokComponent, NuxtImg)",
+  "libraries": [
+   "GSAP 3.15.0 + ScrollTrigger (scrub, containerAnimation), SplitText (SplitText.create with mask:'lines') and DrawSVG (burger lines)",
+   "Lenis 1.3.x smooth scroll in wrapper mode, ticked by gsap.ticker",
+   "Vimeo progressive MP4 for background video",
+   "Google Reviews component (lh3.googleusercontent.com, 56 requests): two opposing marquee rows",
+   "Formspree for the quote form; GTM + GA4 behind a cookie-consent store"
+  ],
+  "evidence": "probe libs_from_requests nuxt, globals.lenis; audit re-fetch of 69 _nuxt chunks from / and /approach (GSAP version string 3.15.0, component __name setups, CSS for header/menu/cursor/footer/grid/intro)."
+ },
+ "performance_accessibility": {
+  "requests": 154,
+  "weight_notes": "The video dominates: 36.3MB declared MP4 (the hero is a 2160p rendition). webp is 1.34MB and woff2 180KB (4 files). JS is code-split into ~60 small Nuxt chunks.",
+  "reduced_motion": "probe reduced_motion_rules: 0 (CSS). The only prefers-reduced-motion check is in JS: GoogleReviews skips its marquee rows. Lenis smoothing, the intro, scrubs and line reveals always run. Touch devices skip the cursor chip and hover zoom, and mobile skips the heavier scrub scenes.",
+  "contrast_issues": "The white 57.6px hero statement sits on footage rendered at opacity .8 over #212325 with a transparent-to-black gradient on top; that, not the intro overlay, is what keeps it readable. Mono labels at 12.6px on cream are fine. Secondary text at 80% ink alpha is fine. The showroom statement sits half on video and half on #212325; the video dimming to .3 opacity as it grows keeps it readable.",
+  "mobile_quality": "Responsive 8.2. Hero and cookie sheet were captured; there is no horizontal overflow and the wordmark mask is resized for mobile. The mobile captures did not get past the cookie sheet.",
+  "dev_scores": {
+   "semantics_seo": 7.8,
+   "animations": 8.2,
+   "accessibility": 7.6,
+   "wpo": 8.2,
+   "responsive": 8.2,
+   "markup": 7.8
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Wireframe-to-photograph clip wipe",
+   "why_it_works": "It tells 'vision becomes execution' in one scroll gesture. Because the drawing and photo register, the building seems to materialise, not cross-fade.",
+   "how_to_build": "Site code. Section (.approach-header) > wrapper (tall, with a position:sticky 100vh frame inset ~2vw on cream #f3f0ec) > .mask > [photo, drawing] stacked with identical size and object-position; the drawing is the top layer (1px #212325 strokes traced from the exact photo, on cream). gsap.timeline({paused:true, defaults:{ease:'none'}, scrollTrigger:{scrub:true, trigger:wrapper, start:'top top', end:'bottom bottom'}}).fromTo(drawing,{clipPath:'inset(0 0 0% 0)'},{clipPath:'inset(0 0 100% 0)'}).fromTo(mask,{scale:1},{scale:1.1},0). Scale the shared .mask, not one layer, so the two images stay registered while zooming. Desktop only, add a second timeline on the section from 'bottom bottom' to 'bottom top': .fromTo(mask,{yPercent:0},{yPercent:50}) so the photo drifts as the section leaves. On mobile trigger the section and end at 'bottom center'. Keep both layers visible by default; only the clip changes."
+  },
+  {
+   "technique": "Docked glass nav bar that ticks the page title, collapses into a button and opens the menu at page end",
+   "why_it_works": "One persistent object handles brand, location ('you are here') and menu, so the page top stays free for content. The ticker swap makes route changes legible.",
+   "how_to_build": "Site CSS/GSAP. .header{position:fixed; left:50%; transform:translate(-50%); bottom:4rem; width:27.6rem; height:5rem; overflow:hidden} .header .background{position:absolute; inset:0; z-index:-1; background:color-mix(in srgb,#0b1012 80%,transparent); backdrop-filter:blur(2rem)}. Menu panel: .menu{position:absolute; bottom:10rem; left:50%; width:40rem; padding:6rem} with its own .background (same glass, transform-origin:bottom). Open: tl({defaults:{duration:.6, ease:'power3.inOut'}}).to(barBg,{width:'5rem'},0).to(label,{yPercent:-100},0).to(logo,{autoAlpha:0,x:'10rem'},0).to(burger,{autoAlpha:0,x:'-10rem'},0); gsap.fromTo(closeIcon,{yPercent:100},{yPercent:0}); gsap.fromTo(menuBg,{scale:0},{scale:1, ease:'power3.inOut'}); gsap.fromTo(links,{yPercent:150},{yPercent:0, stagger:.02, duration:.8, ease:'power3.inOut'}); fade label/button with delay .3. Title swap: tl.to(label,{yPercent:-100,duration:.6,ease:'power3.in',onComplete:()=>label.textContent=next}).set(label,{yPercent:100}).to(label,{yPercent:0,duration:.6,ease:'power3.out'}). If label.scrollWidth > box, gsap.to(label,{x:box-label.scrollWidth, duration:overflow/15, ease:'linear', yoyo:true, repeat:-1}). Page end: in lenis.on('scroll'), when Math.round(lenis.progress*1000)/1000 === 1 open the menu and show a ↑ scroll-to-top icon in the bar; when progress drops below 1, close it."
+  },
+  {
+   "technique": "Horizontal process strip with inner parallax and a progress hairline",
+   "why_it_works": "A 4-step process becomes a filmic pan. Images drift inside their frames, so panels feel like windows onto deeper scenes.",
+   "how_to_build": "Site code (desktop only). Outer section with a sticky 100vh viewport; trackTween = gsap.to(track,{x:-(track.offsetWidth-innerWidth), ease:'none', scrollTrigger:{trigger:section, start:'top top', end:'bottom bottom', scrub:true}}), and on the same trigger gsap.to(progressBar,{scaleX:1, ease:'none'}) (transform-origin left, 1px). Full-panel assets: gsap.timeline({scrollTrigger:{trigger:panel, containerAnimation:trackTween, start:'left right', end:'right left', scrub:true}}).fromTo(media,{scale:1.1,xPercent:-25},{xPercent:25, ease:'none'}). Text slides: the first image in the slide's image column goes xPercent 20 -> 0 on the same containerAnimation. Outro thumbnails: autoAlpha 0 -> 1, stagger .1, duration 2, ease none, containerAnimation, start 'left center' (not scrubbed). Panels alternate #212325 text panels with full-bleed media."
+  },
+  {
+   "technique": "Grow-and-dim showroom video",
+   "why_it_works": "Scaling the video from .55 to full while dropping its opacity to .3 on a dark floor turns it into a backdrop exactly when the white statement needs contrast. That is a motion-driven legibility fix.",
+   "how_to_build": "Section on #212325 with a centred video wrapper. Timeline with ease 'none', scrollTrigger {trigger:section, start:'top top', end:'bottom bottom', scrub:true}: .fromTo(video,{opacity:.7,scale:.55},{opacity:.3,scale:1},0), .fromTo(colLeft,{x:65*unit},{x:0},0), .fromTo(colRight,{x:-65*unit},{x:0},0), .fromTo(topRule,{scaleX:0},{scaleX:1},0), where unit = innerWidth/1600. Put the 43px statement in colLeft so it overlaps the video edge."
+  },
+  {
+   "technique": "vw-locked rem artboard",
+   "why_it_works": "The Figma 1600 artboard scales 1:1 to any desktop width, so the rhythm (margins, type, card positions in the broken grid) never re-breaks between breakpoints.",
+   "how_to_build": ":root{--size:1600; --font-s:calc((100vw/var(--size))*10)} @media (width<=600px){:root{--size:375}} html{font-size:var(--font-s)}. Author everything in rem from the 1600 design (display 6.4rem, body 1.8rem, margins 4rem, gutters 2rem on 24 columns, nav 27.6rem) and from a 375 mobile design below 600px. Scale GSAP pixel offsets by innerWidth/1600 as well (the showroom uses 65*innerWidth/1600)."
+  },
+  {
+   "technique": "Refracting glass wordmark over footer footage",
+   "why_it_works": "The brand name becomes part of the building in the film instead of a pasted-on logo: the letters hold a slightly magnified copy of the scene, so they read like thick glass refracting the brick. It stays whole and centred, and it fits a glass company.",
+   "how_to_build": "Site CSS/GSAP. Footer: <img class=bg> full-bleed, plus .wordmark{position:absolute; inset:0; z-index:2; background:#fff; opacity:.3; mask-image:url(wordmark.svg); mask-repeat:no-repeat; mask-size:152.3rem 25.4rem; mask-position:left 50% bottom 11rem} containing a second copy of the same image (object-fit:cover; object-position:bottom; opacity:.8). Mobile: opacity .5, mask-size 67.6rem 11.4rem, centred. Scrub on the footer ('top bottom' -> 'bottom bottom', ease none): container yPercent -50 -> 0 (curtain), inner copy scale 1 -> 1.1 (2 on mobile) so the letters refract more as you arrive, logo opacity 0 -> 1 at .95; on mobile also sweep mask-position 0% 50% -> 80% 50%."
+  },
+  {
+   "technique": "CSS 3D cube that resolves into the flat brandmark",
+   "why_it_works": "The hex logo is the silhouette of a cube seen corner-on. Spinning a real cube until it lands at that angle, then swapping to the flat mark under a hexagon mask, explains the logo in 1.5 seconds without WebGL.",
+   "how_to_build": "Site CSS. .cube{perspective:1000px} .shape{width:3rem; height:3rem; transform-style:preserve-3d} with six .face divs (background:currentColor; 3rem square) placed by translateZ(1.5rem) plus rotateY(±90deg/180deg) and rotateX(±90deg). .rotate .shape{animation:cube-rotate 1.5s cubic-bezier(.455,.03,.515,.955) forwards} @keyframes cube-rotate{from{transform:rotateX(-30deg) rotateY(0) scaleY(.78)} to{transform:rotateX(-30deg) rotateY(-315deg) scaleY(.78)}}. GSAP: fromTo(cube,{yPercent:100,scale:0},{yPercent:0,scale:.95,duration:1.5,ease:'power3.inOut'}); at 1.5s add a class that applies mask-image: a hexagon path (M1024 256V768L512 1024L0 768V256L512 0Z) to the logo box and shows the flat brandmark SVG. Then reveal the page: <main> yPercent 100 -> 0 and scale .8 -> 1 (1.2s power3.inOut) over the intro layer."
+  }
+ ],
+ "slop_risks": [
+  "Cream / beige 'editorial' background: #f3f0ec is exactly the oat-milk default. It works here only because every cream section is paired with real architectural photography and black glazing lines. A copy that keeps the cream without that imagery is the tell.",
+  "One label treatment everywhere and monospace as the house voice: '◆' plus Aeonik Mono caps at +.1em on every section eyebrow, every button, the nav label, the cookie title and the menu meta. Aeonik Mono renders on more elements (273) than Aeonik Pro (262). The diamond before each eyebrow is a sibling of the filled-dot-before-an-eyebrow accent.",
+  "Invisible-content trap, partly mitigated: BaseHeading only hides lines in JS (after fonts.ready), so with no JS the text shows, and the masks are padded so descenders survive at rest. But once split, every heading line sits at yPercent 200 until a ScrollTrigger fires; desktop_02 captured lines half-risen with descenders clipped. A copy that hides the text in CSS, or whose trigger never fires, leaves empty sections.",
+  "Pre-footer CTA block plus default CTA button pair: a hairline-bordered cream box with 'Every great build begins with understanding' and a filled 'GET A QUOTE' next to a ghost 'GET IN TOUCH' (frames/0 f03). No gradient, radius or glow, so it is the skeleton of the tell, not the full slop version; the 1px hairline border on the box is itself the 'hairline light border on boxes' default.",
+  "Hard colour seams: cream cuts dead into the #212325 showroom floor (desktop_06). It is a deliberate floor change here, but alternating light and dark bands with hard edges on every section reads as stacked templates.",
+  "Botched glass risk: the cursor chip's linear-gradient(#ffffff26,#fff3) with blur(2rem) looks right over photos, but over flat cream it becomes a grey smudge. Only show it over imagery.",
+  "Oversized footer wordmark: done right here (masked translucent letters, whole, centred, on footage). Copied as flat pasted text or cropped at the page edge, it is the slop version.",
+  "Hero: a centred 2-line statement at the bottom of a dimmed video is close to the stock agency hero. It holds up only because of the footage quality and the absence of any eyebrow or button stack.",
+  "Strength worth copying: zero box-shadows anywhere (probe box_shadows 0) and square corners on buttons; depth comes from value (cream vs #212325) and glass, not blooms."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop captures are usable, but a cookie card covers the bottom-right on every capture and the probe reached the showroom before stopping. mobile_00/01 show only the hero behind the cookie sheet. Element frames: all 8 for 'Mask wipe transition on scroll' (3) and 'Process Component' (2); f00/f03/f06 for 'Menu' (0) and 'Product Detail Page' (1). The jury 'Intro Animation' and 'Showroom' videos were not in the frames folder, so the intro choreography and the showroom grow-and-dim are reconstructed from the GSAP code, not seen. All durations, eases, staggers, clip values, mask sizes, the cursor lerp and the nav width come from greps of the live _nuxt chunks (homepage + /approach). The desktop capture confirms the rest: nav 247px = 27.6rem at 9px rem, 50% hero parallax (house moved 225px for a 450px scroll), counter-drift cards. The menu panel size is estimated from the framed video. Four bounded fetches: homepage HTML, homepage chunks, /approach HTML, approach chunks. | audit (2026-09-25): re-viewed desktop_00-07, mobile_00, all 8 frames of element 3 (mask wipe) and element 0 (menu), plus element 2 f00/f02/f04/f06 and element 1 f00/f03/f05-f07, and re-fetched 69 _nuxt chunks + CSS from / and /approach. Fixed: Lenis runs with default options in wrapper mode (the listed option values were library defaults, not site config); the intro is a CSS 3D cube that resolves into the hex mark, and the stagger-.05 rise is the wordmark's letter paths, not hero lines; <main> (not the hero media) rises and scales .8 -> 1; the nav bar draws its burger with DrawSVG; the approach scale 1 -> 1.1 is on the shared wrapper of both images and the yPercent 50 is a separate exit timeline; HomeHeader's fade targets a mobile-only indicator, not the top header; the menu panel is 40rem wide (not ~300px) with a background that scales 0 -> 1 (not the close icon), and f06 shows it opening, not collapsing; the menu auto-opens at page end and the bar becomes a back-to-top square (new); nav bottom is 4rem, not 3.6rem; the wipe inset is ~2% of width (16px was jury-frame pixels) and the frame is ~1.85:1, not 2.4:1; footer wordmark holds a magnified copy of the image (the refraction), the mask sweep is mobile-only, and the bottom row is sentence case, not caps; mobile hero does not overflow and uses a 375 artboard (verified, not inferred); a JS reduced-motion check exists for Google reviews; 24-column grid, quote panel push, next-case '100' counter, GSAP 3.15.0 + SplitText + DrawSVG added. The intro and showroom are still code-only (no frames)."
+}

@@ -1,0 +1,729 @@
+# Awwwards corpus stats
+
+Palette presets from the pre-2022 Awwwards picker (#2779A7, #D14836, #ECD06F, #49C5B6, #DF6C4F) skew the all-time cut;
+prefer the recent_2024_plus cut for current taste.
+
+# Cut: all (732 sites)
+
+- **sites**: 732
+- **errors**: 0
+## awards
+- Site of the Day: 360
+- Nominee: 269
+- Honorable Mention: 103
+
+## listing_sources
+- sites_of_the_day: 186
+- sites_of_the_month: 124
+- 3d: 62
+- webgl: 62
+- portfolio: 62
+- e-commerce: 62
+- typography: 62
+- sites_of_the_year: 53
+- storytelling: 31
+- interaction-design: 31
+- react: 31
+- nextjs: 31
+- three-js: 31
+- react-three-fiber: 31
+- gsap: 31
+- animation: 31
+- framer: 31
+- colorful: 31
+- scrolling: 31
+- black: 31
+- fashion: 31
+- shopify: 31
+- nuxt-js: 31
+- webflow: 31
+- big-typography: 31
+- transitions: 31
+- page-transition: 31
+- microinteractions: 31
+- minimal: 31
+- parallax: 31
+- architecture: 31
+- blender: 31
+- design-agencies: 31
+- spline: 6
+
+## tags_top
+- Animation: 177
+- Web & Interactive: 156
+- GSAP: 152
+- WebGL: 146
+- 3D: 135
+- Storytelling: 95
+- Three.js: 93
+- Design Agencies: 83
+- Transitions: 80
+- Clean: 76
+- Scrolling: 73
+- Portfolio: 71
+- Colorful: 69
+- Technology: 68
+- Typography: 65
+- Interaction Design: 65
+- Business & Corporate: 64
+- Microinteractions: 63
+- Promotional: 62
+- Experimental: 54
+- UI design: 52
+- Art & Illustration: 49
+- Webflow: 47
+- HTML5: 43
+- CSS: 40
+- Games & Entertainment: 37
+- E-Commerce: 36
+- Culture & Education: 35
+- Parallax: 34
+- Unusual Navigation: 33
+- Figma: 33
+- Nuxt.js: 32
+- Minimal: 32
+- Gestures / Interaction: 31
+- Fullscreen: 31
+- Fashion: 30
+- Sound-Audio: 29
+- Film & TV: 29
+- Graphic design: 28
+- Illustration: 28
+- Filters and Effects: 27
+- Gallery: 26
+- Big Background Images: 26
+- Next.js: 25
+- Startups: 25
+- Food & Drink: 24
+- Photo & Video: 23
+- Architecture: 23
+- 404 pages: 23
+- Footer Design: 23
+- Vue.js: 21
+- Photography: 21
+- Music & Sound: 21
+- Luxury: 21
+- Javascript: 20
+- Infinite Scroll: 20
+- About Page: 19
+- Video: 18
+- Wordpress: 18
+- React: 18
+- Single page: 18
+- Sports: 18
+- jQuery: 17
+- Responsive Design: 17
+- PHP: 16
+- GLSL: 15
+- Navigation Menu: 15
+- Data Visualization: 14
+- Blender: 14
+- Project Page: 14
+- Horizontal Layout: 13
+- Events: 12
+- Sanity: 11
+- Other: 10
+- Photographic: 10
+- Mobile & Apps: 10
+- BARBA.js: 10
+- PixiJS: 10
+- Vercel: 10
+- Responsive: 9
+- Real Estate: 9
+- Content architecture: 9
+- Shopify: 9
+- Flat Design: 9
+- Modernizr: 9
+- Design Websites: 8
+- 360: 8
+- Institutions: 8
+- After Effects: 7
+- Contentful: 7
+- Copy design: 7
+- Framer: 6
+- Astro: 6
+- SVG: 6
+- Header Design: 6
+- Nginx: 6
+- Social responsibility: 6
+- Magazine / Newspaper / Blog: 5
+- Vanilla JS: 5
+- Motion: 5
+- Lottie: 5
+- Retro: 5
+- Google Font API: 5
+- Hotel / Restaurant: 5
+- Tailwind: 4
+- Flexible: 4
+- Craft CMS: 4
+- Menu - Vertical: 4
+- Cinema 4D: 4
+- Backbone.js: 4
+- next.js: 4
+- WooCommerce: 4
+- Varnish: 4
+- DatoCMS: 4
+- Node.js: 4
+- Locomotive Scroll: 4
+- Contact Page: 4
+- Google App Engine: 3
+- Webpack: 3
+- Icons: 3
+
+## element_sections
+- thumbnail: 252
+- mobile_thumbnail: 236
+- interaction: 117
+- menu: 94
+- scroll: 93
+- about_us: 92
+- content: 90
+- loading: 89
+- transition: 84
+- footer: 83
+- other: 71
+- navigation: 70
+- gallery: 66
+- mouse_interaction: 61
+- products: 61
+- animation: 61
+- hero_image: 58
+- layout: 49
+- 404_page: 47
+- contact: 45
+- ui_components: 34
+- header: 29
+- video: 22
+- team: 18
+- maps: 13
+- branding: 13
+- illustration: 13
+- modal: 13
+- shopping_cart: 12
+- CTA: 9
+- blog: 7
+- forms: 7
+- pricing_page: 6
+- photo: 5
+- microcopy_and_ux_writing: 4
+- FAQ: 3
+- stats: 3
+- icons: 3
+- pagination: 2
+- search: 2
+- newsletter: 2
+- social_share: 2
+
+## element_tags_top
+- animation: 488
+- 3d: 337
+- webgl: 309
+- typography: 252
+- scroll: 237
+- interaction: 235
+- transition: 173
+- gsap: 133
+- navigation: 126
+- menu: 119
+- storytelling: 113
+- gallery: 110
+- illustration: 104
+- portfolio: 104
+- hover: 103
+- interactive: 100
+- footer: 100
+- video: 97
+- scrolling: 96
+- hero: 93
+- parallax: 80
+- layout: 77
+- about: 70
+- ui: 69
+- grid: 66
+- colorful: 65
+- clean: 63
+- minimal: 61
+- threejs: 60
+- mobile: 56
+- motion: 56
+- slider: 53
+- contact: 51
+- product: 51
+- homepage: 50
+- editorial: 46
+- three.js: 44
+- loading: 43
+- content: 42
+- scroll animation: 42
+- luxury: 42
+- 404: 41
+- loader: 41
+- architecture: 41
+- transitions: 40
+- ui design: 40
+- design: 39
+- game: 38
+- fullscreen: 37
+- immersive: 36
+- photography: 36
+- carousel: 36
+- preloader: 35
+- interaction design: 34
+- projects: 34
+- microinteractions: 33
+- ecommerce: 33
+- page transition: 33
+- mouse interaction: 32
+- intro: 30
+- shader: 29
+- logo: 28
+- map: 27
+- responsive: 27
+- product page: 27
+- webflow: 27
+- cta: 26
+- case study: 26
+- mouse: 26
+- project: 25
+- home: 25
+- ux: 25
+- cards: 24
+- e-commerce: 24
+- branding: 23
+- form: 23
+- lottie: 23
+- products: 23
+- unusual navigation: 22
+- drag: 22
+
+## palette_size_distribution
+- 0: 308
+- 1: 38
+- 2: 308
+- 3: 78
+
+## palette_hue_families
+- near-black: 241
+- near-white: 190
+- red: 95
+- blue: 91
+- neutral-gray: 64
+- orange: 58
+- yellow: 44
+- cyan: 36
+- green: 26
+- tint/off-white: 25
+- magenta: 11
+- violet: 7
+
+## palette_base
+- dark+light (contrast pair): 140
+- dark-dominant: 116
+- mid-tone: 101
+- light-dominant: 67
+
+## saturated_accents_top
+- #2779A7: 34
+- #D14836: 25
+- #ECD06F: 24
+- #DF6C4F: 11
+- #FF0000: 2
+- #20E5B5: 1
+- #CAFF00: 1
+- #D0FF71: 1
+- #0054FA: 1
+- #FF4FA3: 1
+- #F1634A: 1
+- #FB4617: 1
+- #003BFC: 1
+- #FF4421: 1
+- #F2D556: 1
+- #FF5BC6: 1
+- #177AEE: 1
+- #2E30FF: 1
+- #FF516E: 1
+- #172B76: 1
+- #902177: 1
+- #C8603D: 1
+- #FF4401: 1
+- #F91814: 1
+- #F35422: 1
+- #F1E500: 1
+- #D70321: 1
+- #E33529: 1
+- #5866E6: 1
+- #FA4C14: 1
+
+- **score_means**: {'overall': 7.61, 'design': 7.71, 'usability': 7.33, 'creativity': 7.83, 'content': 7.67, 'dev_overall': 7.48}
+- **dev_score_means**: {'semantics_seo': 7.29, 'animations': 8.11, 'accessibility': 6.94, 'wpo': 7.54, 'responsive': 7.6, 'markup': 7.22}
+
+# Cut: recent_2024_plus (575 sites)
+
+- **sites**: 575
+- **errors**: 0
+## awards
+- Nominee: 265
+- Site of the Day: 215
+- Honorable Mention: 95
+
+## listing_sources
+- sites_of_the_day: 186
+- 3d: 62
+- webgl: 62
+- portfolio: 62
+- e-commerce: 62
+- typography: 62
+- sites_of_the_month: 32
+- storytelling: 31
+- interaction-design: 31
+- react: 31
+- nextjs: 31
+- three-js: 31
+- react-three-fiber: 31
+- gsap: 31
+- animation: 31
+- framer: 31
+- colorful: 31
+- scrolling: 31
+- fashion: 31
+- shopify: 31
+- nuxt-js: 31
+- webflow: 31
+- big-typography: 31
+- transitions: 31
+- page-transition: 31
+- microinteractions: 31
+- minimal: 31
+- parallax: 31
+- architecture: 31
+- blender: 31
+- design-agencies: 31
+- sites_of_the_year: 5
+- spline: 2
+
+## tags_top
+- Animation: 107
+- GSAP: 106
+- Web & Interactive: 83
+- WebGL: 82
+- 3D: 80
+- Design Agencies: 59
+- Storytelling: 58
+- Portfolio: 51
+- Three.js: 51
+- Transitions: 49
+- Technology: 49
+- Business & Corporate: 49
+- Clean: 48
+- Scrolling: 47
+- Webflow: 45
+- Colorful: 44
+- Interaction Design: 43
+- Microinteractions: 43
+- Typography: 42
+- UI design: 40
+- Experimental: 32
+- Figma: 27
+- Promotional: 26
+- Art & Illustration: 26
+- E-Commerce: 23
+- Next.js: 22
+- Gestures / Interaction: 22
+- Startups: 22
+- Fashion: 21
+- Footer Design: 21
+- Luxury: 21
+- Nuxt.js: 21
+- Culture & Education: 18
+- Filters and Effects: 18
+- Photo & Video: 17
+- Minimal: 17
+- Architecture: 16
+- Film & TV: 16
+- 404 pages: 16
+- Games & Entertainment: 16
+- Illustration: 16
+- Gallery: 16
+- About Page: 15
+- Big Background Images: 15
+- Infinite Scroll: 15
+- Unusual Navigation: 15
+- Graphic design: 14
+- Javascript: 14
+- Fullscreen: 14
+- Parallax: 14
+- Sound-Audio: 13
+- Blender: 12
+- Project Page: 12
+- Single page: 12
+- Photography: 11
+- Food & Drink: 11
+- Navigation Menu: 11
+- Vue.js: 11
+- Data Visualization: 10
+- React: 10
+- CSS: 9
+- BARBA.js: 9
+- Responsive Design: 9
+- Real Estate: 9
+- Sanity: 9
+- Photographic: 8
+- HTML5: 8
+- Sports: 8
+- Vercel: 8
+- Music & Sound: 8
+- Wordpress: 7
+- Content architecture: 7
+- Other: 6
+- Framer: 6
+- Astro: 6
+- Flat Design: 6
+- Events: 6
+- Header Design: 6
+- Responsive: 5
+- Shopify: 5
+- Horizontal Layout: 5
+- Motion: 5
+- Lottie: 5
+- Contentful: 5
+- Institutions: 5
+- Hotel / Restaurant: 4
+- DatoCMS: 4
+- Video: 4
+- Copy design: 4
+- After Effects: 4
+- Contact Page: 4
+- Tailwind: 3
+- Magazine / Newspaper / Blog: 3
+- Vanilla JS: 3
+- Icons: 3
+- Menu - Vertical: 3
+- GLSL: 3
+- Cinema 4D: 3
+- next.js: 3
+- Prismic: 3
+- Social responsibility: 3
+- Craft CMS: 3
+- Typescript: 2
+- App Style: 2
+- 360: 2
+- Web Fonts: 2
+- SVG: 2
+- Mobile & Apps: 2
+- Retro: 2
+- Locomotive Scroll: 2
+- WooCommerce: 1
+- 11ty: 1
+- Forms and Input: 1
+- GraphQL: 1
+- Social Integration: 1
+- Node.js: 1
+- Curtains.js: 1
+- Vite: 1
+- PixiJS: 1
+- WebSockets: 1
+
+## element_sections
+- thumbnail: 183
+- mobile_thumbnail: 167
+- about_us: 78
+- scroll: 77
+- content: 75
+- loading: 75
+- footer: 75
+- transition: 72
+- interaction: 69
+- products: 58
+- mouse_interaction: 56
+- hero_image: 56
+- gallery: 55
+- animation: 55
+- menu: 51
+- other: 44
+- 404_page: 39
+- contact: 38
+- layout: 33
+- navigation: 27
+- ui_components: 25
+- header: 24
+- video: 18
+- team: 16
+- illustration: 12
+- branding: 10
+- modal: 10
+- CTA: 9
+- maps: 8
+- shopping_cart: 6
+- blog: 6
+- forms: 6
+- pricing_page: 5
+- photo: 4
+- FAQ: 3
+- stats: 3
+- microcopy_and_ux_writing: 3
+- icons: 3
+- pagination: 2
+- newsletter: 2
+- search: 1
+- social_share: 1
+
+## element_tags_top
+- animation: 379
+- 3d: 255
+- webgl: 224
+- scroll: 205
+- interaction: 201
+- typography: 198
+- gsap: 131
+- transition: 128
+- footer: 93
+- gallery: 91
+- hero: 89
+- hover: 87
+- navigation: 87
+- video: 86
+- menu: 79
+- storytelling: 78
+- portfolio: 77
+- interactive: 72
+- illustration: 72
+- parallax: 69
+- ui: 68
+- about: 62
+- scrolling: 61
+- grid: 58
+- layout: 55
+- motion: 52
+- minimal: 49
+- contact: 49
+- slider: 49
+- product: 47
+- threejs: 46
+- mobile: 44
+- scroll animation: 42
+- luxury: 41
+- loading: 39
+- homepage: 39
+- editorial: 38
+- 404: 38
+- loader: 38
+- architecture: 37
+- three.js: 36
+- content: 35
+- colorful: 35
+- design: 35
+- preloader: 34
+- ui design: 33
+- ecommerce: 31
+- page transition: 31
+- clean: 29
+- mouse interaction: 29
+- carousel: 29
+- microinteractions: 29
+- projects: 29
+- shader: 29
+- logo: 28
+- intro: 27
+- transitions: 27
+- fullscreen: 27
+- responsive: 26
+- webflow: 26
+- interaction design: 25
+- cta: 25
+- case study: 25
+- mouse: 25
+- cards: 24
+- immersive: 23
+- project: 23
+- ux: 23
+- map: 22
+- branding: 22
+- products: 22
+- reveal: 21
+- photography: 21
+- home: 21
+- form: 21
+- lottie: 21
+- blog: 20
+- work: 20
+- services: 19
+- team: 19
+
+## palette_size_distribution
+- 0: 300
+- 1: 29
+- 2: 246
+
+## palette_hue_families
+- near-black: 152
+- near-white: 115
+- blue: 48
+- neutral-gray: 41
+- orange: 38
+- red: 36
+- tint/off-white: 23
+- green: 22
+- yellow: 17
+- cyan: 15
+- magenta: 10
+- violet: 4
+
+## palette_base
+- dark+light (contrast pair): 86
+- dark-dominant: 79
+- mid-tone: 66
+- light-dominant: 44
+
+## saturated_accents_top
+- #20E5B5: 1
+- #CAFF00: 1
+- #0054FA: 1
+- #FF4FA3: 1
+- #FB4617: 1
+- #FF4421: 1
+- #2E30FF: 1
+- #FF516E: 1
+- #172B76: 1
+- #902177: 1
+- #C8603D: 1
+- #FF4401: 1
+- #F91814: 1
+- #FF0000: 1
+- #F1E500: 1
+- #D70321: 1
+- #E33529: 1
+- #5866E6: 1
+- #FA4C14: 1
+- #0061FE: 1
+- #FF5949: 1
+- #94D900: 1
+- #029600: 1
+- #E9E778: 1
+- #FF6B02: 1
+- #FF005C: 1
+- #F15534: 1
+- #F04B00: 1
+- #FF571A: 1
+- #D60001: 1
+
+- **score_means**: {'overall': 7.43, 'design': 7.51, 'usability': 7.2, 'creativity': 7.61, 'content': 7.48, 'dev_overall': 7.42}
+- **dev_score_means**: {'semantics_seo': 7.23, 'animations': 8.01, 'accessibility': 6.83, 'wpo': 7.56, 'responsive': 7.51, 'markup': 7.16}
+
+# Sites per award year
+
+- 2011: 2
+- 2012: 1
+- 2013: 2
+- 2014: 3
+- 2015: 5
+- 2016: 11
+- 2017: 14
+- 2018: 14
+- 2019: 13
+- 2020: 16
+- 2021: 15
+- 2022: 46
+- 2023: 15
+- 2024: 15
+- 2025: 14
+- 2026: 546

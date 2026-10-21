@@ -31,6 +31,16 @@ notice that follows is the standard MIT text and applies to each of them separat
   Copyright (c) 2026 Affaan Mustafa
 - antislop (https://github.com/miqdadbadjuber/anti-slop)
   Copyright (c) anti-slop contributors
+- anatomy (https://github.com/wheresryan22/anatomy)
+  Copyright (c) 2026 Ryan
+- logo-design (https://github.com/kaankiziltug/logo-design-skill)
+  Copyright (c) 2026 kaankiziltug
+- awwwards-web-design (https://github.com/owenisas/awwwards-web-design)
+  Copyright (c) 2026 owenisas
+- awwwards-jury (https://github.com/juliobsz/skills)
+  Copyright (c) 2026 Julio (juliobsz)
+- mengto (https://github.com/MengTo/Skills)
+  Copyright (c) 2026 Meng To
 - greptile (adapted, first-party) (https://github.com/greptileai/skills)
   Copyright (c) 2026 Greptile AI
 

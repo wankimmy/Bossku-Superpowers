@@ -1,0 +1,280 @@
+{
+ "slug": "dont-board-me",
+ "title": "Don't Board Me",
+ "live_url": "https://dontboardme.com",
+ "award": "Site of the Day Mar 11 2024 (Honors); listed on the Awwwards Sites of the Year page per corpus source (nominee status inferred, not shown on the saved award page); credits The First The Last",
+ "scores": {
+  "overall": 7.83,
+  "design": 8.08,
+  "usability": 7.41,
+  "creativity": 8.0,
+  "content": 7.73,
+  "dev": {
+   "overall": 7.26,
+   "semantics_seo": 7.2,
+   "animations": 7.2,
+   "accessibility": 7.0,
+   "wpo": 6.8,
+   "responsive": 8.0,
+   "markup": 7.2
+  }
+ },
+ "industry": "Local service business: in-home pet sitting and dog walking",
+ "signature": "A dog-walking business told entirely in one red ink and giant condensed caps, where every interaction is a dog joke you perform yourself: you bounce a ball to enter (the site is revealed through a hole that grows from where the ball lands), scroll to deal the process cards onto a table, and a 'READ A STORY' label trails your cursor letter by letter.",
+ "first_screen": {
+  "composition": "Desktop (all 8 desktop screenshots, plus the rerun): a click-to-enter gate. Flat pink #f2c3cb (sampled; token --c-pink #f3c3cb) full bleed; centred three-line 'BOUNCE A BALL TO GET TO THE SITE' in Bayon 126px red #e33529, line-height 100.8px, letter-spacing -2.535px (bbox 506x290px); a flat yellow tennis ball (#fff404 sampled, 74px, grey seam lines) sits after the last word, drawn above the type. That spot is hard-coded, not anchored to the word: .preloader__ball-wrap (a <button> with no label) starts at transform translate(62.5rem, 60vh) scale(2), i.e. x 1000px / y 540px at 2x; after the first mousemove it tweens to cursor +20px (.5s) and the mask circle follows; a two-line 14px Neue Montreal caps caption centred with its baseline ~27px from the bottom edge. Mobile (mobile_00): the real hero. Off-white #f3f3e9 ground, top bar MENU / red dachshund logo / BOOK, overline 'YOUR TRUSTED IN-HOME PET CARE COMPANIONS!', 3-line Bayon display at 79px, and a huge white shaggy sheepdog (Lottie) whose head overlaps the last word, a red leash in its mouth running down off-screen into the next section. The dog and leash are animated: between the two runs the head, hair strands and the leash loop move (run 1 loops at ~x75/y795 CSS and crosses the first letters of the next paragraph, the rerun loops further left and exits the left edge) while the legs stay identical, consistent with the looping Dog.json Lottie. In the first run the display renders at a washed #e66359 (median) while the rerun's mobile_00 shows full #e3362a: the capture caught it mid-fade, because the hero title starts at opacity 0 in CSS (.main-page__title / .first-block-title).",
+  "what_owns_it": "type",
+  "display_type_px": 126,
+  "evidence": [
+   "probes/dont-board-me/desktop_00.jpg",
+   "probes/dont-board-me/desktop_07.jpg",
+   "probes/dont-board-me-rerun/desktop_00.jpg",
+   "probes/dont-board-me/mobile_00.jpg",
+   "probe largest_text",
+   "probes/dont-board-me-rerun/mobile_00.jpg",
+   "cached entry.66570678.js CommonPreloader + index.html .preloader__ball-wrap CSS (re-read in audit 2)"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Bayon",
+    "role": "display",
+    "classification": "condensed grotesque, single weight, all caps",
+    "foundry": "Danh Hong (Google Fonts, Khmer/Latin)",
+    "source": "probe fonts_loaded 'Bayon 300 normal', font_families_rendered 49; self-hosted (1 ttf + 1 otf requested), not the Google CDN"
+   },
+   {
+    "name": "Neue Montreal",
+    "role": "ui",
+    "classification": "neo-grotesque, set in caps",
+    "foundry": "Pangram Pangram",
+    "source": "probe fonts_loaded 'Neue Montreal 500 normal', rendered 100"
+   }
+  ],
+  "display_size_px": 293,
+  "body_size_px": 14,
+  "scale_notes": "Measured Bayon ladder: 293px (OUR SERVICES h2) / 236px (HAVE QUESTIONS? h3, blue) / 186px (A TIRED DOG IS / THE CARE YOUR PET DESERVES!) / 126px (preloader) / 96px (card rows DOG WALKING, HOW IT WORKS?) / 70px (menu links) / ~30px (pill button labels, 14 nodes). UI text Neue Montreal 500 at 14px (89 nodes), 11px (10), 16px (4). Display-to-UI ratio roughly 21:1; apart from the 30px pill labels and one 42px node nothing sits in the 20-60px middle, so hierarchy is binary: shout or caption. Mobile hero drops to 79px, OUR SERVICES to 113px.",
+  "tracking_leading": "Every Bayon size uses line-height 0.78-0.8 (228.54/293, 145.08/186, 100.8/126, 54.6/70) and letter-spacing -0.02em (-5.86px at 293px, -3.72px at 186px, -1.4px at 70px). That leading only works because Bayon is caps-only with no descenders; the same .78 on a mixed-case face collides. Neue Montreal UI at line-height 1.0 (14px/14px). Pill labels get asymmetric padding (.6875rem top / .5625rem bottom) to optically centre the caps.",
+  "case_and_style": "Everything uppercase (text-transform uppercase on headings, nav, labels); large numerals as labels ('01', '02', '01.'); no italics.",
+  "signature_moves": [
+   "Double-split line mask reveal with a tilt: SplitText lines wrapped twice (outer .text-line-wrap overflow hidden), inner lines from yPercent:100 and rotate:30 with transformOrigin left, 0.8s power4.out, stagger 0.15 (0.2 on the hero), delay .1, overflow set to unset on complete (useShowPageAnimFirst chunk).",
+   "Punchline letter: the hero title's 'dog' is rewritten to d<span>o</span>g and, after the lines land, that 'o' rotates -13deg with Bounce.easeOut 0.5s (index chunk).",
+   "Letter-trail cursor label: in the testimonials/story section the word 'READ A STORY' is 10 fixed spans (14px Neue Montreal caps, #edbdd1, mix-blend-mode: difference) at x offsets 0/10/20/30/45/60/70/80/93/104px (the markup is the 10 letters 'readastory' with no space characters: the word gaps live in the offset array, 15px steps instead of 10); each tweens to the pointer with duration 1.2 power4.out, each .04s after the previous, so the word stretches and re-forms like a leash (index chunk, desktop only).",
+   "Observed only (mobile_01): where the fixed header (MENU / logo / BOOK) crosses the 113px red 'SERVICES' heading, the header glyphs render pink on the red letters, so the nav stays legible over its own ink. Mechanism not found in the fetched CSS (the only mix-blend-mode rule is the cursor trail). The rerun's mobile_01 at the same scroll depth shows no header at all over the uninterrupted SERVICES letters, so the header also hides or fades on scroll; that mechanism is not in the fetched CSS either (usePageMeta.112462f7.css was fetched in audit 2 and has no blend, clip or mask rule on the header)."
+  ],
+  "mobile": "mobile_00/01 at 390px: h1 pieces measured 33.28px and 79.04px, largest display 113.36px and 91.52px; overline in caps ~15px; no horizontal overflow (probe). Display stays centred and still fills the width."
+ },
+ "color": {
+  "mode": "section-shifting (light)",
+  "base": "#f6f6ed / #f3f3e9 warm off-white (--c-dark-white, --c-gray1) for hero and 404; #f3c3cb / #f4ced3 pink (--c-pink, --c-light-pink) for preloader, services and process",
+  "ink": "#e33529 red (--c-red): 91 text nodes and 44 backgrounds; red is the ink, not an accent. #e93225 (--c-red2) on the 404 headline and button.",
+  "accents": [
+   "#fff500 yellow (--c-yellow): the gate ball, the active process hotspot, and 12 decorative 90px tennis-ball SVGs (fill #FFF500, class decor__yellow-ball) scattered in the care-pet and book-consult sections (60px and fewer on mobile); inactive hotspots are --c-gray2 #ede2e2",
+   "#2b6786 blue (--c-blue) with #afd8fb light blue (--c-light-blue) for the 'HAVE QUESTIONS?' consultation block",
+   "#693413 brown (--c-dark-brown) for process card headings; 404 poo fill #6C3204 with #804F27 highlight dots (inline SVG source)",
+   "#e6dfe7 -> #d8b3df lilac illustration panels on process cards (purple1-4 classes)",
+   "#edbdd1 pink for the difference-blended cursor trail"
+  ],
+  "ratio": "~70% pink/off-white grounds / ~22% red ink and red fills / ~8% illustration colour (brown, lilac, blue, yellow)",
+  "section_shifts": "Flat colour bands change per section (off-white hero -> light-pink services / process -> blue consultation block). Inside the pink sections a 95rem (1520px) circle in --c-pink #f3c3cb sits on the --c-light-pink #f4ced3 section (our-services__big-circle, how-works__big-circle; 41.375rem on mobile), plus a lighter disc (#f6d1d9 sampled) framing the service dog, so the shift reads as a soft arc rather than a straight seam (mobile_01, frames/1).",
+  "texture": "No page-level grain. Texture comes from the illustrations (brush-stroke fur, grainy pencil shading on the service dogs).",
+  "notes": "Declares 29 --c-* colour tokens on :root (5 pinks, 4 purples, 3 browns, 4 yellows incl. one 25% alpha, 4 blues, 3 reds, 6 whites/greys) plus dead font tokens (--font 'HelveticaNeueCyr-Roman' while the page renders Neue Montreal) and --my-ease; the rendered page is disciplined: red on pink or off-white nearly everywhere."
+ },
+ "layout": {
+  "grid": "Centred single column for display type. Process section: .how-works is position:sticky; top:0; height:100vh over a 400vh .plash-move-cards track of four 100vh spacers; the four cards start at top:100% (card1 99%) at left 1.5rem / 21.25rem / 39.375rem / 58.75rem and are scrubbed to top 48 / 76 / 114 / 140px with rotate -3.077 / -1.206 / -4.402 / 6.321deg. Services: a Swiper carousel showing one service at a time, label left and big numeral right ('DOG WALKING ... 01', 'PET VISITS ... 02') over an autoplay progress hairline. Mobile side gutter ~17px.",
+  "density": "airy",
+  "alignment": "Centred type; hand-placed collage for cards; numbered hotspots at fixed positions (1: 10%/60%, 2: 27%/100px, 3: 66.5%/32%, 4: 96%/200px).",
+  "composition_moves": [
+   "Illustration overlaps the headline: the sheepdog's head covers the bottom of 'DOG!' so image and type read as one object (mobile_00).",
+   "Leash as a thread: the red leash from the dog's mouth continues past the hero bottom edge and over the next section's text (mobile_00). It works because the Lottie container is deliberately oversized: .main-page__white-dog is position:absolute, 112.5rem (1800px) wide at left 48% / top -10rem on desktop and 43.75rem (700px) at left 54% / top 12.5rem below 1024px, z-index 1, pointer-events none, so the animation spills across the section boundary and the leash swings over the copy (it moves between the two mobile captures).",
+   "Circle geometry everywhere: 50% radius on 58 elements, 150px (9.375rem) pill buttons, 1520px tonal circles behind the services carousel and process table.",
+   "Card deck on a table: four tilted process cards overlap like dealt polaroids and cover the section heading (frames/1/f03-f05); card 1 carries a small 'PROCESS' folder tab. Card spec (index.html CSS): 450x520px, --c-white #f3f3f3, 4px radius, a tonal pink shadow -3px 4px 14px rgba(221,198,202,.4), a 230px lilac image panel inset 4px, and the illustration set taller than its panel (top -10% to -16%) so heads and hands break out above the panel line into the white card (frames/1/f01, card 1)."
+  ],
+  "section_rhythm": "Gate (type only) -> hero (type + Lottie dog) -> services carousel (giant heading, circle-framed dog, numbered row) -> 'How it works?' sticky card deal -> 'The care your pet deserves!' (testimonials, parallax balls, READ A STORY cursor trail) -> consultation block 'HAVE QUESTIONS?' in blue -> pricing cards (cost-of-walking) -> Instagram cards -> footer (from HTML source order). Alternates giant-type moments with illustration moments; doc height 12529px.",
+  "mobile_adaptation": "Gate replaced by an automatic 'LOADING 0-100%' counter (3s ease none, roundProps) then the circle reveal at r 1000. Below 1024px the sticky card deal is display:none and a separate .how-works__mob Swiper slider takes over; cursor trail, hotspot parallax and the card deal only run inside gsap.matchMedia('(min-width:1024px)'); pricing cards switch from a staggered rise to per-card y:40/opacity fades (.6s)."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis (html classes 'lenis lenis-smooth lenis-stopped'): new Lenis({duration:1.2, orientation:'vertical', smoothWheel:true}), raf driven by gsap.ticker with lagSmoothing(0), lenis.on('scroll', ScrollTrigger.update); started stopped and unlocked only after the preloader completes.",
+  "preloader": "Desktop click gate: a full-screen SVG with a pink #F3C3CB rect masked by a white rect containing a black <circle id='circle-mask' r=0>, i.e. a hole punched in a pink overlay. On mousemove the ball tweens to cursor+20px (0.5s) and the circle centre follows. On first click (Vue @click.once): title + caption slide xPercent -30 and fade OUT in 0.4s; the ball drops to the click point (x-54, y-27) with bounce.out over 1.2s; ball fades and scales to 0 in 0.3s at +0.9s; the hole grows r 0->1800 over 1.3s power2.inOut, and 400ms into that growth the page's own intro animations are released, so the hero is already animating inside the growing hole; Lenis unlocks on complete. Gate intro: title from x -150% and opacity 0, 0.7s; caption 0.25s later. Mobile: counter 0->100 over 3s ease none, 500ms pause, then the same reveal at r 1000.",
+  "intro_sequence": "After reveal: hero title SplitText line reveal (stagger 0.2, lines rise 100% and un-rotate from 30deg, 0.8s power4.out), then the 'o' tips -13deg with a bounce (0.5s); small title fades up at delay 0.75s; social links opacity 0->1, yPercent 50->0, stagger 0.2, power3.out 1.4s.",
+  "scroll_techniques": [
+   "CSS sticky pin (process section: .how-works sticky 100vh over a 400vh spacer track; no ScrollTrigger pin in the chunk)",
+   "scrub (per-card ScrollTrigger scrub:true on each 100vh spacer, start 'top bottom', end 'bottom bottom')",
+   "parallax (care-pet balls yPercent +50 / -50 scrubbed, .care-pet_content top bottom -> center center)",
+   "reveal (SplitText lines; paragraphs yPercent 28 + fade 1.2s power2.out at 'top bottom')",
+   "staggered card rise (pricing cards y:150, opacity .8, stagger .05, 1.2s power2.out at 'top 97%')",
+   "carousel autoplay progress bar (Swiper)"
+  ],
+  "text_animation": "Lines masked by a wrapper with overflow hidden; inner line from yPercent 100 + rotate 30 (origin left) to 0, 0.8s power4.out, stagger 0.15 default / 0.2 on hero; overflow set back to unset on complete; clearProps all.",
+  "image_animation": "Lottie for the illustrated hero dog (lottie-web loadAnimation, renderer 'svg', loop, autoplay, path /Dog.json into #white-dog__anim), in an oversized 1800px (desktop) / 700px (mobile) absolutely positioned container; the two mobile captures show the head, hair and leash in different poses while the legs match, so the leash swing is part of the loop (inferred: inside Dog.json, not a separate SVG); process card illustrations ride with their cards. 404 (jury video frames/0): poo shapes fall, pile behind the red headline and drain through the floor in a ~7s loop. The live 404 code fetched during the audit does NOT contain that motion: ErrorPage renders 7 absolutely-positioned inline SVGs (386x295px, fill #6C3204) at fixed rotations (-25, 31, -34, 20, -23, 31, 0deg), z-index 0 under the z-index 1 headline, no keyframes and no JS in the component. The rain was either removed or lives in code not fetched.",
+  "page_transitions": "Circle mask reveal on first entry; route pages use useShowPageAnim hooks tied to preloader/navigation state (Nuxt).",
+  "hover_micro": [
+   "Numbered hotspot dots in the process section drift with the mouse: xPercent/yPercent = ((mouse% - 50)/2), sign alternating per dot, duration 1.6s (GSAP default ease); xPercent is relative to the 36px dot, so the drift is at most +/-25% = ~9px, a subtle breathing offset rather than a parallax; listener only attached while the card track is in view",
+   "READ A STORY letter trail: 10 spans tween to pointer + fixed offsets with 1.2s power4.out, each .04s after the previous; fade in/out 1s on enter/leave; active only while .care-pet_content is between top-top and bottom-top",
+   "'WithDot' pill buttons: 8px dot trails the label; on hover (desktop) a .15s timeline sends the trailing dot out to right:-12px while a leading dot slides in from the left, so the dot hops to the other side of the word; :active fill swaps to --c-ultra-dark-yellow",
+   "CSS transitions on UI mostly 0.2-0.3s with --my-ease cubic-bezier(0.24,1,0.36,1); phone link underline grows 0 -> 100% width in .4s ease-out on hover",
+   "Menu (usePageMeta CSS): burger lines split +/-1px on hover (.2s --my-ease); menu links reveal two 35px ball SVGs at their bottom-left and top-right corners on hover (opacity .4s --my-ease); the active link gets a 12px red dot to its left"
+  ],
+  "cursor": "native cursor (cursor_none 0); the preloader ball is a temporary cursor companion, and the READ A STORY letters (mix-blend-mode: difference) trail the cursor in the testimonials section",
+  "easing_curves": [
+   "cubic-bezier(0.24,1,0.36,1) (--my-ease, CSS)",
+   "cubic-bezier(0.4,0,0,1) (CSS)",
+   "bounce.out (ball drop, 1.2s)",
+   "Bounce.easeOut (letter tip, 0.5s)",
+   "power4.out (line reveals, cursor follow)",
+   "power2.inOut (circle mask 1.3s)",
+   "power2.out (paragraphs, pricing cards)",
+   "power3.out (social links)",
+   "none x43 (scrubbed tweens)"
+  ],
+  "duration_range_ms": "100-3000 in JS (1000 x5, 700 x5, 1200 x4, 500 x4, 600 x3, 1600 x2, 1300 x2); CSS 0.1-1.4s, mostly 0.2-0.3s",
+  "stagger_ms": "40 (cursor-trail letters), 50 (pricing cards), 150 (default line reveal), 200 (hero lines, social links)",
+  "choreography_notes": "Process deal (frames/1, 5.35s clip, timestamps .33/1.0/1.67/2.34/3.0/3.68/4.35/5.02s): 0.33s card 01 rises from below the fold; 1.0s card 01 has landed top-left and card 02 overlaps it; 1.67s card 03; 2.34s card 04 lands at the right, each at its own tilt (-4.4 to +6.3deg); 3.0-3.7s all four rest while the dots drift with the mouse; 4.35s all four drop back down together when scrolled up; 5.0s empty table and the dots are gone. Observed: the yellow dots accumulate (1 -> 1-2 -> 1-3 -> 1-4) and stay yellow while the cards fall back. The live code cannot do that: the LabelCircle component is in the fetched index chunk (data-v-712b3e6d) and is stateless, class ['circle-label', {active: isActive}] with isActive = (c === id), a 36px --c-gray2 circle that turns --c-yellow with a .3s ease-in background transition. The live site lights one dot at a time. Likewise the per-card scrubs are non-overlapping (one 100vh spacer each), so the live build reverses the cards one at a time, not all four together as in f06, and the hotspots never disappear as in f07. Conclusion: the jury clip was recorded on an earlier build; use `active >= id` if you want the video's cumulative look. Motion is 1:1 with scroll (scrub:true). 404 (frames/0, 7.35s clip): single poo at 0.46s, several falling at 1.38s, a pile of ~7-8 overlapping shapes behind the headline by 3.2s, unchanged at 5.97s, drained through the floor by 6.9s, loop.",
+  "evidence": [
+   "frames/dont-board-me/1/f00.jpg ... f07.jpg (meta: 5.35s, 60fps)",
+   "frames/dont-board-me/0/f00.jpg ... f07.jpg (meta: 7.35s)",
+   "bundle grep _nuxt/entry.66570678.js (Lenis init, CommonPreloader), _nuxt/index.d67f6018.js (process cards, parallax), _nuxt/useShowPageAnimFirst.9f0c167c.js (SplitText reveal)",
+   "cached index.html inline CSS (sticky .how-works, .plash-move-cards 400vh, card offsets, .cursor-character, .button-wrap, .error__poop) and entry chunk (CommonPreloader, WithDot, ErrorPage) re-read during audit",
+   "audit 2: index.d67f6018.js LabelCircle component and card ScrollTriggers, index.html .process-card/.circle-label/.main-page__white-dog/.decor__yellow-ball CSS, fetched /_nuxt/usePageMeta.112462f7.css (header and menu)"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "illustration",
+  "art_direction": "Commissioned editorial illustration: flat white or grey dogs with black and green brush-stroke fur, subtle pencil shading, limited palette per piece; people drawn in the same hand on lilac panels in the process cards. Flat red dachshund as the logo mark. Illustrations are big and cropped by type or edges, never boxed.",
+  "treatments": [
+   "illustration overlapping display type",
+   "circle and semicircle frames behind subjects",
+   "lottie animation for hero dog",
+   "flat vector poo shapes with three-dot highlights on 404"
+  ],
+  "crops_and_ratios": "Hero dog ~90% of mobile width, bleeding off the section bottom; service dogs inside a ~92vw circle; process cards ~3:4 portrait, top half type, bottom half illustration.",
+  "formats": "21 img (probe), 69 svg, 0 video; declared png 3.5MB, webp 263KB; 9 webp + 6 png requests; 1 lottie json",
+  "evidence": [
+   "probes/dont-board-me/mobile_00.jpg",
+   "probes/dont-board-me/mobile_01.jpg",
+   "probes/dont-board-me-rerun/mobile_01.jpg",
+   "frames/dont-board-me/1/f03.jpg"
+  ]
+ },
+ "three_d": {
+  "present": false,
+  "stack": "none. Probe counted 2 canvas 2D contexts on the homepage but 0 canvas elements; source unidentified (the Lottie uses the SVG renderer and the 404 was never loaded by the probe, so neither explains them).",
+  "role": "none",
+  "assets": [],
+  "materials_lighting_post": "",
+  "interaction": "none",
+  "performance_tactics": "",
+  "fallback_mobile": "",
+  "evidence": [
+   "probe contexts {2d:2}, assets_3d []"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Three-point top bar: logo left (red dachshund + stacked DON'T/BOARD/ME wordmark on desktop), two-line hamburger centre, red 'BOOK NOW' tab attached to the top edge right (rounded bottom corners) on desktop (frames/1/f00); MENU / logo / BOOK text on mobile. The header recolours per route through page classes (.pricing-page / .contacts-page blue #2b6786, .default-page brown #693413, others red).",
+  "menu": "Desktop: NOT full-screen. A 20rem (320px) --c-gray1 panel slides down from translateY(-46.25rem) to 0 over 1s --my-ease; five static 29.3125rem (469px) --c-gray1 circles (.header__menu-circle n1-n5 at fixed offsets) hang below it so the panel's lower edge is a scalloped cloud; behind it a --c-light-pink scrim fades to opacity .7 over .6s linear. Links are Bayon 70px red (PRICING, ABOUT US, SERVICES, BLOG, CONTACTS; line-height 54.6px, -1.4px) that start at opacity 0 and are faded in by JS, plus 14px Neue Montreal labels. Below 1024px the panel becomes 100dvh and slides from -102dvh. (Source: fetched usePageMeta.112462f7.css; open state not captured.)",
+  "buttons_links": "Red pill buttons 'BOOK NOW' with an 8px off-white dot after the label that hops to the front on hover, Bayon ~30px, 9.375rem (150px) radius, asymmetric padding 11/20/9px (mobile_01, frames/1 bottom-right); desktop header 'BOOK NOW' is a 14px tab attached to the top edge with a 1444x12 red SVG plash (#header-hover__line); hand-drawn arrow glyphs for carousel prev/next and scroll cue.",
+  "unusual_interactions": [
+   "Bounce-a-ball click gate with a hole-punch reveal from the click point",
+   "Scroll-dealt process cards with numbered hotspots that light yellow (live: one active at a time; jury video: cumulative, from an earlier build)",
+   "Hotspots parallax against the mouse (desktop only via gsap.matchMedia)",
+   "READ A STORY letter trail following the cursor (difference blend)",
+   "Poo rain on the 404 in the jury video (live code now static)",
+   "Console easter egg: 'What the hell are you doing here?' in 40px Comic Sans on #141414 with #B2F366 text"
+  ],
+  "sound": "none",
+  "footer": "Footer data fetched from /api/footer (headless CMS at api.dontboardme.com); not captured in screenshots"
+ },
+ "content_voice": {
+  "headline_style": "Short, shouted, all-caps dog-owner idioms and questions ('HOW IT WORKS?', 'HAVE QUESTIONS?').",
+  "copy_tone": "Warm, jokey, dog-first; the brand speaks like the dog's friend ('Woof', 'welcome woof').",
+  "examples": [
+   "A tired dog is a happy dog!"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Nuxt 3 (Vue) with a headless API (api.dontboardme.com)",
+  "libraries": [
+   "GSAP 3.12.2 (ScrollTrigger, SplitText 3.12.2, Flip, Observer; DrawSVG registered but no drawSVG tween in the homepage chunk)",
+   "Lenis (bundled)",
+   "Swiper (swiper-vue)",
+   "lottie-web (SVG renderer)"
+  ],
+  "evidence": "probe globals __NUXT__, libs_from_requests [lottie, nuxt], html classes lenis; bundle grep gsap x79, lenis x20, ScrollTrigger x12, SplitText x3, Swiper x2"
+ },
+ "performance_accessibility": {
+  "requests": 53,
+  "weight_notes": "Declared png 3.5MB is the heavy part (illustrations as PNG); webp only 263KB. WPO 6.8 is the lowest dev sub-score.",
+  "reduced_motion": "0 reduced-motion rules (probe); no reduced-motion path found.",
+  "contrast_issues": "Red #e33529 on pink #f3c3cb is 2.8:1 and on light pink #f4ced3 3.0:1 (computed), below 4.5:1 for the 14px Neue Montreal captions (fine for the 96px+ display). Red on off-white #f6f6ed is 4.0:1, also under 4.5:1 for small text. Off-white on red is 4.0:1: acceptable for the ~30px Bayon pill labels (large text), failing for the 14px 'BOOK NOW' header tab. The #edbdd1 cursor-trail letters depend on the difference blend to show at all (1.1:1 against light pink before blending). The hero h1 wrapper itself renders in Times 32px 700 (no font set on h1; Bayon lives on inner <p>s). The active hotspot puts a 14px red numeral on #fff500 at 3.8:1 (computed). The gate's only focusable element is the unlabeled ball <button>; Enter on it bubbles a click to the .preloader @click.once handler, so keyboard entry works by accident with no accessible name.",
+  "mobile_quality": "Good: no overflow, automatic loader, desktop-only interactions cleanly swapped via gsap.matchMedia; responsive 8.0.",
+  "dev_scores": {
+   "semantics_seo": 7.2,
+   "animations": 7.2,
+   "accessibility": 7.0,
+   "wpo": 6.8,
+   "responsive": 8.0,
+   "markup": 7.2
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Toy gate with a circle reveal from the click point",
+   "why_it_works": "The loading screen becomes the first brand joke (fetch the ball) and the reveal originates exactly where the user acted.",
+   "how_to_build": "Full-screen fixed .preloader holding an inline SVG: <rect width=100% height=100% fill=#F3C3CB mask=url(#m)> and <mask id=m><rect width=103% height=100% fill=#fff/><circle id=circle-mask cx=50% cy=50% r=0 fill=#000/></mask> (the circle punches a hole in the pink overlay). On mousemove: gsap.to(ball,{x:e.clientX+20,y:e.clientY+20,duration:.5}); gsap.to('#circle-mask',{attr:{cx:e.clientX-27,cy:e.clientY}}). On first click: tl.to(copy,{xPercent:-30,opacity:0,duration:.4}).to(ball,{scale:1,x:cx-54,y:cy-27,duration:1.2,ease:'bounce.out'},'<').to(ball,{opacity:0,scale:0,duration:.3,delay:.05},'<+=0.9').to('#circle-mask',{attr:{r:1800},duration:1.3,ease:'power2.inOut',onStart:()=>setTimeout(startPageIntro,400),onComplete:()=>lenis.start()}). Starting the page intro 400ms into the hole growth is what makes the reveal feel continuous. Required fix they skipped: auto-reveal after ~4s or on scroll/keypress, so a user (or crawler) who never clicks still gets the site."
+  },
+  {
+   "technique": "Scroll-dealt card deck",
+   "why_it_works": "A numbered 4-step process (normally a slop layout) becomes a physical act: each scroll segment deals one tilted card onto a table.",
+   "how_to_build": "No ScrollTrigger pin: make the section position:sticky; top:0; height:100vh, followed by a sibling track height:400vh containing four absolutely-positioned 100vh spacers (.deal-1..4 at top 0/100/200/300vh). Cards start at top:100% (card1 99%) at left 1.5rem / 21.25rem / 39.375rem / 58.75rem. For card i: gsap.to(card,{top:[48,76,114,140][i], rotate:['-3.077deg','-1.206deg','-4.402deg','6.321deg'][i], scrollTrigger:{trigger:'.deal-'+(i+1), start:'top bottom', end:'bottom bottom', scrub:true, onEnter:()=>active=i+1, onLeaveBack:()=>active=i}}). Light numbered dot i in #fff500 when active. Hide the whole block below 1024px and ship a swipe slider instead. Card: 450x520px, #f3f3f3, radius 4px, box-shadow -3px 4px 14px rgba(221,198,202,.4) (shadow tinted from the ground, not grey), illustration taller than its 230px lilac panel so it breaks out above it. Dots: 36px circles #ede2e2 -> #fff500 with a .3s ease-in background transition; the live site lights only the current dot, the jury video lights all dots up to the current one (active >= id)."
+  },
+  {
+   "technique": "Tilted double-mask line reveal",
+   "why_it_works": "Lines swing up into place like cards flipping, livelier than the standard straight slide-up; the tilt matches the playful brand.",
+   "how_to_build": "GSAP SplitText twice: const {lines:outer}=new SplitText(el,{type:'lines',linesClass:'text-line-wrap'}); const {lines:inner}=new SplitText(outer,{type:'lines'}); CSS .text-line-wrap{overflow:hidden}. gsap.from(inner,{yPercent:100,rotate:30,transformOrigin:'left',duration:.8,stagger:.15,delay:.1,ease:'power4.out',clearProps:'all',scrollTrigger:{trigger:el,start:'top bottom'},onComplete:()=>gsap.set(outer,{overflow:'unset'})}). Keep text visible without JS: add the hidden state only from JS right before the tween (gsap.from does this) and never in CSS; the site breaks this with .first-block-title{opacity:0} in CSS."
+  },
+  {
+   "technique": "One ink colour, condensed caps at architectural size",
+   "why_it_works": "A single red used for all type, buttons and logo on pink/off-white grounds gives a poster identity with zero palette noise; condensed caps let 186-293px type fit the width.",
+   "how_to_build": "Bayon (or a licensed condensed grotesk, see slop risks) uppercase, font-size clamp(96px, 20vw, 293px), line-height .78 (caps-only faces only), letter-spacing -.02em; UI in a neo-grotesk 14px/1 uppercase weight 500. Palette: ink #e33529, grounds #f6f6ed and #f4ced3 with a 1520px circle in #f3c3cb behind content; reserve #fff500 for the interactive objects (ball, active dot). The site itself also scatters 12 decorative 90px yellow tennis balls through later sections; that dilutes the signal, so a copy should keep yellow for things you can act on."
+  },
+  {
+   "technique": "404 as a punchline pile",
+   "why_it_works": "A dead end becomes shareable; the pile sits behind the headline so the message and the button stay readable.",
+   "how_to_build": "Live code: 7 absolutely-positioned inline SVG blobs (386x295px, fill #6C3204, three #804F27 dots) at fixed rotations (-25, 31, -34, 20, -23, 31, 0deg), z-index 0 under a z-index 1 headline and button. To reproduce the jury video's rain without a physics engine: gsap.from(poos,{y:'-120vh',rotation:'random(-60,60)',stagger:.15,duration:1.1,ease:'bounce.out'}) to their resting spots, hold ~3s, then gsap.to(poos,{y:'120vh',stagger:.05,duration:.8,ease:'power2.in'}) and repeat. inferred alternative for real collisions: Matter.js with ~7 bodies from the SVG outline."
+  },
+  {
+   "technique": "Leash as a continuous thread across sections",
+   "why_it_works": "One red line ties the hero to the next section and keeps moving, so the page reads as one living drawing instead of stacked bands.",
+   "how_to_build": "Put the leash inside the character animation, not on the page: a looping Lottie (lottie-web, renderer 'svg', loop, autoplay) whose container is deliberately larger than the hero (site: position:absolute; width:112.5rem; left:48%; top:-10rem; transform:translateX(-50%); z-index:1; pointer-events:none; below 1024px width 43.75rem, left 54%, top 12.5rem) so the dog's head overlaps the headline and the leash swings down over the next section's copy. Keep the next section's text readable where the leash crosses it (the site lets the red leash cross red text). inferred: the swing is authored in Dog.json; if you build it in SVG instead, animate the path's control points with a slow sine sway rather than drawing it on."
+  },
+  {
+   "technique": "Letter-trail cursor label",
+   "why_it_works": "A plain 'READ A STORY' call-to-action becomes a creature on a leash: the word stretches out behind the pointer and snaps back together, which fits a dog brand and invites a click without a button.",
+   "how_to_build": "Markup one <span> per letter, position:fixed, pointer-events:none, mix-blend-mode:difference, 14px uppercase. Per-letter x offsets from the word's natural layout (0,10,20,30,45,60,70,80,93,104px). On mousemove: const tl=gsap.timeline(); spans.forEach((s,i)=>tl.to(s,{top:e.clientY,left:e.clientX+offsets[i]+20,duration:1.2,delay:.04,ease:'power4.out'},'<')) so each letter starts .04s after the previous. Attach the listener only while the section is in view (ScrollTrigger onEnter/onLeave), fade the letters in/out 1s, desktop only, and skip it under prefers-reduced-motion."
+  },
+  {
+   "technique": "Dot-hop pill button",
+   "why_it_works": "The hover state moves one small shape instead of lifting or glowing the whole button, so the button reacts without the boop/shadow tells.",
+   "how_to_build": "Pill: border-radius 9.375rem, padding .6875rem 1.25rem .5625rem (bottom 2px less to optically centre caps), label then an 8px dot (.right-circle, absolute, right:0) and a hidden leading dot (.left-circle, left:-.5rem). On mouseenter (desktop): tl=gsap.timeline({paused:true,defaults:{duration:.15}}).to(right,{right:-12}).to(left,{left:(btn.offsetWidth-content.offsetWidth)/2-4-8}); play on enter, reverse on leave; a CSS :hover rule grows the leading inline spacer (.button-wrap__left-circle) from 0 to .5rem with a .2s ease-in transition so the label shifts over."
+  }
+ ],
+ "slop_risks": [
+  "Invisible-content trap at page level: on desktop the whole site stays behind a click gate; the probe's 16 desktop screenshots (two runs) never got past it. The text reveal helper also sets opacity:1 from JS only for above-the-fold elements, implying CSS hides them until JS runs. Copy the gate only with an auto-timeout fallback and visible-by-default content. The gate's only focusable control is an unlabeled <button>.",
+  "Cream background: the #f6f6ed / #f3f3e9 off-white hero is the cream/beige tell; it survives here only because red ink and pink bands dominate. A copy that keeps the cream and loses the red is slop.",
+  "Saturated accent pop: #e33529 red and #fff500 yellow are loud. They work because red is the only ink (a monochrome system), not sprinkled accents; red on one button plus yellow dots on a neutral page is the saturated-accent tell.",
+  "Pastel candy: flat pink #f3c3cb bands are close to the pastel-candy tell; they avoid it by being flat single tones with tonal semicircles, never a multi-stop gradient.",
+  "Numbered steps 01-04 and a filled pill 'BOOK NOW' button with a trailing dot repeated everywhere: default patterns saved only by the card-deal motion. Static, they are the numbered-steps and default-CTA tells.",
+  "Scattered tilted cards: static, this is the 'floating cards' tell; it only works because the deal is driven by scroll.",
+  "No prefers-reduced-motion rules (probe 0) despite bounce eases, cursor-follow parallax and physics loops.",
+  "Red #e33529 on pink is 2.8:1 (computed); small caps captions in red on pink fail contrast (text you cannot read).",
+  "Default Google font carrying the brand: Bayon is a free Google family (self-hosted here). The law flags stock Google display faces as slop when they carry the identity; it survives here only through the one-ink discipline and illustration. A copy should license a condensed grotesk rather than reuse Bayon.",
+  "Underline-fill hover: the phone link (.telephone-link:after) grows its underline 0 -> 100% width in .4s on hover, a named slop tic; swap it for a tonal colour change.",
+  "Leading .78 on the display is only safe on a caps-only face without descenders; ported to mixed case it becomes cramped, colliding display type.",
+  "Multi-line display stacks: the gate ('BOUNCE A / BALL TO GET / TO THE SITE') and the mobile hero ('A TIRED DOG / IS A HAPPY / DOG!') are three-line stacks, the law's multi-line headline tell. They hold here as poster blocks because the .78-.8 leading locks the lines together and the last line is the punchline (the tipping 'o'); a copy that wraps a normal headline into three lines gets the tell without the joke.",
+  "Small label over big heading: the mobile hero opens with a 15px caps overline ('YOUR TRUSTED IN-HOME PET CARE COMPANIONS!') above the 79px display, the kicker-over-heading and default hero stack tells.",
+  "Active-link dot: the menu marks the current route with a 12px red dot beside the link (.router-link-active:before), the 'dot marking the active nav item' tell; a copy should use a type or colour change instead.",
+  "Hover boop: social icons, the circle links and the testimonial arrows scale to 1.1 on hover (index.html and usePageMeta CSS), the button-that-jumps tell; the dot-hop pill button shows the better pattern on the same site."
+ ],
+ "confidence_notes": "Desktop screenshots desktop_00-07 all show the 'bounce a ball' click gate (7 of 8 byte-identical; the ball moves between 00 and 01). Re-ran per instructions (probes/dont-board-me-rerun, --settle 12 --steps 7): same gate, html class lenis-stopped. The probe does not click, so desktop post-gate layout comes from the jury element videos (frames/1 process deal, frames/0 404) and the mobile screenshots (mobile has an automatic loader, so mobile_00/01 show hero and services). DOM measurements (fonts, sizes, colours, tokens, easings) are valid because the full page is server-rendered behind the gate. Gate timing, Lenis options, card ScrollTrigger config, SplitText reveal and parallax formula are verbatim from bundle code (6 fetches: HTML, entry js, index js, entry css, useShowPageAnim, useShowPageAnimFirst; the swiper-vue chunk fetch found nothing useful). 404 physics engine and the leash DrawSVG are inferred (404 chunk not fetched). The dark #212121 frame around frames/1 is inferred to be the Awwwards presentation mockup, not the site. audit (2026-09-24, adversarial re-check of desktop_00/01/05, mobile_00/01, rerun mobile_01, all 8 frames of element 1 and 4 frames of element 0 at full size, plus the cached index.html CSS, entry, index and useShowPageAnimFirst chunks): REFUTED and fixed: the process pin is CSS position:sticky over a 400vh track, not a ScrollTrigger pin; card presets were invented (real: top 48/76/114/140px, rotate -3.077/-1.206/-4.402/6.321deg, left 1.5/21.25/39.375/58.75rem); 'card-trail follow' is the READ A STORY letter-trail cursor with mix-blend-mode difference; the gate copy fades OUT (not in); Lottie uses the SVG renderer, so the 2 canvas-2D contexts are unexplained; the live 404 is 7 static rotated DOM SVGs with no physics or keyframes (the jury video's rain is not in the fetched code; Matter.js was a guess); colour-token count is 29 (3 browns, 3 reds), not 34; the tonal arcs are 1520px #f3c3cb circles on #f4ced3; section order corrected from HTML source (process before testimonials, consultation, pricing); mobile y:40 fades belong to pricing cards while the process deal is replaced by a Swiper slider; GSAP core is 3.12.2; the 'viewport-cropped SERVICES' signature move was only a scroll-position capture and was replaced. ADDED: hole-punch mask structure, page intro released 400ms into the reveal, dot-hop pill button, asymmetric pill padding, hotspot coordinates, cumulative yellow dots observation, header knock-out observation (mechanism unknown), three slop risks (Google display font, underline-fill hover, caps-only leading). Still unverified: header knock-out mechanism, menu open animation, leash animation, 404 rain implementation, source of the two 2D contexts. audit 2 (2026-09-25; re-viewed desktop_00/01 and rerun desktop_00, mobile_00/01 of both runs at full size plus crops, all 8 frames of element 1 and 4 frames of element 0, one at a time; re-read the cached entry, index and index.html; fetched usePageMeta.112462f7.css): REFUTED and fixed: the cumulative yellow dots are NOT explainable by an unfetched dot component; LabelCircle is in the fetched index chunk and is stateless, and the per-card scrubs cannot drop all four cards together (f06), so the jury clip predates the live build; the leash is not 'likely static art' (it moves between the two mobile captures inside an oversized 1800/700px Lottie container); the desktop menu is not full-screen and its five circles are a static scalloped edge, not an inferred open animation; yellow is not reserved to the ball and dots (12 decorative #FFF500 balls); the gate ball's resting spot is a hard-coded translate(62.5rem,60vh) scale(2), not a cursor position; ball colour sample corrected to #fff404. ADDED: process card spec with tonal pink shadow and break-out illustration, hotspot drift magnitude (~9px), letter-trail spaces encoded as offsets, header per-route colours, menu hover balls, red-on-yellow 3.8:1 and unlabeled gate button, four slop risks (three-line display stacks, overline-over-heading, active-link dot, scale(1.1) hover boop). Still unverified: header knock-out and hide mechanism, Dog.json contents, 404 rain implementation, source of the two 2D contexts."
+}

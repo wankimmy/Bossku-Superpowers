@@ -1,0 +1,293 @@
+{
+ "slug": "thelinestudio-com",
+ "title": "The Line Studio",
+ "live_url": "https://thelinestudio.com/",
+ "award": "Site of the Day, Nov 5 2024 + Honors (corpus source: sites_of_the_month; bucket site-of-the-month, award year 2024)",
+ "scores": {
+  "overall": 7.76,
+  "design": 8.02,
+  "usability": 7.4,
+  "creativity": 7.78,
+  "content": 7.77,
+  "dev": {
+   "overall": 7.76,
+   "semantics_seo": 7.4,
+   "animations": 9.0,
+   "accessibility": 7.0,
+   "wpo": 8.0,
+   "responsive": 7.6,
+   "markup": 7.4
+  }
+ },
+ "industry": "BAFTA-nominated London animation studio (2D/3D animation for commercials, film, games); portfolio + studio site",
+ "signature": "The UI is built out of animation-desk material: a 24-frame preloader whose loading bar thickens and then settles as the wordmark's crossbar (one stroke that is the H crossbars, both E middle arms and the dash), a red multiply 'acetate' gel laid over the showreel that the first scroll peels away together with the printed wordmark (rotate -15deg about its bottom-left corner) so the same footage appears in full colour, and every panel after that (project sheets, prints, the reel card, the footer) behaving like a paper cel that tilts on a corner pivot and gets flung off, while UI text blinks on in hard frame-steps instead of fading.",
+ "first_screen": {
+  "composition": "Full-viewport sticky hero (100svh/100lvh). Showreel video fills 1440x900 and is turned into a red monochrome by a div.acetate above it (background red, mix-blend-mode: multiply). The THE LINE wordmark (inline SVG; block letters with a horizontal bar cutting through all of them, the 'line') spans the full width at the bottom: measured bbox x 18-1420, y 615-878 (~263px tall), fill #e8e9ee (CSS color on .preloader / hero wrapper; pixel-sampled rgb(232,233,238)), sitting ~18px (preloader--home padding 1.27315vw) off the left, right and bottom edges, so it is whole, not cropped. A circled (R) mark floats above its right end (bbox top y 534). Header row on top: small logo left, live studio status 'CLOSED (10-6PM)' with a dot and 'LONDON, ENGLAND' as 10px uppercase labels, inline nav right in 18.33px uppercase separated by '/' with a red dot + red label on the active item. No live text larger than 18px on the first screen: no headline, no CTA. The 10px 'SCROLL TO EXPLORE' label is not a fixed hint; it trails the pointer (element 0 frames). First scroll (verified in the Hero component): the scrub targets the acetate div and the wordmark wrapper, not the video. The acetate is a 100svh non-sticky layer and the video figure sits in .home-hero__sticky (100lvh) inside a 200svh hero whose scroller runs 100svh past it, so the red gel and the logo lift off together on a -15deg tilt and the reel keeps playing, pinned and in full colour, until the 'Highlights' sheet slides over it (desktop_01, mobile_01).",
+  "what_owns_it": "mixed",
+  "display_type_px": 263,
+  "evidence": [
+   "probes/thelinestudio-com/desktop_00.jpg",
+   "probes/thelinestudio-com/mobile_00.jpg",
+   "frames/thelinestudio-com/0/f05.jpg",
+   "bundle: index.CVwLeBkz.css .home-hero__layer.acetate, inline CSS .acetate{background-color:red;mix-blend-mode:multiply}",
+   "pixel bbox + colour sample of desktop_00.jpg (audit)",
+   "CSS .preloader{color:#e8e9ee} .preloader--home{padding:0 1.27315vw 1.27315vw}",
+   "probes/thelinestudio-com/desktop_01.jpg (uncoloured reel after the peel)",
+   "B6MUFv6g.js Hero: o.to([acetateRef, wrapper.$el],{xPercent:-10,rotate:-15,transformOrigin:'bottom left',ease:'power1.in'}); index.CVwLeBkz.css .home-hero{height:200svh} .home-hero__scroller{bottom:-100svh} .home-hero__layer{height:100svh}"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "DenimWeb (Denim variable, self-hosted; @font-face src lists /fonts/DenimVF.woff BEFORE DenimVF.woff2, so browsers download the 103KB WOFF, never the WOFF2; weight axis 300-800)",
+    "role": "display|body|ui",
+    "classification": "grotesque sans, single family carrying the whole brand",
+    "foundry": "not stated in CSS (unverified)",
+    "source": "probe fonts_loaded 'DenimWeb 300 800 normal', font_families_rendered DenimWeb x205, asset_extensions woff:1; inline @font-face in HTML (re-read 2026-09-24)"
+   }
+  ],
+  "display_size_px": 175,
+  "body_size_px": 16,
+  "scale_notes": "Measured: section words h1/h3 175px (12.15278vw desktop, 7.2rem = 72px mobile) weight 500; project titles h2 80px weight 470; client run-on list 53px; footer contact 26.67px (.p1 1.85185vw); 'BELLISSIMO' pull quote and news headlines 33px caps (.h5); footer address/social/nav lists 16.67px (.p5 1.15741vw, probe font_sizes 17px x19 = 5+6+8 items); colophon 18.33px (.p4 1.27315vw); nav 18.33px weight 440; body 16px; meta 13px; labels 10px weight 440; bracket counts 8px. Display:label ratio 17.5:1 with almost nothing in between on most screens.",
+  "tracking_leading": "Display 175px: letter-spacing -7px (-0.04em), line-height 140px (0.8). h2 80px: -3.2px (-0.04em), lh 64px (0.8). Nav 18.33px: -0.18px (-0.01em), lh 0.85. Labels 10px: -0.1px, lh 11.67px. Descenders (the g in 'Highlights') hang into the next row because of lh 0.8.",
+  "case_and_style": "Sentence case for giant section words ('Highlights', 'The Studio', 'News', 'Credits'); ALL CAPS for nav, labels, status, colophon; every section label is prefixed with a light-weight slash ('/ ABOUT THE LINE', '/ THE LOWDOWN') via .slash-light (slash at weight 300); counts are bracketed superscripts '[ 85 ]' at 8px; arrows are a glyph/SVG after link labels.",
+  "signature_moves": [
+   "One variable family carries everything; SIZE carries the hierarchy (175/80/53/33/27/18/17/13/10/8px) while the weight axis is tuned in odd steps: 500 display, 470 headings and big links, 440 UI and labels, 300 for the slashes",
+   "Slash-prefixed section labels and slash-separated nav as a system glyph",
+   "Bracketed superscript counts next to links: 'The Work [85] ->'",
+   "Giant sentence-case word per section set left at the 7px gutter, lh 0.8",
+   "Clients as a 53px run-on sentence separated by ' / ' mixing text names with inline client logo SVGs (Riot Games, Marvel, Mercedes star, Blizzard, Honda)",
+   "Preloader counter 'NN/24 fps' set at h1 size, zero-padded",
+   "Per-glyph optical margin correction: TextSplitter adds class letter-<first char> to each split display line and a 62-rule table shifts it (e.g. .letter-H/.letter-E/.letter-B -0.07em, .letter-a -0.032em, .letter-j +0.052em) so 175px words sit optically flush on the 6.7px gutter despite side bearings"
+  ],
+  "mobile": "h1 72px (probe mobile_measure). Measured from the 2x-DPR mobile_01 screenshot: '/ ABOUT THE LINE' labels ~12px CSS (8px cap height), 'The Work [85]' / 'The Studio' become full-width 24px list rows (.p1 2.4rem; 'The Studio' cap height measured 16.5 CSS px) with the arrow at the right edge and a 1px rule (drawn under 'The Work' in mobile_01); gutter 8px (.8rem). Nav collapses to a 2-bar hamburger; no horizontal overflow. (Earlier values of ~20px labels / 40px rows read device pixels as CSS px.)"
+ },
+ "color": {
+  "mode": "section-shifting",
+  "base": "#f8f8f8 (page-bg and meta theme-color); body underneath the sticky layers is rgb(221,222,226) #dddee2",
+  "ink": "#0b0b0b",
+  "accents": [
+   "#ff391e brand red-orange: active nav dot+label, hero acetate before preloader completes, footer floor",
+   "#ff0000 pure red: acetate multiply layer over video after preloader (transition .3s delay .2s)",
+   "#e8e9ee cool near-white: hero/preloader wordmark and '09/24 fps' counter ink, list-open footer sheet",
+   "rgba(222,223,227,.95) project sheet fill",
+   "#f8f8f8 as text on media/red"
+  ],
+  "ratio": "approx 60% #f8f8f8, 15% #0b0b0b ink, 10-15% red floors/tints, rest full-bleed colour of the studio's own animation",
+  "section_shifts": "Red-multiplied reel -> the acetate is peeled off on the first scroll and the same reel plays in full colour -> #f8f8f8 editorial sections -> grey translucent project sheets over full-bleed frames -> full-bleed media -> #f8f8f8 'News' -> #ff391e footer floor that a white logo sheet tilts over. Colour changes arrive as physical sheets sliding over each other, never as gradients.",
+  "texture": "No CSS grain. Texture lives inside the artwork: halftone footer illustration multiplied onto the red floor (mix-blend-mode: multiply, filter grayscale(.3)), print grain inside some animation frames.",
+  "notes": "Awwwards palette #FF391E / #F8F8F8 matches. The multiply acetate is how the site keeps a wildly colourful showreel on-brand: one flat red div, no video grading."
+ },
+ "layout": {
+  "grid": "A real 9-column grid on desktop (.grid{grid-template-columns:repeat(9,1fr);gap:0 .46296vw;padding:0 .46296vw}: 6.67px gutters equal to the side margins at 1440) and 5 columns on mobile (.8rem gap and padding). Elements snap to it: header status at col 3 (x 325) and location at col 4 (x 484), awards/about copy and the footer 'Find us' column at col 6 (x 803); about photos col 1/span 3, copy col 6/span 4. The header therefore reads as a 4-slot row (logo | status | location | nav) but is placed on the 9-col grid. css_usage: 4 grid containers, 3 sticky, 3 fixed.",
+  "density": "balanced",
+  "alignment": "Hard left to the gutter for all display type; nav hard right.",
+  "composition_moves": [
+   "Giant section word + two arrow links, then a large deliberate void (desktop_01 bottom 200px empty)",
+   "Project cards as overlapping tilted paper sheets (desktop_02/03) instead of a grid",
+   "Production framing guides drawn over a project card (FieldGuide component): OVERSCAN (dashed) > CROP (solid 1px, with '100%' bottom-right, '[ 16:9 ]' outer label, a centre crosshair and short centre bars) > ACTION SAFE (dashed), each with a live 'W x H' readout ('1573 x ..', '1448 x 969', '1374 x 907' in desktop_02)",
+   "Awards and press as two dense 13px uppercase columns at col 6 (left: festivals and awards as underlined links, e.g. ANNECY, CLIO, D&AD; right: press outlets as plain text) beside two studio photos, one flat and one tilted as a print (desktop_04), plus one 33px pull quote 'BELLISSIMO' credited to Guillermo del Toro",
+   "Footer as a sticky red floor with the logo on a white sheet that rotates away",
+   "Onion-skin sheets: project sheets are rgba(222,223,227,.95), so the full-bleed frame underneath ghosts through at 5% like a light-table/tracing layer (desktop_02: Gorillaz outlines visible through the 'Here, Tomorrow' sheet)",
+   "Showreel block (desktop_05 + SSR HTML): the full-bleed muted reel with a centred SQUARE red multiply card (aspect 1/1, 41.84vw = 602px at 1440) carrying film-slate meta in its corners ('SHOWREEL / 2025', '● 1:26', 'THE LINE © MMXXVI', the year converted to Roman numerals by a helper in the bundle) and a '▶ Reel' title with a custom triangle SVG. Press scales the card to .95; open throws the video figure up (translateY -120%, rotate -4deg, 1s cubic-bezier(1,0,.25,.995), .4s delay) and the card to translate(-50%,-200%) rotate(12deg) over 1.2s, leaving a black native player"
+  ],
+  "section_rhythm": "Alternates full-bleed moving image (100vh) with a single giant word on white, then a dense list (awards, clients) to reset scale, then full-bleed again.",
+  "mobile_adaptation": "Single column; sheets keep rotating but with smaller angles (code: rotate -3 vs -7, footer -3deg vs -6deg, translate -24rem vs -16.2vw); nav into hamburger + full-screen menu with a multiply-blended illustration at .5 opacity."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis: html.lenis class; bundle nP plugin 'lenis': new Lenis({lerp:.2}), raf driven from gsap.ticker (e.raf(time*1000)), ScrollTrigger.update on every Lenis scroll event.",
+  "preloader": "Red #ff391e fixed panel (z 500); Lenis is stopped on mount. Timeline (delay .5s): the four fps label parts blink in at 0/.12/.24/.36s via the registered GSAP effect blinkIn (opacity set 0@0, 1@.09, 0@.15, 1@.21: hard frame steps, no tween). A separate counter tween 00 -> 24 over 3s (ease string 'expoInOut', delay .8), toFixed(0).padStart(2,'0'), rendered as '09/24 fps' at h1 size in #e8e9ee. The .logo__line bar (origin left, scaleX 0) grows to scaleX 1 over 1.2s power1.out; at 1.18s it thickens scaleY 3.6 over .35s so it fills the full letter height (frame f01 bar ~74px, f02 ~265px = x3.6); at 1.53s the bar snaps back to scaleY 1, where it IS the wordmark's horizontal crossbar, while the letter groups switch to opacity 1 and their shapes settle from scale 3 / scaleY 3 / scaleX 5 (transform-origin center) to 1 over 1s power4.out, .01s apart per letter; (R) blinks in at 1.8s; the counter blinks out at 2.8s. On home the logo node is appended into .home-hero__wrapper so the loader logo IS the hero logo. On other routes the panel is thrown: yPercent -125, xPercent 10, rotate 15, transformOrigin 'top right', .8s, delay .2, ease pageOut = CustomEase '0.44,0.14,0.28,1'. Total ~3.3s (element video 6.3s including hero reveal).",
+  "intro_sequence": "Observed frames 0/f00-f07: red panel with only the nav slashes and the cursor label -> '09/24 fps' + thin light bar -> '19/24 fps' + bar thickened into a block -> '23/24 fps' + block resolved into THE LINE wordmark -> a tilted edge (sloping down to the right, ~4deg mid-move) sweeps up the screen, uncovering the red-multiplied showreel UNDER a stationary wordmark -> nav HOME dot and label turn red. Code reading: this is .home-hero__fig (opacity 0, translate(-10%,124%) rotate(15deg)) transitioning to translate(0) rotate(0) over 1s cubic-bezier(.19,1,.22,1) when --visible is added; the acetate swaps #ff391e -> red after .2s.",
+  "scroll_techniques": [
+   "pin: .home-hero__sticky 100lvh sticky; .footer__sticky 100dvh sticky",
+   "scrub hero peel: the ACETATE layer and the wordmark wrapper (not the video) go to xPercent -10, rotate -15, transformOrigin 'bottom left', ease power1.in, trigger = the acetate, 'top top+=1' to 'bottom top'. The acetate is 100svh and scrolls away; the video figure is sticky, so the gel and logo leave as one printed cel and the reel underneath is left in full colour",
+   "scrub intro sheet ('Highlights'): header fromTo {xPercent -10, rotate 8, origin left} -> 0 from 'top bottom' to 'top center'; then the whole block exits to {xPercent -10, rotate -4, yPercent 5, origin right, ease power1.out} from 'top 35%' to 'bottom top-=50%' (enters on one tilt, leaves on the counter-tilt)",
+   "scrub featured work entry: wrapper fromTo {yPercent 110, xPercent 15, rotate 15, origin 'top left'} -> 0 and inner asset {yPercent 130, xPercent 20, rotate 15} -> 0 offset .06 (start 'top bottom' end 'top top', ease none, force3D)",
+   "scrub featured work exit: wrapper yPercent -80, xPercent -25, rotate -7 (mobile 50/-10/-3); inner asset yPercent -50, xPercent -5, rotate -5 (mobile 40/-2.5/-2), ease none, 'top top+=1' to 'bottom top'",
+   "scrub about images: first fromTo {xPercent -45, yPercent 20, rotate 4.89} -> 0, last {xPercent 25, rotate 8} -> {xPercent 45, yPercent -10, rotate 4.89}, ease power1.inOut, start 'top 102%' end 'top 15%'",
+   "scrub about header ('The Studio' sheet, .home-about__header-wrapper, not the awards list): fromTo {xPercent -20, yPercent 20, rotate 16, origin left} -> 0, start 'top bottom' end 'top center' (desktop_03 shows it mid-way)",
+   "scrub footer wordmark sheet: flat on arrival, peels to {xPercent -7, rotate -6, origin 'top left', ease power1.inOut} from 'top top' to 'max' (mobile {xPercent -14, yPercent -40, rotate -6}) via gsap.matchMedia 1023/1024; footer content parallax yPercent 15 -> 0 over the last screen",
+   "stacking: project sheets overlap and slide over full-bleed frames"
+  ],
+  "text_animation": "No scroll-scrubbed per-character tweens on the big section words. Small UI text uses stepped opacity 'blink' effects (blink, blinkOnce, blinkIn, blinkOut registered via gsap.registerEffect). SplitText 3.11.3 IS bundled and used through a TextSplitter component (lines / 'lines, words' / chars; lines optionally wrapped in overflow-hidden 'oh' masks, CSS transitionDelay +.1s per line or +.06s per char, split lazily when the block is within 50% of the viewport). Clients list: slash <i> nodes set autoAlpha 1 with stagger .05, then client names .03 (pop-on, no easing). 'Let's Talk' (FooterCta) is split into chars: on mouseenter each char blinks out .025s apart, the label jumps right by the arrow width + 20px and the chars blink back in .025s apart (mouseleave reverses); footer f07 shows this mid-sequence ('Let's  lk').",
+  "image_animation": "Media never fades or scales in place; it arrives as a rotated sheet translating in from off-canvas (hero fig from 124% down + 15deg) and leaves by rotating on a corner pivot. Reel player open: figure translateY(-120%) rotate(-4deg) with cubic-bezier(1,0,.25,.995); content card to translate(-50%,-200%) rotate(12deg) over 1.2s.",
+  "page_transitions": "CSS has a fixed .transition-overlay (#0a0a0a66 / hsla(0,0%,4%,.4)) for route changes. Element 2 f05->f07: clicking a Cowboy Bebop card (URL tooltip /work/cowboy-bebop) shifts the grid page aside while a new tilted sheet enters from the bottom (f06; no visible dim in that frame), landing on a case-study hero where a red acetate card is inset over the full-colour key art (f07).",
+  "hover_micro": [
+   "Arrow links (.arrow-link, e.g. 'The Work [85] ->'): the 1px underline is drawn at rest and retracts on hover (scaleX 1 -> 0 with transform-origin swapping left -> right, .8s cubic-bezier(.19,1,.22,1)); the label slides right 2.5463vw; the trailing arrow slides out right (translateX 100%) while a clone arrow slides in at the label's LEFT edge from -100%, both swapped with blinkOut/blinkIn. The arrow relocates from behind the label to in front of it.",
+   "Awards links and footer inline links: same underline retract (present at rest, wipes out to the right on hover)",
+   "Header location: hovering 'LONDON, ENGLAND' blinks it out and shows 'INFO@THELINESTUDIO.COM' at .33s (and back on leave)",
+   "Header logo, status dot, nav colour .6s cubic-bezier(.19,1,.22,1) when the header crosses media vs white",
+   "Hamburger: its SVG paths flicker on/off in stepped sets at 0/.08/.16/.35/.43/.51s with .05 stagger, like a hand-drawn boil",
+   "Filters: the giant filter word swaps 'All [67]' -> 'Branded. [51]' with a small triangle affordance (element 2 f00/f03); GRID / LIST toggle pills bottom-right (element 2 f05)"
+  ],
+  "cursor": "What is visible: a 10px uppercase label that trails the native pointer ('SCROLL TO EXPLORE' on the hero, 'VIEW PROJECT', 'VIEW CASE STUDY', 'VIEW CREW'; element 0/2 frames, desktop_03). CSS also defines .cursor:before{border-radius:50%} (fixed, pointer-events none, shown only under (hover:hover)) but no circle is visible in any screenshot or frame. A cursor-image (hover preview) enters from translateY(10%) rotate(2deg), opacity 0 over .4s cubic-bezier(.19,1,.22,1). CursorCustom follows the pointer on gsap.ticker with a plain lerp of .1 per tick (Rc=.1), starting from the viewport centre, and only under (hover:hover); when a trigger asks for rotation (hasRotation, used by the image previews) it also tilts with horizontal position, rotation mapped from pointer x across the viewport to -10..+10deg (the resize handler remaps to -30..+30deg, an inconsistency in the source). Native cursor not hidden (css cursor_none 0). Custom fixed scrollbar on the right edge (hover:hover): #0b0b0b handle .46296vw wide, min-height 4.63vw, cursor grab.",
+  "easing_curves": [
+   "cubic-bezier(0.19,1,0.22,1) x146 (CustomEase 'expoOut', the house curve)",
+   "cubic-bezier(0.14,1,0.34,1) x33",
+   "cubic-bezier(1,0,0.25,0.995) x9 (throw-off)",
+   "cubic-bezier(0.9,0,0.1,1) x8",
+   "cubic-bezier(0.43,0.2,0.02,1) x6",
+   "cubic-bezier(0.44,0.14,0.28,1) x2 (CustomEase 'pageOut')",
+   "GSAP defaults ease power2.out; power1.inOut on scrubbed sheets; power4.out for logo settle; expoInOut for counter and bar thickening"
+  ],
+  "duration_range_ms": "CSS 80-1200ms: 800ms (x82), 600ms (x53), 1000ms (x36), 400ms, 1200ms; blink steps at 90/150/210ms; counter 3000ms",
+  "stagger_ms": "10 (logo letters), 25 ('Let's Talk' char blink), 30 (client names), 50 (client slashes, hamburger flicker), 60 (TextSplitter chars), 100 (TextSplitter lines), 120 (fps label parts)",
+  "choreography_notes": "Two motion registers, mostly kept apart: (1) stepped, frame-counted on/off for anything typographic or iconic (blinks at ~2-frame intervals, a nod to animating on twos); (2) heavy, eased or scrubbed physical throws for large surfaces, always with rotation and an off-centre transform-origin (top right, bottom left, top left), entering on one tilt and leaving on the counter-tilt. They meet only in small UI: the arrow link slides AND blinks its arrows, and the cursor image preview fades while it rises and rotates 2deg.",
+  "evidence": [
+   "frames/thelinestudio-com/0/f00-f07",
+   "frames/thelinestudio-com/3/f00-f07",
+   "frames/thelinestudio-com/1/f00,f03,f06",
+   "frames/thelinestudio-com/2/f00,f03,f06",
+   "probes/thelinestudio-com/desktop_00-07.jpg",
+   "bundle grep BHubVMsw.js (preloader timeline, registerEffect blink*, CustomEase.create expoOut/pageOut, Lenis lerp .2)",
+   "bundle grep B6MUFv6g.js (scrubbed rotate values)",
+   "Footer.1fXw1gXD.css, PlayerAlt.CrCVCkVj.css, index.CVwLeBkz.css",
+   "audit re-read 2026-09-24: BHubVMsw.js (Preloader, registerEffect, TextSplitter, SplitText 3.11.3 header, gsap 3.12.5, HeaderLocation, Lenis plugin), B6MUFv6g.js (home scrubs), CYc7OJsQ.js (Footer scrub + credits), 0TBmt0JB.js (FooterCta), Drc9zaOP.js (FieldGuide), entry/index CSS + inline <style>",
+   "audit v3 2026-09-25: B6MUFv6g.js Hero scrub targets [acetate, wrapper]; index.CVwLeBkz.css hero heights; BHubVMsw.js CursorCustom (Rc=.1, mapRange -10..10), HeaderStatus (Europe/London tz), logo shape classes, TextSplitter (opacity 0 until split, Roman-numeral helper); PlayerAlt.CrCVCkVj.css reel card; inline .grid rules"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "video",
+  "art_direction": "The studio's own frames, full-bleed and uncropped by type: anime-style 2D (Gorillaz, Cowboy Bebop homage, Azuki), stylised 3D (Riot/League), red-toned mecha action in the reel. Tinted to a single red only in the hero via multiply; elsewhere colour is left as delivered. Behind-the-scenes photos (hands, brick wall, keyboard) are shot flat and placed as tilted prints.",
+  "treatments": [
+   "Red acetate: div with background red + mix-blend-mode multiply over video (hero, .home-featured-work__active--acetate, news captions, 404); on the home reel it is a centred square card (desktop_05); on case studies it is an inset card over the full-colour key art, so the frame reads tinted inside the card and in colour around it (element 2 f07)",
+   "Production overlays: dashed OVERSCAN / CROP / ACTION SAFE guides with pixel dimensions over a project frame",
+   "Small pill chip with a running time beside each work card title (e.g. '00:26'; prefix too low-res in the frames to read reliably)",
+   "Halftone illustration multiply-blended on the red footer (filter grayscale(.3))",
+   "Photos rotated a few degrees as physical prints",
+   "Film-slate metadata on media cards: category / format / '● running time' / date / 'THE LINE © MMXXIV' in 10px caps across the top edge of the acetate card (case study: element 2 f07; home reel card: SSR HTML player-alt__meta, card top is off-screen in desktop_05), years in Roman numerals"
+  ],
+  "crops_and_ratios": "Hero 100svh full-bleed; project sheets roughly 16:9 inside a larger tilted card; work index 2-up (roughly 16:9 and square-ish); news 2-up half-width tiles.",
+  "formats": "6 <video> (5 Vimeo progressive MP4 720p-1440p, 2 autoplay muted loop), 11 <picture>/<img>, AVIF stills 1.28MB, 40 inline SVG; declared mp4 bytes 159.8MB (not all fetched eagerly)",
+  "evidence": [
+   "probes/thelinestudio-com/desktop_01.jpg",
+   "probes/thelinestudio-com/desktop_02.jpg",
+   "probes/thelinestudio-com/desktop_03.jpg",
+   "probes/thelinestudio-com/desktop_04.jpg",
+   "probes/thelinestudio-com/desktop_07.jpg",
+   "frames/thelinestudio-com/2/f00.jpg",
+   "probes/thelinestudio-com/probe.json videos/bytes_by_type_declared"
+  ]
+ },
+ "three_d": {
+  "present": false,
+  "stack": "none (3D work is shown as pre-rendered video)",
+  "role": "n/a",
+  "assets": [],
+  "materials_lighting_post": "n/a",
+  "interaction": "none",
+  "performance_tactics": "n/a; probe contexts {} (no canvas)",
+  "fallback_mobile": "n/a",
+  "evidence": [
+   "probes/thelinestudio-com/probe.json contexts/assets_3d empty"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Fixed header (top .8rem, z 600, opacity 0 until .header--visible after preloader): logo | live open/closed status with an 8px dot (computed in Europe/London time, weekdays only; dot red when OPEN, black when CLOSED; hovering it blinks the dot only while open) | location | inline uppercase nav with '/' separators; active route = red dot before the label + red label (#ff391e).",
+  "menu": "Mobile: 2-line hamburger whose strokes flicker in stepped frames into the close state; full-screen menu with 46px items (4.6rem, weight 470, -0.03em, lh .8) and a multiply-blended character illustration at .5 opacity at the bottom.",
+  "buttons_links": "No boxed buttons on the home page (the only pills are the GRID / LIST view toggles on /work, element 2 f05). Links are type + arrow with a full-width 1px rule under the label ('The Work [85] ->'); arrow swaps by blinking. Newsletter is a 53px 'Newsletter' label on a rule with a big arrow.",
+  "unusual_interactions": [
+   "Preloader bar becomes the logo's crossbar",
+   "Filter word swap with bracket counts on /work, plus GRID / LIST view pills",
+   "Site credits: the button first Lenis-scrolls to the page limit (.8s), then after .82s adds footer--credits-open; the red footer floor (.footer__sticky) tilts away (translate(5%,-16.2037vw) rotate(-6deg) >=1024px, translate(5%,-24rem) rotate(-3deg) below; 1s cubic-bezier(.19,1,.22,1)) revealing a grey 'Credits' sheet with roles in red after red dot bullets; any scroll closes it",
+   "Header status reflects real studio hours (CLOSED/OPEN (10-6PM)); location label swaps to the email on hover",
+   "Framing-guide readouts are live: FieldGuide measures each box with getBoundingClientRect + Math.ceil on mount and resize"
+  ],
+  "sound": "none detected (no audio requests in probe)",
+  "footer": "Sticky red #ff391e floor (.footer__sticky 100dvh; a :before extends the red 10vh above to cover overscroll). Above it, a separate #f8f8f8 sheet (.footer__svg-wrapper, z-index 3) carries a full-width black THE LINE wordmark: flat when the footer arrives (desktop_06, element 3 f06), scrubbed to -6deg / xPercent -7 around its top-left corner by the end of the page (desktop_07, element 3 f00). Four columns: email + phone 27px, address, socials, nav; halftone character illustration multiplied on the red (mix-blend-mode multiply, grayscale(.3); opacity .2 on mobile); 'Newsletter' 53px with arrow and rule; colophon '(c) THE LINE ANIMATION STUDIO 2026 / SITE CREDITS / PRIVACY / UP' in 18px caps. Before it: '-> Let's Talk' at 175px with a drawn arrow inline to the LEFT of the words (desktop_06)."
+ },
+ "content_voice": {
+  "headline_style": "One or two plain words per section in sentence case at 175px ('Highlights', 'The Studio', 'News', 'Credits'), labelled by slash-prefixed caps kickers with a personality ('/ THE LOWDOWN', '/ MAKE YOUR MARK', '/ REACH OUT').",
+  "copy_tone": "Cheeky British studio voice (Awwwards description: a 'revenge-body website'), confident, name-drops clients and press as dense lists rather than claims; one pull quote from a famous director.",
+  "examples": [
+   "Let's Talk"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Nuxt 3 (Vue 3), DatoCMS content (datocms-assets.com, StructuredText component)",
+  "libraries": [
+   "GSAP 3.12.5 (ScrollTrigger, CustomEase expoOut/pageOut, MotionPathPlugin, SplitText 3.11.3, registerEffect, gsap.matchMedia)",
+   "Lenis (lerp .2, raf from gsap.ticker)",
+   "Vimeo progressive MP4",
+   "Web Font Loader-style classes (wf-denimweb-n4-active)",
+   "Google Tag Manager/Analytics"
+  ],
+  "evidence": "probe globals __NUXT__, libs_from_requests nuxt, top_hosts datocms/vimeo. Audit: registerPlugin(CustomEase, motionPath, ScrollTrigger, SplitText) in BHubVMsw.js; version:\"3.12.5\"; SplitText 3.11.3 license header + `new SplitText(el,{type:'lines',linesClass:'oh'})` in TextSplitter. The earlier 'Flip x3' count was false positives (gsap core 'isFlip' and ScrollTrigger '_isFlipped'); Flip is not bundled."
+ },
+ "performance_accessibility": {
+  "requests": 130,
+  "weight_notes": "Declared: mp4 159.8MB (many videos load lazily / not autoplay), json 1.9MB (Nuxt payload), avif 1.28MB, JS 428KB (main chunk 449KB raw), fonts 103KB: one variable WOFF, because the @font-face lists woff before woff2 (a copy should list woff2 first). Doc height 9613px.",
+  "reduced_motion": "82 reduced-motion rules: every CSS transition is wrapped in @media (prefers-reduced-motion: no-preference). Verified in the audit: none of the 27 JS chunks queries prefers-reduced-motion (matchMedia is only used for hover:none, orientation and the 1024px breakpoint), so the preloader, the blink effects and every scroll-scrubbed 7-16deg rotation still run for users who ask for reduced motion.",
+  "contrast_issues": "Brand pair fails WCAG AA for normal text: #f8f8f8 on #ff391e is 3.38:1, used for the 16.67px footer address/social/nav lists, the 18.33px colophon and the 10px column labels; the active nav label #ff391e on #f8f8f8 is also 3.38:1 at 18px. 10px 'SCROLL TO EXPLORE' / 'VIEW PROJECT' in #f8f8f8 over moving video is the weakest small text. The fixed header has no background, so nav and logo overprint content: over the Gorillaz frame (desktop_02), over the awards/press lists (desktop_04) and over the news headlines (desktop_06). #0b0b0b on #f8f8f8 body copy is 18.5:1.",
+  "mobile_quality": "No horizontal overflow at 390px, h1 72px, same sheet physics with reduced angles, video hero kept.",
+  "dev_scores": {
+   "semantics_seo": 7.4,
+   "animations": 9.0,
+   "accessibility": 7.0,
+   "wpo": 8.0,
+   "responsive": 7.6,
+   "markup": 7.4
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Loading bar that becomes the logo",
+   "why_it_works": "The wait is spent assembling the brand mark, so the preloader is not a cover but the first frame of the hero; re-parenting the node means zero visual cut. It only works because the mark was drawn for it: one 90-unit-tall path spans the full 1684-unit viewBox and is at once the H crossbars, both E middle arms and the dash between THE and LINE, so the bar has somewhere to land.",
+   "how_to_build": "Put the preloader over a full-screen accent panel and stop the smooth scroller while it runs. Counter: tween an object {v:0} -> 24 over 3s ease 'expo.inOut' (the bundle writes the name 'expoInOut'), onUpdate write String(Math.round(v)).padStart(2,'0')+'/24 fps' into an h1-sized span. Bar = the wordmark's own crossbar element (height = crossbar height, transform-origin left, scaleX 0). Timeline: scaleX 1 over 1.2s power1.out at t=0; at t=1.18 scaleY = letterHeight/crossbarHeight (3.6 here) over .35s expo.inOut so the bar fills the wordmark box; at t=1.53 set the bar back to scale 1 (it is now the crossbar) and set the letter groups visible, each letter's shapes starting at scale 3 (most shapes: stems, the T bar, the N diagonal), scaleY 3 (the detached E and L horizontal arms) or scaleX 5 (only the L stem), transform-origin center, tweening to 1 over 1s power4.out, .01s per letter. Then appendChild the wordmark wrapper into the hero container so there is no cut, or, off-home, throw the panel: to(panel,{yPercent:-125,xPercent:10,rotate:15,transformOrigin:'top right',duration:.8,delay:.2,ease:CustomEase.create('pageOut','0.44,0.14,0.28,1')})."
+  },
+  {
+   "technique": "Frame-stepped blink instead of fades for UI text",
+   "why_it_works": "Reads as animation-on-twos, instantly brand-specific for an animation studio, and costs nothing: no easing, no layout thrash, text is never half-transparent for long.",
+   "how_to_build": "gsap.registerEffect({name:'blinkIn',extendTimeline:true,effect:(t)=>gsap.timeline().set(t,{opacity:0},0).set(t,{opacity:1},.09).set(t,{opacity:0},.15).set(t,{opacity:1},.21)}); blinkOut is the mirror ending at 0. Use tl.blinkIn(el, position) for labels, counters, arrow swaps (blinkOut old arrow + blinkIn new arrow on hover) and a hamburger whose SVG paths flicker with .set calls at 0/.08/.16/.35/.43/.51s, stagger .05. Keep elements visible by default in CSS and only run the blink when JS is ready."
+  },
+  {
+   "technique": "Paper-sheet scroll physics on a corner pivot",
+   "why_it_works": "Rotation plus an off-centre transform-origin makes flat DOM panels feel like cels being lifted off a pegbar; one numbers-only rule set gives the whole site its gesture.",
+   "how_to_build": "ScrollTrigger scrub:true, ease 'none' or 'power1.in'. Hero peel: to([acetateLayer,logoWrapper],{xPercent:-10,rotate:-15,transformOrigin:'bottom left',ease:'power1.in'}) from 'top top+=1' to 'bottom top', leaving the video pinned and untouched underneath. Incoming sheet: fromTo(el,{yPercent:110,xPercent:15,rotate:15,transformOrigin:'top left'},{yPercent:0,xPercent:0,rotate:0,ease:'none'}) from 'top bottom' to 'top top', with an inner layer lagging (yPercent 130, xPercent 20, offset .06) so the sheet and its image shear. Outgoing: to(el,{yPercent:-80,xPercent:-25,rotate:-7}) with the inner layer at (-50,-5,-5). Prints: fromTo(img,{xPercent:-45,yPercent:20,rotate:4.89},{xPercent:0,yPercent:0,rotate:0,ease:'power1.inOut'}) start 'top 102%' end 'top 15%'. Use gsap.matchMedia('(max-width:1023px)' / '(min-width:1024px)') for smaller mobile angles (-3/-2). force3D:true; will-change: transform on sheets only while active. Add a prefers-reduced-motion branch the original lacks."
+  },
+  {
+   "technique": "Acetate multiply layer to brand-tint any footage",
+   "why_it_works": "One flat div turns an uncontrolled multicolour showreel into a single-hue brand surface without re-grading video, and it can be animated (colour swap) cheaply. Peeling it off on the first scroll then turns the tint into a reveal: the visitor sees the brand colour first and the real work second.",
+   "how_to_build": ".acetate{position:absolute;inset:0;background:#ff0000;mix-blend-mode:multiply;pointer-events:none} placed above the <video> inside the same stacking context (isolation:isolate on the parent). Transition background-color .3s cubic-bezier(.19,1,.22,1) .2s from #ff391e (loader) to #ff0000 (live). Keep light UI text above the acetate, never under it. To reproduce the reveal: make the hero 200svh; put the video in an absolutely positioned scroller that extends 100svh below the hero and holds a position:sticky;top:0;height:100lvh wrapper; make the acetate a separate 100svh absolute layer at the top (not sticky) and put the wordmark in a 100svh flow wrapper; then scrub gsap.to([acetate,wordmark],{xPercent:-10,rotate:-15,transformOrigin:'bottom left',ease:'power1.in'}) from 'top top+=1' to 'bottom top'. The next section slides over the still-pinned colour video."
+  },
+  {
+   "technique": "Footer that tilts away to reveal credits",
+   "why_it_works": "The footer becomes a physical object with a back side; a secondary page (credits) is revealed without navigation.",
+   "how_to_build": "Structure: .footer__sticky (position:sticky;top:0;height:100dvh) holds ONLY the red floor and the footer content; the white wordmark sheet is a separate layer above it (z-index 3) and the Credits sheet sits underneath both. Wordmark sheet: ScrollTrigger scrub from 'top top' to 'max': to(sheet,{xPercent:-7,rotate:-6,transformOrigin:'top left',ease:'power1.inOut'}). Credits: on click, lenis.scrollTo(lenis.limit,{duration:.8}), then after .82s add .footer--credits-open: .footer__sticky{transition:transform 1s cubic-bezier(.19,1,.22,1)} .footer--credits-open .footer__sticky{transform:translate(5%,-24rem) rotate(-3deg)} @media(min-width:1024px){...{transform:translate(5%,-16.2037vw) rotate(-6deg)}}; close on the next scroll event or via the big down arrow. Credits sheet: 175px 'Credits' word, roles in the accent colour after accent dot bullets. Wrap the transition in @media (prefers-reduced-motion:no-preference)."
+  },
+  {
+   "technique": "Domain ornament: production framing guides",
+   "why_it_works": "Dashed overscan/crop/action-safe boxes with pixel sizes are real tools of the trade, so the decoration carries meaning instead of being a generic grid.",
+   "how_to_build": "Three nested absolutely positioned boxes: OVERSCAN (1px dashed currentColor, inset 0), CROP (1px SOLID, ~4% inset) and ACTION SAFE (1px dashed, ~6-7% inset; desktop_02 readouts 1573 -> 1448 -> 1374 wide). Each gets a 10px uppercase label top-left and a 'W x H' readout top-right from Math.ceil(el.getBoundingClientRect()) recomputed on resize; CROP also gets '100%' bottom-right, '[ 16:9 ]' outside its top-left, a centre crosshair and short centre bars. Rotate the whole card with the sheet so guides move with it (note: getBoundingClientRect on a rotated card returns the axis-aligned box, so the numbers are not a true 16:9; that is fine as ornament, wrong as data)."
+  },
+  {
+   "technique": "Per-letter optical margin table for giant display type",
+   "why_it_works": "At 175px a capital H or E carries ~12px of left side bearing, so a 6.7px gutter looks ragged line to line; shifting each line by its first glyph makes every word sit optically flush on the same edge.",
+   "how_to_build": "Split display headings into lines, read each line's first character and add class `letter-${ch}`; ship a table of `.letter-X{margin-left:-0.0Nem}` values measured per glyph of your face (The Line: H/E/B/D/I/L -0.07em, M -0.068em, a/c/d/e -0.032em, g -0.02em, f -0.006em, j +0.052em). Measure yours by rendering each glyph at 200px against a left rule. Re-apply on resize when lines re-break."
+  },
+  {
+   "technique": "Arrow that relocates on hover",
+   "why_it_works": "The link's trailing arrow jumps to the front of the label as the label slides right, and the underline retracts. It reads as one mechanism instead of a stock arrow nudge.",
+   "how_to_build": ".arrow-link{display:flex;position:relative} label: transition transform .8s cubic-bezier(.19,1,.22,1); :hover label translateX(2.55vw). Main arrow after the label: :hover translateX(100%) + blinkOut. Clone arrow absolutely positioned at left:0, translateX(-100%), opacity 0: :hover translateX(0) + blinkIn. Keep the arrow a custom SVG matched to the type's stroke weight."
+  },
+  {
+   "technique": "Cursor label that follows lazily and swings with horizontal position",
+   "why_it_works": "A 10px caps label ('VIEW PROJECT', 'SCROLL TO EXPLORE') trailing the native pointer tells you what a click does without hiding the cursor; the tilt tied to x-position makes the attached image preview hang like a print on a string.",
+   "how_to_build": "Fixed div, pointer-events:none, created only inside gsap.matchMedia('(hover: hover)'). On gsap.ticker: pos.x += (mouse.x - pos.x) * .1; pos.y likewise; if the active trigger wants rotation, rot += (gsap.utils.mapRange(0, innerWidth, -10, 10)(mouse.x) - rot) * .1; gsap.set(el,{x,y,rotation,force3D:true}). Swap the label text on CURSOR:SHOW / HIDE hooks from the hovered element; image previews enter from translateY(10%) rotate(2deg) opacity 0 over .4s cubic-bezier(.19,1,.22,1). Keep one mapRange on resize as well (the original switches to -30..30 after a resize)."
+  }
+ ],
+ "slop_risks": [
+  "Content hidden at opacity 0 until a reveal fires: .header{opacity:0} until .header--visible and .home-hero__fig{opacity:0;transform:translate(-10%,124%) rotate(15deg)} until JS adds --visible after the preloader. If the preloader stalls, nav and hero video never appear. The same trap is wider than the header: every TextSplitter block (.text-splitter{opacity:0} until JS adds --splitted, i.e. the 175px section words, 'Let's Talk', news excerpts and the footer address) and every client name and slash (.home-client i, .home-client__wrapper {opacity:0}) is invisible until JS runs. A copy must default these to visible and only hide under a .js-ready class.",
+  "Animated underline: arrow links, awards and footer inline links draw a 1px underline at rest and wipe it out to the right on hover (scaleX 1->0, origin left->right, .8s). It is the retract, not the stock grow-in, and it is paired with the blinking arrow relocation, but the deslop law bans animating underlines at all ('grows, wipes or travels'). A copy should keep the arrow relocation and drop or freeze the underline.",
+  "One label treatment, everywhere: 10px uppercase with a slash prefix is used for section kickers, status, location, captions and headings of footer columns. The site gets away with it because nav (18px) and colophon differ, but a naive copy flattens every small string into the same costume.",
+  "Text jammed against the edge: the outer gutter is 6.7px at 1440 (.46296vw) and 8px on mobile, so 175px words start almost on the viewport edge. Deliberate Swiss edge here; in a copy without the scale it reads as a missing margin.",
+  "Footer wordmark placement: the giant black THE LINE sits ABOVE the link columns (the law wants it flush to the bottom with links above) and is sliced by the viewport bottom mid-scroll (desktop_06). At rest it is whole on both screens (hero 18px clear of the fold, footer end state on the tilted sheet in desktop_07), and the peel-up is what earns the inverted order. Copying the big wordmark-then-content stack without the sheet mechanic is the 'footer wordmark done as slop' tell. The column block itself (four link lists under slash-caps labels plus a colophon row) is the law's 'standard footer'; what redeems it here is the halftone character multiplied across the grid, the red floor and the sheet that tilts away to reveal the credits.",
+  "Saturated accent pop: #ff391e plus pure #ff0000 multiply is a full-page system colour here (hero, active nav, floor). Sprinkling one hot red on buttons or icons in a copy is the cheap version.",
+  "Rotation as a reflex: every surface tilts; if copied onto content without a physical metaphor (cels, prints, sheets) it becomes gimmicky wobble.",
+  "Text you cannot read: the #f8f8f8-on-#ff391e footer (3.38:1) and the #ff391e active nav on #f8f8f8 (3.38:1) fail AA for their 10-18px sizes. A copy must darken the red (or set the footer copy in #0b0b0b, 5.49:1 on #ff391e).",
+  "Dot for the active nav item: a red dot before the current link plus a red label. The colour change already carries the state; the dot is the reflex the law calls out. Keep one signal.",
+  "Header with no background overprints content (desktop_02/04/06: nav over artwork, over the awards list, logo over news headlines). The site relies on colour swaps; a copy needs a collision rule (hide on scroll-down, or a backing band).",
+  "Plain horizontal right arrow as the only link glyph ('The Work [85] ->', 'Newsletter ->', '-> Let's Talk'): acceptable here only because it is a heavy custom SVG with the relocation hover. Lifted as a stock -> it is the arrow tell."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots and both mobile screenshots viewed individually; element 0 (Loading 24FPS) and element 3 (Footer) viewed frame by frame f00-f07; elements 1 (Loading) and 2 (Filters) at f00/f03/f06. Measured type/colour/easing/duration numbers are from probe.json. Motion numbers (preloader timeline, blink effect timings, CustomEase definitions, Lenis lerp .2, all scrub rotate/xPercent/yPercent values, footer/player CSS transforms) are read directly from the live Nuxt bundles (BHubVMsw.js, B6MUFv6g.js, entry/index/Footer/PlayerAlt CSS) fetched 2026-09-24. INFERRED: wordmark pixel box and its near-white colour (SVG, not in probe text); per-letter stepped reveal of 'Let's Talk'; that GSAP scrubs ignore reduced motion; foundry of Denim. The Awwwards element videos show a 2024 build (email thelineanimation.com, (c) 2024) while the live site now says 2026 and thelinestudio.com, so small details may differ between frames and screenshots. Element 'Index' (list + mouse interaction) was not in the frame set and is not described. | audit (2026-09-24, adversarial re-check): re-viewed desktop_00-07, mobile_00/01, element 0 and 3 f00-f07, element 2 f00/f03/f05/f06/f07 one at a time, pixel-sampled desktop_00 and measured mobile_01 at 2x DPR, and re-fetched the live bundles to verify code claims. Confirmed: blink effect timings, CustomEase expoOut/pageOut, Lenis lerp .2, preloader timeline, hero/featured/about scrub numbers, acetate CSS, credits transform, header/hero-fig opacity 0, clients stagger, hamburger flicker. Fixed: bar 'hidden' at 1.53s -> snaps back to become the crossbar; intro 'red panel lifts' -> hero fig rises under a stationary wordmark; 'awards block' scrub -> 'The Studio' header; footer wordmark direction was reversed (flat on arrival, -6deg at the end); how_to_build footer structure (wordmark sheet is not inside .footer__sticky); 'Let's Talk' arrow is left of the text, not above; 'no per-character reveals' -> SplitText 3.11.3 is bundled and used (TextSplitter, FooterCta chars); Flip removed (false-positive count), MotionPathPlugin added; font ships WOFF not WOFF2; mobile label/row sizes were device pixels (now ~12px/~23px CSS); CROP guide is solid not dashed; cursor circle not visible anywhere (label trails the pointer); underline hover is a retract, used on all arrow links; first_screen display_type_px 175 -> 263 (SVG wordmark; no live text >18px there). Added: #e8e9ee wordmark ink, optical-margin .letter-X table, arrow relocation hover, location->email hover swap, intro/featured entry scrubs, GRID/LIST pills, case-study inset acetate, onion-skin sheet translucency, AA contrast failures (3.38:1), header overprint, verified absence of JS reduced-motion handling. Still inferred: tilt-angle breakpoint for featured work (d.value flag not traced), mobile menu specifics, the page-transition overlay timing, the work-card chip prefix. | audit v3 (2026-09-25, adversarial re-check): re-viewed desktop_00-07, mobile_00/01, element 0 f00-f07, element 2 f00/f03/f05/f06/f07, element 3 f00/f03/f06/f07, element 1 f04/f05 one at a time; re-read B6MUFv6g.js, BHubVMsw.js, 0TBmt0JB.js, Drc9zaOP.js, PlayerAlt/Footer/index CSS and the live index.html. Fixed: the hero peel rotates the acetate layer and the wordmark, NOT the video (the reel is sticky and shows in full colour after the first scroll, desktop_01/mobile_01), in signature, first_screen, scroll_techniques and two steal_this recipes; 'hierarchy by weight axis only' (size carries it); logo shape classes (scaleX 5 is only the L stem); footer lists are 16.67px (.p5), not 18px; mobile rows 24px (.p1 2.4rem); grid is a real 9-col (desktop) / 5-col (mobile) grid, not a 4-col header row; awards vs press columns; 'no boxed buttons anywhere' (GRID/LIST pills exist). Added: reel card (square 41.84vw acetate, slate meta, Roman-numeral year, open throw), status dot logic (London time, red/black), cursor lerp .1 and x-mapped tilt (new steal_this), text-splitter and client opacity-0 gating, standard-footer note. Confirmed again: preloader timeline numbers, blink effects, arrow-link CSS, FieldGuide, optical-margin table, footer credits transforms, AA 3.38:1 maths, no JS reduced-motion query in any of the 27 chunks."
+}

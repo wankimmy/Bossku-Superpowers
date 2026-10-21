@@ -1,0 +1,141 @@
+<!doctype html>
+<!-- TEST HARNESS, NOT A DESIGN TEMPLATE.
+     Second page of the harness: the target of the cross-document View Transition
+     from index.html (shared element data-vt-share="hero"). Neutral on purpose:
+     system-ui, black on white, labelled sections. Do not copy its styling.
+     Serve over http (cross-document View Transitions need same-origin http):
+       python3 -m http.server -d <skill>/recipes 8000  ->  http://localhost:8000/demo/ -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,"> <!-- harness: no favicon request (a 404 would be a console error) -->
+<title>About: motion recipes test harness</title>
+<meta name="description" content="Second page of the motion recipes test harness, for the cross-document page transition. Not a design template.">
+
+<!-- boot: copied from ../boot.html-snippet.html, paths adjusted -->
+<script>
+  (function (root) {
+    var saved = null, osReduce = false;
+    try { saved = localStorage.getItem('motion'); } catch (e) {}
+    try { osReduce = matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    var full = !osReduce && saved !== 'reduce';
+    root.setAttribute('data-motion', full ? 'full' : 'reduce');
+    if (full) root.classList.add('motion-ok');
+  })(document.documentElement);
+</script>
+<style>
+  :root[data-motion="full"]:not([data-intro-owned]) [data-intro] {
+    clip-path: inset(0 0 100% 0);
+    animation: intro-deadline-clip 1ms var(--intro-deadline, 2s) forwards;
+  }
+  :root[data-motion="full"]:not([data-intro-owned]) [data-intro-item] {
+    translate: 0 var(--intro-shift, 1rem);
+    animation: intro-deadline-shift 1ms var(--intro-deadline, 2s) forwards;
+  }
+  :root[data-motion="full"]:not([data-intro-owned]) [data-intro-media] {
+    scale: var(--intro-scale, 1.06);
+    animation: intro-deadline-scale 1ms var(--intro-deadline, 2s) forwards;
+  }
+  @keyframes intro-deadline-clip  { to { clip-path: none; } }
+  @keyframes intro-deadline-shift { to { translate: none; } }
+  @keyframes intro-deadline-scale { to { scale: none; } }
+</style>
+<script type="importmap">
+{
+  "imports": {
+    "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/+esm",
+    "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/ScrollTrigger.js/+esm",
+    "gsap/SplitText": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/SplitText.js/+esm",
+    "gsap/CustomEase": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/CustomEase.js/+esm",
+    "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/+esm"
+  }
+}
+</script>
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/gsap@3.15.0/+esm">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/gsap@3.15.0/ScrollTrigger.js/+esm">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/gsap@3.15.0/SplitText.js/+esm">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/gsap@3.15.0/CustomEase.js/+esm">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/lenis@1.3.26/+esm">
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../motion-core.css">
+<link rel="stylesheet" href="../page-transitions.css">
+<script src="../page-transitions.js"></script>
+<!-- harness-only styling (not a design template) -->
+<link rel="stylesheet" href="harness.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="wrap bar">
+  <strong>Motion recipes · test harness</strong>
+  <nav aria-label="Harness pages">
+    <ul>
+      <li><a href="index.html">Index</a></li>
+      <li><a href="about.html" aria-current="page">About (page transition)</a></li>
+      <li><a href="webgl.html">WebGL recipes</a></li>
+    </ul>
+  </nav>
+  <button class="btn" type="button" data-motion-toggle aria-pressed="false" hidden>Reduce motion</button>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p class="note"><strong>Test harness, not a design template.</strong> This second page exists to test page-transitions.css and page-transitions.js. You arrived by a cross-document View Transition: the new page wipes up and the ringed image flies from the index thumbnail to the hero below. Browser Back runs the reverse (type "back"). In Firefox, or with reduced motion, it is a normal navigation.</p>
+  </div>
+
+  <section id="a-hero" class="wrap" aria-labelledby="t-about">
+    <p class="label">A1 · shared element <code>data-vt-share="hero"</code> + <code>data-intro</code> on a second page</p>
+    <h1 id="t-about" data-intro>The same rings, one page later</h1>
+    <p class="lead" data-intro-item>This hero has no link around it, so it always pairs with the page you came from.</p>
+    <div class="frame" style="margin-top: 2rem">
+      <img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20160%20100'%3E%3Crect%20width='160'%20height='100'%20fill='%230a0a0a'/%3E%3Cg%20fill='none'%20stroke='%23fff'%20stroke-width='.7'%3E%3Ccircle%20cx='96'%20cy='50'%20r='6'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='13'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='20'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='27'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='34'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='41'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='48'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='55'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='62'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='69'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='76'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='83'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='90'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='97'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='104'/%3E%3C/g%3E%3C/svg%3E" width="1600" height="1000" alt="Concentric white rings on black" data-vt-share="hero" data-intro-media fetchpriority="high">
+    </div>
+  </section>
+
+  <section id="a-lines" class="wrap" aria-labelledby="t-a-lines">
+    <p class="label">A2 · <code>data-reveal="lines"</code></p>
+    <h2 id="t-a-lines" data-reveal="lines">Reveals re-run on every page because each page boots its own motion layer</h2>
+    <p>Cross-document transitions do not keep JavaScript state. Lenis, ScrollTrigger and the reveal registry start fresh on each page. A site that must keep a WebGL canvas or audio alive across pages needs a PJAX router with same-document transitions instead: see <code>window.pageTransitions.swap()</code> and motion-stack.md 4.11 B.</p>
+  </section>
+
+  <section id="a-image" class="wrap" aria-labelledby="t-a-image">
+    <p class="label">A3 · <code>data-reveal="image"</code></p>
+    <h2 id="t-a-image">One more image reveal</h2>
+    <div class="frame" data-reveal="image" style="margin-top: 2rem"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20160%20100'%3E%3Cdefs%3E%3ClinearGradient%20id='f'%20x2='0'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%23000'/%3E%3Cstop%20offset='1'%20stop-color='%23fff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width='160'%20height='100'%20fill='url(%23f)'/%3E%3Cpath%20d='M0%2062H160'%20stroke='%23fff'%20stroke-width='.8'/%3E%3C/svg%3E" width="1600" height="1000" alt="Black to white gradient with a horizon line" loading="lazy"></div>
+  </section>
+
+  <section id="a-back" class="wrap" aria-labelledby="t-a-back">
+    <p class="label">A4 · back link + <code>data-magnetic</code></p>
+    <h2 id="t-a-back">Return</h2>
+    <div class="row" style="margin-top: 2rem">
+      <a class="btn" href="index.html" data-magnetic><span data-magnetic-label><span data-magnetic-icon aria-hidden="true">←</span> Back to the index (forward navigation)</span></a>
+    </div>
+    <p class="expect">Expect: this link is a forward navigation, so the wipe runs upward again. Browser Back reverses it.</p>
+  </section>
+</main>
+
+<footer class="wrap">
+  <ul><li><a href="#a-hero">A1 Hero</a></li><li><a href="#a-lines">A2 Lines</a></li><li><a href="#a-image">A3 Image</a></li><li><a href="#a-back">A4 Return</a></li><li><a href="index.html">Index</a></li></ul>
+</footer>
+
+<output class="status" id="status" aria-hidden="true">motion-core: not loaded (static page)</output>
+
+<script type="module">
+  import { init } from '../motion-core.js';
+  import { initMagnetic } from '../magnetic.js';
+  const motion = init();
+  initMagnetic();
+  window.__motion = motion; // harness only
+
+  const out = document.getElementById('status');
+  const render = () => {
+    const d = document.documentElement.dataset;
+    out.textContent = `data-motion=${d.motion} · lenis=${motion.lenis ? 'on' : 'off'} · intro=${'introOwned' in d ? 'owned' : 'armed'} · triggers=${motion.ScrollTrigger.getAll().length}`;
+  };
+  render();
+  addEventListener('motionchange', () => setTimeout(render, 50));
+  setTimeout(render, 1500);
+</script>
+</body>
+</html>

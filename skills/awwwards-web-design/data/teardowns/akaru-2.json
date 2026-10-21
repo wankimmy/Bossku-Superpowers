@@ -1,0 +1,303 @@
+{
+ "slug": "akaru-2",
+ "title": "Akaru",
+ "live_url": "https://akaru.fr/",
+ "award": "Awwwards Site of the Day, Apr 1 2024 (Honors); Site of the Month bucket",
+ "scores": {
+  "overall": 7.91,
+  "design": 8.04,
+  "usability": 7.61,
+  "creativity": 7.98,
+  "content": 8.11,
+  "dev": {
+   "overall": 7.48,
+   "semantics_seo": 7.4,
+   "animations": 8.2,
+   "accessibility": 7.0,
+   "wpo": 7.2,
+   "responsive": 7.6,
+   "markup": 7.4
+  }
+ },
+ "industry": "Design / web agency (Lyon, showcase + e-commerce sites)",
+ "signature": "A vertical wheel drives a horizontal rail of full-height pastel project panels that overlap and slide over each other (later panels start at x -31vw / -87vw and collapse to 0 while their colour field scales out from 20% width), so each project's colour takes over the screen; the rail then shrinks to 50% scale and docks as a 480px image column, and the same colour-window idea returns in the Expertises slider.",
+ "first_screen": {
+  "composition": "Hard 50/50 split at x=720. Left half on #F1EFEB: a 4-item nav row (Projets / Expertises / Agence / Contact at 16px Alliance Neue 400, each preceded by a small dot in that section's palette colour: apricot #E49366, sage #798E7B, mauve #B692A1, blue-grey #BFCCD8), spaced evenly across the 662px column. The custom condensed AKARU wordmark (5 separate per-letter SVGs, 157x413 viewBox each) fills that column edge to edge (x 29-691, y 290-608 in desktop_00, about 318px tall), with a 2-line centred 18px intro paragraph (AppText-14, 1.8rem) directly under it and a 2px black rule plus 4 social links (10px caps) pinned to the bottom. Right half: the start of the horizontal project rail. Visible colour slices (blue-grey 512px, mauve 153px, sage 55px) each hold a photo at a different vertical position, with 10px numerals 01/02/03 at their bottom-left. The slices are full panels partly covered by the next panel, so the visible image crops change shape (512x323, 153x215, 55x107) rather than keeping one aspect.",
+  "what_owns_it": "type (SVG wordmark) + colour-field imagery",
+  "display_type_px": 318,
+  "evidence": [
+   "probes/akaru-2/desktop_00.jpg",
+   "frames/akaru-2/0/f01.jpg"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Alliance Neue",
+    "role": "display",
+    "classification": "neo-grotesk sans",
+    "foundry": "inferred: Degarism Studio (Alliance family)",
+    "source": "probe fonts_loaded (400, 500); 145 rendered nodes"
+   },
+   {
+    "name": "Alliance Platt",
+    "role": "ui",
+    "classification": "grotesk sans used for 10px uppercase labels (CSS fallback says serif, but it renders as a sans)",
+    "foundry": "inferred: Degarism Studio",
+    "source": "probe fonts_loaded 600; 212 rendered nodes"
+   },
+   {
+    "name": "Alliance Text",
+    "role": "body (intended)",
+    "classification": "declared text cut, but it never loads: the entry CSS has only 3 @font-face rules (Alliance Neue 400/500, Alliance Platt 600) and probe fonts_loaded lists only those 3",
+    "foundry": "inferred: Degarism Studio",
+    "source": "probe font_families_rendered 16 nodes; those nodes fall back to a system sans (desktop_06 Agence paragraph visibly renders in a Helvetica/Arial-like face next to the Alliance intro in desktop_00)"
+   },
+   {
+    "name": "AKARU wordmark",
+    "role": "accent",
+    "classification": "custom ultra-condensed, round-shouldered SVG lettering (per-letter <path>)",
+    "foundry": "in-house",
+    "source": "bundle HomeLetters / HomeLettersInterior / Letters components: one inline <svg> per letter (157x413 viewBox), animated per letter"
+   }
+  ],
+  "display_size_px": 96,
+  "body_size_px": 16,
+  "scale_notes": "Measured (probe, rem = 9.99994px at the 1440 probe): section H2 96px/400 (AppTitle-1, 9.6rem in landscape), rail project names about 96px (Pikko cap height 69px in desktop_01 = Projets H2 cap height 70px in desktop_02), list project names 54px/500 (AppTitle-9, 5.4rem), award counters '(19)' 64px (AppText-16, 6.4rem), menu links and statement paragraphs 32px (AppText-22, 3.2rem), hero intro 18px (AppText-14, 1.8rem), nav and body 16px, labels 10px (AppSmallText-1) and 12px (AppSmallText-2, MENU label; 36 nodes at 12px). Ratios: 96/32 = 3, 32/16 = 2, 16/10 = 1.6. Correction: the measured sizes come from plain rem classes, not clamp(). clamp() exists only in utility classes (.--text-90 clamp(76px,9rem,104px), .--text-64 clamp(54px,6.4rem,74px), clamp(9px,1.1rem,13px)); the 54px list names are 5.4rem (53.9997px), not a clamp minimum. The rem tracks the viewport per orientation (entry CSS): landscape .69444vw (10px at 1440); landscape phones only (max-width 768px and max-height 812px) .84746vw; portrait 2.66667vw (10.4px at 390, so 4.8rem = 49.92px mobile titles); portrait tablets (768-1180px on both axes) and tall portrait (min-height 1180px) 1.30208vw. The intended large-screen step is written '@media xxlarge and (orientation:landscape)', an unknown media type that never matches, so landscape type has no upper cap: at 2560 wide 1rem = 17.8px and the 9.6rem H2 = 171px.",
+  "tracking_leading": "Display and H2 use line-height normal and letter-spacing normal. There is no negative tracking on the big type (only tiny utility classes -.005em / -.006em / -.01em exist). The 10px uppercase labels are tracked tighter, not wider: letter-spacing -0.05em (-0.5px) with line-height 1.4 (14px). html has font-kerning:none, and h1-h4 get text-wrap:balance.",
+  "case_and_style": "Sentence case for every heading and project name. Uppercase only in 10px labels (categories, socials, award rows). Numerals are set as small labels (00, 01, 02) and in parentheses as counters, e.g. '(19)'. No italics.",
+  "signature_moves": [
+   "Wordmark-as-hero: the SVG logo is the display type at about 318px tall and fills its half of the screen exactly",
+   "A quiet 96px/400 grotesk for section heads next to the heavy condensed logo: all the weight contrast comes from the logo",
+   "Labels tracked NEGATIVE (-0.05em) in uppercase instead of the usual tracked-out caps",
+   "Statement paragraphs at 32px with an optional first-line indent: the AnimatedSplitText component has an `indent` prop, and the jury frames (element 0 f07, element 3 f00) show the first line indented about 200px, roughly 22% of the ~895px text column (element 1 f00 shows the same indent on the projects page). The live 2025 build renders the same paragraph without the indent (desktop_02), so treat it as a per-block option, not a rule.",
+   "Wordmark built from one SVG per letter so every entrance (preloader counters, hero flip, menu and footer flights) animates letter by letter"
+  ],
+  "mobile": "At 390px (mobile_00) the wordmark spans the full content width (about 350px) under a logo + MENU pill header. The intro paragraph becomes left-aligned, 4 lines, about 17px (1.6rem at 10.4px rem), and the social row keeps its 4 items. Probe mobile_measure: largest text 49.92px (4.8rem project titles such as 'Orlinski' in mobile_01), h1 33.28px, no horizontal overflow."
+ },
+ "color": {
+  "mode": "section-shifting",
+  "base": "#F1EFEB warm off-white (--beige token; probe bg + corpus palette); html background #0E0E0E",
+  "ink": "#0E0E0E (--black / --secondary); the fixed logo and MENU pill use #1A1A1A (--dark-grey, probe bg rgb(26,26,26))",
+  "accents": [
+   "#E49366 apricot (--terra: MENU dot, Contact, Expertise slide)",
+   "#798E7B sage (--green: project panel, Expertises slide)",
+   "#B692A1 mauve (--pink: project panel)",
+   "#BFCCD8 blue-grey (--blue: project panel)",
+   "#FFFFFF (text on dark sections)",
+   "#1A1A1A (--dark-grey: fixed logo + MENU pill)",
+   "#7345FF (--highlight / --purple: rich-text link hover only, not seen in any capture)"
+  ],
+  "ratio": "about 45% off-white, 30% pastel colour fields and photography, 25% #0E0E0E (awards section, menu, footer, buttons)",
+  "section_shifts": "Yes, as full-bleed floors. Off-white hero, then pastel project columns, then a #0E0E0E awards section (desktop_03/04), then Expertises where each of the 5 slides is its own flat field: four pastels plus the page's own #F1EFEB (third strip in desktop_05, slide 03 in element 2 f03). The 'apricot band' at the top of desktop_06 is the slider parked on slide 05 (its track shows all five labels). Then off-white Agence (desktop_06), and a #0E0E0E footer. Each project row in lists also floods with that project's pastel on hover (element 1 f06).",
+  "texture": "none. Colour is flat; the photography carries all the texture.",
+  "notes": "The four pastels are desaturated, all at a similar mid value, and are declared as a named set (--terra --green --pink --blue) plus a store array [--blue, --green, --pink, --terra] used for hover colours, so colour works as navigation. Only the tiny dots use the palette at 'accent' scale. Other tokens: --grey #666D73, --mid-grey #262626, --light-grey #F7F7F7. All colour tokens are declared on html{...}, not :root (only --sbw sits on :root), which is why the probe's root_vars lists just --sbw."
+ },
+ "layout": {
+  "grid": "30px outer margin (logo x=30, rules x=30-1410 in desktop_07). Hero is a strict 2-column 720/720 split. Award lists are 930px-wide 3-column rows (award | project | ↗) that zig-zag: the Awwwards table sits right (x 480-1410) and the FWA table left (x 30-960) with its '(19)' counter above (desktop_04). Footer uses 4 columns at x=30 / 355 / right-aligned at ~1081 / right-aligned at 1410. The pairs mirror each other (355px in from the left, ~359px in from the right), so the colophon balances across the width instead of flinging to the edges. No CSS grid anywhere (probe grid_containers 0); everything is flex. Section H2s do not share one left edge: Nos prix x=113, Expertises x=160, Agence x=235, Projets x=520.",
+  "density": "balanced",
+  "alignment": "Mostly left-aligned. The intro paragraph and mobile project cards are centred. Services lists and award counts are right-aligned into the margin.",
+  "composition_moves": [
+   "Half-screen hero where one half is type and the other half is a live colour rail",
+   "Overlapping colour panels: each later panel slides over the previous one, so the visible slices read as widths from about 55px to 955px (desktop_00 vs desktop_01), but the mechanism is transforms, not width",
+   "The rail docks: featured panels and the project grid scale to 0.5 from top-left and become the 480px stacked image column on the left while the right side scrolls text (desktop_02, element 0 f06)",
+   "Section H2 sits large and alone at the top of its column, with 10px data rows right-aligned below (desktop_02: 00-03 services with rules)",
+   "Award tables as full-width hairline rows with an arrow in the last column, alternating right and left (desktop_04)",
+   "Footer: 4-column colophon, a 1px rule, then a giant white AKARU wordmark across the full 1380px width"
+  ],
+  "section_rhythm": "Large quiet heads (96px) and wide empty areas alternate with dense 10px data tables (award list, service list), giving strong scale contrast. The horizontal rail and the pinned Expertises slider break the vertical rhythm twice.",
+  "mobile_adaptation": "The rail becomes vertically stacked full-width project cards. Each card is a pastel field with the image inset 10px, then a centred year pill ('2025'), client-descriptor caps ('ARTISTE, SCULPTEUR, MUSICIEN'), a ~50px title and a black ~150x62px 'VOIR LE PROJET' pill (300x123 image px on the 2x mobile capture), with '02' at the card's bottom-left and 'SITE VITRINE' at its bottom-right (mobile_01). The header keeps the logo plus a large MENU pill. The scrubbed desktop timelines are desktop-only in the bundle (each is gated on $device.desktop)."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis: html class 'lenis lenis-scrolling lenis-smooth' (probe). Bundle: one instance, new Lenis({autoResize:false, lerp:.07, wheelMultiplier:2}), driven by gsap.ticker.add(raf) with gsap.ticker.lagSmoothing(0). (The earlier 'second instance with wheelMultiplier:1, lerp:0' was Lenis's internal VirtualScroll default and a store's initial state, not a second scroller.) Scroll choreography runs on custom Vue directives (v-scroll-sticky x8, v-parallax x3, v-observe x19): IntersectionObserver plus a lerped progress (ratio .1) on gsap.ticker that scrubs paused timelines with tl.progress(p). ScrollTrigger is bundled but no tween uses scrollTrigger:.",
+  "preloader": "Verified (bundle PageLoader + HomeLettersInterior): a #0E0E0E cover shows only the letter counters of AKARU as #F1EFEB slits (element 0 f00), which rise in y 120% -> 0 (.5s, stagger .06, power3.out). The loader waits for document.fonts.ready and every registered preload promise (including both trophy GLBs). On the desktop home, the cover then slides xPercent -100 while its inner layer slides xPercent +100 (1.2s power3.inOut), a counter-translated wipe that keeps the counters pinned while the black leaves; on mobile the same happens on the y axis. By t=2.1s (f01) the home is in place.",
+  "intro_sequence": "Verified (HomeHero + HomeLetters): the hero letters flip in with rotateY 120 -> 0 (.8s power3.out, stagger .04, last letter first) while sliding with per-letter durations .2 + .3i (power4.out), the h1 moves from centre to the left half (xPercent -50, x +200px, .8s power4.out at .49s), the intro text line-reveals at .65s and the social links drop y -100 -> 0 (stagger -.07) at .75s. The rail enters from the right: each panel background and image x 50vw -> 0 (1.2s power4.out, stagger .02 from .58s), image scale 1.4+.1i -> 1 (1.4s power3.inOut). The small fixed header logo is a separate component whose paths enter yPercent 110 -> 0 (.4s, stagger -.06, power3.out) and are reused by page transitions.",
+  "scroll_techniques": [
+   "horizontal track (HomeSticky: one 14-unit paused timeline scrubbed by a sticky wrapper; track x 0 -> -(scrollWidth - innerWidth) over the first 5 units, default power1.out ease)",
+   "overlapping panel slide (featured panels 2 and 3 start at x -31vw / -87vw and reach 0 linearly; panel 3's colour field scaleX .2 -> 1 from the left)",
+   "scale + counter-scale images (image boxes .6 / .4 / .2 -> 1 from the left while the inner <img> goes 1.4 / 1.6 / 1.8 -> 1)",
+   "dock by scale-down (rail and project grid scale to .5 from top-left over 3 units power1.inOut)",
+   "parallax (docked grid travels up over 8.5 units power1.inOut; its images move y -17.5rem -> 17.5rem with linear ease)",
+   "horizontal panel entry (the dark awards panel slides x 100% -> 0 over 5 units while the grid shifts x -50% and the trophy block scales 1 -> .75; desktop_03 shows it covering all but 83px of the docked column)",
+   "counter-translated window slider (Expertises)",
+   "scrubbed rule draw (services list rules scaleX 0 -> 1 from the right, stagger .15, power2.out; element 0 f06 and desktop_01 show part-drawn rules)",
+   "reveal (.animation-show: translateY 8rem + skewY 3deg -> 0; .animation-image: image scale 1.2 -> 1 over 1.8s)"
+  ],
+  "text_animation": "GSAP SplitText via an AnimatedSplitText component with presets (bundle): title = {type:'lines,chars', unit chars}, title-hero = {type:'lines,words', unit words}, text and text-reverse = {type:'lines'}, each wrapped in a line mask, plus an `indent` prop for first-line indents. Title units start at y 120%. CSS reveal class .animation-show: opacity 0 + translate3d(0,var(--offset,8rem),0) skewY(3deg) -> transform 1.2s cubic-bezier(.165,.84,.44,1), opacity .6s cubic-bezier(.65,0,.35,1), delay calc(var(--delay)*1s). Award lists: the '(' and ')' of the counter slide in from x ±4rem while the digits rise from y 320% (stagger .12, .8s power3.out); each row's columns rise y 100 -> 0 (stagger .1) as its rule draws scaleX 0 -> 1 from the left (.7s). Service-list titles and skills are direction-aware: scrolling down plays y 200% -> 0 (.8s power3.out, stagger .15); scrolling up plays a .3s power1.inOut exit. The 32px statement is caught mid line-reveal in element 3 f07 and element 0 f07. Leaving view, .animation-show fades opacity over .3s and its transform snaps back to 8rem + skewY(3deg) only after a .3s delay (transition transform 0s ... .3s), so elements re-arm invisibly.",
+  "image_animation": "Home rail: image boxes scale up from the left while the inner image scales down (counter-scale), so the photo appears to hold still inside a growing window. Expertises: each slide's image sits in a bottom-anchored box scaled by slot (1 / .45 / .15 / 0) with x shifts, so the next slides' images line up on a shared baseline and grow as their slide arrives (desktop_05: 399 / 172 / 50px wide, all bottoms at y=733). The slide's text lives inside the same counter-translated window, so the moving edge splices two slides' headings (desktop_05 'Direction Arti|erce' = 'Direction Artistique' + the next slide's 'Site e-commerce'; element 2 f03 'Directione'). Generic reveals: .animation-image container scale 1.2 -> 1 over 1.8s cubic-bezier(.165,.84,.44,1).",
+  "page_transitions": "Verified (PageTransition): outgoing header-logo paths yPercent -110 (.4s, stagger -.06, power3.in). The two loader panes slide yPercent -100 / +100 (1.2s power3.inOut) while .Page-inner slides in from y = window.innerHeight to 0 (1.2s power3.inOut, starting at .07s). Incoming header-logo paths yPercent 110 -> 0 (.4s, stagger -.06, power3.out) come from the header's own show timeline; its start offset was not verified.",
+  "hover_micro": [
+   "Project list rows (element 1 f05/f06): hovering floods the row with a pastel. The colours follow the 4-colour order blue -> green -> pink -> terra down consecutive rows (Olaian LB sage, The Field mauve, Crossfit apricot, 66° NORD blue-grey) and stay the same across frames, which matches the store array [--blue, --green, --pink, --terra]. Verified in the bundle store (statesStore): colors = [var(--blue), var(--green), var(--pink), var(--terra)] and updateHoverColor advances one global index (wrapping at 4) on each hover, so the colour belongs to the hover event, not to the row or project. Consecutive rows get consecutive colours only because the cursor crosses them in sequence. inferred: the fill enters from the cursor's entry edge and retracts toward the exit edge. Caution: every part-filled band in f05/f06 hugs its row's bottom edge, which a fixed bottom origin would also produce, so direction-awareness is unproven",
+   "Circle follower (HoverCursor, desktop only): an about 100px #0E0E0E disc with a white ↗ (box max-width 14rem; measured ~55px in frames at ~0.55 scale). Position lerps .1 per tick toward the pointer, and the inner disc gets a lag-based offset (±15px) and rotation (±20deg) lerped at .05, so it swings in the direction of travel (element 1 f03/f05/f06)",
+   "AppButton pill: an :after #0E0E0E fill scaleY(0) -> 1, transform-origin 0 0 at rest and 100% 100% on hover. Hover-in .5s cubic-bezier(.165,.84,.44,1); out .5s cubic-bezier(.77,0,.175,1). Label turns white and the dot turns white. The fill therefore rises from the bottom on hover and exits through the top on leave (a pass-through wipe). It is display:none until the button gets .--is-show.",
+   "MENU pill (element 3 f03/f06): on hover the apricot dot grows into a filled circle with 2 burger lines inside. When open, the whole button becomes an apricot circle with ×.",
+   "Award rows invert to a white background with black text on hover (desktop_04 'AKARU V4' row, which sits under the probe's centred pointer at 720,450)"
+  ],
+  "cursor": "The native cursor stays (probe cursor_none 0). A ~100px black ↗ disc follows with lerp and lag-driven tilt over project items only (desktop only).",
+  "easing_curves": [
+   "CSS cubic-bezier(0.165,0.84,0.44,1) x122 (easeOutQuart, the house curve)",
+   "CSS cubic-bezier(0.455,0.03,0.515,0.955) x32",
+   "CSS cubic-bezier(0.65,0,0.35,1) x9",
+   "CSS cubic-bezier(0.645,0.045,0.355,1) x8",
+   "CSS cubic-bezier(0.77,0,0.175,1) x6",
+   "CSS cubic-bezier(0.76,0,0.24,1) x4",
+   "CSS cubic-bezier(0.25,0.46,0.45,0.94) x3 (easeOutQuad)",
+   "GSAP power1.inOut x55",
+   "GSAP power3.out x40",
+   "GSAP power3.inOut x22",
+   "GSAP power2.inOut x18",
+   "GSAP power2.out x15",
+   "GSAP power4.out x10",
+   "GSAP power4.inOut (menu)",
+   "GSAP linear.none (inside the featured-panel child timeline and the docked-grid image parallax). The master rail translation and the proxies that scrub the child timelines set no ease, so they run on GSAP's default power1.out."
+  ],
+  "duration_range_ms": "CSS 100-1800ms, dominated by 500ms (x64) and 300ms (x58). GSAP 200-1500ms, dominated by 1200ms (x28), 400ms (x27), 300ms (x27), 500ms (x21). Correction: the 5 / 8.5 / 14 'second' values in HomeSticky are units of a paused timeline scrubbed by scroll progress, not ambient durations.",
+  "stagger_ms": "GSAP staggers 40-250ms, most often 100 (x8), 80 (x6), 150 (x5) and 50 (x5). Logo letters use 40-60ms (header paths -60ms right-to-left, hero flip 40ms, menu and footer flights 50ms).",
+  "choreography_notes": "Menu open (bundle TheNavigation, verified; element 3 f01-f02/f04-f05): the panel clip-path goes inset(100% 0 0 0) -> inset(0) over 1.2s power4.inOut. At t0 the wordmark letters rise from y 38rem with scaleX .1 and skewY 38deg to identity (1.2s, stagger .05, power4.inOut), so they look stretched and slanted while they fly up. At .2s the preview card clips in (inset(100% 0 0 0) -> 0, 1s power2.inOut); at .5s the link list drops from y -8rem (1s power3.out) with a .4s autoAlpha fade; at .6s the info columns rise y 5rem -> 0 (.5s, stagger .08). The preview card cycles project screenshots bottom-left. Close reverses the clip. The panel always leads and the type follows. The footer reuses the same stretched flight when it enters view (1.5s, stagger .05, power4.inOut), and its background colour comes from a per-route table.",
+  "evidence": [
+   "frames/akaru-2/0/f00-f07",
+   "frames/akaru-2/3/f00-f03",
+   "frames/akaru-2/1/f00,f03,f05,f06",
+   "frames/akaru-2/2/f00,f02,f03,f05,f07",
+   "bundle re-fetched 2026-09-24: /_nuxt/CYxbKgHj.js, GDYyeFRU.js, rFdUrabV.js, DgcGjtDx.js, BqFmUcO9.js; entry.CPme9HNL.css (components HomeSticky, HomeFeaturedProjects, HomeExpertises, HomeLetters, HomeLettersInterior, PageLoader, PageTransition, TheNavigation, HoverCursor, AwardList, WebglAwardsTrophyHome)"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "photo",
+  "art_direction": "Client campaign photography: warm-lit portraits (Maison Yokō), product stills on seamless (Ubac sneakers, Pikko), mountain dusk landscapes (Avoriaz), with a few CG renders (Enchanted Tools purple fabric, Stellar Lab lens). The images are high-chroma, and the pastel column colours are picked to sit next to them.",
+  "treatments": [
+   "No filters (probe filters 0), no grain, no duotone",
+   "Scale + counter-scale inside moving windows (box grows, inner <img> shrinks)",
+   "Images parked in stacked columns with 0 gutter (desktop_02); the column is the project grid at 0.5 scale",
+   "Reveal zoom: .animation-image container scale 1.2 -> 1 over 1.8s",
+   "Muted looping video in the projects rail (probe: 1 video, loop+muted, no autoplay attribute)"
+  ],
+  "crops_and_ratios": "Rail images are authored as 960x540 (16:9) mockups (HomeFeaturedProjectsItem mockup-width/height); the visible crops vary (512x323 in desktop_00, 955x535 in desktop_01) because panels overlap. The docked project grid uses 480x270 (16:9) tiles (HomeProjectItem mockup 480 wide, height 270 or 445 depending on a device check; desktop_02 measures 480x270 tiles at 1440, so 445 is the other branch). The Agence section uses a 683px-wide team photo plus a smaller offset 360px photo. Mobile cards use near-square images.",
+  "formats": "AVIF 884KB declared (probe bytes_by_type), 22 jpg requests (Sanity CDN, 23 requests), 21 img / 131 svg / 1 video in DOM.",
+  "evidence": [
+   "probes/akaru-2/desktop_00.jpg",
+   "probes/akaru-2/desktop_01.jpg",
+   "probes/akaru-2/desktop_02.jpg",
+   "probes/akaru-2/desktop_06.jpg"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r160 (probe globals three_revision 160) with GLTFLoader, EXRLoader + PMREMGenerator for the environment, and pmndrs 'postprocessing' (EffectComposer, RenderPass, EffectPass). No DRACOLoader or KTX2Loader is instantiated; the 'Draco/KTX2' strings in the bundle are GLTFLoader's own setDRACOLoader/setKTX2Loader methods. GPU tier from detect-gpu@5.0.70.",
+  "role": "Award trophies as 3D objects: an Awwwards trophy and an FWA logo inside the dark 'Nos prix' section. They render in a canvas over a blurred photo backdrop framed at 950x522 (desktop_03) and behind the FWA table (desktop_04). inferred: the backdrop is a pre-blurred DOM image under the alpha:true canvas (probe CSS filters 0).",
+  "assets": [
+   "https://www.akaru.fr/_nuxt/logo-fwa.6lTf-OXa.glb",
+   "https://www.akaru.fr/_nuxt/logo_awwwards.DZT5eJch.glb",
+   "https://www.akaru.fr/hdr/env-studio.exr"
+  ],
+  "materials_lighting_post": "Image-based lighting: scene.environment from /hdr/env-studio.exr through PMREM (fromEquirectangular). Post: SMAA (preset HIGH, depth predication, colour edge detection) plus ToneMappingEffect mode ACES_FILMIC, exposure 1. Correction: not AgX; the AgX/ACES hits were three.js shader chunks that ship in every build. Materials come from the GLBs as authored (no overrides found). The Awwwards trophy reads as a black gloss body with gold/silver chevron inlays. Renderer: antialias false (SMAA instead), alpha true, powerPreference high-performance; PerspectiveCamera fov 28 at z=1.",
+  "interaction": "Verified scroll-scrubbed timeline (DgcGjtDx.js initTlProgress): trophy slides x 1.2 -> 0 (desktop only), container z 0 -> .2, then it pulls back to z -.1 while the trophy turns y 0 -> π/2 (edge-on, power2.in) and the canvas fades out (.3 units). All values are units of a paused tlProgress timeline scrubbed by scroll, not seconds; the trophy starts pre-rotated y -1.8π, the model swaps to the FWA logo, the canvas fades back in and the FWA logo turns y -π/2 -> -π/5. The swap hides behind the edge-on turn plus fade. No pointer interaction in the code.",
+  "performance_tactics": "No mesh compression. All 3D assets total 92KB declared across 6 glb requests for 2 files (inferred cause: the component preloads both GLBs and the scene class loads them again). Rendering pauses outside the section (v-observe onEnter/onLeave -> corgi.play()/pause()). Pixel ratio 2, dropped to 1 only on low-GPU desktops. Two webgl2 contexts; the canvas is one 1440x900 layer (probe canvas).",
+  "fallback_mobile": "Not captured at 390px. The code has non-desktop branches (trophy scale .03 vs .043, FWA .1 vs .15; the x slide-in is desktop-only) and forces pixelRatio 2 on mobile/tablet, so the 3D is meant to run on phones too.",
+  "evidence": [
+   "probes/akaru-2/desktop_03.jpg",
+   "probes/akaru-2/desktop_04.jpg",
+   "probe assets_3d, globals",
+   "bundle DgcGjtDx.js + BqFmUcO9.js (class 'corgi' wrapper, addHdr, postprocess Nr, addTrophy/addFwa)"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "The hero shows an inline 4-link nav with colour-coded dots. After the hero it collapses to a fixed logo (top-left, 100x48) plus a #1A1A1A MENU pill (118x58, 100px radius) top-right with an apricot dot. Both stay #1A1A1A on every scroll floor (only the open menu turns the logo white, element 3 f02/f05), so on #0E0E0E floors the logo nearly vanishes (about 1.1:1, desktop_03/04/07).",
+  "menu": "Full-screen #0E0E0E panel revealed by clip-path from the bottom (1.2s power4.inOut). It has 4 links at 32px (AppText-22) left of centre, address/contact/social columns in 10px caps top-right, a cycling project-preview card bottom-left, and a white AKARU wordmark about 340px tall bottom-right whose letters fly up with scaleX .1 and skewY 38deg. The close control is an apricot circle with ×.",
+  "buttons_links": "Outline pills drawn with box-shadow: inset 0 0 0 .1rem (not border, so the stroke never changes the box; probe box_shadows 26) at a 10rem radius, 10px caps label + dot, filling #0E0E0E from one edge on hover. Circular 60px black ↗ buttons sit on project panels in the live build (the jury version used thin outline circles, element 0 f03-f05). Award rows invert to white on hover. Year chips use the same inset-shadow outline (.AppYear).",
+  "unusual_interactions": [
+   "Wheel-to-horizontal overlapping-panel rail on the home, which then docks at half scale",
+   "Expertises: a sticky counter-translated window slider showing the current slide plus the next two as narrow colour strips; a 01-05 track whose underline grows continuously with scroll (element 2 f00-f07) and whose labels rise from y 5rem when their step is reached (labels 04/05 missing in desktop_05)",
+   "Project list rows that flood with pastels, with direction-aware retraction (inferred)",
+   "Filterable project grid (Direction artistique 23 / Experience digitale 12 / Site vitrine 13 / E-commerce 10, with counts as superscripts, element 1 f00)"
+  ],
+  "sound": "none observed",
+  "footer": "#0E0E0E. A centred 'NOUS CONTACTER' outline pill in the header band, then a 4-column colophon (address / email+phone / socials / legal + ©) in 10px caps, a 1px rule at y≈284, and the white AKARU SVG wordmark running the full 1380px between the 30px margins. It bleeds off the bottom of the viewport in desktop_07. The letter tops at 316-320px are the tail of the footer's stretched-flight entrance (1.5s, stagger .05, power4.inOut; bundle TheFooter)."
+ },
+ "content_voice": {
+  "headline_style": "One-word section heads in sentence case (Projets, Expertises, Agence, Nos prix), plus long confident statement paragraphs at 32px",
+  "copy_tone": "Playful-proud French agency voice. It rejects the already-done and talks about love of detail and daring. Project cards pair a name with a one-line brand tagline.",
+  "examples": [
+   "Allègrement, on dit non au déjà fait, au déjà vu, au déjà lu."
+  ]
+ },
+ "tech_stack": {
+  "framework": "Nuxt 3 (Vue; /_nuxt/ chunks, data-v scoped CSS)",
+  "libraries": [
+   "GSAP 3.13.0 (registered plugins: SplitText, ScrollTrigger + Observer, Draggable, InertiaPlugin, MotionPathPlugin. Flip is NOT bundled: no getState anywhere in the fetched chunks. The scroll choreography uses custom v-scroll-sticky / v-parallax / v-observe directives and no tween uses scrollTrigger:)",
+   "Lenis (single instance, lerp .07, wheelMultiplier 2)",
+   "three.js r160 (GLTFLoader, EXRLoader, PMREMGenerator)",
+   "pmndrs postprocessing (SMAA + ACES ToneMappingEffect)",
+   "detect-gpu 5.0.70",
+   "Sanity CMS (cdn.sanity.io)",
+   "Google Tag Manager / GA"
+  ],
+  "evidence": "probe libs_from_requests ['nuxt'], globals three_revision 160, top_hosts cdn.sanity.io 23; bundle (re-fetched 2026-09-24): new F8({autoResize:!1,lerp:.07,wheelMultiplier:2}), unpkg.com/detect-gpu@5.0.70 benchmarks URL, postprocessing SMAA/ToneMapping classes, EXRLoader, 54 Vue component names; audit 2: GSAP core version string 3.13.0, registerPlugin calls for Observer/ScrollTrigger/Draggable/Inertia/MotionPath, zero Flip.getState hits"
+ },
+ "performance_accessibility": {
+  "requests": 141,
+  "weight_notes": "Lean for the effect level: 884KB AVIF, 294KB JS, 102KB woff2 (3 font files), 92KB 3D, 4KB CSS declared. Images come from the Sanity CDN as AVIF. One font cut (Alliance Text) is referenced but never shipped, so 16 nodes render in a system fallback.",
+  "reduced_motion": "probe reduced_motion_rules 0; no prefers-reduced-motion found in entry CSS. Lenis, the wordmark flights and the scroll reveals run for everyone.",
+  "contrast_issues": "Correction: black 10px labels on the pastels pass AA (#0E0E0E on #798E7B is about 5.5:1, on #B692A1 about 7.0:1); the issue there is size, not contrast. The real contrast failure is the fixed #1A1A1A logo on #0E0E0E floors (about 1.1:1), which disappears in the awards section and footer (desktop_03/04/07). The MENU pill shape also merges with the floor, but its white label stays legible. White body text on the blurred photo inside the awards frame is fine.",
+  "mobile_quality": "Good. It re-composes to vertical cards rather than shrinking the rail, has no horizontal overflow, and keeps a large tap target MENU pill (mobile_00/01).",
+  "dev_scores": {
+   "semantics_seo": 7.4,
+   "animations": 8.2,
+   "accessibility": 7.0,
+   "wpo": 7.2,
+   "responsive": 7.6,
+   "markup": 7.4
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Overlapping colour-panel rail driven by vertical wheel",
+   "why_it_works": "Each project enters as a thin coloured sliver, the width change works as a zoom, and colour announces the project before the image does. It turns a portfolio list into one continuous gesture.",
+   "how_to_build": "Verified mechanism (HomeSticky + HomeFeaturedProjects): a sticky wrapper (position:sticky) whose scroll progress (lerped, ratio .1, via IntersectionObserver + gsap.ticker) calls tl.progress(p) on one paused master timeline. Master: track x 0 -> -(track.scrollWidth - innerWidth) over 5 units with no ease set, so GSAP's default power1.out applies and the rail decelerates as it reaches the dock. Over the same 5 units a proxy value 0 -> 1 (also default power1.out) drives the progress of a separate paused child timeline (3 units, every tween linear.none): panel 2 x -31vw -> 0 (1 unit), panel 3 x -87vw -> 0 (2 units), so later panels start stacked over earlier ones and slide off them. Panel 3's colour field scaleX .2 -> 1 (origin left) and its details x -70rem -> 0. Image boxes scale .6 / .4 / .2 -> 1 (origin left, with y 5 / 25 / 35rem -> 0) while each inner <img> scales 1.4 / 1.6 / 1.8 -> 1 (counter-scale). Then scale the whole rail and the project grid to .5 from top-left (3 units power1.inOut) so it docks as a left column, and pan it up (8.5 units power1.inOut) with image parallax y -17.5rem -> 17.5rem (linear). Give each panel a solid pastel of similar value (#BFCCD8 #B692A1 #798E7B #E49366), a 10px numeral bottom-left, and a title row (year pill, category, ~96px name, 60px ↗ circle) that only fits once the panel is wide. Desktop only; stack cards on mobile."
+  },
+  {
+   "technique": "Counter-translated window slider (the wipe that cuts the text)",
+   "why_it_works": "Each slide is a full-viewport layer seen through a moving window, so the transition edge slices and splices headings from neighbouring slides ('Direction Arti|erce'), and the next two slides wait as narrow colour strips on the right. It reads as physical panels, not a crossfade.",
+   "how_to_build": "Verified (HomeExpertises): per slide, an outer .el and an inner .elInner. Moving the outer by x and the inner by -x keeps the content static on screen while the window slides. Slot states: current el 0 -> -100% / inner 0 -> 100%; next el 80% -> 0 / inner -80% -> 0; third el 95% -> 80% / inner -95% -> -80%; fourth el 100% -> 95% / inner -100% -> -95%. Images use transformOrigin 'bottom 100%' with scale 0 / .15 / .45 / 1 by slot so they share a baseline, and the outgoing slide's image shrinks to .8 while sliding to x -150% (its inner image to -100%), so the leaving picture recedes as the window wipes. Each step is .5 units power1.inOut on a paused timeline scrubbed by the sticky section's progress. Duplicate the section H2 and the 01-05 track in every slide at the same position so they look static. Track labels: index = round(n*progress); a reached label goes y 5rem -> 0 (1s power3.out), a left one goes back (.7s power3.inOut); the underline grows continuously with progress. Because it is scrubbed, it can rest mid-splice (desktop_05). Add snapping if you do not want that."
+  },
+  {
+   "technique": "Menu reveal with a stretched-wordmark flight",
+   "why_it_works": "The clip wipe gives a clean cut, and the logo letters launching from below while squashed and skewed give the menu a signature moment that only this brand has.",
+   "how_to_build": "Panel: gsap.fromTo(menu,{clipPath:'inset(100% 0% 0% 0%)'},{clipPath:'inset(0% 0% 0% 0%)',duration:1.2,ease:'power4.inOut'}). At position 0: gsap.fromTo(wordmark.querySelectorAll('svg'),{y:'38rem',scaleX:.1,skewY:38},{y:0,scaleX:1,skewY:0,duration:1.2,stagger:.05,ease:'power4.inOut'}). At .5: links fromTo y:'-8rem' -> 0 (1s power3.out) plus autoAlpha 0->1 (.4s power1.inOut). Trigger button: the pill's dot scales into a 40px circle containing 2 burger lines on hover, then the whole button morphs to a 40px circle with × when open. Reverse the clip on close."
+  },
+  {
+   "technique": "Direction-aware pastel row fill with trailing decay",
+   "why_it_works": "A fast pass down the list paints a brief colour trail, so the list feels alive and each project keeps its colour identity. No row moves or jumps.",
+   "how_to_build": "Each row is position:relative with a ::before full-bleed block. inferred: on pointerenter compare e.clientY to the row's midline to get the entry edge, set transform-origin to that edge and animate scaleY 0 -> 1 over .5s cubic-bezier(.165,.84,.44,1); on pointerleave flip the origin to the exit edge and animate scaleY -> 0 over .5s cubic-bezier(.77,0,.175,1). Take the colour from one global 4-pastel index (blue, green, pink, terra) that advances on every row hover, as Akaru's store does (verified); do not bind colours to rows. The overlapping in/out tweens across rows create the trail. Keep text above the fill in #0E0E0E. Follower (verified HoverCursor): a ~100px #0E0E0E disc with a white ↗; each tick pos = interpolate(pos, pointer, .1); the inner disc gets x/y = interpolate(prev, mapRange(-100,100,-15,15, pos - pointer) * -1, .05) and rotation from mapRange(-100,100,-20,20), so it swings in the direction of travel. Desktop only."
+  },
+  {
+   "technique": "Logo-as-page-transition",
+   "why_it_works": "The same SVG letters that form the hero wordmark exit and re-enter on every route change, so navigation feels branded without a separate loader.",
+   "how_to_build": "Keep the fixed logo as separate <path> per letter inside an overflow:hidden box. Leave: paths yPercent -110 (.4s, stagger -.06 so the last letter goes first, power3.in). Swap the route and animate .Page-inner from y: innerHeight to 0 (1.2s power3.inOut, at .07s) while the two cover panes slide yPercent -100 / +100. Enter: paths yPercent 110 -> 0 (.4s, stagger -.06, power3.out)."
+  },
+  {
+   "technique": "Viewport-rem fluid system",
+   "why_it_works": "Layout and type scale proportionally from the 1440 artboard, so compositions like the 720/720 split and the edge-to-edge wordmark hold at every landscape width.",
+   "how_to_build": "Per-orientation rem: @media (orientation:landscape){html{font-size:calc(.69444vw - var(--sbw)/1440*.1)}} (1rem = 10px at 1440), with a .84746vw bump for landscape phones only (max-width:768px and max-height:812px) and 1.30208vw for portrait tablets (768-1180px on both axes) or portrait min-height 1180px; @media (orientation:portrait){html{font-size:calc(2.66667vw - var(--sbw)/375*.1)}} (1rem = 10px at 375). --sbw = measured scrollbar width. Write type classes in plain rem per orientation (H2 9.6rem landscape / 4.8rem portrait, list names 5.4rem / 2.4rem, statements 3.2rem, labels 1rem / 1.1rem). Akaru keeps clamp() only for utility classes (.--text-90 clamp(76px,9rem,104px)); add clamps to the main classes if you need guard rails at extreme widths. Do not copy Akaru's '@media xxlarge and (orientation:landscape)' step: 'xxlarge' is not a media type, the rule never applies, and its type keeps growing above 1440. Use a real (min-width) query or clamp the html font-size itself."
+  },
+  {
+   "technique": "Negative-space preloader that hands off to the wordmark",
+   "why_it_works": "The loader shows only the letter counters, in the page's own background colour, at the exact spot the hero wordmark will occupy. When the black cover leaves, the letters fill in around marks the eye already holds, so load time reads as a logo reveal.",
+   "how_to_build": "Draw a second SVG per letter containing only the counters (fill = page background #F1EFEB) and place it over a #0E0E0E cover, centred like the hero wordmark. Animate counters y 120% -> 0 (.5s, stagger .06, power3.out). Await document.fonts.ready and your asset promises. Then slide the cover xPercent -100 while its inner layer slides xPercent +100 (1.2s power3.inOut) so the counters stay put as the black wipes away. Behind it, flip the real letters in (rotateY 120 -> 0, .8s power3.out, stagger .04 from the last letter) and move the wordmark from centre to its final column (.8s power4.out)."
+  }
+ ],
+ "slop_risks": [
+  "Invisible-content trap: .animation-show starts at opacity:0 + translate 8rem + skewY(3deg) and waits for a JS '--in-view' class. The probe caught copy mid-reveal: the 'Nos prix' paragraph is cut at 'facilité' and button labels are truncated to 'NOTRE PROF.' / 'NOTRE AGI' (desktop_03, desktop_06). AppButtons are also pointer-events:none until they get .--is-show, so a reveal that never fires leaves dead CTAs as well as missing copy. A copy must keep text and controls visible and live by default and animate only transform on already-visible lines.",
+  "Clipped descenders at rest (missed by the first pass): the line masks shave the tails of j, p, q and ç even on settled lines. In the 'Nos prix' paragraph 'jamais' reads 'iamais' and 'Chaque' / 'prix' lose their tails (desktop_03, zoomed 3x). inferred: SplitText wrap:true line wrappers with overflow:hidden and line-height normal. This is the law's cut-off tell. A copy must pad each mask (e.g. padding-bottom .2em with an equal negative margin) and zoom-check descenders.",
+  "Cream background: #F1EFEB is the oat-milk 'tasteful' base. It survives here only because pastel fields and #0E0E0E floors keep taking over. A copy with cream as the only surface is the tell.",
+  "Dot tells: a coloured dot before every nav item, inside the MENU pill and inside every outline button ('VOIR L'EXPERTISE •'). This is the 'little filled dot before an eyebrow' reflex, repeated site-wide.",
+  "Pills everywhere: 35 elements at a 100px radius (MENU, CTAs, year chips '2025'). The year-in-a-pill is the 'metadata as pill chip' tell.",
+  "One label treatment: nearly every small string (socials, categories, award rows, footer colophon, button text) wears 10px uppercase Alliance Platt 600, with only a 12px variant for MENU. The tight -0.05em tracking helps, but it is still one costume for every role.",
+  "Unrounded hairline rules as structure: service lists, award tables and the footer all rely on square 1px rules (desktop_02, desktop_04, desktop_07).",
+  "Oversized footer wordmark: it is composed here (full width, aligned to the 30px margins, bleeding off only the bottom). A naive copy would shave cap tops or leave it off-centre. The letter tops at 316-320px are its stretched-flight entrance landing; the flight must fully land.",
+  "Mid-wipe sliced headings ('Direction Artierce') are great in motion but read as the cut-off tell at rest. Akaru's slider is scroll-scrubbed with no snap, so it does park mid-splice (desktop_05). A copy should snap to steps.",
+  "Ghost chrome: the fixed logo and MENU pill are #1A1A1A on every floor, so on #0E0E0E sections the logo drops to about 1.1:1 and disappears. Invert or blend fixed chrome per floor.",
+  "Fallback-font leak: Alliance Text is referenced but never loaded, so some paragraphs render in Helvetica/Arial beside the Alliance type (desktop_06 vs desktop_00). Ship every declared cut or map the class to a loaded one."
+ ],
+ "confidence_notes": "Observed: all 8 desktop screenshots and both mobile screenshots; all 8 frames of 'Homepage animation' (0) and 'Menu animation' (3); f00/f03/f06 of 'Hover effect' (1) and 'Lateral slider' (2). Measured values (fonts, px sizes, colours, easings, durations, 3D URLs, three r160, Lenis class) come from probe.json. Code-level values (Lenis options, menu/page-transition timelines, SplitText presets, .animation-show CSS, AppButton hover, html rem scaling, AgX/loaders) come from curl of the live Nuxt bundles (CYxbKgHj.js, GDYyeFRU.js, rFdUrabV.js, entry.CPme9HNL.css). Inferred: direction-aware logic of the row fill (from part-filled rows), trophy scroll rotation, preloader construction, the Degarism foundry attribution, and the exact accordion width formula (widths read from screenshots). The live site has changed since the April 2024 award (projects dated 2025 appear), so some content differs from the jury's version. Wordmark height 318px is a pixel measure from desktop_00, not a probed font size. audit (2026-09-24, adversarial re-check against probe, 8 desktop + 2 mobile shots, all 8 frames of element 0, 4-5 frames each of elements 1-3, and a fresh fetch of the live bundles): FIXED 3D stack (no Draco/KTX2 loaders; tone mapping is pmndrs postprocessing ACES_FILMIC + SMAA, not AgX; added EXR/PMREM, fov 28, detect-gpu, verified scroll-scrubbed trophy swap and mobile branches); FIXED rail mechanism (overlapping transformed panels + counter-scaled images + dock at .5 scale, not flex-basis widths) and rewrote steal_this 1; FIXED Expertises slider (counter-translated windows with 4 slot states, continuous track underline, labels rise when reached, not clip-path inset or step/5) and rewrote steal_this 2; FIXED scale notes (plain rem classes, clamp only in utilities; rail names ~96px not 72px; added 1180/768 rem steps); FIXED Alliance Text (never loaded, renders in fallback); FIXED MENU/logo colour #1A1A1A and replaced a false pastel-contrast accusation with the real ghost-logo failure; FIXED follower size (~100px) and mechanism (lerp + lag tilt, not quickTo); FIXED stagger signs (-.06), removed the phantom second Lenis instance, relabelled 5/8.5s as scrubbed timeline units, parallax ease linear; ADDED verified preloader/hero choreography, footer flight, award-list counter animation, inset box-shadow outlines, colour tokens incl. #7345FF, zig-zag award tables, per-section H2 offsets. Still inferred: direction-aware row fill logic and its colour assignment (lazy /projets chunk not fetched), cause of 6 glb requests, the awards backdrop being a pre-blurred image. audit 2 (2026-09-25, independent re-check against probe.json, desktop_00-07, mobile_00-01, all 8 frames of element 0 and 3, f00/f05/f06 of element 1, f00/f03/f07 of element 2, pixel measurements, and the locally cached Nuxt chunks + entry CSS): CONFIRMED rail and Expertises slot values, menu/footer flights, HoverCursor, preloader, trophy timeline, 3D stack (fov 28, SMAA HIGH, ACES_FILMIC, forced DPR 2), tokens, Alliance Text missing, fallback face in desktop_06, rail names ~96px (Pikko and Projets cap heights both 70px), GSAP tallies, contrast ratios. FIXED: Flip listed but not bundled (GSAP 3.13.0 with SplitText/ScrollTrigger/Observer/Draggable/Inertia/MotionPath); rem breakpoints (.84746vw is landscape phones only, 1.30208vw portrait tablets, and the 'xxlarge' large-screen rule is an invalid media query so type is uncapped); master rail and proxies ease power1.out by default, not linear; mobile CTA ~150x62px, not 300px (2x capture); 480x445 tiles are not the desktop branch; indent ~200px not 1/3; logo turns white in the open menu; the 'apricot band' is Expertises slide 05 and one slide colour is #F1EFEB; trophy durations are scrubbed units. VERIFIED a previously inferred claim: hover colours come from one global index advanced per hover (statesStore). ADDED: clipped descenders on settled lines (desktop_03) as a slop risk, dead pre-reveal buttons, .animation-show exit re-arm, button pass-through wipe, outgoing Expertises image, mirrored footer columns, token location on html{}. Still inferred: row-fill direction logic (all captured part-bands hug the bottom edge), the line-mask mechanism behind the clipped descenders, awards backdrop being a pre-blurred image."
+}

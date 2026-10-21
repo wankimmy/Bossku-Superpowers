@@ -1,0 +1,3203 @@
+[
+ {
+  "slug": "lando-norris",
+  "title": "Lando Norris",
+  "bucket": "site-of-the-year",
+  "year": 2025,
+  "award": "Site of the Day - Nov 17, 2025",
+  "score": 8.18,
+  "live_url": "https://landonorris.com/",
+  "tags": [
+   "Promotional",
+   "Sports",
+   "Web & Interactive",
+   "Colorful",
+   "3D",
+   "Gestures / Interaction",
+   "WebGL",
+   "GSAP",
+   "Webflow"
+  ],
+  "palette": [
+   "#D2FF00",
+   "#111112"
+  ],
+  "elements": [],
+  "dev": {
+   "semantics_seo": 7.4,
+   "animations": 8.6,
+   "accessibility": 7.0,
+   "wpo": 7.6,
+   "responsive": 7.4,
+   "markup": 7.4
+  },
+  "description": "A high-performance platform for F1 driver Lando Norris, capturing his energy and racing passion through dynamic interactions, bold visuals, and a digital experience as engaging as he is"
+ },
+ {
+  "slug": "messenger",
+  "title": "Messenger",
+  "bucket": "site-of-the-year",
+  "year": 2025,
+  "award": "Site of the Day - Nov 10, 2025",
+  "score": 7.92,
+  "live_url": "https://messenger.abeto.co",
+  "tags": [
+   "Art & Illustration",
+   "Games & Entertainment",
+   "Web & Interactive",
+   "Colorful",
+   "Storytelling",
+   "3D",
+   "WebGL",
+   "WebSockets",
+   "Three.js"
+  ],
+  "palette": [
+   "#81BFBC",
+   "#C9D5C3"
+  ],
+  "elements": [],
+  "dev": {
+   "semantics_seo": 7.6,
+   "animations": 9.0,
+   "accessibility": 7.6,
+   "wpo": 8.8,
+   "responsive": 8.4,
+   "markup": 7.6
+  },
+  "description": "It's a small planet, but someone's gotta make the deliveries."
+ },
+ {
+  "slug": "igloo-inc",
+  "title": "Igloo Inc",
+  "bucket": "site-of-the-year",
+  "year": 2024,
+  "award": "Site of the Day - Jul 23, 2024",
+  "score": 7.92,
+  "live_url": "https://www.igloo.inc/",
+  "tags": [
+   "Web & Interactive",
+   "Animation",
+   "Infinite Scroll",
+   "Transitions",
+   "3D"
+  ],
+  "palette": [
+   "#b6bac5",
+   "#383e4e"
+  ],
+  "elements": [],
+  "dev": {
+   "semantics_seo": 6.6,
+   "animations": 9.6,
+   "accessibility": 6.6,
+   "wpo": 8.0,
+   "responsive": 8.4,
+   "markup": 6.4
+  },
+  "description": "Introducing Igloo Inc, the parent company to Pudgy Penguins and OverpassIP. Our mission is to create the largest onchain community, driving the consumer crypto revolution."
+ },
+ {
+  "slug": "dont-board-me",
+  "title": "Don't Board Me",
+  "bucket": "site-of-the-year",
+  "year": 2024,
+  "award": "Site of the Day - Mar 11, 2024",
+  "score": 7.83,
+  "live_url": "https://dontboardme.com",
+  "tags": [
+   "Business & Corporate",
+   "Events",
+   "Other",
+   "Colorful",
+   "Graphic design",
+   "Scrolling",
+   "Storytelling",
+   "UI design",
+   "404 pages"
+  ],
+  "palette": [
+   "#E33529",
+   "#AFD8FB"
+  ],
+  "elements": [
+   {
+    "title": "poooooooo 🐶💩💩💩💩💩",
+    "tags": [
+     "dogs",
+     "poo",
+     "rain"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/03/65e5d63a39548098822433.mp4"
+   },
+   {
+    "title": "How it Works? 🐶",
+    "tags": [
+     "process",
+     "booking",
+     "motion"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/03/65e5d4f42d21b367065633.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.2,
+   "animations": 7.2,
+   "accessibility": 7.0,
+   "wpo": 6.8,
+   "responsive": 8.0,
+   "markup": 7.2
+  },
+  "description": "Don't board me connects pet owners with a team of experienced and passionate animal lovers, ensuring that the highest level of care is provided to your furry family member. 🐶"
+ },
+ {
+  "slug": "opal-tadpole",
+  "title": "Opal Tadpole",
+  "bucket": "site-of-the-year",
+  "year": 2024,
+  "award": "Site of the Day - Jan 11, 2024",
+  "score": 7.52,
+  "live_url": "https://www.opalcamera.com/opal-tadpole",
+  "tags": [
+   "E-Commerce",
+   "Technology",
+   "Startups",
+   "Animation",
+   "Photographic",
+   "Single page",
+   "3D",
+   "Interaction Design",
+   "Microinteractions"
+  ],
+  "palette": [
+   "#FFDB01",
+   "#ffffff"
+  ],
+  "elements": [
+   {
+    "title": "Explain it like I'm a 5 yo.",
+    "tags": [
+     "animation",
+     "text",
+     "scroll"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2023/12/6584f1820c7bc073053986.mp4"
+   },
+   {
+    "title": "Smooth Criminal",
+    "tags": [
+     "3d",
+     "animation",
+     "scroll"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2023/12/65851dcec88d7364167058.mp4"
+   },
+   {
+    "title": "Show don't tell",
+    "tags": [
+     "blueprints",
+     "animation",
+     "svg"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2023/12/65851b783fccd194393519.mp4"
+   },
+   {
+    "title": "The hand flip",
+    "tags": [
+     "motion",
+     "hand",
+     "device"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2023/12/6584f15832643107775297.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.6,
+   "animations": 8.6,
+   "accessibility": 7.6,
+   "wpo": 7.8,
+   "responsive": 8.0,
+   "markup": 7.4
+  },
+  "description": "The Opal Tadpole is the smallest webcam ever built. For both Mac and PC. With a category-first directional mic, a Sony sensor, and the easiest way to mute your call with a tap. The site was designed by Claudio Guglieri, developed by Ingamana, and featured the collaboration of Hugo Ahlberg, Anthony Koch, Jason Bradley, and Bryan James."
+ },
+ {
+  "slug": "brunos-portfolio",
+  "title": "Bruno's Portfolio",
+  "bucket": "site-of-the-month",
+  "year": 2026,
+  "award": "Site of the Day - Jan 21, 2026",
+  "score": 8.11,
+  "live_url": "https://bruno-simon.com",
+  "tags": [
+   "Games & Entertainment",
+   "Web & Interactive",
+   "3D",
+   "WebGL",
+   "GSAP",
+   "Three.js"
+  ],
+  "palette": [],
+  "elements": [],
+  "dev": {
+   "semantics_seo": 7.0,
+   "animations": 8.6,
+   "accessibility": 6.6,
+   "wpo": 8.2,
+   "responsive": 8.2,
+   "markup": 6.8
+  },
+  "description": "Discover the world of Bruno Simon in this creative and immersive 3D experience.And please don't break anything!"
+ },
+ {
+  "slug": "immersive-garden-website",
+  "title": "Immersive Garden website",
+  "bucket": "site-of-the-month",
+  "year": 2025,
+  "award": "Site of the Day - Jan 7, 2025",
+  "score": 8.0,
+  "live_url": "https://immersive-g.com/",
+  "tags": [
+   "Web & Interactive",
+   "Experimental",
+   "Animation",
+   "3D",
+   "Gestures / Interaction",
+   "UI design",
+   "Project Page",
+   "Contentful"
+  ],
+  "palette": [
+   "#000000",
+   "#c2c2c2"
+  ],
+  "elements": [
+   {
+    "title": "Menu Transition",
+    "tags": [
+     "menu",
+     "transition",
+     "bas-relief",
+     "detail",
+     "3d"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/12/675b2905c12d6662202878.mp4"
+   },
+   {
+    "title": "Sections",
+    "tags": [
+     "sections",
+     "3d",
+     "details",
+     "pages"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/12/675b27f773d2a418391147.mp4"
+   },
+   {
+    "title": "Rapid Scroll feature",
+    "tags": [
+     "scroll",
+     "hidden_feature",
+     "projects"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/12/675b26eca9bd6129529828.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.0,
+   "animations": 8.8,
+   "accessibility": 6.6,
+   "wpo": 8.0,
+   "responsive": 7.2,
+   "markup": 7.2
+  },
+  "description": "Discover the new Immersive Garden website. Explore a decade of innovation and explore the heart and soul of our digital craftsmanship."
+ },
+ {
+  "slug": "active-theory-v6",
+  "title": "Active Theory V6",
+  "bucket": "site-of-the-month",
+  "year": 2024,
+  "award": "Site of the Day - Feb 6, 2024",
+  "score": 7.95,
+  "live_url": "http://activetheory.net",
+  "tags": [
+   "Design Agencies",
+   "Technology",
+   "Web & Interactive",
+   "Colorful",
+   "3D",
+   "Filters and Effects"
+  ],
+  "palette": [],
+  "elements": [
+   {
+    "title": "Home Navigation",
+    "tags": [
+     "navigation",
+     "scroll",
+     "interaction",
+     "3d"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/02/65c0bc8a48110839245666.mp4"
+   },
+   {
+    "title": "Particle Effect",
+    "tags": [
+     "mouse interaction",
+     "3d",
+     "gallery"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/02/65c0bf17830be802324716.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.2,
+   "animations": 9.6,
+   "accessibility": 6.4,
+   "wpo": 8.6,
+   "responsive": 8.0,
+   "markup": 7.2
+  },
+  "description": "V6 brings new rendering techniques, AI chat and multiplayer to our growing portfolio. Founded in 2012, we blend story, art & technology as an in-house team of passionate makers."
+ },
+ {
+  "slug": "cartier-watches-wonders-2025",
+  "title": "Cartier Watches & Wonders 2025",
+  "bucket": "site-of-the-month",
+  "year": 2025,
+  "award": "Site of the Day - Aug 18, 2025",
+  "score": 7.64,
+  "live_url": "https://cartier-waw-0225.dev.60fps.fr/",
+  "tags": [
+   "Web & Interactive",
+   "Experimental",
+   "Luxury",
+   "Animation",
+   "Responsive Design",
+   "Scrolling",
+   "3D",
+   "Gestures / Interaction",
+   "UI design",
+   "WebGL",
+   "Motion"
+  ],
+  "palette": [],
+  "elements": [
+   {
+    "title": "3D Universes",
+    "tags": [
+     "3d",
+     "webgl",
+     "scroll",
+     "product"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/07/68669f2306f10042857565.mp4"
+   },
+   {
+    "title": "Products Interaction",
+    "tags": [
+     "gestures",
+     "interaction",
+     "3d",
+     "products"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/07/68669d565aa43650235263.mp4"
+   },
+   {
+    "title": "Content Pages",
+    "tags": [
+     "editorial",
+     "content",
+     "layout"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/07/68669e16429bb274489300.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.0,
+   "animations": 9.0,
+   "accessibility": 6.8,
+   "wpo": 7.8,
+   "responsive": 7.4,
+   "markup": 7.2
+  },
+  "description": "Discover the new Cartier Watches & Wonders site — a journey through refined universes showcasing iconic timepieces."
+ },
+ {
+  "slug": "the-renaissance-edition",
+  "title": "The Renaissance Edition",
+  "bucket": "site-of-the-month",
+  "year": 2026,
+  "award": "Site of the Day - Feb 9, 2026",
+  "score": 7.92,
+  "live_url": "https://www.shopify.com/editions/winter2026",
+  "tags": [
+   "E-Commerce",
+   "Technology",
+   "Web & Interactive",
+   "Animation",
+   "Parallax",
+   "Transitions",
+   "3D",
+   "Gestures / Interaction",
+   "Interaction Design",
+   "WebGL",
+   "Shopify",
+   "Blender"
+  ],
+  "palette": [
+   "#F7F7EE",
+   "#292919"
+  ],
+  "elements": [
+   {
+    "title": "Section animation and transition",
+    "tags": [
+     "transition",
+     "animation",
+     "3d"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/12/6940c1d6d772a172558628.mp4"
+   },
+   {
+    "title": "Intro animation",
+    "tags": [
+     "animation"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/12/6940c0de07ddf923294014.mp4"
+   },
+   {
+    "title": "Hidden Layer",
+    "tags": [
+     "easter egg"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/12/6940c18992681501016070.mp4"
+   },
+   {
+    "title": "E-commerce experience",
+    "tags": [
+     "ecommerce"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/12/6940c05d0d8cf177854411.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.8,
+   "animations": 9.4,
+   "accessibility": 7.0,
+   "wpo": 8.4,
+   "responsive": 7.8,
+   "markup": 7.6
+  },
+  "description": "The Renaissance Edition showcases 150+ updates to Shopify, set in a mashup of generative paintings with elements of modern commerce."
+ },
+ {
+  "slug": "akaru-2",
+  "title": "Akaru",
+  "bucket": "site-of-the-month",
+  "year": 2024,
+  "award": "Site of the Day - Apr 1, 2024",
+  "score": 7.91,
+  "live_url": "https://akaru.fr/",
+  "tags": [
+   "Design Agencies",
+   "E-Commerce",
+   "Web & Interactive",
+   "Animation",
+   "Colorful",
+   "Unusual Navigation",
+   "Filters and Effects",
+   "UI design",
+   "About Page"
+  ],
+  "palette": [
+   "#F1EFEB",
+   "#0E0E0E"
+  ],
+  "elements": [
+   {
+    "title": "Homepage animation",
+    "tags": [
+     "homepage",
+     "slider",
+     "logo",
+     "animation"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/03/65f87134a0e01535800716.mp4"
+   },
+   {
+    "title": "Hover effect",
+    "tags": [
+     "hover",
+     "colors"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/03/65f87067caee9404278041.mp4"
+   },
+   {
+    "title": "Lateral slider",
+    "tags": [
+     "slider"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/03/65f87051e39e0603242388.mp4"
+   },
+   {
+    "title": "Menu animation",
+    "tags": [
+     "fullscreen"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/03/65f8709c8ab9a255250138.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.4,
+   "animations": 8.2,
+   "accessibility": 7.0,
+   "wpo": 7.2,
+   "responsive": 7.6,
+   "markup": 7.4
+  },
+  "description": "AKARU is a web agency specializing in creating showcase and e-commerce websites. Tailored sites with personality."
+ },
+ {
+  "slug": "siena-film-foundation",
+  "title": "Siena Film Foundation",
+  "bucket": "site-of-the-month",
+  "year": 2025,
+  "award": "Site of the Day - Mar 18, 2025",
+  "score": 7.9,
+  "live_url": "https://siena.film",
+  "tags": [
+   "Design Agencies",
+   "Film & TV",
+   "Institutions",
+   "Infinite Scroll",
+   "Navigation Menu",
+   "Transitions",
+   "Filters and Effects",
+   "Copy design",
+   "Microinteractions"
+  ],
+  "palette": [
+   "#000000",
+   "#FAF7EF"
+  ],
+  "elements": [
+   {
+    "title": "Film Strip Slider",
+    "tags": [
+     "slider",
+     "webgl",
+     "transition",
+     "parallax",
+     "scroll",
+     "film"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/02/67c1d9d03b360064251603.mp4"
+   },
+   {
+    "title": "Brand Intro Animation",
+    "tags": [
+     "intro",
+     "loader",
+     "brand",
+     "logo",
+     "loading"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/02/67c1dca64b476655444243.mp4"
+   },
+   {
+    "title": "Contact Type Lettering",
+    "tags": [
+     "lettering",
+     "rollover",
+     "contact",
+     "transition",
+     "animation"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/02/67c1de155bc17365022444.mp4"
+   },
+   {
+    "title": "Dynamic Menu",
+    "tags": [
+     "menu",
+     "css",
+     "ticket",
+     "cinema",
+     "navigation",
+     "navbar"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/02/67c1dc9fe7380091725292.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.2,
+   "animations": 8.6,
+   "accessibility": 6.6,
+   "wpo": 7.2,
+   "responsive": 8.0,
+   "markup": 7.2
+  },
+  "description": "Siena Film Foundation is a boutique production house dedicated to crafting groundbreaking narratives that push the boundaries of cinematic storytelling."
+ },
+ {
+  "slug": "oryzo-ai",
+  "title": "Oryzo AI",
+  "bucket": "site-of-the-month",
+  "year": 2026,
+  "award": "Site of the Day - Apr 13, 2026",
+  "score": 7.86,
+  "live_url": "https://oryzo.ai",
+  "tags": [
+   "Art & Illustration",
+   "Design Agencies",
+   "Web & Interactive",
+   "Transitions",
+   "Storytelling",
+   "3D",
+   "Filters and Effects",
+   "WebGL",
+   "GSAP",
+   "Three.js"
+  ],
+  "palette": [
+   "#100904",
+   "#FF8539"
+  ],
+  "elements": [
+   {
+    "title": "3D -> 2D -> 3D Transition",
+    "tags": [
+     "transition"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69c13a0cda821248995089.mp4"
+   },
+   {
+    "title": "Reveal Transition",
+    "tags": [
+     "transition"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69c13b2c0d340138991193.mp4"
+   },
+   {
+    "title": "Intro Transition",
+    "tags": [
+     "transition"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69c13abca3307069838204.mp4"
+   },
+   {
+    "title": "Gallery Transition",
+    "tags": [
+     "transition"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69c13ade01170760748844.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.6,
+   "animations": 8.6,
+   "accessibility": 7.0,
+   "wpo": 8.6,
+   "responsive": 7.8,
+   "markup": 7.2
+  },
+  "description": "A cinematic product story that turns an ordinary cork coaster into an immersive digital experience through craft, detail, and interaction."
+ },
+ {
+  "slug": "mindmarket",
+  "title": "MindMarket",
+  "bucket": "site-of-the-month",
+  "year": 2025,
+  "award": "Site of the Day - Dec 29, 2025",
+  "score": 7.85,
+  "live_url": "https://mindmarket.com/",
+  "tags": [
+   "Art & Illustration",
+   "Culture & Education",
+   "Promotional",
+   "Animation",
+   "Colorful",
+   "Flat Design",
+   "Scrolling",
+   "Illustration",
+   "Storytelling",
+   "GSAP",
+   "Figma",
+   "DatoCMS"
+  ],
+  "palette": [
+   "#8ED462",
+   "#F5E211"
+  ],
+  "elements": [
+   {
+    "title": "Path scroll with Rive animations",
+    "tags": [
+     "path",
+     "scroll",
+     "story-telling",
+     "rive",
+     "colorful",
+     "animation"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/11/69266807a8adf618954226.mp4"
+   },
+   {
+    "title": "Playful hover interaction",
+    "tags": [
+     "playful",
+     "hover",
+     "button",
+     "interaction",
+     "illustration"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/11/6926686395bc4350807217.mp4"
+   },
+   {
+    "title": "Cards stack on scroll",
+    "tags": [
+     "cards",
+     "stack",
+     "scroll"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/11/692668ab4a2ff293512223.mp4"
+   },
+   {
+    "title": "Playful hub page listing",
+    "tags": [
+     "playful",
+     "hub",
+     "listing",
+     "illustration"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/11/6926691636f81458258511.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.4,
+   "animations": 8.0,
+   "accessibility": 6.8,
+   "wpo": 7.8,
+   "responsive": 7.6,
+   "markup": 7.4
+  },
+  "description": "MindMarket isn’t your typical research agency. They listen for the human stories that data alone can’t surface, whether they’re in Lagos, London, Seoul, or anywhere else in the world."
+ },
+ {
+  "slug": "thelinestudio-com",
+  "title": "The Line Studio",
+  "bucket": "site-of-the-month",
+  "year": 2024,
+  "award": "Site of the Day - Nov 5, 2024",
+  "score": 7.76,
+  "live_url": "https://thelinestudio.com/",
+  "tags": [
+   "Art & Illustration",
+   "Games & Entertainment",
+   "Startups",
+   "Animation",
+   "Graphic design",
+   "Typography"
+  ],
+  "palette": [
+   "#FF391E",
+   "#F8F8F8"
+  ],
+  "elements": [
+   {
+    "title": "Loading 24FPS",
+    "tags": [
+     "animation",
+     "homepage",
+     "loadingpage"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/10/6718f09bb507c033473247.mp4"
+   },
+   {
+    "title": "Loading",
+    "tags": [],
+    "media": "https://assets.awwwards.com/awards/element/2024/10/67190deb8421f763091987.mp4"
+   },
+   {
+    "title": "Filters",
+    "tags": [
+     "ui",
+     "filters"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/10/6718f1d65ad09914473769.mp4"
+   },
+   {
+    "title": "Footer",
+    "tags": [
+     "footer"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/10/6718f1639ec31141705336.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.4,
+   "animations": 9.0,
+   "accessibility": 7.0,
+   "wpo": 8.0,
+   "responsive": 7.6,
+   "markup": 7.4
+  },
+  "description": "The Line Animation's glow-up! We’ve been grafting hard to give our brand a fresh coat of paint. Say hello to our brand-spanking new revenge-body website!"
+ },
+ {
+  "slug": "the-power-of-storytelling",
+  "title": "The Power of Storytelling",
+  "bucket": "3d-webgl",
+  "year": 2026,
+  "award": "Site of the Day - Jun 8, 2026",
+  "score": 7.87,
+  "live_url": "https://storytelling.noomoagency.com",
+  "tags": [
+   "Design Agencies",
+   "Promotional",
+   "Luxury",
+   "Animation",
+   "Scrolling",
+   "Transitions",
+   "Storytelling",
+   "3D",
+   "UI design",
+   "WebGL",
+   "GSAP",
+   "Three.js"
+  ],
+  "palette": [
+   "#E5DDF9",
+   "#020612"
+  ],
+  "elements": [
+   {
+    "title": "3d scroll",
+    "tags": [
+     "3d",
+     "scroll",
+     "immercive",
+     "interactive",
+     "character",
+     "fly"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/69fa37dca9f7d061267277.mp4"
+   },
+   {
+    "title": "3D project crystals",
+    "tags": [
+     "case study",
+     "projects",
+     "crystal",
+     "glass",
+     "3d website",
+     "hover"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/69fa36987dd34322695888.mp4"
+   },
+   {
+    "title": "Hero shader animation",
+    "tags": [
+     "shader",
+     "3d",
+     "glass",
+     "3d website",
+     "hero animation",
+     "storytelling"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/69f8fb8f9b0e8793789661.mp4"
+   },
+   {
+    "title": "Bird fly-through animation",
+    "tags": [
+     "fly-through",
+     "3d animation",
+     "3d glass",
+     "shader",
+     "webgl",
+     "storytelling"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/69f91445d57d6142551521.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.2,
+   "animations": 8.6,
+   "accessibility": 6.4,
+   "wpo": 7.6,
+   "responsive": 7.4,
+   "markup": 7.0
+  },
+  "description": "The Power of Digital Storytelling explores how craft itself becomes the story, why motion, interaction, and immersive design shape brand narratives more powerfully than words alone."
+ },
+ {
+  "slug": "pacome-pertant-portfolio",
+  "title": "Pacôme Pertant Portfolio",
+  "bucket": "3d-webgl",
+  "year": 2026,
+  "award": "Site of the Day - Jun 9, 2026",
+  "score": 7.76,
+  "live_url": "https://pacomepertant.com/",
+  "tags": [
+   "Art & Illustration",
+   "Music & Sound",
+   "Promotional",
+   "Animation",
+   "Portfolio",
+   "Scrolling",
+   "Transitions",
+   "3D",
+   "Microinteractions",
+   "GSAP",
+   "Three.js",
+   "Nuxt.js"
+  ],
+  "palette": [
+   "#0a0a0a",
+   "#fafafa"
+  ],
+  "elements": [
+   {
+    "title": "Spiral View",
+    "tags": [
+     "3d",
+     "thee.js"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/69f88fbe7813e178336872.mp4"
+   },
+   {
+    "title": "About",
+    "tags": [
+     "scroll"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/69f88ea0ea041823123411.mp4"
+   },
+   {
+    "title": "Loading",
+    "tags": [
+     "lottie",
+     "loading"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/69f896e375c57262328424.mp4"
+   },
+   {
+    "title": "Footer Scroll Transition",
+    "tags": [
+     "scroll"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/69f8930577841722113263.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.4,
+   "animations": 8.6,
+   "accessibility": 7.0,
+   "wpo": 8.0,
+   "responsive": 7.8,
+   "markup": 6.6
+  },
+  "description": "Pacôme Pertant is a motion and sound designer based in Paris. He plays with rhythm and visual storytelling across 2D and 3D canvases to create emotional content."
+ },
+ {
+  "slug": "gq-ap-the-extraordinary-lab",
+  "title": "GQ & AP The Extraordinary Lab",
+  "bucket": "3d-webgl",
+  "year": 2026,
+  "award": "Site of the Day - Mar 26, 2026",
+  "score": 7.74,
+  "live_url": "https://www.gq.com/sponsored/story/the-extraordinary-lab",
+  "tags": [
+   "Fashion",
+   "Web & Interactive",
+   "Experimental",
+   "Responsive Design",
+   "3D",
+   "Gestures / Interaction",
+   "WebGL",
+   "Nuxt.js",
+   "Blender"
+  ],
+  "palette": [],
+  "elements": [],
+  "dev": {
+   "semantics_seo": 6.8,
+   "animations": 8.6,
+   "accessibility": 6.0,
+   "wpo": 7.4,
+   "responsive": 7.0,
+   "markup": 7.0
+  },
+  "description": "An immersive digital experience exploring the RD Series by Audemars Piguet, revealing the brand’s relentless pursuit of research, ultra thin engineering and horological innovation."
+ },
+ {
+  "slug": "shader-development-studio",
+  "title": "Shader Development Studio",
+  "bucket": "3d-webgl",
+  "year": 2026,
+  "award": "Site of the Day - Apr 20, 2026",
+  "score": 7.73,
+  "live_url": "https://www.shader.se/",
+  "tags": [
+   "Business & Corporate",
+   "Web & Interactive",
+   "Experimental",
+   "Portfolio",
+   "Retro",
+   "Storytelling",
+   "3D",
+   "404 pages",
+   "next.js",
+   "WebGL",
+   "Three.js",
+   "React"
+  ],
+  "palette": [
+   "#000000"
+  ],
+  "elements": [
+   {
+    "title": "The Golden Tie",
+    "tags": [
+     "tie",
+     "golden",
+     "transition"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69c6b4fada2aa913234749.mp4"
+   },
+   {
+    "title": "Loading page",
+    "tags": [
+     "loading"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69c6926302fd6847564714.mp4"
+   },
+   {
+    "title": "Transition from Home to Projects",
+    "tags": [
+     "transition",
+     "superpet"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69c6a485682ba496943746.mp4"
+   },
+   {
+    "title": "Contact",
+    "tags": [
+     "contact",
+     "handshake",
+     "business",
+     "good",
+     "buy"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69c6b598d811e379095793.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.6,
+   "animations": 9.4,
+   "accessibility": 7.4,
+   "wpo": 8.0,
+   "responsive": 8.4,
+   "markup": 7.8
+  },
+  "description": "Shader is a development studio specializing in real-time graphics and interactive experiences. Plugged into the future."
+ },
+ {
+  "slug": "why-zero",
+  "title": "Why Zero",
+  "bucket": "3d-webgl",
+  "year": 2026,
+  "award": "Site of the Day - Sep 7, 2026",
+  "score": 7.73,
+  "live_url": "https://why.zero.university/",
+  "tags": [
+   "Culture & Education",
+   "Technology",
+   "Startups",
+   "Single page",
+   "Sound-Audio",
+   "Storytelling",
+   "3D",
+   "Gestures / Interaction",
+   "Filters and Effects",
+   "GSAP",
+   "Three.js",
+   "Blender"
+  ],
+  "palette": [
+   "#ffffff",
+   "#01C654"
+  ],
+  "elements": [
+   {
+    "title": "Narrative Scroll",
+    "tags": [
+     "webgl",
+     "threejs",
+     "parallax",
+     "3d",
+     "stats",
+     "animation"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/07/6a563bc8bc43c715790957.mp4"
+   },
+   {
+    "title": "Hold to proceed",
+    "tags": [
+     "hold",
+     "mouse",
+     "interaction",
+     "webgl",
+     "narrative",
+     "immersive"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/07/6a56301adc833709765611.mp4"
+   },
+   {
+    "title": "Waitlist Form with Personalized Origami",
+    "tags": [
+     "popup",
+     "origami",
+     "3d",
+     "threejs",
+     "degree",
+     "texture"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/07/6a56431fc7080904348978.mp4"
+   },
+   {
+    "title": "Page Unlock",
+    "tags": [
+     "drawing",
+     "webgl",
+     "threejs",
+     "swipe",
+     "circle",
+     "zero"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/07/6a562d7f1aa00693388142.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 6.6,
+   "animations": 8.4,
+   "accessibility": 6.6,
+   "wpo": 8.0,
+   "responsive": 7.0,
+   "markup": 6.8
+  },
+  "description": "Why Zero is an immersive web experience about how Zero University is replacing the broken education system with AI-native learning by offering real projects and jobs at top companies."
+ },
+ {
+  "slug": "leo-parpeix-portfolio-2026",
+  "title": "Léo Parpeix - Portfolio 2026",
+  "bucket": "3d-webgl",
+  "year": 2026,
+  "award": "Site of the Day - Sep 14, 2026",
+  "score": 7.69,
+  "live_url": "https://leoparpeix.com/",
+  "tags": [
+   "Promotional",
+   "Web & Interactive",
+   "Experimental",
+   "Animation",
+   "Portfolio",
+   "Typography",
+   "Transitions",
+   "3D",
+   "Microinteractions",
+   "WebGL",
+   "After Effects",
+   "Blender"
+  ],
+  "palette": [],
+  "elements": [],
+  "dev": {
+   "semantics_seo": 7.0,
+   "animations": 8.4,
+   "accessibility": 7.0,
+   "wpo": 7.2,
+   "responsive": 7.8,
+   "markup": 7.4
+  },
+  "description": "Portfolio of Léo Parpeix, Art Director and Interactive Designer, specializing in creating unique website with a focus on innovation and user-centered design."
+ },
+ {
+  "slug": "iyo",
+  "title": "iyO",
+  "bucket": "3d-webgl",
+  "year": 2026,
+  "award": "Site of the Day - Apr 2, 2026",
+  "score": 7.68,
+  "live_url": "https://www.iyo.ai/",
+  "tags": [
+   "E-Commerce",
+   "Technology",
+   "Web & Interactive",
+   "Infinite Scroll",
+   "Unusual Navigation",
+   "Sound-Audio",
+   "3D",
+   "Interaction Design",
+   "UI design",
+   "WebGL",
+   "Three.js",
+   "Webflow"
+  ],
+  "palette": [
+   "#101010"
+  ],
+  "elements": [
+   {
+    "title": "Chladni Patterns WebGL Haiku",
+    "tags": [
+     "webgl",
+     "chladni patterns",
+     "interactive particles",
+     "haiku",
+     "acoustic physics",
+     "generative art"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69a9fd49994a4172549506.mp4"
+   },
+   {
+    "title": "3D Product Experience & Configurator",
+    "tags": [
+     "3d model",
+     "product configurator",
+     "product color switch",
+     "interactive e-commerce",
+     "webgl",
+     "configurator ui"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69aa1c85b5fc1363452798.mp4"
+   },
+   {
+    "title": "Interactive WebGL Exploded View",
+    "tags": [
+     "webgl",
+     "exploded view",
+     "scroll animation",
+     "3d product exploration",
+     "hardware interaction"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69aa0010df228739864622.mp4"
+   },
+   {
+    "title": "Procedural WebGL Shader Footer",
+    "tags": [
+     "cymatic",
+     "generative art",
+     "generative patterns",
+     "procedural graphics",
+     "fragment shader"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69aa96c8517ce240183891.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.2,
+   "animations": 8.2,
+   "accessibility": 6.0,
+   "wpo": 7.2,
+   "responsive": 8.0,
+   "markup": 7.2
+  },
+  "description": "A high-fidelity 3D showcase and bespoke configurator for iyO, pioneers of screenless computing, translating their vision into an immersive e-commerce experience."
+ },
+ {
+  "slug": "gil-huybrecht",
+  "title": "Gil Huybrecht",
+  "bucket": "3d-webgl",
+  "year": 2026,
+  "award": "Site of the Day - Sep 21, 2026",
+  "score": 7.66,
+  "live_url": "https://gilhuybrecht.com/",
+  "tags": [
+   "Design Agencies",
+   "Promotional",
+   "Web & Interactive",
+   "Clean",
+   "Infinite Scroll",
+   "Portfolio",
+   "Typography",
+   "Gallery",
+   "Microinteractions",
+   "WebGL",
+   "Next.js",
+   "DatoCMS"
+  ],
+  "palette": [
+   "#0D0D0F",
+   "#FFFFFF"
+  ],
+  "elements": [],
+  "dev": {
+   "semantics_seo": 6.6,
+   "animations": 8.4,
+   "accessibility": 7.4,
+   "wpo": 7.4,
+   "responsive": 7.6,
+   "markup": 7.2
+  },
+  "description": "My new portfolio website where you'll find my latest work, availability and more information about me and my services."
+ },
+ {
+  "slug": "hubtown",
+  "title": "Hubtown",
+  "bucket": "3d-webgl",
+  "year": 2026,
+  "award": "Site of the Day - Jun 10, 2026",
+  "score": 7.66,
+  "live_url": "https://hubtown.co.in/",
+  "tags": [
+   "Business & Corporate",
+   "Experimental",
+   "Real Estate",
+   "Animation",
+   "Storytelling",
+   "3D",
+   "Interaction Design",
+   "HTML5",
+   "WebGL",
+   "GSAP"
+  ],
+  "palette": [
+   "#020A19"
+  ],
+  "elements": [
+   {
+    "title": "Zoom Transition",
+    "tags": [
+     "map",
+     "webgl",
+     "navigation",
+     "projects page",
+     "3d"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/69fb39ee50960245011000.mp4"
+   },
+   {
+    "title": "Mouse Reveal Interaction",
+    "tags": [
+     "interactive map",
+     "map",
+     "3d",
+     "webgl",
+     "projects page"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/69fb00ad8c0cb959653913.mp4"
+   },
+   {
+    "title": "Introduction Sequence",
+    "tags": [
+     "webgl",
+     "homepage",
+     "immersive",
+     "3d",
+     "real estate"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/69fa08bbbb2ce870738146.mp4"
+   },
+   {
+    "title": "Introduction Sequence",
+    "tags": [
+     "homepage",
+     "webgl",
+     "3d",
+     "scrolling",
+     "immersive"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/69fa075284107742858899.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.0,
+   "animations": 8.4,
+   "accessibility": 6.6,
+   "wpo": 7.2,
+   "responsive": 7.6,
+   "markup": 6.8
+  },
+  "description": "Hubtown is one of India's leading real estate developers. Shaping the city of Mumbai for over 40 years."
+ },
+ {
+  "slug": "bennett-clive",
+  "title": "Bennett & Clive",
+  "bucket": "typography",
+  "year": 2024,
+  "award": "Site of the Day - Mar 12, 2024",
+  "score": 7.71,
+  "live_url": "https://bennettandclive.com",
+  "tags": [
+   "Fashion",
+   "Film & TV",
+   "Photography",
+   "Flat Design",
+   "Minimal",
+   "Typography",
+   "Photo & Video",
+   "About Page",
+   "Footer Design"
+  ],
+  "palette": [
+   "#000000",
+   "#ffffff"
+  ],
+  "elements": [
+   {
+    "title": "Services & Clients",
+    "tags": [
+     "typography",
+     "text animation",
+     "scroll animation",
+     "video",
+     "blend mode"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/02/65dc7b6796a2d065835550.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 6.8,
+   "animations": 8.0,
+   "accessibility": 7.0,
+   "wpo": 8.4,
+   "responsive": 7.6,
+   "markup": 7.4
+  },
+  "description": "Bennett & Clive is a global creative services and production company helping brands and agencies tell their stories to the world."
+ },
+ {
+  "slug": "aim-ai-modernism-of-kharkiv",
+  "title": "AIM — AI Modernism of Kharkiv",
+  "bucket": "typography",
+  "year": 2024,
+  "award": "Site of the Day - Jan 29, 2024",
+  "score": 7.67,
+  "live_url": "https://aim.obys.agency/",
+  "tags": [
+   "Art & Illustration",
+   "Culture & Education",
+   "Fashion",
+   "Animation",
+   "Big Background Images",
+   "Clean",
+   "Typography",
+   "Storytelling",
+   "Interaction Design"
+  ],
+  "palette": [
+   "#141414",
+   "#F5F2EE"
+  ],
+  "elements": [
+   {
+    "title": "Gallery Mode",
+    "tags": [
+     "portfolio",
+     "gallery",
+     "art"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/01/65a123451e9a4135520874.mp4"
+   },
+   {
+    "title": "Hover",
+    "tags": [
+     "artists",
+     "art",
+     "design"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/01/65a12293cb8eb774432615.mp4"
+   },
+   {
+    "title": "Main page storytelling",
+    "tags": [
+     "storytelling",
+     "art",
+     "design",
+     "portfolio"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/01/65a1234b20a85464140557.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.0,
+   "animations": 8.4,
+   "accessibility": 7.2,
+   "wpo": 7.8,
+   "responsive": 7.6,
+   "markup": 7.0
+  },
+  "description": "AI Experiment that delves into a contemporary reimagining of the Kharkiv Modernism movement from 1910 to 1930."
+ },
+ {
+  "slug": "vast",
+  "title": "Vast",
+  "bucket": "typography",
+  "year": 2026,
+  "award": "Site of the Day - Apr 1, 2026",
+  "score": 7.65,
+  "live_url": "https://vastspace.com",
+  "tags": [
+   "Technology",
+   "Web & Interactive",
+   "Typography",
+   "Transitions",
+   "Storytelling",
+   "Photo & Video",
+   "WebGL",
+   "Three.js",
+   "Webflow"
+  ],
+  "palette": [
+   "#2A2C2F",
+   "#FF5623"
+  ],
+  "elements": [
+   {
+    "title": "Haven-1 Interior & Exterior WebGL",
+    "tags": [
+     "webgl",
+     "3d"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69a58e48245f2402142576.mp4"
+   },
+   {
+    "title": "Haven-1 Interior WebGL",
+    "tags": [
+     "webgl",
+     "360"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69a58ea25fb63099867729.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.4,
+   "animations": 7.4,
+   "accessibility": 7.0,
+   "wpo": 7.6,
+   "responsive": 7.4,
+   "markup": 7.2
+  },
+  "description": "Vast is developing humanity’s most capable space stations, pioneering the next giant leap toward long-term living and thriving in space."
+ },
+ {
+  "slug": "shed",
+  "title": "Shed",
+  "bucket": "typography",
+  "year": 2026,
+  "award": "Site of the Day - Mar 23, 2026",
+  "score": 7.64,
+  "live_url": "https://shed.design/",
+  "tags": [
+   "Architecture",
+   "Business & Corporate",
+   "Animation",
+   "Colorful",
+   "Scrolling",
+   "Typography",
+   "Interaction Design",
+   "Footer Design",
+   "GSAP",
+   "Nuxt.js",
+   "DatoCMS"
+  ],
+  "palette": [
+   "#0F00B0"
+  ],
+  "elements": [
+   {
+    "title": "Shed Menu",
+    "tags": [
+     "menu",
+     "navigation"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/02/6997000d2395d580613753.mp4"
+   },
+   {
+    "title": "Shed Case Study",
+    "tags": [
+     "scroll",
+     "case study",
+     "portfolio",
+     "project"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/02/69970210210fb598135245.mp4"
+   },
+   {
+    "title": "Shed Intro Loader",
+    "tags": [
+     "intro"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/02/6996f76b3599f312702310.mp4"
+   },
+   {
+    "title": "Shed Index",
+    "tags": [
+     "scrolling",
+     "interaction",
+     "index",
+     "projects",
+     "list"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/02/699700311106f874524542.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.0,
+   "animations": 7.8,
+   "accessibility": 6.8,
+   "wpo": 7.8,
+   "responsive": 7.4,
+   "markup": 7.2
+  },
+  "description": "Shed are an agile, international team of strategic thinkers, brand designers and interior architects who have shaped ambitious brands for over 25 years."
+ },
+ {
+  "slug": "floema",
+  "title": "Floema",
+  "bucket": "e-commerce",
+  "year": 2026,
+  "award": "Site of the Day - May 13, 2026",
+  "score": 7.65,
+  "live_url": "https://www.floema.com/en",
+  "tags": [
+   "Business & Corporate",
+   "E-Commerce",
+   "Promotional",
+   "Photographic",
+   "Storytelling",
+   "3D",
+   "Header Design",
+   "WebGL",
+   "GSAP",
+   "Nuxt.js"
+  ],
+  "palette": [
+   "#E9E778",
+   "#241F21"
+  ],
+  "elements": [
+   {
+    "title": "Product Page",
+    "tags": [
+     "webgl",
+     "3d",
+     "gallery",
+     "footer"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/04/69e0ea87e1147890762305.mp4"
+   },
+   {
+    "title": "Sustainability Scroll Interaction",
+    "tags": [
+     "scroll",
+     "webgl",
+     "illustration"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/04/69e0e532e7be1307547974.mp4"
+   },
+   {
+    "title": "Sustainability Material 3D",
+    "tags": [
+     "cube",
+     "webgl",
+     "3d"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/04/69e0e71ee7741135203847.mp4"
+   },
+   {
+    "title": "Menu and Search Interaction",
+    "tags": [
+     "menu",
+     "hover",
+     "search",
+     "gooey"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/04/69e0f39e1d7ad194644365.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.8,
+   "animations": 8.2,
+   "accessibility": 7.0,
+   "wpo": 7.6,
+   "responsive": 7.6,
+   "markup": 7.6
+  },
+  "description": "Floema designs and produces sustainable urban furniture and signage for natural spaces. Spaces for people, made for life."
+ },
+ {
+  "slug": "son-daven",
+  "title": "Son Daven",
+  "bucket": "e-commerce",
+  "year": 2026,
+  "award": "Site of the Day - Jun 5, 2026",
+  "score": 7.62,
+  "live_url": "https://sondaven.com/en",
+  "tags": [
+   "E-Commerce",
+   "Food & Drink",
+   "Hotel / Restaurant",
+   "Animation",
+   "Scrolling",
+   "Storytelling",
+   "UI design",
+   "Microinteractions",
+   "WebGL",
+   "GSAP",
+   "Webflow"
+  ],
+  "palette": [
+   "#A89474",
+   "#2C2824"
+  ],
+  "elements": [
+   {
+    "title": "Preloader",
+    "tags": [
+     "loading",
+     "preloader",
+     "motion"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/69fb5296596cf044748861.mp4"
+   },
+   {
+    "title": "Scroll Animation",
+    "tags": [
+     "projects",
+     "scroll",
+     "animation",
+     "motion",
+     "layout"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/69fb52b65bfb5949678784.mp4"
+   },
+   {
+    "title": "Footer",
+    "tags": [
+     "footer",
+     "animation",
+     "illustration",
+     "motion",
+     "layout"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/69fb544a32334078116343.mp4"
+   },
+   {
+    "title": "Microinteractions",
+    "tags": [
+     "microinteractions",
+     "layout",
+     "motion",
+     "animation",
+     "switcher"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/69fb5516791ba089137154.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 8.2,
+   "animations": 8.2,
+   "accessibility": 7.4,
+   "wpo": 8.0,
+   "responsive": 8.4,
+   "markup": 8.0
+  },
+  "description": "Son Daven is a new place of power in the Carpathians, where Hutsul culture meets contemporary architecture, art, hospitality, and modern comfort."
+ },
+ {
+  "slug": "odd-ritual",
+  "title": "Odd Ritual",
+  "bucket": "e-commerce",
+  "year": 2026,
+  "award": "Site of the Day - Apr 11, 2026",
+  "score": 7.55,
+  "live_url": "https://oddritualgolf.com/",
+  "tags": [
+   "E-Commerce",
+   "Fashion",
+   "Clean",
+   "Minimal",
+   "About Page",
+   "Contentful",
+   "GSAP",
+   "Three.js",
+   "BARBA.js"
+  ],
+  "palette": [
+   "#FFFFFF",
+   "#050fff"
+  ],
+  "elements": [
+   {
+    "title": "Homepage",
+    "tags": [
+     "gallery",
+     "footer",
+     "homepage"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69b40f73cb029017462912.mp4"
+   },
+   {
+    "title": "Menu",
+    "tags": [
+     "menu",
+     "full bleed",
+     "hovers"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69b4124654861990692685.mp4"
+   },
+   {
+    "title": "About Index",
+    "tags": [
+     "index",
+     "products list",
+     "e-commerce",
+     "about us"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69b410da6fdab953370520.mp4"
+   },
+   {
+    "title": "Homepage",
+    "tags": [
+     "homepage",
+     "landing",
+     "e-commerce",
+     "hero slider"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69b3fa8b88d57678007919.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.6,
+   "animations": 7.2,
+   "accessibility": 6.2,
+   "wpo": 7.6,
+   "responsive": 7.6,
+   "markup": 6.8
+  },
+  "description": "Digital brand home and shop for Odd Ritual - a clothing brand rooted in the game and traditions of golf, expressed through culture, creativity, and craft."
+ },
+ {
+  "slug": "lama-lama-2",
+  "title": "Lama Lama",
+  "bucket": "e-commerce",
+  "year": 2026,
+  "award": "Site of the Day - Jul 20, 2026",
+  "score": 7.51,
+  "live_url": "https://lamalama.com/",
+  "tags": [
+   "Design Agencies",
+   "E-Commerce",
+   "Web & Interactive",
+   "Animation",
+   "Graphic design",
+   "WebGL",
+   "GSAP",
+   "Javascript"
+  ],
+  "palette": [
+   "#F9F4EB",
+   "#1A1C1C"
+  ],
+  "elements": [
+   {
+    "title": "Intro animation from our icon logo",
+    "tags": [
+     "animation",
+     "icon",
+     "transition"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/06/6a21742eae6f4659098703.mp4"
+   },
+   {
+    "title": "You can now step inside it yourself on our website",
+    "tags": [
+     "camera",
+     "grid",
+     "video"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/06/6a2173b907297087647756.mp4"
+   },
+   {
+    "title": "We've put it all in one deck. No sales pitch.",
+    "tags": [
+     "pitchdeck",
+     "presentation"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/06/6a21724195e82307652506.mp4"
+   },
+   {
+    "title": "Content morphs Lama Lama DNA",
+    "tags": [
+     "effect",
+     "shader",
+     "morphs"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/06/6a21702aad436596994347.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.2,
+   "animations": 7.8,
+   "accessibility": 6.6,
+   "wpo": 7.6,
+   "responsive": 7.2,
+   "markup": 7.6
+  },
+  "description": "A creative digital agency that goes all in or not at all."
+ },
+ {
+  "slug": "lacoste-polo-factory",
+  "title": "Lacoste — Polo Factory",
+  "bucket": "e-commerce",
+  "year": 2026,
+  "award": "Site of the Day - Jul 21, 2026",
+  "score": 7.49,
+  "live_url": "https://members-play.lacoste.com/polo-factory-experience",
+  "tags": [
+   "Architecture",
+   "Fashion",
+   "Games & Entertainment",
+   "Colorful",
+   "Fullscreen",
+   "3D",
+   "WebGL",
+   "Three.js"
+  ],
+  "palette": [
+   "#A4E7FE",
+   "#F7ECE8"
+  ],
+  "elements": [],
+  "dev": {
+   "semantics_seo": 6.6,
+   "animations": 9.2,
+   "accessibility": 6.0,
+   "wpo": 7.6,
+   "responsive": 7.2,
+   "markup": 7.0
+  },
+  "description": "Welcome to the Lacoste Polo Factory. Where polos are born."
+ },
+ {
+  "slug": "fluid-glass",
+  "title": "Fluid Glass",
+  "bucket": "portfolio-agency",
+  "year": 2026,
+  "award": "Site of the Day - Mar 30, 2026",
+  "score": 7.77,
+  "live_url": "https://fluid.glass/",
+  "tags": [
+   "Architecture",
+   "Business & Corporate",
+   "Real Estate",
+   "Clean",
+   "Horizontal Layout",
+   "Minimal",
+   "Portfolio",
+   "Unusual Navigation",
+   "Footer Design",
+   "GSAP",
+   "Nuxt.js",
+   "Vercel"
+  ],
+  "palette": [
+   "#212325",
+   "#0B1012"
+  ],
+  "elements": [
+   {
+    "title": "Menu",
+    "tags": [
+     "menu",
+     "navigation",
+     "minimal",
+     "minimal menu",
+     "snappy"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/02/69a046dd8f343199189604.mp4"
+   },
+   {
+    "title": "Product Detail Page",
+    "tags": [
+     "case detail page",
+     "editorial",
+     "typography"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/02/69a0450c049bc261751743.mp4"
+   },
+   {
+    "title": "Process Component",
+    "tags": [
+     "horizontal scroll",
+     "process",
+     "video",
+     "images",
+     "parallax"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/02/69a045541ddd7982133352.mp4"
+   },
+   {
+    "title": "Mask wipe transition on scroll",
+    "tags": [
+     "wipe",
+     "from wireframe to photograph",
+     "on scroll",
+     "parallax",
+     "mask"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/02/69a044338c868668499790.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.8,
+   "animations": 8.2,
+   "accessibility": 7.6,
+   "wpo": 8.2,
+   "responsive": 8.2,
+   "markup": 7.8
+  },
+  "description": "Fluid Glass provides structural and architectural glazing to some of the most prestigious construction projects in the UK."
+ },
+ {
+  "slug": "slosh-seltzer",
+  "title": "Slosh Seltzer",
+  "bucket": "portfolio-agency",
+  "year": 2024,
+  "award": "Site of the Day - Jun 5, 2024",
+  "score": 7.69,
+  "live_url": "https://sloshseltzer.com/",
+  "tags": [
+   "Design Agencies",
+   "Food & Drink",
+   "Web & Interactive",
+   "Colorful",
+   "Graphic design",
+   "Transitions",
+   "Microinteractions"
+  ],
+  "palette": [
+   "#ffc1ff"
+  ],
+  "elements": [
+   {
+    "title": "Mouse Fluid",
+    "tags": [
+     "interaction",
+     "fluid"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/05/6647e4ba062ec454646605.mp4"
+   },
+   {
+    "title": "Landing and Carousel",
+    "tags": [
+     "landing page",
+     "interaction",
+     "carousel"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/05/6647e48440e86368257257.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 6.8,
+   "animations": 8.6,
+   "accessibility": 6.8,
+   "wpo": 7.6,
+   "responsive": 7.6,
+   "markup": 7.2
+  },
+  "description": "Get the good times flowing with our newest brainchild Slosh Seltzer, an in house maximalist design exploration."
+ },
+ {
+  "slug": "dropbox-brand",
+  "title": "Dropbox Brand",
+  "bucket": "portfolio-agency",
+  "year": 2025,
+  "award": "Site of the Day - Feb 12, 2025",
+  "score": 7.67,
+  "live_url": "https://brand.dropbox.com/",
+  "tags": [
+   "Design Agencies",
+   "Animation",
+   "Colorful",
+   "Navigation Menu",
+   "Scrolling",
+   "Storytelling",
+   "Microinteractions"
+  ],
+  "palette": [
+   "#0061FE",
+   "#1A1918"
+  ],
+  "elements": [
+   {
+    "title": "Typography Widgets",
+    "tags": [
+     "typography",
+     "widgets",
+     "variable",
+     "font",
+     "drag",
+     "slider"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/01/678ea770a0689780208828.mp4"
+   },
+   {
+    "title": "Motion Timeline",
+    "tags": [
+     "motion",
+     "timeline",
+     "zoom",
+     "pan",
+     "scroll",
+     "typography"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/01/678ea768d6bbf730387381.mp4"
+   },
+   {
+    "title": "Typography Cursors",
+    "tags": [
+     "typography",
+     "cursors",
+     "scroll",
+     "randomized",
+     "movement",
+     "fill"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/01/678ea9b730069949082423.mp4"
+   },
+   {
+    "title": "Nav Menu",
+    "tags": [
+     "nav",
+     "menu",
+     "animations",
+     "pages",
+     "directory",
+     "hover"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/01/678ea9bb22a84675562759.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.0,
+   "animations": 8.4,
+   "accessibility": 7.0,
+   "wpo": 7.6,
+   "responsive": 8.6,
+   "markup": 8.0
+  },
+  "description": "Through interactive play and artful detail, enter the vibrant new world for the Dropbox brand. Every detail invites you in—to linger a little longer, to look a little closer."
+ },
+ {
+  "slug": "san-rita",
+  "title": "San Rita",
+  "bucket": "portfolio-agency",
+  "year": 2026,
+  "award": "Site of the Day - Mar 31, 2026",
+  "score": 7.66,
+  "live_url": "https://sanrita.ca/",
+  "tags": [
+   "Design Agencies",
+   "Web & Interactive",
+   "Experimental",
+   "Animation",
+   "Portfolio",
+   "Unusual Navigation",
+   "Storytelling",
+   "3D",
+   "UI design",
+   "WebGL",
+   "Next.js",
+   "DatoCMS"
+  ],
+  "palette": [
+   "#2C3328",
+   "#DCFFC7"
+  ],
+  "elements": [
+   {
+    "title": "Homepage Header",
+    "tags": [
+     "webgl",
+     "transition",
+     "intro",
+     "scroll",
+     "cloud",
+     "map"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/02/699dc3438e91d297364235.mp4"
+   },
+   {
+    "title": "Maps",
+    "tags": [
+     "maps",
+     "navigation",
+     "3d",
+     "blender",
+     "webgl",
+     "trail"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/02/699dc18b75b60898517002.mp4"
+   },
+   {
+    "title": "Loading",
+    "tags": [
+     "loading",
+     "transition",
+     "animation",
+     "webg"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/02/699dc1c984e87279440645.mp4"
+   },
+   {
+    "title": "Transition",
+    "tags": [
+     "transition",
+     "project",
+     "footer",
+     "typography",
+     "portfolio"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/02/699dc2113ddfb223279345.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.0,
+   "animations": 8.2,
+   "accessibility": 6.4,
+   "wpo": 8.0,
+   "responsive": 7.4,
+   "markup": 7.4
+  },
+  "description": "A Creative Studio where brands and stories move off-trails."
+ },
+ {
+  "slug": "artefakt",
+  "title": "Artefakt",
+  "bucket": "portfolio-agency",
+  "year": 2026,
+  "award": "Site of the Day - Apr 3, 2026",
+  "score": 7.63,
+  "live_url": "https://artefakt.mov/",
+  "tags": [
+   "Film & TV",
+   "Portfolio",
+   "Typography",
+   "Transitions",
+   "3D",
+   "Photo & Video",
+   "Microinteractions",
+   "Wordpress",
+   "WebGL",
+   "GSAP"
+  ],
+  "palette": [
+   "#ffffff",
+   "#000000"
+  ],
+  "elements": [
+   {
+    "title": "ASCII post processing over particles mouse interaction",
+    "tags": [
+     "webgl",
+     "ascii",
+     "mouse",
+     "cursor"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69b83b1d7ad4c823874728.mp4"
+   },
+   {
+    "title": "Project 3D gallery animation",
+    "tags": [
+     "3d",
+     "perspective",
+     "depth",
+     "webgl"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69b83bce7eeeb067837969.mp4"
+   },
+   {
+    "title": "Images focus interaction",
+    "tags": [
+     "hover",
+     "mouse interaction"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69b83ced4ab89538061962.mp4"
+   },
+   {
+    "title": "ASCII image pixel reveal",
+    "tags": [
+     "ascii",
+     "pixel",
+     "reveal",
+     "projects"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69b83c36d6293829271372.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 8.0,
+   "animations": 8.8,
+   "accessibility": 7.6,
+   "wpo": 8.0,
+   "responsive": 8.0,
+   "markup": 8.2
+  },
+  "description": "Artefakt is a hybrid production company fusing high-end commercial work with a drive to explore the unconventional."
+ },
+ {
+  "slug": "maxima-therapy",
+  "title": "Maxima Therapy",
+  "bucket": "motion-transitions",
+  "year": 2026,
+  "award": "Site of the Day - Apr 7, 2026",
+  "score": 7.73,
+  "live_url": "https://maximatherapy.com/",
+  "tags": [
+   "Culture & Education",
+   "Social responsibility",
+   "Animation",
+   "Colorful",
+   "Flat Design",
+   "Illustration",
+   "Transitions",
+   "404 pages",
+   "GSAP",
+   "React",
+   "Lottie"
+  ],
+  "palette": [
+   "#FDCB40",
+   "#FD4401"
+  ],
+  "elements": [
+   {
+    "title": "Playful Page Transition",
+    "tags": [
+     "colorful",
+     "transition",
+     "animation",
+     "rotation"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69b47970bf2f9515682052.mp4"
+   },
+   {
+    "title": "Colorful Career Page",
+    "tags": [
+     "career",
+     "illustration",
+     "animation",
+     "support",
+     "parallax"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69b47a197a874890205389.mp4"
+   },
+   {
+    "title": "Program Presentation",
+    "tags": [
+     "illustration",
+     "colorful",
+     "parallax",
+     "scroll"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69b47a13245f4841589823.mp4"
+   },
+   {
+    "title": "Hero Slider Navigation",
+    "tags": [
+     "illustration",
+     "hero",
+     "slider",
+     "interactive",
+     "colorful"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69b47969a7af3029073925.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 8.0,
+   "animations": 8.2,
+   "accessibility": 7.4,
+   "wpo": 8.0,
+   "responsive": 8.2,
+   "markup": 7.8
+  },
+  "description": "Maxima Therapy is an organization dedicated to supporting neurodivergent individuals throughout their lives. Living with neurodivergence can be empowering, beautiful even!"
+ },
+ {
+  "slug": "champions-for-good",
+  "title": "Champions For Good",
+  "bucket": "motion-transitions",
+  "year": 2026,
+  "award": "Site of the Day - Apr 6, 2026",
+  "score": 7.69,
+  "live_url": "https://www.champions4good.club/",
+  "tags": [
+   "Art & Illustration",
+   "Business & Corporate",
+   "Sports",
+   "Animation",
+   "Colorful",
+   "Illustration",
+   "Transitions",
+   "Sound-Audio",
+   "Storytelling",
+   "GSAP",
+   "Lottie",
+   "Webflow"
+  ],
+  "palette": [
+   "#23002b",
+   "#e894ff"
+  ],
+  "elements": [
+   {
+    "title": "Page Scrolling",
+    "tags": [
+     "scroll experience",
+     "animation",
+     "lottie",
+     "gsap",
+     "sport"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69b80b2af34b1586246551.mp4"
+   },
+   {
+    "title": "Page Transition",
+    "tags": [
+     "page transition",
+     "gsap"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/03/69b80a8725f75252059322.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.2,
+   "animations": 8.4,
+   "accessibility": 7.4,
+   "wpo": 7.2,
+   "responsive": 7.2,
+   "markup": 6.2
+  },
+  "description": "A colorful web experience for the German start-up Champions For Good. With lots of little details, playful animations and a sporty touch."
+ },
+ {
+  "slug": "terminal-industries",
+  "title": "Terminal Industries",
+  "bucket": "motion-transitions",
+  "year": 2025,
+  "award": "Site of the Day - Sep 3, 2025",
+  "score": 7.68,
+  "live_url": "https://terminal-industries.com",
+  "tags": [
+   "Business & Corporate",
+   "Technology",
+   "Startups",
+   "Animation",
+   "Scrolling",
+   "Storytelling",
+   "Interaction Design",
+   "CSS",
+   "Vue.js",
+   "Vercel"
+  ],
+  "palette": [],
+  "elements": [],
+  "dev": {
+   "semantics_seo": 7.8,
+   "animations": 8.8,
+   "accessibility": 7.0,
+   "wpo": 8.2,
+   "responsive": 7.8,
+   "markup": 7.4
+  },
+  "description": "Turning shipping yards as the most efficient engine of the supply chain."
+ },
+ {
+  "slug": "tracing-art",
+  "title": "Tracing Art",
+  "bucket": "motion-transitions",
+  "year": 2025,
+  "award": "Site of the Day - Jul 22, 2025",
+  "score": 7.68,
+  "live_url": "https://www.getty.edu/tracingart/",
+  "tags": [
+   "Art & Illustration",
+   "Culture & Education",
+   "Institutions",
+   "Big Background Images",
+   "Clean",
+   "Colorful",
+   "Scrolling",
+   "Data Visualization",
+   "Content architecture"
+  ],
+  "palette": [
+   "#FFFFFF",
+   "#DAE2E8"
+  ],
+  "elements": [
+   {
+    "title": "Main Scroll",
+    "tags": [
+     "#scroll",
+     "#homepage",
+     "#scrolldriven"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/06/684b90f90c143973453684.mp4"
+   },
+   {
+    "title": "Scroll Animations",
+    "tags": [
+     "#scroll",
+     "#animation",
+     "#motion"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/06/684b93ed75651066058708.mp4"
+   },
+   {
+    "title": "Hover Effects",
+    "tags": [
+     "#hover",
+     "#ux",
+     "#ui",
+     "#mouseinteraction",
+     "#interactive"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/06/684b91e3252cd210778466.mp4"
+   },
+   {
+    "title": "Data Visualisation",
+    "tags": [
+     "#visualdata",
+     "#animation",
+     "#ux",
+     "#ui"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/06/684b930e79ac3788819027.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.6,
+   "animations": 8.0,
+   "accessibility": 7.4,
+   "wpo": 7.8,
+   "responsive": 7.8,
+   "markup": 7.4
+  },
+  "description": "Tracing Art brings to life real stories of art provenance through dynamic visuals and rich data from the newly updated Getty Provenance Index."
+ },
+ {
+  "slug": "zentry",
+  "title": "Zentry",
+  "bucket": "category-mix",
+  "year": 2024,
+  "award": "Site of the Day - Aug 28, 2024",
+  "score": 7.67,
+  "live_url": "https://zentry.com/",
+  "tags": [
+   "Games & Entertainment",
+   "Web & Interactive",
+   "Startups",
+   "Colorful",
+   "Scrolling",
+   "Responsive",
+   "Sound-Audio",
+   "Storytelling",
+   "UI design"
+  ],
+  "palette": [
+   "#000000"
+  ],
+  "elements": [
+   {
+    "title": "Prologue",
+    "tags": [
+     "prologue",
+     "storytelling",
+     "scroll"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/07/66a098ecab92b071444246.mp4"
+   },
+   {
+    "title": "Products",
+    "tags": [
+     "products"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/07/66a098c0618b5949988610.mp4"
+   },
+   {
+    "title": "Homepage",
+    "tags": [
+     "homepage"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/07/66a0989595b91926680743.mp4"
+   },
+   {
+    "title": "Branding",
+    "tags": [
+     "branding",
+     "logo"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/07/66a098688ee37263783725.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.2,
+   "animations": 8.2,
+   "accessibility": 6.6,
+   "wpo": 8.2,
+   "responsive": 7.4,
+   "markup": 7.0
+  },
+  "description": "Zentry is a collaborative content-rich universe overflowing with activities, assets, and experiences interconnected with games, social platforms, and brands."
+ },
+ {
+  "slug": "steven-com",
+  "title": "Steven.com",
+  "bucket": "category-mix",
+  "year": 2026,
+  "award": "Site of the Day - Jun 4, 2026",
+  "score": 7.64,
+  "live_url": "https://steven.com",
+  "tags": [
+   "Business & Corporate",
+   "Experimental",
+   "Startups",
+   "Animation",
+   "Parallax",
+   "Unusual Navigation",
+   "Storytelling",
+   "3D",
+   "WebGL",
+   "Three.js",
+   "Webflow"
+  ],
+  "palette": [
+   "#121212",
+   "#ffffff"
+  ],
+  "elements": [
+   {
+    "title": "Preloader",
+    "tags": [
+     "webgl",
+     "transition",
+     "loader",
+     "loading"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/69f8983ebdf86641439470.mp4"
+   },
+   {
+    "title": "Unusual Navigation and Page Transition",
+    "tags": [
+     "page transition",
+     "webgl",
+     "transition",
+     "unusual navigation"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/69f898ace547f566725705.mp4"
+   },
+   {
+    "title": "Menu Opening",
+    "tags": [
+     "menu",
+     "gsap",
+     "text animation",
+     "opening"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/69f8987bd426c164184786.mp4"
+   },
+   {
+    "title": "Particle Trail Mouse Animation",
+    "tags": [
+     "particles",
+     "magic",
+     "mouse interaction"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/69f898d9b9883412657400.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.4,
+   "animations": 7.6,
+   "accessibility": 6.6,
+   "wpo": 8.0,
+   "responsive": 7.4,
+   "markup": 7.2
+  },
+  "description": "Immersive experience exploring Steven Bartlett's creator economy ecosystem, where media, ventures, events and technology converge through 3D motion & WebGL."
+ },
+ {
+  "slug": "ponpon-mania",
+  "title": "Ponpon Mania",
+  "bucket": "category-mix",
+  "year": 2025,
+  "award": "Site of the Day - Oct 22, 2025",
+  "score": 7.64,
+  "live_url": "https://ponpon-mania.com/",
+  "tags": [
+   "Art & Illustration",
+   "Games & Entertainment",
+   "Web & Interactive",
+   "Parallax",
+   "Unusual Navigation",
+   "Illustration",
+   "Storytelling",
+   "3D",
+   "Microinteractions",
+   "WebGL",
+   "GSAP",
+   "Nuxt.js"
+  ],
+  "palette": [
+   "#7E7EFF",
+   "#F894C0"
+  ],
+  "elements": [
+   {
+    "title": "Chapter selection",
+    "tags": [
+     "webgl",
+     "illustration",
+     "menu",
+     "gsap",
+     "transition",
+     "navigation"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/09/68c7c29b4b636677794602.mp4"
+   },
+   {
+    "title": "Panel navigation",
+    "tags": [
+     "webgl",
+     "illustration",
+     "gsap",
+     "transition",
+     "navigation",
+     "mouse"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/09/68c7c1f85e01a561028713.mp4"
+   },
+   {
+    "title": "Page transitions",
+    "tags": [
+     "transition",
+     "webgl",
+     "front",
+     "gsap",
+     "illustration",
+     "animation"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/09/68c7c7011e021588147390.mp4"
+   },
+   {
+    "title": "Home mouse interactions",
+    "tags": [
+     "webgl",
+     "illustration",
+     "gsap",
+     "transition",
+     "physics",
+     "mouse"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2025/09/68c7c06503ae2378752022.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.2,
+   "animations": 9.0,
+   "accessibility": 7.2,
+   "wpo": 8.2,
+   "responsive": 7.6,
+   "markup": 7.0
+  },
+  "description": "Ponpon Mania is an interactive comic. Follow the adventure of a megalomaniac sheep who wants to make the world dance. It's a mix between creative coding and illustrations !"
+ },
+ {
+  "slug": "david-whyte-experience",
+  "title": "David Whyte Experience",
+  "bucket": "category-mix",
+  "year": 2024,
+  "award": "Site of the Day - Dec 31, 2024",
+  "score": 7.63,
+  "live_url": "https://davidwhyte.com/experience/",
+  "tags": [
+   "Art & Illustration",
+   "Culture & Education",
+   "Experimental",
+   "Animation",
+   "Colorful",
+   "Scrolling",
+   "Storytelling",
+   "Gestures / Interaction",
+   "WooCommerce"
+  ],
+  "palette": [
+   "#E1E1E1",
+   "#000000"
+  ],
+  "elements": [
+   {
+    "title": "Scroll through the different landscapes",
+    "tags": [
+     "scroll",
+     "reveal",
+     "paintings"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/12/6753217cd8b0a221915711.mp4"
+   },
+   {
+    "title": "Longpress - Landscape reveal",
+    "tags": [
+     "longpress",
+     "fullscreen",
+     "painting",
+     "video"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2024/12/675321bec22d3342154733.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.2,
+   "animations": 8.0,
+   "accessibility": 6.8,
+   "wpo": 7.4,
+   "responsive": 7.2,
+   "markup": 7.0
+  },
+  "description": "Discover an immersive journey through watercolor landscapes shaped by the places that inspired poet David Whyte."
+ },
+ {
+  "slug": "era-residence",
+  "title": "ERA Residence",
+  "bucket": "category-mix",
+  "year": 2026,
+  "award": "Site of the Day - Aug 31, 2026",
+  "score": 7.61,
+  "live_url": "https://www.era-residence.com/",
+  "tags": [
+   "Architecture",
+   "Real Estate",
+   "Luxury",
+   "Parallax",
+   "Storytelling",
+   "Photo & Video",
+   "GSAP",
+   "Webflow"
+  ],
+  "palette": [
+   "#B5CEDB",
+   "#F8BBCB"
+  ],
+  "elements": [
+   {
+    "title": "Main page",
+    "tags": [
+     "real estate",
+     "luxury",
+     "scroll",
+     "storytelling",
+     "architecture",
+     "webflow"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/07/6a5e74568178c332446223.mp4"
+   },
+   {
+    "title": "Gallery",
+    "tags": [
+     "real estate",
+     "architecture",
+     "luxury",
+     "gallery",
+     "gsap",
+     "webflow"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/07/6a5e767d1f6ed221169956.mp4"
+   },
+   {
+    "title": "Day Night Theme",
+    "tags": [
+     "real estate",
+     "luxury",
+     "development",
+     "immersive"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/07/6a5e6fc98ac79879407832.mp4"
+   },
+   {
+    "title": "Horizontal scroll",
+    "tags": [
+     "real estate",
+     "architecture",
+     "scroll animation",
+     "visual storytelling",
+     "luxury",
+     "gsap"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/07/6a5e72fa67470356110801.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.4,
+   "animations": 8.0,
+   "accessibility": 7.2,
+   "wpo": 7.0,
+   "responsive": 7.0,
+   "markup": 7.4
+  },
+  "description": "Contemporary Mediterranean Boutique residences on the New Golden Mile combining architecture, natural materials and resort-style living near Marbella and Estepona."
+ },
+ {
+  "slug": "made-with-gsap-1",
+  "title": "Made With Gsap",
+  "bucket": "recent-sotd",
+  "year": 2026,
+  "award": "Site of the Day - Jul 29, 2026",
+  "score": 7.65,
+  "live_url": "https://madewithgsap.com/",
+  "tags": [
+   "Culture & Education",
+   "Technology",
+   "Web & Interactive",
+   "Animation",
+   "Clean",
+   "Scrolling",
+   "Gestures / Interaction",
+   "GSAP",
+   "Vanilla JS"
+  ],
+  "palette": [
+   "#C9FE6E",
+   "#0A0A0B"
+  ],
+  "elements": [
+   {
+    "title": "Text Explosion Animation",
+    "tags": [
+     "text",
+     "animation",
+     "explosion",
+     "scroll"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/06/6a29b0e868682376202192.mp4"
+   },
+   {
+    "title": "Scroll Animation",
+    "tags": [
+     "images",
+     "scroll",
+     "animation"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/06/6a29b0ecc22e7506387192.mp4"
+   },
+   {
+    "title": "Hero Drag Animation",
+    "tags": [
+     "hero",
+     "drag",
+     "animation",
+     "clean"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/06/6a29b0e4967e1342524430.mp4"
+   },
+   {
+    "title": "Cards Hover",
+    "tags": [
+     "hover",
+     "depth",
+     "card"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/06/6a29b0ef610be794245665.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.4,
+   "animations": 8.4,
+   "accessibility": 7.2,
+   "wpo": 7.8,
+   "responsive": 7.6,
+   "markup": 7.2
+  },
+  "description": "Made With Gsap is an ever-growing collection of unique, well-crafted JS effects."
+ },
+ {
+  "slug": "depo-luxe",
+  "title": "Depo Luxe",
+  "bucket": "recent-sotd",
+  "year": 2026,
+  "award": "Site of the Day - Jul 7, 2026",
+  "score": 7.62,
+  "live_url": "https://depoluxe.xyz/",
+  "tags": [
+   "Film & TV",
+   "Luxury",
+   "Animation",
+   "Clean",
+   "Navigation Menu",
+   "Photo & Video",
+   "Microinteractions",
+   "11ty"
+  ],
+  "palette": [
+   "#fff",
+   "#000"
+  ],
+  "elements": [
+   {
+    "title": "Main navigation",
+    "tags": [
+     "navigation"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/6a16b9e113f20344203617.mp4"
+   },
+   {
+    "title": "Artist",
+    "tags": [
+     "artist"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/6a16b9e6c2f42510018867.mp4"
+   },
+   {
+    "title": "Archive",
+    "tags": [
+     "archive"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/6a16b9e3e65d7778664330.mp4"
+   },
+   {
+    "title": "Contact",
+    "tags": [
+     "contact"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/6a16bac92f296007552066.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.0,
+   "animations": 8.4,
+   "accessibility": 6.8,
+   "wpo": 7.8,
+   "responsive": 7.6,
+   "markup": 7.4
+  },
+  "description": "A strategic and cinematic approach to contemporary luxury"
+ },
+ {
+  "slug": "the-watch",
+  "title": "The Watch",
+  "bucket": "recent-sotd",
+  "year": 2026,
+  "award": "Site of the Day - Aug 17, 2026",
+  "score": 7.59,
+  "live_url": "https://thewatch.60fps.fr/",
+  "tags": [
+   "Web & Interactive",
+   "Experimental",
+   "Luxury",
+   "360",
+   "3D",
+   "Project Page",
+   "WebGL",
+   "Three.js"
+  ],
+  "palette": [
+   "#000000",
+   "#808080"
+  ],
+  "elements": [
+   {
+    "title": "Product Interactions",
+    "tags": [
+     "3d",
+     "interaction",
+     "webgl",
+     "scroll"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/06/6a3d49016a822887286039.mp4"
+   },
+   {
+    "title": "Product Interactions",
+    "tags": [
+     "3d",
+     "interaction",
+     "webgl",
+     "scroll"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/06/6a3d4ea42bdc2188112600.mp4"
+   },
+   {
+    "title": "Product Interactions",
+    "tags": [
+     "3d",
+     "interaction",
+     "webgl",
+     "scroll"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/06/6a3d4ea204eed873288558.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 6.8,
+   "animations": 8.0,
+   "accessibility": 6.2,
+   "wpo": 7.4,
+   "responsive": 6.8,
+   "markup": 7.0
+  },
+  "description": "The FS 60P is our take on showing a luxury watch at its best. A real-time WebGL piece that interacts with the content around it."
+ },
+ {
+  "slug": "everswap",
+  "title": "EverSwap",
+  "bucket": "recent-sotd",
+  "year": 2026,
+  "award": "Site of the Day - Jun 22, 2026",
+  "score": 7.58,
+  "live_url": "https://everswap.com/",
+  "tags": [
+   "Technology",
+   "Web & Interactive",
+   "Startups",
+   "Illustration",
+   "Storytelling",
+   "3D",
+   "WebGL",
+   "Figma",
+   "Blender"
+  ],
+  "palette": [
+   "#fbfff4",
+   "#203727"
+  ],
+  "elements": [
+   {
+    "title": "Intro",
+    "tags": [
+     "intro",
+     "animation"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/6a06f3f262a7d678523603.mp4"
+   },
+   {
+    "title": "Navigation",
+    "tags": [
+     "navigation"
+    ],
+    "media": "https://assets.awwwards.com/awards/element/2026/05/6a06f3f695381449118432.mp4"
+   }
+  ],
+  "dev": {
+   "semantics_seo": 7.4,
+   "animations": 8.0,
+   "accessibility": 6.6,
+   "wpo": 7.6,
+   "responsive": 7.4,
+   "markup": 7.0
+  },
+  "description": "EverSwap is a unified DeFi protocol for trading, lending, and zero interest borrowing on single sided liquidity pools, powered by relayers for efficient yield and liquidity."
+ }
+]

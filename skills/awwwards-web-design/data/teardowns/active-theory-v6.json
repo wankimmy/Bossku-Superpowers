@@ -1,0 +1,302 @@
+{
+ "slug": "active-theory-v6",
+ "title": "Active Theory V6",
+ "live_url": "https://activetheory.net/",
+ "award": "Awwwards Site of the Day, Feb 6 2024 (Honors); listed in Sites of the Month; award year 2024",
+ "scores": {
+  "overall": 7.95,
+  "design": 8.1,
+  "usability": 7.29,
+  "creativity": 8.68,
+  "content": 7.88,
+  "dev": {
+   "overall": 7.92,
+   "semantics_seo": 7.2,
+   "animations": 9.6,
+   "accessibility": 6.4,
+   "wpo": 8.6,
+   "responsive": 8.0,
+   "markup": 7.2
+  }
+ },
+ "industry": "Creative technology studio / agency portfolio (WebGL, installations, XR, multiplayer, games)",
+ "signature": "The portfolio is one realtime WebGL canvas holding six separately rendered 3D scenes (home, about, work, tree, contact 'CleanRoom', footer) stacked on a native scroll: each scene dollies its own camera with scroll, neighbours are joined by an angled, normal-map-distorted wipe, and the studio reel plays inside the chrome and water as a shared video texture. It runs from a glass-and-chrome logo ring that spins with scroll (and with a drag), down an iridescent spine hung with project slabs, through a cable lab and under water, to a footer that re-uses the ring upside down. Opening a project turns its video into GPU particles that the cursor blows apart with a fluid simulation.",
+ "first_screen": {
+  "composition": "OBSERVED: pure black (#000) canvas with no DOM headline. Preloader (desktop_00): a symmetric blue (#115989-#1a5c96) ink-blot ornament of curved rays and brackets around a thin cyan ring; inside the ring is a character field, rows of '/' glyphs with stray digits ('7', '5'), around a cyan '/76' progress readout (the bottom rows are still empty at 76, so the glyph field appears to fill with progress, inferred; it is the anti-slop law's 'animated character-field' pattern used as a loader, with the stroke cores sampling ~#0862a5). Settled (desktop_02): a chrome ring holding a dark embossed 'a' monogram, centred at ~720,450 and ~234px across, with a moving blue rim-light arc. Two crossed chrome ribbons rise from the bottom edge (the lower lobe of a figure-8 ribbon that hangs from the ring, seen whole in desktop_04 and element 0 f00; it is sculpture, not a camera track), and yellow-green bokeh dust drifts in a teal-fogged void. The only chrome is a 240x47 'WORK' / 'CONTACT' pill top-right at a 40px inset with a light spill below it, and it is NOT DOM: it is drawn in WebGL (GLUI NavUIItem text on a NavBGShader quad); the DOM only holds clipped screen-reader mirror links.",
+  "what_owns_it": "3d",
+  "display_type_px": null,
+  "evidence": [
+   "probes/active-theory-v6/desktop_00.jpg",
+   "probes/active-theory-v6/desktop_01.jpg",
+   "probes/active-theory-v6/desktop_02.jpg",
+   "probe measure.largest_text (max DOM text 16px = the hidden GLA11y links)",
+   "app.js: FragUIHelper addTo 'GLUI.Stage' with NavUIItem Work/Contact",
+   "app.js Home scene: logo rotation.y = 270deg + 2*(drag + 90deg - 190deg*progress) + 210deg*(1-visible)^1.2"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "NB Architekt Std",
+    "role": "display",
+    "classification": "geometric techno/constructivist sans (Light 300, Regular 400, Bold 700)",
+    "foundry": "Neubau (NB Types); licensed, self-hosted woff2/otf",
+    "source": "probe fonts_loaded 'nbarchitekt 400/700' + inline @font-face in index.html"
+   },
+   {
+    "name": "NB Architekt Std",
+    "role": "ui",
+    "classification": "same face at 10-14px for nav (WebGL glText), filters, chat input, project meta and song ticker (DOM, 14px desktop / 13px mobile, line-height 1.5)",
+    "foundry": "Neubau",
+    "source": "probe measure.type.button / Song--Artist 10px lh 30px; app.js chat CSS (.messages p, a 14px)"
+   },
+   {
+    "name": "Times (UA default)",
+    "role": "accent",
+    "classification": "hidden screen-reader mirror links only ('Toggle Audio', 'Work', 'Contact' at 16px #0000ee)",
+    "foundry": "system",
+    "source": "probe measure.type.a; GLA11y clip-rect mirror in inline CSS"
+   }
+  ],
+  "display_size_px": null,
+  "body_size_px": 14,
+  "scale_notes": "Nearly all display type is rendered inside WebGL (Text3D with uByWord/uByLine/uScrollDelta uniforms and MouseFluid applied; GL glText elsewhere), so the DOM maxes out at 16px, and that 16px is the clipped screen-reader mirror. Measured DOM: 14px (9 nodes, bold 700 for the '<<' '>>' player buttons), 12px, 10px ticker (lh 30px). WebGL card titles ('RACER', 'SECRET SKY', 'PAPER PLANES') read ~80-100px at 1440 (inferred from element frames, 1292px capture). The bundle sets the contact page city codes ('LAX', 'SYD', 'AMS'; the ref named 'nyc' actually renders 'SYD') as glText in NB Architekt Light at fontSize 110 with letterSpacing .1, and 'CONTACT US' at 14 with .1.",
+  "tracking_leading": "DOM nodes measure letter-spacing normal; the WebGL glText is tracked (letterSpacing .1 on contact-page type in the bundle). Chat/filter lines use line-height 1.5 with 6px margins; ticker leading 30px on 10px type.",
+  "case_and_style": "ALL CAPS everywhere a human reads UI ('WORK', 'CONTACT', 'WHAT ARE YOU LOOKING FOR?', '-> WEBSITES', 'ASK ME ANYTHING...', 'PROJECT LINK', '<- CLOSE'), but the source strings are lower/sentence case ('-> websites', 'Ask me anything...', 'Work') and the probe reports text-transform none, so the caps come from the typeface's own glyphs (inferred). ASCII arrows '->' and '<-' stand in for icons.",
+  "signature_moves": [
+   "Type lives in the 3D world: project titles are set on the card slabs and smeared with RGB-split and scroll-delta distortion (uScrollDelta = lerp(0.1*scroll.delta.y, prev, .05))",
+   "HUD text is typed on with a random-letter scramble (replaceRandomLetters): filter links appear 100ms apart (delays 100-500ms), messages take clamp(2*length+50, 500, 1500)ms; the contact page scrambles its city codes and email the same way as it fades",
+   "Terminal-style ASCII arrows '->' as list bullets and '<-' as the back action, with an 8x12px cyan block cursor blinking at 1.5s in the chat line",
+   "One licensed techno face at small sizes gives the whole UI a HUD / mission-console voice",
+   "Weight-drop hover: the DOM filter links sit at bold 700 and fall to 400 (and white) on hover, the reverse of the usual bolding; the active filter stays white with a 1px 0 5px white text-shadow and a 10px nudge"
+  ],
+  "mobile": "OBSERVED mobile_01 (390px): the WebGL nav pill scales to ~212px wide at a ~24px right / ~26px top inset, logo ring ~196px centred, no DOM headline; probe mobile largest text 16px, no horizontal overflow. mobile_00 is the intro frame: the ring and monogram very large and almost unlit. Chat/filter text drops to 13px and loses its color-dodge blend on mobile (#eeeeee, home filters #9ca5ff)."
+ },
+ "color": {
+  "mode": "dark",
+  "base": "#000000 page (probe body/html bg rgb(0,0,0)); the rendered void is green-black #080b10-#0f1a1c with teal fog #1a90ad (uil HomeSceneVFX uFogColor) pooling in the corners (#294948 top-left sample desktop_07)",
+  "ink": "#ffffff and #c6c6c6 for UI text (probe text_colors)",
+  "accents": [
+   "#9ca5ff periwinkle: in CSS it is the mobile colour of the home filter links and the fill of the cookie-notice accept pill (#9ca5ff55; that is the probe's rgba(156,165,255,0.333)). On desktop the filter links are #c6c6c6 inside a mix-blend-mode: color-dodge column, so they pick up the violet scene and render ~#7667ac (element 0 f01)",
+   "#00ffff cyan: chat text colour1 in the bundle, the blinking block cursor and the 'thinking' dots (probe bg rgb(0,255,255))",
+   "#c64dff / #422ea3 violet particle cores (uil CoreParticlesShader)",
+   "#cceeff lens-halo tint (uil HydraLensStreak uHaloColor)",
+   "acid yellow-green bokeh particles, peaks #dafc5f-#fdff20, mid #9bb435 (sampled desktop_07)",
+   "#115989-#1a5c96 loader blue (pixel samples desktop_00)"
+  ],
+  "ratio": "about 85% near-black void / 10% fogged teal and particle glow / 5% UI white and violet",
+  "section_shifts": "Colour is set per 3D scene rather than per section: teal-fog home, violet-iridescent work spine (void around the filter list ~#211a2c), blue-violet lab room, green water surface, purple-streaked work detail. Scene changes are FXScrollTransition wipes between separately rendered scenes (uAngle .7 rad, damaged_road_normal distortion, a velocity term), and per-route ShaderVariants (bloom / composite for home, about, work, tree, contact, footer) lerp at .07, so seams are soft but real (the slanted band in element 0 f06 is where two scenes meet or a water ceiling; the WaterCeilingShader exists, so which one is inferred). The nav quad also re-tints to each project's own colour when one opens (NavBGShader uUIColor, 1.5s 'workInOut').",
+  "texture": "Rendered atmosphere: volumetric light (exposure .86 home), 20-plane cloud fog, DOF, bloom (global strength .3 radius .2), lens streak/halo, damaged_road_normal.png as a composite normal (uNormalScale 3) for glass-refraction grit. All of it sits behind the DOM UI.",
+  "notes": "The home palette is a chosen green-black with teal fog, not the stock indigo slate. The work view is where it drifts: violet-black ground plus lavender/periwinkle HUD text, i.e. the dark-mode indigo+periwinkle default the anti-slop law names, which here comes from colour-dodge blending rather than a picked accent."
+ },
+ "layout": {
+  "grid": "No page grid; the layout is a stack of camera scenes. The scroll length is set in code: a fixed full-screen FXScroll div scrolls natively over 105vh x (home 4 + about 1 + work 10 + tree 2 + contact 1.2 + footer 4) = ~23.3 screens (pageScalar .5 on phones), its scrollbar thumb tinted rgba(255,255,255,var(--baropacity)) with --baropacity 0, so it is invisible. The chrome is pinned to a ~40px inset on desktop (nav pill top-right) and ~24-26px on mobile. The filter/chat block is a fixed bottom-left column, width min(450px,100%), height calc(100% - 100px), padding 3rem (2rem mobile), whose messages stack upward (flex column-reverse) under a top fade mask (linear-gradient to top, white 75% -> transparent 90%). The music player sits under the nav (top 70px, right 32px + 2.6rem margin) in project view.",
+  "density": "airy (a single centred object) that becomes dense when particles fill the frame (desktop_07) or cards surround the spine (element 0)",
+  "alignment": "centred hero object on the optical axis; UI blocks flush to the corners; project info copy left-aligned at bottom-left in a column measuring ~336px at the 1292px capture (250px in the 960 frame; the min(450px) column minus 2 x 3rem padding = 354px)",
+  "composition_moves": [
+   "Single centred 3D emblem with nothing else on screen, the anti-hero-stack",
+   "Project cards as rounded glass slabs arranged at different depths around a vertical spine, so the portfolio reads as an object in space rather than a grid",
+   "Project detail: media on a chamfered-corner (45-degree clipped) plane floated centre-right, meta column bottom-left",
+   "Corner-anchored HUD (nav top-right, query/chat bottom-left) frames a borderless world"
+  ],
+  "section_rhythm": "Scenes, not sections, and the order is in code (ViewController _initFXScroll): home 4vh (camera dolly 20; the ring, f00) -> about 1vh -> work 10vh, the only public route '/work' (spine + cards, dense and colourful; f01-f04, about half of the 30.7s jury capture, matching its 10 of 22.2 screens) -> tree 2vh (cable-hung cage with a particle mass; f05) -> contact / CleanRoom 1.2vh -> footer 4vh (dolly 20). f06 (water surface over the hex-tile Labs wall 'COMING SOON') falls in the tree-to-contact stretch; which scene owns the hex wall is inferred. f07 is the footer scene, not a loop back: the Footer layout re-uses the logo particle layer with MESH scale [-1,-1,1] (the ribbon now hangs above the ring) plus a jellyfish instancer and a GazeCamera at z 40. Frames are 3.84s apart, so each non-work scene gets roughly one frame.",
+  "mobile_adaptation": "Same realtime scene on mobile at full screen with the WebGL HUD scaled (mobile_01); touch-action none on #Stage, so gestures drive the camera; the chat column drops its blend mode and tightens to 2rem padding"
+ },
+ "motion": {
+  "smooth_scroll": "Hydra's own FXScroll / ScrollController, not Lenis/GSAP (neither is present). It is native scroll on a fixed, full-viewport 'FXScroll' div (overflow-y scroll; body and #Stage stay overflow hidden, so the probe sees doc_height 900), smoothed with ScrollController.LERP .1 on desktop and .5 on mobile through a frame-rate-normalised lerp (alpha -> 1 - exp(log(1-alpha) x hz multiplier)). It is finite: the controller clamps to the total height and has an 'infinite' option that this config does not set, and reaching the bottom only fires a BOTTOM event after 850ms. Scroll.createUnlimited() exists, but only as an unbounded wheel-delta reader for effects (Text3D uScrollDelta, the WebGL chat input, the nav bob), and the uil 'SplineConfig_infinite true' flag belongs to the work-detail particle splines, not to scroll.",
+  "preloader": "Blue ink-blot mandala of symmetric curved strokes around a hatched disc with a live percent ('/76') in the centre (desktop_00). It reads like an instrument dial rather than a bar.",
+  "intro_sequence": "Loader dissolves -> the global composite fades up over 5s on 'workInOut' (uVisible 0 -> 1 on Global/loadFinished) -> the chrome ring appears edge-on in near darkness (desktop_01) -> it rotates to face the camera (a 210deg x (1-visible)^1.2 term unwinds as the scene becomes visible) as the rim light and bokeh dust come up, and the nav fades in over 2s easeInOutSine after a 1s delay (bundle: ui alpha tween on Global/loadFinished) (desktop_02). The DOM music player enters later: opacity 0 -> .8 (0 while muted) and y -100 -> 0 over 2s easeOutCubic after 1.5s. A WebGL scroll hint fades to .6 alpha over 5s after a 5s delay and leaves in 500ms once you scroll (code; not seen in the probe shots).",
+  "scroll_techniques": [
+   "stacked scenes, one camera dolly each: every FXScene moves its camera group in y with scroll (cameraMove: home 20, about 2, tree 6, contact 4, footer 20; the home camera runs y 40 -> -7, -11 on phones, and shifts z by 15 across the scene while the ring shrinks from ~234px in desktop_02 to ~165px in desktop_06), so each scroll tick is a vertical crane move inside the current world",
+   "FXScrollTransition between neighbouring scenes: both are rendered to targets and blended with uTransition, uVelocity and uAngle .7 through a damaged_road normal map, with only the two visible scenes rendered and scissored during the wipe",
+   "object rotation tied to scroll: the home logo turns at twice the scene rate, rotation.y = 270deg + 2 x (90deg - 190deg x progress), about 380deg over the home scene, from face-on (desktop_02) to edge-on (desktop_04) and on to back-facing where the monogram reads mirrored (desktop_06/07); the particle group turns at 1x",
+   "drag to spin: mouse-down drag adds delta.x x .0025 (.0075 on mobile, lerped .07) to both the particle group and the ring, and a press restarts the particle pulse",
+   "route sync: the work scene is a real '/work' route and the others set private router states (home, about, tree, contact, footer); each route switches a ShaderVariant of the bloom/composite that lerps at .07",
+   "particle accumulation with scroll depth (bokeh density grows desktop_02 -> 07)",
+   "scene-to-scene flythrough including a water-surface crossing (element 0 f06)",
+   "the nav words bob with scroll velocity (y offset 4.5 * uScrollDelta in the nav render loop)"
+  ],
+  "text_animation": "WebGL text with per-word/line uniforms (uByWord, uByLine) and scroll-delta smear; card titles glitch with RGB channel split and horizontal tearing during camera moves ('CHILLIE 2020' tearing in element 0 f03). DOM HUD lines type on with a random-letter scramble (filters staggered 100ms, messages 500-1500ms by length); filter links are bold 700 at rest; hover turns them white and drops them to 400; the active filter goes white with text-shadow #fff 1px 0 5px and slides 10px right, all over 0.4s cubic-bezier(.17,.4,.02,.99). The DOM music ticker scrolls as a marquee (9s CSS duration).",
+  "image_animation": "Work cards: video/key art on glass slabs using WorkItemShader (refraction, fresnel, distortion, water normals), with pixel-smear transitions between projects. Project detail: the video plane is sampled into GPU particles that flow along baked splines (splines_anim4-SPLINES.json, uSplineSpeed 0.82-1.21, uTimeMultiplier .17) and are pushed by a mouse fluid sim, so the image tears into a dot cloud and re-forms (element 1 f02-f07).",
+  "page_transitions": "Scene changes on scroll are FXScrollTransition wipes (angle .7 rad, normal-map distortion, velocity) between separately rendered scenes, while the camera inside each scene keeps dollying. Opening a project dives the camera into the card (WorkDetail camera lerpSpeed .07) with a streaked, horizontally smeared background, tints the nav and composite to the project's colour over 1.5s 'workInOut' = cubic-bezier(.29,.05,.06,.92), and muffles the 3D audio. '<- CLOSE' or the Escape key returns.",
+  "hover_micro": [
+   "Cursor stirs a fluid sim (simSize 256, dyeSize 512, 5 pressure iterations, curl 30, velocity dissipation .98, density .97, pressure .8) that displaces particles and text",
+   "Mouse parallax on the camera (home moveXY 0.4/0.2, work detail -1/0.5)",
+   "The hairline between WORK and CONTACT is the audio toggle (a 50x40 GL object with NavAudioShader, exposed to screen readers as 'Toggle Audio'): hover tweens uHover in 300ms / out 500ms, and enabling sound tweens uAmplitude 0 -> 1 in 500ms easeOutCubic, so the flat line becomes a waveform (wavy separator in element 1 f00-f06 vs flat on home)",
+   "Nav light spill is part of the NavBGShader quad (uScroll, uScrollDelta, uHeight .14); its hue drifts teal -> green between desktop_02 and 07 and it re-tints to the project colour in project view",
+   "Filter links: weight drop 700 -> 400 plus white on hover, 0.4s cubic-bezier(.17,.4,.02,.99); active = white, text-shadow #fff 1px 0 5px, translateX(10px)",
+   "Chat pill widens from 200px to 330px when extended, border rgba(255,255,255,.3) -> .5 on hover -> .8 on focus, 0.8s cubic-bezier(.17,.4,.02,.99)"
+  ],
+  "cursor": "System cursor kept (probe cursor_none 0); the fluid sim is the cursor feedback",
+  "easing_curves": [
+   "engine easeOutCubic x32, easeOutSine x32, easeInOutSine x18, easeOutQuart x6, easeOutExpo x4 (TweenManager string counts)",
+   "named custom ease 'workInOut' = cubic-bezier(.29,.05,.06,.92) (TweenManager.addCustomEase) for project open/close tints (1.5s), the contact blend (1.5s) and the 5s composite fade-in on load",
+   "CSS cubic-bezier(0.17,0.4,0.02,0.99) x2 (filter link 0.4s and chat pill 0.8s transitions; very long exponential-style tail)",
+   "Theatre.js sheet objects bundled for authored camera/sequence keyframes"
+  ],
+  "duration_range_ms": "CSS 100-1500ms (1.5s x4 are the cursor-blink and dot-flashing loops, .4s x3, .8s x1) plus a 9s loop (ticker marquee); engine tweens 300-2000ms (nav fade 2s, audio waveform .5s, project tint 1.5s); 3D camera moves are continuous lerps (lerpSpeed .07-.1) rather than fixed durations",
+  "stagger_ms": "100ms between filter links (delays 100/200/300/400/500ms in app.js); WebGL text reveals are per-word/per-line in shader (uByWord / uByLine)",
+  "choreography_notes": "Everything is continuous and physical: position lerps (.05-.1 per frame), fluid dissipation and particle springs rather than timed tweens. The camera always moves first and UI changes are small DOM fades on top. Scroll is finite: it ends on a footer scene that re-uses the logo ring flipped, so the jury capture reads like a loop without being one. Lerps are frame-rate normalised, so the feel holds at 30, 60 or 120Hz.",
+  "evidence": [
+   "frames/active-theory-v6/0/f00-f07 (home navigation, 30.7s)",
+   "frames/active-theory-v6/1/f00,f03,f06 (particle effect, 11.4s)",
+   "probes/active-theory-v6/desktop_00-07, mobile_00/01",
+   "app.1780406240914.js grep (nav, chat CSS, Multiplayer, InteractAI, CookieNotice)",
+   "uil.1780406240914.json (2593 tuned params)",
+   "app.js ViewController _initFXScroll list, FXScroll / ScrollController / ScrollRenderManager, Home and Footer scene classes"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "realtime-3d",
+  "art_direction": "Sci-fi reliquary: chrome, glass and iridescent oil-slick surfaces lit by rim lights in teal fog; organic-mechanical sculptures (a vertebrae spine, a cable-hung cage with a glittering particle core, hex-tile walls); dense yellow-green bokeh dust as depth cue. The iridescence is largely matcap-driven (matcap-test.jpg on SpineShader, HomeLogoShader, TreeWater, Tube) over cracked-surface normals (alien_cracked_2, damaged_road), not physically based thin-film. Client work appears as video on glass slabs, re-graded by the refraction shader. The studio reel itself is part of the material: reel.mp4 (first frame reel-frame.jpg) is decoded once as a VideoTexture and bound as tVideo to HomeLogoShader, HomeColumnShader, AboutLogoShader, JellyShader, TreeWaterShader, WaterCeilingShader, HexagonGrid and WorkItemShader, with matcap-test.jpg as the fallback texture, so the chrome and water carry moving footage of the work (how each shader samples it is not in the bundle; reflection / matcap use inferred from the fallback).",
+  "treatments": [
+   "iridescent matcap on chrome and the spine (reads as thin-film)",
+   "RGB-split / pixel-tear glitch on cards",
+   "volumetric god-rays and cloud fog",
+   "lens streak + chromatic halo",
+   "depth of field",
+   "video-to-particle dissolve",
+   "chamfered-corner media frames",
+   "horizontal streak smear behind the project detail"
+  ],
+  "crops_and_ratios": "work cards ~3:2 rounded slabs (~600x400 at 1440, inferred); project detail media ~16:10 with 45-degree clipped corners",
+  "formats": "probe: 34 jpg, 33 ktx2, 20 png, 2 mp4 (reel.mp4 twice: the muted autoplay loop is the hidden VideoTexture feeding the shaders, the unmuted one is a DOM modal player with controls on a #000000cc overlay and a 'Close Video' button), 1 gif; bytes declared mp4 37.1MB, octet-stream 10.8MB (Draco geometry/splines), png 4.6MB, 3D 2.0MB, wasm 254KB",
+  "evidence": [
+   "frames/active-theory-v6/0/f01.jpg",
+   "frames/active-theory-v6/0/f02.jpg",
+   "frames/active-theory-v6/0/f05.jpg",
+   "frames/active-theory-v6/0/f06.jpg",
+   "frames/active-theory-v6/1/f03.jpg",
+   "frames/active-theory-v6/1/f06.jpg",
+   "probe asset_extensions / videos"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "Hydra, Active Theory's proprietary WebGL2 engine (178 'Hydra' refs; no three.js global, no GSAP), with Draco + Basis/KTX2 (wasm decoders), the Proton/Antimatter GPU particle system, a FluidLayer sim, the Nuke post chain (UnrealBloom, lens streak, composite) and Theatre.js for sequencing; UIL param GUI exported as uil.json",
+  "role": "world: the entire site is one persistent scene; the logo is the hero object and the work is objects in the world",
+  "assets": [
+   "https://activetheory.net/assets/images/particle/matcap3.ktx2",
+   "https://activetheory.net/assets/images/tree_room/CABLES___CyclesBake_COMBINED.ktx2",
+   "https://activetheory.net/assets/images/tree_room/PILLARS___PBR_AT_MRO.ktx2",
+   "https://activetheory.net/assets/images/pbr/alien_cracked_2_basecolor.ktx2",
+   "https://activetheory.net/assets/images/pbr/cracked_ice_basecolor.ktx2",
+   "assets/geometry/work/splines_anim4-SPLINES.json (particle flow splines, from uil)"
+  ],
+  "materials_lighting_post": "Baked lighting: Cycles-baked COMBINED maps plus packed MRO (metal/rough/AO) and normal KTX2 per prop (tree_room CABLES, PILLARS, ROCK_L/R, SAND, ROCKY_SOIL). Matcap-driven chrome: HomeLogoShader with matcap-test + alien_cracked_2 normal (uil entry sits under Element_8_ParticleTest, so the mapping to the visible ring is inferred); SpineShader with matcap-test, alien_cracked_2 basecolor and damaged_road normal. A GlassShaderPBR with uRGBStrength 3.03 exists but is registered as 'Element_1_glass_test' with Acura NSX texture maps, so it is probably a leftover test, not the logo. WorkItemShader: refraction, fresnel, water normals. Post: bloom is per scene rather than one global value (globalbloom strength .3 radius .2, home 3.82, homebloom 1.2, shader variants home .6/.8, contact .8/.5, luminosity threshold 0); CleanRoom uRGBStrength .3; lens streak (flare .5, glow .2, halo #cceeff, chroma .5); home fog #1a90ad with DOF [0.72,0.8,0.3,1]; volumetric light exposure .86 home / .62 cleanroom; cloud fog 20 planes; GlobalComposite normal damaged_road_normal at uNormalScale 3. The spine, lab and water scenes each run their own shaders (SpineShader, JellyShader, TreeWaterShader, FloorShader, WallShader). The shared reel VideoTexture (tVideo) is bound to the logo, columns, jelly, water, hex grid and work-item shaders (fallback matcap-test.jpg).",
+  "interaction": "scroll = a vertical camera dolly inside each of six stacked scenes plus angled wipes between them; drag = spin the home ring and particles; mouse = camera parallax (home moveXY .4/.2, work detail -1/.5) + a fluid sim that pushes particles and text; click a card = dive into the project; the project video becomes a particle field the cursor disrupts",
+  "performance_tactics": "KTX2/Basis GPU textures (33), Draco geometry via wasm, baked Cycles lighting instead of realtime GI, fluid sim at 256px with 512px dye, a single 1440x900 canvas (webgl2 x3 contexts total), per-scene render layers; feature-detect redirect to unsupported.html for old browsers; GPU-tiered particle counts from 16,384 to 1,048,576 (Tests.particleCount) and frame caps (30fps below GPU tier 2, 60fps below tier 3 on >60Hz screens); only the two scenes in view render during a scroll wipe, scissored; MSAA 4; scroll lerp .5 on mobile for a lighter feel",
+  "fallback_mobile": "Full realtime scene on mobile (mobile_01); no static fallback observed",
+  "evidence": [
+   "probe contexts webgl2 x3, assets_3d, bytes_by_type",
+   "app.js grep (Hydra 178, Proton 37, Fluid 49, draco 99, Theatre 41, Nuke 133)",
+   "uil.json keys"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "One pill top-right: 'WORK' + divider + 'CONTACT' (NB Architekt caps ~14px, 240x47 at 1440). It is rendered in WebGL, not DOM: GL text items on a NavBGShader quad (base #111111, a 1px grey-teal edge ~#333d3c, and a light spill with rain-like streaks below), so there is no CSS backdrop-filter on it (the only backdrop-filter in the CSS, blur(4px), belongs to the cookie notice). The divider is the audio toggle. The world itself is the primary navigation; screen readers get clipped GLA11y mirror links (Work, Contact, Toggle Audio). On phones Tests.noMusic() is true: no music player mounts, the divider shrinks to a 30px line at 60% alpha and CONTACT re-centres (mobile_01 measures ~30px).",
+  "menu": "No menu overlay; Work and Contact are camera destinations. In the work scene a bottom-left DOM column shows 'WHAT ARE YOU LOOKING FOR?' and five filters: -> WEBSITES, -> INSTALLATIONS, -> XR / AI (the current bundle reads 'XR / VR / AI'), -> MULTIPLAYER, -> GAMES, plus an 'ASK ME ANYTHING...' AI chat pill; the column is mix-blend-mode: color-dodge on desktop so its text takes the scene colour.",
+  "buttons_links": "Text-only caps links with ASCII arrows; active filter = white + 5px white text-shadow + 10px right shift; 'PROJECT LINK' (and 'Medium Case Study' when present) is a static underline in pale lavender (~#cec3eb rendered); '<< >>' player buttons are 36x32, radius 5px, 1px rgba(255,255,255,.6) border, color-dodge blend. No hover lift observed.",
+  "unusual_interactions": [
+   "Two AI chats. The DOM one is the 'ASK ME ANYTHING...' textarea in the filter column (InteractAI GPT class posting to the OpenAI chat-completions endpoint; the key in the client bundle is a placeholder, so the live route is presumably proxied, inferred). A second, WebGL chat (ChatUIInput / ChatUIResponse, centred 10.5px glText in a 350-wide box, uChatOpen on the background) opens with 'What are you looking for? / Im trained on 112 projects', shows 'PROMETHEUS' as a 20%-alpha placeholder that is submitted when the input is empty, accepts [0-9a-z ] up to 32 chars, caps answers at 400 chars and scrambles them with random digits while they fade in over 1.5s. Where the WebGL chat appears is not in the evidence. The canned 'trained on 112 projects' line belongs to this WebGL chat; the DOM column opens only with 'What are you looking for?' (#f4f4f4)",
+   "Multiplayer presence rooms on Dreamwave (wss://s.dreamwave.network/ws, roomKey 'atv6'): a ScrollPlayer class with max 2 per room and a TubePlayer class with max 3 (WebSocket x8)",
+   "Scroll moves through named scenes and syncs the router: the work scene is a real '/work' URL, the other scenes set private router states, and the post-processing variant changes with them",
+   "Video-to-particle project previews disturbed by a cursor fluid sim",
+   "Built-in music player with a song ticker ('S. FLINT - FLY UP HIGH'); the global 3D audio is muffled while a project is open (GlobalAudio3D isMuffled)"
+  ],
+  "sound": "Opt-in soundtrack (audioEnabled starts false): the nav divider toggles it and turns into a waveform when on; prev/next buttons and a marquee ticker sit under the nav (top 70px, right 32px + 2.6rem), blended with plus-lighter at .8 opacity and shown only while sound is on (opacity 0 when muted); desktop only, since phones get Tests.noMusic(); the mix is muffled while a project is open.",
+  "footer": "A footer scene, not a loop: the last 4vh of the FXScroll stack is a Footer FXScene that re-uses the logo particle layer flipped (MESH scale [-1,-1,1], so the ribbon hangs above the ring and the monogram reads mirrored, element 0 f07), adds a jellyfish instancer (JellyShader), a GazeCamera at z 40 and its own bloom variant (.7 strength / .5 radius). Scrolling stops there."
+ },
+ "content_voice": {
+  "headline_style": "Almost no headline copy on the home; the logo carries the first screen. Work uses bare project names in caps and a question prompt for search.",
+  "copy_tone": "Terse, techy, console-like: caps labels, ASCII arrows, one-line project facts ('2022 / YOUTUBE / WEBSITE') followed by a single descriptive sentence",
+  "examples": [
+   "What are you looking for?",
+   "A hub for innovation. Our prototypes often turn into production projects"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Hydra (Active Theory in-house WebGL2 framework), a single app.<cache>.js bundle (~1.8MB) loaded by an inline bootstrap that tests for optional chaining and redirects to unsupported.html",
+  "libraries": [
+   "Hydra engine (TweenManager, Scroll, Text3D, GLUI, GLA11y, FXScene, Nuke post)",
+   "Hydra FXScroll / ScrollController / ScrollRenderManager (native scroll over stacked FXScenes with an FXScrollTransition wipe)",
+   "Proton / Antimatter GPU particles",
+   "FluidLayer / MouseFluid sim",
+   "Theatre.js (bundled)",
+   "Draco + Basis/KTX2 decoders (wasm)",
+   "UIL tuning GUI (uil.json), synced through Firebase in the dev tool only",
+   "Dreamwave multiplayer (wss://s.dreamwave.network/ws)",
+   "OpenAI chat-completions client (InteractAI GPT class; key placeholder in bundle)",
+   "Google Analytics + a geo-gated cookie notice (us-central1-at-services.cloudfunctions.net/geo decides whether the visitor is in the EEA)"
+  ],
+  "evidence": "probe globals {} and libs_from_requests [] (nothing off the shelf); index.html inline bootstrap (optional-chaining test, else redirect to unsupported.html); app.1780406240914.js grep (Hydra 178, Proton 37, Antimatter 48, MouseFluid 10, Theatre 41, Nuke 133, Multiplayer 59, dreamwave wss, api.openai.com, CookieNotice geo call); top_hosts include storage.googleapis.com (27) and us-central1-at-services.cloudfunctions.net (1)"
+ },
+ "performance_accessibility": {
+  "requests": 139,
+  "weight_notes": "Very heavy for a portfolio on paper: declared mp4 bytes total 37.1MB across two reel.mp4 requests (a muted loop decoded as a WebGL VideoTexture and a DOM modal player; declared sizes of media range requests, so not necessarily all transferred), plus 10.8MB of octet-stream geometry, 4.6MB png, 2.0MB 3D, 584KB JS (app.js 1.8MB uncompressed) and 254KB wasm. It settles in 6.1s on a Metal GPU because the textures are GPU-compressed and the lighting is baked.",
+  "reduced_motion": "0 prefers-reduced-motion rules (probe); motion is the only way through the site",
+  "contrast_issues": "Nav GL text ~#dbdcde on #0f1012 is fine (13.9:1). The desktop filter links render ~#7667ac on ~#211a2c (3.45:1) because of the color-dodge blend, and the 'ASK ME ANYTHING...' placeholder ~#5b4d88 (2.29:1), both under 4.5:1 for 14px text. Project descriptions are 5-line ALL-CAPS paragraphs. The viewport meta sets user-scalable=no and maximum-scale=1.0, which blocks zoom.",
+  "mobile_quality": "Realtime scene runs on mobile with a scaled HUD and no overflow (dev responsive 8.0), but first paint is a near-black loading frame (mobile_00)",
+  "dev_scores": {
+   "semantics_seo": 7.2,
+   "animations": 9.6,
+   "accessibility": 6.4,
+   "wpo": 8.6,
+   "responsive": 8.0,
+   "markup": 7.2
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Portfolio as a stack of 3D scenes scrubbed by native scroll",
+   "why_it_works": "Each chapter (logo, about, work, lab, contact, footer) is its own lit world with its own post, yet the scroll bar still behaves like a page: every tick is a crane move inside the current scene, and neighbouring scenes hand over through a distorted diagonal wipe, so browsing feels like travelling while keyboard, scrollbar and route stay native.",
+   "how_to_build": "One fixed full-screen div with overflow-y:scroll and an inner spacer sized 105vh x each scene's length (theirs: 4, 1, 10, 2, 1.2, 4). Read scrollTop and smooth it with a frame-rate-normalised lerp (alpha 0.1 desktop, 0.5 mobile: a = 1 - pow(1 - 0.1, dt*60)). For each scene keep its own THREE.Scene + camera + post chain rendered into a WebGLRenderTarget; per-scene progress p = clamp((scroll + vh - start) / (height + vh)); move that scene's camera.position.y by p * cameraMove (theirs 2-20 units). Only render the two scenes in view; composite them with a fullscreen shader: mask = step(uTransition, dot(uv - .5, vec2(cos(.7), sin(.7))) + .5 + (texture(normalMap, uv*4).xy - .5) * (0.05 + abs(uVelocity) * 0.1)), mix(tMap1, tMap2, mask). Push a route per scene (history.replaceState for private ones) and lerp post settings per route at .07. Mirror all text into visually hidden DOM for screen readers, and keep the scroll finite with a real end scene."
+  },
+  {
+   "technique": "Video-to-particle dissolve with a mouse fluid sim",
+   "why_it_works": "The project media becomes physically touchable: the cursor wind tears the image into dots and it heals, which demonstrates the studio's capability through the preview itself.",
+   "how_to_build": "Create an InstancedMesh or Points grid of about 256x144 samples; in the vertex shader sample the video texture at each point's uv for colour, and sample a fluid velocity texture (stable-fluids / Pavel Dobryakov style: sim 256, dye 512, 5 pressure iterations, curl 30, velocity dissipation .98, density .97) to offset position.xy*strength and push z. Spring back with offset *= 0.92 per frame (GPGPU ping-pong if you want persistence). Point size ~3-5px with a round smoothstep alpha; additive blending (the site uses shader_additive_blending)."
+  },
+  {
+   "technique": "Glass-and-chrome logo emblem on thin-film iridescence",
+   "why_it_works": "A single, lit, slowly turning object owns the first screen and becomes the brand without any headline; rim light arcs and thin-film colour make the chrome feel expensive.",
+   "how_to_build": "Extrude the monogram SVG (ExtrudeGeometry, bevel 0.02) inside a torus ring. Cheapest faithful route (what the uil suggests they did): a MeshMatcapMaterial with an iridescent chrome matcap plus a cracked-surface normal map at low scale; physically based alternative: MeshPhysicalMaterial {metalness 1, roughness .15, iridescence 1, iridescenceIOR 1.3, iridescenceThicknessRange [100,400]}. Add one moving rim light (a SpotLight orbiting behind at ~0.2 rad/s), fog #1a90ad, UnrealBloom at low strength (their global pass .3 / radius .2). Rotate ring.y at twice the scroll rate so the monogram is soon seen from behind, mirrored (theirs: rotation.y = 270deg + 2 x (90deg - 190deg x progress), ~380deg across the home scene), unwind an extra ~210deg as the scene fades in, and let a mouse-down drag add delta.x x .0025 (lerped .07) so the emblem can be spun by hand. Bind the showreel VideoTexture as a second matcap for moving reflections (see the last steal)."
+  },
+  {
+   "technique": "Depth dust: bokeh particle field as depth and progress cue",
+   "why_it_works": "Thousands of soft, tinted specks give the void scale and parallax, and their density growing with scroll signals progress without a progress bar.",
+   "how_to_build": "Points with 20-40k particles in a box around the path; per-particle size attenuated by depth, with a circular smoothstep sprite and an alpha ring for a 'bokeh disc' look; colour between #9bb435 and #dafc5f (sampled from desktop_07), a few hot #fdff20 specks, at 20-60% alpha. In the vertex shader, fade particles in by distance-to-camera along the path so density rises as t increases. Fake DOF by scaling size with abs(viewZ - focus)."
+  },
+  {
+   "technique": "World-first nav: one pill whose divider is the sound toggle",
+   "why_it_works": "Two words and a line keep the 3D world uncluttered, and making the divider the audio control (flat when muted, a live waveform when on) turns a decorative hairline into state you can read and touch.",
+   "how_to_build": "Theirs is WebGL: GL text for the two words on a shader quad (base #111111, 1px ~#333d3c edge, a soft streaked light spill under it that tints to the current project colour). DOM approximation: a fixed 240x47 pill at top/right 40px, radius 999px, background #111111e6, 1px border rgba(160,200,190,.2), 14px caps techno sans; between the words a 50px-wide inline SVG path that draws a flat line when muted and a sine wave whose amplitude you tween 0 -> 1 over 500ms (easeOutCubic) when audio is on, as a real <button aria-pressed>. Skip backdrop-filter unless there is detail behind it to refract. Let the words drift a few px with scroll velocity."
+  },
+  {
+   "technique": "HUD that takes the scene's colour (color-dodge chat column + scramble typing)",
+   "why_it_works": "The search/chat column never looks pasted on: its grey text is blended into the 3D scene, so it glows violet over the spine and teal over the fog, and lines arrive by scrambling in like a terminal.",
+   "how_to_build": "Fixed bottom-left column, width min(450px,100%), height calc(100% - 100px), padding 3rem, display flex column-reverse so new lines stack upward, -webkit-mask-image linear-gradient(to top, #fff 75%, transparent 90%) to fade old lines. Set mix-blend-mode: color-dodge on the column (switch to normal on mobile, where contrast matters more) with text #c6c6c6. Type each line on: reveal a growing slice of the string and replace the not-yet-settled tail with random letters (duration clamp(2*len+50, 500, 1500)ms), staggering list items 100ms. Links bold 700 at rest, white + weight 400 on hover; active item: white, text-shadow #fff 1px 0 5px, translateX(10px), all over 0.4s cubic-bezier(.17,.4,.02,.99). Check contrast after blending, since theirs lands near 3.4:1."
+  },
+  {
+   "technique": "The showreel as a shared material texture",
+   "why_it_works": "Instead of a reel sitting in a player, the reel moves inside the chrome logo, the water and the card glass, so every surface quietly shows the studio's work and the world feels alive even when nothing is scrolling.",
+   "how_to_build": "One <video muted loop playsinline autoplay> with a poster frame -> THREE.VideoTexture (colorSpace SRGB). Bind the same texture as a uniform to every hero material. For chrome, sample it as a matcap: vec3 n = normalize(normalMatrix * normal); vec2 muv = n.xy * .5 + .5; col = mix(col, texture(tVideo, muv).rgb, .35); for water or glass, sample it at screen uv offset by the refraction normal. Keep a static matcap jpg as the fallback when autoplay is blocked or on low-tier GPUs, and do not ship the reel twice (theirs also loads it again for a modal player, ~37MB declared)."
+  }
+ ],
+ "slop_risks": [
+  "Purple / periwinkle UI accent (#9ca5ff mobile filters and cookie pill, #c64dff particle cores) with cyan #00ffff is the blue-to-purple family; copied onto a flat page it reads as the default AI palette",
+  "Cool indigo dark: the work view's violet-black ground with lavender HUD text is the 'cool blue-charcoal + periwinkle' dark default, even though the home's green-black is a chosen hue",
+  "Glowy pills in their own UI: the cookie notice's accept/decline pills (#9ca5ff55 / #00000055 fill, 2px white-50% border, hover box-shadow 0 1px 6px #ffffff55 plus a text glow) are the literal tell, and the nav's light spill becomes 'glowy pill with soft glow beneath' if copied without the scene lighting, or a cut-off glow if clipped",
+  "Hairline light borders on the chat pill (2px white 30%), player buttons (1px white 60%) and ticker box (1px white 10%)",
+  "One label treatment everywhere: the same caps techno face at 10-14px for nav, filters, chat, meta, a 5-line caps description paragraph, ticker and back link. NB Architekt is proportional, not a mono, so the 'mono as house voice' charge only applies to a copy; the 'nbarchitekt, monospace' fallback shows the terminal costume they are after, and swapping in a real mono would land squarely on that tell",
+  "The arrow tell: plain horizontal '->' / '<-' ASCII arrows as bullets and back links only work inside a coherent terminal voice; lifted alone they are the default horizontal arrow",
+  "Background glow: teal radial fog pooling in the corners (desktop_07 top-left ~#2c4e50) is authored volumetric light here, but a naive copy is the 'accent blob bleeding from a corner' tell",
+  "RGB-split glitch text and iridescent/holographic chrome are 2020s creative-tech cliches when they are not tied to real rendering",
+  "A hero that says nothing: no DOM headline or value statement on the first screen (content 7.88); the logo-only first frame works for a famous studio and fails for anyone else",
+  "All meaning lives in WebGL, including the nav: without optional-chaining support the user is redirected to unsupported.html, so content is gated on the engine running (same family as content hidden until a reveal fires). Also 0 reduced-motion rules and user-scalable=no",
+  "Large reel video on the home: here it is a hidden texture, not a visible autoplaying player, but it is still ~37MB declared across two requests (texture loop + modal player); a copy that loads a big reel twice on a portfolio home hurts performance",
+  "Hairline divider in the nav: a bare 1px line between WORK and CONTACT is the law's unrounded-hairline tell; theirs earns it only because it is the audio toggle that becomes a live waveform. Copy the line without the function and it is decoration",
+  "Typed-on HUD that starts empty: the DOM filter and message lines are created with empty text and only filled by a JS render loop (scramble type-on), and the nav starts at alpha .001 until load finishes, the invisible-content trap if the loop never runs"
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots, mobile_00 (still loading, near-black) and mobile_01, all 8 frames of Home Navigation (0) and Particle Effect (1). Probe numbers are used for fonts, DOM sizes, colours, request and byte counts, and 3D assets. Code: index.html (inline @font-face NB Architekt, bootstrap), app.1780406240914.js grep (Hydra, Proton, Fluid, Theatre, Multiplayer, eases), uil.1780406240914.json (verbatim params for fluid, bloom, fog, lens streak, splines, cameras). INFERRED: WebGL title sizes at 1440 (scaled from 1292px captures), card aspect, the Cloud Functions role, and scene order timing (~4s per scene from meta timestamps). The desktop probe never left the home scene, so work/contact views come only from jury element frames. No DOM display type exists to measure, so display_type_px and typography.display_size_px are null. audit (2026-09-24, adversarial re-check against probe.json, all 8 desktop shots, mobile_00/01, element 0 f00-f07, element 1 f00/f03/f06, the cached index.html, app.js and uil.json): the WORK/CONTACT pill is WebGL (GLUI NavUIItem on a NavBGShader quad), not DOM, and has no backdrop blur (the CSS blur(4px) is the cookie notice); its divider is the audio toggle that turns into a waveform (missed signature). #9ca5ff was misattributed: the probe value is the cookie accept pill, desktop filters are #c6c6c6 made lavender by a color-dodge column. The Cloud Function is a geo lookup for the EEA cookie notice, not chat/multiplayer; multiplayer is Dreamwave (roomKey atv6, rooms of 2-3) and chat is an OpenAI chat-completions client. display_type_px 16 -> null (16px is a hidden a11y link). Mobile inset ~24px not 32px; filter list is five items with 'XR / AI' combined; scene timing corrected (work spine ~half the capture, not one scene per 4s); the ring continues past edge-on to a mirrored back view; bloom is per-scene (not one .3/.2 value); the GlassShaderPBR 3.03 entry is a 'glass_test' element with NSX maps; iridescence is matcap-driven; GL text is tracked .1; caps come from the font (inferred); loader disc is a '/' glyph character field; mp4 weight is declared range-request bytes. Added the scramble-typing HUD, color-dodge blend, muffled audio in project view and a new HUD steal. Still inferred: WebGL title sizes at 1440, card aspect, the OpenAI proxy route, the glyph field filling with progress, and HomeLogoShader-to-ring mapping. audit2 (2026-09-25, second adversarial pass: probe.json, desktop_00/01/02/04/06/07 and mobile_00/01 at full size, element 0 f00-f07 and element 1 f00/f03/f06, the cached index.html, app.js and uil.json): the core scroll claim was wrong. Code (ViewController _initFXScroll, FXScroll, ScrollController) shows six stacked FXScenes (home 4vh, about 1vh, work 10vh, tree 2vh, contact/CleanRoom 1.2vh, footer 4vh) on finite native scroll with per-scene camera dollies and an angled normal-map FXScrollTransition wipe, not an infinite looping spline; Scroll.createUnlimited is only a delta reader and the uil 'infinite' flag belongs to the particle splines. So f07 is the Footer scene (logo layer flipped with scale [-1,-1,1], jellyfish instancer), the 'None, loops back' footer was wrong, and steal #1 was rewritten. Also: the reel.mp4 loop is a VideoTexture bound as tVideo to the logo, column, jelly, water, hex and work-item shaders (added as a steal; the second reel is a modal player); home ring rotation is 2 x scroll rate plus drag-to-spin (code); the 'trained on 112 projects' opener belongs to a separate WebGL chat with a 'PROMETHEUS' placeholder, not the DOM column; contact city codes are LAX / SYD / AMS; filter hover drops weight 700 -> 400 and the active text-shadow is 1px 0 5px; 'workInOut' = cubic-bezier(.29,.05,.06,.92); phones get no music (30px divider); project copy column ~336px, not 250px; the 'mono house voice' charge softened (the face is proportional). Added the nav-hairline and empty-until-typed slop notes and GPU-tier / scissor perf tactics. Still inferred: how each shader samples tVideo, where the WebGL chat appears, which scene owns the hex wall, WebGL title sizes at 1440."
+}

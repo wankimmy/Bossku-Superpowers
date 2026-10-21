@@ -21,6 +21,8 @@ build/
 .bossku/
 .superpowers/
 data/
+# The awwwards-web-design evidence corpus ships with the skill
+!skills/awwwards-web-design/data/
 
 # Logs
 *.log

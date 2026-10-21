@@ -1,0 +1,296 @@
+{
+ "slug": "vast",
+ "title": "Vast",
+ "live_url": "https://vastspace.com",
+ "award": "Site of the Day - Apr 1, 2026 (Honors, SOTD) - credits: Antinomy Studio",
+ "scores": {
+  "overall": 7.65,
+  "design": 7.73,
+  "usability": 7.61,
+  "creativity": 7.41,
+  "content": 7.92,
+  "dev": {
+   "overall": 7.37,
+   "semantics_seo": 7.4,
+   "animations": 7.4,
+   "accessibility": 7.0,
+   "wpo": 7.6,
+   "responsive": 7.4,
+   "markup": 7.2
+  }
+ },
+ "industry": "Commercial space stations / aerospace hardware (Haven-1, Haven-2)",
+ "signature": "A real space station you can handle in the browser: an R3F model of Haven-1 that you drag to rotate, switch between interior cutaway and exterior, and probe through 3D-anchored hotspots whose 30px squares clip-open into labels and photo callouts, plus a 360 interior walk-through whose jumps between panoramas use a barrel/pincushion warp shader, all inside a calm warm-neutral shell set in Owners.",
+ "first_screen": {
+  "composition": "Full-bleed autoplay/muted/loop video (vast-public S3 '2026-03-13 Website Header_12MB.mp4', under a 10% dark overlay div) of the bright white cleanroom with the Haven-1 primary structure on a stand and technicians in white suits. Transparent nav on top at y~67: VAST wordmark at x=40, four links (Stations, Satellites, Updates, About us) spaced ~150px apart from x=282, then Shop and a white solid 'Create your mission' button (x 1218-1400, ~45px tall) on the right, all in white. The h1 (76px Owners 500, line-height 0.86) sits bottom-left at x=40 inside a 67rem (670px) max-width column, so its three authored lines ('Building <br> next-generation <br> space infrastructure') wrap to FOUR at 1440: 'space' ends line 3 alone and 'infrastructure' drops to line 4, under the cookie banner in desktop_00. The HTML puts a button group after the title in the same bottom-aligned flex row: a glass play/pause toggle and a boxed glass 'Watch full video' chevron button (YouTube trigger); both are hidden under the banner in the probe (position inferred bottom-right). No subline. In the probe the bottom ~20% is covered by the CookieYes banner (#ece8e3).",
+  "what_owns_it": "video",
+  "display_type_px": 76,
+  "evidence": [
+   "desktop_00.jpg",
+   "probe measure.type.h1",
+   "probe measure.videos[0]",
+   "HTML .header-home__row-title{max-width:67rem}, .full-bg-video_dark-overlay opacity .1, .button-group in the hero row"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Owners",
+    "role": "display",
+    "classification": "grotesque sans with squarish, slightly wide proportions; used at 500 for h1-h3 and at 24vw for ghost wordmarks",
+    "foundry": "OH no Type Co (Owners family)",
+    "source": "probe fonts_loaded 'Owners 500 normal'; font_families_rendered Owners 83 nodes; h2 'Haven-1' computed weight 400 but only the 500 file loads"
+   },
+   {
+    "name": "Owners Text",
+    "role": "body",
+    "classification": "text optical cut of the same grotesque",
+    "foundry": "OH no Type Co",
+    "source": "probe fonts_loaded 'Owners Text 400 normal'; body 14px; 266 nodes"
+   },
+   {
+    "name": "Phonic",
+    "role": "mono",
+    "classification": "monospace, used uppercase for captions, dates, categories, spec tables",
+    "foundry": "unverified",
+    "source": "probe fonts_loaded 'Phonic 400 normal'; 90 nodes; seen in desktop_03/04 captions and mobile_01 'HAVEN-1 / LAUNCHING 2027'"
+   }
+  ],
+  "display_size_px": 345.6,
+  "body_size_px": 14,
+  "scale_notes": "345.6px ghost wordmark 'Haven-1' (exactly 24vw at 1440; a 383px node also exists) : 76px h1 : 48px h2/h3 section heads : 19-20px card titles : 16px body : 14px nav/UI : 12px mono labels (222 nodes at 12px). Roughly 4.5x from wordmark to h1, 1.6x from h1 to section head, then a flat 3x step down to body.",
+  "tracking_leading": "h1 76px line-height 65.36px (0.86) with normal tracking; h2/h3 48px line-height 1.0 with +0.01em (0.48px); h3 card title 19px line-height 1.04 with +0.03em (0.57px); wordmark 345.6px line-height 1.0, normal tracking; body Owners Text 14px line-height 1.5. The display type is not tracked negative; the tightness comes from line-height.",
+  "case_and_style": "Sentence case for everything set in Owners; uppercase only in Phonic mono (PRESS RELEASE, SEPTEMBER 23, 2026, HAVEN-1 DOCKING ADAPTER FIT CHECK, spec labels CREW / DIAMETER / MASS). No italics. Numerals appear only in mono data.",
+  "signature_moves": [
+   "Product name as a 24vw tonal ghost wordmark (#ece8e3 on #fdfcf4) with the 3D model overlapping it",
+   "Statement paragraph at 48px Owners 500 split into word divs, with two stacked copies (#897f75 base and white overlay) for a scroll-driven word fill",
+   "Mono uppercase kept for data (dates, specs, captions), Owners for all prose"
+  ],
+  "mobile": "At 390px the h1 drops to 48px (probe mobile_measure; CSS .h-xxl.header-home-h1 4.8rem) and the 'Haven-1' wordmark to ~97.5px (a separate xs--show h2 copy), still spanning the width (mobile_01). The mono 'HAVEN-1 / LAUNCHING 2027' eyebrow sits in the section's first row on both breakpoints (on desktop that row was above the viewport in desktop_02); its second line is solar orange (.color--orange). No horizontal overflow."
+ },
+ "color": {
+  "mode": "section-shifting",
+  "base": "#fdfcf4 warm-white (--color--primary--warm-white) for the Haven-1 and carousel sections; #ece8e3 warm-gray for updates/press; #b3aba3 moon-rock for the statement section; video hero; #000 footer band",
+  "ink": "#2a2c2f (--color--primary--meteorite-black)",
+  "accents": [
+   "#ff5623 solar orange (--color--accent--solar-orange): ~10px square separators in mono meta rows, the 'LAUNCHING 2027' line, cookie links, and the single radial tick at 12 o'clock on the Haven-1 ring (mobile_01, frames/0 f00)",
+   "#897f75 asteroid-dust: unfilled words of the statement and muted text",
+   "#2da046 green (--color--secondary--green): defined, not seen in screenshots"
+  ],
+  "ratio": "inferred: ~55% warm neutrals (#fdfcf4 / #ece8e3 / #b3aba3), ~30% photography/video/3D, ~13% ink #2a2c2f, under 1% orange",
+  "section_shifts": "Yes. Hero video, then #b3aba3 statement, #fdfcf4 Haven-1 3D, #fdfcf4 photo carousel, #ece8e3 updates and press, then a #000 footer band holding a #ece8e3 signup card and a white link card. Each surface is a flat field. How they hand off (tween or hard edge) was not visible between screenshots.",
+  "texture": "none. Translucency instead of grain: backdrop-filter appears 59 times and rgba(42,44,47,0.27) 56 times; the bundle's callout/description boxes are rgba(42,44,47,.27) + backdrop-blur 30px, glass buttons are 10% white + blur(2.8rem)",
+  "notes": "The tokens are named after geology and space (meteorite-black, moon-rock, asteroid-dust, solar-orange), which gives the warm neutrals a reason to exist. Orange is kept to data markers and never used as a button fill; buttons are ink #2a2c2f or white."
+ },
+ "layout": {
+  "grid": "Webflow with a 10px rem base: --gap-l 4rem = 40px side margins at 1440 (Updates heading and cards start at x=40). News is 3 columns of 413px with 60px gutters (40-453, 513-927, 987-1400). Tokens: --nav-height 8rem (80px), --section-padding 6rem, gaps .4/.8/1.6/2/2.4/3.2/4/4.8/6.4rem, --btn-size-l/m/s 5.6/4.6/3.6rem.",
+  "density": "balanced",
+  "alignment": "Left-aligned on the 40px margin for text; 3D and ghost wordmark centered; statement paragraph indented to x=80 with max width ~820px",
+  "composition_moves": [
+   "3D model laid over a 24vw ghost wordmark, framed by a baked-SVG tick ring (desktop_02)",
+   "Floating inset nav bar: 28px from the viewport edges, 80px tall (--nav-height 8rem), white with a soft shadow, once scroll passes 100px (desktop_01); it hides when scrolling down past one viewport and returns on scroll-up (bundle header thresholds)",
+   "Crosshair '+' registration marks in all four corners of the statement section (HTML .crosshair-wrap abs-top-left/-right/-bottom-left/-right); the bottom pair is visible at (48,672) and (1392,672) in desktop_01",
+   "Photo carousel of large 1084x686 frames with the next slide peeking 16px away; a translucent caption panel sits ~20px inside the photo's bottom-left corner with a white 10px square bullet (not orange), mono uppercase title and Owners Text copy (desktop_03)",
+   "Press quotes as a horizontal carousel of ~450px cards bounded by 1px vertical rules (x=40/490/940/1390) with square prev/next tiles top-right, then a press-logo marquee (desktop_06)",
+   "Colon-aligned mono spec table beside the model: right-aligned grey labels ending in a colon, left-aligned values (HTML .haven-full-3d__mirror; frames/0 f00)"
+  ],
+  "section_rhythm": "Full-bleed video, then an almost empty moon-rock field holding one 4-line statement, then the big 3D set piece, then dense photo carousel, then a 3x2 news grid, then press quotes and logos, then a boxed footer. Big and quiet alternates with dense and informational.",
+  "mobile_adaptation": "Hamburger (two white lines) replaces the links; the 16:9 hero loop is object-fit cropped to a narrow centre slice (mobile_00); the Haven-1 section keeps the ring and a station image at 390px (mobile_01). inferred: that image is the static fallback, not live WebGL, because the bundle only sets WEBGL_ENABLED when DESKTOP && WEBGL_SUPPORTED && PERFORMANCE_GOOD and the HTML ships data-webgl-fb='webgl-haven-1-dragon' with a 'Haven-1+Dragon ISO Full Frame' avif/png still. No overflow."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis. html class 'lenis', globals.lenis true; bundle: new Lenis({autoRaf:false, lerp:.3, smoothWheel:true, syncTouch:false, prevent: cookie-preference panel}); lenis.raf driven from gsap.ticker with gsap.ticker.lagSmoothing(0). lerp .3 is fast, close to native feel.",
+  "preloader": "Not visible in the probe (desktop_00 is after a 6s settle). The bundle has a #loader with .loader-line/.loader-line-fill: the fill scales to load progress, finishes with scaleX 1 over .5s power2.inOut, then animates out (mobile: scaleY then scaleX over 1s). The same loader covers Barba page transitions.",
+  "intro_sequence": "Not observed. The earlier guess that the h1 is SplitText-staggered is unsupported: the bundle's only SplitText use is the statement fill ([data-split-text]). On a Barba enter, [data-hero-content] drops in from y -6rem while [data-hero-visual-wrap] scales 1.1->1 and its inner 1.2->1 (1.4s), defaults 1.25s 'animation-primary'.",
+  "scroll_techniques": [
+   "scrub: scrub:0 on the statement fill (start '0% 60%', end '0% 10%') and the marquee drift; scrub:true on other pages' reveals (timeline dot #fff->#ff5623, image clip-path inset(0 20%)->inset(0) with scale 1.2->1); no pin anywhere in the bundle",
+   "word-by-word fill on the 48px statement: two stacked h2s (data-highlight main + an aria-hidden duplicate); the duplicate's words switch from opacity 0 to 1 one at a time",
+   "three-state nav: transparent over the video -> floating white inset bar after 100px -> hidden (y -100%, opacity 0, .7s power3.in) when scrolling down past one viewport height, back on scroll-up (.7s power3.out); delta threshold 50px",
+   "[data-parallax] elements offset by (distance from viewport centre) x speed on every Lenis scroll",
+   "horizontal drag carousels (data-drag) with square prev/next tiles; slide timeline .85s 'animation-primary' on xPercent",
+   "press-logo marquee: a linear xPercent loop whose timeScale flips sign with scroll direction (data-marquee-status normal/inverted) plus a scrub:0 x drift in vw across the section"
+  ],
+  "text_animation": "Statement paragraph (verified in the bundle): SplitText splits both h2 copies into words (display:inline-flex, padding-bottom 2px). The base copy stays visible in asteroid-dust #897f75. Every word of the white duplicate starts at opacity 0 with transition: opacity .1s ease-out; one ScrollTrigger timeline (trigger the section, start '0% 60%', end '0% 10%', scrub:0) steps through the words (tween duration .1, stagger .01, expo.out) and each tween's onStart sets opacity 1 (onReverseComplete sets 0). So the fill is a per-word switch with a short CSS fade, not a gradient sweep. By desktop_01 all words are white.",
+  "image_animation": "360 interior: panoramas change with a barrel/pincushion warp. Shader uniforms tMap, tMap2, uTextureProgress, uCenter; uv1 = barrelPincushion(scaleUV(vUv, c, map(p,0,1,1,0.4)), c, map(p,0,1,0,-8)); uv2 = barrelPincushion(scaleUV(vUv, c, map(p,0,1,1.6,1)), c, map(p,0,1,8,0)); color = mix(tex1, tex2, clamp(p*1.12,0,1)). uCenter.x is set to the clicked hotspot, tween defaults {ease:'power3.inOut', duration:.9}. Entering the immersive view: a full-screen 2x2 plane colored #E8E4DE whose top edge rises through a vertex shader (uRevealProgress, uFadeIn, uBendStrength), 1.6s power4.inOut to open and 1s to close, while the header animates out.",
+  "page_transitions": "Barba.js (@barba/core bundled; data-barba in the HTML), code-verified, not captured on video: beforeLeave adds html.loading; leave awaits loader.animateIn; enter sets the next container absolute with autoAlpha 0 and fades it in over .4s while the hero content drops from y -6rem and the hero visual scales 1.1->1 (inner 1.2->1, 1.4s); afterEnter runs loader.animateOut inside requestIdleCallback. The immersive-view wipe is a second, in-page transition.",
+  "hover_micro": [
+   "Hotspots (bundle): a --callout-size 3rem (30px) square button whose clip-path polygon opens from the 30px square to the full label width on hover/open, with transform and clip-path transitions of calc(.3s * var(--motion)) on var(--motion-ease-vast), the cubic-bezier(.4,1.35,.5,.97) overshoot token; the button is scale-0 while its point is hidden. In frames/0 f03 the hovered square inverts to a white field with a dark core under a pointer cursor.",
+   "Callout card (bundle): title and image wipe in with a clip-path polygon from the bottom edge (polygon(0 100%,100% 100%,100% 100%,0 100%) -> full) and exit through the top edge, .7s power4.inOut. Mono uppercase title with a white square bullet that lands where the hotspot was, near-square photo (~1.1:1 in frames/0 f04, not 4:3).",
+   "Description boxes: 339px wide, min-height 206px, rgba(42,44,47,.27) + backdrop-blur 30px, 16px/1.16 copy (bundle Tailwind classes).",
+   "Buttons: two stacked layers, .btn-bg and .btn-wipe (#ece8e3 wipe over white, #000 over dark, 7% white over glass; glass bg = blur(2.8rem) + 10% white), plus a strip of four chevrons (.btn-icon-chevron-list) for a chevron roll; the hover motion itself was not captured.",
+   "Grab cursor over the 3D canvas while dragging (frames/0 f02, f05)"
+  ],
+  "cursor": "Native. The 3D viewer switches to a grab hand; cursor:none is not used (css_usage.cursor_none 0).",
+  "easing_curves": [
+   "cubic-bezier(0.62,0.05,0.01,0.99) (--animation-bezier; the same curve is registered as GSAP CustomEase 'animation-primary'; 9 CSS uses)",
+   "cubic-bezier(0.77,0,0.175,1) (7 uses)",
+   "cubic-bezier(0.4,1.35,0.5,0.97) (--motion-ease-vast): drives the hotspot clip-path/transform transition and .gsap-scroll-bg opacity",
+   "linear(0, 0.007, 0.03 2.1%, 0.122 4.6%, 0.243 6.9% ...) (--motion-ease-spring): drives .gsap-scroll-item transforms (a fixed 4rem right-edge scroll rail defined in the embed CSS, not seen on the home screenshots)",
+   "GSAP: expo.out x32, sine.out x22, power3.inOut x8, 'animation-primary' x7, power3.out x4, power2.inOut x4, expo.inOut x4, power4.inOut x2"
+  ],
+  "duration_range_ms": "CSS 150-550ms for UI (0.2s x9, 0.3s x8, 0.5s x7, 0.4s x5), 650ms primary (--animation-duration-primary .65s, fast .5s), 700ms-1s for larger moves. GSAP duration:1 x42, .3 x14, .5 x12, .4 x7, .7 x5 (nav hide/show, callout wipes), .85 carousel slides, 1.2 x4, 1.25 page enter, 1.6 for the immersive wipe.",
+  "stagger_ms": "50ms (x5), 70ms (x3), 100ms (x2), 80/40/30/10ms once each",
+  "choreography_notes": "The 3D viewer steps its chrome back: once you drag or zoom, the spec table, the HAVEN-1 label and the interior/exterior switch fade out and the camera moves in about 1.5x (the model grows from ~300 to ~460px tall between frames/0 f01 and f02). They come back when you zoom out (f06). In the immersive view the headline and button stay put while the panorama camera drifts; frames/1 f07 catches a hop mid-blend (two panoramas superimposed at different scales), consistent with the warp shader.",
+  "evidence": [
+   "frames/0/f00-f07 (Haven-1 Interior & Exterior WebGL, 15.8s, frames at 0.99-14.78s)",
+   "frames/1/f00-f07 (Haven-1 Interior WebGL 360, 16s, frames at 1-15s)",
+   "bundle grep https://dcwvv9x5kjsk9.cloudfront.net/index.js (1.54MB), re-read in audit: Lenis {autoRaf:false, lerp:.3, smoothWheel:true, syncTouch:false, prevent cky-preference}, CustomEase.create('animation-primary','0.62, 0.05, 0.01, 0.99'), shader GLSL, statement-fill timeline, header thresholds, Barba transitions, callout classes",
+   "HTML + antinomy-vast.webflow.shared CSS + inline embed CSS (:root{--motion:1}, @media (prefers-reduced-motion: reduce){:root{--motion:0}})",
+   "probe easings/durations/root_vars"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "mixed",
+  "art_direction": "Documentary factory photography: bright, evenly lit white cleanrooms, white-and-black hardware, technicians in bunny suits, slightly warm grade. Studio portraits against warm grey or a VAST logo wall. 3D renders of the station: brushed-aluminium body, copper solar arrays, soft sun key light. A lunar habitat render for the news.",
+  "treatments": [
+   "full-bleed muted loop video hero under a 10% dark overlay",
+   "translucent caption panel docked ~20px inside photos (rgba(42,44,47,.27) + backdrop blur; white square bullet, mono uppercase title, Owners Text copy)",
+   "tonal ghost wordmark behind a transparent WebGL canvas",
+   "3D hotspot callouts with small near-square photos",
+   "static render fallback image per WebGL block (data-webgl-fb)"
+  ],
+  "crops_and_ratios": "Hero 16:10 full viewport; carousel frames ~1084x686 (~1.58:1) with the next slide peeking at the right edge; news 1:1 (413x413); callout photos near-square (~1.1:1); element video renders on a #ece8e3 card with a spec overlay",
+  "formats": "probe asset_extensions: png 21, avif 20, jpg 10, glb 9, hdr 2, mp4 1; declared bytes mp4 11.46MB, 3d 8.97MB, jpg+jpeg 2.55MB, webp 0.79MB, png 0.60MB, avif 0.16MB",
+  "evidence": [
+   "desktop_00.jpg",
+   "desktop_03.jpg",
+   "desktop_04.jpg",
+   "desktop_05.jpg",
+   "probe bytes_by_type_declared"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r172 via React Three Fiber (React.createElement('planeGeometry'), drei-style shaderMaterial, makeDefault PerspectiveCamera), in a separate Vite bundle on CloudFront mounted into the Webflow page",
+  "role": "product (Haven-1 exterior/interior cutaway with hotspots) plus a 360 interior world (panorama hops) and supporting models: a Dragon capsule docked to Haven-1 in the home Haven-1 section (desktop_02, not the hero), Haven-2 and an artificial-gravity station. desktop_02 also shows a figure in the porthole; inferred from the asset list: the haven1_low_poly_person / default_head GLBs.",
+  "assets": [
+   "https://dcwvv9x5kjsk9.cloudfront.net/glb/ag-station-transformed.glb",
+   "https://dcwvv9x5kjsk9.cloudfront.net/glb/default_head-transformed.glb",
+   "https://dcwvv9x5kjsk9.cloudfront.net/glb/dragon-transformed.glb",
+   "https://dcwvv9x5kjsk9.cloudfront.net/glb/haven-demo_no_logo-transformed.glb",
+   "https://dcwvv9x5kjsk9.cloudfront.net/glb/haven1-cutout-transformed.glb",
+   "https://dcwvv9x5kjsk9.cloudfront.net/glb/haven1_low_poly_person-transformed.glb",
+   "https://dcwvv9x5kjsk9.cloudfront.net/glb/haven2-core-transformed.glb",
+   "https://dcwvv9x5kjsk9.cloudfront.net/glb/haven2_body-transformed.glb",
+   "https://dcwvv9x5kjsk9.cloudfront.net/glb/source_files/haven2_rigged_head.glb",
+   "https://dcwvv9x5kjsk9.cloudfront.net/hdr/hdr5.hdr",
+   "https://dcwvv9x5kjsk9.cloudfront.net/hdr/solar_panel5.hdr"
+  ],
+  "materials_lighting_post": "GLTFLoader with DRACOLoader, MeshoptDecoder and KTX2Loader in the bundle. The '-transformed.glb' suffix matches gltfjsx --transform output (Draco/Meshopt plus resized textures). MeshStandardMaterial (15 refs) and MeshPhysicalMaterial (6). RGBELoader loads two .hdr environments; solar_panel5.hdr is a panel-specific environment, which is why the arrays go from copper to dark blue cells as the model turns (frames/0 f02 vs f05). CubeCamera and WebGLRenderTarget are present. ACESFilmic/AgX/Neutral tone mapping exist in core; which one is active was not verified. Custom shaderMaterials for the panorama warp and the reveal plane. No EffectComposer or bloom string in the bundle; lighting reads soft, bright and studio-like.",
+  "interaction": "Drag to rotate (grab cursor) with zoom-in; an 'INTERIOR [■] EXTERIOR' switch (mono labels either side of a small square knob on a moon-rock bar, frames/0 f01/f06); hotspots defined as data {title, paragraph, position:[x,y,z], uid, image:'/img/haven-demo/*.webp', side:'front'|'back'} (e.g. 'Deployable solar array' at [3.3,0,-.15], 'GNC', 'Radios'); a click opens a photo callout. 360 view: camera fov 80 at the origin with custom mousedown/touch drag handlers (no OrbitControls class in the bundle), idle look-around drift, and hotspot tags like 'CORRIDOR' (frames/1 f02) that jump to the next panorama through the warp shader.",
+  "performance_tactics": "Device-tier classes on <html>: WEBGL_ENABLED only when DESKTOP && WEBGL_SUPPORTED && PERFORMANCE_GOOD, else WEBGL_DISABLED (bundle); IS_LOW_POWER_MODE comes from a hidden inline autoplay test video (class added if it stays paused after canplaythrough) and only affects the hero video; every React WebGL block ships a static render fallback (data-webgl-fb, e.g. 'Haven-1+Dragon ISO Full Frame' avif with png srcset); compressed '-transformed' GLBs; the gsap ticker drives one RAF for Lenis. The 3D payload is still 8.97MB declared on desktop.",
+  "fallback_mobile": "inferred: a still image on phones. The tier logic disables WebGL off desktop and the HTML ships data-webgl-fb stills; mobile_01's station (no Dragon in view, a different angle from desktop_02) is consistent with that still. Not verified with a context count at 390px.",
+  "evidence": [
+   "probe globals.three_revision 172",
+   "probe contexts webgl 1 / webgl2 3",
+   "probe assets_3d",
+   "frames/0/f00-f07",
+   "frames/1/f00-f07",
+   "desktop_02.jpg",
+   "mobile_01.jpg",
+   "bundle grep: GLTFLoader x26, DRACOLoader x7, MeshoptDecoder x3, KTX2Loader x2, RGBELoader x5, CubeCamera x3, hotspot data objects, device-tier class logic",
+   "HTML data-webgl-fb='webgl-haven-1-dragon' fallback img"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Top bar with three states: transparent with white text over the hero; after 100px a floating white inset bar (28px from the edges, 80px tall, soft shadow) with ink text and a dark 'Create your mission' button (desktop_00 to desktop_01); hidden on scroll-down past one viewport height and shown again on scroll-up (y -100% / opacity 0, .7s power3.in; back with .7s power3.out). desktop_02 and desktop_04-07 show it hidden, with a ~25px shadow band still visible along the top edge (x 28-1412).",
+  "menu": "Stations opens a mega panel with Haven-1 and Haven-2 cards, each with a one-line descriptor (probe nav). Mobile: two-line hamburger.",
+  "buttons_links": "Square-cornered buttons (radius 2-6px) built from a .btn-bg layer plus a .btn-wipe layer: ink #2a2c2f with white text, white with ink, or glass (blur 2.8rem + 10% white) over video. Text links use a chevron from a four-chevron strip ('> Learn more'). Carousel arrows are ~45px square moon-rock tiles. Hover motion was not captured.",
+  "unusual_interactions": [
+   "Interior/exterior switch on a live 3D model",
+   "3D-anchored 30px hotspot squares that clip-open into labels and photo callouts",
+   "360 'Immersive View' with warped panorama hops",
+   "Frosted 'Immersive View' button with a dashed-circle icon over the live panorama",
+   "Press-logo marquee that reverses with scroll direction"
+  ],
+  "sound": "none observed",
+  "footer": "Black #000 band with two inset cards: a #ece8e3 'Sign up for updates' card (white email field plus dark 'Sign up' button), and a white card with the CONTACT address block and a US flag on the left, PRODUCTS and ABOUT VAST link columns (mono headings) on the right (desktop_07)"
+ },
+ "content_voice": {
+  "headline_style": "Plain declarative engineering statements in sentence case; product names carry the drama (Haven-1 at 24vw).",
+  "copy_tone": "Sober, factual, press-release register: hardware milestones (docking-adapter fit checks, integration phases), spec sheets, dated updates. No hype adjectives.",
+  "examples": [
+   "Building next-generation space infrastructure"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Webflow (meta generator Webflow, webflow.js chunks, jQuery 3.5.1) plus a custom React Three Fiber + GSAP + Lenis bundle loaded as <script type=module> from dcwvv9x5kjsk9.cloudfront.net/index.js",
+  "libraries": [
+   "three.js r172",
+   "React Three Fiber (+ drei-style shaderMaterial)",
+   "GSAP (ScrollTrigger, CustomEase, SplitText, all bundled)",
+   "Lenis",
+   "Barba.js (@barba/core, bundled) for page transitions",
+   "Tailwind-style arbitrary-value classes in the React islands (backdrop-blur-[30px], duration-[calc(0.5s*var(--motion))])",
+   "Finsweet Attributes richtext",
+   "CookieYes",
+   "Intellimize, GTM, ad pixels (casalemedia, adsrvr, simpli.fi, Facebook)"
+  ],
+  "evidence": "probe globals {lenis, Webflow, three_revision 172}; curl of https://www.vastspace.com/ listed jquery-3.5.1, webflow chunks, CookieYes, the Finsweet richtext script and the module index.js; grep of index.js for the Lenis constructor, CustomEase.create, Barba internals (data-barba, x-barba header), shader strings, three class names"
+ },
+ "performance_accessibility": {
+  "requests": 191,
+  "weight_notes": "Heavy: hero mp4 11.46MB (the file name says 12MB), 3D 8.97MB, images ~4.1MB, custom JS bundle 1.54MB uncompressed plus Webflow/jQuery, and a long tail of ad and analytics hosts.",
+  "reduced_motion": "1 prefers-reduced-motion rule, and it is the switch: an inline embed sets :root{--motion:1} and @media (prefers-reduced-motion: reduce){:root{--motion:0}}; every CSS duration is calc(Xs * var(--motion)). The probe read --motion: 0, so the probe browser reported reduced motion. IS_LOW_POWER_MODE is unrelated (a JS autoplay test that only touches the hero video). GSAP tweens (nav, statement fill, callout wipes, panorama warp, reveal plane) do not read --motion; only CSS and the React Tailwind classes do.",
+  "contrast_issues": "White 48px statement on moon-rock #b3aba3 is 2.27:1, below AA large (3:1); the base #897f75 words on #b3aba3 are 1.73:1. The white h1 over the bright cleanroom video has only a 10% dark overlay. The white 'Experience Haven-1 Interior' heading sits over near-white panorama walls with no scrim (frames/1). Orange #ff5623 cookie links on #ece8e3 are 2.6:1 at 14px. Mono 12px captions on translucent panels are small.",
+  "mobile_quality": "Good: no horizontal overflow, 48px h1, the Haven-1 ring and station image render (likely the static fallback); the cookie sheet takes ~50% of the first mobile screen.",
+  "dev_scores": {
+   "semantics_seo": 7.4,
+   "animations": 7.4,
+   "accessibility": 7.0,
+   "wpo": 7.6,
+   "responsive": 7.4,
+   "markup": 7.2
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Hotspot product viewer with interior/exterior modes",
+   "why_it_works": "It turns a spec sheet into something you can hold: the visitor drags the real product, flips to a cutaway, and gets photo proof at each part, so trust comes from the hardware itself.",
+   "how_to_build": "R3F + drei. Run the models through `npx gltfjsx model.glb --transform` (Draco/Meshopt, resized textures) and load with useGLTF. Add an RGBE .hdr environment for reflections and give the solar arrays their own env map (Vast loads solar_panel5.hdr beside hdr5.hdr) so they swing copper to blue as they turn. Controls: the bundle has no OrbitControls class, so write a small damped drag-rotate or use OrbitControls (enablePan false, enableDamping); show a grab cursor while dragging. Keep hotspots as data {title, paragraph, position:[x,y,z], image, side:'front'|'back'} (Vast: 'Deployable solar array' at [3.3,0,-.15]). Render each with drei <Html position> as a 30px (3rem) button: background rgba(42,44,47,.27), backdrop-filter blur(30px), a 10px white square inside, clip-path polygon(0 0,30px 0,30px 30px,0 30px) that opens to polygon(0 0,100% 0,100% 100%,0 100%) on hover to reveal the label, transition clip-path and transform .3s cubic-bezier(.4,1.35,.5,.97); invert to a white field with a dark core on hover; scale(0) when the point faces away (inferred test: dot(normal, cameraDir) per side). On click open a callout at the hotspot: a mono uppercase title whose white square bullet sits on the hotspot, and a near-square photo, wiped in with clip-path from polygon(0 100%,100% 100%,100% 100%,0 100%) to the full box over .7s power4.inOut and out through the top edge. inferred (not in the bundle): on drag/zoom fade the spec table and switch to opacity 0 and dolly the camera ~1.5x; the switch swaps the cutout GLB and the full body."
+  },
+  {
+   "technique": "Panorama hop with barrel/pincushion warp",
+   "why_it_works": "Moving between 360 nodes feels like walking forward through the doorway instead of a crossfade, and it only costs one fragment shader.",
+   "how_to_build": "PerspectiveCamera fov 80 at [0,0,0] (makeDefault) inside an inverted sphere or a fullscreen quad sampling the panoramas. ShaderMaterial uniforms tMap, tMap2, uTextureProgress (p), uCenter (vec2, default (.25,.5)). Fragment, as shipped: vec2 bp(vec2 uv, vec2 c, float s){vec2 st=uv-c; return c+(1.+s*dot(st,st))*st;} uv1=bp(c+(vUv-c)*mix(1.,.4,p), c, -8.*p); uv2=bp(c+(vUv-c)*mix(1.6,1.,p), c, 8.*(1.-p)); gl_FragColor=vec4(mix(texture2D(tMap,uv1).rgb, texture2D(tMap2,uv2).rgb, clamp(p*1.12,0.,1.)),1.) (SCALE_AMOUNT .6, PINCUSHION_STRENGTH 8). On a hotspot click: inferred, set uCenter.x from the tag's screen x; tMap=current; tMap2=next; p=0; gsap.to(u.uTextureProgress,{value:1, duration:.9, ease:'power3.inOut'})."
+  },
+  {
+   "technique": "Ghost wordmark behind a transparent WebGL object",
+   "why_it_works": "The product name becomes the backdrop, so the name and the object register in one glance, and because the contrast is only tonal the model stays the hero.",
+   "how_to_build": "<h2> at font-size 24vw (345.6px at 1440), line-height 1, color #ece8e3 on #fdfcf4 (1.2:1, a tonal step). Put a transparent R3F canvas (gl={{alpha:true}}) absolutely on top, centred. Behind the model add the ring: Vast ships it as one baked SVG path (viewBox 609x611) of ~116 short radial ticks, 6 units long and under 1 unit wide; the same look comes from <circle r='300' fill='none' stroke='currentColor' stroke-width='6' stroke-dasharray='0.5 15.75'/> in a warm grey, plus one ~40px #ff5623 tick at 12 o'clock. Keep the h2 real text for SEO (Vast renders a second xs--show copy for phones) and put a still render behind the canvas as the no-WebGL fallback. On mobile the word still spans the width (~25vw)."
+  },
+  {
+   "technique": "One motion multiplier token shared by CSS and GSAP",
+   "why_it_works": "Reduced motion and low-power handling become a single switch, and the CSS and JS curves cannot drift apart.",
+   "how_to_build": ":root{--motion:1; --animation-bezier:cubic-bezier(.62,.05,.01,.99); --animation-primary:calc(.65s * var(--motion)) var(--animation-bezier); --animation-primary-fast:calc(.5s * var(--motion)) var(--animation-bezier);} @media (prefers-reduced-motion:reduce){:root{--motion:0}}. Use transition: transform var(--animation-primary). In JS: CustomEase.create('animation-primary','0.62, 0.05, 0.01, 0.99'); Vast's GSAP tweens ignore --motion, so do better: read getComputedStyle(root).getPropertyValue('--motion') and skip or jump tweens when it is 0. Device tiers as Vast does them: add WEBGL_ENABLED only when DESKTOP && WEBGL_SUPPORTED && PERFORMANCE_GOOD (else WEBGL_DISABLED), detect low-power mode with a hidden muted autoplay test <video> (still paused after canplaythrough = IS_LOW_POWER_MODE), and give every WebGL block a static still (data-webgl-fb) shown under WEBGL_DISABLED."
+  },
+  {
+   "technique": "Full-screen vertex-shader wipe into an immersive mode",
+   "why_it_works": "Opening the 360 view feels like entering the station: a warm sheet rises from the bottom, the header leaves, and the panorama is underneath.",
+   "how_to_build": "In the same R3F scene, render planeGeometry args [2,2,1,1] with depthTest and depthWrite off and a vertex shader that skips the projection: vec3 pos=position; if(uFadeIn){ if(pos.y>0.) pos.y -= (1.-uRevealProgress)*2.; } else { if(pos.y<1.) pos.y += (1.-uRevealProgress)*2.; } gl_Position=modelMatrix*vec4(pos,1.) (with an identity modelMatrix that is clip space). Fragment is a flat uColor #E8E4DE. Open: gsap.to(u.uRevealProgress,{value:1,duration:1.6,ease:'power4.inOut'}); close: to 0, duration 1. The leading edge is straight: Vast passes uBendStrength:0 and defines PI, but its shader never reads them. For a curved edge add x segments (args [2,2,32,1]) and pos.y += sin((pos.x*.5+.5)*PI)*uBend. Animate the header out at the same time."
+  },
+  {
+   "technique": "Fast Lenis on the GSAP ticker",
+   "why_it_works": "lerp .3 smooths wheel steps without the floaty lag that heavy smooth-scroll adds, and one RAF keeps ScrollTrigger and WebGL in sync.",
+   "how_to_build": "const lenis = new Lenis({autoRaf:false, lerp:.3, smoothWheel:true, syncTouch:false, prevent: el => el.closest('.cookie-panel')}); lenis.on('scroll', ScrollTrigger.update); gsap.ticker.add(t => lenis.raf(t*1000)); gsap.ticker.lagSmoothing(0)."
+  },
+  {
+   "technique": "Three-state header: transparent, floating island, hidden",
+   "why_it_works": "The hero keeps a clean full-bleed frame, the reading sections get a solid inset bar, and the bar gets out of the way while you read downward.",
+   "how_to_build": "On each Lenis scroll compare targetScroll with the last value and act only on moves of 50px or more. Past 100px add a 'started' state: the nav becomes a white bar inset 28px from the edges, 80px tall, soft tight shadow, ink text. Scrolling down past one viewport height (innerHeight, recomputed on resize) hides it with gsap.to('nav',{y:'-100%',opacity:0,duration:.7,ease:'power3.in'}); any upward move brings it back with {y:0,opacity:1,duration:.7,ease:'power3.out'}. Keep it shown while the menu is open. Put the shadow on the same element you hide, or its shadow is left behind as a band along the top edge (Vast's scrolled screenshots show one)."
+  }
+ ],
+ "slop_risks": [
+  "Cream/beige editorial background: the page base is #fdfcf4 warm-white, #ece8e3 warm-gray and #b3aba3 moon-rock. Vast earns it with geology-named tokens and a space-hardware subject; a naive copy is oat milk.",
+  "Saturated accent pop, and the little filled dot before an eyebrow: solar orange #ff5623 squares sit between 'PRESS RELEASE' and each date. It works here because orange appears nowhere else; spread onto buttons or headline words it becomes the template tell.",
+  "Monospace as the house voice / one label treatment: Phonic uppercase covers dates, categories, spec tables, carousel captions and link labels ('SEE THE MANUFACTURING AND TESTING'). Data use is legitimate; captions and links stretch it into a costume.",
+  "Text you cannot read: white 48px statement on #b3aba3 at 2.27:1, and the base words at #897f75 are 1.73:1; the white 'Experience Haven-1 Interior' heading sits on near-white panorama walls with no scrim.",
+  "Scroll-stepped word-by-word text fill is a heavily copied trope. Copy it only if the base state is fully readable; Vast's base copy (#897f75 on #b3aba3, 1.73:1) is not, so until you scroll the statement reads as disabled text.",
+  "Standard corporate lower half: 3-column news cards, press-logo marquee, a 'Sign up for updates' field-plus-button row and link columns under mono uppercase labels. The field and button are square (not the email-pill form), and the footer is an inset island on black without a giant wordmark or copyright row, so it avoids the worst of the standard footer, but the field-plus-button newsletter row itself is still the stock move.",
+  "Multi-line headline: the h1's column is capped at 67rem, so at 1440 'Building / next-generation / space / infrastructure' stacks four lines with 'space' stranded alone. Set the width so the authored three lines hold, or cut the line.",
+  "Image card with overlay caption: carousel photos carry a translucent panel with a small mono uppercase label, a bullet and a description, the same anatomy as the overlay-caption card preset. The blur panel is better than a gradient scrim, but the pattern repeats on every slide.",
+  "Unrounded hairline rules as decoration: the 1px vertical rules between press quotes.",
+  "Weight: a 12MB hero loop plus 9MB of GLBs on the home page. A copy without device tiering stalls on mid-range phones.",
+  "Botched shadow leak: when the floating nav hides, a ~25px shadow band stays across the top of the viewport (x 28-1412) in the scrolled screenshots (desktop_02, desktop_04-07). Observed; the cause is inferred (the shadow lives on an element that is not hidden with the bar)."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots and mobile_00/01 (the CookieYes banner covers the bottom ~20% of every desktop shot and ~50% of the mobile ones, because the probe does not click banners), all 16 element frames (both elements), probe numbers, and the bundle grep of the 1.54MB CloudFront index.js (Lenis options, CustomEase, shader GLSL, hotspot data, ease/duration/stagger counts). INFERRED: the scroll-scrub mechanics of the word fill, the exact trigger ranges per section, the hover states (the probe captured none), which tone mapping is active, and whether --motion:0 came from reduced motion or from the headless low-power detection. The jury video shows 'LAUNCHING 2026' while the live mobile shows 'LAUNCHING 2027', so content changed after the award. No re-probe was needed. audit (2026-09-25): re-viewed desktop_00-07, mobile_00/01, frames/0 and frames/1 f00-f07 one at a time, sampled pixels, re-read the CloudFront bundle, the home HTML and the Webflow/embed CSS. Fixed: h1 wraps to 4 lines at 1440 (max-width 67rem), not 3; hero also has glass play/pause + 'Watch full video' buttons and a 10% overlay; the Dragon is docked in the Haven-1 section, not the hero; statement fill mechanics now code-verified (start '0% 60%', end '0% 10%', scrub:0, per-word opacity with a .1s CSS fade), and the h1-SplitText guess removed; page transitions are Barba.js, not 'none'; a #loader line exists in code; nav hides on scroll-down past one viewport; hotspot is a 30px clip-path square using --motion-ease-vast (previously 'not observed'), callouts wipe from the bottom edge, blur is 30px not 8px, callout photos ~1.1:1 not 4:3; the ring is a baked SVG path, not stroke-dasharray; uBendStrength is passed as 0 and unused by the shader; --motion:0 comes only from prefers-reduced-motion (the probe ran reduced), not low-power mode; mobile_01's station is most likely the data-webgl-fb still, not live WebGL; interior/exterior is a switch, not a segmented control; zoom ~1.5x not 1.6x; tonal contrast 1.2:1 not 1.1:1. Removed the false email-pill accusation; added the multi-line headline, overlay-caption card and shadow-leak tells and the panorama heading contrast issue. Added a three-state header recipe."
+}

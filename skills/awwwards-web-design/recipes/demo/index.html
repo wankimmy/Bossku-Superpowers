@@ -1,0 +1,245 @@
+<!doctype html>
+<!-- TEST HARNESS, NOT A DESIGN TEMPLATE.
+     This page exists to exercise every recipe in ../ (tokens.css, boot snippet,
+     motion-core.js/.css, magnetic.js, page-transitions.css/.js). Its look is
+     deliberately neutral: system-ui, black on white, labelled sections. Do not
+     copy its styling into a build.
+     Serve over http (cross-document View Transitions need same-origin http):
+       python3 -m http.server -d <skill>/recipes 8000  ->  http://localhost:8000/demo/ -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,"> <!-- harness: no favicon request (a 404 would be a console error) -->
+<title>Motion recipes: test harness</title>
+<meta name="description" content="Neutral test harness for the awwwards-web-design motion recipes. Not a design template.">
+
+<!-- boot: copied from ../boot.html-snippet.html, paths adjusted -->
+<script>
+  (function (root) {
+    var saved = null, osReduce = false;
+    try { saved = localStorage.getItem('motion'); } catch (e) {}
+    try { osReduce = matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    var full = !osReduce && saved !== 'reduce';
+    root.setAttribute('data-motion', full ? 'full' : 'reduce');
+    if (full) root.classList.add('motion-ok');
+  })(document.documentElement);
+</script>
+<style>
+  :root[data-motion="full"]:not([data-intro-owned]) [data-intro] {
+    clip-path: inset(0 0 100% 0);
+    animation: intro-deadline-clip 1ms var(--intro-deadline, 2s) forwards;
+  }
+  :root[data-motion="full"]:not([data-intro-owned]) [data-intro-item] {
+    translate: 0 var(--intro-shift, 1rem);
+    animation: intro-deadline-shift 1ms var(--intro-deadline, 2s) forwards;
+  }
+  :root[data-motion="full"]:not([data-intro-owned]) [data-intro-media] {
+    scale: var(--intro-scale, 1.06);
+    animation: intro-deadline-scale 1ms var(--intro-deadline, 2s) forwards;
+  }
+  @keyframes intro-deadline-clip  { to { clip-path: none; } }
+  @keyframes intro-deadline-shift { to { translate: none; } }
+  @keyframes intro-deadline-scale { to { scale: none; } }
+</style>
+<script type="importmap">
+{
+  "imports": {
+    "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/+esm",
+    "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/ScrollTrigger.js/+esm",
+    "gsap/SplitText": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/SplitText.js/+esm",
+    "gsap/CustomEase": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/CustomEase.js/+esm",
+    "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/+esm"
+  }
+}
+</script>
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/gsap@3.15.0/+esm">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/gsap@3.15.0/ScrollTrigger.js/+esm">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/gsap@3.15.0/SplitText.js/+esm">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/gsap@3.15.0/CustomEase.js/+esm">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/lenis@1.3.26/+esm">
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../motion-core.css">
+<link rel="stylesheet" href="../page-transitions.css">
+<script src="../page-transitions.js"></script>
+<!-- harness-only styling (not a design template) -->
+<link rel="stylesheet" href="harness.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="wrap bar">
+  <strong>Motion recipes · test harness</strong>
+  <nav aria-label="Harness pages">
+    <ul>
+      <li><a href="index.html" aria-current="page">Index</a></li>
+      <li><a href="about.html">About (page transition)</a></li>
+      <li><a href="webgl.html">WebGL recipes</a></li>
+    </ul>
+  </nav>
+  <button class="btn" type="button" data-motion-toggle aria-pressed="false" hidden>Reduce motion</button>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p class="note"><strong>Test harness, not a design template.</strong> Neutral on purpose: system-ui, black on white, labelled sections. Each section names the recipe it exercises and what to expect. With JavaScript off, reduced motion on, or the CDN blocked, every section must still read completely.</p>
+  </div>
+
+  <!-- 1. Intro: data-intro + data-intro-item + data-intro-media, guarded by the CSS deadline -->
+  <section id="s-intro" class="wrap hero" aria-labelledby="t-intro">
+    <div>
+      <p class="label">1 · <code>data-intro</code>, <code>data-intro-item</code>, <code>data-intro-media</code> (CSS deadline)</p>
+      <h1 id="t-intro" data-intro>Motion that never hides the page</h1>
+      <p class="lead" data-intro-item>The heading lines rise once from their masks. The lead and the image are visible from the first paint and only settle.</p>
+      <p class="expect" data-intro-item>Expect: if motion-core.js has not taken over within 2s, the CSS deadline shows everything as it is.</p>
+    </div>
+    <a class="frame" href="about.html" aria-label="Open the about page (shared-element transition)">
+      <img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20160%20100'%3E%3Crect%20width='160'%20height='100'%20fill='%230a0a0a'/%3E%3Cg%20fill='none'%20stroke='%23fff'%20stroke-width='.7'%3E%3Ccircle%20cx='96'%20cy='50'%20r='6'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='13'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='20'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='27'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='34'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='41'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='48'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='55'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='62'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='69'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='76'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='83'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='90'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='97'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='104'/%3E%3C/g%3E%3C/svg%3E" width="1600" height="1000" alt="Concentric white rings on black" data-vt-share="hero" data-intro-media fetchpriority="high">
+    </a>
+  </section>
+
+  <!-- 2. data-reveal="lines" -->
+  <section id="s-lines" class="wrap" aria-labelledby="t-lines">
+    <p class="label">2 · <code>data-reveal="lines"</code> (SplitText 3.15, mask: lines, aria: auto, autoSplit + onSplit, reverted after)</p>
+    <h2 id="t-lines" data-reveal="lines">Heading lines rise out of their masks when the first pixel enters</h2>
+    <p class="expect">Expect: plays once, never replays on scroll-up. After it finishes the heading is plain text again (no .rv-line nodes). The paragraph below is not a heading, so the same attribute falls back to a settle.</p>
+    <p data-reveal="lines">Paragraphs are not split. SplitText's aria-label is not allowed on the paragraph role, so this block only settles by 24px and stays readable the whole time.</p>
+    <h2 data-reveal="lines" style="margin-top: 6rem">A second heading, to check the stagger and the line-mask padding on descenders: gqpyj</h2>
+  </section>
+
+  <!-- 3. data-reveal="image" -->
+  <section id="s-image" class="wrap" aria-labelledby="t-image">
+    <p class="label">3 · <code>data-reveal="image"</code> (clip inset + scale settle)</p>
+    <h2 id="t-image">Image reveal</h2>
+    <div class="cols" style="margin-top: 2rem">
+      <figure>
+        <div class="frame" data-reveal="image"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2080%20100'%3E%3Cdefs%3E%3Cpattern%20id='p'%20width='6'%20height='6'%20patternUnits='userSpaceOnUse'%20patternTransform='rotate(35)'%3E%3Crect%20width='2.4'%20height='6'/%3E%3C/pattern%3E%3C/defs%3E%3Crect%20width='80'%20height='100'%20fill='%23fff'/%3E%3Crect%20width='80'%20height='100'%20fill='url(%23p)'/%3E%3C/svg%3E" width="800" height="1000" alt="Black diagonal stripes on white" loading="lazy"></div>
+        <figcaption>Starts clipped to inset(14% 10%), never fully closed.</figcaption>
+      </figure>
+      <figure>
+        <div class="frame" data-reveal="image"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20160%2090'%3E%3Cdefs%3E%3Cpattern%20id='g'%20width='10'%20height='10'%20patternUnits='userSpaceOnUse'%3E%3Cpath%20d='M10%200H0V10'%20fill='none'%20stroke='%23fff'%20stroke-width='.5'/%3E%3C/pattern%3E%3C/defs%3E%3Crect%20width='160'%20height='90'%20fill='%23000'/%3E%3Crect%20width='160'%20height='90'%20fill='url(%23g)'/%3E%3Cpath%20d='M0%2090L160%200'%20stroke='%23fff'%20stroke-width='1.2'/%3E%3C/svg%3E" width="1600" height="900" alt="White grid lines on black" loading="lazy"></div>
+        <figcaption>The media scales 1.18 to 1 inside its clipping frame.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 4. data-parallax -->
+  <section id="s-parallax" class="wrap" aria-labelledby="t-parallax">
+    <p class="label">4 · <code>data-parallax="0.2"</code> on media, <code>data-parallax="-0.1"</code> on a block</p>
+    <h2 id="t-parallax">Parallax on visible elements</h2>
+    <div class="px-row" style="margin-top: 2rem">
+      <div class="px-frame"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cdefs%3E%3Cpattern%20id='d'%20width='5'%20height='5'%20patternUnits='userSpaceOnUse'%3E%3Ccircle%20cx='2.5'%20cy='2.5'%20r='1.6'/%3E%3C/pattern%3E%3C/defs%3E%3Crect%20width='100'%20height='100'%20fill='%23fff'/%3E%3Crect%20width='100'%20height='100'%20fill='url(%23d)'/%3E%3Ccircle%20cx='50'%20cy='50'%20r='26'%20fill='%23fff'/%3E%3Ccircle%20cx='50'%20cy='50'%20r='26'%20fill='none'%20stroke='%23000'%20stroke-width='1.5'/%3E%3C/svg%3E" width="1000" height="1000" alt="Black halftone dots on white" data-parallax="0.2" loading="lazy"></div>
+      <div class="px-block" data-parallax="-0.1" aria-hidden="true">0.2 / −0.1</div>
+    </div>
+    <p class="expect">Expect: the photo lags behind the scroll inside its frame, and no edge of the frame ever shows. The block leads the scroll. Both are scrubbed with ease: none. Nothing moves under reduced motion.</p>
+  </section>
+
+  <!-- 5. data-marquee -->
+  <section id="s-marquee" class="marquee-demo" aria-labelledby="t-marquee">
+    <div class="wrap">
+      <p class="label">5 · <code>data-marquee</code> (CSS loop, scroll-velocity boost, pause button for WCAG 2.2.2)</p>
+      <h2 id="t-marquee">Marquee</h2>
+    </div>
+    <div data-marquee data-marquee-speed="70" style="margin-top: 2rem">
+      <div data-marquee-track>
+        <ul data-marquee-group>
+          <li>Tokens</li><li>Deadline</li><li>Reveal</li><li>Parallax</li><li>Pin</li><li>Stack</li><li>Magnet</li><li>Transition</li>
+        </ul>
+      </div>
+      <div class="wrap"><button class="btn" type="button" data-marquee-toggle aria-pressed="false" hidden>Pause marquee</button></div>
+    </div>
+    <p class="wrap expect">Expect: with motion, the row loops at about 70px/s and speeds up briefly while you scroll. It pauses on hover, on focus, and with the button (aria-pressed). Without motion it is one wrapped, static row.</p>
+  </section>
+
+  <!-- 6. data-pin="horizontal" -->
+  <section id="s-pin" data-pin="horizontal" aria-labelledby="t-pin">
+    <div class="wrap">
+      <p class="label">6 · <code>data-pin="horizontal"</code> (pinned at ≥ 60em with full motion; vertical stack otherwise)</p>
+      <h2 id="t-pin">Pinned horizontal track</h2>
+    </div>
+    <div class="wrap" data-pin-track style="margin-top: 2rem">
+      <article class="panel" data-pin-panel>
+        <div class="frame"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20160%20100'%3E%3Crect%20width='160'%20height='100'%20fill='%230a0a0a'/%3E%3Cg%20fill='none'%20stroke='%23fff'%20stroke-width='.7'%3E%3Ccircle%20cx='96'%20cy='50'%20r='6'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='13'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='20'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='27'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='34'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='41'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='48'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='55'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='62'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='69'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='76'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='83'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='90'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='97'/%3E%3Ccircle%20cx='96'%20cy='50'%20r='104'/%3E%3C/g%3E%3C/svg%3E" width="1600" height="1000" alt="" data-pin-media loading="lazy"></div>
+        <h3>Panel 01</h3><a href="about.html">Panel 01: continue to About</a>
+      </article>
+      <article class="panel" data-pin-panel>
+        <div class="frame"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2080%20100'%3E%3Cdefs%3E%3Cpattern%20id='p'%20width='6'%20height='6'%20patternUnits='userSpaceOnUse'%20patternTransform='rotate(35)'%3E%3Crect%20width='2.4'%20height='6'/%3E%3C/pattern%3E%3C/defs%3E%3Crect%20width='80'%20height='100'%20fill='%23fff'/%3E%3Crect%20width='80'%20height='100'%20fill='url(%23p)'/%3E%3C/svg%3E" width="800" height="1000" alt="" data-pin-media loading="lazy"></div>
+        <h3>Panel 02</h3><a href="about.html">Panel 02: continue to About</a>
+      </article>
+      <article class="panel" data-pin-panel>
+        <div class="frame"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20160%2090'%3E%3Cdefs%3E%3Cpattern%20id='g'%20width='10'%20height='10'%20patternUnits='userSpaceOnUse'%3E%3Cpath%20d='M10%200H0V10'%20fill='none'%20stroke='%23fff'%20stroke-width='.5'/%3E%3C/pattern%3E%3C/defs%3E%3Crect%20width='160'%20height='90'%20fill='%23000'/%3E%3Crect%20width='160'%20height='90'%20fill='url(%23g)'/%3E%3Cpath%20d='M0%2090L160%200'%20stroke='%23fff'%20stroke-width='1.2'/%3E%3C/svg%3E" width="1600" height="900" alt="" data-pin-media loading="lazy"></div>
+        <h3>Panel 03</h3><a href="about.html">Panel 03: continue to About</a>
+      </article>
+      <article class="panel" data-pin-panel>
+        <div class="frame"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cdefs%3E%3Cpattern%20id='d'%20width='5'%20height='5'%20patternUnits='userSpaceOnUse'%3E%3Ccircle%20cx='2.5'%20cy='2.5'%20r='1.6'/%3E%3C/pattern%3E%3C/defs%3E%3Crect%20width='100'%20height='100'%20fill='%23fff'/%3E%3Crect%20width='100'%20height='100'%20fill='url(%23d)'/%3E%3Ccircle%20cx='50'%20cy='50'%20r='26'%20fill='%23fff'/%3E%3Ccircle%20cx='50'%20cy='50'%20r='26'%20fill='none'%20stroke='%23000'%20stroke-width='1.5'/%3E%3C/svg%3E" width="1000" height="1000" alt="" data-pin-media loading="lazy"></div>
+        <h3>Panel 04</h3><a href="about.html">Panel 04: continue to About</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- 7. data-stack -->
+  <section id="s-stack" class="wrap" aria-labelledby="t-stack">
+    <p class="label">7 · <code>data-stack</code> (sticky stacking cards: CSS stacks them, JS only adds the recede)</p>
+    <h2 id="t-stack">Sticky stacking cards</h2>
+    <div data-stack style="margin-top: 2rem">
+      <article class="card"><h3>Card 01</h3><p>Sticks 10svh from the top. Covered cards scale to 0.94 under a 35% shade.</p></article>
+      <article class="card"><h3>Card 02</h3><p>Each card sticks one step (1rem) lower than the one before.</p></article>
+      <article class="card"><h3>Card 03</h3><p>Without JS the stacking still works; only the recede is missing.</p></article>
+      <article class="card"><h3>Card 04</h3><p>Last card: nothing covers it, so it gets no shade.</p></article>
+    </div>
+  </section>
+
+  <!-- 8. magnetic.js -->
+  <section id="s-magnetic" class="wrap" aria-labelledby="t-magnetic">
+    <p class="label">8 · <code>data-magnetic</code> (magnetic.js: fine pointers only, label drifts ≤ 6px, box never moves)</p>
+    <h2 id="t-magnetic">Magnetic controls</h2>
+    <div class="row" style="margin-top: 2rem">
+      <button class="btn" type="button" data-magnetic><span data-magnetic-label>Button with a label span</span></button>
+      <a class="btn" href="about.html" data-magnetic="8"><span data-magnetic-label>Link with an icon <span data-magnetic-icon aria-hidden="true">→</span></span></a>
+      <a class="btn" href="#s-magnetic" data-magnetic>Auto-wrapped label</a>
+    </div>
+    <p class="expect">Expect: on hover, fill and ink invert (the state change) and the label drifts toward the pointer. The border box stays put. On touch, keyboard and reduced motion, only the colour change happens.</p>
+  </section>
+
+  <!-- 9. data-reveal="items" and "settle" -->
+  <section id="s-items" class="wrap" aria-labelledby="t-items">
+    <p class="label">9 · <code>data-reveal="items"</code> (row-by-row settle, spread ≤ --stagger-max) and <code>data-reveal="settle"</code></p>
+    <h2 id="t-items">Grid settle</h2>
+    <ul class="grid" data-reveal="items" style="margin-top: 2rem">
+      <li>Cell 1</li><li>Cell 2</li><li>Cell 3</li><li>Cell 4</li><li>Cell 5</li><li>Cell 6</li><li>Cell 7</li><li>Cell 8</li>
+    </ul>
+    <p data-reveal="settle" style="margin-top: 3rem">A settle moves already-visible content 24px and never touches opacity.</p>
+  </section>
+</main>
+
+<footer class="wrap">
+  <p class="label">Anchors (Lenis anchors: true; target, focus start point and hash stay native)</p>
+  <ul>
+    <li><a href="#s-intro">1 Intro</a></li><li><a href="#s-lines">2 Lines</a></li><li><a href="#s-image">3 Image</a></li>
+    <li><a href="#s-parallax">4 Parallax</a></li><li><a href="#s-marquee">5 Marquee</a></li><li><a href="#s-pin">6 Pin</a></li>
+    <li><a href="#s-stack">7 Stack</a></li><li><a href="#s-magnetic">8 Magnetic</a></li><li><a href="#s-items">9 Items</a></li>
+    <li><a href="about.html">About page</a></li>
+  </ul>
+</footer>
+
+<output class="status" id="status" aria-hidden="true">motion-core: not loaded (static page)</output>
+
+<script type="module">
+  import { init } from '../motion-core.js';
+  import { initMagnetic } from '../magnetic.js';
+  const motion = init();
+  initMagnetic();
+  window.__motion = motion; // harness only: lets the QA script inspect state
+
+  // Harness status line: shows which layer is active.
+  const out = document.getElementById('status');
+  const render = () => {
+    const d = document.documentElement.dataset;
+    out.textContent = `data-motion=${d.motion} · lenis=${motion.lenis ? 'on' : 'off'} · intro=${'introOwned' in d ? 'owned' : 'armed'} · triggers=${motion.ScrollTrigger.getAll().length}`;
+  };
+  render();
+  addEventListener('motionchange', () => setTimeout(render, 50));
+  setTimeout(render, 1500);
+</script>
+</body>
+</html>

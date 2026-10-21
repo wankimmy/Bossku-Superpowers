@@ -47,6 +47,9 @@ A loaded skill stays in the conversation and is read again on every later turn, 
 | scroll-world | Scroll-scrub Higgsfield cinematic world landing | Higgsfield CLI, ffmpeg |
 | anatomy | Interactive isometric SVG explainer figures (library-only; optional WebGL and 3D) | Node.js 20.10+, Chrome for its checks |
 | logo-design | Logo and brand-mark design from brief to SVG kit (library-only; reference logo SVGs not bundled) | Python 3; a renderer (cairosvg, rsvg-convert, Inkscape or Chrome) to view PNGs |
+| awwwards-web-design | Awwwards-level web design from a 732-site corpus and 51 teardowns: ten directions, measured numbers, quality gates, tested recipes | Python 3.10+, Playwright for audit mode |
+| awwwards-jury | 2 skills: `awwwards` (concept to shipped site: one-clock GSAP engine, Next.js or Astro) and `jury` (Awwwards-style score from evidence) | Node.js 20+, Playwright, axe-core |
+| mengto | 114 web design technique skills (reveals, scroll scenes, WebGL, 3D materials, mood systems, anti-slop audits; library-only, text only) | — |
 | dcg | Destructive Command Guard (agent shell/git safety hooks) | `dcg` binary (upstream installer) |
 | emil-skills | 12 motion craft / design engineering skills (web + Expo animation, Sonner, Swift) | — |
 | i-have-adhd | Action-first, numbered, no-preamble output shape (explicit `/i-have-adhd`) | — |
@@ -63,8 +66,11 @@ Attribution: [`docs/third-party.md`](third-party.md). Optional deps: [`requireme
 
 | Bossku skill | Vendored skill | When to prefer vendored |
 |---|---|---|
-| `bosskuai-taste` | `hallmark` | New UI pages that need a distinct non-template look |
-| `bosskuai-taste` | `taste-skill` (default), `soft-skill`, `minimalist-skill`, `brutalist-skill`, `redesign-skill` | Full tasteskill.dev pack: dials, redesign audit, direction variants |
+| `bosskuai-taste` (the Awwwards house rule, the default style) | `awwwards-web-design`, `awwwards` | Its depth: directions, numbers and recipes (`awwwards-web-design`) or the concept-to-ship engine with Next.js and Astro adapters (`awwwards`); one of the two, never both |
+| `bosskuai-taste` | `jury` | Scoring a build or a live site the way an Awwwards jury would |
+| `bosskuai-taste` | `mengto` library skills | One web technique (masked reveal, scroll-scrubbed sequence, shader cursor, globe, mood system) |
+| `bosskuai-taste` | `hallmark` | The user names a hallmark theme; the house rule still sets the bar |
+| `bosskuai-taste` | `taste-skill`, `soft-skill`, `minimalist-skill`, `brutalist-skill`, `redesign-skill` | The user names the tasteskill.dev pack or one aesthetic; the house rule still sets the bar |
 | `bosskuai-marketing-growth` | `product-marketing`, `copywriting`, `cro` | Deep marketing task with frameworks |
 | `bosskuai-browser-automation` | `browser-use` | Full browser-use agent stack is installed |
 | `bosskuai-diagnose-loop` | `systematic-debugging` | Superpowers debug workflow requested |

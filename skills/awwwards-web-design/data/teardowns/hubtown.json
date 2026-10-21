@@ -1,0 +1,333 @@
+{
+ "slug": "hubtown",
+ "title": "Hubtown",
+ "live_url": "https://hubtown.co.in/",
+ "award": "Site of the Day Jun 10, 2026 (Honors); credits Unseen Studio",
+ "scores": {
+  "overall": 7.66,
+  "design": 7.78,
+  "usability": 7.22,
+  "creativity": 7.94,
+  "content": 7.89,
+  "dev": {
+   "overall": 7.3,
+   "semantics_seo": 7.0,
+   "animations": 8.4,
+   "accessibility": 6.6,
+   "wpo": 7.2,
+   "responsive": 7.6,
+   "markup": 6.8
+  }
+ },
+ "industry": "Real estate developer (Mumbai, India; 40+ years, residential/commercial/industrial)",
+ "signature": "A property developer rebuilt as a night-time sci-fi world in one electric blue, where the logo's square 'O' becomes a glowing cube over black water and then the unit of everything else (the preloader, the map pins, the city of LEGACY): Theatre.js-authored camera flights carry six value chapters inside a filleted-bevel HUD frame, with a Web Audio bed whose low-pass filter sweeps on every transition, and a torch-lit WebGL map of Mumbai replaces the usual project list.",
+ "first_screen": {
+  "composition": "OBSERVED, in sequence. desktop_00: navy #020A19 with a row of 13 small #D5E0FF squares at centre spanning the wordmark's width (x547-896; the loader assembling the letters). desktop_01: the squares resolve into the HUBTOWN square-glyph wordmark (about 352x40px, centred, O drawn as a solid square with a triangular cut) with two left-aligned lines of ~8px mono caps under it, '100% LOADED / READY TO EXPLORE'. desktop_02: a 1px frame with ~25px bevelled corners (the bevel ends are filleted) draws in, inset 30px (1380x840); the wordmark jumps to top-left (x54,y61, 139x15px) and the centre copy fades to about 10%. desktop_03-07 show the hero. The WebGL canvas is full-viewport and runs outside the frame line (water reflections below y870 and left of x30). A glowing cube (about 240px wide in desktop_03, larger and tilted by desktop_07) floats at centre over rippling black water, lit from inside, with two hills catching its blue light and particles drifting. The headline is centred low (y~610-670), 'WE BUILD THE FUTURE / OF REAL ESTATE' in 2 lines of 30px Grotesk Bold caps (+0.04em) #D5E0FF, with 3 lines of 12px Grotesk Light body at 60% opacity below and an 'EXPLORE OUR PROJECTS' button bevelled on its top-right and bottom-left corners (scrambling 'PROJECIE' in desktop_03). The HUD has a left chapter rail (FUTURE active with a square bullet, then INNOVATION, COLLABORATION, EXCELLENCE, PURPOSE, LEGACY at about 30%), top-right mono links ABOUT PROJECTS CAREERS CONTACT NEWS, a dark LOGIN chip with rounded corners, and a pale #D5E0FF MENU chip bevelled on its top-right corner. A ~48px bottom bar holds SOUND OFF on the left, a progress segment from x152 that grows each wheel step (about 14px in 03 to about 102px in 07), and CHAT WITH US with a WhatsApp glyph on the right.",
+  "what_owns_it": "3d",
+  "display_type_px": 30,
+  "evidence": [
+   "probes/hubtown/desktop_00.jpg",
+   "probes/hubtown/desktop_01.jpg",
+   "probes/hubtown/desktop_02.jpg",
+   "probes/hubtown/desktop_03.jpg",
+   "probes/hubtown/desktop_07.jpg",
+   "probes/hubtown/probe.json font_sizes_px / text_colors",
+   "probes/hubtown/desktop_05.jpg",
+   "probes/hubtown/desktop_06.jpg",
+   "enlarged crops of desktop_02 corners and desktop_03 chips/CTA"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Grotesk Bold",
+    "role": "display",
+    "classification": "grotesque sans (renamed self-hosted file /fonts/grotesk-bold.woff2)",
+    "foundry": "unknown (file renamed)",
+    "source": "probe fonts_loaded 'Grotesk Bold 700'; font_families_rendered 35 nodes"
+   },
+   {
+    "name": "Grotesk Light",
+    "role": "body",
+    "classification": "grotesque sans",
+    "foundry": "unknown (file renamed)",
+    "source": "probe largest_text: 12px, lh 19.2px, ls -0.24px, #D5E0FF; bundle class text-16 leading-1.6 -tracking-2 font-light opacity-60"
+   },
+   {
+    "name": "Grotesk Regular",
+    "role": "accent",
+    "classification": "grotesque sans",
+    "foundry": "unknown (file renamed)",
+    "source": "probe: chapter rail 9px uppercase, lh 8.1px, ls 2.16px"
+   },
+   {
+    "name": "Commit Mono",
+    "role": "ui",
+    "classification": "monospace",
+    "foundry": "Commit Mono (open source, Eigil Nikolajsen)",
+    "source": "probe: nav links 9px uppercase, lh 13.5px, ls 1.44px; /fonts/commit-mono.otf"
+   },
+   {
+    "name": "HUBTOWN logotype",
+    "role": "display",
+    "classification": "custom square/pixel-construction wordmark (SVG, not a font)",
+    "foundry": "inferred: bespoke by Unseen Studio",
+    "source": "screenshots desktop_01/02, probe media svg 20"
+   }
+  ],
+  "display_size_px": 30,
+  "body_size_px": 12,
+  "scale_notes": "Compact scale on a fluid root. html{font-size:clamp(12px,.8333vw,24px)} on desktop (16px at a 1920 design width) and clamp(12px,3.8647vw,20px) on mobile (16px at 414). At 1440 the root sits on its 12px floor, so the classes text-40/16/12 render at 30/12/9px (probe font_sizes_px 30x28, 9x19, 8x15, 12x7; the 28 display nodes are SplitText characters of 'We build the future of real estate'); at 1920 the same page is 40/16/12px. Display to body is 2.5:1, body to label 1.33:1. Mobile largest 15.07px is just the mobile root (3.8647vw at 390) because the probe never got past the loader; mobile headlines are text-32 (2rem, ~30px), left-aligned. The largest type is in the uncaptured menu: text-80 (5rem) bold caps, leading .7, -0.02em.",
+  "tracking_leading": "Labels are opened wide: mono nav +0.16em (1.44px at 9px) and the chapter rail +0.24em (2.16px at 9px, line-height 0.9). Body runs slightly tight at -0.02em (-0.24px at 12px) with airy leading 1.6 (19.2px). Display is leading-1 with +0.04em tracking (class tracking-4).",
+  "case_and_style": "Uppercase for display, nav, rail, buttons and map labels; sentence case for body only. Zero-padded counters: '09 PROJECTS', 'FILTERS [00]', '000°' compass. A pixel arrow glyph prefixes every CTA.",
+  "signature_moves": [
+   "Three different text reveals, each tied to a role. Chapter headlines use SplitText chars that fade in random order (autoAlpha 0 to 1, .4s each, stagger {amount:1.1, from:'random'}, ease 'joe.out'); frame 3/f05 shows 'TE YI / D O E' partway into 'WE LEAD THE WAY IN DEVELOPMENT' with no junk glyphs, so this is not a scramble. Body lines rise 2.5rem and fade (1s, stagger amount .2, starting .2s later); the CTA rises 2.5rem over 1.5s.",
+   "GSAP ScrambleTextPlugin (3.13.0, chars 'upperCase') is reserved for interactive strings: buttons ('EXPLORE OUR PROJECIE' in desktop_03, 'WORK WITH CU' in 3/f06, 'DISCOVER OUR VISHFB' in 2/f00), nav on hover (duration 1.33, speed 2), map labels as the torch passes ('WESTERN SUNJTOM' 1/f00, 'SOUTH MUMBAU' 1/f03) and the footer URL ('WWW.HUBTOWN.COTVQ' 2/f06).",
+   "'TechnicalReveal' block wipe for HUD captions: one #D5E0FF block carrying dark-blue scrambling text slides over the line (xPercent -110 to 0, power2.inOut, half of a 1.2s duration), the real characters fade in 30ms apart behind it, then the block exits right (xPercent 110). mobile_00 caught it mid-sweep: '1' revealed, the rest under the pale block.",
+   "Square-construction wordmark whose O is a solid square with a right-triangle cut (SVG path M32 32H0V0h32zm-6.396-6.4V6.402h-19.2l19.2 19.2Z). The glyph is the brand's 3D object and the mobile logo.",
+   "Nav links are accessible scramble targets: an sr-only full label ('About Us'), an invisible copy of the short label that reserves the width, and an absolutely positioned layer where the scramble renders, so hovering never reflows the nav. That is why the probe reads 'ABOUT US\\nABOUT'; it is not a vertical text roll."
+  ],
+  "mobile": "mobile_00/01 at 390px (2x captures): same preloader, with the wordmark about 264px wide and mono captions about 9px. The bevelled HUD frame is kept at about 10px inset with a ~75px bottom bar split into 3 cells. The logo reduces to the single square-O glyph (~30px) at top-left. Bundle: on mobile each chapter shows a label row (8px square + 11px caps at +0.24em) above a left-aligned 2rem headline instead of the rail. The probe's mobile pass did not get past the loader into a 3D scene."
+ },
+ "color": {
+  "mode": "dark",
+  "base": "#020A19 night navy (probe body bg rgb(2,10,24); corpus palette #020A19); the frame interior sits near #000 during the intro (desktop_02)",
+  "ink": "#D5E0FF pale periwinkle (Tailwind 'off-blue'; 64 text nodes and 85 bg nodes: chips, squares, bullets; bundle '#d5e0ff' x31). Body copy renders it at 60% opacity; inactive rail items at ~30%.",
+  "accents": [
+   "emissive electric blue in WebGL: bundle hexes #006eff, #6eb4ff, #5DBBFF, #6990ff",
+   "dark panel steps #1c2634, #243849; bottom scrim colour #01020B (frame pass gradient)",
+   "rgba(213,224,255,0.05) panel wash on chips and bars",
+   "inner-page photo treatment (CSS, not observed): .imageProcess{filter:contrast(.875) saturate(0);mix-blend-mode:color-dodge} over a radial #052261 soft-light gradient, which turns photos into the same monochrome blue",
+   "form states only: error #e60076, orange #f2994a (Tailwind config)"
+  ],
+  "ratio": "about 75% navy/black / 20% blue emissive light / 5% pale ink",
+  "section_shifts": "There are no DOM colour sections. Each chapter changes the lighting of the 3D world instead. FUTURE is a saturated cube and water, the INNOVATION canyon is almost black (3/f04) until the river line lights up, EXCELLENCE has light-trail roads with cube buildings, PURPOSE is dark hills with ribbon lines, and LEGACY is a lit city of cubes (2/f06).",
+  "texture": "WebGL post chain (bundle): FXAA, UnrealBloom (skipped on low-tier GPUs), then a composite pass with soft-light noise (uNoise, uNoiseStrength), vignette (uVignetteRadius/Smoothness/Color) and chromatic aberration by spectral barrel distortion (uBendAmount*uMaxDistort, iterated; red/blue fringes visible on edge particles in desktop_06), and a frame pass that darkens the bottom of the canvas toward #01020B behind the headline. Fog is a material chunk, not a pass: depth fog plus height fog (uFogNear/Far/Strength _D and _H) coloured by a 3-stop screen-space gradient (uFogColorTop/Middle/Bottom, uFogStep1-3). GPGPU particles drift on the water. The grain sits inside the canvas under the DOM text.",
+  "notes": "It is monochrome: every hue is a step of one blue. The palette sits right next to the generic dark-SaaS blue, and it only earns its place because the blue is emissive light inside a lit world rather than flat fills."
+ },
+ "layout": {
+  "grid": "Viewport-as-frame: a BeveledBox overlay inset 30px at 1440 with ~25px filleted bevels on all four corners, drawn over a full-viewport canvas. The HUD is pinned to it: logo at top-left (54,61), nav at top-right ending at x~1398, chapter rail at x27-40 and y384-514, bottom bar ~48px tall with dividers at x152 and x1270. Hero copy is a centred column (body max-width 32% on md+).",
+  "density": "airy",
+  "alignment": "centred hero copy under a centred 3D subject; HUD elements corner-pinned",
+  "composition_moves": [
+   "Cockpit framing: a 1px bevelled frame plus corner-pinned controls makes the browser feel like an instrument panel. The 3D is not clipped by it; the scene continues under and outside the line.",
+   "Subject in the upper-middle and text stack low (y~610-810), so the cube and the headline never compete; a canvas-side gradient to #01020B under the text keeps it legible.",
+   "The left rail doubles as table of contents and state: the active item is full ink with a square bullet, the others about 30%.",
+   "One shape language, the BeveledBox: an SVG clipPath (objectBoundingBox) cuts a 15-30px bevel on any chosen corners (MENU chip: top-right; CTA: top-right + bottom-left; minimap: top-right; frame: all four) and rounds each bevel's two ends with small quadratic fillets; unbevelled corners keep a 4px radius. The LOGIN chip is plainly rounded (probe radius 10px). No pills.",
+   "The map page adds instrument widgets: compass rose with a degree readout, zoom factor '1.62X' with a 2KM scale bar, minimap, 'OPEN PROJECT LIST', and 'FILTERS [00]'."
+  ],
+  "section_rhythm": "Six chapters (FUTURE, INNOVATION, COLLABORATION, EXCELLENCE, PURPOSE, LEGACY) share 4 WebGL scenes (HomeFirstScene to HomeFourthScene). Section heights: 400vh, 400vh, then two 1000vh wrappers each holding two 500vh sections (2800vh total) over a sticky 100vh stage, each with its own ScrollTrigger start/end offsets. The pattern per chapter: camera flight, then headline, body and, in four of six chapters, one CTA (COLLABORATION and PURPOSE have none).",
+  "mobile_adaptation": "The frame and bottom bar are kept at a ~10px inset and the logo collapses to its glyph. Bundle, not observed: the frame pass has a uMobile branch that renders the scene into a horizontal band (uHeightFrame, uZoom) with flat colour outside it and a stronger bottom gradient (range .4-.7); the chapter rail is replaced by a label row over each headline; mouse-driven camera pivot is disabled on mobile and tablet."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis 1.3.8 on the home route with very heavy smoothing: config c={lerp:.04} passed to the home page's SmoothScroll wrapper (wheelMultiplier default 1). The document itself does not scroll (html overflow:hidden; probe doc_height 900); an inner '.js-page-scroll' element does, and every ScrollTrigger uses it as scroller. Section triggers: 'top center'/'bottom-=25% top', 'top+=50% bottom+=25%', 'top+=50% bottom+=100%', 'top+=50% bottom+=200%', 'top bottom-=175%'. A virtual-scroll module is also bundled. With lerp .04 and 400-500vh per chapter, each wheel tick moves the scene only slightly (desktop_03-07 all stay in FUTURE while the progress bar creeps forward).",
+  "preloader": "13 squares appear in random groups across the wordmark's footprint (desktop_00), then assemble into the square-glyph wordmark (CSS keyframes colFrom0/1, rowFrom0/1, triGrow, showLetters, draw, scoped with a -f17dfb82 hash). The mono status lines reveal with the TechnicalReveal block wipe (mobile_00) into '100% LOADED / READY TO EXPLORE' (desktop_01). The frame draws, the logo moves to top-left and the centre fades out (desktop_02).",
+  "intro_sequence": "Frame and HUD first, then the WebGL scene fades up behind it with the cube already lit (desktop_02 to desktop_03). The headline chars fade in random order, body lines and CTA rise 2.5rem, and the CTA label scrambles. Each scene also has a Theatre-driven 'Intro Pass' in the composer (uProgress, uDistortRange, uPulseAmount; the map's version displaces the image with a square texture, uDispRepeat .112, uDispAmount .08).",
+  "scroll_techniques": [
+   "sticky 100vh WebGL stage with scroll-scrubbed Theatre.js sheets per scene (camera plus 'Post FX' and pass uniforms as sheet objects)",
+   "cube rises, grows and tilts toward camera with scroll: desktop_03 to 07 (~240px to ~290px, tilting) and frames 3/f00 to 3/f03 (about 170px to 380px wide in the 960px frame, about 30 degrees of pitch)",
+   "dark plunge between scenes: 3/f04 is almost black with motion blur as the camera drops into the canyon",
+   "chapter rail and bottom progress bar update with scroll",
+   "headline fades as the object moves forward (3/f03)",
+   "desktop only: the camera pivots with the smoothed mouse position (cameraPivotAngle/Strength), disabled on mobile and tablet"
+  ],
+  "text_animation": "Headlines: SplitText chars, autoAlpha 0 to 1, .4s each, stagger {amount:1.1, from:'random'}, ease 'joe.out'; letters appear at random positions and pass through a dim state (3/f05). Body: SplitText lines, autoAlpha + y 2.5rem to 0, 1s, stagger amount .2, starting .2s in. CTA wrapper: autoAlpha + y 2.5rem, 1.5s, starting .2s later, then its label scrambles. Leave: everything fades to 0 over 1s joe.out. ScrambleText drives buttons, nav hover (1.33s, speed 2), map labels, the footer URL and the audio prompt; the TechnicalReveal block wipe drives HUD captions. The rail uses a gsap timeline with defaults {duration:1, ease:'joe.out'}: items slide in from x:10 staggered 0.05s, bullet squares scale 0 to 1, and inactive items drop to autoAlpha .3.",
+  "image_animation": "The hero cube's shader swaps between a panelled grid-and-edges texture and a reveal pattern (tRevealPattern, uRevealSpeed, uRevealGradientThresholds); in desktop_06 the front face shows it as short pixel dashes arranged in concentric rings. A 3-stop noise gradient drifts over the faces. Water particles are an FBO simulation whose points are pushed away from the cursor (uMousePos, uMouseRadius, uMouseRepelStrength) and die at a random decay.",
+  "page_transitions": "Route changes fade a #page-transition-overlay to opacity 1 in .5s while the audio low-pass sweeps down (see sound), then fade it out over 1.5s after a .5s delay. Scene-to-scene transitions tween the bloom settings from one scene's Theatre 'Post FX' object to the next. Map zoom (element 0, 4.1s clip): f00 shows the district overview at zoom 1.00X; by f03 the camera has dived into a district: roads dim to about 20%, terrain contours (map_terrain_normal) appear, projects become small glowing cubes, and a bevelled minimap appears at bottom-left. By f06 the camera has pitched to an oblique view with cubes standing on the terrain and a project label scrambling in. The click grows the cursor mask (uMaskClickSize/Feather lerped by uMaskAnimationProgress) before the flight.",
+  "hover_micro": [
+   "Map torch (element 1, 5.2s clip): a large screen-space reveal follows the pointer with lag. Its edge breaks into square tiles of different brightness (1/f00, f03, f06), jittered by noise; inside it the roads brighten and the tile mask pulses (uMaskShiftSpeed). Outside it the map stays dim but readable.",
+   "Labels scramble when the torch passes over them.",
+   "Nav: ScrambleText on hover (1.33s, speed 2) over a width-reserving invisible copy; CTA: a BeveledBox border stroke (#D5E0FF) fades in over .1s and the label re-scrambles; hover and click play UI sounds at gain .15 when sound is on.",
+   "Rail: bullet square scales 0 to 1; inactive items go to 30% alpha."
+  ],
+  "cursor": "Native cursor (probe cursor_none 0). Until audio is enabled, md+ screens get an 'AudioPrompt': a mono text-11 (~8px at 1440, +0.08em) 'CLICK TO ENABLE AUDIO' label (scrambling in, 6.5rem wide) and an 8px square that blinks (opacity yoyo x8 at .1s) trail the pointer with a .1 per-frame lerp; any click enables Web Audio and the label fades out. On the map, the cursor drives the torch mask and particle repulsion.",
+  "easing_curves": [
+   "CSS cubic-bezier(0.2,0,0,1) x18 (the house UI curve)",
+   "CSS cubic-bezier(0.4,0,0.2,1) x7",
+   "CSS cubic-bezier(0,0,0.2,1) x1",
+   "GSAP power2.out x48, power2.inOut x30, power2.in x17",
+   "CustomEase 'joe.out' = M0,0 C0.2,0 0.1,1 1,1 (about cubic-bezier(.2,0,.1,1)) x18",
+   "CustomEase 'joe.in' = M0,0 C0.8,0 0.8,0.5 1,1; 'joe.inOut' = M0,0 C0.333,0 0,1 1,1",
+   "Tailwind config reuses the names with different CSS values (joe.in = cubic-bezier(.8,0,1,1), joe.out = cubic-bezier(0,0,.2,1)); its 'joe.inOut' string is malformed ('cubic-bezier.33,0,.2,1)')",
+   "back.out(2.0) x3, back.in(1.8) x3 (chip pops)",
+   "expo.inOut x1, sine.inOut"
+  ],
+  "duration_range_ms": "100-1500 for UI (CSS 1s x19, .15s x6, .3s x4, .33s x2; GSAP .4s per headline char, 1-1.5s body/CTA, 1.2s block wipe, 1.33s nav scramble); chapter camera flights take several seconds of scrub; map zoom about 3000 (element 0)",
+  "stagger_ms": "headline chars spread over 1100ms in random order; body lines over 200ms; rail items 50; TechnicalReveal characters 30",
+  "choreography_notes": "The order is HUD, then world, then words. The frame and controls are there before any 3D. Each chapter moves the camera first, fades the old headline as the subject grows (3/f03), passes through near-black (3/f04) while the scene swaps, then fades the new headline in letter by letter in random order while the rail item and progress bar update. The headline resolves in place; body lines and the CTA rise 2.5rem behind it.",
+  "evidence": [
+   "frames/hubtown/3/f00-f07 (Introduction Sequence, scrolling, 7.5s) viewed in order",
+   "frames/hubtown/1/f00,f03,f06 (Mouse Reveal Interaction, 5.2s)",
+   "frames/hubtown/0/f00,f03,f06 (Zoom Transition, 4.1s)",
+   "frames/hubtown/2/f00,f06 (Introduction Sequence, 6.9s)",
+   "probes/hubtown/desktop_00-03,05-07.jpg, mobile_00-01.jpg",
+   "bundle u1ipQrxM.js (2.4MB) + page chunk DFx-XpBD.js: CustomEase joe.*, lerp .04, section heights and trigger offsets, Content component (SplitText random chars), AnimationTechnicalReveal, AudioPrompt, BeveledBox, audio engine, scene names, GLSL uniforms"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "realtime-3d",
+  "art_direction": "Nocturnal and monochrome electric blue. All light comes from emissive sources (the cube, river and road lines, city cubes) raking across dark procedural terrain built from Houdini height maps, with water reflections, drifting particles and depth fog. There are no photos of buildings anywhere on the home page. Real estate is abstracted into cubes and light lines.",
+  "treatments": [
+   "UnrealBloom glow (bloomPass in the composer, per-scene Theatre 'Post FX' settings, disabled when the renderer string is Intel HD/Plus)",
+   "spectral chromatic-aberration barrel distortion",
+   "vignette",
+   "soft-light noise",
+   "matcap blend on terrain (matcap.ktx2, matcap2.ktx2)",
+   "3-colour height fog",
+   "pixel-dash reveal pattern on the cube",
+   "GPGPU particles",
+   "bottom gradient scrim to #01020B in the frame pass",
+   "inner pages (CSS, not observed): photos desaturated and colour-dodged into blue (.imageProcess)"
+  ],
+  "crops_and_ratios": "One full-viewport canvas; the bevelled frame is an overlay line, not a mask (the scene shows outside it). On mobile the frame pass letterboxes the scene into a band (bundle, not observed). No image crops on home.",
+  "formats": "probe media: img 0, video 0, svg 20; asset_extensions glb 8, ktx2 19, json 15, woff2 3, otf 1, png 1, svg 1; assets_3d also lists 2 .exr height maps; x-wav audio 38.4MB declared (6 files: ambient-loop, hover, click, modal-open, home-transition, secondary-hover)",
+  "evidence": [
+   "frames/hubtown/3/f05.jpg",
+   "frames/hubtown/2/f00.jpg",
+   "frames/hubtown/2/f03.jpg",
+   "frames/hubtown/2/f06.jpg",
+   "probes/hubtown/probe.json assets_3d"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r179 (probe three_revision 179) + Theatre.js (@theatre/core, one sheet per scene via buildTheatreSheet) + GSAP; KTX2Loader with basis transcoder wasm, Draco + Meshopt decoders, EXRLoader, EffectComposer",
+  "role": "world (4 scroll-driven home scenes) + hero object (the cube) + interactive map (Mumbai roads, districts, project cubes)",
+  "assets": [
+   "https://hubtown.co.in/webgl/models/scene_1.glb",
+   "https://hubtown.co.in/webgl/models/scene_2.glb",
+   "https://hubtown.co.in/webgl/models/scene_2-line.glb",
+   "https://hubtown.co.in/webgl/models/scene_3.glb",
+   "https://hubtown.co.in/webgl/models/scene_4.glb",
+   "https://hubtown.co.in/webgl/models/map.glb",
+   "https://hubtown.co.in/webgl/models/map-districts.glb",
+   "https://hubtown.co.in/webgl/models/map-cube.glb",
+   "https://hubtown.co.in/webgl/textures/hero-cube-grid.ktx2",
+   "https://hubtown.co.in/webgl/textures/hero-cube-edges.ktx2",
+   "https://hubtown.co.in/webgl/textures/hero-cube-details.ktx2",
+   "https://hubtown.co.in/webgl/textures/hero-cube-ao.ktx2",
+   "https://hubtown.co.in/webgl/textures/hero-cube-hex.ktx2",
+   "https://hubtown.co.in/webgl/textures/matcap.ktx2",
+   "https://hubtown.co.in/webgl/textures/noise_1.ktx2",
+   "https://hubtown.co.in/webgl/textures/scene3-houdini-height.exr",
+   "https://hubtown.co.in/webgl/textures/scene4-houdini-height.exr",
+   "https://hubtown.co.in/webgl/textures/map_terrain_normal.ktx2",
+   "https://hubtown.co.in/webgl/textures/cubeThicknessMap.ktx2",
+   "https://hubtown.co.in/webgl/textures/cubeThicknessMapBase.ktx2",
+   "https://hubtown.co.in/webgl/textures/matcap2.ktx2",
+   "https://hubtown.co.in/webgl/textures/noise_2.ktx2",
+   "https://hubtown.co.in/webgl/textures/scene2_terrain_Normal.ktx2",
+   "https://hubtown.co.in/webgl/textures/scene3_terrain_Normal.ktx2"
+  ],
+  "materials_lighting_post": "Hero cube: a custom shader built from baked textures (tGrid, tEdges, tDetails, tAO) with contrast and remap controls, fresnel (uFresnelAmount/Offset/Falloff/Addition), a noise-driven 3-colour gradient (uGradientColor1-3, uGradientStep), an extra highlight band, and a halftone reveal (tRevealPattern) for state changes. Environment: a patched MeshPhysicalMaterial with fake lights injected at _LINE_LIGHT_INSERT_ and _CUBES_LIGHT_INSERT_. Line lights (uLineLightCount, Color, Intensity, Decay, cutoff) and cube lights (uCubesLightColor/Intensity/Decay) light the terrain from the emissive geometry without real three.js lights, plus a matcap blend. Roads and rivers use a line shader (uLineRepeat, uLineFillLength, uCenterLineWidth, uPersistantCenterLine, uLineEndFade) for animated light pulses. Particles: FBO position and life textures with mouse repulsion. Post (composer order): render pass, per-scene intro pass, FXAA, UnrealBloom (not on low-tier GPUs), composite (chromatic aberration, vignette, noise), frame pass (mobile letterbox + bottom gradient to #01020B), and the map's cursor mask. An MSDF WebGL text shader with char/word/line offset animation (ANIM_CHAR_X etc.) is also bundled.",
+  "interaction": "scroll-scrubbed camera per chapter; smoothed mouse pivots the home camera on desktop; pointer-driven torch mask and particle repulsion on the map; click-to-zoom map with compass, zoom and minimap HUD; left rail jumps between chapters (home:navigation:start/end events)",
+  "performance_tactics": "Runtime FPS check (FPS_CHECKED event) steps the pixel ratio down, 2 to 1.5 and 1.5 to 1.25, on renderer and composer; a renderer string containing Intel HD or Intel Plus sets isLowTierGPU and drops the bloom pass. antialias:false with an FXAA pass, powerPreference 'high-performance'. KTX2/Basis textures, Draco/Meshopt meshes, and EXR height maps displace terrain instead of shipping dense meshes. Fake lights replace real light loops. One canvas (probe: 1 static 1440x900 canvas, 2 webgl2 contexts).",
+  "fallback_mobile": "Not observed (the mobile probe only captured the preloader and HUD frame). Bundle: WebGL still runs on mobile; the frame pass's uMobile branch renders the scene into a horizontal band with flat colour outside and a stronger bottom gradient, and the mouse camera pivot is skipped on mobile/tablet.",
+  "evidence": [
+   "probes/hubtown/probe.json globals/contexts/assets_3d",
+   "bundle uniform census (uLineLight*, uCubesLight*, uReveal*, uMouse*, uMask*, uFog*)",
+   "frames/hubtown/0,1,2,3 frames",
+   "bundle: onFPSChecked, isLowTierGPU, composerPasses.add(fxaa/bloom/composite), framePass uMobile shader, updateCameraPivotMovement"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Corner-pinned HUD: top-right mono links (ABOUT, PROJECTS, CAREERS, CONTACT, NEWS) with a LOGIN chip (nuxt-auth-utils in the bundle, so a real account area) and a pale MENU chip; left chapter rail; bottom bar with sound, progress and chat.",
+  "menu": "The MENU chip (pale #D5E0FF fill, dark text, 4-dot glyph, top-right bevel of 15px) opens a menu that was not captured. Bundle: menu links are Grotesk Bold caps at text-48/md:text-80 (5rem, ~60px at 1440 and 80px at 1920), leading .7, -0.02em, the largest type on the site; opening it plays the modal-open sound (.1) and ducks the ambient bed to .15; the generic Modal component instead drops the low-pass to 200Hz.",
+  "buttons_links": "BeveledBox buttons: 15-30px filleted bevels on one or two corners (CTA: top-right + bottom-left), a translucent fill with backdrop blur, a pixel-arrow prefix and 9px tracked caps; on hover a #D5E0FF border stroke fades in (.1s) and the label scrambles. The dark rounded LOGIN chip sits against the pale bevelled MENU chip as a secondary/primary pair split only by value.",
+  "unusual_interactions": [
+   "Map page: a cursor torch reveals the lit road network; district pins show zero-padded project counts; compass rose with a degree readout; zoom factor and 2KM scale bar; minimap after zooming in; city rail MUMBAI, GUJARAT, PUNE, KHALAPUR; 'OPEN PROJECT LIST' fallback; FILTERS [00]",
+   "Chapter rail jumps between scenes",
+   "'CLICK TO ENABLE AUDIO' cursor prompt, then SOUND OFF/ON toggle"
+  ],
+  "sound": "Web Audio, off until the first click (probe shows SOUND OFF; the Awwwards clips show SOUND ON). /audio/ambient-loop.wav fades in to gain .5 over .5s through a low-pass biquad at 20kHz. UI one-shots: hover .15, click .15, secondary-hover .15, modal-open .1, home-transition .5. On a route change the low-pass sweeps exponentially to 200Hz over the first 20% of the transition, holds to 70%, and returns to 20kHz (an underwater 'whoosh'); opening a modal drops it to 200Hz over .4s; ambient ducking takes the bed to .15. All 6 files are uncompressed .wav (38.4MB declared).",
+  "footer": "No DOM footer on home. On the last chapter (2/f06) the bottom bar swaps CHAT WITH US for social icons, and the URL 'WWW.HUBTOWN.CO.IN' scrambles in at bottom-left."
+ },
+ "content_voice": {
+  "headline_style": "Two-line all-caps mission statements, one per chapter, each tied to a value word on the rail.",
+  "copy_tone": "Corporate-aspirational and short. Each headline has 2-3 lines of plain body copy and a single action.",
+  "examples": [
+   "WE BUILD THE FUTURE OF REAL ESTATE"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Nuxt 3 (Vue) + Tailwind CSS",
+  "libraries": [
+   "three.js r179",
+   "Theatre.js (@theatre/core; sheets per scene, including 'Post FX', 'Frame Pass' and 'Intro Pass' objects)",
+   "GSAP 3.13 (ScrollTrigger, ScrambleTextPlugin 3.13.0, CustomEase, SplitText)",
+   "Lenis 1.3.8",
+   "virtual-scroll",
+   "KTX2Loader/basis, Draco, Meshopt, EXRLoader",
+   "EffectComposer + UnrealBloomPass + FXAA",
+   "Sanity CMS image URLs (cdn.sanity.io, projectId 7m7t0x6z)",
+   "nuxt-auth-utils (LOGIN), @nuxt/image",
+   "Tweakpane 4.0.5 debug GUI shipped in a chunk",
+   "marker.io feedback widget (edge.marker.io, api.marker.io requests in production)",
+   "Google Analytics"
+  ],
+  "evidence": "probe libs_from_requests nuxt, three_revision 179, top_hosts; bundle greps (fetched 2026-09-25): theatre x440, scrambleText x55 (plugin version 3.13.0), Lenis version '1.3.8', ScrollTrigger x17, KTX2Loader, DRACOLoader x7, MeshoptDecoder, UnrealBloomPass, Tweakpane 4.0.5, sanity x60"
+ },
+ "performance_accessibility": {
+  "requests": 107,
+  "weight_notes": "Declared 38.4MB wav audio + 18.5MB 3D + 1.08MB JS + 310KB wasm + 242KB fonts. The uncompressed audio is the largest cost. The main JS chunk is 2.4MB uncompressed on disk.",
+  "reduced_motion": "probe reduced_motion_rules 0 and no 'reduced-motion' string anywhere in the fetched bundle: 2800vh of scrubbed chapters, random-order reveals and scrambles all run regardless.",
+  "contrast_issues": "#D5E0FF on #020A19 is high contrast, but body copy is rendered at 60% opacity in 12px Light over moving, glowing water; inactive rail items sit at about 30%; 9px mono and 8px labels are hard to read. The 'Projects' nav link carries title='Careers' (a copy-paste bug in the SSR HTML). Awwwards accessibility score is 6.6.",
+  "mobile_quality": "No horizontal overflow (probe). The frame and preloader adapt, but the scenes were not verified on mobile.",
+  "dev_scores": {
+   "semantics_seo": 7.0,
+   "animations": 8.4,
+   "accessibility": 6.6,
+   "wpo": 7.2,
+   "responsive": 7.6,
+   "markup": 6.8
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Glyph to object to data unit",
+   "why_it_works": "One shape carries the whole brand: the logo's square O is the hero cube, the preloader squares, the project markers on the map and the city of LEGACY. The 3D feels authored for this client rather than dropped in.",
+   "how_to_build": "Pick one primitive from the wordmark. Model it once (BoxGeometry with baked grid, edge and AO textures in KTX2) and reuse it as the preloader pixels (CSS squares with keyframes that assemble into the letters), the hero (large, emissive, fresnel), the map pins (InstancedMesh of small emissive cubes on terrain) and the mobile logo. Keep one emissive colour ramp, e.g. #006eff to #6eb4ff to #d5e0ff."
+  },
+  {
+   "technique": "Filleted-bevel HUD frame as the page chrome",
+   "why_it_works": "A 1px frame with bevelled corners and corner-pinned controls turns the viewport into an instrument. Nav, sound, progress and chat get fixed homes, and the 3D becomes the view through a windshield. Softening each bevel's ends keeps it from looking like a cheap polygon.",
+   "how_to_build": "Build a BeveledBox component: measure the element (ResizeObserver), then write an SVG <clipPath clipPathUnits='objectBoundingBox'> path. For a bevelled corner of size b (15-30px, or 15% of the short side, capped at 40%), in normalised units bx=b/w, by=b/h the top-left is 'M bx,0 Q bx*.87,0 bx*.8,by*.067 L bx*.067,by*.8 Q 0,by*.87 0,by'; unbevelled corners use a 4px radius 'Q' corner. Apply it with style.clipPath='url(#id)' and draw the same path in pixel units as a faint 1px stroke for the frame (measured at roughly 8-12% of #D5E0FF over the dark scene). Put the frame as a fixed overlay (inset 30px desktop, 10px mobile) over a full-viewport canvas, not as a clip on it. A sharp clip-path:polygon() works as a fallback but loses the fillets."
+  },
+  {
+   "technique": "Three text reveals, one per job",
+   "why_it_works": "Headlines resolve calmly letter by letter, interactive strings scramble like data coming in, and HUD captions get a terminal-style block wipe. Keeping them separate stops the scramble from becoming noise.",
+   "how_to_build": "Headlines: new SplitText(el,{type:'chars,words'}); gsap.set(chars,{autoAlpha:0}); gsap.to(chars,{autoAlpha:1,duration:.4,ease:'joe.out',stagger:{amount:1.1,from:'random'}}) with CustomEase.create('joe.out','M0,0 C0.2,0 0.1,1 1,1'). Buttons, nav and labels: gsap.to(el,{duration:1.33,scrambleText:{text,chars:'upperCase',speed:2}}) on mouseenter, rendered into an absolute layer over an invisible copy (width holder) with an sr-only full label. Captions: a #D5E0FF block with dark scrambling text tweens xPercent -110 to 0 (.6s power2.inOut), the per-char spans fade in 30ms apart, then the block tweens to xPercent 110. Keep the final text in the SSR HTML and skip all three under prefers-reduced-motion (the site does not)."
+  },
+  {
+   "technique": "Cursor torch on a dark map (post-process mask)",
+   "why_it_works": "The map stays calm and dim until the pointer lights a patch of it with a pixelated edge that echoes the square motif, which invites exploration and keeps a dense road network readable.",
+   "how_to_build": "Uniform names are from the bundle; the numbers are inferred. Final pass: sq = (vUv-.5)*vec2(1,res.y/res.x); dist = distance(sq*2, uMouseLerped); jitter dist with a soft-light blend of a noise texture; a = smoothstep(size+feather, size-feather, dist) with size about .25 and feather about .12; quantise the edge by sampling a square tile texture (tile = texture(squareTileMask, sq*12+.5).r) and pulse = .5+.5*sin(tile*6.283+uTime*uMaskShiftSpeed); col = mix(col*.4, col*(1.+pulse*.6), a). Lerp the mouse at about 0.08 per frame for lag. Tween uMaskClickSize up on click as the zoom transition's opening wipe."
+  },
+  {
+   "technique": "Fake lights from emissive lines",
+   "why_it_works": "Glowing rivers and roads light the terrain around them with real-looking falloff, at a fraction of the cost of dozens of point lights.",
+   "how_to_build": "onBeforeCompile on MeshPhysicalMaterial/MeshStandardMaterial, injecting at a marker like _LINE_LIGHT_INSERT_: pass N sample points along each line as a uniform array (uLineLightCount; N about 16 is inferred) or a DataTexture. In the fragment shader, loop N, accumulate col*intensity/(1+decay*d*d) with a cutoff distance, and add it to outgoingLight before output. Do the same for cube lights (uCubesLightColor/Intensity/Decay). Animate a reveal uniform so the light spreads along the line as the camera arrives."
+  },
+  {
+   "technique": "Authored camera flights on long sticky sections",
+   "why_it_works": "Theatre.js keyframes give film-grade camera paths, and putting post settings on the same sheets lets bloom and grading change with the shot. Very long scroll (400-500vh per chapter) with Lenis lerp .04 makes each gesture feel like steering a slow crane shot.",
+   "how_to_build": "One Theatre sheet per scene. Keyframe camera position, target and fov plus a 'Post FX' object (bloom enabled/strength/threshold/radius) and pass uniforms in Studio, then export the state JSON. Scroll an inner wrapper (html{overflow:hidden}; Lenis({wrapper, content, lerp:.04})) and point every ScrollTrigger at it (scroller:'.js-page-scroll'); per section: start/end offsets tuned per chapter (the site uses e.g. 'top+=50% bottom+=25%' to 'bottom-=25% top+=50%'), scrub:true, onUpdate:s=>sheet.sequence.position=s.progress*len. Wrap the stage in position:sticky;top:0;height:100vh inside 400-500vh sections. On scene swaps tween bloom from the old scene's Post FX to the new one and hide the cut in a near-black dip (inferred from 3/f04)."
+  },
+  {
+   "technique": "Low-pass audio 'whoosh' on transitions",
+   "why_it_works": "The sound dips underwater exactly when the picture dips to black, so page changes feel physical without adding another sample. Modals muffle the world behind them the same way.",
+   "how_to_build": "Web Audio: ambient BufferSource (loop) -> GainNode (ramp 0 to .5 over .5s) -> BiquadFilter {type:'lowpass', frequency:20000, Q:1} -> destination; UI one-shots on a separate gain (.1-.15). On route change with duration d: f.frequency.exponentialRampToValueAtTime(200, t+.2*d); setValueAtTime(200, t+.7*d); exponentialRampToValueAtTime(20000, t+d). On modal open ramp to 200Hz over .4s and back on close; duck the ambient gain to .15 over .4s when needed. Start the AudioContext only from a user click (the site uses a cursor-trailing 'CLICK TO ENABLE AUDIO' prompt), and compress the files (the site ships 38MB of .wav)."
+  }
+ ],
+ "slop_risks": [
+  "'The cool blue-charcoal (dark slop's default palette)': a #020A19 base with #D5E0FF periwinkle ink is exactly the stock indigo-slate. It survives here only because the blue is emissive light in a modelled world. Copied onto flat UI it is generic dark SaaS.",
+  "'Monospace as the house voice' plus 'One label treatment, everywhere': 9px tracked caps (Commit Mono +0.16em or Grotesk Regular +0.24em) are used for nav, buttons, rail, HUD readouts, counters and the URL. That is the costume the law warns about, and it is only partly earned where the strings are real data (counts, degrees, zoom).",
+  "'Radial glow halo behind an object' and 'the bloom that is just the element's shape, blurred': the cube's glow is screen-space UnrealBloom on its own silhouette. It reads as light here because fake line/cube lights also rake the hills and water. A naive copy with a CSS box-shadow or blur behind a div is the exact tell.",
+  "'Never hide content behind an entrance animation': the chapter copy is in the SSR HTML, but GSAP sets every headline char, body line and CTA to autoAlpha 0 on setup and relies on a ScrollTrigger inside a custom scroller to bring them back. If a trigger does not fire (tab throttled, scroller not refreshed), the chapter is blank.",
+  "'Text you cannot read': 9px and 8px labels, about 30% inactive rail items, and 12px Light body at 60% opacity over animated water.",
+  "'The faint grid background': the tiled-square pattern under the map would read as graph paper if it were static and full-bleed. It works only as a cursor-local, pulsing reveal.",
+  "Scroll-jacking weight: lerp .04 across 2800vh of chapters, html overflow hidden, plus a 38MB uncompressed .wav bed and 18MB of 3D. Copying the pacing without the Theatre-quality camera work just feels sluggish.",
+  "Scramble overuse: ScrambleText on nav, buttons, labels, the URL and the audio prompt at once turns into constant flicker. The site keeps it off the headlines; a copy that scrambles everything loses the contrast."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop screenshots and both mobile screenshots viewed individually. Element 3 (scrolling intro) and element 1 (mouse reveal) viewed as all 8 frames in order; elements 0 (zoom transition) and 2 (intro) viewed at f00/f03/f06. Probe numbers for fonts, sizes, colours, easings, durations, assets and weights are used verbatim. Bundle greps confirmed Theatre.js, GSAP ScrambleText and CustomEase 'joe' curves, Lenis lerp .04, section heights, scene names, uniform census and the map-mask and particle shaders. LIMITS: the probe's wheel steps never left chapter 1 because of 400-500vh sections at lerp .04, so chapters 2-6 are known only from the Awwwards clips. COLLABORATION was not seen. The menu overlay, careers page and mobile 3D were not captured. The 'Grotesk' family was renamed on self-hosting and its foundry is unknown. Bloom is inferred from bundle references and the look, not confirmed in the render pipeline. audit (2026-09-25): re-viewed desktop_00, 01, 02, 03, 05, 06, 07 and mobile_00/01 at full size (plus enlarged corner/chip crops), all 8 frames of element 3, and f00/f03/f06 of elements 0 and 1 and f00/f06 of element 2; fetched the live HTML, entry CSS and 8 JS chunks (u1ipQrxM.js 2.4MB) to scratch and re-grepped them. Fixed: chapter headlines are SplitText chars fading in random order (stagger amount 1.1, .4s, joe.out), not ScrambleText, which is used for buttons, nav hover, map labels, the URL and the audio prompt; the preloader 'highlight block' is one TechnicalReveal block that sweeps xPercent -110/0/110; the doubled nav text is an sr-only label plus a width-holding copy for the scramble, not a text roll; display tracking is +0.04em (not inferred +0.02em); body copy is at 60% opacity; type sits on a fluid root clamp(12px,.8333vw,24px) that is on its 12px floor at 1440; chamfers are filleted SVG-clipPath bevels on chosen corners (BeveledBox) and the LOGIN chip is rounded, so 'one-corner chamfer only, no rounded' was wrong; the canvas is full-viewport and not clipped by the frame; two chapters have no CTA; perf tiers are a runtime FPS step-down plus an Intel HD/Plus check that drops bloom; bloom is confirmed in the composer; exr files are in assets_3d, not asset_extensions. Added: section trigger offsets and the .js-page-scroll scroller (explains probe doc_height 900), Web Audio design with low-pass whoosh and modal muffling, AudioPrompt cursor label, desktop mouse camera pivot, frame-pass scrim and mobile letterbox, Sanity/nuxt-auth-utils/Tweakpane/Lenis 1.3.8/GSAP 3.13, inner-page colour-dodge photo treatment, the title='Careers' bug. Steal recipes now use bundle values; the torch and fake-light numbers remain inferred. Still not observed: COLLABORATION and PURPOSE scenes in motion, the menu, the careers page, and anything 3D on mobile; the Careers Page and Map Navigation clips were not extracted."
+}

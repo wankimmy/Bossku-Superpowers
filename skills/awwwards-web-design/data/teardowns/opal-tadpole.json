@@ -1,0 +1,332 @@
+{
+ "slug": "opal-tadpole",
+ "title": "Opal Tadpole",
+ "live_url": "https://www.opalcamera.com/opal-tadpole",
+ "award": "Awwwards Site of the Day, Jan 11 2024 (Honors); listed in the Sites of the Year bucket for 2024. Credits: Claudio Guglieri (design), Ingamana (development), with Hugo Ahlberg, Anthony Koch, Jason Bradley and Bryan James.",
+ "scores": {
+  "overall": 7.52,
+  "design": 7.73,
+  "usability": 7.34,
+  "creativity": 7.27,
+  "content": 7.64,
+  "dev": {
+   "overall": 7.84,
+   "semantics_seo": 7.6,
+   "animations": 8.6,
+   "accessibility": 7.6,
+   "wpo": 7.8,
+   "responsive": 8.0,
+   "markup": 7.4
+  }
+ },
+ "industry": "Consumer hardware / e-commerce product launch page (portable laptop webcam, $175)",
+ "signature": "The product pitch is a pinned statement whose words ink in one by one from a 10% ghost layer while inline looping product clips pop to 1.7x and overlap the lines around them; further down, a 321-frame pre-rendered turntable scrubs on canvas, and its colorway swatch runs a sequenced page re-theme (render dips out, page goes white to #0a0a0a, the other finish fades back in at the same pose, about 1.4s end to end).",
+ "first_screen": {
+  "composition": "Award-era page (from jury frames; the live URL now 301s to op.al): a load-gated Rive preloader where a white monoline 'Tadpole' script writes itself on at center on black, dims to gray (about 2.2s in the jury clip), then the screen goes black and the page fades up by about 2.9s. The hero is a full-bleed 100vh one-shot 4K video (Hero_video_4k.mp4, not looped) on a flat cool-charcoal studio backdrop (about #33373a sampled): the hand opens with thumb, index and middle finger raised and folds the middle finger away while the camera turns to face the viewer, ending pinched between thumb and index (extra frames at 2.8 / 3.0 / 3.4s; this is the jury's 'hand flip'). When it ends, a final-frame webp crossfades over it for 4s, so the hero settles into a still. The headline 'A new species / of webcam' sits left from grid column 2 (about 9% of the width), vertically centered, Roobert 300 at min(56px, 56vw*100/1648) (48.9px at 1440, 1.075 line-height). A duplicate sr-only h1 carries the same text. Top-left: the 'Opal' wordmark and three nav columns (Products, Company, Resources) with sub-links expanded in very low-contrast gray (white at 40% opacity through the nav's difference blend). Pinned top-right: a white 8px-radius order card (logomark, 'Opal Tadpole / Tiny Webcam' ('Laptop Webcam' in the Smooth Criminal clip and the Jan 2024 HTML), 'B/W / $175', a 4px-radius 'Order now' button that reads black) with a second row 'Tadpole / Overview / Tech Specs'. The card is two layers: a plain white fixed plate (#nav-d-bg-secondary, fades in with scale .98 to 1 over 300ms) under the nav's white mix-blend-mode:difference text, which is why its text reads black on the plate while the same nav reads white on the hero. Intro reveal: the card's hairline divider wipes in from the left (x -110% to 0, about 2.95 to 3.15s), then 'Tadpole', then 'Overview' rise from their masks; the nav column heads and sub-link columns rise with a 60ms per-column step, finishing by about 3.4s.",
+  "what_owns_it": "video",
+  "display_type_px": 48.9,
+  "evidence": [
+   "frames/opal-tadpole/3/f00.jpg",
+   "frames/opal-tadpole/3/f01.jpg",
+   "frames/opal-tadpole/3/f02.jpg",
+   "frames/opal-tadpole/3/f03.jpg",
+   "frames/opal-tadpole/3/f07.jpg",
+   "frames/opal-tadpole/0/f00.jpg",
+   "audit ffmpeg frames of clip 3 at 2.4s / 2.9s / 3.1s / 3.3s (card row and nav sub-links mid-reveal)",
+   "archived CSS: .HeroVideo-module__title min(56px,56vw*100/1648) lh 1.075; .imgLastShot opacity transition 4s cubic-bezier(.4,0,.6,1)",
+   "archived JS: HeroVideo plays Hero_video_4k.mp4 on 'enter:near-start', onEnded swaps to hero-final-frame-desktop.webp",
+   "audit2: ffmpeg frames of clip 3 at 2.8 / 3.0 / 3.2 / 3.4s and card crops at 2.95 / 3.05 / 3.15s (divider wiping left to right, row text rising); archived CSS #nav-d{color:#fff;mix-blend-mode:difference}, #nav-d-bg-secondary{background:#fff;border-radius:8px}, #nav-d-secondary-line div{translate3d(110%,0,0)}; JS secondaryLineA prop x [-110,110]"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Roobert",
+    "role": "display",
+    "classification": "geometric-grotesque sans, used at weight 300 for display",
+    "foundry": "Displaay",
+    "source": "archived CSS @font-face (r3..r7 woff2, weights 300/400/500/500i/600/700), 15 font-family:Roobert rules"
+   },
+   {
+    "name": "Roobert",
+    "role": "body",
+    "classification": "same family at 400/500 for body, specs and UI",
+    "foundry": "Displaay",
+    "source": "archived CSS"
+   },
+   {
+    "name": "SF / SFC (self-hosted system-grotesque subsets)",
+    "role": "none on this page (declared in the shared stylesheet only)",
+    "classification": "system grotesque",
+    "foundry": "Apple",
+    "source": "archived CSS @font-face: family SF 400/500, SFC 300 (inferred: SF Pro / SF Compact subsets). The only rules that use them are .mosaic-app and .mosaic-box-timer-circle-txt (the Composer page mockups), and no Tadpole markup carries those classes, so with font-display:swap the files are never requested here. Not part of the Tadpole type system."
+   },
+   {
+    "name": "'Tadpole' hand-script logotype",
+    "role": "accent",
+    "classification": "custom monoline script drawn as a Rive animation and SVG, not a font",
+    "foundry": "custom",
+    "source": "bundle: /tadpole-preloader.riv (artboard and state machine 'preloader-loop', @rive-app/canvas runtime), inline Tadpole logo SVG in the stat rail; frames 3/f00, 3/f01, 2/f00"
+   }
+  ],
+  "display_size_px": 83.9,
+  "body_size_px": 16,
+  "scale_notes": "Most desktop sizes (min-width 1000px) use min(Npx, N*vw*100/1648): proportional to a 1648px artboard and capped at the design size. Fixed px values remain elsewhere (the counts below are site-wide in the shared stylesheet). At 1440: section headings such as 'Tactile Capabilities.' (Material, Tactile, ImageSound, ColorAndLighting, LensAndSensor) 96 to 83.9px at line-height 1.04; the Introducing statement 72 to 62.9px at 1.11; hero and HeroSpecs titles 56 to 48.9px; PortableNew/VideoScroll titles 48 to 41.9px; spec titles and stat numbers 40 to 35px; the Design title and captions 32 to 28px; the 12px/700 uppercase eyebrow. Most common fixed sizes site-wide: 14px (47 rules), 12px (38), 32px (35), 24px (34), 40px (33). The display-to-body ratio is about 5:1 (83.9/16). Scale comes from light weights at large sizes, never from bold.",
+  "tracking_leading": "letter-spacing:-.01em appears 64 times site-wide, and fixed sizes carry matching px values (-.32px at 32px, -.4px at 40px, -.56px at 56px). The 96px section headings use -.96px (-0.01em) at line-height 1.04; the 72px statement goes to -0.02em (-1.44px) at 1.11. 56px titles use line-height 1.07 to 1.075, 48px titles 1.16, 32px titles and captions 1.25. The 12px uppercase eyebrow uses +0.01em at weight 700. Spec labels are 16px (capped) at 1.5.",
+  "case_and_style": "Sentence case throughout. Display is weight 300, never bold. The only caps are tiny 12px/700 eyebrows ('TEENIE- TINY.') with their small uppercase caption. Numerals are set large and light in the stat rail (45 grams / 47 parts / 8 materials). There is no italic in the display.",
+  "signature_moves": [
+   "Light 300 display at -0.01 to -0.02em. Scale comes from photography and 3D, never from heavy type.",
+   "A 1648px artboard scaling rule, min(Npx, N*vw*100/1648), applied to every size, letter-spacing and margin, so the layout is pixel-proportional below 1648 and frozen above it",
+   "A hand-drawn script logotype for the product (Tadpole) against a strict grotesque system, used in the preloader, the stat rail and the promo",
+   "Inline product clips set inside the running statement text: small looping line-art mp4s (the camera twisting, a sound-wave LED, the tap-to-mute cable, the yoyo case) that sit at 10% opacity and pop to scale(1.7) with a hairline border and a soft shadow when the ink fill reaches them, deliberately overlapping the lines above and below. The tiles are opaque (white-ground mp4 at z-index 1), so at 1.7x they hide letters of the neighbouring words ('built', 'With', 'tap', 'with' in 0/f03 to f07)."
+  ],
+  "mobile": "Not measurable from the live probe, because the URL now redirects. The archived CSS gives the mobile base: the Introducing statement is 28px/1.28 at -.28px with 3% side padding, and below 700px the inline clip spans become absolutely positioned 65px tiles at 30% / 70% of the block, but their <video> stays at opacity:0 (only the min-width:700px rule sets it to 1), so the mobile statement is a text-only fill. The CSS also styles a 140px .sectionVideosMobile tile layer, but this build's Introducing component never renders it. Captions are 18px/1.55 at weight 300. Section headings run 40px (mobile), 56px (700px+), then the 1648-proportional rule at 1000px+. Breakpoints: 700 and 1000px carry nearly all rules (about 800 media queries), with 1648 as the cap; 1300 to 1450 appear only in a few nav rules."
+ },
+ "color": {
+  "mode": "section-shifting (user-driven): light by default, and the colorway toggle flips the whole page to dark",
+  "base": "#ffffff light sections (Introducing, PortableNew). #0a0a0a in dark mode and for the spec/tactile sections. The hero sits on a photographed flat charcoal studio backdrop.",
+  "ink": "#111 on light (Introducing overlay, titles), #fff or #fafafa on dark. Secondary grays: #767676 (Design blurb on white), #777 (the same blurb on dark), #595959 (spec labels and stat captions on #0a0a0a), #4d4f53 (leader-line labels).",
+  "accents": [
+   "#ffdb01 (--color-yellow; corpus palette #FFDB01) is reserved for interaction: the desktop hover fill of the generic buttons (.d .btn-dark and .d .btn-light .btn-bg go yellow over 200ms). The nav's own 'Order now' is the exception: it lives inside the mix-blend-mode:difference nav, where yellow would render as blue, so its hover is pinned to #fff (.d #nav-d-order-cta.btn-light:hover .btn-bg{background:#fff}) and the yellow comes from a separate un-blended duplicate, #nav-d-order-cta-solver (bg var(--color-yellow), opacity 0 until .show; inferred, because the JS that toggles it is not in the archived build). The footer does the same trick in reverse: it is authored light and flipped with mix-blend-difference + invert, so its pill and back-to-top hovers are written as the complement #0024fe (.opal-yellow-digital-invert) and display as yellow. At rest yellow appears only in the 40px promo strip of the Jan 2024 shell ('Take $50 off...'), not in the jury frames. A print yellow #ffbc00 (.opal-yellow-print) also exists.",
+   "red LED and yellow touch-sensing chip: the only two colored parts in the otherwise monochrome exploded drawing (2/f01 to f05)"
+  ],
+  "ratio": "about 60% white or near-black field, 35% photographic or rendered product, under 5% accent. Color comes from the product materials and skin tones, not from UI.",
+  "section_shifts": "Below the hero, sections (Introducing, Design and others) sit on #fff and switch to #0a0a0a under .theme-dark: background-color .48s var(--ease-o1), text color .48s var(--ease-o3). Under the hero a 40vh theme-colored feather (linear-gradient 180deg #fff to transparent, or #0a0a0a in dark) scrubs from autoAlpha 1 to 0 as the hero bottom passes. An .overlayBlack rule (#000 90% to transparent) exists in the CSS but is not referenced by the HeroVideo component, and frame 0/f01 shows a hard hero edge with no black feather. The technical sections sit on #0a0a0a and VideoScroll on #080808.",
+  "texture": "One near-invisible texture: a 15px repeating dot grid (hero-specs/bg-dot png, .bgDots in the HeroSpecs and Tactile modules) behind the technical drawings, only 1 to 2 levels above the #0a0a0a base (visible in a level-stretched crop of 2/f01). No grain and no gradient washes; the only gradients are the hero feather and the VideoScroll edge fades to #080808.",
+  "notes": "The palette is strictly monochrome and product-led. Theme switching is part of the product story (choose the black Tadpole and the site goes black) rather than a dark-mode setting. The fixed white order card has no shadow or border, so on white sections it disappears into the page (only its hairline divider shows) and it becomes a card only when the page is dark (compare 1/f00 and 1/f02)."
+ },
+ "layout": {
+  "grid": "--wrap-width: min(1616px, calc(100% - 32px)), i.e. 16px outer gutters, on 4 / 8 / 12-column grids (Tailwind in the shell, CSS-module grids with a 1rem gap in React sections). Hero copy starts at column 2 (about 9% at 1440). The Introducing statement spans 8 columns from column 3 (it starts about 17% from the left in 0/f02). The Design turntable spans columns 2 to 11 with the copy in columns 2 to 3. The technical sections run edge to edge on the 16px wrap gutter: the 'Tap To Mute' spec table starts at the gutter (2/f00). The Material heading uses 'span 4, start 5' only at 700 to 999px.",
+  "density": "airy",
+  "alignment": "Left-aligned copy blocks at about 9% of the width with centered product. The spec sections are two-column: a table on the left, the illustration in the center, a stat rail on the right edge.",
+  "composition_moves": [
+   "A full-bleed hero with margin-bottom:-100vh and z-index:4, so the pinned Introducing section already sits underneath and the hero slides up off it like a lifted sheet with a hard edge (0/f01). The VideoScroll block reuses the trick (.videoWrapperFirst{margin-bottom:-100vh; z-index:3} on #080808).",
+   "The statement at 62.9px with inline clips that pop to 1.7x and overlap the neighbouring lines once filled (0/f03 to f07)",
+   "A fixed (not sticky) white 8px-radius order card top-right (price, Order now, sub-nav). The plate is its own un-blended element; everything printed on it belongs to the white mix-blend-mode:difference nav, so the text reads black on the plate and the same nav reads white over the hero and black over white sections without any class swap. With no shadow the plate dissolves into white sections and reads as a card only on dark ones.",
+   "Exploded line drawing centered, spec table left with hsla(0,0%,50%,.15) hairline row dividers, and a 92px vertical stat rail on the right edge (Tadpole script logo, 45 grams, 47 Parts, 8 Materials) with 1px rgba(87,90,94,.15) borders on #0a0a0a",
+   "Colorway swatches: two 40px-capped circle buttons (about 35px at 1440; #d4d4d4 and #333) under a two-paragraph blurb in the left column, with the square turntable canvas filling the center"
+  ],
+  "section_rhythm": "Full-bleed hero video, then the pinned text-only statement (white), the Design turntable with blurb (white or black), a 'Teenie-tiny' eyebrow section with two lifestyle photos, photo-scroll chapters, video comparisons with a drag handle, dark technical sections (HeroSpecs, Tactile 'Tap To Mute', Material, Image and Sound, Lens and Sensor, Color and Lighting), unboxing and a promo. Emotion (photo and video) alternates with proof (specs and drawings), and the dark sections cluster toward the technical end.",
+  "mobile_adaptation": "inferred from the archived CSS and JS: a single column at 3% padding. The inline statement clips are positioned as 65px tiles below 700px but kept at opacity:0, so mobile gets the word fill without clips. The turntable switches to the 1280 sequence set when the device is detected as mobile (isMobileDevice, not viewport width), with the canvas at 2x resolution and a different scroll range ('10% 95%' to '80% 0%'). The hero uses a portrait 1280x2310 video with a webp poster. Photo-scroll stills ship 'narrow' variants."
+ },
+ "motion": {
+  "smooth_scroll": "native: no Lenis or Locomotive in the bundle, and no lerp or smooth options. ScrollSmoother appears only inside ScrollTrigger's own code. Smoothing comes from ScrollTrigger scrub:1 (16 uses) and scrub:.5 on the image sequence. A custom micro-engine (R.Lerp, R.Damp, R.RafR raf loop, R.Ease) drives nav and page show/hide.",
+  "preloader": "A Rive file /tadpole-preloader.riv (artboard and state machine 'preloader-loop', @rive-app/canvas, a Canvas2D renderer) drawn into <canvas class=tadpole-canvas>. The white monoline 'Tadpole' script writes itself on (0/f00 at 0.7s shows it half-written), dims to gray (3/f01 at 2.2s, darker by 2.4s), then the screen is black and the page fades up by about 2.9s. The preloader is load-gated: when the asset counter completes it sets the Rive input 'site-loaded' = true, and the site starts on the Rive 'ended' event (with a 4s timeout fallback), emitting 'enter:near-start' (which starts the hero video) and then 'enter:start'. The 2.5s in the jury clip is one load, not a fixed duration.",
+  "intro_sequence": "After the preloader, a black to hero fade of about 400ms. The one-shot hero video starts on 'enter:near-start' (the Rive 'ended' event, then 'enter:start' 300ms later). The headline is present at fade-in. Shell reveals run on the custom engine: _A.t = {d:{show:1300,hide:300}, e:{show:'o6', hide:'o1'}} and _A.tNav = {d:{show:1000,hide:300}, e:{show:'o6', hide:'o1'}}. Lines are <div class=y-w> (overflow:hidden) around <div class=y>, and the hidden offset is in the stylesheet itself (.y{transform:translate3d(0,110%,0)}), not inline. Nav: the three column heads and three link columns each start 60ms apart (delay 60*h), lines inside a column are offset by .034 of the tween's progress each (about 35 to 40ms), 1000ms o6, rising from 110%; on hide they keep travelling up to -110% rather than reversing. The order card plate fades in with scale .98 to 1 (300ms o1), its hairline divider wipes in from the left (x -110% to 0, exits to +110%), then the product info and 'Tadpole / Overview / Tech Specs' rise from their masks (about 2.9 to 3.4s in the jury clip). The nav holds C1, Composer, Newsroom and Tadpole variants of the card text stacked in the same masks and only the current route's lines rise.",
+  "scroll_techniques": [
+   "hero-lifts-off: a 100vh hero with a -100vh margin over the pinned next section",
+   "pinned statement + scroll-indexed word fill: the Introducing section pins for 2 extra viewport heights (pin:true, scrub:1), and a ScrollTrigger (desktop start 'top+=175% center', end 'bottom+=200% center'; mobile 'top+=200%' / 'bottom+=300%') toggles an .fx class per word",
+   "scrub image-sequence turntable, not pinned: 321 frames per colorway, scrub:.5, snap:'frame', desktop start 'top 85%' to end '85% 0%' measured on the image-sequence container itself, and the scrub tween is only created once frame 0 has loaded, so the product turns as its square canvas travels through the viewport (1/f00 to f01 show text and render moving together)",
+   "autoAlpha fade scrubs at section edges (the hero feather from 'bottom-=5% bottom'; the HeroSpecs block from 'top+=100vh bottom' to 'bottom+=100% bottom+=70%', scrub:1)",
+   "photo-scroll chapters: a tall hero still (1970x2600) followed by pairs of story stills (1120x1555) for 'Handy and portable' and 'Easy To Clip On'",
+   "drag-to-compare video (DraggerElement inside a pinned HeroComparison: pin:true, scrub:1, end 'bottom+=innerHeight' plus 80px on iOS): Tadpole_raw on one side, and a camera menu for the other side with Logitech C920 (labelled 'C9120' in the code), MacBook Pro M1, Asus Zenbook, Opal C1, Logitech Brio and Lenovo Thinkpad clips. PortableNew runs a smaller Tadpole / M1 / Asus Zenbook set.",
+   "one-shot, in-view exploded drawing (Tactile): plays once when the section top reaches center, then replays on mouseenter and reverses on mouseleave (not scroll-scrubbed)",
+   "stat-rail parallax: .resume yPercent 0 to 100, scrub:true, only when the isDesktopSmall flag is true (which in this code means innerWidth >= 700, so all desktop and tablet widths, not 'small desktops')",
+   "HeroSpecs pins for one extra viewport (pin:true, scrub:1, end 'bottom+=innerHeight') while its overlay scrubs autoAlpha 1 to 0"
+  ],
+  "text_animation": "(1) The HeroSpecs title ('Technical Specifications', a second h1 on the page): GSAP SplitText (bundled as vM, type 'lines, words, chars'); lines get overflow:hidden and chars go yPercent:100 to 0 with ease 'o6' (expo-out, cubic-bezier(0.19,1,0.22,1)) and stagger {amount:.4}. The fromTo has no scrollTrigger and runs in the component's mount effect, so it plays at page load and is finished long before the section is reached (observed in code). (2) Shell line reveals for the nav, the order card, the footer and newsletter: .y-w (overflow:hidden) around .y, whose resting CSS is translate3d(0,110%,0); they rise to 0 over 1000ms (nav) or 1300ms (sections) o6, 60ms per column plus a .034 progress offset per line (the engine stretches the tween to d/(1-(n-1)*.034), so about 35 to 40ms per line at 1000ms), and exit upward to -110%. The mobile menu uses framer-motion's animate(): bg opacity .3s, product tiles y 28 to 0 with 60ms steps, titles and link groups from y 110%, 1s expo-out; exit .3s cubic-out upward (-28px / -110%). (3) The Introducing statement is two stacked copies of the same text. The under layer (.textUnder) is always visible at hsla(0,0%,7%,.1) (10% ink) with empty 80px placeholders where the clips go. The over layer (.textOver, absolute, #111) wraps each word in its own hand-authored span at opacity:0. On scroll, t = floor(progress*(n+1))-1 and every span i<t gets .fx (opacity 1, transition .2s ease), so the words ink in one by one over the ghost. The caption line with the Mac and Windows logos fills the same way. In the jury clip, f02 at 3.1s reaches 'With', f03 at 4.4s reaches 'it's', and f05/f06 are fully filled while the block holds still in its pin.",
+  "image_animation": "The four inline clips in the statement are looping muted mp4s (LineTadpoleTwist, sound-wave, tadpole_web_Line_UBC_rotate, Yoyo_Case_Line, each with a -black variant for dark theme). They sit at opacity .1 and paused until the fill reaches them. Then JS calls play(), the tile goes to opacity 1 (.3s o6), and the video scales to 1.7 with a .882px rgba(0,0,0,.1) border and a 0 7.8px 15.6px rgba(0,0,0,.06) shadow (.35s o6), large enough to overlap the lines above and below (0/f03 to f07). Scrolling back pauses them. They are skipped entirely in iOS Low Power Mode. The turntable has no autoplay on this page: the component supports an autoplay handoff (initFrameScroll), but Tadpole sets it to 0, so frame 0 paints and scroll takes over.",
+  "page_transitions": "n/a on the single product page. inferred: the custom engine's show 1300ms o6 / hide 300ms o1 config also drives route changes across the Opal site, and #s-bg-light / #s-bg-grey / #s-bg-dark full-screen layers exist in the shell for them.",
+  "hover_micro": [
+   "Nav sub-links: white at opacity .4 inside the difference-blended nav, to opacity 1 on hover over .2s (.d .nav-d-primary-link a). The footer link columns use Tailwind hover:text-black/50 (all 12 uses are footer links) with no transition, seen through the footer's invert",
+   "Generic buttons: .btn-bg fill goes to #ffdb01 over 200ms on desktop hover (.d .btn-dark / .d .btn-light), nothing moves. The nav 'Order now' keeps #fff on hover because it sits in the difference layer (inferred: the un-blended yellow solver duplicate fades in instead). The footer newsletter pill turns yellow (authored as #0024fe under invert) while its arrow slides from the right edge to the center (400ms o3)",
+   "Colorway swatches: hover, focus and active show an inset 2px ring (a 32px ::before inside the 40px circle, #fff on the light swatch, #767676 on the dark one, opacity .2s)",
+   "Tactile drawing: mouseenter replays the explode timeline and restarts the Rive arrows 500ms later; mouseleave reverses it (2/f06 to f07 collapse)",
+   "Rive 'arrows' artboards (arrows-1, -3, -4 and -mob in arrows.riv; arrows-2 in arrows-tactile.riv) draw the tap gesture on the illustrations"
+  ],
+  "cursor": "Default system cursor, visible in the frames (an I-beam over the statement in 0/f02). cursor:pointer (19 rules) and cursor:grab (the comparison dragger) only. No custom cursor.",
+  "easing_curves": [
+   "cubic-bezier(0.19,1,0.22,1) --o6 expo-out: show/entrance 1300ms, SplitText chars, clip opacity/scale .3 to .35s, the order-CTA width morph .6s",
+   "cubic-bezier(0.39,0.575,0.565,1) --o1 sine-out: hide 300ms, background-color .48s theme flip, the turntable fade during a colorway switch",
+   "cubic-bezier(0.215,0.61,0.355,1) --o3 cubic-out: text color .48s on theme flip, the footer pill arrow slide 400ms",
+   "cubic-bezier(0.165,0.84,0.44,1) --o4 quart-out: opacity .4 to .6s",
+   "cubic-bezier(.4,0,.6,1) over 4s: hero final-frame crossfade",
+   "cubic-bezier(.4,0,.2,1): Tailwind default transitions",
+   "The full Penner set is declared as :root vars i1..i6 / o1..o6 / io1..io6 (plus --ease-* aliases)",
+   "GSAP string eases in the bundle: power2.out x21, 'none' x8 (the scrubs and sequence tweens), power2.inOut x5 (the Tactile explode is power2.inOut .8s)"
+  ],
+  "duration_range_ms": "200 (hover colors, word ink-in) / 300 (hide, clip tile opacity) / 350 (clip scale) / 400 to 600 (opacity, drawSVG leader lines .5s) / 480 (theme flips and the colorway fade) / 800 (Tactile explode) / 1000 (nav show) / 1300 (section show) / 4000 (hero final-frame crossfade). The colorway switch as a sequence: 0ms render fade-out starts, 450ms page theme flips, 480ms frame set swaps, about 950ms render fades back in, about 1.43s done. GSAP durations most often seen: 1s (24), .5s (16), .4s (8), .8s (7).",
+  "stagger_ms": "About 60ms per line for shell line reveals. Title chars share a total stagger of 400ms (stagger {amount:.4}). The word fill is scroll-indexed (one word per 1/(n+1) of scroll progress), not time-staggered. The Tactile timeline is time-offset: parts 0 to .8s, lines and arrows at .7s, leader lines drawn at 1.0s, labels at 1.25s.",
+  "choreography_notes": "The product moves and the copy holds. The statement is pinned while the words fill, and in the Design section only the render rotates while the copy block scrolls with it. The colorway switch is choreographed as a dip rather than a cut: the render fades out first, the page re-themes while it is invisible (background o1 and text o3 on the same .48s beat), the frame set swaps at the same frame index, and the render fades back in on the new ground, so the object never visibly changes finish in place. The swatches are pointer-events:none for the duration. The word fill is discrete per word (.2s opacity per span over a 10% ghost), which reads as ink landing rather than a gradient wipe, and each clip pops only when its word lands. The hero lifts off before the fill starts, so the two never compete.",
+  "evidence": [
+   "frames/opal-tadpole/0/f00.jpg",
+   "frames/opal-tadpole/0/f01.jpg",
+   "frames/opal-tadpole/0/f02.jpg",
+   "frames/opal-tadpole/0/f03.jpg",
+   "frames/opal-tadpole/0/f06.jpg",
+   "frames/opal-tadpole/1/f00.jpg",
+   "frames/opal-tadpole/1/f01.jpg",
+   "frames/opal-tadpole/1/f02.jpg",
+   "frames/opal-tadpole/1/f03.jpg",
+   "frames/opal-tadpole/1/f04.jpg",
+   "frames/opal-tadpole/1/f05.jpg",
+   "frames/opal-tadpole/1/f06.jpg",
+   "frames/opal-tadpole/1/f07.jpg",
+   "frames/opal-tadpole/2/f00.jpg",
+   "frames/opal-tadpole/2/f03.jpg",
+   "frames/opal-tadpole/2/f06.jpg",
+   "frames/opal-tadpole/3/f00.jpg",
+   "frames/opal-tadpole/3/f01.jpg",
+   "frames/opal-tadpole/3/f02.jpg",
+   "frames/opal-tadpole/3/f03.jpg",
+   "frames/opal-tadpole/3/f04.jpg",
+   "frames/opal-tadpole/3/f05.jpg",
+   "frames/opal-tadpole/3/f06.jpg",
+   "frames/opal-tadpole/3/f07.jpg",
+   "archived JS app.3a597022.js (2024-02-01): Introducing (qx), Design colorway (Px, 480ms setTimeout), page shell (450ms theme-dark, +500ms theme-switching off), ImageSequence (xx), Tactile (yO), HeroVideo, preloader (site-loaded input, 4e3 timeout)",
+   "archived CSS app.677cac91.css (2024-01-12): Introducing, Design, HeroVideo, Tactile, TactileIlustration, btn-bg rules",
+   "audit2: archived JS nav class (tNav, titleA/linkA delay .034, secondaryLineA x [-110,110], bgSecondary scale .98), mobile menu enter/exit via framer-motion animate (xr), HeroSpecs (RD) SplitText fromTo without scrollTrigger + pin, HeroComparison pin and navItems labels, Tactile resume parallax gated on isDesktopSmall (innerWidth>=700); CSS .y{translate3d(0,110%,0)}, .d .nav-d-primary-link a{opacity:.4}"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "mixed",
+  "art_direction": "Three registers. (1) Soft-lit studio photography and video of real hands and skin against flat charcoal or neutral backdrops; the product is shown in use and at true scale. (2) A clean-room product turntable rendered on pure white or pure black with no floor or shadow plane, seen in close crop so the camera, zig-zag clip and woven cable fill the frame. (3) Engineering line art: white hairline isometric drawings with dark opaque face fills (parts occlude each other) on #0a0a0a over a barely visible dot grid, with leader-line callouts.",
+  "treatments": [
+   "Pre-rendered 3D as a webp image sequence on a 2D canvas, not realtime WebGL",
+   "A per-colorway render set (tp_white_*, tp_black_*) swapped behind a fade",
+   "Exploded SVG drawing with only two colored parts (red LED, yellow chip); each part is its own layer with a CSS vertical offset and a descending z-index",
+   "Two-up lifestyle photos under a 12px/700 uppercase eyebrow ('Teenie-tiny')",
+   "Photo-scroll chapters of a tall hero still plus two story stills",
+   "Looping line-art product clips used as inline glyphs in the statement, with light and black variants"
+  ],
+  "crops_and_ratios": "The hero is full-bleed 100vh (3840x2160 video, object-fit cover). The turntable canvas is square (3456x3456 source aspect, aspect-ratio set on the container) and the frame is drawn fit-to-width, centered vertically. The cover-fit branch in the component is not used here. Photo-scroll heroes are 1970x2600 (about 3:4) and story stills 1120x1555 (about 5:7). inferred: the 'Teenie-tiny' pair are those portrait tiles with a small gutter (1/f04). The drawing floats on the section with no frame.",
+  "formats": "webp for the turntable (4 sets of 321 frames: white/black at 1920 and 1280, q80, 1284 files) and the photo-scroll stills. mp4 for the hero (4K plus a 1280x2310 portrait), the inline statement clips, the comparisons (1600x900, 1280x1280, 1920x1080) and the video-scroll backgrounds. png for nav and menu cutouts; .riv for the preloader and arrows. (The probe's avif/webp/mp4 counts are from the live op.al page, not this site.)",
+  "evidence": [
+   "frames/opal-tadpole/1/f00.jpg",
+   "frames/opal-tadpole/1/f04.jpg",
+   "frames/opal-tadpole/2/f01.jpg",
+   "frames/opal-tadpole/3/f02.jpg",
+   "archived JS: Design section frameCount:321, width/height 3456, aspectRatio:true; photo-scroll JSON (Dx); asset paths under /assets/media/opal-tadpole/",
+   "audit: level-stretched crop of clip 2 at 1.6s showing the dot grid and opaque part fills"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "Pre-rendered image sequence drawn with drawImage on a 2D canvas (no three.js). Rive through @rive-app/canvas (Canvas2D renderer plus wasm, two runtime copies 2.7.3 and 2.9.0 bundled) for the preloader and the tap arrows.",
+  "role": "product turntable in the Design section ('Smooth Criminal' element); it is not the hero, which is video",
+  "assets": [
+   "/assets/media/opal-tadpole/imagesSequences/cam3d/v3/white1920_q80/tp_white_432000..432320.webp (321 frames)",
+   "…/black1920_q80/tp_black_432000..432320.webp (321 frames)",
+   "…/white1280_q80 and black1280_q80 (321 frames each, used on mobile devices)",
+   "/tadpole-preloader.riv",
+   "/assets/media/opal-tadpole/material/arrows.riv, arrows-tactile.riv"
+  ],
+  "materials_lighting_post": "Baked offline: soft top-key studio light, white and near-black painted aluminum, a thin iridescent rim on the lens glass (visible in 1/f03 and f05), a woven fabric cable with real micro-detail, no ground shadow. Two full renders, one per colorway, from the same camera path.",
+  "interaction": "Scroll scrubs the frame index (scrub .5, snap 'frame') over 'top 85%' to '85% 0%' of the section; there is no pin and no autoplay (initFrameScroll is 0). The swatch click sets .theme-switching (the render fades to 0 over 480ms), flips the page theme at 450ms, swaps the frame set at 480ms while keeping sequence.frame, then removes .theme-switching about 950ms after the click so the new finish fades back in at the same pose (1/f01 appears to catch the render mid-fade: it reads lighter and grayer than in f00).",
+  "performance_tactics": "Images start loading only when the section is within about two viewports (a once-only ScrollTrigger at -1.999*innerHeight). The container stays at opacity 0 with a small loading icon until the current frame's onload, then fades in (.2s). Every 10th image (s%10==1) triggers a redraw as the set fills in. The canvas is elWidth x resolutionScale, where resolutionScale is 1 on desktop and 2 on mobile devices (not devicePixelRatio). Mobile devices load the 1280 set. Frames are q80 webp.",
+  "fallback_mobile": "The 1280 set at 2x canvas resolution, triggered by the isMobileDevice flag, with its own scroll range. No realtime GPU cost, so mobile behaves like desktop apart from the smaller frames.",
+  "evidence": [
+   "frames/opal-tadpole/1/f00.jpg",
+   "frames/opal-tadpole/1/f01.jpg",
+   "frames/opal-tadpole/1/f02.jpg",
+   "frames/opal-tadpole/1/f03.jpg",
+   "frames/opal-tadpole/1/f05.jpg",
+   "archived JS: xx image-sequence component (drawImage, padStart 3, s%10==1 redraw, resolutionScale), Px colorway component (setTimeout 480), shell theme timers (450 / 500), Design CSS .theme-switching .seqWrapperInner{opacity:0}"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Left: 'Opal' wordmark plus three column heads (Products, Company, Resources), with the sub-links (Tadpole, C1, Composer / About, Terms, Privacy / Support, Media Kit, Downloads, Newsletter) shown expanded in the hero as white at 40% opacity. The whole desktop nav, including the text on the order card, is one fixed layer set in #fff with mix-blend-mode:difference, so it reads white over the charcoal hero and dark sections and black over white sections, with no scroll-driven color class. After the hero the sub-links leave upward through their masks and only the three heads stay. Right: the fixed white order card plate, a separate un-blended element under the nav text.",
+  "menu": "Desktop mega-nav, pre-expanded in the hero, then collapsed. On mobile the menu has product image tiles (mobile-menu-product-image / -bg classes).",
+  "buttons_links": "The primary CTA reads as a black 'Order now' rectangle (4px radius .btn-bg) on the 8px-radius white plate. inferred from the CSS (the button itself is injected by JS, not in the archived HTML): it is authored as a white .btn-light inside the difference-blended nav, which renders it black over the white plate; its hover is pinned to #fff (.d #nav-d-order-cta.btn-light:hover .btn-bg) because a yellow fill would show as blue under difference, and an un-blended duplicate (#nav-d-order-cta-solver, yellow bg, 'Order now' text, close icon) sits in the same spot at opacity 0 for the yellow state. Clicking morphs the button background to a 40px square (width .6s o6; the label slides 26px and fades in .1s while the close icon arrives) as the buy panel (#buy-col) opens. Other buttons go #ffdb01 on hover over 200ms without moving. Nav sub-links go from 40% to full opacity (.2s). Colorway controls are bare 40px circles with an inset hover/active ring and sr-only labels ('Toggle Light Theme' / 'Toggle Dark Theme').",
+  "unusual_interactions": [
+   "The colorway toggle re-themes the entire page (sections #fff to #0a0a0a) through a fade-out, re-theme, fade-in sequence",
+   "A word-by-word ink fill of the product pitch, with inline looping clips that pop to 1.7x as they are reached",
+   "A pinned drag-handle video comparison of the Tadpole against a menu of six rival cameras (Logitech C920, MacBook Pro M1, Asus Zenbook, Opal C1, Logitech Brio, Lenovo Thinkpad) (DraggerElement + VideoComparisonNav)",
+   "An exploded tap-to-mute drawing that assembles and explodes on hover, with Rive tap arrows and DrawSVG leader lines",
+   "One nav layer in mix-blend-mode:difference that flips white/black over any section, with un-blended 'solver' elements for the parts that must keep their true color (the white card plate, the yellow CTA hover)"
+  ],
+  "sound": "none observed (ImageSound module is about the mic, and it is demonstrated with video)",
+  "footer": "Not in the jury frames. The archived Jan 2024 HTML has a #0a0a0a footer whose content is authored in light-mode classes (text-black, bg-black pill, border-black/10) inside a mix-blend-difference + invert wrapper, so it displays light on dark; hover colors are stored as complements (#0024fe) so they display as yellow after the invert: a 'Subscribe to the Opal Newsletter' block with a 20px-radius pill whose arrow slides from the right edge to the center on hover while the pill turns yellow; link columns (Products, Company, Resources, Social); 'Opal Camera Inc. All rights reserved.'; a round back-to-top button. The live successor site (op.al) instead ends on a giant dot-matrix 'opal' wordmark drawn on a 1400x666 canvas, with a brighter dot patch and the links Support / Terms / Privacy / Jobs / Contact (desktop_05 to 07)."
+ },
+ "content_voice": {
+  "headline_style": "Short and plain, in sentence case and a light weight: a claim in four or five words, then a factual subline.",
+  "copy_tone": "Wry and friendly but spec-precise. Size is told through everyday comparisons (it is a tad taller than a gummy bear), and the tech is stated flatly with exact numbers in the spec rail (45 grams, 47 parts, 8 materials; 0.7mm chemically strengthened touch surface; 55cm cable).",
+  "examples": [
+   "A new species of webcam",
+   "Uniquely designed for your laptop.",
+   "Tactile Capabilities."
+  ]
+ },
+ "tech_stack": {
+  "framework": "React (webpack bundle with CSS Modules 'Name-module__class--hash') mounted into a Tailwind-styled HTML shell. The origin headers of the Jan 2024 archive show Cloudflare in front of a DigitalOcean App Platform origin with an 'adonis-session' cookie (inferred: an AdonisJS server renders the shell).",
+  "libraries": [
+   "gsap core + ScrollTrigger 3.12.2 (scrub:1 x16, scrub:.5 x1)",
+   "GSAP Club plugins bundled: SplitText (as vM), DrawSVGPlugin 3.11.5 (Tactile leader lines), InertiaPlugin 3.11.5",
+   "@rive-app/canvas 2.7.3 and 2.9.0 (both bundled) for the .riv preloader and arrows; the canvas runtime draws with Canvas2D and only opens a WebGL/WebGL2 context as a helper for image meshes",
+   "custom 'R' micro-engine (R.Lerp, R.Damp, R.Ease with Penner curves, R.RafR raf loop, R.G.class) for the shell's show/hide transitions",
+   "framer-motion: its animate() drives the mobile menu enter/exit (bg opacity .3s, 60ms steps, y 110% line reveals, 1s expo-out in, .3s cubic-out up and out); the Opal C1 shop page also uses motion.div. No framer-motion use in the Tadpole sections themselves",
+   "Alpine.js 3.12.3 is bundled, but the Tadpole HTML has no x- attributes (unused on this page)"
+  ],
+  "evidence": "archived HTML /static/app.e6ab5662.js + app.677cac91.css (2024-01-12 snapshot). The JS was read from the 2024-02-01 build app.3a597022.js because the earlier bundle 404s in Wayback (that build already says 'Buy for $129' on mobile, so prices and small copy may differ from the award version)."
+ },
+ "performance_accessibility": {
+  "requests": null,
+  "weight_notes": "Could not be measured for the award page, because the probe's 160 requests and 132MB of declared mp4 belong to the live op.al replacement page. From the bundle, the heavy parts are the 1284 turntable webp frames (321 x 2 colorways x 2 resolutions), the 4K hero video, the comparison and video-scroll mp4s, and the 2.95MB uncompressed JS, which ships two copies of the Rive runtime. The turntable loads lazily (about two viewports ahead) and the inline clips are skipped in iOS Low Power Mode.",
+  "reduced_motion": "None in practice. The one matchMedia('(prefers-reduced-motion)') in the JS is framer-motion's internal check, not app logic, and the archived CSS has no prefers-reduced-motion rules. The pinned scrub sections, autoplaying hero and hover-replayed drawing have no reduced path.",
+  "contrast_issues": "The statement's resting layer is 10% ink (hsla(0,0%,7%,.1)), so unscrolled or with JS off the pitch is barely legible. The expanded nav sub-links in the hero are white at 40% opacity through a difference blend on a #33373a backdrop, which lands well under 3:1 (estimate from the blend math and frame samples). Spec labels are #595959 on #0a0a0a (about 2.8:1) and the 10px stat-rail captions use the same gray, both failing AA. The leader-line labels are #4d4f53 at 12px (about 2.4:1). The Design blurb is #767676 on #fff (4.5:1, a bare pass) but #777 on #0a0a0a in dark mode (about 4.4:1, just under).",
+  "mobile_quality": "Jury responsive 8.0. The archived CSS has a complete mobile type scale (28px statement, 18px captions), mobile-specific inline-clip tiles, a portrait hero video and 1280 sequence sets. Not directly observed.",
+  "dev_scores": {
+   "overall": 7.84,
+   "semantics_seo": 7.6,
+   "animations": 8.6,
+   "accessibility": 7.6,
+   "wpo": 7.8,
+   "responsive": 8.0,
+   "markup": 7.4
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "A colorway toggle that re-themes the page behind a fade, with the render keeping its pose",
+   "why_it_works": "Choosing a finish becomes a scene change: the object leaves, the room changes color, and the object returns in the new finish at the exact same angle. Hiding the swap during the fade means you never see a white render sitting on a black page mid-transition.",
+   "how_to_build": "Render two identical turntables (same camera, same frame count), one per finish. Keep one canvas and one frame index. On swatch click: root.classList.add('theme-switching') (CSS: .theme-switching .render{opacity:0; transition:opacity .48s cubic-bezier(0.39,0.575,0.565,1)} .theme-switching .swatch{pointer-events:none}); setTimeout(()=>root.classList.toggle('theme-dark', color==='dark'), 450) with sections on [.theme-dark]{background:#0a0a0a; color:#fff} and transition: background-color .48s cubic-bezier(0.39,0.575,0.565,1), color .48s cubic-bezier(0.215,0.61,0.355,1); setTimeout(()=>{images = sets[color]; draw(images[frame])}, 480); setTimeout(()=>root.classList.remove('theme-switching'), 950). Keep the buy card on its own fixed white token with no shadow. Preload the second set in idle time after the first set is ready."
+  },
+  {
+   "technique": "Scroll-scrubbed image-sequence turntable that loads lazily and scrubs through the viewport without a pin",
+   "why_it_works": "Studio-grade renders with no realtime GPU cost, and because the section is not pinned the product turns as it travels up the screen, so the rotation reads as a consequence of scrolling rather than a hijack of it.",
+   "how_to_build": "About 320 webp frames at q80 per finish, in two widths (1920 for desktop, 1280 for mobile devices). Give the container aspect-ratio 1/1 and draw each frame fit-to-width. Canvas size = el.clientWidth * scale, with scale 1 on desktop and 2 on phones. ScrollTrigger.create({trigger:el, start:()=>`-${2*innerHeight} 100%`, once:true, onEnter:startLoading}). Keep the container at opacity 0 with a small loader until the current frame's onload, then fade it in over .2s; redraw on every 10th load. When frame 0 loads: gsap.to(seq,{frame:N-1, snap:'frame', ease:'none', onUpdate:draw, scrollTrigger:{trigger:section, start:'top 85%', end:'85% 0%', scrub:.5}}). Optional: tween the first few frames on a timer before handing to scroll (the component supports this, but Tadpole leaves it off)."
+  },
+  {
+   "technique": "Two-layer word-by-word ink fill with inline clips that pop past the line box",
+   "why_it_works": "The pitch reads at the reader's own pace, the ghost layer means the text never vanishes, and each noun lands with a moving picture of the part it names. Letting the clip overlap the lines around it at 1.7x makes it feel placed by hand rather than set as an inline image.",
+   "how_to_build": "Render the paragraph twice in the same box. Under: color hsla(0,0%,7%,.1) with empty 80x80 inline-block placeholders where the clips go. Over: position:absolute; inset:0; color:#111; each word in its own span at opacity:0; transition:opacity .2s ease, with the clips inline at the same spots (opacity .1, paused). Pin the section (ScrollTrigger pin:true, end:'bottom+=200vh bottom', scrub:1) and run a second trigger (start:'top+=175% center', end:'bottom+=200% center', scrub:1, onUpdate:s=>{const t=Math.floor(s.progress*(n+1))-1; spans.forEach((w,i)=>{const on=i<t; w.classList.toggle('fx',on); if(w.video) on?w.video.play():w.video.pause()})}). Clip on-state: .fx{opacity:1} .fx video{transform:scale(1.7); border:.9px solid rgba(0,0,0,.1); box-shadow:0 8px 16px rgba(0,0,0,.06); transition:transform .35s cubic-bezier(0.19,1,0.22,1)}. Set the text at min(72px, 72vw*100/1648), weight 300, line-height 1.11, -0.02em. Raise the ghost to 20 to 25% ink if the page must read without scrolling. Opal's tiles have an opaque white ground at z-index 1, so at 1.7x they hide letters of the neighbouring words; to keep every word whole, give the clip a transparent ground or place it where it only overlaps the leading. Opal drops the clips entirely below 700px (video opacity 0)."
+  },
+  {
+   "technique": "The hero lifts off a pinned section that is already underneath it",
+   "why_it_works": "There is no seam between the hero and the next section: the next section is revealed rather than scrolled in, so it feels like lifting a photo off a desk, and the pinned text is already in place when it appears.",
+   "how_to_build": ".hero{position:relative;height:100svh;margin-bottom:-100svh;z-index:4} .next{position:relative;z-index:3;min-height:100svh} with the next section pinned by ScrollTrigger. Optional feather in the NEXT section's color, not black: .hero .feather{position:absolute;top:100%;height:40svh;width:100%;background:linear-gradient(180deg,var(--bg),transparent)}, faded with gsap.fromTo(feather,{autoAlpha:1},{autoAlpha:0, scrollTrigger:{trigger:feather, start:'bottom-=5% bottom', end: innerWidth>=700 ? 'bottom+=5% bottom' : 'bottom+=5% top', scrub:1}}) (Opal's desktop fade is that short 10% window; the long 'top' end is its mobile value). A hard edge (as in 0/f01) is also fine. Play the hero video once and crossfade its last frame in as a still (opacity 4s) so the fold rests on a clean image."
+  },
+  {
+   "technique": "One difference-blended nav layer, with un-blended 'solver' elements for true colors",
+   "why_it_works": "A single white nav set in mix-blend-mode:difference reads white over the charcoal hero, black over white sections and correct over the colorway flip, with no scroll listeners or theme classes. Blending inverts every color, so the pieces that must keep their real color (the white card plate, the yellow hover) live outside the blend and sit exactly under or over it.",
+   "how_to_build": "nav{position:fixed; top:0; width:100%; color:#fff; mix-blend-mode:difference; z-index:9994} with all links, the logo (fill:#fff) and the card text inside it. Put the card plate outside the nav: .card-plate{position:fixed; top:4px; right:...; background:#fff; border-radius:8px; opacity:0} faded in with opacity 0 to 1 and scale .98 to 1 (300ms, cubic-bezier(0.39,0.575,0.565,1)); text over it now reads black. Author the CTA inside the nav as white (.btn-bg{background:#fff}) so it renders black on the plate, and pin its hover to #fff. For the accent hover, add an un-blended duplicate at the same fixed coordinates (.cta-solver{background:#ffdb01; opacity:0; transition:opacity .2s} .cta-solver.show{opacity:1}) and toggle .show from the real button's pointerenter/leave. For a dark footer, author it light and wrap it in mix-blend-mode:difference plus filter:invert(1), storing accent hovers as their complement (#ffdb01 becomes #0024fe). Divider inside the card: a 1px wrapper with overflow:hidden and an inner bar that goes from translateX(-110%) to 0 on reveal and to 110% on hide."
+  },
+  {
+   "technique": "Exploded engineering drawing on a hover-replayable timeline with a two-color budget",
+   "why_it_works": "A monochrome hairline drawing reads as real engineering. Coloring only the two parts that matter (LED, sensing chip) directs the eye without labels shouting, and letting the reader re-explode it on hover turns a spec illustration into a toy.",
+   "how_to_build": "Inline SVG with each part in its own element: white 1px strokes (vector-effect:non-scaling-stroke), dark opaque fills so front parts occlude back parts, descending z-index per layer. Put the exploded offsets in CSS as vertical translates (translate3d(0, calc(var(--scale) * -Npx), 0) per part), so the resting CSS state is the exploded view. Build a paused timeline: tl.from(parts,{x:0,y:0,duration:.8,ease:'power2.inOut'}).fromTo([lines,arrows],{autoAlpha:0},{autoAlpha:1,duration:.4},.7).fromTo(ledGlow,{autoAlpha:1},{autoAlpha:0,duration:.4},0).fromTo(leaders,{drawSVG:'0%'},{drawSVG:'100%',duration:.5,ease:'power2.out'},1).fromTo(labels,{autoAlpha:0},{autoAlpha:1,duration:.8},1.25). Play it once when the section top reaches center, then mouseenter → tl.play() and mouseleave → tl.reverse(). Color the LED red and the chip yellow (hexes inferred from frames). Spec table on the left: 1px hsla(0,0%,50%,.15) row rules; labels should be lighter than Opal's #595959 to pass contrast."
+  },
+  {
+   "technique": "Artboard-proportional sizing capped at the design width",
+   "why_it_works": "The composition keeps the designer's exact proportions at every desktop width, and nothing grows past the comp on huge screens.",
+   "how_to_build": "Use one formula for desktop sizes, spacing and tracking: font-size:min(72px, calc(72 * 100vw / 1648)); letter-spacing:min(-1.44px, calc(-1.44 * 100vw / 1648)); margin-top:min(50px, calc(50 * 100vw / 1648)). Apply it from 1000px up, with fixed values at the 700px tier and a separate mobile base below. Wrap: width:min(1616px, 100% - 32px)."
+  }
+ ],
+ "slop_risks": [
+  "Content hidden until a reveal fires: every .y line (nav column heads, sub-links, card rows, footer and newsletter lines) is translate3d(0,110%,0) in the stylesheet itself, inside overflow-hidden wrappers, and HeroSpecs title chars start at yPercent:100. If JS stalls, those lines are clipped out of view. A copy must render lines in place by default and only add the offset once JS has confirmed the reveal will run.",
+  "The statement's resting state is 10% ink: with JS off or before scrolling the pitch is effectively unreadable (text you cannot read). Opal's two-layer build at least never removes the text; a copy should keep that structure and raise the ghost to 20 to 25%.",
+  "Text covered by the inline clips: the popped 1.7x tiles are opaque and sit above the ink layer, so letters of neighbouring words disappear under them (0/f03 to f07). It reads as placed-by-hand at a glance, but it is the covered-content tell up close. A copy should keep the clip's ground transparent or let it overlap only the line gaps.",
+  "Low-contrast spec typography: #595959 labels and 10px captions on #0a0a0a (about 2.8:1) and #4d4f53 leader labels fail AA. A copy should lift labels to about #8a8a8a.",
+  "A naive copy of the colorway flip that swaps the section backgrounds without the fade-out creates hard color seams between sections and a mismatched render mid-transition. Flip every section token together, and hide the render during the swap.",
+  "The turntable container is opacity 0 until its current frame loads, with frames lazy-loaded from two viewports away, so a fast scroller can reach an empty square. Put a static poster <img> of frame 0 under the canvas.",
+  "The dot grid behind the technical drawings is the faint-grid tell in miniature. It survives here only because it is near-invisible and sits behind an actual technical drawing; used as a full-page backdrop it is slop.",
+  "The stat rail is a stack of boxes with 1px rgba(87,90,94,.15) borders on near-black, one step from the hairline-border-box tell. It works because it is a single narrow rail of real numbers, not a card grid.",
+  "The pre-expanded mega-nav in low-contrast gray over the hero reads as clutter if the hero photo is busier than a flat backdrop",
+  "The hand-script logotype is load-bearing: swapping it for a Google script font turns the move into 'default fonts' slop",
+  "The white order card avoids the floating-card tell because it is functional (price and buy), has no shadow and never animates. Adding a drop shadow or a bob to it would make it slop.",
+  "No reduced-motion path at all (the only matchMedia is framer-motion's internal), on a page built from pins, scrubs and autoplaying video.",
+  "The saturated yellow at rest: the Jan 2024 shell adds a full-width #ffdb01 promo strip above the nav, the one place the interaction color becomes a poster-bright fill (the saturated-accent tell). Keep the yellow to hover states and pressed feedback.",
+  "Mix-blend-mode:difference nav copied without the solver elements: any colored fill inside the blended layer (a yellow button, a brand-colored badge) renders as its complement, and a white card plate put inside the layer turns black on white sections. Keep true-color pieces outside the blend."
+ ],
+ "confidence_notes": "The live URL now 301s to https://op.al/ (Opal Electronics 'the table' page: Die Grotesk C 400/700, 48.9px h2, 21px body on #000, yellow rgb(255,219,0) sign-off link, dot-matrix canvas footer wordmark, Next.js plus Mux video). So probe.json and desktop_00-07 / mobile_00-01 describe that successor page, not the award page. All of those screenshots were viewed; they are used only for the footer note. Everything about the award page comes from: the four jury element clips (all 8 frames of 1 'Smooth Criminal' and 3 'The hand flip'; f00-f03 and f06 of 0 'Explain it like I'm a 5 yo'; f00/f03/f06 of 2 'Show don't tell'; plus three extra ffmpeg frames at 2.1/2.5/2.9s of clip 3 to catch the preloader-to-hero cut), and the Wayback archive: HTML and CSS from 2024-01-12, JS app.3a597022.js from 2024-02-01 (the Jan bundle 404s). Font names, sizes, tracking, easings, durations, sequence frame counts, scrub values and the word-fill logic are OBSERVED in that code. The hero headline px size is not measured (no DOM). The page-transition use of the 1300ms show config is inferred. The exploded-view scrub mechanics (per-layer offsets) are inferred from the frames. audit (2026-09-24): re-read all 8 frames of elements 0, 1, 2 and 3, extra ffmpeg frames of clip 3 at 2.4/2.9/3.1/3.3s, a level-stretched crop of clip 2, desktop_00/02/04/05/07 and mobile_00, and re-grepped the cached archive CSS/JS. Corrected: turntable is 321 frames per colorway (432000..432320), not 642; no autoplay (initFrameScroll 0); not pinned (start 'top 85%', end '85% 0%'); 1280 set chosen by isMobileDevice, canvas scale 1 desktop / 2 mobile (not DPR); square fit-to-width draw, not cover. Colorway switch is a fade-out / re-theme / swap / fade-in sequence (0, 450, 480, about 950ms), not a simultaneous 480ms flip. Word fill is a two-layer ghost plus overlay with per-span opacity (.fx, .2s), not a textBlack color transition; desktop trigger values are top+=175% / bottom+=200% (the old ones were the mobile values), and the section is pinned. Inline clips are looping line-art mp4s that scale to 1.7 and overlap lines (the old 'opacity .35 to 1, scale .92 to 1' was invented). Tactile explode is in-view once plus hover replay/reverse with vertical CSS offsets and DrawSVG leaders, not scroll-scrubbed along an isometric axis. Largest display is 96px section headings (83.9px at 1440), not the 62.9px statement; hero title measured from CSS at 48.9px. The hero feather is theme-colored white/#0a0a0a (overlayBlack is unused), and the frames show a hard edge. Yellow is the button hover fill. Rive runtime is @rive-app/canvas (Canvas2D), not WebGL; two copies bundled. Removed 'Flip' (it was ScrollTrigger's internal _isFlipped); added SplitText, DrawSVG, InertiaPlugin, framer-motion. Reduced-motion reference is framer-motion internal. Fixed the contrast claims (#595959 on #0a0a0a fails). Photo-scroll is hero plus 2 stories per chapter, not 6-frame sets. Added the dot-grid texture, the load-gated preloader, the one-shot hero video with 4s final-frame crossfade, and the archived footer. Remaining inferences: title char reveal firing at mount, the Order-now morph, the red/yellow hexes, the Teenie-tiny tile ratio. audit2 (2026-09-25): re-viewed desktop_00/02/05/07 and mobile_00 (op.al successor, footer note holds), all 8 frames of elements 0 and 3, f00-f04/f06/f07 of element 1, f00/f02/f04/f06/f07 of element 2, plus new ffmpeg frames of clip 3 at 2.8/3.0/3.2/3.4s and card crops at 2.95/3.05/3.15s; re-grepped the cached archive HTML/CSS/JS. Confirmed: Roobert faces and counts, all 1648-scaled sizes and tracking, Introducing two-layer fill (.fx, .2s, hsla(0,0%,7%,.1)), clip scale 1.7 with .882px border and shadow, trigger values and pin, 321-frame sequence config, 450/480/950ms colorway timers, Tactile timeline, easing tokens, GSAP/DrawSVG/Inertia/Rive versions, ease and scrub counts, contrast ratios (2.83 / 4.42 / 2.41 / 4.54). Corrected: SF/SFC are only used by Composer mockup rules, not on this page; the .y hidden offset is CSS, not an inline style, and the nav stagger is 60ms per column plus a .034 progress offset per line, with upward exits; the 12 hover:text-black/50 uses are footer links with no transition (nav sub-links are opacity .4 to 1 over .2s); the nav 'Order now' hover stays #fff (yellow comes from an un-blended solver, inferred); stat-rail parallax gate isDesktopSmall means >=700px; hero feather desktop end is 'bottom+=5% bottom'; mobile inline clips stay at opacity 0; the SplitText title reveal is observed to fire at mount; framer-motion does run (mobile menu); comparison menu has six rival cameras and is pinned. Added: the whole nav and card text as one white mix-blend-mode:difference layer with the plate outside it (new steal_this), the footer's light-authored invert with complement hover colors (#0024fe), the card divider wipe, the hand gesture in the hero video, text occlusion by the clip tiles, the yellow promo strip as the one at-rest saturated fill, HeroSpecs pin, VideoScroll reusing the -100vh lift, Alpine.js bundled but unused. Still inferred: the solver toggle and Order-now morph (their JS is not in the archived build), the red/yellow part hexes, the Teenie-tiny tile ratio."
+}

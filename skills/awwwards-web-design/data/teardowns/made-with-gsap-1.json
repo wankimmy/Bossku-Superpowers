@@ -1,0 +1,284 @@
+{
+ "slug": "made-with-gsap-1",
+ "title": "Made With Gsap",
+ "live_url": "https://madewithgsap.com/",
+ "award": "Awwwards Site of the Day, Jul 29 2026 (+ Honors). Credits: Florent Roux-Durraffourt, Michael Garcia, Manoir, Inc.",
+ "scores": {
+  "overall": 7.65,
+  "design": 7.69,
+  "usability": 7.53,
+  "creativity": 7.75,
+  "content": 7.66,
+  "dev": {
+   "semantics_seo": 7.4,
+   "animations": 8.4,
+   "accessibility": 7.2,
+   "wpo": 7.8,
+   "responsive": 7.6,
+   "markup": 7.2
+  }
+ },
+ "industry": "Developer education / paid library of GSAP web effects (membership, tutorials, Webflow-ready code)",
+ "signature": "The landing page is its own proof of product: each section is a numbered effect from the collection, and a live 'ON SCREEN 090' chip in the corner names the one you are looking at, from a draggable autoplaying video filmstrip hero to a Matter.js explosion that blows the headline apart when a card rises through it.",
+ "first_screen": {
+  "composition": "OBSERVED desktop_00: pure white field. Logo 'Made With Gsap' (grotesk, ~24px) top-left. A floating light-grey pill nav top-right (#F3F3F3, ~388x50, radius 25) holds COLLECTION with a '118' count chip, PRICING, FAQ and SHOWCASE in 13px mono caps, then a separate circular account button and a lime #C9FE6E 'JOIN' pill with a small arrow. The hero is a centred vertical column (container 25vw) of black video cards. The current card is scaled 1.4x to about 504x284px (x468-972, y308-592) and plays an effect preview ('Showcase 12' with a ring of image tiles), with the effect number '#100' in grey mono under its left corner. The previous and next cards peek at the top and bottom edges at 1x (360px wide). The headline is split around the card on one baseline, 'Unique JS effects' left-aligned at x25 and 'made with care' right-aligned to x1415, both about 47.5px LayGrotesk (.title-s at min(3.3vw,48px)). The visible words are spans in .wording, and the real h1 is sr-only (probe h1 44px/700). Bottom-left is an 18px two-line subline and bottom-right a grey mono 'DRAG TO EXPLORE THE COLLECTION'. The hero is exactly 100vh.",
+  "what_owns_it": "video",
+  "display_type_px": 48,
+  "evidence": [
+   "probes/made-with-gsap-1/desktop_00.jpg",
+   "probes/made-with-gsap-1/probe.json measure.type / root_vars",
+   "frames/made-with-gsap-1/2/f00.jpg",
+   "style.css .h-hero rules"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "LayGrotesk",
+    "role": "display",
+    "classification": "neo-grotesk sans. @font-face declares 500 Medium, 600 Semibold and 800 Black; 500 and 800 are loaded. It sets display, headings and body, and 800 caps set the arched card titles (inferred weight).",
+    "foundry": "unknown commercial foundry (self-hosted woff)",
+    "source": "probe fonts_loaded + font_families_rendered"
+   },
+   {
+    "name": "PPNeueMontrealMono",
+    "role": "ui",
+    "classification": "monospace (500), uppercase labels, nav, buttons, indices",
+    "foundry": "Pangram Pangram",
+    "source": "probe fonts_loaded"
+   }
+  ],
+  "display_size_px": 250,
+  "body_size_px": 18,
+  "scale_notes": "Measured at 1440: kinetic set-pieces at 250px ('So, ready to animate?' letters, 18 hits, CSS 500 250px/.8, -0.04em). The 140px x34 bucket is the footer 'Get ready to animate' odometer (.title-xl 140px/.85, -0.03em: 17 chars x 2 stacked copies). The 225px x32 bucket is the hidden mobile variant of the explosion text (.h-texts .title-mob at 15.6vw = 224.6px, display:none on desktop). The desktop explosion text itself is .h-texts .title-l at min(10vw,120px) = 120px/.95; its cap height measures about 90px in desktop_02. Section display 120px/114px (-2.4px) for 'freshly added', 'effect collection' and the 25/20 euro prices. Section heads 65px/66.3 (-1.3px). Statement paragraphs 48px/48.96 (-0.96px) with a grey #999 lead-in and white keywords. Hero wording 48px, h1 44px/52.8 (700). Card titles 18px/25.2 (500), body 18px/25.2, UI buttons 22px, mono labels 13px/19.37 uppercase. So the scale runs 250 / 140 / 120 / 65 / 48 / 22 / 18 / 13, with big jumps and each size used for one job.",
+  "tracking_leading": "Tracking tightens as size grows: -0.04em at 250px, -0.03em at 140px, -0.02em at 120/65/48px (-2.4px, -1.3px, -0.96px). Line-height .8 at 250, .85 at 140, .95 at 120, 1.02 at 48-65, 1.4 for 18px body. Mono labels 13px/19.37 at normal tracking; cta-main 13px/50px; cta-sec 13px/35px.",
+  "case_and_style": "Grotesk in sentence case for every heading and statement ('Unique JS effects made with care.'). The one exception is the heavy uppercase arched titles on the four feature cards ('BEGINNERS FRIENDLY', 'ENDLESS MOTION', desktop_03-04). Mono is always uppercase. Numerals are part of the voice: '#100' effect ids, '118' collection count, 'ON SCREEN 090', 'TRUSTED BY +1800 DEVELOPERS'. Two-tone statements use a tonal shift (grey #999 to white or ink), not a colour.",
+  "signature_moves": [
+   "Headline split to the far left and right on one baseline with the live product (video card) between, then slid in from the centre on load (x from +/-gap/2 to 0, stagger .07, expo.inOut 1s, delay 1s)",
+   "Letters as physical objects: each char of the 120px two-line paragraph becomes a Matter.js rigid body and is blown outward",
+   "Words typed in by scroll: chars go from display:none to inline-block in random order, so the line reflows and re-centres as letters appear ('0 es tda / Ne ne ev' to '101 effects today. New one every week.')",
+   "250px letters on a pinned horizontal track, each starting rotated +/-10-20 degrees and offset +/-100-160% vertically, settling with elastic.out as it crosses the viewport",
+   "Odometer title roll: each char span holds stacked copies and rolls yPercent -90 to -110 with expo.inOut 1s, stagger .034 from random"
+  ],
+  "mobile": "mobile_measure h1 36px, largest 120px, no horizontal overflow. mobile_00: the split headline becomes a centred two-line stack 'Unique JS effects / made with care' (about 36px), with a centred 18px subline and a black mono 'EXPLORE COLLECTION' pill above a horizontal card carousel whose neighbours peek at both edges. The nav collapses to the logo, a lime JOIN pill and a grey circular hamburger."
+ },
+ "color": {
+  "mode": "section-shifting",
+  "base": "#0A0A0B near-black (body, --mwg2-black) for most of the page; the hero is #FFFFFF, and #F3F3F3 light sheets (--mwg2-light-grey) are inset on the black with 5px margins and 20-25px radii",
+  "ink": "#0A0A0B on light and #FFFFFF on dark; #999999 (--mwg2-grey) as the tonal second voice",
+  "accents": [
+   "#C9FE6E lime: JOIN pill, bullet dots, 'ON SCREEN' square, 'BECOME A MEMBER'",
+   "#71CFA3 mint, #BCEFFF ice cyan, #C9FE6E lime, #F3F3F3 grey: the four feature cards",
+   "#1975FF blue: 'COPY TO WEBFLOW' button only",
+   "#232323 anthracite: ON SCREEN chip, dark panels",
+   "#28DF7D green: token --mwg2-green, not in the measured bg colours. The active-step dot in the tutorial panel (desktop_05) reads as this green."
+  ],
+  "ratio": "inferred: about 60% near-black, 30% white/light grey, 5% video content, 5% lime and card pastels",
+  "section_shifts": "The white hero turns #999 grey while you drag (.h-hero.grey, background-color transition .3s with .1s delay), then back. Scroll moves to black for the feature and text-explosion sections, a #F3F3F3 inset sheet with rounded corners slides over the black for 'Latest effects' and 'So, ready to animate?', and the footer is a white rounded sheet rising over the black showcase (frames 1/f03, f06). body.menu-white toggles nav contrast per .sec-black / .sec-white section. The nav pill flips fill against its ground: #F3F3F3 on the white hero and black sections, white on the #F3F3F3 sheet (desktop_00 vs desktop_06), so it always sits one tone off what is behind it.",
+  "texture": "none (flat fields; all richness comes from the videos and screenshots)",
+  "notes": "Neutral black and white carry everything, so the effect videos are the colour. The lime is loud and saturated. It is used sparingly (JOIN, dots, one card), but it is still a saturated accent pop."
+ },
+ "layout": {
+  "grid": "12 columns, 15px margins, 15px gutters (--grid-columns 12, --grid-gutter 15px, --grid-margin 15px), full-bleed with a tiny edge margin. Radii tokens 20 / 12 / 4px, plus 25px pills.",
+  "density": "balanced",
+  "alignment": "Centred axis for the set-pieces (hero column, explosion text, card fan, showcase stream). Hard left/right edge alignment for flanking text and meta ('#099' left, 'SCROLL, DRAG' centre-right, '/ 101' right).",
+  "composition_moves": [
+   "Split headline around a live product column (desktop_00)",
+   "Meta readouts pinned to the three thirds of the hero while dragging: effect id left, interaction tags centre, total right (frames 2/f02)",
+   "Light sheets inset 5px on black with 20-25px radius, so sections read as cards sliding over the dark page (desktop_05-07)",
+   "Card fan: four tilted pastel cards with arched titles (desktop_04). Each card is a spoke on a 3675px-diameter wheel (.h-cards .circles) whose hub sits far below the fold; card t is set to t*6.2 degrees and the wheel counter-rotates by -3.1 degrees per step, so the fan stays centred as it grows.",
+   "Corner status chip 'ON SCREEN ###' shown only while one of five effect set-pieces is on screen (090 text, 075 cards, 011 horizontal type, 088 testimonials, 072 showcase; desktop >=901px). It hides in between, so it is absent in desktop_05.",
+   "Real client logo marquee (Locomotive, Resn, Anthropic, BBC, Monolith, MakeReign) under an avatar stack"
+  ],
+  "section_rhythm": "From the HTML order: hero filmstrip (white) > h-learn tutorial panel (black) > trust (avatar stack, mono line, logo marquee) > pinned 120px text reveal and explosion (700vh pin) > card fan (400vh pin) > features row > 'Latest effects' drag carousel on an inset light sheet > 250px horizontal type > pricing (Quarterly / Annual toggle, 25 or 20 euro, 'Read our FAQ' link) > 'Approved by the community' testimonials > 'Behind the project' about > showcase stream (300vh pin) > footer sheet. The homepage has no FAQ section. Loud pinned set-pieces alternate with short explanatory blocks, and each loud beat is a single idea.",
+  "mobile_adaptation": "Below 769-901px the pinned horizontal type and on-screen chips are dropped (mm.add min-width). Carousels switch from GSAP Observer drag to native horizontal scroll (.inner-h-effects scroll listener). The hero drag observer is skipped on touch, and the text reveal uses shorter trigger ranges ('60% bottom' to 'bottom 80%'). mobile_01 shows the fixed logo colliding with a tutorial screenshot."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis with defaults: new Lenis({autoRaf:true}) (bundle), html.lenis (probe).",
+  "preloader": "None. On load the hero choreography plays instead: the flanking words slide outward from the centre gap (x from +/-gap/2 to 0, stagger .07 and -.07, expo.inOut 1s, delay 1s). At 1.7s the current card goes scale 1.25 to 1.4 and its neighbours .85 to 1 (back.out(1.3), .4s), and at 2.1s the #num, JOIN and DRAG labels fade in (power4.inOut .8s).",
+  "intro_sequence": "Hero autoplay: every 2.5s (gsap.delayedCall) the column advances to the next card over .8s expo.inOut. The active card is scale 1.4 at the centre and the others are pushed to peek at the edges. DOM nodes are re-ordered so the list is infinite.",
+  "scroll_techniques": [
+   "pin",
+   "scrub",
+   "horizontal (containerAnimation)",
+   "physics explosion (Matter.js)",
+   "random-order char reveal",
+   "card fan on pinned progress",
+   "media stream flythrough",
+   "sheet overlap",
+   "logo marquee"
+  ],
+  "text_animation": "Three custom systems, none a generic fade-up. (1) h-texts: SplitText chars wrapped in .char-inner, each starting display:none. gsap.to(chars,{display:'inline-block',stagger:{each:.2,from:'random'},scrollTrigger:{start:'top -10%',end:'bottom bottom+='+4*innerHeight,scrub:true}}) so letters pop in and the centred line reflows (frames 0/f00-f02). The section is pinned for 700vh (.h-texts .pin-height). (2) Explosion: when .h-cards reaches the top, Matter.Engine.create({gravity:{x:0,y:0}}) makes one Bodies.rectangle per char (frictionAir .08, restitution .4, density .001) with radial velocity from the headline centre, speed (9..19)*1.5 plus an upward kick of -(8..13) and angular velocity +/-.25. The chars shrink to .8 (back.in(2), .2s) and fade out at delay .4+.006*i in shuffled order, driven from gsap.ticker (frames 0/f04). Scrolling back resets them with expo.out .4s, stagger .006 from random. (3) anim-title1/2/3 odometer roll: yPercent -90/-106/-110, expo.inOut 1s, delay .3, stagger {each:.034, from:'random'}, start 'top 80%' (frames 3/f00-f03 'Collection', frames 1/f03 'Get ready to animate').",
+  "image_animation": "Showcase stream (h-showcase, pinned): a timeline with defaults stagger .1 moves all .media xPercent 100 and x -bodyWidth (ease none, duration 1), while in parallel they scale 0 to 1 with a random yPercent of +/-80 (.5, power1.inOut) and then scale back to 0 with yPercent 0 (.5), so screenshots appear to rush past like a flythrough (frames 1/f00, f06). Latest-effects carousel: Observer drag, x += deltaX*1.4 into gsap.quickTo(x,{duration:.3,ease:'power3'}); on release it snaps the nearest card to centre, and the meta block pops scale .9 to 1 (back.out(1.6) .4s). Feature carousel quickTo .5 power4. Card hover in the collection (verified in app2.js): quickTo rotationX/rotationY (.4s power3) up to +/-10 degrees from the pointer position, media scale 1.04 back.out(2.5) .5s on enter and back to 1 in .3s on leave, with perspective:100vw on .e-list .top (frames 3/f03).",
+  "page_transitions": "Custom (enter / animationSortie methods in app2.js). Not captured in screenshots.",
+  "hover_micro": [
+   "Roll buttons: each label is duplicated in a .translate stack; on mouseenter the class .on is added for 400ms and runs @keyframes btnAnimation2 translate(0,0) to translate(0,100%) in .4s with cubic-bezier(.16,.03,.08,1.55) (overshoot), pointer:fine only. The probe shows doubled text such as 'PRICING PRICING'.",
+   "Header wrapper height and transform transition .3s cubic-bezier(.9,0,.1,1) (13 CSS uses of that curve)",
+   "Card fan step: the newly active card is set to t*6.2 degrees and pops from scale .94 with elastic.out(0.6,0.3) .5s, while the parent wheel rotates to -3.1*t degrees with the same elastic",
+   "ON SCREEN chip: scale .97 to 1 with autoAlpha back.out(20) .16s on show, expo.in .16s on hide. Its 5px lime square runs @keyframes animRot 1.8s infinite (rotate 90, scale 1.4 then .9, opacity blink) only while the chip is shown",
+   "Collection cards: the video tile tilts up to +/-10 degrees toward the cursor (quickTo .4 power3) and its media scales to 1.04 (back.out(2.5))",
+   "Pricing toggle: the knob slides x:12 (back.inOut(1.5) .2s) and two price prisms (preserve-3d, translate3d(0,0,+/-450px), perspective 300px) rotate rotationY -54 and 54 to 0 with stagger .05, .45s back.inOut(1.5), like a drum (code only; pricing not captured)",
+   "Testimonial cards are thrown in with InertiaPlugin (x velocity +/-120, rotation velocity +/-10 alternating) and the avatar stack pops from scale .9 with back.out(6), stagger .2, when .people reaches 'top 60%' (code only)"
+  ],
+  "cursor": "Native cursor; cursor_none 0. The drag surfaces rely on labels ('DRAG TO EXPLORE THE COLLECTION').",
+  "easing_curves": [
+   "cubic-bezier(0.9,0,0.1,1) CSS transitions (16 hits)",
+   "cubic-bezier(0.16,0.03,0.08,1.55) roll-button overshoot",
+   "expo.inOut (16 uses, the house ease)",
+   "power4 / power3 for quickTo drag followers",
+   "back.out(1.3 / 1.6 / 2.5 / 4 / 6 / 20) for pops",
+   "elastic.out(0.6,0.3) card fan, elastic.out(1.2,1) letter settle",
+   "expo.out for resets"
+  ],
+  "duration_range_ms": "160 (chip pops) / 300-400 (most UI and drag snaps, 27 uses) / 800-1000 (choreography) / 2500 hero autoplay interval / 30000 logo marquee loop",
+  "stagger_ms": "6 (explosion reset, from random); 34 (title roll, from random); 70 (hero words); 100 (showcase stream); 200 (random char reveal on scrub)",
+  "choreography_notes": "Motion is mechanical and snappy: expo.inOut for anything that travels, back or elastic only for small pops, and very short UI durations (.16-.4s) so the site feels like a tool. Randomised order (from:'random', Math.random offsets) is the fingerprint on every text effect. In the Text Explosion clip (4.03s, about .5s per frame) the letters are nearly all in by f02 (1.26s; 'effts tda. / New one evy wee' still has gaps), a mint card rises through the text at f03 (1.77s), the letters are scattered radially and rotated by f04 (2.27s), and cards 2, 3 and 4 fan in by f05-f07 (2.77-3.78s). In the Hero Drag clip (10.7s, about 1.34s per frame) press turns the hero grey and shrinks all cards to a filmstrip (f02-f03, f05), and release snaps and re-scales the chosen card to 1.4 with the new id (f04, f06-f07 '#062').",
+  "evidence": [
+   "frames/made-with-gsap-1/0/f00-f07",
+   "frames/made-with-gsap-1/2/f00-f07",
+   "frames/made-with-gsap-1/1/f00, f03, f06",
+   "frames/made-with-gsap-1/3/f00, f03, f06",
+   "probes/made-with-gsap-1/desktop_00-07",
+   "bundle grep: madewithgsap.com/assets/landing/app2.js (40KB) and style.css (67KB)"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "video",
+  "art_direction": "The product is the imagery: looping screen recordings of each effect on black (image rings, stacked photo trails, carousels, text layouts), which themselves use editorial photography (orange-backed silhouettes, flowers, water, architecture). Social proof uses real screenshots of client sites (RXK, 'Network Game Changers'). Feature cards are flat pastel fills with arched type, not photos.",
+  "treatments": [
+   "active video card scaled 1.4 in a vertical filmstrip",
+   "grey-out of the stage while dragging",
+   "screenshots streaming through a pinned viewport with scale 0 to 1 to 0",
+   "3D tilt of a video tile toward the cursor",
+   "rounded 12-20px corners on media"
+  ],
+  "crops_and_ratios": "Effect cards about 16:9 (504x284 active, 360x203 idle); feature cards about 3:4 portrait (338x397); tutorial UI panels in rounded 20px frames.",
+  "formats": "Probe: 100 img, 24 video, 0 svg inline. Extensions: 33 mp4 (Cloudflare R2 pub-*.r2.dev, video_OPTIM/ and videos_hero/), 30 png, 18 webp, 32 svg, 3 woff. Declared bytes: mp4 13.9MB, png 2.2MB, webp 1.9MB, js 0.26MB, fonts 0.18MB. Videos play and pause per section via ScrollTrigger enter and leave.",
+  "evidence": [
+   "probes/made-with-gsap-1/desktop_00.jpg",
+   "probes/made-with-gsap-1/desktop_01.jpg",
+   "probes/made-with-gsap-1/desktop_04.jpg",
+   "frames/made-with-gsap-1/1/f00.jpg",
+   "frames/made-with-gsap-1/1/f06.jpg",
+   "probe.json videos / asset_extensions"
+  ]
+ },
+ "three_d": {
+  "present": false,
+  "stack": "none (no WebGL; the site advertises 'Easy setup: no Canvas or WebGL'). Depth comes from CSS transforms, 2D physics (Matter.js) and scale-based flythroughs.",
+  "role": "none",
+  "assets": [],
+  "materials_lighting_post": "n/a. Probe contexts are empty and assets_3d is empty.",
+  "interaction": "none in WebGL. CSS 3D only: collection-card tilt (rotationX/Y +/-10 degrees, perspective 100vw) and the pricing price drum (preserve-3d prisms).",
+  "performance_tactics": "The physics engine is created only when the explosion triggers, its gsap.ticker callback is removed when the last char fades, and the world is cleared on scroll-back. Videos are paused offscreen. Heavy scroll set-pieces are gated by matchMedia.",
+  "fallback_mobile": "n/a",
+  "evidence": [
+   "probe.json contexts {}, assets_3d []",
+   "H3 'Easy setup: no Canvas or WebGL'"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Fixed header: text logo top-left, and top-right a light-grey pill group (COLLECTION with a live '118' count chip, PRICING, FAQ, SHOWCASE in 13px mono caps), a separate circular account button and a lime JOIN pill. body.menu-white / menu-white2 toggle contrast per section. On mobile it becomes a lime JOIN pill plus a grey circular hamburger opening a dark panel.",
+  "menu": "Mobile: fixed anthracite (#232323) panel (.contents) over a rgba(18,18,18,.3) scrim, with transform transition .2s cubic-bezier(.16,.03,.08,1.55).",
+  "buttons_links": "Pills with 25px radius and mono caps. Hover rolls the duplicated label down one line with an overshoot curve (no colour change or lift). Primary is lime fill, secondary is light grey fill, tertiary is black. 'COPY TO WEBFLOW' is a special blue #1975FF button. The 'Watch the tutorial' link is a static underline.",
+  "unusual_interactions": [
+   "Hero drag: press anywhere to turn the stage grey and collapse to a scrubbable filmstrip of every effect; release snaps to the nearest and plays it",
+   "'ON SCREEN ###' chip reports which collection effect the current set-piece is. The ids are hardcoded per section, the chip is a plain div (not a link) and it only shows on desktop >=901px",
+   "Matter.js letter explosion triggered by a card rising through the headline",
+   "Pricing toggle Quarterly / Annual -20% rotates the prices as a 3D drum (code)",
+   "Copy to Webflow and download files buttons inside tutorial panels",
+   "During a hero drag the flanking headline words give way to readouts in the same slots: '#id' left, interaction tags centre-right, '/ total' right (frames 2/f02)"
+  ],
+  "sound": "none observed",
+  "footer": "White rounded sheet rising over the black showcase section. It holds a mono intro line, the rolling 'Get ready to animate' display, a lime 'BECOME A MEMBER' pill next to a grey 'EXPLORE COLLECTION' pill, then 'Never miss what's next' with an email pill and a SUBMIT pill, and Social / Pages / Contact columns (frames 1/f03)."
+ },
+ "content_voice": {
+  "headline_style": "Plain, confident sentence-case claims in the grotesk, often with numbers ('101 effects today. New one every week.', 'Latest effects, freshly added', 'So, ready to animate?'), plus long 48px statements with grey lead-ins and white keywords.",
+  "copy_tone": "Friendly maker-to-maker and a little salesy ('really cool and inspiring websites'), with specific proof numbers (118 effects, +1800 developers, 25 euro per quarter) and French-English typos ('functionning' in the feature copy, 'Meet our easy-to-use plateform' under the tutorial panel in desktop_01). Real named testimonials (for example Cassie Evans, Developer Education, GSAP) and an about block ('two friends with 27 Awwwards SOTD combined') carry the trust.",
+  "examples": [
+   "Unique JS effects made with care."
+  ]
+ },
+ "tech_stack": {
+  "framework": "Vanilla JS, hand-built static site (no framework runtime) with a PHP backend for accounts (ajax/ajax_login.php). One app2.js class drives everything, using mm (gsap.matchMedia with 900px, 769px, 901px and hover:none queries).",
+  "libraries": [
+   "GSAP 3.15.0 (self-hosted)",
+   "ScrollTrigger (its bundled Observer is used 4x)",
+   "SplitText",
+   "InertiaPlugin (used once, for the testimonial throw)",
+   "CustomEase, Draggable, MorphSVGPlugin (loaded as scripts but not referenced in app2.js)",
+   "Lenis",
+   "Matter.js 0.20.0 (unpkg)",
+   "Prism.js (code blocks)",
+   "Cloudflare R2 for video"
+  ],
+  "evidence": "HTML script tags, probe globals (gsap 3.15.0, ScrollTrigger, Lenis, Matter), libs_from_requests, bundle grep (Observer.create x4, ScrollTrigger.create x19, SplitText.create chars, Matter destructuring Engine/World/Bodies/Body). Audit re-fetched app2.js and style.css: registerPlugin(ScrollTrigger) only, 0 references to Draggable, MorphSVG or CustomEase, and 1 inertia:{} tween."
+ },
+ "performance_accessibility": {
+  "requests": 132,
+  "weight_notes": "13.9MB mp4 (33 files) is most of the weight, but every video is a short muted loop that plays only in view. JS is about 260KB, with Matter.js loaded eagerly from unpkg even though only one section uses it, plus three GSAP plugins (CustomEase, Draggable, MorphSVG) that app2.js never references. WPO 7.8.",
+  "reduced_motion": "None. probe reduced_motion_rules 0, and neither app2.js nor style.css checks prefers-reduced-motion. The hero autoplays every 2.5s with no pause control, and scroll hijacks include a 4-viewport scrubbed text reveal.",
+  "contrast_issues": "Grey #999 statements on #0A0A0B pass for large text. 'DRAG TO EXPLORE' #999 on white is about 2.8:1 at 13px, which fails. Lime #C9FE6E with #0A0A0B text passes. The fixed logo is overlapped by content panels (desktop_05, mobile_01).",
+  "mobile_quality": "Considered: native horizontal scroll replaces drag observers, set-pieces are gated by matchMedia, there is no overflow, and the centred mobile hero has one clear CTA. The explosion text is display:none per char until scrolled, so on a failed script the paragraph is empty. Good practice worth copying: the odometer titles pair a visible aria-hidden copy with an sr-only h2, and the hero h1 is sr-only text. The explosion paragraph has no such fallback.",
+  "dev_scores": {
+   "semantics_seo": 7.4,
+   "animations": 8.4,
+   "accessibility": 7.2,
+   "wpo": 7.8,
+   "responsive": 7.6,
+   "markup": 7.2
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Draggable filmstrip hero with an autoplaying featured card",
+   "why_it_works": "The hero is the catalogue: one effect plays large at the centre, neighbours peek, it advances every 2.5s, and pressing turns the stage grey and collapses everything into a scrubbable strip of all 101-118 items. Browsing becomes a physical gesture.",
+   "how_to_build": "Column container width 25vw, centred, with cards stacked vertically. The active card is {scale:1.4, y:0}, while the others are positioned so the neighbours peek at the top and bottom edges. Autoplay: gsap.delayedCall(2.5, next), animate y over .8s expo.inOut, and re-append DOM nodes around the active index so the list stays infinite. Observer.create({target:hero,type:'pointer,touch',onPress:()=>{gsap.to(cards,{y:0,scale:1,ease:'expo.inOut',duration:.4}); hero.classList.add('grey'); metaTl.play()}, onChange:e=>{y=clamp(-max,0,y+e.deltaY); setY(y)}, onRelease:()=>{snapToNearest(); video.play(); hero.classList.remove('grey'); metaTl.reverse()}}). CSS .grey{background:#999; transition:background-color .3s .1s}. Show '#id', the interaction tags and '/ total' across the thirds while dragging."
+  },
+  {
+   "technique": "Scroll-typed headline that reflows as letters arrive",
+   "why_it_works": "Unlike opacity reveals, chars switching from display:none to inline-block in random order make the centred line physically re-kern and grow, a legible and unusual 'typing' that reads as code executing.",
+   "how_to_build": "SplitText.create(p,{type:'chars'}), fix the paragraph height first (p.style.height = p.clientHeight+'px'), wrap each char's text in span.char-inner and set char.style.display='none'. gsap.to(chars,{display:'inline-block',ease:'none',stagger:{each:.2,from:'random'},scrollTrigger:{trigger:section,start:'top -10%',end:'bottom bottom+='+4*innerHeight,scrub:true}}) inside a pinned container. For the no-JS or failed case, keep the full text visible by only applying display:none from JS after the split, and give the section an aria-label with the full sentence."
+  },
+  {
+   "technique": "Matter.js letter explosion triggered by a rising element",
+   "why_it_works": "Real rigid-body physics (air friction, restitution, spin) makes letters scatter believably, and tying it to a card pushing up through the text gives the destruction a cause.",
+   "how_to_build": "const {Engine,World,Bodies,Body}=Matter; engine=Engine.create({gravity:{x:0,y:0}}). For each char: r=getBoundingClientRect(); body=Bodies.rectangle(cx,cy,r.width,r.height,{frictionAir:.08,restitution:.4,density:.001}); dir = normalize(charCentre - headlineCentre); speed = 9+10*Math.random(); Body.setVelocity(body,{x:dir.x*speed*1.5+2*(Math.random()-.5), y:dir.y*speed*1.5-(5*Math.random()+8)}); Body.setAngularVelocity(body,.5*(Math.random()-.5)). On gsap.ticker: Engine.update(engine,1000/60); el.style.transform=`translate(${x-ix}px,${y-iy}px) rotate(${angle}rad) scale(${s})`. Shuffle the chars and fade each with delay .4+.006*i (autoAlpha 0, .2s power3.in, plus scale .8 back.in(2)); remove the ticker on the last one. On scroll back, World.clear and tween the transforms back to 0 (expo.out .4, stagger {each:.006,from:'random'})."
+  },
+  {
+   "technique": "Pinned horizontal giant-type line with per-letter elastic settle",
+   "why_it_works": "A single 250px sentence becomes a ride. Each letter enters tilted and displaced and snaps into line as it crosses, so the reading speed is the scroll speed.",
+   "how_to_build": "Wrap each letter in span.letter. The track tween is gsap.to(text,{x:-(text.clientWidth-innerWidth),ease:'none',scrollTrigger:{trigger:container,pin:true,scrub:true,end:'+='+overflow}}). Per letter: fromTo(letter,{rotation:(10+rand(0..10))*randSign, yPercent:(10+rand(0..6))*randSign*10},{rotation:0,yPercent:0,ease:'elastic.out(1.2, 1)',scrollTrigger:{trigger:letter,containerAnimation:track,start:'left 100%',end:'left 0%',scrub:.5}}). Type: 500 250px/.8 with letter-spacing -.04em (200px at 1024 and below, hidden at 768 and below), white-space:nowrap and padding 0 101vw, so the line starts and ends fully off-screen. Put it in a 100vh flex container with margin -60vh 0 on a flat light sheet. Wrap spaces as &nbsp; spans so only letters get the random offsets."
+  },
+  {
+   "technique": "Card fan as spokes of an off-screen wheel",
+   "why_it_works": "Each card rotates around a hub far below the fold, so the fan opens as a gentle arc instead of cards spinning on their own centres. Counter-rotating the wheel by half a step keeps the growing fan centred, and the elastic settle makes every scroll step a small physical event.",
+   "how_to_build": "Section .pin-height 400vh with a 100vh container pinned via ScrollTrigger (pin, scrub). Inside it, .circles is a 3675px square (aspect-ratio 1) with margin-top 50vh and centred horizontally (margin-left calc(-1*(3675px - 100vw)/2)). Each card is an absolutely positioned full-size .circle (visibility hidden until .on) holding a 338px card at the top edge (translate(0,-54%)). onUpdate: t = floor(progress*count); when t grows, add .on to card t, gsap.set(card,{rotation:t*6.2}), gsap.from(card,{scale:.94,ease:'elastic.out(0.6, 0.3)',duration:.5}); in both directions gsap.to(circles,{rotation:-t*6.2+3.1*t,ease:'elastic.out(0.6, 0.3)',duration:.5})."
+  },
+  {
+   "technique": "'ON SCREEN ###' meta chip",
+   "why_it_works": "A small persistent readout tying each section to a catalogue number turns the landing page into a guided tour of the product. It is honest, specific and useful, not decoration.",
+   "how_to_build": "Fixed chip at bottom and right 15px, 182x50, radius 25px, #232323, 13px mono caps with an 18px gap: 'ON SCREEN', a 5px lime square, a 3-digit id. The square runs @keyframes animRot 1.8s ease-in-out infinite (rotate 90, scale 1.4 then .9, opacity blink) only while the chip is shown. Create one ScrollTrigger per set-piece section: onEnter and onEnterBack set the id and play gsap.fromTo(chip,{scale:.97,autoAlpha:0},{scale:1,autoAlpha:1,ease:'back.out(20)',duration:.16}); onLeave and onLeaveBack hide it with expo.in .16s. Gate it to wide screens. MWG leaves it as a non-link div; making it a link to the effect's page would be the upgrade."
+  },
+  {
+   "technique": "Odometer title roll with random char order",
+   "why_it_works": "Titles are readable before and after (each char column holds copies of the same glyph), so the motion never hides content, and random order plus expo.inOut gives a mechanical-counter feel.",
+   "how_to_build": "Split into chars and render each char as span{display:flex; position:relative} holding exactly two copies of the glyph, with the second copy position:absolute at top:90% (or 106% / 110% for the other title sizes). Clip the whole title with a clip-path polygon at the same offset (for example polygon(0 0,0 90%,100% 90%,100% 0)) instead of overflow:hidden per char. gsap.to(title.querySelectorAll(':scope > span'),{yPercent:-90,delay:.3,ease:'expo.inOut',duration:1,stagger:{each:.034,from:'random'},scrollTrigger:{trigger:title,start:'top 80%'}}). The yPercent must equal the copy offset. Keep an sr-only h2 with the text and aria-hidden on the visual copy, as MWG does."
+  }
+ ],
+ "slop_risks": [
+  "Saturated accent colour: the lime #C9FE6E fills the JOIN pill, 'BECOME A MEMBER', bullet dots and the ON SCREEN square. It is one loud swatch sprayed across CTAs and markers.",
+  "Monospace as the house voice and one label treatment everywhere: PP Neue Montreal Mono 13px uppercase is used for nav, every button, indices, the drag hint, 'TRUSTED BY +1800 DEVELOPERS' and footer links.",
+  "Invisible-content trap: the 120px 'effects today' paragraph starts with every char at display:none, has no sr-only copy, and the reveal needs a scrubbed scroll ending four viewports past the section inside a 700vh pin. If ScrollTrigger stalls, the section is an empty black screen.",
+  "The footer's CTA pair and email form: a lime filled pill next to a grey filled pill ('BECOME A MEMBER' / 'EXPLORE COLLECTION'), close to the default pair though not fill versus outline, and a 'YOUR EMAIL' pill field with a SUBMIT pill, which is exactly the law's email-pill-plus-button form.",
+  "SaaS meta-skeleton lower down: features row, social-proof avatar stack plus logo wall, a two-price pricing block with a toggle, named testimonials with name and title (HTML), an about block and a multi-column footer. There is no FAQ accordion on the homepage (only a 'Read our FAQ' link). It is rescued because most blocks are themselves live effects (price drum, inertia-thrown testimonials); a copy without the effects is the stock template.",
+  "Pastel tinted cards (mint, lime, ice cyan, grey) with arched titles sit near the candy-pastel look. They are flat fills, not gradients, and the big numerals are tonal shades of each card (law-approved tonal accents), so the risk is only in a copy that adds gradients or glow.",
+  "Collision: the fixed logo is overlapped by content panels (desktop_05 shows 'HTML Structure' over 'Made With Gsap', and mobile_01 shows the logo over a screenshot).",
+  "Pill chips: the '118' count chip nested inside the nav pill, and 'ADDED YESTERDAY' white pills on collection cards (frames 3), drift toward the tinted-pill-chip tell. The contained pill nav itself is law-approved ('The nav is treated': float it in a contained pill), so it is not the problem.",
+  "No prefers-reduced-motion handling on a page whose whole content is motion, including a hero that autoplays every 2.5s.",
+  "Em dashes in the copy ('no Canvas or WebGL required — even for 3D', the about paragraph), an AI-writing tell under the law.",
+  "Live-indicator tic: the ON SCREEN chip's lime square blinks and rotates on an infinite 1.8s loop, the same family as the pulsing 'live' dot (a square, no glow, so milder).",
+  "Edges and margins: the hero parks the logo, nav, subline, drag hint and the two headline halves at the four rims on a 15px grid margin (text about 25px from the viewport edge), and the sheets are inset only 5px. It is composed around the centred card, but a copy without that live centre reads as 'content flung to the far edges' and text jammed near the edge."
+ ],
+ "confidence_notes": "OBSERVED: all 8 desktop steps and both mobile shots were viewed individually. desktop_00 is the hero, 01 the tutorial panel and social proof, 02 the mid-reveal text, 03-04 the card fan, 05 features plus the Latest-effects sheet, and 06-07 the 250px horizontal type. All 8 frames of element 0 (Text Explosion) and element 2 (Hero Drag), plus f00/f03/f06 of element 1 (Scroll Animation) and element 3 (Cards Hover). MEASURED: fonts, sizes, colours and tokens come from probe.json. CODE: app2.js and style.css were fetched and grepped for Lenis options, eases, durations, staggers, the Matter.js setup, hero drag and autoplay, the random char reveal, the horizontal letters, the showcase stream, the ON SCREEN chip, roll-button keyframes and the grey state. INFERRED: which sections use the 140px and 225px sizes, the foundry of LayGrotesk (unknown), the colour ratio, and the tilt mechanics of the collection card hover (seen in frames, not grepped). Awwwards elements show 'COLLECTION 101' while the live site shows 118, so the count has grown since judging. Not captured: the pricing and FAQ sections in screenshots, and page transitions. audit (2026-09-25): re-viewed desktop_00-07, mobile_00-01, all 8 frames of element 0 and 2/f00,f02,f03,f04,f06,f07, 1/f00,f03,f06 and 3/f00,f03, one at a time. Re-fetched the HTML, app2.js and style.css. Verified the Matter.js values, hero autoplay and drag, random char reveal, title rolls, horizontal letters, showcase stream, ON SCREEN chip and roll buttons. Fixed: the 225/140px attribution (225 is the hidden mobile explosion text, 140 is the footer odometer, and the desktop explosion text is 120px); tracking per size (-.04em at 250, -.03em at 140); the card-fan parent rotation (-3.1 degrees per step, not -6.2); 'sentence case everywhere' (the card titles are uppercase); the ON SCREEN chip is not persistent and has a 5px animated square, not a static 6px one; the section order (no FAQ section; pricing sits before testimonials, about and showcase); plugin usage (CustomEase, Draggable and MorphSVG unused, Inertia used once); the odometer mechanics (two copies plus a clip-path polygon). Collection-card tilt is now code-verified (+/-10 degrees, quickTo .4 power3). Added the wheel-fan steal, the price drum, the inertia testimonials, the nav pill's tone flip, the 'plateform' typo, and removed a false slop accusation against the contained pill nav. Still inferred: the LayGrotesk foundry, the colour ratio and the card-title weight."
+}

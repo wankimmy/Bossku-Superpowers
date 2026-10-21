@@ -1,0 +1,80 @@
+/* ==========================================================================
+   page-transitions.css: cross-document View Transitions for multi-page sites
+   --------------------------------------------------------------------------
+   What it does
+     Opts same-origin navigations into a View Transition. The new page wipes up
+     over the old one while the old one recedes. Back/forward traversal reverses
+     the direction (type "back", set by page-transitions.js). Any element marked
+     data-vt-share="name" flies between pages as a shared element (usually the
+     clicked thumbnail becoming the detail page's hero).
+   Options
+     Timing comes from tokens.css: --dur-4 / --dur-5, --ease-move / --ease-reveal / --ease-exit.
+     Override those, or the keyframes below, per project.
+     Shared elements: page-transitions.js assigns view-transition-name at
+     navigation time, so a name is never on two elements at once (a duplicate
+     name skips the whole transition). A static alternative for a single element:
+       .project-hero__media { view-transition-name: hero; }
+   Fallback behaviour
+     No support (Firefox has no cross-document transitions): the at-rule is
+     ignored and the browser simply navigates. That is the intended fallback.
+     Reduced motion: under the OS setting the opt-in is not declared at all.
+     Under the in-page toggle (data-motion="reduce"), page-transitions.js skips
+     the transition and the rules below set animation: none. Chrome also skips
+     any transition whose navigation takes longer than 4s.
+   Support (motion-stack.md 1.2): cross-document Chrome/Edge 126+, Safari 18.2+;
+     view-transition-class and :active-view-transition-type(): Chrome 125, Safari 18.2.
+   Tested against
+     Chromium 145 (Playwright 1.58), 2026-09-24. Safari not run.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+}
+
+/* Root: the new page wipes up from the bottom edge over the receding old page. */
+:root[data-motion="full"]::view-transition-old(root),
+:root[data-motion="full"]::view-transition-new(root) {
+  mix-blend-mode: normal;     /* the UA default plus-lighter would brighten the overlap */
+}
+:root[data-motion="full"]::view-transition-old(root) {
+  animation: var(--dur-4, 600ms) var(--ease-move, cubic-bezier(.76, 0, .24, 1)) both vt-recede;
+}
+:root[data-motion="full"]::view-transition-new(root) {
+  animation: var(--dur-5, 1000ms) var(--ease-reveal, cubic-bezier(.16, 1, .3, 1)) both vt-wipe-up;
+}
+/* Back/forward traversal: same motion, reversed direction. */
+:root[data-motion="full"]:active-view-transition-type(back)::view-transition-old(root) { animation-name: vt-recede-back; }
+:root[data-motion="full"]:active-view-transition-type(back)::view-transition-new(root) { animation-name: vt-wipe-down; }
+
+/* Shared elements (data-vt-share): the group moves A to B on the in-out curve; the
+   image pair crops instead of stretching when the aspect ratio changes. */
+[data-vt-share] { view-transition-class: vt-share; }
+:root[data-motion="full"]::view-transition-group(*.vt-share) {
+  animation-duration: var(--dur-4, 600ms);
+  animation-timing-function: var(--ease-move, cubic-bezier(.76, 0, .24, 1));
+}
+::view-transition-old(*.vt-share),
+::view-transition-new(*.vt-share) {
+  height: 100%;
+  object-fit: cover;
+}
+:root[data-motion="full"]::view-transition-old(*.vt-share),
+:root[data-motion="full"]::view-transition-new(*.vt-share) {
+  animation-duration: var(--dur-3, 350ms);   /* crossfade finishes early; geometry carries the move */
+}
+
+@keyframes vt-recede      { to { translate: 0 -6vh; opacity: 0.35; } }
+@keyframes vt-recede-back { to { translate: 0 6vh;  opacity: 0.35; } }
+@keyframes vt-wipe-up     { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes vt-wipe-down   { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+
+/* Reduced motion: no animated snapshots. The tokens.css safety net cannot reach these
+   pseudo-elements (the universal selector does not match them), so switch them off here. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
+}
+:root[data-motion="reduce"]::view-transition-group(*),
+:root[data-motion="reduce"]::view-transition-old(*),
+:root[data-motion="reduce"]::view-transition-new(*) { animation: none !important; }

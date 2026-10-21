@@ -1,0 +1,317 @@
+{
+ "slug": "pacome-pertant-portfolio",
+ "title": "Pacôme Pertant Portfolio",
+ "live_url": "https://pacomepertant.com/",
+ "award": "Awwwards Site of the Day, Jun 9 2026 (Honors, SOTD). Credits: Colin Demouge, Louis Bocquet",
+ "scores": {
+  "overall": 7.76,
+  "design": 7.88,
+  "usability": 7.41,
+  "creativity": 8.09,
+  "content": 7.66,
+  "dev": {
+   "overall": 7.62,
+   "semantics_seo": 7.4,
+   "animations": 8.6,
+   "accessibility": 7.0,
+   "wpo": 8.0,
+   "responsive": 7.8,
+   "markup": 6.6
+  }
+ },
+ "industry": "Motion and sound designer portfolio (Paris); tags Art & Illustration, Music & Sound, Portfolio",
+ "signature": "The work index is a wheel-driven Three.js helix of project-thumbnail planes (512px Sanity stills, not videos) that bow and smear sideways with wheel velocity, never fully stop, and wash out to flat #444 grey as they leave a screen-space top/bottom band, all scored with Howler UI sound cues, so browsing projects feels like spinning a physical reel rather than scrolling a grid.",
+ "first_screen": {
+  "composition": "Sound gate, not the site: on #0a0a0a, a centered ~82px glossy smiley sphere at y~366 (it is the held last frame of the loader Lottie: one 319px pre-rendered sphere PNG embedded as base64 in the Lottie JSON, with the face drawn as vector shapes; measured 82px on desktop_00 and on mobile_00 at 2x), a two-line 24px/500 lowercase tagline centered below, a white fully-rounded pill 'enter with sound' (170x46px measured, black text, trailing 6px black dot) centered at y~553, and a 14px/400 'enter without sound' link at opacity .7 pinned var(--grid-margin) from the bottom: 30px at 1440 (glyph baseline y~867 on desktop_00; 15px only at <=420px, measured on mobile_00). Roughly 90% of the viewport is empty black. All type in the probe renders in the Helvetica Neue fallback, not Indivisible (see typography). The probe never clicks, so all 8 desktop steps are pixel-identical (diff = 0). Behind the gate (jury frames, 1600x1200 recordings at ~0.705 frame px per CSS px) the home is the spiral view: full-bleed WebGL helix of project planes, smiley logo top-left, 'spiral • list' switch top-center (8px white dot between, inactive option at opacity .4), white 'menu •' pill top-right (86.8x48px), a 280px 16:9 showreel thumbnail tilted -15deg and parked half off the bottom-left corner with 'showreel • 2025' letters running around its rounded-rect outline, a round 48px sound button bottom-right, and a white 14px-radius title card (48px thumbnail + 18px title) 60px above the bottom edge that appears on plane hover. Note: the jury recordings show ~17-20px chrome margins while the live CSS uses 30px at >900px (inferred: recorded on an earlier build).",
+  "what_owns_it": "mixed",
+  "display_type_px": 24,
+  "evidence": [
+   "probes/pacome-pertant-portfolio/desktop_00.jpg",
+   "probes/pacome-pertant-portfolio/desktop_01.jpg",
+   "probes/pacome-pertant-portfolio/desktop_07.jpg",
+   "frames/pacome-pertant-portfolio/0/f00.jpg",
+   "frames/pacome-pertant-portfolio/2/f06.jpg"
+  ]
+ },
+ "typography": {
+  "families": [
+   {
+    "name": "Indivisible Variable (declared) -> Helvetica Neue / Arial (actually rendered)",
+    "role": "display",
+    "classification": "neo-grotesque sans, variable (intended); fallback grotesque in practice",
+    "foundry": "Adobe Fonts (Typekit kit cxl5sdt serves family 'indivisible-variable': roman wght 110-900, italic 200-900); the kit does not name the foundry",
+    "source": "root_vars --main-font-name/--display-font-name = \"Indivisible Variable\"; kit CSS registers \"indivisible-variable\" (hyphen) and entry CSS self-hosts only family \"Indivisible\" 400. No @font-face matches the name the CSS asks for, probe fonts_loaded = [], and desktop_00 glyphs are Helvetica Neue. The jury videos (e.g. frames 2/f07 vs desktop_00) show true Indivisible, inferred: the recording machine had the font installed locally."
+   },
+   {
+    "name": "Indivisible Variable (declared) -> Helvetica Neue / Arial (actually rendered)",
+    "role": "body",
+    "classification": "same stack",
+    "foundry": "same kit",
+    "source": "html/body: font-size 18px, weight 400, letter-spacing -.04em, line-height 1 (entry CSS); probe body 18px"
+   },
+   {
+    "name": "Indivisible Medium (Lottie glyph outlines)",
+    "role": "accent",
+    "classification": "vector glyphs baked into the loader Lottie",
+    "foundry": "same face, exported from After Effects",
+    "source": "bundle: loader Lottie (500x500 comp, 25fps, 67 frames) carries fonts fFamily 'Indivisible', style Medium, and text layers 'hey !' and 'I’m Pacôme' drawn as glyph shapes, so the loader is the only place the brand face is guaranteed to render"
+   }
+  ],
+  "display_size_px": 80,
+  "body_size_px": 18,
+  "scale_notes": "CSS scale (all px via a fixed --rem:1px; nothing scales fluidly): 14 (without-sound link, back-to-home, About credits), 16 (menu email), 18 body/UI/title card/case description (94 of 101 probed nodes), 24 gate tagline + stickers + next-up h4, 32 About paragraph (28 at <=900px), 56 case title h2 (40 at <=900px), 60 List View titles (40 at <=900px), 64 About social links, 80 menu links, 200 italic 600 404 code. The probe only saw the gate, so it measured 80/24/18/16/14. Display:body = 4.4:1 at the menu; the spiral view itself carries no large HTML type because the WebGL planes carry the hierarchy. Body goes to 19px at <=900px.",
+  "tracking_leading": "html font-size is var(--rem)=1px, so the shared 'body,html{letter-spacing:-.04em}' rule computes to -0.72px on body (18px) and inherits as that fixed length: 24px text gets -0.72px (-0.03em), 16px gets -0.045em. Only menu links reset to -.05em (80px/-4px). line-height 1 site-wide (80/80, 24/24, 18/18 measured). Exceptions from CSS: About paragraph is set line-height .7 but its words and 32px icons are inline-blocks, so the 32px icon box sets the pitch: measured pitch/cap-height ~1.47 in 1/f00 (about 1.0-1.1em, not looser); case description 18px/1.3.",
+  "case_and_style": "All lowercase UI and copy ('works', 'about', 'contact', 'spiral', 'list', 'menu', 'enter with sound', 'back to home'); weight 500 almost everywhere (body default 400), 400 on 'close' and the without-sound link. Project titles in sentence case ('Thought', 'Jupiter', 'Paths of life'). French spacing before '!' throughout ('hey !', 'play !', 'keep scrolling !'). The loader text 'I'm Pacôme' is Lottie vector glyphs with wide tracking (143), letters rising in one by one (frame 2/f02).",
+  "signature_moves": [
+   "one grotesque at weight 500 with -0.72px inherited tracking and line-height 1 at every size (intended face Indivisible; live visitors get the Helvetica Neue / Arial fallback because 'Indivisible Variable' matches no @font-face)",
+   "pill buttons (menu, 'see the case', SolidButton): on mouseenter every letter jiggles: rotation random(-15,15)deg, scale random(1.15,1.4), fontWeight 500->600, 0.25s power2.out stagger .05 (or amount .25), then back to 0/1/500 with elastic.out(1, 0.8)",
+   "'spiral • list' switch: two stacked copies of each label; hover/active slides copy 1 down (translateY 100%, fade) while copy 2 drops in from -100%, 0.3s var(--ease-spring); inactive option at opacity .4",
+   "big lowercase type reserved for navigation-like lists: menu 80px, social links 64px, List View 60px, case title 56px",
+   "two rotated sticker tags with opposite tilts at the case footer: 'keep scrolling !' mint at -8deg top-right, 'next up...' white at +9deg bottom-left (24px/500, padding 8px 16px)"
+  ],
+  "mobile": "At 390px the gate keeps identical sizes (tagline 24px, pill ~168x45px measured on mobile_00 at 2x), because --rem stays 1px; mobile_measure largest=80 (menu), no horizontal overflow. CSS breakpoints 420/900/1024/1400px (confirmed in entry CSS); at <=900px body 19px, About 28px/1 with icons hidden, case h2 40px, list titles 40px."
+ },
+ "color": {
+  "mode": "section-shifting",
+  "base": "#0a0a0a near-black (--color-black / --color-bg-dark; body and html bg)",
+  "ink": "#fafafa (--color-white) on dark; #0a0a0a on the light case-study card and menu",
+  "accents": [
+   "#21ffc0 mint (--color-pop-green, 5 CSS uses): 'keep scrolling !' sticker, 'play !' cursor pill on the video player, the hover pill on About strip thumbnails, the mobile video close button and the 'next up...' tag on <=900px",
+   "#e6e6e6 (--color-grey) light neutral: menu social icons dim to it when a sibling is hovered",
+   "#fafafa20 rail track; #0a0a0a60 and #00000080 overlays (menu scrim #00000080 + backdrop-filter blur(1px); About strip hover scrim #00000080)",
+   "#171717 (--color-bg-grey) is declared in :root but referenced by no rule (dead token, not a raised surface)"
+  ],
+  "ratio": "~85% #0a0a0a / ~12% #fafafa (pills, case card) / <1% #21ffc0; the saturated color comes entirely from the project thumbnails (electric blue, cyan, lime, orange)",
+  "section_shifts": "Home, about and footer are dark. A project case page is a #fafafa card (ProjectCard: border-radius 16px, margin var(--grid-margin) = 30px at desktop, 20px <=900, 15px <=420; width 12 columns + 11 gutters; z-index 10; overflow hidden) floating over the dark base. The next-project zone after it is position:sticky; bottom:0; height:100vh, so the card scrolls up and off a footer that is already parked underneath (frames 3/f02 to 3/f04).",
+  "texture": "BackgroundGrid component: an inline Figma-exported SVG (1920x1200, height 100%, object-fit cover) position:fixed at z0 with opacity .4, rendered by ExperienceCanvas so it sits behind every route. Its pattern is a 100-unit black cell with a white 1-unit stroke scaled to 50px, painted at fill-opacity .2 (about 8% effective), masked by a #0a0a0a frame blurred with stdDeviation 250 that has an elliptical hole, so the grid only shows in a soft central ellipse. That 250px blur bands into visible concentric rings in the jury videos (1/f00, 3/f03). Separately, the WebGL post pass mixes planes toward flat #444 in the top and bottom 20% of the screen (see three_d). No grain over text.",
+  "notes": "Probe text colors: rgb(250,250,250) x78, rgb(10,10,10) x23. The tight 2-neutral system (Awwwards palette lists exactly #0a0a0a and #fafafa) lets the colorful thumbnails be the palette. About social links reference --color-text-light and --color-accent, which are never defined, so those declarations are invalid and fall back to inherited white."
+ },
+ "layout": {
+  "grid": "Desktop :root (entry.css): 12 columns, --grid-margin 30rem, --grid-gutter 16rem, --grid-column calc(var(--vw)/12 - gutter*11/12 - margin*2/12), --padding 10rem, with --rem = 1px, so 30px margins and 16px gutters. <=900px: 6 columns, margin 20, gutter 15 (+ --width-reference 394 and --button-height 38rem, both declared only here). <=420px: 6 columns, margin 15, gutter 10, --padding 8. The probe's root_vars merged all :root blocks with the last one winning, which is why it reported the 6-col 15/10 phone values. Spacing scale --gap-xs 10 / s 15 / m 30 / l 60 / xl 90 / xxl 120 / xxxl 180 (+20, 45). Radius tokens 4/8/12/16/20 plus 9999px.",
+  "density": "airy",
+  "alignment": "Centered for gate, about paragraph and next-up; corner-anchored fixed chrome (logo TL, menu TR, showreel BL, sound BR, toggle top-center) framing a full-bleed canvas.",
+  "composition_moves": [
+   "fixed chrome around a full-viewport WebGL canvas (probe canvas 1440x900 fixed z0; css_usage fixed=11), all inset by var(--grid-margin): logo TL, switch top-center at top: margin + 15px, menu TR, showreel card BL (wrapper at left/bottom var(--grid-margin); card offset left -140px, top -40px so half of it bleeds off-screen), sound BR",
+   "case study as an inset rounded light card (#fafafa, radius 16px, var(--grid-margin) margin) over the dark site; video preview height calc(100vh - margin), close = 48px black circle at top/right 10px",
+   "case gallery (styleframes) as a two-column zig-zag of EQUAL tiles: each 5 of 12 columns wide, radius 14px, 32px gap, odd tiles left and even tiles align-self:flex-end (right). The right tile looks smaller in 3/f02 (273 vs 383 frame px) only because it is caught mid-reveal (CSS start scale .5)",
+   "case info block (.infos): padding 60px + one column + gutter on each side; h2 56px spans 5 columns + 4 gutters; right column (flex:1, 40px gap, 8px top offset) holds the 18px/1.3 description (max 3 columns + 2 gutters) and the black 'see the case •' pill, which links out to the project's Behance page; in frames the description starts on the page's center line (3/f01)"
+  ],
+  "section_rhythm": "Gate (empty) -> spiral (dense 3D) -> about (a 500vh wrapper whose 100vh inner is position:sticky, one centered 32px paragraph, max-width 800px, text-wrap:balance) -> CSS marquee strip of thumbnails + 64px social links -> case pages (light sheet, video hero, info, gallery) -> dark next-up zone that routes to the next project.",
+  "mobile_adaptation": "Gate recenters with identical sizes. Spiral on touch: camera fov widens from 35 to 45 below 900px; a horizontal swipe spins the helix (8px drag threshold, clientX delta *0.5*0.003 into the wheel target, flick inertia touchVelocityX*0.002), a tap raycasts front faces and opens the project; hover raycasting is disabled on touch. The next-project progress rail is hidden by CSS at <=900px; at <=900px 'keep scrolling !' is hidden and 'next up...' turns mint, 18px, -8deg. No overflow at 390px."
+ },
+ "motion": {
+  "smooth_scroll": "Lenis for pages: new Lenis({wheelMultiplier: .8, duration: 1.2, easing: t => min(1, 1.001 - 2^(-10t)), gestureOrientation: 'vertical'}) (probe html class 'lenis', globals.lenis). Lenis is stopped during route transitions and reset to 0 on enter. The spiral does NOT use page scroll: a Controls class listens to wheel on the canvas: targetWheelDeltaY += deltaY*0.00015 (clamped to +-2); every frame wheelDeltaY += (target - wheelDeltaY)*0.1, scrollOffset += wheelDeltaY, target *= 0.9, and if |target| < 0.002 it is reset to 0.002 in the last scroll direction, so the helix never stops: it idles at a slow drift.",
+  "preloader": "Lottie (bodymovin global; element 'Loading' tagged lottie): the loader comp is 500x500 shown 300px wide, 25fps, 67 frames = 2.68s; the jury clip is 3.9s because it runs on into the gate. A small blue dot at center (2/f00) hops ~160px up and stretches vertically into an oval captioned 'hey !' (2/f01), becomes a small rounded card of flat colored shapes captioned 'I’m Pacôme' whose letters rise in one by one (2/f02-f03), then a green glossy sphere appears side-lit and turns to face front as the smiley logo (2/f04-f05; inferred: 2D layer animation of vector face shapes over the single embedded sphere PNG, not a PNG sequence or video). Only when assets are ready AND the Lottie fires onComplete do the gate lines drop in inside overflow:hidden masks (SplitText lines, yPercent -100 -> 0, opacity 0 -> 1, stagger each .1, 0.6s power1.out); 'enter with sound' fades in (0.3s, 0.2s delay) and 'enter without sound' fades to opacity .7 (0.3s, 0.3s delay). The loader also carries a tabular-nums percentage bottom-left. On enter, the whole gate slides DOWN off-screen (translateY 100%, 0.5s var(--ease-quad-in-out)).",
+  "intro_sequence": "Loader -> gate -> on enter, planes reveal with setTimeout((index % 4) * 50ms). Per plane, hiddenProgress eases 1 -> 0 with k = 1-pow(0.95, dt*0.15): the plane drops in from 1.5 units above its slot (y offset + hiddenProgress*1.5 while revealing), the helix radius grows from 1 to 2 (radius = 2*(1 - hidden/2)), and the SDF rounded-rect mask grows from the center (uRevealProgress = 1 - hidden). Hiding reverses with (index % 4) * 30ms and the planes SINK 1.5 units instead. Returning home from /projects or /about re-reveals after 300ms.",
+  "scroll_techniques": [
+   "wheel-driven helix rotation with inertia and a perpetual idle drift (custom, not page scroll)",
+   "velocity-reactive vertex bend",
+   "scrub (About: ScrollTrigger trigger wrapper, start 'top top', end 'bottom bottom', scrub true)",
+   "sticky (About: 500vh wrapper, 100vh position:sticky inner)",
+   "CSS keyframe marquee strip after the paragraph: translate 0 -> -100%, 40s linear infinite, thumbnails of heights 240/160/300/180px with bottom margins 20/40/0/60px on a flex-end row, so the strip has a ragged baseline (frames 1/f06-f07)",
+   "once-only reveals on case pages (ScrollTrigger 'top 95%' and 'top 85%', once: true)",
+   "wheel-accumulator footer that routes to the next project"
+  ],
+  "text_animation": "About paragraph: SplitText type 'words'; every word set to opacity .5, then a scrubbed timeline takes word i to opacity 1 (duration 1 at position i), so brightness sweeps through the paragraph with scroll. Inline 3D icon images (32px, inline-block, resting translateY(4px) scale(1.5)) start at scale 0/opacity 0 and pop to scale 1.5 with back.out(1.7), duration 1.5, at position i+0.2 (frames 1/f00 -> 1/f04). Case info: SplitText lines on the h2 and the description, yPercent 100 -> 0 and opacity 0 -> 1, 0.8s power3.out, stagger .08, trigger 'top 95%' once (frame 3/f01 catches the second description line mid-fade). Buttons: per-letter jiggle with a 500 -> 600 weight bump (pills) or a stacked-label vertical swap (spiral/list switch).",
+  "image_animation": "Spiral planes: hover darkens the texture 55% toward black (uColorStrength .55), zooms UV 1.05 and shrinks the SDF mask to 0.95; hover-in damps with 1-pow(1-0.09, dt*0.2), hover-out with 0.07. Case gallery (ProjectStyleframes): each tile starts in CSS at opacity 0 / scale .5 with its img at scale 1.5, and on 'top 85%' (once) tweens to scale 1 / opacity 1 over 0.9s power3.out while the img settles 1.5 -> 1 over 1.1s, a counter-scale reveal (3/f02 catches the right tile mid-grow). About strip: hover scales the img 1.05 and springs in a mint pill (scale .5 -> 1, 0.4s var(--ease-spring)). Next-up thumbnail scrubs scale .9->1 and opacity .5->1 from 'bottom 75%' to 'bottom top'.",
+  "page_transitions": "Click on a plane plays 'longclick', routes to /projects/<slug> and hides planes with a (index % 4) * 30ms stagger. Project route transition (Vue <Transition name='project' mode='out-in'): leave to opacity 0 and scale .985 over 0.45s ease; enter from translateY(80px) scale(.96) opacity 0, opacity over 0.65s ease and transform over 0.65s cubic-bezier(.16,1,.3,1), both with a 0.2s delay (frames 3/f06 -> 3/f07: the dark video card rises into place). The small lime-to-cyan bar inside that card keeps the same width (90 frame px) in both frames and moves up with the card, so it is content of the next project's video frame, not a loading bar (inferred). Other routes: 0.35s opacity fade. Next-project trigger: once the page is scrolled to the bottom, each downward wheel delta accumulates (cap 1000); the rail fill = total/1000, lerped .1 up and .05 when draining; pausing the wheel for >150ms resets it; at 100% it waits 300ms, then router.push + 'longclick'.",
+  "hover_micro": [
+   "cursor-follow 'play !' mint pill over the video player (3/f00, 3/f07)",
+   "hovered spiral plane dims and zooms while the bottom title card swaps: enter from translateY(18px) scale(.96) opacity 0 over 0.35s cubic-bezier(.22,1,.36,1), leave to translateY(-12px) scale(.96) over 0.25s (0/f00, 0/f02 mid-swap, 0/f05)",
+   "'hover' sound cue on every plane hover",
+   "pill buttons: per-letter random rotate/scale/weight jiggle then elastic.out(1, 0.8) settle",
+   "'spiral'/'list' stacked-label vertical swap, 0.3s var(--ease-spring)",
+   "menu links: padding-left 0 -> 40px while a 24px dark dot scales in at the left, 0.5s var(--ease-spring)",
+   "menu social icons and List View titles use :has() to dim the siblings of the hovered item (icons -> #e6e6e6 at scale .9; titles -> opacity .4)",
+   "showreel card: rotate -15deg -> -13deg and scale 1.05, 0.3s var(--ease-spring); close X rotates 90deg on hover",
+   "hover styles gated by @media (hover:hover) and (pointer:fine)",
+   "header logo: clicking the smiley advances to the next of 4 face Lotties (face1/3/4/5, 75x75 comps, 44 frames at 25fps) and plays the matching smiley1-4 cue"
+  ],
+  "cursor": "Native cursor (cursor_none 0); canvas sets cursor pointer on plane hover. Contextual 'play !' pill follower on video. List View shows a 330px 16:9 image preview (12px radius) that follows the cursor and pops in with scale 0 -> 1 over 0.5s var(--ease-expo-out). The jury's 'Mouse trail' is the About ImageTrail: 24 sticker images; every 80px of pointer travel the next one spawns at a lerped (0.1) cursor position and tweens to the real cursor over 0.4s power2.out, scale 0 -> 1 with its inner image 2.5 -> 1, then fades to opacity 0 / scale .2 at 0.45s; each spawn plays the 'tick' sound.",
+  "easing_curves": [
+   "cubic-bezier(0.22,1,0.36,1) (quint out, x2: title card enter/leave)",
+   "cubic-bezier(.19,1,.22,1) (--ease-expo-out)",
+   "cubic-bezier(0.16,1,0.3,1) (project page enter)",
+   "cubic-bezier(0.34,1.56,0.64,1) (overshoot back-out)",
+   "cubic-bezier(.455,.03,.515,.955) (--ease-quad-in-out, loader exit)",
+   "--ease-spring: linear(0, .0014, .0055 1.03%, ... .997 39.17%, 1.0084 42.77% ...) CSS spring with ~1% overshoot, used for switch labels, menu links, close button, showreel card, strip pills",
+   "Lenis: easing t => min(1, 1.001 - 2^(-10t)), duration 1.2",
+   "GSAP (site code): power3.out x5, power2.out x4, elastic.out(1, 0.8) x2, elastic.out(1, 0.4) x1, back.out(1.7) x1, power4.out x1, power2.inOut x1, power1.out x1, none x2"
+  ],
+  "duration_range_ms": "CSS 100-900ms, dominated by 300ms (x24) and 500ms (x19); CSS spring transitions 300-800ms (close button 800ms); GSAP 250ms (button jiggle, sticker exit), 300-500ms (list items, menu), 600ms (gate lines), 700ms elastic sticker pop, 800ms case lines, 900-1100ms gallery, 1500ms About icons; loader ~3.9s.",
+  "stagger_ms": "GSAP stagger .05s (button letters, list items in/out), {amount:.25} (SolidButton letters), {each:.1} (gate lines), .08 (case title/description lines), .1 (menu links open), -.05 (menu links close, reverse order); plane reveal (index%4)*50ms, hide (index%4)*30ms.",
+  "choreography_notes": "Sound and motion are paired: 15 Howler cues (html5:true) with a deliberate mix: ambient loop .3, hover 1.0, click .5, spiral/list .4, tick .2, longclick .5, switch .5 (declared but never triggered in shipped code), close .7, menuhome/menuabout .25, smiley1-4 .2. 'tick' belongs to the About image trail, not the spiral. Opening the showreel ducks global volume to 0 over 500ms and restores it 500ms after close. The helix is the only big mover and never fully stops; HTML chrome stays still. Menu: links open y -20/x 20 -> 0 over 0.5s power2.out, 0.2s delay, stagger .1; close 0.2s power4.out with stagger -.05 (last link leaves first); socials fade in after 0.4s, email after 0.3s. In the footer, the card exits first, the next thumbnail scrubs up, then the two stickers pop in sequence at 'bottom 50%' ('next up...') and 'bottom 20%' ('keep scrolling !') with elastic.out(1,0.4), 0.7s, from scale .8/opacity 0, and reverse with power2.inOut 0.25s on scroll back.",
+  "evidence": [
+   "frames/pacome-pertant-portfolio/0/f00-f07 (Spiral View, 4.27s)",
+   "frames/pacome-pertant-portfolio/3/f00-f07 (Footer Scroll Transition, 6.9s)",
+   "frames/pacome-pertant-portfolio/1/f00-f07 (About)",
+   "frames/pacome-pertant-portfolio/2/f00-f07 (Loading)",
+   "bundle: _nuxt/rgzkqdZW.js (Controls, ProjectPlane, World, GLSL, MenuButton/SolidButton, ImageTrail, Lenis config) and lazy chunks DVIRyH-A.js, D_vIB815.js, y2trpWl2.js (AboutScrollText, NextProject, ProjectInfos, ProjectStyleframes, ProjectList)",
+   "CSS: _nuxt/entry.2njCuyBE.css + BgYF65PD/D4O3qLO1/ti62gshN.css (tokens, switch, stickers, rail, showreel offset-path, transitions)",
+   "probe easings/durations/root_vars",
+   "bundle re-read 2026-09-25: PostProcessing (EffectComposer + 'NoiseShader' fade pass), Camera (fov 35/45, z 8), HeaderLogo face Lotties, audioConfig, lazy CSS about.BgYF65PD.css / index.D4O3qLO1.css / _slug_.ti62gshN.css"
+  ]
+ },
+ "imagery": {
+  "primary_medium": "realtime-3d",
+  "art_direction": "The site is a neutral frame for the designer's own motion work: saturated flat-shaded 2D/3D stills and loops (electric blue, cyan, lime, orange, lilac) mapped onto the planes; case pages use soft grey-gradient product-style renders of abstract shapes. The 3D smiley sphere logo adds one glossy character mark.",
+  "treatments": [
+   "project thumbnails (Sanity image URL builder, width 512, auto format) loaded with TextureLoader and cover-fit in shader via uPlaneSizes/uImageSizes",
+   "rounded-rect SDF alpha mask with radius 0.05 scaled by reveal",
+   "back faces sampled with a 3x3 Gaussian-weighted kernel (weights 1-2-1 / 2-4-2 / 1-2-1, divided by 16) at offset 40/1024, so the far side of the helix reads out of focus",
+   "hover darken 55% plus 1.05 UV zoom",
+   "screen-space post pass mixes the rendered planes toward flat #444 in the top and bottom 20% of the frame, alpha kept, so planes leaving the band become grey silhouettes (0/f01 top-right)",
+   "inline 3D emoji-like icons inside the About paragraph",
+   "About mouse trail: 24 slots cycling 12 webp stickers (/img/stickers-1..12.webp)",
+   "logo and loader: Lottie with an embedded pre-rendered sphere PNG plus vector face shapes"
+  ],
+  "crops_and_ratios": "Planes are 1.7:1 (scale 1.7 x 1). Case gallery tiles are all 5/12 columns wide with 14px radius (the 383x214 vs 273x153 frame-px difference in 3/f02 is a mid-reveal scale, not a size change); next-up thumbnail 16:9 at 12px radius; strip thumbnails and list cursor preview 16:9 at 12px; showreel card 16:9 at 280px, radius 20px.",
+  "formats": "Probe: png x12, json x2, 1 img tag, 11 svg; bytes: ogg 1.46MB (sound), png 424KB, avif 79KB (Sanity thumbnails with auto format). Project media from cdn.sanity.io (9 requests); case and showreel videos are Mux HLS streams (stream.mux.com, played with hls.js) with image.mux.com posters and 200x112 scrub thumbnails. The 5 face Lotties + loader Lottie are bundled into the main JS with base64 PNG assets.",
+  "evidence": [
+   "frames/pacome-pertant-portfolio/0/f01.jpg",
+   "frames/pacome-pertant-portfolio/3/f02.jpg",
+   "frames/pacome-pertant-portfolio/1/f02.jpg",
+   "probes/pacome-pertant-portfolio/probe.json",
+   "bundle fragmentShader (roundedRectSDF, gl_FrontFacing blur)"
+  ]
+ },
+ "three_d": {
+  "present": true,
+  "stack": "three.js r180 (probe three_revision 180), custom Experience/World/ProjectPlane classes, ShaderMaterial, Raycaster, EffectComposer (RenderPass + one custom ShaderPass); probe counts 2 webgl2 contexts",
+  "role": "Project index as a helix/spiral of textured planes (the home page)",
+  "assets": [],
+  "materials_lighting_post": "Unlit ShaderMaterial, transparent, DoubleSide. Vertex: newPosition.z = sin(uv.x*PI)*0.2 (each plane bowed like a curved screen); viewPosition.x += pow(worldY,2)*0.1 (planes above and below the center are pushed sideways in view space); viewPosition.x += sin(uv.y*PI)*uScrollSpeed*2.0 with uScrollSpeed = wheelDeltaY (planes smear sideways with wheel velocity, never fully zero because of the idle floor). Fragment: cover-fit UV, uZoom, mix to black by uColorStrength, 3x3 Gaussian blur on back faces, rounded-rect SDF alpha with soft edge 0.002 and smoothstep(0.1,1,reveal) fade; the final line writes alpha from the mask only (texture alpha discarded). Post: the spiral DOES render through an EffectComposer: RenderPass + a ShaderPass named 'NoiseShader' that adds no noise; it computes strength = clamp(remap(vUv.y,0,.2,1,0) + remap(vUv.y,.8,1,0,1)) and outputs mix(color, #444, strength) with the source alpha, a screen-space grey-out band at the top and bottom 20%. Camera: PerspectiveCamera fov 35 (45 below 900px), near .1, far 100, position (0,0,8). Renderer: antialias, NoToneMapping, no shadows, clear color #0e0e0e at alpha 0 (canvas is transparent over the SVG grid), pixelRatio min(dpr, 2).",
+  "interaction": "scrollOffset (see motion.smooth_scroll: wheel target += deltaY*0.00015, clamp +-2, per-frame lerp .1, decay *0.9, idle floor 0.002 in the last direction) rotates the helix: per plane N = (index - scrollOffset) wrapped mod count, k = N - floor(count/2), angle = k*0.85 rad, y = k*0.5 - 0.8, radius 2 (shrinks to 1 while hidden), position (cos a*r, y, sin a*r), rotation.y = -a + PI/2. Projects array is doubled for a seamless loop. Raycast hover (front faces only via world normal dot ray < 0, and only when hiddenProgress < .01) and click/tap to open. Touch: horizontal swipe drives the same wheel target. 'spiral • list' switch changes to a DOM list view (jury element 'Spiral to List').",
+  "performance_tactics": "One shared PlaneGeometry(1,1,8,8) for all planes; 512px thumbnails as textures; frame-rate-independent damping (1 - pow(1-k, dt*s)) for hover/reveal (the wheel lerp .1 is per-frame, not dt-based); time delta clamped to 50ms; the experience pauses 500ms after leaving '/' and resumes on return; GLTF/Cube loaders exist in Resources but no GLB/HDR is requested (probe assets_3d []), so request_count is 41.",
+  "fallback_mobile": "Touch: hover raycasting disabled, horizontal swipe spins, tap raycast opens the project; the same scene renders on mobile (confirmed isTouchDevice branches in Controls/World).",
+  "evidence": [
+   "frames/pacome-pertant-portfolio/0/f00-f07",
+   "bundle: class ProjectPlane, class World, vertexShader/fragmentShader strings",
+   "probes/pacome-pertant-portfolio/probe.json globals/contexts"
+  ]
+ },
+ "navigation_interaction": {
+  "nav_pattern": "Fixed corner chrome at var(--grid-margin): smiley logo TL (a Lottie that plays once on load; each click advances to the next of 4 face animations with its own smiley sound; hover shows a -5deg rotated tag beside it), 'spiral • list' switch top-center, 'menu •' white pill TR, round sound toggle BR, and the tilted showreel card with a CSS offset-path letter marquee BL.",
+  "menu": "The white 'menu •' pill (18px/500, padding 15px 28px 15px 15px) IS the panel: a white .subwrapper sits exactly under it (86.8x48px, radius 24px, top/right var(--grid-margin)) and on open grows to calc(100dvh - 2*margin) tall and 4 columns + 4 gutters wide (5 cols <=1400px, 6 cols <=1024px) with width on a 0.9s and height on a 1s CSS linear() spring (different durations, so it unrolls rather than scales), radius 24 -> 16 over 0.9s. Inside: 80px lowercase links 'works', 'about', 'contact' in #0a0a0a (500, -.05em, line-height 100%), the email at 16px and round 48px social icons; the page behind gets #00000080 + blur(1px). The trailing dot is the close button: a 48px black circle held at scale(.125) (= 6px) that grows to full size over 0.8s var(--ease-spring) while the label fades and the X rotates in from -45deg. Jury element 'Menu Open' (gsap, css).",
+  "buttons_links": "Fully rounded pills (radius 100px/9999px, --button-height 38rem) in #fafafa with #0a0a0a text and a trailing 6px dot (::after); black variant 'see the case •' on the light card. Pills jiggle letter by letter on hover (rotation +-15deg, scale up to 1.4, weight 500->600, elastic settle); the pill markup keeps a hidden-label copy so the width does not reflow while the animated letters bold. The spiral/list switch uses stacked labels that swap vertically. 'enter without sound' gets an underline that wipes in from the left (scaleX 0->1, origin swaps right->left, 0.15s).",
+  "unusual_interactions": [
+   "sound gate with explicit with/without-sound choice",
+   "helix index driven by wheel velocity that never fully stops",
+   "keep wheeling at the bottom of a case to fill a rail and auto-load the next project (release for 150ms and it drains)",
+   "menu dot that grows into the close button",
+   "'showreel • 2025' text travelling around a tilted card via CSS offset-path",
+   "About mouse trail of 24 stickers with a tick per spawn",
+   "cursor 'play !' pill on video",
+   "inline 3D icons that pop between words while the paragraph lights up",
+   "menu pill that unrolls into the full-height panel",
+   "logo that cycles through 4 face Lotties with a sound per click"
+  ],
+  "sound": "Howler.js, 15 .ogg cues from /sounds (ambient loop, hover, click, spiral, list, tick, longclick, switch, close, menu/homelink, menu/aboutlink, smiley/smiley1-4), each with its own volume (ambient .3, hover 1.0, tick and smileys .2, menu links .25). No mp3 is referenced. 'enter without sound' still starts the ambient loop but muted ($audio.mute(true)) and stores enabled=false. The showreel player ducks global volume to 0 (500ms) and restores it after close. Sound is part of the identity (motion AND sound designer).",
+  "footer": "No conventional footer: the end of each case is a sticky (bottom:0, 100vh) dark 'next up...' zone with the next project's thumbnail (Sanity image at width 1024, 16:9, radius 12px), its title (h4 24px/500, 60px below), a 'keep scrolling !' mint sticker, a 14px/.7 'back to home' link top-center, and a 6px-wide rail at right: var(--grid-margin) (30px desktop) whose height equals the thumbnail's: track #fafafa20, white fill scaleY from the center, both radius 100 (frames 3/f03 empty -> 3/f05 full); the rail is hidden by CSS at <=900px."
+ },
+ "content_voice": {
+  "headline_style": "No headline. Lowercase self-description and project titles; the site talks in UI verbs and stickers.",
+  "copy_tone": "Casual, playful, first person, lowercase, French-spaced exclamations ('hey !', 'play !', 'keep scrolling !'); bio frames him as moving shapes and sound with rhythm.",
+  "examples": [
+   "motion & sound designer based in paris",
+   "hey !",
+   "keep scrolling !"
+  ]
+ },
+ "tech_stack": {
+  "framework": "Nuxt (Vue) with /_nuxt/ chunks and _payload.json",
+  "libraries": [
+   "three.js r180 (EffectComposer, RenderPass, ShaderPass)",
+   "GSAP (ScrollTrigger, SplitText)",
+   "Lenis",
+   "lottie-web (bodymovin) with 6 bundled Lotties (loader + 5 logo faces)",
+   "Howler.js",
+   "hls.js with Mux (stream.mux.com / image.mux.com) for case and showreel video",
+   "Pinia stores",
+   "Sanity CMS (cdn.sanity.io image URL builder) + @sanity/visual-editing (React, 767KB chunk, rel=prefetch only)",
+   "Adobe Fonts (Typekit kit, name-mismatched, see typography)"
+  ],
+  "evidence": "probe globals {lenis, bodymovin, three_revision 180}, libs_from_requests [nuxt], top_hosts cdn.sanity.io/use.typekit.net; bundle rgzkqdZW.js: ScrollTrigger 58, SplitText 9, lottie 54, Howl 63, 'new Hls' x4, stream.mux.com + image.mux.com URLs, class PostProcessing; BWUVe7QB.js linked rel=prefetch holds react-dom + @sanity visual-editing; Awwwards tags GSAP, Three.js, Nuxt.js"
+ },
+ "performance_accessibility": {
+  "requests": 41,
+  "weight_notes": "Light for a WebGL portfolio: 41 requests; biggest item is 1.46MB ogg audio; images 424KB png + 79KB avif at load; main JS chunk rgzkqdZW.js is ~2.6MB on disk (bundles three.js, GSAP, Lottie, Howler, hls.js and React plumbing for Sanity visual editing); a further 767KB visual-editing chunk is only prefetched.",
+  "reduced_motion": "probe reduced_motion_rules = 0; no prefers-reduced-motion rule in any site CSS file, and the only matchMedia('(prefers-reduced-motion)') strings in the bundle belong to bundled library code. Helix drift, scrubbed text, image trail and elastic stickers run regardless.",
+  "contrast_issues": "About paragraph unlit words sit at opacity .5 (#fafafa at 50% on #0a0a0a, readable but dim). 'enter without sound' is 14px at opacity .7, low emphasis but legible. No h1 in DOM (probe headings []); case titles are h2 and next-up titles h4 without an h1 above them. Content that exists only after JS: case gallery tiles are opacity 0 / scale .5 in CSS and the case title and description lines are set to opacity 0 by SplitText until a ScrollTrigger fires. Brand typography silently fails: the CSS asks for 'Indivisible Variable' but only 'indivisible-variable' (Typekit) and 'Indivisible' (self-hosted 400) exist, so visitors get Helvetica Neue/Arial.",
+  "mobile_quality": "No horizontal overflow at 390px; gate scales cleanly; tap-to-open implemented for the spiral.",
+  "dev_scores": {
+   "overall": 7.62,
+   "semantics_seo": 7.4,
+   "animations": 8.6,
+   "accessibility": 7.0,
+   "wpo": 8.0,
+   "responsive": 7.8,
+   "markup": 6.6
+  }
+ },
+ "steal_this": [
+  {
+   "technique": "Helix project index from plain textured planes",
+   "why_it_works": "A portfolio index becomes an object you spin; depth, overlap and looping give it the feel of a physical reel while each item stays a flat, legible thumbnail.",
+   "how_to_build": "three.js: PerspectiveCamera(fov 35, or 45 below 900px wide, near .1, far 100) at (0,0,8); transparent renderer (clear alpha 0), antialias, DPR capped at 2. One PlaneGeometry(1,1,8,8) shared by N meshes scaled 1.7x1, each textured with a 512px project thumbnail. Duplicate the project array for a seamless loop. Input: on canvas wheel, target += deltaY*0.00015, clamp to +-2, remember sign. Each frame: vel += (target - vel)*0.1; offset += vel; if (abs(target) < 0.002) target = dir*0.002; target *= 0.9 (the helix never stops, it idles). Per plane: N = ((index - offset) % count + count) % count; k = N - floor(count/2); angle = k*0.85; hidden eases toward its target with 1-pow(0.95, dt*0.15); y = k*0.5 - 0.8 + hidden*1.5*(revealing ? 1 : -1); r = 2*(1 - hidden/2); mesh.position.set(cos(angle)*r, y, sin(angle)*r); mesh.rotation.y = -angle + PI/2. Stagger reveal by setTimeout((i%4)*50) and hide by (i%4)*30. Raycast only front faces (face normal in world space dot ray.direction < 0) for hover and click; on touch map horizontal drag (after 8px) into the same target. Finish with one fullscreen ShaderPass: strength = clamp(remap(uv.y,0,.2,1,0) + remap(uv.y,.8,1,0,1)); color = mix(color, #444, strength), alpha unchanged, so planes grey out as they leave the middle band."
+  },
+  {
+   "technique": "Velocity smear in the vertex shader",
+   "why_it_works": "The planes bend in proportion to how hard you scroll, so input feels physical without any physics engine.",
+   "how_to_build": "Vertex shader: newPosition.z = sin(uv.x*PI)*0.2 (curved-screen bow); after modelView, viewPosition.x += pow(worldPosition.y, 2.0)*0.1 and viewPosition.x += sin(uv.y*PI)*uScrollSpeed*2.0 where uScrollSpeed is the smoothed wheel velocity (floor 0.002, so near-still at idle). Keep segments at 8x8 so the bend is smooth."
+  },
+  {
+   "technique": "SDF rounded-rect reveal plus blurred backfaces",
+   "why_it_works": "Planes grow in and out from their centers with corner radii that track the reveal, and the far side of the helix goes soft, so you get fake depth of field without a post pass.",
+   "how_to_build": "Fragment: sdf = roundedRectSDF(vUv, vec2(reveal), 0.05*reveal) where d = abs(uv-0.5) - size*0.5 + r; alpha = (1 - smoothstep(0.0, 0.002, sdf)) * smoothstep(0.1, 1.0, reveal). If !gl_FrontFacing, sample a 3x3 kernel at offset 40/1024 with weights 1-2-1/2-4-2/1-2-1 over 16. reveal = (1 - 0.05*hover)*(1 - hidden). Hover: mix(color, black, 0.55*hover) and uv zoom 1 + 0.05*hover, damped 0.09 in / 0.07 out."
+  },
+  {
+   "technique": "Scroll-lit paragraph with inline 3D icons",
+   "why_it_works": "The bio is readable from the first frame (words at 50%) and scrolling fills it to 100% word by word, while small rendered icons pop into reserved gaps like punctuation.",
+   "how_to_build": "GSAP SplitText(p, {type:'words'}); gsap.set(words, {opacity:.5}); gsap.set(icons, {scale:0, opacity:0}); wrapper height 500vh with a 100vh position:sticky inner; paragraph 32px/500, max-width 800px, text-wrap: balance, centered. Timeline scrollTrigger {trigger: wrapper, start:'top top', end:'bottom bottom', scrub:true}; for each word i: tl.to(word, {opacity:1, duration:1}, i) and for each icon placed after word i: tl.to(icon, {scale:1.5, opacity:1, duration:1.5, ease:'back.out(1.7)'}, i + 0.2). Icons are 32px inline-block imgs (translateY(4px)) so layout never shifts; hide them at <=900px."
+  },
+  {
+   "technique": "Scroll-to-advance case footer with sticker pops",
+   "why_it_works": "The end of a case study is a doorway, not a dead end: the light sheet lifts off, the next project rises into view and continuing to scroll literally takes you there.",
+   "how_to_build": "Case page is a #fafafa card (border-radius 16px, margin = page margin, 30px desktop) on a #0a0a0a body with z-index above the next section; the next-project section after it is position:sticky; bottom:0; height:100vh, so the card scrolls away off a footer that is already in place. ScrollTrigger: next thumbnail fromTo {scale:.9, opacity:.5} -> {scale:1, opacity:1, ease:'none'} scrub, trigger info block 'bottom 75%' to 'bottom top'. Two tags (24px/500, padding 8px 16px, radius 50px): 'keep scrolling !' mint with CSS rotate:-8deg at right:-60px top:-20px; 'next up...' white with rotate:9deg at left:-60px bottom:-20px; both start scale .8/opacity 0 and restart elastic.out(1, 0.4) 0.7s onEnter at 'bottom 50%' / 'bottom 20%', reverse with power2.inOut 0.25s onLeaveBack. Rail: 6px wide, right = page margin, height = thumbnail height, track #fafafa20, fill white scaleY(progress) from center, radius 100. When scrolled to the bottom, add each positive wheel deltaY to an accumulator (cap 1000), progress = acc/1000 (lerp .1 filling, .05 draining), reset if no wheel for 150ms; at 1 wait 300ms and router.push(next). Hide the rail at <=900px."
+  },
+  {
+   "technique": "Sound as a UI layer with an honest opt-in",
+   "why_it_works": "For a sound designer, audio is portfolio evidence; the explicit with/without choice unlocks autoplay policy and respects silent browsing.",
+   "how_to_build": "Howler.js with ~15 tiny cues and a real mix, not equal levels: ambient loop .3, hover 1.0, click/longclick/switch .5, list/spiral .4, close .7, per-link cues .25, trail tick and logo cues .2. Gate: primary 'enter with sound' pill and a quiet 'enter without sound' link; both start the ambient loop inside the click handler (unlocks the AudioContext), the second mutes globally and stores the choice. Play the hover cue once per hovered-object change; duck global volume to 0 over 500ms when a video opens; expose a fixed sound toggle bottom-right."
+  },
+  {
+   "technique": "Letter-jiggle pill buttons on a variable weight axis",
+   "why_it_works": "The button reacts like a struck instrument: letters wobble, fatten and snap back with an elastic settle, which fits a sound designer and costs one GSAP timeline.",
+   "how_to_build": "Split the label into inline-block letter spans and keep an invisible full-label copy to fix the width. Paused timeline: .to(letters, {rotation: () => gsap.utils.random(-15,15), scale: () => gsap.utils.random(1.15,1.4), fontWeight: 600, duration:.25, ease:'power2.out', stagger:.05}).to(letters, {rotation:0, scale:1, fontWeight:500, duration:.25, ease:'elastic.out(1, 0.8)', stagger:.05}); restart() on mouseenter. Needs a variable font (or real 500/600 cuts) that actually loads, or the weight bump snaps to a fallback Bold."
+  },
+  {
+   "technique": "Menu pill that unrolls into the panel, and its dot into the close button",
+   "why_it_works": "The control and the thing it opens are one object: the white pill grows into the full-height menu sheet while its trailing dot grows into the close circle, so nothing pops in from nowhere.",
+   "how_to_build": "Two fixed layers at the pill's exact box (top/right = page margin, 86.8x48px, radius 24px): a white .subwrapper and a clipping .wrapper (overflow hidden) that holds the links. On open set both to height calc(100dvh - 2*margin) and width 4 columns + 4 gutters, with transition: width .9s var(--ease-spring), height 1s var(--ease-spring), border-radius .9s ease (24 -> 16px). --ease-spring is a CSS linear() spring peaking at 1.0144 (about 1.4% overshoot). The close button is a 48px black circle absolutely placed at the dot position with transform: scale(.125), transform-origin top right; on open scale(1) and move to top/right 20px over .8s on the same spring, the X svg going from opacity 0 rotate(-45deg) to 0; the 'menu' label fades and shifts 5px. Links: 80px/500, -.05em, and on hover padding-left 0 -> 40px while a 24px dark dot scales in at the left (0.5s spring)."
+  },
+  {
+   "technique": "Text marquee around a tilted card with CSS offset-path",
+   "why_it_works": "The showreel entry reads as a physical tag stuck on the corner of the screen: the card is tilted and half off-canvas while its caption loops around its outline.",
+   "how_to_build": "Fixed wrapper at left/bottom = page margin (30px desktop). Card 280px wide, aspect 16/9, radius 20px, position absolute left:-140px top:-40px, transform rotate(-15deg), box-shadow 0 4px 8px #0003; hover rotate(-13deg) scale(1.05) on a spring easing. Caption: split 'showreel • 2025 • ' (repeated 5 times) into one span per character, each with the same CSS: font 18px/500, offset-path: path('M29.5684 182H274.432C290.14 182 304 169 304 152.286V29.7143C304 13 291.064 0 274.432 0H29.5684C12.9362 0 0 13 0 29.7143V152.286C0 169 13.8602 182 29.5684 182Z'), offset-anchor: bottom, offset-rotate: auto 180deg, animation: moveAlong 12s linear infinite (@keyframes moveAlong {0% {offset-distance:-100%} to {offset-distance:0}}), and animation-delay = index*0.12s, so each letter turns the rounded corners on its own. The marquee container sits at left/top -12px and is 200px wider than the card."
+  },
+  {
+   "technique": "Screen-space fade band as a one-line post pass",
+   "why_it_works": "Objects keep their full color only in the middle 60% of the screen and turn to flat grey silhouettes as they approach the top or bottom edge, which focuses the eye on the working band and lets a looping 3D index end softly without fog or depth tricks.",
+   "how_to_build": "EffectComposer: RenderPass then ShaderPass({uniforms:{tDiffuse, uFillColor: new Color('#444')}}). Fragment: float s = clamp(remap(vUv.y,0.,.2,1.,0.),0.,1.) + clamp(remap(vUv.y,.8,1.,0.,1.),0.,1.); gl_FragColor = vec4(mix(tex.rgb, uFillColor, clamp(s,0.,1.)), tex.a). Keep the renderer clear alpha at 0 so the band only affects geometry, not the page behind the canvas. Pick the fill a step lighter than the background so silhouettes still read."
+  }
+ ],
+ "slop_risks": [
+  "Faint grid background: a 50px hairline grid (about 8% white) is a position:fixed, full-viewport SVG under every route (1/f00, 3/f03), faded by a blurred elliptical vignette. The deslop law treats even a faint, masked full-page grid as graph-paper slop (and a fixed sheet trailing behind every section as its own tell); do not port it as-is. Drop it, or confine a tighter, textured grid to one surface.",
+  "Banded gradient: the 250px-blur vignette that masks the grid bands into visible concentric rings in the jury recordings (1/f00, 3/f03). A copy needs dither or grain in that falloff.",
+  "Underline-fill hover: 'enter without sound', 'back to home' and the About credit links wipe a 0.5px underline in from the left (scaleX 0 -> 1, origin swap, .15s). That is the law's underline-fill tell; a copy should use a quiet tonal shift instead.",
+  "Floating tag pinned to an image: the rotated 'next up...' and 'keep scrolling !' tags pinned to the thumbnail corners are exactly this tell. They work here only because there are two, with opposite tilts, plain type and elastic timing; copied onto every card they become slop.",
+  "Saturated accent: #21ffc0 mint appears on a handful of small pills only (sticker, 'play !' cursor, strip hover pill, mobile close). Spreading it to buttons, links or icons would turn the restrained black/white system into a generic neon accent.",
+  "Pills everywhere: 'enter with sound', 'menu', 'see the case', stickers are radius-100 pills (the hover title card is a 14px-radius card, not a pill). They avoid gradient and glow; a copy that adds either lands in the glowy pill button tell.",
+  "Content gated behind an entrance: the whole site waits behind a sound gate, and the gate buttons only appear after the 2.68s Lottie completes AND assets are ready. Inside the case pages the gallery tiles are opacity 0 / scale .5 in CSS and the title/description lines are hidden by SplitText until a ScrollTrigger fires, the law's invisible-content trap. Keep the one-click 'without sound' path, remember the choice, and make revealed content visible by default.",
+  "Content sliced by an edge: the showreel card is deliberately half off-screen and its circulating caption letters get cut at the viewport edge (0/f00 bottom-left). As a clearly tilted sticker it reads as intentional; copied onto a straight card it reads as the cut-off tell.",
+  "Brand font never loads: the CSS asks for 'Indivisible Variable' while the kit registers 'indivisible-variable', so real visitors see Helvetica Neue/Arial. When copying, check document.fonts (or the probe's fonts_loaded) instead of trusting design-time screenshots.",
+  "No reduced-motion handling (probe reduced_motion_rules 0, none in any shipped CSS) and no h1; a copy should add prefers-reduced-motion (drop the idle drift and velocity bend, show list view, disable the image trail) and a real h1."
+ ],
+ "confidence_notes": "All 8 desktop screenshots and both mobile screenshots show the same sound gate because the probe never clicks; re-running with a longer settle would not pass a click gate, so it was not re-run. Home spiral, about, loader and case/footer behaviour are OBSERVED from jury element frames (0 Spiral View all 8 frames, 3 Footer Scroll Transition all 8 frames, 1 About and 2 Loading at f00/f03/f06) and CONFIRMED in code: ProjectPlane helix math, vertex/fragment GLSL, SplitText scrub timeline and sticker ScrollTriggers were read from the live Nuxt bundle. Measured: type sizes/tracking, colors, tokens, easings, durations, request counts from probe.json. Inferred: roll-swap on doubled button labels, 'tick' cue usage, font foundry, footer rail mechanics beyond what frames show. Jury elements not framed locally: Spiral to List, Page transition, Mouse trail, Menu Open, List View, Video player. audit (2026-09-24, adversarial re-check against probe, all 8 frames of elements 0-3 and a re-fetch of the live Nuxt bundle + CSS): FIXED typography: the declared family 'Indivisible Variable' matches no @font-face (kit = 'indivisible-variable', self-hosted = 'Indivisible' 400); probe fonts_loaded [] and desktop_00 glyphs show the Helvetica Neue fallback, while jury videos show real Indivisible. FIXED false claims: 80px menu links are not the only large type (CSS has 32/56/60/64/80/200px tiers); case title is 56px not ~40px; doubled labels are a vertical swap only on the spiral/list switch, pill buttons do a per-letter rotate/scale/weight jiggle with elastic settle; stickers are -8deg and +9deg (the -13/-15deg values belong to the showreel card); the BL badge is a tilted card with an offset-path text marquee, not a circular badge; 'tick' is the About image-trail sound, not the spiral; scrollOffset damping in steal_this was the hover formula, replaced with the real velocity model (lerp .1, decay .9, 0.002 idle floor); back-face blur is Gaussian-weighted, not box; About wrapper is 500vh sticky, not ~300vh pin; --rem is fixed 1px (no fluid scaling); first-screen display type is 24px (80px exists only in the hidden menu) and what_owns_it changed to mixed; grid texture mechanism and 'rings' reinterpreted as blur banding (inferred). ADDED from code: reveal/hide vertical travel, Lenis duration/easing, touch swipe mapping, page-transition values, case line/gallery reveals, rail wheel-accumulator logic, menu dot-to-close morph, :has() sibling dimming, list cursor preview, full sound-cue list, hls.js and Sanity visual-editing weight, 3 new steal_this entries. Still inferred: why the jury recording shows the real face (locally installed font), smiley logo medium, blur-banding explanation, mix-blend-mode usage (probe counts 9 but no rule found in shipped CSS). audit 2 (2026-09-25, adversarial re-check: probe.json, desktop_00/02/04/06/07 (pixel-identical, diff 0), mobile_00, all 8 frames of element 0 and 3, frames 1/f00,f03,f06 and 2/f00-f07 at full size, plus a fresh fetch of entry.css, kit.css, the three lazy CSS files (about.BgYF65PD, index.D4O3qLO1, _slug_.ti62gshN) and rgzkqdZW.js + lazy chunks): FIXED grid: desktop is 12 columns with 30px margins and 16px gutters; the 6-col 15/10 values are the <=420px block (the probe merged all :root blocks), so the no-sound link, showreel wrapper and rail sit 30px in on desktop (desktop_00 glyph baseline y~867 confirms). FIXED false 'no post-processing' claim: an EffectComposer ShaderPass greys planes toward #444 in the top/bottom 20% of the screen; added camera fov 35/45, z 8. FIXED 'video planes': the helix textures are 512px Sanity thumbnails. FIXED case card radius 16px (not 24px), gallery radius 14px (not 12px), gallery tiles equal-width zig-zag (the smaller right tile in 3/f02 is mid scale .5 -> 1 reveal), next-project zone is position:sticky. FIXED loader: Lottie is 2.68s (67f at 25fps), the blue dot hops and stretches, the smiley is an embedded PNG with vector features, not a PNG sequence. FIXED sound: 15 cues incl. smiley1-4 with their own volumes, no mp3, 'switch' never triggered, showreel ducks volume. FIXED 'loading bar' in 3/f06-f07 (it moves with the card at constant width: video content). FIXED About pitch ~1.0-1.1em not ~1.15; kit weights 110-900 roman; #171717 token unused; stickers are 24 slots of 12 webp. ADDED menu pill-to-panel unroll (.subwrapper, 0.9s/1s spring), logo face Lotties with sounds, Mux video hosting, per-character offset-path marquee (0.12s delay each, -100% -> 0), two new steal_this entries, and slop risks for underline-fill hovers, banded blur rings, invisible-content CSS and edge-sliced caption; rewrote the grid slop advice to match the deslop law. Still inferred: why jury videos show real Indivisible and ~20px margins (older build or local font), how the loader fakes the sphere turn, the purpose of the second webgl2 context, clip-path x8 / blend x9 in the probe (no such rules in site CSS; likely lottie-web SVG layers)."
+}
