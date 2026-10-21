@@ -1,5 +1,35 @@
 # Changelog
 
+## v2.8.0 - Awwwards is the default design style
+
+### New
+
+- **Awwwards house rule (`4406b06`).** `bosskuai-taste` is rewritten as the default design rule for every website, landing page, portfolio and marketing UI, at Awwwards Site of the Day quality. The steps:
+  - three scored concepts and a Concept Card, then one signature moment that survives with motion off;
+  - one of ten measured directions;
+  - a system: type, one owned hue, a layout rhythm, and one ease family with one duration ladder;
+  - build laws: content visible with no JS, one GSAP clock, hover never moves the box, the native cursor kept, a loader of 1.5 s or less, designed reduced motion;
+  - quality gates: AA contrast on the worst frame, mobile LCP 2.5 s or less, CLS under 0.05, INP 200 ms or less;
+  - a `jury` score in the Site of the Day band.
+
+  Dashboards and app screens get the same craft bar and keep native scroll, with no loader or WebGL theatrics (`bosskuai-ui-ux-design-to-code` step 6). A style the user or `DESIGN.md` names still wins.
+- **The style arrives on its own (`4406b06`).**
+  - **Prompt hook:** it now adds one line to any request that builds or restyles UI, in English or BM, such as "buatkan website" or "bina laman web". Websites get the Awwwards house rule; dashboards get the craft bar. Bugs, tests, deploys and database work stay quiet.
+  - **Router:** website, landing, portfolio and Awwwards prompts now go to `bosskuai-taste`, including the BM phrasings, and no longer to `taste-skill` or `site-architecture`.
+- **Three Awwwards packs vendored (`4406b06`, all MIT):**
+  - `awwwards-web-design` from owenisas/awwwards-web-design (4546147). It brings a 732-site corpus, 51 teardowns, ten directions and tested recipes. Its four crawler scripts are not bundled.
+  - `awwwards` and `jury` from juliobsz/skills (ea8f145). `awwwards` covers concept to shipped site, with a one-clock GSAP, Lenis and OGL engine and Next.js and Astro adapters. `jury` scores a site the way an Awwwards jury would.
+  - 114 library-only web design technique skills from MengTo/Skills (398cd41), text only. Demos, previews and runtimes (about 130 MB) are left out. The game, illustration, workflow and personal-voice skills are excluded, and so are `landing-page` and `pricing-page`, whose generic ids outranked the house rule.
+
+### Changed
+
+- **Designer contract (`4406b06`).** Awwwards is the default direction. The designer writes the Concept Card and the one-line direction, specs reduced-motion and no-JS states plus the performance budgets, and passes a build only with a `jury` estimate of 7.2 or higher and zero build-law failures. The session-start contract and `AGENTS.md` routing say the same.
+
+### Fixes
+
+- **License notice (`4406b06`).** `docs/third-party-licenses/MIT-packs.txt` now lists `anatomy` and `logo-design`, which had been missing, and the three new packs.
+- **Routing label (`4406b06`).** The `AGENTS.md` routing table no longer calls `bosskuai-taste` "lean". It is in the core profile.
+
 ## v2.7.1 - OpenCode follows your provider, Cursor gets real models
 
 ### Changed
