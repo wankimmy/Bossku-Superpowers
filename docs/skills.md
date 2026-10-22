@@ -49,6 +49,7 @@ A loaded skill stays in the conversation and is read again on every later turn, 
 | logo-design | Logo and brand-mark design from brief to SVG kit (library-only; reference logo SVGs not bundled) | Python 3; a renderer (cairosvg, rsvg-convert, Inkscape or Chrome) to view PNGs |
 | awwwards-web-design | Awwwards-level web design from a 732-site corpus and 51 teardowns: ten directions, measured numbers, quality gates, tested recipes | Python 3.10+, Playwright for audit mode |
 | awwwards-jury | 2 skills: `awwwards` (concept to shipped site: one-clock GSAP engine, Next.js or Astro) and `jury` (Awwwards-style score from evidence) | Node.js 20+, Playwright, axe-core |
+| security-audit | Cloudflare's six-phase codebase security audit: recon, coverage-led hunting, independent validation, schema-checked findings and reports (library-only) | Node.js on macOS, Linux or WSL for its validators (they refuse native Windows) |
 | mengto | 114 web design technique skills (reveals, scroll scenes, WebGL, 3D materials, mood systems, anti-slop audits; library-only, text only) | — |
 | dcg | Destructive Command Guard (agent shell/git safety hooks) | `dcg` binary (upstream installer) |
 | emil-skills | 12 motion craft / design engineering skills (web + Expo animation, Sonner, Swift) | — |

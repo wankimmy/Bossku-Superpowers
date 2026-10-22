@@ -119,6 +119,7 @@ Vendored packs are reviewed on a 180-day window — run `bossku skills stocktake
 | Factual answers from documents, citations, accuracy or hallucination concerns | `bosskuai-grounding` (always on; + `bosskuai-deep-research` for multi-source synthesis, `odl-pdf` for citation-ready PDF extraction) |
 | Agent loops: CI/PR/issue sweeps, budgeted triage | loop-engineering — `loop-triage`, `loop-verifier`, `minimal-fix` (+ pattern skills: `ci-triage`, `pr-review-triage`, etc.); release notes: `draft-release-notes` has no local contract, so follow `bosskuai-github-workflow` (Releases and dependencies) |
 | Interactive isometric SVG explainer figure (a concept drawn as a physical machine, optional WebGL/3D) | `anatomy` (library-only; needs Node 20.10+ and Chrome for its checks) |
+| Full codebase security audit or pen test | `security-audit` (library-only) |
 | Logo, wordmark, monogram, app icon or favicon design, critique or redesign (SVG, brief to kit) | `logo-design` (library-only; Python 3 scripts; image-generated brand boards: `brandkit`) |
 | One web technique (reveal, scroll scene, shader, mood system) | `mengto` library skills via `bossku skills find` |
 | Scroll-scrub fly-through / diorama cinematic landing | `scroll-world` (Higgsfield + portable scrub engine; not generic GSAP-only heroes) |

@@ -89,6 +89,10 @@
     "mengto": {
       "upstream": "MengTo/Skills",
       "last_synced": "2026-10-21"
+    },
+    "security-audit": {
+      "upstream": "cloudflare/security-audit-skill",
+      "last_synced": "2026-10-22"
     }
   },
   "packs": {
@@ -386,6 +390,9 @@
       "webgl-3d-object",
       "webgl-landing-steering",
       "webgl-laser"
+    ],
+    "security-audit": [
+      "security-audit"
     ]
   },
   "skills": {
@@ -639,7 +646,8 @@
     "vantajs": "mengto",
     "webgl-3d-object": "mengto",
     "webgl-landing-steering": "mengto",
-    "webgl-laser": "mengto"
+    "webgl-laser": "mengto",
+    "security-audit": "security-audit"
   },
   "excluded": {
     "taste-skill-v1": "taste-skill: legacy v1 kept upstream for exact-v1 compatibility; conflicts with the default stack",

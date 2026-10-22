@@ -646,6 +646,11 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
         "brand kit", "brand guidelines", "logo system", "logo concept", "identity board",
         "visual identity",
     ],
+    "security-audit": [
+        "full security audit", "comprehensive security review", "end-to-end security review",
+        "pen test the codebase", "pen-test this repo", "security audit report", "vulnerability hunt",
+        "audit the whole codebase for vulnerabilities",
+    ],
     "logo-design": [
         "logo", "logos", "wordmark", "monogram", "logotype", "lettermark", "favicon", "brand mark",
     ],

@@ -41,6 +41,8 @@ notice that follows is the standard MIT text and applies to each of them separat
   Copyright (c) 2026 Julio (juliobsz)
 - mengto (https://github.com/MengTo/Skills)
   Copyright (c) 2026 Meng To
+- security-audit (https://github.com/cloudflare/security-audit-skill)
+  Copyright (c) 2025-2026 Cloudflare, Inc.
 - greptile (adapted, first-party) (https://github.com/greptileai/skills)
   Copyright (c) 2026 Greptile AI
 
