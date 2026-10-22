@@ -1,5 +1,16 @@
 # Changelog
 
+## v2.9.0 - Cloudflare's security audit skill
+
+### New
+
+- **`security-audit` vendored (`f2c99c6`, MIT).** Cloudflare's six-phase codebase audit from cloudflare/security-audit-skill (c1c8a8c): reconnaissance, coverage-led hunting, independent validation of every candidate, schema-checked `findings.json`, record verification and target-neutral reports. It is library-only, reached through the prompt hint and `bossku skills find`. The full workflow runs only on an explicit codebase audit, pen-test or report request; anything smaller stays in guidance mode, and ordinary security reviews still go to `bosskuai-cybersecurity-risk`.
+- **Routing.** "Full security audit", "pen test the codebase", "security audit report" and similar prompts now pick `security-audit`. `AGENTS.md` gains one routing row.
+
+### Known limits
+
+- The skill's two Node validators refuse to run on native Windows, because Node has no `O_NOFOLLOW` there. Run them under macOS, Linux or WSL.
+
 ## v2.8.0 - Awwwards is the default design style
 
 ### New
