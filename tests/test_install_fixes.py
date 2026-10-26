@@ -140,7 +140,7 @@ class UninstallTests(unittest.TestCase):
             mine.write_text("mine", encoding="utf-8")
             uninstall_user(root=ROOT, home=home)
             def support_files(parent: str) -> list[Path]:
-                return [p for name in ("references", "site", "docs") for p in (home / parent / name).rglob("*") if p.is_file()]
+                return [p for name in ("references", "site", "tools", "docs") for p in (home / parent / name).rglob("*") if p.is_file()]
 
             left_claude, left_agents = support_files(".claude"), support_files(".agents")
             self.assertEqual(left_claude, [edited])
@@ -152,7 +152,7 @@ class UninstallTests(unittest.TestCase):
             install_user(root=ROOT, home=home, profile="core")
             uninstall_user(root=ROOT, home=home)
             for parent in (".agents", ".claude"):
-                for name in ("references", "site", "docs"):
+                for name in ("references", "site", "tools", "docs"):
                     self.assertFalse((home / parent / name).exists(), msg=f"{parent}/{name}")
 
     def test_each_removed_skill_is_listed_once(self):

@@ -1101,9 +1101,14 @@ def count_managed_skills(dest_dir: Path, root: Path | None = None) -> int:
 _MARKDOWN_LINK = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
 
 
+_FENCE = re.compile(r"^( {0,3})(`{3,}|~{3,}).*?^\1\2[ \t]*$", re.M | re.S)
+
+
 def _broken_relative_links(skill_md: Path) -> list[str]:
     broken: list[str] = []
-    for raw in _MARKDOWN_LINK.findall(skill_md.read_text(encoding="utf-8")):
+    # A link inside a fenced code block is example text (an ADR index template, say), not a file to open.
+    text = _FENCE.sub("", skill_md.read_text(encoding="utf-8"))
+    for raw in _MARKDOWN_LINK.findall(text):
         target = raw.strip().strip("<>")
         if not target or target.startswith(("#", "/", "\\")):
             continue

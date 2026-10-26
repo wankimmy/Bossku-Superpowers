@@ -113,13 +113,21 @@ def copy_support_files(source_dir: Path, dest_dir: Path) -> list[str]:
     return copied
 
 
+# Repo-root folders and docs that vendored skills link with `../../<path>`, installed next to the skill folders so the
+# links resolve there too: hallmark's site/css/tokens.css, marketingskills' tools/integrations/, ECC's
+# docs/capability-surface-selection.md, and the memory guide every memory skill points at.
+SUPPORT_DIRS = ("site", "tools")
+SUPPORT_DOCS = ("memory.md", "capability-surface-selection.md")
+
+
 def copy_skill_support(root: Path, destination: Path) -> dict[str, list[str]]:
     """Install shared sidecars at the relative paths used by installed skills."""
     retire_support_files(destination)
     references = copy_support_files(root / "references", destination / "references")
-    copy_support_files(root / "site", destination / "site")
+    for name in SUPPORT_DIRS:
+        copy_support_files(root / name, destination / name)
     docs = []
-    for name in ("memory.md",):
+    for name in SUPPORT_DOCS:
         source = root / "docs" / name
         if source.is_file():
             target = destination / "docs" / name
@@ -135,14 +143,14 @@ def copy_skill_support(root: Path, destination: Path) -> dict[str, list[str]]:
 def remove_skill_support(root: Path, destination: Path) -> None:
     """Undo copy_skill_support: delete only copies that still match the repo, so a user's own file stays."""
     retire_support_files(destination)
-    pairs = [(root / "docs" / "memory.md", destination / "docs" / "memory.md")]
-    for name in ("references", "site"):
+    pairs = [(root / "docs" / name, destination / "docs" / name) for name in SUPPORT_DOCS]
+    for name in ("references", *SUPPORT_DIRS):
         pairs += [(s, destination / name / s.relative_to(root / name)) for s in (root / name).rglob("*") if s.is_file()]
     for source, target in pairs:
         if source.is_file() and target.is_file() and source.read_bytes() == target.read_bytes():
             make_path_writable(target)
             target.unlink()
-    for name in ("references", "site", "docs"):
+    for name in ("references", *SUPPORT_DIRS, "docs"):
         base = destination / name
         folders = sorted((p for p in base.rglob("*") if p.is_dir()), key=lambda p: len(p.parts), reverse=True)
         for folder in [*folders, base]:
