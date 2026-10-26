@@ -53,7 +53,8 @@ BosskuAI cofounder mode must be able to route to expert skills for:
 - Redis/cache/queues: `bosskuai-redis-caching-queues`
 - VPS Docker deployment: `bosskuai-vps-docker-deployment`
 - UI/UX and anti-AI design: `bosskuai-ui-ux-design-to-code`
-- Anti-slop landing / portfolio frontend: `taste-skill` (variants: `soft-skill`, `minimalist-skill`, `brutalist-skill`; redesign: `redesign-skill`)
+- Website, landing page, portfolio or marketing UI: `bosskuai-taste` (the Awwwards house rule); `taste-skill` and its variants (`soft-skill`, `minimalist-skill`, `brutalist-skill`, `redesign-skill`) only when the user names them
+- The full per-pack table: [`docs/routing.md`](../../docs/routing.md)
 - Scroll-scrub fly-through / diorama world landing: `scroll-world`
 - Security/privacy/abuse: `bosskuai-cybersecurity-risk`
 - Tenant isolation/data leak: `bosskuai-tenant-isolation-security`
