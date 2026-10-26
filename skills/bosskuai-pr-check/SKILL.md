@@ -1,6 +1,6 @@
 ---
 name: bosskuai-pr-check
-description: "Use when checking or preparing a GitHub PR, GitLab MR, or Perforce changelist for submission, including unresolved review comments, pending or failed checks, incomplete descriptions, actionable findings, and optional fixes."
+description: "Use when checking or preparing a GitHub PR, GitLab MR, or Perforce changelist for submission in one pass: unresolved review comments, pending or failed checks, incomplete descriptions, actionable findings, and optional fixes. Repeated Greptile re-review rounds: bosskuai-greptile-review-loop."
 license: MIT
 compatibility: Requires git and gh (GitHub CLI), glab (GitLab CLI), or p4 (Perforce CLI) installed and authenticated.
 metadata:

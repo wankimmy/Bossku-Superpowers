@@ -1,6 +1,6 @@
 {
   "version": "2.1.0",
-  "fingerprint": "8f393486d2702226",
+  "fingerprint": "12952948cd5a5b6d",
   "count": 672,
   "aliases": {
     "bosskuai-caveman": "bosskuai-token-saver",
@@ -13095,38 +13095,40 @@
     "bosskuai-greptile-review-loop": {
       "path": "skills/bosskuai-greptile-review-loop/SKILL.md",
       "name": "bosskuai-greptile-review-loop",
-      "description": "Use when iteratively improving a GitHub PR, GitLab MR, or Perforce changelist against Greptile review until its confidence target is met and actionable comments are resolved, including re-review and bounded fix loops.",
+      "description": "Use when Greptile reviews the PR, MR or changelist and it must be improved round by round until Greptile's confidence target is met and its actionable comments are resolved, with bounded fix and re-review loops. One-pass readiness check: bosskuai-pr-check.",
       "triggers": [
         "greptile review loop",
         "greptile"
       ],
       "exclusions": [],
       "phrases": [
-        "iteratively improving a github pr",
-        "gitlab mr",
-        "actionable comments are resolved"
+        "greptile reviews the pr",
+        "its actionable comments are resolved",
+        "with bounded fix"
       ],
       "keywords": [
         "greptile",
         "review",
         "loop",
-        "iteratively",
-        "improving",
-        "github",
         "pr",
-        "gitlab",
         "mr",
-        "perforce",
         "changelist",
+        "must",
+        "improved",
+        "round",
         "confidence",
         "target",
         "met",
         "actionable",
         "comment",
         "resolved",
-        "re-review",
         "bounded",
         "fix",
+        "re-review",
+        "one-pass",
+        "readiness",
+        "check",
+        "bosskuai-pr-check",
         "input",
         "instruction",
         "detect",
@@ -20115,7 +20117,7 @@
     "bosskuai-pr-check": {
       "path": "skills/bosskuai-pr-check/SKILL.md",
       "name": "bosskuai-pr-check",
-      "description": "Use when checking or preparing a GitHub PR, GitLab MR, or Perforce changelist for submission, including unresolved review comments, pending or failed checks, incomplete descriptions, actionable findings, and optional fixes.",
+      "description": "Use when checking or preparing a GitHub PR, GitLab MR, or Perforce changelist for submission in one pass: unresolved review comments, pending or failed checks, incomplete descriptions, actionable findings, and optional fixes. Repeated Greptile re-review rounds: bosskuai-greptile-review-loop.",
       "triggers": [
         "pr check",
         "check this pr",
@@ -20135,8 +20137,6 @@
       "phrases": [
         "preparing a github pr",
         "gitlab mr",
-        "perforce changelist for submission",
-        "including unresolved review comments",
         "failed checks",
         "incomplete descriptions",
         "actionable findings"
@@ -20166,6 +20166,7 @@
         "perforce",
         "changelist",
         "submission",
+        "one",
         "pending",
         "failed",
         "incomplete",
@@ -20174,6 +20175,11 @@
         "finding",
         "optional",
         "fixe",
+        "repeated",
+        "greptile",
+        "re-review",
+        "round",
+        "bosskuai-greptile-review-loop",
         "input",
         "instruction",
         "detect",
