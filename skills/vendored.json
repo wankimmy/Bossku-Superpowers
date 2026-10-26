@@ -174,8 +174,7 @@
       "browser-use",
       "cloud",
       "open-source",
-      "remote-browser",
-      "x402"
+      "remote-browser"
     ],
     "graphify": [
       "graphify"
@@ -463,7 +462,6 @@
     "cloud": "browser-use",
     "open-source": "browser-use",
     "remote-browser": "browser-use",
-    "x402": "browser-use",
     "graphify": "graphify",
     "markitdown": "markitdown",
     "loop-budget": "loop-engineering",
@@ -655,6 +653,7 @@
     "stitch-skill": "taste-skill: DESIGN.md template fails WCAG contrast; bosskuai-design-systems owns the Stitch format",
     "moli-websearch": "moli: its references tell the agent to scrape public API keys from third-party frontends and to switch search engines after a CAPTCHA, which conflicts with the rule against bypassing bot detection",
     "landing-page": "mengto: overlaps bosskuai-taste (the Awwwards house rule) and marketingskills page-cro, copywriting and pricing; its generic id outranked the house rule on every landing or pricing page prompt",
-    "pricing-page": "mengto: overlaps bosskuai-taste (the Awwwards house rule) and marketingskills page-cro, copywriting and pricing; its generic id outranked the house rule on every landing or pricing page prompt"
+    "pricing-page": "mengto: overlaps bosskuai-taste (the Awwwards house rule) and marketingskills page-cro, copywriting and pricing; its generic id outranked the house rule on every landing or pricing page prompt",
+    "x402": "browser-use: prints generated wallet private keys and spends USDC from a crypto wallet; kept out of the repo so no plugin or profile can list it"
   }
 }

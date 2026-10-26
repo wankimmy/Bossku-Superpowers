@@ -62,7 +62,8 @@ def load_excluded_vendored(root: Path | None = None) -> set[str]:
     return set(json.loads(path.read_text(encoding="utf-8")).get("excluded", {}))
 
 
-# Kept in the repo but never installed: x402 prints generated wallet keys and auto-tops-up spend.
+# Never installed or hinted, even if a re-vendor brings it back: x402 prints generated wallet keys and spends
+# from a crypto wallet. It is listed under `excluded` in skills/vendored.json, so the repo no longer ships it.
 NOT_INSTALLED = frozenset({"x402"})
 
 

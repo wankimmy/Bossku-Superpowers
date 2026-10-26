@@ -53,7 +53,7 @@ Bossku Superpower vendors Agent Skills from these open-source upstream projects.
 
 `greptile` is not a vendored pack: `bosskuai-greptile-review-loop` and `bosskuai-pr-check` are first-party adaptations of `greptileai/skills`, kept under the upstream MIT notice above. Local deviations to re-apply on any resync: `git add` scoped to the files changed for the comments, a test and lint gate plus one ask before the first push, only Greptile-bot threads resolved without a code change (never a human reviewer's), bounded polling loops, paginated inline comments, and no `p4 review` commands (they do not list or mark reviews).
 
-Deliberately not vendored (recorded under `excluded` in `skills/vendored.json` so a re-vendor leaves them out): `taste-skill-v1`, `gpt-tasteskill`, and `stitch-skill` from the taste-skill pack. `x402` stays vendored with browser-use but `bossku install` never copies it: it prints generated wallet keys and auto-tops-up spend.
+Deliberately not vendored (recorded under `excluded` in `skills/vendored.json` so a re-vendor leaves them out): `taste-skill-v1`, `gpt-tasteskill`, and `stitch-skill` from the taste-skill pack, and `x402` from browser-use: it prints generated wallet keys and spends from a crypto wallet. It used to stay in `skills/` with `bossku install` skipping it, but the plugin manifests list every folder in `skills/`, so it is no longer shipped at all.
 
 `opendataloader-pdf` vendors the complete upstream `skills/odl-pdf/` bundle unchanged. Its maintenance-only sibling is intentionally excluded, and the optional OpenDataLoader runtime is not installed automatically.
 

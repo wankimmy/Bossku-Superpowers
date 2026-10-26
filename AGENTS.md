@@ -113,7 +113,7 @@ Vendored packs are reviewed on a 180-day window — run `bossku skills stocktake
 | Codebase map, call tracing, where-does-X-live (source code) | `graft` (requires `@nanonets/graft` CLI + `graft build`) |
 | Mixed-media corpus → knowledge graph (docs, papers, video, Neo4j/Obsidian export) | `graphify`, only when `graphify-out/` exists or the user asks for a graph (requires `graphifyy` CLI); ordinary codebase questions go to `bosskuai-project-understanding` or `graft` |
 | Agent drives a live browser (navigate, fill, extract) | `browser-use` (`remote-browser` when sandboxed); Playwright suites in the repo: `e2e-testing`; QA smoke, visual regression, or scraping report: `bosskuai-browser-automation` |
-| Browser Use Cloud API/SDK or the `browser_use` Python library | `cloud` / `open-source` (`x402` is not installed: it handles wallet keys and moves money) |
+| Browser Use Cloud API/SDK or the `browser_use` Python library | `cloud` / `open-source` (`x402` is excluded: it handles wallet keys and moves money) |
 | Office/PDF/HTML → Markdown | `markitdown` (requires `markitdown[all]` pip package) |
 | Structured PDF extraction, scanned OCR, tables, bounding boxes, or citation-ready RAG | `odl-pdf` (OpenDataLoader runtime installed separately; use `markitdown` for generic conversion) |
 | Factual answers from documents, citations, accuracy or hallucination concerns | `bosskuai-grounding` (always on; + `bosskuai-deep-research` for multi-source synthesis, `odl-pdf` for citation-ready PDF extraction) |

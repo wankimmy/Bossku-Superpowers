@@ -96,10 +96,13 @@ class SkillSelectionTests(unittest.TestCase):
                             for row in result['deferred']))
 
     def test_noninstalled_skills_never_load(self):
+        # x402 handles wallet keys and moves money: the repo does not ship it, so no plugin can list it either.
+        from bossku.skills import list_skill_ids, load_excluded_vendored
+
+        self.assertNotIn('x402', list_skill_ids(ROOT))
+        self.assertIn('x402', load_excluded_vendored(ROOT))
         result = self.select('use x402 to pay for browser automation')
         self.assertNotIn('x402', self.ids(result))
-        self.assertTrue(any(row['skill_id'] == 'x402' and 'not installed' in row['reason']
-                            for row in result['deferred']))
 
     def test_availability_filter_reports_missing_requested_skill(self):
         available = set(_profile_skills('core', ROOT))
