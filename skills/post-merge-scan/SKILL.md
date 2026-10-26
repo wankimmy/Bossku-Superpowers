@@ -3,7 +3,7 @@ name: post-merge-scan
 description: >
   Scan recent merges to main for follow-up cleanup: TODOs, deprecations,
   broken doc links, stale flags. Use in post-merge cleanup loops.
-user_invocable: true
+user-invocable: true
 ---
 
 # Post-Merge Scan Skill

@@ -434,6 +434,19 @@ class ValidatorTests(unittest.TestCase):
             )
             self.assertIn("broken relative link", " ".join(validate_skills(base)))
 
+    def test_flags_a_name_that_does_not_match_its_folder(self):
+        # The Agent Skills spec, Cursor and OpenCode require name == folder; Claude Code lists the skill by name.
+        with tempfile.TemporaryDirectory() as tmp:
+            base = self._repo(tmp)
+            desc = "description: Use when testing that a skill name matches the folder it lives in."
+            self._skill(base, "soft-skill", f"name: high-end-visual-design\n{desc}")
+            self._skill(base, "loop-step", f"name: loop-step\n{desc}\nuser_invocable: true")
+            self._skill(base, "loop-next", f"name: loop-next\n{desc}\nuser-invocable: true")
+            errors = validate_skills(base)
+            self.assertTrue(any("soft-skill/SKILL.md name" in e and "must match its folder" in e for e in errors), errors)
+            self.assertTrue(any("loop-step/SKILL.md unknown frontmatter key(s): user_invocable" in e for e in errors), errors)
+            self.assertFalse([e for e in errors if "loop-next/" in e], errors)
+
     def test_flags_blanket_shell_and_catch_all_cli_grants(self):
         # allowed-tools runs with no permission prompt, so `Bash` or `Bash(git:*)` would skip the push/merge pause.
         with tempfile.TemporaryDirectory() as tmp:

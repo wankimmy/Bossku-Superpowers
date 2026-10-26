@@ -1,7 +1,7 @@
 ---
 name: draft-release-notes
 description: Turn changelog-scan output into polished, categorized release notes draft. Propose only.
-user_invocable: true
+user-invocable: true
 ---
 
 # Draft Release Notes (Claude)

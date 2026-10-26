@@ -1,6 +1,6 @@
 {
   "version": "2.1.0",
-  "fingerprint": "766ddef9d77421f3",
+  "fingerprint": "b5a22e11d8ee0dcd",
   "count": 672,
   "aliases": {
     "bosskuai-caveman": "bosskuai-token-saver",
@@ -27955,7 +27955,7 @@
     },
     "brutalist-skill": {
       "path": "skills/brutalist-skill/SKILL.md",
-      "name": "industrial-brutalist-ui",
+      "name": "brutalist-skill",
       "description": "Raw mechanical interfaces fusing Swiss typographic print with military terminal aesthetics. Rigid grids, extreme type scale contrast, utilitarian color, analog degradation effects. For data-heavy dashboards, portfolios, or editorial sites that need to feel like declassified blueprints.",
       "triggers": [
         "brutalist skill",
@@ -33233,7 +33233,7 @@
     },
     "image-to-code-skill": {
       "path": "skills/image-to-code-skill/SKILL.md",
-      "name": "image-to-code",
+      "name": "image-to-code-skill",
       "description": "Elite website image-to-code skill for Codex. For visually important web tasks, it must first generate the design image(s) itself, deeply analyze them, then implement the website to match them as closely as possible. In Codex, it must prefer large, readable, section-specific images instead of tiny compressed boards, generate fresh standalone images for sections or detail views instead of cropping old ones, avoid lazy under-generation, avoid cards-inside-cards-inside-cards UI, and keep the hero clean, spacious, readable, and visible on a small laptop.",
       "triggers": [
         "image to code skill"
@@ -35362,7 +35362,7 @@
     },
     "minimalist-skill": {
       "path": "skills/minimalist-skill/SKILL.md",
-      "name": "minimalist-ui",
+      "name": "minimalist-skill",
       "description": "Clean editorial-style interfaces. Warm monochrome palette, typographic contrast, flat bento grids, muted pastels. No gradients, no heavy shadows.",
       "triggers": [
         "minimalist skill",
@@ -36389,7 +36389,7 @@
     },
     "output-skill": {
       "path": "skills/output-skill/SKILL.md",
-      "name": "full-output-enforcement",
+      "name": "output-skill",
       "description": "Overrides default LLM truncation behavior. Enforces complete code generation, bans placeholder patterns, and handles token-limit splits cleanly. Apply to any task requiring exhaustive, unabridged output.",
       "triggers": [
         "output skill",
@@ -37835,7 +37835,7 @@
     },
     "redesign-skill": {
       "path": "skills/redesign-skill/SKILL.md",
-      "name": "redesign-existing-projects",
+      "name": "redesign-skill",
       "description": "Upgrades existing websites and apps to premium quality. Audits current design, identifies generic AI patterns, and applies high-end design standards without breaking functionality. Works with any CSS framework or vanilla CSS.",
       "triggers": [
         "redesign skill",
@@ -39578,7 +39578,7 @@
     },
     "soft-skill": {
       "path": "skills/soft-skill/SKILL.md",
-      "name": "high-end-visual-design",
+      "name": "soft-skill",
       "description": "Teaches the AI to design like a high-end agency. Defines the exact fonts, spacing, shadows, card structures, and animations that make a website feel expensive. Blocks all the common defaults that make AI designs look cheap or generic.",
       "triggers": [
         "soft skill",
@@ -39997,7 +39997,7 @@
     },
     "taste-skill": {
       "path": "skills/taste-skill/SKILL.md",
-      "name": "design-taste-frontend",
+      "name": "taste-skill",
       "description": "Anti-slop frontend skill for landing pages, portfolios, and redesigns. The agent reads the brief, infers the right design direction, and ships interfaces that do not look templated. Real design systems when applicable, audit-first on redesigns, strict pre-flight check.",
       "triggers": [
         "taste skill",

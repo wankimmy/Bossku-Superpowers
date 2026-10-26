@@ -3,7 +3,7 @@ name: ci-triage
 description: >
   Parse CI failures, identify failing job/step, classify as flake, regression,
   env, or config. Use in CI sweeper loops before any fix attempt.
-user_invocable: true
+user-invocable: true
 ---
 
 # CI Triage Skill

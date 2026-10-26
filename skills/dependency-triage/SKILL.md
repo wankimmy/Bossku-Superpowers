@@ -3,7 +3,7 @@ name: dependency-triage
 description: >
   Scan package manifests and lockfiles for outdated packages and known CVEs.
   Groups updates by risk (patch, minor, major). Use in dependency sweeper loops.
-user_invocable: true
+user-invocable: true
 ---
 
 # Dependency Triage Skill

@@ -1181,8 +1181,16 @@ KNOWN_FRONTMATTER_KEYS = frozenset(
         "description",
         "metadata",
         "license",
-        "user_invocable",
+        "user-invocable",
         "allowed-tools",
+        "disallowed-tools",
+        "when_to_use",
+        "arguments",
+        "model",
+        "effort",
+        "context",
+        "agent",
+        "paths",
         "argument-hint",
         "compatibility",
         "version",
@@ -1287,6 +1295,11 @@ def validate_skills(root: Path | None = None) -> list[str]:
             errors.append(
                 f"{sid}/SKILL.md `{key}` needs quotes: hosts' YAML parsers reject ': ' or ' #' "
                 "in an unquoted value and drop the field"
+            )
+        if str(front.get("name", "")).strip() and str(front.get("name", "")).strip() != sid:
+            errors.append(
+                f"{sid}/SKILL.md name `{front.get('name')}` must match its folder: the Agent Skills spec, Cursor and "
+                "OpenCode require it, and Claude Code lists the skill under that name"
             )
         unknown = sorted(set(front) - KNOWN_FRONTMATTER_KEYS)
         if unknown:

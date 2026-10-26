@@ -4,7 +4,7 @@ description: >
   Independent verification agent for loop-produced changes. Finds reasons to
   reject. Runs tests. Confirms diff scope. Use after minimal-fix or any
   implementer sub-agent — never in the same role as the implementer.
-user_invocable: true
+user-invocable: true
 ---
 
 # Loop Verifier Skill

@@ -4,7 +4,7 @@ description: >
   Triage recent changes, CI failures, issues, and conversations.
   Produces a concise, actionable findings report suitable for a loop to consume.
   Writes structured output to a state file or Linear board.
-user_invocable: true
+user-invocable: true
 ---
 
 # Loop Triage Skill

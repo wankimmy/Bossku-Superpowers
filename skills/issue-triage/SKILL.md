@@ -3,7 +3,7 @@ name: issue-triage
 description: >
   Scan open issues and discussions. Dedupe, prioritize, and propose labels.
   Updates issue-triage-state.md. L1 propose-only — never auto-label or close.
-user_invocable: true
+user-invocable: true
 ---
 
 # Issue Triage Skill

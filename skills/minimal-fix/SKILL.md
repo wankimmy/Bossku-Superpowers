@@ -4,7 +4,7 @@ description: >
   Produce the smallest possible code change that fixes a specific, well-scoped
   issue (CI failure, reviewer comment, typo). Use only when the fix target is
   explicit. Never refactor unrelated code.
-user_invocable: true
+user-invocable: true
 ---
 
 # Minimal Fix Skill

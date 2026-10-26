@@ -1,7 +1,7 @@
 ---
 name: changelog-scan
 description: Scan recent merges/PRs/commits for release note content. Structured output for drafter.
-user_invocable: true
+user-invocable: true
 ---
 
 # Changelog Scan (Claude)
