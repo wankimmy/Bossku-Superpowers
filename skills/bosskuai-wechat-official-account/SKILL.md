@@ -11,7 +11,7 @@ Use this skill to plan content and automation for a WeChat Official Account (OA)
 
 - **`bosskuai-content-calendar`**: cross-platform posting plans. This skill is specific to the OA format, menu, and auto-reply features.
 - **`bosskuai-livestream-commerce-coach`**: live selling, not article-based subscriber content.
-- **`bosskuai-social-publisher`**: scheduling and publishing across social platforms via a tool.
+- **`bosskuai-content-calendar`**: scheduling and publishing across social platforms via a tool.
 - **`community-marketing`** and **`copywriting`**: community building and copy craft in general.
 - **`analytics`**: tracking set-up; here the KPIs are OA-specific.
 

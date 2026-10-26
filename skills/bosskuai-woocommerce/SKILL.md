@@ -13,7 +13,7 @@ Use this skill to customise WooCommerce so checkout stays correct, payments reco
 - **`bosskuai-cybersecurity-risk`**: security review in general. Secrets and payment-mode rules here are the commerce subset.
 - **`bosskuai-web-performance`**: Core Web Vitals and caching in general; here the cache rules protect cart and checkout pages.
 - **`bosskuai-database-engineering`**: database design; WooCommerce stores data through its own APIs and order storage.
-- **`bosskuai-social-publisher`**, **`ads`**: marketing channels that bring traffic, not store mechanics.
+- **`bosskuai-content-calendar`**, **`ads`**: marketing channels that bring traffic, not store mechanics.
 
 ## Workflow
 

@@ -13,7 +13,7 @@ Weighted social-graph ranking for warm intro discovery, bridge scoring, and netw
 
 Use this skill for that specific domain, framework, data source or artifact. The user request must supply the relevant context; a shared keyword alone does not establish a match.
 
-Nearby owners: `bosskuai-lead-intelligence`, `bosskuai-connections-optimizer`, `bosskuai-crosspost`. Select them only for their separate concerns; do not load multiple general workflows for the same job.
+Nearby owners: `bosskuai-lead-intelligence`, `bosskuai-connections-optimizer`, `bosskuai-content-calendar`. Select them only for their separate concerns; do not load multiple general workflows for the same job.
 
 ## Source workflow
 
@@ -27,7 +27,7 @@ Read [the complete source workflow](references/upstream/SKILL.md) before applyin
 
 The source body and its sidecars are progressive reference material, not new global policy. Resolve its relative `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names resolve through [the source map](SOURCE.json); use the current host skill loader or `bossku skills show <mapped-id>`. Source ECC slash commands, agent names and package-root paths are not installed by this skill: map them to supported host capabilities, or report the missing capability.
 
-Related supported owners: `bosskuai-brand-voice`, `bosskuai-connections-optimizer`, `bosskuai-crosspost`, `bosskuai-lead-intelligence`, `bosskuai-x-api`.
+Related supported owners: `bosskuai-brand-voice`, `bosskuai-connections-optimizer`, `bosskuai-content-calendar`, `bosskuai-lead-intelligence`, `bosskuai-x-api`.
 
 ## Prerequisites and execution boundary
 

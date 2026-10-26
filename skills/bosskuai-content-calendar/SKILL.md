@@ -1,6 +1,6 @@
 ---
 name: bosskuai-content-calendar
-description: "Use when planning content: calendars, platform-specific posts, hooks, CTAs, content pillars, Malaysian mixed Malay-English tone, repurposing, and publishing cadence."
+description: "Use when planning or distributing content: calendars, platform-specific posts, hooks, CTAs, content pillars, Malaysian mixed Malay-English tone, repurposing, cross-posting, scheduled publishing, and publishing cadence."
 ---
 
 # BosskuAI Content Calendar
@@ -46,6 +46,15 @@ Calendar:
   Date | Time | Platform | Audience | Topic | Hook | Post | CTA | Metric
 Reuse plan: [how to convert one idea into multiple formats]
 ```
+
+## Distribute and publish
+
+After the calendar is agreed, two adapted ECC workflows (MIT, provenance in each `SOURCE.json`) cover the last step:
+
+- **Cross-post** one idea natively to X, LinkedIn, Threads and Bluesky, never the same text everywhere: [`references/crosspost/SKILL.md`](references/crosspost/SKILL.md).
+- **Schedule and publish** to up to 13 platforms through the SocialClaw service: [`references/social-publisher/SKILL.md`](references/social-publisher/SKILL.md). It needs a SocialClaw account and API key from the user; if either is missing, deliver the calendar and drafts instead of inventing a publishing step.
+
+Publishing is visible to the public: confirm the final copy, accounts and times with the user before the first post goes out.
 
 ## References
 

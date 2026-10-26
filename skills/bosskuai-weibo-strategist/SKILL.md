@@ -12,7 +12,7 @@ Use this skill to plan and run a brand presence on Weibo, a public-conversation 
 - **`bosskuai-kuaishou-strategist`**: loyal-community short video and live commerce; Weibo is topic and discourse driven.
 - **`bosskuai-douyin-strategist`**: short-video recommendation feed.
 - **`public-relations`**: general PR and crisis communication; this skill is Weibo-specific mechanics.
-- **`bosskuai-social-publisher`**: cross-posting and scheduling tooling, not strategy.
+- **`bosskuai-content-calendar`**: cross-posting and scheduling tooling, not strategy.
 
 ## Workflow
 

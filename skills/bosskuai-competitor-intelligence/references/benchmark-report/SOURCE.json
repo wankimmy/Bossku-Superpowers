@@ -8,9 +8,9 @@
   "runtime_status": "reference only; not installed or executed",
   "source_skill_map": {
     "benchmark": "bosskuai-performance-profiling",
-    "benchmark-methodology": "bosskuai-competitor-scoring",
+    "benchmark-methodology": "bosskuai-competitor-intelligence",
     "brand-discovery": "bosskuai-brand-discovery",
-    "competitive-platform-analysis": "bosskuai-competitive-platform-analysis"
+    "competitive-platform-analysis": "bosskuai-competitor-intelligence"
   },
   "resources": []
 }

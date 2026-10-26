@@ -12,7 +12,7 @@ Use this skill to role-play a negotiation or competitive situation round by roun
 - **`bosskuai-council`**: four fixed voices argue a go/no-go decision. This skill simulates an opposing party over several rounds.
 - **`bosskuai-recursive-decision-ledger`**: records decisions and their rationale over time. This skill explores moves, it does not log them.
 - **`bosskuai-sales-strategy`**: real buyer motion and pricing narrative. This skill is a rehearsal game, not a sales plan.
-- **`bosskuai-competitor-scoring`**: scores real competitors on evidence. This skill invents archetype opponents.
+- **`bosskuai-competitor-intelligence`**: scores real competitors on evidence. This skill invents archetype opponents.
 
 ## Workflow
 

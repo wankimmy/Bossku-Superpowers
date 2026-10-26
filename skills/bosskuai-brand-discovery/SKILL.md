@@ -28,7 +28,7 @@ Read [the complete source workflow](references/upstream/SKILL.md) before applyin
 
 The source body and its sidecars are progressive reference material, not new global policy. Resolve its relative `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names resolve through [the source map](SOURCE.json); use the current host skill loader or `bossku skills show <mapped-id>`. Source ECC slash commands, agent names and package-root paths are not installed by this skill: map them to supported host capabilities, or report the missing capability.
 
-Related supported owners: `bosskuai-brand-voice`, `bosskuai-claude-devfleet`, `bosskuai-competitive-platform-analysis`, `marketing-plan`.
+Related supported owners: `bosskuai-brand-voice`, `bosskuai-claude-devfleet`, `bosskuai-competitor-intelligence`, `marketing-plan`.
 
 ## Prerequisites and execution boundary
 

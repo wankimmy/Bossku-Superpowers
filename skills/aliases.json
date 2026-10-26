@@ -18,6 +18,11 @@
     "bosskuai-orch-pipeline": "bosskuai-engineering-delivery",
     "bosskuai-orch-fix-defect": "bosskuai-diagnose-loop",
     "bosskuai-orch-refine-code": "bosskuai-code-revamp",
-    "bosskuai-orch-build-mvp": "bosskuai-rapid-prototype"
+    "bosskuai-orch-build-mvp": "bosskuai-rapid-prototype",
+    "bosskuai-competitive-platform-analysis": "bosskuai-competitor-intelligence",
+    "bosskuai-competitor-scoring": "bosskuai-competitor-intelligence",
+    "bosskuai-competitive-report-structure": "bosskuai-competitor-intelligence",
+    "bosskuai-crosspost": "bosskuai-content-calendar",
+    "bosskuai-social-publisher": "bosskuai-content-calendar"
   }
 }

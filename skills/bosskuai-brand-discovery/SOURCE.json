@@ -8,7 +8,7 @@
   "runtime_status": "reference only; not installed or executed",
   "source_skill_map": {
     "brand-voice": "bosskuai-brand-voice",
-    "competitive-platform-analysis": "bosskuai-competitive-platform-analysis"
+    "competitive-platform-analysis": "bosskuai-competitor-intelligence"
   },
   "resources": [
     {

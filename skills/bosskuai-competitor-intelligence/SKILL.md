@@ -1,6 +1,6 @@
 ---
 name: bosskuai-competitor-intelligence
-description: "Use when doing recurring competitor monitoring: a dated comparison matrix, pricing/feature/messaging/hiring deltas since the last check, and what they mean. For a first deep profile use competitor-profiling; for vs/alternative pages use competitors."
+description: "Use when doing recurring competitor monitoring or a scored benchmark: a dated comparison matrix, pricing/feature/messaging/hiring deltas since the last check, tier scores and white space. First deep profile: competitor-profiling; vs/alternative pages: competitors."
 ---
 
 # BosskuAI Competitor Intelligence
@@ -80,6 +80,16 @@ description: "Use when doing recurring competitor monitoring: a dated comparison
 - Do not republish scraped content verbatim — summarise and attribute.
 - Save each dated matrix to `competitor-profiles/<YYYY-MM-DD>-matrix.md`; record only a one-line pointer and the top deltas with `bossku remember --kind project`, so project memory stays small and delta detection still works.
 - Never present inferred pricing as confirmed without a direct source.
+
+## Deep benchmark (scope, score, report)
+
+When the user wants a decision-grade benchmark rather than a monitoring update, run these three stages in order. Each is an adapted ECC workflow kept whole (MIT, provenance and hashes in its `SOURCE.json`); read the stage file before applying it, and treat any script it names as reference until reviewed.
+
+1. **Scope** the set: who counts as a competitor, their tier, and which sources to mine: [`references/benchmark-scope/SKILL.md`](references/benchmark-scope/SKILL.md).
+2. **Score** each one into a comparable profile card on nine weighted, evidence-anchored dimensions: [`references/benchmark-score/SKILL.md`](references/benchmark-score/SKILL.md).
+3. **Report**: landscape map, tiers, benchmarking matrix, white space and recommendations: [`references/benchmark-report/SKILL.md`](references/benchmark-report/SKILL.md).
+
+The guardrails above still apply to every stage: source and date each data point, and mark inferred cells.
 
 ## Further reading
 

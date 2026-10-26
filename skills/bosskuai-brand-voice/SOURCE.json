@@ -8,7 +8,7 @@
   "runtime_status": "reference only; not installed or executed",
   "source_skill_map": {
     "content-engine": "content-strategy",
-    "crosspost": "bosskuai-crosspost",
+    "crosspost": "bosskuai-content-calendar",
     "lead-intelligence": "bosskuai-lead-intelligence",
     "x-api": "bosskuai-x-api"
   },

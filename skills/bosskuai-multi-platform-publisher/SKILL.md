@@ -9,7 +9,7 @@ Use this skill to turn one source article into platform-native drafts for severa
 
 ## How this differs from nearby skills
 
-- **`bosskuai-social-publisher`**: scheduling and publishing to Western social platforms through one service. This skill is about Chinese platforms, per-platform rewriting, and draft-only handoff.
+- **`bosskuai-content-calendar`**: scheduling and publishing to Western social platforms through one service. This skill is about Chinese platforms, per-platform rewriting, and draft-only handoff.
 - **`bosskuai-content-calendar`**: planning what to post and when. This skill executes one article across channels.
 - **`bosskuai-zhihu-strategist`**, **`bosskuai-bilibili-content-strategist`**: platform strategy and voice. Use them to rewrite for those platforms.
 - **`bosskuai-article-writing`**: writing the master draft.
