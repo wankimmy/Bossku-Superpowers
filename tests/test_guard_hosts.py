@@ -68,6 +68,16 @@ class GuardHostTests(unittest.TestCase):
                 self.assertEqual(gone[f"{tool}_guard"]["status"], "removed", tool)
             self.assertEqual(_read(home / ".codex" / "hooks.json")["hooks"]["PreToolUse"], [mine])
 
+    def test_codex_hooks_switched_off_by_the_user_is_reported_not_changed(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            home = _home(tmp)
+            config = home / ".codex" / "config.toml"
+            config.write_text("[features]\nhooks = false\n", encoding="utf-8")
+            result = install_hooks(home=home, tools=("codex",), root=ROOT)["codex_guard"]
+            self.assertEqual(result["status"], "disabled_by_user")
+            self.assertIn("hooks = false", result["warning"])
+            self.assertEqual(config.read_text(encoding="utf-8"), "[features]\nhooks = false\n")
+
     def test_a_missing_tool_folder_is_skipped(self):
         with tempfile.TemporaryDirectory() as tmp:
             result = install_hooks(home=Path(tmp), tools=TOOLS, root=ROOT)
@@ -83,7 +93,7 @@ class GuardHostTests(unittest.TestCase):
             const v1 = (await plugin.server({ directory: "/proj" }))["tool.execute.before"];
             await v1({ tool: "bash" }, { args: { command: "git status" } });
             await assert.rejects(v1({ tool: "bash" }, { args: { command: "git reset --hard" } }), /denied/);
-            await assert.rejects(v1({ tool: "bash" }, { args: { command: "git push origin main" } }), /go-ahead/);
+            await assert.rejects(v1({ tool: "bash" }, { args: { command: "git push origin main" } }), /cannot ask from a hook/);
             const hooks = {};
             const on = (kind) => ({ hook: async (name, cb) => { hooks[kind + name] = cb; return {}; } });
             await plugin.setup({ tool: on("tool:"), permission: on("perm:") });

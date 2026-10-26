@@ -442,7 +442,7 @@ def uninstall_user(*, root: Path | None = None, home: Path | None = None, purge:
     from bossku.host_agents import remove_host_agents
     removed_host_agents = remove_host_agents(h)
     remove_tree(library_dir(h))
-    for name in ("references", "site", "docs"):   # shared files the lean library links to
+    for name in ("references", *SUPPORT_DIRS, "docs"):   # shared files the lean library links to
         remove_tree(user_config_dir(h) / name)
     routing_index_copy(h).unlink(missing_ok=True)
     routing_signature_path(h).unlink(missing_ok=True)

@@ -85,7 +85,7 @@ Existing sync hooks remain safety nets. In Obsidian mode they verify vault avail
 | Cursor | stop, sessionEnd, afterAgentResponse |
 | Claude Code | Stop, SessionEnd |
 | Codex | Stop, SessionEnd via a continue-safe wrapper |
-| OpenCode | session.idle (OpenCode 1); the end of a run (OpenCode 2, which has no session.idle) |
+| OpenCode | session.idle (OpenCode 1.18.29 or newer); the end of a run (OpenCode 2, which has no session.idle) |
 
 Claude Code also gets small helper hooks: `SessionStart` runs `bossku session-brief` (the newest project notes, plus one line when Codex stopped on its usage limit in this folder), and `UserPromptSubmit` runs `bossku skill-hint` (names the one or two skills that fit the prompt, only when the match is strong; Codex gets the same hint). Four Node hooks from a checkout of this repo come with them: a `PreToolUse` guard for destructive commands, a `PostToolUse` syntax and anti-slop check, a `SessionStart` contract, and a `Stop` gate that sends the agent back once if it changed code and never ran it (`BOSSKU_STOP_GATE=off` turns it off; see [`hooks/README.md`](../hooks/README.md) for the other switches). With `bossku install --no-harness` the Python `bossku verify-gate` is the Stop hook instead (`BOSSKU_VERIFY_GATE=0` turns that one off). `bossku hooks uninstall` removes all of them.
 

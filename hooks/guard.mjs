@@ -76,19 +76,70 @@ const WHOLE_LINE_RULES = [
 
 // Legitimate but consequential: the work leaves this machine, reaches users, or changes live infrastructure. AGENTS.md
 // says push, merge and PRs wait for the user's go-ahead, so the host asks instead of refusing (a skill's
-// `allowed-tools` cannot skip it). A deny rule above wins over these. `unless` exempts a dry run.
-// Off switch for an approved autonomous loop: BOSSKU_GUARD_ASK=off.
-const DRY_RUN = /\s--dry-run(?:[\s=]|$)/i;
+// `allowed-tools` cannot skip it). A deny rule above wins over these. Off switch for an approved autonomous loop:
+// BOSSKU_GUARD_ASK=off.
+//
+// Ask rules read the command the shell runs, word by word (see commands() and parseCommand() below): the program at
+// the start of each simple command and its subcommand words, with options and their values in between allowed
+// (`kubectl -n prod delete`, `gh -R o/r pr merge`). Quoted text, a heredoc body or a `grep` pattern that mentions
+// `git push` is not a push. `--dry-run` and `--help` never ask.
+const WRITE_METHOD = /^(?:POST|PUT|PATCH|DELETE)$/i;
+// REST endpoints where a write merges, moves a branch, cuts a release, starts a deploy or changes the repository's
+// settings or branch protection.
+const API_TARGET = /(?:^|\/)(?:merges?|git\/refs|releases|dispatches|deployments|protection)(?:[/?]|$)|\/repository\/(?:branches|tags)(?:[/?]|$)|^\/?repos\/[^/]+\/[^/?]+\/?$/i;
+const GRAPHQL_WRITE = /\b(?:merge\w*|enable\w*AutoMerge|delete\w*|updateRefs?|createRef|archiveRepository|transferRepository|closePullRequest|createPullRequest)\s*\(/i;
+
+// `gh api` / `glab api` calls that merge, move a ref, publish a release, dispatch a workflow or delete. Reading, and
+// writes such as resolving a review thread or a comment, stay quiet.
+function apiWrite(p) {
+  let method = null;
+  let fields = false;
+  for (let k = 0; k < p.args.length; k++) {
+    const w = p.args[k];
+    const m = /^(?:-X|--method)(?:=?(.+))?$/.exec(w);
+    if (m) method = m[1] !== undefined ? m[1] : p.args[k + 1] || "";
+    else if (/^(?:-[fF]|--(?:raw-)?field|--input)(?:=|$)|^-[fF]\S/.test(w)) fields = true;
+  }
+  if (method !== null && /^DELETE$/i.test(method)) return true;
+  const endpoint = p.seq.slice(1).find((w) => w.includes("/") || w.toLowerCase() === "graphql") || "";
+  if (endpoint.toLowerCase() === "graphql") return /\bmutation\b/i.test(p.args.join(" ")) && GRAPHQL_WRITE.test(p.args.join(" "));
+  const writes = method !== null ? WRITE_METHOD.test(method) : fields;   // gh and glab POST when fields are given
+  return writes && API_TARGET.test(endpoint);
+}
+
+const vercelProd = (p) =>
+  hasFlag(p, /^--prod$|^--target=production$/i) || (hasFlag(p, /^--target$/) && p.seq.some((w) => w.toLowerCase() === "production"));
+
 export const ASK_RULES = [
-  { re: /\bgit\s+push\b/i, unless: /\s(?:--dry-run|-n)(?:[\s=]|$)/i, why: "pushes commits to a remote" },
-  { re: /\b(?:gh\s+pr|glab\s+mr)\s+(?:create|merge)\b/i, why: "opens or merges a pull request" },
-  { re: /\bgh\s+(?:repo\s+(?:delete|archive|rename)|release\s+(?:create|delete|upload))\b/i, why: "changes a GitHub repository or release" },
-  { re: /\b(?:gh|glab)\s+api\b[^]*\s(?:-X|--method)(?:\s+|=)["']?DELETE\b/i, why: "deletes through the GitHub or GitLab API" },
-  { re: /\b(?:npm|pnpm)\s+publish\b|\byarn\s+(?:npm\s+)?publish\b|\btwine\s+upload\b|\b(?:poetry|uv|cargo|hatch|flit)\s+publish\b|\bgem\s+push\b|\bdocker\s+(?:image\s+)?push\b/i, unless: DRY_RUN, why: "publishes a package or image" },
-  { re: /\beas\s+(?:submit|update)\b|\bfastlane\s+(?:deliver|supply|pilot)\b/i, why: "submits an app to a store or pushes an over-the-air update to users" },
-  { re: /\b(?:vercel|netlify)\b[^]*\s--prod\b|\bvercel\s+promote\b|\bfirebase\s+deploy\b|\b(?:fly|flyctl)\s+deploy\b|\bwrangler\s+(?:deploy|publish)\b|\brailway\s+up\b|\b(?:serverless|sls)\s+deploy\b/i, unless: DRY_RUN, why: "deploys to production" },
-  { re: /\bterraform\s+(?:apply|destroy)\b|\bpulumi\s+(?:up|destroy)\b|\bcdk\s+(?:deploy|destroy)\b|\bkubectl\s+delete\b|\bhelm\s+(?:uninstall|delete)\b/i, why: "changes or destroys live infrastructure" },
-  { re: /\baws\s+s3\s+(?:rm|rb)\b|\baws\s+\S+\s+(?:delete|terminate)-\S+|\b(?:gcloud|az)\b[^]*\sdelete\b/i, why: "deletes cloud resources" },
+  { tools: ["git"], paths: [["push"], ["subtree", "push"]], unless: (p) => hasFlag(p, /^-[a-zA-Z]*n[a-zA-Z]*$/), why: "pushes commits to a remote" },
+  { tools: ["gh"], paths: [["pr", "create"], ["pr", "merge"]], why: "opens or merges a pull request" },
+  { tools: ["glab"], paths: [["mr", "create"], ["mr", "merge"]], why: "opens or merges a merge request" },
+  { tools: ["gh"], paths: [["repo", "delete"], ["repo", "archive"], ["repo", "rename"], ["release", "create"], ["release", "delete"], ["release", "upload"], ["workflow", "run"]], why: "changes a GitHub repository or release, or starts a workflow" },
+  { tools: ["gh"], paths: [["repo", "create"]], when: (p) => hasFlag(p, /^--push$/), why: "creates a repository and pushes to it" },
+  { tools: ["gh", "glab"], paths: [["api"]], when: apiWrite, why: "writes through the GitHub or GitLab API (a merge, a ref, a release, a dispatch or a delete)" },
+  { tools: ["npm", "pnpm", "bun", "cargo", "poetry", "uv", "hatch", "flit"], paths: [["publish"]], why: "publishes a package" },
+  { tools: ["yarn"], paths: [["publish"], ["npm", "publish"]], why: "publishes a package" },
+  { tools: ["twine"], paths: [["upload"]], why: "publishes a package" },
+  { tools: ["gem"], paths: [["push"]], why: "publishes a package" },
+  { tools: ["npx", "bunx", "pnpx"], paths: [["semantic-release"], ["release-it"]], why: "publishes a release" },
+  { tools: ["docker", "podman"], paths: [["push"], ["image", "push"]], why: "publishes an image" },
+  { tools: ["docker", "podman"], paths: [["build"], ["buildx", "build"], ["image", "build"]], when: (p) => hasFlag(p, /^--push$/), why: "publishes an image" },
+  { tools: ["eas"], paths: [["submit"], ["update"]], why: "submits an app to a store or pushes an over-the-air update to users" },
+  { tools: ["eas"], paths: [["build"]], when: (p) => hasFlag(p, /^--auto-submit/), why: "submits an app to a store" },
+  { tools: ["fastlane"], paths: [["deliver"], ["supply"], ["pilot"]], why: "submits an app to a store" },
+  { tools: ["vercel"], when: vercelProd, why: "deploys to production" },
+  { tools: ["vercel"], paths: [["promote"]], why: "deploys to production" },
+  { tools: ["netlify"], paths: [["deploy"]], when: (p) => hasFlag(p, /^--prod(?:=|$)/), why: "deploys to production" },
+  { tools: ["firebase", "fly", "flyctl", "serverless", "sls"], paths: [["deploy"]], why: "deploys to production" },
+  { tools: ["wrangler"], paths: [["deploy"], ["publish"], ["pages", "deploy"], ["pages", "publish"]], why: "deploys to production" },
+  { tools: ["railway"], paths: [["up"]], why: "deploys to production" },
+  { tools: ["terraform", "tofu"], paths: [["apply"], ["destroy"]], why: "changes or destroys live infrastructure" },
+  { tools: ["pulumi"], paths: [["up"], ["destroy"]], why: "changes or destroys live infrastructure" },
+  { tools: ["cdk"], paths: [["deploy"], ["destroy"]], why: "changes or destroys live infrastructure" },
+  { tools: ["kubectl"], paths: [["delete"]], why: "deletes live infrastructure" },
+  { tools: ["helm"], paths: [["uninstall"], ["delete"]], why: "removes a live release" },
+  { tools: ["aws"], paths: [["s3", "rm"], ["s3", "rb"], [/^[\w-]+$/, /^(?:delete|terminate)-/i]], why: "deletes cloud resources" },
+  { tools: ["gcloud", "az"], when: (p) => p.seq.some((w) => w.toLowerCase() === "delete"), why: "deletes cloud resources" },
 ];
 
 // In front of the verb: `sudo`, `env FOO=1`, `nohup`, `time`, an option, or the verb's own folder (/bin/rm).
@@ -376,18 +427,201 @@ export function judge(command, cwd, git = budgetedGit(), dir = cwd) {
   return null;
 }
 
-// The first segment that should wait for the user's go-ahead (ASK_RULES), looking inside `bash -c` bodies too, or null.
-// Call it only after judge() found nothing to deny.
-export function askFor(command, depth = 0) {
-  for (const seg of segments(command)) {
-    const bare = seg.replace(GIT_GLOBAL, "git ");
-    for (const rule of ASK_RULES) {
-      if (rule.re.test(bare) && !(rule.unless && rule.unless.test(bare))) return { rule: seg, why: rule.why };
+// The simple commands of a command line, each as its words. Splits at unquoted ; & && || | ( ) { } and line breaks; a
+// quoted string is one word without its quotes. Heredoc bodies are input, not commands, so they are dropped; `$(...)`
+// and backtick bodies run even inside double quotes, so they come back as commands of their own. One pass, so a long
+// line costs linear time.
+const HEREDOC = /(<<-?[ \t]*(["']?)([\w.-]+)\2)([^\n]*)\n([^]*?)\n[ \t]*\3[ \t]*\r?(?=\n|$)/g;
+// Characters a backslash escapes outside quotes. Before anything else (`C:\tools\git.exe`) it is a Windows path separator.
+const ESCAPABLE = new Set([..."\"'\\$`;&|()<>{} \t"]);
+// Where each `(` closes, found in one pass, so unbalanced input stays linear.
+function closers(text) {
+  const close = new Map();
+  const open = [];
+  for (let i = 0; i < text.length; i++) {
+    if (text[i] === "(") open.push(i);
+    else if (text[i] === ")" && open.length) close.set(open.pop(), i);
+  }
+  return close;
+}
+export function commands(line, depth = 0) {
+  const nested = [];
+  const raw = String(line);
+  // A heredoc fed to a shell (`bash <<EOF`, `ssh host <<EOF`) is a script after all. Past 64 heredoc starts the
+  // bodies are left in place: slower to read wrongly than to search for terminators that are not there.
+  const heredocs = (raw.match(/<</g) || []).length;
+  const text = heredocs > 64 ? raw : raw.replace(HEREDOC, (match, head, q, tag, rest, body, offset, all) => {
+    const before = all.slice(all.lastIndexOf("\n", offset) + 1, offset).split(/[\s;&|(]+/).filter(Boolean);
+    const program = programName(before.find((w) => !PREFIX_WORDS.has(w.toLowerCase()) && !/^[A-Za-z_]\w*=/.test(w)) || "");
+    if (SHELLS.has(program) || program === "ssh") nested.push(body);
+    return head + rest;
+  });
+  const out = [];
+  const close = closers(text);
+  let words = [];
+  let word = "";
+  let inWord = false;
+  let quote = null;
+  const endWord = () => {
+    if (inWord) words.push(word);
+    word = "";
+    inWord = false;
+  };
+  const endCommand = () => {
+    endWord();
+    if (words.length) out.push(words);
+    words = [];
+  };
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (quote === "'") {
+      if (c === "'") quote = null;
+      else word += c;
+      continue;
     }
-    const nested = depth < 3 && seg.match(NESTED);
-    if (nested) {
-      const hit = askFor(nested[1].replace(/^["']/, "").replace(/["']$/, ""), depth + 1);
-      if (hit) return { rule: seg, why: hit.why };
+    if (c === "$" && text[i + 1] === "(") {
+      const end = close.get(i + 1) ?? -1;
+      if (end > 0) {
+        nested.push(text.slice(i + 2, end));
+        word += text.slice(i, end + 1);
+        inWord = true;
+        i = end;
+        continue;
+      }
+    }
+    if (c === "`") {
+      const end = text.indexOf("`", i + 1);
+      if (end > 0) {
+        nested.push(text.slice(i + 1, end));
+        word += text.slice(i, end + 1);
+        inWord = true;
+        i = end;
+        continue;
+      }
+    }
+    if (quote === '"') {
+      if (c === '"') quote = null;
+      else if (c === "\\" && /["\\$`]/.test(text[i + 1] || "")) word += text[++i];
+      else word += c;
+      continue;
+    }
+    if (c === "'" || c === '"') {
+      quote = c;
+      inWord = true;
+    } else if (c === "\\" && ESCAPABLE.has(text[i + 1])) {
+      word += text[++i];
+      inWord = true;
+    } else if (c === "\n" || c === ";" || c === "(" || c === ")" || c === "{" || c === "}" || c === "|") {
+      endCommand();
+    } else if (c === "&") {
+      if (text[i + 1] === ">" || text[i - 1] === ">" || text[i - 1] === "<") {
+        word += c; // &> >& <& are redirections
+        inWord = true;
+      } else endCommand();
+    } else if (/\s/.test(c)) {
+      endWord();
+    } else {
+      word += c;
+      inWord = true;
+    }
+  }
+  endCommand();
+  if (depth < 3) for (const body of nested) out.push(...commands(body, depth + 1));
+  return out;
+}
+
+// Words that can stand before the program: `sudo`, `env A=1`, `nohup`, `time`, shell keywords after a `;`.
+const PREFIX_WORDS = new Set(["sudo", "doas", "env", "nohup", "exec", "command", "builtin", "time", "nice", "then", "do", "else", "elif", "if", "while", "until", "!"]);
+const programName = (w) => toPosix(w).split("/").pop().replace(/\.(?:exe|cmd|bat)$/i, "").toLowerCase();
+
+// One simple command as { tool, args, seq, value }: the program (no folder, no .exe or .cmd), the words after it, and
+// its subcommand words with options left out. `value[i]` marks a word right after an option written without `=`:
+// it may be that option's value, so a subcommand may also start after it (`kubectl -n prod delete`).
+function parseCommand(words) {
+  let i = 0;
+  let prefixed = false;
+  for (; i < words.length; i++) {
+    const w = words[i];
+    if (PREFIX_WORDS.has(w.toLowerCase())) prefixed = true;
+    else if (!/^[A-Za-z_]\w*=/.test(w) && !(prefixed && w.startsWith("-"))) break;
+  }
+  if (i >= words.length) return null;
+  const args = words.slice(i + 1);
+  const seq = [];
+  const value = [];
+  let afterOption = false;
+  for (const w of args) {
+    if (w.length > 1 && w.startsWith("-")) {
+      afterOption = !w.includes("=");
+      continue;
+    }
+    seq.push(w);
+    value.push(afterOption);
+    afterOption = false;
+  }
+  return { tool: programName(words[i]), words: words.slice(i), args, seq, value };
+}
+function hasFlag(p, re) {
+  return p.args.some((w) => w.length > 1 && w.startsWith("-") && re.test(w));
+}
+function hasPath(p, path) {
+  const starts = [0];
+  for (let k = 0; k < p.seq.length && p.value[k]; k++) starts.push(k + 1);
+  return starts.some((s) =>
+    path.every((m, j) => {
+      const w = p.seq[s + j];
+      return w !== undefined && (typeof m === "string" ? w.toLowerCase() === m : m.test(w));
+    }));
+}
+
+const SHELLS = new Set(["bash", "sh", "zsh", "dash", "ksh", "powershell", "pwsh"]);
+// The command line inside `bash -c '...'`, `pwsh -Command "..."`, `cmd /c ...`, `eval ...`, `find -exec ... ;`,
+// `xargs ...`, `timeout 10 ...` or `watch ...`, or null.
+function innerLine(p) {
+  if (SHELLS.has(p.tool)) {
+    const at = p.args.findIndex((w) => /^-[a-z]*c$|^-command$|^<<<$/i.test(w));   // also a here-string: bash <<< '...'
+    return at >= 0 && p.args[at + 1] !== undefined ? p.args[at + 1] : null;
+  }
+  if (p.tool === "cmd") {
+    const at = p.args.findIndex((w) => /^\/[ck]$/i.test(w));
+    return at >= 0 ? p.args.slice(at + 1).join(" ") : null;
+  }
+  if (p.tool === "find") {
+    // find ... -exec cmd {} ;  (also -execdir, -ok, -okdir)
+    const at = p.args.findIndex((w) => /^-(?:exec|execdir|ok|okdir)$/.test(w));
+    if (at < 0) return null;
+    const end = p.args.findIndex((w, k) => k > at && (w === ";" || w === "+"));
+    return p.args.slice(at + 1, end < 0 ? undefined : end).join(" ");
+  }
+  if (["xargs", "timeout", "watch"].includes(p.tool)) {
+    // the command starts at the first word that is not an option or its value; timeout's first word is the duration
+    const skip = p.tool === "timeout" ? 1 : 0;
+    let k = 0;
+    while (k < p.seq.length && p.value[k]) k++;
+    const first = p.seq[k + skip];
+    return first === undefined ? null : p.args.slice(p.args.indexOf(first, p.args.indexOf(p.seq[k]))).join(" ");
+  }
+  return p.tool === "eval" && p.args.length ? p.args.join(" ") : null;
+}
+
+// The first command that should wait for the user's go-ahead (ASK_RULES), looking inside `bash -c` bodies too, or
+// null. Call it only after judge() found nothing to deny.
+export function askFor(command, depth = 0) {
+  for (const words of commands(command)) {
+    const p = parseCommand(words);
+    if (!p) continue;
+    if (!hasFlag(p, /^--(?:dry-run|help)(?:=|$)/i)) {
+      for (const rule of ASK_RULES) {
+        if (!rule.tools.includes(p.tool)) continue;
+        if (rule.paths && !rule.paths.some((path) => hasPath(p, path))) continue;
+        if ((rule.when && !rule.when(p)) || (rule.unless && rule.unless(p))) continue;
+        return { rule: p.words.join(" ").slice(0, 200), why: rule.why };
+      }
+    }
+    const inner = depth < 3 ? innerLine(p) : null;
+    if (inner) {
+      const hit = askFor(inner, depth + 1);
+      if (hit) return { rule: p.words.join(" ").slice(0, 200), why: hit.why };
     }
   }
   return null;
@@ -414,11 +648,17 @@ export function decide(command, cwd) {
   return null;
 }
 
-// Codex cannot ask from a hook (an "ask" fails open there), so an ask rule refuses and says how to go ahead.
+// Codex and OpenCode 1 cannot ask from a hook (an "ask" fails open in Codex), so an ask rule refuses there and says how
+// to go ahead.
 export const CODEX_ASK_ADVICE =
-  "Push, merge, publish and deploy wait for the user's go-ahead, and Codex cannot ask from a hook, so this was " +
+  "Push, merge, publish and deploy wait for the user's go-ahead, and this tool cannot ask from a hook, so this was " +
   "refused. Give the user the exact command to run, or, for an approved autonomous loop, they can set " +
   "BOSSKU_GUARD_ASK=off.";
+
+// The text for a host that can only refuse: a deny keeps its reason, an ask says it was refused for want of a prompt.
+export function refusal(verdict) {
+  return verdict.decision === "ask" ? `BosskuAI guard: ${verdict.rule}  (${verdict.why}). ${CODEX_ASK_ADVICE}` : verdict.reason;
+}
 
 // The hook's reply for one host, or null to stay silent. `host` comes from `--host <name>` on the command line:
 // claude (PreToolUse, the default), codex (PreToolUse, Bash matcher), cursor (beforeShellExecution).
@@ -439,7 +679,7 @@ export function reply(host, input) {
     hookSpecificOutput: {
       hookEventName: "PreToolUse",
       permissionDecision: codexAsk ? "deny" : verdict.decision,
-      permissionDecisionReason: codexAsk ? `BosskuAI guard: ${verdict.rule}  (${verdict.why}). ${CODEX_ASK_ADVICE}` : verdict.reason,
+      permissionDecisionReason: codexAsk ? refusal(verdict) : verdict.reason,
     },
   };
 }

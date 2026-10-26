@@ -233,6 +233,47 @@ const ASK = [
   "az group delete --name rg-app",
   "npm test && git push origin main",
   "bash -c 'git push origin main'",
+  // options before the verb, Windows spellings, and forms the first rules missed
+  "kubectl -n prod delete deploy api",
+  "kubectl --context prod delete pod web-1",
+  "helm -n apps uninstall api",
+  "terraform -chdir=infra apply",
+  "tofu apply",
+  "pulumi --cwd infra up",
+  "aws --profile prod s3 rm s3://bucket/key",
+  "aws --region ap-southeast-1 ec2 terminate-instances --instance-ids i-1",
+  "pnpm -r publish",
+  "pnpm --filter web publish",
+  "npm -w pkg publish",
+  "bun publish",
+  "npx semantic-release",
+  "firebase --project prod deploy",
+  "gh -R me/app pr merge 1 --squash",
+  "gh repo create me/app --public --source . --push",
+  "gh workflow run deploy.yml",
+  "git subtree push --prefix dist origin gh-pages",
+  "wrangler pages deploy dist",
+  "vercel deploy --target=production",
+  "docker buildx build --push -t ghcr.io/me/app .",
+  "eas build --auto-submit",
+  "git.exe push origin main",
+  "npm.cmd publish",
+  "C:\\tools\\git.exe push origin main",
+  // API writes that merge, move a branch or publish
+  "gh api -X PUT repos/me/app/pulls/7/merge -f merge_method=squash",
+  "gh api -XDELETE repos/me/app",
+  "gh api -X PATCH repos/me/app/git/refs/heads/main -f sha=abc -F force=true",
+  "gh api repos/me/app/releases -f tag_name=v1.0.0",
+  "gh api graphql -f query='mutation { mergePullRequest(input: {pullRequestId: \"x\"}) { clientMutationId } }'",
+  "glab api -X PUT projects/1/merge_requests/2/merge",
+  // run by the shell even though it is written inside something else
+  "(cd web && git push)",
+  "echo \"$(git push origin main)\"",
+  "if true; then git push; fi",
+  "sudo -E git push origin main",
+  "bash <<'EOF'\ngit push origin main\nEOF",
+  "find . -name x -exec git push \\;",
+  "timeout 60 git push origin main",
 ];
 // Look-alikes and dry runs that must not ask.
 const NO_ASK = [
@@ -259,6 +300,27 @@ const NO_ASK = [
   "aws s3 ls s3://bucket",
   "gcloud config list",
   "wrangler deploy --dry-run",
+  // mentions, not runs: quoted text, a heredoc that writes a file, a search pattern
+  "git commit -m \"docs: explain git push\"",
+  "git tag -a v1 -m 'release: npm publish'",
+  "grep -rn \"npm publish\" docs/",
+  "echo 'run git push later'",
+  "cat > docs/release.md <<'EOF'\n1. build\n2. git push origin main\nEOF",
+  "git log --grep push",
+  "npm run publish",
+  "npm run publish-docs",
+  // dry runs and help
+  "kubectl delete deploy api --dry-run=client",
+  "helm uninstall api --dry-run",
+  "gh pr create --dry-run",
+  "git push -nv origin main",
+  "git push --help",
+  // API reads and low-stakes writes
+  "gh api repos/me/app/pulls/7/merge",
+  "gh api -X GET search/issues -f q=repo:me/app",
+  "glab api --method PUT \"projects/:fullpath/merge_requests/3/discussions/9\" --field resolved=true",
+  "vercel deploy",
+  "netlify deploy",
 ];
 
 test("guard asks before push, merge, publish, deploy and infra-destroy", () => {
@@ -267,6 +329,14 @@ test("guard asks before push, merge, publish, deploy and infra-destroy", () => {
     assert.ok(askFor(cmd), `expected ask: ${cmd}`);
   }
   for (const cmd of NO_ASK) assert.equal(askFor(cmd), null, `expected no ask: ${cmd}`);
+});
+
+test("guard ask check stays fast on a very long line", () => {
+  const long = "echo " + "a".repeat(200000) + " && git status";
+  const started = Date.now();
+  assert.equal(askFor(long), null);
+  assert.ok(askFor(long + " && git push origin main"));
+  assert.ok(Date.now() - started < 1000, `took ${Date.now() - started} ms`);
 });
 
 test("guard decision: deny wins over ask, and each has its own off switch", () => {

@@ -755,18 +755,22 @@ async function decide(command, cwd) {{
   if (typeof command !== "string" || !command) return null;
   if (loaded === undefined) {{
     try {{
-      loaded = (await import(pathToFileURL(GUARD).href)).decide || null;
+      const mod = await import(pathToFileURL(GUARD).href);
+      loaded = typeof mod.decide === "function" ? mod : null;
     }} catch (e) {{
       loaded = null;
       console.warn(`[bossku-guard] guard not loaded, commands run unchecked: ${{e instanceof Error ? e.message : String(e)}}`);
     }}
   }}
   try {{
-    return loaded ? loaded(command, cwd) : null;
+    return loaded ? loaded.decide(command, cwd) : null;
   }} catch {{
     return null;
   }}
 }}
+
+// OpenCode 1 cannot ask from a plugin, so an ask is refused with the reason that says why and how to go ahead.
+const refusal = (verdict) => (loaded && typeof loaded.refusal === "function" ? loaded.refusal(verdict) : verdict.reason);
 
 export default {{
   id: "bossku-guard",
@@ -776,7 +780,7 @@ export default {{
       if (!info || info.tool !== "bash") return;
       const args = (output && output.args) || {{}};
       const verdict = await decide(args.command, args.workdir || (input && input.directory) || process.cwd());
-      if (verdict) throw new Error(verdict.reason);
+      if (verdict) throw new Error(refusal(verdict));
     }},
   }}),
   // OpenCode 2: the `shell` tool. Deny before it runs; ask through the permission evaluation.
@@ -870,7 +874,18 @@ def install_codex_guard(home: Path, root: Path | None) -> dict:
         return blocked
     want = {"matcher": "Bash", "hooks": [{"type": "command", "command": _guard_command(root, "codex"),
                                           "timeout": GUARD_TIMEOUT, "statusMessage": "BosskuAI guard"}]}
-    return _json_guard(home, ".codex", "PreToolUse", want)
+    result = _json_guard(home, ".codex", "PreToolUse", want)
+    config = home / ".codex" / "config.toml"
+    if result.get("status") in ("installed", "already_installed") and config.is_file():
+        raw = config.read_bytes()
+        try:
+            text = raw[len(codecs.BOM_UTF8) if raw.startswith(codecs.BOM_UTF8) else 0:].decode("utf-8")
+        except UnicodeDecodeError:
+            text = None
+        if text is not None and _enable_hooks_in_toml(text)[1] == "disabled_by_user":   # a check only: nothing is written
+            result = {**result, "status": "disabled_by_user",
+                      "warning": "[features] hooks = false in config.toml: Codex will not run the guard"}
+    return result
 
 
 def install_cursor_guard(home: Path, root: Path | None) -> dict:

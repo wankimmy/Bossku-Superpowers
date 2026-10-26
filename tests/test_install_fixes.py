@@ -155,6 +155,16 @@ class UninstallTests(unittest.TestCase):
                 for name in ("references", "site", "tools", "docs"):
                     self.assertFalse((home / parent / name).exists(), msg=f"{parent}/{name}")
 
+    def test_a_lean_uninstall_removes_the_support_folders_next_to_the_library(self):
+        # lean copies the shared folders into ~/.bosskuai next to library/, so the links in library skills resolve
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp)
+            install_user(root=ROOT, home=home, profile="lean")
+            self.assertTrue((home / ".bosskuai" / "tools" / "README.md").is_file())
+            uninstall_user(root=ROOT, home=home)
+            for name in ("references", "site", "tools", "docs"):
+                self.assertFalse((home / ".bosskuai" / name).exists(), msg=name)
+
     def test_each_removed_skill_is_listed_once(self):
         with tempfile.TemporaryDirectory() as tmp:
             home = Path(tmp)
