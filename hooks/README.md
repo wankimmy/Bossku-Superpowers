@@ -13,6 +13,18 @@ Mechanical gates for the disciplines in `AGENTS.md`. Declared in [`hooks.json`](
 
 The Python helper hooks have their own switches: `BOSSKU_VERIFY_GATE=0` for the Python verify gate (it is the Stop hook only after `bossku install --no-harness`; the Node stop gate ignores it), and `BOSSKU_RESUME=off` for the two hooks that read Codex's session files (see [`SECURITY.md`](../SECURITY.md#hooks)).
 
+## Codex, Cursor and OpenCode
+
+`bossku install` and `bossku hooks install` wire the same guard into the other tools you have set up (their config folder exists), from the same checkout, and `--no-harness` / `bossku hooks uninstall` take it out:
+
+| Tool | Where | Deny | Ask |
+|---|---|---|---|
+| Codex | `~/.codex/hooks.json`, `PreToolUse` with matcher `Bash`, `node .../guard.mjs --host codex` | yes | no: Codex marks an ask as a failed hook and runs the command, so an ask rule refuses and tells the agent to hand the command to the user. Codex runs a new or changed hook only after you trust it in `/hooks`. |
+| Cursor | `~/.cursor/hooks.json`, `beforeShellExecution`, `node .../guard.mjs --host cursor` | yes | yes. Cursor blocks on an empty or invalid reply, so this mode always answers, `{"permission":"allow"}` included. |
+| OpenCode | `~/.config/opencode/plugins/bossku-guard.js`, which imports `guard.mjs` | yes | OpenCode 2 through its permission evaluation; on OpenCode 1 an ask refuses |
+
+Cursor also runs Claude Code hooks from `~/.claude/settings.json` when its "third-party" setting is on (the default), as `preToolUse`, where it does not enforce an ask. Cursor's docs do not say which tool name that copy of the guard receives: with Cursor's `Shell` it stays silent, with `Bash` it can deny too. Either way the native `beforeShellExecution` hook is the one that asks.
+
 ## Manual tests
 
 ```bash

@@ -16,7 +16,7 @@ Your agent is smart, but it forgets your rules and sometimes says "done" without
 |---|---|
 | Agent doesn't know which skill to use | Picks the best skill for your request from 670+ skills |
 | Agent writes code but never runs it | Sends the agent back once to run it |
-| Agent runs a command that destroys work | Refuses `git reset --hard`, force push, `rm -rf ~` and similar, and tells you how to run it yourself (Claude Code) |
+| Agent runs a command that destroys work | Refuses `git reset --hard`, force push, `rm -rf ~` and similar, and tells you how to run it yourself (Claude Code, Codex, Cursor and OpenCode) |
 | Agent pushes, merges or deploys on its own | Asks you first before `git push`, a PR merge, `npm publish`, `eas submit`, `vercel --prod`, `terraform destroy` and similar (`BOSSKU_GUARD_ASK=off` for an approved autonomous loop) |
 | You told it a rule yesterday, today it forgot | Saves rules and decisions as notes and shows them next session |
 | Codex stopped on its usage limit | Claude Code can pick the task up in the same folder with `bossku resume` |
@@ -63,7 +63,7 @@ More choices:
 |---|---|
 | **670+ skills** | Short checklists for engineering, product, design, security, marketing and founder work: 256 listable, 416 in a searchable library |
 | **Helper hooks** (Claude Code; Codex gets the skill hint too) | Suggest a skill for your prompt and show your saved notes at session start. `hint_mode` `v2` in `~/.bosskuai/config.json` suggests up to three skills per prompt: it is opt in, because it missed some bars in its [offline test](docs/benchmarks/README.md#skill-hint-v1-against-v2) |
-| **Safety gates** (Claude Code) | Refuse destructive commands (`git reset --hard`, `rm -rf ~`), check the syntax of files the agent writes, and send the agent back once if it never ran its code. [Details and switches](hooks/README.md). Leave them out with `bossku install --no-harness` |
+| **Safety gates** (Claude Code; the command guard also runs in Codex, Cursor and OpenCode) | Refuse destructive commands (`git reset --hard`, `rm -rf ~`), ask before a push, merge, publish or deploy, check the syntax of files the agent writes, and send the agent back once if it never ran its code. [Details and switches](hooks/README.md). Leave them out with `bossku install --no-harness` |
 | **Subagents** (Claude Code, Codex, OpenCode, Cursor, Devin) | Seven contracts (orchestrator, researcher, planner, designer, executor, auditor, final-reviewer), copied to `~/.claude/agents` and rendered in each other tool's own format (`~/.codex/agents/*.toml`, `~/.config/opencode/agents`, `~/.cursor/agents`, Devin's `agents` folder) for every tool you have set up, with a model per role. Leave them out with `--no-agents` |
 | **Resume** | When Codex stops on its usage limit, Claude Code shows the task's brief in the same folder after you say "continue". Context only: nothing is saved |
 | **Tools** | Optional programs like Headroom, Moli, e2e, Cypress, Archify, Graft and MarkItDown. Installed only when you ask. Cypress goes into one project, never global |

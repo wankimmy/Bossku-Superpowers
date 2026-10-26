@@ -414,24 +414,44 @@ export function decide(command, cwd) {
   return null;
 }
 
-if (isMain(import.meta.url)) {
-  try {
-    const input = readStdinJson();
-    const tool = input.tool_name || "";
-    const ti = input.tool_input || {};
-    const command = ti.command || "";
-    if (!/^(Bash|PowerShell)$/.test(tool) || !command) process.exit(0);
-    const verdict = decide(command, input.cwd);
-    if (!verdict) process.exit(0);
-    emit({
-      hookSpecificOutput: {
-        hookEventName: "PreToolUse",
-        permissionDecision: verdict.decision,
-        permissionDecisionReason: verdict.reason,
-      },
-    });
-    process.exit(0);
-  } catch {
-    process.exit(0);
+// Codex cannot ask from a hook (an "ask" fails open there), so an ask rule refuses and says how to go ahead.
+export const CODEX_ASK_ADVICE =
+  "Push, merge, publish and deploy wait for the user's go-ahead, and Codex cannot ask from a hook, so this was " +
+  "refused. Give the user the exact command to run, or, for an approved autonomous loop, they can set " +
+  "BOSSKU_GUARD_ASK=off.";
+
+// The hook's reply for one host, or null to stay silent. `host` comes from `--host <name>` on the command line:
+// claude (PreToolUse, the default), codex (PreToolUse, Bash matcher), cursor (beforeShellExecution).
+export function reply(host, input) {
+  if (host === "cursor") {
+    // Cursor blocks on an empty or invalid reply, so every path answers.
+    const verdict = decide(String(input.command || ""), input.cwd);
+    if (!verdict) return { permission: "allow" };
+    return { permission: verdict.decision, user_message: verdict.reason, agent_message: verdict.reason };
   }
+  const tool = input.tool_name || "";
+  const command = (input.tool_input || {}).command || "";
+  if (!/^(Bash|PowerShell)$/.test(tool) || typeof command !== "string" || !command) return null;
+  const verdict = decide(command, input.cwd);
+  if (!verdict) return null;
+  const codexAsk = host === "codex" && verdict.decision === "ask";
+  return {
+    hookSpecificOutput: {
+      hookEventName: "PreToolUse",
+      permissionDecision: codexAsk ? "deny" : verdict.decision,
+      permissionDecisionReason: codexAsk ? `BosskuAI guard: ${verdict.rule}  (${verdict.why}). ${CODEX_ASK_ADVICE}` : verdict.reason,
+    },
+  };
+}
+
+if (isMain(import.meta.url)) {
+  const at = process.argv.indexOf("--host");
+  const host = at > 0 ? String(process.argv[at + 1] || "").toLowerCase() : "claude";
+  try {
+    const out = reply(host, readStdinJson());
+    if (out) emit(out);
+  } catch {
+    if (host === "cursor") emit({ permission: "allow" });   // fail open, but with a reply Cursor accepts
+  }
+  process.exit(0);
 }

@@ -717,6 +717,190 @@ def install_opencode_plugin(home: Path) -> dict:
     return {"status": "already_installed" if was_present else "installed", "path": str(path)}
 
 
+# --- the destructive-command guard on Codex, Cursor and OpenCode ---------
+# hooks/guard.mjs, the same rules as Claude Code's PreToolUse gate, in each tool's own hook format: Codex PreToolUse
+# (an ask becomes a refusal: Codex cannot ask from a hook), Cursor beforeShellExecution (deny, ask, allow), and an
+# OpenCode plugin that imports the guard (OpenCode 1 and 2). They follow the harness switch: `--no-harness` takes
+# them out. Commands carry HARNESS_MARKER, so uninstall finds only ours.
+
+GUARD_TIMEOUT = 10
+OPENCODE_GUARD_FILE = "bossku-guard.js"
+_OPENCODE_GUARD_HEADER = "// Managed by BosskuAI (`bossku hooks install`): the destructive-command guard."
+
+_OPENCODE_GUARD_TEMPLATE = _OPENCODE_GUARD_HEADER + """ Safe to delete; re-run to restore.
+// Runs hooks/guard.mjs from the BosskuAI checkout before every shell command, on OpenCode 1 (server) and 2 (setup).
+// The guard fails open: if the checkout is gone, commands run and one warning is printed.
+import {{ pathToFileURL }} from "node:url";
+
+const GUARD = {guard};
+let loaded;   // undefined: not tried yet; null: unavailable
+
+async function decide(command, cwd) {{
+  if (typeof command !== "string" || !command) return null;
+  if (loaded === undefined) {{
+    try {{
+      loaded = (await import(pathToFileURL(GUARD).href)).decide || null;
+    }} catch (e) {{
+      loaded = null;
+      console.warn(`[bossku-guard] guard not loaded, commands run unchecked: ${{e instanceof Error ? e.message : String(e)}}`);
+    }}
+  }}
+  try {{
+    return loaded ? loaded(command, cwd) : null;
+  }} catch {{
+    return null;
+  }}
+}}
+
+export default {{
+  id: "bossku-guard",
+  // OpenCode 1: the `bash` tool. A plugin cannot ask there, so an ask refuses and says how to go ahead.
+  server: async (input) => ({{
+    "tool.execute.before": async (info, output) => {{
+      if (!info || info.tool !== "bash") return;
+      const args = (output && output.args) || {{}};
+      const verdict = await decide(args.command, args.workdir || (input && input.directory) || process.cwd());
+      if (verdict) throw new Error(verdict.reason);
+    }},
+  }}),
+  // OpenCode 2: the `shell` tool. Deny before it runs; ask through the permission evaluation.
+  setup: async (ctx) => {{
+    await ctx.tool.hook("execute.before", async (event) => {{
+      if (!event || !/(^|\\.)(shell|bash)$/.test(String(event.tool))) return;
+      const args = event.input || {{}};
+      const verdict = await decide(args.command, args.workdir || process.cwd());
+      if (verdict && verdict.decision === "deny") throw new Error(verdict.reason);
+    }});
+    await ctx.permission.hook("evaluate", async (request) => {{
+      if (!request || request.action !== "shell" || request.effect === "deny") return;
+      for (const resource of request.resources || []) {{
+        const verdict = await decide(resource, process.cwd());
+        if (verdict && verdict.decision === "ask") {{
+          request.effect = "ask";
+          request.message = verdict.reason;
+          return;
+        }}
+      }}
+    }});
+  }},
+}};
+"""
+
+
+def _guard_command(root: Path, host: str) -> str:
+    return f'node "{root.resolve().as_posix()}/hooks/guard.mjs" --host {host} {HARNESS_MARKER}'
+
+
+def _guard_problem(root: Path | None, *, needs_node: bool) -> dict | None:
+    if root is None:
+        return {"status": "skipped_no_checkout", "message": "no checkout with hooks/guard.mjs to point the guard at"}
+    if not (root / "hooks" / "guard.mjs").is_file():
+        return {"status": "error", "message": f"hooks/guard.mjs not found under {root}"}
+    if needs_node and shutil.which("node") is None:
+        return {"status": "skipped_no_node", "message": "node is not on PATH, and the guard runs with Node"}
+    return None
+
+
+def _set_guard_entry(hooks: dict, event: str, want: dict) -> bool:
+    """Put exactly one guard entry under `event`, next to the user's own entries. True when something changed."""
+    bucket = hooks.get(event) if isinstance(hooks.get(event), list) else []
+    if [e for e in bucket if _is_harness(e)] == [want]:
+        return False
+    hooks[event] = [e for e in bucket if not _is_harness(e)] + [want]
+    return True
+
+
+def _drop_guard_entries(hooks: dict, event: str) -> bool:
+    bucket = hooks.get(event)
+    if not isinstance(bucket, list) or not any(_is_harness(e) for e in bucket):
+        return False
+    remaining = [e for e in bucket if not _is_harness(e)]
+    if remaining:
+        hooks[event] = remaining
+    else:
+        hooks.pop(event, None)
+    return True
+
+
+def _json_guard(home: Path, folder: str, event: str, want: dict | None, *, version: bool = False) -> dict:
+    """Install (`want`) or remove (None) the guard entry in <home>/<folder>/hooks.json."""
+    base = home / folder
+    if not base.is_dir():
+        return {"status": "skipped_not_found", "path": str(base)}
+    path = base / "hooks.json"
+    if want is None and not path.is_file():
+        return {"status": "not_installed", "path": str(path)}
+    data = _read_json(path)
+    if version:
+        data.setdefault("version", 1)
+    hooks = data.setdefault("hooks", {})
+    if not isinstance(hooks, dict):
+        hooks = {}
+        data["hooks"] = hooks
+    changed = _set_guard_entry(hooks, event, want) if want is not None else _drop_guard_entries(hooks, event)
+    if not changed:
+        return {"status": "already_installed" if want is not None else "not_installed", "path": str(path),
+                "events": [event]}
+    _backup(path)
+    _write_json(path, data)
+    return {"status": "installed" if want is not None else "removed", "path": str(path), "events": [event]}
+
+
+def install_codex_guard(home: Path, root: Path | None) -> dict:
+    if not (home / ".codex").is_dir():
+        return {"status": "skipped_not_found", "path": str(home / ".codex")}
+    blocked = _guard_problem(root, needs_node=True)
+    if blocked:
+        return blocked
+    want = {"matcher": "Bash", "hooks": [{"type": "command", "command": _guard_command(root, "codex"),
+                                          "timeout": GUARD_TIMEOUT, "statusMessage": "BosskuAI guard"}]}
+    return _json_guard(home, ".codex", "PreToolUse", want)
+
+
+def install_cursor_guard(home: Path, root: Path | None) -> dict:
+    if not (home / ".cursor").is_dir():
+        return {"status": "skipped_not_found", "path": str(home / ".cursor")}
+    blocked = _guard_problem(root, needs_node=True)
+    if blocked:
+        return blocked
+    want = {"command": _guard_command(root, "cursor"), "timeout": GUARD_TIMEOUT}
+    return _json_guard(home, ".cursor", "beforeShellExecution", want, version=True)
+
+
+def install_opencode_guard(home: Path, root: Path | None) -> dict:
+    base = home / ".config" / "opencode"
+    if not base.is_dir():
+        return {"status": "skipped_not_found", "path": str(base)}
+    blocked = _guard_problem(root, needs_node=False)   # OpenCode imports the guard into its own runtime
+    if blocked:
+        return blocked
+    path = base / "plugins" / OPENCODE_GUARD_FILE
+    text = _OPENCODE_GUARD_TEMPLATE.format(guard=json.dumps((root / "hooks" / "guard.mjs").resolve().as_posix()))
+    if path.is_file() and path.read_text(encoding="utf-8") == text:
+        return {"status": "already_installed", "path": str(path)}
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding="utf-8")
+    return {"status": "installed", "path": str(path)}
+
+
+def remove_opencode_guard(home: Path) -> dict:
+    path = home / ".config" / "opencode" / "plugins" / OPENCODE_GUARD_FILE
+    if not path.is_file():
+        return {"status": "not_installed", "path": str(path)}
+    if not path.read_text(encoding="utf-8").startswith(_OPENCODE_GUARD_HEADER):
+        return {"status": "skipped_not_ours", "path": str(path)}
+    path.unlink()
+    return {"status": "removed", "path": str(path)}
+
+
+_GUARD_INSTALLERS = {"codex": install_codex_guard, "cursor": install_cursor_guard, "opencode": install_opencode_guard}
+_GUARD_REMOVERS = {
+    "codex": lambda home: _json_guard(home, ".codex", "PreToolUse", None),
+    "cursor": lambda home: _json_guard(home, ".cursor", "beforeShellExecution", None),
+    "opencode": remove_opencode_guard,
+}
+
+
 _INSTALLERS = {
     "claude_code": install_claude_code_hook,
     "cursor": install_cursor_hook,
@@ -753,6 +937,11 @@ def install_hooks(
                 result[tool] = installer(h)
         except Exception as exc:  # noqa: BLE001 - one tool's failure must not abort the rest
             result[tool] = {"status": "error", "message": str(exc)}
+        if tool in _GUARD_INSTALLERS and (root is not None or not harness):
+            try:   # the guard follows the harness switch, like Claude Code's gates
+                result[f"{tool}_guard"] = _GUARD_INSTALLERS[tool](h, root) if harness else _GUARD_REMOVERS[tool](h)
+            except Exception as exc:  # noqa: BLE001
+                result[f"{tool}_guard"] = {"status": "error", "message": str(exc)}
     return result
 
 
@@ -861,6 +1050,11 @@ def uninstall_hooks(*, home: Path | None = None, tools: tuple[str, ...] | None =
                 result[tool] = uninstaller(h)
         except Exception as exc:  # noqa: BLE001
             result[tool] = {"status": "error", "message": str(exc)}
+        if tool in _GUARD_REMOVERS:
+            try:
+                result[f"{tool}_guard"] = _GUARD_REMOVERS[tool](h)
+            except Exception as exc:  # noqa: BLE001
+                result[f"{tool}_guard"] = {"status": "error", "message": str(exc)}
     return result
 
 

@@ -31,6 +31,15 @@ function run(script, input, env = {}) {
   return { code: r.status, out: r.stdout, err: r.stderr };
 }
 
+function runArgs(script, args, input, env = {}) {
+  const r = spawnSync(process.execPath, [path.join(HOOKS, script), ...args], {
+    input: typeof input === "string" ? input : JSON.stringify(input),
+    encoding: "utf8",
+    env: { ...process.env, ...CHILD_ENV, ...env },
+  });
+  return { code: r.status, out: r.stdout, err: r.stderr };
+}
+
 function tmpdir() {
   return fs.mkdtempSync(path.join(os.tmpdir(), "bossku-hooks-"));
 }
@@ -275,6 +284,32 @@ test("guard decision: deny wins over ask, and each has its own off switch", () =
   const stillDenied = run("guard.mjs", { tool_name: "Bash", tool_input: { command: "git reset --hard" }, cwd: CWD },
     { BOSSKU_GUARD_ASK: "off" });
   assert.equal(JSON.parse(stillDenied.out).hookSpecificOutput.permissionDecision, "deny", "deny rules stay on");
+});
+
+test("guard on Codex: denies, and turns an ask into a refusal because Codex cannot ask", () => {
+  const bash = (command) => ({ hook_event_name: "PreToolUse", tool_name: "Bash", tool_input: { command }, cwd: CWD });
+  const deny = JSON.parse(runArgs("guard.mjs", ["--host", "codex"], bash("git reset --hard")).out);
+  assert.equal(deny.hookSpecificOutput.permissionDecision, "deny");
+  assert.match(deny.hookSpecificOutput.permissionDecisionReason, /recovery steps/);
+  const ask = JSON.parse(runArgs("guard.mjs", ["--host", "codex"], bash("git push origin main")).out);
+  assert.equal(ask.hookSpecificOutput.permissionDecision, "deny", "Codex marks an ask as a failed hook and runs the tool");
+  assert.match(ask.hookSpecificOutput.permissionDecisionReason, /cannot ask from a hook/);
+  assert.equal(runArgs("guard.mjs", ["--host", "codex"], bash("git status")).out, "");
+  assert.equal(runArgs("guard.mjs", ["--host", "codex"], bash("git push origin main"), { BOSSKU_GUARD_ASK: "off" }).out, "");
+  assert.equal(runArgs("guard.mjs", ["--host", "codex"], { tool_name: "apply_patch", tool_input: { command: "*** Begin Patch" } }).out, "");
+});
+
+test("guard on Cursor: always answers, with deny, ask or allow", () => {
+  const shell = (command) => ({ hook_event_name: "beforeShellExecution", command, cwd: CWD, sandbox: false });
+  const deny = JSON.parse(runArgs("guard.mjs", ["--host", "cursor"], shell("rm -rf ~")).out);
+  assert.equal(deny.permission, "deny");
+  assert.ok(deny.user_message && deny.agent_message);
+  assert.equal(JSON.parse(runArgs("guard.mjs", ["--host", "cursor"], shell("npm publish")).out).permission, "ask");
+  assert.deepEqual(JSON.parse(runArgs("guard.mjs", ["--host", "cursor"], shell("npm test")).out), { permission: "allow" });
+  // Cursor blocks on an empty or invalid reply, so bad input still gets a valid "allow".
+  assert.deepEqual(JSON.parse(runArgs("guard.mjs", ["--host", "cursor"], "not json").out), { permission: "allow" });
+  assert.deepEqual(JSON.parse(runArgs("guard.mjs", ["--host", "cursor"], shell("git reset --hard"), { BOSSKU_GUARD: "off" }).out),
+    { permission: "allow" });
 });
 
 test("guard script emits a deny decision and stays silent on allow", () => {
