@@ -74,6 +74,23 @@ const WHOLE_LINE_RULES = [
   { re: /\b(curl|wget|irm|iwr|Invoke-(WebRequest|RestMethod))\b[^]*\|\s*(sudo\s+)?(bash|sh|zsh|iex|Invoke-Expression|powershell|pwsh)\b/i, why: "pipes a remote script into a shell (supply-chain risk)" },
 ];
 
+// Legitimate but consequential: the work leaves this machine, reaches users, or changes live infrastructure. AGENTS.md
+// says push, merge and PRs wait for the user's go-ahead, so the host asks instead of refusing (a skill's
+// `allowed-tools` cannot skip it). A deny rule above wins over these. `unless` exempts a dry run.
+// Off switch for an approved autonomous loop: BOSSKU_GUARD_ASK=off.
+const DRY_RUN = /\s--dry-run(?:[\s=]|$)/i;
+export const ASK_RULES = [
+  { re: /\bgit\s+push\b/i, unless: /\s(?:--dry-run|-n)(?:[\s=]|$)/i, why: "pushes commits to a remote" },
+  { re: /\b(?:gh\s+pr|glab\s+mr)\s+(?:create|merge)\b/i, why: "opens or merges a pull request" },
+  { re: /\bgh\s+(?:repo\s+(?:delete|archive|rename)|release\s+(?:create|delete|upload))\b/i, why: "changes a GitHub repository or release" },
+  { re: /\b(?:gh|glab)\s+api\b[^]*\s(?:-X|--method)(?:\s+|=)["']?DELETE\b/i, why: "deletes through the GitHub or GitLab API" },
+  { re: /\b(?:npm|pnpm)\s+publish\b|\byarn\s+(?:npm\s+)?publish\b|\btwine\s+upload\b|\b(?:poetry|uv|cargo|hatch|flit)\s+publish\b|\bgem\s+push\b|\bdocker\s+(?:image\s+)?push\b/i, unless: DRY_RUN, why: "publishes a package or image" },
+  { re: /\beas\s+(?:submit|update)\b|\bfastlane\s+(?:deliver|supply|pilot)\b/i, why: "submits an app to a store or pushes an over-the-air update to users" },
+  { re: /\b(?:vercel|netlify)\b[^]*\s--prod\b|\bvercel\s+promote\b|\bfirebase\s+deploy\b|\b(?:fly|flyctl)\s+deploy\b|\bwrangler\s+(?:deploy|publish)\b|\brailway\s+up\b|\b(?:serverless|sls)\s+deploy\b/i, unless: DRY_RUN, why: "deploys to production" },
+  { re: /\bterraform\s+(?:apply|destroy)\b|\bpulumi\s+(?:up|destroy)\b|\bcdk\s+(?:deploy|destroy)\b|\bkubectl\s+delete\b|\bhelm\s+(?:uninstall|delete)\b/i, why: "changes or destroys live infrastructure" },
+  { re: /\baws\s+s3\s+(?:rm|rb)\b|\baws\s+\S+\s+(?:delete|terminate)-\S+|\b(?:gcloud|az)\b[^]*\sdelete\b/i, why: "deletes cloud resources" },
+];
+
 // In front of the verb: `sudo`, `env FOO=1`, `nohup`, `time`, an option, or the verb's own folder (/bin/rm).
 const WRAP = "(?:(?:sudo|env|command|nohup|time|exec)\\s+|-\\S+\\s+|\\w+=\\S*\\s+)*(?:[\\w.:~-]*[\\\\/])*";
 const RM_RE = new RegExp(`^${WRAP}(rm|Remove-Item|ri|rd|rmdir|del|erase)\\b(.*)$`, "i");
@@ -359,25 +376,58 @@ export function judge(command, cwd, git = budgetedGit(), dir = cwd) {
   return null;
 }
 
+// The first segment that should wait for the user's go-ahead (ASK_RULES), looking inside `bash -c` bodies too, or null.
+// Call it only after judge() found nothing to deny.
+export function askFor(command, depth = 0) {
+  for (const seg of segments(command)) {
+    const bare = seg.replace(GIT_GLOBAL, "git ");
+    for (const rule of ASK_RULES) {
+      if (rule.re.test(bare) && !(rule.unless && rule.unless.test(bare))) return { rule: seg, why: rule.why };
+    }
+    const nested = depth < 3 && seg.match(NESTED);
+    if (nested) {
+      const hit = askFor(nested[1].replace(/^["']/, "").replace(/["']$/, ""), depth + 1);
+      if (hit) return { rule: seg, why: hit.why };
+    }
+  }
+  return null;
+}
+
+export const DENY_ADVICE =
+  "Do not work around this. Give the user the exact command plus the recovery steps " +
+  "(stash first, --force-with-lease, backup, dry run) and let them run it in their own terminal. " +
+  "Off switch for a deliberate session: BOSSKU_GUARD=off.";
+export const ASK_ADVICE =
+  "Push, merge, publish and deploy wait for the user's go-ahead. Approve to run it. If no one can answer this " +
+  "prompt, stop and give the user the exact command instead of working around it. " +
+  "Off switch for an approved autonomous loop: BOSSKU_GUARD_ASK=off.";
+
+// What the guard decides for one shell command: { decision: "deny" | "ask", rule, why, reason } or null. Every host
+// adapter (Claude Code, Codex, Cursor, OpenCode) calls this, so the rules stay in one place.
+export function decide(command, cwd) {
+  if (!command || isOff("BOSSKU_GUARD")) return null;
+  const hit = judge(command, cwd);
+  if (hit) return { decision: "deny", ...hit, reason: `BosskuAI guard denied: ${hit.rule}  (${hit.why}). ${DENY_ADVICE}` };
+  if (isOff("BOSSKU_GUARD_ASK")) return null;
+  const ask = askFor(command);
+  if (ask) return { decision: "ask", ...ask, reason: `BosskuAI guard: ${ask.rule}  (${ask.why}). ${ASK_ADVICE}` };
+  return null;
+}
+
 if (isMain(import.meta.url)) {
   try {
-    if (isOff("BOSSKU_GUARD")) process.exit(0);
     const input = readStdinJson();
     const tool = input.tool_name || "";
     const ti = input.tool_input || {};
     const command = ti.command || "";
     if (!/^(Bash|PowerShell)$/.test(tool) || !command) process.exit(0);
-    const hit = judge(command, input.cwd);
-    if (!hit) process.exit(0);
+    const verdict = decide(command, input.cwd);
+    if (!verdict) process.exit(0);
     emit({
       hookSpecificOutput: {
         hookEventName: "PreToolUse",
-        permissionDecision: "deny",
-        permissionDecisionReason:
-          `BosskuAI guard denied: ${hit.rule}  (${hit.why}). ` +
-          "Do not work around this. Give the user the exact command plus the recovery steps " +
-          "(stash first, --force-with-lease, backup, dry run) and let them run it in their own terminal. " +
-          "Off switch for a deliberate session: BOSSKU_GUARD=off.",
+        permissionDecision: verdict.decision,
+        permissionDecisionReason: verdict.reason,
       },
     });
     process.exit(0);

@@ -9,7 +9,7 @@ import { test } from "node:test";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 import { isMain, isScratch, pluginRoot, segments, toPosix } from "../hooks/_lib.mjs";
-import { isSecretFile, judge, RULES } from "../hooks/guard.mjs";
+import { askFor, decide, isSecretFile, judge, RULES } from "../hooks/guard.mjs";
 import { slopLint, syntaxCheck, which } from "../hooks/post-edit.mjs";
 import { installHint, shotArgs, spawnPlan } from "../scripts/shot.mjs";
 import { analyze, tailLines } from "../hooks/stop-gate.mjs";
@@ -182,6 +182,99 @@ test("guard denies destructive commands", () => {
 
 test("guard allows ordinary and safe-variant commands", () => {
   for (const cmd of ALLOW) assert.equal(judge(cmd, CWD), null, `expected allow: ${cmd}`);
+});
+
+// Consequential commands the guard asks about (deny rules still win).
+const ASK = [
+  "git push origin main",
+  "git push -u origin feature",
+  "git push --force-with-lease origin main",
+  "git -C ../app push origin main",
+  "git push origin --delete old-branch",
+  "gh pr create --fill",
+  "gh pr merge 42 --squash",
+  "glab mr merge 7",
+  "gh release create v1.2.0",
+  "gh repo delete me/app --yes",
+  "gh api -X DELETE repos/me/app/git/refs/heads/x",
+  "glab api --method DELETE projects/1/issues/2",
+  "npm publish",
+  "pnpm publish --access public",
+  "yarn npm publish",
+  "twine upload dist/*",
+  "uv publish",
+  "cargo publish",
+  "docker push ghcr.io/me/app:1.0",
+  "eas submit --platform ios",
+  "eas update --branch production",
+  "vercel --prod",
+  "vercel deploy --prod --yes",
+  "netlify deploy --prod",
+  "firebase deploy --only hosting",
+  "fly deploy",
+  "wrangler deploy",
+  "terraform apply -auto-approve",
+  "terraform destroy",
+  "pulumi up --yes",
+  "kubectl delete namespace staging",
+  "helm uninstall api",
+  "aws s3 rm s3://bucket/data --recursive",
+  "aws ec2 terminate-instances --instance-ids i-1",
+  "gcloud compute instances delete vm-1",
+  "az group delete --name rg-app",
+  "npm test && git push origin main",
+  "bash -c 'git push origin main'",
+];
+// Look-alikes and dry runs that must not ask.
+const NO_ASK = [
+  "git status",
+  "git push --dry-run origin main",
+  "git push -n origin main",
+  "git pull --rebase",
+  "git commit -m 'push the button'",
+  "gh pr view 42",
+  "gh pr checks",
+  "gh api repos/me/app/pulls/42/comments --paginate",
+  "gh api graphql -f query='mutation { resolveReviewThread(input: {threadId: \"x\"}) { thread { id } } }'",
+  "npm publish --dry-run",
+  "npm run build",
+  "docker build -t app .",
+  "docker pull node:22",
+  "eas build --profile preview",
+  "vercel",
+  "vercel dev",
+  "terraform plan",
+  "kubectl get pods",
+  "kubectl apply -f k8s/dev.yaml",
+  "helm template api ./chart",
+  "aws s3 ls s3://bucket",
+  "gcloud config list",
+  "wrangler deploy --dry-run",
+];
+
+test("guard asks before push, merge, publish, deploy and infra-destroy", () => {
+  for (const cmd of ASK) {
+    assert.equal(judge(cmd, CWD), null, `ask commands are not deny commands: ${cmd}`);
+    assert.ok(askFor(cmd), `expected ask: ${cmd}`);
+  }
+  for (const cmd of NO_ASK) assert.equal(askFor(cmd), null, `expected no ask: ${cmd}`);
+});
+
+test("guard decision: deny wins over ask, and each has its own off switch", () => {
+  assert.equal(decide("git push origin main", CWD).decision, "ask");
+  assert.equal(decide("git push --force origin main", CWD).decision, "deny");
+  assert.equal(decide("git push origin main && git reset --hard", CWD).decision, "deny");
+  assert.equal(decide("git status", CWD), null);
+  const ask = run("guard.mjs", { tool_name: "Bash", tool_input: { command: "git push origin main" }, cwd: CWD });
+  const json = JSON.parse(ask.out);
+  assert.equal(json.hookSpecificOutput.permissionDecision, "ask");
+  assert.match(json.hookSpecificOutput.permissionDecisionReason, /go-ahead/);
+  const off = run("guard.mjs", { tool_name: "Bash", tool_input: { command: "git push origin main" }, cwd: CWD },
+    { BOSSKU_GUARD_ASK: "off" });
+  assert.equal(off.out, "", "BOSSKU_GUARD_ASK=off drops the ask");
+  const stillDenied = run("guard.mjs", { tool_name: "Bash", tool_input: { command: "git reset --hard" }, cwd: CWD },
+    { BOSSKU_GUARD_ASK: "off" });
+  assert.equal(JSON.parse(stillDenied.out).hookSpecificOutput.permissionDecision, "deny", "deny rules stay on");
 });
 
 test("guard script emits a deny decision and stays silent on allow", () => {

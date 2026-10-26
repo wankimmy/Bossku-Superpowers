@@ -17,6 +17,7 @@ Your agent is smart, but it forgets your rules and sometimes says "done" without
 | Agent doesn't know which skill to use | Picks the best skill for your request from 240+ skills |
 | Agent writes code but never runs it | Sends the agent back once to run it |
 | Agent runs a command that destroys work | Refuses `git reset --hard`, force push, `rm -rf ~` and similar, and tells you how to run it yourself (Claude Code) |
+| Agent pushes, merges or deploys on its own | Asks you first before `git push`, a PR merge, `npm publish`, `eas submit`, `vercel --prod`, `terraform destroy` and similar (`BOSSKU_GUARD_ASK=off` for an approved autonomous loop) |
 | You told it a rule yesterday, today it forgot | Saves rules and decisions as notes and shows them next session |
 | Codex stopped on its usage limit | Claude Code can pick the task up in the same folder with `bossku resume` |
 | Useful tools are hard to set up | `bossku tools list` shows what's available. Nothing installs unless you say yes |
