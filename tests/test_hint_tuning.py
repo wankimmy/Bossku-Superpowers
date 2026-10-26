@@ -146,7 +146,7 @@ class QuietPromptTests(unittest.TestCase):
 
     def test_the_quiet_set_is_not_a_copy_of_the_decision_sets(self):
         decision = set()
-        for name in ("fresh", "trivial"):
+        for name in ("fresh", "trivial", "out-of-catalog"):
             decision |= {item["prompt"] for item in json.loads(
                 (ROOT / "benchmarks" / "routing-heldout" / f"{name}.json").read_text(encoding="utf-8"))}
         held_out = json.loads(PROMPTS.read_text(encoding="utf-8"))

@@ -1,0 +1,1082 @@
+[
+  {
+    "id": "o-a-01",
+    "prompt": "Explain how a rice cooker knows the rice is cooked.",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-02",
+    "prompt": "Balance MnO4- + Fe2+ in acidic solution, showing each half-equation.",
+    "domain": "science",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-03",
+    "prompt": "Why do sunrise times in KL barely change through the year?",
+    "domain": "science",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-04",
+    "prompt": "Walk me through integrating x^2 ln x by parts.",
+    "domain": "science",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-05",
+    "prompt": "Explain CVT gearboxes and why Perodua switched to D-CVT.",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-06",
+    "prompt": "Toilet cistern keeps refilling every few minutes. What's causing it?",
+    "domain": "general",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-07",
+    "prompt": "Trace Dijkstra's shortest-path algorithm by hand on a five-node example.",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-08",
+    "prompt": "Why is my sourdough loaf dense and gummy inside?",
+    "domain": "general",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-09",
+    "prompt": "Calculate speedometer error going from 185/55R15 to 195/50R16 tyres.",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-10",
+    "prompt": "Explain the Caro-Kann Defence's main ideas and typical middlegame plans.",
+    "domain": "general",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-11",
+    "prompt": "How do condo lifts work? Explain counterweights and the traction system.",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-12",
+    "prompt": "How do noise-cancelling headphones actually work? Explain the physics.",
+    "domain": "science",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-13",
+    "prompt": "My aquarium fish die after every water change. Why?",
+    "domain": "general",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-14",
+    "prompt": "Explain the light-dependent and light-independent reactions of photosynthesis.",
+    "domain": "science",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-15",
+    "prompt": "Compare inverter vs non-inverter aircond running costs over five years.",
+    "domain": "general",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-16",
+    "prompt": "Explain how GPS calculates position, including the relativity correction.",
+    "domain": "science",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-17",
+    "prompt": "My chilli plant's leaves are curling upward. Causes and fixes?",
+    "domain": "general",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-18",
+    "prompt": "Why doesn't my aluminium pot work on an induction cooker?",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-19",
+    "prompt": "My watercolour skies keep turning muddy. What am I doing wrong?",
+    "domain": "creative",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-20",
+    "prompt": "Why do minor chords sound sad? Explain the actual music theory.",
+    "domain": "creative",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-21",
+    "prompt": "my car brakes started squealing right after the workshop changed the front pads last week. is that just bedding in or did they do something wrong? what can i check myself before going back to them?",
+    "domain": "general",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-22",
+    "prompt": "my daughter's in year 4 and doesn't get why 3/4 is bigger than 2/3. can you explain fractions in a way a 10 year old would actually get, using stuff like roti canai or pizza slices?",
+    "domain": "general",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-23",
+    "prompt": "found mud tubes on our kitchen door frame yesterday, pretty sure it's termites. how bad is this usually, and what's the real difference between DIY bait stations and getting pest control in?",
+    "domain": "general",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-24",
+    "prompt": "my 3D printer keeps stringing like crazy with PLA, already dropped the nozzle temp by 5 degrees. what else should i tweak and in what order?",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-25",
+    "prompt": "can you explain the offside rule properly, including the weird cases like when the ball comes off a defender or the keeper? my son keeps arguing with me about it lol",
+    "domain": "general",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-26",
+    "prompt": "the water heater in our bathroom trips the RCCB some mornings but not every day. what's likely going on, and is it safe to keep using it until the electrician comes?",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-27",
+    "prompt": "keep losing badminton doubles because my smash has zero power even though i'm quite strong. what actually generates power in a smash and what am i probably doing wrong?",
+    "domain": "general",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-28",
+    "prompt": "why does durian smell so strong? like which compounds are actually in there? explain the chemistry a bit deeper than the usual 'it's sulfur' answer",
+    "domain": "science",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-29",
+    "prompt": "my guitar teacher said put a capo on the 3rd fret and play G shapes. how does capo transposing actually work, what key am i really in, and can you make me a table for the other frets?",
+    "domain": "creative",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-30",
+    "prompt": "want to shoot my daughter's indoor badminton tournament with my old Canon 700D and the kit lens, but the hall lighting is pretty bad. what settings should i use and why?",
+    "domain": "creative",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-31",
+    "prompt": "family of 4 going KL to Penang for a long weekend. is driving actually cheaper than the ETS once you count tolls, petrol, parking and grab on the island? walk me through the math, rough numbers are fine",
+    "domain": "general",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-32",
+    "prompt": "my 6yo and 4yo fight over literally everything, toys, car seats, who gets to press the lift button. what's actually going on at their ages and what can i do that isn't just yelling or separating them?",
+    "domain": "general",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-33",
+    "prompt": "can you explain how git actually stores stuff internally, like blobs, trees and commits, and what really happens to them when i rebase? i use it every day but never really got it",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-34",
+    "prompt": "my ex-intern is applying for a junior dev job and asked me for a reference letter. she was with us 6 months, super self-driven, basically built our booking page on her own and was great with customers on support. can you draft one i can tweak?",
+    "domain": "general",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-35",
+    "prompt": "my son asked why the sky is blue but sunsets are orange and i totally fumbled it. explain it properly so i actually get it, then give me a version for an 8 year old",
+    "domain": "science",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-36",
+    "prompt": "we're flying KL to London with our 2 year old, around 14 hours. how do we handle jet lag for her and for us, like what should we shift and when, before and after we land?",
+    "domain": "general",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-37",
+    "prompt": "was on the MRT Putrajaya line today and realised there's no driver at all. how do driverless trains actually know where every train is and keep a safe gap? explain the signalling properly, not the brochure version",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-38",
+    "prompt": "my neighbour and i are splitting RM2,400 to fix the shared drain behind our houses, but his stretch is 14m vs my 9m and he has 2 downpipes draining into it vs my 1. what are a few fair ways to split it? show the numbers",
+    "domain": "general",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-39",
+    "prompt": "knitting my first beanie, head is 52cm and my gauge is 18 stitches per 10cm in stockinette. how many stitches should i cast on, and how do i work out the crown decreases?",
+    "domain": "creative",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-40",
+    "prompt": "trying to draw the row of old shophouses on my street in 2-point perspective but my windows always end up wonky. how do i set up the vanishing points properly and get the windows to line up?",
+    "domain": "creative",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-41",
+    "prompt": "Bro, aircond bilik aku menitik air kat dinding dah 2 minggu. Apa punca dia, and boleh repair sendiri ke kena panggil technician?",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-42",
+    "prompt": "Tolong kira berapa liter water tank yang rumah aku patut ada. 5 orang dalam rumah, nak cukup kalau air putus 2 hari. Show cara kira step by step.",
+    "domain": "engineering",
+    "style": "rojak",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-43",
+    "prompt": "Anak aku Form 4 tak faham langsung konsep mol dalam Kimia. Boleh explain step by step dengan contoh pengiraan yang senang nak ikut?",
+    "domain": "science",
+    "style": "rojak",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-44",
+    "prompt": "Nak buat kek lapis Sarawak tapi recipe dia untuk loyang 8 inci square, aku ada loyang bulat 10 inci je. Macam mana nak adjust sukatan bahan and baking time? Tunjuk kiraan sekali.",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-45",
+    "prompt": "Boleh explain kenapa waktu air pasang surut kat Port Dickson lain dengan kat Pulau Pinang? Anak aku tanya, aku pun blur.",
+    "domain": "science",
+    "style": "rojak",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-46",
+    "prompt": "Kawan aku cakap formation 2-2 lagi bagus dari 3-1 untuk team futsal amateur macam kitorang. Boleh compare dua-dua, pros and cons, and bila sesuai guna yang mana?",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-47",
+    "prompt": "Nak tanya pasal pantun ni: 'Pulau Pandan jauh ke tengah, Gunung Daik bercabang tiga, Hancur badan dikandung tanah, Budi yang baik dikenang juga.' Explain pembayang, maksud, rima dan suku kata dia, and apa yang buat pantun ni dianggap bagus sangat?",
+    "domain": "creative",
+    "style": "rojak",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-48",
+    "prompt": "Motor Y15 aku rantai cepat sangat longgar, baru adjust 2 minggu lepas. Apa punca dia and macam mana nak set chain tension yang betul?",
+    "domain": "engineering",
+    "style": "rojak",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-49",
+    "prompt": "Aku nak faham kenapa harga RON97 naik turun tiap minggu tapi RON95 macam tetap je. Boleh explain macam mana sistem APM dengan subsidi tu actually berfungsi?",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-50",
+    "prompt": "Tolong tuliskan surat untuk guru besar sekolah anak aku, minta kebenaran dia tak join kem motivasi 3 hari sebab ada majlis kahwin family kat Johor. Nak BM formal tapi jangan terlalu skema.",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-51",
+    "prompt": "Our residents association just received 30 bags of 10kg rice, 50 bottles of cooking oil and 40 packs of biscuits to share among the 42 low-income households in our taman. Twelve households have 1-2 people, 18 have 3-5 and 12 have 6-9, and the volunteers packing on Saturday need one clear rule per household size. Work out a fair split and show exactly how many of each item each household size gets, including what happens to any leftovers.",
+    "domain": "general",
+    "style": "detailed",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-52",
+    "prompt": "We're adding a 2HP aircond to the master bedroom of our double-storey terrace in Kajang, and the electrician wants to run a new circuit about 25m from the DB. Before he starts, I want to sanity-check his cable and breaker choice. Work through the running and starting current, the voltage drop for 2.5mm² versus 4mm² copper, and what breaker rating makes sense.",
+    "domain": "engineering",
+    "style": "detailed",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-53",
+    "prompt": "My son is doing STPM Physics and got stuck on this one: a 2 kg block slides 5 m down a 30° ramp from rest, with a coefficient of kinetic friction of 0.2. He needs the acceleration, the speed at the bottom and the work done against friction. Please work it out step by step and explain why each formula applies, so he can handle similar questions on his own.",
+    "domain": "science",
+    "style": "detailed",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-54",
+    "prompt": "I'm a weekend runner and my most recent 10K was 54:30 on a flat route in the early morning. I've signed up for the Penang Bridge half marathon in November and want a realistic finish-time prediction using something like Riegel's formula. Work it out step by step, convert it into a per-km pace, and estimate how much the heat, humidity and the bridge incline might add on the day.",
+    "domain": "general",
+    "style": "detailed",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-55",
+    "prompt": "I help out at a free tuition class at our taman's hall, and one Form 5 student keeps mixing up the quadratic formula and completing the square. Using 2x^2 - 8x + 3 = 0, work through both methods side by side and show why they give the same roots. Then derive the quadratic formula from completing the square in a way a 16-year-old can follow.",
+    "domain": "science",
+    "style": "detailed",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-56",
+    "prompt": "I'm writing to Majlis Bandaraya Shah Alam on behalf of the 24 houses on our road about a clogged monsoon drain and two broken streetlights, which we reported through their online complaint system on 3 June, 22 July and 9 September with no action. Please draft a formal letter in Bahasa Malaysia that's firm but polite, lists each issue with its location and report dates, and asks for a site visit within 14 days.",
+    "domain": "general",
+    "style": "detailed",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-57",
+    "prompt": "I've got an old Canon 700D with the 18-55mm kit lens and want to try shooting the Milky Way from somewhere dark like Kuala Selangor or Cameron Highlands around the next new moon. I only know the basics of aperture and ISO. Explain how to pick the night, time and direction to face from Malaysia, which settings to start with (including the 500 rule versus the NPF rule for shutter speed), and how to focus in the dark.",
+    "domain": "creative",
+    "style": "detailed",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-58",
+    "prompt": "I'm a final-year electrical engineering student and I need to be able to explain to my FYP supervisor, in my own words, why a three-phase induction motor needs slip to produce torque. I can use the formulas but I don't have the intuition. Explain it starting from the rotating magnetic field, then do a worked example for a 4-pole, 50 Hz motor running at 1440 rpm, finding the slip and the rotor current frequency.",
+    "domain": "engineering",
+    "style": "detailed",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-59",
+    "prompt": "We moved into a 1990s apartment in Petaling Jaya and the kitchen sink smells like sewage most evenings, even though it drains fine. There's a plastic bottle trap under the sink and the building has a shared waste stack. Explain the likely causes, from a dry or siphoned trap to venting problems in the stack, and how I can check each one myself before calling a plumber.",
+    "domain": "general",
+    "style": "detailed",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-a-60",
+    "prompt": "For my Data Structures course I need to explain how a hash table with open addressing handles collisions and resizing. Use a table of size 7 with h(k) = k mod 7 and linear probing, insert 12, 19, 5, 26 and 33, then resize to 17 once the load factor passes 0.7 and rehash with k mod 17. Show the table after each step and explain why the load factor threshold matters for lookup cost.",
+    "domain": "engineering",
+    "style": "detailed",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-01",
+    "prompt": "Trace width and gap for 90Ω USB pair on JLC7628 4-layer?",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-02",
+    "prompt": "can you work through this SPM-style physics question the way the marking scheme wants it: a ball is kicked from the ground at 18 m/s at 35° above the horizontal, find the max height, time of flight and range (g = 9.81). then list the mistakes my form 5 students usually make on this type of question",
+    "domain": "science",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-03",
+    "prompt": "Bro, motor 30kW nak start guna star-delta, control dengan PLC S7-1200. Tolong explain sequence dia step by step, berapa saat timer star-ke-delta yang sesuai dan macam mana nak anggar, dan interlock apa wajib ada (hardwired dan dalam program) supaya contactor star dengan delta tak masuk serentak.",
+    "domain": "engineering",
+    "style": "rojak",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-04",
+    "prompt": "I'm writing a parametric EQ and need the biquad coefficients for a peaking filter at 1 kHz, Q = 1.4, +6 dB gain, at a 48 kHz sample rate. Please derive them step by step from the RBJ Audio EQ Cookbook formulas and give the normalised b0, b1, b2, a1 and a2. Then explain what happens to the centre frequency and bandwidth if the same coefficients are run at 44.1 kHz.",
+    "domain": "engineering",
+    "style": "detailed",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-05",
+    "prompt": "Pressure injury stage 2 vs 3: how to differentiate, which dressings?",
+    "domain": "general",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-06",
+    "prompt": "trying to predict apogee for my model rocket: 0.65 kg at liftoff, 54 mm body tube, Cd around 0.5, flying on an aerotech F40 (roughly 80 N·s over 2 s). can you walk me through a hand calculation that includes drag, not just the vacuum number, and tell me which ejection delay i should pick",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-07",
+    "prompt": "Cikgu sini. Tolong kira GPMP Matematik SPM sekolah saya: A+ 5 orang, A 8, A- 10, B+ 12, B 15, C+ 9, C 7, D 4, E 3, G 2. Terangkan formula dia step by step, dan kalau tahun lepas GPMP 4.85, macam mana nak tafsir perubahan tu.",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-08",
+    "prompt": "I lecture a 3-credit Fluid Mechanics course at a Malaysian polytechnic and have to report CLO attainment for MQA. CLO1 is assessed through Test 1 (Q1, Q2) and final exam Q1, while CLO2 comes from the lab reports and final exam Q3. Show me how to compute attainment per student and for the whole cohort against a 50% threshold, using a small made-up mark set so I can follow every step.",
+    "domain": "general",
+    "style": "detailed",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-09",
+    "prompt": "Unity-gain Sallen-Key, 1 kHz Butterworth low-pass: E12 values please",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-10",
+    "prompt": "auditing a mid-size trading company: PBT RM2.4m (down from RM5.1m last year), revenue RM48m, total assets RM31m. can you work out overall and performance materiality, explain which benchmark makes sense when profit swings like this, and show how the clearly trivial threshold falls out of it",
+    "domain": "general",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-11",
+    "prompt": "Closed-form IK for a 2-link planar arm: derive both elbow solutions",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-12",
+    "prompt": "tuning a speed loop on a small dc gearmotor. open-loop step test gives 0.02 s dead time, a time constant of about 0.12 s and a gain of 45 rpm per volt. can you work out PI gains with ziegler-nichols and with lambda (IMC) tuning, and tell me which one to start from if no overshoot matters more than speed",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-13",
+    "prompt": "Saya nurse kat wad surgical. Tolong kira fluid balance 24 jam untuk pesakit post-op ni: IV NS 125 mL/jam selama 24 jam, minum 650 mL, urine 1,450 mL, NG aspirate 300 mL, drain 180 mL, demam 38.6°C lebih kurang 10 jam. Masukkan insensible loss sekali dan terangkan macam mana demam ubah anggaran tu.",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-14",
+    "prompt": "I'm a civil engineer at a district JKR office reviewing signal timing for a four-arm junction in Seremban. The critical flow ratios are 0.28 for the north-south stage, 0.22 for east-west through and 0.12 for the east-west right-turn stage, with 4 s lost time per stage across three stages. Use Webster's method to work out the optimum cycle length and green splits, and tell me whether the junction is close to capacity.",
+    "domain": "engineering",
+    "style": "detailed",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-15",
+    "prompt": "UBBL-compliant stair for 3.6 m floor height: risers, treads, landings?",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-16",
+    "prompt": "how do i explain to my darjah 5 class why dividing by a fraction is the same as multiplying by the reciprocal? give me 2-3 different explanations (bar model, measurement division, common denominators), each worked through with real numbers like 3 ÷ 3/4",
+    "domain": "general",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-17",
+    "prompt": "6 mm 2-flute carbide in 6061 on a hobby router: feeds/speeds?",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-18",
+    "prompt": "we've got 12 modbus RTU meters daisy-chained on about 300 m of RS-485 at 9600 baud. how do i work out the right termination and fail-safe bias resistor values, where should they physically go on the line, and does the unit load of each meter change the answer?",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-19",
+    "prompt": "Kontraktor kecil sini. Dinding bata 3 m tinggi, 24 m panjang, ada 2 tingkap 1.2 x 1.5 m dan satu pintu 0.9 x 2.1 m. Berapa biji bata, beg simen dan meter padu pasir untuk ikat bata (mortar 1:4) dan plaster dua belah 15 mm (1:4)? Kira step by step, masukkan wastage sekali.",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-20",
+    "prompt": "I'm solving 1D advection-diffusion with first-order upwind for advection, central differences for diffusion and forward Euler in time. Can you do the von Neumann stability analysis and give me the largest stable time step for u = 0.5 m/s, D = 1e-3 m²/s and dx = 1 cm? I'd also like to see how much numerical diffusion the upwind term adds compared with the physical D.",
+    "domain": "science",
+    "style": "detailed",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-21",
+    "prompt": "Explain stability limits of explicit Euler for stiff chemical kinetics ODEs",
+    "domain": "science",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-22",
+    "prompt": "need a worked solution for my diploma thermo class: ideal rankine cycle with reheat, boiler at 10 MPa and 500°C, reheat at 1 MPa back to 500°C, condenser at 10 kPa. find the net work, heat added and thermal efficiency from steam tables, and lay out the state table so students can follow each lookup",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-23",
+    "prompt": "Lumen method: LED panels needed for 9x7 m classroom, 300 lux",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-24",
+    "prompt": "modelling the holes for 608 bearings (22 mm OD) to press-fit into PETG parts off a 0.4 mm nozzle. how much should i undersize the hole in CAD, and how do print orientation, first-layer squish and the slicer's hole compensation change that number?",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-25",
+    "prompt": "Dipole untuk 40m dan 20m kat bumbung rumah teres, tapi ruang cuma 15 meter. Tolong kira panjang elemen setiap band, bandingkan inverted-V, fan dipole dan loading coil dari segi bandwidth dan SWR, dan coax dengan balun apa yang sesuai.",
+    "domain": "engineering",
+    "style": "rojak",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-26",
+    "prompt": "I'm auditing a client's first year under MFRS 16 for a 5-year shop lot lease at RM8,000 a month, paid at the start of each month, with an incremental borrowing rate of 6% a year. Please compute the initial lease liability and right-of-use asset, then the first-year interest expense and depreciation. Explain each step so I can check the client's own figures against yours.",
+    "domain": "general",
+    "style": "detailed",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-27",
+    "prompt": "Nearest-neighbour Tm for GCTAGCTTGACCTGAAGCTC at 50 mM Na+, show steps",
+    "domain": "science",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-28",
+    "prompt": "doing earthwork quantities for an estate access road. cross-section areas every 20 m: ch 0+000 cut 12.4 m², 0+020 cut 9.8 m², 0+040 cut 3.1 m² and fill 2.6 m², 0+060 fill 8.9 m², 0+080 fill 14.2 m². compute cut and fill volumes by average end area, then with the prismoidal (simpson's) formula, and show the mass-haul ordinates",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-29",
+    "prompt": "Grams of Na2HPO4/NaH2PO4 for 500 mL 0.1 M pH 7.4 buffer?",
+    "domain": "science",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-30",
+    "prompt": "can you show me how DESeq2's median-of-ratios size factors actually get computed, by hand, on a tiny made-up count table (4 genes x 4 samples)? then explain why the numbers differ from TPM and when each one is the right thing to use",
+    "domain": "science",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-31",
+    "prompt": "Juruukur sini. Data levelling: BM RL 25.000, BS 1.425, IS 2.110, IS 1.865, FS 0.940 (CP1), BS 2.315, IS 1.780, FS 1.205 atas BM penutup RL 26.600. Tolong reduce guna kaedah rise and fall, buat arithmetic check, dan terangkan sama ada misclosure tu boleh terima untuk laluan 400 m.",
+    "domain": "engineering",
+    "style": "rojak",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-32",
+    "prompt": "I'm running GROMACS on a 300-residue protein in TIP3P water with the CHARMM36m force field, currently at a 2 fs time step. Explain which bonds need LINCS constraints at that step, how to choose between V-rescale and Nosé-Hoover for the production run, and whether hydrogen mass repartitioning would let me go to 4 fs safely. Keep the reasoning specific to this system rather than general MD advice.",
+    "domain": "science",
+    "style": "detailed",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-33",
+    "prompt": "Delay tower distance and delay time for 80 m deep crowd?",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-34",
+    "prompt": "architect here. surau hall is 18 m x 12 m x 5 m high, painted concrete walls, ceramic tile floor, gypsum board ceiling, prayer carpet over about half the floor. estimate the RT60 at 500 Hz with Sabine and Eyring, and work out what total absorption the room would need to get down to around 1.0 s for clear speech",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-35",
+    "prompt": "Link budget for 2m FM simplex, 50 km, 25 W?",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-36",
+    "prompt": "got a cone 6 glaze recipe: custer feldspar 40, silica 20, whiting 20, EPK 10, frit 3134 10. can you convert it to a unity molecular formula by hand, show the oxide totals, and tell me from the SiO2:Al2O3 ratio and flux balance whether it'll come out glossy or matte",
+    "domain": "creative",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-37",
+    "prompt": "Akauntan sini. Client Sdn Bhd nak kira zakat perniagaan guna kaedah modal kerja (uruf). Aset semasa RM1.2 juta (stok RM400k, penghutang RM350k termasuk RM40k hutang ragu, tunai RM450k), liabiliti semasa RM500k termasuk dividen belum bayar RM50k, memang jauh atas nisab. Tolong kira step by step dan terangkan pelarasan yang biasa dibuat ikut garis panduan JAWHAR.",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-38",
+    "prompt": "I'm a litigation associate in KL. Our client's contractor walked off a renovation job in March 2019 and the defects only came to light in early 2023, and we want to sue in both contract and negligence. Explain how the Limitation Act 1953 applies to each cause of action, whether the 2018 amendments on latent damage in s.6A help us, and which dates we need evidence for.",
+    "domain": "general",
+    "style": "detailed",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-39",
+    "prompt": "Explain how CGA composite artifact colour gets 16 colours from 640x200",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-40",
+    "prompt": "setting out a simple circular curve: radius 300 m, deflection angle 24°30', IP at chainage 1250.000. can you calculate tangent length, curve length, chainages of TC and CT, and the deflection angles for pegs at every 20 m through chainage, showing the sub-chords at both ends",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-41",
+    "prompt": "Explain game ticks vs redstone ticks with a worked clock example",
+    "domain": "creative",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-42",
+    "prompt": "two skyrim SE mods edit the same NPC record, one changes her outfit and the other her AI packages, and whichever loads last wins. explain how record-level overrides actually resolve in the load order and what a conflict-resolution patch made in xEdit has to carry forward so both changes survive",
+    "domain": "creative",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-43",
+    "prompt": "Peguam sini. Client kena buang kerja lepas 7 tahun, majikan kata misconduct tapi tak buat domestic inquiry langsung. Tolong susun isu-isu undang-undang untuk representation s.20 Akta Perhubungan Perusahaan 1967, dan kira anggaran backwages dan pampasan ganti reinstatement kalau gaji akhir RM5,800 sebulan, ikut Jadual Kedua.",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-44",
+    "prompt": "My Vivado timing report shows a WNS of -0.42 ns on a 250 MHz path that runs through a 32x32 multiplier and then an adder tree on an Artix-7. I can't lower the clock, but I have a few cycles of latency to spare. Walk me through the options for closing timing (DSP48 pipelining, register retiming, floorplanning) and how to decide where the extra pipeline registers should go.",
+    "domain": "engineering",
+    "style": "detailed",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-45",
+    "prompt": "How many 60x40x45 cm cartons fit in a 40ft high cube?",
+    "domain": "general",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-46",
+    "prompt": "can you draft a s.466(1)(a) Companies Act 2016 notice of demand for RM186,400 owed by a sdn bhd to our client, and explain the 21-day period, the RM50k threshold, and how to serve it at the registered office so it holds up if they try to restrain the winding-up petition",
+    "domain": "general",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-47",
+    "prompt": "Hyperfocal distance and near limit: 24 mm, f/8, APS-C, show working",
+    "domain": "creative",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-48",
+    "prompt": "imaging with a 1000 mm f/5 newtonian and a camera with 3.76 µm pixels. what's my image scale in arcsec per pixel, am i oversampled for the ~2.5 arcsec seeing i usually get, and would 2x2 binning or a 0.73x reducer be the better fix? show the numbers",
+    "domain": "science",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-49",
+    "prompt": "Saya pekebun kecil sawit 4 hektar, pokok umur 8 tahun, 136 pokok sehektar. Agronomist cadang 1.5 kg N, 0.6 kg P2O5 dan 2.0 kg K2O sepokok setahun. Kalau guna urea, CIRP dan MOP, berapa kg setiap baja sepokok, berapa beg 50 kg setahun untuk semua pokok, dan patut bahagi kepada berapa pusingan?",
+    "domain": "general",
+    "style": "rojak",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-50",
+    "prompt": "We stack cartons four high on each pallet and store the pallets two high for up to three months in a humid warehouse in Port Klang. Each carton is 50 x 40 x 35 cm, weighs 15 kg, and is BC-flute board with an ECT of 7.5 kN/m. Use the McKee formula to estimate box compression strength and tell me whether the safety factor holds once humidity and storage time are taken into account.",
+    "domain": "engineering",
+    "style": "detailed",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-51",
+    "prompt": "Preload and tightening torque for M10 class 8.8, lubricated?",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-52",
+    "prompt": "closed-house broiler farm in perak, 20,000 birds, house is 120 m long, 14 m wide, 3 m to the ceiling. how many 50-inch tunnel fans (about 36,000 m³/h each) do i need to hit 2.5 m/s air speed in the hot months, and how do i calculate minimum ventilation for the first week with day-old chicks?",
+    "domain": "general",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-53",
+    "prompt": "Which DFT functional and basis set for Fe(II) spin-state energetics?",
+    "domain": "science",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-54",
+    "prompt": "why is a pure major third 386 cents when equal temperament gives 400? work the cents maths through from the frequency ratios and explain what it means in practice for a barbershop quartet singing with a piano",
+    "domain": "creative",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-55",
+    "prompt": "Event organiser sini. Konsert luar kat padang, beban anggaran: sound system 24 kW, lighting 18 kW, LED screen 12 kW, 8 food truck x 3 kW, 4 unit aircond khemah VIP x 2.5 kW. Tolong kira saiz genset dalam kVA dengan power factor, starting current aircond dan margin, dan patut guna satu genset besar ke asingkan genset untuk audio?",
+    "domain": "engineering",
+    "style": "rojak",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-56",
+    "prompt": "I need to replace the pump on my durian orchard's drip system: 160 trees, two 8 L/h emitters per tree that need about 1 bar, and all zones running at once. The water comes from a pond 4 m below the pump, and the mainline is 220 m of 50 mm HDPE out to the far block, which sits 6 m higher than the pump. Work out the system flow, the friction loss with Hazen-Williams and the total dynamic head so I can choose a pump that fits.",
+    "domain": "engineering",
+    "style": "detailed",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-57",
+    "prompt": "L-network values to match 12-j30 Ω to 50 Ω, 145 MHz",
+    "domain": "engineering",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-58",
+    "prompt": "sending frozen fish tissue samples from penang to kota kinabalu, 48 h door to door. EPS box with 3 cm walls, inner size 40 x 30 x 30 cm, outside temps up to 32°C. how much dry ice should i pack? walk me through the heat-leak calculation and the safety margin",
+    "domain": "engineering",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-59",
+    "prompt": "Derive OLS estimator variance in matrix form, stating each assumption",
+    "domain": "science",
+    "style": "terse",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  },
+  {
+    "id": "o-b-60",
+    "prompt": "measured a 100 Ω standard resistor with a 6.5-digit DMM: 10 readings, mean 100.0123 Ω, std dev 0.8 mΩ. meter spec is ±(0.010% of reading + 0.001% of range), the cal cert gives 15 ppm at k=2, and the room drifted ±1 °C with a tempco of 5 ppm/°C. can you build the GUM uncertainty budget and the expanded uncertainty step by step",
+    "domain": "science",
+    "style": "casual",
+    "kind": "out_of_catalog",
+    "agreement": "both",
+    "concerns": []
+  }
+]

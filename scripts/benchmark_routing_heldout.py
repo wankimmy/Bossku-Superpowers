@@ -16,11 +16,13 @@ tree (or `--policy-root`) and take `--prompts` once per file, for example the fr
 
     python scripts/benchmark_routing_heldout.py --policy v1 v2 full_router listed_only v2_min_words_3
         --prompts benchmarks/routing-heldout/fresh.json --prompts benchmarks/routing-heldout/trivial.json
-    (one command line)
+    (one command line; add --prompts benchmarks/routing-heldout/out-of-catalog.json for real work no skill covers)
 
     v1, v2          the hint as hint_mode v1 / v2 builds it (bossku.hint.pick_skills)
     full_router      no gate: the router's top 3 for every prompt, the ceiling
     listed_only      the same top 3 with only the skills `skills/lean.json` lists, i.e. what a host sees without any hint
+    confident_router the router's top 3 only when it reports `confident`, i.e. what `bossku skills find` hands an agent
+                     to load without further checks (read `no-skill fires` on the out_of_catalog kind)
     v2_min_words_3   v2 with MIN_WORDS 3 instead of 5 (read it on the `short` kind)
 
 A prompt with no concerns needs no skill (follow-ups, chit-chat, trivial questions). Metrics, defined once:
@@ -72,7 +74,7 @@ print(json.dumps(out))
 '''
 
 
-POLICIES = ('v1', 'v2', 'full_router', 'listed_only', 'v2_min_words_3')
+POLICIES = ('v1', 'v2', 'full_router', 'listed_only', 'confident_router', 'v2_min_words_3')
 
 POLICY_SELECTOR = r'''
 import json, sys
@@ -90,10 +92,11 @@ out = {}
 for row in prompts:
     answer = {}
     for name in policies:
-        if name in ("full_router", "listed_only"):
+        if name in ("full_router", "listed_only", "confident_router"):
             stack = skills.select_skill_stack(row["prompt"], root, limit=hint.MAX_HINTS, data=data,
                                               available=listed if name == "listed_only" else None)
-            answer[name] = [item["skill_id"] for item in stack["selected"]]
+            chosen = [item["skill_id"] for item in stack["selected"]]
+            answer[name] = chosen if name != "confident_router" or stack["confident"] else []
         else:
             mode, words = ("v2", 3) if name == "v2_min_words_3" else (name, hint.MIN_WORDS)
             picks = hint.pick_skills(row["prompt"], root=root, mode=mode, min_words=words, data=data)

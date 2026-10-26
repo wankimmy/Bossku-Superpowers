@@ -175,6 +175,25 @@ python scripts/benchmark_routing_heldout.py --policy v1 v2 full_router listed_on
     --prompts benchmarks/routing-heldout/trivial.json --out /tmp/lean-gate.json
 ```
 
+## Requests no skill covers
+
+The 100 no-skill prompts above are trivia and small talk. [`out-of-catalog.json`](../../benchmarks/routing-heldout/out-of-catalog.json) adds 120 requests for real work that no skill covers: worked calculations, explanations and letters from science, engineering, teaching, accounting, law and everyday life. They were written and labelled the same way, on 2026-10-26 ([how](../../benchmarks/routing-heldout/FRESH-README.md#out-of-catalog-set)). Measured at commit `2da4ed4`, with no model calls:
+
+| On the 120 out-of-catalog requests | Result |
+|---|---|
+| `v1` hint shown (each one names a skill that does not fit) | 24.2% (29 of 120) |
+| Router reports `confident` (what `bossku skills find` returns) | 0.8% (1 of 120) |
+
+The "at most 2%" no-skill bar above holds for trivia, not for real work outside the catalog. Long requests carry it: casual and detailed prompts got 27 of the 29 hints (17 of 40 and 10 of 20), terse and rojak ones 2 of 60. The skills they named matched on ordinary words such as "table", "step", "rule", "system" and "window". The router's `confident` flag stays off for these, so an agent that runs `bossku skills find` is told to check first. It is less careful on trivia and follow-ups (on for 20 of 99 and 31 of 96), which `AGENTS.md` tells agents to answer directly, without a search.
+
+A change that halves the request-vocabulary score of a skill matched on a single word was measured against this set before adopting it: 28 hints instead of 29, one fewer first-pick hit on the fresh short requests (23 of 40 instead of 24), and no change on the 158 test requests (82% top-1). It was not adopted.
+
+```bash
+python scripts/benchmark_routing_heldout.py --policy v1 v2 confident_router \
+    --prompts benchmarks/routing-heldout/out-of-catalog.json --prompts benchmarks/routing-heldout/fresh.json \
+    --prompts benchmarks/routing-heldout/trivial.json --split fresh
+```
+
 ## Tuned routing regression (84 prompts)
 
 The older offline check compares Bossku Superpower's lexical routing with an ID/description-only keyword baseline on the 84 prompts the router was tuned against. It makes no model calls and needs only Python's standard library. Treat it as a regression test, not as evidence of accuracy on new prompts; the held-out check above is for that.
