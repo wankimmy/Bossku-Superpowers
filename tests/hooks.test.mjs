@@ -275,6 +275,28 @@ const ASK = [
   "bash <<'EOF'\ngit push origin main\nEOF",
   "find . -name x -exec git push \\;",
   "timeout 60 git push origin main",
+  // second review: wrappers, continuations, ${VAR}, headers, comments, PowerShell
+  "npx vercel --prod",
+  "npx wrangler deploy",
+  "pnpm dlx vercel --prod",
+  "python -m twine upload dist/*",
+  "uv run twine upload dist/*",
+  "bundle exec fastlane deliver",
+  "aws-vault exec prod -- terraform apply",
+  "ssh deploy@host \"cd /srv/app && git push origin main\"",
+  "az storage blob delete-batch -s c",
+  "vercel deploy \\\n  --prod",
+  "kubectl \\\n  -n prod \\\n  delete deploy api",
+  "gh api -X PUT repos/{owner}/{repo}/pulls/7/merge",
+  "git -C ${REPO_DIR} push origin main",
+  "gh api --method PUT -H \"Accept: application/vnd.github+json\" /repos/me/app/pulls/7/merge -f merge_method=squash",
+  "# Let's push the fix now\ngit push origin main",
+  "timeout 300 bash -c 'git push origin main'",
+  "xargs -n1 git push origin --delete",
+  "$out = git push origin main 2>&1",
+  "iex 'npm publish'",
+  "pwsh -Command git push origin main",
+  "cat <<'EOF' | bash\ngit push origin main\nEOF",
 ];
 // Look-alikes and dry runs that must not ask.
 const NO_ASK = [
@@ -322,6 +344,11 @@ const NO_ASK = [
   "glab api --method PUT \"projects/:fullpath/merge_requests/3/discussions/9\" --field resolved=true",
   "vercel deploy",
   "netlify deploy",
+  "vercel build --prod",
+  "npm test # then: git push && gh pr create",
+  "git commit -m \"wip && git push origin main\"",
+  "find docs -name '*.md' -exec grep -l 'git add . && git push' {} +",
+  "kubectl delete pod x --dry-run=client",
 ];
 
 test("guard asks before push, merge, publish, deploy and infra-destroy", () => {

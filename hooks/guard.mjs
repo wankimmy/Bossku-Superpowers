@@ -101,14 +101,15 @@ function apiWrite(p) {
     else if (/^(?:-[fF]|--(?:raw-)?field|--input)(?:=|$)|^-[fF]\S/.test(w)) fields = true;
   }
   if (method !== null && /^DELETE$/i.test(method)) return true;
-  const endpoint = p.seq.slice(1).find((w) => w.includes("/") || w.toLowerCase() === "graphql") || "";
+  // the endpoint is a path, not a header value such as `Accept: application/vnd.github+json`
+  const endpoint = p.seq.slice(1).find((w) => /^\/?[\w.-]+\//.test(w) || w.toLowerCase() === "graphql") || "";
   if (endpoint.toLowerCase() === "graphql") return /\bmutation\b/i.test(p.args.join(" ")) && GRAPHQL_WRITE.test(p.args.join(" "));
   const writes = method !== null ? WRITE_METHOD.test(method) : fields;   // gh and glab POST when fields are given
   return writes && API_TARGET.test(endpoint);
 }
 
-const vercelProd = (p) =>
-  hasFlag(p, /^--prod$|^--target=production$/i) || (hasFlag(p, /^--target$/) && p.seq.some((w) => w.toLowerCase() === "production"));
+const vercelProd = (p) => !/^(?:build|pull|env|dev|logs|inspect|ls|list)$/i.test(p.seq[0] || "") && (
+  hasFlag(p, /^--prod$|^--target=production$/i) || (hasFlag(p, /^--target$/) && p.seq.some((w) => w.toLowerCase() === "production")));
 
 export const ASK_RULES = [
   { tools: ["git"], paths: [["push"], ["subtree", "push"]], unless: (p) => hasFlag(p, /^-[a-zA-Z]*n[a-zA-Z]*$/), why: "pushes commits to a remote" },
@@ -140,7 +141,7 @@ export const ASK_RULES = [
   { tools: ["kubectl"], paths: [["delete"]], why: "deletes live infrastructure" },
   { tools: ["helm"], paths: [["uninstall"], ["delete"]], why: "removes a live release" },
   { tools: ["aws"], paths: [["s3", "rm"], ["s3", "rb"], [/^[\w-]+$/, /^(?:delete|terminate)-/i]], why: "deletes cloud resources" },
-  { tools: ["gcloud", "az"], when: (p) => p.seq.some((w) => w.toLowerCase() === "delete"), why: "deletes cloud resources" },
+  { tools: ["gcloud", "az"], when: (p) => p.seq.some((w) => /^delete(?:-|$)/i.test(w)), why: "deletes cloud resources" },
 ];
 
 // In front of the verb: `sudo`, `env FOO=1`, `nohup`, `time`, an option, or the verb's own folder (/bin/rm).
@@ -432,7 +433,7 @@ export function judge(command, cwd, git = budgetedGit(), dir = cwd) {
 // quoted string is one word without its quotes. Heredoc bodies are input, not commands, so they are dropped; `$(...)`
 // and backtick bodies run even inside double quotes, so they come back as commands of their own. One pass, so a long
 // line costs linear time.
-const HEREDOC = /(<<-?[ \t]*(["']?)([\w.-]+)\2)([^\n]*)\n([^]*?)\n[ \t]*\3[ \t]*\r?(?=\n|$)/g;
+const HEREDOC = /(<<-?[ \t]*(["']?)([\w.-]+)(?![\w.-])\2)([^\n]*)\n([^]*?)\n[ \t]*\3[ \t]*\r?(?=\n|$)/g;
 // Characters a backslash escapes outside quotes. Before anything else (`C:\tools\git.exe`) it is a Windows path separator.
 const ESCAPABLE = new Set([..."\"'\\$`;&|()<>{} \t"]);
 // Where each `(` closes, found in one pass, so unbalanced input stays linear.
@@ -452,9 +453,11 @@ export function commands(line, depth = 0) {
   // bodies are left in place: slower to read wrongly than to search for terminators that are not there.
   const heredocs = (raw.match(/<</g) || []).length;
   const text = heredocs > 64 ? raw : raw.replace(HEREDOC, (match, head, q, tag, rest, body, offset, all) => {
-    const before = all.slice(all.lastIndexOf("\n", offset) + 1, offset).split(/[\s;&|(]+/).filter(Boolean);
+    // the command that owns the `<<` is the last one on its line; `cat <<EOF | bash` feeds a shell too
+    const before = all.slice(all.lastIndexOf("\n", offset) + 1, offset).split(/[;&|(]/).pop().split(/\s+/).filter(Boolean);
     const program = programName(before.find((w) => !PREFIX_WORDS.has(w.toLowerCase()) && !/^[A-Za-z_]\w*=/.test(w)) || "");
-    if (SHELLS.has(program) || program === "ssh") nested.push(body);
+    const piped = /\|\s*(?:sudo\s+)?(?:bash|sh|zsh|dash|ksh|pwsh|powershell)\b/.test(rest);
+    if (SHELLS.has(program) || program === "ssh" || piped) nested.push(body);
     return head + rest;
   });
   const out = [];
@@ -463,10 +466,12 @@ export function commands(line, depth = 0) {
   let word = "";
   let inWord = false;
   let quote = null;
+  let braces = 0;   // `{` opened inside a word (${VAR}, repos/{owner}) closes inside it
   const endWord = () => {
     if (inWord) words.push(word);
     word = "";
     inWord = false;
+    braces = 0;
   };
   const endCommand = () => {
     endWord();
@@ -478,6 +483,17 @@ export function commands(line, depth = 0) {
     if (quote === "'") {
       if (c === "'") quote = null;
       else word += c;
+      continue;
+    }
+    // a line continuation (bash `\`, PowerShell backtick) joins the lines
+    if ((c === "\\" || (c === "`" && quote === null)) && (text[i + 1] === "\n" || (text[i + 1] === "\r" && text[i + 2] === "\n"))) {
+      i += text[i + 1] === "\r" ? 2 : 1;
+      continue;
+    }
+    // `#` at the start of a word is a comment up to the end of the line
+    if (c === "#" && quote === null && !inWord) {
+      const nl = text.indexOf("\n", i);
+      i = (nl < 0 ? text.length : nl) - 1;
       continue;
     }
     if (c === "$" && text[i + 1] === "(") {
@@ -512,6 +528,9 @@ export function commands(line, depth = 0) {
     } else if (c === "\\" && ESCAPABLE.has(text[i + 1])) {
       word += text[++i];
       inWord = true;
+    } else if ((c === "{" && inWord) || (c === "}" && braces > 0)) {
+      braces += c === "{" ? 1 : -1;
+      word += c;
     } else if (c === "\n" || c === ";" || c === "(" || c === ")" || c === "{" || c === "}" || c === "|") {
       endCommand();
     } else if (c === "&") {
@@ -527,13 +546,18 @@ export function commands(line, depth = 0) {
     }
   }
   endCommand();
+  // a quote still open at the end is not bash (nothing would run); PowerShell and cmd read `"C:\x\"`, `"`"` and
+  // `@'...'@` differently, so read it once more with the quotes as plain characters.
+  if (quote !== null && depth < 3) nested.push(text.replace(/["']/g, " "));
   if (depth < 3) for (const body of nested) out.push(...commands(body, depth + 1));
   return out;
 }
 
 // Words that can stand before the program: `sudo`, `env A=1`, `nohup`, `time`, shell keywords after a `;`.
 const PREFIX_WORDS = new Set(["sudo", "doas", "env", "nohup", "exec", "command", "builtin", "time", "nice", "then", "do", "else", "elif", "if", "while", "until", "!"]);
-const programName = (w) => toPosix(w).split("/").pop().replace(/\.(?:exe|cmd|bat)$/i, "").toLowerCase();
+// npx package names and short aliases of the same CLIs
+const ALIAS = { "netlify-cli": "netlify", ntl: "netlify", "aws-cdk": "cdk", "firebase-tools": "firebase", vc: "vercel" };
+const programName = (w) => { const n = toPosix(w).split("/").pop().replace(/\.(?:exe|cmd|bat)$/i, "").toLowerCase(); return ALIAS[n] || n; };
 
 // One simple command as { tool, args, seq, value }: the program (no folder, no .exe or .cmd), the words after it, and
 // its subcommand words with options left out. `value[i]` marks a word right after an option written without `=`:
@@ -544,6 +568,7 @@ function parseCommand(words) {
   for (; i < words.length; i++) {
     const w = words[i];
     if (PREFIX_WORDS.has(w.toLowerCase())) prefixed = true;
+    else if (/^\$[\w:]+$/.test(w) && words[i + 1] === "=") i++;   // PowerShell `$out = git push`
     else if (!/^[A-Za-z_]\w*=/.test(w) && !(prefixed && w.startsWith("-"))) break;
   }
   if (i >= words.length) return null;
@@ -576,12 +601,32 @@ function hasPath(p, path) {
 }
 
 const SHELLS = new Set(["bash", "sh", "zsh", "dash", "ksh", "powershell", "pwsh"]);
+// argv words handed to exec keep their word boundaries when re-read as a command line.
+const shq = (w) => (/^[\w@%+=:,./-]+$/.test(w) ? w : `'${w.replace(/'/g, `'\\''`)}'`);
+// options that take a separate value, per wrapper, so the wrapped program is found exactly.
+const VALUE_OPTS = { xargs: /^-[aEILnPsd]$/, timeout: /^-[sk]$/, watch: /^-[nd]$/, npx: /^-(?:p|c|-package|-call)$/, bunx: /^-p$/, pnpx: /^$/, uvx: /^-(?:-from|-with|p|-python)$/, wsl: /^-(?:d|u|-distribution|-user|-cd)$/,
+  ssh: /^-[bcDEeFIiJLlmOoopQRSWw]$/ };
+const RUNS = { pnpm: ["dlx", "exec"], yarn: ["dlx", "exec"], npm: ["exec", "x"], bun: ["x"], uv: ["run"], poetry: ["run"], pipx: ["run"], pdm: ["run"], hatch: ["run"], bundle: ["exec"] };
+// Index of the first argument after the options (and `skip` positionals), using the tool's own value options.
+function firstArg(p, skip = 0) {
+  const takes = VALUE_OPTS[p.tool] || /^$/;
+  for (let k = 0; k < p.args.length; k++) {
+    const w = p.args[k];
+    if (w === "--") return k + 1 < p.args.length ? k + 1 : -1;
+    if (w.length > 1 && w.startsWith("-")) { if (takes.test(w)) k++; continue; }
+    if (skip-- > 0) continue;
+    return k;
+  }
+  return -1;
+}
 // The command line inside `bash -c '...'`, `pwsh -Command "..."`, `cmd /c ...`, `eval ...`, `find -exec ... ;`,
 // `xargs ...`, `timeout 10 ...` or `watch ...`, or null.
 function innerLine(p) {
   if (SHELLS.has(p.tool)) {
     const at = p.args.findIndex((w) => /^-[a-z]*c$|^-command$|^<<<$/i.test(w));   // also a here-string: bash <<< '...'
-    return at >= 0 && p.args[at + 1] !== undefined ? p.args[at + 1] : null;
+    if (at < 0 || p.args[at + 1] === undefined) return null;
+    // pwsh -Command reads every word after it as the command
+    return /^(?:pwsh|powershell)$/.test(p.tool) ? p.args.slice(at + 1).join(" ") : p.args[at + 1];
   }
   if (p.tool === "cmd") {
     const at = p.args.findIndex((w) => /^\/[ck]$/i.test(w));
@@ -592,17 +637,36 @@ function innerLine(p) {
     const at = p.args.findIndex((w) => /^-(?:exec|execdir|ok|okdir)$/.test(w));
     if (at < 0) return null;
     const end = p.args.findIndex((w, k) => k > at && (w === ";" || w === "+"));
-    return p.args.slice(at + 1, end < 0 ? undefined : end).join(" ");
+    return p.args.slice(at + 1, end < 0 ? undefined : end).map(shq).join(" ");
   }
-  if (["xargs", "timeout", "watch"].includes(p.tool)) {
-    // the command starts at the first word that is not an option or its value; timeout's first word is the duration
-    const skip = p.tool === "timeout" ? 1 : 0;
-    let k = 0;
-    while (k < p.seq.length && p.value[k]) k++;
-    const first = p.seq[k + skip];
-    return first === undefined ? null : p.args.slice(p.args.indexOf(first, p.args.indexOf(p.seq[k]))).join(" ");
+  if (["xargs", "timeout", "npx", "bunx", "pnpx", "uvx", "wsl"].includes(p.tool)) {
+    const k = firstArg(p, p.tool === "timeout" ? 1 : 0);
+    if (k < 0) return null;
+    // npx vercel@latest --prod runs `vercel`
+    const words = p.args.slice(k);
+    words[0] = /^(?:npx|bunx|pnpx|uvx)$/.test(p.tool) ? words[0].replace(/(?<=.)@[^/@]*$/, "") : words[0];
+    return words.map(shq).join(" ");
   }
-  return p.tool === "eval" && p.args.length ? p.args.join(" ") : null;
+  if (p.tool === "watch" || p.tool === "ssh") {
+    // both hand the rest of the words, joined with spaces, to a shell
+    const k = firstArg(p, p.tool === "ssh" ? 1 : 0);
+    return k < 0 ? null : p.args.slice(k).join(" ");
+  }
+  // `python -m twine`, `pnpm dlx vercel`, `bundle exec fastlane`, `uv run twine`
+  if (/^(?:python3?|py)$/.test(p.tool)) {
+    const at = p.args.indexOf("-m");
+    return at >= 0 && p.args[at + 1] ? p.args.slice(at + 1).map(shq).join(" ") : null;
+  }
+  if (RUNS[p.tool] && RUNS[p.tool].includes((p.seq[0] || "").toLowerCase())) {
+    const at = p.args.indexOf(p.seq[0]);
+    const rest = p.args.slice(at + 1);
+    return rest.length ? rest.map(shq).join(" ").replace(/^-- /, "") : null;
+  }
+  if (p.tool === "yarn" && p.seq.length) return p.args.map(shq).join(" ");   // yarn runs a package's bin by name
+  // `aws-vault exec prod -- terraform apply`, `op run -- npm publish`, `doppler run -- ...`, `dotenv -- ...`
+  const dashdash = p.args.indexOf("--");
+  if (!["git", "kubectl", "gh", "glab"].includes(p.tool) && dashdash >= 0 && p.args[dashdash + 1]) return p.args.slice(dashdash + 1).map(shq).join(" ");
+  return ["eval", "invoke-expression", "iex"].includes(p.tool) && p.args.length ? p.args.join(" ") : null;
 }
 
 // The first command that should wait for the user's go-ahead (ASK_RULES), looking inside `bash -c` bodies too, or
@@ -611,7 +675,7 @@ export function askFor(command, depth = 0) {
   for (const words of commands(command)) {
     const p = parseCommand(words);
     if (!p) continue;
-    if (!hasFlag(p, /^--(?:dry-run|help)(?:=|$)/i)) {
+    if (!hasFlag(p, /^--(?:dry-?run(?:=(?!none$|false$).*)?|help)$/i)) {
       for (const rule of ASK_RULES) {
         if (!rule.tools.includes(p.tool)) continue;
         if (rule.paths && !rule.paths.some((path) => hasPath(p, path))) continue;
