@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased - Audit fixes: safer grants, a guard on every host, a 256-skill plugin
+## v2.10.0 - Audit fixes: safer grants, a guard on every host, a 256-skill plugin
 
 ### Fixes
 
