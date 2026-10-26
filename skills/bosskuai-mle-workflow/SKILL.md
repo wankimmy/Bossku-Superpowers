@@ -7,17 +7,13 @@ metadata:
 
 # Machine Learning Engineering Workflow — portable workflow
 
-## Job and activation
-
 Production machine-learning engineering workflow for data contracts, reproducible training, model evaluation, deployment, monitoring, and rollback. Use when building, reviewing, or hardening ML systems beyond one-off notebooks.
 
-Use this skill for that specific domain, framework, data source or artifact. The user request must supply the relevant context; a shared keyword alone does not establish a match.
+Use it only when the request supplies this domain, framework, data source or artifact; a shared keyword is not a match. Related skills, each for its own concern: `bosskuai-pytorch-patterns`, `bosskuai-operations`, `bosskuai-ml-adoption-playbook`, `bosskuai-clickhouse-io`, `bosskuai-eval-driven-agent-improvement`, `bosskuai-postgres-patterns`, `bosskuai-qa-automation-strategy`, `database-migrations`, `python-patterns`, `python-testing`.
 
-Nearby owners: `bosskuai-pytorch-patterns`, `bosskuai-operations`, `bosskuai-ml-adoption-playbook`. Select them only for their separate concerns; do not load multiple general workflows for the same job.
+## Workflow
 
-## Source workflow
-
-Read [the complete source workflow](references/upstream/SKILL.md) before applying its examples. Work through the following source sections in order:
+Read [the source workflow](references/upstream/SKILL.md) first, then work through these sections in order:
 
 1. Scope Calibration.
 2. Reuse the SWE Surface.
@@ -26,24 +22,14 @@ Read [the complete source workflow](references/upstream/SKILL.md) before applyin
 5. Decision Brain.
 6. Metric and Mistake Economics.
 
-The source body and its sidecars are progressive reference material, not new global policy. Resolve its relative `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names resolve through [the source map](SOURCE.json); use the current host skill loader or `bossku skills show <mapped-id>`. Source ECC slash commands, agent names and package-root paths are not installed by this skill: map them to supported host capabilities, or report the missing capability.
+- Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
+- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- It can need a named provider, MCP server or API: check that it is available and in scope, report it when it is not, and never invent its output.
 
-Related supported owners: `bosskuai-clickhouse-io`, `bosskuai-eval-driven-agent-improvement`, `bosskuai-ml-adoption-playbook`, `bosskuai-operations`, `bosskuai-postgres-patterns`, `bosskuai-pytorch-patterns`, `bosskuai-qa-automation-strategy`, `database-migrations`, `python-patterns`, `python-testing`.
-
-## Prerequisites and execution boundary
-
-Inspect the project/tool versions and the source prerequisites first. Use repository scripts and installed dependencies where present. A documented command is an example to inspect, not permission to install packages, add an account, expose secrets, upload private content or mutate an external service. Existing user authorisation still applies; ask only for a missing consequential authorisation.
-
-This domain can require a named provider/MCP/API. Discover available tools, verify the documented surface and scope, and report unavailable capabilities. Do not replace a missing provider with invented output.
-
-## Pass signal
+## Done when
 
 Complete the source “Machine Learning Engineering Workflow”, “Core Workflow” procedure for this task. Keep its resulting artifact, command output or cited evidence, and state what remains unverified.
 
-## Stop conditions
+If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
 
-Stop the affected operation when an input/contract is missing, a provider/runtime is unavailable, source instructions reference unsupported commands, or a requested mutation lacks authorisation. Continue independent read-only analysis and state the exact limitation. Do not claim completion from a generated plan alone.
-
-## Attribution
-
-Adapted from the locally reviewed `affaan-m/ECC` snapshot; provenance and content hashes are in [SOURCE.json](SOURCE.json). The complete original text/resources remain in [references/upstream/](references/upstream/SKILL.md), under the retained [MIT licence](references/upstream/LICENSE). Copyright (c) 2026 Affaan Mustafa.
+Adapted from the locally reviewed `affaan-m/ECC` snapshot: provenance and hashes in [SOURCE.json](SOURCE.json), the original text and resources in [references/upstream/](references/upstream/SKILL.md) under its [MIT licence](references/upstream/LICENSE). Copyright (c) 2026 Affaan Mustafa.

@@ -7,17 +7,13 @@ metadata:
 
 # Customs & Trade Compliance — portable workflow
 
-## Job and activation
-
 Codified customs and trade compliance expertise — HS/HTS tariff classification with GRI rules, commercial invoices and entry documentation, Incoterms 2020, FTA qualification and duty optimization (USMCA, RCEP, FTZs, drawback), denied-party screening, and penalty mitigation across US, EU, UK, and APAC jurisdictions. Use when classifying goods, preparing import/export documentation, screening restricted parties, responding to customs audits or CF-28/penalty notices, or optimizing duties.
 
-Use this skill for that specific domain, framework, data source or artifact. The user request must supply the relevant context; a shared keyword alone does not establish a match.
+Use it only when the request supplies this domain, framework, data source or artifact; a shared keyword is not a match. Related skills, each for its own concern: `bosskuai-production-scheduling`, `bosskuai-energy-procurement`, `bosskuai-inventory-demand-planning`.
 
-Nearby owners: `bosskuai-production-scheduling`, `bosskuai-energy-procurement`, `bosskuai-inventory-demand-planning`. Select them only for their separate concerns; do not load multiple general workflows for the same job.
+## Workflow
 
-## Source workflow
-
-Read [the complete source workflow](references/upstream/SKILL.md) before applying its examples. Work through the following source sections in order:
+Read [the source workflow](references/upstream/SKILL.md) first, then work through these sections in order:
 
 1. Role and Context.
 2. How It Works.
@@ -26,26 +22,15 @@ Read [the complete source workflow](references/upstream/SKILL.md) before applyin
 5. Documentation Requirements.
 6. Incoterms 2020.
 
-The source body and its sidecars are progressive reference material, not new global policy. Resolve its relative `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names resolve through [the source map](SOURCE.json); use the current host skill loader or `bossku skills show <mapped-id>`. Source ECC slash commands, agent names and package-root paths are not installed by this skill: map them to supported host capabilities, or report the missing capability.
+- Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
+- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- It can need a named provider, MCP server or API: check that it is available and in scope, report it when it is not, and never invent its output.
+- For clinical, compliance, legal, regulatory or financial conclusions, use current authoritative sources and an independent review; treat sample values and rules as examples until checked for the actual jurisdiction or system.
 
-Related supported owners: `bosskuai-energy-procurement`, `bosskuai-inventory-demand-planning`, `bosskuai-production-scheduling`.
-
-## Prerequisites and execution boundary
-
-Inspect the project/tool versions and the source prerequisites first. Use repository scripts and installed dependencies where present. A documented command is an example to inspect, not permission to install packages, add an account, expose secrets, upload private content or mutate an external service. Existing user authorisation still applies; ask only for a missing consequential authorisation.
-
-This domain can require a named provider/MCP/API. Discover available tools, verify the documented surface and scope, and report unavailable capabilities. Do not replace a missing provider with invented output.
-
-For clinical, compliance, legal, regulatory or financial conclusions, obtain current authoritative sources and an independent review. Treat sample values and rules as examples until verified for the actual jurisdiction/system.
-
-## Pass signal
+## Done when
 
 Apply the source “Role and Context”, “How It Works” guidance to the concrete request. Return the resulting customs & trade compliance artifact or diagnosis with source/command evidence for each conclusion.
 
-## Stop conditions
+If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
 
-Stop the affected operation when an input/contract is missing, a provider/runtime is unavailable, source instructions reference unsupported commands, or a requested mutation lacks authorisation. Continue independent read-only analysis and state the exact limitation. Do not claim completion from a generated plan alone.
-
-## Attribution
-
-Adapted from the locally reviewed `affaan-m/ECC` snapshot; provenance and content hashes are in [SOURCE.json](SOURCE.json). The complete original text/resources remain in [references/upstream/](references/upstream/SKILL.md), under the retained [MIT licence](references/upstream/LICENSE). Copyright (c) 2026 Affaan Mustafa.
+Adapted from the locally reviewed `affaan-m/ECC` snapshot: provenance and hashes in [SOURCE.json](SOURCE.json), the original text and resources in [references/upstream/](references/upstream/SKILL.md) under its [MIT licence](references/upstream/LICENSE). Copyright (c) 2026 Affaan Mustafa.

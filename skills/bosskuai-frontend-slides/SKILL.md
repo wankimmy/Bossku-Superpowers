@@ -7,17 +7,13 @@ metadata:
 
 # Frontend Slides — portable workflow
 
-## Job and activation
-
 Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. Use when the user wants to build a presentation, convert a PPT/PPTX to web, or create slides for a talk/pitch. Helps non-designers discover their aesthetic through visual exploration rather than abstract choices.
 
-Use this skill for that specific domain, framework, data source or artifact. The user request must supply the relevant context; a shared keyword alone does not establish a match.
+Use it only when the request supplies this domain, framework, data source or artifact; a shared keyword is not a match. Related skills, each for its own concern: `bosskuai-video-editing`, `bosskuai-manim-video`, `bosskuai-nutrient-document-processing`, `bosskuai-liquid-glass-design`, `bosskuai-react-development`, `e2e-testing`.
 
-Nearby owners: `bosskuai-video-editing`, `bosskuai-manim-video`, `bosskuai-nutrient-document-processing`. Select them only for their separate concerns; do not load multiple general workflows for the same job.
+## Workflow
 
-## Source workflow
-
-Read [the complete source workflow](references/upstream/SKILL.md) before applying its examples. Work through the following source sections in order:
+Read [the source workflow](references/upstream/SKILL.md) first, then work through these sections in order:
 
 1. Non-Negotiables.
 2. Workflow.
@@ -26,26 +22,15 @@ Read [the complete source workflow](references/upstream/SKILL.md) before applyin
 5. 3. Discover Style.
 6. 4. Build the Presentation.
 
-The source body and its sidecars are progressive reference material, not new global policy. Resolve its relative `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names resolve through [the source map](SOURCE.json); use the current host skill loader or `bossku skills show <mapped-id>`. Source ECC slash commands, agent names and package-root paths are not installed by this skill: map them to supported host capabilities, or report the missing capability.
+- Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
+- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- The full source bundle is kept, with 6 sidecar files. Its code is reference-only until its dependencies, paths and effects are reviewed; this import did not run it.
+- It can need a named provider, MCP server or API: check that it is available and in scope, report it when it is not, and never invent its output.
 
-Related supported owners: `bosskuai-liquid-glass-design`, `bosskuai-manim-video`, `bosskuai-nutrient-document-processing`, `bosskuai-react-development`, `bosskuai-video-editing`, `e2e-testing`.
-
-## Prerequisites and execution boundary
-
-Inspect the project/tool versions and the source prerequisites first. Use repository scripts and installed dependencies where present. A documented command is an example to inspect, not permission to install packages, add an account, expose secrets, upload private content or mutate an external service. Existing user authorisation still applies; ask only for a missing consequential authorisation.
-
-The full source bundle is retained, including 6 sidecar files. Code is reference-only until its runtime dependencies, input/output paths and requested operation are reviewed. This import did not execute its scripts.
-
-This domain can require a named provider/MCP/API. Discover available tools, verify the documented surface and scope, and report unavailable capabilities. Do not replace a missing provider with invented output.
-
-## Pass signal
+## Done when
 
 Complete the source “Workflow”, “7. Deliver” procedure for this task. Keep its resulting artifact, command output or cited evidence, and state what remains unverified.
 
-## Stop conditions
+If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
 
-Stop the affected operation when an input/contract is missing, a provider/runtime is unavailable, source instructions reference unsupported commands, or a requested mutation lacks authorisation. Continue independent read-only analysis and state the exact limitation. Do not claim completion from a generated plan alone.
-
-## Attribution
-
-Adapted from the locally reviewed `affaan-m/ECC` snapshot; provenance and content hashes are in [SOURCE.json](SOURCE.json). The complete original text/resources remain in [references/upstream/](references/upstream/SKILL.md), under the retained [MIT licence](references/upstream/LICENSE). Copyright (c) 2026 Affaan Mustafa.
+Adapted from the locally reviewed `affaan-m/ECC` snapshot: provenance and hashes in [SOURCE.json](SOURCE.json), the original text and resources in [references/upstream/](references/upstream/SKILL.md) under its [MIT licence](references/upstream/LICENSE). Copyright (c) 2026 Affaan Mustafa.

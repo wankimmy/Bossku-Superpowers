@@ -7,17 +7,13 @@ metadata:
 
 # Master Agreement Generator — portable workflow
 
-## Job and activation
-
 Generate review drafts of counterparty master agreements from one template plus a JSON spec, with role-selected clauses and a Schedule A workflow limited to the executed agreement's notice authority. Use when you need reproducible drafting and separately reviewed execution preparation.
 
-Use this skill for that specific domain, framework, data source or artifact. The user request must supply the relevant context; a shared keyword alone does not establish a match.
+Use it only when the request supplies this domain, framework, data source or artifact; a shared keyword is not a match. Related skills, each for its own concern: `bosskuai-rapid-prototype`, `bosskuai-design-systems`, `bosskuai-llm-trading-agent-security`, `bosskuai-esign-field-placement`, `bosskuai-operations`.
 
-Nearby owners: `bosskuai-rapid-prototype`, `bosskuai-design-systems`, `bosskuai-llm-trading-agent-security`. Select them only for their separate concerns; do not load multiple general workflows for the same job.
+## Workflow
 
-## Source workflow
-
-Read [the complete source workflow](references/upstream/SKILL.md) before applying its examples. Work through the following source sections in order:
+Read [the source workflow](references/upstream/SKILL.md) first, then work through these sections in order:
 
 1. How It Works.
 2. Template.
@@ -26,26 +22,15 @@ Read [the complete source workflow](references/upstream/SKILL.md) before applyin
 5. Build.
 6. Signature page geometry.
 
-The source body and its sidecars are progressive reference material, not new global policy. Resolve its relative `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names resolve through [the source map](SOURCE.json); use the current host skill loader or `bossku skills show <mapped-id>`. Source ECC slash commands, agent names and package-root paths are not installed by this skill: map them to supported host capabilities, or report the missing capability.
+- Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
+- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- The full source bundle is kept, with 3 sidecar files. Its code is reference-only until its dependencies, paths and effects are reviewed; this import did not run it.
+- For clinical, compliance, legal, regulatory or financial conclusions, use current authoritative sources and an independent review; treat sample values and rules as examples until checked for the actual jurisdiction or system.
 
-Related supported owners: `bosskuai-design-systems`, `bosskuai-esign-field-placement`, `bosskuai-llm-trading-agent-security`, `bosskuai-operations`, `bosskuai-rapid-prototype`.
-
-## Prerequisites and execution boundary
-
-Inspect the project/tool versions and the source prerequisites first. Use repository scripts and installed dependencies where present. A documented command is an example to inspect, not permission to install packages, add an account, expose secrets, upload private content or mutate an external service. Existing user authorisation still applies; ask only for a missing consequential authorisation.
-
-The full source bundle is retained, including 3 sidecar files. Code is reference-only until its runtime dependencies, input/output paths and requested operation are reviewed. This import did not execute its scripts.
-
-For clinical, compliance, legal, regulatory or financial conclusions, obtain current authoritative sources and an independent review. Treat sample values and rules as examples until verified for the actual jurisdiction/system.
-
-## Pass signal
+## Done when
 
 Complete the source “Schedule A append workflow” procedure for this task. Keep its resulting artifact, command output or cited evidence, and state what remains unverified.
 
-## Stop conditions
+If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
 
-Stop the affected operation when an input/contract is missing, a provider/runtime is unavailable, source instructions reference unsupported commands, or a requested mutation lacks authorisation. Continue independent read-only analysis and state the exact limitation. Do not claim completion from a generated plan alone.
-
-## Attribution
-
-Adapted from the locally reviewed `affaan-m/ECC` snapshot; provenance and content hashes are in [SOURCE.json](SOURCE.json). The complete original text/resources remain in [references/upstream/](references/upstream/SKILL.md), under the retained [MIT licence](references/upstream/LICENSE). Copyright (c) 2026 Affaan Mustafa.
+Adapted from the locally reviewed `affaan-m/ECC` snapshot: provenance and hashes in [SOURCE.json](SOURCE.json), the original text and resources in [references/upstream/](references/upstream/SKILL.md) under its [MIT licence](references/upstream/LICENSE). Copyright (c) 2026 Affaan Mustafa.
