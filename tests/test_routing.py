@@ -478,6 +478,23 @@ class ValidatorTests(unittest.TestCase):
             self.assertTrue(any("catch-all/SKILL.md" in e and "Bash(git *)" in e for e in errors), errors)
             self.assertFalse([e for e in errors if "scoped/" in e], errors)
 
+    def test_flags_raw_api_and_push_merge_publish_grants(self):
+        # `gh api` can merge a PR or force-move a branch in one call; a push or publish grant pre-approves the act itself.
+        with tempfile.TemporaryDirectory() as tmp:
+            base = self._repo(tmp)
+            desc = "description: Use when testing which tool grants a skill may pre-approve."
+            self._skill(base, "api", f"name: api\n{desc}\nallowed-tools: Bash(gh api:*) Bash(glab api repos/:*)")
+            self._skill(base, "acts", f"name: acts\n{desc}\nallowed-tools: Bash(git push:*) Bash(npm publish *) "
+                                      "Bash(gh pr merge:*) Bash(kubectl delete:*)")
+            self._skill(base, "reads", f"name: reads\n{desc}\nallowed-tools: Bash(gh pr view:*) Bash(gh repo view:*) "
+                                       "Bash(p4 client -o:*) Bash(git push-docs:*)")
+            errors = validate_skills(base)
+            for grant in ("Bash(gh api:*)", "Bash(glab api repos/:*)"):
+                self.assertTrue(any("api/SKILL.md" in e and grant in e for e in errors), (grant, errors))
+            for grant in ("Bash(git push:*)", "Bash(npm publish *)", "Bash(gh pr merge:*)", "Bash(kubectl delete:*)"):
+                self.assertTrue(any("acts/SKILL.md" in e and grant in e for e in errors), (grant, errors))
+            self.assertFalse([e for e in errors if "reads/" in e], errors)
+
     def test_flags_unquoted_colon_in_description(self):
         # Hosts' YAML parsers reject `: ` in a plain value and drop the description.
         with tempfile.TemporaryDirectory() as tmp:

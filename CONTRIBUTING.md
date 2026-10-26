@@ -5,7 +5,7 @@ Bossku Superpower is a toolkit-only repo: skills, agents, CLI, and docs.
 ## Changes
 
 1. Keep `AGENTS.md` tool-neutral and concise. It loads in every session, and `validate` fails above 16,000 bytes (UTF-8), which keeps it inside the 16,384 bytes Devin loads automatically.
-2. Add or edit skills under `skills/<id>/SKILL.md` with YAML frontmatter; `name` must equal the folder name. A niche skill that no profile should list goes under `library/<id>/` and into `skills/library-only.json` (plugins list every folder in `skills/`). `allowed-tools` may pre-approve read-only commands only: `bossku validate` rejects a bare `Bash` or a catch-all such as `Bash(git:*)`.
+2. Add or edit skills under `skills/<id>/SKILL.md` with YAML frontmatter; `name` must equal the folder name. A niche skill that no profile should list goes under `library/<id>/` and into `skills/library-only.json` (plugins list every folder in `skills/`). `allowed-tools` may pre-approve read-only commands only: `bossku validate` rejects a bare `Bash`, a catch-all such as `Bash(git:*)`, raw API access (`Bash(gh api:*)`), and a push, merge, publish or deploy command such as `Bash(git push:*)`.
 3. Register deprecated names in `skills/aliases.json` instead of duplicating folders.
 4. The 27 skills in `skills/lean.json` each have three `claude plugin eval` cases in [`evals/`](evals/README.md). Keep them in step when you rename or replace one; `tests/test_plugin_evals.py` checks it.
 5. Run before opening a PR:

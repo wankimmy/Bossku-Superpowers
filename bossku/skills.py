@@ -1273,16 +1273,30 @@ _GRANT = re.compile(r"[A-Za-z_]+(?:\([^)]*\))?")
 _BLANKET_SHELL = frozenset({"bash", "powershell", "bash(*)", "bash(:*)", "powershell(*)", "powershell(:*)"})
 _CATCH_ALL_CLIS = frozenset({"git", "gh", "glab", "p4", "npm", "pnpm", "yarn", "npx", "bunx", "docker", "kubectl",
                              "helm", "terraform", "vercel", "eas", "fly", "firebase", "aws", "gcloud", "az"})
+# A grant for one of these, with or without more words after it, pre-approves the push, merge, publish or deploy
+# itself. `gh api` and `glab api` are raw API access: one call can merge a PR or force-move a branch.
+_RISKY_SUBCOMMANDS = ("gh api", "glab api", "git push", "gh pr merge", "gh pr create", "glab mr merge",
+                      "glab mr create", "gh repo create", "gh repo delete", "gh repo archive", "gh repo rename",
+                      "gh release create", "gh release delete", "gh release upload", "gh workflow run",
+                      "npm publish", "pnpm publish", "yarn publish", "yarn npm publish", "bun publish",
+                      "cargo publish", "twine upload", "gem push", "docker push", "kubectl delete", "helm uninstall",
+                      "terraform apply", "terraform destroy", "pulumi up", "pulumi destroy", "eas submit",
+                      "eas update", "fly deploy", "firebase deploy", "wrangler deploy", "netlify deploy",
+                      "vercel deploy", "p4 submit", "p4 shelve")
 
 
 def risky_tool_grants(value: object) -> list[str]:
-    """The entries of an `allowed-tools` value that pre-approve a whole shell or a whole consequential CLI."""
+    """The entries of an `allowed-tools` value that pre-approve a whole shell, a whole consequential CLI, or a push,
+    merge, publish or deploy subcommand (raw `gh api` / `glab api` included)."""
     text = " ".join(str(v) for v in value) if isinstance(value, list) else str(value or "")
     risky: list[str] = []
     for grant in _GRANT.findall(text):
         g = grant.strip().lower()
         inner = re.fullmatch(r"(?:bash|powershell)\(\s*([\w.-]+)\s*(?::\s*\*|\s+\*)?\s*\)", g)
-        if g in _BLANKET_SHELL or (inner and inner.group(1) in _CATCH_ALL_CLIS):
+        command = re.fullmatch(r"(?:bash|powershell)\((.*)\)", g, re.S)
+        words = " ".join(re.sub(r"(?::\s*\*|\s*\*)\s*$", "", command.group(1)).split()) if command else ""
+        if (g in _BLANKET_SHELL or (inner and inner.group(1) in _CATCH_ALL_CLIS)
+                or any(words == r or words.startswith(r + " ") for r in _RISKY_SUBCOMMANDS)):
             risky.append(grant)
     return risky
 
