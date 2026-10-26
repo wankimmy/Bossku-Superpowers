@@ -16,12 +16,12 @@ Bossku-AI repo (canonical skills + contract)
 
 - **One source of truth** - skills and contract in this repo
 - **Thin adapters** - projects keep small instruction blocks, not full copies
-- **On-demand depth** - 240+ specialist skills (the `lean` profile, where a first install starts, lists about 25); small always-on contract
+- **On-demand depth** - 670+ skills: 256 listable ones in `skills/` and 416 library-only ones in `library/`, which no plugin or profile lists (the `lean` profile, where a first install starts, lists about 25); small always-on contract
 - **No runtime orchestrator** - agents follow markdown contracts in your editor
 
 ## Agents
 
-Six roles in [`agents/`](../agents/): orchestrator → planner → designer (UI work only) → executor → auditor → final reviewer.
+Seven roles in [`agents/`](../agents/): orchestrator, researcher (read-only mapping of unknown code), planner, designer (UI work only), executor, auditor and final reviewer, in that order of a task.
 
 Specialist behavior lives in skills, not separate agent services.
 

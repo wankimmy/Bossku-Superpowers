@@ -34,4 +34,4 @@ temp/
 .vscode/
 
 # logo-design reference logos (trademarks; fetched locally, never committed)
-skills/logo-design/assets/library/svg/
+library/logo-design/assets/library/svg/

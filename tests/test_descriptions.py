@@ -1,7 +1,7 @@
 import unittest
 from pathlib import Path
 
-from bossku.skills import audit_skills, list_skill_ids, load_library_only, load_vendored, parse_skill_md, skills_dir
+from bossku.skills import audit_skills, list_skill_ids, load_library_only, load_vendored, parse_skill_md, skill_folder
 
 ROOT = Path(__file__).resolve().parents[1]
 MAX_DESCRIPTION_CHARS = 300   # the length `bossku skills audit` flags
@@ -11,7 +11,7 @@ def first_party_descriptions() -> dict[str, str]:
     """Descriptions of the skills this repo owns; vendored packs keep their upstream wording."""
     vendored = load_vendored(ROOT)
     return {
-        sid: parse_skill_md(skills_dir(ROOT) / sid / "SKILL.md").description
+        sid: parse_skill_md(skill_folder(sid, ROOT) / "SKILL.md").description
         for sid in list_skill_ids(ROOT) if sid not in vendored
     }
 

@@ -247,7 +247,7 @@ class DocClaimTests(unittest.TestCase):
             for claim in re.findall(r"(\d+)\+ (?:specialist )?skills", text):
                 self.assertLessEqual(int(claim), total, f"{rel}: {claim}+ skills")
         self.assertNotRegex(read("docs/architecture.md"), r"~100 specialist")
-        self.assertIn("Six roles", read("docs/architecture.md"))
+        self.assertIn("Seven roles", read("docs/architecture.md"))
 
 
 class ReferenceTests(unittest.TestCase):

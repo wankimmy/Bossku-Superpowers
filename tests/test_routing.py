@@ -331,6 +331,22 @@ class RoutingTests(unittest.TestCase):
         self.assertEqual(score, 0.0)
 
 
+class PluginListingTests(unittest.TestCase):
+    def test_plugins_list_skills_folder_which_holds_exactly_the_full_profile(self):
+        # Claude Code, Cursor and Codex plugins list every folder in skills/, so library-only skills and anything
+        # no profile installs (x402) must live elsewhere.
+        from bossku.skills import NOT_INSTALLED, _profile_skills, load_library_only
+
+        for manifest in (".claude-plugin/plugin.json", ".cursor-plugin/plugin.json", ".codex-plugin/plugin.json"):
+            with self.subTest(manifest=manifest):
+                self.assertEqual(json.loads((ROOT / manifest).read_text(encoding="utf-8"))["skills"], "./skills/")
+        in_skills = {p.parent.name for p in (ROOT / "skills").glob("*/SKILL.md")}
+        self.assertEqual(in_skills, set(_profile_skills("full", ROOT)))
+        self.assertFalse(in_skills & load_library_only(ROOT))
+        self.assertFalse(in_skills & NOT_INSTALLED)
+        self.assertEqual({p.parent.name for p in (ROOT / "library").glob("*/SKILL.md")}, set(load_library_only(ROOT)))
+
+
 class StocktakeTests(unittest.TestCase):
     def test_every_vendored_pack_has_provenance(self):
         for row in pack_stocktake(ROOT):

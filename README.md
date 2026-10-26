@@ -6,7 +6,7 @@ Works with **Claude Code, Cursor, Codex, OpenCode and OMP**.
 
 *Formerly BosskuAI. The `bossku` command and `bosskuai-*` skill names are the same, so your skills, hooks and notes still work. If you installed the plugin from a marketplace, reinstall it once.*
 
-![What Bossku Superpower adds around your agent. You ask; your agent picks a skill, does the work, runs it, and gives you a checked result. Behind it: 240+ skills found for you, optional tools, a check that sends the agent back if it never ran its code, and your notes saved in Obsidian.](docs/assets/superpower-overview.svg)
+![What Bossku Superpower adds around your agent. You ask; your agent picks a skill, does the work, runs it, and gives you a checked result. Behind it: 670+ skills found for you, optional tools, a check that sends the agent back if it never ran its code, and your notes saved in Obsidian.](docs/assets/superpower-overview.svg)
 
 ## Why use it?
 
@@ -14,7 +14,7 @@ Your agent is smart, but it forgets your rules and sometimes says "done" without
 
 | Problem | What Bossku Superpower does |
 |---|---|
-| Agent doesn't know which skill to use | Picks the best skill for your request from 240+ skills |
+| Agent doesn't know which skill to use | Picks the best skill for your request from 670+ skills |
 | Agent writes code but never runs it | Sends the agent back once to run it |
 | Agent runs a command that destroys work | Refuses `git reset --hard`, force push, `rm -rf ~` and similar, and tells you how to run it yourself (Claude Code) |
 | Agent pushes, merges or deploys on its own | Asks you first before `git push`, a PR merge, `npm publish`, `eas submit`, `vercel --prod`, `terraform destroy` and similar (`BOSSKU_GUARD_ASK=off` for an approved autonomous loop) |
@@ -53,7 +53,7 @@ Need **Python 3.11+** and **Git**. About five minutes:
 More choices:
 
 - **Where are my notes?** In `.bossku/memory` inside the project, unless you chose Obsidian storage in step 2.
-- **Want all skills listed?** A first install starts at `--profile lean` (about 25 listed, the rest one command away); a later `bossku install` keeps your profile. Use `--profile core` for a small set, `--profile engineering` for everything except the marketing skills, or `--profile full` for all 240+.
+- **Want all skills listed?** A first install starts at `--profile lean` (about 25 listed, the rest one command away); a later `bossku install` keeps your profile. Use `--profile core` for a small set, `--profile engineering` for everything except the marketing skills, or `--profile full` for all 256 listable skills. The other 416 niche skills stay in a library that `bossku skills find` searches.
 - **Claude Code cutting skill descriptions?** On the full profile, Claude Code may cut skill descriptions; `bossku doctor` tells you, and `--fit-skill-list` fixes it at a context cost ([details](docs/installation.md#skill-list-budget-claude-code)).
 - **Other tools?** See setup for [Claude Code](docs/installation.md#claude-code), [Cursor](docs/installation.md#cursor), [Codex](docs/installation.md#codex), [OpenCode](docs/installation.md#opencode), [OMP](docs/installation.md#omp) or [portable mode](docs/installation.md#portable-mode-cloudshared-repos).
 
@@ -61,7 +61,7 @@ More choices:
 
 | Part | What it is |
 |---|---|
-| **240+ skills** | Short checklists for engineering, product, design, security, marketing and founder work |
+| **670+ skills** | Short checklists for engineering, product, design, security, marketing and founder work: 256 listable, 416 in a searchable library |
 | **Helper hooks** (Claude Code; Codex gets the skill hint too) | Suggest a skill for your prompt and show your saved notes at session start. `hint_mode` `v2` in `~/.bosskuai/config.json` suggests up to three skills per prompt: it is opt in, because it missed some bars in its [offline test](docs/benchmarks/README.md#skill-hint-v1-against-v2) |
 | **Safety gates** (Claude Code) | Refuse destructive commands (`git reset --hard`, `rm -rf ~`), check the syntax of files the agent writes, and send the agent back once if it never ran its code. [Details and switches](hooks/README.md). Leave them out with `bossku install --no-harness` |
 | **Subagents** (Claude Code, Codex, OpenCode, Cursor, Devin) | Seven contracts (orchestrator, researcher, planner, designer, executor, auditor, final-reviewer), copied to `~/.claude/agents` and rendered in each other tool's own format (`~/.codex/agents/*.toml`, `~/.config/opencode/agents`, `~/.cursor/agents`, Devin's `agents` folder) for every tool you have set up, with a model per role. Leave them out with `--no-agents` |

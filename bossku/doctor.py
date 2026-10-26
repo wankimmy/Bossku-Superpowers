@@ -18,7 +18,7 @@ from bossku.paths import (
     MARKER_END, MARKER_START, agents_skills_dir, claude_skills_dir, library_dir, repo_root, routing_signature_path,
 )
 from bossku.skill_listing import BUDGET_KEY, UNSEEN_CHARS, USER_FILE, estimate
-from bossku.skills import NOT_INSTALLED, count_managed_skills, is_managed_skill_name, load_lean, skills_dir, validate_skills
+from bossku.skills import NOT_INSTALLED, count_managed_skills, is_managed_skill_name, load_lean, skill_folder, validate_skills
 from bossku.validate import claude_imports_agents_md, omp_imports_agents_md
 
 # What `bossku hooks install` puts in ~/.claude/settings.json: (label, event, marker).
@@ -112,7 +112,6 @@ def _body(text: str) -> str:
 
 def stale_skills(source: Path, home: Path, profile: str | None) -> list[str]:
     """Installed skill copies whose text no longer matches the repo. Absent copies are not drift."""
-    base = skills_dir(source)
     listed = set(load_lean(source)["descriptions"]) if profile == "lean" else set()
     folders = [agents_skills_dir(home), claude_skills_dir(home)] + ([library_dir(home)] if profile == "lean" else [])
     stale: set[str] = set()
@@ -120,7 +119,7 @@ def stale_skills(source: Path, home: Path, profile: str | None) -> list[str]:
         if not folder.is_dir():
             continue
         for child in folder.iterdir():
-            installed, original = child / "SKILL.md", base / child.name / "SKILL.md"
+            installed, original = child / "SKILL.md", skill_folder(child.name, source) / "SKILL.md"
             if child.name in NOT_INSTALLED or not installed.is_file() or not original.is_file():
                 continue
             if not is_managed_skill_name(child.name, source):

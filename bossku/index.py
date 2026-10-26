@@ -25,6 +25,7 @@ from bossku.skills import (
     load_aliases,
     load_vendored,
     parse_skill_md,
+    skill_folder,
     skills_dir,
 )
 
@@ -1132,7 +1133,6 @@ def _query_terms(root: Path | None = None) -> dict[str, str]:
 
 def skills_fingerprint(root: Path | None = None) -> str:
     """Hash all inputs that affect routing, including headings and policy tables."""
-    base = skills_dir(root)
     h = hashlib.sha256()
     policy = {"version": INDEX_VERSION, "triggers": CURATED_TRIGGERS,
               "exclusions": CURATED_EXCLUSIONS, "roles": CURATED_ROLES,
@@ -1145,7 +1145,7 @@ def skills_fingerprint(root: Path | None = None) -> str:
         h.update(sid.encode())
         h.update(b"\0")
         # Normalize line endings so Windows and Unix builds produce the same index.
-        h.update((base / sid / "SKILL.md").read_text(encoding="utf-8").encode("utf-8"))
+        h.update((skill_folder(sid, root) / "SKILL.md").read_text(encoding="utf-8").encode("utf-8"))
         h.update(b"\n")
     return h.hexdigest()[:16]
 
@@ -1195,14 +1195,13 @@ def skill_index_signature(root: Path | None = None) -> str:
 
 def build_index(root: Path | None = None) -> dict:
     r = repo_root(root)
-    base = skills_dir(r)
     vendored = load_vendored(r)
     library_only = load_library_only(r)
     entries: dict[str, dict] = {}
     query_terms = _query_terms(r)
 
     for sid in list_skill_ids(r):
-        path = base / sid / "SKILL.md"
+        path = skill_folder(sid, r) / "SKILL.md"
         meta = parse_skill_md(path)
         text = path.read_text(encoding="utf-8")
         description = meta.description
@@ -1217,7 +1216,7 @@ def build_index(root: Path | None = None) -> dict:
                 kw.append(token)
 
         entries[sid] = {
-            "path": f"skills/{sid}/SKILL.md",
+            "path": f"{path.parent.parent.name}/{sid}/SKILL.md",
             "name": meta.name,
             "description": description,
             "triggers": triggers,

@@ -143,21 +143,22 @@ def adapted_skill_ids(meta: dict, root: Path | None = None) -> list[str]:
 
     These are first-party skills, so a re-vendor never refreshes them; the stocktake ages them like a pack.
     """
-    base = skills_dir(root)
     if "skills" in meta:
-        return [sid for sid in meta["skills"] if (base / sid / "SKILL.md").is_file()]
+        return [sid for sid in meta["skills"] if (skill_folder(sid, root) / "SKILL.md").is_file()]
     found: set[str] = set()
+    folders = skill_folders(root)
     if meta.get("source_json"):
         upstream = meta.get("upstream", "")
-        for source in [*base.glob("*/SOURCE.json"), *base.glob("*/references/*/SOURCE.json")]:
-            try:
-                if json.loads(source.read_text(encoding="utf-8")).get("upstream") == upstream:
-                    found.add(source.relative_to(base).parts[0])
-            except (OSError, ValueError):
-                continue
+        for base in folders:
+            for source in [*base.glob("*/SOURCE.json"), *base.glob("*/references/*/SOURCE.json")]:
+                try:
+                    if json.loads(source.read_text(encoding="utf-8")).get("upstream") == upstream:
+                        found.add(source.relative_to(base).parts[0])
+                except (OSError, ValueError):
+                    continue
     marker = meta.get("marker")
     if marker:
-        for skill_md in base.glob("*/SKILL.md"):
+        for skill_md in (md for base in folders for md in base.glob("*/SKILL.md")):
             try:
                 if marker in skill_md.read_text(encoding="utf-8"):
                     found.add(skill_md.parent.name)
@@ -198,20 +199,42 @@ def skills_dir(root: Path | None = None) -> Path:
     raise FileNotFoundError("skills directory not found")
 
 
-def list_skill_ids(root: Path | None = None) -> list[str]:
+# Library-only skills live in library/, next to skills/. Plugin manifests (Claude Code, Cursor, Codex) list every
+# folder in skills/, so the niche long tail stays out of their skill lists; profiles, the hint, `bossku skills find`
+# and `show` reach both folders through skill_folder().
+LIBRARY_SKILLS_DIR = "library"
+
+
+def skill_folders(root: Path | None = None) -> list[Path]:
+    """The repo folders that hold skill folders: skills/ (what plugins and profiles list), then library/."""
     base = skills_dir(root)
+    library = base.parent / LIBRARY_SKILLS_DIR
+    return [base, library] if library.is_dir() else [base]
+
+
+def skill_folder(sid: str, root: Path | None = None) -> Path:
+    """A skill's folder in the repo: skills/<id>, or library/<id> for a library-only skill (skills/<id> if neither)."""
+    base = skills_dir(root)
+    listed = base / sid
+    if listed.is_dir():
+        return listed
+    library = base.parent / LIBRARY_SKILLS_DIR / sid
+    return library if library.is_dir() else listed
+
+
+def list_skill_ids(root: Path | None = None) -> list[str]:
     aliases = set(load_aliases(root).keys())
-    ids: list[str] = []
-    for child in sorted(base.iterdir()):
-        if not child.is_dir():
-            continue
-        if not (child / "SKILL.md").is_file():
-            continue
-        sid = child.name
-        if sid in aliases:
-            continue
-        ids.append(sid)
-    return ids
+    ids: set[str] = set()
+    for base in skill_folders(root):
+        for child in base.iterdir():
+            if not child.is_dir():
+                continue
+            if not (child / "SKILL.md").is_file():
+                continue
+            if child.name in aliases:
+                continue
+            ids.add(child.name)
+    return sorted(ids)
 
 
 def parse_skill_md(path: Path) -> SkillMeta:
@@ -845,13 +868,12 @@ def remove_tree(path: Path) -> None:
 
 
 def copy_skills_to(dest_dir: Path, root: Path | None = None, profile: str = "full") -> list[str]:
-    base = skills_dir(root)
     dest_dir.mkdir(parents=True, exist_ok=True)
     selected = [sid for sid in _profile_skills(profile, root) if sid not in NOT_INSTALLED]   # whatever the profile lists
     short = load_lean(root)["descriptions"] if profile == "lean" else {}
     installed: list[str] = []
     for sid in selected:
-        src = base / sid
+        src = skill_folder(sid, root)
         if not src.is_dir():
             continue
         target = dest_dir / sid
@@ -928,14 +950,13 @@ def set_description(skill_md: Path, description: str) -> None:
 
 def copy_library_to(dest_dir: Path, root: Path | None = None, exclude: set[str] | frozenset[str] = frozenset()) -> list[str]:
     """Install whole skills the host does not list, so `bossku skills show` can read them on demand."""
-    base = skills_dir(root)
     dest_dir.mkdir(parents=True, exist_ok=True)
     ids = [sid for sid in list_skill_ids(root) if sid not in exclude and sid not in NOT_INSTALLED]
     for sid in ids:
         target = dest_dir / sid
         if target.exists():
             remove_tree(target)
-        shutil.copytree(base / sid, target)
+        shutil.copytree(skill_folder(sid, root), target)
         make_tree_writable(target)
     for child in dest_dir.iterdir():
         if child.is_dir() and child.name not in set(ids):
@@ -952,7 +973,7 @@ def locate_skill(sid: str, root: Path | None = None, home: Path | None = None) -
         if path.is_file():
             return kind, path
     try:
-        path = skills_dir(root) / sid / "SKILL.md"
+        path = skill_folder(sid, root) / "SKILL.md"
     except FileNotFoundError:
         return "missing", None
     return ("repo", path) if path.is_file() else ("missing", None)
@@ -974,6 +995,18 @@ def validate_library_only(root: Path | None = None) -> list[str]:
     listed = set(load_lean(root)["listed"])
     errors = [f"{LIBRARY_ONLY_FILE}: {sid} has no skill folder" for sid in sorted(load_library_only(root) - ids)]
     errors += [f"{LIBRARY_ONLY_FILE}: {sid} is also in {LEAN_FILE} listed" for sid in sorted(load_library_only(root) & listed)]
+    # The folder is the switch plugins see: they list skills/ and never library/.
+    base = skills_dir(root)
+    library = base.parent / LIBRARY_SKILLS_DIR
+    library_only = load_library_only(root)
+    for sid in sorted(ids):
+        in_skills, in_library = (base / sid / "SKILL.md").is_file(), (library / sid / "SKILL.md").is_file()
+        if in_skills and in_library:
+            errors.append(f"{sid} has a folder in both skills/ and {LIBRARY_SKILLS_DIR}/")
+        elif sid in library_only and in_skills:
+            errors.append(f"{LIBRARY_ONLY_FILE}: {sid} must live in {LIBRARY_SKILLS_DIR}/ so plugin installs do not list it")
+        elif sid not in library_only and in_library:
+            errors.append(f"{LIBRARY_SKILLS_DIR}/{sid} is not in {LIBRARY_ONLY_FILE}: list it there or move it to skills/")
     return errors
 
 
@@ -1002,7 +1035,7 @@ def validate_lean(root: Path | None = None) -> list[str]:
         elif sid in NOT_INSTALLED:
             errors.append(f"{LEAN_FILE}: {sid} is never installed")
         shown = lean["descriptions"].get(sid) or (
-            parse_skill_md(skills_dir(root) / sid / "SKILL.md").description if sid in ids else "")
+            parse_skill_md(skill_folder(sid, root) / "SKILL.md").description if sid in ids else "")
         if not MIN_DESCRIPTION_CHARS <= len(shown) <= MAX_LEAN_DESCRIPTION_CHARS:
             errors.append(f"{LEAN_FILE}: {sid} description is {len(shown)} chars; "
                           f"use {MIN_DESCRIPTION_CHARS}-{MAX_LEAN_DESCRIPTION_CHARS}")
@@ -1036,8 +1069,7 @@ def _profile_skills(profile: str, root: Path | None) -> list[str]:
     if profile not in PROFILES:
         raise ValueError("profile must be lean, core, engineering or full")
     if profile == "lean":
-        base_dir = skills_dir(root)
-        return [sid for sid in load_lean(root)["listed"] if (base_dir / sid).is_dir()]
+        return [sid for sid in load_lean(root)["listed"] if skill_folder(sid, root).is_dir()]
     core = [
         COFOUNDER_SKILL,
         "bosskuai-project-understanding",
@@ -1056,7 +1088,6 @@ def _profile_skills(profile: str, root: Path | None) -> list[str]:
         "bosskuai-taste",
     ]
     if profile == "core":
-        base_dir = skills_dir(root)
         loop_ids = load_pack_skill_ids("loop-engineering", root)
         combined: list[str] = []
         seen: set[str] = set()
@@ -1065,7 +1096,7 @@ def _profile_skills(profile: str, root: Path | None) -> list[str]:
                 continue
             seen.add(sid)
             combined.append(sid)
-        return [s for s in combined if (base_dir / s).is_dir()]
+        return [s for s in combined if skill_folder(s, root).is_dir()]
     library_only = load_library_only(root)
     if profile == "engineering":   # everything except the marketing pack; copy_skills_to still refuses NOT_INSTALLED
         marketing = set(load_pack_skill_ids("marketingskills", root))
@@ -1123,7 +1154,6 @@ def _broken_relative_links(skill_md: Path) -> list[str]:
 
 def audit_skills(root: Path | None = None) -> dict:
     """Measure routing context, skill size, provenance, and local link integrity."""
-    base = skills_dir(root)
     ids = list_skill_ids(root)
     vendored = load_vendored(root)
     custom = [sid for sid in ids if sid not in vendored]
@@ -1136,7 +1166,7 @@ def audit_skills(root: Path | None = None) -> dict:
 
     by_pack: dict[str, list[str]] = {"all": ids, "bossku": custom}
     for sid in ids:
-        skill_md = base / sid / "SKILL.md"
+        skill_md = skill_folder(sid, root) / "SKILL.md"
         descriptions[sid] = parse_skill_md(skill_md).description
         body_words[sid] = len(re.findall(r"\b[\w'-]+\b", skill_md.read_text(encoding="utf-8")))
         pack = vendored.get(sid, "bossku")
@@ -1259,7 +1289,6 @@ def risky_tool_grants(value: object) -> list[str]:
 
 def validate_skills(root: Path | None = None) -> list[str]:
     errors: list[str] = []
-    base = skills_dir(root)
     vendored = load_vendored(root)
     aliases = load_aliases(root)
     ids = set(list_skill_ids(root))
@@ -1269,7 +1298,7 @@ def validate_skills(root: Path | None = None) -> list[str]:
         if target not in ids and target not in aliases.values():
             errors.append(f"alias {alias} points to missing skill {target}")
     for sid in sorted(ids):
-        skill_md = base / sid / "SKILL.md"
+        skill_md = skill_folder(sid, root) / "SKILL.md"
         if not skill_md.is_file():
             errors.append(f"missing SKILL.md for {sid}")
             continue

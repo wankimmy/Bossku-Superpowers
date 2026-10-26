@@ -257,7 +257,8 @@ home.mkdir(parents=True, exist_ok=True)
 install_user(root=root, home=home, profile=profile)
 init_project(proj, root=root, home=home, portable=False, profile=profile)
 for sid in inline_skills:   # a skill the agent starts with, as if it had already been loaded
-    body = (root / "skills" / sid / "SKILL.md").read_text(encoding="utf-8")
+    from bossku.skills import skill_folder
+    body = (skill_folder(sid, root) / "SKILL.md").read_text(encoding="utf-8")
     if body.startswith("---"):
         body = body.split("---", 2)[2]
     extra_lines.append("## Skill loaded: " + sid + "\n" + body.strip())
