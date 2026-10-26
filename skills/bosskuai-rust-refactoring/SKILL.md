@@ -11,7 +11,7 @@ Use this skill to carry out, or audit, a complete and coherent Rust refactor: ev
 
 - **`bosskuai-rust-patterns`**: idioms for writing new Rust (ownership, errors, traits). Use it as the style reference while refactoring.
 - **`bosskuai-rust-testing`**: how to write Rust tests; here tests are used as the safety net and extended with characterization tests.
-- **`bosskuai-orch-refine-code`**: iterative code-refinement loops across languages.
+- **`bosskuai-code-revamp`**: safe refactors and legacy cleanup in any language; this skill holds the Rust-specific moves.
 - **`bosskuai-business-logic-review`**: reviews business rules, not structure.
 
 ## Workflow

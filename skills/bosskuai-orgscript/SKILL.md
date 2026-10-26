@@ -11,7 +11,7 @@ Use this skill when business logic written as plain-language procedures must bec
 
 - **`bosskuai-business-logic-review`**: reviews existing code for business-rule bugs, not authoring a process DSL.
 - **`bosskuai-data-architecture`**: data and system structure, not workflow descriptions.
-- **`bosskuai-orch-pipeline`**: orchestrating agent steps in a pipeline, not modelling an organisation's process.
+- **`bosskuai-engineering-delivery`**: delivering one software change end to end, not modelling an organisation's process.
 - **`bosskuai-story-lifecycle`**: story and ticket lifecycle, not a formal process language.
 
 ## Workflow: modelling a process

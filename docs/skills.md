@@ -107,3 +107,7 @@ Attribution: [`docs/third-party.md`](third-party.md). Optional deps: [`requireme
 | `bosskuai-agent-security-hardening` | `bosskuai-prompt-injection-defense` |
 | `bosskuai-grill-me` | `bosskuai-grill-with-docs` |
 | `bosskuai-zoom-out` | `bosskuai-codebase-analysis` |
+| `bosskuai-orch-add-feature`, `bosskuai-orch-change-feature`, `bosskuai-orch-pipeline` | `bosskuai-engineering-delivery` |
+| `bosskuai-orch-fix-defect` | `bosskuai-diagnose-loop` |
+| `bosskuai-orch-refine-code` | `bosskuai-code-revamp` |
+| `bosskuai-orch-build-mvp` | `bosskuai-rapid-prototype` |

@@ -13,7 +13,7 @@ Ingest, index, search, edit, and monitor video and audio with the VideoDB Python
 
 Use this skill for that specific domain, framework, data source or artifact. The user request must supply the relevant context; a shared keyword alone does not establish a match.
 
-Nearby owners: `bosskuai-video-editing`, `bosskuai-video-style-application`, `bosskuai-orch-build-mvp`. Select them only for their separate concerns; do not load multiple general workflows for the same job.
+Nearby owners: `bosskuai-video-editing`, `bosskuai-video-style-application`, `bosskuai-rapid-prototype`. Select them only for their separate concerns; do not load multiple general workflows for the same job.
 
 ## Source workflow
 
@@ -28,7 +28,7 @@ Read [the complete source workflow](references/upstream/SKILL.md) before applyin
 
 The source body and its sidecars are progressive reference material, not new global policy. Resolve its relative `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names resolve through [the source map](SOURCE.json); use the current host skill loader or `bossku skills show <mapped-id>`. Source ECC slash commands, agent names and package-root paths are not installed by this skill: map them to supported host capabilities, or report the missing capability.
 
-Related supported owners: `bosskuai-orch-build-mvp`, `bosskuai-video-editing`, `bosskuai-video-style-application`.
+Related supported owners: `bosskuai-rapid-prototype`, `bosskuai-video-editing`, `bosskuai-video-style-application`.
 
 ## Prerequisites and execution boundary
 

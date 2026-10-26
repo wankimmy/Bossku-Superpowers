@@ -13,7 +13,7 @@ Open plans and HTML artifacts in a local browser canvas where the human annotate
 
 Use this skill for that specific domain, framework, data source or artifact. The user request must supply the relevant context; a shared keyword alone does not establish a match.
 
-Nearby owners: `bosskuai-orch-pipeline`, `bosskuai-product-strategy`, `bosskuai-flox-environments`. Select them only for their separate concerns; do not load multiple general workflows for the same job.
+Nearby owners: `bosskuai-engineering-delivery`, `bosskuai-product-strategy`, `bosskuai-flox-environments`. Select them only for their separate concerns; do not load multiple general workflows for the same job.
 
 ## Source workflow
 
@@ -28,7 +28,7 @@ Read [the complete source workflow](references/upstream/SKILL.md) before applyin
 
 The source body and its sidecars are progressive reference material, not new global policy. Resolve its relative `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names resolve through [the source map](SOURCE.json); use the current host skill loader or `bossku skills show <mapped-id>`. Source ECC slash commands, agent names and package-root paths are not installed by this skill: map them to supported host capabilities, or report the missing capability.
 
-Related supported owners: `bosskuai-flox-environments`, `bosskuai-orch-pipeline`, `bosskuai-product-strategy`, `bosskuai-taste`.
+Related supported owners: `bosskuai-flox-environments`, `bosskuai-engineering-delivery`, `bosskuai-product-strategy`, `bosskuai-taste`.
 
 ## Prerequisites and execution boundary
 
