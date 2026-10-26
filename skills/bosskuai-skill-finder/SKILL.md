@@ -7,7 +7,7 @@ description: "Use when no listed skill fits (marketing, SEO, ads, legal, finance
 
 The skill list shows the most-used skills only. The rest of the library is installed too and is found by search.
 
-1. Run `bossku skills find "<the request, in the user's words>"`.
+1. Run `bossku skills find "<the task, in the user's words>"`. Search for the work, not for a skill: leave out the question about skills ("is there a Bossku skill for", "which skill should I use", "ada skill untuk"). Those words pull the search towards the skills about Bossku itself.
 2. Read `selection.selected`. The first entry is the main skill; later entries cover other parts of the request. Skip anything in `selection.deferred` and any skill marked user-only.
 3. Load each selected skill. If `access` is `listed`, use the Skill tool. If it is `library`, run `bossku skills show <skill_id>` and follow what it prints.
 4. If `confident` is false, read the descriptions and pick the best fit, or carry on without a skill.
