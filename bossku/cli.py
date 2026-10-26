@@ -622,21 +622,26 @@ def _stocktake(root: Path | None, *, strict: bool = False, as_json: bool = False
     if as_json:
         print(json.dumps(rows, indent=2))
     else:
-        print(f"{'PACK':<20}{'SKILLS':>7}{'LAST SYNCED':>14}{'AGE':>7}  STATUS")
+        print(f"{'PACK':<20}{'KIND':<10}{'SKILLS':>7}{'LAST SYNCED':>14}{'AGE':>7}  STATUS")
         for r in rows:
             age = "never" if r["age_days"] is None else f"{r['age_days']}d"
             status = "OVERDUE" if r["overdue"] else "ok"
-            print(f"{r['pack']:<20}{r['skills']:>7}{r['last_synced'] or '-':>14}{age:>7}  {status}")
+            print(f"{r['pack']:<20}{r.get('kind', 'vendored'):<10}{r['skills']:>7}{r['last_synced'] or '-':>14}"
+                  f"{age:>7}  {status}")
         overdue = [r for r in rows if r["overdue"]]
         window = rows[0]["review_days"] if rows else 0
         print()
         if overdue:
-            print(f"{len(overdue)} pack(s) past the {window}-day review window:")
+            print(f"{len(overdue)} source(s) past the {window}-day review window:")
             for r in overdue:
-                print(f"  {r['pack']}: re-vendor from {r['upstream'] or 'upstream'}, "
-                      f"then update last_synced in skills/vendored.json")
+                if r.get("kind") == "adapted":
+                    print(f"  {r['pack']}: compare the adapted skills with {r['upstream'] or 'upstream'}, port what "
+                          f"changed, then update last_synced under `adapted` in skills/vendored.json")
+                else:
+                    print(f"  {r['pack']}: re-vendor from {r['upstream'] or 'upstream'}, "
+                          f"then update last_synced in skills/vendored.json")
         else:
-            print(f"all {len(rows)} packs within the {window}-day review window.")
+            print(f"all {len(rows)} vendored packs and adapted sources within the {window}-day review window.")
         print("note: dates are recorded syncs, not a live upstream check.")
     return 1 if strict and any(r["overdue"] for r in rows) else 0
 

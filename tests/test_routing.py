@@ -349,6 +349,17 @@ class StocktakeTests(unittest.TestCase):
         future = newest + timedelta(days=window + 1)
         self.assertEqual(len(overdue_packs(ROOT, today=future)), len(rows))
 
+    def test_adapted_sources_are_aged_like_packs(self):
+        # ECC wrappers and agency-agents rewrites are first-party, so no re-vendor refreshes them.
+        rows = {r["pack"]: r for r in pack_stocktake(ROOT) if r.get("kind") == "adapted"}
+        for group in ("ecc-wrappers", "ecc-methods", "agency-agents", "mattpocock-skills", "greptile"):
+            with self.subTest(group=group):
+                self.assertIn(group, rows)
+                self.assertTrue(rows[group]["upstream"] and rows[group]["last_synced"])
+                self.assertGreater(rows[group]["skills"], 0)
+        self.assertGreaterEqual(rows["ecc-wrappers"]["skills"], 150)
+        self.assertEqual(rows["greptile"]["skills"], 2)
+
     def test_missing_sync_date_counts_as_overdue(self):
         with tempfile.TemporaryDirectory() as tmp:
             base = Path(tmp)

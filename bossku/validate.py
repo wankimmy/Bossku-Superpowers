@@ -435,7 +435,15 @@ def validate_repo(root: Path | None = None) -> list[str]:
     # Provenance completeness is deterministic, so it is an error. Whether a pack is
     # *due* for review depends on today's date and only ever warns - see `_stocktake`.
     provenance, _ = load_provenance(r)
+    adapted = json.loads((skills_dir(r) / "vendored.json").read_text(encoding="utf-8")).get("adapted", {})
     for row in pack_stocktake(r):
+        if row.get("kind") == "adapted":
+            meta = adapted.get(row["pack"], {})
+            if not meta.get("upstream") or not row["last_synced"]:
+                errors.append(f"adapted source {row['pack']} needs upstream and last_synced in skills/vendored.json")
+            elif not row["skills"]:
+                errors.append(f"adapted source {row['pack']} matches no skill: fix its marker, list or source_json")
+            continue
         meta = provenance.get(row["pack"], {})
         if not meta:
             errors.append(

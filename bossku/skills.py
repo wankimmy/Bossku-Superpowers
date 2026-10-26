@@ -104,6 +104,7 @@ def pack_stocktake(root: Path | None = None, today: date | None = None) -> list[
         rows.append(
             {
                 "pack": pack,
+                "kind": "vendored",
                 "skills": len(ids),
                 "upstream": meta.get("upstream", ""),
                 "last_synced": synced_raw or "",
@@ -113,8 +114,56 @@ def pack_stocktake(root: Path | None = None, today: date | None = None) -> list[
                 "overdue": age is None or age > review_days,
             }
         )
+    for group, meta in data.get("adapted", {}).items():
+        synced_raw = meta.get("last_synced")
+        try:
+            synced = date.fromisoformat(synced_raw) if synced_raw else None
+        except ValueError:
+            synced = None
+        age = (now - synced).days if synced else None
+        rows.append(
+            {
+                "pack": group,
+                "kind": "adapted",
+                "skills": len(adapted_skill_ids(meta, root)),
+                "upstream": meta.get("upstream", ""),
+                "last_synced": synced_raw or "",
+                "age_days": age,
+                "review_days": review_days,
+                "overdue": age is None or age > review_days,
+            }
+        )
     rows.sort(key=lambda r: (-1 if r["age_days"] is None else -r["age_days"]))
     return rows
+
+
+def adapted_skill_ids(meta: dict, root: Path | None = None) -> list[str]:
+    """Skills that hold text adapted from one upstream: a fixed list, the SOURCE.json files that name the upstream
+    (a wrapper's own, or one under a skill's references/), or the skills whose SKILL.md carries the attribution marker.
+
+    These are first-party skills, so a re-vendor never refreshes them; the stocktake ages them like a pack.
+    """
+    base = skills_dir(root)
+    if "skills" in meta:
+        return [sid for sid in meta["skills"] if (base / sid / "SKILL.md").is_file()]
+    found: set[str] = set()
+    if meta.get("source_json"):
+        upstream = meta.get("upstream", "")
+        for source in [*base.glob("*/SOURCE.json"), *base.glob("*/references/*/SOURCE.json")]:
+            try:
+                if json.loads(source.read_text(encoding="utf-8")).get("upstream") == upstream:
+                    found.add(source.relative_to(base).parts[0])
+            except (OSError, ValueError):
+                continue
+    marker = meta.get("marker")
+    if marker:
+        for skill_md in base.glob("*/SKILL.md"):
+            try:
+                if marker in skill_md.read_text(encoding="utf-8"):
+                    found.add(skill_md.parent.name)
+            except OSError:
+                continue
+    return sorted(found)
 
 
 def overdue_packs(root: Path | None = None, today: date | None = None) -> list[str]:

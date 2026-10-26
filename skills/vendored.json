@@ -95,6 +95,41 @@
       "last_synced": "2026-10-22"
     }
   },
+  "adapted": {
+    "ecc-wrappers": {
+      "upstream": "affaan-m/ECC",
+      "last_synced": "2026-10-12",
+      "source_json": true,
+      "note": "library-only wrappers that keep the upstream skill whole under references/; SOURCE.json records path and SHA-256"
+    },
+    "ecc-methods": {
+      "upstream": "affaan-m/ECC",
+      "last_synced": "2026-10-13",
+      "marker": "(affaan-m/ECC, MIT)",
+      "note": "methods appended to first-party skills, each ending with an 'Adapted in part from ECC' line"
+    },
+    "agency-agents": {
+      "upstream": "msitarzewski/agency-agents",
+      "last_synced": "2026-10-12",
+      "marker": "(agency-agents, MIT)",
+      "note": "rewritten as first-party skills or sections, each ending with an 'Adapted from' line"
+    },
+    "mattpocock-skills": {
+      "upstream": "mattpocock/skills",
+      "last_synced": "2026-10-12",
+      "marker": "mattpocock/skills",
+      "note": "rewritten as first-party skills or sections, each ending with an 'Adapted from' line"
+    },
+    "greptile": {
+      "upstream": "greptileai/skills",
+      "last_synced": "2026-09-26",
+      "skills": [
+        "bosskuai-greptile-review-loop",
+        "bosskuai-pr-check"
+      ],
+      "note": "first-party adaptations; local deviations to re-apply are listed in docs/third-party.md"
+    }
+  },
   "packs": {
     "marketingskills": [
       "ab-testing",

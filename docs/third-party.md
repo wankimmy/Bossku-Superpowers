@@ -95,6 +95,13 @@ stale is a prompt to review, not a broken repo. Missing provenance *is* a hard e
 To refresh a pack: re-copy from upstream, re-run `bossku skills index`, then set
 `last_synced` to today in `skills/vendored.json`.
 
+Adapted sources age the same way. `adapted` in `skills/vendored.json` names each upstream whose text lives in
+first-party skills (the ECC wrappers and their `SOURCE.json` files, the ECC methods and agency-agents and
+mattpocock/skills rewrites found by their "Adapted from" marker, and the two greptile skills). A re-vendor never
+touches them, so the stocktake lists them with `KIND adapted`: compare those skills with upstream, port what
+changed, then set that entry's `last_synced`. `bossku validate` fails when an entry has no upstream or date, or
+matches no skill.
+
 These dates are recorded syncs, not a live upstream check - the tool reports that a
 pack is due for review, never that upstream actually changed.
 
