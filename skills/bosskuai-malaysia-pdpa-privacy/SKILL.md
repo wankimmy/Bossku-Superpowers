@@ -25,7 +25,14 @@ Malaysia's PDPA is built on principles that map to concrete product decisions:
 - **Data integrity**: keep it accurate and current.
 - **Access**: users can access and correct their data.
 
-Amendment duties in force since 1 June 2025 (PDPA (Amendment) Act 2024): notify the Personal Data Protection Commissioner within 72 hours of becoming aware of a personal data breach, and affected individuals within 7 days where significant harm is likely; appoint a Data Protection Officer and register them with the Commissioner where processing is large-scale; honour data portability requests. Thresholds and forms come from the Commissioner's guidelines: confirm them with counsel.
+PDPA (Amendment) Act 2024, in force in phases:
+
+- **1 April 2025**: "data user" becomes "data controller"; biometric data is sensitive personal data; data processors carry the Security Principle themselves; the transfer whitelist is gone, so a cross-border transfer needs one of the Act's conditions instead; penalties rise to RM1,000,000 and/or 3 years.
+- **1 June 2025**: breach notification, Data Protection Officers and data portability.
+- **Breach**: notify the Commissioner within 72 hours (Commissioner's Circular 2/2025), send follow-up details within 30 days of that notice, and tell affected individuals within 7 days after notifying the Commissioner where significant harm is likely. Keep a breach register, physical and electronic, for at least 2 years, covering breaches you did not have to notify too. Failing to notify: up to RM250,000 and/or 2 years.
+- **DPO** (Circular 1/2025): required when you process personal data of more than 20,000 individuals, sensitive personal data (financial information included) of more than 10,000, or do regular and systematic monitoring (continuous location tracking or behavioural profiling are likely examples; the circular does not list them). Register the DPO at daftar.pdp.gov.my within 21 days of appointment, update changes within 14 days, and publish the DPO's business contact on your website or other official channels.
+
+Checked on 2026-10-26 against the gazette notice, the Bill and the Commissioner's circulars (pdp.gov.my was unreachable that day, so the English guidelines were read through law-firm summaries). Rules move: confirm thresholds and forms with counsel before relying on them.
 
 ## Design decisions this drives
 
@@ -35,7 +42,7 @@ Amendment duties in force since 1 June 2025 (PDPA (Amendment) Act 2024): notify 
 - **Access, correction, export, deletion**: build the workflow before scale makes it manual and painful.
 - **Processors and vendors**: every third party receiving personal data (analytics, support, email, AI APIs) needs a purpose and an agreement. Sending customer records to an external model API is a disclosure.
 - **Cross-border transfer**: know where data physically lands, including your hosting region and each vendor's.
-- **Breach readiness**: a tested runbook that meets the 72-hour Commissioner deadline: who assesses harm, who notifies, and what evidence is kept.
+- **Breach readiness**: a tested runbook that meets the 72-hour Commissioner deadline and the 7-day notice to individuals: who assesses harm, who notifies, and the register entry (what happened, when you knew, data affected, likely harm, containment, notices sent).
 
 ## Enforcement checks
 
@@ -68,8 +75,8 @@ Findings:
 User rights workflow: [access / correct / export / delete - built or missing]
 Retention enforcement: [job or process that actually deletes]
 Needs legal review: [items]
-DPO: [appointed and registered / not required, why]
-Breach path: [owner, last 72h drill]
+DPO: [appointed, registered, contact published / not required, which threshold was checked]
+Breach path: [owner, last 72h drill, breach register location]
 ```
 
 ## References

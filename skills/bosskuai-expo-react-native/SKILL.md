@@ -23,7 +23,7 @@ Use this skill when building, auditing, or debugging a React Native app, with or
 
 ## Orient before changing anything
 
-1. `npx expo-doctor` and `npx expo install --check`: SDK version, mismatched native dependencies.
+1. `npx expo-doctor` and `npx expo install --check`: SDK version, mismatched native dependencies. Since SDK 55 every Expo package's major version equals the SDK's, so a mismatch is easy to spot.
 2. `app.json` / `app.config.ts`: bundle id / package, scheme, permissions, plugins, `runtimeVersion` policy, Hermes, and on SDK 54 or older the New Architecture flag.
 3. `eas.json`: build profiles (development, preview, production), channels, env per profile.
 4. Navigation: Expo Router (file-based, groups, layouts) or React Navigation; auth gating approach.
@@ -46,7 +46,7 @@ Use this skill when building, auditing, or debugging a React Native app, with or
 - Deep links: `scheme` for custom links, Universal Links (AASA) and App Links (assetlinks.json) for HTTPS; test cold start and warm start paths.
 - Notifications: request permission in context, not at launch; test on physical devices with production credentials; Android needs a channel.
 - OTA (EAS Update): only JS and assets; any native change (new module, permission, SDK upgrade) requires a new build and a new `runtimeVersion`.
-- New Architecture: mandatory from React Native 0.82 / Expo SDK 55 (SDK 54 is the last with a legacy option). Before upgrading past SDK 54, confirm every native library supports it; replace legacy-only modules instead of pinning the SDK. Fabric/TurboModules break old bridge-based modules.
+- New Architecture: React Native 0.82 made it mandatory and SDK 54 is the last Expo SDK with a legacy option; SDK 55 (React Native 0.83) and every later SDK run the New Architecture only, and React Native removes more legacy classes each release. Before moving an app off SDK 54 or older, confirm every native library supports it; replace legacy-only modules instead of pinning the SDK. Fabric/TurboModules break old bridge-based modules. (Checked 2026-10-26: the latest SDK was 58 with React Native 0.88; read the project's own SDK with `npx expo-doctor`, not this line.)
 - Platform targets: Play requires a recent `targetSdkVersion` each year; Apple requires current Xcode SDK and privacy manifests for listed APIs.
 
 ## Architecture that holds up
@@ -88,7 +88,7 @@ eas build --profile preview --platform all   # then install on devices
 - Do not ship native changes through EAS Update.
 - Do not store tokens in AsyncStorage or ship secrets in `EXPO_PUBLIC_*`.
 - Do not test only on simulators before a release candidate.
-- Do not upgrade to Expo SDK 55+ / React Native 0.82+ until every native dependency supports the New Architecture.
+- Do not move an app from SDK 54 or older to SDK 55+ until every native dependency supports the New Architecture: there is no legacy fallback after SDK 54.
 
 ## Output format
 
