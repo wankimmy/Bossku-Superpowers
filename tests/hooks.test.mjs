@@ -255,6 +255,7 @@ const ASK = [
   "wrangler pages deploy dist",
   "vercel deploy --target=production",
   "docker buildx build --push -t ghcr.io/me/app .",
+  "docker compose push",
   "eas build --auto-submit",
   "git.exe push origin main",
   "npm.cmd publish",
