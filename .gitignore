@@ -35,3 +35,6 @@ temp/
 
 # logo-design reference logos (trademarks; fetched locally, never committed)
 library/logo-design/assets/library/svg/
+
+# claude plugin eval output
+evals/results/
