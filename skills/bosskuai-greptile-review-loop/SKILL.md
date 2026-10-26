@@ -6,7 +6,7 @@ compatibility: Requires git, gh (GitHub CLI) or glab (GitLab CLI) authenticated,
 metadata:
   author: greptileai
   version: "1.3"
-allowed-tools: Bash(gh:*) Bash(glab:*) Bash(git:*) Bash(p4:*)
+allowed-tools: Bash(git remote:*) Bash(git status:*) Bash(git diff:*) Bash(git log:*) Bash(git rev-parse:*) Bash(git add:*) Bash(git commit:*) Bash(gh pr view:*) Bash(gh pr checks:*) Bash(gh pr diff:*) Bash(gh api:*) Bash(glab mr view:*) Bash(glab api:*) Bash(p4 info:*) Bash(p4 changes:*) Bash(p4 describe:*) Bash(p4 client:*)
 ---
 
 # Greploop

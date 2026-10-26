@@ -1174,6 +1174,26 @@ def _strict_yaml_problems(text: str) -> list[str]:
 MAX_DESCRIPTION_CHARS = 1200
 MIN_DESCRIPTION_CHARS = 40
 
+# `allowed-tools` runs the listed tools with no permission prompt in the turn that loads the skill (Claude Code), so a
+# blanket shell grant, or a catch-all for a CLI that can push, merge, publish or deploy, skips the user's Risk pauses.
+# Grant the read-only subcommands instead (`Bash(gh pr view:*)`) and let the rest go through the normal prompt.
+_GRANT = re.compile(r"[A-Za-z_]+(?:\([^)]*\))?")
+_BLANKET_SHELL = frozenset({"bash", "powershell", "bash(*)", "bash(:*)", "powershell(*)", "powershell(:*)"})
+_CATCH_ALL_CLIS = frozenset({"git", "gh", "glab", "p4", "npm", "pnpm", "yarn", "npx", "bunx", "docker", "kubectl",
+                             "helm", "terraform", "vercel", "eas", "fly", "firebase", "aws", "gcloud", "az"})
+
+
+def risky_tool_grants(value: object) -> list[str]:
+    """The entries of an `allowed-tools` value that pre-approve a whole shell or a whole consequential CLI."""
+    text = " ".join(str(v) for v in value) if isinstance(value, list) else str(value or "")
+    risky: list[str] = []
+    for grant in _GRANT.findall(text):
+        g = grant.strip().lower()
+        inner = re.fullmatch(r"(?:bash|powershell)\(\s*([\w.-]+)\s*(?::\s*\*|\s+\*)?\s*\)", g)
+        if g in _BLANKET_SHELL or (inner and inner.group(1) in _CATCH_ALL_CLIS):
+            risky.append(grant)
+    return risky
+
 
 def validate_skills(root: Path | None = None) -> list[str]:
     errors: list[str] = []
@@ -1222,6 +1242,12 @@ def validate_skills(root: Path | None = None) -> list[str]:
         unknown = sorted(set(front) - KNOWN_FRONTMATTER_KEYS)
         if unknown:
             errors.append(f"{sid}/SKILL.md unknown frontmatter key(s): {', '.join(unknown)}")
+        # Vendored skills too: a plugin ships their grants as they are.
+        for grant in risky_tool_grants(front.get("allowed-tools")):
+            errors.append(
+                f"{sid}/SKILL.md allowed-tools pre-approves `{grant}` with no prompt; grant the read-only "
+                "subcommands it needs instead"
+            )
         if sid not in vendored:
             for target in _broken_relative_links(skill_md):
                 errors.append(f"{sid}/SKILL.md broken relative link: {target}")

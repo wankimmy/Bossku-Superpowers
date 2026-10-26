@@ -423,6 +423,21 @@ class ValidatorTests(unittest.TestCase):
             )
             self.assertIn("broken relative link", " ".join(validate_skills(base)))
 
+    def test_flags_blanket_shell_and_catch_all_cli_grants(self):
+        # allowed-tools runs with no permission prompt, so `Bash` or `Bash(git:*)` would skip the push/merge pause.
+        with tempfile.TemporaryDirectory() as tmp:
+            base = self._repo(tmp)
+            desc = "description: Use when testing which tool grants a skill may pre-approve."
+            self._skill(base, "blanket", f"name: blanket\n{desc}\nallowed-tools: Read, Bash, Edit")
+            self._skill(base, "catch-all", f"name: catch-all\n{desc}\nallowed-tools: Bash(gh:*) Bash(git *)")
+            self._skill(base, "scoped", f"name: scoped\n{desc}\nallowed-tools: Bash(gh pr view:*) Bash(git status:*) "
+                                        "Bash(browser-use:*) Read")
+            errors = validate_skills(base)
+            self.assertTrue(any("blanket/SKILL.md" in e and "`Bash`" in e for e in errors), errors)
+            self.assertTrue(any("catch-all/SKILL.md" in e and "Bash(gh:*)" in e for e in errors), errors)
+            self.assertTrue(any("catch-all/SKILL.md" in e and "Bash(git *)" in e for e in errors), errors)
+            self.assertFalse([e for e in errors if "scoped/" in e], errors)
+
     def test_flags_unquoted_colon_in_description(self):
         # Hosts' YAML parsers reject `: ` in a plain value and drop the description.
         with tempfile.TemporaryDirectory() as tmp:
