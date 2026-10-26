@@ -38,7 +38,7 @@ A loaded skill stays in the conversation and is read again on every later turn, 
 | marketingskills | 52 marketing/CRO/SEO/copy skills | — |
 | superpowers | 15 process skills (brainstorm, TDD, debug, plans, session diagnosis) | — |
 | hallmark | Anti-AI design skill | — |
-| browser-use | 5 browser agent skills | `browser-use` |
+| browser-use | 4 browser agent skills | `browser-use` |
 | graphify | Knowledge-graph skill | `graphifyy` |
 | markitdown | Document conversion skill | `markitdown[all]` |
 | opendataloader-pdf | Structured PDF extraction, OCR, tables, bounding boxes, and RAG citations | `opendataloader-pdf` |
