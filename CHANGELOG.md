@@ -5,16 +5,16 @@
 ### Fixes
 
 - **x402 no longer ships (`c4944cd`).** The CLI never installed it, but plugin manifests list every folder in `skills/`, so a marketplace install exposed a skill that prints wallet keys and spends USDC. It is now `excluded` in `vendored.json`.
-- **No skill pre-approves push, merge or credit spend (`ce2c53b`).** `bosskuai-pr-check` and `bosskuai-greptile-review-loop` granted `Bash(gh:*) Bash(git:*)`; they now grant read-only git, gh, glab and p4 commands plus `git add`/`git commit`. `bosskuai-agent-architecture-audit` is read-only, and `scroll-world` no longer grants a bare `Bash`. `bossku validate` rejects a bare `Bash` or `PowerShell` grant and catch-alls such as `Bash(git:*)`.
+- **No skill pre-approves push, merge or credit spend (`ce2c53b`, `eb367c0`).** `bosskuai-pr-check` and `bosskuai-greptile-review-loop` granted `Bash(gh:*) Bash(git:*)`; they now grant read-only git, gh, glab and p4 commands plus `git add`/`git commit`, and no longer `gh api` or `glab api`, since one API call can merge a pull request. `bosskuai-agent-architecture-audit` is read-only, and `scroll-world` no longer grants a bare `Bash`. `bossku validate` rejects a bare `Bash` or `PowerShell` grant, catch-alls such as `Bash(git:*)`, raw API grants such as `Bash(gh api:*)`, and push, merge, publish or deploy grants such as `Bash(git push:*)`.
 - **Skill names match their folders (`e90189e`).** Seven taste-skill skills had other names, so their ids did not exist in Claude Code; the eleven loop-engineering skills now use the `user-invocable` key hosts read.
-- **Vendored links resolve (`90ba76f`).** 40 links in 16 vendored skills named missing files; 2 remain, both upstream's own gap.
-- **The OpenCode memory sync plugin loads on OpenCode 2 (`8dae26c`).** OpenCode 2 needs a default `{id, setup}` export and has no `session.idle`; the plugin now syncs when a run ends there and keeps the `session.idle` hook for OpenCode 1.
+- **Vendored links resolve (`90ba76f`).** 40 links in 16 vendored skills named missing files; 2 remain, both upstream's own gap. `bossku install` copies the linked `tools/` folder next to the skills, and uninstall removes it again (`93450ad`).
+- **The OpenCode memory sync plugin loads on OpenCode 2 (`8dae26c`).** OpenCode 2 needs a default `{id, setup}` export and has no `session.idle`; the plugin now syncs when a run ends there and keeps the `session.idle` hook for OpenCode 1 (1.18.29 or newer, the first 1.x that loads an object export).
 - **The skill finder searches for the task (`2da4ed4`).** "Is there a Bossku skill for bookkeeping?" made `bossku skills find` pick `bosskuai-customize-bosskuai` with confidence; the finder now passes the task without the question about skills.
 
 ### New
 
-- **The guard asks before push, merge, publish and deploy (`8bb10c0`).** `git push`, PR and MR create and merge, package publishes, `docker push`, app-store submits, production deploys and infrastructure apply/destroy get a prompt the user answers. Deny rules still win. `BOSSKU_GUARD_ASK=off` drops only the asks.
-- **The guard runs in Codex, Cursor and OpenCode (`b38d9c4`).** `bossku install` and `bossku hooks install` wire `hooks/guard.mjs` into each tool's own hook format. Codex cannot ask from a hook, so an ask is a refusal there. Codex runs a new or changed hook only after you trust it in `/hooks`.
+- **The guard asks before push, merge, publish and deploy (`8bb10c0`, `93450ad`).** `git push`, PR and MR create and merge, package publishes, `docker push`, app-store submits, production deploys, infrastructure apply/destroy, and `gh api` / `glab api` calls that merge, move a ref, publish or delete get a prompt the user answers. The rules read the command the shell runs: options before the verb, `.exe` names, subshells, `$(...)` and `bash -c` are looked through, and quoted text such as a commit message that mentions `git push` does not ask. Deny rules still win. `BOSSKU_GUARD_ASK=off` drops only the asks.
+- **The guard runs in Codex, Cursor and OpenCode (`b38d9c4`).** `bossku install` and `bossku hooks install` wire `hooks/guard.mjs` into each tool's own hook format. Codex cannot ask from a hook, so an ask is a refusal there, as on OpenCode 1. Codex runs a new or changed hook only after you trust it in `/hooks`. The OpenCode plugin needs OpenCode 2 or 1.18.29 and newer.
 - **A `claude plugin eval` suite (`6642dfc`).** [`evals/`](evals/README.md) has 81 cases, three for each of the 27 lean skills: two where the skill should load and one near miss. It has not been run; see the README for commands and cost.
 - **An out-of-catalog routing set (`15c3acb`).** 120 requests for real work no skill covers. The hint names a wrong skill for 29 of them ([benchmark notes](docs/benchmarks/README.md#requests-no-skill-covers)); the one-word scoring tweak measured against it is not adopted.
 - **Stocktake covers adapted text (`82c40e3`).** About 380 first-party skills hold text adapted from ECC, agency-agents, mattpocock/skills and greptile; `bossku skills stocktake` now ages them too.
@@ -31,6 +31,8 @@
 
 - The Codex, Cursor and OpenCode guard hooks and the OpenCode sync plugin are unit-tested against each tool's documented format, not run inside those apps.
 - The eval suite was format-checked, not run: a run uses tokens on your account.
+- Claude Code's docs list explicit ask rules, not hook asks, among the prompts `--dangerously-skip-permissions` keeps, so the guard's asks may not appear in that mode. Its denies still apply.
+- The vendored `antislop-human` skill still pre-approves `python` and `python3` for its contrast script, which allows any Python while the skill is loaded. It is upstream text, left as it is.
 
 ## v2.9.0 - Cloudflare's security audit skill
 
