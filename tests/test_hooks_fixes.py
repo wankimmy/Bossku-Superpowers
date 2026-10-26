@@ -9,6 +9,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 import tomllib
 import unittest
 from datetime import datetime, timedelta, timezone
@@ -198,14 +199,52 @@ class OpenCodePluginTests(unittest.TestCase):
             plugin = self.install_plugin(tmp, (Path(tmp) / "no such dir" / "bossku.exe").as_posix())
             module = plugin.with_suffix(".mjs")
             module.write_text(plugin.read_text(encoding="utf-8"), encoding="utf-8")
-            script = (f'import {{ BosskuSyncPlugin }} from "{module.as_uri()}";'
-                      'const p = await BosskuSyncPlugin({ directory: process.cwd() });'
+            script = (f'const plugin = (await import("{module.as_uri()}")).default;'
+                      'const p = await plugin.server({ directory: process.cwd() });'
                       'p.event({ event: { type: "session.idle" } });'
                       'await new Promise((done) => setTimeout(done, 500));')
             done = subprocess.run(["node", "--input-type=module", "-e", script], capture_output=True, text=True,
                                   encoding="utf-8", timeout=60)
             self.assertEqual(done.returncode, 0, done.stderr)
             self.assertIn("[bossku-sync]", done.stderr)
+
+    @unittest.skipUnless(shutil.which("node"), "node is not installed")
+    def test_it_syncs_on_opencode_1_idle_and_when_an_opencode_2_run_ends(self):
+        # OpenCode 2 loads only a default {id, setup} and has no session.idle; OpenCode 1 calls default.server.
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp)
+            (home / ".config" / "opencode").mkdir(parents=True)
+            log, recorder = home / "calls.log", home / "record.py"
+            recorder.write_text("import sys\nwith open(sys.argv[1], 'a', encoding='utf-8') as f:\n"
+                                "    f.write(' '.join(sys.argv[2:]) + '\\n')\n", encoding="utf-8")
+            with mock.patch("bossku.hooks.resolve_bossku_argv", return_value=[sys.executable, str(recorder), str(log)]):
+                install_hooks(home=home, tools=("opencode",))
+            plugin = home / ".config" / "opencode" / "plugins" / "bossku-sync.js"
+            module = plugin.with_suffix(".mjs")
+            module.write_text(plugin.read_text(encoding="utf-8"), encoding="utf-8")
+            script = (f'const plugin = (await import("{module.as_uri()}")).default;'
+                      'if (plugin.id !== "bossku-sync" || typeof plugin.setup !== "function") process.exit(3);'
+                      'const v1 = await plugin.server({ directory: "/one" });'
+                      'v1.event({ event: { type: "session.updated" } });'
+                      'v1.event({ event: { type: "session.idle" } });'
+                      'async function* events() {'
+                      '  yield { type: "session.idle" };'
+                      '  yield { type: "session.execution.succeeded", data: { sessionID: "a" } };'
+                      '  yield { type: "session.execution.interrupted", data: { sessionID: "b", reason: "shutdown" } };'
+                      '  yield { type: "session.execution.failed", location: { directory: "/other" }, data: {} };'
+                      '}'
+                      'const stop = await plugin.setup({ location: { directory: "/two" }, event: { subscribe: events } });'
+                      'await new Promise((done) => setTimeout(done, 200)); stop();')
+            done = subprocess.run(["node", "--input-type=module", "-e", script], capture_output=True, text=True,
+                                  encoding="utf-8", timeout=60)
+            self.assertEqual(done.returncode, 0, done.stderr)
+            want = sorted(f"sync-hook --project {d}" for d in ("/one", "/two", "/other"))
+            for _ in range(200):   # the children are detached: wait for them, then make sure no fourth one comes
+                if log.is_file() and len(log.read_text(encoding="utf-8").splitlines()) >= len(want):
+                    break
+                time.sleep(0.1)
+            time.sleep(0.5)
+            self.assertEqual(sorted(log.read_text(encoding="utf-8").splitlines()), want)
 
 
 class InstallProfileTests(unittest.TestCase):

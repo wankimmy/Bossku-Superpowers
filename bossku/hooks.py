@@ -675,34 +675,50 @@ def install_codex_hook(home: Path) -> dict:
 
 
 _OPENCODE_PLUGIN_TEMPLATE = """// Managed by BosskuAI (`bossku hooks install`). Safe to delete; re-run to restore.
-// Pushes .bossku/memory to the configured Obsidian vault when an OpenCode session goes idle.
+// Pushes .bossku/memory to the configured Obsidian vault when an OpenCode session goes idle: OpenCode 1 (server,
+// session.idle) and OpenCode 2 (setup; it has no session.idle, so the end of a run is the same moment).
 import {{ spawn }} from "node:child_process";
 
 const BOSSKU_ARGV = {argv};
+const RUN_ENDED = new Set(["session.execution.succeeded", "session.execution.failed", "session.execution.interrupted"]);
 
-export const BosskuSyncPlugin = async (input) => {{
-  return {{
+function sync(cwd) {{
+  try {{
+    const [bin, ...rest] = BOSSKU_ARGV;
+    const child = spawn(bin, [...rest, "sync-hook", "--project", cwd], {{
+      detached: true,
+      stdio: "ignore",
+    }});
+    // A missing binary is reported on the child, not thrown: unhandled, it ends the host process.
+    child.on("error", (e) => console.warn(`[bossku-sync] failed to run sync-hook: ${{e.message}}`));
+    child.unref();
+  }} catch (e) {{
+    console.warn(`[bossku-sync] failed to spawn sync-hook: ${{e instanceof Error ? e.message : String(e)}}`);
+  }}
+}}
+
+export default {{
+  id: "bossku-sync",
+  server: async (input) => ({{
     event: (arg) => {{
       const ev = arg && arg.event;
       if (!ev || ev.type !== "session.idle") return;
-      const cwd = input.directory || (input.project && input.project.worktree) || process.cwd();
-      try {{
-        const [bin, ...rest] = BOSSKU_ARGV;
-        const child = spawn(bin, [...rest, "sync-hook", "--project", cwd], {{
-          detached: true,
-          stdio: "ignore",
-        }});
-        // A missing binary is reported on the child, not thrown: unhandled, it ends the host process.
-        child.on("error", (e) => console.warn(`[bossku-sync] failed to run sync-hook: ${{e.message}}`));
-        child.unref();
-      }} catch (e) {{
-        console.warn(`[bossku-sync] failed to spawn sync-hook: ${{e instanceof Error ? e.message : String(e)}}`);
-      }}
+      sync(input.directory || (input.project && input.project.worktree) || process.cwd());
     }},
-  }};
+  }}),
+  // The stream closes when the plugin unloads; a shutdown interrupt is not an idle session (OpenCode's own rule).
+  setup: (ctx) => {{
+    const stop = new AbortController();
+    const home = (ctx.location && ctx.location.directory) || process.cwd();
+    (async () => {{
+      for await (const ev of ctx.event.subscribe({{ signal: stop.signal }})) {{
+        if (!ev || !RUN_ENDED.has(ev.type) || (ev.data && ev.data.reason === "shutdown")) continue;
+        sync((ev.location && ev.location.directory) || home);
+      }}
+    }})().catch((e) => console.warn(`[bossku-sync] event stream stopped: ${{e instanceof Error ? e.message : String(e)}}`));
+    return () => stop.abort();
+  }},
 }};
-
-export default BosskuSyncPlugin;
 """
 
 
