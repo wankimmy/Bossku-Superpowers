@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.11.0 - Search first studies open-source prior art
+
+### Changed
+
+- **`bosskuai-search-first` studies prior art before an unfamiliar build (`1c50b15`).** When the outcome is build, or the feature is new to you, the skill now has you read how 2-3 open-source projects implemented it (`gh search repos`, `gh search code`, their issues) and compare approaches before writing code. Ideas are borrowed freely; code is copied only under a compatible license with its notice kept. The reference guide, checklist and output template gain a prior-art section, and "unfamiliar feature", "never built this", "how do others implement", "reference implementation" and "prior art" now route to the skill.
+
 ## v2.10.0 - Audit fixes: safer grants, a guard on every host, a 256-skill plugin
 
 ### Fixes

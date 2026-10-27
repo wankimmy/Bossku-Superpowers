@@ -7,7 +7,7 @@
     {
       "name": "bossku-superpower",
       "description": "Make your AI coding agent work properly: pick the right skill, run its own code, and remember your project rules.",
-      "version": "2.10.0",
+      "version": "2.11.0",
       "source": {
         "source": "local",
         "path": "./"
