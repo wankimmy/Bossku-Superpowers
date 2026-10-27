@@ -452,7 +452,11 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
     "bosskuai-continuous-learning": ["capture this lesson", "learn from this", "save this learning", "save learning", "lesson learned", "what did we learn", "post task learning"],
     "bosskuai-handoff": ["handoff", "hand off", "hand this off", "pass to another agent", "continue in a new session", "next session", "handoff doc", "write a handoff"],
     "bosskuai-council": ["council", "debate this", "go or no go", "multiple perspectives"],
-    "bosskuai-search-first": ["is there a library", "build or buy", "existing package", "reinvent"],
+    "bosskuai-search-first": [
+        "is there a library", "build or buy", "existing package", "reinvent",
+        "never built this", "unfamiliar feature", "how do others implement", "open source example",
+        "reference implementation", "prior art",
+    ],
     "bosskuai-documentation-lookup": ["official docs", "context7", "look up the docs"],
     "bosskuai-grill-with-docs": ["grill", "verify against docs", "check my understanding"],
     "bosskuai-ponytail": [

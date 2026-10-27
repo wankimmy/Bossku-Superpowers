@@ -1,6 +1,6 @@
 ---
 name: bosskuai-search-first
-description: Use when deciding whether to adopt an existing package, service, MCP, internal utility, or pattern before building custom code or workflow logic.
+description: Use before building custom code or an unfamiliar feature to adopt an existing package, service, MCP, utility or pattern, or study open-source prior art.
 ---
 
 # Search first
@@ -12,7 +12,8 @@ Before building anything custom, check whether it already exists. Stop at the fi
 3. **Score every external candidate in one pass:** maintained within the last year, real adoption, no open Critical/High CVE, a compatible license (MIT/Apache/BSD; stop at GPL or "no license"), and it covers most of the need without heavy wrapping.
 4. **One red flag kills the candidate.** Abandoned, an unpatched CVE, or an incompatible license — drop it and move to the next tier instead of rationalizing around it.
 5. **If nobody is available to weigh in**, default to whichever option clears every check above with the least new code for you to maintain, and say so in one line.
-6. **State the smallest next step**: for adopt, the integration point; for build, the minimal first version — not the full feature.
+6. **Building, or the feature is new to you? Study prior art first.** Find 2-3 open-source projects that already ship it (`gh search repos "<capability>" --sort stars`, `gh search code`), read how each one does it, and compare in a few lines: approach, edge cases handled, known bugs in their issues. Pick one approach, then build. Borrow ideas freely; copy code only under a compatible license, with its notice kept.
+7. **State the smallest next step**: for adopt, the integration point; for build, the minimal first version — not the full feature.
 
 Check before you finish: you actually looked at the candidate's last commit and license before recommending it, you didn't reject an option just because it needs reading docs, and "we can just use X" is backed by a real check of X.
 

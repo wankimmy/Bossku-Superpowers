@@ -9,4 +9,5 @@
 - Did you compare the leading options by fit, maintenance, portability, security, and operational cost?
 - If recommending a dependency, did you prefer the smallest maintained option that fits the real need?
 - If recommending custom implementation, did you explain why adopt, extend, or wrap was not sufficient?
+- If building, or the feature is unfamiliar, did you read how 2-3 open-source projects implemented it and compare their approaches first?
 - Did you recommend the smallest next step that reduces risk before committing to a larger build?

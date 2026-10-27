@@ -53,6 +53,16 @@ A single Red signal is a blocker. Multiple Amber signals should trigger a build-
 | No solution fits OR core differentiator | **Build custom** — explain why alternatives were insufficient |
 | Build cost exceeds ongoing managed service cost | **Managed service** — factor in ops cost |
 
+## Study prior art before building
+
+When the outcome is build, or the feature is unfamiliar, look at how others solved it before writing code. The goal is to learn the approach, not to adopt a dependency.
+
+1. Find 2-3 maintained open-source projects that ship the same feature: `gh search repos "<capability>" --sort stars`, `gh search code "<key api or term>"`, or web search when `gh` is unavailable.
+2. Read the implementation itself (the module that does the work), plus open and closed issues about it: they show the edge cases and the mistakes.
+3. Compare in a short table: approach, data model, edge cases handled, known bugs, size.
+4. Pick one approach and say why in one line. Prefer the simplest one that handles the edge cases you actually have.
+5. Borrow ideas freely. Copy code only under a compatible license (MIT/Apache/BSD), keep its notice, and record it where the repo credits third-party code.
+
 ## Workflow
 
 1. **Define the actual capability needed**: Be specific about what the code or tool must do — not the implementation, the behavior.
@@ -82,6 +92,9 @@ Search results:
   Tool surface: [found / not found — details]
   Ecosystem: [candidates with scores: maintenance / adoption / security / license / fit]
   Managed service: [options considered]
+
+Prior art (when building):
+  [2-3 projects, approach each took, the one chosen and why]
 
 Recommendation: [Adopt / Extend / Build custom]
   [chosen option] — [why it fits] — [why alternatives were insufficient]

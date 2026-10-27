@@ -39,7 +39,7 @@
     "minimal-fix": "Use for the smallest change that fixes a scoped bug or CI failure.",
     "bosskuai-rigorous-code-review": "Use for skeptical review of a diff or PR: correctness, risk, missing tests, and whether it meets its goal.",
     "bosskuai-code-revamp": "Use for safe refactors and legacy cleanup without needless churn.",
-    "bosskuai-search-first": "Use before writing new code: look for an existing package or utility.",
+    "bosskuai-search-first": "Use before writing new code or an unfamiliar feature: find an existing package, or study how open-source projects built it.",
     "bosskuai-project-understanding": "Use to learn an unfamiliar repo: what it is, how it runs, conventions.",
     "bosskuai-codebase-analysis": "Use to trace call chains and side effects through existing code.",
     "writing-plans": "Use to write a step-by-step plan before multi-file work.",
