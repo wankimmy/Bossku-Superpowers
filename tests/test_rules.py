@@ -1,6 +1,7 @@
 import contextlib
 import io
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
@@ -80,6 +81,12 @@ class RuleCueTests(unittest.TestCase):
 
 
 class RuleGateTests(unittest.TestCase):
+    def setUp(self):
+        # These tests cover the memory-rule reminder; the security gate has its own tests in test_hooks_gate_hint.
+        patcher = mock.patch.dict(os.environ, {"BOSSKU_SECURITY_GATE": "off"})
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
     def test_a_stated_rule_that_was_not_saved_gets_one_reminder_with_the_command(self):
         lines = [user(RULE), call("Write", file_path="tickets.py"), call("Bash", command="python -m unittest")]
         kind, reason = decide(lines, "C:/proj")
@@ -113,6 +120,12 @@ def event(**fields):
 
 
 class RuleGateRobustnessTests(unittest.TestCase):
+    def setUp(self):
+        # These tests cover the memory-rule reminder; the security gate has its own tests in test_hooks_gate_hint.
+        patcher = mock.patch.dict(os.environ, {"BOSSKU_SECURITY_GATE": "off"})
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
     """Cases a code review found: events nobody typed, an unmet verify reminder, and odd transcripts."""
 
     def test_events_the_app_writes_as_user_turns_do_not_replace_the_request(self):

@@ -34,17 +34,18 @@ INFRA = re.compile(
     re.I)
 VERDICT = re.compile(r"\bsecurity gate:", re.I)
 
+# "change" is left out: as a noun it marks questions ("explain that last change"). The stop gate still catches
+# every real edit, so a missed cue here only skips the early reminder.
 _CHANGE = re.compile(
-    r"\b(?:fix|implement|add|build|create|write|refactor|update|upgrade|bump|install|change|modify|patch|remove|"
+    r"\b(?:fix|implement|add|build|create|write|refactor|update|upgrade|bump|install|modify|patch|remove|"
     r"delete|migrate|deploy|integrate|connect|enable|rewrite|replace|make(?! sure)|buat(?:kan)?|tambah(?:kan)?|"
     r"ubah|betulkan|baiki|bina|pasang|naik ?taraf)\b", re.I)
 
 CHANGE_REMINDER = (
-    "BosskuAI security gate (must rule): this request changes the project, so load bosskuai-security-gate and run "
-    "its pass on the change: quick by default, deep for auth, payments, tenant data, secrets, uploads, public "
-    "endpoints, infra/CI or agent tools. Check changed dependencies against live feeds (OSV.dev, GitHub Advisories, "
-    "CISA KEV), never memory. Alert only on High and Critical. End the reply with the line `Security gate: PASS | BLOCK`; the stop "
-    "gate holds the turn until it is there.")
+    "BosskuAI security gate (must rule): load bosskuai-security-gate and run its pass on this change (deep for auth, "
+    "payments, tenant data, secrets, uploads, public endpoints, infra/CI or agent tools; dependencies against live "
+    "feeds, never memory). Alert only on High and Critical. End the reply with `Security gate: PASS | BLOCK`; the "
+    "stop gate holds the turn until it is there.")
 DAILY_REMINDER = (
     "BosskuAI daily dependency check (must rule, first prompt today in this project): before other work, check "
     "{files} against live feeds: run an installed scanner (osv-scanner, npm audit, pip-audit, composer audit, "

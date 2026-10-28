@@ -244,7 +244,9 @@ class MultiConcernTests(unittest.TestCase):
                 (home / ".claude" / "skills" / sid).mkdir(parents=True)
                 shutil.copyfile(ROOT / "skills" / sid / "SKILL.md", home / ".claude" / "skills" / sid / "SKILL.md")
             out = hook_output(json.dumps({"prompt": self.THREE, "cwd": tmp}), root=ROOT, home=home)
-            text = out["hookSpecificOutput"]["additionalContext"]
+            # HINT_CHARS bounds the hint itself; the security reminder is a separate line, like the rule reminder.
+            text = "\n".join(line for line in out["hookSpecificOutput"]["additionalContext"].splitlines()
+                             if not line.startswith("BosskuAI security gate"))
             self.assertEqual(sum(line.startswith("- ") for line in text.splitlines()), 3)
             self.assertLessEqual(len(text), hint.HINT_CHARS)
             for sample in FOLLOW_UPS[:10]:
