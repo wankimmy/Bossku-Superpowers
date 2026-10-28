@@ -8,7 +8,7 @@ from pathlib import Path
 from unittest import mock
 
 from bossku.cli import main
-from bossku.gate import VERIFY_REASON, decide, gate_output, needs_verification, shows_code_without_editing
+from bossku.gate import SECURITY_REASON, VERIFY_REASON, decide, gate_output, needs_verification, shows_code_without_editing
 from bossku.hint import build_hint, hook_output
 from bossku.hooks import (
     ensure_skill_hint_hook, ensure_verify_gate_hook, install_hooks, remove_skill_hint_hook, uninstall_hooks,
@@ -22,6 +22,12 @@ def call(name, **args):
 
 
 class VerifyGateTests(unittest.TestCase):
+    def setUp(self):
+        # These tests cover the verify reminders; the security gate has its own tests below.
+        patcher = mock.patch.dict(os.environ, {"BOSSKU_SECURITY_GATE": "off"})
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
     def test_code_edited_and_nothing_run_afterwards_needs_verification(self):
         self.assertTrue(needs_verification([call("Write", file_path="ttl.py")]))
         self.assertTrue(needs_verification([call("Write", file_path="a.py"), call("Bash", command="cat a.py"),
@@ -162,6 +168,12 @@ def feedback(reason):
 
 
 class RepeatedReminderTests(unittest.TestCase):
+    def setUp(self):
+        # These tests cover the verify reminders; the security gate has its own tests below.
+        patcher = mock.patch.dict(os.environ, {"BOSSKU_SECURITY_GATE": "off"})
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
     def write(self, tmp, lines):
         path = Path(tmp) / "t.jsonl"
         path.write_text("\n".join(lines), encoding="utf-8")
@@ -199,6 +211,58 @@ class RepeatedReminderTests(unittest.TestCase):
             payload = json.loads(self.write(tmp, lines))
             payload["stop_hook_active"] = True
             self.assertEqual(gate_output(json.dumps(payload)), {})
+
+
+class SecurityGateTests(unittest.TestCase):
+    def test_a_verified_change_still_needs_the_security_verdict_once(self):
+        base = [user("Add a refund endpoint."), call("Edit", file_path="refund.py"), call("Bash", command="python -m unittest")]
+        self.assertEqual(decide(base + [say("Done.")])[0], "security")
+        self.assertIsNone(decide(base + [say("Done.\nSecurity gate: PASS (quick)")]))
+        self.assertIsNone(decide(base + [say("Done."), feedback(SECURITY_REASON), say("Still done.")]))
+
+    def test_dependency_and_infra_files_count_and_stylesheets_and_docs_do_not(self):
+        from bossku.gate import _needs_security
+
+        for target in ("refund.py", "package-lock.json", "requirements.txt", "Dockerfile", ".github/workflows/ci.yml",
+                       "infra/main.tf"):
+            self.assertTrue(_needs_security([("Edit", {"file_path": target})]), target)
+        for target in ("site.css", "README.md", "config/labels.yml"):
+            self.assertFalse(_needs_security([("Edit", {"file_path": target})]), target)
+
+    def test_it_has_its_own_off_switch(self):
+        lines = [user("Bump it."), call("Edit", file_path="package.json"), say("Done.")]
+        with mock.patch.dict(os.environ, {"BOSSKU_SECURITY_GATE": "off"}):
+            self.assertIsNone(decide(lines))
+
+
+class SecurityReminderTests(unittest.TestCase):
+    def test_a_change_request_gets_the_rule_and_a_question_does_not(self):
+        from bossku.security import security_reminders
+
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp) / "home"
+            self.assertIn("Security gate: PASS", security_reminders("add a coupon endpoint", "", home=home)[0])
+            self.assertEqual(security_reminders("what does this function return?", "", home=home), [])
+
+    def test_the_daily_dependency_check_asks_once_per_project_per_day(self):
+        from bossku.security import security_reminders
+
+        with tempfile.TemporaryDirectory() as tmp:
+            home, project = Path(tmp) / "home", Path(tmp) / "proj"
+            project.mkdir()
+            ask = lambda day: security_reminders("explain the router", str(project), home=home, today=day)
+            self.assertEqual(ask("2026-10-28"), [])   # no manifest, nothing to check
+            (project / "package.json").write_text("{}", encoding="utf-8")
+            first = ask("2026-10-28")
+            self.assertEqual(len(first), 1)
+            self.assertIn("package.json", first[0])
+            self.assertEqual(ask("2026-10-28"), [])
+            self.assertEqual(len(ask("2026-10-29")), 1)
+
+    def test_the_prompt_hook_carries_the_reminders(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = hook_output(json.dumps({"prompt": "fix the refund double-charge bug", "cwd": tmp}), home=Path(tmp))
+            self.assertIn("security gate (must rule)", out["hookSpecificOutput"]["additionalContext"])
 
 
 class SkillHintTests(unittest.TestCase):

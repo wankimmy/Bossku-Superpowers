@@ -88,7 +88,8 @@ Checklist: [`references/checklists/grounding-checklist.md`](references/checklist
 - Quick pass for most changes; deep pass for auth, payments, tenant data, secrets, uploads, public endpoints, infra/CI and agent tools.
 - Layers: business process, design and structure, code, data and privacy, supply chain, infra and CI, AI and agents. Each in-scope layer ends with findings or "checked, nothing found".
 - Vulnerability status comes from live feeds (OSV.dev, GitHub Advisories, CISA KEV) queried at review time, never from memory. Hunt variants of each new advisory in your own code.
-- Verdict: BLOCK on an open Critical or High in the changed path. Defensive only: test what the user owns, no live exploitation.
+- Verdict: BLOCK on an open Critical or High in the changed path. Alert only on High and Critical; Medium and Low stay out of the reply. Defensive only: test what the user owns, no live exploitation.
+- Enforced by hooks, no user prompt needed: every change request gets the rule; the first prompt each day in a project with a dependency manifest gets a live dependency CVE check; a turn that changed code, dependencies or infra cannot end without the `Security gate:` verdict line. Off switch: `BOSSKU_SECURITY_GATE=off`.
 
 ## Risk pauses
 

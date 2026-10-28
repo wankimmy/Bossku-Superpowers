@@ -4,7 +4,9 @@ Instructions that say "verify before you finish" work on strong models and are i
 write a file in one shot and stop, or paste the code into the chat and never touch a file. This `Stop` hook
 reads the session transcript and, once per turn for each case, sends the agent back to work when it
   - edited source files and ran nothing afterwards, or
-  - was asked to change something, edited no file, and ended with code in its reply.
+  - was asked to change something, edited no file, and ended with code in its reply, or
+  - changed code, a dependency manifest or infra config and ended without a `Security gate:` verdict line
+    (the security gate is a must rule, see bossku/security.py).
 Each reminder is counted from the transcript itself, so the agent can never be held in a loop. The hook only
 reads; it never runs code, and it stays silent for questions, reviews, documentation edits and runs that did
 their job.
@@ -19,6 +21,8 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 from bossku.rules import states_rule, stop_reminder
+from bossku.security import VERDICT, is_security_relevant
+from bossku.security import is_off as security_off
 
 EDIT_TOOLS = {"Edit", "Write", "MultiEdit", "NotebookEdit", "apply_patch", "str_replace_editor", "create_file"}
 SHELL_TOOLS = {"Bash", "PowerShell", "shell", "run_terminal_cmd"}
@@ -46,15 +50,23 @@ WRITES_FILES = re.compile(r"(?<![<>=!\-])>>?\s*[^\s&|>]|\btee\b|\bsed\s+-\w*i|\b
 # How often each reminder may be sent in one turn, and the text that marks it in the transcript. A second
 # "run it now" reminder was tried on a small model: it answered with invented tool names, looped for 30+ turns and
 # passed no more often, so each kind is sent once.
-LIMITS = {"verify": 1, "paste": 1, "rule": 1}
+LIMITS = {"verify": 1, "paste": 1, "security": 1, "rule": 1}
 MARKERS = {"verify": "BosskuAI verify gate: you ", "paste": "BosskuAI verify gate: the request",
-           "rule": "BosskuAI memory gate: "}
+           "security": "BosskuAI security gate: ", "rule": "BosskuAI memory gate: "}
+STYLE_SUFFIXES = {".css", ".scss", ".sass", ".less"}   # no trust boundary in a stylesheet
 
 VERIFY_REASON = (
     "BosskuAI verify gate: you changed code but have not run anything yet. Do not describe a test or its result: "
     "call the Bash tool now and run the project's tests, or one short script that checks each requirement in the "
     "request and its edge cases (only what is safe to run locally). Read the real output, fix what fails, then "
     "say what you ran and what you could not verify."
+)
+SECURITY_REASON = (
+    "BosskuAI security gate: you changed code, dependencies or infra config and the reply has no security verdict "
+    "(a must rule). Load bosskuai-security-gate and run its pass on this change: each layer it touches, deep pass for "
+    "auth, payments, tenant data, secrets, uploads, public endpoints, infra/CI or agent tools. If a dependency file "
+    "changed, check the changed packages against live feeds (OSV.dev, GitHub Advisories, CISA KEV). Then end the "
+    "reply with `Security gate: PASS | BLOCK`, listing only High and Critical findings."
 )
 PASTE_REASON = (
     "BosskuAI verify gate: the request asks for a change, but you edited no file and your reply only shows code. "
@@ -190,6 +202,20 @@ def _unverified(calls, project: str = "") -> bool:
     return last_edit is not None and not verified_after
 
 
+def _needs_security(calls, project: str = "") -> bool:
+    """True when a code file (not a stylesheet), a dependency manifest or an infra/CI/agent config file was edited."""
+    for name, args in calls:
+        if name not in EDIT_TOOLS:
+            continue
+        target = str(args.get("file_path") or args.get("path") or args.get("notebook_path") or "")
+        if not target or _outside_project(target, project):
+            continue
+        if is_security_relevant(target) or (_is_code_edit(name, args, project)
+                                            and Path(target).suffix.lower() not in STYLE_SUFFIXES):
+            return True
+    return False
+
+
 def _pasted(request: str, calls, reply: str) -> bool:
     """True when the request asks for a change, no file was edited, and the reply ends with a code block."""
     if not CHANGE_REQUEST.search(request) or "```" not in reply:
@@ -287,6 +313,9 @@ def decide(transcript_lines, project: str = "") -> tuple[str, str] | None:
         return "paste", PASTE_REASON
     # A verify reminder that was sent but could not be met (a stylesheet has nothing to run) must not hide the rule one.
     verify_settled = not unverified or turn.blocks["verify"] >= LIMITS["verify"]
+    if (verify_settled and turn.blocks["security"] < LIMITS["security"] and not security_off()
+            and not VERDICT.search(turn.reply) and _needs_security(turn.calls, project)):
+        return "security", SECURITY_REASON
     if (verify_settled and turn.blocks["rule"] < LIMITS["rule"] and states_rule(turn.request)
             and not _saved_a_note(turn.calls)):
         return "rule", stop_reminder(project)

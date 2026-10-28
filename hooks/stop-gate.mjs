@@ -9,6 +9,10 @@
 // and accepts an explicit "not verified / could not run" statement in the final
 // message as the honest way out. Edits under ~/.claude and the OS temp folder are
 // not source edits (isScratch). Off switch: BOSSKU_STOP_GATE=off.
+//
+// Security gate (a must rule, see bossku/security.py): a turn that changed code, a
+// dependency manifest or infra/CI/agent config must end with a `Security gate:`
+// verdict line. Same once-per-turn rule. Off switch: BOSSKU_SECURITY_GATE=off.
 import fs from "node:fs";
 import { ext, isMain, isOff, isScratch, pluginRoot, readStdinJson, toPosix } from "./_lib.mjs";
 
@@ -19,6 +23,25 @@ const CODE_EXT = new Set([
   "java", "kt", "swift", "cs", "sql", "css", "scss", "sass", "less", "html", "sh", "ps1", "dockerfile", "makefile",
 ]);
 const UI_EXT = new Set(["vue", "tsx", "jsx", "svelte", "astro", "html", "blade.php", "css", "scss", "sass", "less"]);
+// Stylesheets carry no trust boundary; every other code file gets the security pass.
+const STYLE_EXT = new Set(["css", "scss", "sass", "less"]);
+// Same lists as MANIFESTS and INFRA in bossku/security.py.
+const MANIFESTS = new Set([
+  "package.json", "package-lock.json", "npm-shrinkwrap.json", "pnpm-lock.yaml", "yarn.lock", "bun.lock",
+  "requirements.txt", "pyproject.toml", "poetry.lock", "pipfile", "pipfile.lock", "uv.lock",
+  "composer.json", "composer.lock", "go.mod", "go.sum", "cargo.toml", "cargo.lock", "gemfile", "gemfile.lock",
+  "pom.xml", "build.gradle", "build.gradle.kts", "packages.lock.json", "pubspec.lock",
+]);
+const INFRA =
+  /(?:^|\/)(?:dockerfile[^/]*|docker-compose[^/]*\.ya?ml|compose\.ya?ml|[^/]+\.tf|[^/]+\.tfvars|\.gitlab-ci\.yml|\.github\/workflows\/[^/]+\.ya?ml|\.mcp\.json|nginx[^/]*\.conf|serverless\.ya?ml|vercel\.json|netlify\.toml)$/i;
+const VERDICT_RE = /\bsecurity gate:/i;
+
+const baseName = (f) => (toPosix(f).split("/").pop() || "").toLowerCase();
+
+export function isSecurityRelevant(file) {
+  const e = ext(file);
+  return (CODE_EXT.has(e) && !STYLE_EXT.has(e)) || MANIFESTS.has(baseName(file)) || INFRA.test(toPosix(file));
+}
 
 // One regex per family, kept as literals so escapes cannot be mangled by a shell.
 const VERIFY_PATTERNS = [
@@ -113,6 +136,7 @@ export function analyze(lines, cwd) {
   let start = 0;
   for (let i = 0; i < entries.length; i++) if (humanPrompt(entries[i])) start = i;
   const edits = [];
+  const secEdits = [];
   const scratch = new Map(); // isScratch resolves real paths; a turn edits the same few files again and again
   const isScratchOnce = (f) => (scratch.has(f) ? scratch.get(f) : scratch.set(f, isScratch(f, cwd)).get(f));
   let lastEdit = -1;
@@ -127,10 +151,12 @@ export function analyze(lines, cwd) {
       const inp = b.input || {};
       if (EDIT_TOOLS.has(b.name)) {
         const f = inp.file_path || inp.notebook_path || "";
-        if (CODE_EXT.has(ext(f)) && !isScratchOnce(f)) {
+        if (!f || isScratchOnce(f)) continue;
+        if (CODE_EXT.has(ext(f))) {
           edits.push(f);
           lastEdit = i;
         }
+        if (isSecurityRelevant(f)) secEdits.push(f);
       } else if (RUN_TOOLS.has(b.name) && isVerification(inp.command)) {
         lastVerify = i;
       }
@@ -138,7 +164,12 @@ export function analyze(lines, cwd) {
   }
   const ui = edits.filter((f) => UI_EXT.has(ext(f)));
   const unverifiedAfterEdit = edits.length > 0 && lastVerify < lastEdit;
-  return { edits, ui, unverifiedAfterEdit };
+  return { edits, ui, unverifiedAfterEdit, secEdits };
+}
+
+function shortList(files) {
+  const names = [...new Set(files)].map((f) => toPosix(f).split("/").slice(-2).join("/"));
+  return [names.length, names.slice(0, 5).join(", ") + (names.length > 5 ? ` (+${names.length - 5} more)` : "")];
 }
 
 if (isMain(import.meta.url)) {
@@ -149,21 +180,36 @@ if (isMain(import.meta.url)) {
     const path = input.transcript_path;
     if (!path || !fs.existsSync(path)) process.exit(0);
     const last = String(input.last_assistant_message || "");
-    if (UNVERIFIED_RE.test(last)) process.exit(0);
-    const { edits, ui, unverifiedAfterEdit } = analyze(tailLines(path), input.cwd);
-    if (!unverifiedAfterEdit) process.exit(0);
-    const files = [...new Set(edits)].map((f) => toPosix(f).split("/").slice(-2).join("/"));
-    const shown = files.slice(0, 5).join(", ") + (files.length > 5 ? ` (+${files.length - 5} more)` : "");
-    let msg =
-      `BosskuAI stop gate: ${files.length} source file(s) changed this turn (${shown}) but no verification command ran after the last edit. ` +
-      "Run the pass signal now (focused test, lint, typecheck, build, or a curl/smoke check), read its real output, and only then finish. " +
-      "If nothing can be run, say exactly what is not verified and why.";
-    if (ui.length) {
-      msg +=
-        " UI files changed: capture screenshots at 390 and 1440 " +
-        `(node "${pluginRoot(import.meta.url)}/scripts/shot.mjs" <url>) and look at both before claiming the UI is done.`;
+    const { edits, ui, unverifiedAfterEdit, secEdits } = analyze(tailLines(path), input.cwd);
+    const verify = unverifiedAfterEdit && !UNVERIFIED_RE.test(last);
+    const security = secEdits.length > 0 && !VERDICT_RE.test(last) && !isOff("BOSSKU_SECURITY_GATE");
+    if (!verify && !security) process.exit(0);
+    const parts = [];
+    if (verify) {
+      const [n, shown] = shortList(edits);
+      let msg =
+        `BosskuAI stop gate: ${n} source file(s) changed this turn (${shown}) but no verification command ran after the last edit. ` +
+        "Run the pass signal now (focused test, lint, typecheck, build, or a curl/smoke check), read its real output, and only then finish. " +
+        "If nothing can be run, say exactly what is not verified and why.";
+      if (ui.length) {
+        msg +=
+          " UI files changed: capture screenshots at 390 and 1440 " +
+          `(node "${pluginRoot(import.meta.url)}/scripts/shot.mjs" <url>) and look at both before claiming the UI is done.`;
+      }
+      parts.push(msg);
     }
-    process.stderr.write(msg + "\n");
+    if (security) {
+      // Starts with OWN_BLOCK so the block message restarts the window, as the verification one does.
+      const [n, shown] = shortList(secEdits);
+      const deps = secEdits.some((f) => MANIFESTS.has(baseName(f)));
+      parts.push(
+        `${OWN_BLOCK}security gate (must rule): ${n} file(s) changed this turn (${shown}) and the reply has no security verdict. ` +
+          "Load bosskuai-security-gate and run its pass on this change: each layer it touches, deep pass for auth, payments, tenant data, secrets, uploads, public endpoints, infra/CI or agent tools. " +
+          (deps ? "A dependency file changed: check the changed packages against live feeds (OSV.dev, GitHub Advisories, CISA KEV) now. " : "") +
+          "Then end the reply with `Security gate: PASS | BLOCK`, listing only High and Critical findings.",
+      );
+    }
+    process.stderr.write(parts.join("\n") + "\n");
     process.exit(2);
   } catch {
     process.exit(0);

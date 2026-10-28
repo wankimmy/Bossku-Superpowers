@@ -224,13 +224,18 @@ def hook_output(payload_text: str, *, root: Path | None = None, home: Path | Non
         skills._routing_index = original
         bossku_index.compute_idf = idf_original
     parts = [hint] if hint else []
+    project = os.environ.get("CLAUDE_PROJECT_DIR") or (cwd if isinstance(cwd, str) else "")
     if not prompt.strip().startswith(("/", "!")) and not any(tag in prompt[:200] for tag in NOT_TYPED):
         from bossku.design import design_reminder
+        from bossku.security import security_reminders
 
         design = design_reminder(prompt)
         if design:
             parts.append(design)
-    project = os.environ.get("CLAUDE_PROJECT_DIR") or (cwd if isinstance(cwd, str) else "")
+        try:
+            parts.extend(security_reminders(prompt, project, home=home))
+        except Exception:  # noqa: BLE001 - like the hint, never break the user's prompt
+            pass
     if states_rule(prompt):
         parts.append(prompt_reminder(project))
     if not parts:

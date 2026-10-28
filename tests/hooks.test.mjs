@@ -589,11 +589,37 @@ test("stop gate script: blocks with exit 2, honours stop_hook_active and an expl
   const honest = run("stop-gate.mjs", {
     transcript_path: transcript,
     stop_hook_active: false,
-    last_assistant_message: "Changed app.ts. Not verified: the test runner is not installed here.",
+    last_assistant_message: "Changed app.ts. Not verified: the test runner is not installed here.\nSecurity gate: PASS (quick)",
   });
   assert.equal(honest.code, 0);
   const off = run("stop-gate.mjs", { transcript_path: transcript, stop_hook_active: false, last_assistant_message: "Done." }, { BOSSKU_STOP_GATE: "off" });
   assert.equal(off.code, 0);
+});
+
+test("stop gate: code, dependency and infra edits need a security verdict; stylesheets and docs do not", () => {
+  const edit = (file) => analyze([user("go"), toolUse("Edit", { file_path: file }), toolResult()]).secEdits.length > 0;
+  for (const f of ["C:/proj/src/refund.ts", "C:/proj/package-lock.json", "C:/proj/requirements.txt", "C:/proj/go.mod", "C:/proj/Dockerfile",
+    "C:/proj/infra/main.tf", "C:/proj/.github/workflows/ci.yml", "C:/proj/docker-compose.prod.yml", "C:/proj/.mcp.json"])
+    assert.ok(edit(f), f);
+  for (const f of ["C:/proj/src/app.css", "C:/proj/README.md", "C:/proj/docs/guide.md", "C:/proj/config/labels.yml"]) assert.ok(!edit(f), f);
+});
+
+test("stop gate script: a verified change still needs the security verdict, once, and has its own off switch", () => {
+  const dir = tmpdir();
+  const transcript = path.join(dir, "t.jsonl");
+  fs.writeFileSync(
+    transcript,
+    [user("bump lodash"), toolUse("Edit", { file_path: "C:/proj/package.json" }), toolResult(), toolUse("Bash", { command: "npm test" }), toolResult()].join("\n") + "\n",
+  );
+  const blocked = run("stop-gate.mjs", { transcript_path: transcript, last_assistant_message: "Done." });
+  assert.equal(blocked.code, 2);
+  assert.match(blocked.err, /^BosskuAI stop gate: security gate/);
+  assert.match(blocked.err, /OSV\.dev/, "a dependency change asks for the live feeds");
+  assert.doesNotMatch(blocked.err, /no verification command ran/);
+  const verdict = run("stop-gate.mjs", { transcript_path: transcript, last_assistant_message: "Done.\nSecurity gate: PASS (quick)" });
+  assert.equal(verdict.code, 0);
+  assert.equal(run("stop-gate.mjs", { transcript_path: transcript, stop_hook_active: true, last_assistant_message: "Done." }).code, 0);
+  assert.equal(run("stop-gate.mjs", { transcript_path: transcript, last_assistant_message: "Done." }, { BOSSKU_SECURITY_GATE: "off" }).code, 0);
 });
 
 // ---------------- session start ----------------

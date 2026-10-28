@@ -11,6 +11,12 @@ Default trait for every BosskuAI agent. Nothing ships until each layer it touche
 
 ACTIVE ON EVERY CHANGE that touches code, infrastructure, dependencies, configuration, agent setup or a business flow. Not switched off by "normal mode". Pure questions, prose and design-only work skip it.
 
+A must rule, enforced by hooks so the user never has to ask:
+
+- **Every change request:** the prompt hook adds this rule.
+- **Daily dependency check:** the first prompt each day in a project with a dependency manifest asks for a live CVE check (step 3) before other work. Report only High and Critical hits as a `Live intel:` block (nothing when there are none), then carry on with the request.
+- **Stop gate:** a turn that changed code, a dependency manifest or infra/CI/agent config cannot end until the reply carries the `Security gate:` verdict line from the output format below. Stylesheets and docs are exempt. Off switch for the user only: `BOSSKU_SECURITY_GATE=off`.
+
 ## How this differs from nearby skills
 
 - **`bosskuai-cybersecurity-risk`**: the line-by-line checks for untrusted input, secrets, cloud and agent config. This gate decides which layers apply and calls it for the code layer.
@@ -38,7 +44,11 @@ ACTIVE ON EVERY CHANGE that touches code, infrastructure, dependencies, configur
 3. **Check live intel.** Query the feeds in [`threat-intel.md`](threat-intel.md) at review time for every changed dependency and for the frameworks and base images the feature runs on. Training data is stale: never state that a version is safe from memory. Done when each checked package has a feed result with its source and date, or is marked `unverified` with the reason.
 4. **Hunt variants.** For each new advisory in your stack, and each finding from step 2, search the rest of the codebase for the same pattern (same sink, same missing check, same misused API). Done when every hit is listed as fixed, a finding, or a false positive with the reason.
 5. **Prove and fix.** For each confirmed finding: the smallest fix, a test that sends the attack input and expects rejection, and a test that the legitimate edge still passes. Inferred findings stay labelled until proven.
-6. **Verdict.** BLOCK on any open Critical or High in the changed path; PASS WITH NOTES for Medium and Low with owners; PASS only when every in-scope layer is checked.
+6. **Verdict.** BLOCK on any open Critical or High in the changed path; otherwise PASS, once every in-scope layer is checked.
+
+## Alert threshold
+
+Alert only on High and Critical (user rule, 2026-10-28). Check every severity, but the reply names only High and Critical findings, fixed or open. Medium and Low stay out of the reply and do not change the verdict. With nothing at High or Critical, the whole report is the one verdict line.
 
 ## Finding first
 
@@ -58,17 +68,23 @@ You cannot guarantee seeing a flaw before everyone else. What you can do, every 
 
 ## Output format
 
+Nothing at High or Critical:
+
 ```text
-Security gate: PASS | PASS WITH NOTES | BLOCK   (quick | deep)
-Scope: <entry points and layers checked>
-Live intel: <feeds queried, date, packages checked>; not run: <what and why>
+Security gate: PASS (quick | deep)
+```
+
+A High or Critical finding:
+
+```text
+Security gate: BLOCK | PASS   (quick | deep)
+Live intel: <feeds queried, date>; not run: <what and why>
 
 | # | Layer | Severity | Status | Evidence | Fix |
 |---|-------|----------|--------|----------|-----|
-| 1 | business | High | confirmed | src/orders.ts:88 refund has no state check | allow refund only from PAID; test double refund |
+| 1 | business | High | open | src/orders.ts:88 refund has no state check | allow refund only from PAID; test double refund |
 
 Variants searched: <pattern -> hits>
-Not verified: <what, and why>
 ```
 
 ## References

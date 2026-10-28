@@ -1,6 +1,6 @@
 {
   "version": "2.1.0",
-  "fingerprint": "db7e3b1800c44f30",
+  "fingerprint": "8ded4f789280b927",
   "count": 673,
   "aliases": {
     "bosskuai-caveman": "bosskuai-token-saver",
@@ -23328,6 +23328,8 @@
         "nearby",
         "depth",
         "workflow",
+        "alert",
+        "threshold",
         "finding",
         "first",
         "guardrail",
