@@ -103,6 +103,8 @@ REVIEW_ROUTING_CASES = [
     ("SAFE vs priced round and cap table dilution", {"bosskuai-investor-prep"}),
     ("build a lead list of dental clinics in Kuala Lumpur", {"prospecting"}),
     ("check for sql injection in this code", {"bosskuai-cybersecurity-risk"}),
+    ("find loopholes and security gaps in this checkout feature", {"bosskuai-security-gate"}),
+    ("are any of our dependencies hit by the latest cve", {"bosskuai-security-gate"}),
     ("dockerize my node app", {"bosskuai-docker"}),
     ("nuxt 4 data fetching", {"bosskuai-nuxt-development"}),
     ("dependency injection in laravel", {"bosskuai-laravel-development"}),
@@ -403,7 +405,7 @@ class SkillAuditTests(unittest.TestCase):
 
     def test_custom_descriptions_have_a_bounded_context_cost(self):
         report = audit_skills(ROOT)
-        self.assertLessEqual(report["custom_description_chars"], 24500)   # 23,500 before the five agency skills, 23,000 before bosskuai-cypress
+        self.assertLessEqual(report["custom_description_chars"], 24700)   # 24,500 before bosskuai-security-gate, 23,500 before the five agency skills, 23,000 before bosskuai-cypress
         self.assertEqual(report["custom_descriptions_over_300_chars"], [])
 
 

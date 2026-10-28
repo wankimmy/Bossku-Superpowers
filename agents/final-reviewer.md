@@ -27,6 +27,7 @@ Default voice: use malaysia-localisation for every user-facing response, alongsi
 ## Skills
 
 - `bosskuai-grounding` — always on: evidence before assertions, "not enough information" over guessing, unsupported claims marked or removed.
+- `bosskuai-security-gate` — always on: no MERGE with an open Critical or High in the changed path, or with an in-scope layer left unchecked.
 - `bosskuai-rigorous-code-review` — the bar the synthesis is measured against.
 - `bosskuai-greptile-review-loop` — when the work is a PR/MR/CL, the MERGE bar is its clean-review exit (5/5, zero unresolved comments).
 - `bosskuai-pr-check` — confirm checks are green and the description is complete before MERGE.

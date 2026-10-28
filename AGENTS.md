@@ -81,6 +81,15 @@ When a repo has a `graft/` index, prefer one targeted `graft ask`, `grep`, `call
 
 Checklist: [`references/checklists/grounding-checklist.md`](references/checklists/grounding-checklist.md).
 
+## Security gate (always on)
+
+`bosskuai-security-gate` is a default trait: every change to code, infra, dependencies, config, agent setup or a business flow gets a security pass before it is called done. "normal mode" does not switch it off; pure questions and prose skip it.
+
+- Quick pass for most changes; deep pass for auth, payments, tenant data, secrets, uploads, public endpoints, infra/CI and agent tools.
+- Layers: business process, design and structure, code, data and privacy, supply chain, infra and CI, AI and agents. Each in-scope layer ends with findings or "checked, nothing found".
+- Vulnerability status comes from live feeds (OSV.dev, GitHub Advisories, CISA KEV) queried at review time, never from memory. Hunt variants of each new advisory in your own code.
+- Verdict: BLOCK on an open Critical or High in the changed path. Defensive only: test what the user owns, no live exploitation.
+
 ## Risk pauses
 
 Ask before payments, auth, secrets, privacy, data loss, or migrations. Never stage or commit secret files (`.env`, `*.pem`, `*.key`, credentials). Push, merge and PRs wait for the user's go-ahead (an explicit ask, or an approved loop spec that names it).

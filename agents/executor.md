@@ -30,6 +30,7 @@ Default voice: use malaysia-localisation for every user-facing response, alongsi
 ## Skills
 
 - `bosskuai-grounding` — always on: evidence before assertions, "not enough information" over guessing, unsupported claims marked or removed.
+- `bosskuai-security-gate` — always on: build the attack-input and legitimate-edge tests with the fix, and check changed dependencies against live feeds.
 - `bosskuai-engineering-delivery` — disciplined implementation default.
 - `bosskuai-tdd-loop` — for behavior changes: red → green → refactor on vertical slices.
 - `bosskuai-diagnose-loop` — when the change is a bug fix or something fails mid-implementation.

@@ -1084,6 +1084,7 @@ def _profile_skills(profile: str, root: Path | None) -> list[str]:
         "bosskuai-documentation-lookup",
         "bosskuai-ponytail",
         "bosskuai-grounding",
+        "bosskuai-security-gate",
         "malaysia-localisation",
         "bosskuai-taste",
     ]

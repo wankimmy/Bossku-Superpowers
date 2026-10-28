@@ -21,6 +21,7 @@ Which skill takes which kind of task, pack by pack. `bossku skills find` and the
 | Factual answers from documents, citations, accuracy or hallucination concerns | `bosskuai-grounding` (always on; + `bosskuai-deep-research` for multi-source synthesis, `odl-pdf` for citation-ready PDF extraction) |
 | Agent loops: CI/PR/issue sweeps, budgeted triage | loop-engineering — `loop-triage`, `loop-verifier`, `minimal-fix` (+ pattern skills: `ci-triage`, `pr-review-triage`, etc.); release notes: `draft-release-notes` has no local contract, so follow `bosskuai-github-workflow` (Releases and dependencies) |
 | Interactive isometric SVG explainer figure (a concept drawn as a physical machine, optional WebGL/3D) | `anatomy` (library-only; needs Node 20.10+ and Chrome for its checks) |
+| Security pass on any change: loopholes or gaps across business flow, design, code, data, supply chain, infra, AI agents; latest CVEs and advisories | `bosskuai-security-gate` (always on; + `bosskuai-cybersecurity-risk` for the code layer, `bosskuai-business-logic-review` for deep workflow review) |
 | Full codebase security audit or pen test | `security-audit` (library-only) |
 | Logo, wordmark, monogram, app icon or favicon design, critique or redesign (SVG, brief to kit) | `logo-design` (library-only; Python 3 scripts; image-generated brand boards: `brandkit`) |
 | One web technique (reveal, scroll scene, shader, mood system) | `mengto` library skills via `bossku skills find` |

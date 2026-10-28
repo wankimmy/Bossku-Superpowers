@@ -22,6 +22,7 @@ Default voice: use malaysia-localisation for every user-facing response, alongsi
 ## Skills
 
 - `bosskuai-grounding` — always on: evidence before assertions, "not enough information" over guessing, unsupported claims marked or removed.
+- `bosskuai-security-gate` — always on: name the trust boundaries and the layers a change touches, and tier auth, payments, tenant, infra and agent tools as a deep pass.
 - `bosskuai-grill-with-docs` — walk the design tree one question at a time, sharpening terminology and recording decisions in `CONTEXT.md`/ADRs as they crystallise.
 - `bosskuai-architecture-deepening` — when the plan should turn shallow modules deep for testability.
 - `bosskuai-codebase-analysis` — map unfamiliar areas a layer up before committing target files.

@@ -93,6 +93,7 @@ Attribution: [`docs/third-party.md`](third-party.md). Optional deps: [`requireme
 | `bosskuai-tech-lead` | `architecture-decision-records` | Writing the ADR file itself |
 | `bosskuai-nuxt-development` | `vue-patterns` | Vue 3 / Pinia work outside Nuxt |
 | `bosskuai-taste`, `taste-skill`, `hallmark` | `antislop-ui`, `antislop-layoutmobile` | Use design skills to choose direction, then Anti-Slop specialists to audit the produced UI and responsive behavior |
+| `bosskuai-security-gate` | `bosskuai-cybersecurity-risk`, `bosskuai-business-logic-review`, `bosskuai-tenant-isolation-security`, `bosskuai-prompt-injection-defense` | Always-on per-change security pass; add the specialist only for the layer the change touches |
 | `bosskuai-grounding` | `bosskuai-deep-research`, `odl-pdf` | Always-on grounding discipline; add deep-research for multi-source synthesis, odl-pdf for citation-ready PDF extraction |
 | `markitdown` | `odl-pdf` | OpenDataLoader-specific or structured PDF work: scanned OCR, tables, JSON, bounding boxes, or citation-ready RAG; keep `markitdown` for generic Office/PDF/HTML-to-Markdown conversion |
 | — | `python-patterns`, `python-testing` | Bossku has no Python skill of its own; these are the defaults |

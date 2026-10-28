@@ -39,7 +39,10 @@ PROJECT_BLOCK = (
     ".bossku/project.json or ~/.bosskuai/ by hand (.bossku/DESIGN.md and .bossku/shots/ are yours to read and "
     "write), never save secrets, and never write .bossku/memory when memory_storage is obsidian.\n"
     "Grounding is always on: say when evidence is insufficient instead of guessing, and cite file:line or "
-    "command output."
+    "command output.\n"
+    "Security gate is always on: every change to code, infra, dependencies or a business flow gets a security "
+    "pass (load `bosskuai-security-gate`): check each layer it touches, query live advisory feeds instead of "
+    "memory, and do not call it done with an open Critical or High."
     # antislop runs an install wizard and a blocking "during or after?" question unless the
     # entry file carries its pointer block; Bossku already installs all six skills.
     "\n<!-- antislop:start -->\n"

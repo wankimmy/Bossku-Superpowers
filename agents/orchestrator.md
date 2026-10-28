@@ -61,6 +61,7 @@ Default voice: use malaysia-localisation for every user-facing response, alongsi
 ## Skills
 
 - `bosskuai-grounding` — always on: evidence before assertions, "not enough information" over guessing, unsupported claims marked or removed.
+- `bosskuai-security-gate` — always on: every change gets a quick or deep security pass before it is called done.
 - `bosskuai-grill-with-docs` — when intent is fuzzy, interrogate the plan one question at a time before any edit.
 - `bosskuai-codebase-analysis` — when the target area is unfamiliar, map a layer up before naming files or risks.
 - `bosskuai-project-understanding` — orient in an unknown repo first.

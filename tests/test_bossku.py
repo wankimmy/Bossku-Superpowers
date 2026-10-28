@@ -27,6 +27,7 @@ from bossku.memory import remember, sync_project
 from bossku.paths import user_config_dir
 from bossku.redact import redact
 from bossku.skills import (
+    _profile_skills,
     count_managed_skills,
     find_skill,
     is_managed_skill_name,
@@ -248,6 +249,17 @@ class InitTests(unittest.TestCase):
         self.assertIn("Grounding", cursor_rule)
         self.assertIn("Grounding", init_src)
         self.assertTrue((ROOT / "skills" / "bosskuai-grounding" / "SKILL.md").is_file())
+
+    def test_security_gate_surfaces_stay_in_sync(self):
+        agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
+        cursor_rule = (ROOT / ".cursor" / "rules" / "bosskuai.mdc").read_text(encoding="utf-8")
+        init_src = (ROOT / "bossku" / "init_project.py").read_text(encoding="utf-8")
+        for text in (agents, cursor_rule, init_src):
+            self.assertIn("bosskuai-security-gate", text)
+        for agent in ("planner", "executor", "auditor", "final-reviewer", "orchestrator"):
+            self.assertIn("bosskuai-security-gate", (ROOT / "agents" / f"{agent}.md").read_text(encoding="utf-8"))
+        self.assertIn("bosskuai-security-gate", _profile_skills("core", ROOT))
+        self.assertTrue((ROOT / "skills" / "bosskuai-security-gate" / "threat-intel.md").is_file())
 
     def test_init_writes_claude_import_on_empty_project(self):
         with tempfile.TemporaryDirectory() as tmp:

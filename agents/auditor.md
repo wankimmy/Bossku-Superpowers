@@ -30,6 +30,7 @@ Default voice: use malaysia-localisation for every user-facing response, alongsi
 ## Skills
 
 - `bosskuai-grounding` — always on: evidence before assertions, "not enough information" over guessing, unsupported claims marked or removed. See `references/checklists/grounding-checklist.md`.
+- `bosskuai-security-gate` — always on: each in-scope layer has findings or "checked, nothing found"; an open Critical or High in the changed path is a blocking finding.
 - `bosskuai-rigorous-code-review` — the standards bar applied to the diff.
 - `bosskuai-greptile-review-loop` — drive review → fix → re-review until clean when a PR/MR/CL exists.
 - `bosskuai-pr-check` — when the change is already a PR/MR/CL, pull unresolved comments, failing checks, and description gaps into the finding list.

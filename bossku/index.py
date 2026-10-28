@@ -290,6 +290,12 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
         "subscription", "dunning", "failed payment", "past due", "invoice", "proration",
         "entitlement", "plan change", "refund", "stripe webhook", "billing",
     ],
+    "bosskuai-security-gate": [
+        "loophole", "loopholes", "security gap", "security gaps", "security gate", "latest cve",
+        "latest vulnerability", "latest vulnerabilities", "zero-day", "zero day", "known exploited",
+        "vulnerable dependency", "vulnerable dependencies", "security leak", "is this feature safe",
+        "check everything for security", "security check before shipping",
+    ],
     "bosskuai-cybersecurity-risk": [
         "security review", "threat model", "vulnerability", "auth bypass", "abuse case",
         "trust boundary", "is this secure", "pentest", "sql injection", "xss", "owasp", "ssrf", "idor",
