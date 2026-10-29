@@ -71,7 +71,7 @@ Full numbers: [benchmark results](docs/benchmarks/results.md) and the [10 Octobe
 
 ## How does it compare with other skill packs?
 
-On 29 October 2026 we ran Bossku, four other packs and Claude Code with no pack on the same tasks, the same day, with Claude Haiku 4.5 and Claude Sonnet 5.5.
+On 29 October 2026 we ran Bossku (lean profile, the code of commit `d93b529`), four other packs and Claude Code with nothing added, on the same tasks, the same day, with Claude Haiku 4.5 and Claude Sonnet 5.5.
 
 | Setup | Rule remembered in the next session (44 tasks) | Coding tasks (34) | Cost per run vs no pack |
 |---|---|---|---|
@@ -82,11 +82,11 @@ On 29 October 2026 we ran Bossku, four other packs and Claude Code with no pack 
 | Superpowers | 20 (45%) | 31 | +13% to +26% |
 | Karpathy guidelines | 20 (45%) | 31 | -3% to +4% |
 
-- **Where Bossku wins: remembering your rules.** Task by task, Bossku beat every other setup on the two-session tasks (exact test p from 0.0002 to 0.007).
+- **Where Bossku wins: remembering your rules.** Bossku passed more of the two-session tasks than each other setup, a gap unlikely to be luck (exact tests, p 0.04 or lower against each).
 - **Where nobody wins: coding.** All six passed 31 or 32 of 34.
-- **What it costs.** About 40% more per run than no pack. Karpathy's guidelines and Anthropic's skills cost about the same as no pack.
+- **What it costs.** About 40% more per run than no pack (for the memory tasks, the graded session only). Karpathy's guidelines and Anthropic's skills cost about the same as no pack.
 
-Be fair to the others when you read this. Superpowers, Karpathy's guidelines and Anthropic's skills don't claim to remember rules between sessions. ECC does, but its hooks failed to start on Windows in this run, so its memory never ran. `CLAUDE.md` and Claude Code's own auto memory were off for everyone. The tasks are Bossku's own, and each ran once. Full method and limits: [pack comparison](docs/benchmarks/results-2026-10-29-packs.md).
+Be fair to the others when you read this. Superpowers, Karpathy's guidelines and Anthropic's skills are not built to carry your rules between sessions. ECC is, but its hooks failed to start on this Windows machine, so its memory never ran. Only Bossku came with instructions (including "save every rule the user states"), so the result is for the whole Bossku bundle. `CLAUDE.md` and Claude Code's own auto memory were off for everyone. The tasks are Bossku's own, and each ran once. Full method and limits: [pack comparison](docs/benchmarks/results-2026-10-29-packs.md).
 
 ## Quick start
 

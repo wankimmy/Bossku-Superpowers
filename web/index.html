@@ -308,7 +308,7 @@ Memory: yes</code></pre>
     <div class="packs__head">
       <p class="cmd"><span aria-hidden="true">$</span> benchmark_agent.py run --arm superpowers=pack:… --arm ecc=pack:…</p>
       <h2 id="packs-title">Against other skill packs.</h2>
-      <p>Same tasks, same day, Claude Haiku 4.5 and Claude Sonnet 5.5. Bossku next to Superpowers, ECC, Karpathy's guidelines, Anthropic's skills and Claude Code with no pack.</p>
+      <p>Same tasks, same day, Claude Haiku 4.5 and Claude Sonnet 5.5. Bossku (lean profile) next to Superpowers, ECC, Karpathy's guidelines, Anthropic's skills and Claude Code with nothing added.</p>
     </div>
 
     <figure class="bars">
@@ -317,7 +317,7 @@ Memory: yes</code></pre>
       <dl class="bars__rows">
         <div class="bars__row" style="--on:75">
           <dt>Bossku</dt>
-          <dd><span class="bar bar--on"><span>75%</span></span><span class="bars__delta">33 of 44. Beat every other setup task by task (exact test p 0.0002 to 0.007)</span></dd>
+          <dd><span class="bar bar--on"><span>75%</span></span><span class="bars__delta">33 of 44. More than each other setup, a gap unlikely to be luck (exact tests, p 0.04 or lower)</span></dd>
         </div>
         <div class="bars__row" style="--off:52">
           <dt>No pack</dt>
@@ -325,7 +325,7 @@ Memory: yes</code></pre>
         </div>
         <div class="bars__row" style="--off:50">
           <dt>ECC</dt>
-          <dd><span class="bar bar--off"><span>50%</span></span><span class="bars__delta">22 of 44. Its hooks, memory included, failed to start on Windows</span></dd>
+          <dd><span class="bar bar--off"><span>50%</span></span><span class="bars__delta">22 of 44. Its hooks, memory included, failed to start on this Windows machine</span></dd>
         </div>
         <div class="bars__row" style="--off:50">
           <dt>Anthropic skills</dt>
@@ -353,10 +353,10 @@ Memory: yes</code></pre>
       </div>
       <div class="proof__cell proof__cell--catch">
         <p class="big">+40%</p>
-        <p>The catch: Bossku cost about 40% more per run than no pack. ECC cost 80% to 90% more. Karpathy's guidelines and Anthropic's skills cost about the same as no pack.</p>
+        <p>The catch: Bossku cost about 40% more per run than no pack (memory tasks: the graded session only). ECC cost 80% to 90% more. Karpathy's guidelines and Anthropic's skills cost about the same as no pack.</p>
       </div>
     </div>
-    <p class="proof__note">Be fair to the others when you read this. Superpowers, Karpathy's guidelines and Anthropic's skills don't claim to remember rules between sessions. <code>CLAUDE.md</code> and Claude Code's own auto memory were off for every setup, so a rule you write in <code>CLAUDE.md</code> was not tested. The tasks are Bossku's own and each ran once, on Windows. Full method, pinned versions and limits: <a href="https://github.com/wankimmy/Bossku-Superpowers/blob/main/docs/benchmarks/results-2026-10-29-packs.md">pack comparison</a>.</p>
+    <p class="proof__note">Be fair to the others when you read this. Superpowers, Karpathy's guidelines and Anthropic's skills are not built to carry your rules between sessions. Only Bossku came with instructions (including &ldquo;save every rule the user states&rdquo;), so the result is for the whole Bossku bundle. <code>CLAUDE.md</code> and Claude Code's own auto memory were off for every setup, so a rule you write in <code>CLAUDE.md</code> was not tested. The tasks are Bossku's own and each ran once, on Windows. Full method, pinned versions and limits: <a href="https://github.com/wankimmy/Bossku-Superpowers/blob/main/docs/benchmarks/results-2026-10-29-packs.md">pack comparison</a>.</p>
   </section>
 
   <section class="new" aria-labelledby="new-title">
