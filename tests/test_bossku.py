@@ -328,7 +328,7 @@ class HooksTests(unittest.TestCase):
 
             data = json.loads((claude_dir / "settings.json").read_text(encoding="utf-8"))
             stop = data["hooks"]["Stop"]
-            self.assertEqual(len(stop), 3)   # the unrelated hook, the memory sync, the verify gate
+            self.assertEqual(len(stop), 4)   # the unrelated hook, the memory sync, the verify gate, the learn gate
             dumped = json.dumps(stop)
             self.assertIn("echo unrelated-hook", dumped)
             self.assertIn(HOOK_MARKER, dumped)
@@ -604,7 +604,7 @@ class ValidateTests(unittest.TestCase):
 
     def test_package_version_matches_manifests(self):
         version = package_version(ROOT)
-        self.assertEqual(version, "2.11.0")
+        self.assertEqual(version, "2.12.0")
         self.assertEqual(bossku.__version__, version)
         errors = validate_plugin_manifests(ROOT)
         self.assertEqual(errors, [], msg="\n".join(errors))
