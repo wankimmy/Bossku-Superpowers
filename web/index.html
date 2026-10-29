@@ -361,22 +361,22 @@ Memory: yes</code></pre>
 
   <section class="new" aria-labelledby="new-title">
     <div class="new__head">
-      <p class="cmd"><span aria-hidden="true">$</span> bossku learn list</p>
-      <h2 id="new-title">New in v2.12.0</h2>
+      <p class="cmd"><span aria-hidden="true">$</span> bossku doctor --project .</p>
+      <h2 id="new-title">New in v2.13.0</h2>
     </div>
     <div class="new__cols">
       <article>
-        <h3>Auto-learn</h3>
-        <p>In Claude Code, every 50 tool calls a Stop hook sends the agent back once and asks it to save useful lessons as small skills. Every fifth pass asks it to merge near-duplicates and fix rules that a newer rule contradicts.</p>
-        <p>Learned skills live with your project notes: in your Obsidian vault in Obsidian mode, or in the project's <code>.bossku/memory/skills</code> folder by default. Only <code>bossku learn apply</code> writes them, and it rejects skills with secrets, prompt-injection phrases or destructive commands, using fixed patterns. Archiving moves a skill aside instead of deleting it.</p>
-        <p class="off">Off switch: <code>BOSSKU_AUTO_LEARN=off</code></p>
+        <h3>Self-review, on by default</h3>
+        <p>After a turn that changed code, your agent is told to review its own diff with <code>bosskuai-rigorous-code-review</code>: correctness, risk, missing tests, and whether it does what you asked. It fixes what it finds and ends with a review line. Lessons worth keeping go to your notes, and auto-learn is asked to turn findings that keep coming back into small skills.</p>
+        <p>In Claude Code, the stop hook sends the agent back once if the reply has no review line, in the same push-back as the run-your-code and security checks. It checks that the line is there, not that the review was good. A self-review shares the author's blind spots, so treat it as a floor, not a second opinion.</p>
+        <div class="verdict"><span class="tick" data-lottie aria-hidden="true"><svg viewBox="0 0 96 96"><path d="M8 8H88V88H8Z"/><path class="t" d="M28 50L42 64L70 34"/></svg></span><code>Review: CLEAN | FIXED &lt;n&gt; | OPEN &lt;n&gt;</code></div>
+        <p class="off">Off switch: <code>BOSSKU_REVIEW_GATE=off</code></p>
       </article>
       <article>
-        <h3>A security gate, on by default</h3>
-        <p>Your agent is told to give every change a security pass across seven layers: business process, design, code, data and privacy, supply chain, infra and CI, and AI agents, and to check vulnerabilities against live feeds (OSV.dev, GitHub Advisories, CISA KEV) rather than memory. Nothing checks that it really did.</p>
-        <p>In Claude Code, a hook sends the agent back once when a turn changed code, dependencies or infra and the reply has no verdict line. It checks that the line is there; it does not run a scanner.</p>
-        <div class="verdict"><span class="tick" data-lottie aria-hidden="true"><svg viewBox="0 0 96 96"><path d="M8 8H88V88H8Z"/><path class="t" d="M28 50L42 64L70 34"/></svg></span><code>Security gate: PASS | BLOCK</code></div>
-        <p class="off">Off switch: <code>BOSSKU_SECURITY_GATE=off</code></p>
+        <h3>Measured against other packs</h3>
+        <p>The benchmark tool can now load another skill pack as a Claude Code plugin and run it on the same tasks. The first run put Bossku next to Superpowers, ECC, Karpathy's guidelines and Anthropic's skills. Bossku kept more of your rules between sessions; on coding, every setup tied.</p>
+        <p>The full page lists what was not fair to the others, from ECC's hooks failing on Windows to the tasks being Bossku's own. <a href="#packs">See the comparison</a>.</p>
+        <p class="off">Try it: <code>--arm NAME=pack:DIR</code></p>
       </article>
     </div>
   </section>
@@ -431,7 +431,7 @@ doctor: ok</code></pre>
   <div class="foot__links">
     <p class="foot__big"><a href="https://github.com/wankimmy/Bossku-Superpowers">github.com/wankimmy/Bossku-Superpowers</a></p>
     <ul>
-      <li><a href="https://github.com/wankimmy/Bossku-Superpowers/releases/tag/v2.12.0">Release notes v2.12.0</a></li>
+      <li><a href="https://github.com/wankimmy/Bossku-Superpowers/releases/tag/v2.13.0">Release notes v2.13.0</a></li>
       <li><a href="https://github.com/wankimmy/Bossku-Superpowers/blob/main/docs/memory.md">Memory and Obsidian</a></li>
       <li><a href="https://github.com/wankimmy/Bossku-Superpowers/blob/main/docs/third-party.md">Third-party packs and credits</a></li>
       <li><a href="https://github.com/wankimmy/Bossku-Superpowers/blob/main/LICENSE">MIT license</a></li>
