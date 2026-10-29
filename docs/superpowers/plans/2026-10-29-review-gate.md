@@ -1,6 +1,6 @@
 # Brief: Bossku reviews its own changes by default (review gate)
 
-Status: waiting for the user's approval (requested 2026-10-29). Nothing below is built yet.
+Status: approved (option B) and built on 2026-10-29 in `4e1e928`, released in v2.13.0. The tests went into `tests/hooks.test.mjs`, the home of the Node stop gate's tests, not `tests/test_hooks_gate_hint.py`.
 
 ## Goal
 

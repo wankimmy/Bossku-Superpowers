@@ -1,11 +1,12 @@
 # Changelog
 
-## Unreleased
+## v2.13.0 - Self-review gate, a pack comparison and a website
 
 ### New
 
 - **Self-review after every code change, on by default.** The Node stop gate sends a turn that edited source files back once unless the reply has a `Review: CLEAN | FIXED <n> | OPEN <n>` line from a review of the agent's own diff with `bosskuai-rigorous-code-review` (correctness, risk, missing tests, does it meet the goal). It asks once per turn, in the same push-back as the run-your-code and security asks, so a turn costs at most one extra round. Docs, manifests and scratch files are exempt. The hook checks that the line is there, not that the review was good; a self-review shares the author's blind spots. Stylesheets count as source here, as they do for the run-your-code check. Edits made after the push-back are not checked again. The auto-learn reminder now asks the agent to turn review findings it sees coming back into learned skills; nothing counts the repeats. The Python gate used after `bossku install --no-harness` does not have this check. Off switch: `BOSSKU_REVIEW_GATE=off` (listed by `bossku doctor`).
 - **Pack comparison benchmark.** `scripts/benchmark_agent.py` takes `--arm NAME=pack:DIR[,DIR]` to run another skill pack through `claude --plugin-dir`. The first run compares Bossku with Superpowers, ECC, Karpathy's guidelines and Anthropic's skills: [results and limits](docs/benchmarks/results-2026-10-29-packs.md).
+- **Plainer README.** Rewritten in short, plain words with what makes Bossku different first.
 - **Website.** A one-page site at [wankimmy.github.io/Bossku-Superpowers](https://wankimmy.github.io/Bossku-Superpowers/), deployed from `web/` by GitHub Pages.
 
 ### Changed
