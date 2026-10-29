@@ -45,6 +45,17 @@ class LeanProfileTests(unittest.TestCase):
     def test_the_repository_lean_list_is_valid(self):
         self.assertEqual(validate_lean(ROOT), [])
 
+    def test_the_documented_lean_count_matches_the_list(self):
+        count = len(load_lean(ROOT)["listed"])
+        for rel, phrase in (
+            ("bossku/cli.py", f"lean lists {count} skills"),
+            ("docs/installation.md", f"| {count} everyday engineering"),
+            ("docs/architecture.md", f"lists {count})"),
+            ("docs/skills.md", f"lists {count} everyday skills"),
+        ):
+            with self.subTest(file=rel):
+                self.assertIn(phrase, (ROOT / rel).read_text(encoding="utf-8"))
+
     def test_hosts_list_only_the_lean_skills_with_short_descriptions(self):
         listed = set(load_lean(ROOT)["listed"])
         installed = {p.name for p in claude_skills_dir(self.home).iterdir() if p.is_dir()}

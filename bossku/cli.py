@@ -60,7 +60,7 @@ def main(argv: list[str] | None = None) -> int:
 
     p_install = sub.add_parser("install", help="Install skills to user-level agent dirs", parents=[child, json_flag])
     p_install.add_argument("--profile", choices=list(PROFILES), default=None,
-                           help="lean lists ~25 skills with short descriptions and keeps the rest "
+                           help="lean lists 28 skills with short descriptions and keeps the rest "
                                 "reachable through bossku skills show; core is the minimal set; engineering is "
                                 "everything except the marketing pack; full lists everything. "
                                 "Default: the profile already installed, else lean")

@@ -44,14 +44,15 @@ def _clip(text: str, limit: int) -> str:
 
 RULE_ENTRY = 480   # decisions are rules: clipping one loses the exact name or value that matters
 
-BRIEF_INTRO = ("BosskuAI project notes, newest first. These rules and decisions apply to this request even when its "
-               "own wording differs from them (names, values, formats): apply the rule and say so in your reply. "
+BRIEF_INTRO = ("BosskuAI project notes, newest first within each group. These rules and decisions apply to this "
+               "request even when its own wording differs from them (names, values, formats): apply the rule and say "
+               "so in your reply. "
                "Only an explicit instruction to change or drop a rule overrides it "
                "(do not read the memory files again):\n")
 
 
 def memory_brief(project: Path, *, home: Path | None = None, limit: int = 1300, per_entry: int = 220) -> str:
-    """Newest entries first, at most `limit` characters; empty when there is nothing worth saying."""
+    """Newest entries first within each file, at most `limit` characters; empty when there is nothing worth saying."""
     try:
         folder = memory_directory(project, home=home)
     except (ValueError, OSError):

@@ -349,8 +349,10 @@ class DoctorHarnessTests(unittest.TestCase):
             agents = home / ".claude" / "agents"
             self.assertFalse(any("out of date" in i for i in gather_doctor_issues(ROOT, home)))
             planner = agents / "planner.md"
-            planner.write_bytes(planner.read_bytes().replace(b"\n", b"\r\n"))   # line endings alone are not drift
-            self.assertFalse(any("contracts out of date" in i for i in gather_doctor_issues(ROOT, home)))
+            lf = planner.read_bytes().replace(b"\r\n", b"\n")   # the checkout may be LF or CRLF
+            for ending in (b"\n", b"\r\n"):   # line endings alone are not drift
+                planner.write_bytes(lf.replace(b"\n", ending))
+                self.assertFalse(any("contracts out of date" in i for i in gather_doctor_issues(ROOT, home)))
             auditor = agents / "auditor.md"
             auditor.write_text(auditor.read_text(encoding="utf-8").replace("Criteria matrix", "Old matrix"), encoding="utf-8")
             issues = gather_doctor_issues(ROOT, home)

@@ -18,7 +18,7 @@ Bossku Superpower ships native plugin manifests for Claude Code, Cursor, and Cod
 
 Skills and agents load from this repository via [`.claude-plugin/plugin.json`](../.claude-plugin/plugin.json). Refresh after updates with `/plugin marketplace update` and reinstall if needed.
 
-The plugin lists the 256 skills in `skills/` (everything a profile can list) and ignores `--profile lean`. The 416 library-only skills live in `library/`, which no plugin lists; with the plugin alone the agent does not see them; `pip install -e .` in a checkout (no `bossku install` needed) lets `bossku skills find` and `bossku skills show` reach them. It does not add the hooks that `bossku install` sets up (sync, skill hint, verify gate, project notes); its manifest wires only the Node gates in [`hooks/`](../hooks/README.md). Do not run both: their skill lists overlap. A first `bossku install` starts at `--profile lean`; later runs keep your profile (see [User-level skills](#user-level-skills-once-per-machine)).
+The plugin lists the 258 skills in `skills/` (everything a profile can list) and ignores `--profile lean`. The 416 library-only skills live in `library/`, which no plugin lists; with the plugin alone the agent does not see them; `pip install -e .` in a checkout (no `bossku install` needed) lets `bossku skills find` and `bossku skills show` reach them. It does not add the hooks that `bossku install` sets up (sync, skill hint, verify gate, project notes); its manifest wires only the Node gates in [`hooks/`](../hooks/README.md). Do not run both: their skill lists overlap. A first `bossku install` starts at `--profile lean`; later runs keep your profile (see [User-level skills](#user-level-skills-once-per-machine)).
 
 ### Cursor
 
@@ -49,7 +49,7 @@ Restart Cursor after install. Cursor reads [`.cursor-plugin/plugin.json`](../.cu
 
 For team distribution, point a Cursor marketplace at this repository using [`.cursor-plugin/marketplace.json`](../.cursor-plugin/marketplace.json).
 
-The plugin lists the 256 skills in `skills/` (everything a profile can list) and ignores `--profile lean`. The 416 library-only skills live in `library/`, which no plugin lists; with the plugin alone the agent does not see them; `pip install -e .` in a checkout (no `bossku install` needed) lets `bossku skills find` and `bossku skills show` reach them. It does not add the hooks that `bossku install` sets up. Do not run both: their skill lists overlap. A first `bossku install` starts at `--profile lean`; later runs keep your profile (see [User-level skills](#user-level-skills-once-per-machine)).
+The plugin lists the 258 skills in `skills/` (everything a profile can list) and ignores `--profile lean`. The 416 library-only skills live in `library/`, which no plugin lists; with the plugin alone the agent does not see them; `pip install -e .` in a checkout (no `bossku install` needed) lets `bossku skills find` and `bossku skills show` reach them. It does not add the hooks that `bossku install` sets up. Do not run both: their skill lists overlap. A first `bossku install` starts at `--profile lean`; later runs keep your profile (see [User-level skills](#user-level-skills-once-per-machine)).
 
 ### Codex
 
@@ -59,7 +59,7 @@ codex plugin marketplace add wankimmy/Bossku-Superpowers
 
 Restart the ChatGPT desktop app, open the Plugins Directory, choose the **Bossku Superpower** marketplace, and install **bossku-superpower**. Catalog: [`.agents/plugins/marketplace.json`](../.agents/plugins/marketplace.json).
 
-The plugin lists the 256 skills in `skills/` (everything a profile can list) and ignores `--profile lean`. The 416 library-only skills live in `library/`, which no plugin lists; with the plugin alone the agent does not see them; `pip install -e .` in a checkout (no `bossku install` needed) lets `bossku skills find` and `bossku skills show` reach them. It does not add the hooks that `bossku install` sets up. Do not run both: their skill lists overlap. A first `bossku install` starts at `--profile lean`; later runs keep your profile (see [User-level skills](#user-level-skills-once-per-machine)).
+The plugin lists the 258 skills in `skills/` (everything a profile can list) and ignores `--profile lean`. The 416 library-only skills live in `library/`, which no plugin lists; with the plugin alone the agent does not see them; `pip install -e .` in a checkout (no `bossku install` needed) lets `bossku skills find` and `bossku skills show` reach them. It does not add the hooks that `bossku install` sets up. Do not run both: their skill lists overlap. A first `bossku install` starts at `--profile lean`; later runs keep your profile (see [User-level skills](#user-level-skills-once-per-machine)).
 
 ### OpenCode
 
@@ -100,10 +100,10 @@ Pick how much of the library your agent lists in every session:
 
 | Profile | Lists in the agent | Reach the rest | Best for |
 |---|---|---|---|
-| `lean` (default for a first install) | About 25 everyday engineering and process skills with short descriptions | `bossku skills find` / `bossku skills show`, installed whole in `~/.bosskuai/library` | Most people; the smallest per-session cost |
+| `lean` (default for a first install) | 28 everyday engineering and process skills with short descriptions | `bossku skills find` / `bossku skills show`, installed whole in `~/.bosskuai/library` | Most people; the smallest per-session cost |
 | `core` | Co-founder essentials plus the **loop-engineering** pack | Not installed | A minimal set |
 | `engineering` | Every listable skill except the 52 of the marketingskills pack (about 200) | `bossku skills find` / `bossku skills show` read library-only skills from the repo checkout | People who build software and do not need the marketing set |
-| `full` | All 256 listable skills | `bossku skills find` / `bossku skills show` read library-only skills from the repo checkout | Hosts with a very large skill budget |
+| `full` | All 258 listable skills | `bossku skills find` / `bossku skills show` read library-only skills from the repo checkout | Hosts with a very large skill budget |
 
 Library-only skills (416, stored in `library/` and named in `skills/library-only.json`: 114 mengto web techniques, 162 adapted ECC workflows for stacks such as C++, Rust or network operations, 137 domain skills for GIS, game engines, healthcare operations, China marketing or legal intake, plus `anatomy`, `logo-design` and `security-audit`) are listed by no profile and no plugin. The skill hint and `bossku skills find` still name them, and the agent reads their `SKILL.md` on demand.
 

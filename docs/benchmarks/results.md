@@ -8,7 +8,7 @@ We ran a real coding agent (Claude Code) on coding tasks with hidden tests, once
 
 ## In short
 
-In plain words: the clearest gain is **memory**. When a rule is stated in one session and needed in the next, Claude Haiku 4.5 (48% to 68%), Claude Sonnet 5.5 (64% to 84%) and Gemma 4 31B (39% to 68%) finished 20 to 30 points more tasks with Bossku Superpower. DeepSeek V4.1 Flash and Nemotron 3 Nano showed no clear difference there. On the coding and harder tasks no model passed clearly more; models that tend to skip running their code (Gemma, Nemotron) ran it far more often, and the small Nemotron model passed more HumanEval problems (62% to 92%). The extra checking costs tokens, from about 1.1 times to 4.7 times as many, and most where the model had done the least checking before. The sample sizes are small, so read each result with its interval.
+In plain words: the clearest gain is **memory**. When a rule is stated in one session and needed in the next, Claude Haiku 4.5 (48% to 68%), Claude Sonnet 5.5 (64% to 84%) and Gemma 4 31B (39% to 68%) finished 20 to 30 points more tasks with Bossku Superpower. DeepSeek V4.1 Flash and Nemotron 3 Nano showed no clear difference there. On the coding and harder tasks no model passed clearly more; models that tend to skip running their code (Gemma, Nemotron) ran it far more often, and the small Nemotron model passed more HumanEval problems (62% to 92%). The extra checking costs tokens, from about the same (1.0 times) to 4.7 times as many, and most where the model had done the least checking before. The sample sizes are small, so read each result with its interval.
 
 <!-- summary-overall:start -->
 - **DeepSeek V4.1 Flash showed no clear difference on coding tasks:** 97% without, 94% with.

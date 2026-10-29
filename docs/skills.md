@@ -23,13 +23,13 @@ A loaded skill stays in the conversation and is read again on every later turn, 
 
 ## Profiles
 
-`bossku install --profile lean` (where a first install starts) lists about 25 everyday skills with short descriptions and installs the other ~645 whole in `~/.bosskuai/library`. The agent reaches them through [`bosskuai-skill-finder`](../skills/bosskuai-skill-finder/SKILL.md): `bossku skills find "<task>"` names the skills and `bossku skills show <id>` prints one. The list lives in [`skills/lean.json`](../skills/lean.json); `bossku validate` keeps it small and complete.
+`bossku install --profile lean` (where a first install starts) lists 28 everyday skills with short descriptions and installs the other ~645 whole in `~/.bosskuai/library`. The agent reaches them through [`bosskuai-skill-finder`](../skills/bosskuai-skill-finder/SKILL.md): `bossku skills find "<task>"` names the skills and `bossku skills show <id>` prints one. The list lives in [`skills/lean.json`](../skills/lean.json); `bossku validate` keeps it small and complete.
 
 `bossku install --profile core` installs Bossku co-founder essentials plus the **loop-engineering** pack (12 loop/triage/CI/PR skills) and `bosskuai-grounding`. Always-on loop discipline is in [`AGENTS.md`](../AGENTS.md#loop-engineering-always-on); always-on grounding is in [`AGENTS.md`](../AGENTS.md#grounding-always-on).
 
 `bossku install --profile engineering` installs and lists every listable skill except the 52 of the marketingskills pack (about 200), for people who build software and do not need the marketing set.
 
-`bossku install --profile full` installs and lists every skill in `skills/` (256), including all other vendored packs.
+`bossku install --profile full` installs and lists every skill in `skills/` (258), including all other vendored packs.
 
 Library-only skills (416) live in `library/`, not `skills/`, because the Claude Code, Cursor and Codex plugin manifests list every folder in `skills/`. No profile or plugin lists them; the hint and `bossku skills find` reach them, and `bossku validate` fails when a skill sits in the wrong folder for `skills/library-only.json`.
 

@@ -16,7 +16,7 @@ Bossku-AI repo (canonical skills + contract)
 
 - **One source of truth** - skills and contract in this repo
 - **Thin adapters** - projects keep small instruction blocks, not full copies
-- **On-demand depth** - 670+ skills: 256 listable ones in `skills/` and 416 library-only ones in `library/`, which no plugin or profile lists (the `lean` profile, where a first install starts, lists about 25); small always-on contract
+- **On-demand depth** - 670+ skills: 258 listable ones in `skills/` and 416 library-only ones in `library/`, which no plugin or profile lists (the `lean` profile, where a first install starts, lists 28); small always-on contract
 - **No runtime orchestrator** - agents follow markdown contracts in your editor
 
 ## Agents
