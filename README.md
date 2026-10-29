@@ -4,6 +4,8 @@
 
 Free and open source ([MIT](LICENSE)). Works with **Claude Code, Codex, Cursor, OpenCode and OMP**, and is strongest in Claude Code.
 
+**Website:** [wankimmy.github.io/Bossku-Superpowers](https://wankimmy.github.io/Bossku-Superpowers/)
+
 *Formerly BosskuAI. The `bossku` command, the `bosskuai-*` skill names and the `~/.bosskuai` config folder did not change, so your skills, hooks and notes still work. If you installed the plugin from a marketplace, reinstall it once.*
 
 ![What Bossku Superpower adds around your agent. You ask; your agent picks a skill, does the work, runs it, and gives you a checked result. Behind it: 670+ skills found for you, optional tools, a check that sends the agent back if it never ran its code, and your notes saved in Obsidian.](docs/assets/superpower-overview.svg)
