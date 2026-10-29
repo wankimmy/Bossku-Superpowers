@@ -589,7 +589,7 @@ test("stop gate script: blocks with exit 2, honours stop_hook_active and an expl
   const honest = run("stop-gate.mjs", {
     transcript_path: transcript,
     stop_hook_active: false,
-    last_assistant_message: "Changed app.ts. Not verified: the test runner is not installed here.\nSecurity gate: PASS (quick)",
+    last_assistant_message: "Changed app.ts. Not verified: the test runner is not installed here.\nReview: CLEAN\nSecurity gate: PASS (quick)",
   });
   assert.equal(honest.code, 0);
   const off = run("stop-gate.mjs", { transcript_path: transcript, stop_hook_active: false, last_assistant_message: "Done." }, { BOSSKU_STOP_GATE: "off" });
@@ -620,6 +620,66 @@ test("stop gate script: a verified change still needs the security verdict, once
   assert.equal(verdict.code, 0);
   assert.equal(run("stop-gate.mjs", { transcript_path: transcript, stop_hook_active: true, last_assistant_message: "Done." }).code, 0);
   assert.equal(run("stop-gate.mjs", { transcript_path: transcript, last_assistant_message: "Done." }, { BOSSKU_SECURITY_GATE: "off" }).code, 0);
+});
+
+test("stop gate script: a code change needs a self-review line, once, and has its own off switch", () => {
+  const dir = tmpdir();
+  const transcript = path.join(dir, "t.jsonl");
+  fs.writeFileSync(
+    transcript,
+    [user("add a refund endpoint"), toolUse("Edit", { file_path: "C:/proj/src/refund.ts" }), toolResult(), toolUse("Bash", { command: "npm test" }), toolResult()].join("\n") + "\n",
+  );
+  const gate = (last, env = {}, extra = {}) => run("stop-gate.mjs", { transcript_path: transcript, last_assistant_message: last, ...extra }, env);
+  const blocked = gate("Done.\nSecurity gate: PASS (quick)");
+  assert.equal(blocked.code, 2);
+  assert.match(blocked.err, /^BosskuAI stop gate: review gate/);
+  assert.match(blocked.err, /bosskuai-rigorous-code-review/);
+  assert.match(blocked.err, /Review: CLEAN \| FIXED <n> \| OPEN <n>/);
+  assert.doesNotMatch(blocked.err, /no verification command ran|security gate \(must rule\)/);
+  for (const line of ["Review: CLEAN", "review: fixed 2", "**Review:** OPEN 1", "Review: FIXED 3 (null check, test)"]) {
+    assert.equal(gate(`Done.\n${line}\nSecurity gate: PASS (quick)`).code, 0, line);
+  }
+  for (const prose of [
+    "Done. Review: see the notes above.",
+    "Code review: open questions are in the PR.",
+    "Review: clean-up of the old helper is still needed.",
+    "The gate wants Review: CLEAN | FIXED <n> | OPEN <n> at the end.",
+    "Review: CLEAN | FIXED <n> | OPEN <n>",
+  ]) {
+    assert.equal(gate(`${prose}\nSecurity gate: PASS (quick)`).code, 2, prose);
+  }
+  assert.equal(gate("Done.\nSecurity gate: PASS (quick)", {}, { stop_hook_active: true }).code, 0);
+  assert.equal(gate("Done.\nSecurity gate: PASS (quick)", { BOSSKU_REVIEW_GATE: "off" }).code, 0);
+});
+
+test("stop gate script: docs, manifests and scratch files need no review line", () => {
+  const { base, home, env } = sandbox();
+  const transcript = path.join(base, "t.jsonl");
+  const gate = (file) => {
+    fs.writeFileSync(transcript, [user("go"), toolUse("Edit", { file_path: file }), toolResult()].join("\n") + "\n");
+    return run("stop-gate.mjs", { transcript_path: transcript, cwd: path.join(home, "proj"), last_assistant_message: "Done.\nSecurity gate: PASS" }, env);
+  };
+  assert.equal(gate(path.join(home, "proj", "README.md")).code, 0, "docs");
+  assert.equal(gate(path.join(home, "proj", "package.json")).code, 0, "a manifest gets the security ask only");
+  assert.equal(gate(path.join(home, ".claude", "workflows", "w.js")).code, 0, "scratch");
+});
+
+test("stop gate script: every missing check goes out in one block", () => {
+  const dir = tmpdir();
+  const transcript = path.join(dir, "t.jsonl");
+  fs.writeFileSync(transcript, [user("fix"), toolUse("Edit", { file_path: "C:/proj/src/app.ts" }), toolResult()].join("\n") + "\n");
+  const blocked = run("stop-gate.mjs", { transcript_path: transcript, last_assistant_message: "Done." });
+  assert.equal(blocked.code, 2);
+  assert.match(blocked.err, /no verification command ran/);
+  assert.match(blocked.err, /security gate \(must rule\)/);
+  assert.match(blocked.err, /review gate/);
+  const feedback = JSON.stringify({
+    type: "user",
+    isMeta: true,
+    message: { role: "user", content: "Stop hook feedback:\n[node stop-gate.mjs]: BosskuAI stop gate: review gate: 1 source file(s) changed this turn (src/app.ts)" },
+  });
+  const after = analyze([user("fix"), toolUse("Edit", { file_path: "C:/proj/src/app.ts" }), toolResult(), feedback]);
+  assert.equal(after.edits.length, 0, "a review-only block restarts the window too");
 });
 
 // ---------------- session start ----------------

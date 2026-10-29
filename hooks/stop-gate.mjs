@@ -13,6 +13,10 @@
 // Security gate (a must rule, see bossku/security.py): a turn that changed code, a
 // dependency manifest or infra/CI/agent config must end with a `Security gate:`
 // verdict line. Same once-per-turn rule. Off switch: BOSSKU_SECURITY_GATE=off.
+//
+// Review gate: a turn that edited source files must end with a `Review: CLEAN | FIXED <n> | OPEN <n>` line from a
+// self-review of its own diff. It checks that the line is there, not that the review was good. All asks go out in
+// one block, so a turn costs at most one extra round. Off switch: BOSSKU_REVIEW_GATE=off.
 import fs from "node:fs";
 import { ext, isMain, isOff, isScratch, pluginRoot, readStdinJson, toPosix } from "./_lib.mjs";
 
@@ -35,6 +39,9 @@ const MANIFESTS = new Set([
 const INFRA =
   /(?:^|\/)(?:dockerfile[^/]*|docker-compose[^/]*\.ya?ml|compose\.ya?ml|[^/]+\.tf|[^/]+\.tfvars|\.gitlab-ci\.yml|\.github\/workflows\/[^/]+\.ya?ml|\.mcp\.json|nginx[^/]*\.conf|serverless\.ya?ml|vercel\.json|netlify\.toml)$/i;
 const VERDICT_RE = /\bsecurity gate:/i;
+// A line of its own that starts with the verdict, as in `Review: FIXED 2` or `**Review:** CLEAN`. Prose such as
+// "Code review: clean-up later" and the bare `CLEAN | FIXED <n>` template do not count.
+const REVIEW_RE = /^[\s>*_-]*review:[*_]*\s*(?:clean(?![\w-])(?!\s*\|)|fixed\s+\d+|open\s+\d+)/im;
 
 const baseName = (f) => (toPosix(f).split("/").pop() || "").toLowerCase();
 
@@ -183,7 +190,8 @@ if (isMain(import.meta.url)) {
     const { edits, ui, unverifiedAfterEdit, secEdits } = analyze(tailLines(path), input.cwd);
     const verify = unverifiedAfterEdit && !UNVERIFIED_RE.test(last);
     const security = secEdits.length > 0 && !VERDICT_RE.test(last) && !isOff("BOSSKU_SECURITY_GATE");
-    if (!verify && !security) process.exit(0);
+    const review = edits.length > 0 && !REVIEW_RE.test(last) && !isOff("BOSSKU_REVIEW_GATE");
+    if (!verify && !security && !review) process.exit(0);
     const parts = [];
     if (verify) {
       const [n, shown] = shortList(edits);
@@ -207,6 +215,16 @@ if (isMain(import.meta.url)) {
           "Load bosskuai-security-gate and run its pass on this change: each layer it touches, deep pass for auth, payments, tenant data, secrets, uploads, public endpoints, infra/CI or agent tools. " +
           (deps ? "A dependency file changed: check the changed packages against live feeds (OSV.dev, GitHub Advisories, CISA KEV) now. " : "") +
           "Then end the reply with `Security gate: PASS | BLOCK`, listing only High and Critical findings.",
+      );
+    }
+    if (review) {
+      // Same OWN_BLOCK start, so a review-only block also restarts the window.
+      const [n, shown] = shortList(edits);
+      parts.push(
+        `${OWN_BLOCK}review gate: ${n} source file(s) changed this turn (${shown}) and the reply has no review line. ` +
+          "Review your own diff with bosskuai-rigorous-code-review (correctness, risk, missing tests, does it meet the goal), " +
+          "fix what you find and run the check again, then end the reply with `Review: CLEAN | FIXED <n> | OPEN <n>`. " +
+          "Save a lesson worth reusing with `bossku remember --kind learning`.",
       );
     }
     process.stderr.write(parts.join("\n") + "\n");

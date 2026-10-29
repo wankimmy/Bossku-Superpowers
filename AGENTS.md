@@ -91,6 +91,12 @@ Checklist: [`references/checklists/grounding-checklist.md`](references/checklist
 - Verdict: BLOCK on an open Critical or High in the changed path. Alert only on High and Critical; Medium and Low stay out of the reply. Defensive only: test what the user owns, no live exploitation.
 - Enforced by hooks, no user prompt needed: every change request gets the rule; the first prompt each day in a project with a dependency manifest gets a live dependency CVE check; a turn that changed code, dependencies or infra cannot end without the `Security gate:` verdict line. Off switch: `BOSSKU_SECURITY_GATE=off`.
 
+## Self-review (always on)
+
+After a turn that changed source code, review your own diff with `bosskuai-rigorous-code-review` (correctness, risk, missing tests, does it meet the goal), fix what you find, run the check again, and end the reply with `Review: CLEAN | FIXED <n> | OPEN <n>`. Save a lesson worth reusing with `bossku remember --kind learning`; the auto-learn pass is asked to turn findings you see coming back into learned skills (you judge the repeats; nothing counts them).
+
+- Enforced in Claude Code by the Node stop gate: a turn that edited source files and ends without a `Review:` line on a line of its own is sent back once, in the same push-back as the other gates. The next stop passes, and edits made after the push-back are not checked again. The hook checks that the line is there, not that the review was good; a self-review shares the author's blind spots, so it is a floor, not a second opinion. Off switch: `BOSSKU_REVIEW_GATE=off`.
+
 ## Risk pauses
 
 Ask before payments, auth, secrets, privacy, data loss, or migrations. Never stage or commit secret files (`.env`, `*.pem`, `*.key`, credentials). Push, merge and PRs wait for the user's go-ahead (an explicit ask, or an approved loop spec that names it).

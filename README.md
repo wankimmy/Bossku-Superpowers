@@ -74,7 +74,7 @@ Bossku builds on what Claude Code already has. Here is what is built in and what
 Good to know:
 
 - **The guard only sees the command the agent types.** A push hidden inside a script (`bash push.sh`) is not seen.
-- **The security line is a format check.** When a turn changed code, the agent must write a `Security gate:` line. Bossku checks the line is there, not that a real review happened. It does not run a scanner.
+- **The security and review lines are format checks.** When a turn changed code, the agent is sent back once if it wrote no `Security gate:` line or no `Review: CLEAN | FIXED <n> | OPEN <n>` line from a review of its own diff. Bossku checks the lines are there, not that a real review happened. It does not run a scanner.
 - **Claude Code gets the most.** The guard also runs in Codex, Cursor and OpenCode, but there it is only unit-tested, not yet tried inside those apps. OMP gets the skills only.
 
 ## Quick start
@@ -92,6 +92,7 @@ You need **Python 3.11+** and **Git**.
 | To turn off | Do this |
 |---|---|
 | The run-your-code check | `BOSSKU_STOP_GATE=off` |
+| The self-review check | `BOSSKU_REVIEW_GATE=off` |
 | Ask-before-push (for an approved autonomous loop) | `BOSSKU_GUARD_ASK=off` |
 | Auto-learn | `BOSSKU_AUTO_LEARN=off` |
 | Reading Codex's session files | `BOSSKU_RESUME=off` |

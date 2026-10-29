@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### New
+
+- **Self-review after every code change, on by default.** The Node stop gate sends a turn that edited source files back once unless the reply has a `Review: CLEAN | FIXED <n> | OPEN <n>` line from a review of the agent's own diff with `bosskuai-rigorous-code-review` (correctness, risk, missing tests, does it meet the goal). It asks once per turn, in the same push-back as the run-your-code and security asks, so a turn costs at most one extra round. Docs, manifests and scratch files are exempt. The hook checks that the line is there, not that the review was good; a self-review shares the author's blind spots. Stylesheets count as source here, as they do for the run-your-code check. Edits made after the push-back are not checked again. The auto-learn reminder now asks the agent to turn review findings it sees coming back into learned skills; nothing counts the repeats. The Python gate used after `bossku install --no-harness` does not have this check. Off switch: `BOSSKU_REVIEW_GATE=off` (listed by `bossku doctor`).
+- **Pack comparison benchmark.** `scripts/benchmark_agent.py` takes `--arm NAME=pack:DIR[,DIR]` to run another skill pack through `claude --plugin-dir`. The first run compares Bossku with Superpowers, ECC, Karpathy's guidelines and Anthropic's skills: [results and limits](docs/benchmarks/results-2026-10-29-packs.md).
+- **Website.** A one-page site at [wankimmy.github.io/Bossku-Superpowers](https://wankimmy.github.io/Bossku-Superpowers/), deployed from `web/` by GitHub Pages.
+
 ### Changed
 
 - **`hint_mode` is gone.** The skill hint stopped reading it some time ago, so `v1` and `v2` already gave the same hint (up to three skills, task evidence, under 800 characters). The setting, `bossku.hint.hint_mode()`, the `mode` argument of `pick_skills`, `render_hint` and `build_hint`, and the `skill hint mode` line in `bossku doctor` are removed. A leftover `hint_mode` key in `~/.bosskuai/config.json` is ignored. `scripts/benchmark_routing_heldout.py` still passes `mode` to older revisions that take it.

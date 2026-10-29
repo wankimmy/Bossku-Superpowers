@@ -400,7 +400,8 @@ LEARN_REASON = (
     MARKER + " Auto-learn: this session made {n} tool calls since the last learn pass. Before you finish, run the "
     "`bosskuai-learn` pass (`bossku skills show bosskuai-learn` if it is not listed): turn each durable, reusable "
     "lesson from this session into a learned skill with `bossku learn apply <intent.json>` (check `bossku learn list` "
-    "first and patch an existing one before creating), and save decisions or facts with `bossku remember`. If nothing "
+    "first and patch an existing one before creating), and save decisions or facts with `bossku remember`. A review "
+    "finding that keeps coming back (the same kind of fix after more than one `Review:` line) is such a lesson. If nothing "
     "is worth keeping, say so in one line and finish. Off switch for the user: BOSSKU_AUTO_LEARN=off."
 )
 CONSOLIDATE_REASON = (

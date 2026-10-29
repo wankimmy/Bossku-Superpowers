@@ -31,7 +31,7 @@ CLAUDE_HOOK_PIECES = (
     ("learn-gate", LEARN_EVENT, LEARN_MARKER),
 )
 GATE_SWITCHES = ("BOSSKU_VERIFY_GATE", "BOSSKU_STOP_GATE", "BOSSKU_GUARD", "BOSSKU_GUARD_ASK", "BOSSKU_POST_EDIT",
-                 "BOSSKU_SLOP_LINT", "BOSSKU_AUTO_LEARN")
+                 "BOSSKU_SLOP_LINT", "BOSSKU_AUTO_LEARN", "BOSSKU_REVIEW_GATE")
 
 
 def _missing_program(command: str) -> str | None:
