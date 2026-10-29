@@ -4,8 +4,8 @@ Agents rarely open a skill nobody pointed them to. A `UserPromptSubmit` hook run
 prompt and adds one short, honest hint (the best matches, with their own descriptions), so the
 choice is made on the request itself instead of on a skill list the agent has already stopped reading.
 
-`hint_mode` in ~/.bosskuai/config.json picks the policy. `v1` (the default) and `v2` both use task evidence, name up to three complementary skills,
-accept eligible explicit requests, and keep the hint under 800 characters.
+The hint uses task evidence, names up to three complementary skills, accepts eligible explicit requests, and stays
+under 800 characters. The old `hint_mode` setting (v1/v2) is gone; a leftover key in ~/.bosskuai/config.json is ignored.
 """
 
 from __future__ import annotations
@@ -18,17 +18,16 @@ from pathlib import Path
 import bossku.index as bossku_index
 import bossku.skills as skills
 from bossku.index import load_index, skill_index_signature
-from bossku.paths import routing_index_copy, routing_signature_path, user_config_path
+from bossku.paths import routing_index_copy, routing_signature_path
 from bossku.rules import prompt_reminder, states_rule
 from bossku.skills import NOT_INSTALLED, locate_skill, select_skill_stack, skill_has_task_evidence
 
 MIN_WORDS = 5            # retained for callers; evidence, not word count, decides eligibility
 MIN_TOP_SCORE = 12.0     # legacy benchmark/caller compatibility; not an eligibility gate
-MAX_HINTS = 3            # one primary and at most two distinct prompt concerns in either mode
+MAX_HINTS = 3            # one primary and at most two distinct prompt concerns
 HINT_CHARS = 800         # the hint without the separate rule reminder
 DESCRIPTION_CHARS = 100
 SHORT_DESCRIPTION_CHARS = 60
-MODES = ("v1", "v2")
 HOSTS = ("claude", "codex")
 NONCE_ENV = "BOSSKU_HINT_NONCE"     # test only: the delivery canary asks the agent to quote this value back
 _NONCE = re.compile(r"[A-Za-z0-9_.-]{1,40}")
@@ -67,15 +66,6 @@ def wants_resume(prompt: str) -> bool:
         and RESUME_TRIGGER.search(text) is not None
 
 
-def hint_mode(home: Path | None = None) -> str:
-    """`hint_mode` from ~/.bosskuai/config.json: v1 (the default) or v2. A missing key or file, or any other value, is v1."""
-    try:
-        value = json.loads(user_config_path(home).read_text(encoding="utf-8")).get("hint_mode")
-    except (OSError, ValueError, AttributeError):
-        return "v1"
-    return value if value in MODES else "v1"
-
-
 def _copied_index(root: Path | None, home: Path | None) -> dict | None:
     """The index copy `bossku install` keeps in ~/.bosskuai, when its signature still matches the skills in `root`.
     None means: read the repo's own saved index, as the hook always did."""
@@ -101,11 +91,11 @@ def _mentions_a_skill(text: str, names) -> bool:
     return False
 
 
-def pick_skills(prompt: str, *, root: Path | None = None, mode: str = "v1", min_words: int = MIN_WORDS,
+def pick_skills(prompt: str, *, root: Path | None = None, min_words: int = MIN_WORDS,
                 data: dict | None = None) -> list[dict]:
-    """Name eligible selected skills with task evidence; short requests work in either mode.
+    """Name eligible selected skills with task evidence; short requests get hints too.
 
-    `mode` and `min_words` remain accepted for caller compatibility. The host handles slash
+    `min_words` remains accepted for caller compatibility. The host handles slash
     commands directly; greetings, fallback selections and lexical coincidences stay silent.
     """
     prompt = prompt.strip()
@@ -132,9 +122,8 @@ def _bossku_command() -> str:
     return " ".join([f'"{exe}"' if " " in exe else exe, *rest])
 
 
-def render_hint(picks: list[dict], *, root: Path | None = None, home: Path | None = None, host: str = "claude",
-                mode: str = "v1") -> str:
-    """Bounded host-aware loading instructions, identical policies in v1 and v2."""
+def render_hint(picks: list[dict], *, root: Path | None = None, home: Path | None = None, host: str = "claude") -> str:
+    """Bounded host-aware loading instructions."""
     located = [(row, *locate_skill(row["skill_id"], root, home)) for row in picks[:MAX_HINTS]]
     command = _bossku_command()
     ways = [("Skill tool" if kind == "listed" and host == "claude"
@@ -171,13 +160,12 @@ def render_hint(picks: list[dict], *, root: Path | None = None, home: Path | Non
     return text(count, 0)
 
 
-def build_hint(prompt: str, *, root: Path | None = None, home: Path | None = None, host: str = "claude",
-               mode: str = "v1") -> str | None:
+def build_hint(prompt: str, *, root: Path | None = None, home: Path | None = None, host: str = "claude") -> str | None:
     """The suggestion for this prompt, or None when there is nothing worth saying."""
-    picks = pick_skills(prompt, root=root, mode=mode)
+    picks = pick_skills(prompt, root=root)
     if not picks:
         return None
-    text = render_hint(picks, root=root, home=home, host=host, mode=mode)
+    text = render_hint(picks, root=root, home=home, host=host)
     nonce = os.environ.get(NONCE_ENV, "")
     return f"{text} [nonce {nonce}]" if _NONCE.fullmatch(nonce) else text
 
@@ -217,7 +205,7 @@ def hook_output(payload_text: str, *, root: Path | None = None, home: Path | Non
     skills._routing_index = saved_index
     bossku_index.compute_idf = saved_idf
     try:
-        hint = build_hint(prompt, root=root, home=home, host=host, mode=hint_mode(home))
+        hint = build_hint(prompt, root=root, home=home, host=host)
     except Exception:  # noqa: BLE001 - a hint is a convenience; it must never break the user's prompt
         hint = None
     finally:

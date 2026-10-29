@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- **`hint_mode` is gone.** The skill hint stopped reading it some time ago, so `v1` and `v2` already gave the same hint (up to three skills, task evidence, under 800 characters). The setting, `bossku.hint.hint_mode()`, the `mode` argument of `pick_skills`, `render_hint` and `build_hint`, and the `skill hint mode` line in `bossku doctor` are removed. A leftover `hint_mode` key in `~/.bosskuai/config.json` is ignored. `scripts/benchmark_routing_heldout.py` still passes `mode` to older revisions that take it.
+
+### Fixes
+
+- **Docs match the code again.** Skill counts (258 listable, lean lists 28, now checked by a test), the benchmark token range (1.0x to 4.7x), where learned skills live in repo mode, and the brief's order (newest first within each group). A doctor test no longer fails on a CRLF checkout.
+
 ## v2.12.0 - Auto-learn and an always-on security gate
 
 ### New

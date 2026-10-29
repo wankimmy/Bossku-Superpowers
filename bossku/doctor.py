@@ -10,7 +10,6 @@ from bossku.hooks import (
     LEARN_EVENT, LEARN_MARKER,
     _commands, _owned, codex_hint_commands, harness_status, hooks_status, plugin_double_load,
 )
-from bossku.hint import hint_mode
 from bossku.index import skill_index_signature
 from bossku.init_project import PROJECT_BLOCK, upsert_managed_block
 from bossku.install import AGENT_FILES, AGENT_SIGNATURE, claude_agents_dir
@@ -360,7 +359,6 @@ def format_doctor_success(
     lines.append(f"  claude_code hooks: {hooks}")
     if (h / ".codex").is_dir():
         lines.append("  codex skill-hint: " + ("wired" if codex_hint_commands(h) else "not installed; run `bossku hooks install`"))
-    lines.append(f"  skill hint mode: {hint_mode(home)}")
     if gates["hooks"]:
         lines.append("  harness gates: guard, post-edit lint, stop gate, session contract"
                      + (" + deny rules" if gates["deny_rules"] else " (deny rules missing)"))

@@ -187,7 +187,7 @@ class DocClaimTests(unittest.TestCase):
 
     def test_the_install_docs_name_the_hooks_and_choices_install_really_sets_up(self):
         text = read("docs/installation.md")
-        for needle in ("--no-harness", "--no-agents", "--no-claude", "~/.claude/agents", "permissions.deny", "hint_mode",
+        for needle in ("--no-harness", "--no-agents", "--no-claude", "~/.claude/agents", "permissions.deny",
                        "bossku resume", "BOSSKU_RESUME=off", "PreToolUse", "PostToolUse", "UserPromptSubmit"):
             with self.subTest(needle=needle):
                 self.assertIn(needle, text)

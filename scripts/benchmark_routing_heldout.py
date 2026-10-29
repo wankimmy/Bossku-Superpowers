@@ -18,7 +18,8 @@ tree (or `--policy-root`) and take `--prompts` once per file, for example the fr
         --prompts benchmarks/routing-heldout/fresh.json --prompts benchmarks/routing-heldout/trivial.json
     (one command line; add --prompts benchmarks/routing-heldout/out-of-catalog.json for real work no skill covers)
 
-    v1, v2          the hint as hint_mode v1 / v2 builds it (bossku.hint.pick_skills)
+    v1, v2          the hint as hint_mode v1 / v2 built it (bossku.hint.pick_skills); revisions without the
+                     setting give both the same hint
     full_router      no gate: the router's top 3 for every prompt, the ceiling
     listed_only      the same top 3 with only the skills `skills/lean.json` lists, i.e. what a host sees without any hint
     confident_router the router's top 3 only when it reports `confident`, i.e. what `bossku skills find` hands an agent
@@ -77,7 +78,7 @@ print(json.dumps(out))
 POLICIES = ('v1', 'v2', 'full_router', 'listed_only', 'confident_router', 'v2_min_words_3')
 
 POLICY_SELECTOR = r'''
-import json, sys
+import inspect, json, sys
 from pathlib import Path
 root = Path(sys.argv[1]).resolve()
 prompts = json.loads(Path(sys.argv[2]).read_text(encoding="utf-8"))
@@ -99,7 +100,8 @@ for row in prompts:
             answer[name] = chosen if name != "confident_router" or stack["confident"] else []
         else:
             mode, words = ("v2", 3) if name == "v2_min_words_3" else (name, hint.MIN_WORDS)
-            picks = hint.pick_skills(row["prompt"], root=root, mode=mode, min_words=words, data=data)
+            extra = {"mode": mode} if "mode" in inspect.signature(hint.pick_skills).parameters else {}   # older revisions
+            picks = hint.pick_skills(row["prompt"], root=root, min_words=words, data=data, **extra)
             answer[name] = [item["skill_id"] for item in picks]
     out[row["id"]] = answer
 print(json.dumps(out))

@@ -143,7 +143,7 @@ Two things this does not show. First, the 81% is for requests the router was not
 
 ## Skill hint: v1 against v2
 
-This section records an older policy. When this test ran, `hint_mode` in `~/.bosskuai/config.json` picked what the prompt hook said: `v1` (the default) named one or two skills; `v2` named up to three, let a skill you name by id through, and stayed under 800 characters. The hook no longer reads the mode: `v1` and `v2` now give the same hint (up to three skills, see [`bossku/hint.py`](../../bossku/hint.py)), so a re-run today gives the same numbers for both. [`benchmarks/results/lean-gate.json`](../../benchmarks/results/lean-gate.json) holds an offline test of the two. It makes no model calls: for each prompt it asks what the hook would show and checks that against the skills the labellers accepted. It used the 158 test requests above, a fresh set of 200 (60 multi-part requests, 40 short ones, 100 follow-ups such as "yes, do that") and 100 prompts that need no skill. The fresh sets were written on 2026-10-10 by agents that saw only the skill catalog and labelled by two other agents ([how](../../benchmarks/routing-heldout/FRESH-README.md)); nothing was tuned on them.
+This section records an older policy. When this test ran, `hint_mode` in `~/.bosskuai/config.json` picked what the prompt hook said: `v1` (the default) named one or two skills; `v2` named up to three, let a skill you name by id through, and stayed under 800 characters. Both modes were later given the same policy (up to three skills, see [`bossku/hint.py`](../../bossku/hint.py)) and the setting was then removed, so a re-run on today's code gives the same numbers for `v1` and `v2`. [`benchmarks/results/lean-gate.json`](../../benchmarks/results/lean-gate.json) holds an offline test of the two. It makes no model calls: for each prompt it asks what the hook would show and checks that against the skills the labellers accepted. It used the 158 test requests above, a fresh set of 200 (60 multi-part requests, 40 short ones, 100 follow-ups such as "yes, do that") and 100 prompts that need no skill. The fresh sets were written on 2026-10-10 by agents that saw only the skill catalog and labelled by two other agents ([how](../../benchmarks/routing-heldout/FRESH-README.md)); nothing was tuned on them.
 
 | On the 158 test requests | `v1` | `v2` | Full router (no gate) |
 |---|---|---|---|
@@ -167,7 +167,7 @@ The rule saved with the result: `v2` becomes the default only if the test-accura
 | Fresh short requests with a 3-word minimum, first pick right on at least 60% (silence counts as a miss) | **Missed**: 32.5% (13 of 40), 13 of the 15 that got a hint |
 | Hook time, p95 at most 25 ms over 328 prompts | **Missed**: 42.8 ms (`v1`: 36.8 ms, which misses it too) |
 
-Four bars were missed, so `v1` stayed the default, the minimum stayed at 5 words, and `v2` stayed opt in. Both modes have since been given the same policy.
+Four bars were missed, so `v1` stayed the default, the minimum stayed at 5 words, and `v2` stayed opt in. The setting has since been removed.
 
 Limits: the prompts and their labels are the judgment of AI agents, not of people. The timing is in-process on one machine and came from a scratch script that is not in the repository. The test ran on revision `4d47894` plus uncommitted changes (the result file's `measured_code` field says so). No agent was run with either mode, so whether `v2` changes what an agent does is not measured. To repeat the accuracy rows:
 

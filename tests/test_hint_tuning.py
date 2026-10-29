@@ -1,6 +1,6 @@
 """Evidence-based hint coverage and quiet-prompt safeguards.
 
-Both modes use task evidence instead of the old score/word-count gates.
+The hint uses task evidence instead of the old score/word-count gates.
 Concrete short tasks and repeated defects can receive hints. Generic follow-ups and trivia stay quiet.
 The hook builds the idf table once per prompt and skips empty concern clauses.
 
@@ -28,7 +28,6 @@ import bossku.skills as skills  # noqa: E402
 from bossku import hint  # noqa: E402
 from bossku.hint import hook_output, pick_skills  # noqa: E402
 from bossku.index import load_index  # noqa: E402
-from bossku.memory import save_user_config  # noqa: E402
 from scripts import benchmark_routing_heldout as heldout  # noqa: E402
 
 PROMPTS = ROOT / "benchmarks" / "routing-heldout" / "prompts.json"
@@ -112,14 +111,13 @@ def clean_env():
 
 
 class ConstantsTests(unittest.TestCase):
-    def test_both_modes_keep_the_bounded_hint_contract(self):
+    def test_the_hint_keeps_its_bounded_contract(self):
         self.assertEqual(hint.MAX_HINTS, 3)
-        self.assertEqual(hint.MODES, ('v1', 'v2'))
         self.assertEqual(hint.HINT_CHARS, 800)
 
 
 class QuietPromptTests(unittest.TestCase):
-    """Chit-chat, trivia, follow-ups and short pings get no hint, in either mode."""
+    """Chit-chat, trivia, follow-ups and short pings get no hint."""
 
     @classmethod
     def setUpClass(cls):
@@ -128,10 +126,9 @@ class QuietPromptTests(unittest.TestCase):
     def test_every_quiet_prompt_stays_silent(self):
         loud = {}
         for prompt in [*FOLLOW_UPS, *TRIVIAL, *SHORT_PINGS]:
-            for mode in ("v1", "v2"):
-                picks = pick_skills(prompt, root=ROOT, mode=mode, data=self.data)
-                if picks:
-                    loud[(mode, prompt)] = [item["skill_id"] for item in picks]
+            picks = pick_skills(prompt, root=ROOT, data=self.data)
+            if picks:
+                loud[prompt] = [item["skill_id"] for item in picks]
         self.assertEqual(loud, {})
 
     def test_short_work_and_repeated_defects_are_tasks_not_quiet_pings(self):
@@ -140,9 +137,8 @@ class QuietPromptTests(unittest.TestCase):
             ('add more tests', {'bosskuai-tdd-loop', 'test-driven-development'}),
             ('hmm that did not work, I still get the same error', {'bosskuai-diagnose-loop', 'systematic-debugging'}),
         ):
-            for mode in ('v1', 'v2'):
-                ids = {r['skill_id'] for r in pick_skills(prompt, root=ROOT, mode=mode, data=self.data)}
-                self.assertTrue(ids & expected, (prompt, mode, ids))
+            ids = {r['skill_id'] for r in pick_skills(prompt, root=ROOT, data=self.data)}
+            self.assertTrue(ids & expected, (prompt, ids))
 
     def test_the_quiet_set_is_not_a_copy_of_the_decision_sets(self):
         decision = set()
@@ -209,7 +205,7 @@ class MultiConcernTests(unittest.TestCase):
         cls.data = load_index(ROOT)
 
     def picks(self, prompt):
-        return pick_skills(prompt, root=ROOT, mode="v2", data=self.data)
+        return pick_skills(prompt, root=ROOT, data=self.data)
 
     def test_the_prompts_are_the_ones_the_selection_tests_use(self):
         source = (ROOT / "tests" / "test_skill_selection.py").read_text(encoding="utf-8")
@@ -236,10 +232,9 @@ class MultiConcernTests(unittest.TestCase):
                     self.assertTrue(set(item["matched_terms"]) - seen, item["skill_id"])
                     seen |= set(item["matched_terms"])
 
-    def test_the_hook_prints_one_line_per_concern_in_v2_and_nothing_for_a_follow_up(self):
+    def test_the_hook_prints_one_line_per_concern_and_nothing_for_a_follow_up(self):
         with tempfile.TemporaryDirectory() as tmp, clean_env():
             home = Path(tmp)
-            save_user_config({"hint_mode": "v2"}, home)
             for sid in ("ads", "python-testing", "accessibility"):    # listed by the host: "(Skill tool)", so the lines stay short
                 (home / ".claude" / "skills" / sid).mkdir(parents=True)
                 shutil.copyfile(ROOT / "skills" / sid / "SKILL.md", home / ".claude" / "skills" / sid / "SKILL.md")

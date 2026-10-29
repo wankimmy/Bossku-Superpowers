@@ -270,13 +270,12 @@ class SkillHintTests(unittest.TestCase):
         self.assertIsNone(build_hint("thanks", root=ROOT))
         self.assertIsNone(build_hint("/prototype a pricing page with three layouts to compare", root=ROOT))
 
-    def test_short_tasks_and_explicit_requests_are_hinted_in_both_modes(self):
-        for mode in ("v1", "v2"):
-            for prompt, sid in (("audit SEO", "seo-audit"), ("use bosskuai-tdd-loop", "bosskuai-tdd-loop")):
-                with self.subTest(mode=mode, prompt=prompt):
-                    text = build_hint(prompt, root=ROOT, mode=mode)
-                    self.assertIsNotNone(text)
-                    self.assertIn(sid, text)
+    def test_short_tasks_and_explicit_requests_are_hinted(self):
+        for prompt, sid in (("audit SEO", "seo-audit"), ("use bosskuai-tdd-loop", "bosskuai-tdd-loop")):
+            with self.subTest(prompt=prompt):
+                text = build_hint(prompt, root=ROOT)
+                self.assertIsNotNone(text)
+                self.assertIn(sid, text)
 
     def test_a_clear_request_names_the_matching_skill_and_how_to_load_it(self):
         hint = build_hint("Please audit my website for SEO issues such as missing title tags and meta descriptions",
