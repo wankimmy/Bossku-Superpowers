@@ -304,6 +304,61 @@ Memory: yes</code></pre>
     <p class="proof__note">What this does not show: whether Bossku beats Claude Code's own memory or a rule you wrote in <code>CLAUDE.md</code>. That was not tested. Samples are small, so read each result with its interval. Agent runs used build <code>b8ccea1</code>, whose stop check also reminded the agent to save rules; today's default install uses a simpler check. The live skill-use check used build <code>8279f19</code>. Full numbers and limits: <a href="https://github.com/wankimmy/Bossku-Superpowers/blob/main/docs/benchmarks/results.md">benchmark results</a> and <a href="https://github.com/wankimmy/Bossku-Superpowers/blob/main/docs/benchmarks/README.md">how it was tested</a>.</p>
   </section>
 
+  <section class="packs" id="packs" aria-labelledby="packs-title">
+    <div class="packs__head">
+      <p class="cmd"><span aria-hidden="true">$</span> benchmark_agent.py run --arm superpowers=pack:… --arm ecc=pack:…</p>
+      <h2 id="packs-title">Against other skill packs.</h2>
+      <p>Same tasks, same day, Claude Haiku 4.5 and Claude Sonnet 5.5. Bossku next to Superpowers, ECC, Karpathy's guidelines, Anthropic's skills and Claude Code with no pack.</p>
+    </div>
+
+    <figure class="bars">
+      <figcaption>A rule set in one session, remembered in the next: tasks passed out of 44 per setup, both models</figcaption>
+      <div class="bars__key" aria-hidden="true"><span class="sw sw--off"></span>other setups <span class="sw sw--on"></span>Bossku</div>
+      <dl class="bars__rows">
+        <div class="bars__row" style="--on:75">
+          <dt>Bossku</dt>
+          <dd><span class="bar bar--on"><span>75%</span></span><span class="bars__delta">33 of 44. Beat every other setup task by task (exact test p 0.0002 to 0.007)</span></dd>
+        </div>
+        <div class="bars__row" style="--off:52">
+          <dt>No pack</dt>
+          <dd><span class="bar bar--off"><span>52%</span></span><span class="bars__delta">23 of 44. Bossku passed 11 tasks this failed, and failed 1 it passed</span></dd>
+        </div>
+        <div class="bars__row" style="--off:50">
+          <dt>ECC</dt>
+          <dd><span class="bar bar--off"><span>50%</span></span><span class="bars__delta">22 of 44. Its hooks, memory included, failed to start on Windows</span></dd>
+        </div>
+        <div class="bars__row" style="--off:50">
+          <dt>Anthropic skills</dt>
+          <dd><span class="bar bar--off"><span>50%</span></span><span class="bars__delta">22 of 44</span></dd>
+        </div>
+        <div class="bars__row" style="--off:45">
+          <dt>Superpowers</dt>
+          <dd><span class="bar bar--off"><span>45%</span></span><span class="bars__delta">20 of 44</span></dd>
+        </div>
+        <div class="bars__row" style="--off:45">
+          <dt>Karpathy guidelines</dt>
+          <dd><span class="bar bar--off"><span>45%</span></span><span class="bars__delta">20 of 44</span></dd>
+        </div>
+      </dl>
+    </figure>
+
+    <div class="proof__grid">
+      <div class="proof__cell">
+        <p class="big">31&ndash;32 <span aria-hidden="true">/</span><span class="vh">of</span> 34</p>
+        <p>Coding tasks passed by every setup, Bossku included. On coding, no pack won.</p>
+      </div>
+      <div class="proof__cell">
+        <p class="big">0 <span aria-hidden="true">/</span><span class="vh">of</span> 312</p>
+        <p>Runs in which the agent opened a skill from the four other packs. Bossku's agent opened one in 21 of 78 runs.</p>
+      </div>
+      <div class="proof__cell proof__cell--catch">
+        <p class="big">+40%</p>
+        <p>The catch: Bossku cost about 40% more per run than no pack. ECC cost 80% to 90% more. Karpathy's guidelines and Anthropic's skills cost about the same as no pack.</p>
+      </div>
+    </div>
+    <p class="proof__note">Be fair to the others when you read this. Superpowers, Karpathy's guidelines and Anthropic's skills don't claim to remember rules between sessions. <code>CLAUDE.md</code> and Claude Code's own auto memory were off for every setup, so a rule you write in <code>CLAUDE.md</code> was not tested. The tasks are Bossku's own and each ran once, on Windows. Full method, pinned versions and limits: <a href="https://github.com/wankimmy/Bossku-Superpowers/blob/main/docs/benchmarks/results-2026-10-29-packs.md">pack comparison</a>.</p>
+  </section>
+
   <section class="new" aria-labelledby="new-title">
     <div class="new__head">
       <p class="cmd"><span aria-hidden="true">$</span> bossku learn list</p>

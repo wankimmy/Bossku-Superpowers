@@ -69,6 +69,25 @@ Read the setup before you trust the numbers:
 
 Full numbers: [benchmark results](docs/benchmarks/results.md) and the [10 October run](docs/benchmarks/results-2026-10-10.md). How it was tested: [benchmark notes](docs/benchmarks/README.md).
 
+## How does it compare with other skill packs?
+
+On 29 October 2026 we ran Bossku, four other packs and Claude Code with no pack on the same tasks, the same day, with Claude Haiku 4.5 and Claude Sonnet 5.5.
+
+| Setup | Rule remembered in the next session (44 tasks) | Coding tasks (34) | Cost per run vs no pack |
+|---|---|---|---|
+| **Bossku** | **33 (75%)** | 32 | +38% to +42% |
+| No pack | 23 (52%) | 32 | |
+| ECC | 22 (50%) | 31 | +80% to +90% |
+| Anthropic skills | 22 (50%) | 32 | +6% |
+| Superpowers | 20 (45%) | 31 | +13% to +26% |
+| Karpathy guidelines | 20 (45%) | 31 | -3% to +4% |
+
+- **Where Bossku wins: remembering your rules.** Task by task, Bossku beat every other setup on the two-session tasks (exact test p from 0.0002 to 0.007).
+- **Where nobody wins: coding.** All six passed 31 or 32 of 34.
+- **What it costs.** About 40% more per run than no pack. Karpathy's guidelines and Anthropic's skills cost about the same as no pack.
+
+Be fair to the others when you read this. Superpowers, Karpathy's guidelines and Anthropic's skills don't claim to remember rules between sessions. ECC does, but its hooks failed to start on Windows in this run, so its memory never ran. `CLAUDE.md` and Claude Code's own auto memory were off for everyone. The tasks are Bossku's own, and each ran once. Full method and limits: [pack comparison](docs/benchmarks/results-2026-10-29-packs.md).
+
 ## Quick start
 
 You need **Python 3.11+** and **Git**. Six steps:
@@ -142,7 +161,7 @@ The website lives in [`web/`](web/). [`.github/workflows/pages.yml`](.github/wor
 ## Learn more
 
 - [Skills](skills/) and [shared instructions](AGENTS.md)
-- [Benchmark results](docs/benchmarks/results.md) and [how they were measured](docs/benchmarks/README.md)
+- [Benchmark results](docs/benchmarks/results.md), [the pack comparison](docs/benchmarks/results-2026-10-29-packs.md) and [how they were measured](docs/benchmarks/README.md)
 - [Third-party packs and credits](docs/third-party.md), plus [optional requirements](requirements-optional.txt)
 - [Claude Code practice review](docs/claude-practices-review.md) and [Archify practice review](docs/archify-practices-review.md)
 

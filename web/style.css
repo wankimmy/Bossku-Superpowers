@@ -57,7 +57,7 @@ section { margin-inline: auto; max-width: calc(var(--max) + 2 * var(--gutter)); 
 .cmd { font: 500 0.875rem/1.4 var(--mono); color: var(--muted); margin-bottom: 18px; }
 .cmd span { color: var(--accent); margin-right: 0.4em; }
 section h2 { font-size: clamp(2rem, 1.2rem + 3.2vw, 4.25rem); line-height: 1.08; letter-spacing: -0.03em; }
-.flow__head p:not(.cmd), .try__head p:not(.cmd), .proof__head p:not(.cmd), .install__head p:not(.cmd), .overlap__head p {
+.flow__head p:not(.cmd), .try__head p:not(.cmd), .proof__head p:not(.cmd), .packs__head p:not(.cmd), .install__head p:not(.cmd), .overlap__head p {
   margin-top: 18px; max-width: 56ch; color: var(--ink-2);
 }
 
@@ -275,6 +275,10 @@ section h2 { font-size: clamp(2rem, 1.2rem + 3.2vw, 4.25rem); line-height: 1.08;
   .proof__cell--catch { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; }
 }
 .proof__note { margin-top: 24px; color: var(--muted); font-size: 0.95rem; max-width: 72ch; }
+
+/* Against other packs */
+.packs { padding-block: 0 clamp(56px, 8vw, 120px); }
+.packs .bars__row:first-child dt { color: var(--accent); }
 
 /* New in v2.12.0 */
 .new { background: var(--paper-2); max-width: none; padding-block: clamp(56px, 8vw, 120px); }

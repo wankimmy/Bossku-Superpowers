@@ -4,6 +4,8 @@ Everything in the [results page](results.md) and the main README summary comes f
 
 A second, separate set was run on 10 October 2026: Claude Haiku 5.5 and Claude Opus 5.5 with no Bossku Superpower, v2.2.0 and the improved build that followed it, plus four Ollama Cloud models that only partly ran. Its results are on [their own page](results-2026-10-10.md), its raw rows are in [`benchmarks/results/raw/2026-10-10/`](../../benchmarks/results/raw/2026-10-10/), and [`tests/test_results_2026_10_10.py`](../../tests/test_results_2026_10_10.py) recomputes its summary the same way. The method and the rules on this page apply to it; the page lists what differs (the setups, the reused baselines, the usage limit).
 
+A third set, on 29 October 2026, compares Bossku Superpowers with four other skill packs (Superpowers, ECC, Karpathy's guidelines and Anthropic's skills) and with no pack, on the memory and coding tasks with Claude Haiku 4.5 and Claude Sonnet 5.5. Its results and limits are on [their own page](results-2026-10-29-packs.md) and its raw rows are in [`benchmarks/results/raw/2026-10-29-packs/`](../../benchmarks/results/raw/2026-10-29-packs/).
+
 | Check | What it answers | Needs a model? | Saved result |
 |---|---|---|---|
 | Session overhead | What does Bossku Superpower add to the first call of every session? | Yes (2 Claude models, a few cents) | `overhead.json` |
