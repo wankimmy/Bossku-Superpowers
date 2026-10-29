@@ -455,6 +455,7 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
         "hindsight reflect", "hindsight memory bank", "connect hindsight",
     ],
     "bosskuai-rules-distill": ["distill rules", "extract principles", "consolidate guidance"],
+    "bosskuai-learn": ["/learn", "learn pass", "learned skill", "learned skills", "auto learn", "auto-learn", "self-learning skills", "distill this session", "turn this into a skill", "save this as a skill", "consolidate learned skills"],
     "bosskuai-continuous-learning": ["capture this lesson", "learn from this", "save this learning", "save learning", "lesson learned", "what did we learn", "post task learning"],
     "bosskuai-handoff": ["handoff", "hand off", "hand this off", "pass to another agent", "continue in a new session", "next session", "handoff doc", "write a handoff"],
     "bosskuai-council": ["council", "debate this", "go or no go", "multiple perspectives"],

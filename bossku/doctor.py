@@ -7,6 +7,7 @@ from pathlib import Path
 
 from bossku.hooks import (
     BRIEF_EVENT, BRIEF_MARKER, GATE_EVENT, GATE_MARKER, HARNESS_MARKER, HINT_EVENT, HINT_MARKER, HOOK_MARKER,
+    LEARN_EVENT, LEARN_MARKER,
     _commands, _owned, codex_hint_commands, harness_status, hooks_status, plugin_double_load,
 )
 from bossku.hint import hint_mode
@@ -28,9 +29,10 @@ CLAUDE_HOOK_PIECES = (
     ("skill-hint", HINT_EVENT, HINT_MARKER),
     ("verify-gate", GATE_EVENT, GATE_MARKER),
     ("session-brief", BRIEF_EVENT, BRIEF_MARKER),
+    ("learn-gate", LEARN_EVENT, LEARN_MARKER),
 )
 GATE_SWITCHES = ("BOSSKU_VERIFY_GATE", "BOSSKU_STOP_GATE", "BOSSKU_GUARD", "BOSSKU_GUARD_ASK", "BOSSKU_POST_EDIT",
-                 "BOSSKU_SLOP_LINT")
+                 "BOSSKU_SLOP_LINT", "BOSSKU_AUTO_LEARN")
 
 
 def _missing_program(command: str) -> str | None:

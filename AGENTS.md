@@ -102,6 +102,7 @@ When a request is general, ambiguous, or touches many files, ask 1-3 numbered ye
 - Project memory lives in the configured memory directory (resolve it with `bossku memory-path --project <project-root>`); `memory_project_roots` can group subrepos into one workspace folder.
 - With memory_storage=obsidian, the vault is canonical: notes and handoffs are stored directly under BosskuAI/<project>/, and no memory or sync state is written in code repos. Legacy repo mode keeps one-way export.
 - Never store secrets in memory files.
+- Auto-learn is on by default: the `learn-gate` Stop hook (Claude Code) asks for a `bosskuai-learn` pass every 50 tool calls, and other hosts run it at the end of meaningful work. Reusable lessons become learned skills in `<memory-dir>/skills/`, written only through `bossku learn apply`; the session brief lists them. `BOSSKU_AUTO_LEARN=off` turns the hook off.
 - `bossku install` refreshes curated sync hooks for detected hosts; `bossku hooks install` manages them separately. Hooks verify vault availability in Obsidian mode or re-export legacy repo memory; they never capture prompts or transcripts. Hindsight remains a separately configured optional layer.
 
 ## Pack routing

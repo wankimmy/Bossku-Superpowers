@@ -186,7 +186,7 @@ class DoctorTests(unittest.TestCase):
             lines = format_doctor_success(ROOT, home, version=__version__)
             # With the Node stop gate wired, it does the verify-gate's job, so the verify-gate is not called missing.
             gone = "" if harness_status(home)["hooks"] else " (not installed: verify-gate)"
-            self.assertIn("  claude_code hooks: sync (Stop), sync (SessionEnd), skill-hint, session-brief" + gone, lines)
+            self.assertIn("  claude_code hooks: sync (Stop), sync (SessionEnd), skill-hint, session-brief, learn-gate" + gone, lines)
 
             uninstall_hooks(home=home, tools=("claude_code",))
             self.assertEqual(gather_doctor_issues(ROOT, home), [])

@@ -26,6 +26,8 @@ GATE_MARKER = "verify-gate"
 GATE_EVENT = "Stop"
 BRIEF_MARKER = "session-brief"
 BRIEF_EVENT = "SessionStart"
+LEARN_MARKER = "learn-gate"
+LEARN_EVENT = "Stop"
 CODEX_EVENTS = ("Stop", "SessionEnd")
 # Kept out of CODEX_EVENTS on purpose: every event in that tuple gets the Stop sync wrapper.
 CODEX_HINT_EVENT = "UserPromptSubmit"
@@ -589,6 +591,9 @@ def _install_claude(
         added.append("verify-gate")
     if apply_marked_hook(hooks, BRIEF_EVENT, BRIEF_MARKER, _claude_cmd("session-brief")):
         added.append("session-brief")
+    # Auto-learn runs beside whichever stop gate is wired (Node or Python): it has its own job and its own switch.
+    if apply_marked_hook(hooks, LEARN_EVENT, LEARN_MARKER, _claude_cmd("learn-gate"), timeout=15):
+        added.append("learn-gate")
     harness = None
     if wire_harness:
         wired = _apply_harness(data, hooks, harness_root) or dropped_gate
@@ -995,6 +1000,7 @@ def _uninstall_claude(home: Path) -> tuple[dict, dict]:
     changed = _strip_events(hooks, (HINT_EVENT,), HINT_MARKER)
     changed |= _strip_events(hooks, (GATE_EVENT,), GATE_MARKER)
     changed |= _strip_events(hooks, (BRIEF_EVENT,), BRIEF_MARKER)
+    changed |= _strip_events(hooks, (LEARN_EVENT,), LEARN_MARKER)
     changed |= _strip_events(hooks, CLAUDE_EVENTS)
     harness_changed = _strip_harness(data, hooks)
     if changed or harness_changed:

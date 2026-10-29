@@ -93,6 +93,12 @@ def session_output(payload_text: str, *, home: Path | None = None) -> dict:
         parts.append(memory_brief(Path(cwd), home=home))
     except Exception:  # noqa: BLE001 - a convenience must never break a session
         pass
+    try:
+        from bossku.learn import learned_index
+
+        parts.append(learned_index(Path(cwd), home=home))
+    except Exception:  # noqa: BLE001 - no vault, no learned skills: the notes still go out
+        pass
     if payload.get("source") in ("startup", "clear"):   # not on resume or compact: the pointer was already seen
         try:
             from bossku.resume import session_pointer   # only a new session needs it

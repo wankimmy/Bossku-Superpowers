@@ -1,7 +1,7 @@
 {
   "version": "2.1.0",
-  "fingerprint": "8ded4f789280b927",
-  "count": 673,
+  "fingerprint": "d5c1e93f731fd304",
+  "count": 674,
   "aliases": {
     "bosskuai-caveman": "bosskuai-token-saver",
     "bosskuai-root-cause-investigation": "bosskuai-diagnose-loop",
@@ -16566,6 +16566,58 @@
       "pack": "bossku",
       "qterms": "10-15:1 50:2 advisory:1 aeon:1 agencie:2 ai:3 angel:2 apac:1 approach:2 asia:3 b2b:2 backed:1 best-fit:1 bother:1 builiding:1 business:5 candidate:1 cari:3 ceos:1 chief:3 closely:1 committee:1 companie:8 company:3 competitor:2 conference:1 connection:2 contact:7 convo:1 customer:4 cybersec:1 dba:1 decision:2 development:3 di:2 digital:1 discussion:1 division:1 early:2 early-stage:1 effort:1 engage:1 enterprise:3 especially:1 established:1 experience:2 find:12 fintech:3 follow:2 fortune:1 founder:4 funded:1 funding:2 good:2 got:3 grab:1 guest:1 identify:7 indonesia:1 influential:1 interested:4 intro:2 introduced:1 introduction:1 invested:1 investing:1 investment:3 investor:4 invite:1 journalist:2 lazada:1 likely:2 linkedin:2 list:8 logistic:3 looking:3 loyalty:1 maker:2 met:1 mid:1 mid-market:1 ml:1 mutual:2 officer:2 organizing:1 outreach:3 particularly:1 partner:3 partnership:3 pas:1 path:3 pavilion:1 payment:3 people:4 personalized:1 pitch:4 pitche:1 platform:3 potential:3 ppl:3 prioritized:1 procurement:1 product:4 raised:1 reach:4 reaching:1 recently:1 recruit:1 recruitment:1 region:1 regional:1 research:5 researcher:1 retail:1 right:3 round:2 saas:4 scraping:1 security:2 serie:3 shopee:1 shopify:1 siapa:3 solution:4 southeast:3 space:2 speaking:1 sponsor:1 stage:2 startup:4 summit:1 target:2 team:3 tech:5 techcrunch:1 technology:1 tokopedia:1 tool:3 top:3 transformation:1 trend:1 typical:1 understand:2 unicorn:1 vcs:2 venture:1 warm:4 webflow:1 whos:1 yr:1"
     },
+    "bosskuai-learn": {
+      "path": "skills/bosskuai-learn/SKILL.md",
+      "name": "bosskuai-learn",
+      "description": "Use when the auto-learn stop hook asks for a learn or consolidation pass, or the user says /learn: distil this session into learned skills kept with the project notes.",
+      "triggers": [
+        "learn",
+        "/learn",
+        "learn pass",
+        "learned skill",
+        "learned skills",
+        "auto learn",
+        "auto-learn",
+        "self-learning skills",
+        "distill this session",
+        "turn this into a skill",
+        "save this as a skill",
+        "consolidate learned skills"
+      ],
+      "exclusions": [],
+      "phrases": [
+        "the auto-learn stop hook asks for a learn",
+        "consolidation pass"
+      ],
+      "keywords": [
+        "learn",
+        "pass",
+        "learned",
+        "auto",
+        "auto-learn",
+        "self-learning",
+        "distill",
+        "session",
+        "turn",
+        "save",
+        "consolidate",
+        "stop",
+        "hook",
+        "asks",
+        "consolidation",
+        "says",
+        "distil",
+        "kept",
+        "project",
+        "note",
+        "runs",
+        "intent",
+        "format",
+        "guardrail"
+      ],
+      "model_role": "coder",
+      "pack": "bossku"
+    },
     "bosskuai-legal-billing-time-tracking": {
       "path": "library/bosskuai-legal-billing-time-tracking/SKILL.md",
       "name": "bosskuai-legal-billing-time-tracking",
@@ -23098,7 +23150,7 @@
     "bosskuai-search-first": {
       "path": "skills/bosskuai-search-first/SKILL.md",
       "name": "bosskuai-search-first",
-      "description": "Use before building custom code or an unfamiliar feature to adopt an existing package, service, MCP, utility or pattern, or study open-source prior art.",
+      "description": "Use when about to build custom code or an unfamiliar feature, to adopt an existing package, service, MCP, utility or pattern, or study open-source prior art.",
       "triggers": [
         "search first",
         "is there a library",
@@ -23113,7 +23165,12 @@
         "prior art"
       ],
       "exclusions": [],
-      "phrases": [],
+      "phrases": [
+        "about to build custom code",
+        "an unfamiliar feature",
+        "to adopt an existing package",
+        "study open-source prior art"
+      ],
       "keywords": [
         "search",
         "first",
@@ -23136,7 +23193,6 @@
         "implementation",
         "prior",
         "art",
-        "building",
         "custom",
         "code",
         "adopt",

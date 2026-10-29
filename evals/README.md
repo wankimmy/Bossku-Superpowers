@@ -1,13 +1,13 @@
 # Plugin evals
 
-`claude plugin eval` cases for the 27 skills a lean install lists (`skills/lean.json`). They check two things: does the skill load when it should and stay out when it should not, and is the answer better with the plugin than without it.
+`claude plugin eval` cases for the 28 skills a lean install lists (`skills/lean.json`). They check two things: does the skill load when it should and stay out when it should not, and is the answer better with the plugin than without it.
 
 Each skill has three cases:
 
 - two where the skill should load: one written plainly, one casual or rojak;
 - one near miss where it should not load.
 
-`malaysia-localisation` is the default Bossku voice, so all three of its cases expect it to load. That gives 81 cases: 55 should load and 26 should not.
+`malaysia-localisation` is the default Bossku voice, so all three of its cases expect it to load. That gives 84 cases: 57 should load and 27 should not.
 
 ## What is in a case
 

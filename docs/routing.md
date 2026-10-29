@@ -38,6 +38,7 @@ Which skill takes which kind of task, pack by pack. `bossku skills find` and the
 | Python code or pytest | ecc — `python-patterns`, `python-testing` |
 | Vue 3 / Pinia outside Nuxt | ecc — `vue-patterns` (`bosskuai-nuxt-development` for Nuxt) |
 | Verify actual product behavior, signup/checkout journeys, or CLI smoke checks | `bosskuai-product-verification`; delivery remains `bosskuai-engineering-delivery` |
+| `/learn`, auto-learn pass, turning a session's lesson into a learned skill, consolidating learned skills | `bosskuai-learn` (decisions and facts stay `bosskuai-continuous-learning` + `bossku remember`) |
 | Hindsight retain/recall/reflect, bank isolation, or memory integration | `bosskuai-hindsight-memory` (optional runtime); local Markdown remains `bosskuai-permanent-memory-orchestration` |
 | Cypress tests: `cypress.config` files, `cy.*` commands, Cypress spec runs | `bosskuai-cypress`; Playwright suites stay with `e2e-testing` |
 | Build an MCP server, Playwright E2E, WCAG 2.2 audit, ADR, error/retry design | ecc — `mcp-server-patterns`, `e2e-testing`, `accessibility`, `architecture-decision-records`, `error-handling` |

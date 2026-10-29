@@ -62,7 +62,7 @@ class OwnershipTests(unittest.TestCase):
             hooks = settings_of(home)["hooks"]
             stop = commands_in(hooks["Stop"])
             self.assertEqual(stop[:2], mine)
-            self.assertEqual(len(stop), 4)   # the two of the user, the sync and the verify gate
+            self.assertEqual(len(stop), 5)   # the two of the user, the sync, the verify gate and the learn gate
             self.assertEqual(len(hooks["UserPromptSubmit"]), 2)
             self.assertEqual(len(hooks["SessionStart"]), 2)
 

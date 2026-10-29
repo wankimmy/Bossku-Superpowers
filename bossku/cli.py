@@ -12,6 +12,7 @@ from bossku.brief import memory_brief, session_output
 from bossku.gate import gate_output
 from bossku.hint import HOSTS, MAX_HINTS, _short, hook_output
 from bossku.init_project import init_project
+from bossku.learn import LearnError, apply_file, learn_gate_output, list_learned, show as learn_show
 from bossku.install import install_user, uninstall_user, update_user
 from bossku.memory import load_user_config, memory_directory, memory_project_root, remember, sync_project
 from bossku.index import load_index, write_index
@@ -174,6 +175,20 @@ def main(argv: list[str] | None = None) -> int:
 
     sub.add_parser("verify-gate", help="Internal: Stop hook that sends the agent back to run its code once",
                    parents=[child])
+    sub.add_parser("learn-gate", help="Internal: Stop hook that asks for a learn pass every N tool calls",
+                   parents=[child])
+    p_learn = sub.add_parser("learn", help="Learned skills: lessons from past sessions, kept with the project notes",
+                             parents=[child])
+    p_learn_sub = p_learn.add_subparsers(dest="learn_cmd", required=True)
+    p_learn_apply = p_learn_sub.add_parser("apply", help="Validate and land a learn intent (JSON object or list)",
+                                           parents=[child, json_flag])
+    p_learn_apply.add_argument("intent", type=Path)
+    p_learn_apply.add_argument("--project", type=Path, default=Path("."), help="project root (default: current directory)")
+    p_learn_list = p_learn_sub.add_parser("list", help="The learned skills for this project", parents=[child, json_flag])
+    p_learn_list.add_argument("--project", type=Path, default=Path("."))
+    p_learn_show = p_learn_sub.add_parser("show", help="Print one learned skill (logs a use)", parents=[child])
+    p_learn_show.add_argument("name")
+    p_learn_show.add_argument("--project", type=Path, default=Path("."))
     p_hint = sub.add_parser("skill-hint", help="Internal: UserPromptSubmit hook that suggests skills for the prompt on stdin",
                             parents=[child])
     p_hint.add_argument("--host", choices=HOSTS, default="claude",
@@ -346,6 +361,31 @@ def main(argv: list[str] | None = None) -> int:
             brief = build_brief(stop, folder) if stop else ""
             print(brief or "Nothing to resume.")
             return 0
+        if args.command == "learn":
+            if args.learn_cmd == "apply":
+                result = apply_file(args.project, args.intent, home=home)
+                _emit(result, args.as_json, _learn_summary)
+                return 0 if result["ok"] else 1
+            if args.learn_cmd == "list":
+                rows = list_learned(args.project, home=home)
+                _emit({"skills": rows}, args.as_json,
+                      lambda r: "\n".join(f"[{s['category']}] {s['name']}: {s['description']}" for s in r["skills"])
+                      or "No learned skills yet.")
+                return 0
+            try:
+                print(learn_show(args.project, args.name, home=home))
+            except LearnError as exc:
+                print(f"error: {exc}", file=sys.stderr)
+                return 2
+            return 0
+        if args.command == "learn-gate":
+            try:   # a hook never fails the user's session
+                result = learn_gate_output(read_hook_stdin(), home=home)
+                if result:
+                    print(json.dumps(result))
+            except Exception:  # noqa: BLE001
+                pass
+            return 0
         if args.command in ("verify-gate", "skill-hint"):
             # Hooks never fail the user's session: exit code 2 would block the prompt or the stop, so any error is silent.
             try:
@@ -469,6 +509,13 @@ def _tools(args, home=None) -> int:
 def _hook_failed(hooks: dict) -> bool:
     """True when any hook installer reported an error. The JSON still lists every tool; only the exit code changes."""
     return any(isinstance(v, dict) and v.get("status") == "error" for v in hooks.values())
+
+
+def _learn_summary(result: dict) -> str:
+    lines = [f"{r['action']} {r['name']}" for r in result.get("landed", [])]
+    if not result.get("ok"):
+        lines.append(f"rejected intent {result['rejected']['index']}: {result['rejected']['error']}")
+    return "\n".join(lines) or "Nothing landed."
 
 
 def _emit(result: dict, as_json: bool, summary) -> None:

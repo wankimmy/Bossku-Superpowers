@@ -59,7 +59,7 @@ Codex hooks still require the host's normal one-time interactive trust approval.
 - A saved date or matching text does not prove a note is still true. Check current state before repeating a decision, availability claim or completion claim; keep a later correction even if an older note matches the query better.
 - Distinguish "search found nothing" from "scan was incomplete or the source was unreachable". Do not say a memory does not exist when the lookup failed, and never widen scope to recover from a denied lookup.
 - Active plan, roadmap or release state belongs in the tracker (issue, PR, board) first. Memory links to it rather than keeping a parallel copy; one canonical home per fact.
-- Do not promote a recalled note straight into policy, rules or skills. A human reviews the evidence and updates the governing file.
+- Do not promote a recalled note straight into policy, rules or repo skills. A human reviews the evidence and updates the governing file. Learned skills are the one exception: a separate tier kept with the notes, marked `learned: true`, written only through `bossku learn apply` with their evidence (`bosskuai-learn`); they never change the repo's skills, rules or AGENTS.md.
 - A handoff states: objective and current state, source and when it was observed, evidence and commands already run, files or work items involved, blockers and open questions, the next concrete action. Record verified results separately from intended or attempted actions.
 - A session-end save carries what was being worked on (file, feature or bug), ordered next steps, decisions with reasons, and blockers. Ask for confirmation of the draft if the user is present.
 

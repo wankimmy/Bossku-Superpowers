@@ -19,6 +19,7 @@ Your agent is smart, but it forgets your rules and sometimes says "done" without
 | Agent runs a command that destroys work | Refuses `git reset --hard`, force push, `rm -rf ~` and similar, and tells you how to run it yourself (Claude Code, Codex, Cursor and OpenCode) |
 | Agent pushes, merges or deploys on its own | Asks you first before `git push`, a PR merge, `npm publish`, `eas submit`, `vercel --prod`, `terraform destroy` and similar (`BOSSKU_GUARD_ASK=off` for an approved autonomous loop) |
 | You told it a rule yesterday, today it forgot | Saves rules and decisions as notes and shows them next session |
+| It relearns the same lesson every week | Auto-learn: every 50 tool calls the agent turns what it learned into a small skill kept with your notes (Obsidian), merges duplicates and fixes stale ones. `BOSSKU_AUTO_LEARN=off` turns it off |
 | Codex stopped on its usage limit | Claude Code can pick the task up in the same folder with `bossku resume` |
 | Useful tools are hard to set up | `bossku tools list` shows what's available. Nothing installs unless you say yes |
 

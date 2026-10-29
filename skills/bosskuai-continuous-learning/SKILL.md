@@ -32,6 +32,7 @@ Use this skill when recent work produced a lesson worth keeping beyond the curre
 | a durable fact about the repo, stack, or users | `bossku remember --kind project` → `<memory-dir>/project.md` |
 | a small repeatable behavior (trigger -> action) | `bossku remember --project . --kind learning "When <trigger>: <action>. Evidence: <date, what happened>"` |
 | a repeatable verification step, recurring trap, or reusable procedure | checklist, pitfall, or playbook under BosskuAI `references/` |
+| a reusable how-to or a correction to how you work on this project | learned skill via `bossku learn apply` (`bosskuai-learn`) |
 | a change to how the assistant works across many tasks | skill (`bosskuai-skill-creator`) or rule (`bosskuai-rules-distill`) |
 
 `bossku remember` redacts secrets and exports the four kind files to the Obsidian vault when one is configured, so a memory write is also the Obsidian sync.

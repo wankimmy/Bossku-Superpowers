@@ -210,7 +210,7 @@ class DoctorHooksLineTests(CliCase):
     def test_the_verify_gate_is_not_called_missing_while_the_node_stop_gate_does_its_job(self):
         self.run_cli("install", "--profile", "core")
         line = self.hooks_line()
-        self.assertEqual(line, "  claude_code hooks: sync (Stop), sync (SessionEnd), skill-hint, session-brief")
+        self.assertEqual(line, "  claude_code hooks: sync (Stop), sync (SessionEnd), skill-hint, session-brief, learn-gate")
         self.assertEqual(gather_doctor_issues(ROOT, self.home), [])
 
     def test_with_the_harness_off_the_verify_gate_is_listed_as_installed_or_as_missing(self):

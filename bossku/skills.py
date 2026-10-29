@@ -1077,6 +1077,7 @@ def _profile_skills(profile: str, root: Path | None) -> list[str]:
         "antislop",
         "antislop-copywriting",
         "bosskuai-continuous-learning",
+        "bosskuai-learn",
         "bosskuai-context-limit-continuation",
         "bosskuai-permanent-memory-orchestration",
         "bosskuai-engineering-delivery",

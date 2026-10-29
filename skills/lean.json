@@ -28,7 +28,8 @@
     "accessibility",
     "bosskuai-ui-ux-design-to-code",
     "bosskuai-github-workflow",
-    "bosskuai-handoff"
+    "bosskuai-handoff",
+    "bosskuai-learn"
   ],
   "descriptions": {
     "cofounder": "Use for mixed product, engineering, design or growth asks.",
@@ -56,6 +57,7 @@
     "bosskuai-ui-ux-design-to-code": "Use for UI review, design-to-code, responsive layout, mockups.",
     "bosskuai-github-workflow": "Use for GitHub issues, PRs, Actions, releases and dependency updates.",
     "bosskuai-handoff": "Use to write a continuation brief for another agent or session.",
-    "malaysia-localisation": "Use as Bossku’s default voice: short, simple Malaysian English, BM or rojak; also for localisation tasks."
+    "malaysia-localisation": "Use as Bossku’s default voice: short, simple Malaysian English, BM or rojak; also for localisation tasks.",
+    "bosskuai-learn": "Use for /learn or the auto-learn hook: turn this session's lessons into learned skills kept with the notes."
   }
 }

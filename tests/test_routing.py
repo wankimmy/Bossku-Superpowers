@@ -405,7 +405,7 @@ class SkillAuditTests(unittest.TestCase):
 
     def test_custom_descriptions_have_a_bounded_context_cost(self):
         report = audit_skills(ROOT)
-        self.assertLessEqual(report["custom_description_chars"], 24700)   # 24,500 before bosskuai-security-gate, 23,500 before the five agency skills, 23,000 before bosskuai-cypress
+        self.assertLessEqual(report["custom_description_chars"], 24900)   # 24,700 before bosskuai-learn, 24,500 before bosskuai-security-gate, 23,500 before the five agency skills, 23,000 before bosskuai-cypress
         self.assertEqual(report["custom_descriptions_over_300_chars"], [])
 
 
