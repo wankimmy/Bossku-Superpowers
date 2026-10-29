@@ -1,6 +1,6 @@
 ---
 name: bosskuai-search-first
-description: Use before building custom code or an unfamiliar feature to adopt an existing package, service, MCP, utility or pattern, or study open-source prior art.
+description: Use when about to build custom code or an unfamiliar feature, to adopt an existing package, service, MCP, utility or pattern, or study open-source prior art.
 ---
 
 # Search first
