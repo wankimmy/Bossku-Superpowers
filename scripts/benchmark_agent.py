@@ -75,6 +75,7 @@ class Arm:
     harness: bool = False  # install the Node gates a 2.2 install ships (guard, post-edit, stop gate, contract) + deny rules
     lines: tuple = ()    # extra instruction lines (experiments only), named by VARIANT_LINES
     inline: tuple = ()   # skills whose text is placed in the instructions from the start (`+skill:ID`, experiments only)
+    plugins: tuple = ()  # another skill pack, loaded as shipped with `--plugin-dir` (`NAME=pack:DIR[,DIR]`), no BosskuAI
 
 
 # One-line instruction experiments: an arm flag such as `+tdd` appends the line to the project instructions of that
@@ -104,14 +105,27 @@ class Prepared:
 ARM_NAME = re.compile(r'[A-Za-z0-9](?:[A-Za-z0-9_-]|\.(?=[A-Za-z0-9_-]))*')
 
 
+ARM_USAGE = '"baseline", NAME=ROOT[@lean|core|full][+hint][+gate|+harness][+brief] or NAME=pack:PLUGIN_DIR[,PLUGIN_DIR]'
+
+
 def parse_arm(spec: str) -> Arm:
     if spec == 'baseline':
         return Arm('baseline', None)
     name, _, rest = spec.partition('=')
     if not rest:
-        raise SystemExit(f'bad --arm {spec!r}; use "baseline" or NAME=ROOT[@lean|core|full][+hint][+gate|+harness][+brief]')
+        raise SystemExit(f'bad --arm {spec!r}; use {ARM_USAGE}')
     if not ARM_NAME.fullmatch(name):
         raise SystemExit(f'bad --arm name {name!r}; use letters, digits, "-" and "_", and "." only between them')
+    if rest.startswith('pack:'):
+        # A rival skill pack, as its authors ship it: an empty project like the baseline, plus each plugin folder
+        # passed to `claude --plugin-dir`, so its skills, agents and hooks load exactly as a plugin install would.
+        dirs = tuple(Path(d).resolve() for d in rest[len('pack:'):].split(',') if d)
+        if not dirs:
+            raise SystemExit(f'bad --arm {spec!r}: pack: needs at least one plugin folder')
+        for d in dirs:
+            if not (d / '.claude-plugin' / 'plugin.json').is_file():
+                raise SystemExit(f'bad --arm {spec!r}: {d} has no .claude-plugin/plugin.json')
+        return Arm(name, None, profile='', plugins=dirs)
     root, _, profile = rest.partition('@')
     profile, *flags = profile.split('+')
     if 'gate' in flags and 'harness' in flags:   # both add a Stop gate; a 2.2 install never has the two together
@@ -622,7 +636,7 @@ def load_suite(suite: Path, only: set[str] | None = None) -> list[tuple[Path, di
     return tasks
 
 
-def agent_command(claude: str, model: str, args, instructions: Path | None) -> list[str]:
+def agent_command(claude: str, model: str, args, instructions: Path | None, plugins: tuple = ()) -> list[str]:
     cmd = [claude, '-p', '--model', model, '--output-format', 'stream-json', '--verbose',
            '--setting-sources', 'project', '--permission-mode', 'bypassPermissions',
            '--strict-mcp-config', '--exclude-dynamic-system-prompt-sections', '--include-hook-events',
@@ -638,6 +652,8 @@ def agent_command(claude: str, model: str, args, instructions: Path | None) -> l
     # Runs on your own login write them under your real ~/.claude/projects; _execute deletes those folders afterwards.
     if instructions is not None:
         cmd += ['--append-system-prompt-file', str(instructions)]
+    for plugin in plugins:
+        cmd += ['--plugin-dir', str(plugin)]
     if effort:
         cmd += ['--effort', effort]
     return cmd
@@ -751,6 +767,8 @@ class Runner:
         run_id = f'{kind}.{arm.name}.{model}.{task_id}.t{trial}'.replace('/', '_')
         base = {'run_id': run_id, 'kind': kind, 'arm': arm.name, 'profile': arm.profile if arm.root else None,
                 'model': model, 'task': task_id, 'category': (task or {}).get('category'), 'trial': trial}
+        if arm.plugins:
+            base['plugins'] = [p.name for p in arm.plugins]
         try:
             row = {**base, **(extra or {}), **self._execute(arm, prep, task_dir, task, model, prompt, run_id, stop_when)}
         except Exception as exc:  # noqa: BLE001 - recorded and reported, never silently dropped
@@ -805,7 +823,7 @@ class Runner:
         transcript = self.work / 't' / f'{digest}.jsonl'
         transcript.parent.mkdir(parents=True, exist_ok=True)
         config_dir = self.work / 'cfg' / digest
-        cmd = agent_command(self.claude, model, self.args, prep.instructions)
+        cmd = agent_command(self.claude, model, self.args, prep.instructions, arm.plugins)
         try:
             for attempt in range(self.args.retries + 1):
                 seed_commit = prepare_workdir(arm, prep.template, (task_dir / 'seed') if task_dir else None, workdir)
@@ -813,6 +831,13 @@ class Runner:
                     rmtree_force(config_dir)
                 config_dir.mkdir(parents=True, exist_ok=True)
                 env = child_env(prep.shim, provider_env(self.args, model, config_dir), prep.home)
+                # A fresh folder per run (and per retry) that a pack's hooks can be pointed at for their own state, so
+                # nothing they keep reaches the real Claude profile or another task. Both sessions of a memory task share it.
+                sandbox = self.work / 'sb' / digest
+                if sandbox.exists():
+                    rmtree_force(sandbox)
+                sandbox.mkdir(parents=True)
+                env['BENCH_RUN_SANDBOX'] = str(sandbox)
                 setup = self._run_setup_sessions(cmd, task, workdir, env, transcript)
                 timed_out, stopped, wall = invoke(cmd, prompt, workdir, env, transcript, self.args.timeout, stop_when)
                 parsed = parse_stream(transcript)
@@ -1297,7 +1322,7 @@ def main(argv: list[str] | None = None) -> int:
 
     def common(p):
         p.add_argument('--claude', help='path to the claude CLI (default: PATH, then the desktop app copy)')
-        p.add_argument('--arm', action='append', default=[], help='baseline | NAME=BOSSKU_ROOT[@lean|core|full][+hint][+gate][+brief] (repeatable)')
+        p.add_argument('--arm', action='append', default=[], help='baseline | NAME=BOSSKU_ROOT[@lean|core|full][+hint][+gate][+brief] | NAME=pack:PLUGIN_DIR[,PLUGIN_DIR] (repeatable)')
         p.add_argument('--model', action='append', default=[], help='model id (repeatable)')
         p.add_argument('--provider', choices=['anthropic', 'ollama'], default='anthropic',
                        help='anthropic = your own Claude login; ollama = Ollama Cloud via its Anthropic-compatible API')

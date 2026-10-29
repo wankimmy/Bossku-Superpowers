@@ -160,6 +160,21 @@ class HarnessSetupTests(unittest.TestCase):
         self.assertEqual((arm.name, arm.profile), ('v2', 'core'))
         self.assertEqual(parse_arm('v2=/tmp/bossku').profile, 'full')
 
+    def test_a_pack_arm_loads_each_plugin_folder_and_no_bossku(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            a, b = Path(tmp) / 'a', Path(tmp) / 'b'
+            for d in (a, b):
+                (d / '.claude-plugin').mkdir(parents=True)
+                (d / '.claude-plugin' / 'plugin.json').write_text('{"name": "x"}', encoding='utf-8')
+            arm = parse_arm(f'rival=pack:{a},{b}')
+            self.assertIsNone(arm.root)   # an empty project and a "not installed" bossku shim, like the baseline
+            self.assertEqual(arm.plugins, (a.resolve(), b.resolve()))
+            command = agent_command('claude', 'm', SimpleNamespace(provider='anthropic', budget=None, effort=None), None, arm.plugins)
+            self.assertEqual([command[i + 1] for i, c in enumerate(command) if c == '--plugin-dir'], [str(a.resolve()), str(b.resolve())])
+            with self.assertRaises(SystemExit):
+                parse_arm(f'rival=pack:{Path(tmp) / "missing"}')
+        self.assertNotIn('--plugin-dir', agent_command('claude', 'm', SimpleNamespace(provider='anthropic', budget=None, effort=None), None))
+
     def test_child_processes_see_a_throwaway_home_and_none_of_the_launching_session(self):
         with mock.patch.dict('os.environ', {'CLAUDE_CODE_MESSAGING_TOKEN': 'secret', 'CLAUDE_CODE_SESSION_ID': 'abc'}):
             env = child_env(Path('shim'), {'ANTHROPIC_AUTH_TOKEN': 't'}, Path('throwaway'))
