@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bossku Superpowers: skills tell your agent what to do, Bossku checks that it did</title>
+<meta name="description" content="Free, open source layer for Claude Code, Codex, Cursor, OpenCode and OMP. Hooks refuse destructive commands, ask before a push, send the agent back to run a check after editing code, and show your saved notes when the next session starts.">
+<link rel="canonical" href="https://wankimmy.github.io/Bossku-Superpowers/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bossku Superpowers">
+<meta property="og:description" content="Skills tell your agent what to do. Bossku checks that it did. Free and open source.">
+<meta property="og:url" content="https://wankimmy.github.io/Bossku-Superpowers/">
+<meta property="og:image" content="https://wankimmy.github.io/Bossku-Superpowers/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#efeee9">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/poppins@5.3.0/latin-400.css" integrity="sha384-d6EsGwpfe7k7yy7OeUJVvM8qYJVQfpfVWkib7KF8+qwowrWYtEWh1yyPk1/uE+IE" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/poppins@5.3.0/latin-600.css" integrity="sha384-R7EFoNOpr2zhvbIm+crwvFtdspn/+SIZyE3S+gjTKdZrM1XgAIu/hLbhSWzrllT7" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/poppins@5.3.0/latin-700.css" integrity="sha384-HOO8jK8xDfzBQLSh9Fp/j6ew96zihvWp8Lg0Ja1VXvMVP9i9M9iT7J86551uVAr9" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie_light.min.js" integrity="sha512-Pe5arL9TnWlLgXT1VY0d50tfo6J9bh0qM7irYJuACQcGz7mbIahBXZmNeav+46mTQBtPY170Vi89KDa4kd4QVg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+<script src="main.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="top">
+  <a class="nav__mark" href="#top" aria-label="Bossku Superpowers, back to top"><span class="caret" aria-hidden="true">&gt;</span> bossku-superpowers</a>
+  <nav aria-label="Sections">
+    <ul class="nav__links">
+      <li><a href="#why">Why</a></li>
+      <li><a href="#try">Try a turn</a></li>
+      <li><a href="#proof">Proof</a></li>
+      <li><a href="#install">Install</a></li>
+      <li><a class="nav__gh" href="https://github.com/wankimmy/Bossku-Superpowers">GitHub</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__copy">
+      <p class="hero__works">Free and open source, for Claude Code, Codex, Cursor, OpenCode and OMP</p>
+      <h1 id="hero-title" class="hero__title">
+        <span class="line"><span>Skills tell your</span></span>
+        <span class="line"><span>agent what to do.</span></span>
+        <span class="line"><span><em>Bossku checks</em></span></span>
+        <span class="line"><span><em>that it did.</em></span></span>
+      </h1>
+      <p class="hero__lead">Hooks that refuse destructive commands, ask before a push, send the agent back when it edited code and ran no check after, and show your saved notes when the next session starts. Strongest in Claude Code; Codex, Cursor, OpenCode and OMP get the skills and part of the hooks.</p>
+      <div class="hero__cta">
+        <a class="btn btn--solid" href="#install">Install it</a>
+        <a class="btn" href="#proof">See the numbers</a>
+      </div>
+    </div>
+    <div class="hero__globe globe" data-globe="hero" data-skill="bosskuai-taste">
+      <p class="globe__key">Each dot is one skill: <b>258 listed</b>, 416 more in a library that <code>bossku skills find</code> searches. The lit one is <code>bosskuai-taste</code>, the skill Bossku picks for websites.</p>
+      <div class="globe__stage">
+        <canvas aria-hidden="true"></canvas>
+        <figure class="stamp hero__stamp" aria-label="The three lines Bossku asks every answer to open with">
+          <pre><code><span class="k">bossku-superpowers</span>
+Skills: <span class="v">bosskuai-taste</span>
+Memory: <span class="v">yes</span></code></pre>
+          <figcaption>Bossku asks your agent to open every answer with these lines, so you can see which skill it loaded and whether it says it read your notes. It is an instruction, so the agent can skip it.</figcaption>
+        </figure>
+      </div>
+      <button type="button" class="globe__pause" hidden aria-pressed="false">Pause motion</button>
+    </div>
+  </section>
+
+  <section class="why" id="why" aria-labelledby="why-title">
+    <h2 id="why-title" class="vh">Why Bossku Superpowers</h2>
+    <ol class="usp">
+      <li>
+        <p class="usp__word">Checks.</p>
+        <div><h3>Hooks, not just advice</h3><p>A skill is text the agent may or may not follow. Bossku adds hooks that act at the moment it counts. In Claude Code, <code>git reset --hard</code>, a plain force push and similar commands are refused, a <code>git push</code> waits for your yes, and a turn that edited code with no check after it is sent back once.</p></div>
+      </li>
+      <li>
+        <p class="usp__word">Remembers.</p>
+        <div><h3>Your rules reach tomorrow</h3><p>The agent is told to save the rules and decisions you give as notes. In Claude Code the newest notes show when the next session starts, and every 50 tool calls the agent is asked to turn useful lessons into small skills. With Obsidian storage, notes and learned skills stay out of the code repo.</p></div>
+      </li>
+      <li>
+        <p class="usp__word">Travels.</p>
+        <div><h3>One install for your tools</h3><p><code>bossku install</code> makes the same skills available to Claude Code, Codex, Cursor, OpenCode and OMP, and writes seven subagent contracts for Claude Code, Codex, Cursor, OpenCode and Devin. The full hook set runs in Claude Code; the command guard also runs in Codex, Cursor and OpenCode.</p></div>
+      </li>
+      <li>
+        <p class="usp__word">Measured.</p>
+        <div><h3>Numbers in public, with the limits</h3><p>Benchmarks with and without Bossku are published with their intervals and their weak spots. We found none in the READMEs of Superpowers, ECC, the Karpathy guidelines or Anthropic's skills.</p></div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="flow" aria-labelledby="flow-title">
+    <div class="flow__head">
+      <p class="cmd"><span aria-hidden="true">$</span> bossku hooks install</p>
+      <h2 id="flow-title">Where Bossku steps in.</h2>
+      <p>One turn of your agent in Claude Code, and the points where Bossku hooks step in.</p>
+    </div>
+    <figure class="flow__fig">
+      <svg class="flow__svg flow__svg--wide" viewBox="0 0 1200 430" aria-hidden="true" focusable="false">
+        <path class="flow__rail" d="M60 210 H1140"/>
+        <path class="flow__loop" d="M790 186 C 790 70, 560 70, 560 186"/>
+        <path class="flow__back" d="M1140 236 C 1140 380, 60 380, 60 236"/>
+        <polygon class="flow__arrow" points="552,176 560,192 568,176"/>
+        <polygon class="flow__arrow flow__arrow--muted" points="52,246 60,230 68,246"/>
+        <text class="flow__tag" x="675" y="64" text-anchor="middle">sent back once if no check ran after the edit</text>
+        <text class="flow__tag flow__tag--muted" x="600" y="408" text-anchor="middle">next session: the newest notes are shown at the start</text>
+        <g class="flow__node"><rect x="48" y="198" width="24" height="24" class="you"/><text x="48" y="262" class="t">You ask</text></g>
+        <g class="flow__node"><rect x="298" y="198" width="24" height="24" class="bk"/><text x="310" y="262" text-anchor="middle" class="t">Skill hint</text><text x="310" y="284" text-anchor="middle" class="s">suggests the best fit</text></g>
+        <g class="flow__node"><rect x="548" y="198" width="24" height="24" class="bk"/><text x="560" y="262" text-anchor="middle" class="t">Guard</text><text x="560" y="284" text-anchor="middle" class="s">denies or asks per command</text></g>
+        <g class="flow__node"><rect x="778" y="198" width="24" height="24" class="bk"/><text x="790" y="262" text-anchor="middle" class="t">Stop gate</text><text x="790" y="284" text-anchor="middle" class="s">check after edit? verdict line?</text></g>
+        <g class="flow__node"><rect x="1128" y="198" width="24" height="24" class="bk"/><text x="1152" y="262" text-anchor="end" class="t">Notes</text><text x="1152" y="284" text-anchor="end" class="s">agent saves your rules</text></g>
+      </svg>
+      <svg class="flow__svg flow__svg--tall" viewBox="0 0 360 770" aria-hidden="true" focusable="false">
+        <path class="flow__rail" d="M40 40 V680"/>
+        <path class="flow__loop" d="M52 520 C 170 520, 170 360, 52 360"/>
+        <path class="flow__back" d="M28 680 C 0 680, 0 40, 28 40"/>
+        <polygon class="flow__arrow" points="64,352 48,360 64,368"/>
+        <polygon class="flow__arrow flow__arrow--muted" points="20,32 30,40 20,48"/>
+        <text class="flow__tag" x="186" y="446">sent back once</text>
+        <text class="flow__tag flow__tag--muted" x="72" y="752">next session: notes shown first</text>
+        <g class="flow__node"><rect x="28" y="28" width="24" height="24" class="you"/><text x="72" y="46" class="t">You ask</text></g>
+        <g class="flow__node"><rect x="28" y="188" width="24" height="24" class="bk"/><text x="72" y="206" class="t">Skill hint</text><text x="72" y="228" class="s">suggests the best fit</text></g>
+        <g class="flow__node"><rect x="28" y="348" width="24" height="24" class="bk"/><text x="72" y="366" class="t">Guard</text><text x="72" y="388" class="s">denies or asks</text></g>
+        <g class="flow__node"><rect x="28" y="508" width="24" height="24" class="bk"/><text x="72" y="526" class="t">Stop gate</text><text x="72" y="548" class="s">check after the edit?</text></g>
+        <g class="flow__node"><rect x="28" y="668" width="24" height="24" class="bk"/><text x="72" y="686" class="t">Notes</text><text x="72" y="708" class="s">agent saves your rules</text></g>
+      </svg>
+      <figcaption>
+        <ol class="flow__steps">
+          <li><b>You ask.</b> Your request goes to your coding agent. A hook may add a short note first, such as a skill suggestion.</li>
+          <li><b>Skill hint.</b> A prompt hook names up to three fitting skills when the request clearly matches.</li>
+          <li><b>Guard.</b> Each shell command the agent runs is checked against fixed lists: commands like <code>git reset --hard</code> are refused, and a <code>git push</code> or production deploy waits for your yes. A push hidden inside a script is not seen.</li>
+          <li><b>Stop gate.</b> If the agent edited code and ran no test, lint, build or run after its last edit, it is sent back once. A change to code or infra also needs a security verdict line.</li>
+          <li><b>Notes.</b> Rules the agent saved as notes are shown at the start of the next session, newest first, up to about 1,300 characters.</li>
+        </ol>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="try" id="try" aria-labelledby="try-title">
+    <div class="try__head">
+      <p class="cmd"><span aria-hidden="true">$</span> bossku skills find "&lt;task&gt;"</p>
+      <h2 id="try-title">One turn, checked.</h2>
+      <p>Pick a request or something your agent tries to do. The skill names are what <code>bossku skills find</code> really returned for each request.</p>
+    </div>
+
+    <div class="try__body" data-tabs>
+      <div class="try__pick">
+        <p class="try__label" id="ask-label">You ask</p>
+        <div class="try__list" data-tablist aria-labelledby="ask-label">
+          <button type="button" data-tab="t-landing" data-skill="bosskuai-taste">"build a landing page for my bakery"</button>
+          <button type="button" data-tab="t-bm" data-skill="bosskuai-taste">"buatkan website untuk kedai kopi saya"</button>
+          <button type="button" data-tab="t-ci" data-skill="ci-triage">"this test passes locally but fails on CI"</button>
+          <button type="button" data-tab="t-review" data-skill="bosskuai-rigorous-code-review">"review this pull request before I merge"</button>
+        </div>
+        <p class="try__label" id="act-label">Your agent tries</p>
+        <div class="try__list" data-tablist aria-labelledby="act-label">
+          <button type="button" data-tab="t-push"><code>git push origin main</code></button>
+          <button type="button" data-tab="t-reset"><code>git reset --hard</code></button>
+          <button type="button" data-tab="t-done">to say "done" after editing, without running anything</button>
+          <button type="button" data-tab="t-memory">to work on your project the next day</button>
+        </div>
+      </div>
+
+      <div class="term" aria-live="polite">
+        <div class="term__globe globe" data-globe="term" aria-hidden="true"><canvas></canvas></div>
+        <article class="term__panel" id="t-landing">
+          <h3 class="vh">Request: build a landing page</h3>
+          <p class="term__you">build a landing page for my bakery</p>
+          <p class="term__note">The prompt hook suggests a skill before the agent starts.</p>
+          <pre class="term__out"><code>bossku-superpowers
+Skills: <b>bosskuai-taste</b>
+Memory: yes</code></pre>
+          <p class="term__why">Why: it is the house design rule for any website, landing page or portfolio.</p>
+        </article>
+        <article class="term__panel" id="t-bm">
+          <h3 class="vh">Request in Malay: build a website</h3>
+          <p class="term__you">buatkan website untuk kedai kopi saya</p>
+          <p class="term__note">Some Malay phrasings work too, like this one. Same skill as the English request.</p>
+          <pre class="term__out"><code>bossku-superpowers
+Skills: <b>bosskuai-taste</b>
+Memory: yes</code></pre>
+          <p class="term__why">Why: "buatkan website" is one of the Malay phrasings the router knows.</p>
+        </article>
+        <article class="term__panel" id="t-ci">
+          <h3 class="vh">Request: a test fails only on CI</h3>
+          <p class="term__you">this test passes locally but fails on CI</p>
+          <p class="term__note">The prompt hook suggests a skill before the agent starts.</p>
+          <pre class="term__out"><code>bossku-superpowers
+Skills: <b>ci-triage</b>
+Memory: yes</code></pre>
+          <p class="term__why">Why: it finds the failing job and step, then sorts it into flake, regression, environment or config.</p>
+        </article>
+        <article class="term__panel" id="t-review">
+          <h3 class="vh">Request: review a pull request</h3>
+          <p class="term__you">review this pull request before I merge</p>
+          <p class="term__note">The prompt hook suggests a skill before the agent starts.</p>
+          <pre class="term__out"><code>bossku-superpowers
+Skills: <b>bosskuai-rigorous-code-review</b>
+Memory: yes</code></pre>
+          <p class="term__why">Why: a skeptical pre-merge review for correctness, risk, missing tests and whether it meets its goal.</p>
+        </article>
+        <article class="term__panel" id="t-push">
+          <h3 class="vh">Agent action: git push</h3>
+          <p class="term__run">git push origin main</p>
+          <p class="term__gate term__gate--ask"><span>Asks you first</span></p>
+          <p class="term__why">In Claude Code the push waits for your yes. The same goes for a PR merge, <code>npm publish</code>, <code>vercel --prod</code>, <code>terraform destroy</code> and similar. A push hidden inside a script is not seen. Claude Code's own permission rules can do this too; Bossku ships the rule set ready-made, and its ask still shows when you have allowed commands broadly. Codex and OpenCode 1 refuse instead of asking.</p>
+        </article>
+        <article class="term__panel" id="t-reset">
+          <h3 class="vh">Agent action: git reset --hard</h3>
+          <p class="term__run">git reset --hard</p>
+          <p class="term__gate"><span>Refused</span></p>
+          <p class="term__why">Commands such as <code>git reset --hard</code>, a plain force push or <code>rm -rf ~</code> are blocked, and the agent is told to give you the exact command and recovery steps to run yourself. A <code>--force-with-lease</code> push asks instead. Runs in Claude Code; the Codex, Cursor and OpenCode versions are unit-tested against each tool's hook format, not yet run inside those apps.</p>
+        </article>
+        <article class="term__panel" id="t-done">
+          <h3 class="vh">Agent action: saying done without running code</h3>
+          <p class="term__run">Edited 3 files. Done!</p>
+          <p class="term__gate"><span>Sent back once</span></p>
+          <p class="term__why">If the agent changed code and ran no test, lint, build or run after its last edit, the stop gate sends it back once. It checks that something ran, not that it passed. Switch it off with <code>BOSSKU_STOP_GATE=off</code>.</p>
+        </article>
+        <article class="term__panel" id="t-memory">
+          <h3 class="vh">Next session: your notes come back</h3>
+          <p class="term__run">new session starts</p>
+          <pre class="term__out"><code>Project notes, grouped by kind, newest first:
+- [decision] Use the existing test runner for this project.</code></pre>
+          <p class="term__why">Rules and decisions the agent saved as notes are shown at the start of your next Claude Code session, so you do not repeat yourself. Only the newest fit, about 1,300 characters.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="overlap" aria-labelledby="overlap-title">
+    <div class="overlap__head">
+      <h2 id="overlap-title">What Claude Code already does.</h2>
+      <p>Much of this sits on features Claude Code has built in. Here is what is native and what Bossku adds on top.</p>
+    </div>
+    <table class="overlap__table">
+      <thead><tr><th scope="col">Area</th><th scope="col">Built into Claude Code</th><th scope="col">What Bossku adds</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Skills</th><td>Loads a skill when its description fits the request.</td><td>670+ skills, most vendored or adapted from other open-source packs, and a hook that checks every prompt and names fitting skills when the match is clear.</td></tr>
+        <tr><th scope="row">Memory</th><td><code>CLAUDE.md</code> files and its own auto memory.</td><td>Notes per project shown at session start, optional Obsidian sync, and auto-learn. Not benchmarked against the native memory.</td></tr>
+        <tr><th scope="row">Ask before push</th><td>Permission rules can allow, ask or deny a command by its pattern.</td><td>A ready-made rule set. Cursor and OpenCode 2 ask too; Codex and OpenCode 1 refuse and hand the command to you.</td></tr>
+        <tr><th scope="row">Run your code</th><td>Gives you Stop hooks to write your own check.</td><td>The check itself: one push back if code changed and no check ran after the last edit.</td></tr>
+        <tr><th scope="row">Subagents</th><td>Supported natively.</td><td>Seven written contracts: copied as they are for Claude Code, rewritten for Codex, Cursor, OpenCode and Devin.</td></tr>
+      </tbody>
+    </table>
+    <p class="overlap__note">Skills and ideas come from Superpowers, ECC, marketingskills, MengTo and other packs, each <a href="https://github.com/wankimmy/Bossku-Superpowers/blob/main/docs/third-party.md">credited with its license</a>.</p>
+  </section>
+
+  <section class="proof" id="proof" aria-labelledby="proof-title">
+    <div class="proof__head">
+      <p class="cmd"><span aria-hidden="true">$</span> bossku memory-brief --project .</p>
+      <h2 id="proof-title">Does it really help?</h2>
+      <p>Real agents, the same tasks, with and without Bossku Superpowers. The chart shows two-session tasks: a rule is set in one session and needed in the next. Read the setup first: the "without" runs had no Bossku setup, no <code>CLAUDE.md</code> and Claude Code's own auto memory switched off. The Claude runs still used the tester's own Claude Code config, which listed 20 skills and 2 plugins at start.</p>
+    </div>
+
+    <figure class="bars">
+      <figcaption>Two-session tasks passed, without and with Bossku Superpowers, all five models tested</figcaption>
+      <div class="bars__key" aria-hidden="true"><span class="sw sw--off"></span>without <span class="sw sw--on"></span>with</div>
+      <dl class="bars__rows">
+        <div class="bars__row" style="--off:48;--on:68">
+          <dt>Claude Haiku 4.5</dt>
+          <dd><span class="bar bar--off"><span>48%</span></span><span class="bar bar--on"><span>68%</span></span><span class="bars__delta">+20 points, 95% interval +7 to +34</span></dd>
+        </div>
+        <div class="bars__row" style="--off:64;--on:84">
+          <dt>Claude Sonnet 5.5</dt>
+          <dd><span class="bar bar--off"><span>64%</span></span><span class="bar bar--on"><span>84%</span></span><span class="bars__delta">+20 points, 95% interval +7 to +36</span></dd>
+        </div>
+        <div class="bars__row" style="--off:39;--on:68">
+          <dt>Gemma 4 31B</dt>
+          <dd><span class="bar bar--off"><span>39%</span></span><span class="bar bar--on"><span>68%</span></span><span class="bars__delta">+30 points, 95% interval +11 to +48</span></dd>
+        </div>
+        <div class="bars__row" style="--off:79;--on:74">
+          <dt>DeepSeek V4.1 Flash</dt>
+          <dd><span class="bar bar--off"><span>79%</span></span><span class="bar bar--on"><span>74%</span></span><span class="bars__delta">No clear difference: -5 points, 95% interval -14 to +3</span></dd>
+        </div>
+        <div class="bars__row" style="--off:6;--on:9">
+          <dt>Nemotron 3 Nano 30B</dt>
+          <dd><span class="bar bar--off"><span>6%</span></span><span class="bar bar--on"><span>9%</span></span><span class="bars__delta">No clear difference: 95% interval -7 to +23</span></dd>
+        </div>
+      </dl>
+    </figure>
+
+    <div class="proof__grid">
+      <div class="proof__cell">
+        <p class="big">81%</p>
+        <p>An acceptable skill was ranked first on 158 requests the router was never tuned on, against 56% for a keyword baseline that uses only skill names and descriptions. Acceptable skills were labelled by AI models, not people. Not compared with Claude Code's own skill picking. With a real agent, an acceptable skill was opened for 45% of 60 requests.</p>
+      </div>
+      <div class="proof__cell">
+        <p class="big">62% <span aria-hidden="true">→</span><span class="vh">to</span> 92%</p>
+        <p>HumanEval problems passed by the small Nemotron 3 Nano 30B, a model that usually skips running its code: 25 of 40 without, 37 of 40 with. The runs without Bossku were done on other days.</p>
+      </div>
+      <div class="proof__cell proof__cell--catch">
+        <p class="big">1.0× to 4.7×</p>
+        <p>The catch: about the same or more tokens per run, highest on models that checked the least before. On coding and harder tasks the three open models tested showed no clear change in pass rate; Claude models were not run on those.</p>
+      </div>
+    </div>
+    <p class="proof__note">What this does not show: whether Bossku beats Claude Code's own memory or a rule you wrote in <code>CLAUDE.md</code>. That was not tested. Samples are small, so read each result with its interval. Agent runs used build <code>b8ccea1</code>, whose stop check also reminded the agent to save rules; today's default install uses a simpler check. The live skill-use check used build <code>8279f19</code>. Full numbers and limits: <a href="https://github.com/wankimmy/Bossku-Superpowers/blob/main/docs/benchmarks/results.md">benchmark results</a> and <a href="https://github.com/wankimmy/Bossku-Superpowers/blob/main/docs/benchmarks/README.md">how it was tested</a>.</p>
+  </section>
+
+  <section class="new" aria-labelledby="new-title">
+    <div class="new__head">
+      <p class="cmd"><span aria-hidden="true">$</span> bossku learn list</p>
+      <h2 id="new-title">New in v2.12.0</h2>
+    </div>
+    <div class="new__cols">
+      <article>
+        <h3>Auto-learn</h3>
+        <p>In Claude Code, every 50 tool calls a Stop hook sends the agent back once and asks it to save useful lessons as small skills. Every fifth pass asks it to merge near-duplicates and fix rules that a newer rule contradicts.</p>
+        <p>Learned skills live with your project notes: in your Obsidian vault in Obsidian mode, or in the project's <code>.bossku/memory/skills</code> folder by default. Only <code>bossku learn apply</code> writes them, and it rejects skills with secrets, prompt-injection phrases or destructive commands, using fixed patterns. Archiving moves a skill aside instead of deleting it.</p>
+        <p class="off">Off switch: <code>BOSSKU_AUTO_LEARN=off</code></p>
+      </article>
+      <article>
+        <h3>A security gate, on by default</h3>
+        <p>Your agent is told to give every change a security pass across seven layers: business process, design, code, data and privacy, supply chain, infra and CI, and AI agents, and to check vulnerabilities against live feeds (OSV.dev, GitHub Advisories, CISA KEV) rather than memory. Nothing checks that it really did.</p>
+        <p>In Claude Code, a hook sends the agent back once when a turn changed code, dependencies or infra and the reply has no verdict line. It checks that the line is there; it does not run a scanner.</p>
+        <div class="verdict"><span class="tick" data-lottie aria-hidden="true"><svg viewBox="0 0 96 96"><path d="M8 8H88V88H8Z"/><path class="t" d="M28 50L42 64L70 34"/></svg></span><code>Security gate: PASS | BLOCK</code></div>
+        <p class="off">Off switch: <code>BOSSKU_SECURITY_GATE=off</code></p>
+      </article>
+    </div>
+  </section>
+
+  <section class="install" id="install" aria-labelledby="install-title">
+    <div class="install__head">
+      <p class="cmd"><span aria-hidden="true">$</span> bossku install</p>
+      <h2 id="install-title">Set it up in a few steps.</h2>
+      <p>You need Python 3.11+ and Git. The same commands work in Windows PowerShell; if <code>bossku</code> is not found, use <code>python -m bossku</code> instead.</p>
+    </div>
+    <ol class="steps">
+      <li>
+        <h3>Get it</h3>
+        <div class="code"><pre><code>git clone https://github.com/wankimmy/Bossku-Superpowers
+cd Bossku-Superpowers
+pip install -e .</code></pre><button type="button" class="copy" hidden>Copy</button></div>
+      </li>
+      <li>
+        <h3>Set up your machine</h3>
+        <div class="code"><pre><code>bossku install</code></pre><button type="button" class="copy" hidden>Copy</button></div>
+        <p>Copies the skills, writes the subagent contracts for each tool you have set up, and turns on the hooks. Want notes in Obsidian? Add <code>--vault "/path/to/your/Obsidian/Vault" --memory-storage obsidian</code>.</p>
+      </li>
+      <li>
+        <h3>Set up a project</h3>
+        <div class="code"><pre><code>cd /path/to/your/project
+bossku init .</code></pre><button type="button" class="copy" hidden>Copy</button></div>
+        <p>Adds a Bossku block to <code>AGENTS.md</code>, a <code>CLAUDE.md</code> that imports it, and small <code>.omp/</code> and <code>.bossku/</code> files.</p>
+      </li>
+      <li>
+        <h3>Check it</h3>
+        <div class="code"><pre><code>bossku doctor --project .</code></pre><button type="button" class="copy" hidden>Copy</button></div>
+        <p class="ok"><span class="tick" data-lottie aria-hidden="true"><svg viewBox="0 0 96 96"><path d="M8 8H88V88H8Z"/><path class="t" d="M28 50L42 64L70 34"/></svg></span>Prints <code>doctor: ok</code>, or the issues found and what to fix.</p>
+      </li>
+      <li>
+        <h3>Use your agent</h3>
+        <p>Open the project and start your agent as usual. No magic word: the hooks run on their own. Mostly you will not notice anything, until it stops a mistake. Remove the hooks with <code>bossku hooks uninstall</code> (also turn off the Bossku plugin if you enabled it in Claude Code), or Bossku's user-level setup with <code>bossku uninstall --purge</code>; project files and notes stay.</p>
+      </li>
+    </ol>
+    <p class="install__more">Setup notes for <a href="https://github.com/wankimmy/Bossku-Superpowers/blob/main/docs/installation.md#claude-code">Claude Code</a>, <a href="https://github.com/wankimmy/Bossku-Superpowers/blob/main/docs/installation.md#cursor">Cursor</a>, <a href="https://github.com/wankimmy/Bossku-Superpowers/blob/main/docs/installation.md#codex">Codex</a>, <a href="https://github.com/wankimmy/Bossku-Superpowers/blob/main/docs/installation.md#opencode">OpenCode</a> and <a href="https://github.com/wankimmy/Bossku-Superpowers/blob/main/docs/installation.md#omp">OMP</a>.</p>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <p class="foot__line">Skills tell. <em>Bossku checks.</em></p>
+  <figure class="stamp foot__stamp" aria-label="Doctor output">
+    <pre><code><span class="k">bossku-superpowers</span>
+Skills: <span class="v">none</span>
+Memory: <span class="v">yes</span>
+doctor: ok</code></pre>
+  </figure>
+  <div class="foot__links">
+    <p class="foot__big"><a href="https://github.com/wankimmy/Bossku-Superpowers">github.com/wankimmy/Bossku-Superpowers</a></p>
+    <ul>
+      <li><a href="https://github.com/wankimmy/Bossku-Superpowers/releases/tag/v2.12.0">Release notes v2.12.0</a></li>
+      <li><a href="https://github.com/wankimmy/Bossku-Superpowers/blob/main/docs/memory.md">Memory and Obsidian</a></li>
+      <li><a href="https://github.com/wankimmy/Bossku-Superpowers/blob/main/docs/third-party.md">Third-party packs and credits</a></li>
+      <li><a href="https://github.com/wankimmy/Bossku-Superpowers/blob/main/LICENSE">MIT license</a></li>
+    </ul>
+    <p class="foot__small">Formerly BosskuAI. The <code>bossku</code> command and <code>bosskuai-*</code> skill names are the same.</p>
+  </div>
+</footer>
+</body>
+</html>

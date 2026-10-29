@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wankimmy.github.io/Bossku-Superpowers/sitemap.xml
