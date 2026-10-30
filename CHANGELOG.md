@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v2.14.0 - A shared quality bar, stricter review and a worth-it check
 
 ### New
 
