@@ -1,6 +1,6 @@
 {
   "version": "2.1.0",
-  "fingerprint": "d5c1e93f731fd304",
+  "fingerprint": "fea495891ddcebe7",
   "count": 674,
   "aliases": {
     "bosskuai-caveman": "bosskuai-token-saver",
@@ -8746,7 +8746,8 @@
         "goal",
         "bosskuai-agentic-e2e",
         "window",
-        "note"
+        "note",
+        "reference"
       ],
       "model_role": "coder",
       "pack": "bossku"
@@ -19350,7 +19351,7 @@
         "paid acquisition monetization",
         "cac",
         "ltv to cac",
-        "payback period",
+        "cac payback",
         "paid acquisition",
         "monetization model"
       ],
@@ -19367,7 +19368,6 @@
         "cac",
         "ltv",
         "payback",
-        "period",
         "model",
         "deciding",
         "worth",
@@ -20482,9 +20482,24 @@
         "prioritize the roadmap",
         "should we say yes",
         "decide whether to say yes",
-        "custom module for a customer"
+        "custom module for a customer",
+        "worth building",
+        "worth the time to build",
+        "worth the effort to build",
+        "worth building it",
+        "what was the roi",
+        "what is the roi",
+        "what roi did",
+        "do an roi review",
+        "payback period",
+        "objective and goal of this requirement",
+        "objective and goal of the requirement",
+        "should we even build"
       ],
-      "exclusions": [],
+      "exclusions": [
+        "does this change achieve",
+        "pr template"
+      ],
       "phrases": [
         "deciding what to build",
         "why: product strategy",
@@ -20511,11 +20526,22 @@
         "custom",
         "module",
         "customer",
+        "worth",
+        "building",
+        "time",
+        "effort",
+        "roi",
+        "review",
+        "payback",
+        "period",
+        "objective",
+        "goal",
+        "requirement",
+        "even",
         "deciding",
         "feature",
         "shaping",
         "prd",
-        "review",
         "refinement",
         "prioritization",
         "user-value",
@@ -20526,6 +20552,8 @@
         "nearby",
         "mindset",
         "workflow",
+        "built",
+        "ship",
         "guardrail",
         "output",
         "format",
@@ -21797,7 +21825,8 @@
         "signal",
         "watch",
         "output",
-        "format"
+        "format",
+        "reference"
       ],
       "model_role": "coder",
       "pack": "bossku",
@@ -31184,7 +31213,9 @@
         "web3",
         "financial",
         "critical",
-        "flow"
+        "flow",
+        "bossku",
+        "addition"
       ],
       "model_role": "coder",
       "pack": "ecc",
@@ -31611,7 +31642,9 @@
         "global",
         "sentinel",
         "wrapping",
-        "checklist"
+        "checklist",
+        "bossku",
+        "addition"
       ],
       "model_role": "coder",
       "pack": "ecc",
@@ -32789,7 +32822,9 @@
         "section",
         "ask",
         "requirement",
-        "unclear"
+        "unclear",
+        "bossku",
+        "addition"
       ],
       "model_role": "coder",
       "pack": "mengto",
@@ -35732,7 +35767,9 @@
         "anti-patterns",
         "output",
         "expectation",
-        "related"
+        "related",
+        "bossku",
+        "addition"
       ],
       "model_role": "coder",
       "pack": "ecc",
@@ -40049,7 +40086,9 @@
         "reference",
         "reveal",
         "supporting",
-        "technique"
+        "technique",
+        "bossku",
+        "addition"
       ],
       "model_role": "coder",
       "pack": "superpowers",
@@ -40098,7 +40137,9 @@
         "dynamic",
         "classname",
         "safely",
-        "ask"
+        "ask",
+        "bossku",
+        "addition"
       ],
       "model_role": "coder",
       "pack": "mengto",
@@ -40489,7 +40530,9 @@
         "respect",
         "reduced",
         "motion",
-        "ask"
+        "ask",
+        "bossku",
+        "addition"
       ],
       "model_role": "coder",
       "pack": "mengto",

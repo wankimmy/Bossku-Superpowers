@@ -23,7 +23,7 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 6. Query objects.
 
 - Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
-- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- Check the project's tool versions first: `.ruby-version` for the Ruby version, `Gemfile.lock` for the exact Rails version, and `bundle exec rails -v` for the installed one. Check the latest stable Rails release and its maintenance dates at work time on rubyonrails.org, and use only APIs that exist in the installed version. Also check the source prerequisites. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
 - It can need a named provider, MCP server or API: check that it is available and in scope, report it when it is not, and never invent its output.
 
 ## Done when
@@ -31,5 +31,14 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 Apply the source “Core Concepts”, “The directory contract” guidance to the concrete request. Return the resulting rails patterns artifact or diagnosis with source/command evidence for each conclusion.
 
 If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
+
+Also check before you finish:
+
+- Money is a `decimal` column and a `BigDecimal` in Ruby, never a `Float`.
+- A read-then-write is guarded by `with_lock`, a `lock_version` column, or a conditional `update_all` that checks the row count.
+- A job that uses `retry_on` is safe to run twice.
+- An index on a large PostgreSQL table uses `algorithm: :concurrently` with `disable_ddl_transaction!`.
+
+The full quality bar is in `../../references/checklists/engineering-quality-bar.md`.
 
 Adapted from the locally reviewed `affaan-m/ECC` snapshot: provenance and hashes in [SOURCE.json](SOURCE.json), the original text and resources in [references/upstream/](references/upstream/SKILL.md) under its [MIT licence](references/upstream/LICENSE). Copyright (c) 2026 Affaan Mustafa.

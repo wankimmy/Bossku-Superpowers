@@ -23,12 +23,16 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 6. Step 4: Build adapters at the edge.
 
 - Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
-- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- Check the project's tool versions and the source prerequisites first, using the version table in `../../references/checklists/engineering-quality-bar.md` (section 2). Check the latest stable release live at work time, never from memory. Use only APIs present in the installed version. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
 - It can need a named provider, MCP server or API: check that it is available and in scope, report it when it is not, and never invent its output.
 
 ## Done when
 
 Complete the source “Best Practices Checklist” procedure for this task. Keep its resulting artifact, command output or cited evidence, and state what remains unverified.
+
+- Type traps: an adapter turns a database decimal, a JSON number or a date string into the domain type once, with validation. A raw response type must not reach the domain.
+- Concurrency: a transaction alone does not stop two callers from both passing the same check. Guard each check-then-write with an atomic update (`UPDATE ... WHERE ...`), a row lock on an existing row (`SELECT ... FOR UPDATE`) or a unique constraint. For a check that a row does not exist yet, use the unique constraint, because a lock on a missing row blocks nothing in PostgreSQL or in MySQL READ COMMITTED. Store the idempotency key under a unique constraint, so a retried request runs once.
+- Zero downtime: swap one adapter at a time behind the same port, and keep the old adapter until the new one passes its checks on a copy of production data. If the new adapter needs a schema change, follow expand, migrate, contract (checklist section 6).
 
 If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
 

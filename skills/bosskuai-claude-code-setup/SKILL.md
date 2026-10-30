@@ -57,7 +57,7 @@ Use this skill when the task is to **set up or improve Claude Code for a reposit
 3. Identify high-risk domains: auth, billing, tenancy, migrations, production deploy, external APIs, and generated files.
 4. Identify existing assistant surfaces: `AGENTS.md`, `CLAUDE.md`, `.claude/`, `.cursor/`, `.codex/`, `.agents/`, `.bossku/`.
 
-5. Record the installed Claude Code version, launch directory, skill roots, plugin state, duplicate names, and relevant skill permission restrictions. A folder existing is not proof the host loaded it.
+5. Record the installed Claude Code version (`claude --version`), launch directory, skill roots, plugin state, duplicate names, and relevant skill permission restrictions. Check the stable release live: run `npm view @anthropic-ai/claude-code dist-tags` and use the `stable` version, not `latest`. Take its release date from the changelog at code.claude.com/docs/en/changelog. Note that date and the date you checked. If npm is not installed, say the stable release was not checked. A folder existing is not proof the host loaded it.
 6. Distinguish startup instructions, path-scoped rules, reusable procedures, deterministic enforcement, and factual memory. Account for imported files when measuring startup context.
 
 ### Phase 2 - Recommend Claude Code surfaces
@@ -78,7 +78,7 @@ Use this skill when the task is to **set up or improve Claude Code for a reposit
 
 ### Phase 4 - Apply or hand off
 
-17. If asked to implement, make small, reviewable config changes.
+17. If asked to implement, make small, reviewable config changes. Check each setting key, hook event and frontmatter field against the installed version's docs first; do not copy one from a newer example.
 18. If asked to recommend, provide a prioritized setup plan with expected benefit and risk.
 19. Verify that references resolve and commands are plausible for the repo.
 20. Leave a handoff in shared memory when the setup changes durable assistant behavior.
@@ -90,6 +90,9 @@ Use this skill when the task is to **set up or improve Claude Code for a reposit
 - Do not hardcode personal paths, tokens, org IDs, or local machine assumptions.
 - Do not override shared BosskuAI contracts from a Claude-specific file.
 - Do not present untested commands as verified.
+- Test each hook with odd input (a path with spaces, quotes, or `$(...)` in a file name), and never interpolate input into a shell command.
+- A hook or permission that blocks work affects every teammate when it is in shared project settings (`.claude/settings.json`): test it in a fresh session first, and say who it touches.
+- No wildcard allow rules: scope each permission to the command or tool it needs.
 
 ## Discovery and product checks
 
@@ -137,3 +140,4 @@ Verification:
 - `../../references/playbooks/claude-code-practices-playbook.md`
 - `../../references/checklists/agent-security-hardening-checklist.md`
 - `../../references/memory-first-handoff-protocol.md`
+- `../../references/checklists/engineering-quality-bar.md`

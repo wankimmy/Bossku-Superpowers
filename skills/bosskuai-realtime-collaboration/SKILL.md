@@ -30,6 +30,9 @@ Use this skill when several clients edit or watch shared state live and the netw
 - Presence is ephemeral, documents are durable. Separate channels. Presence uses a TTL, is coalesced, and may be dropped without harm. Dropping all presence messages must break nothing durable.
 - Bound every queue. A slow consumer gets coalesced state and a resync, not unbounded buffering.
 - Deploys drain connections, send reconnect hints, and clients use exponential backoff with jitter to avoid a reconnect storm.
+- Version the protocol, and read the sync library's version from the lockfile. A client and server on different versions may not interoperate. The handshake carries the protocol version; keep the previous version working while any such client runs.
+- Connections die quietly. Load balancers and proxies often close idle connections after about 60 seconds by default, so heartbeat more often than the shortest idle timeout on the path.
+- Auth can expire while a socket stays open. Check the token again on reconnect and on a timer, and close the socket when it expires.
 - Single writer per room (rooms sharded across nodes) makes ordering simple. Add a pub/sub backplane when measurement says one node is not enough.
 - Offline-first is a data-model decision. Decide whether a simple version-check-and-retry is enough before adding a sync engine.
 
@@ -50,6 +53,7 @@ Use this skill when several clients edit or watch shared state live and the netw
 - Two clients edit the same range at once: identical final state, no silent loss.
 - Server deploy during a session: clients reconnect without lost ops or a herd.
 - Slow consumer on a busy room: server memory stays bounded.
+- Replay real-shaped ops (long text, emoji, right-to-left text) in a room at its real peak size, and run an old protocol client against the new server.
 
 ## Signals to watch
 
@@ -64,5 +68,9 @@ Scaling plan: [room sharding, backplane, backpressure]
 Failure tests: [list run and results]
 Open risk: [what is unproven]
 ```
+
+## References
+
+- `../../references/checklists/engineering-quality-bar.md`: the shared bar.
 
 Adapted from agency-agents/engineering/engineering-realtime-collaboration-engineer.md (agency-agents, MIT).

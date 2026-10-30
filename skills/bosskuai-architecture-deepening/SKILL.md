@@ -41,6 +41,7 @@ Then use the Agent tool with `subagent_type=Explore` to walk the codebase. Don't
 - Where have pure functions been extracted just for testability, but the real bugs hide in how they're called (no **locality**)?
 - Where do tightly-coupled modules leak across their seams?
 - Which parts of the codebase are untested, or hard to test through their current interface?
+- Where does a module own shared state or a lock that concurrent callers reach? Those seams need race tests before they move.
 
 Apply the **deletion test** to anything you suspect is shallow: would deleting it concentrate complexity, or just move it? A "yes, concentrates" is the signal you want.
 
@@ -57,9 +58,12 @@ For each candidate, the same template as before, but rendered as a card:
 - **Solution** — plain English description of what would change
 - **Benefits** — explained in terms of locality and leverage, and how tests would improve
 - **Before / After diagram** — side-by-side, custom-drawn, illustrating the shallowness and the deepening
+- **Risk and rollback** — the callers and existing flows that could change (business rules included), the data or cache formats touched, and how to return to the old shape.
 - **Recommendation strength** — one of `Strong`, `Worth exploring`, `Speculative`, rendered as a badge
 
-End the report with a **Top recommendation** section: which candidate you'd tackle first and why.
+Before a candidate is called `Strong`, check its callers. They must come from imports and `git grep`, not from folder names. The characterization tests that pin today's behaviour at the interface must already exist. Those tests cover the edge cases (empty, duplicate, null, wrong type) and any race the module handles.
+
+End the report with a **Top recommendation** section: which candidate you'd tackle first and why. Before you name it, check the candidate against the shared bar: `../../references/checklists/engineering-quality-bar.md`.
 
 **Use CONTEXT.md vocabulary for the domain, and [LANGUAGE.md](LANGUAGE.md) vocabulary for the architecture.** If `CONTEXT.md` defines "Order," talk about "the Order intake module" — not "the FooBarHandler," and not "the Order service."
 

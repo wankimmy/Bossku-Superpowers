@@ -130,18 +130,23 @@ Pipeline statuses: `running`, `pending`, `success`, `failed`, `canceled`, `skipp
 
 ### 4. Analyze the PR/MR
 
-Once all checks are complete, evaluate these areas:
+Once all checks are complete, evaluate these areas. Read the whole diff against its base (GitHub: `gh pr diff <PR_NUMBER>`; GitLab: `glab mr diff <MR_IID>`; Perforce: `p4 describe -S -du <CL_NUMBER>`), not only the latest commit.
 
 #### A. Status Checks
 
 - Are all CI checks passing?
 - If any are failing, identify which ones and the failure reason.
+- A pending or red check is not clear, even when every comment is resolved.
 
 #### B. PR/MR Description
 
 - Is the description complete and follows team conventions?
 - Are all required sections filled in?
 - Are there TODOs or placeholders that need updating?
+- Does the description match the whole diff, with nothing claimed that is not there and nothing changed that is not described?
+- Does each requirement in the linked issue map to code and a test in the diff?
+- For visual changes, are there screenshots at the sizes the repo asks for, checked against the change? Read them state by state: a message that is wrong for its state, a missing feedback message, an unexplained disabled control or different words for one thing is P2, fixed in this PR, not a nit.
+- Does every file belong to the change? Agent working files (plans, work-item notes, handoffs, scratch scripts, logs, local config) are a finding unless the repo keeps them on purpose.
 
 #### C. Review Comments
 
@@ -156,6 +161,8 @@ Once all checks are complete, evaluate these areas:
 - For GitHub, check the issue comments endpoint and use `updated_at` to catch bot comments edited in place. Greptile's latest edited summary can contain actionable items even when there are no new inline comments.
 - Bot comments (deploy previews, etc.) — usually informational
 - **Perforce:** CL description should include a clear summary, affected files rationale, and testing notes
+
+Before you write the summary, check the PR against `../../references/checklists/engineering-quality-bar.md` (sections 1 and 8). Name any item you could not check, and why, in the summary; with a missing input the result is "provisional (missing: <input>)".
 
 ### 5. Categorize issues
 

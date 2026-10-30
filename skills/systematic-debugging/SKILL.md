@@ -281,3 +281,11 @@ These techniques are part of systematic debugging and available in this director
 - **`root-cause-tracing.md`** - Trace bugs backward through call stack to find original trigger
 - **`defense-in-depth.md`** - Add validation at multiple layers after finding root cause
 - **`condition-based-waiting.md`** - Replace arbitrary timeouts with condition polling
+
+## Bossku additions
+
+Local additions (user rules, 2026-10-30); the upstream text above is unchanged.
+
+- **Map the whole surface before Phase 1 ends.** Check every screen, endpoint and job under the reported path from the routing config, not only the URL named. Time each one on a masked production data copy, and keep a coverage table. Never say "not the cause" while a row is unchecked.
+
+The full bar: `../../references/checklists/engineering-quality-bar.md`. The coverage questions: `../../references/checklists/root-cause-investigation-checklist.md`.

@@ -1,5 +1,18 @@
 # Changelog
 
+## Unreleased
+
+### New
+
+- **Shared engineering quality bar.** `references/checklists/engineering-quality-bar.md` holds the user's engineering rules in one place: map the current infra and versions first (where each ecosystem's installed and latest versions are read), every scenario and race condition, a masked production data copy and the types the same value can arrive as, API failure handling, zero-downtime deploy, code quality, proof, and how to investigate a problem. About 240 engineering, coding and language skills point to it and add their own checks.
+- **Worth-it and ROI analysis.** `bosskuai-product-strategy` checks whether a requirement is worth building (objective, measurable goal, options cheapest first, the simplest sound solution, a short-term and a long-term solution, value, cost, payback, verdict) and reviews what a shipped feature returned. Worth-it and ROI questions now route there, and nearby engineering prompts do not.
+
+### Changed
+
+- **Stricter review, security gate and delivery.** Review reads the whole diff, checks the PR description and linked issue, blocks on any red or pending check, opens every screenshot, treats confusing UI as P2 (Request changes), flags agent working files in a PR, and never drops a suspected bug for low confidence. One severity and verdict model, with a provisional verdict for a missing input, links the review to the security gate. The gate also rates business and logic flaws, walks every scenario, and fixes High or Critical advisories by upgrading.
+- **Investigations cover the whole surface.** Diagnose, profiling, web performance, codebase analysis, incident response and the root-cause checklist check every screen, endpoint and job under a reported path before concluding.
+- **Local additions to vendored skills.** Eleven ecc, emil-skills and mengto skills and `systematic-debugging` end with a "Bossku additions" section, recorded in `docs/third-party.md`.
+
 ## v2.13.0 - Self-review gate, a pack comparison and a website
 
 ### New

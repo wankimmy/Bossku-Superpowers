@@ -33,6 +33,11 @@ Use this skill to build Unity Editor tooling that catches asset and setup mistak
 - Unity Editor APIs and UI Toolkit versus IMGUI guidance change by version; verify against the installed version.
 - Mass-changing import settings can modify thousands of assets; run on a branch with version control and review the diff before committing.
 - Tools should not delete or overwrite assets without a confirmation and undo path.
+- Read the Unity version from `ProjectSettings/ProjectVersion.txt`, and check the latest stable release notes before you use an Editor API.
+- Stop when a scene the tool will touch has unsaved changes. Run a dry run that lists the assets it would change before the real run.
+- Test on a project with broken references, prefab variants, and an empty or missing target folder. The tool must stop with a clear message, not write half the changes.
+
+Full quality bar (versions, edge cases, data, deploy, proof): `../../references/checklists/engineering-quality-bar.md`.
 
 ## Output format
 

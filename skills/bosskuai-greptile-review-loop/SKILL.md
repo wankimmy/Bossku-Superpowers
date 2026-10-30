@@ -291,19 +291,36 @@ GET /api/v11/comments?topic=reviews/<REVIEW_ID>
 
 Filter to comments from the Greptile bot user that have not been marked as resolved/addressed.
 
+#### C1. Check CI
+
+Run after step B, on the head commit. If checks are still starting after a push, retry up to 30 times, 10 seconds apart:
+
+```bash
+gh pr checks <PR_NUMBER> --json name,bucket,link
+```
+
+- If `bucket` is `pending` for any check, wait and check again.
+- If `bucket` is `fail` or `cancel` for any check, add that check name and link as an unresolved item for step D.
+- If every check is `pass` or `skipping`, CI is green.
+- If the list is still empty after the retries, the repo has no CI. Stop and ask the user whether 5/5 with zero comments is enough. Never treat "no CI" as green on your own.
+
 #### C. Check exit conditions
 
 Stop the loop if **any** of these are true:
 
-- Confidence score is **5/5** AND there are **zero unresolved comments**
+- Confidence score is **5/5** AND there are **zero unresolved comments** AND every CI check on the head commit is green (step C1)
 - Max iterations reached (report current state)
 
+A red or pending check is not done, even one that looks like a known flake. If CI goes red on the pushed head, fix it in this loop or stop and report it.
+
 #### D. Fix actionable comments
+
+Each round, re-read the whole diff against its base, not only the new commits, before you call a comment fixed.
 
 For each unresolved Greptile comment:
 
 1. Read the file and understand the comment in context.
-2. Determine if it's actionable (code change needed) or informational.
+2. Determine if it's actionable (code change needed) or informational. A real bug, error or "will break" is always actionable, and a High or Critical finding is never informational.
 3. If actionable, make the fix.
 4. If informational or a false positive, reply with the reason and resolve only Greptile-bot threads; list every thread resolved without a code change in the report. Never resolve a human reviewer's thread.
 
@@ -361,6 +378,8 @@ Before pushing, run the project's tests and lint for the touched files; if red, 
 
 #### F. Commit and push / re-shelve
 
+Run `git status --porcelain` first. If it prints nothing, no file changed. Do not commit, do not push and do not go back to step A, because a new trigger on the same commit adds nothing. Go to step 3 (Report) and say which comments were resolved without a code change.
+
 **GitHub/GitLab:**
 ```bash
 git add <files changed for these comments>
@@ -395,6 +414,8 @@ After exiting the loop, summarize:
 | Remaining comments | N (if any) |
 
 If the loop exited due to max iterations, list any remaining unresolved comments and suggest next steps.
+
+The shared bar for finishing this loop: `../../references/checklists/engineering-quality-bar.md`.
 
 ## Output format
 

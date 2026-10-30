@@ -35,6 +35,12 @@ Use this skill to design and review Unity multiplayer code where the server owns
 - Do not claim bandwidth, success-rate, or latency targets without measuring with your own tools.
 - Do not put UGS keys or secrets in the client build. Do not enable paid cloud services, matchmaking, or multiplayer hosting without explicit user approval.
 - Minors and chat or voice features carry safety and privacy duties; check applicable rules.
+- Read the Unity version from `ProjectSettings/ProjectVersion.txt` and the Netcode, Relay and Lobby versions from `Packages/packages-lock.json`. Check their latest stable release notes before you use an API.
+- Test a host that leaves mid-match, a client that drops during a spawn, a late join, and two clients acting on one object in the same tick.
+- If Relay or Lobby is down or slow, show a clear error. Retry only calls the service docs mark as safe to repeat, with capped exponential backoff and jitter. Never retry a create call (lobby or allocation) blindly, because the first call may have succeeded. Do not start a match without a confirmed connection.
+- Send the build version at join and reject a mismatch with a clear message. Player data and saves from the last release must still load.
+
+Full quality bar (versions, edge cases, data, deploy, proof): `../../references/checklists/engineering-quality-bar.md`.
 
 ## Output format
 

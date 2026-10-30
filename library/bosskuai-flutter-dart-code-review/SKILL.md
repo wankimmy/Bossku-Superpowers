@@ -23,12 +23,17 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 6. Key usage:.
 
 - Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
-- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- Check the project's tool versions and the source prerequisites first: read the SDK constraint (`environment: sdk`) in `pubspec.yaml`, the resolved versions in `pubspec.lock`, and `flutter --version`. Check the latest stable Flutter release at docs.flutter.dev/release/archive at work time, and use only APIs present in the installed version. Run `flutter analyze` and read its output. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
 - It can need a named provider, MCP server or API: check that it is available and in scope, report it when it is not, and never invent its output.
 
 ## Done when
 
 Complete the source “Immutability & value equality (for immutable-state solutions: BLoC, Riverpod, Redux):”, “Widget test quality:” procedure for this task. Keep its resulting artifact, command output or cited evidence, and state what remains unverified.
+
+- Type traps: a JSON whole number cast with `as double` (it throws on the Dart VM), money held in a `double` (it rounds), and numbers that arrive as text.
+- Concurrency: `BuildContext` used after an `await` with no `mounted` check, `setState` after `dispose`, and a late async result that overwrites newer state.
+- Zero downtime: a changed API or stored-data format must still read what older app builds wrote.
+- Full quality bar: `../../references/checklists/engineering-quality-bar.md`.
 
 If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
 

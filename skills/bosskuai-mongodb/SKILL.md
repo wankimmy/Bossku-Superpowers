@@ -64,7 +64,7 @@ Treat live data as sensitive. Prefer read-only inspection. Redact PII and secret
 1. Identify the MongoDB surface: collection design, query optimization, aggregation, migration, validation, backup, or incident.
 2. Read application code, ODM models, migrations, schema validation rules, tests, and current query paths.
 3. If database access is available, inspect metadata before sampling documents.
-4. Confirm environment: local, staging, production, Atlas, self-hosted, replica set, or sharded cluster.
+4. Confirm environment: local, staging, production, Atlas, self-hosted, replica set, or sharded cluster. Read the versions too: the server with `db.version()`, the driver or ODM version from the lockfile, and the driver's compatibility table for that server. Check the latest stable release on mongodb.com and write down the date.
 
 ### Phase 2 - Model documents
 
@@ -83,7 +83,7 @@ Treat live data as sensitive. Prefer read-only inspection. Redact PII and secret
 ### Phase 4 - Migrations and operations
 
 13. Design migrations as resumable, idempotent, batched, and observable.
-14. Plan backfills with write pressure, locks, rollback, and mixed-version app behavior in mind.
+14. Plan backfills with write pressure, locks, rollback, and mixed-version app behavior in mind. Rehearse the backfill on a production data copy first, with personal fields masked. Masked values keep the same BSON type, nulls and empty values, and join keys, so the rehearsal matches production. Then compare counts and `$type` breakdowns before and after.
 15. Verify backup and restore posture before destructive changes.
 16. For sharded clusters, check shard keys, chunk distribution, and cross-shard query risks.
 
@@ -94,6 +94,9 @@ Treat live data as sensitive. Prefer read-only inspection. Redact PII and secret
 - Do not rely on "schemaless" as a design answer; state the intended document contract.
 - Do not add indexes blindly; name the query and expected benefit.
 - Do not run production migrations without batching, monitoring, and a stop condition.
+- Do not upsert on a key that has no unique index. Concurrent upserts can insert duplicates.
+- Do not query `_id` with a string when the stored value is an ObjectId, or the reverse. The query matches nothing, and no error is raised.
+- Save a change stream's resume token only after the event is handled, and make handlers idempotent. A restart can replay events.
 
 ## Output format
 
@@ -103,6 +106,7 @@ MongoDB summary:
   Collections: [names]
   Access patterns: [reads/writes]
   Environment: [local/staging/prod/unknown]
+  Versions: [server via db.version(), driver from the lockfile, latest checked on mongodb.com, date]
 
 Findings:
   Modeling: [issues / ok]
@@ -119,6 +123,7 @@ Recommended path:
 
 - `../../references/checklists/mongodb-checklist.md`
 - `../../references/checklists/security-risk-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`
 
 ---
 
@@ -404,6 +409,25 @@ If you're on Atlas (most MVPs are), these are the sharp edges that are NOT obvio
 | **Tier change** | Scaling up triggers a primary failover. Plan it during a maintenance window even if Atlas calls it "rolling." |
 | **Free tier (M0)** | Hard limits on connections, storage, concurrent ops. Production on M0 will fail on the first traffic spike — move to M10+ before launch. |
 | **VPC peering** | Required to keep DB traffic off the public internet. Set this up before the first paying customer, not after. |
+
+### 9. One field, two BSON types
+
+**Wrong** — old orders stored `amount` as a double, newer ones as a string:
+
+```js
+{ _id: 1, amount: 19.9 }      // double, written in 2021
+{ _id: 2, amount: "19.90" }   // string, written in 2024
+```
+
+`$sum` skips the string without an error, so the total drops that order silently. A `$gte` filter only matches numbers, so string rows fall out of range queries too.
+
+**Right** — find the mix first. Then convert each value to integer minor units or `Decimal128` in resumable batches (see #6), and add a `$jsonSchema` `bsonType` for the field once the mix is gone:
+
+```js
+db.orders.aggregate([{ $group: { _id: { $type: "$amount" }, n: { $sum: 1 } } }])
+```
+
+**Verify** — after the batches, that aggregation shows one type (no `string` rows left). Then, on the same production data copy, check the total: the new `$sum` must equal the old report total plus the converted string amounts, in the same unit. Take those string amounts from the copy before the batches run, by converting each `$type: "string"` row with the same rule the migration uses. If the migration stores minor units, divide the new total by 100 before comparing. Any other difference means a row was missed or counted twice.
 
 ## Production audit matrix
 

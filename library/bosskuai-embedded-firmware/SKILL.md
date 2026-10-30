@@ -16,13 +16,13 @@ Use this skill for bare-metal and RTOS firmware where RAM, flash, and timing are
 
 ## Workflow
 
-1. Hardware analysis. Record the MCU family and part, peripherals in use, RAM and flash budget, clock and power constraints, and the SDK version. Use the datasheet, reference manual, and errata as the source of truth.
+1. Hardware analysis. Record the MCU family and part, peripherals in use, RAM and flash budget, clock and power constraints, and the SDK version. Use the datasheet, reference manual, and errata as the source of truth. Record the compiler version (for example `arm-none-eabi-gcc --version`), check the latest SDK or RTOS release notes at work time, and use only APIs present in the pinned version.
 2. Architecture. Define tasks, priorities, stack sizes, and the queues, semaphores, or event groups between them. Keep ISRs short and defer work to tasks.
-3. Drivers. Write each bottom-up and test it alone. Every wait has a timeout. Every SDK or HAL return value is checked. Define what happens after a failed transfer (recover per the reference manual and errata; do not blindly resend).
-4. Memory. Allocate statically or from pools after init. Measure stack high-water marks instead of guessing sizes. Keep shared mutable state behind a primitive.
+3. Drivers. Write each bottom-up and test it alone. Every wait has a timeout. Every SDK or HAL return value is checked. Check the width and sign of every value read from a register or sensor, since counters wrap at their width. Define what happens after a failed transfer (recover per the reference manual and errata; do not blindly resend).
+4. Memory. Allocate statically or from pools after init. Measure stack high-water marks instead of guessing sizes. Keep shared mutable state behind a primitive. A value shared with an interrupt is `volatile`, and a multi-byte read or write is guarded so it cannot tear.
 5. Integration and timing. Verify real deadlines with a logic analyser or oscilloscope, not only logs.
 6. Fault handling. Test error paths with fault injection, watchdog resets, brown-out, and cold boot.
-7. Release. Pin toolchain and library versions (no floating `latest`), record flash/RAM use with headroom, and test OTA update and rollback.
+7. Release. Pin toolchain and library versions (no floating `latest`), record flash/RAM use with headroom, and test OTA update and rollback, including a power cut during the write: the device must boot a complete image.
 8. Debug aids. Use SWD/JTAG, UART logs, core dumps, and RTOS runtime stats or trace tools your SDK offers.
 
 ## Rules of thumb
@@ -49,5 +49,7 @@ Timing evidence: [measurement method, result]
 Release checks: [pinned versions, OTA, watchdog, power]
 Open issues: [list]
 ```
+
+Also check the shared quality bar: `../../references/checklists/engineering-quality-bar.md`.
 
 Adapted from agency-agents/engineering/engineering-embedded-firmware-engineer.md (agency-agents, MIT).

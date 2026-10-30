@@ -24,7 +24,7 @@ For 2D DOM/SVG motion without WebGL, use `bosskuai-gsap-animation`. For smooth s
 | **OGL** | Lightweight WebGL (~5x smaller than Three.js), studios like Active Theory use it | Less ecosystem, more manual work |
 | **Troika-three-text** | High-quality SDF text rendering in 3D | Better than Text3D for dynamic text |
 
-Versions: R3F v9 is the React 19 compatibility release; match the project's React major before installing. Its `gl` prop may return a promise, which is how `THREE.WebGPURenderer` is wired (`gl={async (props) => { const r = new THREE.WebGPURenderer(props); await r.init(); return r }}`).
+Versions: R3F v9 is the React 19 compatibility release; match the project's React major before installing. Its `gl` prop may return a promise, which is how `THREE.WebGPURenderer` is wired (`gl={async (props) => { const r = new THREE.WebGPURenderer(props); await r.init(); return r }}`). Read the installed three.js version from the lockfile or `node_modules/three/package.json`, and the latest from `npm view three version` (release notes: github.com/mrdoob/three.js/releases). Three.js renames and removes APIs and changes color and lighting defaults between releases, so compare screenshots after any bump, and copy code only from the docs for the installed version.
 
 ### Animation & motion
 
@@ -97,6 +97,7 @@ Versions: R3F v9 is the React 19 compatibility release; match the project's Reac
    - Override materials when the default look doesn't match the design
    - Use `<Float>` from drei for ambient bobbing motion
    - Handle animations with `useAnimations()` hook
+   - Test with the compressed GLB that production serves (same file name, size and `model/gltf-binary` type), not the designer's source file.
 
 6. **Implement scroll-driven 3D animations**:
    ```
@@ -193,7 +194,9 @@ Versions: R3F v9 is the React 19 compatibility release; match the project's Reac
     - Accessibility: prefers-reduced-motion, alt text, keyboard navigation for UI
     - Loading: preloader works, no flash of un-styled content
     - Cross-browser: Chrome, Safari (WebKit differences), Firefox
-    - Memory: no leaks (check dispose, cleanup in useEffect return)
+    - Memory: no leaks. Check dispose and the cleanup in the useEffect return, and check that `renderer.info.memory` returns to its old counts after a route change.
+    - Context loss: force one with the `WEBGL_lose_context` extension (`loseContext()`, then `restoreContext()`) and check the scene comes back. Call `preventDefault()` in the `webglcontextlost` handler, or the browser will not restore it.
+    - Screenshots: take the proof screenshots at the widths the repo asks for, in a headed browser on a real GPU. Headless browsers can draw WebGL in software, so the picture can differ.
 
 ## Guardrails
 
@@ -440,3 +443,4 @@ For complex scenes where real-time lighting is too expensive:
 - `../../references/checklists/3d-web-development-checklist.md`
 - `../../references/playbooks/ui-delivery-playbook.md`
 - `../../references/checklists/ui-fidelity-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`

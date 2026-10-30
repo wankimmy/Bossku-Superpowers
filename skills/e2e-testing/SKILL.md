@@ -325,3 +325,13 @@ test('trade execution', async ({ page }) => {
   await expect(page.locator('[data-testid="trade-success"]')).toBeVisible()
 })
 ```
+
+## Bossku additions
+
+Local additions (user rules, 2026-10-30); the upstream text above is unchanged.
+
+- Read the exact Playwright version from the lockfile (`package.json` holds only a range). That version sets the browser builds, so run the same version locally and in CI.
+- Use production-shaped data (types, nulls, long text, other locales) and cover the slow, failing and empty states of each API the flow calls.
+- Take screenshots at the sizes the repo asks for and check each one against the change. A flaky test is a bug to fix. The CI retries in the config above can hide one: Playwright marks a test that passes on retry as flaky, and the run can still pass. Fix every test that Playwright marks as flaky, even when the run is green.
+
+The full bar: `../../references/checklists/engineering-quality-bar.md`.

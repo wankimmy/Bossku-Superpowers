@@ -25,6 +25,7 @@ Run before PRs, after major changes, and pre-deploy.
 - Linting/static analysis should be clean before running full tests and coverage.
 - Security and migration reviews happen after tests so you verify behavior before data or release steps.
 - Build/deploy readiness and queue/scheduler checks are final gates; any failure blocks release.
+- CI must be green on the pushed head; a red or pending check blocks the PR, even a known flake.
 
 ## Phase 1: Environment Checks
 
@@ -102,6 +103,8 @@ php artisan migrate:status
 - Ensure migration filenames follow `Y_m_d_His_*` (e.g., `2025_03_14_154210_create_orders_table.php`) and describe the change clearly
 - Ensure rollbacks are possible
 - Verify `down()` methods and avoid irreversible data loss without explicit backups
+- Run the migrations and changed queries against a production data copy (never production) and check the result: no rows missed or broken, and column types match production
+- Check zero downtime: the old code must still run on the new schema while the deploy rolls out
 
 ## Phase 6: Build and Deployment Readiness
 
@@ -187,3 +190,4 @@ php artisan schedule:list
 - `bosskuai-laravel-security` — deep security review when Phase 4 surfaces issues
 - `bosskuai-laravel-development` — Laravel implementation patterns
 - `bosskuai-docker` — container and compose-level checks around this gate
+- `../../references/checklists/engineering-quality-bar.md` — the shared quality bar this loop checks against

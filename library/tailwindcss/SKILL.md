@@ -76,3 +76,12 @@ const toneClass = {
 - Framework/build tool (Next/Vite/Remix/Webflow export)?
 - Do we need a design system (tokens, component library) or a one-off page?
 - Dark mode? RTL? accessibility constraints?
+
+## Bossku additions
+
+Local additions (user rules, 2026-10-30); the upstream text above is unchanged.
+
+- Read the Tailwind version from the lockfile first, and use the setup for that major version: v4 uses `@import "tailwindcss";` in CSS and finds source files itself; v3 uses `tailwind.config.js`, `@tailwind` directives and a `content` list. Check the latest release and its notes on tailwindcss.com at work time.
+- Search the built CSS for every class the change adds: a class missing from the built CSS breaks the page in production.
+
+The full bar: `../../references/checklists/engineering-quality-bar.md`.

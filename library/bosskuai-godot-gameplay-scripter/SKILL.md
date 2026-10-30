@@ -39,6 +39,11 @@ Use this skill for Godot 4 gameplay systems built from scenes, nodes, signals, a
 - Names, annotations, and APIs change between Godot 4.x minor releases. Verify against the installed version's docs.
 - Profile before moving code to C# or a native extension; justify with data.
 - Do not edit project settings or export presets without saying so.
+- Read the engine version from `project.godot` (the `config/features` line), and check Godot's latest stable release notes before you use an API.
+- A stored node reference can point to a freed node, for example after a deferred call. Check `is_instance_valid()` before you use one.
+- Save data from an older build must still load. Add a version field, migrate it, and test with a save from the last release.
+
+Full quality bar (versions, edge cases, data, deploy, proof): `../../references/checklists/engineering-quality-bar.md`.
 
 ## Output format
 

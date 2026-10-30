@@ -23,7 +23,7 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 6. Caching.
 
 - Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
-- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- Check the project's tool versions and the source prerequisites first: `java -version`, and the Spring Boot version in the `spring-boot-starter-parent` of `pom.xml` or the `org.springframework.boot` plugin in `build.gradle(.kts)`. Check the latest stable Spring Boot release and its support dates on spring.io at work time. Use only APIs present in the installed version. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
 - It can need a named provider, MCP server or API: check that it is available and in scope, report it when it is not, and never invent its output.
 
 ## Done when
@@ -31,5 +31,10 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 Apply the source “REST API Structure”, “Repository Pattern (Spring Data JPA)” guidance to the concrete request. Return the resulting spring boot development patterns artifact or diagnosis with source/command evidence for each conclusion.
 
 If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
+
+- Put `@Transactional` on public methods and call them through the Spring proxy. A call from inside the same class skips the transaction.
+- Lists have a maximum page size. No unbounded `findAll()` on a table that grows.
+- Cache keys are versioned, and a write evicts the entry it changes after its transaction commits, with a TTL as a fallback.
+- Full quality bar, with version and type checks: `../../references/checklists/engineering-quality-bar.md`.
 
 Adapted from the locally reviewed `affaan-m/ECC` snapshot: provenance and hashes in [SOURCE.json](SOURCE.json), the original text and resources in [references/upstream/](references/upstream/SKILL.md) under its [MIT licence](references/upstream/LICENSE). Copyright (c) 2026 Affaan Mustafa.

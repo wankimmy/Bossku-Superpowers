@@ -66,7 +66,7 @@ SECURITY_REASON = (
     "(a must rule). Load bosskuai-security-gate and run its pass on this change: each layer it touches, deep pass for "
     "auth, payments, tenant data, secrets, uploads, public endpoints, infra/CI or agent tools. If a dependency file "
     "changed, check the changed packages against live feeds (OSV.dev, GitHub Advisories, CISA KEV). Then end the "
-    "reply with `Security gate: PASS | BLOCK`, listing only High and Critical findings."
+    "reply with `Security gate: PASS | BLOCK | PROVISIONAL`, listing only High and Critical findings."
 )
 PASTE_REASON = (
     "BosskuAI verify gate: the request asks for a change, but you edited no file and your reply only shows code. "

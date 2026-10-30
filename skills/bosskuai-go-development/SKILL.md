@@ -29,6 +29,7 @@ Use this skill when the code is Go and the answer depends on Go's concurrency mo
 2. Layout: `cmd/<binary>` for mains, `internal/` for private packages, no `pkg/` unless something is meant for import by others.
 3. Tooling present: `Makefile`, `golangci.yml`, `sqlc.yaml`, migration tool (goose, golang-migrate, atlas), Dockerfile, CI workflow. Match them.
 4. Framework: net/http (1.22 mux supports methods and wildcards), Echo, Chi, Gin, or gRPC. Do not introduce a second one.
+5. Toolchain: the `go` and `toolchain` lines in `go.mod`, the `golang` image tag in the Dockerfile and the CI setup must agree, and `go version` shows what runs on this machine. An older toolchain can fail the build, and with the default `GOTOOLCHAIN=auto` a build can download the toolchain that `go.mod` asks for. Check the latest stable release on go.dev/dl and write down the date you checked. `go list -m -u all` lists modules with newer versions.
 
 ## Rules that catch most Go bugs
 
@@ -37,6 +38,8 @@ Use this skill when the code is Go and the answer depends on Go's concurrency mo
 - HTTP clients: `http.DefaultClient` has no timeout. Set `Timeout` or use per-request contexts. Always `defer resp.Body.Close()` and drain the body to reuse connections.
 - Servers: set `ReadHeaderTimeout`, `ReadTimeout`, `WriteTimeout`, `IdleTimeout`; shut down with `signal.NotifyContext` + `srv.Shutdown(ctx)`; recover panics per request, never globally swallow them.
 - Database: `rows.Close()` and check `rows.Err()`; pass `ctx` to every query; one transaction per unit of work with `defer tx.Rollback()`; pool sizing against the DB's `max_connections`.
+- NULL in old rows: a scan into a plain `string`, `int64` or `time.Time` fails at run time. Use `pgtype` or `sql.Null*` types for nullable columns, and test with a NULL row.
+- Transaction retries: Postgres can abort a transaction with SQLSTATE 40001 (serialization failure) or 40P01 (deadlock). Retry the whole transaction a set number of times. Anything sent outside the database inside it, such as a call or an email, runs again on retry, so keep those out.
 - Nil interfaces: a nil `*T` stored in an interface is not `nil`. Return `nil` explicitly.
 - Slices: `append` on a sub-slice can overwrite the parent; copy when handing out slices of internal state.
 - Errors: never `err != nil` then continue with the zero value; never `panic` for expected failures; sentinel errors exported, wrapped with context at each layer, translated to HTTP status at the edge only.
@@ -52,6 +55,7 @@ Use this skill when the code is Go and the answer depends on Go's concurrency mo
 - `log/slog` structured logging with request id, trace id, and no PII; one logger passed down, not a global.
 - Middleware order: request id → recover → timeout → auth → handler. Health (`/healthz` liveness, `/readyz` checks DB) unauthenticated.
 - Workers: `errgroup.WithContext`, bounded concurrency (semaphore or worker pool), idempotent jobs, retries with jitter, and a dead-letter path.
+- Rolling deploys run old and new binaries at once. A job queued by new code can reach an old worker, and the reverse, so version the job payload. A worker that meets a job type it does not know retries it or sends it to the dead-letter path; it never drops it. On SIGTERM, stop taking work, and finish or re-queue in-flight jobs before the platform's stop timeout.
 - Outbox pattern for "write DB and publish event" to avoid dual-write loss.
 
 ## Testing
@@ -60,6 +64,7 @@ Use this skill when the code is Go and the answer depends on Go's concurrency mo
 - `httptest` for handlers; `testcontainers-go` or a Docker-provided Postgres for repositories (not sqlite substitutes); golden files for serialized output.
 - `go test -race -count=1 ./...` in CI; `-shuffle=on` to catch order dependence; fuzz tests for parsers and decoders.
 - Benchmarks with `b.ReportAllocs()`; compare with `benchstat` before claiming a speedup.
+- Decode real production payloads, or a sanitized copy, through the new code, not only hand-written fixtures. Include a NULL row, and a number that arrives as a string, which a hand-typed fixture often lacks.
 
 ## Performance
 
@@ -95,7 +100,7 @@ govulncheck ./...
 ## Output format
 
 ```text
-Go version: [x.y] - Layout: [cmd/internal] - Framework: [net/http | Echo | Chi | Gin | gRPC]
+Go version: [x.y] (latest stable [x.y], checked [date]) - Layout: [cmd/internal] - Framework: [net/http | Echo | Chi | Gin | gRPC]
 Tooling honored: [linters, sqlc, migrations, CI]
 
 Findings:
@@ -110,6 +115,7 @@ Verification: [commands run and result; race detector status]
 - `../../references/checklists/go-development-checklist.md`
 - `../../references/checklists/api-design-checklist.md`
 - `../../references/checklists/database-engineering-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`
 
 ## Extra idioms and test habits
 

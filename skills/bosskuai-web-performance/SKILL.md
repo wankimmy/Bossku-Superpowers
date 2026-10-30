@@ -28,8 +28,10 @@ Use this skill when a page or app feels slow in the browser, when Search Console
 
 ## Diagnose
 
+Cover every route under the reported page first (list, detail, edit, each tab), measure each one, and keep a coverage table. Never call a page fine while a route under it is unmeasured (shared bar section 9).
+
 1. Field: CrUX (Search Console, PageSpeed Insights "Discover what your real users are experiencing"), or your own RUM via the `web-vitals` library sent to analytics with route and device.
-2. Lab: Lighthouse CI on a throttled profile, WebPageTest filmstrip, Chrome DevTools Performance panel (long tasks, LCP element, layout shift regions), Coverage tab for unused JS/CSS.
+2. Lab: Lighthouse CI on a throttled profile, WebPageTest filmstrip, Chrome DevTools Performance panel (long tasks, LCP element, layout shift regions), Coverage tab for unused JS/CSS. Each score records `lighthouseVersion` and `userAgent` from the saved Lighthouse JSON report, since an upgrade can move a score with no code change.
 3. Bundle: `vite-bundle-visualizer`, `next build` analyzer, `nuxi analyze`; look for duplicate dependencies, whole-library imports, and polyfills for supported browsers.
 4. Network: waterfall for render-blocking CSS/JS, late-discovered LCP image, font chains, and third-party tags.
 
@@ -39,6 +41,7 @@ Use this skill when a page or app feels slow in the browser, when Search Console
 - SSR or prerender the LCP element; never client-fetch hero content.
 - Hero image: correct `srcset`/`sizes`, AVIF/WebP, `fetchpriority="high"`, `<link rel=preload>`, no `loading="lazy"` above the fold, explicit dimensions.
 - Inline critical CSS, defer the rest; `font-display: swap` (or `optional` for non-brand text) and preload the one font file the LCP text uses.
+- Subset fonts only to the scripts the page shows. A missing glyph (Chinese, Tamil, some emoji) makes the browser fetch a fallback font, and the text moves when it loads.
 
 ## INP
 
@@ -66,6 +69,7 @@ Use this skill when a page or app feels slow in the browser, when Search Console
 - Brotli or gzip at the edge; HTTP/2 or HTTP/3; `preconnect` to the API and font origins; avoid redirect chains.
 - ISR/SSG for public pages, SSR for personalized, SPA only behind login.
 - Service worker only with an invalidation plan; otherwise it becomes the cache you cannot bust.
+- Old tabs and cached HTML point at the previous deploy's hashed files. Keep those files for as long as an open tab might request them, or make a failed chunk load reload the page.
 
 ## Framework notes
 
@@ -93,6 +97,7 @@ Use this skill when a page or app feels slow in the browser, when Search Console
 - Do not claim "faster" without before/after p75 numbers or a filmstrip.
 - Do not add a service worker for caching without an invalidation plan.
 - Do not ship a third-party tag without an owner and a measured cost.
+- Do not measure a dev build or a page with ten test rows. Use the production build and production-sized data.
 
 ## Output format
 
@@ -110,6 +115,7 @@ Before/after: [numbers, method]
 - `../../references/checklists/web-performance-checklist.md`
 - `../../references/pitfalls/performance-pitfalls.md`
 - `../../references/checklists/seo-geo-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`
 
 ## React and Next.js rules, in priority order
 1. **Waterfalls first.** Check cheap synchronous conditions before awaiting remote data; move an `await` into the branch that uses it; run independent work with `Promise.all`; start promises early and await late; in Server Components split sibling awaits into child components so React runs them in parallel; put `<Suspense>` close to the data and reserve space for late content.

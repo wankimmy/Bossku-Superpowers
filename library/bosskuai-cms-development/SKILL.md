@@ -17,13 +17,13 @@ Use this skill for code-first WordPress and Drupal work, where editors need a mo
 
 ## Workflow
 
-1. Confirm the target: WordPress or Drupal, new build or existing site, and the exact versions of core and major plugins/modules. Check the installed version or current official docs before using an API.
+1. Confirm the target: WordPress or Drupal, new build or existing site, and the exact versions of core and major plugins/modules. Read the installed versions with `wp core version` (WordPress) or `drush status` (Drupal), and `php -v`. Check the latest core release at wordpress.org or drupal.org at work time, and use only APIs present in the installed version.
 2. Lock the content model before theme code: content types, fields, relationships, display variants, editorial roles and workflow, multilingual needs.
 3. Choose extensions deliberately. For each contrib plugin/module check last update, active installs, open issues, and security advisories. Do not build what a maintained extension already does.
 4. Put structure in code: post types, taxonomies, fields, and blocks in code (WordPress: ACF JSON sync or code registration; Drupal: config export to YAML). The admin UI alone is not a source of truth.
 5. Use child themes or custom themes; never edit a parent or contrib theme. Use hooks, filters, and plugin/module APIs; do not patch core.
 6. Build the theme top-down: layout, regions, blocks, components, with design tokens as CSS custom properties. Use the CMS asset system (WordPress enqueue with version and defer; Drupal `.libraries.yml` attached per template).
-7. Escape output and validate input at every boundary (WordPress `esc_html`, `esc_url`, nonces; Drupal Twig autoescape, access checks, cache metadata).
+7. Escape output and validate input at every boundary (WordPress `esc_html`, `esc_url`, nonces; Drupal Twig autoescape, access checks, cache metadata). Custom fields and REST data can be empty, text where you expect a number, or missing on old content, so cast and validate them at the template.
 8. Run coding standards (PHPCS with WordPress or Drupal rulesets) and unit tests for business logic; add an end-to-end test for the main editor flow.
 9. Walk the editor workflow as a non-technical user. If it is confusing, fix the CMS experience.
 10. Pre-launch: config exported, debug off, errors logged not shown, caching headers and object cache, security headers, robots and sitemap, accessibility scan plus keyboard check, Core Web Vitals measured, update plan handed over.
@@ -33,6 +33,9 @@ Use this skill for code-first WordPress and Drupal work, where editors need a mo
 - Do not run migrations, updates, or config imports against a live site without a backup and the user's approval.
 - Do not store secrets in the database or theme files; use environment config.
 - Plugin/module and PHP API names change between versions; verify against the installed version.
+- Two editors can save the same page. A script that writes content must save with one UPDATE that matches the revision it read and bumps that revision in the same SET, for example `SET revision = revision + 1 WHERE id = ? AND revision = ?`. If no row changed, re-read and merge, or stop.
+- Keep old and new theme or module code working on the same content during a rollout.
+- Full quality bar: `../../references/checklists/engineering-quality-bar.md`.
 
 ## Output format
 

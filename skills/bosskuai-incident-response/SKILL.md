@@ -51,8 +51,11 @@ Use this as the default severity model. Adjust thresholds to your SLAs:
    - Disable the feature flag
    - Throttle the load or shed traffic
    - Failover to a redundant system
+   - Before any rollback, list the data the new version wrote (new rows, new columns, changed formats). If the old code cannot read that data, a rollback makes things worse. Roll forward with a fix. Restore a snapshot only if the Incident Commander accepts losing every write made after it. First list those writes, then say which you chose.
 6. **Collect the initial snapshot** — What is broken? Who is affected? Since when? What changed recently?
 7. **Communicate status** — Update stakeholders at the cadence for the severity level. Use a status template: "We are investigating [symptom] affecting [scope]. Mitigation in progress. Next update: [time]."
+
+7a. **Freeze other changes.** Name one person who deploys or changes data during the incident. Hold other deploys, migrations and data fixes until the incident is closed.
 
 ### Phase 3 — Investigate (parallel with stabilization)
 
@@ -62,13 +65,13 @@ Use this as the default severity model. Adjust thresholds to your SLAs:
    - Traffic or load anomalies
    - DB migration or data job completions
    - Alert firing sequence
-9. **Identify the blast radius** — Who and what is affected? Is the scope growing, stable, or shrinking?
+9. **Identify the blast radius** — Who and what is affected? Is the scope growing, stable, or shrinking? Keep a list of the parts checked and not yet checked; never call a service, screen or job "not involved" until it is checked (shared bar section 9).
 10. **Delegate technical investigation** to `bosskuai-diagnose-loop` once the incident is stable.
 
 ### Phase 4 — Resolve and verify (when fix is ready)
 
 11. **Apply the fix with a plan** — State the expected change and how it will be verified before it is applied.
-12. **Verify resolution** — Confirm metrics return to baseline. Do not declare resolved based on code deploy alone.
+12. **Verify resolution** — Confirm metrics return to baseline. Do not declare resolved based on code deploy alone. Then check the side effects: jobs queued or retried during the outage, duplicate charges or emails, missed webhooks. Reconcile them before you call it resolved.
 13. **Communicate resolution** — "Incident resolved at [time]. Root cause: [brief]. Fix applied: [brief]. Post-incident review: [date]."
 14. **Reduce severity or close** — Downgrade to SEV-4 or close the incident channel.
 
@@ -94,7 +97,7 @@ Use this as the default severity model. Adjust thresholds to your SLAs:
     - **What did not go well**: gaps in detection, response, or tooling
     - **Action items**: each with an owner, priority, and due date
 
-19. **Promote durable learnings** — Each action item should land in a checklist, runbook, alert, or code fix — not just a postmortem document that is never read again.
+19. **Promote durable learnings** — Each action item should land in a checklist, runbook, alert, or code fix — not just a postmortem document that is never read again. A fix for a defect comes with a test that failed before the fix and passes after it.
 
 ## Escalation paths
 
@@ -113,6 +116,7 @@ Define these for your org before the next incident:
 - Do not wait for a full root cause before mitigating impact — stabilize first, investigate second.
 - Do not close an incident without a verified resolution — a deployed fix that hasn't been confirmed working is not a resolution.
 - Do not skip the postmortem for SEV-1 and SEV-2 incidents — undocumented incidents repeat.
+- Do not run an untested data fix on production during an incident. Take a backup, test the fix on a copy of production data, then apply it in chunks. If there is no copy, ask the user to prepare one.
 
 ## Output format
 
@@ -134,6 +138,7 @@ Evidence snapshot:
   Last deployment: [when / what]
   Anomaly first seen: [when / source]
   Blast radius: [scope]
+  Last known good: [app SHA, image digest, schema version]
 
 Next update: [time]
 ```
@@ -166,3 +171,4 @@ Action items:
 - `../../references/checklists/root-cause-investigation-checklist.md`
 - `../../references/checklists/devops-iac-checklist.md`
 - `../../references/checklists/security-risk-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`

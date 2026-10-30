@@ -469,3 +469,13 @@ const AsyncComp = defineAsyncComponent({
 - `frontend-patterns` — Cross-framework frontend architecture
 - `typescript` — TypeScript best practices applied to Vue projects
 - `coding-standards` — General code quality standards
+
+## Bossku additions
+
+Local additions (user rules, 2026-10-30); the upstream text above is unchanged.
+
+- **Versions:** read `vue`, `vue-router`, `pinia` and Nuxt versions from `package.json` and the lockfile, and check the official release notes before using a newer API. Vue 2 and Vue 3 APIs differ, and Vue 2 reached end of life on 31 December 2023.
+- **Data from APIs:** validate response shapes at the boundary. A number that arrives as a string ("0.01") breaks maths and sorting quietly, and `v-model` on a text input gives a string unless you add `.number`.
+- **Every request has four states:** loading, error, empty and slow. Ignore or cancel a stale response that finishes after a newer one, and disable a submit button while it is in flight.
+
+The full bar: `../../references/checklists/engineering-quality-bar.md`.

@@ -17,7 +17,7 @@ Use this skill when the task involves Lenis smooth scrolling: installing it, wir
 
 ## Source posture
 
-This skill was shaped from the upstream [Lenis](https://github.com/darkroomengineering/lenis) package (check `package.json` in your project for the pinned version). Prefer official Lenis docs when exact options or exports matter.
+This skill was shaped from the upstream [Lenis](https://github.com/darkroomengineering/lenis) package (check `package.json` in your project for the pinned version). Prefer official Lenis docs when exact options or exports matter. The installed version is in the lockfile or `node_modules/lenis/package.json`, and the latest is `npm view lenis version`. Options and exports change between versions, so read the README in `node_modules/lenis/` before you use one.
 
 ## Mindset
 
@@ -50,8 +50,8 @@ This skill was shaped from the upstream [Lenis](https://github.com/darkroomengin
 11. Recalculate dimensions when content changes if auto resize is disabled or dynamic layout confuses measurements.
 12. Use the `data-lenis-prevent` attribute (or the `prevent` option) for modals and other native-scroll areas; use `allowNestedScroll` only when the performance tradeoff is acceptable.
 13. Sync ScrollTrigger with Lenis by updating ScrollTrigger on Lenis scroll and driving Lenis from GSAP ticker.
-14. On teardown, call `destroy()` or unmount the provider cleanly, remove ticker callbacks, and stop custom RAF loops.
-15. Verify reduced motion, mobile touch, keyboard focus, anchor links, modals, and route changes. Current Lenis (README v1.3.26) already disables smoothing under `prefers-reduced-motion`; verify it rather than re-implementing it.
+14. On teardown, call `destroy()` or unmount the provider cleanly, remove ticker callbacks, and stop custom RAF loops. When a modal locks the page, call `lenis.stop()` on open and `lenis.start()` on every close path (button, Escape, route change); a missed `start()` leaves the page frozen.
+15. Verify reduced motion, mobile touch, keyboard focus, anchor links, modals, route changes, and back and forward navigation (the restored scroll position should appear without a glide), on the longest real page. Lenis already disables smoothing under `prefers-reduced-motion`; confirm that in the installed version's README rather than re-implementing it.
 
 ## Common patterns
 
@@ -89,6 +89,7 @@ gsap.ticker.lagSmoothing(0)
 - Do not use multiple independent RAF loops for Lenis plus GSAP.
 - Do not enable heavy options like broad nested-scroll detection without checking performance.
 - Do not forget cleanup in SPAs, route transitions, and component unmounts.
+- Do not test a smooth scroll with a fixed sleep. Wait until the scroll position stops changing.
 
 ## Output format
 
@@ -113,3 +114,4 @@ Verification:
 
 - `../../references/checklists/lenis-smooth-scroll-checklist.md`
 - `../../references/checklists/ui-fidelity-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`

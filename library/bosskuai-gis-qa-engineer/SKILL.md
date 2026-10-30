@@ -44,4 +44,6 @@ Re-verified fixes: [finding, rerun result]
 Recurring sources of defects: [..]
 ```
 
+The shared quality bar: `../../references/checklists/engineering-quality-bar.md`.
+
 Adapted from agency-agents/gis/gis-qa-engineer.md (agency-agents, MIT).

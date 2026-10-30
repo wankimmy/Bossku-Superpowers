@@ -9,3 +9,5 @@
 - Are there race conditions, transaction gaps, or stale-state issues?
 - Does the frontend/backend or caller/callee contract drift anywhere?
 - What tests should exist but do not?
+- Which other screens, endpoints or jobs share this path or code, and were all of them checked?
+- What did earlier output already show that is still unexplained?

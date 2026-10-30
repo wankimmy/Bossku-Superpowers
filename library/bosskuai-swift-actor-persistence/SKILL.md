@@ -23,12 +23,17 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 6. Best Practices.
 
 - Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
-- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- Check the project's tool versions and the source prerequisites first: read `swift-tools-version` in `Package.swift` (or the deployment target in the Xcode project), and run `swift --version`. Check the latest stable Swift release at swift.org/download at work time, and use only APIs present in the installed version. Gate newer APIs with `@available` or `#available`. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
 - It can need a named provider, MCP server or API: check that it is available and in scope, report it when it is not, and never invent its output.
 
 ## Done when
 
 Apply the source “Core Pattern”, “Actor-Based Repository” guidance to the concrete request. Return the resulting swift actors for thread-safe persistence artifact or diagnosis with source/command evidence for each conclusion.
+
+- Type traps: a number stored as text, or a missing key, makes `Codable` throw. Store a format version in the file, and fail loudly on a shape you do not know.
+- Concurrency: other calls can run at each `await` inside an actor, so check the value again after the `await` and before you write. Write files with `.atomic` so a crash cannot leave a half-written file.
+- Zero downtime: older app builds keep reading the old file format after a release. Read both formats now, but keep writing the old format until older builds are gone. Switch writes to the new format in a later release (expand, migrate, contract).
+- Full quality bar: `../../references/checklists/engineering-quality-bar.md`.
 
 If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
 

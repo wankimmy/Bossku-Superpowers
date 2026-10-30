@@ -39,7 +39,9 @@ REST conventions to check:
 
 Adding an integration or connector to an existing repo: read at least two existing connectors first and copy their layout, config schema, auth, retry/pagination, registry wiring and test style. Do not start from vendor docs alone or invent a second architecture; the result should look obvious in the codebase, with config validation, explicit auth and error handling, registration and tests in place.
 
-Full design-lens checklist and output template: `reference.md`.
+For every outbound call, settle what happens when it goes wrong, and test each case: the endpoint down, slow or timing out (set a timeout); retries with backoff and jitter, capped at a maximum number of retries, only for calls that are safe to repeat (for example with an idempotency key); whether the caller can afford the delay, or the call belongs in a queue; the request and response logged with secrets and personal data masked; and a response with extra fields (ignore them), missing fields or a changed data type (validate and fail loudly, never coerce silently).
+
+Full design-lens checklist and output template: `reference.md`. The shared quality bar: `../../references/checklists/engineering-quality-bar.md`.
 
 Public API checks adapted in part from engineering/engineering-api-platform-engineer.md (agency-agents, MIT).
 Adapted in part from ECC skills/api-design and api-connector-builder (affaan-m/ECC, MIT).

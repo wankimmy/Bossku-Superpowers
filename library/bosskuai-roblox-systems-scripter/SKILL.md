@@ -31,6 +31,13 @@ Use this skill to build Roblox game systems where the server is the source of tr
 - Roblox APIs, limits, and best practices change; check the current Creator documentation before using a service or quota.
 - Follow Roblox's terms and safety policies, especially for chat, minors, and monetisation.
 - Do not test destructive scripts on a live published experience.
+- Roblox updates the engine on its own. Write down the date you checked each API and limit in the Creator Hub (create.roblox.com/docs).
+- Run DataStore tests only in a separate test experience, with its own data stores and test data, never in a place inside the live experience. Never enable Studio Access to API Services on a live experience.
+- Luau numbers are doubles, so store large IDs as strings, not numbers.
+- Test a save that fails halfway, two servers saving one key, a server that closes mid-save, and a player who leaves during the load.
+- Load records written by an earlier schema version. Roll out a schema change in steps, so old and new servers can both read the data.
+
+Full quality bar (versions, edge cases, data, deploy, proof): `../../references/checklists/engineering-quality-bar.md`.
 
 ## Output format
 

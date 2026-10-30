@@ -25,20 +25,20 @@ Use this skill when product teams keep filing tickets or hand-building infrastru
 
 1. Discover: interview a handful of teams about friction, mine platform-request tickets, and list the manual workflows people repeat ("dirt roads").
 2. Rank candidates by frequency, time cost and strategic value.
-3. For the top candidate, write a golden path spec: parameters with validation, opinionated defaults, outputs (repo, pipeline, namespace, dashboards, on-call service).
+3. For the top candidate, write a golden path spec: parameters with validation, opinionated defaults, outputs (repo, pipeline, namespace, dashboards, on-call service). Form and YAML inputs can arrive as text, and an empty string is not a missing value, so validate every parameter before the scaffold runs.
 4. Record defaults and trade-offs in an ADR.
-5. Build the self-serve entry: a CLI command or portal template, with clear errors and a diagnose command.
+5. Build the self-serve entry: a CLI command or portal template, with clear errors and a diagnose command. Two people can run the same scaffold at once, so make creation idempotent: check and create in one atomic step, and never overwrite an existing service.
 6. Register services in a catalog with owner, on-call, runbook and dependencies.
 7. Pilot with two or three friendly teams, iterate, then launch with a short doc explaining why and how.
 8. Track adoption, time to first deploy, and delivery measures (deployment frequency, lead time, change failure rate, recovery time). Talk to non-adopters when adoption is low and fix friction before adding features.
-9. Retire or rebuild paths nobody uses. Migrate old paths with tooling and a stated deprecation window; never break a paved road silently.
+9. Retire or rebuild paths nobody uses. Migrate old paths with tooling and a stated deprecation window; never break a paved road silently. Keep the old and new paths working side by side until adoption is done.
 
 ## Guardrails
 
 - Version the abstractions. Breaking a paved road affects every team on it.
 - Do not ban dirt roads; make the paved road better.
 - Set numeric targets from your own baseline, not from other organisations.
-- Check the installed versions and current docs of the catalog and scaffolding tools.
+- Read each tool's current version from the project's manifest, lockfile or runtime, using the command in the version table of ../../references/checklists/engineering-quality-bar.md (for example `go version` or `java -version`). Check the latest stable release on the tool's official site at work time, and use only APIs present in the installed version.
 
 ## Output format
 

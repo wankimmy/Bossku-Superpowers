@@ -32,6 +32,12 @@ Use this skill to make a Godot 4 multiplayer game authority-correct and hard to 
 - Godot's multiplayer API names and defaults change; read the documentation for the installed 4.x version.
 - Never trust client-reported position, damage, or inventory.
 - Do not expose a public server before rate limiting and basic abuse handling exist.
+- Read the engine version from `project.godot`, and check Godot's latest stable release notes for multiplayer changes before you use an API.
+- A rejoin usually gets a new peer ID. Key player data by a stable account ID, and drop late RPCs from a peer that has already left.
+- Test a client that joins mid-match, a host that leaves, and two players claiming one item on the same tick. The server decides once and rejects the second claim.
+- Send the build version when a player joins, and reject a mismatch with a clear message. Player data saved by an older build must still load.
+
+Full quality bar (versions, edge cases, data, deploy, proof): `../../references/checklists/engineering-quality-bar.md`.
 
 ## Output format
 

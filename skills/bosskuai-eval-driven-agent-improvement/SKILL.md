@@ -16,7 +16,7 @@ Use this skill to make agent quality **measurable**, so changes to prompts, tool
 
 ## Build the eval set from real failures
 
-The highest-value cases come from runs that actually went wrong. Each recurring failure becomes a small, named case with a fixed input and a checkable expectation. An eval suite written from imagination tests what you already knew.
+The highest-value cases come from runs that actually went wrong. Each recurring failure becomes a small, named case with a fixed input and a checkable expectation. An eval suite written from imagination tests what you already knew. Include the malformed and adversarial inputs production has seen (personal data masked), and build fixtures with production's types and shapes: a number that arrives as a string there is a string in the fixture too.
 
 ## Separate eval types
 
@@ -26,8 +26,9 @@ Aggregating everything into one score hides which layer broke.
 - **Retrieval**: were the right documents or context fetched, and was anything critical missed?
 - **Workflow**: did the multi-step sequence complete, and did it stop when it should?
 - **Quality**: is the final output correct and useful?
-- **Token/cost**: did it stay in budget?
+- **Token/cost and latency**: did it stay within the cost and time budget set before the run?
 - **Safety**: did it refuse, confirm, or escalate where required, including injection resistance?
+- **Error handling**: on a timeout, a 429 or a schema-breaking reply, does it retry within a cap, fail clearly, and avoid repeating a side effect?
 
 ## Grade with the cheapest sufficient method
 
@@ -55,9 +56,11 @@ When judging a statistical or ML model rather than an agent:
 
 - Never tune on the held-out set.
 - Do not delete a failing case because it is inconvenient; mark it known-failing with an owner.
-- Run evals on a fixed model version; a model upgrade is a change to measure, not a confound.
+- Run evals on a fixed model version (read its id and the SDK version from config and the lockfile, and write both into each run); a model upgrade is a change to measure, not a confound.
 - Report per-category results, not just an aggregate.
 - Small suites that run on every change beat large suites nobody runs.
+- Mask personal data in eval cases, transcripts and run history before they are saved or shared.
+- A prompt or model change goes to a small share of traffic first, with the previous version ready to roll back to.
 
 ## Output format
 
@@ -79,6 +82,7 @@ Decision: [ship / iterate / revert] - [why]
 ## References
 
 - `../../references/checklists/eval-driven-agent-improvement-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`
 
 Model review section adapted in part from specialized/specialized-model-qa.md (agency-agents, MIT).
 

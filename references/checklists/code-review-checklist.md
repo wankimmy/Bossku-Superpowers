@@ -1,8 +1,8 @@
 # Code Review Checklist
 
-> If the request is general, ambiguous, or touches many files — ask clarifying yes/no questions **before acting**. Use numbered bullets with explicit answer format: e.g. `1-yes/no  2-A/B`.
+> Label assumptions and carry on. Ask the user only when a missing input blocks the verdict (then the result is "provisional (missing: <input>)"), with numbered yes/no or A/B questions.
 
-Use alongside `bosskuai-rigorous-code-review`. Work through each section; skip only if clearly irrelevant to the diff.
+Use alongside `bosskuai-rigorous-code-review`. Work through every section; none is skipped (a section that cannot apply is marked "not applicable: <reason>"). The full bar (requirements, versions, scenarios, production data, API integrations, deploy, proof) is [engineering-quality-bar.md](engineering-quality-bar.md); run it too.
 
 ## Graph-aware preflight
 
@@ -88,3 +88,16 @@ Use alongside `bosskuai-rigorous-code-review`. Work through each section; skip o
 - [ ] Does validation match the actual domain logic, not generic placeholder checks?
 - [ ] Does the naming and style match the project's conventions consistently?
 - [ ] Is the logic proportionate to the problem, or is it over-engineered boilerplate?
+
+## Business logic, data and deploy
+
+- [ ] Do the new rules clash with existing flows, roles or data, and was every scenario walked by who, what, when, the record's state and each dependency? (bar section 3)
+- [ ] Was the change run on a masked production data copy, with production data types, and do counts and results match what deploy should give? (bar section 4)
+- [ ] Does it deploy with zero downtime, with queued jobs, cache formats and config ready, and is the rollback safe for data written after deploy? (bar section 6)
+
+## UI/UX and PR scope
+
+- [ ] Was every screenshot and template read state by state as a user would (empty, loading, error, success, disabled)?
+- [ ] Is any message, warning or label wrong for its state, contradicting the result, or leaving the user unsure what happened? That is a finding to fix, not a nit (severity per the UI/UX rule in skills/bosskuai-rigorous-code-review/reference.md, step 4).
+- [ ] Does each disabled control say why, and does the same thing use the same words everywhere?
+- [ ] Does every file in the diff belong to the change? Agent working files (superpowers plans, `docs/work-items` notes, handoffs, scratch scripts, logs, local config) are a finding unless the repo keeps them on purpose, and then they must be current.

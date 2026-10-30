@@ -46,4 +46,6 @@ Device test matrix and result: [..]
 Review risks: [..]
 ```
 
+The shared quality bar: `../../references/checklists/engineering-quality-bar.md`.
+
 Adapted from agency-agents/engineering/engineering-wechat-mini-program-developer.md (agency-agents, MIT).

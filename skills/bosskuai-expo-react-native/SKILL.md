@@ -23,7 +23,7 @@ Use this skill when building, auditing, or debugging a React Native app, with or
 
 ## Orient before changing anything
 
-1. `npx expo-doctor` and `npx expo install --check`: SDK version, mismatched native dependencies. Since SDK 55 every Expo package's major version equals the SDK's, so a mismatch is easy to spot.
+1. `npx expo-doctor` and `npx expo install --check`: SDK version, mismatched native dependencies. Since SDK 55 every Expo package's major version equals the SDK's, so a mismatch is easy to spot. Read the installed SDK and React Native from `package.json` and the lockfile (or `node_modules/expo/package.json`), and check the latest with `npm view expo version` and `npm view react-native version` (release notes: expo.dev/changelog and github.com/facebook/react-native/releases).
 2. `app.json` / `app.config.ts`: bundle id / package, scheme, permissions, plugins, `runtimeVersion` policy, Hermes, and on SDK 54 or older the New Architecture flag.
 3. `eas.json`: build profiles (development, preview, production), channels, env per profile.
 4. Navigation: Expo Router (file-based, groups, layouts) or React Navigation; auth gating approach.
@@ -42,11 +42,11 @@ Use this skill when building, auditing, or debugging a React Native app, with or
 - Text must be inside `<Text>`; layout uses flexbox with `flexDirection: 'column'` default.
 - Images: `expo-image` with explicit sizes and caching; never decode large images on the JS side.
 - Secrets: `SecureStore` for tokens; `AsyncStorage`/MMKV only for non-sensitive data; `EXPO_PUBLIC_*` env is bundled into the app and is public by definition.
-- Networking: iOS ATS blocks plain HTTP; Android 9+ blocks cleartext unless configured. Retry with backoff; show offline state.
+- Networking: iOS ATS blocks plain HTTP; Android 9+ blocks cleartext unless configured. Retry with backoff; show offline state. A request that timed out may have succeeded on the server. Retry a POST or PATCH only when the API documents idempotency keys for that endpoint, and send the same key on every retry, within the window the API documents (Stripe may delete keys after 24 hours). PUT and DELETE are idempotent by definition, so they need no key.
 - Deep links: `scheme` for custom links, Universal Links (AASA) and App Links (assetlinks.json) for HTTPS; test cold start and warm start paths.
 - Notifications: request permission in context, not at launch; test on physical devices with production credentials; Android needs a channel.
-- OTA (EAS Update): only JS and assets; any native change (new module, permission, SDK upgrade) requires a new build and a new `runtimeVersion`.
-- New Architecture: React Native 0.82 made it mandatory and SDK 54 is the last Expo SDK with a legacy option; SDK 55 (React Native 0.83) and every later SDK run the New Architecture only, and React Native removes more legacy classes each release. Before moving an app off SDK 54 or older, confirm every native library supports it; replace legacy-only modules instead of pinning the SDK. Fabric/TurboModules break old bridge-based modules. (Checked 2026-10-26: the latest SDK was 58 with React Native 0.88; read the project's own SDK with `npx expo-doctor`, not this line.)
+- OTA (EAS Update): only JS and assets; any native change (new module, permission, SDK upgrade) requires a new build and a new `runtimeVersion`. Every installed build with the same `runtimeVersion` gets the update, including builds from months ago, so each update must still work with the oldest of them: keep the API backward compatible for it, or block old builds with a minimum-version check.
+- New Architecture: React Native 0.82 made it mandatory and SDK 54 is the last Expo SDK with a legacy option; SDK 55 (React Native 0.83) and every later SDK run the New Architecture only, and React Native removes more legacy classes each release. Before moving an app off SDK 54 or older, confirm every native library supports it; replace legacy-only modules instead of pinning the SDK. Fabric/TurboModules break old bridge-based modules. (Do not take a version from this file. Read the project's own SDK from `node_modules/expo/package.json` or the lockfile, and the latest with the `npm view` commands in step 1.)
 - Platform targets: Play requires a recent `targetSdkVersion` each year; Apple requires current Xcode SDK and privacy manifests for listed APIs.
 
 ## Architecture that holds up
@@ -72,6 +72,7 @@ Use this skill when building, auditing, or debugging a React Native app, with or
 - `jest-expo` + Testing Library for React Native for components and hooks.
 - Maestro (or Detox) flows on real devices or emulators for critical paths; run on EAS-built binaries in CI.
 - Manual matrix: smallest supported iPhone, a mid-range Android, both OS minimum versions, dark mode, large font sizes.
+- Run the flows against staging with a masked copy of production data that keeps real lengths and shapes (long names, zero items, a 500-item list), not one fixture account.
 
 ## Verification
 
@@ -108,6 +109,7 @@ Device verification: [devices/OS versions tested, results]
 - `../../references/checklists/expo-react-native-checklist.md`
 - `../../references/checklists/react-development-checklist.md`
 - `../../references/checklists/mobile-app-release-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`
 
 Offline, biometric and battery bullets adapted in part from engineering/engineering-mobile-app-builder.md (agency-agents, MIT).
 
@@ -120,7 +122,7 @@ Offline, biometric and battery bullets adapted in part from engineering/engineer
 - **Lists**: memoized row components and a memoized `renderItem`, stable `keyExtractor`; tune `initialNumToRender` and `windowSize` on `FlatList`; `FlashList` for large or mixed lists.
 - **Native APIs live in `use*` hooks**, never in JSX. Track a status (loading, denied, granted) rather than just a value, so the UI can tell "still loading" from "permission denied". Use an `active` flag in effect cleanup to ignore stale results after unmount.
 - **Styling**: pick one system (StyleSheet or a utility-class library) and stay with it; no inline style objects on hot paths.
-- **Forms**: set `keyboardType`, `autoCapitalize`, and an `accessibilityLabel` on inputs; respect safe areas and Dynamic Type from the start.
+- **Forms**: set `keyboardType`, `autoCapitalize`, and an `accessibilityLabel` on inputs; respect safe areas and Dynamic Type from the start. A decimal keyboard types the phone's own separator, and `parseFloat("0,01")` returns 0, so parse money with the user's locale.
 - **Never ship a real secret in the bundle**; privileged calls stay server-side and only public keys protected by backend rules go in the app.
 
 Adapted in part from ECC skills/react-native-patterns (affaan-m/ECC, MIT).

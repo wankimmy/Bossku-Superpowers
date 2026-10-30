@@ -44,4 +44,6 @@ UX and auth: [loading, legend, touch, auth method]
 Test results: [device, network, dataset size]
 ```
 
+The shared quality bar: `../../references/checklists/engineering-quality-bar.md`.
+
 Adapted from agency-agents/gis/gis-web-gis-developer.md (agency-agents, MIT).

@@ -29,11 +29,11 @@ Use this skill when the job is to make a team ship well: turning intent into sli
 
 **Slicing**: walking skeleton first (thin path through every layer), then vertical slices each deployable and demoable; migrations and API changes expand/contract so slices ship independently.
 
-**Estimation**: t-shirt sizes plus a time-boxed spike for unknowns; no false precision; the people doing the work estimate it; scope negotiates, deadlines rarely move.
+**Estimation**: t-shirt sizes plus a time-boxed spike for unknowns; no false precision; the people doing the work estimate it; scope negotiates, deadlines rarely move. Put the production-copy run, the zero-downtime rollout and a rollback rehearsal in the estimate, not only the coding.
 
 **Flow**: WIP limits per person (1–2), pull not push, blocked items surfaced daily, a weekly demo of working software.
 
-**Definition of done**: tests at the right level, docs or ADR updated, migration and rollback plan, observability (logs, metrics, alert if user-facing), feature flag with a cleanup date, reviewed PR, deployed to staging and verified, product owner acceptance.
+**Definition of done**: tests at the right level, docs or ADR updated, migration and rollback plan, observability (logs, metrics, alert if user-facing), feature flag with a cleanup date, reviewed PR, deployed to staging and verified, product owner acceptance. For data or infra changes, add a production-copy run whose results match what deploy should give. Also require CI green on the head being shipped, every requirement in the linked issue mapped to a test, and a rollback checked for data written after deploy.
 
 **Release**: trunk-based with short-lived branches, squash merges, conventional commits, automated changelog, tagged releases, flags to decouple deploy from release, a rollback that has been rehearsed.
 
@@ -42,9 +42,12 @@ Use this skill when the job is to make a team ship well: turning intent into sli
 - PR template (what, why, how tested, risk, rollback); PR size target under ~400 lines; split otherwise.
 - CODEOWNERS for every directory; review SLA under 24 hours; the author nudges, the lead unblocks.
 - Review focus in order: correctness and data safety, security and authz, tests, migrations, performance, then style (style belongs to linters).
+- The reviewer reads the whole diff against the PR description and the linked issue. A requirement with no matching test blocks the merge.
+- Judge each change against the current infra map: how many instances run it, whether a cron or scheduler runs twice, what sits in memory or on local disk, which workers and queues it touches, and what happens at deploy when old and new code overlap. Check each environment separately.
 - Automated gates: lint, typecheck, unit and integration tests, coverage floor on changed lines, secret and dependency scans; a red main is the team's top priority.
 - ADR for structural decisions (`docs/adr/NNNN-title.md`): context, decision, consequences, status.
 - Debt ledger reviewed monthly: item, interest (incidents, slow changes), cost to fix, owner; 10–20% of capacity reserved for paying it down; no debt without a ticket.
+- Version register: the current and latest stable version of each runtime, framework and database, with support end dates, reviewed monthly. An upgrade is its own slice, with a breaking-change list and a rollback.
 
 ## Operational readiness
 
@@ -52,6 +55,7 @@ Use this skill when the job is to make a team ship well: turning intent into sli
 - Incident roles pre-assigned (commander, comms, scribe); severity levels defined; status updates on a cadence.
 - Blameless postmortem within 5 working days for Sev1/Sev2 with actions tracked to closure; near misses count.
 - DR drill and backup restore quarterly; dependency updates weekly and automated.
+- Each runbook says what rollback cannot undo (rows written after the deploy), and how to restore them.
 
 ## Metrics (targets and trends, not vanity)
 
@@ -86,6 +90,7 @@ Planning (biweekly, outcomes not tickets), async daily update, weekly demo, retr
 - Do not skip a postmortem because the incident was "small".
 - Do not estimate other people's work or commit the team without them.
 - Do not let feature flags, quarantined tests, or debt tickets live without an owner and a date.
+- Do not start a data or migration slice without a production data copy. Ask whoever holds production access to prepare one first.
 
 ## Output format
 
@@ -106,3 +111,4 @@ Blockers and who unblocks them: [...]
 - `../../references/checklists/planning-checklist.md`
 - `../../references/checklists/code-review-checklist.md`
 - `../../references/checklists/verification-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`

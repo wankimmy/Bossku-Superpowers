@@ -39,16 +39,19 @@ Apply whichever are relevant; skip clearly irrelevant ones:
 - Who owns each piece of data? Can two services write to the same record?
 - Is eventual consistency acceptable, or is strong consistency required?
 - Are CQRS or event sourcing patterns appropriate, or over-engineering for the current scale?
+- For each shared write, which guard holds it: a transaction, a row lock, a unique constraint or an idempotency key? A write with no guard is a race.
 
 **Integration and external dependencies**
 - Are external integrations behind abstraction boundaries (anti-corruption layers)?
 - Are service contracts versioned and backwards-compatible?
 - Is the system resilient to partial failures (circuit breakers, retries with backoff, timeouts)?
+- For each outbound call: what happens when it is down or slow, is a retry safe to repeat, and what gets logged? Say what the caller does while the dependency is down.
 
 **Scalability and operability**
 - Where are the bottlenecks if load increases 10×? 100×?
 - Are stateful components identifiable and independently scalable?
 - Is observability (logging, tracing, metrics) a first-class concern in the design?
+- What does the design add to daily operations? Name the new queues, dashboards and runbooks someone must watch or run.
 
 **Security architecture**
 - Are trust boundaries explicit?
@@ -134,11 +137,11 @@ Use this section when a team is considering event sourcing, CQRS, or horizontal 
 
 ## Workflow
 
-1. **Read the current architecture** — Resolve the project root and analysis scope; identify structure from code, not docs. Map modules, layers, entry points, key data flows, and external dependencies with source locations. Distinguish a pinned revision from working-tree edits and state unread areas.
+1. **Read the current architecture** — Resolve the project root and analysis scope; identify structure from code, not docs. Map modules, layers, entry points, key data flows, and external dependencies with source locations. Distinguish a pinned revision from working-tree edits and state unread areas. Record the runtime and framework versions the code runs, from its manifests and lockfiles. A design that needs a newer version is an upgrade decision. Start from the current infra map (where each process runs, how many instances run at once, where state and sessions live), not from an assumed one.
 
 2. **Choose a view that answers the question** — Use C4 Level 2 (Container) or Level 3 (Component) for boundaries; sequence for call order, dataflow for movement/ownership, workflow for process, and lifecycle for state transitions. A concise text map or Mermaid is the portable default; no diagram runtime is required. Name responsibilities and support relationships with call, registration, transport, or configuration evidence. Preserve direction, action/protocol, synchronous/asynchronous behavior, and failure paths where verified. Do not infer runtime causality from names or file proximity.
 
-3. **Apply the architectural lenses** above — Work through each relevant lens and note concerns.
+3. **Apply the architectural lenses** above — Work through each relevant lens and note concerns. Then walk the what-ifs: empty, duplicate, concurrent, retried, out of order, partial failure, and a dependency that is down.
 
 4. **Distinguish local fix from structural need** — Can this be solved with a small change inside the current boundary? Or does it require moving the boundary? Apply the principle: prefer local fixes unless the structure materially blocks correctness, maintainability, or delivery.
 
@@ -152,7 +155,7 @@ Use this section when a team is considering event sourcing, CQRS, or horizontal 
 
    When the model itself is changing, sharpen the domain language as you go: call out a term that conflicts with the project glossary, propose one canonical name for an overloaded term (for example Customer versus User), stress-test relationships with concrete edge-case scenarios, and check whether the code agrees with what was just said. Keep the glossary free of implementation detail, and update it when a term is resolved rather than in a batch later.
 
-6. **Surface the residual risks** — Every architecture has tradeoffs. Name them explicitly so the user can make an informed decision.
+6. **Surface the residual risks** — Every architecture has tradeoffs. Name them explicitly so the user can make an informed decision. Include the deploy path. In a rolling deploy, old and new code run side by side, so change things additively first and contract later. Name how existing data moves: expand, chunked backfill, cutover, and the way back.
 
 ## Guardrails
 
@@ -185,6 +188,7 @@ Residual risks: [what remains after the recommendation]
 
 - `../../references/playbooks/architecture-playbook.md`
 - `../../references/checklists/architecture-review-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`
 
 ADR gate and glossary practice adapted in part from engineering/domain-modeling (skills pack by Matt Pocock, MIT).
 

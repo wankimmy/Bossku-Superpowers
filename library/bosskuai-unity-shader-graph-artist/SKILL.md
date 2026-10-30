@@ -17,7 +17,7 @@ Use this skill to author, optimise, and hand off Unity materials and screen effe
 ## Workflow
 
 1. Brief: visual reference, target platforms (PC, console, mobile), pipeline (URP, HDRP; built-in is legacy), and the cost budget. Agree these before opening Shader Graph.
-2. Check the project's Unity and render-pipeline package versions and read the matching documentation. Custom-pass APIs differ between URP and HDRP and between versions.
+2. Check the project's Unity version (`ProjectSettings/ProjectVersion.txt`) and the URP or HDRP package version (`Packages/packages-lock.json`), then read the matching documentation and the latest stable release notes. Custom-pass APIs differ between URP and HDRP and between versions.
 3. Plan the logic on paper: texturing, lighting, effects, output. Decide Shader Graph (artist-editable) versus HLSL (when profiling shows a need).
 4. Build reusable pieces first as Sub-Graphs (fresnel, dissolve core, triplanar). Group nodes by purpose, expose only artist-facing parameters, and add tooltips on the Blackboard.
 5. For HLSL: use SRP-compatible macros and include files, declare per-material constants consistently with the Properties block (mismatches give black or wrong materials), and keep include files separate from shader wrappers.
@@ -32,6 +32,10 @@ Use this skill to author, optimise, and hand off Unity materials and screen effe
 - A graph built for one pipeline does not port automatically to another.
 - Do not ship only compiled shader variants; keep the source.
 - Do not change shared library shaders without checking dependent materials.
+- Each new keyword multiplies the shader variant count. Check the count and the build time after each keyword.
+- Test zero and maximum parameter values, a missing texture, and a camera with an unusual aspect ratio.
+
+Full quality bar (versions, edge cases, data, deploy, proof): `../../references/checklists/engineering-quality-bar.md`.
 
 ## Output format
 

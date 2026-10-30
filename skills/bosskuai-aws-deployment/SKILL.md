@@ -46,6 +46,7 @@ Route 53 → CloudFront (static, WAF) → ALB (TLS from ACM) → ECS Fargate ser
 - IAM: task execution role (pull image, read secrets) separate from task role (app permissions); scoped resource ARNs; permission boundaries for CI roles.
 - CI deploys through an OIDC trust to a deploy role limited to ECR push, task definition registration, and service update.
 - Account guardrails: root MFA, CloudTrail organization trail, GuardDuty, Config rules for public S3 and open SGs, AWS Budgets alerts at 50/80/100%.
+- Secrets Manager rotation: running tasks keep the secret they started with. Keep the old credential valid at the database or service until every task has restarted, or old tasks fail once they open new connections with it. Single-user rotation changes that password during rotation. Alternating-user rotation keeps it valid only until the next rotation, so the gap between rotations must be longer than the restart time.
 
 ## Data
 
@@ -54,15 +55,20 @@ Route 53 → CloudFront (static, WAF) → ALB (TLS from ACM) → ECS Fargate ser
 - Parameter groups for `max_connections`, slow query logging; Performance Insights on.
 - S3: block public access, versioning on buckets that hold user data, lifecycle rules to Intelligent-Tiering, SSE-KMS.
 - Encryption at rest with KMS everywhere; key policies reviewed like IAM.
+- Stateful resources (RDS, and S3 buckets or EBS volumes that hold data) get `prevent_destroy` in Terraform, or `DeletionPolicy: Retain` plus `UpdateReplacePolicy: Retain` in CloudFormation, so a replacement in a plan cannot delete the old data. Read each plan for replacements, because a replacement that still runs creates an empty resource.
+- SQS standard queues deliver at least once, so handlers must be idempotent. For Lambda on SQS, set the queue visibility timeout to at least six times the function timeout, plus `MaximumBatchingWindowInSeconds` when a batch window is set. If that window is under 20 seconds, use 20 seconds instead, because a very low-traffic queue can make Lambda wait up to 20 seconds. A shorter timeout means the same message is processed twice.
 
 ## Deploy and rollback
+
+Before each deploy, read the versions in use from the repo: the Lambda runtime, the RDS engine, the ECS platform, and the Terraform or CDK and provider versions. Check each support end date and latest release live: the AWS docs (`docs.aws.amazon.com`) for services, the Terraform Registry (`registry.terraform.io`) for providers.
 
 1. CI builds the image, tags it with the git SHA (immutable), pushes to ECR with scan-on-push.
 2. Run migrations as a one-off ECS task from the new image, gated by a plan step; migrations must be backward compatible with the currently running version (expand/contract).
 3. Register a new task definition and update the service: rolling with minimum healthy 100% and circuit breaker on, or blue/green through CodeDeploy for high-risk services.
-4. ALB health checks decide readiness; alarms on 5xx and p99 gate the promotion.
+4. ALB health checks decide readiness; alarms on 5xx and p99 gate the promotion. Old tasks drain through the ALB deregistration delay and the container's `stopTimeout`, so the app must finish in-flight requests and handle SIGTERM inside that window.
 5. Rollback is re-deploying the previous task definition revision; the previous image stays in ECR (lifecycle policy keeps the last N).
 6. Terraform: remote state in S3 with native S3 locking (`use_lockfile = true`; DynamoDB locking is deprecated), `plan` on pull requests, `apply` from main with a manual approval environment; CDK: `cdk diff` in PR, `cdk deploy` with `--require-approval` for IAM changes.
+7. Before the first production run of a schema change, restore a recent production snapshot into a separate instance and run the migration there, comparing row counts. A rollback re-deploys the old task definition but keeps the rows the new version wrote. A point-in-time restore creates a new instance, so name who switches traffic to it.
 
 ## Observability
 
@@ -103,3 +109,4 @@ IaC: [Terraform | CDK] - plan reviewed: [yes/no]
 - `../../references/checklists/aws-deployment-checklist.md`
 - `../../references/checklists/devops-iac-checklist.md`
 - `../../references/checklists/security-risk-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`

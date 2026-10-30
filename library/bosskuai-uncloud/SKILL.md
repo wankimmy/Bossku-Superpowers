@@ -23,11 +23,16 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 6. Images.
 
 - Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
-- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- Check the source prerequisites first. Then check the `uc` CLI version on your machine and the Docker version on each cluster machine. Compare each one live with its latest stable release at work time, never from memory. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
 
 ## Done when
 
 Complete the source “Common Workflows” procedure for this task. Keep its resulting artifact, command output or cited evidence, and state what remains unverified.
+
+- Tag every image with a version and keep the previous tag, so a rollback can redeploy a known image. Back up volumes before any change that could remove or move them.
+- Check that the new containers are healthy before the old ones stop, so users keep getting answers during the switch.
+- By default, Docker-published ports bypass ufw, so a ufw rule alone does not close them. Publish a port to the network only when it must be public. Bind every other port to 127.0.0.1 (for example -p 127.0.0.1:5432:5432@host). Docker releases older than 28.0.0 let hosts on the same local network reach 127.0.0.1 ports, so check each machine's Docker version first. From another machine, test that a port meant to stay closed is closed.
+- Meet every check in the [shared quality bar](../../references/checklists/engineering-quality-bar.md).
 
 If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
 

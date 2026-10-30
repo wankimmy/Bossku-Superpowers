@@ -32,6 +32,11 @@ Use this skill to scaffold and debug WebXR experiences that run across headsets 
 - This skill is thin on source detail; treat specifics (API names, flags, limits) as unverified until confirmed in the current WebXR and framework documentation.
 - Do not test on-headset motion for long sessions without breaks; warn users about motion sickness and photosensitivity.
 - Do not collect spatial or camera data without consent and a stated purpose.
+- Record the browser, headset firmware or OS, and framework version on every test. Check the WebXR support table for each device before you test.
+- Check the framework's release notes for the installed version (A-Frame, Three.js or Babylon.js) before you use an XR API. In Three.js, `THREE.REVISION` gives the version to log.
+- Test a refused permission, a session that ends mid-frame, a headset that goes to sleep, and a browser with no XR support, where the fallback view must still work.
+
+Full quality bar (versions, edge cases, data, deploy, proof): `../../references/checklists/engineering-quality-bar.md`.
 
 ## Output format
 

@@ -23,12 +23,16 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 6. Parser Pattern.
 
 - Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
-- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- Check the device's software version first with `show version` (Cisco IOS, IOS-XE and Junos), check the vendor's latest stable release on its official release page at work time, then the source prerequisites. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
 
 ## Done when
 
 Record relevant neighbour state, policy/route evidence and supported root-cause hypothesis using read-only commands; no config change is implied.
 
 If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
+
+Keep each command's timestamped output with the diagnosis. Before any change is approved, capture the output of `show running-config` and `show ip route` as text, and move that text off the device only with approval, because configs can hold secrets. Never run `write memory` or `copy running-config startup-config` in this skill: they overwrite the startup config. `clear ip bgp` resets the session and `debug` can load the CPU, so run either only with approval.
+
+Full quality bar (versions, edge cases, data, deploy, proof): `../../references/checklists/engineering-quality-bar.md`.
 
 Adapted from the locally reviewed `affaan-m/ECC` snapshot: provenance and hashes in [SOURCE.json](SOURCE.json), the original text and resources in [references/upstream/](references/upstream/SKILL.md) under its [MIT licence](references/upstream/LICENSE). Copyright (c) 2026 Affaan Mustafa.

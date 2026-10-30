@@ -44,7 +44,7 @@ _CHANGE = re.compile(
 CHANGE_REMINDER = (
     "BosskuAI security gate (must rule): load bosskuai-security-gate and run its pass on this change (deep for auth, "
     "payments, tenant data, secrets, uploads, public endpoints, infra/CI or agent tools; dependencies against live "
-    "feeds, never memory). Alert only on High and Critical. End the reply with `Security gate: PASS | BLOCK`; the "
+    "feeds, never memory). Alert only on High and Critical. End the reply with `Security gate: PASS | BLOCK | PROVISIONAL`; the "
     "stop gate holds the turn until it is there.")
 DAILY_REMINDER = (
     "BosskuAI daily dependency check (must rule, first prompt today in this project): before other work, check "

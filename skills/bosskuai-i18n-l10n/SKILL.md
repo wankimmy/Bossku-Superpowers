@@ -65,6 +65,12 @@ Use this skill when the main question is **how the product behaves across langua
 - Normalize Unicode (NFC) at input, truncate on grapheme clusters, and pass a locale to case changes and sorting.
 - Run pseudo-localization in CI and demo one RTL locale with each feature.
 - Ask "who is left out": a forced first/last name split, gender dropdowns, and colour or icon meanings that differ by market (for example red means rising in some finance markets).
+- Versions: read the i18n library's version from the lockfile, and check the latest with `npm view <package> version`. `Intl` output comes from the runtime's data (`process.versions.icu` on Node, the browser on the client), so add one test that formats the same value, locale and options on the server and in a real browser, and fails if the two outputs differ.
+- Money: store integer minor units (sen for MYR) or a decimal string, never a float, and format it with `Intl.NumberFormat(locale, { style: 'currency', currency })`. Intl expects major units, so first divide integer minor units by 10 to the power of the currency's fraction digits (`resolvedOptions().maximumFractionDigits`: 2 for MYR, so 1050 sen is RM10.50; 0 for JPY). A decimal string needs no division.
+- Typed numbers: parse them with a locale-aware parser, not parseFloat. Intl has no parse method, so read the locale's decimal and group separators from `formatToParts` first. `parseFloat("0,01")` returns 0, so a German-locale keyboard can save zero. Test one comma-decimal locale.
+- Dates on the wire: send ISO 8601 with an explicit offset (for example `2026-10-30T08:00:00+08:00`) or UTC, and store UTC. A bare local time is read in the reader's own zone.
+- Old builds: an app or cached page on an old version keeps its old keys. A removed key usually shows the raw key to those users, so keep old keys until the oldest supported version is gone, or fall back to the source text.
+- Storage: MySQL's `utf8` is 3-byte and rejects emoji. Store user text as `utf8mb4`.
 
 ## Guardrails
 
@@ -97,6 +103,7 @@ Intentional gaps to document:
 ## References
 
 - `../../references/checklists/i18n-l10n-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`
 
 Adapted from engineering/engineering-i18n-engineer.md and specialized/specialized-cultural-intelligence-strategist.md (agency-agents, MIT).
 

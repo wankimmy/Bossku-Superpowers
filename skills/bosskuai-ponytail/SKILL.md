@@ -81,12 +81,14 @@ Lazy code without its check is unfinished. Non-trivial logic (a branch, a loop,
 a parser, a money/security path) leaves ONE runnable check behind — the smallest
 thing that fails if the logic breaks: an `assert`-based `demo()`/`__main__`
 self-check or one small test file. No frameworks, no fixtures, no per-function
-suites unless asked. Trivial one-liners need no test — YAGNI applies to tests too.
+suites unless asked. Trivial one-liners need no test — YAGNI applies to tests too — except a fix: each fix has a test that failed before it and passes after.
 
 ## Interaction with BosskuAI agents
 
 - **Orchestrator/Planner:** the plan defaults to the fewest phases and files that satisfy the request; flag any phase that exists "for later."
 - **Executor:** climbs the ladder before each step; emits `ponytail:` comments for deliberate shortcuts.
 - **Auditor / rigorous-code-review:** treats unrequested abstraction, dead scaffolding, and avoidable dependencies as findings — but never flags a documented `ponytail:` ceiling as a defect.
+
+Simple never means skipping checks: the shared quality bar still applies, `../../references/checklists/engineering-quality-bar.md`.
 
 The shortest path to done is the right path.

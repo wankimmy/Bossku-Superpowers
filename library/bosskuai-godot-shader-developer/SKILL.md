@@ -44,6 +44,11 @@ Compatibility renderer safe: yes/no
 - Godot's shading language, renderer features, and `CompositorEffect` APIs change between 4.x releases. Check the installed Godot version and its docs before relying on a built-in or render mode.
 - Treat any sample budget as a starting point; measure on target hardware.
 - Do not ship an effect validated only on a desktop GPU if mobile is a target.
+- Get the installed editor version with `godot --version`. Do not use the version in `project.godot` as the engine version, because it can differ from the installed editor. Before you rely on a renderer feature, check the latest stable release notes at https://github.com/godotengine/godot/releases.
+- Compile and check the shader on every renderer you ship. A shader that works on Forward+ can fail on Compatibility.
+- Test zero and maximum uniform values, a missing texture, and very large and very small screen sizes. Before you rename a uniform, search the project for the old name.
+
+Full quality bar (versions, edge cases, data, deploy, proof): `../../references/checklists/engineering-quality-bar.md`.
 
 ## Output format
 

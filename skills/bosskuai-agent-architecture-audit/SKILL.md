@@ -121,7 +121,7 @@ Define what you're auditing:
 
 - **Target system** — what agent application?
 - **Entrypoints** — how do users interact with it?
-- **Model stack** — which LLM(s) and providers?
+- **Model stack** — which LLM(s) and providers? Read the exact model ids and SDK versions from the app's config and lockfile, then check the provider's current model list live, since models are renamed and retired.
 - **Symptoms** — what does the user report?
 - **Time window** — when did it start?
 - **Layers to audit** — which of the 12 layers apply?
@@ -180,6 +180,8 @@ Default fix order (code-first, not prompt-first):
 6. **Reduce rendering mutation** — pass-through, don't transform
 7. **Convert to typed JSON envelopes** — structured internal flow, not freeform prose
 
+Ship each fix so that memory and session state written by the old version still load, and keep a rollback that does not lose data written by the new one.
+
 ## Severity Model
 
 | Level | Meaning | Action |
@@ -212,6 +214,7 @@ When auditing an agent system, answer these:
 | 5 | Does the output differ between internal generation and user delivery? | Rendering corruption |
 | 6 | Are "must use tool X" rules only in prompt text? | Tool discipline failure |
 | 7 | Can the agent's own monologue become persistent memory? | Memory poisoning |
+| 8 | Do logs keep raw prompts or responses that hold personal data? | Data leak: mask before the log write |
 
 ## Anti-Patterns to Avoid
 
@@ -274,6 +277,7 @@ Add this when agents call each other or act with real authority.
 - `bosskuai-cybersecurity-risk` — Security audit for code and configuration
 - `bosskuai-prompt-injection-defense` — Harden agent workspaces, MCP setups, and injection surfaces
 - `bosskuai-context-budget` — Quantify context overhead when layer 1-5 duplication is the finding
+- `../../references/checklists/engineering-quality-bar.md` — the shared quality bar that fixes are checked against.
 
 Adapted from specialized/agentic-identity-trust.md (agency-agents, MIT).
 
@@ -287,5 +291,6 @@ When tool selection or interpretation is the suspect layer, check the harness be
 - Each error path gives a root-cause hint, a safe retry instruction and an explicit stop condition; otherwise expect retry loops (layer 11).
 - Context budget: system prompt minimal and invariant, large guidance loaded on demand, file references instead of inlined documents, compaction at phase boundaries rather than at arbitrary token counts.
 - Prefer ReAct-style planning with typed tool execution; pure ReAct for deterministic flows or pure function-calling for exploratory ones is a smell.
+- Each model and tool call has an explicit timeout and a capped retry with backoff. Wait for the `Retry-After` time when a 429 sends one. Retry only a call that is safe to repeat, such as a read or a write with an idempotency key; a retry must not send a second email, charge or write. Reject schema-breaking output loudly instead of passing it on.
 
 Adapted in part from ECC skills/agent-harness-construction (affaan-m/ECC, MIT).

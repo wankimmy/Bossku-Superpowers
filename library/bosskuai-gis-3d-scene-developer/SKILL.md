@@ -43,4 +43,6 @@ Access: [public / authenticated, provider]
 Test results: [device, load time, frame rate]
 ```
 
+The shared quality bar: `../../references/checklists/engineering-quality-bar.md`.
+
 Adapted from agency-agents/gis/gis-3d-scene-developer.md (agency-agents, MIT).

@@ -411,3 +411,14 @@ When this skill is used for review, return:
 - Skill: `backend-patterns` - API and service-layer patterns
 - Skill: `security-review` - secret handling, auth, and least privilege
 - Agent: `database-reviewer` - broader database review workflow
+
+## Bossku additions
+
+Local additions (user rules, 2026-10-30); the upstream text above is unchanged.
+
+- **Version:** use the Version Check above to tell MySQL from MariaDB; their JSON types, functions and online DDL support differ. Check the vendor's release page for support dates.
+- **Types:** comparing a string column with a number casts the column and skips its index (`'123abc' = 123` matches). Keep money in DECIMAL, and compare character sets and collations between environments.
+- **Production copy:** run new queries and migrations on a production data copy, compare row counts, and read `EXPLAIN` there, not on a small dev database.
+- **Online DDL:** check the support table for your exact engine and version. Name the clause in the statement, such as `ALGORITHM=INSTANT` or `ALGORITHM=INPLACE, LOCK=NONE`, so MySQL fails instead of taking a lock that blocks writes; a plain `INPLACE` can use `LOCK=SHARED`, which blocks writes. Before you run it, set a short `lock_wait_timeout` and confirm no open transaction holds the table, even an idle or read-only one. A waiting ALTER blocks later transactions on that table, reads included, and even `INSTANT` needs a brief exclusive lock at the end. If the change cannot run online, plan gh-ost or pt-online-schema-change.
+
+The full bar: `../../references/checklists/engineering-quality-bar.md`.

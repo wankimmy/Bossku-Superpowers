@@ -386,3 +386,11 @@ You can turn strict checking back off and ship; every fix you made is a genuine 
 | Diagnostics in shipping code       | `Logger` + a correlation ID     | `print`                                   |
 | Deciding to optimize               | Instruments on a profiled test  | intuition                                 |
 
+## Bossku additions
+
+Local additions (user rules, 2026-10-30); the upstream text above is unchanged.
+
+- **Versions:** read `swift-tools-version` in `Package.swift`, the Xcode version, the deployment targets and `swift --version`, and check swift.org/download for the latest release. Use only APIs available on the minimum deployment target, guarded with `#available` where needed.
+- **Types from outside:** `Codable` throws `typeMismatch` when a number arrives as a string; decide on purpose whether to accept both shapes or fail loudly. Use `Decimal` for money.
+
+The full bar: `../../references/checklists/engineering-quality-bar.md`.

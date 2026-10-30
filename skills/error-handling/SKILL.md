@@ -375,3 +375,13 @@ Before merging any code that touches error handling:
 - [ ] Async functions surface errors to callers — no fire-and-forget without fallback
 - [ ] Retry logic only retries retriable errors (not 4xx client errors)
 - [ ] React components are wrapped in `ErrorBoundary` for rendering errors
+
+## Bossku additions
+
+Local additions (user rules, 2026-10-30); the upstream text above is unchanged.
+
+- **External calls:** set connect and read timeouts, retry only operations that are safe to repeat with capped backoff, and log each request and response with secrets and personal data masked.
+- **Fail closed:** a timeout, an unknown status or an unparseable body is a failure, never a success (nothing marked paid, no access granted).
+- **Response drift:** ignore extra fields; reject missing fields and changed types with a clear error instead of coercing them.
+
+The full bar: `../../references/checklists/engineering-quality-bar.md`.

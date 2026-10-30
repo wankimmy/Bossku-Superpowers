@@ -29,7 +29,7 @@ description: Use when doing browser-level testing, UI verification, automated us
 | Playwright MCP | Browser automation (required) | Without Playwright MCP, provide script templates for manual execution |
 | Chrome DevTools MCP (Google) | Runtime inspection, performance profiling, network analysis, accessibility audits (optional) | Without DevTools MCP, use Playwright's built-in tracing and Lighthouse CLI as alternatives |
 
-Note: For headless scripting and CI, Playwright is required.
+Note: For headless scripting and CI, Playwright is required. Read its version from `package.json` and the lockfile (`npm ls @playwright/test` prints the installed one). Browser builds belong to that version, so run `npx playwright install` after an upgrade, and check the latest with `npm view @playwright/test version`.
 
 ## Workflow
 
@@ -104,10 +104,12 @@ Numbered list of issues requiring fix, ordered by severity.
 - Prefer `data-testid` or semantic selectors over CSS class chains; document selector rationale.
 - All Playwright scripts must handle timeouts gracefully — no infinite waits.
 - Visual regression baselines must be stored and versioned; never auto-approve large diffs without human review.
+- Mocks (`page.route`) return production's types and shapes, including string money values and nulls. A cleaner mock hides the bug.
 
 ## Further reading
 
 - `../../references/playbooks/browser-automation-detailed-playbook.md` — extended step-by-step workflow and detailed templates that complement this playbook.
+- `../../references/checklists/engineering-quality-bar.md` — the shared bar: versions, data, deploy and proof.
 
 ## Post-deploy QA additions
 
@@ -116,6 +118,9 @@ Numbered list of issues requiring fix, ordered by severity.
 - **Interaction sweep**: click every nav link (no dead links), submit forms with valid and invalid data (check both success and error states), and run login to protected page to logout with test accounts only.
 - **Visual**: check dark mode if the app has it; flag layout shifts over about 5px, missing elements, and horizontal overflow. No stored baseline means INCONCLUSIVE, never a silent PASS.
 - **Accessibility**: run axe-core (or equivalent) for WCAG 2.2 AA, plus keyboard navigation end to end, focus order, and landmarks. Automated runs cover only roughly 30-40% of WCAG, so a clean run is necessary, not sufficient; do not report "accessible" from it alone.
+- **Rolling deploys**: old and new instances can serve the same users during a deploy. Run the smoke pass once the rollout has finished, and again after a short wait.
+- **Locale and time zone**: run the money and date journeys with Playwright's `locale` and `timezoneId` options (for example `ms-MY` with `Asia/Kuala_Lumpur`), and once in a comma-decimal locale.
+- **Data size**: run the journeys against a staging copy of anonymized production data with the same row counts, field lengths and data types. Traces, HAR files and screenshots then hold no real personal data. A flow that passes with three products can fail on the real catalog (pagination, long names).
 - **Verdict line** at the end of the report: SHIP, SHIP WITH FIXES, DO NOT SHIP, or INCONCLUSIVE (with issue and blocker counts).
 
 Adapted in part from ECC skills/browser-qa (affaan-m/ECC, MIT).

@@ -22,11 +22,16 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 5. Guardrails.
 
 - Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
-- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- Check the database or warehouse server version (for example `SELECT VERSION();` on MySQL), the client driver version in the lockfile, and each one's latest stable release, checked live at work time, and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
 
 ## Done when
 
 Complete the source “Workflow”, “Accounting Output” procedure for this task. Keep its resulting artifact, command output or cited evidence, and state what remains unverified.
+
+- Benchmark on a copy of production with its real row sizes and types, such as wide text, nulls and DECIMAL money. A sample of the first thousand rows hides the slow cases.
+- Make each batch safe to retry: load into a staging table or behind a unique key, so no rows are written twice, and check the accounting block against the source before promotion.
+- Run large loads in chunks, off-peak, and watch the target's locks and connection limits. The fastest load can block production writes.
+- Meet every check in the [shared quality bar](../../references/checklists/engineering-quality-bar.md).
 
 If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
 

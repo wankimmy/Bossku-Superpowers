@@ -45,4 +45,6 @@ Error handling and logging: [approach]
 Tests: [datasets and edge cases]
 ```
 
+The shared quality bar: `../../references/checklists/engineering-quality-bar.md`.
+
 Adapted from agency-agents/gis/gis-geoprocessing-specialist.md (agency-agents, MIT).

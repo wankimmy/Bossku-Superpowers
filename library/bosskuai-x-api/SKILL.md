@@ -23,11 +23,16 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 6. Environment setup — source before use.
 
 - Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
-- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- Check these first, live at work time. Your X app's access and billing setup can limit which endpoints you can call and how often. Check the API version the code calls, and X's developer changelog for deprecations. Then check the source prerequisites. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
 
 ## Done when
 
 Apply the source “Authentication”, “OAuth 2.0 Bearer Token (App-Only)” guidance to the concrete request. Return the resulting x api artifact or diagnosis with source/command evidence for each conclusion.
+
+- Set explicit connect and read timeouts. On a 429, wait until the `x-rate-limit-reset` time before you retry. If the API stays down or slow, return a clear error to the caller.
+- Follow `meta.next_token` to the last page. Keep tweet and user IDs as strings, because a JavaScript number loses digits above 2^53. Validate the fields you read, and ignore extra ones.
+- Before you retry a post, check whether the first one went through, because a retry can publish the same post twice. Log each request and response with the bearer token masked.
+- Meet every check in the [shared quality bar](../../references/checklists/engineering-quality-bar.md).
 
 If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
 

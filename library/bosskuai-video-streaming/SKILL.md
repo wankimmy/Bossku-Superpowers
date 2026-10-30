@@ -45,4 +45,6 @@ QoE baseline and target: [startup, rebuffer, failures]
 Experiments: [variable - result]
 ```
 
+The shared quality bar: `../../references/checklists/engineering-quality-bar.md`.
+
 Adapted from agency-agents/engineering/engineering-video-streaming-engineer.md (agency-agents, MIT).

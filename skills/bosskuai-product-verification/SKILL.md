@@ -16,8 +16,8 @@ Verify what a user can actually do in the running product. A passing test suite 
 
 ## Workflow
 
-1. Identify the changed user path and an observable success condition. Read the repo's launch/test commands, configuration requirements, and existing verification recipe.
-2. Confirm the environment and test data. Use a disposable account, temporary home, or test database when the path writes state. Respect existing authorization for actions.
+1. Identify the changed user path and an observable success condition. Read the repo's launch/test commands, configuration requirements, and existing verification recipe. Record which build you tested (commit SHA or version string), so the evidence matches what ships.
+2. Confirm the environment and test data. Use a disposable account, temporary home, or test database when the path writes state. Respect existing authorization for actions. For a path that reads or writes real records, use a copy of production data. Ask the user to prepare one if none exists. Before you run anything, check that personal data is masked and that email, SMS, payment and webhook calls are switched off. Delete the copy when the test ends. Clean temporary data hides nulls and legacy rows.
 3. Choose the lightest real check: invoke the CLI as a user would, exercise the service boundary, or walk the browser journey. Use an installed browser tool; do not assume a tool, server, or credential exists.
 4. When diagnosing a regression, capture the original failure or baseline before the fix. Record the command, inputs, expected result, and observed result.
 5. Run the changed path and one adjacent path that could regress. Check relevant failure states such as invalid input, an unavailable service, or a denied permission.
@@ -32,6 +32,8 @@ Verify what a user can actually do in the running product. A passing test suite 
 - Browser actions such as checkout, invitation, and deletion may have external effects. Use a test path within the authorized scope.
 - A launch command copied from another project is not a verification recipe. Discover the actual repo's commands first.
 - Stop or clean up only resources created for this verification; preserve the user's existing processes and data.
+- A double submit or a retry after a timeout must make exactly one result. On a test path within the authorized scope, send the action twice, then check that only one result exists.
+- After a deploy, confirm the live build is the one you tested (version string, commit SHA or a build field in the API) before you call it verified.
 
 ## Output
 
@@ -45,6 +47,7 @@ State any remaining gap and the cleanup performed. Never claim product verificat
 
 - `../../references/playbooks/claude-code-practices-playbook.md`
 - `../../references/checklists/engineering-delivery-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`
 
 ## Production readiness pass ("what breaks in prod?")
 

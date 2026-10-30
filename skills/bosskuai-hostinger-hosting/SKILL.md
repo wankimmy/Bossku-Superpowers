@@ -35,6 +35,7 @@ Use this skill when the box or plan is Hostinger and the answer depends on what 
 4. UFW: allow OpenSSH, 80, 443 only; mirror the same in the hPanel VPS firewall.
 5. `fail2ban` sshd jail, `unattended-upgrades`, timezone, hostname, 1–2 GB swap on small plans.
 6. Enable paid backups or set up off-box backups before deploying anything.
+7. Check the versions you inherit: the OS release (`/etc/os-release`), PHP (`php -v`), Node (`node -v`) and MySQL (`mysql --version`). Compare each with its support end date on the vendor's page. A template default is not a decision you made.
 
 ## One-box layout that stays operable
 
@@ -47,10 +48,13 @@ Use this skill when the box or plan is Hostinger and the answer depends on what 
 
 ## Deploying without downtime on one box
 
-- PHP: symlinked releases (`releases/<sha>` → `current`), `composer install --no-dev`, `php artisan migrate --force` gated, then swap the symlink and `php artisan config:clear && config:cache` (cached config keeps old credentials otherwise).
+- PHP: symlinked releases (`releases/<sha>` → `current`), `composer install --no-dev`, `php artisan migrate --force` gated, then swap the symlink and `php artisan config:clear && config:cache` (cached config keeps old credentials otherwise). Keep the previous release directory until the new one is verified. Reload php-fpm after the swap, because PHP's realpath cache can keep serving the old release for a while.
 - Node: `pm2 reload <app>` in cluster mode, or blue/green ports behind nginx.
 - Never rotate a credential into `.env` before the `ALTER USER` or provider change is verified; a half-rotation takes the app down.
 - `artisan tinker` can fail when psysh cannot write its config dir; bootstrap Laravel from a standalone PHP script for one-off scripts.
+- One deploy at a time: put the deploy script behind a lock file (`flock`). Two runs that swap symlinks or migrate together can leave the site half-deployed.
+- Rehearse the migration on a copy: restore the production database into a scratch database on the same MySQL version, run the migration against that scratch database only, and compare row counts with production before the real run. Give the copy its own .env with DB_DATABASE set to the scratch database, and use a MySQL user that has no rights on the production database. In the copy, delete bootstrap/cache/config.php and run php artisan config:clear, because a cached config stops .env from loading. Check that no server or php-fpm setting overrides DB_DATABASE. Before you migrate, run SELECT DATABASE(); through the app's connection, and stop if it returns the production name.
+- A rollback restores code, not rows. Keep the pre-deploy dump encrypted and outside the web root, remove it once the release is verified, and write down the reverse step before you start. Migrations must be expand-only in each deploy: the swap and any rollback run old code on the new schema, so add only new tables, nullable columns, or columns with a default. Drop or rename the old column in a later deploy, once no running release uses it.
 
 ## Backups
 
@@ -71,7 +75,7 @@ Use this skill when the box or plan is Hostinger and the answer depends on what 
 
 ## Sizing and edge
 
-- KVM 1–2 for staging; KVM 2+ (4 GB) for production with PM2 + MySQL + Redis; watch RAM before CPU.
+- KVM 1–2 for staging; KVM 2+ (4 GB) for production with PM2 + MySQL + Redis; watch RAM before CPU. Watch disk too: a full disk stops MySQL and log writes in the middle of a release.
 - Cloudflare in front for DDoS, TLS, caching, and to hide the origin IP; keep origin certs valid anyway.
 - No SLA on Hostinger VPS networking; if uptime is contractual, move the database or the whole stack to a managed provider.
 
@@ -112,3 +116,4 @@ Rebuild decision: [not needed | scheduled <date> | done]
 - `../../references/checklists/hostinger-hosting-checklist.md`
 - `../../references/checklists/vps-docker-deployment-checklist.md`
 - `../../references/checklists/security-risk-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`

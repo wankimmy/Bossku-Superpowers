@@ -7,14 +7,17 @@ description: "Use when revamping legacy code safely: modernization, structural c
 
 For refactors and migrations that touch several files. Behaviour must not change except where the request says so.
 
-1. **Map the blast radius before you edit.** Search for every use of what you are changing: imports, calls, string references, `__all__` and re-exports, scripts and CLI entry points, README and docs examples, tests.
-2. **Pin today's behaviour** with tests (write them if they are missing) before you touch the code.
-3. **Work in small slices that each leave the tests green.** Put the new shape next to the old one (alias, shim, wrapper, deprecation warning), move callers one at a time, and remove the old path only if the request says to.
+1. **Map the blast radius before you edit.** Search for every use of what you are changing: imports, calls, string references, `__all__` and re-exports, scripts and CLI entry points, README and docs examples, tests. Read the language and framework versions the code runs from its manifests and lockfiles, and use only the APIs that version has.
+2. **Pin today's behaviour** with tests (write them if they are missing) before you touch the code. Use production-shaped inputs and types (a money value can arrive as the string "0.01"), and cover the edge cases a refactor breaks: empty, null, duplicate, boundary.
+3. **Work in small slices that each leave the tests green.** Put the new shape next to the old one (alias, shim, wrapper, deprecation warning), move callers one at a time, and remove the old path only if the request says to. Queued jobs, caches and other services still send the old names and shapes, so keep the old path until they have drained.
 4. **Keep old import paths and signatures working** unless told otherwise. Warn with the right category, once per call, not once per item.
-5. **Search again for the old name** when you finish; run the full tests and the code in the README.
+5. **Search again for the old name** when you finish; run the full tests and the code in the README. For a change to types, formats or ordering, diff the old and new output on a copy of production data. A green suite does not catch a string that became a number.
 6. **Do not mix refactoring with new behaviour,** and do not tidy code you were not asked to touch.
+7. **Touching locks, transactions or ordering?** Run the same concurrent cases before and after the change.
 
 A revamp needs a concrete harm to justify it; a local fix is better when one will do. Migration patterns (strangler fig, module extraction, interface introduction), the risk matrix and the rollback checklist: read `reference.md` in this folder.
+
+Shared bar: `../../references/checklists/engineering-quality-bar.md`.
 
 ## Inheriting a legacy style
 When new code must match a hand-written codebase, extract its unwritten rules first instead of imposing your own:

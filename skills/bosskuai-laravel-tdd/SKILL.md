@@ -50,6 +50,13 @@ public function test_a_product_can_be_created(): void
 - Test edge cases and authorization boundaries
 - Mock external services with `Http::fake()`, `Mail::fake()`
 - Use `RefreshDatabase` for clean state
+- Run feature tests on the same database engine and version as production (MySQL, MariaDB or PostgreSQL), not SQLite. Type coercion, collation and strict mode differ, so a SQLite pass proves little. Use a separate, disposable test database. Never point tests at production or at a production data copy, because RefreshDatabase drops every table on its connection.
+- Build fixtures from production shapes: money as the string production returns, `NULL` in legacy columns, soft-deleted rows, and old JSON shapes. Add one case per shape.
+- Fake the failures of every outbound call: `Http::sequence()` for a 503 and then a success, `Http::failedConnection()` for a timeout (it raises `Illuminate\Http\Client\ConnectionException`), and a body with a missing or re-typed field.
+- For jobs, call `handle()` twice with the same payload and assert one effect. Also run a payload shaped like one queued before the last deploy.
+- For webhooks, replay the same event, send an older event after a newer one, and send a bad signature. The bad one must change nothing. Sign the raw body in the test.
+- For one-time actions (coupon, refund, invite, OTP), send the same request twice and assert one effect. That catches a missing guard, but a single-threaded test cannot show a real race. So also write a two-connection race test, as bosskuai-integration-testing requires: two real connections, one shared row, started behind a barrier. Assert that one request wins, the other gets the defined error, and there is still one effect. Check that the unique key or lock stops the second request. Do not put this test in RefreshDatabase, because it runs in one transaction and the second connection cannot see the fixture row. Commit the fixtures and reset with DatabaseTruncation instead.
+- Check the PHPUnit or Pest version in `composer.lock`, and read the docs for that version before you use an API.
 
 ### DON'T
 
@@ -85,3 +92,4 @@ public function test_a_product_can_be_created(): void
 - `bosskuai-laravel-security` — Laravel authentication, authorization, and secure coding
 - `bosskuai-tdd-loop` — The repo-wide RED -> GREEN -> REFACTOR loop
 - `bosskuai-laravel-verification` — verification gate to run after the tests are green
+- `../../references/checklists/engineering-quality-bar.md`: the shared bar, with the scenario walk and production data checks.

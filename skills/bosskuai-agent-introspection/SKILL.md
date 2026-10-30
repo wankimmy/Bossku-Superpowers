@@ -46,6 +46,8 @@ Capture:
 - what the agent was trying to do
 - current context pressure: repeated prompts, oversized pasted logs, duplicated plans, or runaway notes
 - current environment assumptions: cwd, branch, relevant service state, expected files
+- the model id, SDK version and provider the failing call used, read from config and the lockfile
+- prompts, responses and logs, with personal data masked
 
 Minimum capture template:
 
@@ -72,6 +74,9 @@ Match the failure to a known pattern before changing anything.
 | `429` / quota exhaustion | retry storm or missing backoff | count repeated calls and inspect retry spacing |
 | file missing after write / stale diff | race, wrong cwd, or branch drift | re-check path, cwd, git status, and actual file existence |
 | tests still failing after “fix” | wrong hypothesis | isolate the exact failing test and re-derive the bug |
+| Model or tool call hangs, or never replies | no timeout set, or the provider is slow | check the call's timeout and the provider's status before any retry |
+| Reply breaks the expected shape (missing field, new type) | provider or code changed the response, or output is not validated | diff the last good reply against the first bad one |
+| Model id not found, or a fallback model answered | id renamed or retired, or the fallback returns near-empty output | check the id against the provider's live model list; log which model served each call |
 
 Diagnosis questions:
 - is this a logic failure, state failure, environment failure, or policy failure?
@@ -90,6 +95,7 @@ Safe recovery actions:
 - narrow the task to one failing command, one file, or one test
 - switch from speculative reasoning to direct observation
 - escalate to a human when the failure is high-risk or externally blocked
+- before any retry, check whether the failed call already changed state (a sent message, a created record, a charge); retry only a call that is safe to repeat
 
 Do not claim unsupported auto-healing actions like “reset agent state” or “update harness config” unless you are actually doing them through real tools in the current environment.
 
@@ -145,6 +151,7 @@ Good pattern:
 - Use `bosskuai-council` when the issue is not technical failure but decision ambiguity.
 - Use `bosskuai-project-understanding` if the failure came from conflicting local state or repo drift.
 - Use `bosskuai-agent-architecture-audit` when symptoms point at the wrapper stack itself (persona injection, model fallback, memory admission) rather than this run.
+- `../../references/checklists/engineering-quality-bar.md`: the shared bar each recovery is checked against.
 
 ## Output Standard
 

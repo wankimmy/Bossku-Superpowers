@@ -51,6 +51,9 @@ When two languages or runtimes exchange data:
 - Date/time formats: always UTC ISO 8601 at the boundary; convert at the consuming end.
 - Error representation: languages handle errors differently — standardize error shape at the API contract.
 - Numeric types: integer overflow, float precision, and bigint handling differ — validate at the boundary.
+- **String length:** PHP `strlen` counts bytes, `mb_strlen` counts characters, and JavaScript `length` counts UTF-16 units. Validate a maximum length in one unit, at the boundary.
+- **Several runtimes:** a web app, a queue worker and CI can run different versions of one language. Check each one.
+- **Money:** send integer minor units or a decimal string, and check how each side parses it. The type table in the shared bar (section 4) lists the traps for each language.
 
 ## CLI and developer-tool contract checks
 
@@ -72,7 +75,7 @@ For large typed fixtures in tests, check whether `@total-typescript/shoehorn` (`
 
 ## Workflow
 
-1. **Identify the actual stack**: language, version, framework, runtime, and build/deploy tools in use.
+1. **Identify the actual stack**: language, version, framework, runtime, and build/deploy tools in use. Read each version from the file that proves it (the manifest, the lockfile, or the runtime's version command), and check the latest stable release live. The shared table in `../../references/checklists/engineering-quality-bar.md` (section 2) names the file and the source for each ecosystem.
 2. **Apply native idioms first**: before recommending a pattern from another ecosystem, check whether the current language has a built-in or idiomatic equivalent.
 3. **Minimal safe change**: prefer the framework-native solution before proposing a dependency or abstraction.
 4. **Surface gotchas**: name the language-specific traps relevant to the current task.
@@ -85,13 +88,15 @@ For large typed fixtures in tests, check whether `@total-typescript/shoehorn` (`
 - Do not recommend patterns from a different ecosystem without explaining the translation cost.
 - Do not assume the same idiom works across languages: error handling in Go is not the same as in Python.
 - Do not recommend a library without checking ecosystem quality signals.
+- Do not state a version is current or latest from memory. Read it from the manifest or lockfile, and check the latest stable release live, with the date.
 - Do not ignore the existing repo's stack version constraints — a Go 1.18 generic solution does not help a Go 1.16 codebase.
 
 ## Output format
 
 ```
 Stack identified:
-  Language / version: [stack]
+  Language: [language]
+  Versions (language, framework, runtime): [current, from which file] / [latest stable, checked date]
   Framework: [framework]
   Runtime: [runtime]
   Build / test tooling: [tools]

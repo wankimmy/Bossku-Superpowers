@@ -29,6 +29,7 @@ Use this skill when deploying a Laravel, Nuxt, Node, Go, or multi-service app to
 - UFW does not filter ports Docker publishes (Docker writes its own iptables rules): publish only the proxy, bind anything else to `127.0.0.1:PORT:PORT`, and check exposure from outside the box.
 3. Docker CE from the official repository; `deploy` in the `docker` group (this is root-equivalent; treat the user accordingly); daemon `log-driver: json-file` with `max-size`/`max-file`.
 4. A private registry token (GHCR, ECR, Docker Hub) for pulls; no build tools on the box.
+5. Know the versions on the box: the Ubuntu release, Docker Engine and Compose (`docker version`, `docker compose version`). Check each support end date live on the vendor's page. After standard security maintenance ends, an Ubuntu LTS gets security fixes only with Ubuntu Pro (ESM). Without Pro, it gets none, even with `unattended-upgrades` on. Check both dates for your release on ubuntu.com/about/release-cycle.
 
 ## Compose topology
 
@@ -37,15 +38,16 @@ Use this skill when deploying a Laravel, Nuxt, Node, Go, or multi-service app to
 - Services: `app` (php-fpm+nginx image, FrankenPHP/Octane, Node, or Go), `worker` (queue), `scheduler` (`schedule:run` loop or cron container), `db` (named volume, internal network only), `redis`, optional `meilisearch`/`minio`.
 - Networks: `edge` (proxy ↔ app) and `internal` (app ↔ db/redis); db and redis never on `edge`.
 - Health checks on every service; `restart: unless-stopped`; memory limits on app and db; pinned image tags.
+- Stop cleanly: `stop_grace_period` longer than the longest request or job. SIGKILL drops the work in progress, so jobs must be safe to run twice. Run one scheduler replica: two of them fire each due task twice unless the tasks use a shared lock.
 
 ## Deploy flow
 
-1. CI builds the image, tags `sha-<short>` and `env-latest`, pushes to the registry.
-2. Server: `docker compose pull app worker scheduler` then run migrations once: `docker compose run --rm app php artisan migrate --force` (gated; migrations backward compatible with the running version).
-3. Roll: `docker compose up -d --wait --no-deps app worker scheduler`; the proxy routes to healthy containers only.
+1. CI builds the image, tags `sha-<short>` and `env-latest`, pushes to the registry. Deploy and roll back by the `sha-` tag or the digest only: `env-latest` moves, so never roll back to it.
+2. Server: `IMAGE_TAG=sha-<short> docker compose pull app worker scheduler`, then run migrations with the same tag: `IMAGE_TAG=sha-<short> docker compose run --rm app php artisan migrate --force` (gated; migrations backward compatible with the running version). Wrap the whole deploy in a lock (for example `flock`), so two runs never migrate or swap at the same time.
+3. Roll: `IMAGE_TAG=sha-<short> docker compose up -d --wait --no-deps app worker scheduler`; the proxy routes to healthy containers only.
 4. Zero-downtime: two `app` replicas behind the proxy with `start_first` rollout, or blue/green compose projects on alternate ports swapped in the proxy config.
 5. Post-deploy: health URL, one authenticated request, queue processes a job, logs clean for 5 minutes.
-6. Rollback: `IMAGE_TAG=<previous> docker compose up -d --wait app worker scheduler`; keep the last five tags in the registry.
+6. Rollback: `IMAGE_TAG=<previous> docker compose up -d --wait app worker scheduler`; keep the last five tags in the registry. Do not run `docker image prune -a` between deploys, because it deletes the images you would roll back to. Watch disk with `docker system df`: a full disk can stop the database and fail the next deploy.
 
 ## Stack notes
 
@@ -58,6 +60,7 @@ Use this skill when deploying a Laravel, Nuxt, Node, Go, or multi-service app to
 
 - Nightly `pg_dump -Fc` or `mysqldump --single-transaction` from a sidecar, plus uploads volume, shipped off-box with `restic` or `rclone` to S3-compatible/B2 storage; encrypted; 30-day retention.
 - Provider snapshots are for quick rollback, not backups.
+- A rollback restores code, not rows. Before a release that changes the schema, take a fresh dump, and write down the reverse step or the restore that undoes what the new version wrote.
 - Quarterly restore drill into a scratch VPS: time it, record it in the runbook.
 
 ## Monitoring
@@ -104,3 +107,4 @@ Production blockers: [P0 items]
 - `../../references/checklists/vps-docker-deployment-checklist.md`
 - `../../references/checklists/docker-checklist.md`
 - `../../references/checklists/hostinger-hosting-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`

@@ -23,12 +23,17 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 6. TypeScript with ethers.
 
 - Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
-- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- Check the EVM client library in the lockfile (ethers, viem or web3.js) and the Solidity compiler version in `foundry.toml` or the Hardhat config. Compare each with its latest stable release, looked up live at work time and never from memory. Check the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
 - Research and review do not authorise signing, trading, booking, purchase or wallet access. Keep any transaction behind an exact operation scope and the user's approval, and never copy or expose private keys.
 
 ## Done when
 
 Apply the source “How It Works”, “Query decimals at runtime” guidance to the concrete request. Return the resulting evm token decimals artifact or diagnosis with source/command evidence for each conclusion.
+
+- Read `decimals()` on-chain for each token on each chain, and cache by chain ID and token address. Never copy decimals from a symbol: USDT has 6 decimals on Ethereum and 18 on BNB Chain.
+- If `decimals()` reverts, or returns anything other than a whole number from 0 to 255, stop with an error. This overrides the source's 18-decimal fallback in 'Handle odd tokens defensively', even when the fallback is logged.
+- Do amount math in integers: BigInt, or the `parseUnits` and `formatUnits` helpers of ethers or viem. Test with string amounts such as "0.01" and with values above 2^53, the types production sends.
+- Meet every check in the [shared quality bar](../../references/checklists/engineering-quality-bar.md).
 
 If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
 

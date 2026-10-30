@@ -20,6 +20,7 @@ Use this skill when the question is **how to test the seams between components**
 - A test double that diverges from the real dependency is worse than no test — it creates false confidence.
 - Contract tests are the cheapest form of integration assurance for independently deployed services.
 - Fixture management is a first-class maintenance concern: stale fixtures create test debt silently.
+- A fake that always succeeds hides retry and timeout bugs. For each external seam, test the faults too: a 503, a reply slower than the client timeout, a connection dropped mid-body, a malformed body, and a field that changes type.
 
 ## Integration test taxonomy
 
@@ -62,11 +63,13 @@ Apply the right double for the situation:
    - Request/event shape (required fields, types, nullable semantics)
    - Response/event shape and error contract
    - Side effects (idempotency, ordering guarantees)
+   - Recorded examples: real responses from the provider's sandbox, with secrets and personal data scrubbed, plus variants with an extra field, a missing field, and a number sent as a string.
 
 5. **Design the fixture strategy**:
    - What seed data does each test need?
    - How is it reset between tests? (per-test truncation, transaction rollback, fixture reload)
    - Who owns the fixture data definition? (code, migration file, factory)
+   - Seed from a sanitized copy of production data (ask the user to prepare one if none exists), not only invented rows.
    - How is fixture drift detected? (schema change breaks factory — treat this as a signal)
 
 6. **Set the scope gate for each test** — State explicitly: what is real vs doubled. A test where "everything is mocked" is not an integration test.
@@ -84,6 +87,10 @@ Apply the right double for the situation:
 - Do not use mocks to replace every dependency in an "integration" test — that is a unit test wearing a costume.
 - Do not let fixture data accumulate without a reset strategy — stale fixtures create order-dependent test suites.
 - Do not conflate consumer-driven contract tests with provider-written API tests — these are different things with different owners.
+- Do not run integration tests on a container image that differs from production. Pin the image to the production engine and version, and have the test read `SELECT VERSION();` (or the equivalent) so a mismatch fails the run.
+- Do not leave the test container on defaults that differ from production. Match the SQL mode, charset, collation and time zone, because a different default can hide a strict-mode error.
+- Do not ship a webhook or queue handler without a test that replays the event twice, and one that runs a job queued by the old code on the new code.
+- Do not skip race tests on shared rows. Start two real connections against one row behind a barrier, and assert that one wins and the other gets the defined error.
 - Do not add test containers for every test — they are slow; use them only where behavior fidelity materially changes the test's value.
 
 ## Output format
@@ -113,3 +120,4 @@ Gaps identified:
 - `../../references/checklists/engineering-delivery-checklist.md`
 - `../../references/checklists/coding-best-practices-checklist.md`
 - `../../references/checklists/api-design-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`

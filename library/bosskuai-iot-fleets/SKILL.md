@@ -32,6 +32,12 @@ Use this skill when devices live where you cannot reach them, on networks that d
 - An unsigned update path is a remote code execution risk. Verify signatures on the device.
 - Check the current docs for your broker, device SDK and cloud IoT service; features and limits differ.
 - Do not start a real rollout, revoke certificates or change production device config without the user's explicit approval.
+- Record each device's firmware version from the device's own report, not from the build you meant to ship. Test the update path from every firmware version still in the field, not only the newest.
+- On a bench unit with the same hardware revision, bootloader and partition layout as the field devices, test a power cut during the download, during the write, and before the first healthy check-in. The device must come back on a working image. Never cut power on a field device without the user's explicit approval.
+- A late or repeated update command must not install an older image over a newer one. Compare versions before you install. The one exception is a deliberate rollback: a separate command that the user has approved and that names a signed target image. The device still refuses any image below its anti-rollback floor, where the hardware has one.
+- A device that is offline when a stage starts does not count as updated. Check that it finishes or rolls back when it comes back.
+
+Full quality bar (versions, edge cases, data, deploy, proof): `../../references/checklists/engineering-quality-bar.md`.
 
 ## Output format
 

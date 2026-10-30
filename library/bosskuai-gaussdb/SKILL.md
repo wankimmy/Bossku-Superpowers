@@ -18,7 +18,7 @@ Use this skill for schema design and query tuning on GaussDB OLTP, distributed o
 ## Step 0: identify the product
 
 - Is it GaussDB (own kernel) in the distributed edition (coordinator, data nodes, transaction manager) or the centralized primary-standby edition? Is it instead GaussDB(DWS), GaussDB for MySQL, or openGauss? If unclear, ask before answering.
-- Record the version. Syntax, defaults (including the default storage engine), and feature limits vary. Check the current official documentation for that version.
+- Record the version. Syntax, defaults (including the default storage engine), and feature limits vary. Read the version from the running cluster, using the version query in Huawei's documentation for that release, and check the latest release notes on huaweicloud.com at work time. Use only the syntax that version documents.
 
 ## Workflow
 
@@ -28,7 +28,7 @@ Use this skill for schema design and query tuning on GaussDB OLTP, distributed o
 4. Indexes: index foreign keys and common filter/sort columns; check what global versus local indexes mean in your edition.
 5. Query plans: run EXPLAIN ANALYZE and read the streaming operators (broadcast, redistribute, none). Heavy broadcast of large tables is a red flag; co-located joins need no streaming. Compare estimated and actual rows, and refresh statistics after big data changes.
 6. Application side: use connection pooling to the coordinator nodes, avoid N+1 round trips, fetch only needed columns.
-7. Migrations: DDL on distributed tables touches all nodes. Test on a copy, plan a maintenance window for large tables, check which concurrent-index options your edition supports, and write a rollback.
+7. Migrations: DDL on distributed tables touches all nodes. Test on a copy, plan a maintenance window for large tables, check which concurrent-index options your edition supports, and write a rollback. Keep old and new application code working on the schema during the change.
 8. Monitoring: use the version's documented system views for session and statement statistics.
 
 ## Guardrails
@@ -37,6 +37,10 @@ Use this skill for schema design and query tuning on GaussDB OLTP, distributed o
 - Do not run DDL, data changes, or parameter changes on a production cluster without explicit user approval and a rollback.
 - Size thresholds (for example which tables count as "small") depend on the cluster; measure instead of copying numbers.
 - Treat availability and recovery claims (RPO/RTO) as deployment facts to confirm, not defaults.
+- Types and data: money in DECIMAL, never a float. Compare column types and data shapes with production, not only with test fixtures (numbers stored as text, NULLs, time zones).
+- Concurrency: guard check-then-act with a row lock or a unique constraint, and keep transactions short.
+- Run each migration and the top queries against a production data copy first, and compare row counts and results with what deploy should give. If there is no copy, ask the user to prepare one.
+- Full quality bar: `../../references/checklists/engineering-quality-bar.md`.
 
 ## Output format
 

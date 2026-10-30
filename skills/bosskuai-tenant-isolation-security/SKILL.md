@@ -34,6 +34,8 @@ Check each path independently. A correct controller does not imply a correct exp
 - **Admin and impersonation**: elevated roles that silently widen scope.
 - **Row-level security itself**: table owners and superusers bypass RLS unless `FORCE ROW LEVEL SECURITY` is set; a tenant id set with session-level `SET` leaks to the next borrower under transaction pooling (use `SET LOCAL` inside the transaction); on Supabase/PostgREST a table with RLS disabled is readable with the public anon key.
 - **Vector stores and RAG retrieval**: a shared embedding index without a tenant filter at query time returns another tenant's chunks to the model.
+- **Unique keys and permission caches**: a global unique index, or an "already taken" error, shows tenant A that tenant B has a value. A cached "allowed" answer keeps working after a role change, so key permission caches by tenant and user, and clear them when a role or membership changes.
+- **Tenant moves, deletes and restores**: a user moved to another tenant, or a deleted tenant, keeps sessions, tokens, files, cache and search entries that point at the old tenant until they expire. A restore from backup can bring a deleted tenant back, so run the deletion again after any restore.
 
 ## Identity checks that tenant scope depends on
 
@@ -49,6 +51,8 @@ Check each path independently. A correct controller does not imply a correct exp
 - A missing tenant filter is not fixed by adding one filter; find the shared helper and fix the class of bug.
 - Do not rely on UUIDs as a security control. Unguessable is not unauthorized.
 - Do not close an isolation finding without a regression test.
+- Do not fill `tenant_id` from a default or a guess in a backfill. Take it from the parent row, and check that every child matches its parent's tenant.
+- Do not copy production data for testing without masking personal fields. The copy holds every tenant, so keep it off public hosts.
 
 ## Required regression tests
 
@@ -58,6 +62,7 @@ Every fix adds at least these cases:
 - Same tenant, different role: must respect role limits.
 - Unauthenticated access to the same resource: must be denied.
 - The batch path (job, export, or report) that mirrors the fixed request path.
+- Two tenants with the same ids, names and values, so a query that forgets the tenant returns the other tenant's row.
 
 ## Output format
 
@@ -80,5 +85,6 @@ Verification: [what was actually run]
 ## References
 
 - `../../references/checklists/tenant-isolation-security-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`
 
 Adapted from engineering/engineering-identity-access-engineer.md (agency-agents, MIT).

@@ -54,4 +54,6 @@ Lineage and known issues: [text]
 Run instructions: [command, config]
 ```
 
+The shared quality bar: `../../references/checklists/engineering-quality-bar.md`.
+
 Adapted from agency-agents/gis/gis-spatial-data-engineer.md (agency-agents, MIT).

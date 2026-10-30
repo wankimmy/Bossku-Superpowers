@@ -43,7 +43,7 @@ Choose based on prototype type:
 | Browser automation | Playwright script |
 | CLI tool | Python or Node.js single-file script |
 
-Criteria: fewest setup steps, most familiar to current codebase, least boilerplate.
+Criteria: fewest setup steps, most familiar to current codebase, least boilerplate. Use the versions the project already runs. For a new stack, record the versions you pick, and check each one live (latest stable and support end date).
 
 ### 3. Time-box explicitly
 Agree on a time-box before starting:
@@ -77,14 +77,7 @@ Complete the debt ledger before handing off the prototype:
 [One-line answer to the prototype goal]
 
 ### What was skipped (must fix before production)
-- [ ] Authentication / authorization
-- [ ] Input validation and error handling
-- [ ] Environment variable management (no hardcoded secrets)
-- [ ] Database migrations and schema design
-- [ ] Rate limiting / abuse protection
-- [ ] Logging and observability
-- [ ] Tests (unit, integration, E2E)
-- [ ] [Any prototype-specific items]
+Every section of the shared bar, each marked met, or not met with the reason. Items not met must be met before production.
 
 ### Upgrade path
 Before any production use, run this prototype through: engineering-delivery skill
@@ -102,6 +95,7 @@ Before any production use, run this prototype through: engineering-delivery skil
 - The prototype goal (step 1) must be answered explicitly before declaring done.
 - Do not use prototype patterns as templates for production code — the debt ledger defines what must change.
 - If the user asks to "just deploy it quickly" — require a debt ledger review first.
+- Every prototype is built and checked against the shared bar in ../../references/checklists/engineering-quality-bar.md. A throwaway prototype (not deployed, no real users, no real data) says so in its README or header. Its debt ledger lists each bar item it has not met, with the reason. A known bug or a broken path is fixed or cut before handoff; it is never only logged. The bar applies in full once the prototype is deployed, has real users, or uses real data.
 
 ## Further reading
 

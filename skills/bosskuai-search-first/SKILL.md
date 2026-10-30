@@ -9,15 +9,19 @@ Before building anything custom, check whether it already exists. Stop at the fi
 
 1. **Name the capability, not the implementation.** One line on what the code must do, plus the real constraints: stack version, license limits, latency, ops budget.
 2. **Search in order, stop at the first good fit:** this repo (utility, module, skill, pattern) → framework/platform native feature → the current tool or MCP surface → a maintained ecosystem library → a managed service → custom code, last.
-3. **Score every external candidate in one pass:** maintained within the last year, real adoption, no open Critical/High CVE, a compatible license (MIT/Apache/BSD; stop at GPL or "no license"), and it covers most of the need without heavy wrapping.
+3. **Score every external candidate in one pass:** maintained within the last year, real adoption, no open Critical/High CVE, a compatible license (MIT/Apache/BSD; stop at GPL or "no license"), and it covers most of the need without heavy wrapping. Read its latest stable release and its date live, never from memory, and check that it supports the runtime versions the project runs.
+
+   3a. **Check what the score misses.** Look up its advisories in the live feeds that `bosskuai-security-gate` uses. Read its defaults for timeouts, retries, rounding, time zones and currency, and check them against what the project needs.
 4. **One red flag kills the candidate.** Abandoned, an unpatched CVE, or an incompatible license — drop it and move to the next tier instead of rationalizing around it.
 5. **If nobody is available to weigh in**, default to whichever option clears every check above with the least new code for you to maintain, and say so in one line.
 6. **Building, or the feature is new to you? Study prior art first.** Find 2-3 open-source projects that already ship it (`gh search repos "<capability>" --sort stars`, `gh search code`), read how each one does it, and compare in a few lines: approach, edge cases handled, known bugs in their issues. Pick one approach, then build. Borrow ideas freely; copy code only under a compatible license, with its notice kept.
-7. **State the smallest next step**: for adopt, the integration point; for build, the minimal first version — not the full feature.
+7. **State the smallest next step**: for adopt, the integration point; for build, the minimal first version — not the full feature. For a hosted service or a new dependency, also name the failure plan (timeouts, retries that are safe to repeat, rate limits), who upgrades it, and how to switch it off behind a flag.
 
-Check before you finish: you actually looked at the candidate's last commit and license before recommending it, you didn't reject an option just because it needs reading docs, and "we can just use X" is backed by a real check of X.
+Check before you finish: you actually looked at the candidate's last commit and license before recommending it, you didn't reject an option just because it needs reading docs, and "we can just use X" is backed by a real check of X. The version and advisory checks were read live, not recalled.
 
 Full evaluation table, the build-vs-adopt matrix, and the output template: `reference.md`.
+
+Shared bar: `../../references/checklists/engineering-quality-bar.md`.
 
 **Preflight the search channels you rely on** and report skipped ones honestly (never "nothing found" when a channel was unavailable):
 

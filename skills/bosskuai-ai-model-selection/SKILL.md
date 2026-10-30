@@ -17,6 +17,8 @@ Use this skill when the user wants to know **which AI model fits a specific task
 
 Model rosters move faster than this file. For anything Claude/Anthropic — model ids, pricing, context windows, thinking and effort behavior — **load the `claude-api` skill rather than answering from memory**; it carries the current cached table and a live Models API lookup. For OpenAI, Google, or other vendors, check the vendor's own docs. Never invent a version number: a confidently wrong model id costs more than saying "verify this".
 
+The project's own model id and SDK version come from its config and lockfile, not from this file. Check the provider's live model list before any change: a retired or renamed id makes calls fail.
+
 ## Claude roster
 
 Checked 2026-10-06: ids, context windows and prices match Anthropic's current model table; the "Best for" notes were not re-checked. Newer models may exist. Load `claude-api` for the live roster. Ids are complete as written - never append date suffixes.
@@ -62,6 +64,7 @@ Score the request on these before recommending:
 - **Context needed**: fits comfortably / near the window / needs compaction
 - **Tool use**: none / function calling / multi-step agentic
 - **Reliability**: production-critical / experimental
+- **Budget**: cost per call and latency ceiling, from the project's own targets
 
 Then name the **primary failure mode** if the choice is wrong — low quality, too slow, too expensive, or cannot handle the modality. That failure mode, not the benchmark, decides the tier.
 
@@ -70,9 +73,10 @@ Then name the **primary failure mode** if the choice is wrong — low quality, t
 - Do not recommend the top tier for mechanical work where a cheaper model plus higher effort suffices.
 - Do not recommend the cheapest model where reasoning quality directly affects correctness — money, auth, data integrity, medical, or legal output.
 - Use the strongest model for execution too, not only planning and audit, when the work touches auth, sessions or secrets (including authorization and tokens); payments, billing, refunds or financial data; privacy, PII, data retention or user safety; destructive migrations, data loss or queue/idempotency; multi-service or deployment changes; security-sensitive integrations and webhooks; repeated failures of the cheaper model; or unclear requirements with a high cost of being wrong.
-- Always give a fallback: availability, rate limits, and refusals all happen. Rate limits are per-model, so a fallback in the same tier may not have headroom.
-- Do not present benchmark scores as decisive for a specific task. Test on the actual workload.
+- Always give a fallback: availability, rate limits, and refusals all happen. Rate limits are per-model, so a fallback in the same tier may not have headroom. A fallback must also return the same output shape, so the caller does not break when it takes over.
+- Do not present benchmark scores as decisive for a specific task. Test on the actual workload, with malformed and adversarial inputs from production (personal data masked).
 - Date any claim that depends on current pricing or capability.
+- Send a model only the personal data the task needs, and mask the rest. For personal-data work, check the provider's data retention terms before you choose the model.
 
 ## Output format
 
@@ -83,6 +87,7 @@ Task profile:
   Modality: [text / code / vision / long-doc]
   Context needed: [estimate]
   Tool use: [none / function calling / agentic]
+  Budget: [cost per call / latency ceiling]
 
 Primary failure mode if wrong: [what breaks]
 
@@ -98,3 +103,4 @@ Verified against: [claude-api skill / vendor docs / not verified]
 
 - `../../references/playbooks/model-selection-playbook.md`
 - `../../references/checklists/model-selection-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`

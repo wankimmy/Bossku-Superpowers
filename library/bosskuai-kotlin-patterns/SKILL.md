@@ -23,7 +23,7 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 6. 4. Data Classes for Value Objects.
 
 - Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
-- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- Check the project's tool versions and the source prerequisites first: the Kotlin plugin version in `gradle/libs.versions.toml` or `build.gradle.kts`, and `java -version` when the target is the JVM. Check the latest stable Kotlin release on kotlinlang.org at work time. Use only APIs present in the installed version. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
 - It can need a named provider, MCP server or API: check that it is available and in scope, report it when it is not, and never invent its output.
 
 ## Done when
@@ -31,5 +31,10 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 Apply the source “How It Works”, “Core Principles” guidance to the concrete request. Return the resulting kotlin development patterns artifact or diagnosis with source/command evidence for each conclusion.
 
 If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
+
+- Money is a `BigDecimal` built from a string and compared with `compareTo`, never a `Double`.
+- Do not use `!!` on values from JSON, a database or another service. Check them at the boundary and fail loudly on a changed type.
+- A `when` over a sealed type or enum is exhaustive, and an unknown value from an API fails loudly instead of using a default.
+- Full quality bar, with version and type checks: `../../references/checklists/engineering-quality-bar.md`.
 
 Adapted from the locally reviewed `affaan-m/ECC` snapshot: provenance and hashes in [SOURCE.json](SOURCE.json), the original text and resources in [references/upstream/](references/upstream/SKILL.md) under its [MIT licence](references/upstream/LICENSE). Copyright (c) 2026 Affaan Mustafa.

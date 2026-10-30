@@ -428,3 +428,13 @@ Day 7: Migration drops old status column
 | Inline index on large table | Blocks writes during build | CREATE INDEX CONCURRENTLY |
 | Schema + data in one migration | Hard to rollback, long transactions | Separate migrations |
 | Dropping column before removing code | Application errors on missing column | Remove code first, drop column next deploy |
+
+## Bossku additions
+
+Local additions (user rules, 2026-10-30); the upstream text above is unchanged.
+
+- Run every migration on a production data copy first, after masking its personal fields (see `bosskuai-tenant-isolation-security`). Masking keeps each field's type, format and length, keeps nulls as nulls, and gives equal values equal masks, so the dry run still finds the same problems. Then time it, watch locks, compare row counts, and find rows that would fail (nulls, duplicates that block a new unique index, values that do not fit the new type).
+- Check how production really stores a value before changing its column: a number kept as the string "0.01" does not cast the way test data does.
+- Jobs queued and cache entries written before the deploy must still work on the new schema.
+
+The full bar: `../../references/checklists/engineering-quality-bar.md`.

@@ -35,6 +35,7 @@ Do not make many broad changes at once. Run a small loop:
 ```txt
 Metric:
 Baseline:
+Versions: [model, SDK and tool versions, from config and lockfile]
 Change:
 Result:
 Decision: keep | revert | needs manual review
@@ -47,7 +48,11 @@ Next:
 - Do not claim improvement without the metric result.
 - Prefer deterministic checks before subjective judgement.
 - If the metric is weak, state that clearly.
+- A model id, SDK or tool version (test runner, linter, eval harness) is a variable too. Read it from config and the lockfile, and keep it fixed inside the loop, or change it in its own loop.
+- Measure on data shaped like production (types, nulls, sizes). A small fixture can show a gain that never happens in production.
+- Measuring a change on a branch is not shipping it. A kept change still needs a rollout behind a flag or to a small share first, and a way back.
 
 ## Reference
 
 - `../../references/checklists/ratchet-loop-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`

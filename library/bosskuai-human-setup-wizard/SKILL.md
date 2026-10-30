@@ -41,4 +41,6 @@ Checks run: [bash -n, shellcheck result]
 How to run: [command]
 ```
 
+The shared quality bar: `../../references/checklists/engineering-quality-bar.md`.
+
 Adapted from skills/skills/engineering/wizard/SKILL.md (mattpocock/skills, MIT).

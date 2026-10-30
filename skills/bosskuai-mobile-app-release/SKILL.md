@@ -31,7 +31,9 @@ Use this skill when an app must reach the App Store or Google Play, or when an e
 - Demo account and review notes prepared when login is required.
 - Deep links, push notifications, and payments tested on physical devices with production credentials.
 - Crash reporting (Sentry/Crashlytics) and analytics tagged with the release version; source maps uploaded.
-- Version bumped, build number monotonic, changelog written, screenshots current.
+- Version bumped, build number monotonic, changelog written, screenshots taken from this build at the sizes each store asks for at work time.
+- Upgrade test: install the oldest supported build on a device, upgrade it to this build with a copy of production data, and check local data migrates and the main flows still work. A fresh install does not test this.
+- Oldest supported version: the oldest version still in use (from analytics) works with the API it calls. A removed or renamed field is a blocker. A minimum-version check tells old users to update.
 
 ## Credentials and signing
 
@@ -43,7 +45,7 @@ Use this skill when an app must reach the App Store or Google Play, or when an e
 
 1. Release branch or tag → CI builds with the production profile (`eas build --profile production` or Fastlane `gym`/`gradle`), build number auto-incremented.
 2. Auto-submit (`eas submit`, Fastlane `pilot`/`supply`) to TestFlight and the Play internal track.
-3. QA sign-off on the beta build against the readiness gate; regression on the device matrix.
+3. QA sign-off on the beta build against the readiness gate; regression on the device matrix. Run it against staging with a masked copy of production data (accounts with many records, old-format rows, soft-deleted rows). Mask personal data before the copy is loaded, and switch off outbound email, SMS and push first; confirm that no real user can be messaged.
 4. Submit for review with notes and demo credentials; Google: complete Data safety, target API, content rating.
 5. Release: Apple phased release (7 days, pausable) and Play staged rollout (5% → 20% → 50% → 100%, haltable).
 6. Watch for 24–48h: crash rate, ANR rate, 1-star review spikes, backend error rates from the new version.
@@ -63,7 +65,7 @@ Use this skill when an app must reach the App Store or Google Play, or when an e
 
 ## Versioning
 
-- Marketing version follows semver; iOS build number and Android `versionCode` strictly increase and never reuse.
+- Marketing version follows semver; iOS build number and Android `versionCode` strictly increase and never reuse. Check the last store build numbers before each release. If `cli.appVersionSource` in `eas.json` is `remote`, EAS stores the build numbers, so read them from EAS (see https://docs.expo.dev/build-reference/app-versions/), not from the native files. If it is `local`, or you do not use EAS, read `versionCode` and `versionName` in the Android app module's `build.gradle` (or `.kts`) and `MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` in the iOS `project.pbxproj`, and compare them with the last store build. Check `targetSdk` against Google Play's current target API rule; it is not a version to bump.
 - `runtimeVersion` policy: `appVersion` when every native change ships with a version bump, `fingerprint` when native drift must be detected automatically.
 
 ## Guardrails
@@ -90,3 +92,4 @@ Review notes prepared: [yes/no, demo account]
 - `../../references/checklists/mobile-app-release-checklist.md`
 - `../../references/checklists/expo-react-native-checklist.md`
 - `../../references/checklists/launch-commercialization-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`

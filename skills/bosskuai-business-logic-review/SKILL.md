@@ -48,11 +48,14 @@ Use these as patterns to hunt for in any domain — they are not exhaustive.
 5. **Check approval, retry, and reversal logic**:
    - Can approvals be bypassed or skipped under any conditions?
    - Does retry produce duplicates or unintended side effects?
+   - Can two users or jobs act on the same record at once (race conditions)?
    - Is reversal (refund, cancel, undo) handled at every state where it is reachable?
 
 6. **Check time-based and threshold rules** — Deadlines, expiry, rate limits, quota checks, SLA breaches. Ask: what happens exactly at the boundary?
 
 7. **Check cross-module side effects** — When state changes in one module, what does it trigger elsewhere? Are all downstream consumers aware of every possible transition?
+
+8. **Check against production data** — Run the rules against a production data copy (never production): count the rows in each state, find rows the change would miss, break or move by surprise (nulls, legacy values, duplicates, orphans), and compare data types and structure with production (the number 0.01 in tests vs the string "0.01" in production). Check the effect on day-to-day operations and existing users. If there is no copy, ask the user to prepare one.
 
 ## Finding workflows nobody wrote down
 
@@ -95,5 +98,6 @@ Recommended rule changes:
 
 - `../../references/checklists/business-logic-checklist.md`
 - `../../references/pitfalls/business-logic-pitfalls.md`
+- `../../references/checklists/engineering-quality-bar.md`
 
 Adapted from specialized/specialized-workflow-architect.md (agency-agents, MIT).

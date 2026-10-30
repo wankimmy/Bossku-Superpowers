@@ -35,10 +35,11 @@ Use this skill when the task involves Dockerizing an app, creating or reviewing 
 2. Read existing Docker files before replacing them.
 3. Decide if the target is local development, production image, or both.
 4. Decide what must sync live from host to container and what must remain container-owned.
+4a. **Know the versions.** Read the runtime version from the project's own files (manifest, lockfile, `.nvmrc` or similar) and the base image tag from the `FROM` line. Check the latest stable image and its support end date live, on the image's official page, never from memory.
 
 ### Phase 2 - Dockerfile
 
-5. Use a specific base image suitable for the stack; avoid `latest`.
+5. Use a specific base image suitable for the stack; avoid `latest`. For production, pin the digest too (`FROM <image>:<tag>@sha256:<digest>`), read it with `docker buildx imagetools inspect <image>:<tag>`, and re-pin on every update.
 6. Set `WORKDIR`.
 7. Copy lockfiles before source to preserve dependency cache.
 7a. Create `.dockerignore` before any `COPY . .`: exclude `.git`, `.env*`, dependency and build directories, and local secrets.
@@ -49,6 +50,7 @@ Use this skill when the task involves Dockerizing an app, creating or reviewing 
 12. Expose the app port for documentation and tooling.
 13. Use `CMD` or `ENTRYPOINT` so Compose does not need a long shell command.
 14. Use multi-stage builds when it reduces runtime image size or separates dev/build/prod concerns.
+14a. **Stop cleanly.** Use the exec form of `CMD` so `docker stop` reaches the app, not `/bin/sh`. Add `init: true` if the app does not handle SIGTERM itself, since PID 1 drops signals it has no handler for. `init: true` does not fix shell form: tini signals only its direct child, and in shell form that child is `/bin/sh`. Set `stop_grace_period` longer than the longest request or job, or Docker kills the work in progress.
 
 ### Phase 3 - Compose
 
@@ -61,6 +63,7 @@ Use this skill when the task involves Dockerizing an app, creating or reviewing 
 21. Add health checks for app and data services where a meaningful check exists.
 22. Use `depends_on` only for startup ordering; do not treat it as proof a service is ready unless health conditions are configured.
 23. Keep the default user command simple: after files are present, the user should only need `docker compose up -d`.
+23a. Run schema migrations once, in a `migrate` service that uses the same image as the app and waits for the database with `depends_on: db: condition: service_healthy`. Each app service waits for it with `depends_on: migrate: condition: service_completed_successfully`, so `docker compose up -d` runs the migrations first and the app starts only after they pass. Never run them in an entrypoint that every replica runs at start. Replicas that start together race on the same schema.
 
 ### Phase 4 - Env and secrets
 
@@ -77,6 +80,7 @@ Use this skill when the task involves Dockerizing an app, creating or reviewing 
 31. Run `docker compose up -d --build` for first build if needed, then confirm normal startup works with `docker compose up -d`.
 32. Check `docker compose ps`, logs, health checks, app URL, and volume sync.
 33. Confirm no secrets appear in YAML, image layers, logs, git diff, or `.env.example`.
+34. For an app with a database, restore a copy of production data into a separate throwaway database container, never the live volume. Mask personal data (names, IDs, phone numbers, bank details) and keep the same column types and value formats. Run the migration there and compare row counts with production. Record the image digest you deploy. Prove the rollback by starting the previous digest of the app against that same migrated copy and checking health. A rollback changes the image, not the data, so back up the volume before a schema change. If you cannot get production data, ask the user for a masked copy or seed data; do not skip silently. For an app with no database, skip the data part and still record the digest and prove the rollback.
 
 ## Starter Compose pattern
 
@@ -133,6 +137,7 @@ Postgres 18+ images mount at `/var/lib/postgresql`, not `/data`; moving 16/17 to
 - Do not use a broad bind mount that hides installed container dependencies without adding named volumes for dependency directories.
 - Do not leave privileged mode, host networking, Docker socket mounts, or root users enabled unless there is a documented reason.
 - Do not make the user run manual install commands on the host after Dockerization.
+- Do not let CRLF line endings reach shell entrypoints. On a Windows checkout, add `*.sh text eol=lf` to `.gitattributes` and commit it. Git does not change shell scripts already on disk, so each script that still has CRLF must be checked out again. First run `git diff --ignore-cr-at-eol -- <script>`. If it prints nothing, the only change is line endings and `git checkout -- <script>` is safe. Then `git ls-files --eol <script>` should show `w/lf`. Otherwise the container fails at start with "no such file or directory".
 
 ## Output format
 
@@ -157,6 +162,7 @@ Verification:
 - `../../references/checklists/docker-checklist.md`
 - `../../references/checklists/devops-iac-checklist.md`
 - `../../references/checklists/security-risk-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`
 
 ## Hardening and isolation extras
 

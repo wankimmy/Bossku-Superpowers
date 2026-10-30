@@ -46,6 +46,12 @@ Work through the checklist below. For each item that applies, open the matching 
 | Logged security events | Audit log for auth failures, role changes, suspicious activity |
 | `.env` not committed | Verify `.gitignore` includes `.env` |
 | `APP_KEY` exposure | A leaked key lets attackers forge encrypted cookies and payloads; rotate with `APP_PREVIOUS_KEYS` (Laravel 11+) so sessions survive |
+| `hash_equals()` for tokens and signatures | Never use `==`. PHP reads numeric strings such as `0e123` as numbers, so two different hashes can compare equal |
+| Webhook signatures | Verify over the raw body (`$request->getContent()`) before parsing, reject old timestamps, and skip event ids you have already handled |
+| Queued jobs | A job keeps the ids it was queued with. Re-check tenant, owner and state inside `handle()`, because the row may have changed or moved |
+| One-time actions | Coupons, refunds, invites and OTPs run once. Inside `DB::transaction()`, either lock the row with `lockForUpdate()`, or run a conditional update such as `WHERE used_at IS NULL` and act only when the update returns 1. Test that a repeated request has no second effect |
+| Server-side money | Recompute prices and totals on the server. Accept amounts as integer cents, and reject negatives, zero where it is wrong, and huge values |
+| Trusted proxies | Behind a load balancer, set trusted proxies in `bootstrap/app.php`. If `X-Forwarded-For` is trusted from any address, a client can fake its IP and dodge IP rate limits |
 
 ## Review output
 
@@ -63,3 +69,4 @@ Unverified: [...]
 - `bosskuai-laravel-verification` — full lint → test → security → deploy-readiness gate
 - `bosskuai-cybersecurity-risk` — broader threat modeling beyond the Laravel layer
 - `bosskuai-tenant-isolation-security` — tenant scoping and data-leak review
+- `../../references/checklists/engineering-quality-bar.md`: the shared bar, with the scenario walk and production data checks.

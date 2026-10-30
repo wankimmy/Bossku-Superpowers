@@ -36,8 +36,8 @@ Avoid barrel files that re-export a subtree. Prefer several small entry points.
 
 ## Steps
 
-1. Detect the package manager from the lockfile, the packages root (`src/packages` if `src/` exists, else `packages`), and any existing `.dependency-cruiser.*` config. Merge into an existing config instead of overwriting it.
-2. Install `dependency-cruiser` as a dev dependency. Check its current docs for the config syntax and group-matching (`$1`) behaviour.
+1. Detect the package manager from the lockfile, the TypeScript version (`npx tsc -v`), the packages root (`src/packages` if `src/` exists, else `packages`), and any existing `.dependency-cruiser.*` config. Merge into an existing config instead of overwriting it.
+2. Install `dependency-cruiser` as a dev dependency. Read the docs for the version the lockfile resolves, not a newer one, for the config syntax and group-matching (`$1`) behaviour.
 3. Write `.dependency-cruiser.cjs` with the four forbidden rules, using path-depth patterns and a `PACKAGES_ROOT` constant. Use `.cjs` so it works in ESM repos.
 4. Add a `lint:boundaries` script and run it in the same umbrella command as typecheck. Do not change tsconfig or add path aliases.
 5. Add a small example package (entry point that delegates to `lib/`, one test importing only the entry point) as a copy-me template.
@@ -50,15 +50,18 @@ Avoid barrel files that re-export a subtree. Prefer several small entry points.
 - Do not flatten the group-matching rules into per-package rules.
 - Confirm the packages root with the user if the repo already has another convention.
 - Do not edit the repo's agent instructions or CI beyond the one-line pointer and script wiring without approval.
+- Keep typecheck, lint and tests clean, with no new warnings. Fix an import that breaks a rule; do not add an exception without the user's approval.
+- Meet the quality bar in `../../references/checklists/engineering-quality-bar.md`.
 
 ## Output format
 
 ```text
-Environment: [package manager, packages root, existing config]
+Environment: [package manager, TypeScript version, packages root, existing config]
 Config: [rules added, merged or new]
 Wiring: [script name, umbrella command]
 Proof: [pass -> fail on deep import -> pass, rule name shown]
 Docs: [README path, pointer added]
+Checks: [typecheck, lint and tests, with the commands run and their results]
 ```
 
 Adapted from mattpocock/skills/skills/in-progress/setup-ts-deep-modules/SKILL.md (mattpocock/skills, MIT).

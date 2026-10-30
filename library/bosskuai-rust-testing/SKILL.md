@@ -23,7 +23,7 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 6. Module-Level Test Organization.
 
 - Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
-- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- Check the project's tool versions and the source prerequisites first: `rustc --version`, `cargo --version`, the channel pinned in `rust-toolchain.toml`, `rust-version` and `edition` in `Cargo.toml`, and the test crate versions in `Cargo.lock`. Check the latest stable Rust release on blog.rust-lang.org at work time. Use only APIs present in the installed version. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
 - It can need a named provider, MCP server or API: check that it is available and in scope, report it when it is not, and never invent its output.
 
 ## Done when
@@ -31,5 +31,10 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 Run the affected cargo test target, with failing-before/passing-after evidence when fixing a test or defect.
 
 If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
+
+- Run the tests in debug and with `cargo test --release`, since overflow checks differ. Add `--no-default-features` runs and the feature sets CI uses. Use `--all-features` only when the crate builds with it.
+- Money in tests is the string production receives (`"0.01"`), parsed the same way production parses it, not an `f64` literal.
+- Async tests (`#[tokio::test]`) cover cancellation: dropping a future in `select!` can lose its unfinished work.
+- Full quality bar, with version and type checks: `../../references/checklists/engineering-quality-bar.md`.
 
 Adapted from the locally reviewed `affaan-m/ECC` snapshot: provenance and hashes in [SOURCE.json](SOURCE.json), the original text and resources in [references/upstream/](references/upstream/SKILL.md) under its [MIT licence](references/upstream/LICENSE). Copyright (c) 2026 Affaan Mustafa.

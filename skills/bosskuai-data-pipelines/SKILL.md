@@ -43,23 +43,28 @@ Use this skill to design, build, or review a pipeline that moves raw data into t
 - Rerun of the same window changes nothing. Test it.
 - Unique key, not-null, accepted-range, and relationship checks exist on silver and gold.
 - Row-count and freshness checks alert when a load is late or suspiciously small.
-- Schema change from the source is detected before it reaches consumers.
+- Schema change from the source is detected before it reaches consumers. Compare types as well as names: an integer that turns into text, or a `DECIMAL(12,2)` that turns into a float, passes a name check and breaks sums.
 - Backfill path exists and does not double-count.
+- Incremental loads: an `updated_at` high-water mark misses any row that commits after the mark has moved to or past the row's `updated_at`. Same-second writes, long transactions, and clock skew all cause this. The mark never shows hard deletes. A soft delete shows only if its write also sets `updated_at`. Re-read a safety overlap, dedupe on the key, and capture deletes from the source's change log or CDC.
 - Late-arriving and out-of-order events have a stated rule.
 - Streaming jobs have a checkpoint location and a restart plan.
-- Secrets and credentials are not in job code; PII columns are marked and access-limited.
-- Check the installed versions of Spark, Delta, Iceberg, or dbt before relying on a feature.
+- Secrets and credentials are not in job code; PII columns are marked and access-limited. Bronze keeps raw values, so PII lands there first: restrict bronze access to the roles that need it. If a field must not be stored at all, the data contract names it, and the load log records the field name (never its value), because bronze cannot replay that field.
+- Check the installed versions of Spark, Delta, Iceberg, or dbt before relying on a feature. Run `dbt --version` and `spark-submit --version`, and check that dbt-core and each adapter are compatible releases.
+- Check the change against the shared bar, `../../references/checklists/engineering-quality-bar.md`: production data copy, types, deploy steps and proof.
 
 ## Guardrails
 
 - Do not transform bronze in place.
 - Do not "fix" bad data by dropping rows without logging what was dropped.
 - Do not run a destructive overwrite or backfill on production without a stated window and a way back.
+- Do not run a Spark overwrite until you know `spark.sql.sources.partitionOverwriteMode`. The default `static` mode can replace more partitions than the window you rebuild. Test it on a copy first.
+- Do not MERGE a source that has two rows for one key. Delta can fail when two source rows match one target row and the merge updates it, and the docs do not say what an insert-only MERGE does. Other table formats and warehouses differ, so dedupe the source to one row per key first.
 
 ## Output format
 
 ```text
 Sources and contract: [schema, owner, freshness target]
+Versions: [Spark, dbt-core, adapter, table format; checked date]
 Layers: [bronze / silver / gold tables and keys]
 Idempotency rule: [merge key or replace window]
 Quality checks: [list]

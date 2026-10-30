@@ -23,11 +23,16 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 6. Step 3: Report.
 
 - Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
-- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- Check the UI framework and state library versions in the manifest and lockfile against their latest stable releases, checked live at work time, and the source prerequisites first. Read the docs for the version the app runs. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
 
 ## Done when
 
 Apply the source “The Problem This Solves”, “How It Works” guidance to the concrete request. Return the resulting /click-path-audit — behavioural flow audit artifact or diagnosis with source/command evidence for each conclusion.
+
+- Walk each button with empty, normal and large data, with a slow or failing API response, and with a double click. Do this only on a staging copy of the app, loaded with a copy of production data, using test accounts and sandbox keys for payment, mail and SMS, so no real message, charge or record change can happen. Never click through production or a real tenant account. If there is no staging copy, ask the user to prepare one and carry on with read-only analysis.
+- Compare the state after each action with the screen after a page reload. A mismatch is a bug, even when each function passes its own test.
+- Check every role and tenant that can see the button, on the same staging copy, using test accounts only.
+- Meet every check in the [shared quality bar](../../references/checklists/engineering-quality-bar.md).
 
 If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
 

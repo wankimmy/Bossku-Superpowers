@@ -128,16 +128,19 @@ These patterns compose well:
 
 Before a loop runs without a human watching, check each item:
 
-- **Bounds on every external call:** a timeout, a retry cap, and a cheaper or safe fallback. No open-ended retry loop.
+- **Bounds on every external call:** a timeout, a retry cap, and a cheaper or safe fallback. No open-ended retry loop. Retry only a call that is safe to repeat, such as a read or a write with an idempotency key.
 - **Spend limit:** a max cost per run, and an estimated cost for the primary and fallback paths when the loop calls a paid model or API.
 - **Circuit breaker:** on a traffic spike or a run of 402/429 errors, stop calling that endpoint, switch to the fallback, and alert a human.
 - **Score before you shadow-test:** when trying a new model or prompt on real traffic, run it in the background (a small sample) so it cannot affect production, and fix the scoring criteria in numbers first. Do not grade by feel afterwards.
 - **Decide whether to automate at all:** weigh time saved per month, how critical the data is, how many external services are in the chain, and whether retries and rate limits still hold at 100x volume. A valid outcome is automate only the safe segments, pilot first, or defer.
 - **Reliability baseline:** an explicit error branch, duplicate protection, safe retries with a stop condition, a timeout, an alert, and a manual fallback.
-- **Log each run:** workflow name and version, time, source system, affected entity id, success or failure, and error class with a short cause.
+- **Log each run:** workflow name and version, time, source system, affected entity id, success or failure, and error class with a short cause. Mask personal data in any logged prompt or response.
 - **Test before trusting it:** happy path, invalid input, dependency failure, duplicate event, and recovery.
 - **Re-audit** when an API or schema changes, the error rate rises, volume jumps, or the same manual fix keeps recurring. Re-audit does not mean touching production on its own.
 - **No change to critical production flows** without explicit approval.
+- **Versions:** read the model id and the CLI or SDK version the loop runs from its config and lockfile. Re-check the provider's live model list before each scheduled run, since a retired id stops the run.
+- **No overlapping runs:** a run still going when the next one fires must not start a second copy on the same item. Take a lock or check the item's state first.
+- **Data writes:** test a loop that changes data on a production data copy first, and compare its counts with the expected result. Write in small batches. Each batch runs in one transaction (START TRANSACTION ... COMMIT), so a stop halfway leaves no half-written batch. Batches that already committed stay applied, so a rerun must skip them: record which items are done in the same transaction as their change, or make each batch safe to run again.
 
 ## Designing and reviewing a loop
 
@@ -197,6 +200,7 @@ The loop **architecture** lives here; the discipline **inside** an iteration liv
 - `bosskuai-agent-introspection` — when a loop iteration fails, loops on the same tools, or returns empty
 - `bosskuai-subagent-delegation` — parallel/worktree execution mechanics for the patterns above
 - `bosskuai-handoff` + `bosskuai-context-limit-continuation` — context bridging between sessions (the editor-side equivalent of SHARED_TASK_NOTES.md)
+- `../../references/checklists/engineering-quality-bar.md` — the shared bar that loops and their runs are checked against.
 
 The orchestrator contract (`agents/orchestrator.md`, Autonomous run flow) drives these patterns end-to-end.
 

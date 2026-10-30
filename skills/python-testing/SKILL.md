@@ -815,3 +815,13 @@ pytest --pdb
 | `assert` | Simple and readable assertions |
 
 **Remember**: Tests are code too. Keep them clean, readable, and maintainable. Good tests catch bugs; great tests prevent them.
+
+## Bossku additions
+
+Local additions (user rules, 2026-10-30); the upstream text above is unchanged.
+
+- Run the suite on every Python version in the project's `requires-python` range, not only the local one.
+- Build fixtures shaped like production data: the same types (Decimal or float, string or integer IDs), nulls, legacy values and time zones.
+- Where code touches shared state or an external call, test concurrent calls, a timeout, a retried request, and a response with extra, missing or retyped fields.
+
+The full bar: `../../references/checklists/engineering-quality-bar.md`.

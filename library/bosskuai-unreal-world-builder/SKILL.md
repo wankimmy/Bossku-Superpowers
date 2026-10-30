@@ -32,6 +32,11 @@ Use this skill to plan and check an open-world UE5 level so it streams without h
 - Numbers in templates (cell sizes, layer counts, limits) are starting points; set them from measurements on your hardware and the engine version in use.
 - Back up and use version control before changing partition settings or regenerating HLOD or PCG on a shared project.
 - Do not rely on desktop-only results for console or mobile targets.
+- Get the exact engine version from `Engine/Build/Build.version` in the engine root folder. Do not rely on `EngineAssociation` in the `.uproject` file: it can hold only major.minor, a GUID, a path, or nothing. If you cannot find the engine folder, ask the user for it. Then check the release notes for World Partition, PCG and HLOD changes before you plan the level.
+- Test that levels saved by the last release still open and stream after a partition, data layer or HLOD change. Do that test on a copy first.
+- Before two people edit one level, agree who owns each area. Test how their changes combine on a copy.
+
+Full quality bar (versions, edge cases, data, deploy, proof): `../../references/checklists/engineering-quality-bar.md`.
 
 ## Output format
 

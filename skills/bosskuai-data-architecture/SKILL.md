@@ -55,7 +55,7 @@ Use this skill when the main question is **how data should be shaped, owned, mig
 
 ## Workflow
 
-1. **Read the current data surface** — schema files, migrations, models, ORM code, warehouses, event specs, and high-signal queries or tests.
+1. **Read the current data surface** — schema files, migrations, models, ORM code, warehouses, event specs, and high-signal queries or tests. Read the engine version from the live database (`SELECT VERSION();`), not from the docs, and the migration tool's version from its lockfile.
 2. **Map entity ownership and lifecycle** — source of truth, derived copies, historical records, deletion behavior, and downstream consumers.
 3. **Design for migration safety** — additive changes, backfills, feature flags, dual reads/writes, and rollback path.
 4. **Review access patterns** — read/write hotspots, indexes, partitions, fan-out, and reporting needs.
@@ -69,6 +69,10 @@ Use this skill when the main question is **how data should be shaped, owned, mig
 - Do not recommend destructive schema changes without an additive transition path.
 - Do not mix transactional source-of-truth needs with reporting convenience blindly.
 - Do not ignore privacy and retention implications when copying data to new systems.
+- In tenant-owned tables, do not write a unique key without `tenant_id`, or one tenant blocks another's value. Keep a key global only when the value must be unique across all tenants. On a table with soft deletes, a plain unique key on `email` also blocks a new row after a delete. Use a partial unique index instead (PostgreSQL: `WHERE deleted_at IS NULL`). MySQL has no partial index, so add a stored generated column that keeps the value only while the row is live, `email_live AS (CASE WHEN deleted_at IS NULL THEN email END) STORED`, and make the unique key `(tenant_id, email_live)`. MySQL lets a unique key hold many NULLs, so deleted rows do not block a new row.
+- Do not add an enum or status value in the same release that writes it. Readers that do not know the value fail first, so ship the readers first.
+- Do not store dates past 2038 in MySQL `TIMESTAMP`, which stops there. Use `DATETIME` in UTC by convention, or `timestamptz` in PostgreSQL.
+- Do not copy production data for testing or analytics without masking personal fields, and keep the copy off public hosts.
 
 ## Output format
 
@@ -77,6 +81,7 @@ Data summary:
   Core entities: [list]
   Ownership: [who owns what]
   Current storage/pipeline shape: [summary]
+  Engine and version: [from the live database, date checked]
 
 Schema and pipeline risks:
   Modeling: [findings]
@@ -95,3 +100,4 @@ Open invariants to protect:
 ## References
 
 - `../../references/checklists/data-architecture-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`

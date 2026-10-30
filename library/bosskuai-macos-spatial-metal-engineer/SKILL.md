@@ -29,9 +29,14 @@ Use this skill for GPU-heavy Swift and Metal work: rendering large node graphs o
 ## Guardrails
 
 - Targets such as frame rate, node counts, and memory limits are project decisions; measure them rather than assuming.
-- Device and OS capabilities (mesh shaders, variable rate shading, ray tracing) vary. Check feature support at runtime.
+- Device and OS capabilities (mesh shaders, variable rate shading, ray tracing) vary. Check feature support at runtime: use `supportsFamily(_:)` for the GPU family and per-feature properties such as `supportsRaytracing`, and test on the oldest GPU you support.
 - Do not ship settings that run the GPU at sustained maximum without testing thermals.
 - Do not change signing, entitlements, or bundle identifiers without telling the user.
+- Read the macOS, Xcode and SDK versions with `sw_vers`, `xcodebuild -version` and `xcodebuild -showsdks`, and the deployment target in the Xcode project. Log the OS version at launch with `ProcessInfo.processInfo.operatingSystemVersion`.
+- Test an empty graph, one node, the largest graph, a layout that returns NaN or infinite positions, and a window resize during a frame.
+- Triple buffering with a semaphore stops the CPU from writing a buffer the GPU still reads.
+
+Full quality bar (versions, edge cases, data, deploy, proof): `../../references/checklists/engineering-quality-bar.md`.
 
 ## Output format
 

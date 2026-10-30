@@ -23,7 +23,7 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 6. Review Checklist.
 
 - Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
-- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- Check the Python version (`python --version`) and the Netmiko version (`pip show netmiko`) first, and the latest Netmiko release on PyPI at work time. Check each device's software version with its vendor's command (for example `show version` on Cisco and Junos, `display version` on Huawei and H3C, `show system info` on Palo Alto), then the source prerequisites. The source batch example runs `show version` on every device, so run the vendor's command there too. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
 - Research and review do not authorise signing, trading, booking, purchase or wallet access. Keep any transaction behind an exact operation scope and the user's approval, and never copy or expose private keys.
 
 ## Done when
@@ -31,5 +31,9 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 Complete the source “Review Checklist” procedure for this task. Keep its resulting artifact, command output or cited evidence, and state what remains unverified.
 
 If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
+
+Test the script on a lab device first, with a wrong password and an unreachable host. Catch `NetmikoTimeoutException` and `NetmikoAuthenticationException`, and log each device's result.
+
+Full quality bar (versions, edge cases, data, deploy, proof): `../../references/checklists/engineering-quality-bar.md`.
 
 Adapted from the locally reviewed `affaan-m/ECC` snapshot: provenance and hashes in [SOURCE.json](SOURCE.json), the original text and resources in [references/upstream/](references/upstream/SKILL.md) under its [MIT licence](references/upstream/LICENSE). Copyright (c) 2026 Affaan Mustafa.

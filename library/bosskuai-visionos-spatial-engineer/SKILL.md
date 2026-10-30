@@ -33,6 +33,11 @@ The source material for this skill is a short feature list, so treat it as a map
 - Limit scope to the SwiftUI and RealityKit stack and the targeted OS version. Say so when a request needs another engine or an older OS.
 - Do not copy API names from memory; verify in the current documentation.
 - Test on a device or simulator before claiming behaviour; some spatial behaviour only shows on hardware.
+- Read the Xcode and visionOS SDK versions with `xcodebuild -version` and `xcodebuild -showsdks`, and check the release notes before you use an API. Log the OS version at launch with `ProcessInfo.processInfo.operatingSystemVersion`.
+- Test a window closed and reopened, a volume resized, an immersive space left and returned to, and a user who refuses a permission such as hand tracking.
+- Saved content from the last release must still open after a model or scene change.
+
+Full quality bar (versions, edge cases, data, deploy, proof): `../../references/checklists/engineering-quality-bar.md`.
 
 ## Output format
 

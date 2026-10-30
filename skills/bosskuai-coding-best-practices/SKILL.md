@@ -14,6 +14,8 @@ Use this skill when writing or reviewing code that should be easy to change, har
 - Optimize for the three expensive failures: wrong behavior, production breakage, and code that is hard to change.
 - For new behavior, bug fixes, and risky refactors: prefer test-first or test-guided work when practical.
 - Debug with hypotheses, not random edits.
+- Use only the APIs that exist in the language and library versions the project runs. Read that version's docs first (`bosskuai-documentation-lookup`).
+- Judge each change against how the system really runs: several instances at once (in-memory state, local files, sessions, a cron that runs on each instance), workers and queues, each environment, and the moment of deploy, when old and new code overlap.
 
 ## What good code looks like
 
@@ -49,6 +51,7 @@ Load `bosskuai-code-revamp` or `bosskuai-software-architecture` when the issue i
 - add or run the narrowest test that proves the behavior
 - re-read the saved diff before declaring success
 - call out what could not be verified
+- test with the value types and nulls production stores (a money value can arrive as the string "0.01"), and cover the edge cases: empty, zero, negative, boundary, null, wrong type, very long, non-ASCII.
 
 ## Guardrails
 
@@ -56,6 +59,7 @@ Load `bosskuai-code-revamp` or `bosskuai-software-architecture` when the issue i
 - Do not add abstraction without repeated need.
 - Do not mix a broad refactor into a bug fix unless the user asked for both.
 - Do not mirror a bad existing pattern silently; fix proportionally and call it out.
+- Do not change a shared function's behavior without finding every caller and every flow that uses it.
 
 ## Output
 
@@ -71,6 +75,7 @@ Return:
 - `../../references/checklists/coding-best-practices-checklist.md`
 - `../../references/playbooks/coding-best-practices-playbook.md`
 - `../../references/checklists/engineering-delivery-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`
 
 ## Quick conventions
 
@@ -78,9 +83,11 @@ Return:
 - Default to returning new objects and arrays instead of mutating inputs; mutate deliberately and say why (for example a hot path over large arrays).
 - Await independent calls together (`Promise.all` or the language equivalent) instead of one after another.
 - Check the HTTP status before parsing a response body and wrap low-level errors with context; do not log and swallow them.
+- Check-then-act needs one guard: a transaction with a row lock, an atomic update, or a unique constraint. A separate check followed by a write is a race.
 - Comments explain why (a constraint, a trade-off), never what the next line does. Extract magic numbers into named constants with units (`DEBOUNCE_DELAY_MS`).
 - Query only the columns you need; `SELECT *` on a wide table is a finding.
 - Tests follow arrange, act, assert, and their names state the behaviour ("returns empty array when no markets match query"), not "works".
 - Use one consistent response envelope for an API, validate request bodies against a schema at the boundary, and return field-level validation details with a 400.
+- Parse external responses with a schema: ignore extra fields, reject missing fields and changed types, and never coerce them silently.
 
 Adapted in part from ECC skills/coding-standards (affaan-m/ECC, MIT).

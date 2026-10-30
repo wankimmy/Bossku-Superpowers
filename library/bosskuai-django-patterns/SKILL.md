@@ -23,12 +23,14 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 6. config/settings/production.py.
 
 - Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
-- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- Check the project's tool versions first: `python --version` against `requires-python` in `pyproject.toml`, and the Django and Django REST Framework versions in the lockfile (`uv.lock` or `poetry.lock`) or `requirements*.txt`. Check the latest stable release at work time on djangoproject.com and django-rest-framework.org, and use only APIs that exist in the installed versions. Also check the source prerequisites. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
 
 ## Done when
 
 Apply the source “Project Structure”, “Recommended Layout” guidance to the concrete request. Return the resulting django development patterns artifact or diagnosis with source/command evidence for each conclusion.
 
 If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
+
+Also check before you finish: money and other decimal fields hold `Decimal` values, not floats, and read back as `Decimal`; `QuerySet.update()` skips `save()`, signals and `auto_now`; `bulk_create()` skips `save()` and signals (it still sets `auto_now` on insert), so handle signal side effects on purpose; counters use `F()` expressions, not a read followed by a write; and a cache key whose format changes gets a new version. The full quality bar is in `../../references/checklists/engineering-quality-bar.md`.
 
 Adapted from the locally reviewed `affaan-m/ECC` snapshot: provenance and hashes in [SOURCE.json](SOURCE.json), the original text and resources in [references/upstream/](references/upstream/SKILL.md) under its [MIT licence](references/upstream/LICENSE). Copyright (c) 2026 Affaan Mustafa.

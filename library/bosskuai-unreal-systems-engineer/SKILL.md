@@ -31,6 +31,12 @@ Use this skill to decide what belongs in C++ versus Blueprint, set up the Gamepl
 - Do not mutate replicated attributes directly; go through gameplay effects.
 - Do not ship Blueprint tick logic in hot paths; measure before and after moving to C++.
 - Do not delete or rewrite project assets or config without explicit user approval.
+- Read the exact version from `MajorVersion`, `MinorVersion` and `PatchVersion` in `Engine/Build/Build.version` in the engine folder (the folder that holds `Engine/`). `EngineAssociation` in the `.uproject` may hold only major.minor, a GUID, a relative path, or nothing, so do not use it as the exact version. Then check the release notes before you use an API, a console variable or a limit.
+- Renaming a saved property or class needs a core redirect in `DefaultEngine.ini` (`[CoreRedirects]`), or saved data and Blueprint references break. Ask the user to approve that config edit before you make it.
+- Build every target you ship (Editor, Game, and Server if the project has one) after each change to a `.Build.cs` file.
+- Test abilities with an actor destroyed mid-ability and a level unloaded during an effect.
+
+Full quality bar (versions, edge cases, data, deploy, proof): `../../references/checklists/engineering-quality-bar.md`.
 
 ## Output format
 

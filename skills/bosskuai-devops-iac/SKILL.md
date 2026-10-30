@@ -44,7 +44,7 @@ Use this skill when the main question is **how software is built, shipped, confi
 
 **Infrastructure as code**
 - Who owns state and change approval?
-- Are plans reviewed before apply?
+- Are plans reviewed before apply, including every `forces replacement` line on a stateful resource (a database, volume or bucket)?
 - Is drift detection part of the workflow?
 
 **Secrets and supply chain**
@@ -65,7 +65,7 @@ Use this skill when the main question is **how software is built, shipped, confi
 2. **Map the delivery path** — source -> build -> test -> artifact -> deploy -> runtime -> rollback.
 3. **Identify the control points** — approvals, secrets, drift checks, environment promotion, and rollback triggers.
 4. **Review the artifact/runtime boundary** — build images, runtime config, migrations, secrets, and health checks.
-5. **Review infra safety** — IaC state handling, module reuse, blast radius, and change review.
+5. **Review infra safety** — IaC state handling, module reuse, blast radius, and change review. Keep state locking on, so a second apply waits instead of racing. Stateful resources get `prevent_destroy` (Terraform), so a replacement cannot delete their data.
 6. **Review failure and recovery** — partial deploys, failed migrations, unhealthy pods/services, and rollback or roll-forward strategy.
 7. **Recommend the smallest operational hardening slice** — improve reliability and safety without inventing platform theater.
 
@@ -133,14 +133,18 @@ Use these patterns when a deployment touches a high-risk surface or when the tea
 ## References
 
 - `../../references/checklists/devops-iac-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`
 
 ## Strategy choice, health probes, and release readiness
 
 - **Pick the strategy**: rolling (default; old and new versions run together, so changes must be backward compatible); blue-green (instant rollback, needs 2x infra during the cutover); canary (real-traffic signal, needs traffic splitting and monitoring).
 - **Health endpoints**: a cheap liveness/readiness `/health` that returns 200 with no dependency calls, and a separate detailed check (DB, cache, key external deps) returning 503 when degraded, kept internal. Do not point liveness at a deep dependency check, or a dependency blip restarts healthy pods.
 - **Kubernetes probes**: add a `startupProbe` (for example 30 failures x 5s) for slow starts, so liveness does not kill an app that is still booting. Readiness should fail faster than liveness.
+- **Connection draining**: take the instance out of rotation (readiness false, or deregistered from the load balancer) before SIGTERM on VMs; on Kubernetes, endpoint removal is not ordered before SIGTERM, so add a `preStop` sleep of a few seconds that is shorter than `terminationGracePeriodSeconds`, let in-flight requests finish, and make the grace period longer than the longest request (`terminationGracePeriodSeconds` and a `preStop` hook on Kubernetes).
+- **Versions**: read the tool version from `required_version`, provider and module versions from `required_providers`, `.terraform.lock.hcl` and module `version` pins. Check the latest provider and module releases live on the Terraform Registry (`registry.terraform.io`), the latest Terraform CLI live on `releases.hashicorp.com/terraform`, plus the runtime and OS image support dates. An upgrade goes through a plan review, never as a silent bump from `terraform init -upgrade`.
 - **Config**: all config from environment, validated at startup with a schema (fail fast, name the missing key, never print the value). Keep an explicit app-environment variable separate from the framework's mode flag.
 - **Rollback checklist**: previous artifact is tagged and still available; migrations are backward-compatible (expand, then contract later); feature flags can disable the new path without a deploy; error-rate alerts exist; rollback was rehearsed in staging.
+- **Rollback after new data**: a rollback reverts code, not rows. Before release, name the data the new version writes, whether the old version can still read it, and how to repair or restore it. Old workers keep running old code until they are drained, so restart them in the same release and keep old job payloads readable until the queue is empty.
 - **Production readiness**: tests green; no hardcoded secrets; structured logs without PII; image tags pinned (no `:latest`) and non-root user; resource limits and min/max scaling set; TLS on all endpoints; dependencies scanned for CVEs; CORS limited to allowed origins; rate limits on public endpoints; security headers set; migration rehearsed on production-sized data; runbook, on-call, and escalation path defined.
 
 Adapted in part from ECC skills/deployment-patterns (affaan-m/ECC, MIT).

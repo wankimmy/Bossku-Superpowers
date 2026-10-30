@@ -23,11 +23,16 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 6. 5. Write Tests with Swift Testing.
 
 - Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
-- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- Check the project's tool versions and the source prerequisites first: read `swift-tools-version` in `Package.swift`, run `xcodebuild -version` and `swift --version`, and check whether the test targets import `Testing` or `XCTest`. Check the latest stable Swift release at swift.org/download at work time, and use only APIs present in the installed version. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
 
 ## Done when
 
 Apply the source “Core Pattern”, “1. Define Small, Focused Protocols” guidance to the concrete request. Return the resulting swift protocol-based dependency injection for testing artifact or diagnosis with source/command evidence for each conclusion.
+
+- Type traps: a mock must return the shapes production sends (a number as text, a missing key, `null`). Feed it recorded, sanitised production responses, not only happy-path values.
+- Concurrency: a mock that records calls must be safe under parallel tests. Use an actor or a lock, or the tests can flake.
+- Zero downtime: change a protocol in steps. Add the new requirement to the protocol, with a default implementation in a protocol extension. Move the callers and the mock conformers to the new requirement. Then remove the extension default once every conformer implements it, so each step builds and ships.
+- Full quality bar: `../../references/checklists/engineering-quality-bar.md`.
 
 If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
 

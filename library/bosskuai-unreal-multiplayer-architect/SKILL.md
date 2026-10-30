@@ -33,6 +33,12 @@ Use this skill so the server owns game truth, clients feel responsive, and repli
 - Set bandwidth and correction targets from measurements on your own game, not borrowed numbers.
 - Test at realistic latency before tuning.
 - Verify API names against current Unreal documentation for your version.
+- Read the exact engine version from `Engine/Build/Build.version` in the installed engine, and check its release notes before you use a networking API.
+- Test a client that disconnects mid-RPC, a late join, and a pawn that reaches a client before its PlayerState. Do not assume replication order.
+- Check business flaws as well as cheats: send one purchase or pickup request twice, or fire it at the cooldown edge, and confirm it applies once.
+- Send the build version at join and reject a mismatch with a clear message. Saves from the last shipped build must still load.
+
+Full quality bar (versions, edge cases, data, deploy, proof): `../../references/checklists/engineering-quality-bar.md`.
 
 ## Output format
 

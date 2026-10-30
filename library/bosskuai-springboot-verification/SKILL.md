@@ -23,7 +23,7 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 6. Integration Tests with Testcontainers.
 
 - Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
-- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- Check the project's tool versions and the source prerequisites first: `java -version`, the Maven or Gradle wrapper version in `.mvn/wrapper/maven-wrapper.properties` or `gradle/wrapper/gradle-wrapper.properties`, and the Spring Boot version in `pom.xml` or `build.gradle(.kts)`. Check the latest Spring Boot release on spring.io at work time. Use only APIs present in the installed version. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
 - It can need a named provider, MCP server or API: check that it is available and in scope, report it when it is not, and never invent its output.
 
 ## Done when
@@ -31,5 +31,9 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 Complete the source “Spring Boot Verification Loop”, “Output Template” procedure for this task. Keep its resulting artifact, command output or cited evidence, and state what remains unverified.
 
 If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
+
+- Run migrations on a copy of production data first, and check that the result matches what deploy should give. If there is no copy, ask the user to prepare one.
+- Old code must run on the new schema, and new code on the old, so a rolling deploy works without errors.
+- Full quality bar, with version and type checks: `../../references/checklists/engineering-quality-bar.md`.
 
 Adapted from the locally reviewed `affaan-m/ECC` snapshot: provenance and hashes in [SOURCE.json](SOURCE.json), the original text and resources in [references/upstream/](references/upstream/SKILL.md) under its [MIT licence](references/upstream/LICENSE). Copyright (c) 2026 Affaan Mustafa.

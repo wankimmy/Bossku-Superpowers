@@ -64,7 +64,7 @@ Every DESIGN.md follows this structure. Use it for generation and auditing:
 
 7. **Agent prompt guide** — System prompt for AI tools to generate on-brand UI. Component generation templates. Design review prompt templates.
 
-8. **DESIGN.md assembly** — Compile into the 9-section format. Verify every token has a semantic role, every component has all states, and the agent prompt guide is actionable.
+8. **DESIGN.md assembly** — Compile into the 9-section format. Verify every token has a semantic role, every component has all states, and the agent prompt guide is actionable. Check each component's longest real label in every supported locale, in every theme the system ships, at the widths in the Responsive Behavior section.
 
 9. **Pencil integration** (optional, when .pen files exist) — Use `get_variables` to read existing design tokens from .pen files. Use `set_variables` to apply new tokens. Use `batch_design` to create component specimens. Use `get_screenshot` to validate visual output against the DESIGN.md.
 
@@ -75,7 +75,10 @@ Every DESIGN.md follows this structure. Use it for generation and auditing:
 - Do not skip component states — every interactive element needs all state definitions.
 - Do not generate a DESIGN.md without confirming brand inputs with the user first.
 - If the project already has a design system, audit and enhance it rather than replacing it.
+- Do not remove or rename a token or a component prop in one release. Deprecate it, keep the old name for a release, and find every consumer first (search each app that imports the package).
+- Read the design system's version from its `package.json`, and each consumer's from its lockfile. An app on an old version does not get new tokens, so say which version each app runs.
 - Verify all text-background color pairs pass WCAG AA contrast (4.5:1 body text, 3:1 large text = 24px, or 18.7px bold; compute pairs with skills/antislop-human/contrast-check.py).
+- Screenshot each component state in every theme the system ships and at each width in the Responsive Behavior section. A state with no screenshot is unverified.
 - When fetching reference DESIGN.md files, use WebFetch to retrieve from `getdesign.md/{company}/design-md`. If offline or unavailable, describe the 9-section structure and work from user-provided brand inputs.
 
 ## Output format
@@ -88,6 +91,7 @@ Every DESIGN.md follows this structure. Use it for generation and auditing:
 - `../../references/playbooks/design-systems-detailed-playbook.md`
 - `../../references/checklists/design-systems-checklist.md`
 - `../bosskuai-ui-ux-design-to-code/SKILL.md` (screen-level application of the system)
+- `../../references/checklists/engineering-quality-bar.md`: the shared bar.
 
 ## Further reading
 

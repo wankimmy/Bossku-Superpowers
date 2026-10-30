@@ -385,7 +385,7 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
         "go to market", "gtm", "marketing strategy", "growth strategy", "distribution", "growth loops",
     ],
     "bosskuai-paid-acquisition-monetization": [
-        "cac", "ltv to cac", "payback period", "paid acquisition", "monetization model",
+        "cac", "ltv to cac", "cac payback", "paid acquisition", "monetization model",
     ],
     "bosskuai-sales-strategy": [
         "icp", "pipeline", "objection handling", "founder led sales", "pipeline review", "deal review",
@@ -756,6 +756,19 @@ for _sid, _more in {
 }.items():
     CURATED_TRIGGERS.setdefault(_sid, []).extend(_more)
 
+# --- 2026-10-30 worth-it and ROI questions go to bosskuai-product-strategy (user request): is a requirement worth
+# building, what its objective and goal are, and what a shipped feature returned. Without these, the prompts routed to
+# brainstorming, search-first or corporate training. ---
+for _sid, _more in {
+    "bosskuai-product-strategy": [
+        "worth building", "worth the time to build", "worth the effort to build", "worth building it",
+        "what was the roi", "what is the roi", "what roi did", "do an roi review",
+        "payback period",
+        "objective and goal of this requirement", "objective and goal of the requirement", "should we even build",
+    ],
+}.items():
+    CURATED_TRIGGERS.setdefault(_sid, []).extend(_more)
+
 # --- 2026-10-21 Awwwards is the default design style (user decision). bosskuai-taste is the house rule for every
 # website, landing page and portfolio; the vendored Awwwards packs are its deep references; jury scores a site. ---
 for _sid, _more in {
@@ -857,6 +870,12 @@ for _sid, _more in {
     "marketing-council": ["four voice", "four-voice"],
     "bosskuai-react-development": ["pinia"],
     "cloud": ["cloud spend"],
+}.items():
+    CURATED_EXCLUSIONS.setdefault(_sid, []).extend(_more)
+
+# --- 2026-10-30 review and PR-template prompts that say "objective and goal" are code reviews, not product strategy. ---
+for _sid, _more in {
+    "bosskuai-product-strategy": ["does this change achieve", "pr template"],
 }.items():
     CURATED_EXCLUSIONS.setdefault(_sid, []).extend(_more)
 

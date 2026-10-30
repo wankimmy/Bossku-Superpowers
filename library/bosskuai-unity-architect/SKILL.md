@@ -39,6 +39,11 @@ Use this skill to move a Unity codebase away from God classes and hard reference
 - Size limits such as "150 lines" are rules of thumb, not requirements; judge by responsibilities.
 - Package names, APIs, and editor menus change between Unity versions. Check the installed version's documentation.
 - Do not rewrite serialized assets in bulk without version control and a backup; renamed fields can drop data.
+- Read the Unity version from `ProjectSettings/ProjectVersion.txt` and the package versions from `Packages/packages-lock.json`. Check Unity's latest stable release notes before you use an API.
+- When you rename a serialized field, add `[FormerlySerializedAs("oldFieldName")]` with the field's old name so saved values carry over. Test with an asset made by the last release.
+- Test an event raised before its listener is enabled, a runtime set that still holds destroyed entities, and a scene loaded twice.
+
+Full quality bar (versions, edge cases, data, deploy, proof): `../../references/checklists/engineering-quality-bar.md`.
 
 ## Output format
 

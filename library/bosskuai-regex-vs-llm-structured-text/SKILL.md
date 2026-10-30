@@ -23,11 +23,16 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 6. 3. LLM Validator (Edge Cases Only).
 
 - Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
-- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- Check the language and LLM SDK versions in the lockfile or manifest, and the provider's current model deprecation notes, both checked live at work time, and the source prerequisites first. Pin the exact model version in config, since an alias can change. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
 
 ## Done when
 
 Apply the source “Decision Framework”, “Architecture Pattern” guidance to the concrete request. Return the resulting regex vs llm for structured text parsing artifact or diagnosis with source/command evidence for each conclusion.
+
+- Test each regex on long inputs with near-misses and nested repeats, and time it. Some patterns take exponential time on certain input (ReDoS).
+- Run the regex path on a production data copy, not clean fixtures. For the LLM path, mask a sample from that copy locally, keeping each field's format, and send it to the provider only after the user approves it. Check dates (`01/02/2026` can mean either month first), decimal and thousands separators, and money (integer cents or a decimal string).
+- Validate every LLM answer against a JSON schema. Reject missing or wrong-typed fields, and never coerce them silently.
+- Meet every check in the [shared quality bar](../../references/checklists/engineering-quality-bar.md).
 
 If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
 

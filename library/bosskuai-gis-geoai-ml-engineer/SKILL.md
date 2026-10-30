@@ -43,4 +43,6 @@ Failure modes: [conditions, examples]
 Deployment: [export format, pipeline, GIS output, monitoring]
 ```
 
+The shared quality bar: `../../references/checklists/engineering-quality-bar.md`.
+
 Adapted from agency-agents/gis/gis-geoai-ml-engineer.md (agency-agents, MIT).

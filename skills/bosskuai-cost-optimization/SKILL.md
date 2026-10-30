@@ -16,7 +16,7 @@ Use this skill when spend is the problem: infrastructure, vendor APIs, model tok
 
 ## Measure before optimizing
 
-Name the cost driver with a number before changing anything. Request volume, tokens per call, queue duration, database load, egress, storage growth, vendor call counts. Optimizing an unmeasured cost usually moves work rather than removing it, and the savings claim cannot be checked afterwards.
+Name the cost driver with a number before changing anything. Request volume, tokens per call, queue duration, database load, egress, storage growth, vendor call counts. Optimizing an unmeasured cost usually moves work rather than removing it, and the savings claim cannot be checked afterwards. Price each unit at the provider's live price for the model id the project runs (read from config), and write down the date you checked.
 
 ## Where SaaS spend actually concentrates
 
@@ -73,18 +73,22 @@ Verification: [how the saving will be confirmed]
 ## References
 
 - `../../references/checklists/cost-optimization-checklist.md`
+- `../../references/checklists/engineering-quality-bar.md`
 
 Adapted from engineering/engineering-finops-engineer.md (agency-agents, MIT).
 
 ## LLM pipeline and prompt caching checks
 
 - Route by task complexity (input size, item count) with a cheap default and a `force_model` override; keep model names in config, not scattered in code; log each routing decision so thresholds can be tuned from real data.
-- Set a budget limit before a batch and fail early when it is exceeded. Keep cost records append-only, one per call, so totals can be audited.
-- Retry only transient errors (connection, rate limit, 5xx) with backoff and a cap; fail fast on auth and validation errors.
+- Set a budget limit before a batch and fail early when it is exceeded. When runs can overlap, reserve the spend in one atomic step, or two runs can both pass the check.
+- Keep cost records append-only, one per call, with no prompt text or personal data. Sum money as decimals or integer units, never floats, so totals can be audited.
+- Retry only transient errors (connection, rate limit, 5xx) with backoff and a cap, and set a timeout on every paid call; fail fast on auth and validation errors.
 - Prompt caching: keep tools, instructions and stable examples first and unchanged (a changed prefix breaks reuse from that point); put the question, timestamps and retrieved results after it. Confirm the provider's minimum prefix length, TTL and write price from current docs, since a short prefix yields zero cache hits and a write can cost more than plain input. Caching does not shrink the context window.
 - A one-off call or a prefix that keeps expiring can cost more with caching. Count warmup, miss, refresh and retry requests in the measured period.
 - Measure with provider usage counters (ordinary input, cache write, cache read, output). Do not double count the same tokens, never apply a cache discount to output tokens, and report token hit rate (cache reads / total input) separately from request hit rate. With no measured traffic, label hit rate and savings `unmeasured`.
 - Cache keys and cached handles are scoped to tenant, permission and content revision; a cache key is not an authorization check.
 - Usage logs that store cumulative per-session snapshots must be reduced to the latest row per session before summing, and a recorded cost field beats recomputing from token counts.
+- Any cost change that alters output (a cheaper model, a shorter prompt, a new cache) changes what existing users get. Check quality on an eval set first, roll it out behind a flag, and keep the old path to switch back to.
+- Set the cost budget and the latency ceiling together. A cheaper path that breaks the latency ceiling is not a saving.
 
 Adapted in part from ECC skills/cost-aware-llm-pipeline, skills/cost-tracking and skills/prompt-caching-strategy (affaan-m/ECC, MIT).

@@ -17,13 +17,13 @@ Use this skill to design or review Salesforce solutions so they stay inside plat
 
 ## Workflow
 
-1. Org assessment: objects and volumes, automations (Flows, triggers, legacy rules), integrations, known limit hot spots, technical debt. Use the platform's limits tooling to observe actual use.
+1. Org assessment: objects and volumes, automations (Flows, triggers, legacy rules), integrations, known limit hot spots, technical debt. Use the platform's limits tooling to observe actual use. Check the API version your code calls (the `/services/data/vXX.0/` path) against the current release notes, live at work time.
 2. Data model first: relationship types (master-detail vs lookup) with reasons, record types, sharing model, large-volume strategy, external IDs for integration objects, field-level security, justified polymorphic lookups.
 3. Automation layering: declarative tools first (Flow, formulas, validation) and code when logic needs bulk handling or clear tests. One trigger per object that delegates to handler classes; no business logic in the trigger body. Avoid overlapping automation on one object.
 4. Governor-limit budget: for each transaction list queries, DML, CPU, heap, callouts, and async calls used and remaining. Design every code path to work on a batch of records (the platform processes records in chunks), with no query or DML inside loops. Take current numeric limits from Salesforce's documentation for the release in use.
-5. Integration pattern per system: sync versus async, push versus pull, platform events versus change data capture (custom business events versus data-change sync), middleware, auth, retry with backoff, dead-letter handling, rate limits, idempotency keys.
+5. Integration pattern per system: sync versus async, push versus pull, platform events versus change data capture (custom business events versus data-change sync), middleware, auth, retry with backoff, dead-letter handling, rate limits, idempotency keys. Set an explicit timeout on every callout, within the platform's maximum. A callout made after uncommitted DML in the same transaction fails with an "uncommitted work pending" error, so queue it instead. Make each retry safe to repeat, for example with an external ID.
 6. Security: CRUD and field-level checks, query injection prevention, encryption for sensitive fields, data residency needs.
-7. Delivery: source-tracked metadata, scratch orgs or sandboxes by purpose, automated tests and deploy pipeline, destructive-change handling, rollback plan.
+7. Delivery: source-tracked metadata, scratch orgs or sandboxes by purpose, automated tests and deploy pipeline, destructive-change handling, rollback plan. Test the deploy on a full or partial copy sandbox, because a developer sandbox has no real data. Check the effect on existing users, such as new validation rules and changed flows, before go-live.
 8. Record each significant decision as an ADR with alternatives and the limits it affects.
 
 ## Guardrails
@@ -32,6 +32,11 @@ Use this skill to design or review Salesforce solutions so they stay inside plat
 - Do not deploy to, or change data in, a production org without explicit user approval and a tested rollback.
 - Do not store sensitive personal data in unencrypted custom fields.
 - Do not design callouts without failure handling.
+- Load large volumes with Bulk API 2.0. A call past the daily API request limit fails with `REQUEST_LIMIT_EXCEEDED`, so count calls per run.
+- Store money in Apex `Decimal`, never `Double`, and check each currency field's scale on the live org.
+- Salesforce adds fields in new releases. Ignore extra fields, and fail loudly when a field you use is missing or has another type.
+- Log each callout's request and response, with the session token and personal data masked.
+- Page through query results with `nextRecordsUrl` until `done` is true.
 
 ## Output format
 
@@ -44,5 +49,7 @@ Integration table: [system - pattern - failure handling]
 ADRs: [title - status - review date]
 Delivery and rollback: [pipeline, tests, undo]
 ```
+
+The shared quality bar: `../../references/checklists/engineering-quality-bar.md`.
 
 Adapted from agency-agents/specialized/specialized-salesforce-architect.md (agency-agents, MIT).

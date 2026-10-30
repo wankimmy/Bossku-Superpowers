@@ -24,9 +24,10 @@ Use this skill when a search box returns poor results and you need to fix it wit
 - Score fields, do not stuff them. A single catch-all field loses signal; title, brand, and body deserve different weights.
 - Query structure: `filter` for yes/no conditions, `must` for text match with field weights, `should` for popularity and freshness nudges that do not dominate text score.
 - Identifiers (SKU, model numbers) need keyword fields, not stemming.
+- Map money, IDs and SKUs by hand. Dynamic mapping sets a field's type from the first value it sees. If the first document sends a price as "0.01", the field becomes text, and range queries then compare text.
 - Vectors complement BM25. Semantic search can miss exact codes and rare terms. Default to hybrid with rank fusion and prove any single-mode setup on the judgment set.
-- Version indices and use aliases: build `name_v2`, reindex, verify, flip the alias, keep the old index for rollback.
-- A relevance gain that breaks the latency budget is a loss. Measure `took` and avoid leading wildcards on hot paths.
+- Version indices and use aliases: build `name_v2`, reindex, verify, flip the alias, keep the old index for rollback. Writes made during a `_reindex` are not in `name_v2` unless you replay or dual-write them before the flip.
+- A relevance gain that breaks the latency budget is a loss. Measure `took` and avoid leading wildcards on hot paths. A response with `timed_out: true` holds partial results, so count it as a failure in tests and alerts.
 
 ## Workflow
 
@@ -38,6 +39,7 @@ Use this skill when a search box returns poor results and you need to fix it wit
 6. Run the judgment set in CI; fail on a drop beyond the noise threshold, with a per-query diff.
 7. Ship important changes behind interleaving or an A/B test. If online results disagree with offline, roll back.
 8. Refresh the judgment set regularly because queries drift.
+9. Check the change against the shared bar: `../../references/checklists/engineering-quality-bar.md`.
 
 ## Triage table
 
@@ -51,14 +53,16 @@ Use this skill when a search box returns poor results and you need to fix it wit
 
 ## Guardrails
 
-- Check the installed Elasticsearch/OpenSearch version before using retriever, RRF, or synonym-set features; names and availability differ.
+- Check the installed Elasticsearch/OpenSearch version before using retriever, RRF, or synonym-set features; names and availability differ. `GET /` on the cluster returns its version number.
 - Do not apply mapping changes in place on a live index.
 - Do not log raw user queries without a privacy decision.
+- Old and new app code read the same alias during a deploy. Before any query reads a new field, every index behind the alias must have it. Add the field through the index-version steps above, not in place, then ship the query that reads it.
 
 ## Output format
 
 ```text
 Problem segment: [queries, evidence]
+Versions: [cluster version from GET /, client version from the lockfile, checked date]
 Baseline: [nDCG@10, zero-result rate, p95]
 Change: [analyzer / query / hybrid / reindex]
 Result: [metric deltas per segment]

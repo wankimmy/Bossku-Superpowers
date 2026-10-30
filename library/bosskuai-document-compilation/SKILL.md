@@ -55,4 +55,6 @@ Verification: [page count, text selectable, validator result]
 Open risks: [list]
 ```
 
+The shared quality bar: `../../references/checklists/engineering-quality-bar.md`.
+
 Adapted from agency-agents/engineering/engineering-pdf-engine-architect.md and engineering-universal-document-compiler.md (agency-agents, MIT).

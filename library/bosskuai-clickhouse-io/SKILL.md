@@ -23,12 +23,17 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 6. Query Optimization Patterns.
 
 - Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
-- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- Check the project's tool versions and the source prerequisites first: run `SELECT version()` on the target server, and read the client library version from its lockfile. Check the latest stable release and its changelog at clickhouse.com at work time, and use only APIs present in the installed version. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
 - It can need a named provider, MCP server or API: check that it is available and in scope, report it when it is not, and never invent its output.
 
 ## Done when
 
 Apply the source “Overview”, “Table Design Patterns” guidance to the concrete request. Return the resulting clickhouse analytics patterns artifact or diagnosis with source/command evidence for each conclusion.
+
+- Type traps: money in `Decimal`, never `Float64`, even where a source example uses `Float64` for a column that holds money. ClickHouse JSON output quotes 64-bit integers as strings by default, so check how the client parses them.
+- Concurrency and duplicates: `ReplacingMergeTree` removes duplicates only when parts merge. Use `FINAL` or `argMax` where a duplicate would change the answer, and never assume a row is unique right after an insert.
+- Zero downtime: `ALTER TABLE ... UPDATE` and `ALTER TABLE ... DELETE` run as background mutations, so watch `system.mutations` until they finish. For a new sort key, build a new table, backfill in chunks, and switch reads.
+- Full quality bar: `../../references/checklists/engineering-quality-bar.md`.
 
 If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
 

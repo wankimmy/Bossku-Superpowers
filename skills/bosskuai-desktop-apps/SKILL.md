@@ -23,13 +23,15 @@ Use this skill when a web-technology app is shipped as a desktop app (Electron o
 - Remote content gets no privileges. Load it in a sandboxed view with no IPC, or a deny-by-default allowlist.
 - Ship signed. Windows code signing and macOS signing plus notarization (hardened runtime) are release-blocking. Keep signing keys in a vault or HSM, not as files in CI.
 - The updater is the most critical code. A broken updater cannot fix itself. Use signed update manifests, staged rollout, a health check, and a tested rollback.
+- Old installs keep updating from the same feed, so a new update format or IPC channel must work for every version still in use.
 - Follow each platform's conventions separately: menu placement, Cmd vs Ctrl, tray behavior, installer expectations.
 - Measure footprint: cold start, idle memory, installer size, idle CPU. Set budgets and fail the build on regressions.
 - Plan for offline. Local-first data with a visible sync status beats a spinner.
+- Local data (SQLite files, settings, caches) outlives the app. Migrate it forward, and make a rollback either open the newer format or refuse it with a clear error, never corrupt it.
 
 ## Choosing Electron or Tauri
 
-Decide in writing, before the first commit, from: size and memory budget, need for identical rendering everywhere, team skills (Node vs Rust), native module needs, and plugin maturity. Tauri uses the system webview, so rendering varies by OS and must be tested on the matrix. Electron ships its own Chromium, so it is consistent but larger.
+Decide in writing, before the first commit, from: size and memory budget, need for identical rendering everywhere, team skills (Node vs Rust), native module needs, and plugin maturity. Tauri uses the system webview, so rendering varies by OS and must be tested on the matrix. Electron ships its own Chromium, so it is consistent but larger. Read the installed runtime from `package.json` and the lockfile: Electron's version from `node_modules/electron/package.json` (log `process.versions.electron` at startup), and Tauri's runtime from the `tauri` crate in `Cargo.lock` (`@tauri-apps/cli` is a separate package with its own version; `@tauri-apps/api` should share the crate's minor version). Check the latest with `npm view electron version` (github.com/electron/electron/releases) or the `tauri` crate on crates.io (crates.io/crates/tauri). Each Electron major brings a new Chromium and Node, so read that major's breaking changes first.
 
 ## Workflow
 
@@ -51,6 +53,9 @@ Decide in writing, before the first commit, from: size and memory budget, need f
 - Certificate expiry dates tracked.
 - Single-instance and deep-link behavior tested.
 - Crash reporting with symbols uploaded.
+- Test paths with spaces, OneDrive-synced folders, non-ASCII user names and long paths on Windows.
+- Minimum and default window sizes (`minWidth` and `minHeight` in the window config) screenshotted on each OS.
+- Shared bar met: `../../references/checklists/engineering-quality-bar.md` (versions, data, deploy and proof).
 
 ## Output format
 

@@ -31,6 +31,11 @@ Use this skill to keep UE5 visuals consistent and inside per-platform performanc
 - Engine features and menus change across UE5 minor versions (for example material systems and PCG nodes). Verify against the installed version's documentation.
 - Treat any budget number as project-specific and confirm it on the lowest target hardware.
 - Do not bulk-edit shared master materials or content folders without version control and a note to the team.
+- Get the exact engine version from `Engine/Build/Build.version` in the engine folder that opens the project. Do not rely on `EngineAssociation` in the `.uproject` file. For Launcher installs it gives only major.minor. For source builds and team setups it can hold a GUID, a path, or nothing. Check the release notes for material, Niagara and PCG changes before you use a node.
+- Before you edit a shared Material Function or master material, list its users with the Reference Viewer. Every material instance under a changed master changes too.
+- Test each material at the lowest quality tier, with a missing texture and a camera at maximum distance.
+
+Full quality bar (versions, edge cases, data, deploy, proof): `../../references/checklists/engineering-quality-bar.md`.
 
 ## Output format
 

@@ -21,6 +21,7 @@ Use this skill when an LLM answers from retrieved documents and the question is 
 - No change without a before and after eval run. "It feels better" is not evidence.
 - Chunk for retrieval, not for ease of ingestion. Pick structural (headers), recursive, or semantic chunking by document type, then tune size and overlap by ablation.
 - Test embedding models on a sample of your own corpus. A benchmark rank does not guarantee domain fit.
+- Store the embedding model name, version and dimension with every chunk. Vectors from two models do not compare, and a query embedded with the new model returns noise without an error when the dimensions match. When they differ, pgvector raises an error such as "different vector dimensions 1536 and 3072". A model change means re-embedding the whole corpus.
 - Design the metadata schema before the index schema. Filter by scope (tenant, source, date, language) before similarity runs. In multi-tenant data, the filter is also an isolation boundary.
 - Hybrid search (dense plus keyword) helps with exact terms, names, and codes. Fuse by rank (for example reciprocal rank fusion) rather than mixing raw scores. Tune weights on the golden set.
 - Re-ranking is not free. Add a cross-encoder only when precision is the bottleneck and the latency budget allows. Keep it only if the eval shows a gain.
@@ -32,10 +33,11 @@ Use this skill when an LLM answers from retrieved documents and the question is 
 1. Audit the corpus: types, lengths, structure, languages, vocabulary. List the real query types.
 2. Build a small golden set of queries with their relevant chunks or answers.
 3. Compare at least two embedding models by recall@k on that set.
-4. Build ingestion with metadata, batching, and chunk quality checks before bulk load.
+4. Build ingestion with metadata, batching, and chunk quality checks before bulk load. Key each chunk by its document id, a content hash and its position in the document, so a retry rewrites the same keys. Upsert the new chunks first. Then delete only this document's chunks whose key is not in the new set. Where the store supports transactions (for example pgvector), put the delete and the insert in one BEGIN/COMMIT block instead, so the change is all or nothing. Either way, a failure never leaves the document with no chunks.
 5. Baseline: recall@k, precision, faithfulness, answer relevance, p95 latency.
 6. Change one variable at a time (chunk size, overlap, top-k, fusion weight, re-ranker). Keep only changes that improve the target metric without hurting others.
 7. In production, log query, retrieved chunk ids, scores, and latency. Watch for drift, such as falling top-1 similarity.
+8. Check the change against the shared bar: `../../references/checklists/engineering-quality-bar.md`.
 
 ## Diagnosis hints
 
@@ -49,11 +51,15 @@ Use this skill when an LLM answers from retrieved documents and the question is 
 - Do not send private documents to an external embedding service without confirming policy.
 - Do not skip dedupe in context assembly; repeated chunks waste the prompt.
 - Agentic retries (reformulate, retrieve again) need an attempt cap.
+- When a source document is deleted or its access changes, delete or re-check its chunks in the same change. A stale chunk can answer from a document the user may no longer read.
+- Treat retrieved text as untrusted input. A chunk can carry instructions; see `bosskuai-prompt-injection-defense`.
+- Cap the context by tokens, not chunk count, and log what was cut.
 
 ## Output format
 
 ```text
 Corpus and queries: [summary]
+Models and versions: [embedding model, dimension, vector store version (for pgvector: SELECT extversion FROM pg_extension WHERE extname = 'vector';), checked date]
 Chunking and metadata: [strategy, schema]
 Retrieval: [index, hybrid, re-ranker decision]
 Eval: [golden set size, metrics before/after]

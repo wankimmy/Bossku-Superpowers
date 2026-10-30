@@ -50,4 +50,6 @@ Verification: [tests, Instruments traces]
 Open risks: [..]
 ```
 
+The shared quality bar: `../../references/checklists/engineering-quality-bar.md`.
+
 Adapted from agency-agents/spatial-computing/terminal-integration-specialist.md (agency-agents, MIT).

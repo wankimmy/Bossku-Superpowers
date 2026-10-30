@@ -15,12 +15,15 @@ Name the attacker and what they control (input, filenames, URLs, headers, payloa
 - **Secrets and signatures:** compare with a constant-time function (`hmac.compare_digest`); pin the algorithm so it cannot be downgraded; sign the raw bytes; require a timestamp and reject replays and clock skew; use `secrets`, never `random`.
 - **Output:** escape for the sink (HTML, shell, SQL, log lines: strip CR and LF). Keep secrets out of logs, URLs and error messages.
 - **Resources:** bound size, depth, count and time, and reject early.
-- **Fail closed:** unknown value means reject; an error means deny.
+- **Fail closed:** unknown value means reject; an error means deny. Test it: make the dependency time out, and check that the result is deny.
+- **Money, limits and one-time actions:** prices and totals come from the server, amounts are integer minor units, negative and huge values are refused, and a single-use coupon or invite works once, and total refunds cannot exceed the amount paid. Test a repeated request.
+- **Races:** two requests at once can both pass a check that each would fail alone, such as a double spend or a double redeem. Use a row lock or an atomic update, and test with two concurrent requests.
+- **Type juggling:** JavaScript `==` coerces types, so `0 == ""` and `"0" == false` are both true. PHP `==` compares numeric strings as numbers, so `"0e123" == "0e456"` is true. Use strict equality for tokens, roles and amounts, and `hash_equals()` for signatures in PHP.
 - **Still works:** legitimate input must keep passing (dots inside names, unicode, empty values, an allowed second host).
 
 Write one test per attack input (it is rejected) and one per legitimate edge (it is still accepted).
 
-**For a review:** go through STRIDE for each trust boundary, label every finding confirmed or inferred with a severity, and give the smallest fix. The OWASP list, auth and session checks, supply-chain rules, worked threat models, privacy and what to skip at MVP stage: read `reference.md` in this folder.
+**For a review:** go through STRIDE for each trust boundary, label every finding confirmed or inferred with a severity, and give the smallest fix. The OWASP list, auth and session checks, supply-chain rules, worked threat models, privacy and what to skip at MVP stage: read `reference.md` in this folder. Read the installed versions first (lockfile and runtime), then check advisories for those versions only. For the scenario walk and the logic checks, see the shared bar: `../../references/checklists/engineering-quality-bar.md`.
 
 ## Extra checks by theme
 

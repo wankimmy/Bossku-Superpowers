@@ -59,4 +59,6 @@ Exports: [mermaid / markdown / json paths]
 Open questions for the process owner: [list]
 ```
 
+The shared quality bar: `../../references/checklists/engineering-quality-bar.md`.
+
 Adapted from agency-agents/engineering/engineering-orgscript-engineer.md (agency-agents, MIT).

@@ -50,4 +50,6 @@ Quality plan: [test set, WER measure, human review route]
 Risks: [list]
 ```
 
+The shared quality bar: `../../references/checklists/engineering-quality-bar.md`.
+
 Adapted from agency-agents/engineering/engineering-voice-ai-integration-engineer.md (agency-agents, MIT).

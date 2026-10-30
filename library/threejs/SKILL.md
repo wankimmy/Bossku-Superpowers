@@ -95,3 +95,13 @@ requestAnimationFrame(animate);
 - Target devices: mobile? older iPhones?
 - Asset format availability (glTF, HDRI, textures) and file size constraints
 - Accessibility/reduced motion requirements
+
+## Bossku additions
+
+Local additions (user rules, 2026-10-30); the upstream text above is unchanged.
+
+- Read the version from `package.json` and the lockfile. `THREE.REVISION` gives the release number as a string, such as `'170'` for 0.170.0. Dev builds add a suffix, such as `'187dev'`. Use the docs for that release, because Three.js removes old APIs between releases. threejs.org has no release selector, so for an older release use the docs folder at that release's tag: `github.com/mrdoob/three.js/tree/r<REVISION>/docs` (tags look like `r170`). At work time, check the latest release at `github.com/mrdoob/three.js/releases` and its migration notes at `github.com/mrdoob/three.js/wiki/Migration-Guide`.
+- Async loaders (GLTF, textures) can finish after unmount and add objects to a dead scene. In the load callback, check an unmounted flag. If it is set, dispose what was loaded (geometry, materials, textures) and do not add it to the scene. Stock loaders have no per-load cancel. `LoadingManager.abort()` can stop a GLTF download only where `AbortSignal.any()` exists, and it stops every load on that manager. It does not reach texture loads, so use the flag there.
+- Teardown disposes geometry, materials and textures, and memory stays flat after a route change. The scene holds the target frame rate on the lowest device the project supports.
+
+The full bar: `../../references/checklists/engineering-quality-bar.md`.

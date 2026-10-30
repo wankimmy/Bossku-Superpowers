@@ -17,12 +17,12 @@ Use this skill to carry out, or audit, a complete and coherent Rust refactor: ev
 ## Workflow
 
 1. Classify the request: audit, implement, explain, or plan. Fix scope, objective, compatibility expectations, and which behaviour changes are authorised.
-2. Read repository instructions, manifests, toolchain and lint config, CI, and feature definitions. Check uncommitted work and never overwrite changes you did not make.
+2. Read repository instructions, manifests, toolchain and lint config, CI, and feature definitions. Check uncommitted work and never overwrite changes you did not make. Compare `rustc --version` with the channel in `rust-toolchain.toml` and the `rust-version` in `Cargo.toml`, and use only APIs present in the `rust-version` from `Cargo.toml` when it is set. When it is not, use the channel in `rust-toolchain.toml`, or the installed `rustc` if no file pins one.
 3. Map the affected surface: definitions, callers, traits, impls, tests, re-exports, macros, features, errors, side effects. `pub` alone does not prove external reachability; check visibility and re-exports. Use the language server's references first, then search macro input, attributes, `include_*` paths, build scripts, snapshots, string dispatch, serialisation names, FFI names, and doctests.
 4. Baseline. Run the narrowest existing tests and checks before editing and record pre-existing failures. Add characterization tests where behaviour matters but is underspecified. Profile or benchmark before any performance work.
 5. Design coherent batches. Group mutually dependent changes, order by dependency, risk, and verification cost. Keep unrelated cleanup out.
 6. Implement end to end. Leave no half-renamed symbols, duplicate old and new paths, or stale comments. Add regression tests for any defect you fix.
-7. Verify with the relevant matrix: format check, targeted tests then crate or workspace tests, `cargo check`, Clippy, docs. Derive feature and target coverage from manifests, `cfg` use, and CI rather than assuming `--all-features` is valid. Run a semver checker if the public API may have changed.
+7. Verify with the relevant matrix: format check, targeted tests then crate or workspace tests, `cargo check`, Clippy, docs. Derive feature and target coverage from manifests, `cfg` use, and CI rather than assuming `--all-features` is valid. Run a semver checker if the public API may have changed. Also run `cargo test --release`, since integer overflow behaves differently there.
 8. Review the final diff: every changed file belongs to the transformation, no accidental lockfile, dependency, or formatting churn.
 
 ## Audit inventory item
@@ -49,6 +49,7 @@ Public API shape, errors, ordering, side effects, panic conditions, serialisatio
 - Ask before changing public API, ABI, CLI, config, features, wire or persistence formats, dependencies, toolchain or MSRV, lint policy, or existing `unsafe`, FFI, cryptography, or authentication code.
 - Do not add `unsafe` to get past the borrow checker. Do not weaken, skip, or rewrite tests to accept new behaviour.
 - Do not replace an error with a default or ignored result unless the contract says so.
+- Do not change a numeric type, sign or rounding without a test that proves the same results. `as` casts truncate silently.
 - Claim a speed-up only after a comparable measurement. Report a command as passed only if it ran and passed.
 - No destructive Git operations (reset, clean, force checkout) without explicit authorisation. Do not expose secrets found while reading.
 - If the existing design is clearer and safer, say so and leave it.
@@ -62,5 +63,7 @@ Behavior and API: [preserved, intentional changes]
 Verification: [exact commands and results]
 Remaining risk: [unverified targets, deferred items]
 ```
+
+Also check the shared quality bar: `../../references/checklists/engineering-quality-bar.md`.
 
 Adapted from agency-agents/engineering/engineering-rust-refactoring-specialist.md (agency-agents, MIT).

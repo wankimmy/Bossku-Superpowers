@@ -80,3 +80,12 @@ gsap.timeline({
 - Is this a static site or SPA (React/Next/Vue)? Any page transitions?
 - Do we need scroll-driven sections (pin/scrub/snap)?
 - Performance constraints (mobile support, reduced motion)?
+
+## Bossku additions
+
+Local additions (user rules, 2026-10-30); the upstream text above is unchanged.
+
+- Read the version from `package.json` and the lockfile, and check the latest release and plugin list on gsap.com at work time. Register each plugin once with `gsap.registerPlugin()` before using it.
+- Every tween, timeline and ScrollTrigger made in a component is reverted or killed on unmount, and a remount does not stack a second copy.
+
+The full bar: `../../references/checklists/engineering-quality-bar.md`.

@@ -7,6 +7,7 @@ Recurring traps that cause latency, cost spikes, or collapse under load — tune
 - N+1 queries: a loop that hits the database per item instead of batching or joining.
 - Unbounded lists: loading full tables into memory for dashboards or exports.
 - Missing or wrong indexes on filters, sorts, and foreign keys used in hot paths.
+- Detail endpoints that eager-load every relation "just in case", including large history or ledger tables, so the list is fast and the detail page is slow.
 
 ## Caching
 
@@ -30,3 +31,10 @@ Recurring traps that cause latency, cost spikes, or collapse under load — tune
 
 - Per-request calls to paid APIs or LLMs without caching, batching, or tiering.
 - Storing and serving large blobs through the application tier instead of object storage + CDN.
+
+## Investigation
+
+- Timing only the URL the user named: "the tenant page is slow" can mean the list, the detail page, the edit form or one tab. List every route under the path and time each one.
+- Concluding "it is not in the code" after checking part of the surface. Keep a coverage table and conclude only when every row is checked.
+- Skipping evidence already on screen: a first run that printed a method loading 16 relations was the answer.
+- Measuring on a small dev database. Use a masked production data copy, or the slow query never shows up.

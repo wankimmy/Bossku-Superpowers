@@ -749,3 +749,12 @@ except SpecificError as e:
 ```
 
 __Remember__: Python code should be readable, explicit, and follow the principle of least surprise. When in doubt, prioritize clarity over cleverness.
+
+## Bossku additions
+
+Local additions (user rules, 2026-10-30); the upstream text above is unchanged.
+
+- **Versions:** read `requires-python` in `pyproject.toml`, the lockfile (`uv.lock`, `poetry.lock` or pinned `requirements*.txt`) and `python --version`. Check the latest release and support dates at devguide.python.org/versions on the day. Use only syntax and standard-library APIs that exist in the lowest Python version the project supports.
+- **Types from outside:** `json.loads` turns 0.01 into a float unless you pass `parse_float=Decimal`, and `"0.01" == 0.01` is False with no error. Validate and convert at the boundary, and keep money in `Decimal` or integer cents.
+
+The full bar: `../../references/checklists/engineering-quality-bar.md`.

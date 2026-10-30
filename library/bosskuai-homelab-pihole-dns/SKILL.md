@@ -23,7 +23,7 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 6. Add at the bottom:.
 
 - Resolve its `scripts/`, `references/`, `assets/` and template paths against `references/upstream/`, not the project root. Source skill names map through [SOURCE.json](SOURCE.json) (`bossku skills show <id>`). ECC slash commands, agent names and package-root paths are not installed: use what this host has, or say what is missing.
-- Check the project's tool versions and the source prerequisites first. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
+- Check the Pi-hole version first with `pihole -v`, and the Docker image tag or OS package version if you installed it that way. Check the latest Pi-hole release notes at work time before any upgrade. Then check the source prerequisites. A documented command is an example, not permission to install packages, add an account, expose secrets, upload private content or change an external service.
 - It can need a named provider, MCP server or API: check that it is available and in scope, report it when it is not, and never invent its output.
 
 ## Done when
@@ -31,5 +31,11 @@ Read [the source workflow](references/upstream/SKILL.md) first, then work throug
 Complete the source “Prefer Cloudflare's package repository for automatic signed package verification.”, “If you download a binary directly, pin a release version and verify its checksum.” procedure for this task. Keep its resulting artifact, command output or cited evidence, and state what remains unverified.
 
 If an input, provider, runtime or authorisation is missing, stop that step, carry on with read-only analysis, and say exactly what is missing. A generated plan alone is not completion.
+
+Back up Pi-hole first (Teleporter export: Settings > Teleporter > Export). On the Pi, run `unzip -t <backup>.zip` and confirm it reports no errors before you change anything. If the export or this check fails, stop and do not change anything. Decide whether DHCP also gives out a fallback DNS server, since clients lose DNS when Pi-hole is down without one.
+
+After each change, test one allowed name, one blocked name and one local record from a wired and a Wi-Fi client.
+
+Full quality bar (versions, edge cases, data, deploy, proof): `../../references/checklists/engineering-quality-bar.md`.
 
 Adapted from the locally reviewed `affaan-m/ECC` snapshot: provenance and hashes in [SOURCE.json](SOURCE.json), the original text and resources in [references/upstream/](references/upstream/SKILL.md) under its [MIT licence](references/upstream/LICENSE). Copyright (c) 2026 Affaan Mustafa.
