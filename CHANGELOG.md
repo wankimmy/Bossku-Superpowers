@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.14.1 - The guard reads the words the shell runs
+
+### Fixed
+
+- **Quoted, escaped and wrapped commands no longer slip past the guard.** The deny rules used to match the raw command text, so `git reset "--hard"`, `"git" reset --hard`, `git re\set --hard`, `git --no-optional-locks reset --hard`, and a recursive delete behind `timeout 5`, `nice -n 10`, `stdbuf -o0`, `ionice`, `xargs` or `sudo -u x` were allowed. The guard now runs the deny rules a second time on the words the shell runs: quotes and backslashes are dropped, any git global option is skipped, and the delete program is found behind run wrappers. A rule must match at the program word, and a quoted argument with spaces counts as text, so `grep "shutdown" app.log` still passes. Found by a security audit run with Cloudflare's `security-audit` skill.
+
 ## v2.14.0 - A shared quality bar, stricter review and a worth-it check
 
 ### New
