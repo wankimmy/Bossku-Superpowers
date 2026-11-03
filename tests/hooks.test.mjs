@@ -135,6 +135,32 @@ const DENY = [
   "find ~ -delete",
   "find / -name '*.log' -delete",
   "find ~ -exec rm -rf {} +",
+  // the shell drops quotes and backslashes, so the words are what count, not the raw text
+  'git reset "--hard"',
+  '"git" reset --hard',
+  "git re\\set --hard",
+  "git 'stash' drop",
+  '"docker" compose down',
+  '"rm" -rf ~',
+  // git global options outside the -C / -c / --no-pager set
+  "git --no-optional-locks reset --hard",
+  "git --literal-pathspecs push --force origin main",
+  "git --git-dir .git --work-tree . clean -fd",
+  // run wrappers in front of a recursive delete
+  "timeout 5 rm -rf /",
+  "timeout 5 rm -rf ~",
+  "timeout 5 rm -r /etc",
+  "nice rm -rf /",
+  "nice -n 10 rm -rf ~",
+  "stdbuf -o0 rm -rf /",
+  "ionice -c3 rm -rf ~/Documents",
+  "echo x | xargs rm -rf ~",
+  "sudo -u root rm -rf /etc",
+  "timeout -s KILL 5 rm -rf ~",
+  "nice -n 10 ionice -c3 rm -rf /etc",
+  'bash -c "timeout 5 rm -rf ~"',
+  "git -C x --no-optional-locks reset --hard",
+  '"C:\\Program Files\\Git\\bin\\git.exe" reset --hard',
 ];
 const ALLOW = [
   "git status",
@@ -183,7 +209,25 @@ const ALLOW = [
   "bash -c 'npm test'",
   'pwsh -Command "Get-ChildItem"',
   "env NODE_ENV=test npm test",
+  // words inside one quoted argument are text, not a command
+  'grep -n "shutdown" app.log',
+  'git log --grep="reset --hard"',
+  'echo "nice rm -rf build"',
+  "git --no-optional-locks status",
+  "timeout 5 rm -rf build",
+  "nice rm -rf ./dist",
+  "stdbuf -oL npm test",
+  "find . -name '*.tmp' | xargs rm -f",
+  'git log --grep="push --force"',
+  "docker run --rm alpine ls",
+  "find . -type f | xargs -0 rm -f",
 ];
+
+test("guard word pass stays linear on a long quoted line", () => {
+  const start = Date.now();
+  assert.equal(judge("echo " + 'a"b '.repeat(20000), CWD), null);
+  assert.ok(Date.now() - start < 2000, "judge took too long on a long line");
+});
 
 test("guard denies destructive commands", () => {
   for (const cmd of DENY) assert.ok(judge(cmd, CWD), `expected deny: ${cmd}`);

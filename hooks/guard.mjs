@@ -426,7 +426,7 @@ export function judge(command, cwd, git = budgetedGit(), dir = cwd) {
       if (innerCd) here = moveTo(here, cdTarget(innerCd[1]));
     }
   }
-  return null;
+  return wordDeny(command, cwd);
 }
 
 // The simple commands of a command line, each as its words. Splits at unquoted ; & && || | ( ) { } and line breaks; a
@@ -688,6 +688,49 @@ export function askFor(command, depth = 0) {
       const hit = askFor(inner, depth + 1);
       if (hit) return { rule: p.words.join(" ").slice(0, 200), why: hit.why };
     }
+  }
+  return null;
+}
+
+// git global options that take the next word as their value; every other option before the verb stands alone.
+const GIT_VALUE_OPTS = /^(?:-C|-c|--git-dir|--work-tree|--namespace|--config-env)$/;
+// Programs that run the command after them: `timeout 5 rm`, `nice -n 10 rm`, `stdbuf -o0 rm`, `xargs rm`.
+const RUN_WRAPPERS = new Set([...PREFIX_WORDS, "ionice", "stdbuf", "timeout", "setsid", "chrt", "taskset", "unbuffer", "xargs", "flock", "caffeinate", "nocorrect", "noglob"]);
+const DELETERS = new Set(["rm", "remove-item", "ri", "rd", "rmdir", "del", "erase"]);
+
+// The deny rules once more, on the words the shell runs (the second pass after judge()'s raw-text one): quotes and
+// backslashes are gone, git global options are skipped, and a delete behind a run wrapper is found. A rule must match
+// at the program word, and a word that held spaces counts as one opaque argument, so quoted text that mentions a
+// command is not that command.
+function wordDeny(command, cwd, depth = 0) {
+  for (const words of commands(command)) {
+    const p = parseCommand(words);
+    if (!p) continue;
+    let run = [p.tool, ...p.args];
+    if (p.tool === "git") {
+      let k = 1;
+      for (; k < run.length && run[k].length > 1 && run[k].startsWith("-"); k++) if (GIT_VALUE_OPTS.test(run[k])) k++;
+      run = ["git", ...run.slice(k)];
+    }
+    const line = run.map((w) => (/\s/.test(w) ? "ARG" : w.replace(/\\/g, ""))).join(" ");
+    for (const rule of RULES) {
+      const hit = rule.re instanceof RegExp ? rule.re.exec(line)?.index === 0 : p.tool === "git" && rule.re.test(line);
+      if (hit) return { rule: words.join(" ").slice(0, 200), why: rule.why };
+    }
+    // the delete program may sit behind wrappers and their options: `timeout 5 rm -rf /`, `sudo -u x rm -rf /etc`
+    const wrapped = RUN_WRAPPERS.has(programName(words[0]));
+    for (let k = 0; k < words.length && (k === 0 || wrapped); k++) {
+      const name = programName(words[k]);
+      if (!DELETERS.has(name) && name !== "find") continue;
+      const tail = [name, ...words.slice(k + 1)].join(" ");
+      const targets = name === "find" ? findTargets(tail) : rmTargets(tail);
+      const bad = targets && targets.find((t) => dangerousTarget(t, cwd));
+      if (bad) return { rule: words.join(" ").slice(0, 200), why: `recursive delete of ${JSON.stringify(bad)} (outside the project or a protected path)` };
+      break;
+    }
+    const inner = depth < 3 ? innerLine(p) : null;
+    const hit = inner && wordDeny(inner, cwd, depth + 1);
+    if (hit) return hit;
   }
   return null;
 }
