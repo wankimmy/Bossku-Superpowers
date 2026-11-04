@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.14.2 - Review nits are optional
+
+### Changed
+
+- **Nits no longer hold a change back.** In `bosskuai-rigorous-code-review`, P0, P1 and P2 decide the verdict. A P3 nit is good to have: it never blocks or delays an approval (approve with nits is posted as Approve), the author may skip it without a reply, and it gets no run or trace effort. A review lists three nits at most and drops anything too minor to matter: taste, a tiny wording or spacing point, or what a linter or formatter already handles. A point between P2 and P3 is P2 if it can confuse a user, hide a failure or slow the next change, and a known bug is never a nit. A code smell on its own is a nit, and a nit alone does not make the self-review `Review:` line OPEN.
+
 ## v2.14.1 - The guard reads the words the shell runs
 
 ### Fixed
