@@ -22,7 +22,7 @@ A review assesses both the implementation and whether it achieves the intended o
 - Assume the change might be wrong until justified by code, tests, contracts, and operational context.
 - Challenge: necessity, boundaries, error handling, security, observability, backwards compatibility, and rollout.
 - Look beyond the changed lines for a verified gap between the artifact and its intended use. Keep broader recommendations proportional to the goal, evidence, and scope.
-- Prefer **strict** best practices in the form of **small, local improvements** that match existing project patterns.
+- Be **strict** on P0 to P2 and light on nits. Prefer **small, local improvements** that match existing project patterns.
 - **Major or cross-cutting changes** are reserved for clear triggers (repeated duplication across layers, wrong abstraction boundary, systemic security gap, unmaintainable coupling). State **why** a small fix is insufficient before recommending them.
 - Multi-perspective review: run separate passes for security, performance, correctness, and convention compliance rather than a single unstructured read.
 - Large changes: split the review by area (or hand areas to separate reviewers when subagents are available), then check each reported finding a second time against the code before it is reported. A finding that does not survive the second look is dropped.
@@ -35,7 +35,9 @@ A review assesses both the implementation and whether it achieves the intended o
 | **P0 — Block** | Correctness failure, data loss, security Critical or High in the changed path or a dependency it adds (business and logic flaws and a missing permission check included), contract break | Must fix before merge |
 | **P1 — Must-fix** | High bug risk, missing validation at a boundary, broken test, a failing CI check | Fix in this PR |
 | **P2 — Should-fix** | Confusing UI (a message wrong for its state, no feedback, a disabled control with no reason, different words for one thing), weak error handling, unclear contract, maintainability debt | Fix in this PR; move it to a follow-up only when the user agrees and it is tracked |
-| **P3 — Nit** | Style only, naming, minor readability | Optional; only flag when it violates project norms |
+| **P3 — Nit** | Good to have: style, naming, minor readability | Optional. Never changes the verdict or holds an approval back; the author may skip it without a reply. Report three at most and drop anything too minor to matter |
+
+P0 to P2 decide the verdict; nits never do. When unsure between P2 and P3, ask whether it can confuse a user, hide a failure or slow the next change; if yes, it is P2. A known bug or a path that does not work is never a nit. Too minor to report: taste, a tiny wording or spacing point, and anything a linter or formatter already handles.
 
 Security severities come from `bosskuai-security-gate` (Alert threshold, `../bosskuai-security-gate/SKILL.md`). Critical and High are P0 (block). Medium and Low are not mapped to a P level here: they follow that threshold and never change the verdict on their own. Wrong-for-state UI is P2 at least and is fixed in this PR; the rule is in step 4, UI/UX.
 
@@ -138,7 +140,7 @@ Security severities come from `bosskuai-security-gate` (Alert threshold, `../bos
    - Boilerplate that doesn't match the project's actual patterns
    - Inconsistent naming or style breaks within the same diff
 
-5. **Classify findings** — Assign each finding a severity label (P0–P3), a confidence score (0–100) and how it was verified: *reproduced* (you ran it), *traced* (you followed the code path by reading) or *inferred* (reasoning only; keep it only at confidence ≥ 80 and say it is inferred). Group by category if there are many. Only report findings with confidence ≥ 80% by default, except a suspected bug, error or broken path, which is run or traced until confirmed or ruled out. Separate confirmed defects and unmet explicit requirements from optional improvements. A scoped backlog can be sound while a broader prevention goal remains unfulfilled; report both without inventing a code defect or treating every suggestion as a merge blocker.
+5. **Classify findings** — Assign each finding a severity label (P0–P3), a confidence score (0–100) and how it was verified: *reproduced* (you ran it), *traced* (you followed the code path by reading) or *inferred* (reasoning only; keep it only at confidence ≥ 80 and say it is inferred). Group by category if there are many. Only report findings with confidence ≥ 80% by default, except a suspected bug, error or broken path, which is run or traced until confirmed or ruled out. Separate confirmed defects and unmet explicit requirements from optional improvements. A scoped backlog can be sound while a broader prevention goal remains unfulfilled; report both without inventing a code defect or treating every suggestion as a merge blocker. Spend the run and trace effort on P0 to P2; a nit that is not plain at a glance is dropped, not chased.
 
    **Optional MCP integration**: If CodeRabbit CLI is available, run `coderabbit:review` for AST-level static analysis (40+ analyzers). Merge its findings into your review with the same severity/confidence framework.
 
@@ -156,6 +158,7 @@ Security severities come from `bosskuai-security-gate` (Alert threshold, `../bos
    - [ ] Every finding that asks for changes has a file:line (for a failing CI check: the check name and its log line, or the workflow file:line when the log gives none) and a concrete fix
    - [ ] Material recommendations considered and, when useful, included with verification and timing
    - [ ] Verdict is defensible: if asked "why did you approve this?", the answer is in the review
+   - [ ] The verdict rests on P0 to P2 and CI only; nits are marked optional, three at most, each worth the author's time
    - [ ] Non-goals stated: what was NOT reviewed and why (scope, familiarity, time constraints)
    - [ ] No finding was added from assumption — every finding traces to specific evidence in the diff
 
@@ -171,7 +174,7 @@ Security severities come from `bosskuai-security-gate` (Alert threshold, `../bos
 ## Output format
 
 ```
-Verdict: [Approve | Approve with nits (P3 only) | Request changes (any P1 or P2, or a failing check) | Block (any P0) | Provisional (missing: <input>)]
+Verdict: [Approve | Approve with nits (P3 only, posted as Approve) | Request changes (any P1 or P2, or a failing check) | Block (any P0) | Provisional (missing: <input>)]
 
 Structure & infra fit: [one sentence on how the change lands in the repo/deploy path]
 Outcome & impact: [what the change achieves, who is affected, and any evidence gap]
@@ -180,7 +183,9 @@ Findings:
   [P0] <file:line or symbol> — <evidence> (reproduced | traced | inferred, confidence) → <minimal fix>
   [P1] ...
   [P2] ...
-  [P3] ...
+
+Nits (optional, good to have, the author may skip them; three at most):
+  [P3] <file:line> — <point> → <suggestion>
 
 Recommendations: [only material suggestions; smallest change, verification, this PR or follow-up]
 Verification: [build, type-check, lint and tests with their results and any new warnings; distinguish external CI from local runs]
@@ -189,6 +194,7 @@ Non-goals: [what you are NOT refactoring and why]
 
 - Keep findings ordered by severity descending.
 - If a category has no findings, omit it — do not write "no issues found" for every category.
+- Omit the Nits section when there are none; never add nits to fill it.
 - If the diff is clean, say so briefly and still state the outcome assessment and verification limits. Omit empty findings or recommendations sections; do not hide a material goal gap behind a clean verdict.
 
 ## References
