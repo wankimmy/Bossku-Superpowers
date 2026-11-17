@@ -159,6 +159,20 @@ def _ensure_event(hooks: dict, event: str, entry: dict) -> bool:
     return True
 
 
+def _repoint(node, pattern: re.Pattern, command: str) -> bool:
+    """Rewrite each command bossku owns inside `node`, in place, so the user's hooks beside it stay. True on a change."""
+    if isinstance(node, list):
+        return any([_repoint(v, pattern, command) for v in node])
+    if not isinstance(node, dict):
+        return False
+    changed = any([_repoint(v, pattern, command) for v in node.values()])
+    old = node.get("command")
+    if isinstance(old, str) and old != command and pattern.search(old):
+        node["command"] = command
+        return True
+    return changed
+
+
 def _strip_events(hooks: dict, events: tuple[str, ...], marker: str = HOOK_MARKER) -> bool:
     changed = False
     for event in events:
@@ -652,6 +666,9 @@ def install_codex_hook(home: Path) -> dict:
     command = codex_wrapper_command(wrapper)
     entry = {"hooks": [{"type": "command", "command": command, "timeout": 20}]}
     added = [ev for ev in CODEX_EVENTS if _ensure_event(hooks, ev, json.loads(json.dumps(entry)))]
+    # An older install may name a Python that has no bossku. Codex asks the user to approve a changed command again.
+    owned = _owner_pattern(HOOK_MARKER)
+    added += [ev for ev in CODEX_EVENTS if _repoint(hooks[ev], owned, command)]
     if apply_marked_hook(hooks, CODEX_HINT_EVENT, HINT_MARKER, _codex_hint_cmd(), CODEX_HINT_TIMEOUT):
         added.append("skill-hint")
     feature = enable_codex_hooks_feature(home)

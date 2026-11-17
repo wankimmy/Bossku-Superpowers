@@ -103,6 +103,47 @@ class OwnershipTests(unittest.TestCase):
                 self.assertNotIn("stop", json.loads(path.read_text(encoding="utf-8"))["hooks"])
 
 
+class CodexRepairTests(unittest.TestCase):
+    """A sync command from an older install is repointed at the wrapper; it may name a Python without bossku."""
+
+    STALE = "C:/uv/python.exe -m bossku sync-hook"
+
+    def install(self, home):
+        result = install_hooks(home=home, tools=("codex",))["codex"]
+        return result, json.loads((home / ".codex" / "hooks.json").read_text(encoding="utf-8"))["hooks"]
+
+    def write_hooks(self, home, hooks):
+        (home / ".codex").mkdir()
+        (home / ".codex" / "hooks.json").write_text(json.dumps({"hooks": hooks}), encoding="utf-8")
+
+    def test_a_stale_sync_command_becomes_the_wrapper_and_stays_there(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp)
+            self.write_hooks(home, {"Stop": [command_hook(self.STALE)]})
+            result, hooks = self.install(home)
+            self.assertEqual(result["status"], "installed")
+            self.assertIn("Stop", result["added"])
+            stop = commands_in(hooks["Stop"])
+            self.assertEqual(len(stop), 1)
+            self.assertIn("codex-sync-hook", stop[0])
+            self.assertEqual(stop, commands_in(hooks["SessionEnd"]))
+            self.assertEqual(self.install(home)[0]["status"], "already_installed")
+
+    def test_the_users_own_hooks_keep_their_place_and_settings(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp)
+            mine = "node C:/tools/sync-hook.js"
+            shared = command_hook(mine)
+            shared["hooks"].append({"type": "command", "command": self.STALE, "timeout": 7})
+            self.write_hooks(home, {"Stop": [command_hook("echo first"), shared]})
+            _, hooks = self.install(home)
+            stop = commands_in(hooks["Stop"])
+            self.assertEqual(stop[:2], ["echo first", mine])
+            self.assertIn("codex-sync-hook", stop[2])
+            self.assertEqual(len(stop), 3)
+            self.assertEqual(hooks["Stop"][1]["hooks"][1]["timeout"], 7)
+
+
 class HookStdinTests(unittest.TestCase):
     """A07: the payload is UTF-8 bytes; a Windows pipe hands text decoding to the console code page."""
 
