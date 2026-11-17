@@ -40,7 +40,7 @@ This is what makes the prototype useful past its own lifetime. When the question
 
 ### 4. Build the smallest TUI that exposes the state
 
-Build it as a **lightweight TUI** — on every tick, clear the screen (`console.clear()` / `print("\033[2J\033[H")` / equivalent) and re-render the whole frame. The user should always see one stable view, not an ever-growing scrollback.
+Build it as a **lightweight TUI** — after every action, clear the screen (`console.clear()` / `print("\033[2J\033[H")` / equivalent) and re-render the whole frame. The user should always see one stable view, not an ever-growing scrollback.
 
 Each frame has two parts, in this order:
 

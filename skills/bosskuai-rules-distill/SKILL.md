@@ -23,7 +23,7 @@ Use this skill when the repo has learned useful principles across multiple skill
 
 | Artifact | What belongs there |
 |----------|--------------------|
-| **Rule** (`bosskuai.md`, CLAUDE.md) | Cross-cutting behaviors that should apply in every session — model selection, safety defaults, escalation criteria |
+| **Rule** (`AGENTS.md`, CLAUDE.md) | Cross-cutting behaviors that should apply in every session — model selection, safety defaults, escalation criteria |
 | **Skill** (SKILL.md) | Domain-specific workflow, frameworks, checklists, output formats |
 | **Playbook** | Step-by-step how-to for a repeated procedure |
 | **Checklist** | Exhaustive verification list for a specific task |
@@ -49,7 +49,7 @@ Before promoting a principle to a rule:
 1. **Read the relevant skills and references** before proposing any rule changes. Do not work from memory.
 2. **Identify candidate principles**: Look for cross-cutting guidance that appears in multiple skills.
 3. **Filter for true universality**: Remove anything that is domain-specific, project-specific, or stack-specific.
-4. **Check existing rules**: Compare candidates against `bosskuai.md` and CLAUDE.md line by line — avoid adding duplicates with different wording.
+4. **Check existing rules**: Compare candidates against `AGENTS.md` and CLAUDE.md line by line — avoid adding duplicates with different wording.
 5. **Assign a disposition** for each candidate:
    - **Append**: new principle, no existing rule covers it
    - **Revise existing**: principle is covered but the current rule is weak or ambiguous

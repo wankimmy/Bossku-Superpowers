@@ -52,7 +52,7 @@ Choose one or more modes based on the task:
 
 ### Mode 3 — Visual Regression
 1. Define breakpoints (mobile 375px, tablet 768px, desktop 1440px minimum).
-2. Take baseline screenshots if none exist; otherwise compare to stored baselines.
+2. Take baseline screenshots if none exist (that run is INCONCLUSIVE, not PASS; see Post-deploy QA additions); otherwise compare to stored baselines.
 3. Flag pixel diffs above threshold (default: 0.1% of pixels changed).
 4. Output: diff images, percentage change per breakpoint.
 

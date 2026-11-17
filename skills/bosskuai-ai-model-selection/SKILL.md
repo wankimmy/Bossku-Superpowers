@@ -21,21 +21,22 @@ The project's own model id and SDK version come from its config and lockfile, no
 
 ## Claude roster
 
-Checked 2026-10-06: ids, context windows and prices match Anthropic's current model table; the "Best for" notes were not re-checked. Newer models may exist. Load `claude-api` for the live roster. Ids are complete as written - never append date suffixes.
+Checked 2026-11-11 against Anthropic's models overview: ids, context windows and prices for the four current models match; the "Best for" notes were not re-checked. Newer models may exist. Load `claude-api` for the live roster. Ids are complete as written - never append date suffixes.
 
 | Model | Id | Context | $/1M in | $/1M out | Best for |
 |---|---|---|---|---|---|
-| Claude Fable 5.1 | `claude-fable-5-1` | 1M | 10.00 | 50.00 | The most capable widely released model: the hardest reasoning and longest-horizon agentic runs (succeeds `claude-fable-5`, same price) |
+| Claude Fable 5.2 | `claude-fable-5-2` | 1M | 8.00 | 40.00 | Demanding reasoning and long-horizon agentic runs, or when Opus 5.5 at higher effort still falls short |
 | Claude Opus 5.5 | `claude-opus-5-5` | 1M | 4.00 | 20.00 | **Default Opus.** Agentic coding, architecture, deep analysis. Effort defaults to `medium`, and thinking cannot be disabled |
 | Claude Sonnet 5.5 | `claude-sonnet-5-5` | 1M | 2.00 | 10.00 | High-volume production work. This repo's benchmarks ran it |
 | Claude Haiku 5.5 | `claude-haiku-5-5` | 1M | 0.10 | 0.50 | Extraction, classification, summarization at volume |
 
 The Haiku 5.5 prices apply to prompts up to 100K tokens; ask `claude-api` for the price above that.
 
-Earlier models, from the 2026-09 check and not re-checked on 2026-10-06, so confirm before quoting them:
+Earlier models, from earlier checks and not re-checked on 2026-11-11, so confirm before quoting them:
 
 | Model | Id | Context | $/1M in | $/1M out | Best for |
 |---|---|---|---|---|---|
+| Claude Fable 5.1 | `claude-fable-5-1` | 1M | 10.00 | 50.00 | The previous Fable, superseded by `claude-fable-5-2`: the hardest reasoning and longest-horizon agentic runs (same price as `claude-fable-5`) |
 | Claude Opus 5 | `claude-opus-5` | 1M | 5.00 | 25.00 | Agentic coding, architecture, deep analysis |
 | Claude Sonnet 5 | `claude-sonnet-5` | 1M | 2.00 | 10.00 | High-volume production work at near-Opus quality |
 | Claude Haiku 4.5 | `claude-haiku-4-5` | 200K | 1.00 | 5.00 | Extraction, classification, summarization at volume |
@@ -46,7 +47,7 @@ Default to `claude-opus-5-5` unless the user names another model. Never downgrad
 
 Picking a bigger model is the expensive lever. Reach for these first:
 
-- **Effort** (`output_config: {effort: ...}`): `low` | `medium` | `high` | `xhigh` | `max`, default `high`. This is the primary intelligence/latency/cost dial. `xhigh` suits coding and agentic work; `low` and `medium` are unusually strong on current models and are the main cost saving. Sweep it on real tasks — defaults carried over from an older model rarely transfer.
+- **Effort** (`output_config: {effort: ...}`): `low` | `medium` | `high` | `xhigh` | `max`, default per model: `medium` on Opus 5.5 and Haiku 5.5, `high` on Fable 5.2 and Sonnet 5.5. This is the primary intelligence/latency/cost dial. `xhigh` suits coding and agentic work; `low` and `medium` are unusually strong on current models and are the main cost saving. Sweep it on real tasks — defaults carried over from an older model rarely transfer.
 - **Adaptive thinking** (`thinking: {type: "adaptive"}`): the model decides depth per request. Fixed `budget_tokens` is removed on current models and returns a 400.
 - **Prompt caching**: repeated context bills at roughly a tenth of input price. Often a larger saving than switching model tier.
 - **Batch processing**: half price for work with no latency requirement.

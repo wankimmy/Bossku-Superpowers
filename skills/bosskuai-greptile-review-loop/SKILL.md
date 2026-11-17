@@ -11,11 +11,11 @@ allowed-tools: Bash(git remote:*) Bash(git status:*) Bash(git diff:*) Bash(git l
 
 # Greploop
 
-Iteratively fix a PR/MR/CL until Greptile gives a perfect review: 5/5 confidence, zero unresolved comments.
+Iteratively fix a PR/MR/CL until Greptile gives a perfect review: 5/5 confidence, zero unresolved comments, and green CI on the head commit.
 
 ## Inputs
 
-- **PR/MR/CL number** (optional): If not provided, detect the PR/MR for the current branch, or the default pending changelist for p4.
+- **PR/MR/CL number** (optional): If not provided, detect the PR/MR for the current branch, or the default pending changelist for p4. An optional `--vcs github|gitlab|perforce` overrides the platform detection in step 0.
 
 ## Instructions
 
@@ -157,7 +157,7 @@ if [ "$GREPTILE_RUNNING" = "0" ]; then
 fi
 ```
 
-**Perforce** — Perforce does not have native check runs. If Greptile is integrated via a webhook triggered on `p4 shelve`, wait for it to process. Check your Greptile installation's webhook endpoint or dashboard for the review status. Poll by re-fetching the Greptile review comment on the CL until a score appears.
+**Perforce** — Perforce does not have native check runs. If Greptile is integrated via a webhook triggered on `p4 shelve`, wait for it to process. Check your Greptile installation's webhook endpoint or dashboard for the review status. Poll by re-fetching the Greptile review comment on the CL until a score appears, up to 60 tries 10 seconds apart. If none appears, stop and report Greptile as not responding.
 
 Then poll for the Greptile pipeline job to complete (see [GitLab API reference](references/gitlab-api.md)):
 
@@ -267,11 +267,11 @@ For all platforms, parse the text for:
 
 Use whichever source has the **most recently updated** score. For GitHub, prefer `updated_at` from issue comments when comparing an edited Greptile summary against older review entries.
 
-Also fetch all unresolved inline comments:
+Also fetch the inline comments below. The REST list has no resolved flag, so take which ones are unresolved from the `isResolved` field of the step E threads:
 
 **GitHub:**
 ```bash
-gh api repos/{owner}/{repo}/pulls/<PR_NUMBER>/comments
+gh api --paginate repos/{owner}/{repo}/pulls/<PR_NUMBER>/comments
 ```
 
 Also carry forward actionable items from the latest Greptile general PR comment, especially the "Prompt to fix all with AI" section, even if the inline comment endpoint returns zero unresolved comments.
@@ -348,7 +348,7 @@ query($cursor: String) {
 }'
 ```
 
-Resolve addressed threads:
+If `pageInfo.hasNextPage` is true, run the query again with `-F cursor=<endCursor>` until it is false. Resolve addressed threads:
 
 ```bash
 gh api graphql -f query='
@@ -361,7 +361,7 @@ mutation {
 **GitLab** — fetch unresolved discussions and resolve each one (see [GitLab API reference](references/gitlab-api.md)):
 
 ```bash
-glab api "projects/:fullpath/merge_requests/<MR_IID>/discussions?per_page=100"
+glab api "projects/:fullpath/merge_requests/<MR_IID>/discussions?per_page=100"  # then &page=2, &page=3 ... until a page has fewer than 100 items
 ```
 
 Filter for `"resolved": false` discussions. Then resolve each by its `id`:

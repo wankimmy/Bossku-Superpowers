@@ -42,6 +42,8 @@ Use this skill when schema, query behavior, indexes, migrations, locking, data c
 - JSON: index extracted keys (generated column + B-tree) or `jsonb_path_ops` GIN; do not index whole documents by reflex.
 - Text search: `pg_trgm` GIN for `LIKE '%x%'`, `tsvector` for full text, `FULLTEXT` on MySQL; `LIKE '%x%'` on a B-tree never uses it.
 - Remove unused and duplicate indexes; each one slows every write and bloats vacuum.
+- Nullable columns in a unique index: NULLs do not collide, so `UNIQUE (external_id)` admits many NULL rows; add `WHERE external_id IS NOT NULL` or a `NOT NULL` rule. PostgreSQL 15+ can use `NULLS NOT DISTINCT` on purpose.
+- A failed `CREATE INDEX CONCURRENTLY` leaves an INVALID index that still costs writes: check `pg_index.indisvalid`, drop it, then retry.
 
 ## Reading a plan
 
@@ -54,7 +56,7 @@ Use this skill when schema, query behavior, indexes, migrations, locking, data c
 ## Query patterns that scale
 
 - N+1: eager load or batch by IDs; look for query counts per request in the ORM log.
-- Pagination: keyset (`WHERE (created_at, id) < (?, ?) ORDER BY created_at DESC, id DESC`) over `OFFSET` beyond a few pages.
+- Pagination: keyset (`WHERE (created_at, id) < (?, ?) ORDER BY created_at DESC, id DESC`) over `OFFSET` beyond a few pages. The sort key must end in a unique column, or rows with equal sort values are skipped or repeated across pages.
 - Counts on large tables: cached counters or estimates (`pg_class.reltuples`) for UI badges, exact counts only where money depends on them.
 - Queues in the database: `SELECT ... FOR UPDATE SKIP LOCKED` with a bounded batch; separate table from business rows.
 - Idempotency: unique key on the idempotency token; upsert (`ON CONFLICT` / `ON DUPLICATE KEY UPDATE`) instead of select-then-insert.
@@ -81,7 +83,7 @@ Use this skill when schema, query behavior, indexes, migrations, locking, data c
 | Schema per tenant | moderate tenant count, per-tenant migrations acceptable | migration fan-out, connection/pool sprawl, cross-tenant reporting harder |
 | Database per tenant | compliance isolation, large tenants | operations multiply; automation mandatory |
 
-Connection pooling: pgbouncer transaction mode breaks prepared statements, advisory locks, and `SET` per session; size pools per service against `max_connections`.
+Connection pooling: pgbouncer transaction mode breaks SQL-level `PREPARE`, session advisory locks, `SET`/`RESET`, and `LISTEN`. Protocol-level named prepared statements work only when `max_prepared_statements` is above 0 (PgBouncer 1.21+). Size pools per service against `max_connections`.
 
 ## Operational baseline
 

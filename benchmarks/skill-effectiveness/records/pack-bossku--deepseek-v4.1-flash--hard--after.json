@@ -1,0 +1,25 @@
+{
+  "skill_id": "pack:bossku",
+  "skill_version": null,
+  "model": "deepseek-v4.1-flash",
+  "host": "claude-code",
+  "task_category": null,
+  "suite": "hard",
+  "baseline_arm": "baseline",
+  "arm": "after",
+  "sample_size": 14,
+  "baseline_pass_rate": 0.9523809523809523,
+  "skill_pass_rate": 0.9285714285714286,
+  "paired_difference": -0.023809523809523808,
+  "confidence_interval": [
+    -0.07142857142857142,
+    0.0
+  ],
+  "token_overhead": 0.05419548202577951,
+  "cost_per_success": null,
+  "evaluation_status": "neutral_or_inconclusive",
+  "last_evaluated": "2026-11-17",
+  "source_rows": [
+    "benchmarks/results/raw/hard-deepseek-v4.1-flash.jsonl"
+  ]
+}

@@ -64,6 +64,8 @@ Every fix adds at least these cases:
 - The batch path (job, export, or report) that mirrors the fixed request path.
 - Two tenants with the same ids, names and values, so a query that forgets the tenant returns the other tenant's row.
 
+Then walk the scenarios in shared bar section 3 before done: each one that reaches the change is tested or named untested.
+
 ## Output format
 
 ```text

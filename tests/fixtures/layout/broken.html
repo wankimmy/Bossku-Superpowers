@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Broken</title>
+<style>
+  html, body { overflow-x: hidden; }
+  body { margin: 0; font: 16px/1.5 sans-serif; }
+  .wide { width: 600px; height: 40px; background: #ddd; }
+  .card { width: 200px; padding: 8px; border: 1px solid #999; margin: 16px; }
+  .card input { width: 320px; }
+  .label { width: 60px; overflow: hidden; white-space: nowrap; }
+  .pair { position: relative; height: 60px; margin: 16px; }
+  .pair button { position: absolute; top: 0; width: 120px; height: 44px; }
+  #b1 { left: 0; }
+  #b2 { left: 60px; }
+  .pair2 { position: relative; height: 60px; margin: 16px; }
+  .pair2 span { position: absolute; top: 0; width: 120px; height: 44px; background: #eee; }
+  #role-b2 { left: 60px; }
+</style>
+</head>
+<body>
+  <div class="wide">Wide block</div>
+  <div class="card"><input type="text" aria-label="Name"></div>
+  <div class="label">A label that is much too long for its box</div>
+  <div class="pair"><button id="b1">One</button><button id="b2">Two</button></div>
+  <div class="pair2"><span id="role-b1" role="button">One</span><span id="role-b2" tabindex="0">Two</span></div>
+</body>
+</html>

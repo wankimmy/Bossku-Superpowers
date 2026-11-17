@@ -1,7 +1,5 @@
 # Mobile App Release Checklist
 
-> If the request is general, ambiguous, or touches many files — ask clarifying yes/no questions **before acting**. Use numbered bullets with explicit answer format: e.g. `1-yes/no  2-A/B`.
-
 - Does the company (not an individual) own the Apple Developer and Google Play accounts, and are signing credentials in EAS or the CI secret store?
 - Is crash-free rate ≥ 99.5% on the beta track with no ANRs on the test devices?
 - Is in-app account deletion available, and is the privacy policy URL live and reachable without login?

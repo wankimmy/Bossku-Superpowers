@@ -32,7 +32,7 @@ INFRA = re.compile(
     r"(?:^|/)(?:dockerfile[^/]*|docker-compose[^/]*\.ya?ml|compose\.ya?ml|[^/]+\.tf|[^/]+\.tfvars|\.gitlab-ci\.yml|"
     r"\.github/workflows/[^/]+\.ya?ml|\.mcp\.json|nginx[^/]*\.conf|serverless\.ya?ml|vercel\.json|netlify\.toml)$",
     re.I)
-VERDICT = re.compile(r"\bsecurity gate:", re.I)
+VERDICT = re.compile(r"(?:^|(?<=\r))[\s>*_-]*security gate:", re.I | re.M)   # a line of its own (Review-line prefixes ok), not "Done. Security gate: PASS"
 
 # "change" is left out: as a noun it marks questions ("explain that last change"). The stop gate still catches
 # every real edit, so a missed cue here only skips the early reminder.

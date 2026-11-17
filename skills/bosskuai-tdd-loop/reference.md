@@ -68,7 +68,7 @@ RED:   Write test for first behavior → test fails
 GREEN: Write minimal code to pass → test passes
 ```
 
-Run the test and confirm it fails for the expected reason (the assertion on the missing behavior, not a typo, import error, or setup crash). A test that passes immediately is testing existing behavior: fix the test before writing code.
+Run the test and confirm it fails for the expected reason (the assertion on the missing behavior, not a typo, syntax error, or setup crash; a compile error on the new symbol the test targets counts, see SKILL.md Extra gates). A test that passes immediately is testing existing behavior: fix the test before writing code.
 
 This is your tracer bullet - proves the path works end-to-end.
 

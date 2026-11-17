@@ -289,7 +289,7 @@ Findings:
 
 Verification:
   - git log -p -- .env returns nothing (or all values verified rotated).
-  - gitleaks detect on the repo returns clean.
+  - gitleaks git on the repo returns clean.
   - View-source on the deployed Nuxt page; grep for any key prefix (sk_, AKIA, etc.) returns nothing.
   - docker history <image> shows no secret-like ENV/ARG values.
   - CI build logs grep for known key prefixes — no matches.
@@ -342,6 +342,7 @@ Founders default to "collect everything just in case." That's the wrong default.
 | Password reset link with no expiry | Inbox compromise → permanent compromise | 1-hour expiry; single-use; bind to the email account that requested it |
 | Long-lived API tokens | Loss = permanent breach until manual rotation | Short-lived access + refresh, OR scoped tokens with documented revocation |
 | Allow `email` change without confirmation | Account takeover via support social engineering | Require re-auth + email confirmation to old AND new addresses |
+| Different reply for an unknown email on login or reset | Lets anyone list accounts | Same reply and similar timing for known and unknown accounts |
 
 ## Incident response — what to have before you need it
 

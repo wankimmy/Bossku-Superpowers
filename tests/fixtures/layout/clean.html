@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clean</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 16px/1.5 sans-serif; }
+  main { max-width: 640px; margin: 0 auto; padding: 16px; }
+  .card { border: 1px solid #ccc; padding: 16px; }
+  input { width: 100%; min-height: 44px; }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  button { min-height: 44px; min-width: 44px; padding: 0 16px; }
+  .title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100px; }
+  .scroller { overflow-x: auto; }
+  .scroller div { width: 900px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+  .hero { position: relative; overflow: hidden; }
+  .blob { position: absolute; top: 0; left: 0; width: 900px; height: 20px; }
+  .bar { position: fixed; bottom: 0; left: 0; right: 0; height: 48px; display: flex; background: #eee; }
+  .bar a { flex: 1; min-height: 48px; }
+  .drawer { position: fixed; top: 0; right: 0; width: 280px; transform: translateX(100%); }
+  .defect { position: relative; height: 60px; }
+  .defect button { position: absolute; top: 0; width: 120px; height: 44px; }
+  .defect .two { left: 60px; }
+  .defect .lbl { width: 60px; overflow: hidden; white-space: nowrap; }
+  main { padding-bottom: 64px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Clean page</h1>
+  <p>Read the <a href="#a">full notes</a> before you start.</p>
+  <div class="card">
+    <label>Name <input type="text"></label>
+    <div class="row"><button>Save</button><button>Cancel</button></div>
+    <div class="title">A long title that is cut on purpose</div>
+  </div>
+  <div class="scroller"><div>Wide table inside its own scroller</div></div>
+  <label for="q" class="sr-only">Search products</label><input id="q" type="text">
+  <section class="hero"><div class="blob"></div><h2>Hero</h2></section>
+  <div style="display:contents"><p>Inside display contents</p><button>Go</button></div>
+  <!-- defects below sit in places that are not rendered or hidden on purpose: they must be ignored -->
+  <div class="defect" style="display:none"><button>A</button><button class="two">B</button><div class="lbl">Too long a label for it</div></div>
+  <div class="defect" style="visibility:hidden"><button>A</button><button class="two">B</button><div class="lbl">Too long a label for it</div></div>
+  <div class="defect" aria-hidden="true"><button>A</button><button class="two">B</button><div class="lbl">Too long a label for it</div></div>
+  <details><div class="defect"><button>A</button><button class="two">B</button><div class="lbl">Too long a label for it</div></div><summary>More</summary></details>
+</main>
+<aside class="drawer"><a href="#x">Cart</a></aside>
+<nav class="bar"><a href="#1">One</a><a href="#2">Two</a></nav>
+</body>
+</html>

@@ -147,6 +147,7 @@ More in [memory and Obsidian](docs/memory.md).
 | `bossku init <project>` | Set up a project (`--portable` puts the skills inside it) |
 | `bossku hooks install` / `uninstall` | Add or remove the hooks |
 | `bossku resume` | Show the brief of a Codex task that hit its usage limit |
+| `bossku evidence --transcript <path>` | Show what ran in the last turn: code edits, checks, and whether the last check passed |
 | `bossku doctor --project .` | Check your setup |
 | `bossku update` | Refresh installed skills (run after `git pull`) |
 

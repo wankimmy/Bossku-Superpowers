@@ -53,7 +53,7 @@ When asked to condense a long report for a decision-maker, make it readable in a
 4. Recommendations: prioritised, each with an owner, a date, and the expected result.
 5. Next steps.
 
-Use only figures in the source; list data gaps and uncertainties instead of filling them. The summary supports the decision, it does not make it.
+Use only figures in the source; list data gaps and uncertainties instead of filling them. The summary supports the decision, it does not make it. To write a new sourced summary from fresh research, use `bosskuai-deep-research`; this section only condenses a report you already have.
 
 ## Do Not Compress
 

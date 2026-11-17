@@ -81,7 +81,7 @@ Use this skill when the task is to **set up or improve Claude Code for a reposit
 17. If asked to implement, make small, reviewable config changes. Check each setting key, hook event and frontmatter field against the installed version's docs first; do not copy one from a newer example.
 18. If asked to recommend, provide a prioritized setup plan with expected benefit and risk.
 19. Verify that references resolve and commands are plausible for the repo.
-20. Leave a handoff in shared memory when the setup changes durable assistant behavior.
+20. When the setup changes durable assistant behavior, record it with `bossku remember --project <project-root> --kind decision "<note>"`. Write `handoff.md` only for unfinished work (see `../../references/memory-first-handoff-protocol.md`).
 
 ## Guardrails
 

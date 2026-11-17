@@ -20,8 +20,8 @@ Use this skill for **screens, flows, and implementation-ready UI guidance** — 
 - Mobile-first: design and review for the smallest screen first, then enhance.
 - States are as important as the happy path — loading, empty, error, and partial-data states all need design decisions.
 - Accessibility is not optional — it is part of implementation correctness.
-- Anti-generic-AI aesthetics: if it looks like every other AI-generated landing page, redesign it. Reject generic system fonts, predictable purple gradients, and cookie-cutter layouts.
-- Distinctive design: intentional typography pairings, orchestrated motion, asymmetric spatial composition, and visual depth through type, spacing, imagery and restrained texture.
+- Anti-generic-AI aesthetics: if it looks like every other AI-generated landing page, redesign it. Reject predictable purple gradients and cookie-cutter layouts. In product UI the project's design system and its fonts are the style, not a defect.
+- Distinctive design is for showcase web: intentional typography pairings, orchestrated motion, asymmetric composition. Product UI and apps are familiar first: established patterns, the project's component library, task efficiency.
 
 ## Anti-AI UI Gate
 
@@ -71,17 +71,18 @@ Prefer product-specific visual evidence: screenshots, CLI output, file trees, di
    - Error: operation failed
    - Success / populated: normal state
    - Disabled / locked: unavailable action
-   - Edge cases: very long text, very large numbers, zero results, maximum items
+   - Offline or retry where the screen needs the network; confirmation before a destructive action, undo where possible; disabled shows its reason
+   - Edge cases: very long text, very large numbers, zero results, maximum items (the full list: SKILL.md, state list)
 
 4. **Check responsive behavior** (mobile-first):
-   - Layout at 320px, 375px (mobile), 768px (tablet), 1024px, 1440px (desktop)
+   - Width set (named once, in SKILL.md step 5): `node <BosskuAI install>/scripts/layout-check.mjs <url>` at 320, 375, 390, 768, 1024, 1440, 1920; screenshots at 390 and 1440 plus any flagged width. A run that could not happen is "not verified: <reason>", never a pass
    - Navigation: does it collapse, drawer, or stack?
    - Tables/grids: do they scroll, reflow, or collapse?
-   - Touch targets: minimum 44×44px tap area
+   - Touch targets: 24×24px floor (WCAG 2.5.8), 44×44px for primary actions and touch
    - Text: minimum 16px body, legible line-height
 
 5. **Check accessibility (WCAG 2.2 AA minimum; formal audits load accessibility)**:
-   - Color contrast: 4.5:1 for body text, 3:1 for large text and UI components
+   - Color contrast: 4.5:1 for text, 3:1 for large text (24px regular or about 18.66px bold) and UI components
    - Keyboard navigation: all interactive elements reachable and operable by keyboard alone
    - Focus management: visible focus ring, logical focus order, focus trapped in modals
    - Screen reader: semantic HTML (headings, landmarks, form labels), meaningful alt text, ARIA only where native semantics insufficient
@@ -100,7 +101,7 @@ Prefer product-specific visual evidence: screenshots, CLI output, file trees, di
 
 8. **UX writing** — Craft microcopy for UI elements: button labels, error messages, empty states, tooltips, confirmation dialogs, and onboarding copy. Voice and tone should match the product personality.
 
-9. **Accessibility audit** - for a formal WCAG 2.2 AA audit load accessibility; compute contrast with skills/antislop-human/contrast-check.py, never by eye.
+9. **Accessibility audit** - for a formal WCAG 2.2 AA audit load accessibility; compute contrast with the `contrast-check.py` script in the `antislop-human` skill, never by eye.
 
 10. **Call out ambiguity** — Do not invent silent design decisions. Flag: "This mockup doesn't show the empty state — define it before building."
 
@@ -169,13 +170,7 @@ Ambiguities to resolve: [list]
 
 ### Design-to-code verification
 
-```bash
-pnpm lint
-pnpm typecheck
-pnpm test
-pnpm build
-# plus browser check for mobile, tablet, desktop breakpoints
-```
+Run the repo's own lint, typecheck, test and build commands, then the layout check and screenshots from SKILL.md step 5.
 
 ### Output expectation
 

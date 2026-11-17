@@ -58,7 +58,7 @@ Every DESIGN.md follows this structure. Use it for generation and auditing:
    - Navigation: header, sidebar, mobile nav patterns
    - Feedback: toast, banner, tooltip, badge
 
-5. **Layout and responsive** — Grid system (columns, gutters, margins per breakpoint), spacing rhythm, breakpoints with component behavior changes, touch targets (44x44px minimum).
+5. **Layout and responsive** — Grid system (columns, gutters, margins per breakpoint), spacing rhythm, breakpoints with component behavior changes, touch targets (24x24 CSS px floor per WCAG 2.5.8; 44x44 for primary and touch controls).
 
 6. **Design rules** — 5-8 brand-specific do's and don'ts with concrete examples. Include anti-patterns that break brand consistency.
 
@@ -77,7 +77,7 @@ Every DESIGN.md follows this structure. Use it for generation and auditing:
 - If the project already has a design system, audit and enhance it rather than replacing it.
 - Do not remove or rename a token or a component prop in one release. Deprecate it, keep the old name for a release, and find every consumer first (search each app that imports the package).
 - Read the design system's version from its `package.json`, and each consumer's from its lockfile. An app on an old version does not get new tokens, so say which version each app runs.
-- Verify all text-background color pairs pass WCAG AA contrast (4.5:1 body text, 3:1 large text = 24px, or 18.7px bold; compute pairs with skills/antislop-human/contrast-check.py).
+- Verify all text-background color pairs pass WCAG AA contrast (4.5:1 body text, 3:1 large text = 24px regular or about 18.66px bold; compute pairs with skills/antislop-human/contrast-check.py).
 - Screenshot each component state in every theme the system ships and at each width in the Responsive Behavior section. A state with no screenshot is unverified.
 - When fetching reference DESIGN.md files, use WebFetch to retrieve from `getdesign.md/{company}/design-md`. If offline or unavailable, describe the 9-section structure and work from user-provided brand inputs.
 

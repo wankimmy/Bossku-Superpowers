@@ -11,7 +11,7 @@ from bossku.cli import main
 from bossku.hooks import install_hooks, uninstall_hooks
 from bossku.install import AUTO_MEMORY_BLOCK
 from bossku.init_project import init_project
-from bossku.memory import remember
+from bossku.memory import memory_directory, remember
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -100,6 +100,97 @@ class MemoryBriefTests(unittest.TestCase):
         uninstall_hooks(home=self.home, tools=("claude_code",))
         settings = json.loads((self.home / ".claude" / "settings.json").read_text(encoding="utf-8"))
         self.assertNotIn("SessionStart", settings["hooks"])
+
+
+HANDOFF = """# Handoff - 2026-11-17 - Claude Code
+
+- **Goal:** Move the importer to the queue.
+- **Done:** Queue worker written, tests green.
+- **Not done / blocked:** Retry policy.
+- **Decisions made (and why):** Keep one worker; ordering matters.
+- **Files / artifacts:** app/importer.py
+- **Verification:** passed
+- **Risks / unknowns:** none
+- **Suggested skills:** bosskuai-tdd-loop
+
+FOR_NEXT_MODEL
+Next (ordered):
+  1. Add retry with jitter to app/importer.py.
+  2. Run the importer tests.
+"""
+
+
+class HandoffBlockTests(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.home = Path(self.tmp.name) / "home"
+        self.home.mkdir()
+        self.project = Path(self.tmp.name) / "app"
+        init_project(self.project, root=ROOT, home=self.home)
+        self.handoff = memory_directory(self.project, home=self.home) / "handoff.md"
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def test_the_next_steps_and_for_next_model_survive(self):
+        self.handoff.write_text(HANDOFF, encoding="utf-8")
+        brief = memory_brief(self.project, home=self.home)
+        self.assertIn("FOR_NEXT_MODEL", brief)
+        self.assertIn("1. Add retry with jitter", brief)
+        self.assertIn("2. Run the importer tests.", brief)
+        self.assertLessEqual(len(brief), 1300 + 400)
+
+    def test_a_long_handoff_is_cut_at_a_line_with_a_marker_and_keeps_the_next_steps(self):
+        filler = "\n".join(f"- **Note {i}:** " + "detail " * 10 for i in range(30))
+        self.handoff.write_text(HANDOFF.replace("- **Risks / unknowns:** none", filler), encoding="utf-8")
+        brief = memory_brief(self.project, home=self.home)
+        self.assertIn("[handoff cut]", brief)
+        self.assertIn("1. Add retry with jitter", brief)
+        self.assertNotIn("Note 29", brief)
+        self.assertLessEqual(len(brief), 1300 + 400)
+
+    def test_a_long_next_list_after_a_short_head_is_not_cut_silently(self):
+        steps = "\n".join(f"  {i}. step {i} " + "word " * 18 for i in range(1, 13))
+        self.handoff.write_text("# Handoff\n- **Goal:** x\n\nFOR_NEXT_MODEL\nNext (ordered):\n" + steps + "\n", encoding="utf-8")
+        lines = memory_brief(self.project, home=self.home).splitlines()
+        self.assertTrue(any("step 4 " in line for line in lines))
+        self.assertFalse(any("step 12 " in line for line in lines))
+        last = max(i for i, line in enumerate(lines) if line.startswith("  ") and "step" in line)
+        self.assertEqual(lines[last + 1], "[handoff cut]")
+        self.assertLessEqual(len("\n".join(lines)), 1300 + 400)
+
+    def test_a_one_paragraph_handoff_still_shows_its_start(self):
+        self.handoff.write_text("# Handoff\n" + "The importer moved to the queue and the retry policy is next. " * 15,
+                                encoding="utf-8")
+        self.assertIn("The importer moved to the queue", memory_brief(self.project, home=self.home))
+
+    def test_a_handoff_that_is_not_utf8_does_not_hide_the_decisions(self):
+        self.handoff.write_bytes("# Handoff\n- Goal: x\n".encode("utf-16"))
+        remember(self.project, "decision", "use the queue", home=self.home)
+        self.assertIn("use the queue", memory_brief(self.project, home=self.home))
+
+    def test_a_heading_style_for_next_model_tail_is_found(self):
+        fields = "\n".join(f"- **F{i}:** " + "detail " * 12 for i in range(14))
+        self.handoff.write_text(f"# Handoff\n{fields}\n## FOR_NEXT_MODEL\nNext (ordered):\n  1. do the thing\n",
+                                encoding="utf-8")
+        self.assertIn("1. do the thing", memory_brief(self.project, home=self.home))
+
+    def test_one_long_for_next_model_line_stays_in_budget_and_keeps_the_decisions(self):
+        self.handoff.write_text("# Handoff\n- **Goal:** x\nFOR_NEXT_MODEL: " + "do the thing " * 2000, encoding="utf-8")
+        remember(self.project, "decision", "invoice numbers start with INV-2026", home=self.home)
+        brief = memory_brief(self.project, home=self.home)
+        self.assertIn("INV-2026", brief)
+        self.assertIn("[handoff cut]", brief)
+        self.assertIn("- **Goal:** x", brief)   # the clipped line leaves the head its room
+        self.assertLessEqual(len(brief), 1300 + 400)
+
+    def test_a_secret_in_a_hand_edited_note_is_masked(self):
+        self.handoff.write_text(HANDOFF + "  3. deploy with --password hunter2 on prod\n", encoding="utf-8")
+        (self.handoff.parent / "learnings.md").write_text(
+            "# Learnings\n\n## 2026-01-01 00:00 UTC\n\nrun mysql -pS3cretPw -e x\n", encoding="utf-8")
+        brief = memory_brief(self.project, home=self.home)
+        self.assertNotIn("hunter2", brief)
+        self.assertNotIn("S3cretPw", brief)
 
 
 class MemoryBlockTests(unittest.TestCase):

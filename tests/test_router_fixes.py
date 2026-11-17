@@ -209,5 +209,66 @@ class LazyImportTests(unittest.TestCase):
         self.assertEqual(out.stdout.strip(), "False")
 
 
+class CuratedTriggersSurviveTests(unittest.TestCase):
+    """A hand-written trigger must reach the index. A 40-phrase cap used to drop the later ones without a word:
+    nine from bosskuai-diagnose-loop ("flaky test", "typeerror") and fourteen from bosskuai-taste."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.data = index.build_index(ROOT)
+
+    def test_every_curated_trigger_is_in_the_built_index(self):
+        lost = {}
+        for sid, phrases in index.CURATED_TRIGGERS.items():
+            if sid not in self.data["skills"]:
+                continue
+            kept = set(self.data["skills"][sid]["triggers"])
+            missing = [p for p in index._clean(phrases, len(phrases)) if p not in kept]
+            if missing:
+                lost[sid] = missing
+        self.assertEqual(lost, {})
+
+    def test_a_flaky_test_goes_to_a_debugging_skill(self):
+        primary = select_skill_stack("fix this flaky test", ROOT, data=self.data)["primary"]
+        self.assertIn(primary, {"bosskuai-diagnose-loop", "ci-triage"})
+
+
+class ProductDashboardRoutingTests(unittest.TestCase):
+    """An ERP, CRM or HRMS dashboard is product UI. It used to go to bosskuai-dashboard-builder, a monitoring skill,
+    because that id holds the word "dashboard"."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.data = index.build_index(ROOT)
+
+    def primary(self, prompt):
+        return select_skill_stack(prompt, ROOT, data=self.data)["primary"]
+
+    def test_an_erp_dashboard_goes_to_the_ui_skill(self):
+        self.assertEqual(self.primary("Build a modern ERP dashboard"), "bosskuai-ui-ux-design-to-code")
+
+    def test_improving_a_saas_dashboard_goes_to_the_ui_skill(self):
+        # It went to bosskuai-prompt-optimizer on the word "improve".
+        self.assertEqual(self.primary("Improve an existing SaaS dashboard"), "bosskuai-ui-ux-design-to-code")
+
+    def test_other_saas_work_keeps_its_owner(self):
+        self.assertEqual(self.primary("set up Stripe billing for the SaaS with monthly and annual plans"),
+                         "bosskuai-saas-billing-ops")
+        self.assertEqual(self.primary("what should we charge for the SaaS dashboard add-on, per seat or flat"), "pricing")
+        self.assertEqual(self.primary("the SaaS API is slow under load, profile it"), "bosskuai-performance-profiling")
+
+    def test_monitoring_dashboards_keep_their_skills(self):
+        self.assertEqual(self.primary("Build a Grafana dashboard for API latency"), "bosskuai-dashboard-builder")
+        self.assertIn(self.primary("SigNoz dashboard for our ERP service error rate and p95 latency"),
+                      {"bosskuai-observability-sre", "bosskuai-dashboard-builder"})
+
+    def test_other_work_on_such_a_product_keeps_its_owner(self):
+        self.assertEqual(self.primary("the SaaS dashboard login throws a 500 after the last deploy, find the bug"),
+                         "bosskuai-diagnose-loop")
+        self.assertEqual(self.primary("our ERP nightly job times out, profile it"), "bosskuai-performance-profiling")
+        self.assertEqual(self.primary("plan the ERP data migration to the new schema without downtime"),
+                         "database-migrations")
+
+
 if __name__ == "__main__":
     unittest.main()

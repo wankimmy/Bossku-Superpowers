@@ -1,7 +1,5 @@
 # Tech Lead Checklist
 
-> If the request is general, ambiguous, or touches many files — ask clarifying yes/no questions **before acting**. Use numbered bullets with explicit answer format: e.g. `1-yes/no  2-A/B`.
-
 - Is there a one-paragraph problem statement with a success metric before solutioning?
 - Was the process weight chosen deliberately (ticket, RFC, council) and the RFC given a comment window?
 - Is the first slice a walking skeleton, with later slices vertical, flag-guarded, and independently deployable?

@@ -79,7 +79,7 @@ Measure: D1/D7/D30 retention, NPS/CSAT, referral source attribution, support tic
 
 ## Workflow
 
-Read `.agents/product-marketing.md` first if it exists, for ICP, positioning, and voice already defined.
+Read `.agents/product-marketing.md` first if it exists (or `.claude/product-marketing.md`, or the legacy `product-marketing-context.md` filename, in older setups), for ICP, positioning, and voice already defined.
 
 1. **Assess engineering readiness**: Run Gate 1 checklist. Flag any blockers.
 2. **Define target market and country**: ICP, buyer, user, trigger for purchase, geographic priority.

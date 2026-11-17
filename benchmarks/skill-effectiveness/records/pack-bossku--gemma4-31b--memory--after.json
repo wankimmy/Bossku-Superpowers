@@ -1,0 +1,25 @@
+{
+  "skill_id": "pack:bossku",
+  "skill_version": null,
+  "model": "gemma4:31b",
+  "host": "claude-code",
+  "task_category": "memory",
+  "suite": "memory",
+  "baseline_arm": "baseline",
+  "arm": "after",
+  "sample_size": 22,
+  "baseline_pass_rate": 0.38636363636363635,
+  "skill_pass_rate": 0.6818181818181818,
+  "paired_difference": 0.29545454545454547,
+  "confidence_interval": [
+    0.11363636363636363,
+    0.4772727272727273
+  ],
+  "token_overhead": 0.5887214676259098,
+  "cost_per_success": null,
+  "evaluation_status": "demonstrated_improvement",
+  "last_evaluated": "2026-11-17",
+  "source_rows": [
+    "benchmarks/results/raw/memory-gemma4-31b.jsonl"
+  ]
+}

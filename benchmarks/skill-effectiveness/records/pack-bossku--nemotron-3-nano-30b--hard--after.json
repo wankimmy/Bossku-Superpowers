@@ -1,0 +1,25 @@
+{
+  "skill_id": "pack:bossku",
+  "skill_version": null,
+  "model": "nemotron-3-nano:30b",
+  "host": "claude-code",
+  "task_category": null,
+  "suite": "hard",
+  "baseline_arm": "baseline",
+  "arm": "after",
+  "sample_size": 14,
+  "baseline_pass_rate": 0.0,
+  "skill_pass_rate": 0.07142857142857142,
+  "paired_difference": 0.07142857142857142,
+  "confidence_interval": [
+    0.0,
+    0.21428571428571427
+  ],
+  "token_overhead": 1.89121391974839,
+  "cost_per_success": null,
+  "evaluation_status": "promising_insufficient_evidence",
+  "last_evaluated": "2026-11-17",
+  "source_rows": [
+    "benchmarks/results/raw/hard-nemotron-3-nano-30b.jsonl"
+  ]
+}

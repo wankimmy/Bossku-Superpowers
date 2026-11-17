@@ -13,6 +13,7 @@ Use this skill when the task involves **MongoDB data design or operations**: col
 - **`bosskuai-performance-profiling`**: profiles general bottlenecks; this skill focuses on MongoDB query plans, indexes, and aggregation behavior.
 - **`bosskuai-engineering-delivery`**: implements code changes; this skill designs and verifies MongoDB-specific data work.
 - **`bosskuai-cybersecurity-risk`**: audits general security; this skill covers MongoDB access, validation, and operational risks in context.
+- **`bosskuai-database-engineering`**: schemas, indexes, query plans and migrations across SQL and NoSQL engines; this skill covers MongoDB document design, indexes, pipelines and operations. Use both only for a MongoDB migration that needs the general migration-safety pass.
 
 ## Mindset
 
@@ -62,7 +63,7 @@ Treat live data as sensitive. Prefer read-only inspection. Redact PII and secret
 ### Phase 1 - Orient
 
 1. Identify the MongoDB surface: collection design, query optimization, aggregation, migration, validation, backup, or incident.
-2. Read application code, ODM models, migrations, schema validation rules, tests, and current query paths.
+2. Read application code, ODM models, migrations, schema validation rules, tests, and current query paths. Also list every job, script and service that reads or writes each collection, and how many instances run at once.
 3. If database access is available, inspect metadata before sampling documents.
 4. Confirm environment: local, staging, production, Atlas, self-hosted, replica set, or sharded cluster. Read the versions too: the server with `db.version()`, the driver or ODM version from the lockfile, and the driver's compatibility table for that server. Check the latest stable release on mongodb.com and write down the date.
 
@@ -70,7 +71,7 @@ Treat live data as sensitive. Prefer read-only inspection. Redact PII and secret
 
 5. Map primary access patterns: point reads, list pages, search, analytics, writes, and background jobs.
 6. Decide embed vs reference based on update frequency, document growth, transaction boundaries, and query shape.
-7. Identify invariants that need schema validation, unique indexes, transactions, or app-level checks.
+7. Identify invariants that need schema validation, unique indexes, transactions, or app-level checks. A unique index on an optional field allows only one missing value; use a partial index. Reads from secondaries can be stale.
 8. Check document size growth and unbounded arrays.
 
 ### Phase 3 - Index and query review
@@ -78,11 +79,11 @@ Treat live data as sensitive. Prefer read-only inspection. Redact PII and secret
 9. Match indexes to the actual filters, sorts, projections, and cardinality.
 10. Review compound index order and whether queries can use prefix keys.
 11. Use explain plans for critical queries when possible.
-12. Check for collection scans, memory-heavy sorts, regex risks, and aggregation stages that explode cardinality.
+12. Check for collection scans, memory-heavy sorts, regex risks, and aggregation stages that explode cardinality. `{ field: null }` also matches missing fields.
 
 ### Phase 4 - Migrations and operations
 
-13. Design migrations as resumable, idempotent, batched, and observable.
+13. Design migrations as resumable, idempotent, batched, and observable. Walk its scenarios per the shared bar section 3, including concurrent writers.
 14. Plan backfills with write pressure, locks, rollback, and mixed-version app behavior in mind. Rehearse the backfill on a production data copy first, with personal fields masked. Masked values keep the same BSON type, nulls and empty values, and join keys, so the rehearsal matches production. Then compare counts and `$type` breakdowns before and after.
 15. Verify backup and restore posture before destructive changes.
 16. For sharded clusters, check shard keys, chunk distribution, and cross-shard query risks.
@@ -408,7 +409,7 @@ If you're on Atlas (most MVPs are), these are the sharp edges that are NOT obvio
 | **Backup** | Continuous backup on M10+ tier. Test the restore monthly with a forked cluster — having backups ≠ being able to restore. |
 | **Tier change** | Scaling up triggers a primary failover. Plan it during a maintenance window even if Atlas calls it "rolling." |
 | **Free tier (M0)** | Hard limits on connections, storage, concurrent ops. Production on M0 will fail on the first traffic spike — move to M10+ before launch. |
-| **VPC peering** | Required to keep DB traffic off the public internet. Set this up before the first paying customer, not after. |
+| **Private networking** | VPC peering or a private endpoint keeps DB traffic off the public internet. Set one up before the first paying customer, not after. |
 
 ### 9. One field, two BSON types
 

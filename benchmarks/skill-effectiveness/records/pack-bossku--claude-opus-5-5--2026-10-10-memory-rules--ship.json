@@ -1,0 +1,25 @@
+{
+  "skill_id": "pack:bossku",
+  "skill_version": null,
+  "model": "claude-opus-5-5",
+  "host": "claude-code",
+  "task_category": "memory",
+  "suite": "2026-10-10/memory-rules",
+  "baseline_arm": "baseline",
+  "arm": "ship",
+  "sample_size": 12,
+  "baseline_pass_rate": 0.5833333333333334,
+  "skill_pass_rate": 0.6666666666666666,
+  "paired_difference": 0.08333333333333333,
+  "confidence_interval": [
+    -0.16666666666666666,
+    0.3333333333333333
+  ],
+  "token_overhead": -0.22987571351854996,
+  "cost_per_success": 0.267464625,
+  "evaluation_status": "promising_insufficient_evidence",
+  "last_evaluated": "2026-11-17",
+  "source_rows": [
+    "benchmarks/results/raw/2026-10-10/memory-rules-claude-opus-5-5.jsonl"
+  ]
+}

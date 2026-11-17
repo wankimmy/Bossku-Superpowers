@@ -65,7 +65,7 @@ Use this as the default severity model. Adjust thresholds to your SLAs:
    - Traffic or load anomalies
    - DB migration or data job completions
    - Alert firing sequence
-9. **Identify the blast radius** — Who and what is affected? Is the scope growing, stable, or shrinking? Keep a list of the parts checked and not yet checked; never call a service, screen or job "not involved" until it is checked (shared bar section 9).
+9. **Identify the blast radius** — Who and what is affected? Is the scope growing, stable, or shrinking? Keep a list of the parts checked and not yet checked; never call a service, screen or job "not involved" until it is checked (`../../references/checklists/engineering-quality-bar.md`, section 9).
 10. **Delegate technical investigation** to `bosskuai-diagnose-loop` once the incident is stable.
 
 ### Phase 4 — Resolve and verify (when fix is ready)

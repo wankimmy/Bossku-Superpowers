@@ -28,7 +28,7 @@ BosskuAI cofounder mode must be able to route to expert skills for:
 
 **Vendored packs** (route to these when the task fits; see global `AGENTS.md` pack table):
 
-- **superpowers:** brainstorm, plans, TDD, systematic debug, code review workflows (`using-superpowers`, `brainstorming`, `writing-plans`, `systematic-debugging`, …)
+- **superpowers:** brainstorm, plans, TDD, systematic debug, code review workflows (`brainstorming`, `writing-plans`, `systematic-debugging`, …)
 - **marketingskills:** deep marketing/CRO/SEO/copy (`product-marketing`, `copywriting`, `cro`, …)
 - **loop-engineering:** always-on loop discipline (minimal-fix, constraints, budget, verifier); agent loops for CI, PRs, issues, deps, releases (`loop-triage`, `ci-triage`, `pr-review-triage`, …)
 - **taste-skill:** anti-slop landing/portfolio UI (`taste-skill`, `soft-skill`, `minimalist-skill`, `brutalist-skill`, `redesign-skill`, …)

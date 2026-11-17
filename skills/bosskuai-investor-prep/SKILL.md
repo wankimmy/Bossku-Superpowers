@@ -10,7 +10,7 @@ description: "Use when preparing fundraising materials and process: pitch decks,
 - Creating or revising a pitch deck
 - Writing an investor memo or executive summary
 - Building a one-pager for warm intros or cold outreach
-- Preparing a financial model or unit economics sheet
+- Packaging financial model outputs (projections, runway, unit economics) into a deck or memo
 - Applying to an accelerator or grant programme
 - Practising for a partner meeting or investor Q&A
 - Ensuring numbers are consistent across all fundraising materials

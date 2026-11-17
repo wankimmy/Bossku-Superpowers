@@ -37,7 +37,7 @@ try {
   const lines = [
     "[BosskuAI harness active]",
     "- Start every response with this 3-line header: `bossku-superpowers`, `Skills: <skills you loaded this turn (Skill tool or its SKILL.md), or none>`, `Memory: <yes|no>` (yes only if you read the project notes this turn). Never name a skill you did not load.",
-    "- Route to one primary skill first and load it with the Skill tool. Design default is Awwwards style. Websites, landing pages, portfolios, marketing UI: bosskuai-taste (the Awwwards house rule); dashboards, app screens, and product UI: bosskuai-ui-ux-design-to-code with its craft bar. State a one-line Design Read, then build; score with jury. Motion: animate (web) or animate-expo.",
+    "- Route to one primary skill first and load it with the Skill tool. Classify the product before choosing a design direction. Showcase web (marketing, landing, portfolio, agency): bosskuai-taste (the Awwwards house rule), jury score on a public URL or a local build. Task-first public pages (storefront, checkout, booking, docs, pricing): familiar commerce and form patterns, native scroll, no intro loader, no scroll theatre. Product UI (SaaS, ERP/CRM/HRMS, dashboards, admin, internal tools): the project's own design system first, no concept card, no signature, no jury; verdict from a task walkthrough, the state list, the layout check and screenshots (bosskuai-ui-ux-design-to-code). Consumer and mobile apps: platform conventions, then the product UI rules. Say which type you assumed. Motion: animate (web) or animate-expo.",
     !design
       ? "- No DESIGN.md in this repo. For anything beyond a one-off page, have the designer contract write .bossku/DESIGN.md first."
       : design.stub
@@ -45,7 +45,7 @@ try {
         : `- Design source of truth: ${design.rel}. Read it before any UI change; keep tokens, type, and components consistent with it.`,
     "- Ponytail: simplest thing that works. Never lazy about validation, security, accessibility, or data loss.",
     "- Gates enforced by hooks: destructive commands, and a git add/commit that would track a credential file (.env, *.pem, *.key), are denied (hand them to the user with recovery steps); push, PR merge, publish and deploy commands ask the user first; slop is linted on write; a turn that edits source cannot end until a verification command ran, or you state exactly what is unverified; a turn that changes code, dependencies or infra cannot end without a `Security gate: PASS | BLOCK | PROVISIONAL` line from the bosskuai-security-gate pass (a must rule; alert only on High and Critical); a turn that edits source and ends without a `Review: CLEAN | FIXED <n> | OPEN <n>` line from a self-review of your diff (bosskuai-rigorous-code-review) is sent back once.",
-    `- UI edits: screenshot 390 and 1440 with node "${root}/scripts/shot.mjs" <url> and look at both before claiming done.`,
+    `- UI edits: run node "${root}/scripts/layout-check.mjs" <url> (320 to 1920; a run that could not happen is "not verified"), screenshot 390 and 1440 with node "${root}/scripts/shot.mjs" <url> and look at each before claiming done.`,
     memory
       ? "- Project memory: .bossku/memory (read when the task touches prior decisions; save with `bossku remember`)."
       : '- Save durable decisions with `bossku remember --project . --kind decision "..."`.',

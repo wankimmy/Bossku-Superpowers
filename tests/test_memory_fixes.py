@@ -179,5 +179,107 @@ class VaultEditKeptByteForByteTests(unittest.TestCase):
             self.assertIn("Second.", copy.read_text(encoding="utf-8"))
 
 
+class RememberCommandFormTests(unittest.TestCase):
+    def _stored(self, note):
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp) / "home"
+            home.mkdir()
+            project = Path(tmp) / "app"
+            project.mkdir()
+            remember(project, "learning", note, home=home)
+            return next((Path(tmp) / "app").rglob("learnings.md")).read_text(encoding="utf-8") if list(
+                project.rglob("learnings.md")) else next(home.rglob("learnings.md")).read_text(encoding="utf-8")
+
+    def test_command_line_secrets_are_masked(self):
+        for note, secret in (("deploy with --password hunter2 on prod", "hunter2"), ("mysql -pS3cretPw -e x", "S3cretPw"),
+                             ("curl -u bob:hunter2 https://x", "hunter2"), ("DB_PASS=abc123xyz", "abc123xyz")):
+            with self.subTest(note=note):
+                self.assertNotIn(secret, self._stored(note))
+
+    def test_ordinary_notes_are_stored_unchanged(self):
+        for note in ("use -p for the port flag", "the --password flag is deprecated", "set DB_PASS in the env file",
+                     "We removed the --password flag.", "the --password flag, which is deprecated", "Use --auth basic.",
+                     "do not pass --password (use the env var)", "use the --token option; it is safer",
+                     "docker login -p is insecure, use --password-stdin", "curl -u is the user flag",
+                     "CI summary: pass=12 fail=0", "set low_pass = 0.5 in the filter config"):
+            with self.subTest(note=note):
+                self.assertIn(note, self._stored(note))
+
+    def test_more_command_line_secrets_are_masked(self):
+        for note, secret in (("run x --password=hunter", "hunter"), ("run x --db-pass S3cret", "S3cret"),
+                             ("docker login -u bob -p hunter2", "hunter2")):
+            with self.subTest(note=note):
+                self.assertNotIn(secret, self._stored(note))
+
+    def test_a_flag_at_a_line_end_does_not_mask_the_next_line(self):
+        from bossku.redact import redact_note
+
+        text = "the flag is --password\n  2. Run the tests"
+        self.assertEqual(redact_note(text), text)
+
+    def test_the_curl_user_flag_is_masked_but_user_agent_is_not(self):
+        from bossku.redact import redact_command, redact_note
+
+        for command in ("curl --user bob:hunter2 https://x", "curl --user=bob:hunter2 https://x", "curl -u bob:hunter2 https://x"):
+            with self.subTest(command=command):
+                self.assertNotIn("hunter2", redact_command(command))
+                self.assertNotIn("hunter2", redact_note(command))
+        for command in ("curl --user-agent Mozilla/5.0 https://x", "use curl --user-agent to set the header"):
+            with self.subTest(command=command):
+                self.assertEqual(redact_command(command), command)
+                self.assertEqual(redact_note(command), command)
+
+    def test_a_long_line_that_repeats_a_command_word_is_not_quadratic_in_a_note(self):
+        import time
+
+        from bossku.redact import redact_note
+
+        for word in ("curl ", "docker login ", "secrets set ", "mysql "):
+            with self.subTest(word=word):
+                start = time.perf_counter()
+                redact_note(word * 6000)
+                self.assertLess(time.perf_counter() - start, 0.5)   # about 1-2 s when quadratic
+
+    def test_a_long_line_that_repeats_a_command_word_is_not_quadratic_in_a_command(self):
+        import time
+
+        from bossku.redact import redact_command
+
+        for word in ("curl ", "docker login ", "secrets set ", "mysql "):
+            with self.subTest(word=word):
+                start = time.perf_counter()
+                redact_command(word * 6000)
+                self.assertLess(time.perf_counter() - start, 0.5)   # about 1 s when quadratic
+
+    def test_a_quoted_value_with_spaces_and_a_single_dash_flag_are_masked_in_a_command(self):
+        from bossku.redact import redact_command, redact_note
+
+        for command in ('python check.py --password "my hunter2secret phrase"', "python check.py --password 'my hunter2secret phrase'",
+                        'python check.py --token="my hunter2secret phrase"', "python check.py -Password hunter2secret",
+                        'DB_PASSWORD="my hunter2secret phrase" npm test', "API_TOKEN='my hunter2secret phrase' pytest",
+                        "MYSQL -phunter2secret -e x && npm test", 'python check.py --password "my hunter2secret phrase',
+                        "python check.py --api_key hunter2secret", "python check.py --db_password hunter2secret",
+                        "python smoke.py -AdminPassword hunter2secret",
+                        'curl -u "admin:my hunter2secret phrase" http://localhost:3000/health && npm test',
+                        'mysql -u root -p"my hunter2secret phrase"', 'docker login -u bob -p "my hunter2secret phrase"',
+                        'gh secret set FOO --body "my hunter2secret phrase"'):
+            with self.subTest(command=command):
+                self.assertNotIn("hunter2secret", redact_command(command))
+                self.assertIn("[REDACTED]", redact_command(command))
+        for command in ("pytest -p no:cacheprovider", "git log --author=x && npm test", "npm test -- --passWithNoTests",
+                        'curl --user-agent "x y" http://localhost:3000/health && npm test', "ssh -p 2222 host && pytest",
+                        'python -m pytest -k "token and not slow"', 'grep -q "API_KEY=" .env.example && npm test',
+                        'grep -q "password=" .env && npm test', 'grep -q "--token " x && npm test',
+                        "./bin/reset-pass admin && npm test"):
+            with self.subTest(command=command):
+                self.assertEqual(redact_command(command), command)
+        note = "the --password hunter flag and -password hunter2 are in the docs"   # prose keeps its plain words
+        self.assertEqual(redact_note(note), note)
+        for note in ('run x --password "my hunter2secret phrase" now', 'run x --token "abc 123 def"'):
+            with self.subTest(note=note):
+                self.assertNotIn("phrase", redact_note(note).replace("[REDACTED]", ""))
+                self.assertNotIn("123", redact_note(note))
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from bossku.paths import ensure_inside, project_memory_dir, user_config_path, vault_export_dir
-from bossku.redact import redact
+from bossku.redact import redact_note
 
 ALLOWED_KINDS = frozenset({"decision", "plan", "learning", "project"})
 KIND_TO_FILE = {
@@ -231,7 +231,7 @@ def remember(
 ) -> dict:
     if kind not in ALLOWED_KINDS:
         raise ValueError(f"kind must be one of {sorted(ALLOWED_KINDS)}")
-    cleaned = redact(note.strip())
+    cleaned = redact_note(note.strip())
     if not cleaned:
         raise ValueError("note cannot be empty after redaction")
     storage, project_root, mem_dir = _memory_location(project, home=home)

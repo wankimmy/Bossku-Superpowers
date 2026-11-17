@@ -43,7 +43,7 @@ description: "Use when doing recurring competitor monitoring or a scored benchma
 
 3. **Search and scrape each dimension** — For each competitor × dimension pair, run at least one Exa search and one Firecrawl page pull (pricing page, careers page, etc.). Log the URL and retrieval timestamp for every data point.
 
-4. **Build the comparison matrix** — Populate a structured table: rows = competitors, columns = tracking dimensions. Include a "Last verified" date per cell. Flag cells where data could not be confirmed.
+4. **Build the comparison matrix** — Populate a structured table: rows = competitors, columns = tracking dimensions. Include a "Last verified" date per competitor row, as the output template shows. Flag cells where data could not be confirmed.
 
 5. **Identify changes since last check** — Compare against the previous snapshot (the latest `competitor-profiles/*-matrix.md`). Highlight changes: new feature, price change, messaging shift, funding event, key hire.
 

@@ -1,0 +1,25 @@
+{
+  "skill_id": "pack:bossku",
+  "skill_version": null,
+  "model": "claude-haiku-4-5-20251001",
+  "host": "claude-code",
+  "task_category": "memory",
+  "suite": "memory",
+  "baseline_arm": "baseline",
+  "arm": "after",
+  "sample_size": 22,
+  "baseline_pass_rate": 0.4772727272727273,
+  "skill_pass_rate": 0.6818181818181818,
+  "paired_difference": 0.20454545454545456,
+  "confidence_interval": [
+    0.06818181818181818,
+    0.3409090909090909
+  ],
+  "token_overhead": 0.23425025482745943,
+  "cost_per_success": 0.10615378333333333,
+  "evaluation_status": "demonstrated_improvement",
+  "last_evaluated": "2026-11-17",
+  "source_rows": [
+    "benchmarks/results/raw/memory-claude-haiku-4-5-20251001.jsonl"
+  ]
+}

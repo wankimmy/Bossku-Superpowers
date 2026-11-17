@@ -7,7 +7,7 @@ description: "Use when the current model is stuck, low-confidence, or repeating 
 
 ## Configured memory location
 
-Run `bossku memory-path --project <project-root>` to resolve `<memory-dir>` before reading or writing memory. Automatically save verified durable notes with `bossku remember` without waiting for the user to ask. When memory_storage is obsidian, all memory including handoffs lives directly in the vault; never create .bossku/memory in a code repo. The configured storage overrides legacy export wording below.
+Run `bossku memory-path --project <project-root>` to resolve `<memory-dir>` before reading or writing memory. Automatically save verified durable notes with `bossku remember --project <project-root> --kind decision|plan|learning|project "<note>"` without waiting for the user to ask. When memory_storage is obsidian, all memory including handoffs lives directly in the vault; never create .bossku/memory in a code repo.
 
 Use this skill when the active model should **stop thrashing and get help** from another model. The goal is not to abandon ownership of the task, but to bring in the right second opinion or helper path before time and context are wasted.
 

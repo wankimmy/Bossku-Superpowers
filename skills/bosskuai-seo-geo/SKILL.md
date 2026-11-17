@@ -162,6 +162,7 @@ Caveats:
 ## References
 
 - `../../references/checklists/seo-geo-checklist.md`
+- `../../references/checklists/expert-cofounder-stack-checklist.md`
 
 ## Deep SEO/GEO audit matrix
 
@@ -175,7 +176,7 @@ Caveats:
 ### Technical SEO
 
 - Validate crawlability, indexability, canonical URL, sitemap, robots rules, status codes, redirects, and pagination.
-- Use structured data where it matches real content: Organization, LocalBusiness, Product, FAQ, Article, BreadcrumbList, SoftwareApplication, Event.
+- Use structured data where it matches real content: Organization, LocalBusiness, Product, Article, BreadcrumbList, SoftwareApplication, Event. Skip FAQPage: Google no longer shows FAQ rich results (see Structured data).
 - Ensure title/meta/H1 are unique and aligned with page intent.
 - Check server-rendered content for important pages, especially Nuxt/Laravel hybrid apps.
 
@@ -200,5 +201,4 @@ Track impressions, CTR, ranking by intent, organic conversion, assisted conversi
 
 ## Metadata verification
 
-Check metadata as a first-class SEO/GEO asset: title, meta description, canonical, Open Graph, social image, schema, FAQ metadata, and crawl/index directives.
-- `../../references/checklists/expert-cofounder-stack-checklist.md`
+Check metadata as a first-class SEO/GEO asset: title, meta description, canonical, Open Graph, social image, schema, and crawl/index directives.

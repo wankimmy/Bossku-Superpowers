@@ -1,7 +1,5 @@
 # Expo / React Native Checklist
 
-> If the request is general, ambiguous, or touches many files — ask clarifying yes/no questions **before acting**. Use numbered bullets with explicit answer format: e.g. `1-yes/no  2-A/B`.
-
 - Do `npx expo-doctor` and `npx expo install --check` pass on the target SDK?
 - Is the workflow correct for the native needs: Expo Go, development build, or bare, and are config plugins used instead of ejecting?
 - Is `runtimeVersion` policy set, and does every native change ship with a new build rather than an OTA update?

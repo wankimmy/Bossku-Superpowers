@@ -13,6 +13,9 @@ Use this skill when the task is about **external market reality** rather than in
 - **`bosskuai-marketing-growth`**: execution of marketing; this skill produces the strategic intelligence that informs what to say and to whom.
 - **`bosskuai-launch-commercialization`**: full launch readiness; load this skill first to build the market foundation for that plan.
 - **`bosskuai-seo-geo`**: content discoverability; load alongside when search-intent data is part of demand validation.
+- **`bosskuai-competitor-intelligence`**: recurring monitoring and scored matrices; this skill makes the one-off market map.
+- **`bosskuai-deep-research`**: sourced research reports; the technology and vendor mode below is a market read, not a full evaluation.
+- **`bosskuai-investor-prep`**: fundraising documents and the investor pipeline; the fund-fit mode below only feeds it.
 
 ## Mindset
 
@@ -70,6 +73,7 @@ Positioning whitespace: [what no competitor owns clearly]
 Strategic implications:
   - [finding] → [what to do]
 Confidence and gaps: [confirmed / inferred / needs research]
+Sources: [URL, file:line or quote for each figure and claim above; unsourced items marked unverified]
 ```
 
 ## References

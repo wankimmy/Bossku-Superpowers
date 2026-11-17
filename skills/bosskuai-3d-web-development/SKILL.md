@@ -398,7 +398,7 @@ Result: 100k+ particles at 60fps (impossible with CPU-based positions)
 Detect device capability and serve appropriate quality:
 ```
 Strategy:
-- Check GPU via renderer.getContext().getParameter(renderer.getContext().RENDERER)
+- Check GPU: `const ext = gl.getExtension('WEBGL_debug_renderer_info'); const gpu = ext && gl.getParameter(ext.UNMASKED_RENDERER_WEBGL);`. The extension can be unavailable under privacy settings (Firefox with `privacy.resistFingerprinting` disables it), so treat a missing extension as unknown.
 - Check device pixel ratio, memory, core count
 - Tier 1 (high-end desktop): full effects, high-res textures, max particles
 - Tier 2 (mid-range): reduced post-processing, medium textures, fewer particles

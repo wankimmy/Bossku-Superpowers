@@ -11,7 +11,7 @@ metadata:
 
 ## Configured memory location
 
-Run `bossku memory-path --project <project-root>` to resolve `<memory-dir>` before reading or writing memory. Automatically save verified durable notes with `bossku remember` without waiting for the user to ask. When memory_storage is obsidian, all memory including handoffs lives directly in the vault; never create .bossku/memory in a code repo. The configured storage overrides legacy export wording below.
+Run `bossku memory-path --project <project-root>` to resolve `<memory-dir>` before reading or writing memory. Automatically save verified durable notes with `bossku remember` without waiting for the user to ask. When memory_storage is obsidian, all memory including handoffs lives directly in the vault; never create .bossku/memory in a code repo.
 
 Convene four advisors for ambiguous decisions:
 - the in-context Claude voice

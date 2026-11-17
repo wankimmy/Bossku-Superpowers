@@ -8,7 +8,6 @@ description: "Use when planning and running customer discovery interviews: hypot
 ## When to use
 
 - Planning user interviews (who to recruit, what to ask)
-- Designing a recruiting screener for interviews
 - Analysing interview transcripts for patterns
 - Building evidence-backed personas from primary research
 - Validating or invalidating a product hypothesis with real users

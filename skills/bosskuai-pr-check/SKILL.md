@@ -116,7 +116,7 @@ Key Perforce CL fields:
 
 ### 3. Wait for pending checks
 
-Before analyzing, ensure all status checks have completed. If any checks are `PENDING` or `IN_PROGRESS` (GitHub) / `running` or `pending` (GitLab), poll every 30 seconds until all checks reach a terminal state.
+Before analyzing, ensure all status checks have completed. If any checks are `PENDING` or `IN_PROGRESS` (GitHub) / `running` or `pending` (GitLab), poll every 30 seconds, at most 60 polls (30 minutes). If a check is still not terminal after that, stop and report it as pending, so the PR is not clear.
 
 **GitHub:** poll `statusCheckRollup` from `gh pr view`.
 
@@ -249,7 +249,7 @@ query($cursor: String) {
 
 If `hasNextPage` is true, repeat with `-f cursor=ENDCURSOR` to get remaining threads.
 
-Then resolve threads that have been addressed or are informational:
+Then resolve threads you addressed with a commit. Resolve an informational thread only when the Greptile bot wrote it; never resolve a human reviewer's thread without a code change:
 
 ```bash
 gh api graphql -f query='

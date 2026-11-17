@@ -12,13 +12,14 @@ import re
 from pathlib import Path
 
 from bossku.memory import memory_directory
+from bossku.redact import redact_note
 
 # Template text written by `bossku init`; a file that only holds this has nothing to say.
 TEMPLATE_LINES = {
     "Durable decisions only.", "Active and recent plans.", "Verified lessons worth repeating.",
     "One-paragraph summary of what this repo is and who it serves.", "Ephemeral continuation state. Clear when done.",
 }
-FILES = (("handoff.md", "handoff"), ("decisions.md", "decision"), ("plans.md", "plan"),
+FILES = (("decisions.md", "decision"), ("plans.md", "plan"),
          ("learnings.md", "learning"), ("project.md", "project"))
 _HEADING = re.compile(r"^## (.+)$", re.M)
 
@@ -36,6 +37,39 @@ def _entries(text: str) -> list[tuple[str, str]]:
         if body and body not in TEMPLATE_LINES:
             entries.append((stamp.strip(), body))
     return entries
+
+
+def _handoff_block(text: str, budget: int) -> str:
+    """handoff.md as its own block: lines kept as written, cut at a line boundary. A longer file keeps its start and
+    its FOR_NEXT_MODEL tail, because the next steps are what a new session needs most."""
+    lines = [line.rstrip() for line in text.splitlines() if line.strip() and line.strip() not in TEMPLATE_LINES]
+    if not any(not line.startswith("#") for line in lines):
+        return ""   # a title alone says nothing
+    if len("\n".join(lines)) <= budget:
+        return "\n".join(lines)
+    marker = "[handoff cut]"
+    tail_at = next((i for i, line in enumerate(lines) if "FOR_NEXT_MODEL" in line), len(lines))
+    tail = lines[tail_at:]
+    head_size = len("\n".join(lines[:tail_at]))
+    tail_room = max(budget // 2, budget - head_size - 2 * len(marker) - 4)   # the tail takes what the head leaves
+    tail_cut = False
+    while len(tail) > 1 and len("\n".join(tail)) > tail_room:
+        tail.pop()   # an oversized tail keeps its first lines
+        tail_cut = True
+    if tail and len(tail[0]) > tail_room:
+        tail[0] = _clip(tail[0], tail_room - 4)   # _clip may add "..."; one long FOR_NEXT_MODEL line is cut too, never kept whole
+        tail_cut = True
+    room = budget - len("\n".join(tail)) - 2 * len(marker) - 4
+    head, head_cut = [], False
+    for line in lines[:tail_at]:
+        if len(line) + 1 > room:
+            if room > 20:
+                head.append(_clip(line, room - 4))   # a one-paragraph handoff still shows its start
+            head_cut = True
+            break
+        head.append(line)
+        room -= len(line) + 1
+    return "\n".join(head + ([marker] if head_cut else []) + tail + ([marker] if tail_cut else []))
 
 
 def _clip(text: str, limit: int) -> str:
@@ -59,6 +93,13 @@ def memory_brief(project: Path, *, home: Path | None = None, limit: int = 1300, 
         return ""   # no vault or no project memory: stay quiet instead of failing a session
     lines: list[str] = []
     used = 0
+    try:
+        handoff = _handoff_block((folder / "handoff.md").read_text(encoding="utf-8"), limit * 6 // 10)
+    except (OSError, UnicodeDecodeError):
+        handoff = ""   # no handoff yet, or one that is not UTF-8: the decisions still go out
+    if handoff:
+        lines.append("Handoff:\n" + handoff)
+        used = len(lines[0])
     for filename, label in FILES:
         path = folder / filename
         try:
@@ -76,7 +117,7 @@ def memory_brief(project: Path, *, home: Path | None = None, limit: int = 1300, 
                 break   # the project summary is one paragraph; older stamps are history
     if not lines:
         return ""
-    return BRIEF_INTRO + "\n".join(lines)
+    return redact_note(BRIEF_INTRO + "\n".join(lines))
 
 
 def session_output(payload_text: str, *, home: Path | None = None) -> dict:

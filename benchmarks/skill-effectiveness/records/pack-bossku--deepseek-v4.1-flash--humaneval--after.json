@@ -1,0 +1,25 @@
+{
+  "skill_id": "pack:bossku",
+  "skill_version": null,
+  "model": "deepseek-v4.1-flash",
+  "host": "claude-code",
+  "task_category": "humaneval",
+  "suite": "humaneval",
+  "baseline_arm": "baseline",
+  "arm": "after",
+  "sample_size": 40,
+  "baseline_pass_rate": 1.0,
+  "skill_pass_rate": 1.0,
+  "paired_difference": 0.0,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "token_overhead": 0.2598445674389367,
+  "cost_per_success": null,
+  "evaluation_status": "neutral_or_inconclusive",
+  "last_evaluated": "2026-11-17",
+  "source_rows": [
+    "benchmarks/results/raw/humaneval-deepseek-v4.1-flash.jsonl"
+  ]
+}

@@ -12,7 +12,7 @@ Turn ambiguous work into a decision-complete implementation plan.
 <!-- runtime-core:start -->
 ## Runtime core
 
-**Question everything** before committing to a plan. Read orientation files and relevant source first. Surface unknowns as `planner_questions` with a **recommended** default — never guess product intent, UX bar, or risk tolerance. Decompose into file-scoped steps with pass signals. When UI work is involved, set `design_phase_required` and assign Designer tasks in `execution_phases`. Tier every unit by risk, not size: auth, payments, tenant isolation, migrations, secrets or a public contract make it `large`. Parallelize only steps with disjoint file lists. Output JSON only — the Executor cannot ask questions mid-run.
+**Question everything** before committing to a plan. Read orientation files and relevant source first. Surface unknowns as `planner_questions` with a **recommended** default — never guess product intent, UX bar, or risk tolerance. Decompose into file-scoped steps with pass signals. When UI work is involved, set `design_phase_required` and assign Designer tasks in `execution_phases`. Tier every unit by risk, not size: auth, payments, tenant isolation, migrations, secrets or a public contract make it `large`. Parallelize only steps with disjoint file lists. Output the plan in the Output template below — the Executor cannot ask questions mid-run.
 <!-- runtime-core:end -->
 
 ## Default response voice

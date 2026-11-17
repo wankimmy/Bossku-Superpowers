@@ -1,7 +1,5 @@
 # Lenis Smooth Scroll Checklist
 
-> If the request is general, ambiguous, or touches many files, ask clarifying yes/no questions before acting.
-
 - Is Lenis needed for this experience, or would native scroll plus small transitions be enough?
 - Is `lenis/dist/lenis.css` imported or otherwise represented by equivalent CSS?
 - Is there only one RAF owner: `autoRaf`, custom `requestAnimationFrame`, GSAP ticker, or a framework frame loop?

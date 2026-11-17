@@ -47,6 +47,7 @@ Use this skill when the code is Go and the answer depends on Go's concurrency mo
 - JSON: unexported fields are silent no-ops; `omitempty` on structs does nothing; use `json.RawMessage` for pass-through payloads.
 - sqlc/pgx: Postgres `interval` maps to `pgtype.Interval`, not `time.Duration`; `numeric` needs `pgtype.Numeric` or `shopspring/decimal`; nullable columns become `pgtype.Text` etc. Do the conversion in one place.
 - Time: store UTC, convert at the edge; `time.Now()` in business logic makes tests flaky — inject a clock.
+- Request context ends when the handler returns: a goroutine or job started from a handler needs `context.WithoutCancel` (Go 1.21+) and its own stop signal.
 
 ## Service structure that scales
 
@@ -65,6 +66,7 @@ Use this skill when the code is Go and the answer depends on Go's concurrency mo
 - `go test -race -count=1 ./...` in CI; `-shuffle=on` to catch order dependence; fuzz tests for parsers and decoders.
 - Benchmarks with `b.ReportAllocs()`; compare with `benchstat` before claiming a speedup.
 - Decode real production payloads, or a sanitized copy, through the new code, not only hand-written fixtures. Include a NULL row, and a number that arrives as a string, which a hand-typed fixture often lacks.
+- Walk the scenarios in the shared bar, section 3, and name any case left untested, especially concurrent callers with retries and a context cancelled mid-call.
 
 ## Performance
 

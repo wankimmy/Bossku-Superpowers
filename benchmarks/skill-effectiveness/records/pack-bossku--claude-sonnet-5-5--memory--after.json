@@ -1,0 +1,25 @@
+{
+  "skill_id": "pack:bossku",
+  "skill_version": null,
+  "model": "claude-sonnet-5-5",
+  "host": "claude-code",
+  "task_category": "memory",
+  "suite": "memory",
+  "baseline_arm": "baseline",
+  "arm": "after",
+  "sample_size": 22,
+  "baseline_pass_rate": 0.6363636363636364,
+  "skill_pass_rate": 0.8409090909090909,
+  "paired_difference": 0.20454545454545456,
+  "confidence_interval": [
+    0.06818181818181818,
+    0.36363636363636365
+  ],
+  "token_overhead": 0.05308127893783565,
+  "cost_per_success": 0.09744163783783785,
+  "evaluation_status": "demonstrated_improvement",
+  "last_evaluated": "2026-11-17",
+  "source_rows": [
+    "benchmarks/results/raw/memory-claude-sonnet-5-5.jsonl"
+  ]
+}

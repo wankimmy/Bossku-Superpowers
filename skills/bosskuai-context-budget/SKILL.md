@@ -34,13 +34,13 @@ Scan all component directories and estimate token consumption:
 - Flag: files >400 lines
 - Check for duplicate copies in other tool dirs (`.cursor/`, `.codex/`) — skip identical copies to avoid double-counting
 
-**Rules** (`rules/**/*.md`)
+**Rules** (`.claude/rules/**/*.md`, `~/.claude/rules/`)
 - Count tokens per file
 - Flag: files >100 lines
 - Detect content overlap between rule files in the same language module
 
 **MCP Servers** (`.mcp.json` or active MCP config)
-- Count configured servers and total tool count
+- Count configured servers; count tools from the session's tool list or the server's docs, never by launching it
 - Estimate schema overhead at ~500 tokens per tool
 - Flag: servers with >20 tools, servers that wrap simple CLI commands (`gh`, `git`, `npm`, `supabase`, `vercel`)
 
@@ -80,7 +80,7 @@ Produce the context budget report:
 Context Budget Report
 ═══════════════════════════════════════
 
-Total estimated overhead: ~XX,XXX tokens
+Total estimated eager overhead (descriptions, always-loaded files, MCP schemas; not skill, agent or rule bodies): ~XX,XXX tokens
 Context model: Claude Sonnet (200K window)
 Effective available context: ~XXX,XXX tokens (XX%)
 

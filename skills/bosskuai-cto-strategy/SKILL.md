@@ -15,6 +15,7 @@ Use this skill when the decision is company-level: what technology the business 
 - **`bosskuai-product-strategy`**: what to build for whom; this skill answers what technology and organization can build it.
 - **`bosskuai-council`**: run it for the genuinely contested go/no-go calls this skill surfaces.
 - **`bosskuai-investor-prep`** / **`bosskuai-financial-modeling`**: the deck and the model; this skill supplies the technical narrative and the engineering budget lines.
+- **`bosskuai-cybersecurity-risk`** / **`bosskuai-cost-optimization`**: the hands-on security review and the cost work; this skill sets the company security posture and the cloud and vendor budget.
 
 ## Mindset
 
@@ -49,7 +50,7 @@ Use this skill when the decision is company-level: what technology the business 
 - **Platform and language**: hiring market and the current team's depth outrank benchmark charts; one primary backend language, one primary frontend framework, exceptions justified in an ADR.
 - **Monolith vs services**: modular monolith first; extract a service when a team needs independent deploys or a scaling profile demands it (Conway's law runs both ways).
 - **Multi-tenancy**: the isolation model (shared schema with tenant id, schema per tenant, database per tenant) is a pricing and compliance decision; pick it once.
-- **Cloud**: managed services, one account per environment, region by data residency (Malaysia `ap-southeast-5`, Singapore `ap-southeast-1`); commit to reserved capacity only after steady state.
+- **Cloud**: managed services, one account per environment, region by data residency (Malaysia `ap-southeast-5`, Singapore `ap-southeast-1`; Malaysia is opt-in and disabled by default, so enable it on the account before deploying there); commit to reserved capacity only after steady state.
 - **AI/LLM**: eval-driven adoption, provider abstraction, data governance (what may leave the tenant boundary), cost per task tracked; no model in the critical path without a fallback and a budget cap.
 
 ## Organization and hiring

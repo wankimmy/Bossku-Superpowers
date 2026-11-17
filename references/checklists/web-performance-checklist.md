@@ -1,7 +1,5 @@
 # Web Performance Checklist
 
-> If the request is general, ambiguous, or touches many files — ask clarifying yes/no questions **before acting**. Use numbered bullets with explicit answer format: e.g. `1-yes/no  2-A/B`.
-
 - Do you have field p75 numbers (CrUX or RUM) per template, not only a lab score?
 - Is the LCP element known, server-rendered, and (if an image) preloaded with `fetchpriority="high"`, correct `srcset`/`sizes`, modern format, and no lazy loading?
 - Is TTFB under 800 ms with HTML cached at the edge for public pages?

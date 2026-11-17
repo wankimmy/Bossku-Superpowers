@@ -14,6 +14,7 @@ their job.
 
 from __future__ import annotations
 
+import bisect
 import json
 import os
 import re
@@ -35,10 +36,19 @@ RUNS_CODE = re.compile(
     r"(?:python3?|py|node|deno|bun|ruby|php|perl|lua|Rscript|julia)(?:\.exe)?\s+(?!--version|-V\b|-h\b|--help)\S"
     r"|(?:pytest|py\.test|tox|nox|jest|vitest|mocha|phpunit|pest|rspec|ctest|behave)\b"
     r"|(?:npm|yarn|pnpm)\s+(?:run\s+)?(?:test|t|start|build|lint|check|dev)\b"
+    r"|(?:bash|sh|zsh)\s+[^\s|;&]+\.sh\b"   # as hooks/stop-gate.mjs: a shell script counts
     r"|npx\s+\S+|go\s+(?:test|run|build|vet)\b|cargo\s+(?:test|run|build|check|clippy)\b"
-    r"|dotnet\s+(?:test|run|build)\b|(?:mvn|mvnw|gradle|gradlew)\b.*\b(?:test|verify|build|check)\b"
+    r"|dotnet\s+(?:test|run|build)\b|(?:mvn|mvnw|gradle|gradlew)\b.{0,400}?\b(?:test|verify|build|check)\b"
     r"|make\s+(?:-\S+\s+)*(?:test|tests|check|build|all|run|lint|verify)\b|swift\s+(?:test|run|build)\b|flutter\s+test\b|bundle\s+exec\b|deno\s+test\b"
     r")", re.I)
+# A path-qualified or quoted interpreter, only as the command word (`git add src/python docs` runs nothing).
+RUNS_PATH = re.compile(
+    r"""^\s*(?:\w+=\S*\s+)*(?:timeout\s+\S+\s+)?(?:"[^"]*[\\/]|'[^']*[\\/]|[^\s=]*[\\/])(?:python3?|py|node|deno|bun|ruby|php|perl|lua|Rscript|julia)(?:\.exe)?["']?\s+"""
+    r"(?!--version|-V\b|-h\b|--help)\S", re.I)
+# A ./script.sh or ./script.py, only as the command word (`chmod +x ./run.sh` and `git add ./check.py` run nothing):
+# after shell keywords and plain wrappers (`if ./check.sh`, `sudo ./x.sh`), NAME=value assignments and `timeout N`.
+RUNS_SCRIPT = re.compile(r"^\s*(?:(?:then|do|else|elif|if|while|until|!|\{|sudo|time|env|exec|nohup|command)\s+)*"
+                         r"(?:\w+=\S*\s+)*(?:timeout\s+\S+\s+)?\./[\w./-]+\.(?:sh|py)\b", re.I)
 # The request asks for something to be changed or made (as opposed to explained or reviewed).
 CHANGE_REQUEST = re.compile(
     r"\b(?:fix|implement|add|write|create|build|refactor|update|change|modify|patch|rename|remove|convert|migrate|extend|make)\b",
@@ -61,6 +71,10 @@ VERIFY_REASON = (
     "request and its edge cases (only what is safe to run locally). Read the real output, fix what fails, then "
     "say what you ran and what you could not verify."
 )
+FAILED_REASON = (
+    "BosskuAI verify gate: you ran `{command}` after your last change and it failed. Read the error it printed, fix "
+    "the cause, run it again until it passes, then say what you ran. If it cannot pass here, say exactly why."
+)
 SECURITY_REASON = (
     "BosskuAI security gate: you changed code, dependencies or infra config and the reply has no security verdict "
     "(a must rule). Load bosskuai-security-gate and run its pass on this change: each layer it touches, deep pass for "
@@ -80,7 +94,9 @@ class Turn:
     """What happened since the user's latest prompt."""
     request: str = ""
     calls: list = field(default_factory=list)
+    errors: dict = field(default_factory=dict)
     reply: str = ""
+    cwd: str = ""   # the session folder, as the last main-thread line records it
     blocks: dict = field(default_factory=lambda: {kind: 0 for kind in MARKERS})
 
 
@@ -134,21 +150,65 @@ def _typed_while_working(event: dict) -> str:
     return ""
 
 
+class _Call(tuple):
+    """(tool name, arguments), as the rest of this module unpacks it, that also knows its tool_use id and timestamp."""
+
+    def __new__(cls, name: str, args: dict, id: str = "", timestamp: str = ""):
+        call = super().__new__(cls, (name, args))
+        call.id, call.timestamp = id, timestamp
+        return call
+
+
+# An error result that says the command never ran (denied by the auto-mode classifier, a permission rule, a hook or the
+# user, or aborted or interrupted first) is not a failed check. Same list as NOT_RUN_RE in hooks/stop-gate.mjs; any other
+# error text stays a failure.
+NOT_RUN = re.compile(
+    r"^\s*(?:<error>)?(?:Permission (?:for this (?:action|command) (?:was|has been) denied|to use )"
+    r"|The user doesn't want to proceed with this tool use|Command was aborted before completion"
+    r"|\[Request interrupted by user|\[Tool call interrupted: |PreToolUse:\S+ hook error: [^\n]{0,60}? denied"
+    r"|The server-side auto mode classifier gave no verdict|<tool_use_error>Blocked: |This agent is isolated in the worktree)")
+
+
+def _result_state(block: dict):
+    """False for a result that came back fine, True for an error, "not_run" for an error that says the command never ran."""
+    if block.get("is_error") is not True:
+        return False
+    content = block.get("content")
+    text = content if isinstance(content, str) else "\n".join(
+        str(b.get("text", "")) for b in content if isinstance(b, dict)) if isinstance(content, list) else ""
+    return "not_run" if NOT_RUN.search(text[:500]) else True
+
+
+def _results(event: dict) -> dict:
+    """{tool_use id: False (ok), True (error) or "not_run"} for the tool_result blocks of one user line."""
+    message = event.get("message")
+    content = message.get("content") if isinstance(message, dict) and event.get("type") == "user" else None
+    if not isinstance(content, list):
+        return {}
+    return {str(b["tool_use_id"]): _result_state(b) for b in content
+            if isinstance(b, dict) and b.get("type") == "tool_result" and b.get("tool_use_id")}
+
+
 def _tool_calls(lines):
+    """(calls, errors): every tool call of the main thread, and {tool_use id: errored} for the results that came back."""
+    calls, errors = [], {}
     for event in _events(lines):
+        errors.update(_results(event))
         message = event.get("message")
         if not isinstance(message, dict) or event.get("type") != "assistant" or event.get("isSidechain"):
             continue
         content = message.get("content")
         for block in content if isinstance(content, list) else []:
             if isinstance(block, dict) and block.get("type") == "tool_use":
-                yield _call_of(block)
+                calls.append(_call_of(block, event))
+    return calls, errors
 
 
-def _call_of(block: dict) -> tuple[str, dict]:
-    """(tool name, arguments) with both forced to the expected types, whatever the transcript holds."""
+def _call_of(block: dict, event: dict | None = None) -> _Call:
+    """The call with name and arguments forced to the expected types, whatever the transcript holds."""
     args = block.get("input")
-    return str(block.get("name") or ""), args if isinstance(args, dict) else {}
+    return _Call(str(block.get("name") or ""), args if isinstance(args, dict) else {},
+                 str(block.get("id") or ""), str((event or {}).get("timestamp") or ""))
 
 
 def _spellings(path: str) -> set[str]:
@@ -190,16 +250,39 @@ def _is_code_edit(name: str, args: dict, project: str = "") -> bool:
     return Path(target).suffix.lower() not in NON_CODE_SUFFIXES and not _outside_project(target, project)
 
 
-def _unverified(calls, project: str = "") -> bool:
-    """True when code was edited and no command that runs code followed the last edit."""
-    last_edit = None
-    verified_after = False
-    for index, (name, args) in enumerate(calls):
+def _is_check(name: str, args: dict) -> bool:
+    """A shell command with a segment that runs code or a test runner; `cat pytest.ini` and `echo pytest` run nothing."""
+    return name in SHELL_TOOLS and any((RUNS_CODE.search(part) or RUNS_PATH.search(part) or RUNS_SCRIPT.search(part))
+                                       and not READS_ONLY.search(part)
+                                       for part in _command_segments(str(args.get("command", "")), name == "PowerShell"))
+
+
+def _verification(calls, project: str = "", errors: dict | None = None) -> tuple[str, str]:
+    """(state, command): `no_code_change`, `unverified` (nothing ran after the last code edit), `failed_verification`
+    (the last check after it came back as an error; the command is named) or `verified`. A check with no result in the
+    transcript counts as passed, so a transcript shape this code does not know can never trap a session."""
+    last_edit, checks = None, []
+    for index, call in enumerate(calls):
+        name, args = call
         if _is_code_edit(name, args, project):
-            last_edit, verified_after = index, False
-        elif name in SHELL_TOOLS and last_edit is not None and RUNS_CODE.search(str(args.get("command", ""))):
-            verified_after = True
-    return last_edit is not None and not verified_after
+            last_edit, checks = index, []
+        elif last_edit is not None and _is_check(name, args):
+            checks.append(call)
+    if last_edit is None:
+        return "no_code_change", ""
+    errors = errors or {}
+    # A denied or aborted check did not run: the last one that did decides.
+    ran = [call for call in checks if errors.get(getattr(call, "id", "")) != "not_run"]
+    if not ran:
+        return "unverified", ""
+    if errors.get(getattr(ran[-1], "id", "")):
+        return "failed_verification", " ".join(str(ran[-1][1].get("command", "")).split())
+    return "verified", ""
+
+
+def _unverified(calls, project: str = "", errors: dict | None = None) -> bool:
+    """True when code was edited and no command that runs code followed the last edit, or the last one failed."""
+    return _verification(calls, project, errors)[0] in ("unverified", "failed_verification")
 
 
 def _needs_security(calls, project: str = "") -> bool:
@@ -227,8 +310,11 @@ def _pasted(request: str, calls, reply: str) -> bool:
 
 def _scan(lines) -> Turn:
     """Read a transcript once: the latest prompt, what the agent did since, and which reminders it already got."""
-    turn = Turn()
+    turn, cwd = Turn(), ""
     for event in _events(lines):
+        turn.errors.update(_results(event))
+        if isinstance(event.get("cwd"), str) and event["cwd"] and not event.get("isSidechain"):
+            cwd = event["cwd"]
         text = _prompt_text(event)
         if text.strip():
             turn = Turn(request=text)   # a new turn: only what follows it counts
@@ -250,15 +336,17 @@ def _scan(lines) -> Turn:
             if not isinstance(block, dict):
                 continue
             if block.get("type") == "tool_use":
-                turn.calls.append(_call_of(block))
+                turn.calls.append(_call_of(block, event))
             elif block.get("type") == "text" and str(block.get("text", "")).strip():
                 turn.reply = str(block["text"])
+    turn.cwd = cwd
     return turn
 
 
 def needs_verification(transcript_lines, project: str = "") -> bool:
     """True when code was edited anywhere in the session and no command that runs code followed the last edit."""
-    return _unverified(list(_tool_calls(transcript_lines)), project)
+    calls, errors = _tool_calls(transcript_lines)
+    return _unverified(calls, project, errors)
 
 
 def shows_code_without_editing(transcript_lines) -> bool:
@@ -269,7 +357,9 @@ def shows_code_without_editing(transcript_lines) -> bool:
 
 # A real save: `bossku remember ...` (also bossku.exe or a path to it), not a search for the text and not the placeholder.
 SAVES_A_NOTE = re.compile(r"(?:^|[\s;&|(`'\"/\\])bossku(?:\.exe)?['\"]?\s+remember\b", re.IGNORECASE)
-READS_ONLY = re.compile(r"^\s*(?:grep|egrep|rg|cat|echo|printf|head|tail|less|more|type|findstr|ls|dir)\b", re.IGNORECASE)
+READS_ONLY = re.compile(r"^\s*(?:(?:sudo|command)\s+)?(?:\S*[\\/])?(?:(?:git\s+grep|grep|egrep|rg|cat|echo|printf|head|tail"
+                        r"|less|more|type|findstr|ls|dir|wc|stat|which|where|gc|gci|sls|write-output|write-host"
+                        r"|get-content|get-childitem|select-string)(?:\.exe)?(?![\w.-])|sed\s+-n\b)", re.IGNORECASE)
 PLACEHOLDER = "<the rule as the user stated it"
 
 
@@ -293,6 +383,78 @@ def _segments(command: str) -> list[str]:
     return segments + [" ".join(current)]
 
 
+def _command_segments(command: str, powershell: bool = False) -> list[str]:
+    """The simple commands of a shell command, cut in one pass so quotes decide what a line break means: a newline,
+    ; & | and parentheses end a command only outside quotes (a backslash escapes the next character outside single
+    quotes; in a PowerShell command a backtick does and a backslash is plain), `$(...)` inside double quotes is a
+    command of its own, a # at the start of a word outside quotes starts a comment, and heredoc body lines are skipped
+    (the line that opens one decides, so `python - <<EOF` counts and `cat > f <<EOF` does not)."""
+    esc = "`" if powershell else "\\"
+    out, cur, stack, pending, i = [], [], [], [], 0
+    escaped = False   # the last character in `cur` was escaped, so an escaped space does not end a word
+    lines = None      # trimmed line -> start offsets, built once on the first heredoc
+    while i < len(command):
+        ch, top = command[i], stack[-1] if stack else ""
+        if ch == esc and top != "'":
+            # A line continuation after a word break leaves the next line at a word start, so its # is a comment.
+            at_word_start = not cur or (cur[-1][-1].isspace() and not escaped)
+            cur.append(command[i:i + 2])
+            escaped = not (command[i + 1:i + 2] == "\n" and at_word_start)
+            i += 2
+            continue
+        if top == "'":
+            if ch == "'":
+                stack.pop()
+        elif top == '"':
+            if ch == '"':
+                stack.pop()
+            elif command.startswith("$(", i):
+                out.append("".join(cur))
+                cur, i = [], i + 2
+                stack.append("$(")
+                continue
+        elif ch == "#" and (not cur or (cur[-1][-1].isspace() and not escaped)):
+            end = command.find("\n", i)
+            i = len(command) if end < 0 else end
+            continue
+        elif ch in "'\"":
+            stack.append(ch)
+        elif ch == ")" and top == "$(":
+            stack.pop()
+            out.append("".join(cur))
+            cur = []
+            i += 1
+            continue
+        elif command.startswith("<<", i) and not command.startswith("<<<", i):
+            found = re.compile(r"<<-?\s*(['\"]?)([\w.-]+)\1").match(command, i)
+            if found:
+                pending.append(found.group(2))
+        elif ch in ";&|()\n":
+            out.append("".join(cur))
+            cur = []
+            i += 1
+            if ch == "\n" and pending:   # skip the body, and the line with the delimiter
+                delim = pending.pop(0)
+                if lines is None:
+                    lines, pos = {}, 0
+                    while pos <= len(command):
+                        end = command.find("\n", pos)
+                        end = len(command) if end < 0 else end
+                        lines.setdefault(command[pos:end].strip(), []).append(pos)
+                        pos = end + 1
+                # No delimiter line means it was no heredoc (`$((1<<2))`): nothing is skipped.
+                starts = lines.get(delim, [])
+                at = bisect.bisect_left(starts, i)
+                if at < len(starts):
+                    end = command.find("\n", starts[at])
+                    i = len(command) if end < 0 else end + 1
+            continue
+        escaped = False
+        cur.append(ch)
+        i += 1
+    return out + ["".join(cur)]
+
+
 def _saved_a_note(calls) -> bool:
     for name, args in calls:
         command = str(args.get("command", ""))
@@ -306,8 +468,12 @@ def _saved_a_note(calls) -> bool:
 def decide(transcript_lines, project: str = "") -> tuple[str, str] | None:
     """The reminder to send now as (kind, reason), or None to let the agent finish."""
     turn = _scan(transcript_lines)
-    unverified = _unverified(turn.calls, project)
+    state, failed = _verification(turn.calls, project, turn.errors)
+    unverified = state in ("unverified", "failed_verification")
     if unverified and turn.blocks["verify"] < LIMITS["verify"]:
+        if state == "failed_verification":
+            from bossku.redact import redact_command   # not at module scope: only a failed check needs it
+            return "verify", FAILED_REASON.format(command=redact_command(failed[:2000])[:200])   # cut first: masking a huge command is slow
         return "verify", VERIFY_REASON
     if not unverified and turn.blocks["paste"] < LIMITS["paste"] and _pasted(turn.request, turn.calls, turn.reply):
         return "paste", PASTE_REASON

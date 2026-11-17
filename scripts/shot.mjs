@@ -2,7 +2,9 @@
 // BosskuAI visual verification: screenshot a URL at phone (390x844) and desktop
 // (1440x900) so the model can Read the PNGs and look at what it built.
 //
-//   node scripts/shot.mjs <url> [outDir] [--wait <ms>] [--no-full]
+//   node scripts/shot.mjs <url> [outDir] [--wait <ms>] [--no-full] [--widths 320,768]
+//
+// --widths adds one screenshot per width, for the widths scripts/layout-check.mjs flagged.
 //
 // Uses the Playwright CLI (`npx --no playwright screenshot`). `--no` means npx never downloads a package on its
 // own: if Playwright or its Chromium build is missing, it says so and prints the one-time install command for
@@ -32,6 +34,12 @@ export function shotArgs({ size, wait, fullPage, url, out }) {
   return cli;
 }
 
+// The two fixed sizes, then one 900-high viewport for each extra width ("320,768"). Junk and repeats add nothing.
+export function viewports(widths = "") {
+  const extra = String(widths).split(",").map((w) => parseInt(w, 10)).filter((w) => w >= 200 && w <= 4000 && w !== 390 && w !== 1440);
+  return [["phone-390", "390,844"], ["desktop-1440", "1440,900"], ...[...new Set(extra)].map((w) => [`w-${w}`, `${w},900`])];
+}
+
 // What to tell the user when npx or Playwright failed, or null when the error is something else.
 export function installHint(err) {
   if (/canceled due to missing packages|no YES option/i.test(err)) {
@@ -55,24 +63,22 @@ function main() {
     /* usage below */
   }
   if (!url) {
-    console.error("usage: node scripts/shot.mjs <url> [outDir] [--wait <ms>] [--no-full]");
+    console.error("usage: node scripts/shot.mjs <url> [outDir] [--wait <ms>] [--no-full] [--widths 320,768]");
     console.error("example: node scripts/shot.mjs http://localhost:3000");
     process.exit(1);
   }
   const waitIdx = args.indexOf("--wait");
   const wait = waitIdx >= 0 ? String(parseInt(args[waitIdx + 1], 10) || 1500) : "1500";
   const fullPage = !args.includes("--no-full");
-  const explicitOut = args.filter((a, i) => !a.startsWith("--") && a !== urlArg && !(waitIdx >= 0 && i === waitIdx + 1))[0];
+  const widthsIdx = args.indexOf("--widths");
+  const isValue = (i) => (waitIdx >= 0 && i === waitIdx + 1) || (widthsIdx >= 0 && i === widthsIdx + 1);
+  const explicitOut = args.filter((a, i) => !a.startsWith("--") && a !== urlArg && !isValue(i))[0];
   const stamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
   const outDir = explicitOut || path.join(process.cwd(), ".bossku", "shots", stamp);
   fs.mkdirSync(outDir, { recursive: true });
 
-  const viewports = [
-    ["phone-390", "390,844"],
-    ["desktop-1440", "1440,900"],
-  ];
   const written = [];
-  for (const [name, size] of viewports) {
+  for (const [name, size] of viewports(widthsIdx >= 0 ? args[widthsIdx + 1] : "")) {
     const out = path.join(outDir, `${name}.png`);
     const cli = shotArgs({ size, wait, fullPage, url, out });
     let plan;
@@ -94,7 +100,7 @@ function main() {
   }
   console.log(written.join("\n"));
   console.log(
-    "\nNow Read both PNGs and check: hero fits the viewport, nothing overflows at 390, CTA visible, no placeholder blocks, spacing rhythm consistent, contrast readable.",
+    "\nNow Read each PNG and check: hero fits the viewport, nothing overflows at 390, CTA visible, no placeholder blocks, spacing rhythm consistent, contrast readable.",
   );
 }
 

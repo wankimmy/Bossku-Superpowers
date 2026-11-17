@@ -28,7 +28,7 @@ Use this skill when the task is to create, audit, or refactor GSAP-powered motio
 
 1. Identify the motion job: entrance, hover, scroll-linked, scroll-triggered, pinned story, text reveal, route transition, gesture, or 3D sync.
 2. Identify the target environment: vanilla JS, React, Next/Nuxt, Vue, Webflow, Astro, or a canvas/WebGL hybrid. Read the installed GSAP version from the lockfile or `node_modules/gsap/package.json`, and check the latest with `npm view gsap version`.
-3. Check whether the project already uses GSAP, `@gsap/react`, ScrollTrigger, SplitText, Flip, or Lenis. If it does not and the job is scroll-linked progress with no pinning or cross-element sequencing, use CSS scroll-driven animations (`animation-timeline: scroll()` / `view()`) inside `@supports (animation-timeline: scroll())` with a static fallback (Chrome/Edge 115+, Safari 26; not in Firefox stable, so not Baseline), and the View Transitions API for route crossfades; stop there.
+3. Check whether the project already uses GSAP, `@gsap/react`, ScrollTrigger, SplitText, Flip, or Lenis. If it does not and the job is scroll-linked progress with no pinning or cross-element sequencing, use CSS scroll-driven animations (`animation-timeline: scroll()` / `view()`) inside `@supports (animation-timeline: scroll())` with a static fallback (Baseline Newly available since October 2026; Chrome/Edge 115+, Safari 26, and Firefox 159+, which enables it by default), and the View Transitions API for route crossfades; stop there.
 4. Define the fallback: no-JS, reduced motion, mobile simplification, or static end state.
 
 ### Phase 2 - Build the sequence

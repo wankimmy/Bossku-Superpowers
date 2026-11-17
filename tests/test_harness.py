@@ -64,7 +64,7 @@ class HooksManifestTests(unittest.TestCase):
     @unittest.skipUnless(shutil.which("node"), "node not on PATH")
     def test_node_hook_suite_passes(self):
         result = subprocess.run(
-            ["node", "--test", str(ROOT / "tests" / "hooks.test.mjs")],
+            ["node", "--test", str(ROOT / "tests" / "hooks.test.mjs"), str(ROOT / "tests" / "layout-check.test.mjs")],
             capture_output=True,
             text=True,
             cwd=ROOT,

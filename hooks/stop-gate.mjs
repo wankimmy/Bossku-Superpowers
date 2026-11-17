@@ -38,7 +38,8 @@ const MANIFESTS = new Set([
 ]);
 const INFRA =
   /(?:^|\/)(?:dockerfile[^/]*|docker-compose[^/]*\.ya?ml|compose\.ya?ml|[^/]+\.tf|[^/]+\.tfvars|\.gitlab-ci\.yml|\.github\/workflows\/[^/]+\.ya?ml|\.mcp\.json|nginx[^/]*\.conf|serverless\.ya?ml|vercel\.json|netlify\.toml)$/i;
-const VERDICT_RE = /\bsecurity gate:/i;
+// A line of its own, with the same prefixes as REVIEW_RE: "Done. Security gate: PASS" mid-sentence is not a verdict.
+const VERDICT_RE = /^[\s>*_-]*security gate:/im;
 // A line of its own that starts with the verdict, as in `Review: FIXED 2` or `**Review:** CLEAN`. Prose such as
 // "Code review: clean-up later" and the bare `CLEAN | FIXED <n>` template do not count.
 const REVIEW_RE = /^[\s>*_-]*review:[*_]*\s*(?:clean(?![\w-])(?!\s*\|)|fixed\s+\d+|open\s+\d+)/im;
@@ -59,28 +60,159 @@ const VERIFY_PATTERNS = [
   /\bgo\s+(test|vet|build)\b|\bcargo\s+(test|check|clippy|build)\b|\bdotnet\s+(test|build)\b|\b(gradlew?|mvn)\s+(test|check|verify)\b/i,
   /\bmake\s+(test|check|lint|build)\b|\bnode\s+(--test|--check)\b|\bdeno\s+(test|lint|check)\b|\bphp\s+-l\b/i,
   /\bbossku\s+validate\b|\bpython3?(\.exe)?"?\s+-m\s+(bossku\s+validate|unittest|pytest|py_compile)\b/i,
-  /\bplaywright\s+(test|screenshot)\b|shot\.mjs|\bcurl\b[^|]*(localhost|127\.0\.0\.1|:\d{4})|\bgit\s+diff\s+--check\b/i,
+  /\bplaywright\s+(test|screenshot)\b|shot\.mjs|\bcurl\b[^|]{0,2000}(localhost|127\.0\.0\.1|:\d{4})|\bgit\s+diff\s+--check\b/i,
 ];
 // Running the code is the check the gate asks for, same rule as bossku/gate.py RUNS_CODE: a script, `-c`, or a heredoc
 // fed to an interpreter, or a shell script. Version and help flags and pip installs run nothing of the project's.
 const RUNS_CODE = [
   /(?:^|[\s(`])(?:python3?|py|node|deno|bun|ruby|php|perl|Rscript)(?:\.exe)?"?\s+(?!--version\b|-V\b|-v\b|-h\b|--help\b|-m\s+(?:pip|venv|ensurepip)\b)\S/i,
-  /(?:^|[\s(`])(?:bash|sh|zsh)\s+[^\s|;&]+\.sh\b|(?:^|[\s(`])\.\/[\w./-]+\.(?:sh|py)\b/i,
+  /(?:^|[\s(`])(?:bash|sh|zsh)\s+[^\s|;&]+\.sh\b/i,
+  // A ./script.sh or ./script.py only as the command word (`chmod +x ./run.sh` and `git add ./check.py` run nothing).
+  /^\s*(?:(?:then|do|else|elif|if|while|until|!|\{|sudo|time|env|exec|nohup|command)\s+)*(?:\w+=\S*\s+)*(?:timeout\s+\S+\s+)?\.\/[\w./-]+\.(?:sh|py)\b/i,
+  // A path-qualified or quoted interpreter, only as the command word (`git add src/python docs` runs nothing).
+  /^\s*(?:\w+=\S*\s+)*(?:timeout\s+\S+\s+)?(?:"[^"]*[\\/]|'[^']*[\\/]|[^\s=]*[\\/])(?:python3?|py|node|deno|bun|ruby|php|perl|Rscript)(?:\.exe)?["']?\s+(?!--version\b|-V\b|-v\b|-h\b|--help\b|-m\s+(?:pip|venv|ensurepip)\b)\S/i,
 ];
 // A segment that starts with one of these only reads (same list as bossku/gate.py READS_ONLY).
-const READS_ONLY = /^\s*(?:grep|egrep|rg|cat|echo|printf|head|tail|less|more|type|findstr|ls|dir)\b/i;
+const READS_ONLY = /^\s*(?:(?:sudo|command)\s+)?(?:\S*[\\/])?(?:(?:git\s+grep|grep|egrep|rg|cat|echo|printf|head|tail|less|more|type|findstr|ls|dir|wc|stat|which|where|gc|gci|sls|write-output|write-host|get-content|get-childitem|select-string)(?:\.exe)?(?![\w.-])|sed\s+-n\b)/i;
+// An error result that says the command never ran (denied by the auto-mode classifier, a permission rule, a hook or the
+// user, or aborted or interrupted first) is not a failed check. Same list as NOT_RUN in bossku/gate.py; any other error
+// text stays a failure.
+const NOT_RUN_RE =
+  /^\s*(?:<error>)?(?:Permission (?:for this (?:action|command) (?:was|has been) denied|to use )|The user doesn't want to proceed with this tool use|Command was aborted before completion|\[Request interrupted by user|\[Tool call interrupted: |PreToolUse:\S+ hook error: [^\n]{0,60}? denied|The server-side auto mode classifier gave no verdict|<tool_use_error>Blocked: |This agent is isolated in the worktree)/;
+// Masks the secret shapes of bossku/redact.py redact_command that show up in a command: NAME=value for a secret-looking
+// name, --password/--token style flags, and well-known token prefixes.
+// A value is a whole quoted string (an unclosed one runs to the end) or a bare word.
+// A quote followed by a space, a separator or the end is a closing quote (`grep -q "API_KEY=" f`), not a value.
+const VALUE = String.raw`(?:"(?![\s;|&)]|$)[^"]*"?|'(?![\s;|&)]|$)[^']*'?|[^\s"']\S*)`;
+const SECRET_FLAG = new RegExp(String.raw`((?<![\w-])-{1,2}[\w-]*(?:password|passwd|pass|token|secret|api[-_]?key|access[-_]?key|auth|credentials?)(?:=|\s+))(?!-)${VALUE}`, "gi");
+const SECRET_ENV = new RegExp(String.raw`(\b[\w-]*(?:secret|passw(?:or)?d|pass|pwd|token|credentials?|api[_-]?key|_key)\s*=\s*)${VALUE}`, "gi");
+const SECRET_TOKEN =
+  /\b(?:sk-[\w-]{16,}|gh[pousr]_[A-Za-z0-9]{20,}|github_pat_\w{20,}|AKIA[0-9A-Z]{16}\b|xox[abposr]-[\w-]{10,}|(?:sk|rk)_(?:live|test)_[A-Za-z0-9]{10,}|glpat-[\w-]{20,}|hf_[A-Za-z0-9]{30,}|npm_[A-Za-z0-9]{36}\b|AIza[\w-]{35})|(?<![\w-])eyJ[\w-]{8,}\.[\w-]{8,}\.[\w-]{8,}/g;
+// The other shapes of redact_command and redact, in the same order: a value after a program's own flag (curl -u,
+// gh secret set --body, docker login -p, mysql -pVALUE), NAME: value pairs and JSON, Bearer and Basic headers,
+// a PEM key, and user:password in a URL.
+const SECRET_SHAPES = [
+  [new RegExp(String.raw`(\bsecrets?\s+set\b[^\n|;&]*?\s(?:--body|-b)(?:=|\s+))${VALUE}`, "gi"), "$1[REDACTED]"],
+  [new RegExp(String.raw`(\bcurl\b[^\n|;&]*?\s(?:-[a-zA-Z]*u|--user(?![\w-]))(?:=|\s*))${VALUE}`, "gi"), "$1[REDACTED]"],
+  [new RegExp(String.raw`(\b(?:docker|podman|nerdctl)\s+login\b[^\n|;&]*?\s-p(?:=|\s*))${VALUE}`, "gi"), "$1[REDACTED]"],
+  // The command name is case-insensitive, the flag is not (-P is the port), as in bossku/redact.py.
+  [new RegExp(String.raw`(\b(?:${["mysql", "mysqldump", "mysqladmin", "mariadb", "mariadb-dump"].map((w) => w.replace(/[a-z]/g, (c) => `[${c}${c.toUpperCase()}]`)).join("|")})\b[^\n|;&]*?\s-p)(?=\S)${VALUE}`, "g"), "$1[REDACTED]"],
+  [new RegExp(String.raw`(api[_-]?key|secret|token|password|bearer)\s*[:=]\s*${VALUE}`, "gi"), "[REDACTED]"],
+  [/["'](api[_-]?key|secret|token|password)["']\s*:\s*["'][^"']+["']/gi, "[REDACTED]"],
+  [/\bBearer\s+(?=[A-Za-z0-9._~+/=-]*\d)[A-Za-z0-9._~+/=-]{8,}/gi, "[REDACTED]"],
+  [/-----BEGIN (?:[A-Z0-9]+ )*PRIVATE KEY(?: BLOCK)?-----(?:(?:[^-]|-(?!--)){0,16384}?-----END (?:[A-Z0-9]+ )*PRIVATE KEY(?: BLOCK)?-----|(?:\s+[A-Za-z0-9+/=]{20,}){1,200})?/g, "[REDACTED]"],
+  [/\bAuthorization:\s*Basic\s+[A-Za-z0-9+/]{8,}={0,2}/gi, "[REDACTED]"],
+  [/(?<=:\/\/)[^\s/:@]*:[^\s/@]+(?=@)/g, "[REDACTED]"],
+];
+const maskSecrets = (cmd) =>
+  SECRET_SHAPES.reduce((s, [re, to]) => s.replace(re, to), cmd.replace(SECRET_FLAG, "$1[REDACTED]").replace(SECRET_ENV, "$1[REDACTED]").replace(SECRET_TOKEN, "[REDACTED]"));
 const UNVERIFIED_RE = /\b(not verified|unverified|could ?n[o']t (run|verify|be run)|did ?n[o']t run|no tests? (ran|were run|exist)|untested|nothing to run|cannot be verified here)\b/i;
 
-function isVerification(command) {
-  const c = String(command || "");
-  if (VERIFY_PATTERNS.some((re) => re.test(c))) return true;
-  return c.split(/&&|\|\||[;|\n]/).some((seg) => !READS_ONLY.test(seg) && RUNS_CODE.some((re) => re.test(seg)));
+// The simple commands of a shell command (same walk as bossku/gate.py _command_segments): a newline, ; & | and
+// parentheses end a command only outside quotes, a backslash escapes the next character outside single quotes (in a
+// PowerShell command a backtick does, and a backslash is plain), `$(...)` inside double quotes is a command of its own,
+// a # at the start of a word outside quotes starts a comment, and heredoc body lines are skipped.
+function segments(command, powershell = false) {
+  const text = String(command || "");
+  const esc = powershell ? "`" : "\\";
+  const out = [];
+  const stack = [];
+  const pending = [];
+  let lines = null; // trimmed line -> start offsets, built once on the first heredoc
+  let escaped = false; // the last character of `cur` was escaped, so an escaped space does not end a word
+  let cur = "";
+  let i = 0;
+  while (i < text.length) {
+    const ch = text[i];
+    const top = stack[stack.length - 1] || "";
+    if (ch === esc && top !== "'") {
+      // A line continuation after a word break leaves the next line at a word start, so its # is a comment.
+      const atWordStart = cur === "" || (/\s$/.test(cur) && !escaped);
+      cur += text.slice(i, i + 2);
+      escaped = !(text[i + 1] === "\n" && atWordStart);
+      i += 2;
+      continue;
+    }
+    if (top === "'") {
+      if (ch === "'") stack.pop();
+    } else if (top === '"') {
+      if (ch === '"') stack.pop();
+      else if (text.startsWith("$(", i)) {
+        out.push(cur);
+        cur = "";
+        i += 2;
+        stack.push("$(");
+        continue;
+      }
+    } else if (ch === "#" && (cur === "" || (/\s$/.test(cur) && !escaped))) {
+      const nl = text.indexOf("\n", i);
+      i = nl < 0 ? text.length : nl;
+      continue;
+    } else if (ch === '"' || ch === "'") {
+      stack.push(ch);
+    } else if (ch === ")" && top === "$(") {
+      stack.pop();
+      out.push(cur);
+      cur = "";
+      i++;
+      continue;
+    } else if (text.startsWith("<<", i) && !text.startsWith("<<<", i)) {
+      const m = /^<<-?\s*(['"]?)([\w.-]+)\1/.exec(text.slice(i));
+      if (m) pending.push(m[2]);
+    } else if (";&|()\n".includes(ch)) {
+      out.push(cur);
+      cur = "";
+      i++;
+      if (ch === "\n" && pending.length) {
+        const delim = pending.shift();
+        if (!lines) {
+          lines = new Map();
+          for (let pos = 0; pos <= text.length; ) {
+            const nl = text.indexOf("\n", pos);
+            const end = nl < 0 ? text.length : nl;
+            const key = text.slice(pos, end).trim();
+            if (lines.has(key)) lines.get(key).push(pos);
+            else lines.set(key, [pos]);
+            pos = end + 1;
+          }
+        }
+        // The first delimiter line from here on; none found means it was no heredoc (`$((1<<2))`), so nothing is skipped.
+        const starts = lines.get(delim) || [];
+        let lo = 0;
+        for (let hi = starts.length; lo < hi; ) {
+          const mid = (lo + hi) >> 1;
+          if (starts[mid] < i) lo = mid + 1;
+          else hi = mid;
+        }
+        if (lo < starts.length) {
+          const nl = text.indexOf("\n", starts[lo]);
+          i = nl < 0 ? text.length : nl + 1;
+        }
+      }
+      continue;
+    }
+    escaped = false;
+    cur += ch;
+    i++;
+  }
+  out.push(cur);
+  return out;
+}
+
+function isVerification(command, powershell = false) {
+  return segments(command, powershell).some((seg) => !READS_ONLY.test(seg) && (VERIFY_PATTERNS.some((re) => re.test(seg)) || RUNS_CODE.some((re) => re.test(seg))));
 }
 
 // User-role lines the app writes that no person typed (same list as bossku/gate.py).
 const NOT_TYPED = ["<ci-monitor-event>", "<task-notification>", "<agent-message", "<local-command", "<system-reminder>"];
 // The gate's own block message comes back as an isMeta user line; it keeps restarting the window so the gate fires once per turn.
 const OWN_BLOCK = "BosskuAI stop gate: ";
+
+function resultText(b) {
+  const c = b.content;
+  const t = typeof c === "string" ? c : Array.isArray(c) ? c.map((x) => (x && typeof x.text === "string" ? x.text : "")).join("\n") : "";
+  return t.slice(0, 500);
+}
 
 function textOf(entry) {
   const c = entry.message && entry.message.content;
@@ -146,13 +278,19 @@ export function analyze(lines, cwd) {
   const secEdits = [];
   const scratch = new Map(); // isScratch resolves real paths; a turn edits the same few files again and again
   const isScratchOnce = (f) => (scratch.has(f) ? scratch.get(f) : scratch.set(f, isScratch(f, cwd)).get(f));
-  let lastEdit = -1;
-  let lastVerify = -1;
+  const failed = new Map(); // tool_use id -> "failed" (an error), "skipped" (an error that says it never ran) or "ok"
+  let checks = []; // {id, command} of the verification commands after the last edit
   for (let i = start; i < entries.length; i++) {
     const e = entries[i];
-    if (e.type !== "assistant") continue;
     const c = e.message && e.message.content;
     if (!Array.isArray(c)) continue;
+    if (e.type === "user") {
+      for (const b of c) {
+        if (b && b.type === "tool_result" && b.tool_use_id) failed.set(String(b.tool_use_id), b.is_error !== true ? "ok" : NOT_RUN_RE.test(resultText(b)) ? "skipped" : "failed");
+      }
+      continue;
+    }
+    if (e.type !== "assistant") continue;
     for (const b of c) {
       if (!b || b.type !== "tool_use") continue;
       const inp = b.input || {};
@@ -161,17 +299,24 @@ export function analyze(lines, cwd) {
         if (!f || isScratchOnce(f)) continue;
         if (CODE_EXT.has(ext(f))) {
           edits.push(f);
-          lastEdit = i;
+          checks = [];
         }
         if (isSecurityRelevant(f)) secEdits.push(f);
-      } else if (RUN_TOOLS.has(b.name) && isVerification(inp.command)) {
-        lastVerify = i;
+      } else if (RUN_TOOLS.has(b.name) && isVerification(inp.command, b.name === "PowerShell")) {
+        checks.push({ id: String(b.id || ""), command: inp.command });
       }
     }
   }
   const ui = edits.filter((f) => UI_EXT.has(ext(f)));
-  const unverifiedAfterEdit = edits.length > 0 && lastVerify < lastEdit;
-  return { edits, ui, unverifiedAfterEdit, secEdits };
+  // A check with no result in the transcript counts as passed, so an unknown shape can never trap a session.
+  // A denied or aborted check did not run: the last one that did decides.
+  const ran = checks.filter((k) => failed.get(k.id) !== "skipped");
+  const lastVerify = ran.length ? ran[ran.length - 1] : null;
+  const checkFailed = edits.length > 0 && lastVerify !== null && failed.get(lastVerify.id) === "failed";
+  const unverifiedAfterEdit = edits.length > 0 && (lastVerify === null || checkFailed);
+  // Capped before masking so a huge command stays cheap; only the first 200 characters are ever shown.
+  const failedCommand = checkFailed ? maskSecrets(String(lastVerify.command).replace(/\s+/g, " ").trim().slice(0, 2000)).slice(0, 200) : "";
+  return { edits, ui, unverifiedAfterEdit, failedCommand, secEdits };
 }
 
 function shortList(files) {
@@ -187,7 +332,7 @@ if (isMain(import.meta.url)) {
     const path = input.transcript_path;
     if (!path || !fs.existsSync(path)) process.exit(0);
     const last = String(input.last_assistant_message || "");
-    const { edits, ui, unverifiedAfterEdit, secEdits } = analyze(tailLines(path), input.cwd);
+    const { edits, ui, unverifiedAfterEdit, failedCommand, secEdits } = analyze(tailLines(path), input.cwd);
     const verify = unverifiedAfterEdit && !UNVERIFIED_RE.test(last);
     const security = secEdits.length > 0 && !VERDICT_RE.test(last) && !isOff("BOSSKU_SECURITY_GATE");
     const review = edits.length > 0 && !REVIEW_RE.test(last) && !isOff("BOSSKU_REVIEW_GATE");
@@ -196,7 +341,10 @@ if (isMain(import.meta.url)) {
     if (verify) {
       const [n, shown] = shortList(edits);
       let msg =
-        `BosskuAI stop gate: ${n} source file(s) changed this turn (${shown}) but no verification command ran after the last edit. ` +
+        `BosskuAI stop gate: ${n} source file(s) changed this turn (${shown}) but ` +
+        (failedCommand
+          ? `the last check failed: \`${failedCommand}\` errored after the last edit. Read its error and fix the cause. `
+          : "no verification command ran after the last edit. ") +
         "Run the pass signal now (focused test, lint, typecheck, build, or a curl/smoke check), read its real output, and only then finish. " +
         "If nothing can be run, say exactly what is not verified and why.";
       if (ui.length) {

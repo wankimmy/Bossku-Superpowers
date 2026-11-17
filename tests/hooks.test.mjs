@@ -11,7 +11,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { isMain, isScratch, pluginRoot, segments, toPosix } from "../hooks/_lib.mjs";
 import { askFor, decide, isSecretFile, judge, RULES } from "../hooks/guard.mjs";
 import { slopLint, syntaxCheck, which } from "../hooks/post-edit.mjs";
-import { installHint, shotArgs, spawnPlan } from "../scripts/shot.mjs";
+import { installHint, shotArgs, spawnPlan, viewports } from "../scripts/shot.mjs";
 import { analyze, tailLines } from "../hooks/stop-gate.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -550,11 +550,11 @@ test("post-edit script: exit 2 on hard tells, additionalContext on soft tells, s
 function user(text) {
   return JSON.stringify({ type: "user", message: { role: "user", content: text } });
 }
-function toolUse(name, input) {
-  return JSON.stringify({ type: "assistant", message: { role: "assistant", content: [{ type: "tool_use", name, input }] } });
+function toolUse(name, input, id) {
+  return JSON.stringify({ type: "assistant", message: { role: "assistant", content: [{ type: "tool_use", id, name, input }] } });
 }
-function toolResult() {
-  return JSON.stringify({ type: "user", message: { role: "user", content: [{ type: "tool_result", content: "ok" }] } });
+function toolResult(id, isError = false) {
+  return JSON.stringify({ type: "user", message: { role: "user", content: [{ type: "tool_result", tool_use_id: id, content: "ok", is_error: isError }] } });
 }
 
 test("stop gate: source edit with no verification after it is flagged", () => {
@@ -590,6 +590,84 @@ test("stop gate: running the code after the edit counts, like bossku/gate.py RUN
   ]) assert.ok(ran(command), command);
   for (const command of ["python --version", "node -v", "python -m pip install requests", "cat sales_report.py", "grep -n python README.md"])
     assert.ok(!ran(command), command);
+});
+
+test("stop gate: read-only commands are not a verification, whatever words they hold", () => {
+  const ran = (command) =>
+    analyze([user("fix"), toolUse("Edit", { file_path: "C:/proj/src/app.ts" }), toolResult(), toolUse("Bash", { command }), toolResult()])
+      .unverifiedAfterEdit === false;
+  for (const command of [
+    'grep -r "npm test" .',
+    "cat vitest.config.ts",
+    "echo pytest",
+    "cat pytest.ini",
+    "Get-Content pytest.ini",
+    'Select-String -Path a.py -Pattern "pytest"',
+    "sed -n 1,5p pytest.ini",
+    "wc -l tests/a.test.ts",
+    "ls tests | grep jest",
+    'grep -r "a && npm test" .',
+    'echo "next step:\npytest -q"',
+    "cat >> docs/decisions.md <<'EOF'\n- npm run check: lint and unit tests pass\nEOF",
+    "git commit -q -F - <<'EOF'\nfix\n\nNot verified: npm run dev could not start\nEOF",
+    'Write-Output "npm test"',
+    "Write-Host pytest",
+    "gc pytest.ini",
+    "which pytest",
+    "git grep -n pytest",
+    "sudo cat pytest.ini",
+    "/bin/cat pytest.ini",
+  ]) assert.ok(!ran(command), command);
+  for (const command of [
+    "cat x && python -m pytest",
+    "echo go; npm test",
+    "cat a.ts\nnpm test",
+    'grep -c "a\\"" f; npx tsc --noEmit',
+    'grep -c "cols-4\\"" "$f" && (npm run test:e2e > /tmp/e2e.log 2>&1; echo EXIT=$?)',
+    'grep -n "\\"pass" bench.py | head -3; python - <<\'E\'\nprint(1)\nE',
+    "echo start & npm test",
+    'echo "== $(node --test tests/a.test.mjs 2>&1 | tail -1)"',
+    'ls -la a.wav; node -e "\nconsole.log(1)\n"',
+  ]) assert.ok(ran(command), command);
+});
+
+test("stop gate: a verification whose result is an error stays unverified and is named; no result means verified", () => {
+  const lines = (command, result) => [
+    user("fix"),
+    toolUse("Edit", { file_path: "C:/proj/src/app.ts" }, "e1"),
+    toolResult("e1"),
+    toolUse("Bash", { command }, "b1"),
+    ...result,
+  ];
+  const failed = analyze(lines("npm test\n  --silent", [toolResult("b1", true)]));
+  assert.equal(failed.unverifiedAfterEdit, true);
+  assert.equal(failed.failedCommand, "npm test --silent");
+  const passed = analyze(lines("npm test", [toolResult("b1", false)]));
+  assert.equal(passed.unverifiedAfterEdit, false);
+  assert.equal(analyze(lines("npm test", [])).unverifiedAfterEdit, false, "no result: as before");
+  assert.equal(analyze(lines("npm test", [toolResult("zzz", true)])).unverifiedAfterEdit, false, "unknown id");
+  const rerun = lines("npm test", [toolResult("b1", true), toolUse("Bash", { command: "npm test" }, "b2"), toolResult("b2")]);
+  assert.equal(analyze(rerun).unverifiedAfterEdit, false, "the last check decides");
+  const dir = tmpdir();
+  const transcript = path.join(dir, "t.jsonl");
+  fs.writeFileSync(transcript, lines("npm test", [toolResult("b1", true)]).join("\n") + "\n");
+  const blocked = run("stop-gate.mjs", { transcript_path: transcript, last_assistant_message: "Done." });
+  assert.equal(blocked.code, 2);
+  assert.match(blocked.err, /last check failed: `npm test`/);
+  const honest = run("stop-gate.mjs", {
+    transcript_path: transcript,
+    last_assistant_message: "Not verified: the test run failed.\nReview: CLEAN\nSecurity gate: PASS",
+  });
+  assert.equal(honest.code, 0);
+});
+
+test("stop gate: the security verdict must start a line", () => {
+  const dir = tmpdir();
+  const transcript = path.join(dir, "t.jsonl");
+  fs.writeFileSync(transcript, [user("fix"), toolUse("Edit", { file_path: "C:/proj/src/app.ts" }), toolResult(), toolUse("Bash", { command: "npm test" }), toolResult()].join("\n") + "\n");
+  const gate = (last) => run("stop-gate.mjs", { transcript_path: transcript, last_assistant_message: last });
+  assert.equal(gate("Done. Security gate: PASS\nReview: CLEAN").code, 2);
+  assert.equal(gate("Done.\n  Security gate: PASS\nReview: CLEAN").code, 0);
 });
 
 test("stop gate: verification before the last edit does not count", () => {
@@ -726,6 +804,216 @@ test("stop gate script: every missing check goes out in one block", () => {
   assert.equal(after.edits.length, 0, "a review-only block restarts the window too");
 });
 
+// Stop-gate command reader fixes from the audit (G1-G11). Every input here is also in tests/test_hooks_gate_hint.py.
+function errResult(id, text) {
+  return JSON.stringify({ type: "user", message: { role: "user", content: [{ type: "tool_result", tool_use_id: id, content: text, is_error: true }] } });
+}
+const checked = (command, tool = "Bash") =>
+  analyze([user("fix"), toolUse("Edit", { file_path: "C:/proj/src/app.ts" }), toolResult(), toolUse(tool, { command }), toolResult()]).unverifiedAfterEdit === false;
+
+test("stop gate: a check that was denied or aborted did not run, so the last one that ran decides", () => {
+  const lines = (first, second) => [
+    user("fix"),
+    toolUse("Edit", { file_path: "C:/proj/src/app.ts" }, "e1"),
+    toolResult("e1"),
+    toolUse("Bash", { command: "npm test" }, "b1"),
+    first,
+    toolUse("Bash", { command: "pytest -q" }, "b2"),
+    second,
+  ];
+  for (const text of [
+    "Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Production Reads]. If you have other tasks, continue.",
+    "Permission for this command was denied by a built-in Claude Code safety check, not by the user.",
+    "Permission to use Bash with command pytest -q has been denied.",
+    "The user doesn't want to proceed with this tool use. The tool use was rejected (eg. if it was a file edit, the new_string was NOT written).",
+    "<error>Command was aborted before completion</error>",
+    "[Request interrupted by user for tool use]",
+    "PreToolUse:Bash hook error: BosskuAI guard denied: docker stop x (stops a running container).",
+    "Permission to use Bash with command cd app &&\nnpm test has been denied.",
+    `Permission to use Bash with command ${"x".repeat(1200)} has been denied.`,
+    "The server-side auto mode classifier gave no verdict for Bash, so the command was not run.",
+    "<tool_use_error>Blocked: sleep 30 followed by: npm test. Run it in the background instead.</tool_use_error>",
+    "This agent is isolated in the worktree C:/w/x and may not run commands outside it.",
+  ]) {
+    assert.equal(analyze(lines(toolResult("b1"), errResult("b2", text))).unverifiedAfterEdit, false, text);
+  }
+  const blocks = [{ type: "text", text: "Permission for this action was denied by the Claude Code auto mode classifier." }];
+  assert.equal(analyze(lines(toolResult("b1"), errResult("b2", blocks))).unverifiedAfterEdit, false, "text blocks");
+  const failedBefore = analyze(lines(errResult("b1", "Exit code 1\nFAILED"), errResult("b2", "<error>Command was aborted before completion</error>")));
+  assert.equal(failedBefore.unverifiedAfterEdit, true);
+  assert.equal(failedBefore.failedCommand, "npm test");
+  const none = analyze(lines(errResult("b1", "<error>Command was aborted before completion</error>"), errResult("b2", "Permission for this action was denied")));
+  assert.equal(none.unverifiedAfterEdit, true);
+  assert.equal(none.failedCommand, "");
+  for (const text of ["Exit code 1\nPermission denied: ./run.sh", "Exit code 2\nCommand was aborted before completion", "Error: spawn pytest ENOENT"]) {
+    const r = analyze(lines(toolResult("b1"), errResult("b2", text)));
+    assert.equal(r.unverifiedAfterEdit, true, text);
+    assert.equal(r.failedCommand, "pytest -q");
+  }
+});
+
+test("stop gate: a # at the start of a word is a comment, an apostrophe in it opens no quote", () => {
+  assert.ok(checked("cat package.json  # what's in it\nnpm test"));
+  assert.ok(checked("echo hi # it's done\nnpm test"));
+  assert.ok(!checked("true # npm test"));
+  assert.ok(checked("echo a#b; npm test"));
+  assert.ok(checked('echo "a # b"; npm test'));
+});
+
+test("stop gate: PowerShell commands read a backslash as a plain character and a backtick as the escape", () => {
+  for (const command of ['Get-ChildItem "C:\\Users\\Me\\proj\\"; npm test', "dir C:\\Users\\Me\\proj\\; npm test", 'Write-Host "a `" b"; npm test'])
+    assert.ok(checked(command, "PowerShell"), command);
+  assert.ok(!checked("dir C:\\Users\\Me\\proj\\; npm test", "Bash"), "Bash keeps POSIX rules");
+});
+
+test("stop gate: a script named after a read word is not read-only; a bare read command still is", () => {
+  for (const command of ["./scripts/type-check.sh", "./tools/stat-report.py"]) assert.ok(checked(command), command);
+  for (const command of ["type pytest.ini", "cat.exe pytest.ini", "C:\\Windows\\System32\\findstr.exe pytest setup.cfg", "/usr/bin/grep -n pytest a.py"])
+    assert.ok(!checked(command), command);
+});
+
+test("stop gate: a path-qualified or quoted interpreter counts like the bare one", () => {
+  for (const command of [
+    ".venv/bin/python smoke.py",
+    "/usr/bin/python3 smoke.py",
+    '"C:/Program Files/Python312/python.exe" smoke.py',
+    "C:/tools/python.exe - <<'EOF'\nprint(1)\nEOF",
+    "PYTHONPATH=. .venv/bin/python smoke.py",
+    "timeout 60 .venv/bin/python smoke.py",
+  ]) assert.ok(checked(command), command);
+  assert.ok(checked("& 'C:\\Program Files\\nodejs\\node.exe' smoke.js", "PowerShell"));
+  for (const command of ["git add src/python docs", ".venv/bin/python --version", "ls .venv/bin/python x", "NODE=/usr/bin/node npm install", "x=/usr/bin/python3 y"])
+    assert.ok(!checked(command), command);
+});
+
+test("stop gate: the heredoc skip is linear, and an unterminated << does not swallow the rest", () => {
+  for (const [n, limit] of [[2000, 1000], [18000, 2000]]) {
+    const t0 = Date.now();
+    assert.ok(!checked("cat <<A\nx\nA\n".repeat(n)));
+    assert.ok(Date.now() - t0 < limit, `${n} heredocs took ${Date.now() - t0} ms`);
+  }
+  assert.ok(checked("echo $((1<<2))\nnpm test"));
+  assert.ok(!checked("cat <<EOF\nnpm test\nEOF"));
+});
+
+test("stop gate: an inline secret in a failed command is masked", () => {
+  for (const [command, secret] of [
+    ["API_KEY=sk-FAKEFAKEFAKEFAKEFAKE1234 npm test", "FAKEFAKE"],
+    ["GH_TOKEN=ghp_FAKEFAKEFAKEFAKEFAKEFAKE1234 npx vitest run", "FAKEFAKE"],
+    ["python deploy_check.py --password hunter2secret", "hunter2secret"],
+    ["python deploy_check.py --api-key=hunter2secret", "hunter2secret"],
+    ["python deploy_check.py sk-FAKEFAKEFAKEFAKEFAKE1234", "FAKEFAKE"],
+    ["DB_PASSWORD=hunter2secret npm test", "hunter2secret"],
+    ["curl -u admin:hunter2secret http://localhost:3000/health && npm test", "hunter2secret"],
+    ["curl http://bob:hunter2secret@localhost:3000/x && npm test", "hunter2secret"],
+    ['curl -H "Authorization: Bearer abc123def456ghi789jkl" http://localhost:3000/health && npm test', "abc123def456"],
+    ['curl -H "Authorization: Basic dXNlcjpodW50ZXIyc2VjcmV0" http://localhost:3000/health && npm test', "dXNlcjpodW50"],
+    ["gh secret set FOO --body hunter2secret && npm test", "hunter2secret"],
+    ["mysql -phunter2secret -e x && npm test", "hunter2secret"],
+    ["docker login -u bob -p hunter2secret && npm test", "hunter2secret"],
+    ['npm test -- --header "X-Api-Key: hunter2secret"', "hunter2secret"],
+    ['npm test \'{"token": "hunter2secret"}\'', "hunter2secret"],
+    ['python check.py --password "my hunter2secret phrase"', "hunter2secret"],
+    ["python check.py --password 'my hunter2secret phrase'", "hunter2secret"],
+    ['python check.py --token="my hunter2secret phrase"', "hunter2secret"],
+    ["python check.py -Password hunter2secret", "hunter2secret"],
+    ['DB_PASSWORD="my hunter2secret phrase" npm test', "hunter2secret"],
+    ["API_TOKEN='my hunter2secret phrase' pytest", "hunter2secret"],
+    ["MYSQL -phunter2secret -e x && npm test", "hunter2secret"],
+    ['python check.py --password "my hunter2secret phrase', "hunter2secret"],
+    ["python check.py --api_key hunter2secret", "hunter2secret"],
+    ["python check.py --db_password hunter2secret", "hunter2secret"],
+    ["python smoke.py -AdminPassword hunter2secret", "hunter2secret"],
+    ['curl -u "admin:my hunter2secret phrase" http://localhost:3000/health && npm test', "hunter2secret"],
+    ['mysql -u root -p"my hunter2secret phrase" && npm test', "hunter2secret"],
+    ['docker login -u bob -p "my hunter2secret phrase" && npm test', "hunter2secret"],
+    ['gh secret set FOO --body "my hunter2secret phrase" && npm test', "hunter2secret"],
+  ]) {
+    const r = analyze([user("fix"), toolUse("Edit", { file_path: "C:/proj/src/app.ts" }, "e1"), toolResult("e1"), toolUse("Bash", { command }, "b1"), toolResult("b1", true)]);
+    assert.equal(r.unverifiedAfterEdit, true, command);
+    assert.ok(!r.failedCommand.includes(secret), r.failedCommand);
+    assert.match(r.failedCommand, /\[REDACTED\]/);
+  }
+  const plain = analyze([user("fix"), toolUse("Edit", { file_path: "C:/proj/src/app.ts" }, "e1"), toolResult("e1"), toolUse("Bash", { command: "npm test -- --silent" }, "b1"), toolResult("b1", true)]);
+  assert.equal(plain.failedCommand, "npm test -- --silent");
+});
+
+const failedShown = (command) =>
+  analyze([user("fix"), toolUse("Edit", { file_path: "C:/proj/src/app.ts" }, "e1"), toolResult("e1"), toolUse("Bash", { command }, "b1"), toolResult("b1", true)]).failedCommand;
+
+test("stop gate: ordinary commands are not mangled by the secret masks", () => {
+  for (const command of [
+    "pytest -p no:cacheprovider",
+    "git log --author=x && npm test",
+    "npm test -- --passWithNoTests",
+    'curl --user-agent "x y" http://localhost:3000/health && npm test',
+    "ssh -p 2222 host && pytest",
+    'python -m pytest -k "token and not slow"',
+    'grep -q "API_KEY=" .env.example && npm test',
+    'grep -q "password=" .env && npm test',
+    'grep -q "--token " x && npm test',
+    "./bin/reset-pass admin && npm test",
+  ]) assert.equal(failedShown(command), command);
+});
+
+test("stop gate: a huge failed command is cut before it is masked, and a token that crosses the cut is masked up to it", () => {
+  const t0 = Date.now();
+  failedShown("npm test " + "--token ".repeat(25000) + 'x="' + "a_key=".repeat(33000) + '"');
+  assert.ok(Date.now() - t0 < 5000, `took ${Date.now() - t0} ms`);
+  assert.ok(!failedShown('python check.py --password "' + "word ".repeat(600)).includes("word word"));
+  assert.ok(!failedShown("python check.py --password " + "A".repeat(3000)).includes("AAAA"));
+  const t1 = Date.now(); // slow when masked uncut (mysql pattern is quadratic): 60,000 words take seconds
+  failedShown("npm test " + "mysql ".repeat(60000));
+  assert.ok(Date.now() - t1 < 1500, `took ${Date.now() - t1} ms`);
+});
+
+test("stop gate: a command that repeats a check word stays fast to read", () => {
+  for (const word of ["curl ", "mvn "]) {
+    const t0 = Date.now();
+    checked(word.repeat(40000));
+    assert.ok(Date.now() - t0 < 1500, `${word} took ${Date.now() - t0} ms`);
+  }
+});
+
+test("stop gate: a script path counts only as the command word", () => {
+  for (const command of ["./run.sh", "./scripts/type-check.sh", "./tools/stat-report.py", "CI=1 ./run_tests.sh", "timeout 60 ./run.sh", "bash ./run.sh", "cd app && ./run.sh"])
+    assert.ok(checked(command), command);
+  for (const command of ["sudo ./x.sh", "time ./x.sh", "env A=1 ./x.sh", "! ./check.sh", "exec ./x.sh", "nohup ./x.sh", "command ./x.sh", "{ ./x.sh; }", "if ./check.sh; then echo ok; fi", "if true; then ./check.sh; fi", "for i in 1 2; do ./x.sh $i; done"])
+    assert.ok(checked(command), command);
+  for (const command of ["chmod +x ./run.sh", "git add ./tools/check.py", "rm ./old.py", "git diff --stat ./scripts/build.sh"])
+    assert.ok(!checked(command), command);
+});
+
+test("stop gate: an escaped space does not start a comment", () => {
+  assert.ok(checked("echo fix\\ #12; npm test"));
+  assert.ok(checked("echo fix\\\n#12; npm test"));
+  assert.ok(!checked("true fix\\  # npm test"));
+  assert.ok(!checked("git add . \\\n# npm test"));
+  assert.ok(!checked("git add . `\n# npm test", "PowerShell"));
+  assert.ok(checked("Write-Host fix` #12; npm test", "PowerShell"));
+});
+
+test("stop gate: many different unterminated heredoc words stay linear", () => {
+  const t0 = Date.now();
+  assert.ok(!checked([...Array(13000).keys()].map((n) => `: $((1<<a${n}))\n`).join("")));
+  assert.ok(Date.now() - t0 < 1000, `took ${Date.now() - t0} ms`);
+  assert.ok(checked([...Array(50).keys()].map((n) => `: $((1<<a${n}))\n`).join("") + "npm test"));
+  const t1 = Date.now();
+  checked([...Array(9000).keys()].map((n) => `cat <<D${n}\n`).join("") + [...Array(9000).keys()].map((n) => `D${n}\n`).join(""));
+  assert.ok(Date.now() - t1 < 2000, `closed took ${Date.now() - t1} ms`);
+});
+
+test("stop gate: the Security gate verdict takes the same line prefixes as the Review line", () => {
+  const dir = tmpdir();
+  const transcript = path.join(dir, "t.jsonl");
+  fs.writeFileSync(transcript, [user("fix"), toolUse("Edit", { file_path: "C:/proj/src/app.ts" }), toolResult(), toolUse("Bash", { command: "npm test" }), toolResult()].join("\n") + "\n");
+  const gate = (last) => run("stop-gate.mjs", { transcript_path: transcript, last_assistant_message: last }).code;
+  for (const verdict of ["> Security gate: PASS", "- Security gate: PASS", "* Security gate: PASS", "**Security gate:** PASS", "_Security gate: PASS_", "Done.\rSecurity gate: PASS"])
+    assert.equal(gate(`${verdict}\nReview: CLEAN`), 0, verdict);
+  for (const prose of ["Done. Security gate: PASS", "see the Security gate: PASS line", "Done - Security gate: PASS"])
+    assert.equal(gate(`${prose}\nReview: CLEAN`), 2, prose);
+});
+
 // ---------------- session start ----------------
 
 test("session-start prints the contract and points at DESIGN.md when present", () => {
@@ -734,6 +1022,9 @@ test("session-start prints the contract and points at DESIGN.md when present", (
   assert.equal(without.code, 0);
   assert.match(without.out, /\[BosskuAI harness active\]/);
   assert.match(without.out, /No DESIGN\.md/);
+  assert.match(without.out, /Classify the product before choosing a design direction/);
+  assert.doesNotMatch(without.out, /Design default is Awwwards/);
+  assert.ok(without.out.includes(`node "${ROOT.replace(/\\/g, "/")}/scripts/layout-check.mjs"`));
   fs.mkdirSync(path.join(dir, ".bossku"), { recursive: true });
   fs.writeFileSync(path.join(dir, ".bossku", "DESIGN.md"), "# DESIGN.md");
   const withDesign = run("session-start.mjs", { cwd: dir, hook_event_name: "SessionStart" });
@@ -948,6 +1239,13 @@ test("shot.mjs: npx is told --no, so a missing Playwright is reported and never 
   assert.match(missing, /npm i -D playwright && npx playwright install chromium/);
   assert.match(installHint("browserType.launch: Executable doesn't exist at C:/x"), /npx playwright install chromium/);
   assert.equal(installHint("net::ERR_CONNECTION_REFUSED at http://localhost:3000/"), null);
+});
+
+test("shot.mjs: --widths adds a screenshot for each flagged width and keeps the two fixed sizes", () => {
+  assert.deepEqual(viewports("").map((v) => v[1]), ["390,844", "1440,900"]);
+  assert.deepEqual(viewports("320,768"), [["phone-390", "390,844"], ["desktop-1440", "1440,900"], ["w-320", "320,900"], ["w-768", "768,900"]]);
+  // a width that is repeated, already taken, not a number or out of range adds nothing
+  assert.deepEqual(viewports("390,320,320,abc,-5,99999,1440").map((v) => v[1]), ["390,844", "1440,900", "320,900"]);
 });
 
 test("shot.mjs script: rejects a non-http URL before running anything", () => {

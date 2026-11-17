@@ -1,7 +1,5 @@
 # React Development Checklist
 
-> If the request is general, ambiguous, or touches many files — ask clarifying yes/no questions **before acting**. Use numbered bullets with explicit answer format: e.g. `1-yes/no  2-A/B`.
-
 - Is `eslint-plugin-react-hooks` enabled with `rules-of-hooks` and `exhaustive-deps` as errors?
 - Is every `useEffect` synchronizing with something outside React, not deriving state or handling events?
 - Are fetches cancelled or ignored on unmount and re-run, or handled by TanStack Query / router loaders?

@@ -1,7 +1,5 @@
 # Claude Code Setup Checklist
 
-> If the request is general, ambiguous, or touches many files, ask clarifying yes/no questions before acting.
-
 - Are `CLAUDE.md`, `.claude/rules/`, `.claude/commands/`, and shared `AGENTS.md` responsibilities clear and non-contradictory?
 - Are MCPs recommended only when they materially improve the repo workflow?
 - Are hooks advisory by default, with mutation or remote actions requiring explicit user intent?

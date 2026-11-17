@@ -11,7 +11,7 @@ Use this skill when the task involves **GitHub as the delivery surface**: issues
 
 - **`bosskuai-engineering-delivery`**: implements code changes; this skill coordinates the GitHub wrapper around that delivery.
 - **`bosskuai-rigorous-code-review`**: reviews diffs; this skill prepares, routes, and follows up on PRs and review artifacts.
-- **`bosskuai-devops-iac`**: designs CI/CD and infrastructure; this skill reads and operates the GitHub workflow surface.
+- **`bosskuai-devops-iac`**: designs infrastructure and release strategy (pipeline YAML goes to `bosskuai-ci-cd-pipelines`); this skill reads and operates the GitHub workflow surface.
 - **`bosskuai-planning-execution`**: manages broader milestones; this skill translates work into GitHub issues, PRs, checks, and releases.
 
 ## Mindset

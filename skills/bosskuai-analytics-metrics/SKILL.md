@@ -43,12 +43,13 @@ Use this skill when the main question is **what to measure, how to instrument it
 - Are users segmented by acquisition cohort, so retention is compared on an apples-to-apples basis?
 - Is the distinction between resurrection (returning after churn) and retention (never churned) explicit?
 - Is churn defined precisely: no activity for N days? Explicit cancellation? Both?
+- Engagement: map goals to HEART (happiness, engagement, adoption, retention, task success) with one primary metric per product type, plus guardrails: notification opt-outs, uninstalls, complaints, error rate, task abandonment. Never optimise daily active use or session length alone. See section 6 of `../../references/playbooks/human-centered-design-playbook.md`.
 
 **Attribution and identity**
 - How are users, sessions, orgs, devices, and anonymous states linked?
 - Where can attribution be lost or duplicated?
 - Are cross-platform identities reconciled clearly?
-- GA4 and Google Ads offer only data-driven and last-click models since Nov 2023; first-touch or multi-touch views need a warehouse or CDP.
+- GA4 and Google Ads offer only data-driven and last-click models since 2023; first-touch or multi-touch views need a warehouse or CDP.
 
 **Data quality**
 - Are dedupe, sampling, clock skew, and late events handled?

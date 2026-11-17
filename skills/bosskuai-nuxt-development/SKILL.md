@@ -17,13 +17,13 @@ Use this skill for building, auditing, or debugging Nuxt 3/4 applications, where
 
 ## Ground API details in official docs
 
-Nuxt's API surface moves between versions, and 3 vs 4 differ in directory structure and defaults. Resolve the library through Context7 (`resolve-library-id`, then `get-library-docs`) for the specific composable or config option rather than answering from memory. State the version you targeted.
+Nuxt's API surface moves between versions, and 3 vs 4 differ in directory structure and defaults. Resolve the library through Context7 (`resolve-library-id`, then `query-docs`) for the specific composable or config option rather than answering from memory. State the version you targeted.
 
 ## Orient before changing anything
 
 1. Read `package.json` for the Nuxt version, and `nuxt.config.ts` for modules, rendering mode, and `routeRules`. The installed version is in the lockfile or `node_modules/nuxt/package.json`; the latest is `npm view nuxt version` (release notes: github.com/nuxt/nuxt/releases).
 2. Determine the structure: Nuxt 4 `app/` directory or Nuxt 3 root-level.
-3. Identify rendering mode per route: SSR, SSG, ISR, hybrid, or client-only. Many bugs are a route rendering differently than assumed.
+3. Identify rendering mode per route: SSR, SSG, ISR, hybrid, or client-only. Many bugs are a route rendering differently than assumed. List each caller of the route, the `useState` key or Pinia store it fills, and how many server instances run it. Done when every consumer is named.
 
 ## Rules that catch most Nuxt bugs
 
@@ -35,6 +35,7 @@ Nuxt's API surface moves between versions, and 3 vs 4 differ in directory struct
 - Audit the hydration payload: full database rows or secrets serialized into the page are both a leak and a performance cost.
 - Hydration mismatches usually come from time, randomness, or browser-only state used during render.
 - Server memory is shared by every request. A top-level `let` or a module singleton on the server leaks one user's data into another user's page. Keep per-request data in `useState` (keyed) or `event.context` in server routes.
+- `<ClientOnly>` and `.client.vue` content is missing from the server HTML that crawlers read, so SEO text must render on the server. Each route under `server/api/` is a public URL: check the caller in the handler or a `server/middleware` guard.
 
 ## Guardrails
 
@@ -47,7 +48,7 @@ Nuxt's API surface moves between versions, and 3 vs 4 differ in directory struct
 
 ```bash
 pnpm nuxt typecheck
-pnpm nuxt build --analyze     # bundle composition
+pnpm nuxt analyze             # bundle composition (experimental)
 pnpm nuxt preview             # production-like local run
 ```
 
@@ -83,6 +84,6 @@ Verification: [commands run and result]
 - Pass the locale and time zone explicitly to `Intl` and date helpers, on the server and in the browser. A UTC server renders yesterday's date for a Malaysian user before 8 am.
 - Race check: make a slow first request and a fast second one (for example, change a route param twice). The page must end on the second result.
 - Deploys: an open tab can request `_nuxt/` chunks that the new build replaced. Check how the installed version handles a failed chunk load in its docs, add a reload prompt if it has none, and keep API routes compatible with the previous build.
-- Review checklist: first SSR render equals the hydrated render, page data goes through `useFetch`/`useAsyncData`, loading UI exists for lazy data, route rules match SEO and freshness needs.
+- Review checklist: first SSR render equals the hydrated render, page data goes through `useFetch`/`useAsyncData`, loading UI exists for lazy data, route rules match SEO and freshness needs. Walk each scenario per shared bar section 3 (anonymous and each role, reload, client navigation, slow or failed fetch) and name any untested.
 
 Adapted in part from ECC skills/nuxt4-patterns (affaan-m/ECC, MIT).

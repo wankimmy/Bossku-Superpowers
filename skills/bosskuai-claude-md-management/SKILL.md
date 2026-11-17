@@ -7,7 +7,7 @@ description: Use when auditing or maintaining CLAUDE.md and Claude rule files, i
 
 ## Configured memory location
 
-Run `bossku memory-path --project <project-root>` to resolve `<memory-dir>` before reading or writing memory. Automatically save verified durable notes with `bossku remember` without waiting for the user to ask. When memory_storage is obsidian, all memory including handoffs lives directly in the vault; never create .bossku/memory in a code repo. The configured storage overrides legacy export wording below.
+Run `bossku memory-path --project <project-root>` to resolve `<memory-dir>` before reading or writing memory. Automatically save verified durable notes with `bossku remember` without waiting for the user to ask. When memory_storage is obsidian, all memory including handoffs lives directly in the vault; never create .bossku/memory in a code repo.
 
 Use this skill when the task is to **audit or improve Claude instructions**: `CLAUDE.md`, `.claude/rules/`, Claude commands, session learnings, or Claude-specific entry-point drift.
 

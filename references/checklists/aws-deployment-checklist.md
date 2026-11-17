@@ -1,7 +1,5 @@
 # AWS Deployment Checklist
 
-> If the request is general, ambiguous, or touches many files — ask clarifying yes/no questions **before acting**. Use numbered bullets with explicit answer format: e.g. `1-yes/no  2-A/B`.
-
 - Is the region chosen deliberately (data residency, service availability, latency), and do all needed services exist there?
 - Are environments in separate accounts under Organizations with root MFA, CloudTrail, GuardDuty, and Budgets alerts?
 - Is compute chosen from the decision table with a stated reason, not by habit?

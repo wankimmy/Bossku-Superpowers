@@ -21,7 +21,7 @@ Use this skill when the target is AWS and the answer depends on which managed se
 - IAM is the blast radius. Roles per workload, no long-lived access keys, OIDC from CI.
 - Everything through IaC with plan review; the console is for reading.
 - One AWS account per environment under Organizations; guardrails (SCPs, budgets, CloudTrail, GuardDuty) before the first workload.
-- Region choice is a compliance and latency decision: `ap-southeast-5` (Malaysia) for PDPA data residency, `ap-southeast-1` (Singapore) for the broadest service catalog; confirm the needed services exist in the chosen region.
+- Region choice is a compliance and latency decision: `ap-southeast-5` (Malaysia) for in-country hosting when a customer or policy needs it, `ap-southeast-1` (Singapore) for the broadest service catalog; confirm the needed services exist in the chosen region.
 
 ## Compute decision table
 
@@ -56,7 +56,7 @@ Route 53 → CloudFront (static, WAF) → ALB (TLS from ACM) → ECS Fargate ser
 - S3: block public access, versioning on buckets that hold user data, lifecycle rules to Intelligent-Tiering, SSE-KMS.
 - Encryption at rest with KMS everywhere; key policies reviewed like IAM.
 - Stateful resources (RDS, and S3 buckets or EBS volumes that hold data) get `prevent_destroy` in Terraform, or `DeletionPolicy: Retain` plus `UpdateReplacePolicy: Retain` in CloudFormation, so a replacement in a plan cannot delete the old data. Read each plan for replacements, because a replacement that still runs creates an empty resource.
-- SQS standard queues deliver at least once, so handlers must be idempotent. For Lambda on SQS, set the queue visibility timeout to at least six times the function timeout, plus `MaximumBatchingWindowInSeconds` when a batch window is set. If that window is under 20 seconds, use 20 seconds instead, because a very low-traffic queue can make Lambda wait up to 20 seconds. A shorter timeout means the same message is processed twice.
+- SQS standard queues deliver at least once, so handlers must be idempotent. For Lambda on SQS, set the queue visibility timeout to at least six times the function timeout, plus `MaximumBatchingWindowInSeconds` when a batch window is set. A shorter timeout means the same message is processed twice.
 
 ## Deploy and rollback
 

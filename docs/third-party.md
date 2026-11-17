@@ -85,6 +85,17 @@ These projects informed Bossku Superpower's own skills or are offered as opt-in 
 
 License texts are kept in [`third-party-licenses/`](third-party-licenses/): one shared MIT notice that lists the copyright line of every MIT-licensed pack above ([`MIT-packs.txt`](third-party-licenses/MIT-packs.txt)), the MIT and Apache-2.0 texts for moli, and the LICENSE and NOTICE of OpenDataLoader PDF. Packs that were only studied (archify, hindsight, claude-code-best-practice) are not copied, so they have no notice here.
 
+## Known risks handled by first-party rules
+
+Some vendored passages recommend pressure tactics with no truth condition. They stay as upstream wrote them (lines checked in the files on 2026-11-17):
+
+- `churn-prevention` line 131 (time-limit the offer, "expires when you leave this page") and line 315 (pause in 3 days, no check that the pause is real).
+- `marketing-psychology` line 169 (pre-select the plan; opt-out beats opt-in).
+- `popups` line 130 (deadline creates urgency) and line 405 (countdown timers).
+- `onboarding` line 45 (a step pre-completed for the user) and `onboarding/references/experiments.md` lines 133 and 135 (streaks, rewards, no safeguard).
+
+AGENTS.md "Engagement ethics" and [the engagement ethics checklist](../references/checklists/engagement-ethics-checklist.md) win over these passages. Use them only when the deadline, stock or progress is real, nothing is pre-ticked, and a streak is never punished.
+
 ## Benchmark data
 
 The coding benchmark uses the public [HumanEval](https://github.com/openai/human-eval) problem set (MIT, Copyright (c) OpenAI) from `benchmarks/datasets/HumanEval.jsonl.gz` (sha256 `b796127e635a67f93fb35c04f4cb03cf06f38c8072ee7cee8833d7bee06979ef`, 164 problems). The hidden-test tasks in `benchmarks/tasks/` were written for this repository.

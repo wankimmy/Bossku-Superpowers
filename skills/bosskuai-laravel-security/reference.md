@@ -98,10 +98,10 @@ if (app()->environment('production')) {
     request()->server->set('HTTPS', 'on');
 }
 
-// config/app.php for trusted proxies (load balancers)
+// bootstrap/app.php for trusted proxies (load balancers), Laravel 11+
 // Use specific IP ranges — * trusts all, allowing X-Forwarded-* spoofing
 // AWS: '10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'
-'trusted_proxies' => ['10.0.0.0/8', '172.16.0.0/12'],
+$middleware->trustProxies(at: ['10.0.0.0/8', '172.16.0.0/12']); // inside withMiddleware() in bootstrap/app.php
 
 // Force HTTPS in production via middleware
 // app/Http/Middleware/ForceHttps.php
@@ -810,7 +810,7 @@ use Illuminate\Support\Facades\Storage;
 public function download(Request $request, string $path)
 {
     // Generate temporary signed URL (expires in 15 minutes)
-    $url = Storage::temporaryUrl($path, now()->addMinutes(15));
+    $url = Storage::temporaryUrl($path, now()->addMinutes(15)); // local disk needs 'serve' => true in config/filesystems.php
 
     // Validate user has permission
     $this->authorize('download', $path);

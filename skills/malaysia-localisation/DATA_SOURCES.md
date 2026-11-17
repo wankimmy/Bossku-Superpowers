@@ -60,8 +60,7 @@ See [dataset patterns](references/dataset-patterns.md) for the resulting guidanc
 
 ## Local Malaya follow-up: 9 October 2026
 
-Inspected the user-supplied checkout at
-`C:/dev/Tenant-Management-System/skills/malaya`, revision
+Inspected the user-supplied checkout, revision
 `d3e6858667cbc96fa79da76a8da2c0960d3ca19f`, origin
 [malaysia-ai/malaya](https://github.com/malaysia-ai/malaya). README also cites
 Mesolitica's Malaya repository. No library import, installation or model run.
@@ -86,8 +85,7 @@ editorial decisions, not measured claims about Malaya's overall quality.
 
 ## Local Malaysian-Dataset follow-up: 9 October 2026
 
-Inspected the user-supplied checkout at
-`C:/dev/Tenant-Management-System/skills/malaysian-dataset`, revision
+Inspected the user-supplied checkout, revision
 `87c0562cb41966babc62b299cd2812e620d1c23e`, origin
 [malaysia-ai/malaysian-dataset](https://github.com/malaysia-ai/malaysian-dataset).
 The bounded inspection covered documentation, generation notebooks and two

@@ -5,10 +5,15 @@ description: "Use when building, designing or redesigning any website, landing p
 
 # BosskuAI Taste - the Awwwards house rule
 
-**Awwwards Site of the Day quality is the default style for every web design.** It applies unless the user or the
-project's `DESIGN.md` names another style. Scope:
-- Websites, landing pages, portfolios, launch, brand and campaign sites, and redesigns get the full rule.
-- Dashboards, app screens and product UI get the craft bar in §8 and keep native scroll.
+**Awwwards Site of the Day quality is the default for showcase web.** Classify the product first. A style the user
+or the project's `DESIGN.md` names wins. Scope:
+- Showcase web (marketing site, landing page, portfolio, campaign, agency or studio site) gets the full rule and a
+  jury score on a public URL or a local production build.
+- Task-first public pages (storefront, checkout, booking, docs, pricing) keep familiar commerce and form patterns
+  and native scroll, with house craft for type, spacing and imagery; no intro loader, no scroll theatre, no jury.
+- Product UI (SaaS, ERP/CRM/HRMS, dashboards, admin, internal tools) and consumer or mobile apps follow §8: the
+  project's design system first, and no concept card, signature moment or jury band.
+- A redesign follows the type of the thing being redesigned. If the type is unclear, say which type you assumed.
 
 The default look an LLM reaches for is the Tell. The award bar is the way past it: one owned idea, rendered live,
 on a tight system, with usability that holds up.
@@ -41,7 +46,7 @@ Load only one full build loop (`awwwards` or `awwwards-web-design`), never both.
   - Score each 1 to 5 on originality, fit, feasibility and portability. Lower portability is better: it means
     the idea cannot be moved to another brand.
   - Pick one and say why in a line.
-- **Concept Card** in `DESIGN.md`: Idea, Metaphor, Signature, Emotion, Motion verb, Screenshot.
+- **Concept Card** in `DESIGN.md` (in the spec for a one-off page): Idea, Metaphor, Signature, Emotion, Motion verb, Screenshot.
 - **Signature.** One sentence: the brand's own object, material or process, which the visitor plays.
   - It must survive with motion off.
   - It recurs at 3 or more touchpoints: loader, nav, transition, footer.
@@ -80,7 +85,8 @@ never by asking the user to edit a file.
 ## 4. System
 
 - **Type.**
-  - One distinctive display face plus a truly neutral body face, at most 2 families. Only fonts you can load:
+  - One distinctive display face plus a truly neutral body face, at most 2 families, unless the project has its own
+    design system or brand fonts: then keep them. Only fonts you can load:
     Fontshare, Google Fonts, Fontsource, or the brand's licensed files. Self-host them with `awwwards`
     `scripts/font.mjs`.
   - Not as the brand face: Inter, Space Grotesk, Syne, Fraunces, Instrument Serif.
@@ -147,7 +153,7 @@ never by asking the user to edit a file.
    - No smooth scroll, no GL, no scrub, no loader theatrics, all content visible.
    - The OS setting can flip live.
    - Anything that moves on its own for more than 5s gets a pause control.
-8. **Dead is a fail too.** Every page ships a hero intro, one signature moment that answers scroll, pointer or
+8. **Dead is a fail too.** Every showcase page ships a hero intro, one signature moment that answers scroll, pointer or
    state, a nav that enters and responds, and crafted hovers.
 9. **Award conventions must carry real information:** corner nav, index lists, vertical labels, coordinates.
    No decoration eyebrows (`V0.6`, `00 / INDEX`), no decorative 01/02/03, no fake version footers or status dots,
@@ -169,7 +175,7 @@ never by asking the user to edit a file.
 - **Accessibility.**
   - A skip link comes first, and focus is visible (2px, 3:1) and never under a sticky header.
   - One `<h1>`, landmarks and `lang`.
-  - Text contrast is 4.5:1 (3:1 at 24px and up), measured on the worst frame behind the text. Compute it with
+  - Text contrast is 4.5:1 (3:1 at 24px regular or about 18.66px bold), measured on the worst frame behind the text. Compute it with
     `skills/antislop-human/contrast-check.py`, never by eye.
   - Targets are at least 24px, and primary targets at least 44px.
   - 0 serious or critical axe violations.
@@ -184,38 +190,35 @@ never by asking the user to edit a file.
 - **SEO and meta.** Each route gets a unique title and description, an OG image, canonical, sitemap, robots and
   a 404. No console errors, debug GUIs or localhost URLs.
 - **Eyes on it.**
-  - Screenshot at 390 and 1440 plus reduced motion. Use `scripts/shot.mjs` from the BosskuAI install, or the
-    `jury` and `awwwards` shoot scripts.
-  - View every screenshot on its own.
-- **Score.** Run `jury`. It sends the evidence to a fresh critic that never sees the code.
+  - Run `node <BosskuAI install>/scripts/layout-check.mjs <url>` (see `bosskuai-ui-ux-design-to-code`), then screenshot
+    at 390 and 1440 with `scripts/shot.mjs` from the BosskuAI install. Take the reduced-motion shot with the
+    `jury` or `awwwards` shoot script.
+  - View every screenshot on its own and name it.
+- **Score (showcase web).** Run `jury`. It sends the evidence to a fresh critic that never sees the code.
   - If Playwright is missing, self-score with the rubric in `awwwards-web-design` `references/jury-lens.md`.
   - Ship target: a jury estimate in the Site of the Day band (7.2 and up), zero build-law failures, and a
     signature that survives with motion off.
   - Anything lower goes back to the build as a ranked fix list.
 
-## 8. Product UI: the craft bar (dashboards, app screens, admin, forms)
+## 8. Product UI and apps (dashboards, admin, forms, consumer and mobile apps)
 
-The same quality, tuned for a task. Usability is 30% of the jury score, and here it is most of the job.
+Familiar first; the project's design system sets the look.
 - **Keep:**
-  - the type system: a distinctive display face for headings, a neutral body face, tabular numerals for data;
-  - one accent kept for state, progress and focus;
-  - the tonal palette;
-  - one radius rule;
-  - hover that never moves the box, with full hover, focus, active, disabled, loading, empty and error states;
-  - the contrast, target and keyboard gates;
-  - the performance budgets;
-  - honest content.
+  - the project's design system and component library, or the neutral system it already uses;
+  - tabular numerals for data, one accent kept for state, progress and focus, one radius rule;
+  - hover that never moves the box, with hover, focus, active, disabled, loading, empty and error states;
+  - the contrast, target and keyboard gates, the performance budgets, honest content.
 - **Motion:**
-  - micro 120 to 200ms, panels and menus 200 to 300ms, one ease family, through `animate`;
-  - no scroll reveals on data;
-  - no smooth-scroll engine, no loader beyond a stable skeleton, no WebGL unless the data itself is 3D or spatial.
-- **Signature:** one small owned detail, such as an empty state, an onboarding moment or one key transition.
-  It is never decoration on every row.
+  - the frequency of an action decides whether it animates at all;
+  - state changes only: micro 120 to 200ms, panels and menus 200 to 300ms, one ease family, through `animate`;
+  - no scroll reveals on data, no smooth-scroll engine, no loader beyond a stable skeleton, no WebGL unless the data is spatial.
+- **No signature, concept card or jury.** The verdict is a task walkthrough, the state list, the layout check and screenshots.
+- Apps follow platform conventions first (native navigation, back behaviour, safe areas, thumb reach, keyboard avoidance).
 - Build with `bosskuai-ui-ux-design-to-code`. Tokens and components come from `bosskuai-design-systems`.
 
-## 9. Pre-flight (tick every box; an honest fail means not done)
+## 9. Pre-flight for showcase web (tick every box; an honest fail means not done)
 
-- [ ] Design Read, Concept Card, the direction line and the dials are written in `DESIGN.md`, reasoned from the brief.
+- [ ] The Design Read, Concept Card, direction line and dials are written in `DESIGN.md` (in the spec for a one-off page).
 - [ ] One direction, one system, one accent, one radius rule, one page theme, one ease family, one smooth-scroll engine.
 - [ ] Display face is not Inter, Space Grotesk, Syne, Fraunces or Instrument Serif. At most 2 families, self-hosted.
 - [ ] Signature recurs at 3 or more touchpoints and survives with motion off. Nothing on the page is dead.
@@ -225,7 +228,7 @@ The same quality, tuned for a task. Usability is 30% of the jury score, and here
 - [ ] Zero em or en dashes. No filler verbs. Every visible string re-read.
 - [ ] AA contrast on the worst frame, visible focus, a skip link, 24 and 44px targets, 0 serious axe issues.
 - [ ] Mobile LCP 2.5s or less, CLS under 0.05, INP 200ms or less, no console errors.
-- [ ] Screenshots at 390, 1440 and reduced motion viewed, and the `jury` score is in the Site of the Day band.
+- [ ] Layout check run, screenshots at 390, 1440 and reduced motion viewed, and the `jury` score is in the Site of the Day band.
 
 ## 10. Stack and precedence
 

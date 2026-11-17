@@ -14,10 +14,11 @@ description: Use when you need rapid prototypes, proof-of-concepts, demos, hacka
 - Exploring an unfamiliar stack or API before designing the real system
 
 ## How this differs from nearby skills
-- **vs engineering-delivery:** engineering-delivery is plan-first with full quality gates, architecture review, and zero-debt default. rapid-prototype deliberately accepts tech debt with an explicit debt ledger — speed is the governing constraint.
-- **vs software-architecture:** software-architecture designs systems for production longevity. rapid-prototype picks the fastest-to-run path regardless of long-term fit.
-- **vs ui-ux-design-to-code:** ui-ux-design-to-code faithfully implements design systems and production UI patterns. rapid-prototype uses the fastest UI scaffold available (e.g., shadcn defaults, raw Tailwind) with zero pixel-perfection.
-- **vs codebase-analysis:** rapid-prototype creates new things; codebase-analysis understands existing things.
+- **vs bosskuai-throwaway-prototype:** throwaway-prototype answers one design question with a disposable spike or UI variants. rapid-prototype builds a working scaffold toward an MVP or demo, with a debt ledger.
+- **vs bosskuai-engineering-delivery:** bosskuai-engineering-delivery is plan-first with full quality gates, architecture review, and zero-debt default. rapid-prototype deliberately accepts tech debt with an explicit debt ledger — speed is the governing constraint.
+- **vs bosskuai-software-architecture:** bosskuai-software-architecture designs systems for production longevity. rapid-prototype picks the fastest-to-run path regardless of long-term fit.
+- **vs bosskuai-ui-ux-design-to-code:** bosskuai-ui-ux-design-to-code faithfully implements design systems and production UI patterns. rapid-prototype uses the fastest UI scaffold available (e.g., shadcn defaults, raw Tailwind) with zero pixel-perfection.
+- **vs bosskuai-codebase-analysis:** rapid-prototype creates new things; bosskuai-codebase-analysis understands existing things.
 
 ## MCP requirements
 - **Context7 (recommended):** Fetch live framework and library docs to pick the fastest path for unfamiliar tools. Graceful degradation: use training data if Context7 unavailable, but flag any version-sensitive assumptions.
@@ -80,7 +81,7 @@ Complete the debt ledger before handing off the prototype:
 Every section of the shared bar, each marked met, or not met with the reason. Items not met must be met before production.
 
 ### Upgrade path
-Before any production use, run this prototype through: engineering-delivery skill
+Before any production use, run this prototype through: bosskuai-engineering-delivery skill
 ```
 
 ## Output format

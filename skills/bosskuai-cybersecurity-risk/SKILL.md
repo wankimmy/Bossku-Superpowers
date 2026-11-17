@@ -10,9 +10,10 @@ Name the attacker and what they control (input, filenames, URLs, headers, payloa
 **When you write or fix code that takes untrusted input, check each line that applies:**
 
 - **Paths and files:** reject absolute paths, drive letters, `..` segments (before normalising), backslash separators, NUL and control characters. Confirm the resolved real path is still inside the root (symlinks). For archives, refuse links, devices and odd member types, set limits (count, size, total size, depth), and fail before anything is written.
-- **URLs and hosts:** use a real parser. Allowlist the scheme; compare the host exactly (case-insensitive, trailing dot), never by prefix, suffix or substring; ignore `user@host` userinfo; re-check every redirect and cap how many are followed.
+- **URLs and hosts:** use a real parser. Allowlist the scheme; compare the host exactly (case-insensitive, trailing dot), never by prefix, suffix or substring; ignore `user@host` userinfo; re-check every redirect and cap how many are followed. Check the resolved IP is public (not private, loopback, link-local or 169.254.169.254), then connect to that checked IP, so DNS rebinding cannot swap it.
 - **SQL:** parameterize values; allowlist identifiers (column names, sort direction); escape LIKE wildcards; scope every query to the owner or tenant; check ownership on update and delete, not only on read.
 - **Secrets and signatures:** compare with a constant-time function (`hmac.compare_digest`); pin the algorithm so it cannot be downgraded; sign the raw bytes; require a timestamp and reject replays and clock skew; use `secrets`, never `random`.
+- **Mass assignment:** only allowlisted fields bind; a client-sent `role` or `tenant_id` is ignored.
 - **Output:** escape for the sink (HTML, shell, SQL, log lines: strip CR and LF). Keep secrets out of logs, URLs and error messages.
 - **Resources:** bound size, depth, count and time, and reject early.
 - **Fail closed:** unknown value means reject; an error means deny. Test it: make the dependency time out, and check that the result is deny.
@@ -21,7 +22,7 @@ Name the attacker and what they control (input, filenames, URLs, headers, payloa
 - **Type juggling:** JavaScript `==` coerces types, so `0 == ""` and `"0" == false` are both true. PHP `==` compares numeric strings as numbers, so `"0e123" == "0e456"` is true. Use strict equality for tokens, roles and amounts, and `hash_equals()` for signatures in PHP.
 - **Still works:** legitimate input must keep passing (dots inside names, unicode, empty values, an allowed second host).
 
-Write one test per attack input (it is rejected) and one per legitimate edge (it is still accepted).
+Write one test per attack input (it is rejected) and one per legitimate edge (it is still accepted). Walk each scenario by who (anonymous, other tenant, each role) and when (repeated, concurrent, retried); test it or name it untested.
 
 **For a review:** go through STRIDE for each trust boundary, label every finding confirmed or inferred with a severity, and give the smallest fix. The OWASP list, auth and session checks, supply-chain rules, worked threat models, privacy and what to skip at MVP stage: read `reference.md` in this folder. Read the installed versions first (lockfile and runtime), then check advisories for those versions only. For the scenario walk and the logic checks, see the shared bar: `../../references/checklists/engineering-quality-bar.md`.
 

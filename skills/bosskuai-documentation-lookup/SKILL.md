@@ -14,9 +14,9 @@ description: Use when looking up version-specific framework or library documenta
 - Avoiding hallucinated API signatures by grounding answers in live docs
 
 ## How this differs from nearby skills
-- **vs search-first:** search-first checks the existing codebase for prior solutions and patterns already in use. documentation-lookup fetches external, authoritative library documentation via Context7.
-- **vs polyglot-engineering:** polyglot-engineering handles cross-language translation and idiomatic patterns. documentation-lookup is specifically for fetching accurate, current external API docs.
-- **vs coding-best-practices:** coding-best-practices applies general principles. documentation-lookup answers factual questions about specific APIs.
+- **vs bosskuai-search-first:** bosskuai-search-first checks the existing codebase for prior solutions and patterns already in use. documentation-lookup fetches external, authoritative library documentation via Context7.
+- **vs bosskuai-polyglot-engineering:** bosskuai-polyglot-engineering handles cross-language translation and idiomatic patterns. documentation-lookup is specifically for fetching accurate, current external API docs.
+- **vs bosskuai-coding-best-practices:** bosskuai-coding-best-practices applies general principles. documentation-lookup answers factual questions about specific APIs.
 - **Training data vs Context7:** Always prefer Context7 for version-specific behavior, configuration options, and exact API signatures. Use training data only as fallback when Context7 is unavailable.
 
 ## MCP requirements
@@ -61,7 +61,7 @@ When the result goes into a README, guide, or API reference rather than an answe
 ## Output format
 - Relevant documentation excerpt (quoted or paraphrased with attribution)
 - Applied answer: how the docs answer the specific question or task
-- Version note: the installed version (from the project), the version the docs were fetched for, and the latest stable release with the date you checked it live
+- Version note: the installed version (from the project), the version the docs were fetched for, and the latest stable release with the date you checked it live (registry command such as `npm view <package> version` or `pip index versions <package>`, or the official release page)
 - Any caveats (breaking changes, deprecations, version mismatches)
 
 ## Guardrails

@@ -41,7 +41,7 @@ higher one and move on. The first lazy solution that works is the right one.
 - No boilerplate, no scaffolding "for later" — later can scaffold for itself.
 - Deletion over addition. Boring over clever — clever is what someone decodes at 3am.
 - Fewest files possible. Shortest working diff wins.
-- Complex request? Ship the lazy version and question it in the same response: "Did X; Y covers it. Need full X? Say so." Never stall on an answer you can default.
+- Complex request? Ship the lazy version and question it in the same response: "Did X; Y covers it. Need full X? Say so." Never stall on an answer you can default; AGENTS.md Risk pauses still ask first.
 - Two stdlib options the same size? Take the one that is correct on edge cases. Lazy means writing less code, not picking the flimsier algorithm.
 - Mark deliberate simplifications with a `ponytail:` comment so simple reads as intent, not ignorance. A shortcut with a known ceiling (global lock, O(n²) scan, naive heuristic) names the ceiling and the upgrade path: `// ponytail: global lock, per-account locks if throughput matters`.
 

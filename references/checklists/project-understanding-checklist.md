@@ -1,7 +1,5 @@
 # Project Understanding Checklist
 
-> If the request is general, ambiguous, or touches many files — ask clarifying yes/no questions **before acting**. Use numbered bullets with explicit answer format: e.g. `1-yes/no  2-A/B`.
-
 - What is this project trying to do?
 - Which root, question, revision or working-tree state, and sampled/unread areas does the summary cover?
 - Who are the likely users or buyers?

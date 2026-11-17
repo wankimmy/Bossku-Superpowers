@@ -10,6 +10,7 @@ Use this skill when the question is **how to test the seams between components**
 ## How this differs from nearby skills
 
 - **`bosskuai-engineering-delivery`**: shapes the full delivery workflow including the test pyramid; this skill goes deep on the integration layer specifically — contract design, test doubles, and fixture management.
+- **`bosskuai-qa-automation-strategy`**: picks the overall test mix, E2E tooling and CI gates; this skill covers only the seams between components (contracts, doubles, fixtures for those seams).
 - **`bosskuai-coding-best-practices`**: covers general testability at implementation level; this skill covers the architecture of test doubles, contracts, and fixture strategies.
 - **`bosskuai-api-design`**: designs external contracts; this skill validates that those contracts are correctly implemented and don't drift between providers and consumers.
 - **`bosskuai-diagnose-loop`**: traces defects in running code; this skill prevents the class of defects that arise from integration assumption mismatch.
@@ -53,7 +54,7 @@ Apply the right double for the situation:
 
 ## Workflow
 
-1. **Map the integration boundaries** — Identify every seam: module-to-module, service-to-service, service-to-DB, service-to-queue, service-to-external API. Each seam is a contract that needs test coverage.
+1. **Map the integration boundaries** — Identify every seam: module-to-module, service-to-service, service-to-DB, service-to-queue, service-to-external API. Each seam is a contract that needs test coverage. Before testing a seam, list its callers, consumers and data owner, and how many processes use it at once. Done when all four are written down or marked unknown.
 
 2. **Classify each seam** using the taxonomy above: module integration, service integration, or contract test.
 
@@ -72,7 +73,7 @@ Apply the right double for the situation:
    - Seed from a sanitized copy of production data (ask the user to prepare one if none exists), not only invented rows.
    - How is fixture drift detected? (schema change breaks factory — treat this as a signal)
 
-6. **Set the scope gate for each test** — State explicitly: what is real vs doubled. A test where "everything is mocked" is not an integration test.
+6. **Set the scope gate for each test** — State explicitly: what is real vs doubled. A test where "everything is mocked" is not an integration test. Walk each seam's scenarios (shared bar section 3). Done when every scenario that reaches the seam is tested or named untested.
 
 7. **Run in the right environment gate**:
    - Module integration: run in every PR

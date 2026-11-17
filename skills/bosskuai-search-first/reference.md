@@ -63,22 +63,6 @@ When the outcome is build, or the feature is unfamiliar, look at how others solv
 4. Pick one approach and say why in one line. Prefer the simplest one that handles the edge cases you actually have.
 5. Borrow ideas freely. Copy code only under a compatible license (MIT/Apache/BSD), keep its notice, and record it where the repo credits third-party code.
 
-## Workflow
-
-1. **Define the actual capability needed**: Be specific about what the code or tool must do — not the implementation, the behavior.
-2. **State constraints**: stack version, license requirements, latency requirements, operational constraints.
-3. **Search in order**: current repo → framework native → tool surface → ecosystem → managed service.
-4. **Evaluate candidates**: score each against the evaluation criteria above.
-5. **Recommend adopt / extend / build**: with clear reasoning.
-6. **Identify the smallest next step**: if adopting, what is the integration path? If building, what is the minimal first version?
-
-## Guardrails
-
-- Do not recommend building custom code when a maintained library covers the use case well.
-- Do not adopt a library without checking its security posture and license.
-- Do not reject an external solution just because it requires reading docs — reading docs beats maintaining custom code.
-- Do not recommend "we can just use X" without verifying X is still maintained and fits the current stack.
-
 ## Output format
 
 ```

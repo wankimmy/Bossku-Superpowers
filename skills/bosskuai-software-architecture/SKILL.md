@@ -175,7 +175,7 @@ Structural concerns (by lens):
   Data ownership: [findings]
   Integrations: [findings]
   Scalability: [findings]
-ADR:
+ADR (only when the step 5 gate holds; otherwise omit):
   Context: [problem]
   Decision: [recommended direction]
   Consequences: [better / harder / risks]

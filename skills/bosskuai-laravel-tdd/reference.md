@@ -48,8 +48,8 @@ Detail for [`SKILL.md`](SKILL.md): read the section a step needs, not the whole 
         <env name="APP_ENV" value="testing"/>
         <env name="BCRYPT_ROUNDS" value="4"/>
         <env name="CACHE_STORE" value="array"/>
-        <env name="DB_CONNECTION" value="sqlite"/>
-        <env name="DB_DATABASE" value=":memory:"/>
+        <env name="DB_CONNECTION" value="mysql"/>
+        <env name="DB_DATABASE" value="app_test"/>
         <env name="MAIL_MAILER" value="array"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
@@ -424,7 +424,7 @@ public function test_it_handles_gateway_failure(): void
     (new PaymentService())->charge(2999);
 }
 
-public function test_it_retries_on_timeout(): void
+public function test_it_retries_on_408_status(): void
 {
     Http::fake([
         'api.stripe.com/*' => Http::sequence()

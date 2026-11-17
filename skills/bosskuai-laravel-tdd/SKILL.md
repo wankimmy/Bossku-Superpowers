@@ -36,6 +36,8 @@ public function test_a_product_can_be_created(): void
 // Step 3: REFACTOR — Improve while keeping tests green
 ```
 
+Before Refactor is done, walk the who, when and record-state scenarios in the shared bar, section 3; each one that can reach the change is tested or named untested.
+
 ## Where the patterns are
 
 [`reference.md`](reference.md) holds the code for each step: PHPUnit and base TestCase setup, model factories, model, feature/HTTP, JSON API and Sanctum tests, fakes (HTTP, mail, notification, queue, storage, event), Artisan command and authorization tests, Pest, and coverage. Open the section the current test needs.
@@ -47,7 +49,7 @@ public function test_a_product_can_be_created(): void
 - Use factories over manual `create()` calls
 - One logical assertion per test
 - Descriptive names: `test_guests_cannot_create_products`
-- Test edge cases and authorization boundaries
+- Test edge cases and authorization boundaries. Grant token abilities in tests with `Sanctum::actingAs($user, ['ability'])`.
 - Mock external services with `Http::fake()`, `Mail::fake()`
 - Use `RefreshDatabase` for clean state
 - Run feature tests on the same database engine and version as production (MySQL, MariaDB or PostgreSQL), not SQLite. Type coercion, collation and strict mode differ, so a SQLite pass proves little. Use a separate, disposable test database. Never point tests at production or at a production data copy, because RefreshDatabase drops every table on its connection.

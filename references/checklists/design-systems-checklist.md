@@ -1,7 +1,5 @@
 # Design Systems Checklist
 
-> If the request is general, ambiguous, or touches many files — ask clarifying yes/no questions **before acting**. Use numbered bullets with explicit answer format: e.g. `1-yes/no  2-A/B`.
-
 Use this checklist when creating, auditing, or applying a design system or DESIGN.md.
 
 ## Brand foundation

@@ -1,7 +1,5 @@
 # CTO Strategy Checklist
 
-> If the request is general, ambiguous, or touches many files — ask clarifying yes/no questions **before acting**. Use numbered bullets with explicit answer format: e.g. `1-yes/no  2-A/B`.
-
 - Is the business goal, stage, runway, and customer profile stated before any technology recommendation?
 - Are the irreversible decisions (data model, tenancy model, core language, cloud account structure, region) named and given the most deliberation?
 - Does each option carry a 3-year TCO including operations, exit cost, lock-in, compliance fit, and hiring market?

@@ -1,6 +1,6 @@
 {
   "version": "2.1.0",
-  "fingerprint": "22a746e4ac1dc5a2",
+  "fingerprint": "bb385180aa44c0c1",
   "count": 674,
   "aliases": {
     "bosskuai-caveman": "bosskuai-token-saver",
@@ -8814,7 +8814,13 @@
       "triggers": [
         "dashboard builder"
       ],
-      "exclusions": [],
+      "exclusions": [
+        "erp",
+        "crm",
+        "hrms",
+        "saas dashboard",
+        "admin dashboard"
+      ],
       "phrases": [
         "the task explicitly concerns dashboard builder"
       ],
@@ -9606,7 +9612,16 @@
         "still broken",
         "still not working",
         "skill routing",
-        "skill router"
+        "skill router",
+        "auto route skills",
+        "didnt use any skills",
+        "flaky test",
+        "order dependent",
+        "passes locally but fails",
+        "pass one by one",
+        "fails when the whole suite",
+        "cannot read properties of undefined",
+        "typeerror"
       ],
       "exclusions": [],
       "phrases": [
@@ -14776,7 +14791,7 @@
     "bosskuai-hyperframes": {
       "path": "skills/bosskuai-hyperframes/SKILL.md",
       "name": "bosskuai-hyperframes",
-      "description": "Use when authoring, previewing, or rendering Hyperframes HTML compositions (seekable GSAP/CSS animation) to MP4 with the hyperframes CLI. Picking a video tool or AI video generation: video.",
+      "description": "Use when authoring, previewing, or rendering Hyperframes HTML compositions (seekable GSAP/CSS animation) to MP4 with the hyperframes CLI. For picking a video tool or AI video generation, use video instead.",
       "triggers": [
         "hyperframes",
         "hyperframes composition",
@@ -14810,6 +14825,7 @@
         "tool",
         "ai",
         "generation",
+        "instead",
         "fast",
         "path",
         "working",
@@ -19346,7 +19362,7 @@
     "bosskuai-paid-acquisition-monetization": {
       "path": "skills/bosskuai-paid-acquisition-monetization/SKILL.md",
       "name": "bosskuai-paid-acquisition-monetization",
-      "description": "Use when deciding whether paid acquisition is worth it yet: CAC/LTV/payback gates, stop-loss rules, channel choice by budget, and monetization model. To build or optimize Google/Meta/LinkedIn campaigns use ads; ad copy ad-creative; tier design pricing.",
+      "description": "Use when deciding whether paid acquisition is worth it yet: CAC/LTV/payback gates, stop-loss rules, channel choice by budget, and monetization model. To build or optimize Google/Meta/LinkedIn campaigns use ads; ad copy: ad-creative; tier design: pricing.",
       "triggers": [
         "paid acquisition monetization",
         "cac",
@@ -19803,7 +19819,7 @@
     "bosskuai-planning-execution": {
       "path": "skills/bosskuai-planning-execution/SKILL.md",
       "name": "bosskuai-planning-execution",
-      "description": "Use when you need roadmap planning, execution slicing, milestone sequencing, launch planning, prioritization, delivery coordination, ownership clarity, and keeping projects moving through to completion.",
+      "description": "Use when you need roadmap planning, execution slicing, milestone sequencing, launch planning, prioritization, delivery coordination, ownership clarity, ticket breakdown, and keeping projects moving through to completion.",
       "triggers": [
         "planning execution",
         "milestones",
@@ -19824,7 +19840,7 @@
         "launch planning",
         "delivery coordination",
         "ownership clarity",
-        "keeping projects moving through to completion"
+        "ticket breakdown"
       ],
       "keywords": [
         "planning",
@@ -19844,6 +19860,8 @@
         "coordination",
         "ownership",
         "clarity",
+        "ticket",
+        "breakdown",
         "keeping",
         "project",
         "moving",
@@ -19854,7 +19872,6 @@
         "part",
         "workflow",
         "breaking",
-        "ticket",
         "big",
         "one",
         "session",
@@ -24679,7 +24696,21 @@
         "award winning",
         "award-winning",
         "site of the day",
-        "immersive website"
+        "immersive website",
+        "laman web",
+        "halaman web",
+        "bina laman web",
+        "buat laman web",
+        "buatkan laman web",
+        "reka laman web",
+        "buat website",
+        "buatkan website",
+        "bina website",
+        "reka website",
+        "website cantik",
+        "nampak generic",
+        "nampak premium",
+        "tolong buat nampak"
       ],
       "exclusions": [
         "admin dashboard",
@@ -25850,7 +25881,11 @@
         "design a dashboard",
         "dashboard design",
         "design the app",
-        "app ui"
+        "app ui",
+        "erp",
+        "crm",
+        "hrms",
+        "saas"
       ],
       "exclusions": [],
       "phrases": [
@@ -25880,6 +25915,10 @@
         "app",
         "screen",
         "product",
+        "erp",
+        "crm",
+        "hrms",
+        "saas",
         "reviewing",
         "critiquing",
         "turning",
@@ -25891,6 +25930,10 @@
         "behavior",
         "accessibility",
         "wcag",
+        "state",
+        "list",
+        "measurement",
+        "rule",
         "batch",
         "vue"
       ],

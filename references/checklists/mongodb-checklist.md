@@ -1,7 +1,5 @@
 # MongoDB Checklist
 
-> If the request is general, ambiguous, or touches many files, ask clarifying yes/no questions before acting.
-
 - Are collections, document contracts, required fields, null semantics, and versioning clear?
 - Are access patterns named before choosing embed vs reference?
 - Do indexes match filters, sorts, projections, collation, uniqueness, and pagination paths?

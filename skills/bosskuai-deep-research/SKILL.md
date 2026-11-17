@@ -25,7 +25,7 @@ description: "Use when a task needs in-depth investigation: multi-source researc
 | Tool | Role | Degradation |
 |------|------|-------------|
 | Exa | Web search (required) | Without Exa, fall back to WebSearch/WebFetch and flag reduced coverage |
-| Firecrawl | Full-page scraping of key sources (optional) | Skip deep-read step; summarise from search snippets instead |
+| Firecrawl | Full-page scraping of key sources (optional) | Use WebFetch for the deep read (step 4); if that also fails, do not assert claims that rest only on snippets. List them under Gaps and open questions |
 
 ## Workflow
 

@@ -90,6 +90,16 @@ Use this skill when the main question is **why is this slow, why is memory growi
 - Do not optimize code that is not on the critical path — premature optimization adds complexity with no benefit.
 - Do not treat a p50 improvement as success if p99 is still broken for users.
 
+## Domain edge cases
+
+Each one is a case a fix can pass on the happy path and still break. Each traces to a repo source.
+
+- **Shared pool limits**: a fix that makes requests faster can raise concurrent queries past the database connection limit. Count pool size times instances against `max_connections` (`skills/bosskuai-database-engineering/reference.md`).
+- **Blocked event loop or worker pool**: one CPU-heavy synchronous call stalls every other request on that process (`references/pitfalls/performance-pitfalls.md`, Async and concurrency).
+- **Retry amplification**: a new retry or timeout multiplies load on the slow dependency. Add jitter and a capped attempt count (`references/pitfalls/performance-pitfalls.md`; shared bar section 5).
+- **Cache key that ignores the user or tenant**: a personalized or authorization-sensitive response cached under a shared key serves one user's data to another (`references/pitfalls/performance-pitfalls.md`, Caching).
+- **Stale planner statistics**: `EXPLAIN` on a freshly bulk-loaded masked copy shows a plan production will not use. Refresh statistics on the copy before reading the plan (`skills/bosskuai-database-engineering/reference.md`, lines 51-53).
+
 ## Output format
 
 ```text

@@ -1,0 +1,20 @@
+{
+  "skill_id": "bosskuai-diagnose-loop",
+  "skill_version": "6048077084fd25f3b7c370f0ecd73ea0969a9c92",
+  "model": null,
+  "host": null,
+  "task_category": null,
+  "suite": null,
+  "baseline_arm": null,
+  "arm": null,
+  "sample_size": null,
+  "baseline_pass_rate": null,
+  "skill_pass_rate": null,
+  "paired_difference": null,
+  "confidence_interval": null,
+  "token_overhead": null,
+  "cost_per_success": null,
+  "evaluation_status": "not_tested",
+  "last_evaluated": "2026-11-17",
+  "source_rows": []
+}

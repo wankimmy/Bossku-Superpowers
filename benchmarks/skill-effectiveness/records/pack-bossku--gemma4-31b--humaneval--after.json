@@ -1,0 +1,25 @@
+{
+  "skill_id": "pack:bossku",
+  "skill_version": null,
+  "model": "gemma4:31b",
+  "host": "claude-code",
+  "task_category": "humaneval",
+  "suite": "humaneval",
+  "baseline_arm": "baseline",
+  "arm": "after",
+  "sample_size": 20,
+  "baseline_pass_rate": 0.95,
+  "skill_pass_rate": 1.0,
+  "paired_difference": 0.05,
+  "confidence_interval": [
+    0.0,
+    0.15
+  ],
+  "token_overhead": 0.3745573632297443,
+  "cost_per_success": null,
+  "evaluation_status": "promising_insufficient_evidence",
+  "last_evaluated": "2026-11-17",
+  "source_rows": [
+    "benchmarks/results/raw/humaneval-gemma4-31b.jsonl"
+  ]
+}

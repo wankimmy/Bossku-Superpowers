@@ -31,7 +31,7 @@ Use this skill when building, auditing, or refactoring Laravel applications.
 - Database: transactions around multi-write state changes; constraints match business rules. Two requests can both pass a check and then insert: `firstOrCreate` and `updateOrCreate` are select-then-insert. Put a unique index on the key. `firstOrCreate` and `updateOrCreate` re-read the row after a duplicate-key error, but only when the unique index covers the lookup attributes; otherwise the error is rethrown. A plain `create()` does not re-read, so catch `UniqueConstraintViolationException` around it, and lock balances and counters with `lockForUpdate()` inside `DB::transaction()`.
 - Queues: idempotent jobs, retry/backoff, timeout, failure logging, and safe serialization. Dispatch after commit with `->afterCommit()` or the `after_commit` queue option, so a worker never runs before the rows it needs are committed.
 - APIs/webhooks: signature verification, replay protection, idempotency keys, response contracts, and audit trail.
-- Testing: feature tests for user-visible behavior, unit tests for domain rules, integration tests for external boundaries.
+- Testing: feature tests for user-visible behavior, unit tests for domain rules, integration tests for external boundaries. Walk each scenario in `../../references/checklists/engineering-quality-bar.md` section 3: other tenants and each role, retried or concurrent jobs, soft-deleted or cancelled rows. Done when reachable ones are tested or named untested.
 - Performance: pagination, indexes, eager loading, caching with invalidation, and query profiling.
 - Types: a DECIMAL column can come back as a string, so read a real row before you compare money, and keep money in integer cents. PHP compares two numeric strings as numbers ("1e3" == "1000" is true), so use `===` and `in_array($x, $list, true)`.
 
@@ -76,7 +76,7 @@ Filament section adapted in part from engineering/engineering-filament-optimizat
 
 ## Routing, models and migrations
 
-- Use `Route::scopeBindings()` for nested routes so a child must belong to its parent in the URL (blocks cross-tenant access), and still authorize in a policy. Keep one parameter name per bound model (`{conversation}` for `Conversation`) and avoid double-nested prefixes; if a name maps to a different class, use `Route::model()` or `resolveRouteBinding()`.
+- Use `Route::scopeBindings()` for nested routes so a child must belong to its parent in the URL (blocks cross-tenant access), and still authorize in a policy. Keep one parameter name per bound model (`{conversation}` for `Conversation`) and avoid double-nested prefixes; if a name maps to a different class, use `Route::model()` or `resolveRouteBinding()`. Soft-deleted rows 404 from route binding unless the binding query calls `withTrashed()`; `unique` validation still counts them.
 - Models: explicit `$fillable`, enum or value-object casts (`Attribute::make` for money in cents), named scopes for reusable filters. Use a global scope or a named scope for the same filter, not both, unless you want layered behaviour; remember global scopes silently affect every query, including admin and job code.
 - Controllers call a Form Request (rules plus `authorize()`), which can build a small DTO via `toDto()`, then an action or service. Return API Resources with a consistent envelope and paginated meta (page, per_page, total).
 - Cache read-heavy queries and invalidate on the model events that change them; use cache tags for related groups.

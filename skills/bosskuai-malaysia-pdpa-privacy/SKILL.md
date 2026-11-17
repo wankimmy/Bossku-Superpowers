@@ -47,6 +47,7 @@ Checked on 2026-10-26 against the gazette notice, the Bill and the Commissioner'
 ## Enforcement checks
 
 - **Find it first**: build the data map across every store, including logs, error traces, caches, queues, search indexes, analytics streams and backups. Free-text fields drift into holding personal data; re-scan on a schedule.
+- **Marketing messages and notifications** need their own opt-in and an easy opt-out, separate from account consent. Exact Malaysian rules for direct marketing and notifications are not verified here: confirm with counsel. See `../../references/checklists/engagement-ethics-checklist.md`.
 - **Consent gates the write**: a stored opt-out that the analytics or marketing pipeline never reads is not consent. Check at the point of write or use, per purpose.
 - **Deletion needs proof**: the request must reach every primary, replica, warehouse, index, cache and vendor, and leave an auditable record. A delete that clears one table is a false promise.
 - **Anonymization is tested**: postcode plus birth date plus gender can still re-identify. Aggregate or generalize, then test re-identification risk before calling data anonymous.

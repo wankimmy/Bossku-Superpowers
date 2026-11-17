@@ -21,4 +21,4 @@ Sabah/Sarawak suffix. Never turn a particle into an identity claim.
 A sentence without a particle can be fully Malaysian. Avoid stacked forms,
 repeated suffixes, or numeric quotas. Remove a particle if it changes the intended
 politeness, makes a complaint mocking, or is only present to advertise locality.
-Research sources supporting the pragmatic approach are in DATA_SOURCES.md.
+Research sources supporting the pragmatic approach are in [DATA_SOURCES.md](../DATA_SOURCES.md).

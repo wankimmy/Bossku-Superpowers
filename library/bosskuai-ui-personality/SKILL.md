@@ -21,7 +21,7 @@ Use this skill to add small moments of character that support the task instead o
 3. Choose where delight goes using a taxonomy: subtle (hover and button feedback), interactive (user-triggered celebration), discovery (hidden shortcuts, Easter eggs), contextual (404, empty states, seasonal theming).
 4. Write microcopy for errors, loading, success, empty states and buttons. Errors must still say what went wrong and what to do next.
 5. Design micro-interactions with a functional job (confirm, guide, reduce wait anxiety). Keep them short and cheap to render.
-6. If using achievements or streaks, avoid nagging, dark patterns, or pressure to return.
+6. If using achievements or streaks: no punitive streak loss, no forced return prompts, reminders opt-in and easy to pause. Run `../../references/checklists/engagement-ethics-checklist.md`.
 7. Accessibility pass: respect `prefers-reduced-motion`, keep content readable by screen readers (decorative emoji hidden or given text alternatives), keep contrast and focus states, do not hide required information behind a surprise.
 8. Performance pass: delight must not block rendering or inflate bundles.
 9. Cultural check: avoid humour that excludes or confuses users in other regions or languages.

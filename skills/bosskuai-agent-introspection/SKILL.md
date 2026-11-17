@@ -47,7 +47,7 @@ Capture:
 - current context pressure: repeated prompts, oversized pasted logs, duplicated plans, or runaway notes
 - current environment assumptions: cwd, branch, relevant service state, expected files
 - the model id, SDK version and provider the failing call used, read from config and the lockfile
-- prompts, responses and logs, with personal data masked
+- prompts, responses and logs, with secrets (keys, tokens, passwords) and personal data masked
 
 Minimum capture template:
 

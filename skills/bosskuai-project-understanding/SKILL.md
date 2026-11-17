@@ -16,13 +16,14 @@ Use when the first task is learning what a repo is before touching it. For traci
 7. **Save the verified understanding** with `bossku remember --project <project-root> --kind project`; never write inferred or unknown claims to memory.
 8. **Recommend the next 1-3 skills** for the concerns that remain, and say what each one will resolve.
 
-Check before you finish: every claim in the summary cites a file, sampled vs unread areas are stated, and any existing memory or map was re-checked against current source rather than trusted as-is. Each infra part in the map cites its file, or is marked `unknown`.
+Check before you finish: every claim in the summary cites a file, sampled vs unread areas are stated, and any existing memory or map was re-checked against current source rather than trusted as-is. Each infra part in the map cites its file, or is marked `unknown`. Name any scenario that could change the answer, such as another package or uncommitted changes, that you did not check.
 
 Full workflow, output template, and checklist: `reference.md`.
 
 Shared bar: `../../references/checklists/engineering-quality-bar.md`.
 
 ## Onboarding extras
+- In a monorepo, find which package the task touches before trusting the root manifest.
 - Start recon with cheap signals via glob and grep, not full reads: package manifests, framework configs, entry points (`main.*`, `index.*`, `cmd/`), a depth-2 tree without vendor and build folders, CI and Docker files, and test layout and runner config.
 - Trace one request end to end: where it enters, how it is validated, where the business logic sits, how it reaches the database.
 - Detect conventions from the code: file and test naming, error-handling style, async and state patterns, and from recent commits the branch and commit style. If history is missing or shallow, write "Git history unavailable or too shallow" instead of guessing.

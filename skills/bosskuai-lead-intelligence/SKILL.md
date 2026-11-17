@@ -14,10 +14,10 @@ description: "Use when researching named contacts: investor, partner, press, and
 - Finding warm introduction paths to a target contact
 
 ## How this differs from nearby skills
-- **vs sales-strategy:** sales-strategy defines the ICP, pipeline stages, and overall go-to-market motion. lead-intelligence executes actual discovery and qualification against a defined ICP — it answers "who specifically?" not "what kind of person?"
-- **vs marketing-growth:** marketing-growth plans channels and campaigns. lead-intelligence finds specific named individuals and companies to contact.
-- **vs market-analysis:** market-analysis maps the competitive landscape. lead-intelligence finds actionable contacts within that landscape.
-- **vs deep-research:** deep-research conducts broad topic research. lead-intelligence is focused, structured prospecting with scoring and outreach drafts.
+- **vs bosskuai-sales-strategy:** bosskuai-sales-strategy defines the ICP, pipeline stages, and overall go-to-market motion. lead-intelligence executes actual discovery and qualification against a defined ICP — it answers "who specifically?" not "what kind of person?"
+- **vs bosskuai-marketing-growth:** bosskuai-marketing-growth plans channels and campaigns. lead-intelligence finds specific named individuals and companies to contact.
+- **vs bosskuai-market-analysis:** bosskuai-market-analysis maps the competitive landscape. lead-intelligence finds actionable contacts within that landscape.
+- **vs bosskuai-deep-research:** bosskuai-deep-research conducts broad topic research. lead-intelligence is focused, structured prospecting with scoring and outreach drafts.
 - **vs prospecting:** prospecting builds and verifies account-level customer lists at volume (SaaS, B2B, local SMB, demand-signal branches; email verification; CSV). This skill goes to named people: investor, partner, press, and key-account contacts, pre-meeting research, and warm intros.
 - **vs revops:** revops scores inbound leads in the CRM (fit + engagement, MQL threshold); this skill scores an outbound research list.
 
@@ -91,7 +91,7 @@ Personalize each draft to the specific lead's signals — no generic templates i
 - Do not compile lists of personal data beyond what is needed for the stated outreach purpose.
 - Flag any contact where outreach may be legally sensitive (regulated industries, jurisdiction-specific rules).
 - If Exa returns irrelevant results, refine queries and state what was changed — do not pad the list with low-quality leads.
-- Minimum viable list: 10 quality Tier A leads is better than 100 unscored contacts.
+- Minimum viable list: 10 quality P1 leads is better than 100 unscored contacts.
 
 ## Send gate (before anything goes out)
 

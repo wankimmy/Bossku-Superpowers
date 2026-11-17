@@ -80,6 +80,11 @@ Apply this decision matrix before proposing structural changes:
 | Deployment ordering | Old code must work with new schema; new code must work with old schema until cutover |
 | Incomplete migration | Feature flag to switch between old/new path during transition |
 
+## Edge cases a revamp breaks
+
+- **Mock and patch targets.** `mock.patch` must name the module that looks the name up, not the one that defines it. After a move, a patch at the old path silently has no effect on the code that calls the moved name. Checked in Python 3.12: patching `billing.price` left `shop.total()` unchanged; patching `shop.price` changed it.
+- **Serialized names.** Pickled objects, stored JSON keys, cache keys and enum values saved in a database or queue keep the old module and class names. Moving the module makes `pickle.loads` fail with `ModuleNotFoundError`. Keep the old name readable until the stored data has drained.
+
 ## Guardrails
 
 - Do not start a revamp without a passing test suite that covers the behavior to be preserved.

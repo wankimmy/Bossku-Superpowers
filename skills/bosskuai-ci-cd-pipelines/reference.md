@@ -56,7 +56,7 @@ Use this skill when the pipeline itself is the work: its shape, speed, gates, se
 
 ## Speed
 
-- Measure first: `gh run list --json durationMs` or the Actions usage report; find the p50 PR pipeline time and the longest job.
+- Measure first: `gh run list --json startedAt,updatedAt,conclusion` (there is no `durationMs` field; duration is roughly `updatedAt` minus `startedAt`) or the Actions usage report; find the p50 PR pipeline time and the longest job.
 - Parallelize independent jobs; shard tests; cache dependencies and build outputs; use larger runners only for the one job that needs them.
 - Skip work that cannot matter: docs-only changes, unaffected packages, draft PRs (`if: github.event.pull_request.draft == false` for heavy jobs).
 - Self-hosted runners only for hardware, network, or licensing reasons; they are an operations commitment.
@@ -87,6 +87,15 @@ Use this skill when the pipeline itself is the work: its shape, speed, gates, se
 - **Nuxt / React**: pnpm store cache, typecheck, ESLint, Vitest, Playwright with browser cache, build with bundle-size check.
 - **Go**: module and build cache, `golangci-lint` action, `go test -race`, `govulncheck`, static binary artifact.
 - **Expo**: `eas build` with `EXPO_TOKEN`, preview builds per PR, production on tag; see `bosskuai-mobile-app-release`.
+
+## Edge cases the shared bar does not list
+
+- Fork PRs get a read-only `GITHUB_TOKEN` and no secrets: a step that needs a secret fails only for outside contributors. Test that path.
+- Dependabot PRs read Dependabot secrets, not Actions secrets: a secret that exists for humans can be missing for Dependabot.
+- A job that `needs:` a skipped job is skipped too, and so is every job after it. When a job upstream of `test` can be skipped, give the deploy `if: always() && needs.test.result == 'success'` so it still runs when `test` ran and passed.
+- Scheduled workflows run only from the default branch, and GitHub can delay them under load. A nightly that must run needs an alert when it does not.
+- Matrix jobs report one check per combination, named with the matrix value. Renaming a value drops its required check.
+- A `v*` tag glob also matches `v1-old`, and a pushed tag does not prove its commit is on main. Production deploys check that the commit is an ancestor of main first.
 
 ## Verification
 

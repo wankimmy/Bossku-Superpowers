@@ -5,7 +5,7 @@ description: "Use when writing or reviewing code for quality: maintainability, r
 
 # BosskuAI Coding Best Practices
 
-Use this skill when writing or reviewing code that should be easy to change, hard to misuse, and aligned with the existing codebase.
+Use this skill when writing or reviewing code that should be easy to change, hard to misuse, and aligned with the existing codebase. For a correctness review of a PR or diff, use `bosskuai-rigorous-code-review`.
 
 ## Operating principles
 
@@ -87,7 +87,7 @@ Return:
 - Comments explain why (a constraint, a trade-off), never what the next line does. Extract magic numbers into named constants with units (`DEBOUNCE_DELAY_MS`).
 - Query only the columns you need; `SELECT *` on a wide table is a finding.
 - Tests follow arrange, act, assert, and their names state the behaviour ("returns empty array when no markets match query"), not "works".
-- Use one consistent response envelope for an API, validate request bodies against a schema at the boundary, and return field-level validation details with a 400.
+- Use one consistent response envelope for an API, validate request bodies against a schema at the boundary, and return field-level validation details with a 422 (400 is for malformed input; see `bosskuai-api-design`).
 - Parse external responses with a schema: ignore extra fields, reject missing fields and changed types, and never coerce them silently.
 
 Adapted in part from ECC skills/coding-standards (affaan-m/ECC, MIT).

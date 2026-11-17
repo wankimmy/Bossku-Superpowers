@@ -13,6 +13,7 @@ Use this skill when the task is **operational execution outside pure code**: ven
 - **`bosskuai-launch-commercialization`**: coordinates launch readiness; this skill handles ongoing operational systems and change adoption.
 - **`bosskuai-product-strategy`**: decides what to build and why; this skill ensures the organization can execute and support it.
 - **`bosskuai-legal-compliance`**: flags legal and regulatory risk; this skill routes operational controls and escalations.
+- **`bosskuai-customer-success-support`**: owns customer-facing support SOPs, ticket triage, SLAs and renewals; this skill covers the internal operating processes behind them.
 
 ## Mindset
 

@@ -44,7 +44,7 @@ Use this skill when recent work produced a lesson worth keeping beyond the curre
 3. Choose the smallest artifact from the ladder that will reliably change future behavior.
 4. Write it: `bossku remember --project . --kind <kind> "<one to three lines>"` for memory kinds; edit the file directly for references.
 5. Fix stale or contradictory memory if discovered (append a dated correction).
-6. Record whether the learning was applied, deferred, or rejected, and what evidence would justify promotion later.
+6. Record each learning's status (applied, deferred or rejected) on its chosen-artifact line in the Output, and the evidence that would justify promotion in next promotion actions.
 
 ## Guardrails
 
@@ -78,7 +78,7 @@ Return:
 - **Record the pattern, not the event.** Title names the pattern ("browser default change breaks cross-origin auth"), not "fixed login bug". Failures teach more than clean wins; skip typo-level changes with no debugging, rework, rollback, or non-obvious decision.
 - **Extract it in five steps**: say what happened in one sentence; ask "why" until you hit the root cause (usually 3-5 times); generalize to a class of problem; write "Next time I see [signal], I will [action]"; name the observable signal. No "next time" sentence means no lesson yet.
 - **Search before writing.** Same root cause with a new symptom: add the symptom as an example to the existing note (merge). New root cause: new note.
-- **Shape**: 4-8 sentences, covering context, root cause (not symptom), the transferable action plus signal, and related notes. Under 30 seconds of writing is too shallow; over 2 minutes means you are narrating.
+- **Shape**: for a checklist, pitfall or learned skill, use 4-8 sentences covering context, root cause (not symptom), the transferable action plus signal, and related notes. A `bossku remember` note (step 4) keeps the same parts in one to three lines. Under 30 seconds of writing is too shallow; over 2 minutes means you are narrating.
 - **Scope check**: language/framework conventions, file layout, and code style stay project-specific; security habits, tool workflow habits, and git practices can be global. Promote a project lesson to global only when it showed up in 2+ projects with good evidence.
 - **Confidence**: tentative lessons are suggestions; raise them when seen again without correction, and lower or retire them when the user corrects them, they stop appearing, or contrary evidence shows up. Never export raw transcripts, only the distilled lesson.
 

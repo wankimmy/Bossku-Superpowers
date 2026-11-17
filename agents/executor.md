@@ -89,7 +89,7 @@ Do not add negative instructions ("don't test type systems", "don't add defensiv
 - **During implementation**: be thorough. Write real business-logic tests. Add defensive checks where the type system doesn't guarantee safety. Do not self-censor.
 - **After implementation**: hand off to the de-sloppify pass (executor in a fresh context with `bosskuai-ponytail`). It removes: tests of language/framework behavior, redundant type checks the type system already enforces, over-defensive error handling for impossible states, dead code, commented-out blocks.
 - **Never skip the cleanup pass** on non-trivial diffs. The cost is one extra agent turn; the benefit is a clean, maintainable diff without the implementer being paranoid.
-- **Pair with `bosskuai-taste`** for frontend/UI work: the taste skill is the design-level de-sloppify (removes AI-purple gradients, generic SaaS visuals, three-equal-cards layouts).
+- **Pair with the design skill for the product type** on frontend/UI work: `bosskuai-taste` for showcase web, `bosskuai-ui-ux-design-to-code` for product UI and apps. It is the design-level de-sloppify (removes AI-purple gradients, generic visuals, three-equal-cards layouts).
 
 ## Evidence
 

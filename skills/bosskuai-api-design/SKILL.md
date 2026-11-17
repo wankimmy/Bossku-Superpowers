@@ -7,13 +7,13 @@ description: "Use when designing an API contract across REST, GraphQL, and event
 
 Use when the open question is the shape of the contract between systems, not just the code behind it.
 
-1. **Read the current contract surface** before proposing anything: docs, OpenAPI/GraphQL schema, event schemas, handlers, and their tests.
+1. **Read the current contract surface** before proposing anything: docs, OpenAPI/GraphQL schema, event schemas, handlers, and their tests, plus every consumer and client version in use (access logs, SDK lists, partner list; say so if unknown).
 2. **Model the domain**: name resources and operations after business concepts, not database tables, and make side effects explicit in the operation name.
 3. **Pick the contract style on purpose** — REST, GraphQL, events, or mixed — matched to who actually consumes it, and say why.
 4. **Design the unhappy paths as part of the contract, not an afterthought**: auth failure, validation errors, conflicts, timeouts, async completion, rate limits. Make errors structured and machine-readable, never a freeform string.
-5. **Make the safe path the easy path**: idempotency keys for retry-safe operations, stable pagination, predictable filtering and sorting.
+5. **Make the safe path the easy path**: idempotency keys for retry-safe operations (a reused key with different parameters gets an error, not the first response), stable pagination, predictable filtering and sorting.
 6. **State what's additive vs breaking for every change**, and the versioning or deprecation path for the breaking ones.
-7. **For events and webhooks**, settle ordering, replay, deduplication, and signature verification before calling the design done.
+7. **For events and webhooks**, settle ordering, replay, deduplication, and signature verification (over the raw body bytes; reject old timestamps) before calling the design done.
 8. **When a requirement is ambiguous and nobody can confirm it**, default to the additive, backward-compatible reading and say so in one line rather than guessing at the breaking one.
 
 For public or partner APIs, also settle these:
@@ -25,7 +25,7 @@ For public or partner APIs, also settle these:
 - **Errors:** a stable machine-readable code, a readable message, a request id, and correct HTTP status. A 200 with an error body is a bug.
 - **Rate limits are communicated:** return limit, remaining, and reset headers, and a 429 with `Retry-After`.
 
-Check before you finish: no internal DB shape leaks into the public contract without a reason, no versioning was added without a named compatibility problem it solves, and every webhook/event flow has replay, idempotency, and authenticity.
+Check before you finish: no internal DB shape leaks into the public contract without a reason, no versioning was added without a named compatibility problem it solves, and every webhook/event flow has replay, idempotency, and authenticity. Walk each scenario that reaches the contract (each consumer, old and new versions side by side during rollout) per the shared bar, section 3, and name any you did not test.
 
 REST conventions to check:
 

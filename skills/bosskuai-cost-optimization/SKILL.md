@@ -86,7 +86,7 @@ Adapted from engineering/engineering-finops-engineer.md (agency-agents, MIT).
 - Prompt caching: keep tools, instructions and stable examples first and unchanged (a changed prefix breaks reuse from that point); put the question, timestamps and retrieved results after it. Confirm the provider's minimum prefix length, TTL and write price from current docs, since a short prefix yields zero cache hits and a write can cost more than plain input. Caching does not shrink the context window.
 - A one-off call or a prefix that keeps expiring can cost more with caching. Count warmup, miss, refresh and retry requests in the measured period.
 - Measure with provider usage counters (ordinary input, cache write, cache read, output). Do not double count the same tokens, never apply a cache discount to output tokens, and report token hit rate (cache reads / total input) separately from request hit rate. With no measured traffic, label hit rate and savings `unmeasured`.
-- Cache keys and cached handles are scoped to tenant, permission and content revision; a cache key is not an authorization check.
+- Cache keys and cached handles also carry the content revision, so an edit invalidates them. A cache key is not an authorization check.
 - Usage logs that store cumulative per-session snapshots must be reduced to the latest row per session before summing, and a recorded cost field beats recomputing from token counts.
 - Any cost change that alters output (a cheaper model, a shorter prompt, a new cache) changes what existing users get. Check quality on an eval set first, roll it out behind a flag, and keep the old path to switch back to.
 - Set the cost budget and the latency ceiling together. A cheaper path that breaks the latency ceiling is not a saving.

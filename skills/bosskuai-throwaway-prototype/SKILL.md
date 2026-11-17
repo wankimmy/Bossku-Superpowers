@@ -5,7 +5,7 @@ description: "Use when one design question needs a throwaway prototype: a runnab
 
 # Prototype
 
-A prototype is **throwaway code that answers a question**. The question decides the shape.
+A prototype is **throwaway code that answers a question**. The question decides the shape. For an MVP scaffold or a demo meant to be kept, use `bosskuai-rapid-prototype`.
 
 ## Pick a branch
 
@@ -27,6 +27,6 @@ The two branches produce very different artifacts — getting this wrong wastes 
 
 ## When done
 
-The _answer_ is the only thing worth keeping from a prototype. Capture it somewhere durable (commit message, ADR, issue, or a `NOTES.md` next to the prototype) along with the question it was answering. If the user is around, that capture is a quick conversation; if not, leave the placeholder so they (or you, on the next pass) can fill in the verdict before deleting the prototype. The verdict also says what the prototype does not prove (concurrency, real data volume, security, behavior on deploy), so no one reads it as a production check.
+The _answer_ is the only thing worth keeping from a prototype. Capture it somewhere durable (commit message, ADR, issue, or a `NOTES.md` next to the prototype) along with the question it was answering. If the user is around, that capture is a quick conversation; if not, leave a `NOTES.md` placeholder (the question, an empty verdict) so they (or you, on the next pass) can fill in the verdict before deleting the prototype. The verdict also says what the prototype does not prove (concurrency, real data volume, security, behavior on deploy), so no one reads it as a production check.
 
 A prototype that gets deployed or real data is not throwaway anymore: run it through `bosskuai-engineering-delivery` and the shared bar first: `../../references/checklists/engineering-quality-bar.md`.

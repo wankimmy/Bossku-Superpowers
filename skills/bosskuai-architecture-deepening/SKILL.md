@@ -5,7 +5,7 @@ description: "Use when coupled modules should be consolidated or a codebase made
 
 # Improve Codebase Architecture
 
-Surface architectural friction and propose **deepening opportunities** — refactors that turn shallow modules into deep ones. The aim is testability and AI-navigability.
+Surface architectural friction and propose **deepening opportunities** — refactors that turn shallow modules into deep ones. The aim is testability and AI-navigability. For a single architecture decision or a new system design, use `bosskuai-software-architecture`.
 
 ## Glossary
 

@@ -27,22 +27,6 @@ Start from the flows where failure is expensive: authentication, payments, permi
 
 Push a test down a level whenever the same bug would be caught there.
 
-## Determinism is the whole game
-
-A flaky suite is worse than a small suite, because it teaches the team to re-run instead of investigate. Enforce: seeded factories and fixtures, controlled clock, no reliance on test execution order, no live network calls, explicit waits on state rather than sleeps, and isolated per-test data.
-
-## CI gating
-
-Fast checks (lint, types, unit, feature) block the PR. Slow suites (full E2E, cross-browser, performance) run on merge or nightly, with a named owner for failures. A gate nobody can fix gets disabled within a month.
-
-## Guardrails
-
-- Every production bug adds one regression test, or a written reason it does not.
-- Do not assert on implementation details that change with every refactor.
-- Do not mock the thing under test.
-- Quarantine flaky tests with an owner and a deadline; never with a permanent skip.
-- Test data must not depend on the state of a shared environment.
-
 ## Output format
 
 ```text

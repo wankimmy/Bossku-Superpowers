@@ -27,7 +27,7 @@ Use this skill when building, auditing, or debugging a React Native app, with or
 2. `app.json` / `app.config.ts`: bundle id / package, scheme, permissions, plugins, `runtimeVersion` policy, Hermes, and on SDK 54 or older the New Architecture flag.
 3. `eas.json`: build profiles (development, preview, production), channels, env per profile.
 4. Navigation: Expo Router (file-based, groups, layouts) or React Navigation; auth gating approach.
-5. Data and storage: TanStack Query, MMKV, SQLite/expo-sqlite, SecureStore; offline expectations.
+5. Data and storage: TanStack Query, MMKV, SQLite/expo-sqlite, SecureStore; offline expectations. Before changing a query key or store, list every screen that reads it; ask the user which installed builds share its `runtimeVersion`; done when both are known.
 6. Expo Go vs development build: any custom native module, notification, or in-app purchase means a development build.
 
 ## Rules that catch most React Native bugs
@@ -39,6 +39,8 @@ Use this skill when building, auditing, or debugging a React Native app, with or
 - Safe areas via `react-native-safe-area-context` insets, not hard-coded padding; notch, home indicator, and Android navigation bar differ.
 - Keyboard: `KeyboardAvoidingView` `behavior` differs per platform; test with a real keyboard and a small screen.
 - Android hardware back: handle it in Expo Router or `BackHandler`; do not trap the user.
+- Native navigation and reach: follow each platform's back behaviour, keep primary actions within thumb reach, handle safe areas, keyboard avoidance and orientation. See `../../references/playbooks/human-centered-design-playbook.md`.
+- Lost state: Android can kill the app while the camera or Settings is open, so keep drafts in storage. iOS asks once; after a denial, send the user to Settings (`Linking.openSettings()`).
 - Text must be inside `<Text>`; layout uses flexbox with `flexDirection: 'column'` default.
 - Images: `expo-image` with explicit sizes and caching; never decode large images on the JS side.
 - Secrets: `SecureStore` for tokens; `AsyncStorage`/MMKV only for non-sensitive data; `EXPO_PUBLIC_*` env is bundled into the app and is public by definition.
@@ -72,6 +74,7 @@ Use this skill when building, auditing, or debugging a React Native app, with or
 - `jest-expo` + Testing Library for React Native for components and hooks.
 - Maestro (or Detox) flows on real devices or emulators for critical paths; run on EAS-built binaries in CI.
 - Manual matrix: smallest supported iPhone, a mid-range Android, both OS minimum versions, dark mode, large font sizes.
+- Walk section 3 of `../../references/checklists/engineering-quality-bar.md` for each scenario the change reaches: cold start, warm start, resume from background, offline, old installed build against new code. Name untested ones in the report.
 - Run the flows against staging with a masked copy of production data that keeps real lengths and shapes (long names, zero items, a 500-item list), not one fixture account.
 
 ## Verification

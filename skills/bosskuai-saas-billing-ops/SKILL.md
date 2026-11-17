@@ -25,7 +25,7 @@ Keep two state lists. Processor states come from the processor, spelled exactly 
 ## Edge cases that break in production
 
 - **Proration on plan change**: upgrade mid-cycle, downgrade mid-cycle, and downgrade that must take effect at period end.
-- **Failed payment**: retry schedule, dunning messaging, when access degrades, and when data is retained but locked. (Stripe Smart Retries' recommended default is 8 tries within 2 weeks; the state after the last retry is a setting: `canceled`, `unpaid`, or stay `past_due`)
+- **Failed payment**: retry schedule, dunning messaging, when access degrades, and when data is retained but locked. (Stripe's default for new accounts is Smart Retries, up to 8 retries within 2 weeks; the state after the last retry is a setting: `canceled`, `unpaid`, stay `past_due`, or `paused` where eligible)
 - **Webhook delivery**: out-of-order events, duplicates, and events for objects the app has not created yet. Do not assume events arrive in order, and do not use `created` to order them (snapshot events record it in seconds, so events can share a timestamp). Dedupe on the event id. Then, in one transaction, lock the local subscription row, fetch the current subscription from the API, and apply the change. Set a short timeout on the API call so the lock is held only briefly.
 - **Delayed-confirmation payment methods** (for example ACH Direct Debit): the subscription can be `active` before funds settle, and a later failure voids the invoice while the subscription stays `active`; never read `active` as paid.
 - **Refunds and chargebacks**: partial refunds, and whether a chargeback revokes access immediately.

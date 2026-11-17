@@ -14,9 +14,9 @@ description: Use when you pre-register an experiment's decision rules (MDE, samp
 - Post-experiment analysis and deciding whether to ship, iterate, or kill
 
 ## How this differs from nearby skills
-- **vs marketing-growth:** marketing-growth defines channel strategy, content plans, and growth loops at a strategic level. growth-experiment designs rigorous, statistically grounded experiments with sample sizes, stopping rules, and decision criteria before running anything.
-- **vs paid-acquisition-monetization:** paid-acquisition optimizes spend and CAC/LTV ratios operationally. growth-experiment creates the measurement structure that validates whether a new channel or creative actually works.
-- **vs analytics-metrics:** analytics-metrics tracks and interprets existing data. growth-experiment designs the conditions under which valid causal conclusions can be drawn.
+- **vs bosskuai-marketing-growth:** bosskuai-marketing-growth defines channel strategy, content plans, and growth loops at a strategic level. growth-experiment designs rigorous, statistically grounded experiments with sample sizes, stopping rules, and decision criteria before running anything.
+- **vs bosskuai-paid-acquisition-monetization:** bosskuai-paid-acquisition-monetization optimizes spend and CAC/LTV ratios operationally. growth-experiment creates the measurement structure that validates whether a new channel or creative actually works.
+- **vs bosskuai-analytics-metrics:** bosskuai-analytics-metrics tracks and interprets existing data. growth-experiment designs the conditions under which valid causal conclusions can be drawn.
 - **vs ab-testing:** page and copy test setup, sample-size tables, testing tools, ICE backlog and cadence live there; load it for the build and this skill for the decision rules and non-A/B designs.
 
 ## MCP requirements
@@ -64,6 +64,7 @@ Write these down before any data is seen:
 - "We will kill if: primary metric shows significant harm OR no movement after full sample."
 - "We will iterate if: directionally positive but below MDE — rerun with revised hypothesis."
 - Set any early-stopping rules for harm (guardrail metric degradation threshold).
+- Streak, reward and urgency tests pass `../../references/checklists/engagement-ethics-checklist.md` before they run, and carry guardrail metrics (opt-outs, complaints, uninstalls, abandonment).
 
 ### 7. Post-experiment analysis template
 After the experiment concludes:
@@ -101,7 +102,7 @@ Owner: [name]
 - Learning logged to memory
 
 ## Guardrails
-- Never declare statistical significance before the pre-specified sample size is reached (no peeking).
+- Never declare statistical significance before the pre-specified sample size is reached (no peeking). The only early stop allowed is the harm rule set in step 6.
 - Decision criteria must be written before the experiment starts — not after seeing data.
 - Document learnings from failed experiments; they are as valuable as wins.
 - Do not run more than 3 simultaneous experiments on the same user surface without interaction analysis.

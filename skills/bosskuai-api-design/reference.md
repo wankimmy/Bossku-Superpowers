@@ -18,7 +18,6 @@ Use this skill when the main question is **the shape of the contract** between s
 - API design is product design for developers and integrators.
 - Backward compatibility is cheaper than partner breakage.
 - Ambiguous error handling becomes operational pain later.
-- Make the safe path the easy path: idempotency, pagination, versioning, and explicit contracts should be first-class.
 
 ## Design lenses
 

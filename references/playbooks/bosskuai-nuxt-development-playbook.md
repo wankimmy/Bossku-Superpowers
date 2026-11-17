@@ -8,7 +8,7 @@ Senior-level audit and implementation reference for Nuxt 3/4 production apps. Ea
 2. Identify Nuxt version, Nitro preset, and rendering mode per route (SSR / SSG / hybrid / client-only).
 3. Trace one critical page end-to-end: route → middleware → page setup → useFetch/useAsyncData calls → server route → Nitro handler → external service → response → hydration.
 4. Check route rules, metadata, sitemap, robots, redirects, error pages, and SEO/structured data.
-5. Verify with `nuxt build --analyze`, `nuxt typecheck`, Lighthouse / WebPageTest, and `curl -I` for headers.
+5. Verify with `nuxt analyze`, `nuxt typecheck`, Lighthouse / WebPageTest, and `curl -I` for headers.
 
 ## Nuxt 3/4 best-practice checks (one-liner version)
 
@@ -26,7 +26,7 @@ Senior-level audit and implementation reference for Nuxt 3/4 production apps. Ea
 
 ```bash
 pnpm nuxt typecheck
-pnpm nuxt build --analyze            # bundle visualizer
+pnpm nuxt analyze            # bundle visualizer
 pnpm nuxt preview                    # production-like local run
 npx unlighthouse                     # site-wide Lighthouse audit
 curl -sI https://example.com/page    # check cache + render headers
@@ -359,7 +359,7 @@ Fix: set `future.compatibilityVersion: 4` in `nuxt.config.ts` first, then move f
 | Hydration   | No mismatch warnings in production build             | `pnpm nuxt build && pnpm nuxt preview`      |
 | SEO         | `<title>`, OG, JSON-LD present in raw HTML           | `curl` + Rich Results Test                  |
 | Sitemap     | All published URLs present, lastmod current          | open `/sitemap.xml`, diff vs DB             |
-| Bundle      | No accidental client imports of server-only deps     | `nuxt build --analyze`                      |
+| Bundle      | No accidental client imports of server-only deps     | `nuxt analyze`                      |
 | LCP         | < 2.5s on 4G mobile profile                          | unlighthouse / WebPageTest                  |
 | CLS         | < 0.1                                                 | Lighthouse                                  |
 | INP         | < 200ms on mid-tier Android                           | Web Vitals extension on real device         |

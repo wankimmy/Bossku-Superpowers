@@ -77,7 +77,7 @@ Use this skill when the box or plan is Hostinger and the answer depends on what 
 
 - KVM 1–2 for staging; KVM 2+ (4 GB) for production with PM2 + MySQL + Redis; watch RAM before CPU. Watch disk too: a full disk stops MySQL and log writes in the middle of a release.
 - Cloudflare in front for DDoS, TLS, caching, and to hide the origin IP; keep origin certs valid anyway.
-- No SLA on Hostinger VPS networking; if uptime is contractual, move the database or the whole stack to a managed provider.
+- Hostinger's hosting agreement (Section 7) promises 99.9% monthly uptime, with a credit of 5% of the monthly fee that can be used only for further purchases and must be claimed within 30 days. The guarantee is written for all services and lists no VPS exclusion, but confirm VPS coverage in writing. If uptime is contractual, move the database or the whole stack to a managed provider.
 
 ## Verification
 

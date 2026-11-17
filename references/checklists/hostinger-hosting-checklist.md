@@ -1,7 +1,5 @@
 # Hostinger Hosting Checklist
 
-> If the request is general, ambiguous, or touches many files — ask clarifying yes/no questions **before acting**. Use numbered bullets with explicit answer format: e.g. `1-yes/no  2-A/B`.
-
 - Is the product identified (shared, cloud, KVM VPS) and are its limits understood before planning daemons or Node processes?
 - Was the real SSH port confirmed with `ss -tlnp` rather than the welcome email?
 - Is root login disabled, password auth disabled, a keyed deploy user in place, and UFW plus the hPanel firewall limited to SSH/80/443?

@@ -99,6 +99,17 @@ vite build && npx vite-bundle-visualizer   # or next build && ANALYZE=true
 - Do not ship `any` at component or API boundaries.
 - Do not treat a green unit suite as proof the flow works; run the Playwright path.
 
+## Edge cases the bug list misses
+
+- **Hydration mismatch**: the server HTML and the first client render must match. `Date.now()`, `Math.random()`, `window` or `localStorage` read during render, and a locale or time zone that differs between server and client, all cause "Hydration failed". Read browser-only values after mount, in an effect.
+- **Query keys**: a key must hold every value the fetcher reads. `['user']` with a fetcher that reads `id` returns one user's cached data for another id. A list and a detail of the same item use different keys; a mutation invalidates both.
+- **Stale closure after `await`**: a handler reads state after an `await` and sees the value from the render that created it. Use the updater form (`setCount(prev => prev + 1)`) or a ref.
+- **Strict Mode in development**: React mounts, unmounts and remounts each component once, so an effect with no cleanup (listener, timer, socket) runs twice. Return a cleanup that undoes the effect.
+- **Reset state on identity change**: give the component `key={id}` so its state resets, instead of an effect that copies the prop into state.
+- **Missing provider**: a context read with no provider returns its default value silently, so a new route or test renders empty data with no error. Make the default throw, or check for it.
+- **Secrets in the client bundle**: `NEXT_PUBLIC_` and `VITE_` variables are inlined into the browser bundle at build time. Never put a server secret behind those prefixes.
+- **Server to client props**: functions and class instances cannot cross from a Server Component to a Client Component. Pass a Server Action or plain data.
+
 ## Output format
 
 ```text

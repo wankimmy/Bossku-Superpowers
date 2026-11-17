@@ -52,8 +52,9 @@ Follow the dependency chain:
 ```
 Users/Leads → Activation/Conversion → Paying Customers → Revenue
 Revenue - COGS = Gross Profit
-Gross Profit - OpEx = EBITDA / Net Burn
-Cash on Hand / Monthly Burn = Runway (months)
+Gross Profit - OpEx = EBITDA (P&L view)
+Cash Out - Cash In = Net Burn (cash view, the basis for runway)
+Cash on Hand / Monthly Net Burn = Runway (months)
 ```
 Build each layer before moving to the next. No skipping.
 

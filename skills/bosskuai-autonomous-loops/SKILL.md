@@ -59,14 +59,14 @@ planner (strategy, file list, phases) → designer (UI work only)
 └────────────────────────────────────────────────────────────────┘
        │
        ▼
-learning capture is manual: `bossku remember` via `bosskuai-continuous-learning`
+learning capture is automatic: the auto-learn pass (`bosskuai-learn`) and `bossku remember`
 ```
 
 ### Tuning the loop
 
 - **Loop owner by task shape** (from the orchestrator contract): bug →
   `bosskuai-diagnose-loop`; behavior change → `bosskuai-tdd-loop`; PR/review →
-  `bosskuai-greptile-review-loop`; performance → `bosskuai-ratchet-loop`.
+  `bosskuai-greptile-review-loop` (only when Greptile is installed; single PR: `bosskuai-pr-check`); performance → `bosskuai-ratchet-loop`.
 - **Budget before handoff.** State the pass signal and max iterations in the
   executor brief. One retry is the sane default for attended runs; raise it for
   unattended runs so REVISE verdicts actually loop.
@@ -83,7 +83,7 @@ learning capture is manual: `bossku remember` via `bosskuai-continuous-learning`
 | Interactive task with a human in the loop | Yes | No |
 | Scripted multi-step workflows | No | Yes |
 | Custom loop architecture (DAG, waves) | No | Yes |
-| Learning capture | Manual (`bossku remember`) | Manual (`bossku remember` as a final step) |
+| Learning capture | Auto-learn pass (`bosskuai-learn`) plus `bossku remember` | `bossku remember` as a final step |
 
 ---
 

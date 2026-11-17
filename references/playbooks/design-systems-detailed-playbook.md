@@ -1,7 +1,5 @@
 # Design Systems Playbook
 
-> If the request is general, ambiguous, or touches many files — ask clarifying yes/no questions **before acting**. Use numbered bullets with explicit answer format: e.g. `1-yes/no  2-A/B`.
-
 Step-by-step workflow for creating a DESIGN.md, auditing an existing design system, or establishing tokens for a project.
 
 ## Phase 1: Brand discovery
@@ -84,7 +82,7 @@ Map every semantic token to its dark-mode equivalent.
 ### 4.5 Contrast verification
 Test every text-on-background combination against WCAG AA:
 - Body text: minimum 4.5:1
-- Large text (18px+ or 14px+ bold): minimum 3:1
+- Large text (24px regular or about 18.66px bold): minimum 3:1
 
 ## Phase 5: Typography rules (Section 3)
 

@@ -19,7 +19,7 @@ from pathlib import Path
 
 from bossku.memory import memory_directory
 from bossku.paths import user_config_dir
-from bossku.redact import redact
+from bossku.redact import COMMAND_PATTERNS, NOTE_COMMAND_PATTERNS, redact, redact_command
 
 STORE = "skills"
 ARCHIVE = ".archive"
@@ -30,6 +30,7 @@ NAME_RE = re.compile(r"^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$")
 CATEGORY_RE = re.compile(r"^[a-z0-9][a-z0-9-]{0,39}$")
 FILE_RE = re.compile(r"^(?:references|templates|assets)/[A-Za-z0-9][A-Za-z0-9._-]{0,79}$")
 EVIDENCE_RE = re.compile(r"^references/evidence-")
+FRONTMATTER_KEYS = ("name", "description", "category", "learned")
 DESC_MAX = 300
 BODY_MAX_LINES = 25
 BODY_MAX_BYTES = 16_000
@@ -174,16 +175,99 @@ def unsafe_findings(text: str) -> list[str]:
     return sorted({family for family, pattern in _UNSAFE if pattern.search(text)})
 
 
+# A variable, a placeholder, a subexpression or a redirect names no secret: $cred, "$DB_PASSWORD", <your-token>,
+# (Get-Credential), %DB_PASS%, {{ vault_pass }}, < token.txt. The whole value must be one of these, so "<S3cretPw9>" or
+# "$(echo hunter2)" still count. A single-quoted '$x' is a literal and still counts.
+_NOT_A_VALUE = re.compile(
+    r"\$env:\w+|\$\w+|\$\{[^}\s]*\}|\$?\([^\s()]*\)|%\w+%|\{\{|<[A-Za-z][A-Za-z_ -]*>|<")
+
+
+def _is_variable(value: str) -> bool:
+    value = value.strip('"')
+    if _NOT_A_VALUE.fullmatch(value):
+        return True
+    _, colon, password = value.partition(":")   # user:password is judged by its password
+    return bool(colon) and bool(_NOT_A_VALUE.fullmatch(password))
+
+
+def _command_secret(patterns, text: str) -> bool:
+    for pattern, replacement in patterns:
+        for m in pattern.finditer(text):
+            masked = replacement(m) if callable(replacement) else m.expand(replacement)
+            value = m.group(0)[len(m.group(1)):] if pattern.groups else m.group(0).partition("=")[2].lstrip()
+            if masked != m.group(0) and not _is_variable(value):
+                return True
+    return False
+
+
+# A flag only belongs to the program before it on the same piece of a sentence, so the note patterns run per piece.
+_PIECES = re.compile(r"`|\n|, ")
+
+
 def _scan(label: str, text: str) -> None:
     hits = unsafe_findings(text)
     if hits:
         raise LearnError(f"{label} looks unsafe ({', '.join(hits)}); a learned skill must not carry that")
-    if redact(text) != text:
+    if (redact(text) != text or any(_command_secret(NOTE_COMMAND_PATTERNS, piece) for piece in _PIECES.split(text))
+            or any(_command_secret(COMMAND_PATTERNS, c) for c in _command_lines(text))):
         raise LearnError(f"{label} holds what looks like a secret; remove it")
+
+
+# The command patterns are greedy ("--password flag" matches), so they run only on lines that are commands, not prose.
+# A bare `>` is a Markdown quote, not a prompt; set/env need NAME= and git a subcommand so a sentence is not a command.
+_COMMAND_LINE = re.compile(
+    r"^\s*(?:\$\s|--[a-z][\w-]*\s|\$env:\w+\s*=|PS(?: [^>\n]*)?>\s*|(?:set|env)\s+\w+=|"
+    r"git\s+(?:clone|remote|push|pull|fetch|config|credential|submodule)\s|"
+    r"(?:sudo|export|curl|wget|mysql|mysqldump|mysqladmin|mariadb|mariadb-dump|docker|"
+    r"podman|nerdctl|gh|npm|npx|pip|aws|az|psql|ssh|scp|bossku|python3?)\s|[A-Za-z0-9_]+=)")
+_LIST_MARKER = re.compile(r"^\s*(?:[-*+]|\d+\.)\s+")
+_CODE_SPAN = re.compile(r"`([^`\n]+)`")
+
+
+def _command_lines(text: str):
+    """Fenced lines, backtick spans and lines that start like a shell command (after any list marker)."""
+    fence = ""   # the character that opened the block; only the same one closes it
+    for line in text.splitlines():
+        mark = line.lstrip()[:3]
+        if not fence and mark in ("```", "~~~"):
+            fence = mark[0]
+            yield line.lstrip().lstrip(fence)   # an info string can carry text
+        elif fence and mark == fence * 3:
+            fence = ""
+        elif fence:
+            yield line
+        else:
+            yield from _CODE_SPAN.findall(line)
+            if _COMMAND_LINE.match(_LIST_MARKER.sub("", line)):
+                yield _LIST_MARKER.sub("", line)
 
 
 def _pointed(body: str, rel: str) -> bool:
     return rel in body
+
+
+_KEY_LINE = re.compile(rf"^(?:{'|'.join(FRONTMATTER_KEYS)}):(?:\s|$)")
+# Every character str.splitlines() or a YAML reader can treat as a line break, other than \n and \r\n.
+_ODD_BREAK = re.compile("\r(?!\n)|[\x0b\x0c\x1c-\x1e\x85\u2028\u2029]")
+
+
+def _check_frontmatter_lines(text: str) -> None:
+    """Check the raw lines, not the parsed dict: the repo's skill parser closes only on a line that is exactly `---`
+    and YAML has forms (`? key`) a line parser skips, so any other line could hide an allowed-tools grant."""
+    if _ODD_BREAK.search(text):
+        raise LearnError("SKILL.md may break lines with a newline only; remove the stray control or separator character")
+    lines = text.split("\n")
+    if lines[0].rstrip("\r") != "---":
+        raise LearnError("SKILL.md must start with a line that is exactly ---")
+    for line in lines[1:]:
+        line = line.rstrip("\r")
+        if line == "---":
+            return
+        if line.strip() and not _KEY_LINE.match(line):
+            key = re.split(r"[:\s]", line.strip(), maxsplit=1)[0]
+            # a learned skill never pre-approves a tool (allowed-tools) or sets a model
+            raise LearnError(f"frontmatter key {key!r} is not allowed; use only {', '.join(FRONTMATTER_KEYS)}")
+    raise LearnError("SKILL.md frontmatter must end with a line that is exactly ---")
 
 
 def lint_skill(name: str, text: str, files: dict[str, str], kept: dict[str, str] | None = None) -> None:
@@ -192,6 +276,7 @@ def lint_skill(name: str, text: str, files: dict[str, str], kept: dict[str, str]
     first and the file removed by the next intent)."""
     if len(text.encode("utf-8")) > BODY_MAX_BYTES:
         raise LearnError(f"SKILL.md is over {BODY_MAX_BYTES} bytes")
+    _check_frontmatter_lines(text)
     meta = parse_frontmatter(text)
     if not meta:
         raise LearnError("SKILL.md needs frontmatter: name, description, category, learned: true")
@@ -276,8 +361,8 @@ def _ledger(skill_dir: Path, entry: dict) -> None:
 def _evidence(skill_dir: Path, action: str, reason: str, evidence: str) -> str:
     stamp = _now().strftime("%Y%m%dT%H%M%S") + "-" + secrets.token_hex(2)
     rel = f"references/evidence-{stamp}.md"
-    _write_atomic(skill_dir / rel, f"# Evidence ({action})\n\nReason: {redact(reason)}\n\n> "
-                  + redact(evidence).replace("\n", "\n> ") + "\n")
+    _write_atomic(skill_dir / rel, f"# Evidence ({action})\n\nReason: {redact_command(redact(reason))}\n\n> "
+                  + redact_command(redact(evidence)).replace("\n", "\n> ") + "\n")
     return rel
 
 
@@ -355,13 +440,13 @@ def apply_intent(project: Path, intent: dict, *, home: Path | None = None) -> di
                 raise LearnError(f"absorbed_into must name another live learned skill, not {absorbed!r}")
             result["absorbed_into"] = absorbed
         rel_ev = _evidence(skill_dir, action, reason, evidence)
-        _ledger(skill_dir, {"event": action, "reason": redact(reason), "evidence": rel_ev,
+        _ledger(skill_dir, {"event": action, "reason": redact_command(redact(reason)), "evidence": rel_ev,
                             "absorbed_into": absorbed or None})
         result["archived_to"] = str(_archive_path(store, skill_dir, name))
         return result
 
     rel_ev = _evidence(skill_dir, action, reason, evidence)
-    _ledger(skill_dir, {"event": action, "reason": redact(reason), "evidence": rel_ev})
+    _ledger(skill_dir, {"event": action, "reason": redact_command(redact(reason)), "evidence": rel_ev})
     result["path"] = str(skill)
     return result
 

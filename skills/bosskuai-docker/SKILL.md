@@ -36,6 +36,7 @@ Use this skill when the task involves Dockerizing an app, creating or reviewing 
 3. Decide if the target is local development, production image, or both.
 4. Decide what must sync live from host to container and what must remain container-owned.
 4a. **Know the versions.** Read the runtime version from the project's own files (manifest, lockfile, `.nvmrc` or similar) and the base image tag from the `FROM` line. Check the latest stable image and its support end date live, on the image's official page, never from memory.
+4b. **Map the dependents.** For each port, volume, network and env name the change touches, list its consumers (other Compose projects, CI, scripts) and how many replicas run. Done when each has a consumer or "none found".
 
 ### Phase 2 - Dockerfile
 
@@ -58,7 +59,7 @@ Use this skill when the task involves Dockerizing an app, creating or reviewing 
 16. Add app service `build:` with context and Dockerfile.
 17. Add `env_file: .env` and keep YAML values as variable references, not literal secrets.
 18. Add ports with variables where useful, for example `"${APP_PORT:-3000}:3000"`.
-19. Add bind mounts for local source sync and named volumes for dependency folders or persistent data.
+19. Add bind mounts for local source sync and named volumes for dependency folders or persistent data. On Linux a non-root container user cannot write host-owned files in a bind mount; match the UID or use a named volume.
 20. Add explicit service network names under top-level `networks:`.
 21. Add health checks for app and data services where a meaningful check exists.
 22. Use `depends_on` only for startup ordering; do not treat it as proof a service is ready unless health conditions are configured.
@@ -78,7 +79,7 @@ Use this skill when the task involves Dockerizing an app, creating or reviewing 
 29. Validate YAML and Dockerfile syntax.
 30. Run `docker compose config` when Docker is available.
 31. Run `docker compose up -d --build` for first build if needed, then confirm normal startup works with `docker compose up -d`.
-32. Check `docker compose ps`, logs, health checks, app URL, and volume sync.
+32. Check `docker compose ps`, logs, health checks, app URL, and volume sync. Walk the scenarios in the shared bar section 3 that reach the change (first start, repeated `up -d`, restart after `stop`, a dependency down); each is run or named untested.
 33. Confirm no secrets appear in YAML, image layers, logs, git diff, or `.env.example`.
 34. For an app with a database, restore a copy of production data into a separate throwaway database container, never the live volume. Mask personal data (names, IDs, phone numbers, bank details) and keep the same column types and value formats. Run the migration there and compare row counts with production. Record the image digest you deploy. Prove the rollback by starting the previous digest of the app against that same migrated copy and checking health. A rollback changes the image, not the data, so back up the volume before a schema change. If you cannot get production data, ask the user for a masked copy or seed data; do not skip silently. For an app with no database, skip the data part and still record the digest and prove the rollback.
 
@@ -127,7 +128,7 @@ networks:
 
 Adapt this pattern to the stack. Do not copy Node-specific `node_modules` volumes into non-Node projects.
 
-Postgres 18+ images mount at `/var/lib/postgresql`, not `/data`; moving 16/17 to 18 needs a dump/restore or `pg_upgrade`, not a tag bump.
+Postgres 18+ images declare the data volume at `/var/lib/postgresql`; 16 and 17 use `/var/lib/postgresql/data`. Moving 16/17 to 18 needs a dump/restore or `pg_upgrade`, not a tag bump.
 
 ## Guardrails
 

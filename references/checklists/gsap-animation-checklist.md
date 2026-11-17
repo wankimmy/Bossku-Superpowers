@@ -1,7 +1,5 @@
 # GSAP Animation Checklist
 
-> If the request is general, ambiguous, or touches many files, ask clarifying yes/no questions before acting.
-
 - Is the motion job clear: entrance, scroll, pin, text reveal, route transition, interaction, or 3D sync?
 - Are only the needed GSAP plugins registered?
 - Are multi-step sequences represented as timelines instead of scattered unrelated tweens?

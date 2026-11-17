@@ -14,7 +14,7 @@ Storage comes from ~/.bosskuai/config.json:
 - `memory_storage: "obsidian"`: canonical notes live directly under `<obsidian_vault>/BosskuAI/<project-name>/` (a configured root or git repo; clones and worktrees share their repo's folder; any other folder saves to `BosskuAI/_other-notes/`; `BosskuAI/Index.md` says what each folder holds). No memory or sync state is written inside the repo. Obsidian edits are authoritative.
 - `memory_storage: "repo"` (legacy default when unset): repo Markdown is exported one way to the vault.
 Configure vault storage with `bossku install --vault <existing-vault-path> --memory-storage obsidian`.
-The vault must exist outside the code repo. If unavailable, report the failed save; never fall back to repo storage.
+The vault must exist outside the code repo. If unavailable, report the failed save; never fall back to repo storage. If `remember` says a memory directory belongs to another project, the note was not written: report it, and do not write the note by hand or edit `memory_project_namespaces` in `~/.bosskuai/config.json` without the user's yes.
 
 ## Automatic workflow
 
@@ -22,7 +22,7 @@ The vault must exist outside the code repo. If unavailable, report the failed sa
 2. Save an actionable multi-phase plan with --kind plan when useful to future sessions.
 3. Do the requested work and verify outcomes.
 4. Automatically call `bossku remember --project <project-root> --kind decision|plan|learning|project "<concise verified note>"` before replying.
-5. Inspect the returned file and vault.status; never claim a save that failed.
+5. Read the result's `saved` flag first; `true` means the note was written. Then check `file` and `vault.status`: `skipped` means no vault copy was made (usually no vault configured, or the project is in the OS temp folder), not a failed save. Never claim a save that failed.
 
 | Kind | File | Content |
 |---|---|---|

@@ -168,7 +168,7 @@ Security severities come from `bosskuai-security-gate` (Alert threshold, `../bos
 - Do not expand scope to a full refactor unless the review evidence demands it — flag as scope escalation instead.
 - Do not review the diff in isolation — read call sites, tests, and infra touchpoints affected.
 - Do not equate "no defects found" or "CI passed" with proof that the intended outcome is achieved. State what the evidence supports.
-- A review request authorizes analysis; editing files, posting comments, or submitting a formal review needs authorization for that action.
+- A review request authorizes analysis; editing files, posting comments, or submitting a formal review needs authorization for that action. A self-review of your own diff under AGENTS.md Self-review is that authorization for fixes.
 - Reviewing is read-only for the machine too. Reproduce a problem in a scratch copy or with stubs; do not run installers, network calls, global-state or destructive commands against the real environment to prove a point. Read-only web lookups for versions and advisories are allowed; the shared bar and the security gate require them. If a check changed something outside the scratch copy, say what and put it back or tell the owner.
 
 ## Output format

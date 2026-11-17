@@ -7,7 +7,7 @@ The short version is in SKILL.md. Read this file only when the job needs the det
 
 ## Configured memory location
 
-Run `bossku memory-path --project <project-root>` to resolve `<memory-dir>` before reading or writing memory. Automatically save verified durable notes with `bossku remember` without waiting for the user to ask. When memory_storage is obsidian, all memory including handoffs lives directly in the vault; never create .bossku/memory in a code repo. The configured storage overrides legacy export wording below.
+Run `bossku memory-path --project <project-root>` to resolve `<memory-dir>` before reading or writing memory. Automatically save verified durable notes with `bossku remember` without waiting for the user to ask. When memory_storage is obsidian, all memory including handoffs lives directly in the vault; never create .bossku/memory in a code repo.
 
 Use this skill when the first task is understanding the workspace before going deeper.
 
@@ -20,8 +20,8 @@ Use this skill when the first task is understanding the workspace before going d
 
 Set the scope first: resolve the actual project root, the user's question, and the revision or working-tree state being read when available. Identify a focused reading budget and expand it only to close material uncertainties; non-Git projects remain supported.
 
-1. Read orientation artifacts first: nearest README, `AGENTS.md`, `CLAUDE.md`, docs, manifests, env examples, CI/runtime config.
-2. Read `<memory-dir>/handoff.md` and `<memory-dir>/project.md` first if they exist; leave the rest of memory until a task needs it.
+1. Read `<memory-dir>/handoff.md` and `<memory-dir>/project.md` first if they exist; leave the rest of memory until a task needs it.
+2. Read orientation artifacts: nearest README, `AGENTS.md`, `CLAUDE.md`, docs, manifests, env examples, CI/runtime config.
 3. Confirm documentation claims from real source code. Do not stop at README-level understanding.
 4. Sample source intelligently:
    - entry points and framework config

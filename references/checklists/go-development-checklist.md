@@ -1,7 +1,5 @@
 # Go Development Checklist
 
-> If the request is general, ambiguous, or touches many files — ask clarifying yes/no questions **before acting**. Use numbered bullets with explicit answer format: e.g. `1-yes/no  2-A/B`.
-
 - Does every function that does I/O, waits, or can be cancelled take `ctx context.Context` first and honor it?
 - Does every goroutine have an owner, a stop signal, and an error path (`errgroup`, `WaitGroup`, channel close)?
 - Are errors wrapped with `%w`, checked with `errors.Is`/`errors.As`, and handled or logged exactly once?

@@ -98,6 +98,156 @@ class PromoterTests(LearnCase):
                     self.apply(intent)
                 self.assertFalse((self.store() / str(intent.get("name"))).exists())
 
+    def test_frontmatter_keys_outside_the_documented_set_are_refused_by_name(self):
+        for key in ("allowed-tools", "model", "Allowed-Tools"):
+            with self.subTest(key):
+                intent = create()
+                intent["body"] = intent["body"].replace("learned: true\n", f"learned: true\n{key}: Bash\n")
+                with self.assertRaisesRegex(LearnError, key):
+                    self.apply(intent)
+                self.assertFalse((self.store() / "powershell-commands").exists())
+
+    def test_frontmatter_parser_differentials_cannot_hide_a_key(self):
+        head = "---\nname: powershell-commands\ndescription: Use when writing commands the user runs in Windows PowerShell.\ncategory: shell\nlearned: true\n"
+        cases = {
+            "fence differential": head + "---x: y\nallowed-tools: Bash\n---\n\n# x\n\nRule.\n",
+            "explicit key": head + "? allowed-tools\n: Bash\n---\n\n# x\n\nRule.\n",
+            "indented key": head + "  allowed-tools: Bash\n---\n\n# x\n\nRule.\n",
+            "fence trailing space": head.replace("---\n", "--- \n", 1) + "allowed-tools: Bash\n---\n\n# x\n\nRule.\n",
+            "fence tag": head.replace("---\n", "--- !x\n", 1) + "allowed-tools: Bash\n---\n\n# x\n\nRule.\n",
+            "bare CR": head.replace("PowerShell.\n", "PowerShell.\rallowed-tools: Bash\n") + "---\n\n# x\n\nRule.\n",
+            "NEL": head.replace("PowerShell.\n", "PowerShell.\x85allowed-tools: Bash\n") + "---\n\n# x\n\nRule.\n",
+            "line separator": head.replace("PowerShell.\n", "PowerShell.\u2028allowed-tools: Bash\n") + "---\n\n# x\n\nRule.\n",
+            "form feed": head.replace("PowerShell.\n", "PowerShell.\x0callowed-tools: Bash\n") + "---\n\n# x\n\nRule.\n",
+        }
+        for label, text in cases.items():
+            with self.subTest(label):
+                intent = create()
+                intent["body"] = text
+                with self.assertRaises(LearnError):
+                    self.apply(intent)
+                self.assertFalse((self.store() / "powershell-commands").exists())
+
+    def test_the_separator_checks_are_written_as_escapes_not_raw_characters(self):
+        # a raw U+2028 in the source is invisible and an editor can drop it, which would silently reopen the gap
+        for path in (Path(__file__), Path(__file__).parent.parent / "bossku" / "learn.py"):
+            text = path.read_text(encoding="utf-8")
+            self.assertNotIn(chr(0x2028), text, path.name)
+            self.assertNotIn(chr(0x2029), text, path.name)
+            self.assertIn(chr(92) + "u2028", text, path.name)
+
+    def test_patch_cannot_add_a_tool_grant(self):
+        self.apply(create())
+        with self.assertRaisesRegex(LearnError, "allowed-tools"):
+            self.apply({"action": "patch", "name": "powershell-commands", "old_string": "learned: true\n",
+                        "new_string": "learned: true\nallowed-tools: Bash\n", "reason": "r", "evidence": "e"})
+        with self.assertRaises(LearnError):
+            self.apply({"action": "patch", "name": "powershell-commands", "old_string": "Windows PowerShell.\n",
+                        "new_string": "Windows PowerShell.\rallowed-tools: Bash\n", "reason": "r", "evidence": "e"})
+
+    def test_command_secrets_in_more_command_shapes_are_refused(self):
+        forms = ["--password hunter2", "mysql -pS3cretPw", "curl -u bob:hunter2 https://x", "DB_PASS=abc123xyz"]
+        n = 0
+        for form in forms:
+            for label, line in {"inline span": f"Run `{form}` to connect.", "bullet": f"- {form}",
+                                "numbered": f"1. {form}", "table cell": f"| step | `{form}` |",
+                                "ps prompt": f"PS C:\\app> {form}", "ps bare": f"PS> {form}"}.items():
+                n += 1
+                with self.subTest(label + " " + form), self.assertRaisesRegex(LearnError, "secret"):
+                    self.apply(create(f"shape-{n}", body=f"# x\n\n{line}\n"))
+        with self.assertRaisesRegex(LearnError, "secret"):
+            self.apply(create("shape-env", body='# x\n\n$env:DB_PASS = "abc123xyz"\n'))
+        with self.assertRaisesRegex(LearnError, "secret"):
+            self.apply(create("shape-tpl", files={"templates/a.md": "```\nmysql -pS3cretPw\n```\n"},
+                              body="# x\n\nSee templates/a.md\n"))
+
+    def test_fence_tricks_do_not_hide_a_command(self):
+        for i, body in enumerate(("```sh mysql -pS3cretPw\n```", "```\n~~~\nvault kv put x --password hunter2\n```")):
+            with self.subTest(body), self.assertRaisesRegex(LearnError, "secret"):
+                self.apply(create(f"fence-{i}", body=f"# x\n\n{body}\n"))
+
+    def test_evidence_and_ledger_mask_command_line_secrets(self):
+        self.apply({**create(), "evidence": "user: run mysql -uroot -pS3cretPw app", "reason": "ran curl -u bob:hunter2 https://x"})
+        skill = self.store() / "powershell-commands"
+        text = next((skill / "references").glob("evidence-*.md")).read_text(encoding="utf-8")
+        text += (skill / "ledger.jsonl").read_text(encoding="utf-8")
+        for secret in ("S3cretPw", "hunter2"):
+            self.assertNotIn(secret, text)
+
+    def test_command_line_secrets_are_refused_in_body_and_subfiles(self):
+        forms = ["--password hunter2", "mysql -pS3cretPw", "curl -u bob:hunter2 https://x", "DB_PASS=abc123xyz"]
+        for form in forms:
+            with self.subTest("body fence " + form):
+                with self.assertRaises(LearnError):
+                    self.apply(create(body=f"# x\n\n```sh\n{form}\n```\n"))
+            with self.subTest("body prompt " + form):
+                with self.assertRaises(LearnError):
+                    self.apply(create(body=f"# x\n\n$ {form}\n"))
+            with self.subTest("subfile " + form):
+                with self.assertRaises(LearnError):
+                    self.apply(create(files={"references/a.md": f"```\n{form}\n```\n"},
+                                      body="# x\n\nSee references/a.md\n"))
+        self.assertFalse((self.store() / "powershell-commands").exists())
+
+    def test_prose_about_flags_still_passes(self):
+        self.apply(create(body="# x\n\nUse the --password flag, or -p for the port; never put a password in a file.\n"))
+        for i, line in enumerate(("> Use the --password flag when asked.", "> never put --token on the command line",
+                                  "set the --password flag", "git needs --token here")):
+            with self.subTest(line):
+                self.apply(create(f"prose-{i}", body=f"# x\n\n{line}\n"))
+
+    def test_program_named_secrets_are_refused_in_prose_quotes_and_cells(self):
+        for i, line in enumerate(("Then run mysql -uroot -pS3cretPw to connect to staging.", "> mysql -uroot -pS3cretPw app",
+                                  "| step | mysql -uroot -pS3cretPw app |", "Then docker login -u bob -p hunter2 works.",
+                                  "Then curl -u bob:hunter2 https://x works.",
+                                  "Then deploy with --password hunter2 on prod.", "> deploy.ps1 --password hunter2",
+                                  "| step | deploy.ps1 --password hunter2 |", "- php artisan deploy --password hunter2",
+                                  "Then deploy with --db-pass=S3cretPw on prod.",
+                                  "Call the tool with --api-key AbC123xyz456 each time.",
+                                  "Set DB_PASS=abc123xyz in the shell first.", "> DB_PASS=abc123xyz php artisan migrate",
+                                  "| env | DB_PASS=abc123xyz |", "Then gh secret set DB --body abc123xyz once.",
+                                  'Then deploy with --password "my hunter2 phrase" on prod.')):
+            with self.subTest(line), self.assertRaisesRegex(LearnError, "secret"):
+                self.apply(create(f"named-{i}", body=f"# x\n\n{line}\n"))
+
+    def test_a_literal_password_is_refused_even_when_the_user_part_is_a_variable(self):
+        for i, line in enumerate(("Run `curl -u $USER:hunter2 https://x` here.", "Then curl -u $USER:hunter2 https://x works.",
+                                  'Run `curl -u "${NEXUS_USER}:S3cretPw9" https://nexus.example.com` here.',
+                                  "Run `http --auth $USER:hunter2 https://x` here.", "Run `--password <S3cretPw9>` here.",
+                                  'Run `--password "$(echo hunter2)"` here.')):
+            with self.subTest(line), self.assertRaisesRegex(LearnError, "secret"):
+                self.apply(create(f"mixed-{i}", body=f"# x\n\n{line}\n"))
+
+    def test_a_variable_or_placeholder_value_is_not_a_secret(self):
+        for i, body in enumerate(("Run `-Credential $cred` here.", "```\n-Credential (Get-Credential)\n```",
+                                  "Run `--token <your-token>` here.", 'Run `--password "$DB_PASSWORD"` here.',
+                                  "Run `gh auth login --with-token < token.txt` here.",
+                                  "Run `curl -u admin:$ADMIN_PASSWORD https://x` here.",
+                                  'Run `curl --user "api:$MAILGUN_API_KEY" https://api.mailgun.net/v3` here.',
+                                  'Run `gh secret set DB --body "$1"` here.', "Run `mysql -p%DB_PASSWORD%` here.",
+                                  "Run `deploy --password {{ vault_db_password }}` here.")):
+            with self.subTest(body):
+                self.apply(create(f"safe-{i}", body=f"# x\n\n{body}\n"))
+
+    def test_a_flag_of_another_command_is_not_read_as_a_password(self):
+        for i, line in enumerate(("Run `docker login ghcr.io` first, then `docker run -p 8080:80 ghcr.io/me/app`.",
+                                  "After docker login, start it with docker run -p 8080:80 nginx.",
+                                  "Stop mysql, then cp -pr /var/lib/mysql /backup/mysql-2026.",
+                                  "`mysql` runs in Docker: `docker run -p3306:3306 mysql:8`.",
+                                  "Fetch the index with curl, then pip install -U requests==2.31.",
+                                  "Run mysqldump first, then mkdir -pv /backups/today.",
+                                  "We use mysql for storage.\n-preview builds go to staging")):
+            with self.subTest(line):
+                self.apply(create(f"other-{i}", body=f"# x\n\n{line}\n"))
+
+    def test_known_misses_of_the_sentence_scan_stay_refused(self):
+        # Two commands on one line without a comma or a backtick between them: the flag of the second is read as the first's.
+        for i, line in enumerate(("Run curl after docker run -u 1000:1000 on the host.",
+                                  "Download with curl -LO https://x.example.com/y.zip then unzip -u y.zip.",
+                                  "Tunnel to mysql with ssh -p2222 -L 3306:localhost:3306 host.")):
+            with self.subTest(line), self.assertRaisesRegex(LearnError, "secret"):
+                self.apply(create(f"miss-{i}", body=f"# x\n\n{line}\n"))
+
     def test_create_refuses_an_existing_skill_and_patch_needs_a_unique_match(self):
         self.apply(create())
         with self.assertRaises(LearnError):

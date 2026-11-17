@@ -34,7 +34,7 @@ For meaningful work:
 
 1. Read project memory in the configured memory directory (resolve it with `bossku memory-path --project <project-root>`) when relevant.
 2. Classify the task and pick the lightest accurate skill stack. Unmapped area on medium/large work: **Researcher** (read-only, haiku) maps it first.
-3. **Planner** before multi-file changes; tier by risk (auth, payments, tenant, migrations or secrets = large; new multi-file behaviour = medium). Medium/large: the user approves a one-page brief (unless they already gave the exact change), then **Executor** builds from it in a fresh context (subagent or new session). A wrong architecture or business-rule assumption: stop patching; restart from a corrected brief.
+3. **Planner** before multi-file changes; tier by risk (auth, payments, tenant, migrations or secrets = large; new multi-file behaviour = medium). Large: the user approves a one-page brief (unless they already gave the exact change). Medium: write the one-page brief with its assumptions and build; ask only on a Risk pause. **Executor** builds from the brief in a fresh context (subagent or new session). A wrong architecture or business-rule assumption: stop patching; restart from a corrected brief.
 4. **Auditor** after substantive edits: every acceptance criterion covered, each new guard called on the real entry path, diff inside the planned files. **Final reviewer** before high-stakes completion.
 5. Automatically save useful verified decisions, plans, facts, and lessons with `bossku remember --kind decision|plan|learning|project` before replying, without waiting for a request.
 
@@ -46,7 +46,7 @@ Simplest thing that works: YAGNI → stdlib → native → installed dep → min
 
 ## Anti-slop (always on)
 
-Use `antislop` as the final delivery gate when output quality is a material concern. Add only the relevant specialist: `antislop-ui` for generic visual patterns, `antislop-layoutmobile` for small-screen reflow, `antislop-copywriting` for prose, `antislop-human` for contrast, keyboard, focus, and states, or `antislop-code` for code comments. Design default is Awwwards style: load `bosskuai-taste` (the house rule) before UI generation; Anti-Slop audits the result. For motion, use `emil-design-eng` or `animate` (`animate-expo` in React Native).
+Use `antislop` as the final delivery gate when output quality is a material concern. Add only the relevant specialist: `antislop-ui` for generic visual patterns, `antislop-layoutmobile` for small-screen reflow, `antislop-copywriting` for prose, `antislop-human` for contrast, keyboard, focus, and states, or `antislop-code` for code comments. Classify the product before choosing a design direction: showcase web (marketing, landing, portfolio, agency) loads `bosskuai-taste` (the Awwwards house rule) and a `jury` score; task-first public pages (storefront, checkout, docs, pricing) keep familiar patterns and native scroll. Product UI (SaaS, ERP/CRM/HRMS, dashboards, internal tools) and consumer or mobile apps follow the project's design system and platform conventions through `bosskuai-ui-ux-design-to-code`, with no showcase motion on operational screens; Anti-Slop audits the result. For motion, use `emil-design-eng` or `animate` (`animate-expo` in React Native).
 
 ## Superpowers process
 
@@ -81,6 +81,10 @@ When a repo has a `graft/` index, prefer one targeted `graft ask`, `grep`, `call
 
 Checklist: [`references/checklists/grounding-checklist.md`](references/checklists/grounding-checklist.md).
 
+## Engagement ethics (always on)
+
+Engagement serves the user's goal. No fake or reset deadlines, invented scarcity or social proof, pre-ticked consent, guilt copy, punitive streaks or hard-to-cancel flows, even when a loaded skill suggests one. Reminders are opt-in and easy to turn off. An engagement feature is a hypothesis until measured. Checklist: [`references/checklists/engagement-ethics-checklist.md`](references/checklists/engagement-ethics-checklist.md).
+
 ## Security gate (always on)
 
 `bosskuai-security-gate` is a default trait: every change to code, infra, dependencies, config, agent setup or a business flow gets a security pass before it is called done. "normal mode" does not switch it off; pure questions and prose skip it.
@@ -101,7 +105,7 @@ After a turn that changed source code, review your own diff with `bosskuai-rigor
 
 Ask before payments, auth, secrets, privacy, data loss, or migrations. Never stage or commit secret files (`.env`, `*.pem`, `*.key`, credentials). Push, merge and PRs wait for the user's go-ahead (an explicit ask, or an approved loop spec that names it).
 
-When a request is general, ambiguous, or touches many files, ask 1-3 numbered yes/no questions before acting (`1-yes/no  2-A/B`). This applies to every skill — individual skills do not repeat it.
+Routine, reversible work needs no approval: read the repo and the notes, take the project's convention as the default, state the assumption in the reply and verify. Ask 1-3 numbered yes/no questions (`1-yes/no  2-A/B`) only when the repo and the notes cannot answer and a wrong guess would change what gets built or be costly to undo. This applies to every skill — individual skills do not repeat it.
 
 ## Memory
 
@@ -119,7 +123,7 @@ Vendored packs: [`skills/vendored.json`](skills/vendored.json), credits in [`doc
 
 ## Verification
 
-Before declaring done: re-check the request, review changed files, run the relevant check, and state anything not verified.
+Before declaring done: re-check the request, review changed files, run the relevant check, and state anything not verified. End in one state, backed by what ran, never by a confident reply: `VERIFIED_COMPLETE` (the checks ran after the last edit and passed), `PARTIALLY_COMPLETE` (say what is left), `FAILED_VERIFICATION` (name the failing check), `BLOCKED` (name the blocker) or `AWAITING_AUTHORIZATION` (a Risk pause). `bossku evidence --transcript <path>` lists the edits and checks found in a transcript.
 
 ```bash
 python -m bossku skills index --root .   # only if a skill or routing input changed

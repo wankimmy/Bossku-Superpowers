@@ -11,7 +11,7 @@ metadata:
 
 ## Configured memory location
 
-Run `bossku memory-path --project <project-root>` to resolve `<memory-dir>` before reading or writing memory. Automatically save verified durable notes with `bossku remember` without waiting for the user to ask. When memory_storage is obsidian, all memory including handoffs lives directly in the vault; never create .bossku/memory in a code repo. The configured storage overrides legacy export wording below.
+Run `bossku memory-path --project <project-root>` to resolve `<memory-dir>` before reading or writing memory. Automatically save verified durable notes with `bossku remember --kind decision|plan|learning|project` without waiting for the user to ask. When memory_storage is obsidian, all memory including handoffs lives directly in the vault; never create .bossku/memory in a code repo.
 
 Analyze a draft prompt, critique it, match it to BosskuAI workspace components
 (skills, agent contracts, loops, memory), and output a complete optimized
@@ -101,7 +101,7 @@ estimate from the prompt description alone and mark the estimate as uncertain.
 ### Phase 3: BosskuAI Component Matching
 
 Map intent + scope + tech stack (from Phase 0) to specific workspace components.
-When unsure what exists, check `skill-index.json` (the live roster) instead of
+When unsure what exists, check `skills/skill-index.json` (the live roster) instead of
 guessing — `bosskuai-skill-stocktake` audits it.
 
 #### By Intent Type
@@ -154,8 +154,7 @@ whether Phase 0 auto-detected it or the user must supply it:
 - [ ] **Source of truth** — which files, docs, or data must the answer be grounded in, and may the model use general knowledge?
 
 **If 3+ critical items are missing**, ask the user up to 3 clarification
-questions before generating the optimized prompt (the `clarification`
-indicator state). Then incorporate the answers.
+questions before generating the optimized prompt. Then incorporate the answers.
 
 ### Phase 5: Workflow & Model Recommendation
 

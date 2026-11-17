@@ -59,6 +59,8 @@ Confirm:
 - [ ] The loop produces the failure mode the **user** described — not a different failure that happens to be nearby. Wrong bug = wrong fix.
 - [ ] The failure is reproducible across multiple runs (or, for non-deterministic bugs, reproducible at a high enough rate to debug against).
 - [ ] You have captured the exact symptom (error message, wrong output, slow timing) so later phases can verify the fix actually addresses it.
+- [ ] The environment matches the one where it fails: instance count, timezone, runtime and dependency versions, env vars, cold or warm cache. One instance, a warm cache or an automatic retry can hide a bug that production shows.
+- [ ] The bug does not vanish when you watch it. If a log or a debugger makes it stop, suspect timing (a race or a delay) and test that next.
 - [ ] Minimise: remove inputs, steps, and code until removing anything else makes the bug disappear. Keep the original scenario for the Phase 5 re-run.
 
 Do not proceed until you reproduce the bug.

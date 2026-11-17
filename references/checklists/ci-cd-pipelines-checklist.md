@@ -1,7 +1,5 @@
 # CI/CD Pipelines Checklist
 
-> If the request is general, ambiguous, or touches many files — ask clarifying yes/no questions **before acting**. Use numbered bullets with explicit answer format: e.g. `1-yes/no  2-A/B`.
-
 - Is the PR pipeline under ~10 minutes at p50, with lint, typecheck, unit, integration, secret scan, and build running in parallel where possible?
 - Are `permissions:` minimal at workflow level, with `id-token`/`packages`/`deployments` granted only on the jobs that need them?
 - Is `concurrency` cancelling superseded PR runs and never cancelling deploys?

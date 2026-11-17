@@ -53,10 +53,7 @@ Use this skill when the main question is **how software is built, shipped, confi
 - Are third-party actions/modules pinned and reviewed?
 
 **Observability and recovery**
-- Are logs structured (JSON or key-value), with consistent fields (trace_id, request_id, service, level, timestamp)?
-- Are OpenTelemetry traces instrumented at service entry points and propagated across async boundaries?
-- Are SLOs defined? Are error budgets tracked and visible to the team?
-- Are distributed trace spans linked across services so a single user request can be followed end-to-end?
+- Does the deploy gate read the service's error-rate and latency signals, and the SLO burn or error budget if one is set? Instrumentation itself lives in `bosskuai-observability-sre`.
 - What is the rollback path? What fails closed versus open?
 
 ## Workflow

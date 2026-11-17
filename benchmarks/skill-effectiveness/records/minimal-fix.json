@@ -1,0 +1,20 @@
+{
+  "skill_id": "minimal-fix",
+  "skill_version": "a00288ec2bd72f2de62868da59a89cde4959f5c4",
+  "model": null,
+  "host": null,
+  "task_category": null,
+  "suite": null,
+  "baseline_arm": null,
+  "arm": null,
+  "sample_size": null,
+  "baseline_pass_rate": null,
+  "skill_pass_rate": null,
+  "paired_difference": null,
+  "confidence_interval": null,
+  "token_overhead": null,
+  "cost_per_success": null,
+  "evaluation_status": "not_tested",
+  "last_evaluated": "2026-11-17",
+  "source_rows": []
+}

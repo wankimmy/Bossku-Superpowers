@@ -22,14 +22,14 @@ For each skill, check:
 ## Workflow
 
 1. Inventory skill files and note rough size/verbosity.
-2. Check root `AGENTS.md` alignment: missing, stale, or duplicate roster entries.
+2. Check that root `AGENTS.md` and `docs/routing.md` have no missing, stale, or duplicate routing entries.
 3. Flag skills that are vague, overlapping, stale, or too heavy for how often they load.
 4. Prefer the smallest safe maintenance action: keep, improve, merge, update, retire.
 5. Prioritize high-traffic skills and always-loaded rule surfaces first.
 
 ## Token-efficiency bias
 
-- Repeated routing tables belong in root `AGENTS.md`, not every tool-specific file.
+- Repeated routing tables belong in `docs/routing.md` (linked from root `AGENTS.md`), not every tool-specific file.
 - Keep skill bodies dense with decisions and guardrails; move long procedures to playbooks/checklists when possible.
 - A shorter skill is better only if routing clarity and actionability stay intact.
 

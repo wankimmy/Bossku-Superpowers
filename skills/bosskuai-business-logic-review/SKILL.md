@@ -10,7 +10,7 @@ Use this skill when the main risk is **incorrect workflow rules**, not syntax er
 ## How this differs from nearby skills
 
 - **`bosskuai-rigorous-code-review`**: catches implementation bugs and code quality issues; load alongside when a code diff may encode wrong rules.
-- **`bosskuai-diagnose-loop`**: traces known failure paths and correlates business-rule failures with logs, DB rows, job traces, and real incident evidence; load when a specific defect is already suspected.
+- **`bosskuai-diagnose-loop`**: reproduces, isolates and fixes a known bug or slow path; load when a specific defect is already suspected.
 - **`bosskuai-product-strategy`**: defines what the rules should be; this skill audits what they actually are.
 - **`bosskuai-cybersecurity-risk`**: checks whether rules can be exploited; load alongside when auth, permissions, or financial logic is involved.
 
@@ -41,7 +41,7 @@ Use these as patterns to hunt for in any domain — they are not exhaustive.
    - "A balance cannot go negative without explicit overdraft permission."
    List these explicitly; they become the test of the review.
 
-3. **Trace the happy path and failure paths** — Follow the full flow from trigger to terminal state. Then ask: what happens at each step if the expected precondition is false?
+3. **Trace the happy path and failure paths** — Follow the full flow from trigger to terminal state. Then ask: what happens at each step if the expected precondition is false? Walk each scenario (engineering quality bar, section 3) until every one that can reach the change is tested or named untested. Hardest axes here: concurrent writers, retried or late webhooks, each role and tenant.
 
 4. **Check handoffs and ownership transitions** — Who holds responsibility at each state? What happens if the handoff is missed? Who can undo or override?
 
@@ -55,7 +55,7 @@ Use these as patterns to hunt for in any domain — they are not exhaustive.
 
 7. **Check cross-module side effects** — When state changes in one module, what does it trigger elsewhere? Are all downstream consumers aware of every possible transition?
 
-8. **Check against production data** — Run the rules against a production data copy (never production): count the rows in each state, find rows the change would miss, break or move by surprise (nulls, legacy values, duplicates, orphans), and compare data types and structure with production (the number 0.01 in tests vs the string "0.01" in production). Check the effect on day-to-day operations and existing users. If there is no copy, ask the user to prepare one.
+8. **Check against production data** — Run the rules against a production data copy (never production), with personal data and secrets masked and the copy kept out of git, logs and test fixtures: count the rows in each state, find rows the change would miss, break or move by surprise (nulls, legacy values, duplicates, orphans), and compare data types and structure with production (the number 0.01 in tests vs the string "0.01" in production). Check the effect on day-to-day operations and existing users. If there is no copy, ask the user to prepare one.
 
 ## Finding workflows nobody wrote down
 
@@ -69,7 +69,7 @@ Use these as patterns to hunt for in any domain — they are not exhaustive.
 
 - Do not confuse input validation with business rules — they are different concerns.
 - Do not assume that because a rule is implemented it is the right rule.
-- Do not skip edge states (empty, deleted, expired, locked) — most logic bugs live there.
+- Do not skip edge states (empty, deleted, expired, locked) — most logic bugs live there. Also check bypass paths (admin tools, migrations, a second API version) and events that arrive out of order.
 - Prefer state machine diagrams over prose when mapping transitions.
 
 ## Output format

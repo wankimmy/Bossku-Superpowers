@@ -32,6 +32,7 @@ Use this skill when Redis, queues, caching, sessions, distributed locks, rate li
 - Long-running jobs chunk work and do not serialize heavy Eloquent models blindly.
 - Rate limits protect expensive endpoints and third-party APIs.
 - Redis is not publicly exposed and has persistence/backup settings appropriate to its role.
+- Walk the scenarios in `../../references/checklists/engineering-quality-bar.md` section 3. Done when each scenario that can reach the change is tested or named untested. Queues: concurrent workers, retries, a deploy mid-run. Cache keys: another tenant, each role.
 
 ## Guardrails
 
@@ -69,7 +70,7 @@ Verification: [tests/commands/logs]
 - Avoid `KEYS *` in production (use `SCAN`), blobs above roughly 100 KB (store a reference to object storage), and mass deletes with a broad flush command; scope deletes by key pattern.
 - Client config: connection pool sized to the workload with connect and socket timeouts; eviction policy per instance as above.
 - Keys and shapes change on deploy. Version a key (for example a `v2:` segment) when its value shape changes, because old entries stay until their TTL. Prefer arrays or scalars for cached values. If you must cache an object, version its key whenever its class is renamed, moved or removed. Otherwise the old class name comes back as an object of `__PHP_Incomplete_Class`, and calls to its methods fail.
-- Jobs queued before a deploy keep their class name and data. Renaming or removing the job class makes those jobs fail, so keep the old class until the queue is empty, or drain the queue before the deploy. A job that uses `SerializesModels` reloads its model when it runs; if the row was deleted, the job fails with `ModelNotFoundException`.
+- Jobs queued before a deploy keep their class name and data. Renaming or removing the job class makes those jobs fail, so keep the old class until the queue is empty, or drain the queue before the deploy. A job that uses `SerializesModels` reloads its model when it runs; if the row was deleted, the job fails with `ModelNotFoundException`. A job dispatched inside an open transaction can run before the commit and miss the row; use `->afterCommit()` on the dispatch.
 - Replication is asynchronous. After a failover, a lock or a queued job that the old primary had acknowledged can be missing. `WAIT` narrows that gap but does not close it, so keep the database as the final guard. With `appendfsync everysec`, a crash can lose about one second of writes.
 
 Adapted in part from ECC skills/redis-patterns (affaan-m/ECC, MIT).

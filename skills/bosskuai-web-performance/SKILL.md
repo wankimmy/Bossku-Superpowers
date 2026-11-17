@@ -74,7 +74,7 @@ Cover every route under the reported page first (list, detail, edit, each tab), 
 ## Framework notes
 
 - **Nuxt**: watch the payload size, use `useLazyAsyncData` for non-critical data, `nuxt/image`, `routeRules` with `swr`/`isr`/`prerender`, fix hydration mismatches (time, randomness, browser-only state).
-- **Next.js**: keep the `"use client"` boundary low, `next/image`, `next/font`, `dynamic(..., { ssr: false })` for browser-only widgets, streaming with Suspense.
+- **Next.js**: keep the `"use client"` boundary low, `next/image`, `next/font`, `dynamic(..., { ssr: false })` for browser-only widgets inside a Client Component (Next rejects it in a Server Component), streaming with Suspense.
 - **React SPA**: prerender or SSR the shell; lazy routes; virtualize lists.
 - **Server-rendered (Laravel Blade, Django)**: full-page cache where possible, defer scripts, inline critical CSS, image pipeline.
 

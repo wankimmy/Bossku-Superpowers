@@ -1,0 +1,25 @@
+{
+  "skill_id": "pack:bossku",
+  "skill_version": null,
+  "model": "gemma4:31b",
+  "host": "claude-code",
+  "task_category": null,
+  "suite": "hard",
+  "baseline_arm": "baseline",
+  "arm": "after",
+  "sample_size": 14,
+  "baseline_pass_rate": 0.5714285714285714,
+  "skill_pass_rate": 0.6428571428571429,
+  "paired_difference": 0.07142857142857144,
+  "confidence_interval": [
+    -0.05952380952380952,
+    0.2023809523809524
+  ],
+  "token_overhead": 0.20154542741783232,
+  "cost_per_success": null,
+  "evaluation_status": "promising_insufficient_evidence",
+  "last_evaluated": "2026-11-17",
+  "source_rows": [
+    "benchmarks/results/raw/hard-gemma4-31b.jsonl"
+  ]
+}

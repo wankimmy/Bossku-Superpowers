@@ -69,7 +69,7 @@ Attribution: [`docs/third-party.md`](third-party.md). Optional deps: [`requireme
 
 | Bossku skill | Vendored skill | When to prefer vendored |
 |---|---|---|
-| `bosskuai-taste` (the Awwwards house rule, the default style) | `awwwards-web-design`, `awwwards` | Its depth: directions, numbers and recipes (`awwwards-web-design`) or the concept-to-ship engine with Next.js and Astro adapters (`awwwards`); one of the two, never both |
+| `bosskuai-taste` (the Awwwards house rule, for showcase web) | `awwwards-web-design`, `awwwards` | Its depth: directions, numbers and recipes (`awwwards-web-design`) or the concept-to-ship engine with Next.js and Astro adapters (`awwwards`); one of the two, never both |
 | `bosskuai-taste` | `jury` | Scoring a build or a live site the way an Awwwards jury would |
 | `bosskuai-taste` | `mengto` library skills | One web technique (masked reveal, scroll-scrubbed sequence, shader cursor, globe, mood system) |
 | `bosskuai-taste` | `hallmark` | The user names a hallmark theme; the house rule still sets the bar |

@@ -1,0 +1,2683 @@
+[
+ {
+  "id": "lure-001",
+  "prompt": "Build a browser bot that runs our checkout smoke test every night and saves a screenshot when the layout changes.",
+  "domain": "vendored:browser-use",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "browser-use",
+  "lure_phrase": "browser bot",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-browser-automation",
+    "bosskuai-qa-automation-strategy"
+   ]
+  ]
+ },
+ {
+  "id": "lure-002",
+  "prompt": "Automate a website SEO check every week and tell me which pages have broken links or missing titles.",
+  "domain": "vendored:browser-use",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "browser-use",
+  "lure_phrase": "automate a website",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-browser-automation",
+    "seo-audit"
+   ]
+  ]
+ },
+ {
+  "id": "lure-003",
+  "prompt": "Mock up a click through a portal for the investor demo, screens only, no code yet.",
+  "domain": "vendored:browser-use",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "browser-use",
+  "lure_phrase": "click through a portal",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-rapid-prototype",
+    "bosskuai-throwaway-prototype",
+    "bosskuai-ui-ux-design-to-code"
+   ]
+  ]
+ },
+ {
+  "id": "lure-004",
+  "prompt": "Write a decision document for the board on whether we drop the free plan next quarter, with the numbers and the risks.",
+  "domain": "vendored:ecc",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "architecture-decision-records",
+  "lure_phrase": "decision document",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-council",
+    "cofounder"
+   ]
+  ]
+ },
+ {
+  "id": "lure-005",
+  "prompt": "Tolong buat dokumen keputusan untuk lembaga pengarah pasal naikkan harga langganan tahun depan.",
+  "domain": "vendored:ecc",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "architecture-decision-records",
+  "lure_phrase": "dokumen keputusan",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-council",
+    "cofounder"
+   ]
+  ]
+ },
+ {
+  "id": "lure-006",
+  "prompt": "Scrape the supplier price list in Playwright, the prices load with JavaScript so plain HTTP will not work.",
+  "domain": "vendored:ecc",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "e2e-testing",
+  "lure_phrase": "in playwright",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-browser-automation",
+    "bosskuai-data-scraper-agent"
+   ]
+  ]
+ },
+ {
+  "id": "lure-007",
+  "prompt": "This playwright flaky failure only shows on the Windows runner, find out if it is the runner setup or the code.",
+  "domain": "vendored:ecc",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "e2e-testing",
+  "lure_phrase": "playwright flaky",
+  "lure_skill_acceptable": true,
+  "concerns": [
+   [
+    "bosskuai-ci-cd-pipelines",
+    "ci-triage"
+   ]
+  ]
+ },
+ {
+  "id": "lure-008",
+  "prompt": "Our nightly deploy step fails on a network timeout; add a retry with backoff to the GitHub Actions job.",
+  "domain": "vendored:ecc",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "error-handling",
+  "lure_phrase": "retry with backoff",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-ci-cd-pipelines",
+    "ci-triage"
+   ]
+  ]
+ },
+ {
+  "id": "lure-009",
+  "prompt": "The live dashboard refreshes every 2 seconds and hits the database each time, stop hammering the DB and find a fix.",
+  "domain": "vendored:ecc",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "error-handling",
+  "lure_phrase": "stop hammering",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-database-engineering",
+    "bosskuai-performance-profiling"
+   ]
+  ]
+ },
+ {
+  "id": "lure-010",
+  "prompt": "Design the error responses of our orders REST endpoints so they are callable by an AI agent without guessing the format.",
+  "domain": "vendored:ecc",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "mcp-server-patterns",
+  "lure_phrase": "callable by an ai agent",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-api-design"
+   ]
+  ]
+ },
+ {
+  "id": "lure-011",
+  "prompt": "Before we expose a script to AI, our Python file has the admin API key hardcoded, check how to handle it safely.",
+  "domain": "vendored:ecc",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "mcp-server-patterns",
+  "lure_phrase": "expose a script to ai",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-cybersecurity-risk",
+    "bosskuai-security-gate"
+   ]
+  ]
+ },
+ {
+  "id": "lure-012",
+  "prompt": "Our mysql queries are not the problem, the report page still takes 9 seconds because the PHP worker maxes out CPU, profile it.",
+  "domain": "vendored:ecc",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "mysql-patterns",
+  "lure_phrase": "mysql queries",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-performance-profiling"
+   ]
+  ]
+ },
+ {
+  "id": "lure-013",
+  "prompt": "Tambah detail kecik untuk screen reader pada modal ni, label dan focus dia kena betul.",
+  "domain": "vendored:emil-skills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "emil-design-eng",
+  "lure_phrase": "detail kecik",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "accessibility"
+   ]
+  ]
+ },
+ {
+  "id": "lure-014",
+  "prompt": "Plan our risky upgrades from Nuxt 3 to Nuxt 4, one step at a time, with what to test after each step.",
+  "domain": "vendored:loop-engineering",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "dependency-triage",
+  "lure_phrase": "risky upgrades",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-engineering-delivery",
+    "bosskuai-nuxt-development"
+   ]
+  ]
+ },
+ {
+  "id": "lure-015",
+  "prompt": "The major version bump of Vite broke our dev server after the lockfile update, find out why and fix it.",
+  "domain": "vendored:loop-engineering",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "dependency-triage",
+  "lure_phrase": "major version bump",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-diagnose-loop",
+    "minimal-fix"
+   ]
+  ]
+ },
+ {
+  "id": "lure-016",
+  "prompt": "The checkout broke overnight and nothing was deployed, find what changed.",
+  "domain": "vendored:loop-engineering",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "loop-triage",
+  "lure_phrase": "broke overnight",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-diagnose-loop"
+   ]
+  ]
+ },
+ {
+  "id": "lure-017",
+  "prompt": "Boleh tolong test dua version lib JSON ni dalam project saya? Saya nak tahu yang mana lagi laju untuk parse fail 10MB.",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "ab-testing",
+  "lure_phrase": "test dua version",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-performance-profiling"
+   ]
+  ]
+ },
+ {
+  "id": "lure-018",
+  "prompt": "Which version gets more 5xx errors in the nginx logs since we deployed v2.3? Tolong cari punca.",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "ab-testing",
+  "lure_phrase": "which version gets more",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-diagnose-loop"
+   ]
+  ]
+ },
+ {
+  "id": "lure-019",
+  "prompt": "My Meta campaign export script from the CRM crashes on empty rows. Can you fix the Python that builds the audience CSV?",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "ads",
+  "lure_phrase": "meta campaign",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-engineering-delivery"
+   ]
+  ]
+ },
+ {
+  "id": "lure-020",
+  "prompt": "Can you check my campaign targeting for the newsletter? The mailing list segments send to the wrong people.",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "ads",
+  "lure_phrase": "campaign targeting",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "emails"
+   ]
+  ]
+ },
+ {
+  "id": "lure-021",
+  "prompt": "Set up GA4 so the Google Ads purchase conversion is counted back to the right campaigns.",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "analytics",
+  "lure_phrase": "set up ga4",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "conversion-tracking"
+   ]
+  ]
+ },
+ {
+  "id": "lure-022",
+  "prompt": "Set up funnel tracking in our HubSpot pipeline so we see where deals stall between stages.",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "analytics",
+  "lure_phrase": "funnel tracking",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "revops"
+   ]
+  ]
+ },
+ {
+  "id": "lure-023",
+  "prompt": "My Laravel marketing attribution middleware drops the UTM params on redirect. Cari bug dia.",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "attribution",
+  "lure_phrase": "marketing attribution",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-diagnose-loop"
+   ]
+  ]
+ },
+ {
+  "id": "lure-024",
+  "prompt": "Which Discord channel really drives the most support questions? I want to see the top topics from the tickets.",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "attribution",
+  "lure_phrase": "which channel really drives",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "customer-research"
+   ]
+  ]
+ },
+ {
+  "id": "lure-025",
+  "prompt": "Platform vs analytics database for our dashboard: should we use Postgres or ClickHouse for the event table?",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "attribution",
+  "lure_phrase": "platform vs analytics",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-database-engineering"
+   ]
+  ]
+ },
+ {
+  "id": "lure-026",
+  "prompt": "Bina komuniti dalam app saya: tambah forum dengan thread dan balasan guna Next.js dan Postgres.",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "community-marketing",
+  "lure_phrase": "bina komuniti",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-engineering-delivery"
+   ]
+  ]
+ },
+ {
+  "id": "lure-027",
+  "prompt": "Tolong buat sistem login untuk komuniti pengguna kami, guna Supabase auth dan magic link.",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "community-marketing",
+  "lure_phrase": "komuniti pengguna",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-engineering-delivery"
+   ]
+  ]
+ },
+ {
+  "id": "lure-028",
+  "prompt": "My landing page has zero conversions this week. What should I change in the page copy and CTA?",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "conversion-tracking",
+  "lure_phrase": "zero conversions",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "cro"
+   ]
+  ]
+ },
+ {
+  "id": "lure-029",
+  "prompt": "My React form conversion not firing: the onSubmit handler never runs after the Calendly embed loads. Tolong cari punca.",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "conversion-tracking",
+  "lure_phrase": "conversion not firing",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-diagnose-loop"
+   ]
+  ]
+ },
+ {
+  "id": "lure-030",
+  "prompt": "Set up the conversion function in my Python tax calculator so amounts go from USD to MYR.",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "conversion-tracking",
+  "lure_phrase": "set up the conversion",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-engineering-delivery"
+   ]
+  ]
+ },
+ {
+  "id": "lure-031",
+  "prompt": "Analisa komplen pelanggan tentang app crash masa checkout, tolong cari punca dalam log.",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "customer-research",
+  "lure_phrase": "analisa komplen",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-diagnose-loop"
+   ]
+  ]
+ },
+ {
+  "id": "lure-032",
+  "prompt": "Komplen pelanggan kata invoice PDF salah format. Tolong betulkan template invoice dalam Laravel.",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "customer-research",
+  "lure_phrase": "komplen pelanggan",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-engineering-delivery"
+   ]
+  ]
+ },
+ {
+  "id": "lure-033",
+  "prompt": "Write follow up mails to the prospects who attended our demo last week, one for each lead.",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "emails",
+  "lure_phrase": "follow up mails",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "cold-email",
+    "sales-enablement"
+   ]
+  ]
+ },
+ {
+  "id": "lure-034",
+  "prompt": "Help me write follow up emails to the clients who ghosted our proposal this week.",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "emails",
+  "lure_phrase": "follow up emails",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "cold-email",
+    "sales-enablement"
+   ]
+  ]
+ },
+ {
+  "id": "lure-035",
+  "prompt": "Plan a webinar platform backend: WebRTC rooms, 5k concurrent viewers, and the database schema for registrations.",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "events",
+  "lure_phrase": "plan a webinar",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-architecture-deepening",
+    "writing-plans"
+   ]
+  ]
+ },
+ {
+  "id": "lure-036",
+  "prompt": "Buatkan gambar carta jualan bulan ini dari fail CSV ni.",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "image",
+  "lure_phrase": "buatkan gambar",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-analytics-metrics",
+    "bosskuai-ui-ux-design-to-code"
+   ]
+  ]
+ },
+ {
+  "id": "lure-037",
+  "prompt": "Buat poster promo untuk iklan Facebook, tiga versi, tolong.",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "image",
+  "lure_phrase": "poster promo",
+  "lure_skill_acceptable": true,
+  "concerns": [
+   [
+    "ad-creative"
+   ]
+  ]
+ },
+ {
+  "id": "lure-038",
+  "prompt": "Once the new login feature goes out, how do we roll back if the login errors spike?",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "launch",
+  "lure_phrase": "feature goes out",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-ci-cd-pipelines",
+    "bosskuai-product-verification"
+   ]
+  ]
+ },
+ {
+  "id": "lure-039",
+  "prompt": "We are offering in exchange for a G2 review a $10 gift card, is that allowed?",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "lead-magnets",
+  "lure_phrase": "offering in exchange",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "referrals"
+   ]
+  ]
+ },
+ {
+  "id": "lure-040",
+  "prompt": "Build a slide in popup component in our React docs site, keyboard accessible.",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "popups",
+  "lure_phrase": "slide in popup",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "accessibility",
+    "bosskuai-react-development"
+   ]
+  ]
+ },
+ {
+  "id": "lure-041",
+  "prompt": "Build an exit intent popup in our React checkout that does not break hydration.",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "popups",
+  "lure_phrase": "exit intent popup",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-react-development"
+   ]
+  ]
+ },
+ {
+  "id": "lure-042",
+  "prompt": "Write three different taglines for the pricing page hero.",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "product-marketing",
+  "lure_phrase": "different taglines",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "copywriting"
+   ]
+  ]
+ },
+ {
+  "id": "lure-043",
+  "prompt": "Find me twenty tech journalists who cover fintech in Malaysia, with their contact details.",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "public-relations",
+  "lure_phrase": "tech journalists",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-lead-intelligence"
+   ]
+  ]
+ },
+ {
+  "id": "lure-044",
+  "prompt": "Macam mana nak ajak kawan jadi collaborator dalam repo GitHub kami?",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "referrals",
+  "lure_phrase": "ajak kawan",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-github-workflow"
+   ]
+  ]
+ },
+ {
+  "id": "lure-045",
+  "prompt": "Buat laporan bajet dalam docx and xlsx untuk company saya.",
+  "domain": "vendored:markitdown",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "markitdown",
+  "lure_phrase": "docx and xlsx",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-financial-modeling"
+   ]
+  ]
+ },
+ {
+  "id": "lure-046",
+  "prompt": "Model 3d leaves for a potted plant on my product page, with close-up detail.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-falling-leaves",
+  "lure_phrase": "3d leaves",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "3d-high-poly-models",
+    "3d-high-resolution-textures"
+   ]
+  ]
+ },
+ {
+  "id": "lure-047",
+  "prompt": "Add autumn leaves to my blog header as a 2D canvas overlay.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-falling-leaves",
+  "lure_phrase": "autumn leaves",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "falling-leaves"
+   ]
+  ]
+ },
+ {
+  "id": "lure-048",
+  "prompt": "My ash leaves look fake on the 2D canvas header, like confetti.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-falling-leaves",
+  "lure_phrase": "leaves look fake",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "falling-leaves"
+   ]
+  ]
+ },
+ {
+  "id": "lure-049",
+  "prompt": "Our landing page hero close-up textures look blurry, can we compress the images?",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-high-resolution-textures",
+  "lure_phrase": "close-up textures",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "image"
+   ]
+  ]
+ },
+ {
+  "id": "lure-050",
+  "prompt": "Our Unity build texture file size is over budget, which import settings should I change?",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-high-resolution-textures",
+  "lure_phrase": "texture file size",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-technical-artist"
+   ]
+  ]
+ },
+ {
+  "id": "lure-051",
+  "prompt": "My wood bench textures look mushy up close in our Three.js scene.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-high-resolution-textures",
+  "lure_phrase": "textures look mushy",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "3d-wood-material"
+   ]
+  ]
+ },
+ {
+  "id": "lure-052",
+  "prompt": "Add click to inspect zoom on the product photo in our React shop page.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-orbit-inspect-demo",
+  "lure_phrase": "click to inspect",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-react-development"
+   ]
+  ]
+ },
+ {
+  "id": "lure-053",
+  "prompt": "Add an inspect view for each row in our React admin table.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-orbit-inspect-demo",
+  "lure_phrase": "inspect view",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-react-development"
+   ]
+  ]
+ },
+ {
+  "id": "lure-054",
+  "prompt": "My chart canvas looks blurry after I added a legend, can you find why?",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-retina-resolution",
+  "lure_phrase": "canvas looks blurry",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-diagnose-loop",
+    "systematic-debugging"
+   ]
+  ]
+ },
+ {
+  "id": "lure-055",
+  "prompt": "The text on my login page is blurry on MacBook after the redesign, what's wrong?",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-retina-resolution",
+  "lure_phrase": "blurry on macbook",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-ui-ux-design-to-code",
+    "systematic-debugging"
+   ]
+  ]
+ },
+ {
+  "id": "lure-056",
+  "prompt": "Export the app logo so it looks crisp on a retina display in my header.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-retina-resolution",
+  "lure_phrase": "retina display",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-ui-ux-design-to-code"
+   ]
+  ]
+ },
+ {
+  "id": "lure-057",
+  "prompt": "Icons look soft at a high pixel density on my Android phone, which sizes should I export?",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-retina-resolution",
+  "lure_phrase": "pixel density",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-ui-ux-design-to-code"
+   ]
+  ]
+ },
+ {
+  "id": "lure-058",
+  "prompt": "Make a sunset sky gradient behind my landing hero using plain CSS.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-sky-background",
+  "lure_phrase": "sunset sky",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "awwwards-web-design",
+    "bosskuai-ui-ux-design-to-code"
+   ]
+  ]
+ },
+ {
+  "id": "lure-059",
+  "prompt": "Set a soft blue sky background on my Next.js pricing page.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-sky-background",
+  "lure_phrase": "sky background",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "awwwards-web-design",
+    "bosskuai-ui-ux-design-to-code"
+   ]
+  ]
+ },
+ {
+  "id": "lure-060",
+  "prompt": "Put a blurred photo of a sky behind the pricing cards.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-sky-background",
+  "lure_phrase": "sky behind",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-ui-ux-design-to-code",
+    "unsplash-asset-images"
+   ]
+  ]
+ },
+ {
+  "id": "lure-061",
+  "prompt": "Add ocean waves animation to my website footer with CSS.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-ultra-realistic-water",
+  "lure_phrase": "ocean waves",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "animation-systems",
+    "bosskuai-gsap-animation"
+   ]
+  ]
+ },
+ {
+  "id": "lure-062",
+  "prompt": "Add a realistic water ripple when a user clicks my button in React.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-ultra-realistic-water",
+  "lure_phrase": "realistic water",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "animate",
+    "bosskuai-react-development"
+   ]
+  ]
+ },
+ {
+  "id": "lure-063",
+  "prompt": "Add a gold sun glitter sparkle to my headline text.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-ultra-realistic-water",
+  "lure_phrase": "sun glitter",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "animate",
+    "awwwards-web-design"
+   ]
+  ]
+ },
+ {
+  "id": "lure-064",
+  "prompt": "Animate a boat wake line behind the ferry icon on my booking page.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-ultra-realistic-water",
+  "lure_phrase": "boat wake",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "animate",
+    "bosskuai-gsap-animation"
+   ]
+  ]
+ },
+ {
+  "id": "lure-065",
+  "prompt": "Give my spa landing page an underwater sunlight look with a CSS overlay.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-underwater-god-rays",
+  "lure_phrase": "underwater sunlight",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "awwwards-web-design",
+    "bosskuai-ui-ux-design-to-code"
+   ]
+  ]
+ },
+ {
+  "id": "lure-066",
+  "prompt": "Make the hero photo show light through water shimmer, done in CSS.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-underwater-god-rays",
+  "lure_phrase": "light through water",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "animate",
+    "awwwards-web-design"
+   ]
+  ]
+ },
+ {
+  "id": "lure-067",
+  "prompt": "Draw a reef scene in SVG for my kids' reading app header.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-underwater-god-rays",
+  "lure_phrase": "reef scene",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "awwwards-web-design",
+    "bosskuai-ui-ux-design-to-code"
+   ]
+  ]
+ },
+ {
+  "id": "lure-068",
+  "prompt": "Add sunlight streaming through the office windows in my 3D floor-plan render.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-underwater-god-rays",
+  "lure_phrase": "sunlight streaming",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "3d-sky-rays"
+   ]
+  ]
+ },
+ {
+  "id": "lure-069",
+  "prompt": "Make a carved wood texture for the sign in my 3D shop scene.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-wood-lighting-scorecard",
+  "lure_phrase": "carved wood",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "3d-wood-material"
+   ]
+  ]
+ },
+ {
+  "id": "lure-070",
+  "prompt": "Can you score the render of my new landing page out of 10?",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "3d-wood-lighting-scorecard",
+  "lure_phrase": "score the render",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "audit-ai-design-slop",
+    "jury"
+   ]
+  ]
+ },
+ {
+  "id": "lure-071",
+  "prompt": "Our agency homepage is not showing up on Google. Can you check why?",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "agency-grid-layout-minimal",
+  "lure_phrase": "agency homepage",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-seo-geo",
+    "seo-audit"
+   ]
+  ]
+ },
+ {
+  "id": "lure-072",
+  "prompt": "Clicking the nav link doesn't scroll the section into view on Safari, fix it.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "animation-on-scroll",
+  "lure_phrase": "scroll into view",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-diagnose-loop",
+    "minimal-fix"
+   ]
+  ]
+ },
+ {
+  "id": "lure-073",
+  "prompt": "The background sync jobs have consistent timing problems, they overlap every hour. Find out why.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "animation-systems",
+  "lure_phrase": "consistent timing",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-diagnose-loop"
+   ]
+  ]
+ },
+ {
+  "id": "lure-074",
+  "prompt": "Our homepage copies a competitor's headline word for word, rewrite it in our own voice.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "audit-reference-originality",
+  "lure_phrase": "copies a competitor",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "antislop-copywriting",
+    "copywriting"
+   ]
+  ]
+ },
+ {
+  "id": "lure-075",
+  "prompt": "Our landing page loads 8 MB of stock photos, make it load faster.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "aura-asset-images",
+  "lure_phrase": "stock photos",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-web-performance"
+   ]
+  ]
+ },
+ {
+  "id": "lure-076",
+  "prompt": "The blue sky look on our weather app fails WCAG contrast, check it.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "blue-cloudy-clean-modern",
+  "lure_phrase": "blue sky look",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "accessibility",
+    "antislop-human"
+   ]
+  ]
+ },
+ {
+  "id": "lure-077",
+  "prompt": "Build a frosted glass dashboard with live sales charts, tooltips and filters.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "blue-laser-clean-glass-layout",
+  "lure_phrase": "frosted glass dashboard",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-ui-ux-design-to-code"
+   ]
+  ]
+ },
+ {
+  "id": "lure-078",
+  "prompt": "Make this scroll driven 3d effect work with plain CSS and GSAP, no WebGL needed.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "build-threejs-scroll-worlds",
+  "lure_phrase": "scroll driven 3d",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-gsap-animation",
+    "gsap-scrolltrigger-storytelling"
+   ]
+  ]
+ },
+ {
+  "id": "lure-079",
+  "prompt": "Add mouse parallax to the Three.js hero on our product page. No GSAP, just the 3D scene.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "cinematic-gsap-lenis-motion-system",
+  "lure_phrase": "mouse parallax",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "add-mouse-driven-orbit",
+    "bosskuai-3d-web-development"
+   ]
+  ]
+ },
+ {
+  "id": "lure-080",
+  "prompt": "Our WebGPU hero should have the halftone layers follow mouse with a trail. No GSAP needed.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "cinematic-gsap-lenis-motion-system",
+  "lure_phrase": "layers follow mouse",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "add-shader-cursor-trail",
+    "shaders-cursor-ripples"
+   ]
+  ]
+ },
+ {
+  "id": "lure-081",
+  "prompt": "Build a stacking cards carousel for our pricing tiles in React, with swipe on mobile.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "cinematic-scroll-storytelling",
+  "lure_phrase": "stacking cards",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-react-development",
+    "bosskuai-ui-ux-design-to-code"
+   ]
+  ]
+ },
+ {
+  "id": "lure-082",
+  "prompt": "Build a simple case study site for our agency with five client pages and no scroll effects.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "cinematic-scroll-storytelling",
+  "lure_phrase": "case study site",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "awwwards-web-design",
+    "bosskuai-ui-ux-design-to-code"
+   ]
+  ]
+ },
+ {
+  "id": "lure-083",
+  "prompt": "Show a spinning globe with flight arcs between our offices on the company dashboard.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "cobejs",
+  "lure_phrase": "spinning globe",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "globe-gl"
+   ]
+  ]
+ },
+ {
+  "id": "lure-084",
+  "prompt": "Add a spinning earth hero with particles and a thin orbit ring for the homepage.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "cobejs",
+  "lure_phrase": "spinning earth",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-3d-web-development",
+    "globe-particles"
+   ]
+  ]
+ },
+ {
+  "id": "lure-085",
+  "prompt": "Add laser lines running across the full-screen background of our landing hero.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "corner-lasers",
+  "lure_phrase": "laser lines",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "webgl-laser"
+   ]
+  ]
+ },
+ {
+  "id": "lure-086",
+  "prompt": "Make the hero photo dissolve into the next section as the user scrolls.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "css-alpha-masking",
+  "lure_phrase": "dissolve into",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-gsap-animation",
+    "gsap-scrolltrigger-storytelling"
+   ]
+  ]
+ },
+ {
+  "id": "lure-087",
+  "prompt": "Use a cobalt gradient for the series colours in our revenue chart.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "dark-blue-contrasting-clean",
+  "lure_phrase": "cobalt gradient",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-design-systems"
+   ]
+  ]
+ },
+ {
+  "id": "lure-088",
+  "prompt": "Make the navbar frosted glass on our light-mode settings page in React.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "dark-glass-clean-layout",
+  "lure_phrase": "frosted glass",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-react-development",
+    "bosskuai-ui-ux-design-to-code"
+   ]
+  ]
+ },
+ {
+  "id": "lure-089",
+  "prompt": "Plan the production schedule for our film production studio across three shoots next month.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "documentary-brutalist-agency",
+  "lure_phrase": "production studio",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-production-scheduling"
+   ]
+  ]
+ },
+ {
+  "id": "lure-090",
+  "prompt": "Write case study chapters for our SaaS launch: problem, approach, results.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "editorial-portfolio-chapters",
+  "lure_phrase": "case study chapters",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-article-writing"
+   ]
+  ]
+ },
+ {
+  "id": "lure-091",
+  "prompt": "Make the project images full-bleed on our mobile portfolio grid, they overflow right now.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "editorial-portfolio-chapters",
+  "lure_phrase": "full-bleed project images",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "antislop-layoutmobile"
+   ]
+  ]
+ },
+ {
+  "id": "lure-092",
+  "prompt": "Plan an autumn leaves promo for our store: emails, social posts and the timing.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "falling-leaves",
+  "lure_phrase": "autumn leaves",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "content-strategy",
+    "emails"
+   ]
+  ]
+ },
+ {
+  "id": "lure-093",
+  "prompt": "Write the product page copy for our maple leaves syrup.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "falling-leaves",
+  "lure_phrase": "maple leaves",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "copywriting"
+   ]
+  ]
+ },
+ {
+  "id": "lure-094",
+  "prompt": "Make the section change with burning paper that reveals the next page.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "fire-paper-loader",
+  "lure_phrase": "burning paper",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "paper-cinder-transition"
+   ]
+  ]
+ },
+ {
+  "id": "lure-095",
+  "prompt": "Add a ring loader to the submit button in our React form while it saves.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "fire-paper-loader",
+  "lure_phrase": "ring loader",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-react-development"
+   ]
+  ]
+ },
+ {
+  "id": "lure-096",
+  "prompt": "Add a percentage counter that counts up to 98 on the stats strip of our homepage.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "fire-paper-loader",
+  "lure_phrase": "percentage counter",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "animate",
+    "bosskuai-gsap-animation"
+   ]
+  ]
+ },
+ {
+  "id": "lure-097",
+  "prompt": "Add corner marks to the HUD frame of my Godot space shooter so the targeting box looks like a game reticle.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "framed-grid-layout",
+  "lure_phrase": "corner marks",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-game-designer"
+   ]
+  ]
+ },
+ {
+  "id": "lure-098",
+  "prompt": "Turn my analytics page into thin outlined sections with a clear grid so each KPI block stands apart.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "framed-grid-layout",
+  "lure_phrase": "thin outlined sections",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-dashboard-builder"
+   ]
+  ]
+ },
+ {
+  "id": "lure-099",
+  "prompt": "Add a gradient border to the pricing cards on my light, friendly landing page.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "framed-tech-dark-border-gradient",
+  "lure_phrase": "gradient border",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-taste",
+    "css-border-gradient"
+   ]
+  ]
+ },
+ {
+  "id": "lure-100",
+  "prompt": "Use monospace labels on the axes of my sales chart so the numbers line up.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "framed-tech-dark-border-gradient",
+  "lure_phrase": "monospace labels",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-dashboard-builder",
+    "bosskuai-ui-ux-design-to-code"
+   ]
+  ]
+ },
+ {
+  "id": "lure-101",
+  "prompt": "Give my bakery's landing page a purple neon glow, cute and warm, not techy.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "funky-purple-container-tech",
+  "lure_phrase": "purple neon",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-taste",
+    "soft-skill"
+   ]
+  ]
+ },
+ {
+  "id": "lure-102",
+  "prompt": "Our law firm's site needs purple pink accents, but keep it serious and quiet.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "funky-purple-container-tech",
+  "lure_phrase": "purple pink accents",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-taste",
+    "minimalist-skill"
+   ]
+  ]
+ },
+ {
+  "id": "lure-103",
+  "prompt": "My settings page has boxes inside boxes and the padding is off, fix it in React.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "funky-purple-container-tech",
+  "lure_phrase": "boxes inside boxes",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-react-development",
+    "minimal-fix"
+   ]
+  ]
+ },
+ {
+  "id": "lure-104",
+  "prompt": "Write the homepage copy for our futuristic gadget, short and plain.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "funky-purple-container-tech",
+  "lure_phrase": "futuristic gadget",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "antislop-copywriting",
+    "copywriting"
+   ]
+  ]
+ },
+ {
+  "id": "lure-105",
+  "prompt": "Build a 3d globe hero background for our SaaS landing page, no data, just a slow spin.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "globe-gl",
+  "lure_phrase": "3d globe",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-3d-web-development",
+    "globe-particles"
+   ]
+  ]
+ },
+ {
+  "id": "lure-106",
+  "prompt": "Animate flight arcs for a paper plane across the map in my Remotion explainer video.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "globe-gl",
+  "lure_phrase": "flight arcs",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-remotion-video-creation"
+   ]
+  ]
+ },
+ {
+  "id": "lure-107",
+  "prompt": "Draw arcs between cities on a flat SVG map of Malaysia for our annual report.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "globe-gl",
+  "lure_phrase": "arcs between cities",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-dashboard-builder"
+   ]
+  ]
+ },
+ {
+  "id": "lure-108",
+  "prompt": "Design a glowing planet sprite for the title screen of my 2D space shooter game.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "globe-particles",
+  "lure_phrase": "glowing planet",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-game-designer",
+    "bosskuai-technical-artist"
+   ]
+  ]
+ },
+ {
+  "id": "lure-109",
+  "prompt": "Make the particle planet in my Godot game explode when the level ends.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "globe-particles",
+  "lure_phrase": "particle planet",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-godot-gameplay-scripter"
+   ]
+  ]
+ },
+ {
+  "id": "lure-110",
+  "prompt": "My product carousel moves sideways on swipe but the dots don't update, fix it.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "horizontal-scroll-scenes",
+  "lure_phrase": "moves sideways",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-react-development"
+   ]
+  ]
+ },
+ {
+  "id": "lure-111",
+  "prompt": "The intro slides sideways when I press next, make the transition smoother in my pitch deck.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "horizontal-scroll-scenes",
+  "lure_phrase": "slides sideways",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-frontend-slides"
+   ]
+  ]
+ },
+ {
+  "id": "lure-112",
+  "prompt": "Make the robot model look like polished chrome in Three.js.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "liquid-metal-border",
+  "lure_phrase": "polished chrome",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "3d-metal-material"
+   ]
+  ]
+ },
+ {
+  "id": "lure-113",
+  "prompt": "Design a logo strip for our brand guidelines showing the logo lockups in a row.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "marquee-loop",
+  "lure_phrase": "logo strip",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "logo-design"
+   ]
+  ]
+ },
+ {
+  "id": "lure-114",
+  "prompt": "Make the title words slide up in my Remotion intro.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "masked-reveal",
+  "lure_phrase": "words slide up",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-remotion-video-creation"
+   ]
+  ]
+ },
+ {
+  "id": "lure-115",
+  "prompt": "The hover panel leaves a hidden edge that eats clicks, fix it.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "masked-reveal",
+  "lure_phrase": "hidden edge",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-diagnose-loop"
+   ]
+  ]
+ },
+ {
+  "id": "lure-116",
+  "prompt": "Add an outer frame with a thin border around the whole settings page and keep 16px padding inside it.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "nested-container-clean-agency",
+  "lure_phrase": "outer frame",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-ui-ux-design-to-code"
+   ]
+  ]
+ },
+ {
+  "id": "lure-117",
+  "prompt": "Our settings form has boxes inside boxes, with double borders on every card. Simplify the wrapper divs in the React component.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "nested-container-clean-agency",
+  "lure_phrase": "boxes inside boxes",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-code-revamp",
+    "bosskuai-react-development"
+   ]
+  ]
+ },
+ {
+  "id": "lure-118",
+  "prompt": "Draw a technical blueprint of our payment service architecture for the investor deck, with boxes and arrows.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "nested-container-frames",
+  "lure_phrase": "technical blueprint",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "anatomy",
+    "bosskuai-archify-diagrams"
+   ]
+  ]
+ },
+ {
+  "id": "lure-119",
+  "prompt": "Model the burn transition: when does our runway run out as we move from burning cash to break-even?",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "paper-cinder-transition",
+  "lure_phrase": "burn transition",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-financial-modeling"
+   ]
+  ]
+ },
+ {
+  "id": "lure-120",
+  "prompt": "My cursor trail on the portfolio page stutters and drops frames on a low-end laptop. Find out why.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "pointer-trail-emitter",
+  "lure_phrase": "cursor trail",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-performance-profiling"
+   ]
+  ]
+ },
+ {
+  "id": "lure-121",
+  "prompt": "The demo video I recorded with Playwright doesn't show the pointer trail; make the cursor visible in the recording.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "pointer-trail-emitter",
+  "lure_phrase": "pointer trail",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-ui-demo"
+   ]
+  ]
+ },
+ {
+  "id": "lure-122",
+  "prompt": "Add a sparkle trail when the user clicks the Buy button, just a short burst that fades in 300ms.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "pointer-trail-emitter",
+  "lure_phrase": "sparkle trail",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "animate",
+    "emil-design-eng"
+   ]
+  ]
+ },
+ {
+  "id": "lure-123",
+  "prompt": "Build the prompt into output step of our internal tool in Python: take the form input, call the model, and save the result to a table.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "product-proof-saas",
+  "lure_phrase": "prompt into output",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-engineering-delivery"
+   ]
+  ]
+ },
+ {
+  "id": "lure-124",
+  "prompt": "Add a product UI hero card at the top of our logged-in dashboard, showing the user's current plan and usage.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "product-proof-saas",
+  "lure_phrase": "product ui hero",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-react-development",
+    "bosskuai-ui-ux-design-to-code"
+   ]
+  ]
+ },
+ {
+  "id": "lure-125",
+  "prompt": "The hover reveal on our menu cards doesn't open for keyboard users and does nothing on touch screens. Fix it.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "reveal-hover-effect",
+  "lure_phrase": "hover reveal",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "accessibility"
+   ]
+  ]
+ },
+ {
+  "id": "lure-126",
+  "prompt": "My cursor spotlight on the dark hero makes the page drop to 20 fps on older laptops. Find the cause.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "reveal-hover-effect",
+  "lure_phrase": "cursor spotlight",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-performance-profiling"
+   ]
+  ]
+ },
+ {
+  "id": "lure-127",
+  "prompt": "Set the hover to color value for our primary buttons in the Tailwind theme so they darken on hover.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "reveal-hover-effect",
+  "lure_phrase": "hover to color",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-ui-ux-design-to-code"
+   ]
+  ]
+ },
+ {
+  "id": "lure-128",
+  "prompt": "Build a word reveal for the Wordle-style guessing game: each letter pops in when the player guesses it.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "scroll-scrubbed-word-reveal",
+  "lure_phrase": "word reveal",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-game-designer",
+    "bosskuai-react-development"
+   ]
+  ]
+ },
+ {
+  "id": "lure-129",
+  "prompt": "Make the search keywords light up in the results list when they match the query.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "scroll-scrubbed-word-reveal",
+  "lure_phrase": "light up words",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-react-development"
+   ]
+  ]
+ },
+ {
+  "id": "lure-130",
+  "prompt": "Add a water ripple effect to the pond in our Three.js game scene when the player's character walks through it.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "shaders-cursor-ripples",
+  "lure_phrase": "water ripple effect",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "3d-ultra-realistic-water"
+   ]
+  ]
+ },
+ {
+  "id": "lure-131",
+  "prompt": "Add a mouse ripple effect on our buttons, a small ring when a user clicks.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "shaders-cursor-ripples",
+  "lure_phrase": "mouse ripple effect",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "animate",
+    "emil-design-eng"
+   ]
+  ]
+ },
+ {
+  "id": "lure-132",
+  "prompt": "Add a cursor ripple effect to the shared whiteboard so each collaborator's pointer shows a small ring.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "shaders-cursor-ripples",
+  "lure_phrase": "cursor ripple effect",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-react-development"
+   ]
+  ]
+ },
+ {
+  "id": "lure-133",
+  "prompt": "Put realistic metal buttons on the control panel of my Three.js spaceship model so they catch light when the camera moves.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "skeuomorphic-ui",
+  "lure_phrase": "realistic metal buttons",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "3d-metal-material",
+    "threejs"
+   ]
+  ]
+ },
+ {
+  "id": "lure-134",
+  "prompt": "My Sonner toasts show plain icons. Switch them to duotone icons and fix the success toast styling.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "solar-duotone-bold",
+  "lure_phrase": "duotone icons",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "ask-sonner"
+   ]
+  ]
+ },
+ {
+  "id": "lure-135",
+  "prompt": "Build a split screen layout for my login page, image on the left and form on the right, and stack it on phones.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "split-layout-technical",
+  "lure_phrase": "split screen layout",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "antislop-layoutmobile",
+    "tailwindcss"
+   ]
+  ]
+ },
+ {
+  "id": "lure-136",
+  "prompt": "After upgrading, my tailwind css classes stopped applying and the build output has no utilities. Find the cause and fix it.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "tailwindcss",
+  "lure_phrase": "tailwind css",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-diagnose-loop",
+    "minimal-fix"
+   ]
+  ]
+ },
+ {
+  "id": "lure-137",
+  "prompt": "Make an exploded diagram of a bicycle hub with labels for each part for our docs page.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "technical-wireframe-info-layout",
+  "lure_phrase": "exploded diagram",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "anatomy"
+   ]
+  ]
+ },
+ {
+  "id": "lure-138",
+  "prompt": "Build a 3d landscape of our city from LiDAR point clouds and 3D Tiles in CesiumJS, with terrain and a camera path.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "threejs-landscape",
+  "lure_phrase": "3d landscape",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-gis-3d-scene-developer"
+   ]
+  ]
+ },
+ {
+  "id": "lure-139",
+  "prompt": "Load my 3d pagoda GLB model into a Three.js scene and make it rotate slowly on hover.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "threejs-towers",
+  "lure_phrase": "3d pagoda",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-3d-web-development",
+    "threejs"
+   ]
+  ]
+ },
+ {
+  "id": "lure-140",
+  "prompt": "Our founder bio page loads in 9 seconds because the portrait photos are 6000px originals. Make them load faster.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "unsplash-asset-images",
+  "lure_phrase": "portrait photos",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-performance-profiling"
+   ]
+  ]
+ },
+ {
+  "id": "lure-141",
+  "prompt": "My gallery shows broken images because the real photo urls return 404 after the CDN move. Fix the loading in the gallery component.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "unsplash-asset-images",
+  "lure_phrase": "real photo urls",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-react-development",
+    "minimal-fix"
+   ]
+  ]
+ },
+ {
+  "id": "lure-142",
+  "prompt": "My three.js product viewer has a flat grey background. Add fog to the scene so the model fades into the distance.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "vantajs",
+  "lure_phrase": "fog backdrop",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "3d-sky-background",
+    "bosskuai-3d-web-development"
+   ]
+  ]
+ },
+ {
+  "id": "lure-143",
+  "prompt": "Build a faceted gem ring viewer: shoppers drag to turn it and click to open a close-up inspect view.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "webgl-3d-object",
+  "lure_phrase": "faceted gem",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "3d-orbit-inspect-demo",
+    "bosskuai-3d-web-development"
+   ]
+  ]
+ },
+ {
+  "id": "lure-144",
+  "prompt": "Add a 3d crystal pickup to my three.js game: the player walks into it, it disappears and the score goes up.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "webgl-3d-object",
+  "lure_phrase": "3d crystal",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-3d-web-development"
+   ]
+  ]
+ },
+ {
+  "id": "lure-145",
+  "prompt": "Add a laser beam from the turret to the enemy in my three.js tower defence game, with hit detection.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "webgl-laser",
+  "lure_phrase": "laser beam",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-3d-web-development"
+   ]
+  ]
+ },
+ {
+  "id": "lure-146",
+  "prompt": "The QR scanner beam in our kiosk UI stutters on Android. Find out why and fix it.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "webgl-laser",
+  "lure_phrase": "scanner beam",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-diagnose-loop",
+    "bosskuai-performance-profiling"
+   ]
+  ]
+ },
+ {
+  "id": "lure-147",
+  "prompt": "In my tower defence game, the enemy attacker could exploit a pathing gap and skip the walls. Find and fix it.",
+  "domain": "vendored:security-audit",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "security-audit",
+  "lure_phrase": "attacker could exploit",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-diagnose-loop",
+    "minimal-fix"
+   ]
+  ]
+ },
+ {
+  "id": "lure-148",
+  "prompt": "Set up our CI pipeline so the unit and e2e test jobs run in parallel to cut the build time.",
+  "domain": "vendored:superpowers",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "dispatching-parallel-agents",
+  "lure_phrase": "work in parallel",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-ci-cd-pipelines"
+   ]
+  ]
+ },
+ {
+  "id": "lure-149",
+  "prompt": "Baiki serentak race condition dalam checkout, dua order boleh jadi pada masa sama.",
+  "domain": "vendored:superpowers",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "dispatching-parallel-agents",
+  "lure_phrase": "baiki serentak",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-database-engineering",
+    "bosskuai-diagnose-loop"
+   ]
+  ]
+ },
+ {
+  "id": "lure-150",
+  "prompt": "Deploy api dulu, lepas tu web, tunggu satu-satu jangan serentak, production ni sensitif.",
+  "domain": "vendored:superpowers",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "dispatching-parallel-agents",
+  "lure_phrase": "tunggu satu-satu",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-aws-deployment",
+    "bosskuai-ci-cd-pipelines"
+   ]
+  ]
+ },
+ {
+  "id": "lure-151",
+  "prompt": "Carry out the plan for the Q4 launch: draft the emails and schedule the posts.",
+  "domain": "vendored:superpowers",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "executing-plans",
+  "lure_phrase": "carry out the plan",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-content-calendar",
+    "launch"
+   ]
+  ]
+ },
+ {
+  "id": "lure-152",
+  "prompt": "Buat pelan langkah demi langkah untuk naikkan ranking Google kedai saya.",
+  "domain": "vendored:superpowers",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "writing-plans",
+  "lure_phrase": "pelan langkah demi langkah",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "seo-audit"
+   ]
+  ]
+ },
+ {
+  "id": "lure-153",
+  "prompt": "Plan first: which 3 keywords should my Malaysian bakery blog target this quarter?",
+  "domain": "vendored:superpowers",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "writing-plans",
+  "lure_phrase": "plan first",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "product-marketing",
+    "seo-audit"
+   ]
+  ]
+ },
+ {
+  "id": "lure-154",
+  "prompt": "Write a reusable instruction set that tells Claude how our team writes commit messages, and keep it in CLAUDE.md.",
+  "domain": "vendored:superpowers",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "writing-skills",
+  "lure_phrase": "reusable instruction set",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-claude-code-setup",
+    "bosskuai-claude-md-management"
+   ]
+  ]
+ },
+ {
+  "id": "lure-155",
+  "prompt": "Audit my minimalist website for WCAG contrast and keyboard focus problems.",
+  "domain": "vendored:taste-skill",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "minimalist-skill",
+  "lure_phrase": "minimalist website",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "accessibility",
+    "antislop-human"
+   ]
+  ]
+ },
+ {
+  "id": "lure-156",
+  "prompt": "Can you build me an editorial layout for my blog post page, with a sidebar and a related posts list below the article?",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "agency-grid-layout-minimal",
+  "lure_phrase": "editorial layout",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-ui-ux-design-to-code",
+    "tailwindcss"
+   ]
+  ]
+ },
+ {
+  "id": "lure-157",
+  "prompt": "Pin the hero section and scrub the product video as the user scrolls, with a timeline that moves the text across three sections as they come into view.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "animation-on-scroll",
+  "lure_phrase": "scroll into view",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-gsap-animation",
+    "gsap"
+   ]
+  ]
+ },
+ {
+  "id": "lure-158",
+  "prompt": "Set up a motion system with easing tokens and duration values for our dashboard's component library, so every component uses the same timing.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "animation-systems",
+  "lure_phrase": "motion system",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-design-systems"
+   ]
+  ]
+ },
+ {
+  "id": "lure-159",
+  "prompt": "Run an originality check on my essay before I submit it; I need to know if any paragraphs are copied from online sources.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "audit-reference-originality",
+  "lure_phrase": "originality check",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-article-writing",
+    "copy-editing"
+   ]
+  ]
+ },
+ {
+  "id": "lure-160",
+  "prompt": "Our homepage loads slowly because the stock photo links are 4MB each; compress them and lazy-load them.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "aura-asset-images",
+  "lure_phrase": "stock photo links",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "optimize-web-animations"
+   ]
+  ]
+ },
+ {
+  "id": "lure-161",
+  "prompt": "Which channel really drives signups? I think our GA4 tracking is broken, so set up the events first.",
+  "domain": "vendored:marketingskills",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "attribution",
+  "lure_phrase": "which channel really drives",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "analytics",
+    "conversion-tracking"
+   ]
+  ]
+ },
+ {
+  "id": "lure-162",
+  "prompt": "On my phone the full-bleed project images overflow and cover the captions, fix the responsive CSS.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "editorial-portfolio-chapters",
+  "lure_phrase": "full-bleed project images",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "antislop-layoutmobile",
+    "tailwindcss"
+   ]
+  ]
+ },
+ {
+  "id": "lure-163",
+  "prompt": "Make pressed metal buttons for the control panel of our 3D game menu, built in Three.js.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "skeuomorphic-ui",
+  "lure_phrase": "pressed metal buttons",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "threejs"
+   ]
+  ]
+ },
+ {
+  "id": "lure-164",
+  "prompt": "Give our 3D product configurator a physical metal look for the case, using Three.js materials.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "skeuomorphic-ui",
+  "lure_phrase": "physical metal look",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "threejs"
+   ]
+  ]
+ },
+ {
+  "id": "lure-165",
+  "prompt": "Give the settings page two-tone icons that match the rest of our app's existing icon set.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "solar-duotone-bold",
+  "lure_phrase": "two-tone icons",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-ui-ux-design-to-code"
+   ]
+  ]
+ },
+ {
+  "id": "lure-166",
+  "prompt": "Add hairline borders and monospace captions to our pricing page so it feels cleaner.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "split-layout-technical",
+  "lure_phrase": "monospace captions",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-taste",
+    "taste-skill"
+   ]
+  ]
+ },
+ {
+  "id": "lure-167",
+  "prompt": "Our product page breaks on phones. The tailwind breakpoints look wrong at 390px width, so find and fix the bug.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "tailwindcss",
+  "lure_phrase": "tailwind breakpoints",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "antislop-layoutmobile",
+    "bosskuai-diagnose-loop"
+   ]
+  ]
+ },
+ {
+  "id": "lure-168",
+  "prompt": "Make a monochrome line drawing of our system architecture for the docs page.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "technical-wireframe-info-layout",
+  "lure_phrase": "monochrome line drawing",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-archify-diagrams"
+   ]
+  ]
+ },
+ {
+  "id": "lure-169",
+  "prompt": "Add grassy hills to the background of our 2D platformer level in Godot.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "threejs-landscape",
+  "lure_phrase": "grassy hills",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-godot-gameplay-scripter"
+   ]
+  ]
+ },
+ {
+  "id": "lure-170",
+  "prompt": "Make an animated pagoda icon for our app's loading state using SVG and CSS animation.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "threejs-towers",
+  "lure_phrase": "animated pagoda",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "animate",
+    "bosskuai-ui-ux-design-to-code"
+   ]
+  ]
+ },
+ {
+  "id": "lure-171",
+  "prompt": "Make the transcript words light up one by one in sync with the audio playback time.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "scroll-scrubbed-word-reveal",
+  "lure_phrase": "light up words",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-react-development",
+    "emil-design-eng"
+   ]
+  ]
+ },
+ {
+  "id": "lure-172",
+  "prompt": "Add a fog backdrop to our Three.js weather scene so the distant rain fades into haze.",
+  "domain": "vendored:mengto",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "vantajs",
+  "lure_phrase": "fog backdrop",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "threejs-weather"
+   ]
+  ]
+ },
+ {
+  "id": "lure-173",
+  "prompt": "Can you make the dashboard's API calls run in parallel so the page loads faster?",
+  "domain": "vendored:superpowers",
+  "style": "lure",
+  "kind": "lure",
+  "lure_skill": "dispatching-parallel-agents",
+  "lure_phrase": "work in parallel",
+  "lure_skill_acceptable": false,
+  "concerns": [
+   [
+    "bosskuai-performance-profiling",
+    "bosskuai-react-development"
+   ]
+  ]
+ }
+]

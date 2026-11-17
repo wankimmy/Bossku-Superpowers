@@ -43,21 +43,29 @@ def redact(text: str) -> str:
 
 # A shell command carries secrets that notes do not: flag values, short options, a password on a login line. Each
 # entry is (pattern, replacement) and keeps the program and the flag, so the brief still shows what ran.
+# The gap between a program and its flag is capped at 400 characters, so a long line of repeated words stays fast.
+# A whole quoted value (an unclosed one runs to the end) or a bare word. A quote followed by a space, a separator or the
+# end is a closing quote (`grep -q "API_KEY=" f`), not the start of a value.
+_VALUE = r"""(?:"(?![\s;|&)]|\Z)[^"]*"?|'(?![\s;|&)]|\Z)[^']*'?|[^\s"']\S*)"""
 COMMAND_PATTERNS = [
-    # --password x, --db-pass=x, --api-key x, --client-secret=x. The flag must end in the word: --password-stdin and
-    # --bypass take no secret.
-    (re.compile(r"(?i)(--(?:[a-z0-9]+-)*(?:password|passwd|pass|token|secret|api-?key|access-?key|auth|credentials?)(?:=|\s+))(?!-)\S+"),
+    # --password x, -Password x, --db_pass=x, -AdminPassword x, --api-key "a b", --client-secret=x. The flag must end in
+    # the word: --password-stdin takes no secret.
+    (re.compile(r"(?i)((?<![\w-])-{1,2}[\w-]*(?:password|passwd|pass|token|secret|api[-_]?key|access[-_]?key|auth|credentials?)(?:=|\s+))(?!-)" + _VALUE),
      r"\1[REDACTED]"),
     # gh secret set NAME --body VALUE (or -b)
-    (re.compile(r"(?i)(\bsecrets?\s+set\b[^\n|;&]*?\s(?:--body|-b)(?:=|\s+))\S+"), r"\1[REDACTED]"),
+    (re.compile(r"(?i)(\bsecrets?\s+set\b[^\n|;&]{0,400}?\s(?:--body|-b)(?:=|\s+))" + _VALUE), r"\1[REDACTED]"),
     # curl -u user:pass, -fsSLu user:pass, --user user:pass
-    (re.compile(r"(?i)(\bcurl\b[^\n|;&]*?\s(?:-[a-zA-Z]*u|--user)(?:=|\s*))\S+"), r"\1[REDACTED]"),
+    (re.compile(r"(?i)(\bcurl\b[^\n|;&]{0,400}?\s(?:-[a-zA-Z]*u|--user(?![\w-]))(?:=|\s*))" + _VALUE), r"\1[REDACTED]"),
     # docker login -u bob -p secret
-    (re.compile(r"(?i)(\b(?:docker|podman|nerdctl)\s+login\b[^\n|;&]*?\s-p(?:=|\s*))\S+"), r"\1[REDACTED]"),
+    (re.compile(r"(?i)(\b(?:docker|podman|nerdctl)\s+login\b[^\n|;&]{0,400}?\s-p(?:=|\s*))" + _VALUE), r"\1[REDACTED]"),
     # mysql -pSecret: only when attached (a bare -p asks for it, and mkdir -p stays); -P is the port, so case matters
-    (re.compile(r"(\b(?i:mysql|mysqldump|mysqladmin|mariadb|mariadb-dump)\b[^\n|;&]*?\s-p)(?=\S)\S+"), r"\1[REDACTED]"),
+    (re.compile(r"(\b(?i:mysql|mysqldump|mysqladmin|mariadb|mariadb-dump)\b[^\n|;&]{0,400}?\s-p)(?=\S)" + _VALUE), r"\1[REDACTED]"),
     # DB_PASS=..., MYSQL_PWD=...: a name that ends in PASS or PWD. A bare PWD is the working folder, so it needs a prefix.
-    (re.compile(r"(?i)\b(?:(?:[a-z0-9]+_)+(?:pass(?:phrase)?|pwd)|pass(?:phrase)?)\s*=\s*\S+"), "[REDACTED]"),
+    # The names of `redact`'s NAME=value pattern are added here so a quoted value with spaces is taken whole.
+    (re.compile(r"(?i)\b(?:[a-z0-9_]*(?:secret|password|passwd|token|credentials?|_key)|(?:[a-z0-9]+_)+(?:pass(?:phrase)?|pwd)|pass(?:phrase)?)\s*=\s*" + _VALUE),
+     "[REDACTED]"),
+    # `redact`'s key: value pattern with the same value rule, so a closing quote (`grep -q "API_KEY=" f`) is not eaten
+    (re.compile(r"(?i)(api[_-]?key|secret|token|password|bearer)\s*[:=]\s*" + _VALUE), "[REDACTED]"),
 ]
 
 
@@ -65,5 +73,44 @@ def redact_command(text: str) -> str:
     """`redact` plus the command-line forms above, for text that is a shell command."""
     out = text
     for pattern, replacement in COMMAND_PATTERNS:
+        out = pattern.sub(replacement, out)
+    # Not the first and last patterns of `redact`: their `\S+` value reads a closing quote as a secret. The two
+    # COMMAND_PATTERNS above that end the list take their place.
+    for pattern in SENSITIVE_PATTERNS[1:-1]:
+        out = pattern.sub("[REDACTED]", out)
+    return out
+
+
+# Notes are prose, so a flag word is not always followed by a secret: "the --password flag is deprecated". For notes a
+# value after a space counts only when it is more than a plain word (sentence punctuation does not count); a value after
+# "=" always does. A plain-word password after a space ("--password hunter") is the accepted miss. Untouched: the
+# `secrets set --body` and mysql patterns, which need the command name before the flag.
+_PLAIN_WORD = re.compile(r"[A-Za-z]+")
+
+
+def _mask_unless_plain_word(match: re.Match) -> str:
+    prefix, value = match.group(1), match.group(2)
+    if not prefix.endswith("=") and _PLAIN_WORD.fullmatch(value.strip("()[]{}<>\"'`.,;:!?")):
+        return match.group(0)
+    return prefix + "[REDACTED]"
+
+
+NOTE_COMMAND_PATTERNS = [
+    (re.compile(r"(?i)(--(?:[a-z0-9]+-)*(?:password|passwd|pass|token|secret|api-?key|access-?key|auth|credentials?)(?:=|[ \t]+))"
+                r"(?!-)(\"[^\"\n]*\"?|'[^'\n]*'?|\S+)"), _mask_unless_plain_word),
+    # The lazy runs below are bounded: a long line that repeats the command word would be quadratic.
+    (re.compile(r"(?i)(\bsecrets?\s+set\b[^\n|;&]{0,400}?\s(?:--body|-b)(?:=|\s+))\S+"), r"\1[REDACTED]"),
+    (re.compile(r"(?i)(\bcurl\b[^\n|;&]{0,400}?[ \t](?:-[a-zA-Z]*u|--user(?![\w-]))(?:=|[ \t]*))(\S+)"), _mask_unless_plain_word),
+    (re.compile(r"(?i)(\b(?:docker|podman|nerdctl)[ \t]+login\b[^\n|;&]{0,400}?[ \t]-p(?:=|[ \t]*))(\S+)"), _mask_unless_plain_word),
+    (re.compile(r"(\b(?i:mysql|mysqldump|mysqladmin|mariadb|mariadb-dump)\b[^\n|;&]{0,400}?\s-p)(?=\S)\S+"), r"\1[REDACTED]"),
+    # DB_PASS=...: a bare "pass=12" is a test count and "low_pass = 0.5" a setting, so a prefix and no spaces are required
+    (re.compile(r"(?i)\b(?:[a-z0-9]+_)+(?:pass(?:phrase)?|pwd)=\S+"), "[REDACTED]"),
+]
+
+
+def redact_note(text: str) -> str:
+    """`redact` plus the command-line forms, tuned so ordinary prose passes through unchanged."""
+    out = text
+    for pattern, replacement in NOTE_COMMAND_PATTERNS:
         out = pattern.sub(replacement, out)
     return redact(out)

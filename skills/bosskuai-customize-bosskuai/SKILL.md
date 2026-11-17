@@ -10,7 +10,7 @@ metadata:
 # Customize BosskuAI Skill
 
 Activates **only** when editing BosskuAI's own configuration. It carries the real
-schemas so you don't invent structure the loader won't read.
+schemas so you don't invent structure the loader won't read. For the writing craft of a skill's body (structure, triggers, gotchas), use `bosskuai-skill-creator`; this skill supplies the schemas and checks.
 
 ## When to Load
 
@@ -30,7 +30,7 @@ describe a previous layout and are history, not instructions.
 
 ```
 AGENTS.md            CLAUDE.md (must contain a bare @AGENTS.md line)
-agents/              five required contracts
+agents/              seven required contracts (AGENT_FILES in bossku/install.py)
 bossku/              CLI: cli, install, skills, index, validate, memory, doctor
 skills/<id>/SKILL.md one folder per skill
 skills/skill-index.json
@@ -91,6 +91,7 @@ model: <inherit|sonnet|opus|haiku|fable|full model id>
       "path": "skills/skill-id/SKILL.md",
       "name": "skill-id",
       "description": "...",
+      "exclusions": ["curated exclusions"],
       "triggers": ["curated phrases"],
       "phrases": ["scraped from the description"],
       "keywords": ["idf-scored terms"],
@@ -103,8 +104,8 @@ model: <inherit|sonnet|opus|haiku|fable|full model id>
 
 To improve routing for a skill, add wording to `CURATED_TRIGGERS` in
 [`bossku/index.py`](../../bossku/index.py) and rebuild - curated triggers outrank
-phrases scraped from descriptions. The index stores a `fingerprint` of every
-skill's id + frontmatter; `bossku validate` fails when it drifts.
+phrases scraped from descriptions. The index stores a `fingerprint` over every
+skill's id and full SKILL.md text, plus the routing policy tables; `bossku validate` fails when it drifts.
 
 ## Rules When Editing Config
 
@@ -115,9 +116,9 @@ skill's id + frontmatter; `bossku validate` fails when it drifts.
 5. **Vendored skills belong to upstream.** Anything listed in `skills/vendored.json` should
    not be reworded locally - a re-vendor will overwrite it. Route around it with curated
    triggers instead.
-6. **Adding an agent** requires updating `agents/`, the plugin manifests that list agents,
+6. **Adding an agent** requires updating `agents/`, `AGENT_FILES` in `bossku/install.py`, the plugin manifests that list agents,
    and the orchestrator's flow table if it participates in a workflow.
-7. **Version bumps must stay in lockstep** — `pyproject.toml` and all three plugin
+7. **Version bumps must stay in lockstep** — `pyproject.toml`, `bossku/__init__.py` and all three plugin
    manifests are checked for equality.
 8. **Never commit secrets** into skills, memory, or manifests.
 
@@ -130,6 +131,6 @@ python -m unittest discover -s tests
 ```
 
 `validate` checks required files, agent contracts, frontmatter (name/description
-present, length bounds, unknown keys), alias targets, index freshness, and that all
-four host manifests agree on version and paths. If it fails, the change broke a
+present, length bounds, unknown keys), alias targets, index freshness, and that the
+three host plugin manifests and their marketplace files agree on version and paths. If it fails, the change broke a
 contract - fix before declaring done.

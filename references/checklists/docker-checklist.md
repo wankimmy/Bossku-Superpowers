@@ -1,7 +1,5 @@
 # Docker Checklist
 
-> If the request is general, ambiguous, or touches many files, ask clarifying yes/no questions before acting.
-
 - Can the user start the stack with `docker compose up -d` after setup?
 - Does the `Dockerfile` own dependency install, build steps, runtime defaults, and app startup?
 - Are Compose `command:` overrides short and intentional, not hidden install/build scripts?

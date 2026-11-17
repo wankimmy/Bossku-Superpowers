@@ -1,14 +1,12 @@
 # Nuxt Development Playbook
 
-> If the request is general, ambiguous, or touches many files — ask clarifying yes/no questions **before acting**. Use numbered bullets with explicit answer format: e.g. `1-yes/no  2-A/B`.
-
 Use this when building new features, fixing bugs, or auditing existing code in a Nuxt application.
 
 ## Development workflow
 
 1. **Check Nuxt version and project structure.** Read `package.json` for the `nuxt` version. Read `nuxt.config.ts` for modules, rendering mode, and custom config. Check whether the project uses the Nuxt 4 `app/` directory structure or Nuxt 3 root-level structure.
 
-2. **Fetch official docs via Context7.** Resolve the Nuxt library ID with `resolve-library-id`, then query `get-library-docs` for the specific feature, composable, or config option. Do not rely on training data for API details.
+2. **Fetch official docs via Context7.** Resolve the Nuxt library ID with `resolve-library-id`, then query `query-docs` for the specific feature, composable, or config option. Do not rely on training data for API details.
 
 3. **Read existing project conventions.** Before writing code, read adjacent components, composables, and middleware to match the project's patterns. Do not introduce new conventions unless the existing ones are demonstrably wrong.
 

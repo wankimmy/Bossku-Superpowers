@@ -1,0 +1,25 @@
+{
+  "skill_id": "pack:bossku",
+  "skill_version": null,
+  "model": "claude-haiku-5-5",
+  "host": "claude-code",
+  "task_category": null,
+  "suite": "2026-10-10/test",
+  "baseline_arm": "baseline",
+  "arm": "ship2",
+  "sample_size": 17,
+  "baseline_pass_rate": 0.9411764705882353,
+  "skill_pass_rate": 0.9411764705882353,
+  "paired_difference": 0.0,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "token_overhead": -0.11888516053395215,
+  "cost_per_success": 0.3153585125,
+  "evaluation_status": "neutral_or_inconclusive",
+  "last_evaluated": "2026-11-17",
+  "source_rows": [
+    "benchmarks/results/raw/2026-10-10/test-claude-haiku-5-5.jsonl"
+  ]
+}

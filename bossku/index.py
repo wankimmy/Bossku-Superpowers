@@ -879,6 +879,16 @@ for _sid, _more in {
 }.items():
     CURATED_EXCLUSIONS.setdefault(_sid, []).extend(_more)
 
+# --- 2026-11-17 an ERP, CRM or HRMS dashboard is product UI, not a monitoring dashboard. bosskuai-dashboard-builder
+# (Grafana, SigNoz) won "Build a modern ERP dashboard" on the word in its id, and "Improve an existing SaaS
+# dashboard" went to bosskuai-prompt-optimizer on "improve". The four words are single-word triggers on purpose:
+# phrase triggers ("erp dashboard", "saas dashboard", "internal tool") fixed six product prompts and took over a
+# bug report and a pricing question, so they were not added. Measured on 1,392 labelled prompts and 57 hand-written
+# ones: one right route changed, a SaaS settings redesign that now goes here, not to redesign-skill. ---
+for _sid, _more in {"bosskuai-dashboard-builder": ["erp", "crm", "hrms", "saas dashboard", "admin dashboard"]}.items():
+    CURATED_EXCLUSIONS.setdefault(_sid, []).extend(_more)
+CURATED_TRIGGERS.setdefault("bosskuai-ui-ux-design-to-code", []).extend(["erp", "crm", "hrms", "saas"])
+
 # Explicit role assignments; the rest fall back to keyword heuristics.
 CURATED_ROLES: dict[str, str] = {
     "bosskuai-planning-execution": "planner",
@@ -1112,7 +1122,8 @@ def _derive_triggers(skill_id: str, description: str) -> tuple[list[str], list[s
         p for p in derived
         if p not in curated and len(p.split()) >= 2 and not _STRAY_QUOTE.search(p)
     ]
-    return _clean(triggers, 40), _clean(useful, 40)
+    # Curated triggers are written on purpose, so none is dropped; only the salvaged phrases are capped.
+    return _clean(triggers, len(triggers)), _clean(useful, 40)
 
 
 def _derive_role(skill_id: str, description: str) -> str:

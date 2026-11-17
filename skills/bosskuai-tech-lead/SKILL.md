@@ -14,6 +14,7 @@ Use this skill when the job is to make a team ship well: turning intent into sli
 - **`bosskuai-engineering-delivery`**: how one engineer delivers one change; this skill is how the team delivers many.
 - **`bosskuai-rigorous-code-review`**: the review itself; this skill sets the review policy and culture.
 - **`bosskuai-incident-response`**: during an incident; this skill makes the team ready for one.
+- **`architecture-decision-records`**: writes the ADR file itself; this skill decides when an ADR is required.
 
 ## Mindset
 
@@ -21,7 +22,6 @@ Use this skill when the job is to make a team ship well: turning intent into sli
 - Smallest slice that proves value, behind a flag, deployed early; big-bang branches are a failure of leadership.
 - Make the implicit explicit: definition of done, ownership, review expectations, on-call duties.
 - Decisions are written (RFC before, ADR after) and reversible where possible; irreversible ones get more eyes.
-- Quality is a gate in the pipeline, not a phase at the end.
 
 ## Delivery system
 
@@ -43,7 +43,7 @@ Use this skill when the job is to make a team ship well: turning intent into sli
 - CODEOWNERS for every directory; review SLA under 24 hours; the author nudges, the lead unblocks.
 - Review focus in order: correctness and data safety, security and authz, tests, migrations, performance, then style (style belongs to linters).
 - The reviewer reads the whole diff against the PR description and the linked issue. A requirement with no matching test blocks the merge.
-- Judge each change against the current infra map: how many instances run it, whether a cron or scheduler runs twice, what sits in memory or on local disk, which workers and queues it touches, and what happens at deploy when old and new code overlap. Check each environment separately.
+- Judge each change against the current infra map (ask the owner for it if none is written down): how many instances run it, whether a cron or scheduler runs twice, what sits in memory or on local disk, which workers and queues it touches, and what happens at deploy when old and new code overlap. Check each environment separately.
 - Automated gates: lint, typecheck, unit and integration tests, coverage floor on changed lines, secret and dependency scans; a red main is the team's top priority.
 - ADR for structural decisions (`docs/adr/NNNN-title.md`): context, decision, consequences, status.
 - Debt ledger reviewed monthly: item, interest (incidents, slow changes), cost to fix, owner; 10–20% of capacity reserved for paying it down; no debt without a ticket.
@@ -77,7 +77,7 @@ Planning (biweekly, outcomes not tickets), async daily update, weekly demo, retr
 ## Workflow
 
 1. Clarify the outcome, constraints, and deadline; write the one-paragraph problem statement.
-2. Choose the process weight: direct ticket, RFC, or council for contested calls.
+2. Choose the process weight: direct ticket, RFC, or council (`bosskuai-council`) for contested calls.
 3. Slice into a walking skeleton and vertical increments; assign owners; define the pass signal per slice.
 4. Set the gates: DoD, review policy, flags, rollback.
 5. Run the loop: unblock daily, demo weekly, measure cycle time, adjust scope not quality.

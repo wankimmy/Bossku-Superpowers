@@ -249,7 +249,7 @@ When PR checks fail, Continuous Claude automatically:
 1. Fetches the failed run ID via `gh run list`
 2. Spawns a new `claude -p` with CI fix context
 3. Claude inspects logs via `gh run view`, fixes code, commits, pushes
-4. Re-waits for checks (up to `--ci-retry-max` attempts)
+4. Re-waits for checks.
 
 ### Completion Signal
 
@@ -275,7 +275,6 @@ Three consecutive iterations signaling completion stops the loop, preventing was
 | `--worktree <name>` | Parallel execution via git worktrees |
 | `--disable-commits` | Dry-run mode (no git operations) |
 | `--review-prompt "..."` | Add reviewer pass per iteration |
-| `--ci-retry-max N` | Auto-fix CI failures (default: 1) |
 
 ## 5. The De-Sloppify Pattern
 

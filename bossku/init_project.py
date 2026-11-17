@@ -99,7 +99,7 @@ Shadow / surface tokens. Glass and gradients only with a stated reason.
 Brand-specific guardrails. Always: no placeholder people or companies, no filler verbs, no fake-perfect numbers, no em-dash decoration, real images and real SVG marks.
 
 ## 8. Responsive Behavior
-Breakpoints 390 / 768 / 1440, touch targets 44px, what collapses where. Screenshots at 390 and 1440 before any UI is called done.
+Layout check widths 320 / 375 / 390 / 768 / 1024 / 1440 / 1920 (`node <BosskuAI install>/scripts/layout-check.mjs <url>`), what collapses where. Touch targets 24px floor, 44px for primary actions and touch. Screenshots at 390 and 1440 (and any flagged width), each one looked at, before any UI is called done.
 
 ## 9. Agent Prompt Guide
 Paste-ready component prompt using the tokens above.

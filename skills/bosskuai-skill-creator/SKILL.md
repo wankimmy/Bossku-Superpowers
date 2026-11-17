@@ -36,7 +36,7 @@ Use the local BosskuAI pattern unless an existing nearby skill uses a stronger c
 8. `Output format`.
 9. `References` with relative links to checklists, playbooks, memory, or scripts.
 
-Target concise skills. Stay under the repo's line-count ceiling and move detail to references if the body starts becoming a handbook.
+Target concise skills. Keep SKILL.md under the 500-word flag that `bossku skills audit` reports (`bodies_over_500_words`; it counts the whole file), and move detail to references if the body starts becoming a handbook.
 
 ## Artifact decision guide
 
@@ -77,7 +77,7 @@ Do nothing when the lesson is a one-off outcome, temporary debug note, or alread
 
 ### Phase 4 - Validate and benchmark
 
-13. Run a format pass: frontmatter parses, headings are clear, links are relative, and line count is below the limit.
+13. Run a format pass: frontmatter parses, headings are clear, links are relative, and SKILL.md is under the 500-word audit flag.
 14. Run an overlap pass against nearby skills.
 15. Define expected primary skill, useful complements, exclusions, and approval boundaries for ideal, adjacent non-trigger, ambiguous, and high-risk prompts. Add paraphrases, negated requests, named skills, and mixed concerns where they change selection; include unavailable skills or an installed-profile limit when relevant.
 16. Evaluate selection separately from execution. A selected stack must cover distinct concerns without duplicate workflows or bypassing invocation restrictions; verify the resulting artifact or observed behavior against the task's pass signal.
@@ -134,7 +134,7 @@ Validation:
   Overlap: [pass / risk]
   Prompt checks: [pass / not run]
   Composition checks: [covered concerns, excluded overlaps, unavailable skills]
-  Line count: [count / ceiling]
+  SKILL.md words: [count / 500 audit flag]
 ```
 
 ## References

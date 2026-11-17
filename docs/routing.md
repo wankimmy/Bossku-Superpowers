@@ -1,15 +1,15 @@
 # Pack routing
 
-Which skill takes which kind of task, pack by pack. `bossku skills find` and the prompt hint already apply these routes; read this table when routing is unclear or a host has no hint. Vendored packs are listed in [`skills/vendored.json`](../skills/vendored.json) and credited in [`third-party.md`](third-party.md).
+Which skill takes which kind of task, pack by pack. `bossku skills find` and the prompt hint apply most of these routes (storefront and mobile-app prompts can still pick a neighbour; the design line from the prompt hook names the right direction); read this table when routing is unclear or a host has no hint. Vendored packs are listed in [`skills/vendored.json`](../skills/vendored.json) and credited in [`third-party.md`](third-party.md).
 
 | Task | Primary skill(s) |
 |---|---|
-| Any website, landing page, portfolio or marketing UI (default: Awwwards style) | `bosskuai-taste` house rule (depth: `awwwards-web-design` or `awwwards`; `taste-skill`/`hallmark` only by name); score with `jury`; gate `antislop` + `antislop-ui` |
+| Showcase web: marketing site, landing page, portfolio, campaign, agency or studio site | `bosskuai-taste` house rule (depth: `awwwards-web-design` or `awwwards`; `taste-skill`/`hallmark` only by name); score with `jury` on a public URL or a local production build; gate `antislop` + `antislop-ui` |
 | Final anti-AI-slop audit for UI, mobile, copy, comments, or code | antislop — `antislop` plus only the relevant specialist skill(s) |
 | Large logs, files, searches, or tool output exhausting context | `bosskuai-headroom` (runtime installed/configured separately) |
 | Soft / minimal / brutalist UI direction | taste-skill — `soft-skill`, `minimalist-skill`, or `brutalist-skill` |
-| Redesign existing UI | `bosskuai-taste` (marketing sites) or `redesign-skill` (app UI) |
-| Screenshot / mockup / Figma → code; dashboards and app screens | `bosskuai-ui-ux-design-to-code` with the Awwwards craft bar (`image-to-code-skill` and `imagegen-*` only when an image-generation tool is available) |
+| Redesign existing UI (follows the type of the thing redesigned) | `bosskuai-taste` (showcase web) or `redesign-skill` / `bosskuai-ui-ux-design-to-code` (product UI, apps) |
+| Screenshot / mockup / Figma → code; product UI (SaaS, ERP/CRM/HRMS, dashboards, internal tools), task-first public pages (storefront, checkout, docs, pricing), consumer and mobile apps | `bosskuai-ui-ux-design-to-code`: the project's design system and platform conventions first, no jury (`image-to-code-skill` and `imagegen-*` only with an image-generation tool) |
 | Marketing, CRO, SEO, copy, GTM | marketingskills: start with `product-marketing`; primary by request: `seo-audit` (fix SEO), `ai-seo` (AI citations), `ads` / `ad-creative` (paid), `analytics` (tracking), `ab-testing`, `launch`, `competitor-profiling`, `antislop-copywriting` (de-AI copy); `bosskuai-*` marketing skills are one-pass strategy and readiness gates |
 | Brainstorm → plan → execute → verify process | superpowers — `brainstorming`, `writing-plans`, `subagent-driven-development` / `executing-plans`, `verification-before-completion` (TDD: `bosskuai-tdd-loop`; debugging: `bosskuai-diagnose-loop`) |
 | Codebase map, call tracing, where-does-X-live (source code) | `graft` (requires `@nanonets/graft` CLI + `graft build`) |

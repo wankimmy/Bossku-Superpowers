@@ -45,7 +45,7 @@ This works whether the user is here to push back or not.
 
 ### 2. Generate radically different variants
 
-Draft each variant. Hold each one to:
+Classify the product first (AGENTS.md, Anti-slop): showcase web loads `bosskuai-taste`; product UI, task-first public pages and apps follow the project's design system through `bosskuai-ui-ux-design-to-code`. Then draft each variant. Hold each one to:
 
 - The page's purpose and the data it has access to.
 - The project's component library / styling system (TailwindCSS, shadcn, MUI, plain CSS, whatever).

@@ -177,6 +177,9 @@ def main(argv: list[str] | None = None) -> int:
                    parents=[child])
     sub.add_parser("learn-gate", help="Internal: Stop hook that asks for a learn pass every N tool calls",
                    parents=[child])
+    p_evidence = sub.add_parser("evidence", help="Print what the last turn of a transcript ran: edits, checks, state",
+                                parents=[child])
+    p_evidence.add_argument("--transcript", type=Path, required=True)
     p_learn = sub.add_parser("learn", help="Learned skills: lessons from past sessions, kept with the project notes",
                              parents=[child])
     p_learn_sub = p_learn.add_subparsers(dest="learn_cmd", required=True)
@@ -377,6 +380,10 @@ def main(argv: list[str] | None = None) -> int:
             except LearnError as exc:
                 print(f"error: {exc}", file=sys.stderr)
                 return 2
+            return 0
+        if args.command == "evidence":
+            from bossku.evidence import summarize   # not at module scope: only this command needs it
+            print(json.dumps(summarize(str(args.transcript)), indent=2))
             return 0
         if args.command == "learn-gate":
             try:   # a hook never fails the user's session
