@@ -1,5 +1,33 @@
 # Changelog
 
+## v2.15.0 - Gates read real outcomes, and design fits the product
+
+### New
+
+- **`bossku evidence --transcript <path>`.** Shows what a session really ran: the code edits, each check with pass, fail, not run or no result, and one state (`verified`, `failed_verification`, `unverified`, `no_code_change`). Secrets in a command are masked before it is printed. It cannot see edits made by subagents.
+- **Five completion states.** A finished task ends in one state backed by what ran: `VERIFIED_COMPLETE`, `PARTIALLY_COMPLETE`, `FAILED_VERIFICATION`, `BLOCKED` or `AWAITING_AUTHORIZATION`.
+- **Design direction by product type.** The agent classifies the product before it picks a direction. Showcase web (marketing, landing, portfolio, agency) keeps the Awwwards house rule and the jury score. Task-first public pages (storefront, checkout, docs, pricing) keep familiar patterns and native scroll. Product UI (SaaS, ERP/CRM/HRMS, dashboards, internal tools) and consumer or mobile apps follow the project's design system and platform conventions, with no concept card, signature moment or jury band. This narrows the v2.x "Awwwards is the default" rule.
+- **Layout check.** `node <BosskuAI install>/scripts/layout-check.mjs <url>` loads a page at 320, 375, 390, 768, 1024, 1440 and 1920 pixels and reports sideways overflow, overflow hidden by a global `overflow-x: hidden`, cut-off text, overlapping controls and touch targets under 24 by 24. Exit 0 means no errors, 1 means errors were found (a small touch target is a warning and does not fail it), 2 means it did not run. It uses the Playwright of the project it runs in and installs nothing. A clean run is not proof the page looks right: screenshots still have to be looked at, and `scripts/shot.mjs` takes `--widths 320,768` to capture the widths the check flagged.
+- **Engagement ethics, always on.** A short rule in AGENTS.md: engagement serves the user's goal; no fake or reset deadlines, invented scarcity or social proof, pre-ticked consent, guilt copy, punitive streaks or hard-to-cancel flows, even when a loaded skill suggests one. With it come `references/checklists/engagement-ethics-checklist.md`, `references/checklists/layout-reliability-checklist.md` and `references/playbooks/human-centered-design-playbook.md`, where a sourced guideline names its source and how strong it is; untagged lines are design judgement.
+- **Skill effectiveness records.** `scripts/skill_effectiveness.py` and `benchmarks/skill-effectiveness/` turn past benchmark rows into one record per cell. Of 37 pack-versus-no-pack cells: 4 show a demonstrated improvement, 17 are promising, 16 are neutral or inconclusive, none shows a demonstrated regression. No single skill has been tested on its own yet, and the records say so.
+- **Two more routing sets.** `benchmarks/routing-heldout/vendored-probes.json` (790 prompts for vendored skills) and `lures.json` (173 prompts that contain a trigger phrase, or its words, but belong to another skill).
+- **Upgrade record.** [docs/evidence-gated-upgrade.md](docs/evidence-gated-upgrade.md) lists the sources read, what was changed, what was tried and dropped, and what is still unproven.
+
+### Changed
+
+- **The verify gate reads outcomes, not markers.** A read-only command (`cat pytest.ini`, `echo pytest`) no longer counts as a test run. A check whose result is an error leaves the edit unverified, and the gate names the command. A command that was denied or aborted never ran, so it is skipped and the last check that really ran decides. The `Security gate:` line must start a line; a mention in the middle of a sentence is not a verdict. The Node gate and the Python gate read commands the same way, and both mask secrets in the command they print. Known limit: a check started in the background counts when it starts; its later result is not read.
+- **Fewer approval stops.** Routine, reversible work goes ahead with the assumption stated. A one-page brief needs approval for the large tier only (auth, payments, tenant data, migrations, secrets). Safety approvals stay.
+- **The handoff survives in the session brief.** `handoff.md` gets its own block of up to 780 characters and keeps "Next" and `FOR_NEXT_MODEL`. The brief now goes through the redactor, and `bossku remember` masks common command-line secret forms (`--password hunter2`, `mysql -pSecret`, `curl -u user:pass`, `NAME_PASS=x`). This is a pattern list, not a guarantee: a value after a space that is only letters (`--password hunter`) is left as it is, so ordinary prose is not changed.
+- **Learned skills cannot grant themselves tools.** A learned skill's frontmatter may hold only `name`, `description`, `category` and `learned`. The secret scan also reads commands in fences, code spans, list items and prompt lines.
+- **Skill text.** 84 first-party skills had a defect fixed, and 26 engineering skills gained an architecture-first step, domain edge cases and a scenario walk.
+- **Routing.** A skill's curated triggers are no longer cut at 40. An ERP, CRM, HRMS or SaaS dashboard goes to `bosskuai-ui-ux-design-to-code`, not to the monitoring dashboard skill or the prompt optimizer.
+
+### Fixed
+
+- **Codex sync hook from an older install.** `bossku install` repoints a stale Codex sync command at the wrapper, and leaves the user's own hooks beside it in place.
+- **`curl --user-agent` is not a credential.** The redactor no longer masks it.
+- **Build requirement.** The build needs `setuptools>=78.1.1`.
+
 ## v2.14.2 - Review nits are optional
 
 ### Changed
