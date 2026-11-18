@@ -437,7 +437,7 @@ def _layout_steps(base: Path) -> list[dict]:
     steps: list[dict] = []
     why = "renamed so the vault is easier to read"
     for src_dir, dest_dir in pairs:
-        if not src_dir.is_dir():
+        if not os.path.isdir(src_dir):    # not src_dir.is_dir(): before Python 3.14 it raises inside a folder you cannot enter
             continue
         for f in sorted(_files(src_dir)):
             if dest_dir.name == INBOX and f.name in NOTE_FILES and (dest_dir / f.name).is_file():

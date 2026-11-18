@@ -1,3 +1,4 @@
+import errno
 import json
 import os
 import stat
@@ -321,6 +322,29 @@ class TidyTests(unittest.TestCase):
                 again = vault.apply_tidy([], home=w.home)
             self.assertEqual(again["status"], "partial")
             self.assertEqual(again["failed"][0]["step"], "remove-empty-folder")
+
+    def test_a_folder_that_cannot_be_entered_does_not_stop_the_tidy(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            w = World(tmp)
+            locked = w.base / "locked"
+            locked.mkdir()
+            write(w.base / "web" / "learnings.md", "# Learnings\n\nsomething\n")
+            real_stat = os.stat
+
+            def stat_refused_inside_locked(path, *args, **kwargs):
+                # Linux and macOS answer like this for a folder without the search permission (mode r--),
+                # and before Python 3.14 Path.is_dir() passes the error on instead of saying False
+                if isinstance(path, (str, os.PathLike)) and locked in Path(path).parents:
+                    raise PermissionError(errno.EACCES, "Permission denied", str(path))
+                return real_stat(path, *args, **kwargs)
+
+            with mock.patch("os.stat", stat_refused_inside_locked):
+                plan = vault.plan_tidy(home=w.home)
+                result = vault.apply_tidy(plan, home=w.home)
+            self.assertIn(("remove-empty-folder", str(locked)), [(s["action"], s["source"]) for s in plan])
+            self.assertEqual(result["status"], "ok", result)
+            self.assertTrue((w.base / "Shop" / "repos" / "web" / "learnings.md").is_file())
+            self.assertFalse(locked.exists())
 
     def test_old_folder_names_are_renamed_to_the_current_layout(self):
         with tempfile.TemporaryDirectory() as tmp:
