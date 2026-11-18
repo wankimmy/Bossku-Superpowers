@@ -392,7 +392,11 @@ def _sync_state(project: Path):
                 raise
             from bossku.vault import _free
             kept = str(_free(path.with_name(path.name + ".broken")))
-            with open(kept, "xb") as copy:      # "x": never through a link, never over another file
+            # _free sees a link to a missing file as a free name. On Linux "x" then refuses the link, but on Windows
+            # it follows the link and creates the file it points to, outside the project. So refuse a link here.
+            if os.path.islink(kept):
+                raise FileExistsError(f"{kept} is a link; nothing was written")
+            with open(kept, "xb") as copy:      # "x": never over another file
                 copy.write(raw)
             state = {"reset_from": kept}
             path.write_text(json.dumps(state, indent=2), encoding="utf-8")   # a save that fails later keeps one copy
