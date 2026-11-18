@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -252,13 +253,17 @@ def remember(
     if storage == "obsidian":
         vault_result = {"status": "ok", "storage": "obsidian", "vault_dir": str(mem_dir)}
         return _saved(kind, target, vault_result)
-    sync_state = _load_sync_state(project)
-    sync_state.setdefault("pending", []).append(kind)
-    _save_sync_state(project, sync_state)
-    return _saved(kind, target, sync_project(project, home=home))
+    kept = None
+    try:
+        with _sync_state(project) as (state, kept):
+            state.setdefault("pending", []).append(kind)
+        vault = sync_project(project, home=home)
+    except TimeoutError as exc:   # the note is in the file: an error now would make an agent save it a second time
+        vault = {"status": "busy", "reason": str(exc)}
+    return _saved(kind, target, vault, kept)
 
 
-def _saved(kind: str, target: Path, vault: dict) -> dict:
+def _saved(kind: str, target: Path, vault: dict, state_kept_as: str | None = None) -> dict:
     """The result of a successful save. The first two keys say so plainly: agents that only saw a vault status of
     "skipped" took a saved note for a failure and retried, wrote test notes, and edited the memory files by hand."""
     status = vault.get("status")
@@ -271,11 +276,15 @@ def _saved(kind: str, target: Path, vault: dict) -> dict:
         where = f"to {target} and copied it to the vault"
     elif status == "pending":
         where = f"to {target}; the vault is unavailable, so the copy waits for the next sync"
+    elif status == "busy":
+        where = f"to {target}; sync-state.json was busy, so any vault copy waits for the next sync"
     elif vault.get("reason") == TEMP_SKIP:
         where = f"to {target}; this project is in the temp folder, so it is not copied to the vault"
     else:
         where = f"to {target}; no vault is configured, so there is no second copy"
-    message = f"Saved the {kind} note {where}. Nothing more to do."
+    reset = (f" sync-state.json could not be read, so a new one was started; the old one is kept as {state_kept_as}."
+             if state_kept_as else "")
+    message = f"Saved the {kind} note {where}.{reset} Nothing more to do."
     return {"saved": True, "message": message, "kind": kind, "file": str(target), "vault": vault}
 
 
@@ -321,36 +330,38 @@ def sync_project(project: Path, *, home: Path | None = None) -> dict:
     export_base.mkdir(parents=True, exist_ok=True)
     exported: list[str] = []
     conflicts: list[str] = []
-    state = _load_sync_state(project)
-    file_hashes: dict[str, str] = state.get("file_hashes", {})
-    for kind, filename in KIND_TO_FILE.items():
-        src = mem_dir / filename
-        if not src.is_file():
-            continue
-        content = src.read_text(encoding="utf-8")
-        digest = hashlib.sha256(content.encode("utf-8")).hexdigest()
-        dest = export_base / filename
-        ensure_inside(dest, vault)
-        if dest.is_file():
-            # Text mode reads CRLF as LF, so the Windows line endings write_text produces are not mistaken for an edit.
-            current = dest.read_text(encoding="utf-8", errors="replace")
-            if current == content:
-                file_hashes[filename] = digest
-                exported.append(filename)
+    with _sync_state(project) as (state, _):
+        file_hashes: dict[str, str] = state.get("file_hashes", {})
+        # After a state file that could not be read, the copies bossku wrote are not known. A copy that differs may
+        # hold your edit, so it is kept as a conflict copy too.
+        copies_unknown = state.pop("reset_from", None)
+        for kind, filename in KIND_TO_FILE.items():
+            src = mem_dir / filename
+            if not src.is_file():
                 continue
-            prev = file_hashes.get(filename)
-            if prev and hashlib.sha256(current.encode("utf-8")).hexdigest() != prev:
-                from bossku.vault import _free
-                conflict = _free(export_base / f"{filename}.conflict.md")
-                conflict.write_bytes(dest.read_bytes())   # the edit as it was, even when it is not valid UTF-8
-                conflicts.append(str(conflict))
-        dest.write_text(content, encoding="utf-8")
-        file_hashes[filename] = digest
-        exported.append(filename)
-    state["file_hashes"] = file_hashes
-    state["pending"] = []
-    state["last_sync"] = datetime.now(timezone.utc).isoformat()
-    _save_sync_state(project, state)
+            content = src.read_text(encoding="utf-8")
+            digest = hashlib.sha256(content.encode("utf-8")).hexdigest()
+            dest = export_base / filename
+            ensure_inside(dest, vault)
+            if dest.is_file():
+                # Text mode reads CRLF as LF, so the Windows line endings write_text produces are not mistaken for an edit.
+                current = dest.read_text(encoding="utf-8", errors="replace")
+                if current == content:
+                    file_hashes[filename] = digest
+                    exported.append(filename)
+                    continue
+                prev = file_hashes.get(filename)
+                if (prev or copies_unknown) and hashlib.sha256(current.encode("utf-8")).hexdigest() != prev:
+                    from bossku.vault import _free
+                    conflict = _free(export_base / f"{filename}.conflict.md")
+                    conflict.write_bytes(dest.read_bytes())   # the edit as it was, even when it is not valid UTF-8
+                    conflicts.append(str(conflict))
+            dest.write_text(content, encoding="utf-8")
+            file_hashes[filename] = digest
+            exported.append(filename)
+        state["file_hashes"] = file_hashes
+        state["pending"] = []
+        state["last_sync"] = datetime.now(timezone.utc).isoformat()
     return {"status": "ok", "exported": exported, "conflicts": conflicts, "vault_dir": str(export_base)}
 
 
@@ -358,17 +369,35 @@ def _sync_state_path(project: Path) -> Path:
     return project_memory_dir(project) / "sync-state.json"
 
 
-def _load_sync_state(project: Path) -> dict:
-    path = _sync_state_path(project)
-    if not path.is_file():
-        return {}
-    return json.loads(path.read_text(encoding="utf-8"))
+@contextmanager
+def _sync_state(project: Path):
+    """Read, change and rewrite sync-state.json as one step. Two saves at the same moment take turns.
 
-
-def _save_sync_state(project: Path, state: dict) -> None:
+    Yields the state, and where the old file was kept when it could not be read. Such a file (cut short, or broken
+    by two saves before this lock) is kept as sync-state.json.broken and a new state starts, marked "reset_from"
+    until the next copy to the vault. The file is rewritten in place: on Windows the lock keeps it open, and Windows
+    refuses to rename another file over an open one.
+    """
     path = _sync_state_path(project)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(state, indent=2), encoding="utf-8")
+    with locked(path):
+        raw, kept = path.read_bytes(), None
+        try:
+            state = json.loads(raw) if raw.strip() else {}      # empty: the lock has just made the file
+            if (not isinstance(state, dict) or not isinstance(state.get("pending", []), list)
+                    or not isinstance(state.get("file_hashes", {}), dict)):
+                raise ValueError("not a sync state")
+        except ValueError:
+            if path.is_symlink():       # a link can lead out of the project: fail as before, and write nothing
+                raise
+            from bossku.vault import _free
+            kept = str(_free(path.with_name(path.name + ".broken")))
+            with open(kept, "xb") as copy:      # "x": never through a link, never over another file
+                copy.write(raw)
+            state = {"reset_from": kept}
+            path.write_text(json.dumps(state, indent=2), encoding="utf-8")   # a save that fails later keeps one copy
+        yield state, kept
+        path.write_text(json.dumps(state, indent=2), encoding="utf-8")
 
 
 def init_memory_templates(project: Path, *, home: Path | None = None) -> Path:

@@ -65,10 +65,6 @@ def first_writer_stopped_before_its_write(test, write, filename):
         first.result(30)
 
 
-class AfterTheNote(Exception):
-    """Raised in place of the sync-state update, to end a save once its note is in the file."""
-
-
 class TwoWritersTests(unittest.TestCase):
     def setUp(self):
         tmp = tempfile.TemporaryDirectory()
@@ -97,11 +93,7 @@ class TwoWritersTests(unittest.TestCase):
 
     def both_notes_land(self, notes_file):
         def first():
-            # In repo storage a save goes on to update sync-state.json, which two writers can still trip over
-            # (a separate fault, not a lost note). The first writer stops after its note so this test cannot hit it.
-            with mock.patch("bossku.memory._load_sync_state", side_effect=AfterTheNote), \
-                    contextlib.suppress(AfterTheNote):
-                remember(self.project, "learning", "FIRST note", home=self.home)
+            remember(self.project, "learning", "FIRST note", home=self.home)
 
         with first_writer_stopped_before_its_write(self, first, "learnings.md"):
             child = self.second_writer("SECOND note")
