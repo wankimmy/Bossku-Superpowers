@@ -255,10 +255,13 @@ class OpenCodePluginTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             home = Path(tmp)
             (home / ".config" / "opencode").mkdir(parents=True)
-            log, recorder = home / "calls.log", home / "record.py"
-            recorder.write_text("import sys\nwith open(sys.argv[1], 'a', encoding='utf-8') as f:\n"
-                                "    f.write(' '.join(sys.argv[2:]) + '\\n')\n", encoding="utf-8")
-            with mock.patch("bossku.hooks.resolve_bossku_argv", return_value=[sys.executable, str(recorder), str(log)]):
+            calls, recorder = home / "calls", home / "record.py"
+            calls.mkdir()
+            # One file per call. The children start together, and on Windows two processes that append to the same
+            # file at the same moment can overwrite each other's line, which made this test fail now and then.
+            recorder.write_text("import os, sys, tempfile\nfd, _ = tempfile.mkstemp(dir=sys.argv[1])\n"
+                                "os.write(fd, ' '.join(sys.argv[2:]).encode('utf-8'))\nos.close(fd)\n", encoding="utf-8")
+            with mock.patch("bossku.hooks.resolve_bossku_argv", return_value=[sys.executable, str(recorder), str(calls)]):
                 install_hooks(home=home, tools=("opencode",))
             plugin = home / ".config" / "opencode" / "plugins" / "bossku-sync.js"
             module = plugin.with_suffix(".mjs")
@@ -280,12 +283,16 @@ class OpenCodePluginTests(unittest.TestCase):
                                   encoding="utf-8", timeout=60)
             self.assertEqual(done.returncode, 0, done.stderr)
             want = sorted(f"sync-hook --project {d}" for d in ("/one", "/two", "/other"))
+
+            def recorded() -> list[str]:
+                return sorted(p.read_text(encoding="utf-8") for p in calls.iterdir())
+
             for _ in range(200):   # the children are detached: wait for them, then make sure no fourth one comes
-                if log.is_file() and len(log.read_text(encoding="utf-8").splitlines()) >= len(want):
+                if len([call for call in recorded() if call]) >= len(want):   # a file is empty until its child writes
                     break
                 time.sleep(0.1)
             time.sleep(0.5)
-            self.assertEqual(sorted(log.read_text(encoding="utf-8").splitlines()), want)
+            self.assertEqual(recorded(), want)
 
 
 class InstallProfileTests(unittest.TestCase):
