@@ -15,7 +15,7 @@ A third set, on 29 October 2026, compares Bossku Superpowers with four other ski
 | Harder tasks | The same on longer projects with many rules to follow | Yes (Ollama Cloud) | `hard.json` |
 | Remembering a rule | Does a rule stated in one session survive into the next? | Yes (Ollama Cloud) | `memory.json` |
 | HumanEval | Does anything get worse on a well-known public test? | Yes (Ollama Cloud) | `humaneval.json` |
-| Tuned routing regression | Did a router change break the 84 prompts it was tuned on? | No | [`routing.json`](routing.json) |
+| Tuned routing regression | Did a router change break the 101 prompts it was tuned on? | No | [`routing.json`](routing.json) |
 
 ## What was run
 
@@ -139,7 +139,7 @@ Two sets of requests were written by agents that saw only the skill catalog (eac
 
 The vocabulary of requests was generated the same way, from each `SKILL.md` alone and without seeing any of these requests: one small model per skill wrote about 30 messages (241 skills, 7,240 messages in all) "that real users would type when this skill is the right first skill" (12 detailed, 6 short, 6 messy, 4 mixed Malay-English, 2 indirect), described in terms of symptoms, tools, error strings and goals rather than the skill's own words. The weight and the cutoffs were chosen on the tuning halves and the curated regression cases (`tests/test_routing.py`) and reported on the test halves. The previous router scored 66% first-pick accuracy on those 158 requests, the current one 81%, plain keyword search 56%. The keyword search reads the skill list of the first `--arm` (or the arm named by `--baseline-arm`), so its score moves with the skill list and not with the router: the saved 56% (88 of 158) comes from the skill list at `b8ccea1`, and the same method on the list at `4d47894` gives 54% (86 of 158). A new run writes which arm and catalog the keyword search used (`baseline`) and each arm's git revision (`arms`) into its output file. The committed `routing-heldout.json` was made before those keys existed; re-running with `b8ccea1` as `before` and `dca2b1a` (the commit that wrote the file) as `after` gives its numbers again. Later router changes move the `after` stack size and stack precision slightly, so a re-run on `4d47894` matches the top-1, top-3 and coverage numbers but not those two.
 
-Two things this does not show. First, the 81% is for requests the router was not tuned on; the 84 regression prompts below it score 100% only because it was tuned on them, so that number is not worth quoting as accuracy. Second, better ranking does not by itself change what an agent does. In the live check (DeepSeek V4.1 Flash on 60 of the test requests, with the router at commit `8279f19`) an acceptable skill was opened for 45% of them (27 of 60) and no skill at all for 43% (26 of 60); the earlier check on 73 requests with the older router gave 55% (40 of 73) and 27% (20 of 73). Those 73 rows are not in this tree; they exist only in git history (`git show 9a1eb6d:benchmarks/results/raw/routing.jsonl`, summarised in `benchmarks/results/routing-live.json` at the same commit). In the coding, harder-task, HumanEval and memory runs, skills were almost never opened: 4 of 487 completed runs with Bossku Superpower opened one (`minimal-fix`, `bosskuai-tdd-loop` or `bosskuai-qa-automation-strategy`; count them with `python scripts/skill_use_count.py`). What the hint says, and when, matters more than the ranking.
+Two things this does not show. First, the 81% is for requests the router was not tuned on; the 101 regression prompts below it score 100% only because it was tuned on them, so that number is not worth quoting as accuracy. Second, better ranking does not by itself change what an agent does. In the live check (DeepSeek V4.1 Flash on 60 of the test requests, with the router at commit `8279f19`) an acceptable skill was opened for 45% of them (27 of 60) and no skill at all for 43% (26 of 60); the earlier check on 73 requests with the older router gave 55% (40 of 73) and 27% (20 of 73). Those 73 rows are not in this tree; they exist only in git history (`git show 9a1eb6d:benchmarks/results/raw/routing.jsonl`, summarised in `benchmarks/results/routing-live.json` at the same commit). In the coding, harder-task, HumanEval and memory runs, skills were almost never opened: 4 of 487 completed runs with Bossku Superpower opened one (`minimal-fix`, `bosskuai-tdd-loop` or `bosskuai-qa-automation-strategy`; count them with `python scripts/skill_use_count.py`). What the hint says, and when, matters more than the ranking.
 
 ## Skill hint: v1 against v2
 
@@ -196,18 +196,18 @@ python scripts/benchmark_routing_heldout.py --policy v1 v2 confident_router \
     --prompts benchmarks/routing-heldout/trivial.json --split fresh
 ```
 
-## Tuned routing regression (84 prompts)
+## Tuned routing regression (101 prompts)
 
-The older offline check compares Bossku Superpower's lexical routing with an ID/description-only keyword baseline on the 84 prompts the router was tuned against. It makes no model calls and needs only Python's standard library. Treat it as a regression test, not as evidence of accuracy on new prompts; the held-out check above is for that.
+The older offline check compares Bossku Superpower's lexical routing with an ID/description-only keyword baseline on the 101 prompts the router was tuned against. It makes no model calls and needs only Python's standard library. Treat it as a regression test, not as evidence of accuracy on new prompts; the held-out check above is for that.
 
 The [machine-readable snapshot](routing.json) holds every prompt, defensible answer set, predicted ID, ranked score, and pass/fail outcome.
 
 | Method | Top-one hits | Top-three hits |
 |---|---|---|
-| Bossku Superpower `find_skill` / `rank_skills` | 84/84 (100%) | 84/84 (100%) |
-| ID/description-only keyword baseline | 46/84 (54.76%) | 62/84 (73.81%) |
+| Bossku Superpower `find_skill` / `rank_skills` | 101/101 (100%) | 101/101 (100%) |
+| ID/description-only keyword baseline | 45/101 (44.55%) | 58/101 (57.43%) |
 
-The automatic selector (`select_skill_stack`) is scored separately under `results.automatic_selection`: 79/79 model-invoked primaries and 3/3 user-only commands correctly deferred.
+The automatic selector (`select_skill_stack`) is scored separately under `results.automatic_selection`: 98/98 model-invoked primaries and 3/3 user-only commands correctly deferred.
 
 ```console
 python scripts/benchmark_routing.py          # regenerate docs/benchmarks/routing.json
