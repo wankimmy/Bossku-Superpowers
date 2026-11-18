@@ -6,6 +6,7 @@ import os
 from datetime import datetime, timezone
 from pathlib import Path
 
+from bossku.filelock import locked
 from bossku.paths import ensure_inside, project_memory_dir, user_config_path, vault_export_dir
 from bossku.redact import redact_note
 
@@ -243,7 +244,8 @@ def remember(
     if storage == "obsidian" and mem_dir.name == INBOX:     # say where an inbox note came from
         cleaned = f"From: {project_root}\n\n{cleaned}"
     entry = f"\n## {stamp}\n\n{cleaned}\n"
-    with target.open("a", encoding="utf-8") as stream:
+    # Two saves of one kind at the same moment take turns: without the lock one note could overwrite the other.
+    with locked(target), target.open("a", encoding="utf-8") as stream:
         if target.stat().st_size == 0:
             stream.write(f"# {kind.title()}s\n")
         stream.write(entry)

@@ -17,6 +17,7 @@ import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 
+from bossku.filelock import locked
 from bossku.memory import memory_directory
 from bossku.paths import user_config_dir
 from bossku.redact import COMMAND_PATTERNS, NOTE_COMMAND_PATTERNS, redact, redact_command
@@ -354,7 +355,9 @@ def _write_atomic(path: Path, text: str) -> None:
 
 def _ledger(skill_dir: Path, entry: dict) -> None:
     entry = {"at": _now().strftime("%Y-%m-%dT%H:%M:%SZ"), **entry}
-    with open(skill_dir / LEDGER, "a", encoding="utf-8", newline="\n") as fh:
+    path = skill_dir / LEDGER
+    # Two writers at the same moment take turns: without the lock one line could overwrite the other.
+    with locked(path), open(path, "a", encoding="utf-8", newline="\n") as fh:
         fh.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
 
