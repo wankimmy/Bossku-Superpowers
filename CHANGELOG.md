@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- **Reviews are sized by risk.** `bosskuai-rigorous-code-review` now picks a tier first and names it in the verdict. Light (no behaviour change): leftover search, CI logs, merge check and the one path it touches. Full (logic, data, permissions, API, migrations, UI flows): adds a limited-role run besides the admin, phone (390 px) and desktop (1440 px) checks, generated edge-case data before any production copy, and a fresh second reviewer that never sees your findings, also used when the change builds on your own earlier analysis. A green tick needs its lint and test logs to show the changed files ran, and posted findings, nits included, go inline on their line.
+
 ## v2.15.0 - Gates read real outcomes, and design fits the product
 
 ### New
