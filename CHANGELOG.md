@@ -1,9 +1,13 @@
 # Changelog
 
-## Unreleased
+## v2.15.1 - Reviews are sized by risk and start from the requirements
 
 ### Changed
 
+- **The rules that decide a review's verdict come first.** `bosskuai-rigorous-code-review` opens with them: a line that was already there before the change is never blocking, a small fix on the PR's own lines is an ask in this PR, red or pending CI holds the approval, a merge conflict gets Request changes that tags the author, findings to fix go in a Request changes review, confusing UI is a fix, and a docs claim that covers fewer cases than the code is an ask. An approval also needs the PR to merge cleanly.
+- **Full-tier reviews start from the requirements.** New `full-tier.md`: a requirements ledger before the diff (what was asked, what must not change, later decisions, rules the issue implies, open questions), pinned SHAs, one trace across every PR of the issue with a reverse check for changes no requirement asked for, and tests proven in scratch clones (they fail on the merge base, and breaking each guard makes one fail).
+- **Posting has its own page.** New `posting.md`: short comments, findings numbered F1, F2... and kept across rounds, every finding inline on its line, head and base re-checked before posting, and a pending review pinned to the reviewed commit.
+- A UI change with no author screenshots is not a finding when your own run of the branch verified it.
 - **Reviews are sized by risk.** `bosskuai-rigorous-code-review` now picks a tier first and names it in the verdict. Light (no behaviour change): leftover search, CI logs, merge check and the one path it touches. Full (logic, data, permissions, API, migrations, UI flows): adds a limited-role run besides the admin, phone (390 px) and desktop (1440 px) checks, generated edge-case data before any production copy, and a fresh second reviewer that never sees your findings, also used when the change builds on your own earlier analysis. A green tick needs its lint and test logs to show the changed files ran, and posted findings, nits included, go inline on their line.
 
 ## v2.15.0 - Gates read real outcomes, and design fits the product
